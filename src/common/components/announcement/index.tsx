@@ -169,15 +169,6 @@ const Announcement = () => {
             >
               <div className="feedback-announcement">
                 <div className="row">
-                  {list.length > 1 ? (
-                    <div className="column left">
-                      <div className="up-carousel-svg" onClick={upClick}>
-                        upCarouselSvg
-                      </div>
-                    </div>
-                  ) : (
-                    <></>
-                  )}
                   <div className="col center">
                     <div className="main">
                       <div className="announcement-title">
@@ -194,12 +185,23 @@ const Announcement = () => {
                       <Button onClick={laterClick} variant="outline-primary">
                         Later
                       </Button>
-                      <Button onClick={dismissClick} variant="link">
-                        Dismiss
-                      </Button>
+                      {list.length > 1 ? (
+                        <Button onClick={upClick} variant="link">
+                          Next
+                        </Button>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>
-                  <Button className="close-btn" variant="link" onClick={closeClick}>
+                  <Button
+                    className="close-btn"
+                    variant="link"
+                    onClick={() => {
+                      closeClick();
+                      dismissClick();
+                    }}
+                  >
                     {closeSvg}
                   </Button>
                 </div>

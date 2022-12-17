@@ -16,6 +16,7 @@ import { AppWindow } from "../../client/window";
 import isElectron from "../util/is-electron";
 import { NotifyTypes } from "../enums";
 import { BeneficiaryRoute, MetaData, RewardType } from "./operations";
+import announcement from "../components/announcement";
 
 declare var window: AppWindow;
 
@@ -535,6 +536,7 @@ export interface ReferralItem {
 export interface ReferralItems {
   data: ReferralItem[];
 }
+
 export const getReferrals = (username: any, maxId: any): Promise<ReferralItems> => {
   return axios.get(apiBase(`/private-api/referrals/${username}`), {
     params: {
@@ -542,10 +544,12 @@ export const getReferrals = (username: any, maxId: any): Promise<ReferralItems> 
     }
   });
 };
+
 export interface ReferralStat {
   total: number;
   rewarded: number;
 }
+
 export const getReferralsStats = async (username: any): Promise<ReferralStat> => {
   try {
     const res = await axios.get(apiBase(`/private-api/referrals/${username}/stats`));
@@ -580,27 +584,16 @@ export const getAnnouncementsData = async (
   path: string
 ): Promise<Announcement[]> => {
   try {
-    const res = await axios.get(apiBase(`/private-api/announcements`));
+    const res = await axios.get<Announcement[]>(apiBase(`/private-api/announcements`));
     if (!res.data) {
-      throw new Error("No Announcement found");
+      return [];
     }
-    const filteredAnnouncements: Announcement[] = [];
-    const addToAnnouncementsList = function (s: string, announcement: Announcement): void {
-      if (path.match(s)) {
-        filteredAnnouncements.push(announcement);
-      }
-    };
-
-    res.data.filter((announcement: Announcement) => {
+    return res.data.filter((announcement) => {
       if (typeof announcement.path === "object") {
-        announcement.path.map((p: string) => {
-          addToAnnouncementsList(p, announcement);
-        });
-      } else {
-        addToAnnouncementsList(announcement.path, announcement);
+        return announcement.path.some((aPath) => path.match(aPath));
       }
+      return path.match(announcement.path);
     });
-    return filteredAnnouncements;
   } catch (error) {
     console.warn(error);
     throw error;
