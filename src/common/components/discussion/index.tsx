@@ -373,7 +373,7 @@ export const Item = (props: ItemProps) => {
             const entryIsMuted = mutedData.includes(entry.author);
             const isComment = !!entry.parent_author;
             const ownEntry = activeUser && activeUser.username === entry.author;
-            const isHidden = entry?.net_rshares < -500000000; // 1000 HP
+            const isHidden = entry?.net_rshares < -7000000000 && entry?.active_votes.length > 3; // 1000 HP
             const isMuted =
               entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
             const isLowReputation =
