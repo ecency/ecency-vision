@@ -42,6 +42,7 @@ import { makePath as makePathEntry } from "../components/entry-link";
 import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
+import { detectEvent } from "../components/editor-toolbar";
 
 import {
   addDraft,
@@ -847,6 +848,30 @@ class SubmitPage extends BaseComponent<Props, State> {
     return makeJsonMetaData(meta, tags, summary, version);
   };
 
+  handleShortcuts = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.altKey && e.key === "b") {
+      detectEvent("bold");
+    }
+    if (e.altKey && e.key === "i") {
+      detectEvent("italic");
+    }
+    if (e.altKey && e.key === "t") {
+      detectEvent("table");
+    }
+    if (e.altKey && e.key === "k") {
+      detectEvent("link");
+    }
+    if (e.altKey && e.key === "c") {
+      detectEvent("codeBlock");
+    }
+    if (e.altKey && e.key === "d") {
+      detectEvent("image");
+    }
+    if (e.altKey && e.key === "m") {
+      detectEvent("blockquote");
+    }
+  };
+
   render() {
     const {
       title,
@@ -945,7 +970,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 onValid: this.handleValidForm
               })}
             </div>
-            <div className="body-input">
+            <div className="body-input" onKeyDown={this.handleShortcuts}>
               <TextareaAutocomplete
                 acceptCharset="UTF-8"
                 global={this.props.global}

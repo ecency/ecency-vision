@@ -70,6 +70,11 @@
     "ok": "확인",
     "cancel": "최소"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "인기",
     "filter-hot": "핫",
@@ -1056,16 +1061,16 @@
     "deleted": "즐겨찾기에서 삭제됨"
   },
   "editor-toolbar": {
-    "bold": "굵게",
-    "italic": "이탤릭체",
+    "bold": "Bold (Alt + B)",
+    "italic": "Italic (Alt + I)",
     "header": "제목",
-    "code": "코드",
-    "quote": "인용구",
+    "code": "Code (Alt + C)",
+    "quote": "Quote (Alt + M)",
     "ul": "정렬되지 않은 목록",
     "ol": "정리된 목록",
-    "link": "링크",
-    "image": "이미지",
-    "table": "표",
+    "link": "Link (Alt + K)",
+    "image": "Image (Alt + D)",
+    "table": "Table (Alt + T)",
     "table-3-col": "3열 레이아웃",
     "table-2-col": "2열 레이아웃",
     "table-1-col": "1열 레이아웃",

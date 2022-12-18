@@ -22,6 +22,7 @@ import i18n from "i18next";
 import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
 import { connect } from "react-redux";
 import loadable from "@loadable/component";
+import Announcement from "./components/announcement";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -66,13 +67,13 @@ const EntryPage = (props: any) => {
 const PurchaseContainer = loadable(() => import("./pages/purchase"));
 const PurchasePage = (props: any) => <PurchaseContainer {...props} />;
 
-const App = ({ setLang }: any) => {
+const App = (props: any) => {
   useEffect(() => {
     let pathname = window.location.pathname;
     if (pathname !== "/faq") {
       const currentLang = ls.get("current-language");
       if (currentLang) {
-        setLang(currentLang);
+        props.setLang(currentLang);
         i18n.changeLanguage(currentLang);
       }
     }
@@ -141,6 +142,8 @@ const App = ({ setLang }: any) => {
         <Route exact={true} strict={true} path={routes.CONTRIBUTORS} component={ContributorsPage} />
         <Route component={NotFound} />
       </Switch>
+
+      <Announcement activeUser={props.activeUser} />
     </>
   );
 };

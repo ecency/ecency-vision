@@ -11,11 +11,12 @@ import { Entry } from "../store/entries/types";
 import { getAccessToken } from "../helper/user-token";
 
 import { apiBase } from "./helper";
-
+import { dataLimit } from "./bridge";
 import { AppWindow } from "../../client/window";
 import isElectron from "../util/is-electron";
 import { NotifyTypes } from "../enums";
 import { BeneficiaryRoute, MetaData, RewardType } from "./operations";
+import announcement from "../components/announcement";
 
 declare var window: AppWindow;
 
@@ -535,6 +536,7 @@ export interface ReferralItem {
 export interface ReferralItems {
   data: ReferralItem[];
 }
+
 export const getReferrals = (username: any, maxId: any): Promise<ReferralItems> => {
   return axios.get(apiBase(`/private-api/referrals/${username}`), {
     params: {
@@ -542,10 +544,12 @@ export const getReferrals = (username: any, maxId: any): Promise<ReferralItems> 
     }
   });
 };
+
 export interface ReferralStat {
   total: number;
   rewarded: number;
 }
+
 export const getReferralsStats = async (username: any): Promise<ReferralStat> => {
   try {
     const res = await axios.get(apiBase(`/private-api/referrals/${username}/stats`));
@@ -559,6 +563,29 @@ export const getReferralsStats = async (username: any): Promise<ReferralStat> =>
       } as ReferralStat;
     };
     return convertReferralStat(res.data);
+  } catch (error) {
+    console.warn(error);
+    throw error;
+  }
+};
+
+export interface Announcement {
+  id: number;
+  title: string;
+  description: string;
+  button_text: string;
+  button_link: string;
+  path: string | Array<string>;
+  auth: boolean;
+}
+
+export const getAnnouncementsData = async (): Promise<Announcement[]> => {
+  try {
+    const res = await axios.get<Announcement[]>(apiBase(`/private-api/announcements`));
+    if (!res.data) {
+      return [];
+    }
+    return res.data;
   } catch (error) {
     console.warn(error);
     throw error;
