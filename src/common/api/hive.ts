@@ -162,6 +162,9 @@ export const getTradeHistory = (limit: number = 1000): Promise<OrdersDataItem[]>
   return client.call("condenser_api", "get_trade_history", [todayEarlier, todayNow, limit]);
 };
 
+export const getMarketBucketSizes = (): Promise<number[]> =>
+  client.call("condenser_api", "get_market_history_buckets", []);
+
 export const getMarketHistory = (
   seconds: number,
   startDate: Moment,
@@ -171,8 +174,6 @@ export const getMarketHistory = (
   let todayNow = endDate.format().split("+")[0];
   return client.call("condenser_api", "get_market_history", [seconds, todayEarlier, todayNow]);
 };
-
-// TODO: get bucket sizes
 
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
   client.database.call("get_active_votes", [author, permlink]);

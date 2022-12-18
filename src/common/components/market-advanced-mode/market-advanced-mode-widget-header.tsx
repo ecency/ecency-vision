@@ -4,7 +4,7 @@ import Accordion from "react-bootstrap/Accordion";
 import React, { useState } from "react";
 
 interface Props {
-  title?: string;
+  title?: string | JSX.Element;
   headerOptions?: JSX.Element;
   settings?: JSX.Element;
   icon?: JSX.Element;
@@ -22,8 +22,14 @@ export const MarketAdvancedModeWidgetHeader = ({ title, headerOptions, settings,
             {headerOptions}
             {title ? (
               <div className="d-flex align-items-center ml-3">
-                {icon ? <div className="icon mr-2">{icon}</div> : <></>}
-                <div className="header-title">{title}</div>
+                {typeof title === "string" ? (
+                  <>
+                    {icon ? <div className="icon mr-2">{icon}</div> : <></>}
+                    <div className="header-title">{title}</div>
+                  </>
+                ) : (
+                  title
+                )}
               </div>
             ) : (
               <></>

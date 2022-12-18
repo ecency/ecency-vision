@@ -7,11 +7,13 @@ import { History } from "history";
 interface Props {
   className?: string;
   type: Widget;
-  title?: string;
+  title?: string | JSX.Element;
   children: JSX.Element;
   headerOptions?: JSX.Element;
   widgetTypeChanged: (newType: Widget) => void;
   history: History;
+  additionalSettings?: JSX.Element;
+  settingsClassName?: string;
 }
 
 export const MarketAdvancedModeWidget = ({
@@ -21,7 +23,9 @@ export const MarketAdvancedModeWidget = ({
   title,
   headerOptions,
   className,
-  widgetTypeChanged
+  widgetTypeChanged,
+  additionalSettings,
+  settingsClassName
 }: Props) => {
   const getLabel = (type: Widget): string => {
     switch (type) {
@@ -56,8 +60,9 @@ export const MarketAdvancedModeWidget = ({
         title={title}
         headerOptions={headerOptions}
         settings={
-          <div className="p-3">
+          <div className={"p-3 " + settingsClassName}>
             <Dropdown float="none" label="Widget type" history={history} items={dropdownItems} />
+            {additionalSettings}
           </div>
         }
       />
