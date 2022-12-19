@@ -5,8 +5,9 @@ import { _t } from "../../i18n";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
 import { getMarketBucketSizes, getMarketHistory, MarketCandlestickDataItem } from "../../api/hive";
 import moment, { Moment } from "moment";
-import { IChartApi, ISeriesApi, Time } from "lightweight-charts";
+import { IChartApi, ISeriesApi, Time, TimeRange } from "lightweight-charts";
 import Dropdown from "../dropdown";
+import { useDebounce } from "react-use";
 
 interface Props {
   history: History;
@@ -22,6 +23,25 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
   const [chart, setChart] = useState<IChartApi | null>(null);
   const [chartSeries, setChartSeries] = useState<ISeriesApi<any> | null>(null);
   const [bucketSecondsList, setBucketSecondsList] = useState<number[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [triggerFetch, setTriggerFetch] = useState(false);
+
+  const [lastTimeRange, setLastTimeRange] = useState<TimeRange | null>(null);
+
+  useDebounce(
+    () => {
+      if (!triggerFetch) return;
+
+      setEndDate(startDate.clone().subtract(bucketSeconds, "seconds"));
+      setStartDate(
+        getNewStartDate(startDate.clone().subtract(bucketSeconds, "seconds"), "subtract")
+      );
+      fetchData(true);
+      setTriggerFetch(false);
+    },
+    300,
+    [triggerFetch]
+  );
 
   useEffect(() => {
     getMarketBucketSizes().then((sizes) => setBucketSecondsList(sizes));
@@ -29,7 +49,18 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
   }, []);
 
   useEffect(() => {
-    fetchData();
+    const fromDate = lastTimeRange ? new Date(Number(lastTimeRange.from) * 1000) : null;
+    if (fromDate) {
+      const diff = startDate.diff(getNewStartDate(moment(fromDate), "subtract"), "hours");
+
+      if (diff >= 0 && diff <= bucketSeconds * 60) setTriggerFetch(true);
+    }
+  }, [lastTimeRange]);
+
+  useEffect(() => {
+    setData([]);
+    setEndDate(moment());
+    setStartDate(getNewStartDate(moment(), "subtract"));
   }, [bucketSeconds]);
 
   useEffect(() => {
@@ -37,46 +68,69 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
       return;
     }
     const candleStickSeries = chartSeries ?? chart.addCandlestickSeries();
-    const candleStickData = data.map(({ hive, non_hive, open }) => ({
-      close: hive.close / non_hive.close,
-      open: hive.open / non_hive.open,
-      low: hive.low / non_hive.low,
-      high: hive.high / non_hive.high,
-      volume: non_hive.volume,
-      time: (moment(open).toDate().getTime() / 1000) as Time
-    }));
-    candleStickSeries.setData(candleStickData);
-    chart.timeScale().fitContent();
+    const candleStickData = data
+      .map(({ hive, non_hive, open }) => ({
+        close: hive.close / non_hive.close,
+        open: hive.open / non_hive.open,
+        low: hive.low / non_hive.low,
+        high: hive.high / non_hive.high,
+        volume: non_hive.volume,
+        time: Math.floor(moment(open).toDate().getTime() / 1000) as Time
+      }))
+      .reduce((acc, item) => acc.set(item.time, item), new Map<Time, any>());
+    candleStickSeries.setData(
+      Array.from(candleStickData.values()).sort((a, b) => Number(a.time) - Number(b.time))
+    );
 
     setChartSeries(candleStickSeries);
   }, [data, chart]);
 
-  const fetchData = async () => {
-    const data = await getMarketHistory(bucketSeconds, startDate, endDate);
-    setData(data);
+  const fetchData = async (loadMore?: boolean) => {
+    setIsLoading(true);
+    const apiData = await getMarketHistory(bucketSeconds, startDate, endDate);
+    if (loadMore) {
+      setData([...data, ...apiData]);
+    } else {
+      setData(apiData);
+    }
+    setIsLoading(false);
   };
 
   const buildChart = async () => {
     const tradingView = await import("lightweight-charts");
-    setChart(
-      tradingView.createChart(chartRef.current, {
-        timeScale: {
-          timeVisible: true
-        },
-        height: 400
-      })
-    );
+    const chartInstance = tradingView.createChart(chartRef.current, {
+      timeScale: {
+        timeVisible: true
+      },
+      height: 400
+    });
+
+    chartInstance
+      .timeScale()
+      .subscribeVisibleTimeRangeChange((timeRange) => setLastTimeRange(timeRange));
+    setChart(chartInstance);
   };
 
-  const onBucketSecondsChange = (value: number) => {
-    let newStartDate = endDate.clone();
-    if (value === 15) newStartDate = newStartDate.subtract(4, "hours");
-    if (value === 60) newStartDate = newStartDate.subtract(8, "hours");
-    if (value === 300) newStartDate = newStartDate.subtract(8, "hours");
-    if (value === 3600) newStartDate = newStartDate.subtract(1, "days");
-    if (value === 86400) newStartDate = newStartDate.subtract(20, "days");
-    setStartDate(newStartDate);
-    setBucketSeconds(value);
+  const getNewStartDate = (date: Moment, operation: "add" | "subtract") => {
+    let newStartDate = date.clone();
+    let value = 0;
+    let unit: "hours" | "days" = "hours";
+    if (bucketSeconds === 15) value = 4;
+    if (bucketSeconds === 60) value = 8;
+    if (bucketSeconds === 300) value = 8;
+    if (bucketSeconds === 3600) {
+      value = 1;
+      unit = "days";
+    }
+    if (bucketSeconds === 86400) {
+      value = 20;
+      unit = "days";
+    }
+
+    if (operation === "add") newStartDate = newStartDate.add(value, unit);
+    if (operation === "subtract") newStartDate = newStartDate.subtract(value, unit);
+
+    return newStartDate;
   };
 
   return (
@@ -101,7 +155,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
             items={bucketSecondsList.map((size) => ({
               label: `${size}`,
               selected: bucketSeconds === size,
-              onClick: () => onBucketSecondsChange(size)
+              onClick: () => setBucketSeconds(size)
             }))}
           />
         </>
