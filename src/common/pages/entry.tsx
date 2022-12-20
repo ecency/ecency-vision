@@ -14,7 +14,7 @@ import {
 import { Entry, EntryVote } from "../store/entries/types";
 import { Community } from "../store/communities/types";
 import { Account, FullAccount } from "../store/accounts/types";
-
+import { rawContentSvg } from "../img/svg";
 import EntryLink, { makePath as makeEntryPath } from "../components/entry-link";
 
 import BaseComponent from "../components/base";
@@ -105,6 +105,7 @@ interface State {
   editHistory: boolean;
   showProfileBox: boolean;
   showWordCount: boolean;
+  isRawContent: boolean;
   entryIsMuted: boolean;
   selection: string;
   isCommented: boolean;
@@ -124,6 +125,7 @@ class EntryPage extends BaseComponent<Props, State> {
     isCommented: false,
     showProfileBox: false,
     showWordCount: false,
+    isRawContent: false,
     entryIsMuted: false,
     isMounted: false,
     selection: "",
@@ -150,8 +152,11 @@ class EntryPage extends BaseComponent<Props, State> {
     const entry = this.getEntry();
 
     const { location, global } = this.props;
-    if (global.usePrivate && location.search === "?history") {
+    if (global.usePrivate && location.search.includes("history")) {
       this.toggleEditHistory();
+    }
+    if (location.search.includes("raw")) {
+      this.setState({ isRawContent: true });
     }
     window.addEventListener("scroll", this.detect);
     window.addEventListener("resize", this.detect);
@@ -283,6 +288,29 @@ class EntryPage extends BaseComponent<Props, State> {
   toggleEdit = () => {
     const { edit } = this.state;
     this.stateSet({ edit: !edit });
+  };
+
+  toggleRawContent = () => {
+    const { isRawContent } = this.state;
+    this.setState({ isRawContent: !isRawContent }, () => {
+      this.handleURL();
+    });
+  };
+
+  handleURL = () => {
+    const { isRawContent } = this.state;
+    const { history } = this.props;
+    if (isRawContent) {
+      history.push(`${history.location.pathname}?raw`);
+    } else {
+      const queryParams = new URLSearchParams(location.search);
+      if (queryParams.has("raw")) {
+        queryParams.delete("raw");
+        history.replace({
+          search: queryParams.toString()
+        });
+      }
+    }
   };
 
   deleted = async () => {
@@ -519,6 +547,7 @@ class EntryPage extends BaseComponent<Props, State> {
       showWordCount
     } = this.state;
     const { global, history, match, location } = this.props;
+    const { isRawContent } = this.state;
 
     let navBar = global.isElectron
       ? NavBarElectron({
@@ -1040,36 +1069,43 @@ class EntryPage extends BaseComponent<Props, State> {
                             </div>
                           </div>
                           <meta itemProp="headline name" content={entry.title} />
-
-                          {!edit ? (
+                          {!this.state.isRawContent ? (
                             <>
-                              <SelectionPopover
-                                postUrl={entry.url}
-                                onQuotesClick={(text: string) => {
-                                  this.setState({ selection: `>${text}\n\n` });
-                                  (this.commentInput! as any).current!.focus();
-                                }}
-                              >
-                                <div
-                                  itemProp="articleBody"
-                                  className="entry-body markdown-view user-selectable"
-                                  dangerouslySetInnerHTML={renderedBody}
-                                />
-                              </SelectionPopover>
+                              {!edit ? (
+                                <>
+                                  <SelectionPopover
+                                    postUrl={entry.url}
+                                    onQuotesClick={(text: string) => {
+                                      this.setState({ selection: `>${text}\n\n` });
+                                      (this.commentInput! as any).current!.focus();
+                                    }}
+                                  >
+                                    <div
+                                      itemProp="articleBody"
+                                      className="entry-body markdown-view user-selectable"
+                                      dangerouslySetInnerHTML={renderedBody}
+                                    />
+                                  </SelectionPopover>
+                                </>
+                              ) : (
+                                Comment({
+                                  ...this.props,
+                                  defText: entry.body,
+                                  submitText: _t("g.update"),
+                                  cancellable: true,
+                                  onSubmit: this.updateReply,
+                                  onCancel: this.toggleEdit,
+                                  inProgress: replying,
+                                  autoFocus: true,
+                                  inputRef: this.commentInput,
+                                  entry: entry
+                                })
+                              )}
                             </>
                           ) : (
-                            Comment({
-                              ...this.props,
-                              defText: entry.body,
-                              submitText: _t("g.update"),
-                              cancellable: true,
-                              onSubmit: this.updateReply,
-                              onCancel: this.toggleEdit,
-                              inProgress: replying,
-                              autoFocus: true,
-                              inputRef: this.commentInput,
-                              entry: entry
-                            })
+                            <pre className="entry-body markdown-view user-selectable">
+                              {entry.body}
+                            </pre>
                           )}
 
                           {/* <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
@@ -1197,6 +1233,11 @@ class EntryPage extends BaseComponent<Props, State> {
                           </>
                         )}
                         <span className="flex-spacer" />
+
+                        <span style={{ marginRight: "15px" }} onClick={this.toggleRawContent}>
+                          {rawContentSvg}
+                        </span>
+
                         {BookmarkBtn({
                           ...this.props,
                           entry
@@ -1255,7 +1296,8 @@ class EntryPage extends BaseComponent<Props, State> {
                       ...this.props,
                       parent: entry,
                       community,
-                      hideControls: false
+                      hideControls: false,
+                      isRawContent: this.state.isRawContent
                     })}
                   </>
                 );
