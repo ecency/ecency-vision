@@ -14,6 +14,7 @@ import {
 import { Entry, EntryVote } from "../store/entries/types";
 import { Community } from "../store/communities/types";
 import { Account, FullAccount } from "../store/accounts/types";
+import { rawContentSvg } from "../img/svg";
 
 import EntryLink, { makePath as makeEntryPath } from "../components/entry-link";
 
@@ -168,6 +169,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
   componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
     const { location } = this.props;
+    const { isRawContent } = this.state;
     if (location.pathname !== prevProps.location.pathname) {
       this.setState({ isMounted: false });
       this.ensureEntry();
@@ -288,6 +290,32 @@ class EntryPage extends BaseComponent<Props, State> {
   toggleEdit = () => {
     const { edit } = this.state;
     this.stateSet({ edit: !edit });
+  };
+
+  toggleRawContent = () => {
+    const { isRawContent } = this.state;
+    this.setState({ isRawContent: !isRawContent }, () => {
+      this.urlChnage();
+    });
+  };
+
+  urlChnage = () => {
+    console.log("cliecked");
+    const { history } = this.props;
+    const { isRawContent } = this.state;
+    // console.log(isRawContent);
+    if (isRawContent) {
+      history.push(`${history.location.pathname}?raw`);
+      // history.push("/trending");
+      // window.location.href = history.location.pathname + '?raw';
+      // document.location.reload();
+    } else {
+      history.push(`${history.location.pathname}`);
+      // history.push('/trending');
+      // document.location.reload();
+
+      // window.location.href = history.location.pathname;
+    }
   };
 
   deleted = async () => {
@@ -524,6 +552,7 @@ class EntryPage extends BaseComponent<Props, State> {
       showWordCount
     } = this.state;
     const { global, history, match, location } = this.props;
+    const { isRawContent } = this.state;
 
     let navBar = global.isElectron
       ? NavBarElectron({
@@ -1210,6 +1239,15 @@ class EntryPage extends BaseComponent<Props, State> {
                           </>
                         )}
                         <span className="flex-spacer" />
+
+                        <div
+                          className="raw-icon"
+                          style={{ marginRight: "15px" }}
+                          onClick={this.toggleRawContent}
+                        >
+                          {rawContentSvg}
+                        </div>
+
                         {BookmarkBtn({
                           ...this.props,
                           entry

@@ -74,11 +74,19 @@ export class ItemBody extends Component<ItemBodyProps> {
     return this.props.entry.body !== nextProps.entry.body;
   }
 
+  componentDidUpdate(
+    prevProps: Readonly<ItemBodyProps>,
+    prevState: Readonly<{}>,
+    snapshot?: any
+  ): void {
+    // console.log("Componentdid update");
+    // console.log(this.props);
+  }
+
   render() {
     const { entry, global, isRawContent } = this.props;
 
     const renderedBody = { __html: renderPostBody(entry.body, false, global.canUseWebp) };
-
     return (
       <>
         {!this.props.isRawContent ? (
@@ -132,6 +140,7 @@ export const Item = (props: ItemProps) => {
   const [mutedData, setMutedData] = useState([] as string[]);
   const [isMounted, setIsMounted] = useState(false);
   const [lsDraft, setLsDraft] = useState("");
+  const [isRawContent1, setIsRawContent] = useState<boolean>();
 
   const {
     entry,
@@ -146,7 +155,6 @@ export const Item = (props: ItemProps) => {
   } = props;
 
   useEffect(() => {
-    // console.log('Item Props',props.entry.body);
     setIsMounted(true);
     isMounted && fetchMutedUsers();
     checkLsDraft();
@@ -548,7 +556,6 @@ export class List extends Component<ListProps> {
   }
 
   componentDidMount() {
-    // console.log('List props',this.props.discussion);
     this.setState({ isMounted: true });
     document.getElementsByTagName("html")[0].style.position = "relative";
     this.state.isMounted && this.fetchMutedUsers();
@@ -578,7 +585,7 @@ export class List extends Component<ListProps> {
   };
 
   render() {
-    const { discussion, parent, activeUser } = this.props;
+    const { discussion, parent, activeUser, isRawContent } = this.props;
     const { isHiddenPermitted, mutedData } = this.state;
 
     const { list } = discussion;
@@ -605,7 +612,7 @@ export class List extends Component<ListProps> {
     if (!activeUser) {
       data = filtered;
     }
-    // console.log(data[0].body);
+
     return (
       <div className="discussion-list">
         {data.map((d) => (
@@ -614,6 +621,7 @@ export class List extends Component<ListProps> {
             {...this.props}
             entry={d}
             hideControls={this.props.hideControls}
+            isRawContent={isRawContent}
           />
         ))}
         {!isHiddenPermitted && mutedContent.length > 0 && activeUser && activeUser.username && (
@@ -667,7 +675,6 @@ export class Discussion extends Component<Props, State> {
   };
 
   componentDidMount() {
-    // console.log("Discussion props",this.props);
     this.setState({ isMounted: true });
     const { activeUser } = this.props;
     if (activeUser) {
@@ -676,6 +683,9 @@ export class Discussion extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
+    if (prevProps.isRawContent !== this.props.isRawContent) {
+      this.show();
+    }
     const { parent } = this.props;
     if (parent.url !== prevProps.parent.url) {
       // url changed
@@ -720,7 +730,7 @@ export class Discussion extends Component<Props, State> {
   };
 
   render() {
-    const { parent, discussion, activeUser } = this.props;
+    const { parent, discussion, activeUser, isRawContent } = this.props;
     const { visible } = this.state;
     const { loading, order } = discussion;
     const count = parent.children;
@@ -796,7 +806,7 @@ export class Discussion extends Component<Props, State> {
             </div>
           )}
         </div>
-        <List {...this.props} parent={parent} />
+        <List {...this.props} parent={parent} isRawContent={isRawContent} />
       </div>
     );
   }
@@ -828,6 +838,5 @@ export default (p: Props) => {
     toggleUIProp: p.toggleUIProp,
     hideControls: p.hideControls
   };
-
   return <Discussion {...props} />;
 };
