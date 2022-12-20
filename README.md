@@ -58,6 +58,9 @@ Feel free to test it out and submit improvements and pull requests.
 
 When setting up another service like Ecency with Ecency-vision software:
 
+- `HIVESIGNER_ID` - iff USE_PRIVATE is 0, set this to what account will handle the permissions for posting level operations.
+- `HIVESIGNER_SECRET` - iff USE_PRIVATE is 0, set this to the "secret" field value in the [Hive Signer profile](https://hivesigner.com/profile) for the user named as your `HIVESIGNER_ID`. This should be a lengthy lowercase hex string.
+
 1. You may leave `HIVESIGNER_ID` and `HIVESIGNER_SECRET` environment variables unset and optionally set USE_PRIVATE=1 and leave "base" in the constants/defaults.json set to "https://ecency.com". Your new site will contain more features as it will use Ecency's private API. This is by far the easiest option.
 2. You may change `base` to the URL of your own site, but you will have to set environment variables `HIVESIGNER_ID` and `HIVESIGNER_SECRET`; set USE_PRIVATE=0 as well as configure your the `HIVESIGNER_ID` account at the [Hivesigner website.](https://hivesigner.com/profile). Hivesigner will need a `secret`, in the form of a long lowercase hexadecimal number. The HIVESIGNER_SECRET should be set to this value.
 
@@ -65,9 +68,11 @@ When setting up another service like Ecency with Ecency-vision software:
 
 In order to validate a login, and do posting level operations, this software relies on Hivesigner. A user @alice will use login credentials to login to the site via one of several methods, but the site will communicate with Hivesigner and ask it to do all posting operations on behalf of @alice. Hivesigner can and will do this because both @alice will have given posting authority to the `HIVESIGNER_ID` user and the `HIVESIGNER_ID` user will have given its posting authority to Hivesigner.
 
-##### Edit "default" values
+Also for URLs other than https://ecency.com\_...
 
 If you are setting up your own website other than Ecency.com, you can still leave the value `base` as "https://ecency.com". However, you should change `name`, `title` and `twitterHandle`. There are also a lot of static pages that are Ecency specific.
+The 'appURL' member should be the URL of the front end you are running. If you are running this testing, it should be "http://localhost" so hiveSigner redirects you back to localhost. The default is 'https://ecency.com'.
+The testnet member should be set to false, unless you want to use a Hive testnet
 
 ##### Start website in dev
 

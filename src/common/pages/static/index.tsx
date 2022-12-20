@@ -1,14 +1,14 @@
 import React from "react";
 import loadable from "@loadable/component";
 
-const AboutContainer = loadable(() => import("./about"));
-const ContributeContainer = loadable(() => import("./contribute"));
-const ContributorsContainer = loadable(() => import("./contributors"));
-const FaqContainer = loadable(() => import("./faq"));
-const GuestPostContainer = loadable(() => import("./guest-post"));
-const PrivacyContainer = loadable(() => import("./privacy"));
-const TosContainer = loadable(() => import("./tos"));
-const WhitePaperContainer = loadable(() => import("./white-paper"));
+export const AboutContainer = loadable(() => import("./about"));
+export const ContributeContainer = loadable(() => import("./contribute"));
+export const ContributorsContainer = loadable(() => import("./contributors"));
+export const FaqContainer = loadable(() => import("./faq"));
+export const GuestPostContainer = loadable(() => import("./guest-post"));
+export const PrivacyContainer = loadable(() => import("./privacy"));
+export const TosContainer = loadable(() => import("./tos"));
+export const WhitePaperContainer = loadable(() => import("./white-paper"));
 
 export const AboutPage = (props: any) => <AboutContainer {...props} />;
 export const ContributePage = (props: any) => <ContributeContainer {...props} />;

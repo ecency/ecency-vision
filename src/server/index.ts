@@ -10,6 +10,8 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler, { healthCheck, iosURI, androidURI, nodeList } from "./handlers/fallback";
 import { entryRssHandler, authorRssHandler } from "./handlers/rss";
+import * as http from "http";
+import * as net from "net";
 import * as authApi from "./handlers/auth-api";
 import { cleanURL, authCheck, stripLastSlash } from "./util";
 import { coingeckoHandler } from "./handlers/coingecko.handler";
@@ -20,6 +22,8 @@ const server = express();
 
 const entryFilters = Object.values(EntryFilter);
 const profileFilters = Object.values(ProfileFilter);
+const configurationError =
+  "Set USE_PRIVATE=1 or define HIVESIGNER_ID and HIVESIGNER_SECRET ENV and make sure base in defaults is set to the base URL for this host";
 
 server
   .disable("x-powered-by")
@@ -103,7 +107,7 @@ if (
   config.hsClientSecret.length === 0 ||
   config.usePrivate === "1"
 ) {
-  console.error("configurationError:", {
+  console.error(configurationError, {
     base: defaults.base,
     hsClientId: config.hsClientId,
     hsClientSecret: config.hsClientSecret,

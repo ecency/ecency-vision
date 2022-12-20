@@ -8,6 +8,7 @@ import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import KeyOrHot from "../key-or-hot";
+import { base } from "../../constants/defaults.json";
 
 interface Props {
   global: Global;

@@ -136,12 +136,12 @@ exports[`(1) Hive Engine - Transfer (1) Step 1 1`] = `
               type="text"
               value="0.001"
             />
-            <span
-              className="balance-num align-self-center ml-1"
-            >
-              
-            </span>
           </div>
+          <span
+            className="balance-num align-self-center ml-1"
+          >
+            POB
+          </span>
         </div>
       </div>
       <div
@@ -176,9 +176,9 @@ exports[`(1) Hive Engine - Transfer (1) Step 1 1`] = `
               className="balance-num"
               onClick={[Function]}
             >
-              0
+              0.000
                
-              
+              POB
             </span>
           </div>
         </div>
@@ -323,7 +323,7 @@ exports[`(1) Hive Engine - Transfer (2) Step 2 1`] = `
         >
           0.001
            
-          
+          POB
         </div>
         
       </div>
@@ -513,7 +513,7 @@ exports[`(1) Hive Engine - Transfer (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 </span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 POB</span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />
@@ -681,12 +681,12 @@ exports[`(2) Hive Engine - Delegate (1) Step 1 1`] = `
               type="text"
               value="0.001"
             />
-            <span
-              className="balance-num align-self-center ml-1"
-            >
-              
-            </span>
           </div>
+          <span
+            className="balance-num align-self-center ml-1"
+          >
+            WEED
+          </span>
         </div>
       </div>
       <div
@@ -721,9 +721,9 @@ exports[`(2) Hive Engine - Delegate (1) Step 1 1`] = `
               className="balance-num"
               onClick={[Function]}
             >
-              0
+              0.000
                
-              
+              WEED
             </span>
           </div>
         </div>
@@ -835,7 +835,7 @@ exports[`(2) Hive Engine - Delegate (2) Step 2 1`] = `
         >
           0.001
            
-          
+          WEED
         </div>
         <div
           className="memo"
@@ -908,7 +908,7 @@ exports[`(2) Hive Engine - Delegate (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 </span> delegated from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 WEED</span> delegated from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />
@@ -1045,12 +1045,12 @@ exports[`(3) Hive Engine - Undelegate (1) Step 1 1`] = `
               type="text"
               value="0.001"
             />
-            <span
-              className="balance-num align-self-center ml-1"
-            >
-              
-            </span>
           </div>
+          <span
+            className="balance-num align-self-center ml-1"
+          >
+            LOLZ
+          </span>
         </div>
       </div>
       <div
@@ -1085,9 +1085,9 @@ exports[`(3) Hive Engine - Undelegate (1) Step 1 1`] = `
               className="balance-num"
               onClick={[Function]}
             >
-              0
+              0.000
                
-              
+              LOLZ
             </span>
           </div>
         </div>
@@ -1199,7 +1199,7 @@ exports[`(3) Hive Engine - Undelegate (2) Step 2 1`] = `
         >
           0.001
            
-          
+          LOLZ
         </div>
         
       </div>
@@ -1268,7 +1268,7 @@ exports[`(3) Hive Engine - Undelegate (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 </span> undelegated from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 LOLZ</span> undelegated from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />
@@ -1391,12 +1391,12 @@ exports[`(4) Hive Engine - Stake (1) Step 1 1`] = `
                 </span>
               </div>
               <input
-                autoFocus={true}
+                autoFocus={false}
                 className="form-control"
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
-                value=""
+                value="foo"
               />
             </div>
             <div />
@@ -1436,12 +1436,12 @@ exports[`(4) Hive Engine - Stake (1) Step 1 1`] = `
               type="text"
               value="0.001"
             />
-            <span
-              className="balance-num align-self-center ml-1"
-            >
-              
-            </span>
           </div>
+          <span
+            className="balance-num align-self-center ml-1"
+          >
+            BST
+          </span>
         </div>
       </div>
       <div
@@ -1476,9 +1476,9 @@ exports[`(4) Hive Engine - Stake (1) Step 1 1`] = `
               className="balance-num"
               onClick={[Function]}
             >
-              0
+              0.000
                
-              
+              BST
             </span>
           </div>
         </div>
@@ -1590,7 +1590,7 @@ exports[`(4) Hive Engine - Stake (2) Step 2 1`] = `
         >
           0.001
            
-          
+          BST
         </div>
         
       </div>
@@ -1659,7 +1659,7 @@ exports[`(4) Hive Engine - Stake (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 </span> staked from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 BST</span> staked from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />
@@ -1786,12 +1786,12 @@ exports[`(5) Hive Engine - Unstake (1) Step 1 1`] = `
               type="text"
               value="0.001"
             />
-            <span
-              className="balance-num align-self-center ml-1"
-            >
-              
-            </span>
           </div>
+          <span
+            className="balance-num align-self-center ml-1"
+          >
+            POB
+          </span>
         </div>
       </div>
       <div
@@ -1826,9 +1826,9 @@ exports[`(5) Hive Engine - Unstake (1) Step 1 1`] = `
               className="balance-num"
               onClick={[Function]}
             >
-              0
+              0.000
                
-              
+              POB
             </span>
           </div>
         </div>
@@ -1916,7 +1916,7 @@ exports[`(5) Hive Engine - Unstake (2) Step 2 1`] = `
         >
           0.001
            
-          
+          POB
         </div>
         
       </div>
@@ -1985,7 +1985,7 @@ exports[`(5) Hive Engine - Unstake (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 </span> unstaked from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 POB</span> unstaked from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />

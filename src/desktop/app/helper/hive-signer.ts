@@ -76,7 +76,7 @@ export const hsLogin = (hsClientId: string): Promise<{ code: string }> =>
     const win = new window.remote.BrowserWindow(windowSettings);
     win.webContents.setUserAgent(`Chrome/77.0.3835.0`);
 
-    const authUrl = getAuthUrl(REDIR);
+    const authUrl = getAuthUrl(hsClientId, REDIR);
 
     win.loadURL(createWindowView(authUrl));
 

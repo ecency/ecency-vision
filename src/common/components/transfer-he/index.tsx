@@ -7,7 +7,7 @@ import numeral from "numeral";
 import isEqual from "react-fast-compare";
 
 import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
-
+import HiveEngineToken, { HiveEngineTokenEntryDelta } from "../../helper/hive-engine-wallet";
 import badActors from "@hiveio/hivescript/bad-actors.json";
 
 import { Global } from "../../store/global/types";
@@ -54,9 +54,72 @@ import { Tsx } from "../../i18n/helper";
 
 import { arrowRightSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
+import activeUser from "../../store/active-user";
 import { dateToFullRelative } from "../../helper/parse-date";
 
 export type TransferMode = "transfer" | "delegate" | "undelegate" | "stake" | "unstake";
+export type TransferAsset = string;
+import { DelegationEntry } from "../../api/hive-engine";
+import { base } from "../../constants/defaults.json";
+interface AssetSwitchProps {
+  options: TransferAsset[];
+  selected: TransferAsset;
+  onChange: (i: TransferAsset) => void;
+}
+
+class AssetSwitch extends Component<AssetSwitchProps> {
+  clicked = (i: TransferAsset) => {
+    this.setState({ selected: i });
+    const { onChange } = this.props;
+    onChange(i);
+  };
+
+  selectSet = () => {
+    const el: HTMLSelectElement | null = document.getElementById("sel") as HTMLSelectElement | null;
+
+    if (el) {
+      this.setState({ selected: el.value });
+      const { onChange } = this.props;
+      onChange(el.value);
+    } else {
+      console.log("selectSet dne");
+    }
+  };
+
+  render() {
+    const { options, selected, onChange } = this.props;
+
+    if (options.length > 4)
+      return (
+        <select
+          id="sel"
+          onChange={(e) => this.selectSet()}
+          className="asset-switch"
+          defaultValue={selected}
+        >
+          {options.map((opt) => (
+            <option key={opt} className={`asset ${selected === opt ? "selected" : ""}`}>
+              {opt}
+            </option>
+          ))}
+        </select>
+      );
+
+    return (
+      <div className="asset-switch">
+        {options.map((opt) => (
+          <a
+            key={opt}
+            onClick={() => this.clicked(opt)}
+            className={`asset ${selected === opt ? "selected" : ""}`}
+          >
+            {opt}
+          </a>
+        ))}
+      </div>
+    );
+  }
+}
 
 class FormText extends Component<{
   msg: string;
@@ -92,6 +155,9 @@ interface Props {
   fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
   onHide: () => void;
+  tokens: HiveEngineToken[];
+  modifyTokenValues?: (delta: HiveEngineTokenEntryDelta) => void;
+  delegationList: Array<DelegationEntry>;
 }
 
 interface State {
@@ -99,7 +165,7 @@ interface State {
   asset: string;
   assetBalance: number;
   precision: number;
-  delegationList: DelegateVestingShares[];
+  delegationOutList: DelegationEntry[];
   to: string;
   toData: Account | null;
   toError: string;
@@ -107,6 +173,15 @@ interface State {
   toWarning: string;
   amount: string;
   amountError: string;
+
+  stakingEnabled?: boolean;
+  delegationEnabled?: boolean;
+  balance: number;
+  stake: number;
+  stakedBalance: number;
+  delegationsIn: number;
+  delegationsOut: number;
+  //
   memo: string;
   inProgress: boolean;
 }
@@ -115,26 +190,53 @@ const pureState = (props: Props): State => {
   let _to: string = "";
   let _toData: Account | null = null;
 
-  // if ([ "delegate", "undelegate", "stake", "unstake"].includes(props.mode)) {
-  //     _to = props.activeUser.username;
-  //     _toData = props.activeUser.data
-  // }
+  if (["stake", "unstake"].includes(props.mode)) {
+    _to = props.activeUser.username;
+    _toData = props.activeUser.data;
+  }
+
+  const { asset } = props;
+  let thisToken = props?.tokens?.find && props.tokens.find((t) => t.symbol === asset);
+  if (!thisToken) {
+    thisToken = new HiveEngineToken({
+      name: asset,
+      icon: "",
+      balance: "0",
+      stake: "0",
+
+      delegationsIn: "0",
+      delegationsOut: "0",
+      symbol: asset,
+      stakingEnabled: true,
+      delegationEnabled: true,
+      precision: asset === "VESTS" ? 6 : 3
+    });
+  }
+  const tokenPrecision = thisToken?.precision ?? 3;
+  const defaultAmount =
+    props.amount ||
+    (tokenPrecision === 0
+      ? "1"
+      : formattedNumber("0." + "0".repeat(tokenPrecision - 1) + "1", {
+          fractionDigits: tokenPrecision
+        }));
 
   return {
     step: 1,
     asset: props.asset,
     assetBalance: props.assetBalance,
-    precision: (props.assetBalance + "").split(".")[1]?.length || 3,
     to: props.to || _to,
     toData: props.to ? { name: props.to } : _toData,
     toError: "",
     memoError: "",
     toWarning: "",
-    amount: props.amount || "0.001",
+    amount: props.amount || defaultAmount,
     amountError: "",
     memo: props.memo || "",
     inProgress: false,
-    delegationList: []
+    delegationOutList: props.delegationList.filter((e) => e.from === props?.activeUser?.username),
+    ...thisToken,
+    precision: tokenPrecision
   };
 };
 
@@ -145,6 +247,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
   componentDidMount() {
     this.checkAmount();
+
     const { updateActiveUser } = this.props;
     updateActiveUser();
   }
@@ -157,18 +260,41 @@ export class Transfer extends BaseComponent<Props, State> {
 
   formatNumber = (num: number | string, precision: number) => {
     const format = `0.${"0".repeat(precision)}`;
-
+    if (typeof num === "string") {
+      const stripedNumber = num.replace(/,/g, "");
+      const decimalLocation = stripedNumber.indexOf(".");
+      if (decimalLocation + 1 === 0) {
+        return stripedNumber + "." + "0".repeat(precision);
+      } else if (stripedNumber.length - decimalLocation - 1 < precision) {
+        return stripedNumber + "0".repeat(precision + 1 + decimalLocation - stripedNumber.length);
+      } else {
+        return stripedNumber.slice(0, decimalLocation + precision + 1);
+      }
+    }
     return numeral(num).format(format, Math.floor); // round to floor
   };
 
-  assetChanged = (asset: string) => {
-    this.stateSet({ asset }, () => {
+  assetChanged = (asset: TransferAsset) => {
+    const { amount } = this.state;
+    const { tokens } = this.props;
+    let precision: number = (() => {
+      const tokenInformation = tokens?.find && tokens.find((i) => asset === i.symbol);
+
+      if (tokenInformation) {
+        return tokenInformation.precision || 8;
+      }
+
+      return 0;
+    })() as number;
+    const newAmount = formattedNumber(amount, { fractionDigits: precision });
+    this.stateSet({ asset, amount: newAmount, precision }, () => {
       this.checkAmount();
     });
   };
 
   toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { value: to } = e.target;
+    const { mode } = this.props;
     this.stateSet({ to }, this.handleTo);
   };
 
@@ -252,14 +378,15 @@ export class Transfer extends BaseComponent<Props, State> {
 
     const dotParts = amount.split(".");
     if (dotParts.length > 1) {
-      const _precision = dotParts[1];
-      if (_precision.length > precision) {
+      const fractionPart = dotParts[1].replace(/,/g, "");
+      if (fractionPart.length > precision) {
         this.stateSet({ amountError: _t("transfer.amount-precision-error") });
         return;
       }
     }
 
-    if (parseFloat(amount) > this.state.assetBalance) {
+    let balance = Number(this.formatBalance(this.getBalance()));
+    if (parseFloat(amount.replace(/,/g, "")) > balance) {
       this.stateSet({ amountError: _t("trx-common.insufficient-funds") });
       return;
     }
@@ -268,24 +395,104 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   copyBalance = () => {
-    const amount = this.formatBalance(this.state.assetBalance);
+    const amount = this.formatBalance(this.getBalance());
     this.stateSet({ amount }, () => {
       this.checkAmount();
     });
   };
 
+  getBalance = (): number => {
+    const { mode, activeUser, dynamicProps, tokens } = this.props;
+    const { asset, to, delegationOutList } = this.state;
+
+    const { data: account } = activeUser;
+
+    const tokenInformation = tokens?.find && tokens.find((i) => asset === i.symbol);
+
+    if (tokenInformation) {
+      if (mode === "unstake" || mode == "delegate") {
+        return tokenInformation.stakedBalance;
+      }
+      if (mode === "undelegate") {
+        const delegation = delegationOutList.find((e) => e.symbol === asset && e.to === to);
+        if (delegation) {
+          const q = parseFloat(delegation.quantity);
+          return q;
+        }
+        return 0;
+      }
+      return tokenInformation.balance;
+    }
+
+    return 0;
+  };
+
   formatBalance = (balance: number): string => {
     const { precision } = this.state;
-    return this.formatNumber(balance, precision);
+    return formattedNumber(balance, { fractionDigits: precision });
   };
 
   canSubmit = () => {
-    const { toData, toError, amountError, memoError, inProgress, amount } = this.state;
-    if (this.props.mode === "unstake") return parseFloat(amount) > 0;
+    const { toData, toError, amountError, memoError, inProgress, amount, precision } = this.state;
+    if (this.props.mode === "unstake") return parseFloat(amount.replace(/,/g, "")) > 0;
     return (
-      toData && !toError && !amountError && !memoError && !inProgress && parseFloat(amount) > 0
+      toData &&
+      !toError &&
+      !amountError &&
+      !memoError &&
+      !inProgress &&
+      parseFloat(amount.replace(/,/g, "")) > 0
     );
   };
+
+  modifyTokenValues() {
+    const { modifyTokenValues, mode } = this.props;
+    const { asset, delegationOutList, delegationsOut, to, precision, balance, stake } = this.state;
+    const amount = parseFloat(this.state.amount.replace(/,/g, ""));
+    if (modifyTokenValues)
+      switch (mode) {
+        case "transfer": {
+          modifyTokenValues({ symbol: asset, balanceDelta: -amount });
+          this.setState({ balance: balance - amount });
+          break;
+        }
+        case "stake": {
+          modifyTokenValues({ symbol: asset, balanceDelta: -amount, stakeDelta: amount });
+          this.setState({ balance: balance - amount });
+          break;
+        }
+        case "unstake": {
+          // balance wont go up until the power down period ends.
+          modifyTokenValues({ symbol: asset, stakeDelta: -amount });
+          break;
+        }
+        case "delegate": {
+          modifyTokenValues({ symbol: asset, delegationsOutDelta: amount });
+          break;
+        }
+        case "undelegate": {
+          for (let x of delegationOutList) {
+            if (x.to === to) {
+              const diff = parseFloat(x.quantity) - amount;
+              x.quantity = formattedNumber(diff, { fractionDigits: precision });
+              if (diff === 0) {
+                this.setState({
+                  delegationsOut: delegationsOut - 1,
+                  delegationOutList: delegationOutList.filter((x) => x.to !== to)
+                });
+              } else {
+                this.setState({ delegationOutList: [...delegationOutList] });
+              }
+              break;
+            }
+          }
+          modifyTokenValues({ symbol: asset, delegationsOutDelta: -amount });
+          break;
+        }
+        default:
+          return;
+      }
+  }
 
   next = () => {
     // make sure 3 decimals in amount
@@ -310,34 +517,34 @@ export class Transfer extends BaseComponent<Props, State> {
   sign = (key: PrivateKey) => {
     const { activeUser, mode } = this.props;
     const { to, amount, asset, memo } = this.state;
-    const fullAmount = `${amount}`;
+    const unformattedQuantity = amount.replace(/,/g, "");
     const username = activeUser?.username!;
 
     let promise: Promise<any>;
     switch (mode) {
       case "transfer": {
         // Perform HE operation
-        promise = transferHiveEngineKey(username, key, asset, to, fullAmount, memo);
+        promise = transferHiveEngineKey(username, key, asset, to, unformattedQuantity, memo);
         break;
       }
       case "delegate": {
         // Perform HE operation
-        promise = delegateHiveEngineKey(username, key, asset, to, fullAmount);
+        promise = delegateHiveEngineKey(username, key, asset, to, unformattedQuantity);
         break;
       }
       case "undelegate": {
         // Perform HE operation
-        promise = undelegateHiveEngineKey(username, key, asset, to, fullAmount);
+        promise = undelegateHiveEngineKey(username, key, asset, to, unformattedQuantity);
         break;
       }
       case "stake": {
         // Perform HE operation
-        promise = stakeHiveEngineKey(username, key, asset, to, fullAmount);
+        promise = stakeHiveEngineKey(username, key, asset, to, unformattedQuantity);
         break;
       }
       case "unstake": {
         // Perform HE operation
-        promise = unstakeHiveEngineKey(username, key, asset, to, fullAmount);
+        promise = unstakeHiveEngineKey(username, key, asset, to, unformattedQuantity);
         break;
       }
       default:
@@ -350,10 +557,7 @@ export class Transfer extends BaseComponent<Props, State> {
       .then(() => getAccountFull(activeUser.username))
       .then((a) => {
         const { addAccount, updateActiveUser } = this.props;
-        // refresh
-        addAccount(a);
-        // update active
-        updateActiveUser(a);
+        this.modifyTokenValues();
         this.stateSet({ step: 4, inProgress: false });
       })
       .catch((err) => {
@@ -365,30 +569,30 @@ export class Transfer extends BaseComponent<Props, State> {
   signHs = () => {
     const { activeUser, mode, onHide } = this.props;
     const { to, amount, asset, memo } = this.state;
-    const fullAmount = `${amount}`;
+    const unformattedQuantity = amount.replace(/,/g, "");
     const username = activeUser?.username!;
 
     let promise: Promise<any>;
 
     switch (mode) {
       case "transfer": {
-        promise = transferHiveEngineHs(username, to, asset, fullAmount, memo);
+        promise = transferHiveEngineHs(username, to, asset, unformattedQuantity, memo);
         break;
       }
       case "delegate": {
-        promise = delegateHiveEngineHs(username, to, asset, fullAmount);
+        promise = delegateHiveEngineHs(username, to, asset, unformattedQuantity);
         break;
       }
       case "undelegate": {
-        promise = undelegateHiveEngineHs(username, to, asset, fullAmount);
+        promise = undelegateHiveEngineHs(username, to, asset, unformattedQuantity);
         break;
       }
       case "stake": {
-        promise = stakeHiveEngineHs(username, to, asset, fullAmount);
+        promise = stakeHiveEngineHs(username, to, asset, unformattedQuantity);
         break;
       }
       case "unstake": {
-        promise = unstakeHiveEngineHs(username, to, asset, fullAmount);
+        promise = unstakeHiveEngineHs(username, to, asset, unformattedQuantity);
         break;
       }
       default:
@@ -401,29 +605,29 @@ export class Transfer extends BaseComponent<Props, State> {
   signKs = () => {
     const { activeUser, mode } = this.props;
     const { to, amount, asset, memo } = this.state;
-    const fullAmount = `${amount}`;
+    const unformattedQuantity = amount.replace(/,/g, "");
     const username = activeUser?.username!;
 
     let promise: Promise<any>;
     switch (mode) {
       case "transfer": {
-        promise = transferHiveEngineKc(username, to, asset, fullAmount, memo);
+        promise = transferHiveEngineKc(username, to, asset, unformattedQuantity, memo);
         break;
       }
       case "delegate": {
-        promise = delegateHiveEngineKc(username, to, asset, fullAmount);
+        promise = delegateHiveEngineKc(username, to, asset, unformattedQuantity);
         break;
       }
       case "undelegate": {
-        promise = undelegateHiveEngineKc(username, to, asset, fullAmount);
+        promise = undelegateHiveEngineKc(username, to, asset, unformattedQuantity);
         break;
       }
       case "stake": {
-        promise = stakeHiveEngineKc(username, to, asset, fullAmount);
+        promise = stakeHiveEngineKc(username, to, asset, unformattedQuantity);
         break;
       }
       case "unstake": {
-        promise = unstakeHiveEngineKc(username, to, asset, fullAmount);
+        promise = unstakeHiveEngineKc(username, to, asset, unformattedQuantity);
         break;
       }
       default:
@@ -435,10 +639,7 @@ export class Transfer extends BaseComponent<Props, State> {
       .then(() => getAccountFull(activeUser.username))
       .then((a) => {
         const { addAccount, updateActiveUser } = this.props;
-        // refresh
-        addAccount(a);
-        // update active
-        updateActiveUser(a);
+        this.modifyTokenValues();
         this.stateSet({ step: 4, inProgress: false });
       })
       .catch((err) => {
@@ -462,7 +663,32 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   render() {
-    const { global, mode, activeUser, transactions, dynamicProps } = this.props;
+    const { tokens, mode, dynamicProps, activeUser, transactions } = this.props;
+    let assets: TransferAsset[] = [];
+
+    for (const token of tokens) {
+      const { symbol, stakingEnabled, delegationEnabled } = token;
+      switch (mode) {
+        case "transfer":
+          {
+            assets = [...assets, symbol];
+          }
+          break;
+        case "stake":
+        case "unstake": {
+          if (stakingEnabled) {
+            assets = [...assets, symbol];
+          }
+          break;
+        }
+        case "delegate": {
+          if (delegationEnabled) {
+            assets = [...assets, symbol];
+          }
+        }
+      } // switch
+    }
+
     const {
       step,
       asset,
@@ -476,32 +702,40 @@ export class Transfer extends BaseComponent<Props, State> {
       memo,
       inProgress,
       toData,
-      delegationList
+      delegationOutList
     } = this.state;
     const { hivePerMVests } = dynamicProps;
 
-    const recent = [
-      ...new Set(
-        transactions.list
-          .filter(
-            (x) =>
-              (x.type === "transfer" && x.from === activeUser.username) ||
-              (x.type === "delegate_vesting_shares" && x.delegator === activeUser.username)
-          )
-          .map((x) =>
-            x.type === "transfer" ? x.to : x.type === "delegate_vesting_shares" ? x.delegatee : ""
-          )
-          .filter((x) => {
-            if (to.trim() === "") {
-              return true;
-            }
+    const shortenedList = delegationOutList.slice(-10);
+    const recent =
+      mode === "undelegate"
+        ? shortenedList.filter((e) => e.symbol === asset).map((e) => e.to)
+        : [
+            ...new Set(
+              transactions.list
+                .filter(
+                  (x) =>
+                    (x.type === "transfer" && x.from === activeUser.username) ||
+                    (x.type === "delegate_vesting_shares" && x.delegator === activeUser.username)
+                )
+                .map((x) =>
+                  x.type === "transfer"
+                    ? x.to
+                    : x.type === "delegate_vesting_shares"
+                    ? x.delegatee
+                    : ""
+                )
+                .filter((x) => {
+                  if (to.trim() === "") {
+                    return true;
+                  }
 
-            return x.indexOf(to) !== -1;
-          })
-          .reverse()
-          .slice(0, 5)
-      )
-    ];
+                  return x.indexOf(to) !== -1;
+                })
+                .reverse()
+                .slice(0, 5)
+            )
+          ];
 
     const suggestionProps = {
       header: _t("transfer.recent-transfers"),
@@ -519,27 +753,21 @@ export class Transfer extends BaseComponent<Props, State> {
     const showTo = ["transfer", "delegate", "undelegate", "stake"].includes(mode);
     const showMemo = ["transfer"].includes(mode);
 
-    const delegateAccount =
-      delegationList &&
-      delegationList.length > 0 &&
-      delegationList!.find(
-        (item) =>
-          (item as DelegateVestingShares).delegatee === to &&
-          (item as DelegateVestingShares).delegator === activeUser.username
-      );
-    const previousAmount = delegateAccount
-      ? Number(
-          formattedNumber(
-            vestsToHp(Number(parseAsset(delegateAccount!.vesting_shares).amount), hivePerMVests)
-          )
-        )
-      : "";
+    const delegateAccount = delegationOutList.find(function (entry: DelegationEntry) {
+      return entry.to === to;
+    });
+    const previousAmount = delegateAccount ? delegateAccount.quantity : "";
 
-    let balance: string | number = this.props.assetBalance;
-    if (previousAmount) {
-      balance = Number(balance) + previousAmount;
-      balance = Number(balance).toFixed(precision);
-    }
+    let balance: string = formattedNumber(
+      (() => {
+        const balance: number = this.getBalance();
+        if (previousAmount) {
+          return balance + previousAmount;
+        }
+        return balance;
+      })(),
+      { fractionDigits: precision, separators: false }
+    );
 
     const titleLngKey = mode === "transfer" ? `${mode}-title` : `${mode}-hive-engine-title`;
     const subTitleLngKey =
@@ -685,11 +913,19 @@ export class Transfer extends BaseComponent<Props, State> {
                       placeholder={_t("transfer.amount-placeholder")}
                       value={amount}
                       onChange={this.amountChanged}
-                      className={amount > balance && amountError ? "is-invalid" : ""}
+                      className={
+                        Number(amount.replace(/,/g, "")) > Number(balance) && amountError
+                          ? "is-invalid"
+                          : ""
+                      }
                       autoFocus={mode !== "transfer"}
                     />
-                    <span className="balance-num align-self-center ml-1">{asset}</span>
                   </InputGroup>
+                  {assets.length > 1 ? (
+                    <AssetSwitch options={assets} selected={asset} onChange={this.assetChanged} />
+                  ) : (
+                    <span className="balance-num align-self-center ml-1">{asset}</span>
+                  )}
                 </Col>
               </Form.Group>
 
@@ -703,7 +939,11 @@ export class Transfer extends BaseComponent<Props, State> {
                       {": "}
                     </span>
                     <span className="balance-num" onClick={this.copyBalance}>
-                      {this.props.assetBalance} {asset}
+                      {formattedNumber(this.getBalance(), {
+                        maximumFractionDigits: precision,
+                        minimumFractionDigits: precision
+                      })}{" "}
+                      {asset}
                     </span>
                     {asset === "HP" && (
                       <div className="balance-hp-hint">{_t("transfer.available-hp-hint")}</div>

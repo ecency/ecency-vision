@@ -1,10 +1,14 @@
 import { b64uEnc } from "../util/b64";
+import { appURL } from "../constants/defaults.json";
 
-export const getAuthUrl = (app: string, redir: string = `${window.location.origin}/auth`) => {
+export const getAuthUrl = (
+  hsClientId: string,
+  redir: string = `${window.location.origin}/auth`
+) => {
   const scope =
     "vote,comment,delete_comment,comment_options,custom_json,claim_reward_balance,offline";
 
-  return `https://hivesigner.com/oauth2/authorize?client_id=${app}&redirect_uri=${encodeURIComponent(
+  return `https://hivesigner.com/oauth2/authorize?client_id=${hsClientId}&redirect_uri=${encodeURIComponent(
     redir
   )}&response_type=code&scope=${encodeURIComponent(scope)}`;
 };
@@ -76,7 +80,7 @@ export const buildHotSignUrl = (
 ): any => {
   const _params = {
     ...params,
-    redirect_uri: `https://ecency.com/${redirect}`
+    redirect_uri: `${appURL}/${redirect}`
   };
 
   const queryString = new URLSearchParams(_params).toString();

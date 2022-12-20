@@ -9,6 +9,8 @@
   },
   "locale": "en-US",
   "base": "https://ecency.com",
+  "appURL": "https://ecency.com",
+  "testnet": false,
   "imageServer": "https://images.ecency.com",
   "nwsServer": "wss://enotify.esteem.app",
   "name": "Ecency",

@@ -20,20 +20,25 @@ import { vestsToHp } from "../../helper/vesting";
 import formattedNumber from "../../util/formatted-number";
 
 import {
-  ticketSvg,
-  compareHorizontalSvg,
+  arrowLeftSvg,
+  arrowRightSvg,
   cashMultiple,
-  reOrderHorizontalSvg,
-  pickAxeSvg,
-  closeSvg,
-  exchangeSvg,
   cashCoinSvg,
-  powerDownSvg,
-  powerUpSvg,
-  starsSvg,
+  cashSvg,
   chevronUpSvgForVote,
   chevronDownSvgForSlider,
-  starSvg
+  closeSvg,
+  commentSvg,
+  compareHorizontalSvg,
+  exchangeSvg,
+  gridSvg,
+  pickAxeSvg,
+  powerDownSvg,
+  powerUpSvg,
+  reOrderHorizontalSvg,
+  starSvg,
+  starsSvg,
+  ticketSvg
 } from "../../img/svg";
 
 import { _t } from "../../i18n";
@@ -126,6 +131,24 @@ export class TransactionRow extends Component<RowProps> {
           </span>
         )
       });
+    }
+    if (tr.type === "tokens_unstake") {
+      flag = true;
+      icon = cashMultiple;
+      numbers = (
+        <>
+          <span className="number">{tr.amount}</span>
+        </>
+      );
+    }
+    if (tr.type === "tokens_issue") {
+      flag = true;
+      icon = cashMultiple;
+      numbers = (
+        <>
+          <span className="number"> {tr.amount}</span>
+        </>
+      );
     }
 
     if (tr.type === "claim_reward_balance") {
@@ -260,6 +283,33 @@ export class TransactionRow extends Component<RowProps> {
       );
     }
 
+    if (tr.type === "tokens_CancelUnstake") {
+      flag = true;
+      icon = closeSvg;
+      numbers = <span className="number"> {tr.amount}</span>;
+    }
+    if (tr.type === "tokens_unstakeStart") {
+      flag = true;
+      icon = cashSvg;
+      numbers = <span className="number"> {tr.amount}</span>;
+    }
+    if (tr.type === "tokens_unstakeDone") {
+      flag = true;
+      icon = cashSvg;
+      numbers = <span className="number"> {tr.amount}</span>;
+    }
+    if (tr.type === "market_placeOrder") {
+      flag = true;
+      icon = commentSvg;
+      numbers = <span className="number"> {tr.quantityLocked}</span>;
+      if (tr.price)
+        details = (
+          <>
+            <span> {tr.orderType}</span> <span className="number"> @ {tr.price}</span>
+          </>
+        );
+      else details = tr.orderType;
+    }
     if (tr.type === "withdraw_vesting") {
       flag = true;
       icon = powerDownSvg;
@@ -324,6 +374,20 @@ export class TransactionRow extends Component<RowProps> {
       );
     }
 
+    if (tr.type === "limit_order_cancel") {
+      flag = true;
+      icon = closeSvg;
+      numbers = (
+        <span className="number">
+          #
+          {formattedNumber(tr.orderid, {
+            fractionDigits: 0,
+            maximumFractionDigits: 0
+          })}
+        </span>
+      );
+    }
+
     if (tr.type === "limit_order_create") {
       flag = true;
       icon = reOrderHorizontalSvg;
@@ -377,6 +441,21 @@ export class TransactionRow extends Component<RowProps> {
         </span>
       );
     }
+    if (tr.type === "market_sell" && (icon = arrowRightSvg)) {
+      flag = true;
+      numbers = (
+        <span className="number">
+          {_t("transactions.sold", { q: tr.quote })} &#10230; {tr.base}
+        </span>
+      );
+      details = <span className="number">{_t("transactions.for", { b: tr.base })}</span>;
+    }
+
+    if (tr.type === "market_buy" && (icon = arrowLeftSvg)) {
+      flag = true;
+      numbers = <span className="number">{_t("transactions.bought", { q: tr.quote })}</span>;
+      details = <span className="number">{_t("transactions.for", { b: tr.base })}</span>;
+    }
 
     if (tr.type === "fill_collateralized_convert_request") {
       flag = true;
@@ -395,6 +474,63 @@ export class TransactionRow extends Component<RowProps> {
           <span />
         </Tsx>
       );
+    }
+    if (tr.type === "market_cancel") {
+      flag = true;
+      icon = commentSvg;
+      details = <span> {tr.orderType}</span>;
+      numbers = <span className="number"> {tr.amount}</span>;
+    }
+    if (tr.type === "market_closeOrder") {
+      flag = true;
+      if (tr.orderType == "sell") {
+        icon = arrowRightSvg;
+      } else {
+        icon = arrowLeftSvg;
+      }
+      details = (
+        <>
+          <a target={"blockexplorer"} href={"https://hiveblockexplorer.com/tx/" + tr.trx_id}>
+            {tr.orderType}
+          </a>
+        </>
+      );
+    }
+    if (tr.type === "market_expireOrder") {
+      flag = true;
+      icon = closeSvg;
+      numbers = <>{tr.amountUnlocked}</>;
+      details = (
+        <>
+          <a target={"blockexplorer"} href={"https://hiveblockexplorer.com/tx/" + tr.trx_id}>
+            orderID: {tr.orderID}
+            {tr.orderType}
+          </a>
+        </>
+      );
+    }
+
+    if (tr.type === "proposal_pay") {
+      flag = true;
+      icon = ticketSvg;
+      numbers = <span className="number"> {tr.payment}</span>;
+    }
+    if (tr.type === "tokens_undelegateDone") {
+      flag = true;
+      icon = arrowRightSvg;
+      details = <span> trx_id {tr.trx_id}</span>;
+    }
+    if (tr.type === "tokens_undelegateStart") {
+      flag = true;
+      icon = arrowRightSvg;
+      details = <span> @{tr.from} </span>;
+      numbers = <span className="number"> {tr.amount} </span>;
+    }
+    if (tr.type === "tokens_delegate") {
+      flag = true;
+      icon = arrowRightSvg;
+      details = <span> @ {tr.to}</span>;
+      numbers = <span className="number"> {tr.amount}</span>;
     }
 
     if (tr.type === "return_vesting_delegation") {

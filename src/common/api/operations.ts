@@ -1,4 +1,7 @@
 import hs from "hivesigner";
+// so far using browser only front end code to determine the redirect URL hasn't broken any tests
+// import { appURL } from "../constants/defaults.json";
+import { HIVE_API_NAME } from "./hive";
 
 import {
   AccountUpdateOperation,
@@ -320,7 +323,56 @@ export const claimRewardBalance = (
 
   return broadcastPostingOperations(username, opArray);
 };
-
+export const claimRewardBalanceHiveEngineAssetJSON = (
+  from: string,
+  to: string,
+  amount: string
+): string => {
+  const [quantity, token_name] = amount.split(/ /);
+  const json = JSON.stringify({
+    symbol: token_name
+  });
+  return json;
+};
+interface ClaimTokenParams {
+  id: "scot_claim_token";
+  json: string;
+  required_auths: [];
+  required_posting_auths: [string];
+}
+export const claimHiveEngineRewardBalance = (from: string, to: string, amount: string) => {
+  const params: ClaimTokenParams = {
+    id: "scot_claim_token",
+    json: claimRewardBalanceHiveEngineAssetJSON(from, to, amount),
+    required_auths: [],
+    required_posting_auths: [from]
+  };
+  const opArray: Operation[] = [["custom_json", params]];
+  return broadcastPostingOperations(from, opArray);
+};
+/*
+export const HECustomJSONWithPostingKey = (key: PrivateKey, from:string, json: string): Promise<TransactionConfirmation> => {
+    const op = {
+        id: "ssc-mainnet-hive",
+        json,
+        required_auths: [],
+        required_posting_auths: [from]
+    };
+    return hiveClient.broadcast.json(op, key);
+}
+export const HECustomJSONPostingKc = (from:string, json: string, description: string): Promise<TxResponse> => {
+    return keychain.customJson(from, "ssc-mainnet-hive", "Posting", json, description);
+}
+export const HECustomJSONPostingHot = (from:string, json: string, destination: string) => {
+    const params = {
+        authority: "posting",
+        required_auths: `[]`,
+        required_posting_auths: `["${from}"]`,
+        id: "ssc-mainnet-hive",
+        json
+    }
+    hotSign("custom-json", params, destination);
+}*/
 export const transfer = (
   from: string,
   key: PrivateKey,
@@ -349,7 +401,9 @@ export const transferHot = (from: string, to: string, amount: string, memo: stri
     }
   ];
 
-  const params: Parameters = { callback: `https://ecency.com/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -441,7 +495,9 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     }
   ];
 
-  const params: Parameters = { callback: `https://ecency.com/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -455,7 +511,6 @@ export const transferToSavingsKc = (from: string, to: string, amount: string, me
       memo
     }
   ];
-
   return keychain.broadcast(from, [op], "Active");
 };
 
@@ -549,7 +604,9 @@ export const limitOrderCreateHot = (
   ];
 
   const params: Parameters = {
-    callback: `https://ecency.com/market${idPrefix === OrderIdPrefix.SWAP ? "#swap" : ""}`
+    callback: `${document.location.protocol}//${document.location.host}/market${
+      idPrefix === OrderIdPrefix.SWAP ? "#swap" : ""
+    }`
   };
   return hs.sendOperation(op, params, () => {});
 };
@@ -563,7 +620,9 @@ export const limitOrderCancelHot = (owner: string, orderid: number) => {
     }
   ];
 
-  const params: Parameters = { callback: `https://ecency.com/market` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/market`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -643,7 +702,9 @@ export const convertHot = (owner: string, amount: string) => {
     }
   ];
 
-  const params: Parameters = { callback: `https://ecency.com/@${owner}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${owner}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -658,6 +719,75 @@ export const convertKc = (owner: string, amount: string) => {
   ];
 
   return keychain.broadcast(owner, [op], "Active");
+};
+
+const transferHiveEngineAssetJSON = (
+  from: string,
+  to: string,
+  amount: string,
+  memo: string
+): string => {
+  const [quantity, token_name] = amount.replace(/,/g, "").split(/ /);
+  const json = JSON.stringify({
+    // is it always 'tokens'?
+    contractName: "tokens",
+    contractAction: "transfer",
+    contractPayload: {
+      symbol: token_name,
+      to: to,
+      quantity,
+      memo: memo
+    }
+  });
+  return json;
+};
+
+export const transferHiveEngineAsset = (
+  from: string,
+  key: PrivateKey,
+  to: string,
+  amount: string,
+  memo: string
+): Promise<TransactionConfirmation> => {
+  const json = transferHiveEngineAssetJSON(from, to, amount, memo);
+  const op = {
+    id: "ssc-mainnet-hive",
+    json,
+    required_auths: [from],
+    required_posting_auths: []
+  };
+  return hiveClient.broadcast.json(op, key);
+};
+export const transferHiveEngineAssetKc = (
+  from: string,
+  to: string,
+  amount: string,
+  memo: string
+) => {
+  const json = transferHiveEngineAssetJSON(from, to, amount, memo);
+  return keychain.customJson(
+    from,
+    "ssc-mainnet-hive",
+    "Active",
+    json,
+    "Hive Engine Asset Transfer"
+  );
+};
+export const transferHiveEngineAssetHot = (
+  from: string,
+  to: string,
+  amount: string,
+  memo: string
+) => {
+  const json = transferHiveEngineAssetJSON(from, to, amount, memo);
+  const params = {
+    authority: "active",
+    required_auths: `["${from}"]`,
+    required_posting_auths: "[]",
+    id: "ssc-mainnet-hive",
+    json
+  };
+  hotSign("custom-json", params, `@${from}/wallet`);
 };
 
 export const transferFromSavings = (
@@ -693,7 +823,9 @@ export const transferFromSavingsHot = (from: string, to: string, amount: string,
     }
   ];
 
-  const params: Parameters = { callback: `https://ecency.com/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -761,7 +893,9 @@ export const claimInterestHot = (from: string, to: string, amount: string, memo:
     }
   ];
 
-  const params: Parameters = { callback: `https://ecency.com/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperations([op, cop], params, () => {});
 };
 
@@ -787,6 +921,81 @@ export const claimInterestKc = (from: string, to: string, amount: string, memo: 
 
   return keychain.broadcast(from, [op, cop], "Active");
 };
+export const collateralizedConvert = (
+  owner: string,
+  key: PrivateKey,
+  amount: string
+): Promise<TransactionConfirmation> => {
+  const op: Operation = [
+    "collateralized_convert",
+    {
+      owner,
+      amount,
+      requestid: new Date().getTime() >>> 0
+    }
+  ];
+  return hiveClient.broadcast.sendOperations([op], key);
+};
+export const collateralizedConvertHot = (owner: string, amount: string): void => {
+  const op: Operation = [
+    "collateralized_convert",
+    {
+      owner,
+      amount,
+      requestid: new Date().getTime() >>> 0
+    }
+  ];
+  const params: Parameters = {
+    callback: document.location.toString()
+  };
+  hs.sendOperation(op, params, () => {});
+};
+export const collateralizedConvertKc = (owner: string, amount: string) => {
+  const op: Operation = [
+    "collateralized_convert",
+    {
+      owner,
+      amount,
+      requestid: new Date().getTime() >>> 0
+    }
+  ];
+  return keychain.broadcast(owner, [op], "Active");
+};
+
+export const createTransferToVestingOp = (from: string, to: string, amount: string): Operation => {
+  const parts = amount.split(/ /);
+  const currency = parts[parts.length - 1];
+  const quantity = parts[0].replace(/,/g, "");
+  console.log(from, to, amount);
+  if (currency === HIVE_API_NAME) {
+    return [
+      "transfer_to_vesting",
+      {
+        from,
+        to,
+        amount
+      }
+    ];
+  } else {
+    return [
+      "custom_json",
+      {
+        id: "ssc-mainnet-hive",
+        required_auths: [from],
+        required_posting_auths: [],
+        json: JSON.stringify({
+          contractName: "tokens",
+          contractAction: "stake",
+          contractPayload: {
+            symbol: currency,
+            to: to,
+            quantity: quantity
+          }
+        })
+      }
+    ];
+  }
+};
 
 export const transferToVesting = (
   from: string,
@@ -794,43 +1003,67 @@ export const transferToVesting = (
   to: string,
   amount: string
 ): Promise<TransactionConfirmation> => {
-  const op: Operation = [
-    "transfer_to_vesting",
-    {
-      from,
-      to,
-      amount
-    }
-  ];
+  const op: Operation = createTransferToVestingOp(from, to, amount);
 
   return hiveClient.broadcast.sendOperations([op], key);
 };
 
 export const transferToVestingHot = (from: string, to: string, amount: string) => {
-  const op: Operation = [
-    "transfer_to_vesting",
-    {
-      from,
-      to,
-      amount
-    }
-  ];
+  const op: Operation = createTransferToVestingOp(from, to, amount);
 
-  const params: Parameters = { callback: `https://ecency.com/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
 export const transferToVestingKc = (from: string, to: string, amount: string) => {
-  const op: Operation = [
-    "transfer_to_vesting",
-    {
-      from,
-      to,
-      amount
-    }
-  ];
-
+  const op: Operation = createTransferToVestingOp(from, to, amount);
   return keychain.broadcast(from, [op], "Active");
+};
+
+export const createDelegateVestingSharesOp = (
+  delegator: string,
+  delegatee: string,
+  vestingShares: string
+): Operation => {
+  if (!/[0-9]+(.[0-9]+)? [A-Z][A-Z0-9]+/.test(vestingShares)) {
+    throw new Error(`Invalid vestingShares Amount specified: "${vestingShares}"`);
+  }
+  const parts = vestingShares.split(/ /);
+  const currency = parts[parts.length - 1];
+  const quantity = parts[0].replace(/,/g, "");
+  if (currency === "HP" || currency === "HIVE") {
+    throw new Error(`Invalid parameter: ${currency} can be an HiveEngine asset or VESTS`);
+  }
+  if (currency === "VESTS") {
+    return [
+      "delegate_vesting_shares",
+      {
+        delegator,
+        delegatee,
+        vesting_shares: vestingShares
+      }
+    ];
+  } else {
+    return [
+      "custom_json",
+      {
+        id: "ssc-mainnet-hive",
+        required_auths: [delegator],
+        required_posting_auths: [],
+        json: JSON.stringify({
+          contractName: "tokens",
+          contractAction: "delegate",
+          contractPayload: {
+            symbol: currency,
+            to: delegatee,
+            quantity: quantity
+          }
+        })
+      }
+    ];
+  }
 };
 
 export const delegateVestingShares = (
@@ -839,15 +1072,7 @@ export const delegateVestingShares = (
   delegatee: string,
   vestingShares: string
 ): Promise<TransactionConfirmation> => {
-  const op: Operation = [
-    "delegate_vesting_shares",
-    {
-      delegator,
-      delegatee,
-      vesting_shares: vestingShares
-    }
-  ];
-
+  const op: Operation = createDelegateVestingSharesOp(delegator, delegatee, vestingShares);
   return hiveClient.broadcast.sendOperations([op], key);
 };
 
@@ -856,16 +1081,13 @@ export const delegateVestingSharesHot = (
   delegatee: string,
   vestingShares: string
 ) => {
-  const op: Operation = [
-    "delegate_vesting_shares",
-    {
-      delegator,
-      delegatee,
-      vesting_shares: vestingShares
-    }
-  ];
-
-  const params: Parameters = { callback: `https://ecency.com/@${delegator}/wallet` };
+  const op: Operation = createDelegateVestingSharesOp(delegator, delegatee, vestingShares);
+  const parts = vestingShares.split(/ /);
+  const currency = parts[parts.length - 1];
+  const quantity = parts[0].replace(/,/g, "");
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${delegator}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -874,15 +1096,7 @@ export const delegateVestingSharesKc = (
   delegatee: string,
   vestingShares: string
 ) => {
-  const op: Operation = [
-    "delegate_vesting_shares",
-    {
-      delegator,
-      delegatee,
-      vesting_shares: vestingShares
-    }
-  ];
-
+  const op: Operation = createDelegateVestingSharesOp(delegator, delegatee, vestingShares);
   return keychain.broadcast(delegator, [op], "Active");
 };
 
@@ -910,9 +1124,43 @@ export const withdrawVestingHot = (account: string, vestingShares: string) => {
       vesting_shares: vestingShares
     }
   ];
+};
 
-  const params: Parameters = { callback: `https://ecency.com/@${account}/wallet` };
-  return hs.sendOperation(op, params, () => {});
+export const cancelWithdrawVesting = (
+  account: string,
+  key: PrivateKey,
+  txID: string
+): Promise<TransactionConfirmation> => {
+  const op: Operation = createCancelPowerDownOp(account, txID);
+  return hiveClient.broadcast.sendOperations([op], key);
+};
+export const cancelWithdrawVestingHot = (account: string, txID: string) => {
+  const op: Operation = createCancelPowerDownOp(account, txID);
+  const params: Parameters = {
+    callback: document.location.toString()
+  };
+  hs.sendOperation(op, params, () => {});
+};
+export const cancelWithdrawVestingKc = (account: string, txID: string) => {
+  const op: Operation = createCancelPowerDownOp(account, txID);
+  return keychain.broadcast(account, [op], "Active");
+};
+export const createCancelPowerDownOp = (account: string, txID: string): Operation => {
+  return [
+    "custom_json",
+    {
+      id: "ssc-mainnet-hive",
+      required_auths: ["leprechaun"],
+      required_posting_auths: [],
+      json: JSON.stringify({
+        contractName: "tokens",
+        contractAction: "cancelUnstake",
+        contractPayload: {
+          txID: txID
+        }
+      })
+    }
+  ];
 };
 
 export const withdrawVestingKc = (account: string, vestingShares: string) => {
@@ -963,7 +1211,9 @@ export const setWithdrawVestingRouteHot = (
     }
   ];
 
-  const params: Parameters = { callback: `https://ecency.com/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 

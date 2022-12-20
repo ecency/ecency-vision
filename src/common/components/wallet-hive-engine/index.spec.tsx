@@ -5,7 +5,7 @@ import WalletHiveEngine from "./index";
 import TestRenderer from "react-test-renderer";
 
 import { initialState as transactionsInitialState } from "../../store/transactions/index";
-
+import { createBrowserHistory } from "history";
 import {
   globalInstance,
   dynamicPropsIntance1,
@@ -19,6 +19,10 @@ import { FullAccount } from "../../store/accounts/types";
 let MOCK_MODE = 1;
 
 jest.mock("../../api/hive-engine", () => ({
+  getTokenDelegations: () =>
+    new Promise((resolve) => {
+      resolve([]);
+    }),
   getHiveEngineTokenBalances: () =>
     new Promise((resolve) => {
       if (MOCK_MODE === 1) {
@@ -120,6 +124,7 @@ const account: FullAccount = {
 };
 
 const defProps = {
+  history: createBrowserHistory(),
   global: globalInstance,
   dynamicProps: dynamicPropsIntance1,
   activeUser: { ...activeUserInstance },

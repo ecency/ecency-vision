@@ -168,6 +168,7 @@ export interface PageProps {
   deleteDeck: typeof deleteDeck;
   reorderDecks: typeof reorderDecks;
   savePageScroll: typeof savePageScroll;
+  hiveSignerApp: string;
 }
 
 export const pageMapStateToProps = (state: AppState) => ({
