@@ -9,7 +9,7 @@ import UserAvatar from "../user-avatar";
 import { useParams } from 'react-router';
 
 export const RcDelegationsList = (props: any) => {
-  const limit = 10;
+  const limit = 21;
   const params: any = useParams();
 
   const { activeUser, rcFormatter, showDelegation, listMode, setToFromList, setAmountFromList } = props

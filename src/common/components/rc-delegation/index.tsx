@@ -18,7 +18,6 @@ import {
 
 export const ResourceCreditsDelegation = (props: any) => {
     const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList } = props
-    console.log(resourceCredit)
     
     const [to, setTo] = useState<string>(toFromList || '');
     const [amount, setAmount] = useState<string>(amountFromList || '');
@@ -39,20 +38,12 @@ export const ResourceCreditsDelegation = (props: any) => {
         setInProgress(true)
         setTo(value);
         delayedSearch(value)
-        // handleTo(value)
       };
 
     const amountChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const { value: amount } = e.target;
         setAmount(amount)
-        // checkAmount()
       };
-      
-    // const  formatNumber = (num: number | string, precision: number) => {
-    //   const format = `0.${"0".repeat(precision)}`;
-  
-    //   return numeral(num).format(format, Math.floor); // round to floor
-    // };
 
     const next = () => {
       setInProgress(false)
@@ -264,18 +255,6 @@ export const ResourceCreditsDelegation = (props: any) => {
                     </span>
                   </div>
                  
-                  {/* <div className="text-muted mt-1 override-warning">
-                  {delegateAccount && (
-                        <>
-                          <br />
-                          {_t("transfer.override-warning-2", {
-                            account: to,
-                            previousAmount: formattedNumber(previousAmount)
-                          })}
-                        </>
-                      )}
-                    
-                    </div> */}
                 </Col>
               </Row>
 
