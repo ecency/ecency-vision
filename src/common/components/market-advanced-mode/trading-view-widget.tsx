@@ -16,7 +16,8 @@ interface Props {
 
 export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
   const chartRef = useRef<any>();
-  const [data, setData] = useState<MarketCandlestickDataItem[]>([]);
+  const [originalData, setOriginalData] = useState<MarketCandlestickDataItem[]>([]);
+  const [data, setData] = useState<any[]>([]);
   const [startDate, setStartDate] = useState<Moment>(moment().subtract(8, "hours"));
   const [endDate, setEndDate] = useState<Moment>(moment());
   const [bucketSeconds, setBucketSeconds] = useState(300);
@@ -25,6 +26,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
   const [bucketSecondsList, setBucketSecondsList] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [triggerFetch, setTriggerFetch] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const [lastTimeRange, setLastTimeRange] = useState<TimeRange | null>(null);
 
@@ -51,9 +53,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
   useEffect(() => {
     const fromDate = lastTimeRange ? new Date(Number(lastTimeRange.from) * 1000) : null;
     if (fromDate) {
-      const diff = startDate.diff(getNewStartDate(moment(fromDate), "subtract"), "hours");
-
-      if (diff >= 0 && diff <= bucketSeconds * 60) setTriggerFetch(true);
+      if (lastTimeRange?.from === data[0].time) setTriggerFetch(true);
     }
   }, [lastTimeRange]);
 
@@ -61,6 +61,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
     setData([]);
     setEndDate(moment());
     setStartDate(getNewStartDate(moment(), "subtract"));
+    setTriggerFetch(true);
   }, [bucketSeconds]);
 
   useEffect(() => {
@@ -68,7 +69,29 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
       return;
     }
     const candleStickSeries = chartSeries ?? chart.addCandlestickSeries();
-    const candleStickData = data
+    candleStickSeries.setData(data);
+
+    if (!isZoomed && data.length > 0) {
+      chart?.timeScale().fitContent();
+      setIsZoomed(true);
+    }
+
+    setChartSeries(candleStickSeries);
+  }, [data, chart]);
+
+  const fetchData = async (loadMore?: boolean) => {
+    setIsLoading(true);
+    const apiData = await getMarketHistory(bucketSeconds, startDate, endDate);
+    let transformedData: MarketCandlestickDataItem[] = [];
+
+    if (loadMore) {
+      transformedData = [...originalData, ...apiData];
+    } else {
+      transformedData = apiData;
+    }
+    setOriginalData(transformedData);
+
+    const dataMap = transformedData
       .map(({ hive, non_hive, open }) => ({
         close: hive.close / non_hive.close,
         open: hive.open / non_hive.open,
@@ -78,21 +101,8 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
         time: Math.floor(moment(open).toDate().getTime() / 1000) as Time
       }))
       .reduce((acc, item) => acc.set(item.time, item), new Map<Time, any>());
-    candleStickSeries.setData(
-      Array.from(candleStickData.values()).sort((a, b) => Number(a.time) - Number(b.time))
-    );
+    setData(Array.from(dataMap.values()).sort((a, b) => Number(a.time) - Number(b.time)));
 
-    setChartSeries(candleStickSeries);
-  }, [data, chart]);
-
-  const fetchData = async (loadMore?: boolean) => {
-    setIsLoading(true);
-    const apiData = await getMarketHistory(bucketSeconds, startDate, endDate);
-    if (loadMore) {
-      setData([...data, ...apiData]);
-    } else {
-      setData(apiData);
-    }
     setIsLoading(false);
   };
 
