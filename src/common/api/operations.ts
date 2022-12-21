@@ -888,24 +888,23 @@ export const delegateVestingSharesKc = (
 
 export const delegateRC = (
   delegator: string,
-  key: PrivateKey,
   delegatees: string,
   max_rc: string | number
 ): Promise<TransactionConfirmation> => {
-  const json = JSON.stringify(['delegate_rc', {
-            from: delegator,
-            delegatees: [delegatees],
-            max_rc: max_rc,
-        }]);
 
-  const op = {
-    id: "rc",
-    json,
-    required_auths: [delegator],
-    required_posting_auths: []
+  const params = {
+    account: delegator,
+    receiver: delegatees,
+    rc: max_rc
   };
+  
+  const json = ["delegate_rc", {
+    from: delegator,
+    delegatees: [delegatees],
+    max_rc: max_rc,
+}];
 
-  return hiveClient.broadcast.json(op, key);
+    return broadcastPostingJSON(delegator, 'rc', json)
 };
 
 export const delegateRCHot = (

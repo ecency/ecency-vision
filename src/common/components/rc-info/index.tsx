@@ -14,18 +14,22 @@ export const ResourceCreditsInfo = (props: any) => {
     const [showDelegationModal, setShowDelegationModal] = useState(false)
     const [showDelegationsList, setShowDelegationsList] = useState(false)
     const [listMode, setListMode] = useState("")
+    const [toFromList, setToFromList] = useState('')
+    const [amountFromList, setAmountFromList]: any = useState('')
 
     const { rcPercent, account, activeUser } = props;
 
     useEffect(() => {
         findRcAccounts(account.name).then((r) => {
+          console.log(r)
             const outGoing = r.map((a: any) => a.delegated_rc);
             const delegated = outGoing[0]
             const formatOutGoing: any =  rcFormatter(delegated)
             setDelegated(formatOutGoing);
             const availableResourceCredit: any = r.map((a: any) => a.rc_manabar.current_mana);
-            const formatRc: any = rcFormatter(Number(availableResourceCredit));
-            setresourceCredit(formatRc);
+            console.log(availableResourceCredit)
+            // const formatRc: any = rcFormatter(Number(availableResourceCredit));
+            setresourceCredit(availableResourceCredit);
             const inComing: any = r.map((a: any) => Number(a.received_delegated_rc));
             const formatIncoming = rcFormatter(inComing);
             setReceivedDelegation(formatIncoming);
@@ -35,11 +39,11 @@ export const ResourceCreditsInfo = (props: any) => {
     const rcFormatter = (num: number) => {
       const result: any = 
       Math.abs(num) > 999 && Math.abs(num) < 1000000 ? 
-      `${Math.sign(num) * parseFloat((Math.abs(num)/1000).toFixed(2))}k` : 
+      `${Math.sign(num) * parseFloat((Math.abs(num)/1000).toFixed(2))}K` : 
       Math.abs(num) > 999999 && Math.abs(num) < 1000000000 ? 
-      `${Math.sign(num) * parseFloat((Math.abs(num)/1000000).toFixed(2))}m` : 
+      `${Math.sign(num) * parseFloat((Math.abs(num)/1000000).toFixed(2))}M` : 
       Math.abs(num) > 999999999 && Math.abs(num) < 1000000000000000 ? 
-      `${Math.sign(num) * parseFloat((Math.abs(num)/1000000000).toFixed(2))}b` : 
+      `${Math.sign(num) * parseFloat((Math.abs(num)/1000000000).toFixed(2))}B` : 
       Math.sign(num)*Math.abs(num);
       return result
   }
@@ -59,6 +63,8 @@ export const ResourceCreditsInfo = (props: any) => {
     
     const hideDelegation = () => {
       setShowDelegationModal(false);
+      setToFromList('');
+      setAmountFromList('');
     };
 
     const showIncomingList = () => {
@@ -164,6 +170,8 @@ export const ResourceCreditsInfo = (props: any) => {
     showDelegation={showDelegation} 
     hideList={hideList}
     listMode={listMode}
+    setToFromList={setToFromList}
+    setAmountFromList={setAmountFromList}
     />    
     </Modal.Body>
   </Modal>    
@@ -187,7 +195,9 @@ export const ResourceCreditsInfo = (props: any) => {
       {...props} 
       activeUser={activeUser} 
       resourceCredit={resourceCredit} 
-      hideDelegation={hideDelegation} 
+      hideDelegation={hideDelegation}
+      toFromList={toFromList}
+      amountFromList={amountFromList}
       />
       </Modal.Body>
     </Modal>

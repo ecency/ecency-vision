@@ -9,13 +9,13 @@ import UserAvatar from "../user-avatar";
 import { useParams } from 'react-router';
 
 export const RcDelegationsList = (props: any) => {
-  const limit = 21;
+  const limit = 10;
   const params: any = useParams();
 
-  const { activeUser, rcFormatter, showDelegation, listMode } = props
+  const { activeUser, rcFormatter, showDelegation, listMode, setToFromList, setAmountFromList } = props
 
-  const [outGoingList, setOutGoingList]: any = useState();
-  const [incoming, setIncoming]: any = useState();
+  const [outGoingList, setOutGoingList]: any = useState([]);
+  const [incoming, setIncoming]: any = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);
   const [search, setsearch] = useState("");
@@ -89,7 +89,11 @@ export const RcDelegationsList = (props: any) => {
                       <span className="item-reputation">{rcFormatter(list.delegated_rc)}</span>     
                       {list.from === activeUser.username && (<>
                       <a className="item-reputation cursor-pointer"
-                      onClick={showDelegation}
+                      onClick={() => {
+                        showDelegation()
+                        setToFromList(list.to)
+                        setAmountFromList(list.delegated_rc)
+                      }}
                       >{_t("rc-info.update")}</a>          
                       <a className="item-reputation cursor-pointer"
                       onClick={() => delegateRCKc(activeUser.username, list.to, 0)}
@@ -127,11 +131,11 @@ export const RcDelegationsList = (props: any) => {
                }             
             </div>}
 
-            <div className="load-more">
+            {hasMore && <div className="load-more">
               <Button disabled={loading || !hasMore} onClick={loadMore}>
                 {_t("g.load-more")}
               </Button>
-            </div>
+            </div>}
           </div>      
     </div>
   ) 
