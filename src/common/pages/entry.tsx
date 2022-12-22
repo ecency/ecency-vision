@@ -152,10 +152,17 @@ class EntryPage extends BaseComponent<Props, State> {
     const entry = this.getEntry();
 
     const { location, global } = this.props;
-    if (global.usePrivate && location.search.includes("history")) {
+    if (
+      global.usePrivate &&
+      location.search.includes("history") &&
+      location.search.includes("raw")
+    ) {
       this.toggleEditHistory();
     }
-    if (location.search.includes("raw")) {
+    if (global.usePrivate && location.search === "?history") {
+      this.toggleEditHistory();
+    }
+    if (global.usePrivate && location.search === "?raw") {
       this.setState({ isRawContent: true });
     }
     window.addEventListener("scroll", this.detect);
