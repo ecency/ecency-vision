@@ -152,19 +152,13 @@ class EntryPage extends BaseComponent<Props, State> {
     const entry = this.getEntry();
 
     const { location, global } = this.props;
-    if (
-      global.usePrivate &&
-      location.search.includes("history") &&
-      location.search.includes("raw")
-    ) {
+    const queryParams = new URLSearchParams(location.search);
+    if (global.usePrivate && queryParams.has("history")) {
       this.toggleEditHistory();
-    }
-    if (global.usePrivate && location.search === "?history") {
-      this.toggleEditHistory();
-    }
-    if (global.usePrivate && location.search === "?raw") {
+    } else if (global.usePrivate && queryParams.has("raw")) {
       this.setState({ isRawContent: true });
     }
+
     window.addEventListener("scroll", this.detect);
     window.addEventListener("resize", this.detect);
     let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`);
@@ -299,9 +293,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
   toggleRawContent = () => {
     const { isRawContent } = this.state;
-    this.setState({ isRawContent: !isRawContent }, () => {
-      this.handleURL();
-    });
+    this.setState({ isRawContent: !isRawContent }, this.handleURL);
   };
 
   handleURL = () => {
