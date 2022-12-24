@@ -92,7 +92,7 @@ exports[`(1) Render an empty list when no tokens found 1`] = `
         >
           <img
             alt="ecency"
-            src="logo-small-transparent.png"
+            src="ecency-logo-small-transparent.png"
           />
         </span>
       </a>
@@ -408,7 +408,7 @@ exports[`(2) Render with some hive engine tokens 1`] = `
         >
           <img
             alt="ecency"
-            src="logo-small-transparent.png"
+            src="ecency-logo-small-transparent.png"
           />
         </span>
       </a>
@@ -742,7 +742,7 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
         >
           <img
             alt="ecency"
-            src="logo-small-transparent.png"
+            src="ecency-logo-small-transparent.png"
           />
         </span>
       </a>
@@ -929,7 +929,7 @@ exports[`(4) Render an empty list if tokens equals zero 1`] = `
         >
           <img
             alt="ecency"
-            src="logo-small-transparent.png"
+            src="ecency-logo-small-transparent.png"
           />
         </span>
       </a>

@@ -30,6 +30,7 @@ import { hotSign } from "../helper/hive-signer";
 import { _t } from "../i18n";
 import { TransactionType } from "../components/buy-sell-hive";
 import { ErrorTypes } from "../enums";
+import { formatNumber } from "../helper/format-number";
 
 export interface MetaData {
   links?: string[];
@@ -535,10 +536,14 @@ export const limitOrderCreate = (
       ),
       owner: owner,
       amount_to_sell: `${
-        orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)
+        orderType === TransactionType.Buy
+          ? formatNumber(amount_to_sell, 3)
+          : formatNumber(min_to_receive, 3)
       } ${orderType === TransactionType.Buy ? "HBD" : "HIVE"}`,
       min_to_receive: `${
-        orderType === TransactionType.Buy ? min_to_receive.toFixed(3) : amount_to_sell.toFixed(3)
+        orderType === TransactionType.Buy
+          ? formatNumber(min_to_receive, 3)
+          : formatNumber(amount_to_sell, 3)
       } ${orderType === TransactionType.Buy ? "HIVE" : "HBD"}`,
       fill_or_kill: false,
       expiration: expiration
@@ -584,10 +589,14 @@ export const limitOrderCreateHot = (
       ),
       owner: owner,
       amount_to_sell: `${
-        orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)
+        orderType === TransactionType.Buy
+          ? formatNumber(amount_to_sell, 3)
+          : formatNumber(min_to_receive, 3)
       } ${orderType === TransactionType.Buy ? "HBD" : "HIVE"}`,
       min_to_receive: `${
-        orderType === TransactionType.Buy ? min_to_receive.toFixed(3) : amount_to_sell.toFixed(3)
+        orderType === TransactionType.Buy
+          ? formatNumber(min_to_receive, 3)
+          : formatNumber(amount_to_sell, 3)
       } ${orderType === TransactionType.Buy ? "HIVE" : "HBD"}`,
       fill_or_kill: false,
       expiration: expiration
@@ -637,10 +646,14 @@ export const limitOrderCreateKc = (
       ),
       owner: owner,
       amount_to_sell: `${
-        orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)
+        orderType === TransactionType.Buy
+          ? formatNumber(amount_to_sell, 3)
+          : formatNumber(min_to_receive, 3)
       } ${orderType === TransactionType.Buy ? "HBD" : "HIVE"}`,
       min_to_receive: `${
-        orderType === TransactionType.Buy ? min_to_receive.toFixed(3) : amount_to_sell.toFixed(3)
+        orderType === TransactionType.Buy
+          ? formatNumber(min_to_receive, 3)
+          : formatNumber(amount_to_sell, 3)
       } ${orderType === TransactionType.Buy ? "HIVE" : "HBD"}`,
       fill_or_kill: false,
       expiration: expiration

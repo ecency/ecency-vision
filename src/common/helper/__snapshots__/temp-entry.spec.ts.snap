@@ -16,7 +16,7 @@ Object {
   "depth": 0,
   "is_paidout": false,
   "json_metadata": Object {
-    "app": "ecency/3.0.4-vision",
+    "app": "proofofbrain.blog/3.0.4-vision",
     "description": "a test post",
     "format": "markdown+html",
     "tags": Array [

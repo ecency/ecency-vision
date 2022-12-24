@@ -156,8 +156,6 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     const { global } = this.props;
     const { hsClientId } = global;
     const { ownerKey, activeKey, postingKey } = keys;
-    const { global } = this.props;
-    const { hsClientId } = global;
 
     return {
       ownerAuthority: Authority.from(ownerKey.createPublic()),

@@ -347,7 +347,7 @@ exports[`(1) Default Render 1`] = `
         >
           <img
             alt="ecency"
-            src="logo-small-transparent.png"
+            src="ecency-logo-small-transparent.png"
           />
         </span>
       </a>
@@ -841,7 +841,7 @@ exports[`(2) Render with converting HBD 1`] = `
         >
           <img
             alt="ecency"
-            src="logo-small-transparent.png"
+            src="ecency-logo-small-transparent.png"
           />
         </span>
       </a>
