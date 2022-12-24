@@ -782,8 +782,8 @@
     "sort-by-value": "Сумма",
     "sort-by-balance": "Баланс",
     "sort-by-stake": "Stake",
-    "sort-by-delegations-in": "Delegations in",
-    "sort-by-delegations-out": "Delegations out"
+    "sort-by-delegations-in": "Делегировано вам",
+    "sort-by-delegations-out": "Делегировано другим"
   },
   "wallet-engine-estimated": {
     "title": "Оценка стоимости токенов",
