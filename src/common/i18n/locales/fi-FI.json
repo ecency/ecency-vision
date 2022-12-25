@@ -71,12 +71,12 @@
     "cancel": "Peruuta"
   },
   "announcements": {
-    "dismiss": "Dismiss",
-    "next": "Next",
-    "later": "Later"
+    "dismiss": "Hylkää",
+    "next": "Seuraava",
+    "later": "Myöhemmin"
   },
   "entry-filter": {
-    "filter-trending": "Nousussa",
+    "filter-trending": "Trendit",
     "filter-hot": "Kuumat",
     "filter-created": "Uusimmat",
     "filter-promoted": "Korostettu",
@@ -161,7 +161,7 @@
     "login-info-1": "Emme tallenna yksityisiä avaimiasi.",
     "login-info-2": "Lisätietoja",
     "error-fields-required": "Syötä käyttäjänimi ja yksityinen avain",
-    "captcha-check-required": "Please verify if you are a human",
+    "captcha-check-required": "Varmista olevasi ihminen",
     "error-public-key": "Lisäsit public keyn. Vaaditaan salasana/WIF",
     "error-user-fetch": "Käyttäjätietoja ei voitu ladata",
     "error-user-not-found": "Käyttäjää ei ole olemassa",
@@ -193,9 +193,9 @@
     "title": "Aiheet"
   },
   "sort-trending-tags": {
-    "sort": "Sort",
-    "ascending": "Ascending",
-    "descending": "Descending"
+    "sort": "Lajittele",
+    "ascending": "Nouseva",
+    "descending": "Laskeva"
   },
   "selected-tags": {
     "title": "Suositellut"
@@ -303,7 +303,7 @@
     "notifications": "Ilmoitukset",
     "wallet": "Lompakko",
     "favorite": "Suosikki",
-    "trending": "Nousussa",
+    "trending": "Trendit",
     "select": "Valitse sisältötyypit",
     "blogs": "Blogit",
     "replies": "Vastaukset",
@@ -386,7 +386,7 @@
     "decimal-error": "Vain {{decimals}} desimaaliluvut sallittu!",
     "from": "Lähettäjä",
     "to": "Vastaanottaja",
-    "sign": "Sign",
+    "sign": "Allekirjoita",
     "swapping": "Vaihdetaan...",
     "continue": "Jatka",
     "balance": "Saldo",
@@ -462,7 +462,7 @@
     "replies": "1 Kommentti",
     "n-replies": "{{n}} Kommenttia",
     "order": "Järjestys",
-    "order-trending": "Nousussa",
+    "order-trending": "Trendit",
     "order-reputation": "Maine",
     "order-votes": "Äänet",
     "order-created": "Ikä",
@@ -776,17 +776,17 @@
     "staked": "Panostettu"
   },
   "sort-engine-tokens": {
-    "sort": "Sort",
-    "sort-in-ascending": "Ascending",
-    "sort-in-descending": "Descending",
-    "sort-by-value": "Value",
-    "sort-by-balance": "Balance",
-    "sort-by-stake": "Stake",
-    "sort-by-delegations-in": "Delegations in",
-    "sort-by-delegations-out": "Delegations out"
+    "sort": "Lajittele",
+    "sort-in-ascending": "Nouseva",
+    "sort-in-descending": "Laskeva",
+    "sort-by-value": "Arvo",
+    "sort-by-balance": "Saldo",
+    "sort-by-stake": "Panos",
+    "sort-by-delegations-in": "Saadut Valtuutukset",
+    "sort-by-delegations-out": "Annetut Valtuutukset"
   },
   "wallet-engine-estimated": {
-    "title": "Estimated Tokens Value",
+    "title": "Arvioitu Merkkien Arvo",
     "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
@@ -1061,16 +1061,16 @@
     "deleted": "Poistettu suosikeista"
   },
   "editor-toolbar": {
-    "bold": "Bold (Alt + B)",
-    "italic": "Italic (Alt + I)",
+    "bold": "Lihavoitu (Alt + B)",
+    "italic": "Kursivoitu (Alt + I)",
     "header": "Otsikko",
-    "code": "Code (Alt + C)",
-    "quote": "Quote (Alt + M)",
+    "code": "Koodi (Alt + C)",
+    "quote": "Lainaus (Alt + M)",
     "ul": "Järjestämätön lista",
     "ol": "Järjestetty luettelo",
-    "link": "Link (Alt + K)",
-    "image": "Image (Alt + D)",
-    "table": "Table (Alt + T)",
+    "link": "Linkki (Alt + K)",
+    "image": "Kuva (Alt + D)",
+    "table": "Taulukko (Alt + T)",
     "table-3-col": "3 saraketta",
     "table-2-col": "2 saraketta",
     "table-1-col": "1 sarake",
@@ -1088,8 +1088,8 @@
     "recently-used": "Äskettäin käytetyt"
   },
   "gif-picker": {
-    "filter-placeholder": "Filter",
-    "credits": "Powered by GIPHY"
+    "filter-placeholder": "Suodata",
+    "credits": "Palvelun tarjoaa GIPHY"
   },
   "submit": {
     "page-title": "Luo artikkeli",
@@ -1172,7 +1172,7 @@
     "mention-post": "{{source}} mainitsi sinut julkaisussa",
     "mention-comment": "{{source}} mainitsi sinut kommentissa",
     "favorite": "{{source}} teki uuden julkaisun",
-    "bookmark": "{{source}} replied to bookmarked content",
+    "bookmark": "{{source}} vastasi kirjanmerkittyyn sisältöön",
     "followed": "{{source}} seurasi sinua",
     "replied": "{{source}} vastasi",
     "reblogged": "{{source}} jakoi julkaisusi",
@@ -1190,13 +1190,13 @@
     "type-transfers": "Siirrot",
     "type-delegations": "Valtuutukset",
     "type-nfavorites": "Suosikit",
-    "type-nbookmarks": "Bookmarks",
+    "type-nbookmarks": "Kirjanmerkit",
     "group-title-recent": "Viimeisimmät",
     "vote-str": "{{p}} äänesti julkaisuasi:",
     "reply-str": "vastasi julkaisuusi:",
     "mention-str": "mainitsi sinut:",
     "favorite-str": "teki uuden julkaisun",
-    "bookmark-str": "replied to bookmarked content",
+    "bookmark-str": "vastasi kirjanmerkittyyn sisältöön",
     "followed-str": "seurasi",
     "unfollowed-str": "lopetti seuraamisen",
     "ignored-str": "sivuutetut",
@@ -1522,8 +1522,8 @@
       "how-use-tags-body": "<p>Käyttäjät voivat luoda valitsemansa tunnisteet, mutta valitsemalla hyödyllisen tunnisteen käyttäjät voivat huomata viestisi erittäin helposti. Esimerkiksi ensimmäisestä julkaisusta voi tulla suosittu vain käyttämällä johdantotunnistetta. Varmista, että käytät viesteihisi liittyviä tunnisteita, muuten viestisi voi saada alaäänen virheiden vuoksi.</p>",
       "why-publish-gray-header": "Miksi Julkaise-painike on harmaa?",
       "why-publish-gray-body": "<p>Julkaisun kirjoittamisen jälkeen saata nähdä, että Julkaise-painike on edelleen harmaa, varmista että valitsit hyvän otsikon ja ainakin yhden kelvollisen tunnuksen. Niiden puuttuessa julkaisupainike poistetaan käytöstä.</p>",
-      "what-links-show-header": "Mitä Nousussa, Kuumat, Uudet, Nousevat ja Kiistanalaiset linkit näyttävät?",
-      "what-links-show-body": "<p>Tämä on tapa lajitella sisältöä Ecencyssä. <ul><li>Nousussa - Usein mainitut tai keskustellut julkaisut.</li><li>Kuumat - Suosittuja viestejä parin viime tunnin ajalta.</li><li>Uudet - Uusimmat julkaisut lajitellaan julkaisuajan mukaan.</li><li>Nousevat - Julkaisut, joilla on enemmän kommentteja ja ääniä verraten muihin.</li><li>Kiistanalainen - Suhteellisen suuri määrä ääniä ylös ja alas.</li></ul></p>",
+      "what-links-show-header": "Mitä Trendit, Kuumat, Uudet, Nousevat ja Kiistanalaiset linkit näyttävät?",
+      "what-links-show-body": "<p>Tämä on tapa lajitella sisältöä Ecencyssä. <ul><li>Trendit - Usein mainitut tai keskustellut julkaisut.</li><li>Kuumat - Suosittuja viestejä parin viime tunnin ajalta.</li><li>Uudet - Uusimmat julkaisut lajitellaan julkaisuajan mukaan.</li><li>Nousevat - Julkaisut, joilla on enemmän kommentteja ja ääniä verraten muihin.</li><li>Kiistanalainen - Suhteellisen suuri määrä ääniä ylös ja alas.</li></ul></p>",
       "what-my-rewards-header": "Millaisia palkkioita minulla on lompakossa?",
       "what-my-rewards-body": "<p>Lompakossa on kahdenlaisia palkintoja: <ul><li>Tarkistuspalkinnot - Palkinnot ylennysäänistä ja kommenteista.</li><li>Julkaisupalkinnot - Omista viesteistä ja kommenteista ansaitut palkkiot.</li><li>Pistepalkintoja - Sosiaalisuus ja vuorovaikutus palkitaan myös Ecency-pisteillä.</li></ul><p/>",
       "what-information-profile-header": "Millaisia tietoja profiilissäni on esillä?",
