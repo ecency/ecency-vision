@@ -419,7 +419,8 @@
       "history-widget": {
         "price": "Price",
         "amount": "Amount",
-        "volume": "Volume"
+        "volume": "Volume",
+        "time": "Time"
       }
     }
   },

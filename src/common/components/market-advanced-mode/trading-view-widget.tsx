@@ -8,13 +8,15 @@ import moment, { Moment } from "moment";
 import { IChartApi, ISeriesApi, Time, TimeRange } from "lightweight-charts";
 import Dropdown from "../dropdown";
 import { useDebounce } from "react-use";
+import { Global } from "../../store/global/types";
 
 interface Props {
+  global: Global;
   history: History;
   widgetTypeChanged: (type: Widget) => void;
 }
 
-export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
+export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props) => {
   const chartRef = useRef<any>();
   const [originalData, setOriginalData] = useState<MarketCandlestickDataItem[]>([]);
   const [data, setData] = useState<any[]>([]);
@@ -79,6 +81,12 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
     setChartSeries(candleStickSeries);
   }, [data, chart]);
 
+  useEffect(() => {
+    if (chart) {
+      chart.options().layout.textColor = global.theme == "night" ? "#fff" : "#000";
+    }
+  }, [global.theme]);
+
   const fetchData = async (loadMore?: boolean) => {
     setIsLoading(true);
     const apiData = await getMarketHistory(bucketSeconds, startDate, endDate);
@@ -112,7 +120,13 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
       timeScale: {
         timeVisible: true
       },
-      height: 400
+      height: 400,
+      layout: {
+        background: {
+          color: "transparent"
+        },
+        textColor: global.theme == "night" ? "#fff" : "#000"
+      }
     });
 
     chartInstance

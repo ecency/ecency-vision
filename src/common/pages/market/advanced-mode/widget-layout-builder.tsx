@@ -115,6 +115,7 @@ export const WidgetLayoutBuilder = ({
             <div className={"layout-col " + col.size}>
               <SsrSuspense fallback={<></>}>
                 <TradingViewWidget
+                  global={global}
                   history={browserHistory}
                   widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
                 />
