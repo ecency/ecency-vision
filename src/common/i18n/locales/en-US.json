@@ -409,17 +409,17 @@
     "success-swap": "Successfully swapped!",
     "advanced": {
       "history": "History",
-      "stake": "Stake",
+      "stake": "Order book",
       "pairs": "Pairs",
-      "form": "Trading form",
+      "form": "Order form",
       "open-orders": "Open orders",
-      "chart": "Trading chart",
+      "chart": "Chart",
       "trading-form-auth-required": "You have to been authorized for trade",
       "open-orders-auth-required": "You have to been authorized for see open orders",
       "history-widget": {
         "price": "Price",
         "amount": "Amount",
-        "time": "Time"
+        "volume": "Volume"
       }
     }
   },

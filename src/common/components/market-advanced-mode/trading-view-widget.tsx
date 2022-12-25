@@ -93,11 +93,11 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
 
     const dataMap = transformedData
       .map(({ hive, non_hive, open }) => ({
-        close: hive.close / non_hive.close,
-        open: hive.open / non_hive.open,
-        low: hive.low / non_hive.low,
-        high: hive.high / non_hive.high,
-        volume: non_hive.volume,
+        close: non_hive.close / hive.close,
+        open: non_hive.open / hive.open,
+        low: non_hive.low / hive.low,
+        high: non_hive.high / hive.high,
+        volume: hive.volume,
         time: Math.floor(moment(open).toDate().getTime() / 1000) as Time
       }))
       .reduce((acc, item) => acc.set(item.time, item), new Map<Time, any>());
@@ -143,6 +143,23 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
     return newStartDate;
   };
 
+  const getBucketSecondsLabel = () => {
+    switch (bucketSeconds) {
+      case 15:
+        return "15s";
+      case 60:
+        return "1m";
+      case 300:
+        return "5m";
+      case 3600:
+        return "1h";
+      case 86400:
+        return "1d";
+      default:
+        return "";
+    }
+  };
+
   return (
     <MarketAdvancedModeWidget
       history={history}
@@ -150,7 +167,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
       title={
         <>
           <b>{_t("market.advanced.chart")}</b>
-          <small className="pl-1">({bucketSeconds} seconds per candle)</small>
+          <small className="pl-1">({getBucketSecondsLabel()})</small>
         </>
       }
       children={<div className="market-advanced-mode-trading-view-widget" ref={chartRef} />}

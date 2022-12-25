@@ -3,6 +3,7 @@ import { MarketAdvancedModeWidgetHeader } from "./market-advanced-mode-widget-he
 import Dropdown, { MenuItem } from "../dropdown";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
 import { History } from "history";
+import { _t } from "../../i18n";
 
 interface Props {
   className?: string;
@@ -30,17 +31,17 @@ export const MarketAdvancedModeWidget = ({
   const getLabel = (type: Widget): string => {
     switch (type) {
       case Widget.History:
-        return "History";
+        return _t("market.advanced.history");
       case Widget.OpenOrders:
-        return "Open orders";
+        return _t("market.advanced.open-orders");
       case Widget.Pairs:
-        return "Pairs";
+        return _t("market.advanced.pairs");
       case Widget.TradingForm:
-        return "Trading form";
+        return _t("market.advanced.form");
       case Widget.TradingView:
-        return "Trading view";
+        return _t("market.advanced.chart");
       case Widget.Stake:
-        return "Stake";
+        return _t("market.advanced.stake");
       default:
         return "";
     }

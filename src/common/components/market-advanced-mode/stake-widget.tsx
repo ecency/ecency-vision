@@ -126,7 +126,7 @@ export const StakeWidget = ({
                 <div>
                   {_t("market.advanced.history-widget.amount")}({fromAsset})
                 </div>
-                <div>{_t("market.advanced.history-widget.time")}</div>
+                <div>{_t("market.advanced.history-widget.volume")}</div>
               </div>
               <div>
                 {[StakeWidgetViewType.All, StakeWidgetViewType.Sell].includes(viewType) &&
