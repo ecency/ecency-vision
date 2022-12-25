@@ -7,6 +7,8 @@ import formattedNumber from "../../util/formatted-number";
 import { StakeWidgetHeaderOptions, StakeWidgetViewType } from "./stake-widget-header-options";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
 import { History } from "history";
+import { useLocalStorage } from "react-use";
+import { PREFIX } from "../../util/local-storage";
 
 interface Props {
   browserHistory: History;
@@ -29,12 +31,17 @@ export const StakeWidget = ({
   browserHistory,
   widgetTypeChanged
 }: Props) => {
+  const [storedFraction, setStoredFraction] = useLocalStorage<number>(PREFIX + "_amml_st_fr");
+  const [storedViewType, setStoredViewType] = useLocalStorage<StakeWidgetViewType>(
+    PREFIX + "_amml_st_vt"
+  );
+
   const [sells, setSells] = useState<StakeItem[]>([]);
   const [maxSell, setMaxSell] = useState(0);
   const [buys, setBuys] = useState<StakeItem[]>([]);
   const [maxBuy, setMaxBuy] = useState(0);
-  const [fraction, setFraction] = useState(0.00001);
-  const [viewType, setViewType] = useState(StakeWidgetViewType.All);
+  const [fraction, setFraction] = useState(storedFraction ?? 0.00001);
+  const [viewType, setViewType] = useState(storedViewType ?? StakeWidgetViewType.All);
 
   const rowsCount = 17;
 
@@ -107,10 +114,12 @@ export const StakeWidget = ({
           onFractionChange={(value) => {
             setFraction(value);
             buildAllStakeItems(value);
+            setStoredFraction(value);
           }}
           viewType={viewType}
           onViewTypeChange={(value) => {
             setViewType(value);
+            setStoredViewType(value);
             if (value !== viewType) buildAllStakeItems(fraction, value !== StakeWidgetViewType.All);
           }}
         />

@@ -22,7 +22,7 @@ export const StakeWidgetHeaderOptions = ({
   viewType,
   onViewTypeChange
 }: Props) => {
-  const [fractionValue, setFractionValue] = useState(0.00001);
+  const [fractionValue, setFractionValue] = useState(fraction);
 
   return (
     <div className="stake-widget-header-options">

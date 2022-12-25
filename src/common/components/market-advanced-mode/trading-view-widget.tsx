@@ -7,8 +7,9 @@ import { getMarketBucketSizes, getMarketHistory, MarketCandlestickDataItem } fro
 import moment, { Moment } from "moment";
 import { IChartApi, ISeriesApi, Time, TimeRange } from "lightweight-charts";
 import Dropdown from "../dropdown";
-import { useDebounce } from "react-use";
+import { useDebounce, useLocalStorage } from "react-use";
 import { Global } from "../../store/global/types";
+import { PREFIX } from "../../util/local-storage";
 
 interface Props {
   global: Global;
@@ -18,18 +19,23 @@ interface Props {
 
 export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props) => {
   const chartRef = useRef<any>();
+
+  const [storedBucketSeconds, setStoredBucketSeconds] = useLocalStorage<number>(
+    PREFIX + "_amml_tv_bs",
+    300
+  );
+
   const [originalData, setOriginalData] = useState<MarketCandlestickDataItem[]>([]);
   const [data, setData] = useState<any[]>([]);
   const [startDate, setStartDate] = useState<Moment>(moment().subtract(8, "hours"));
   const [endDate, setEndDate] = useState<Moment>(moment());
-  const [bucketSeconds, setBucketSeconds] = useState(300);
+  const [bucketSeconds, setBucketSeconds] = useState(storedBucketSeconds ?? 300);
   const [chart, setChart] = useState<IChartApi | null>(null);
   const [chartSeries, setChartSeries] = useState<ISeriesApi<any> | null>(null);
   const [bucketSecondsList, setBucketSecondsList] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [triggerFetch, setTriggerFetch] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
-
   const [lastTimeRange, setLastTimeRange] = useState<TimeRange | null>(null);
 
   useDebounce(
@@ -64,6 +70,8 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
     setEndDate(moment());
     setStartDate(getNewStartDate(moment(), "subtract"));
     setTriggerFetch(true);
+
+    setStoredBucketSeconds(bucketSeconds);
   }, [bucketSeconds]);
 
   useEffect(() => {
