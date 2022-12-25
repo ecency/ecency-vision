@@ -787,7 +787,7 @@
   },
   "wallet-engine-estimated": {
     "title": "Arvioitu Merkkien Arvo",
-    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+    "description": "Suhteellinen USD-arvo kaikille engine-merkeille lompakossasi."
   },
   "withdraw-routes": {
     "title": "Palauta tilit",
