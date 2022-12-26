@@ -1,7 +1,6 @@
 import React from "react";
 
 import EntryTipBtn, { TippingDialog } from "./index";
-
 import {
   globalInstance,
   dynamicPropsIntance1,
@@ -39,7 +38,8 @@ const defProps = {
   toggleUIProp: () => {},
   setSigningKey: () => {},
   fetchPoints: () => {},
-  updateWalletValues: () => {}
+  updateWalletValues: () => {},
+  setTipDialogMounted: () => {}
 };
 
 it("(1) Default render", async () => {
@@ -51,7 +51,8 @@ it("(1) Default render", async () => {
 it("(2) Dialog", async () => {
   const props = {
     ...defProps,
-    onHide: () => {}
+    onHide: () => {},
+    setTipDialogMounted: () => {}
   };
 
   const renderer = TestRenderer.create(<TippingDialog {...props} />);

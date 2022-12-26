@@ -98,6 +98,7 @@ interface State {
   showMuted: boolean;
   showModMuted: boolean;
   mounted: boolean;
+  dateFormatted: string;
 }
 
 export default class EntryListItem extends Component<Props, State> {
@@ -105,7 +106,8 @@ export default class EntryListItem extends Component<Props, State> {
     showNsfw: false,
     showMuted: false,
     showModMuted: false,
-    mounted: false
+    mounted: false,
+    dateFormatted: ""
   };
 
   public static defaultProps = {
@@ -232,6 +234,7 @@ export default class EntryListItem extends Component<Props, State> {
 
     const dateRelative = dateToRelative(entry.created);
     const dateFormatted = dateToFormatted(entry.created);
+    this.setState({ dateFormatted: dateFormatted });
 
     const isChild = !!entry.parent_author;
 
@@ -517,7 +520,8 @@ export default class EntryListItem extends Component<Props, State> {
             {EntryVoteBtn({
               ...this.props,
               isPostSlider: true,
-              afterVote: this.afterVote
+              afterVote: this.afterVote,
+              dateFormatted: this.state.dateFormatted
             })}
             {EntryPayout({
               ...this.props,

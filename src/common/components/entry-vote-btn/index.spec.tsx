@@ -40,6 +40,7 @@ describe("(1) Dialog", () => {
     downVoted: false,
     upVoted: false,
     isPostSlider: false,
+    setTipDialogMounted: (d: boolean) => {},
     onClick: () => {}
   };
 
