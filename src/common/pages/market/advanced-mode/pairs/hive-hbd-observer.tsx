@@ -3,6 +3,7 @@ import { getMarketStatistics, getOrderBook, OrdersData } from "../../../../api/h
 import { DayChange } from "../types/day-change.type";
 import { getCGMarket } from "../../../../components/market-swap-form/api/coingecko-api";
 import { MarketAsset } from "../../../../components/market-swap-form/market-pair";
+import { useInterval } from "react-use";
 
 interface Props {
   onDayChange: (dayChange: DayChange) => void;
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export const HiveHbdObserver = ({ onDayChange, onHistoryChange, onUsdChange }: Props) => {
+  useInterval(() => fetchAllStats(), 3600);
+
   useEffect(() => {
     fetchAllStats();
   }, []);
