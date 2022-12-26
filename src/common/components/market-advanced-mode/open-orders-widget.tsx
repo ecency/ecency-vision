@@ -47,14 +47,24 @@ export const OpenOrdersWidget = ({
       title={_t("market.advanced.open-orders")}
       children={
         activeUser ? (
-          <OpenOrders
-            onTransactionSuccess={updateOpenData}
-            data={openOrdersData || []}
-            loading={openOrdersDataLoading}
-            username={(activeUser && activeUser.username) || ""}
-            activeUser={activeUser!}
-            compat={true}
-          />
+          openOrdersData.length > 0 ? (
+            <OpenOrders
+              onTransactionSuccess={updateOpenData}
+              data={openOrdersData || []}
+              loading={openOrdersDataLoading}
+              username={(activeUser && activeUser.username) || ""}
+              activeUser={activeUser!}
+              compat={true}
+            />
+          ) : (
+            <div className="market-advanced-mode-trading-form-login-required-widget">
+              <div className="auth-required d-flex justify-content-center align-items-center flex-column">
+                <div className="font-weight-bold mb-3">
+                  {_t("market.advanced.empty-open-orders")}
+                </div>
+              </div>
+            </div>
+          )
         ) : (
           <div className="market-advanced-mode-trading-form-login-required-widget">
             <div className="auth-required d-flex justify-content-center align-items-center flex-column">

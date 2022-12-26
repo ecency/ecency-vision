@@ -70,6 +70,14 @@ thead, .pagination {
     }
 
     &.ADVANCED {
+        .advanced-mode {
+            margin-top: -2.5rem;
+
+            @include media-breakpoint-down(sm) {
+                margin-top: -2rem;
+            }
+        }
+
         .advanced-mode-layout {
             display: grid;
 
@@ -150,7 +158,7 @@ thead, .pagination {
             padding-left: 0.69rem;
 
             .scrollable {
-                max-height: calc(100vh - 96px - 80px);
+                max-height: calc(100vh - 96px - 80px - 2.5rem);
                 overflow-y: auto;
             }
 
@@ -173,6 +181,7 @@ thead, .pagination {
 
         .market-stake-widget-sell, .market-stake-widget-buy {
             overflow-y: auto;
+            max-height: calc(50vh - 48px - 40px - 0.4rem);
 
             .history-widget-row {
                 position: relative;
@@ -220,10 +229,6 @@ thead, .pagination {
             }
         }
 
-        .market-stake-widget-sell {
-            max-height: calc(100vh - 96px - 80px);
-        }
-
         .market-advanced-mode-widget {
             .custom-dropdown .label {
                 font-size: 14px;
@@ -256,7 +261,7 @@ thead, .pagination {
         }
 
         .market-advanced-mode-trading-view-widget {
-            height: 430px;
+            height: calc(100vh - 557px);
         }
     }
 }

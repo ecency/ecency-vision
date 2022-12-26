@@ -128,7 +128,6 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
       timeScale: {
         timeVisible: true
       },
-      height: 400,
       layout: {
         background: {
           color: "transparent"
