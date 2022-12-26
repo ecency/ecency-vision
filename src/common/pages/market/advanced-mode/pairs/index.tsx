@@ -9,15 +9,26 @@ interface Props {
   toAsset: MarketAsset;
   onDayChange: (dayChange: DayChange) => void;
   onHistoryChange: (history: OrdersData) => void;
+  onUsdChange: (usdPrice: number) => void;
 }
 
-export const MarketObserver = ({ fromAsset, toAsset, onDayChange, onHistoryChange }: Props) => {
+export const MarketObserver = ({
+  fromAsset,
+  toAsset,
+  onDayChange,
+  onHistoryChange,
+  onUsdChange
+}: Props) => {
   const hiveHbdPair = [MarketAsset.HBD, MarketAsset.HIVE];
 
   return (
     <>
       {hiveHbdPair.includes(fromAsset) && hiveHbdPair.includes(toAsset) ? (
-        <HiveHbdObserver onDayChange={onDayChange} onHistoryChange={onHistoryChange} />
+        <HiveHbdObserver
+          onDayChange={onDayChange}
+          onHistoryChange={onHistoryChange}
+          onUsdChange={onUsdChange}
+        />
       ) : (
         <></>
       )}

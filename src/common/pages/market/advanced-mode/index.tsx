@@ -44,6 +44,7 @@ export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp 
         toAsset={toAsset}
         onDayChange={(dayChange) => setDayChange(dayChange)}
         onHistoryChange={(history) => setHistory(history)}
+        onUsdChange={(usdPrice) => setUsdPrice(usdPrice)}
       />
       <UserBalanceObserver
         activeUser={activeUser}

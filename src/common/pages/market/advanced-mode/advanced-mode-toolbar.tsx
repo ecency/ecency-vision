@@ -14,11 +14,9 @@ interface Props {
 export const AdvancedModeToolbar = ({ fromAsset, toAsset, dayChange, usdPrice, price }: Props) => {
   const getPercent = () => {
     if (dayChange.percent > 0) {
-      return `+${dayChange.percent}`;
-    } else if (dayChange.percent < 0) {
-      return `-${dayChange.percent}`;
+      return `+${dayChange.percent.toFixed(2)}`;
     }
-    return dayChange.percent;
+    return dayChange.percent.toFixed(2);
   };
 
   return (
@@ -30,22 +28,27 @@ export const AdvancedModeToolbar = ({ fromAsset, toAsset, dayChange, usdPrice, p
       </div>
       <div className="pair-info border-left px-3 flex-1">
         <div className="price">
-          <div className="amount text-success">{formattedNumber(dayChange.price)}</div>
-          <div className="usd-value">${usdPrice}</div>
+          <div className={"amount " + (dayChange.percent > 0 ? "text-success" : "text-danger")}>
+            {formattedNumber(dayChange.price)}
+          </div>
+          <div className="usd-value">${usdPrice.toFixed(2)}</div>
         </div>
         <div className="day-change-price change-price">
           <label>24h change</label>
           <div>
-            {formattedNumber(dayChange.price)} {getPercent()}%
+            <span>{formattedNumber(dayChange.price)}</span>
+            <small className={"pl-2 " + (dayChange.percent > 0 ? "text-success" : "text-danger")}>
+              {getPercent()}%
+            </small>
           </div>
         </div>
         <div className="day-high-price change-price">
           <label>24h high</label>
-          <div>{formattedNumber(dayChange.high)}</div>
+          <div>{formattedNumber(dayChange.low)}</div>
         </div>
         <div className="day-low-price change-price">
           <label>24h low</label>
-          <div>{formattedNumber(dayChange.low)}</div>
+          <div>{formattedNumber(dayChange.high)}</div>
         </div>
         <div className="day-1-total change-price">
           <label>24h volume({fromAsset})</label>

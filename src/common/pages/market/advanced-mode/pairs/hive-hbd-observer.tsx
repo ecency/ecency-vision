@@ -1,17 +1,29 @@
 import React, { useEffect } from "react";
 import { getMarketStatistics, getOrderBook, OrdersData } from "../../../../api/hive";
 import { DayChange } from "../types/day-change.type";
+import { getCGMarket } from "../../../../components/market-swap-form/api/coingecko-api";
+import { MarketAsset } from "../../../../components/market-swap-form/market-pair";
 
 interface Props {
   onDayChange: (dayChange: DayChange) => void;
   onHistoryChange: (history: OrdersData) => void;
+  onUsdChange: (usdPrice: number) => void;
 }
 
-export const HiveHbdObserver = ({ onDayChange, onHistoryChange }: Props) => {
+export const HiveHbdObserver = ({ onDayChange, onHistoryChange, onUsdChange }: Props) => {
   useEffect(() => {
+    fetchAllStats();
+  }, []);
+
+  const fetchAllStats = async () => {
     fetchStats();
     fetchHistory();
-  }, []);
+
+    const usdResponse = await getCGMarket(MarketAsset.HIVE, MarketAsset.HBD);
+    if (usdResponse[0]) {
+      onUsdChange(usdResponse[0]);
+    }
+  };
 
   const fetchHistory = async () => {
     try {
@@ -33,5 +45,6 @@ export const HiveHbdObserver = ({ onDayChange, onHistoryChange }: Props) => {
       });
     } catch (e) {}
   };
+
   return <></>;
 };
