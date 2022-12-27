@@ -1424,6 +1424,7 @@
       "contact-email": "Email us"
     },
     "faq": {
+      "toggle-icon-info": "click me",
       "page-title": "How can we help you?",
       "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Table of Contents",

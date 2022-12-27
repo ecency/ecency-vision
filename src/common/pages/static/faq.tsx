@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { Tsx } from "../../i18n/helper";
 import { faqKeysGeneral } from "../../constants";
 import NavBar from "../../components/navbar";
+import FaqCategory from "../../components/faq-category";
 import { connect } from "react-redux";
 
 interface FAQPageState {
@@ -101,7 +102,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
           itemType="https://schema.org/FAQPage"
         >
           <div className="static-content">
-            <div className="position-relative rounded">
+            <div className="position-relative rounded" style={{ marginBottom: "8%" }}>
               <img src={imgs} className="rounded" />
               <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded p-3">
                 <h1 className="text-white faq-title text-center mb-3">
@@ -150,16 +151,38 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                 )}
               </div>
             </div>
-            <h3>{_t("static.faq.page-sub-title")}</h3>
-            <ul className="table-contents">
-              {dataToShow.map((x) => {
-                return (
-                  <li key={x}>
-                    <a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a>
-                  </li>
-                );
-              })}
-            </ul>
+
+            {search ? (
+              <>
+                <h3>{_t("static.faq.page-sub-title")}</h3>
+                <ul className="table-contents">
+                  {dataToShow.map((x) => {
+                    return (
+                      <li key={x}>
+                        <a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
+            ) : (
+              <div className="category-cards">
+                <FaqCategory categoryTitle={"About Ecency"} contentList={dataToShow.slice(0, 5)} />
+                <FaqCategory
+                  categoryTitle={"Working of Ecency"}
+                  contentList={dataToShow.slice(5, 10)}
+                />
+                <FaqCategory
+                  categoryTitle={"About Blockchain"}
+                  contentList={dataToShow.slice(10, 15)}
+                />
+                <FaqCategory
+                  categoryTitle={"Features of Ecency"}
+                  contentList={dataToShow.slice(15, 34)}
+                />
+              </div>
+            )}
+
             <div className="faq-list">
               {dataToShow.map((x) => {
                 return (

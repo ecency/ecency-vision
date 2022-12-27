@@ -1,0 +1,33 @@
+.section-title {
+  font-weight: bold;
+  font-size: 1rem;
+
+  @include themify(day) {
+    color: $light-black;
+  }
+
+  @include themify(night) {
+    color: $white;
+  }
+}
+
+.section-card {
+  padding: 1rem;
+}
+
+.section-container {
+  @include themify(night) {
+        background: $dark;
+  }
+}
+
+.section-content:hover{
+  background: #dee2e6;
+}
+
+.section-content {
+  font-size: 0.875rem;
+  padding: 1.5% 4%;
+  font-weight: 400;
+  display: block;
+}

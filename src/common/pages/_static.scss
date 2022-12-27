@@ -452,3 +452,15 @@
 .text-not-found{
   font-size: 16px;
 }
+.category-cards{
+  margin-bottom: 6%;
+  border-radius: 6px;
+  @include themify(day) {
+    border: 1px solid #dee2e6;
+  }
+
+  @include themify(night) {
+    border: 1px  solid $dark;
+
+ }
+}
