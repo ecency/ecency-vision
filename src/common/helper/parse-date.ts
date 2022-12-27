@@ -59,7 +59,8 @@ export const secondDiff = (d: string) => {
 const parseDate = (d: string): Date => {
   if (!d) return new Date();
   try {
-    return moment(d).isValid() ? moment(d).utc().toDate() : new Date();
+    const date = moment(d).isValid() ? moment(d).toDate() : new Date();
+    return new Date(date.getTime() - date.getTimezoneOffset() * 60000);
   } catch (e) {
     return new Date();
   }
