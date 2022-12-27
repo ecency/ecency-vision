@@ -7,8 +7,8 @@ describe("HiveMarketRateListener", function () {
     const buyOrderBook: OrdersDataItem[] = [];
     const sellOrderBook: OrdersDataItem[] = [];
     const { emptyOrderBook } = HiveMarket.processHiveOrderBook(
-      sellOrderBook,
       buyOrderBook,
+      sellOrderBook,
       "100",
       MarketAsset.HBD
     );
@@ -61,8 +61,8 @@ describe("HiveMarketRateListener", function () {
       }
     ];
     const { toAmount, tooMuchSlippage } = HiveMarket.processHiveOrderBook(
-      sellOrderBook,
       buyOrderBook,
+      sellOrderBook,
       "100",
       MarketAsset.HIVE
     );
@@ -116,8 +116,8 @@ describe("HiveMarketRateListener", function () {
       }
     ];
     const { tooMuchSlippage } = HiveMarket.processHiveOrderBook(
-      sellOrderBook,
       buyOrderBook,
+      sellOrderBook,
       "100",
       MarketAsset.HIVE
     );
@@ -170,8 +170,8 @@ describe("HiveMarketRateListener", function () {
       }
     ];
     const { invalidAmount } = HiveMarket.processHiveOrderBook(
-      buyOrderBook,
       sellOrderBook,
+      buyOrderBook,
       "1000",
       MarketAsset.HIVE
     );
@@ -224,8 +224,8 @@ describe("HiveMarketRateListener", function () {
       }
     ];
     const { toAmount, tooMuchSlippage } = HiveMarket.processHiveOrderBook(
-      sellOrderBook,
       buyOrderBook,
+      sellOrderBook,
       "100",
       MarketAsset.HBD
     );
@@ -279,8 +279,8 @@ describe("HiveMarketRateListener", function () {
       }
     ];
     const { tooMuchSlippage } = HiveMarket.processHiveOrderBook(
-      sellOrderBook,
       buyOrderBook,
+      sellOrderBook,
       "100",
       MarketAsset.HIVE
     );
@@ -333,8 +333,8 @@ describe("HiveMarketRateListener", function () {
       }
     ];
     const { invalidAmount } = HiveMarket.processHiveOrderBook(
-      buyOrderBook,
       sellOrderBook,
+      buyOrderBook,
       "1000",
       MarketAsset.HIVE
     );
