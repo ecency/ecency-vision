@@ -50,16 +50,16 @@ export namespace HiveMarket {
 
     if (asset === MarketAsset.HIVE) {
       availableInOrderBook =
-        sellOrderBook.map((item) => item.hive).reduce((acc, item) => acc + item, 0) / 1000;
-      price = calculatePrice(intAmount, sellOrderBook, "hive");
+        buyOrderBook.map((item) => item.hive).reduce((acc, item) => acc + item, 0) / 1000;
+      price = calculatePrice(intAmount, buyOrderBook, "hive");
       toAmount = intAmount * price + "";
-      firstPrice = +sellOrderBook[0].real_price;
+      firstPrice = +buyOrderBook[0].real_price;
     } else if (asset === MarketAsset.HBD) {
       availableInOrderBook =
-        buyOrderBook.map((item) => item.hbd).reduce((acc, item) => acc + item, 0) / 1000;
-      price = calculatePrice(intAmount, buyOrderBook, "hbd");
+        sellOrderBook.map((item) => item.hbd).reduce((acc, item) => acc + item, 0) / 1000;
+      price = calculatePrice(intAmount, sellOrderBook, "hbd");
       toAmount = intAmount / price + "";
-      firstPrice = +buyOrderBook[0].real_price;
+      firstPrice = +sellOrderBook[0].real_price;
     }
 
     if (!availableInOrderBook) return { emptyOrderBook: true };
