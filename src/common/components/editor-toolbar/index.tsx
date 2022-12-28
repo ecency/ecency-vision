@@ -42,7 +42,8 @@ import {
   gridSvg,
   emoticonHappyOutlineSvg,
   textShortSvg,
-  gifIcon
+  gifIcon,
+  videoSvg
 } from "../../img/svg";
 
 interface Props {
@@ -367,7 +368,7 @@ export class EditorToolbar extends Component<Props> {
       } else {
         error(_t("editor-toolbar.image-error-cache"));
       }
-    } catch (e) {
+    } catch (e: any) {
       if (e.response?.status === 413) {
         error(_t("editor-toolbar.image-error-size"));
       } else {
@@ -553,6 +554,15 @@ export class EditorToolbar extends Component<Props> {
               </div>
             </Tooltip>
           )}
+
+          <Tooltip content="Upload Video">
+            <div className="editor-tool" role="none">
+              <div className="new-feature">
+                {videoSvg}
+              </div>
+            </div>
+          </Tooltip>
+
         </div>
         <input
           onChange={this.fileInputChanged}
