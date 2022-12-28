@@ -26,7 +26,7 @@ interface Props extends PageProps {
   entry: Entry;
   account: Account;
   updateWalletValues: () => void;
-  setTipDialogMounted: (d: boolean) => void;
+  setTipDialogMounted?: (d: boolean) => void;
 }
 
 interface DialogProps extends Props {
@@ -35,11 +35,15 @@ interface DialogProps extends Props {
 
 export class TippingDialog extends Component<DialogProps> {
   componentDidMount(): void {
-    this.props.setTipDialogMounted(true);
+    if (this.props.setTipDialogMounted) {
+      this.props.setTipDialogMounted(true);
+    }
   }
 
   componentWillUnmount(): void {
-    this.props.setTipDialogMounted(false);
+    if (this.props.setTipDialogMounted) {
+      this.props.setTipDialogMounted(false);
+    }
   }
 
   render() {
