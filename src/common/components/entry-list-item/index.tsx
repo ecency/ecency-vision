@@ -520,8 +520,7 @@ export default class EntryListItem extends Component<Props, State> {
             {EntryVoteBtn({
               ...this.props,
               isPostSlider: true,
-              afterVote: this.afterVote,
-              dateFormatted: this.state.dateFormatted
+              afterVote: this.afterVote
             })}
             {EntryPayout({
               ...this.props,

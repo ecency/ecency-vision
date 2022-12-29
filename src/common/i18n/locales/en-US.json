@@ -212,8 +212,8 @@
     "vote-remove": "Voting 0% unvotes the content.",
     "vote-warning": "Changing vote...",
     "no-replies": "No responses yet. Click to respond.",
-    "old-post-error": "This post is older than 7 days. Voting does not give any credit to the author.",
-    "old-post-error-suggestion": "Try tipping instead. "
+    "old-post-error": "Voting on Content after their payout does not generate any new rewards.",
+    "old-post-error-suggestion": "Try tipping the author. "
   },
   "nsfw": {
     "reveal": "Reveal this post",

@@ -1,19 +1,18 @@
 import React, { Component } from "react";
-import { Modal } from "react-bootstrap";
-import { Account } from "../../store/accounts/types";
-
-import { Transactions } from "../../store/transactions/types";
-
-import { Entry } from "../../store/entries/types";
 import { match } from "react-router";
+import { connect } from "react-redux";
+import { Modal } from "react-bootstrap";
+import { _t } from "../../i18n";
+
+import { Account } from "../../store/accounts/types";
+import { Transactions } from "../../store/transactions/types";
+import { Entry } from "../../store/entries/types";
+
 import LoginRequired from "../login-required";
 import { Transfer } from "../transfer";
 import Tooltip from "../tooltip";
-import { connect } from "react-redux";
+
 import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "../../pages/common";
-
-import { _t } from "../../i18n";
-
 import { giftOutlineSvg } from "../../img/svg";
 interface MatchParams {
   category: string;

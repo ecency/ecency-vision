@@ -1,5 +1,5 @@
 import React, { Component, MouseEventHandler } from "react";
-
+import moment from "moment";
 import { Form, FormControl } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
@@ -31,7 +31,6 @@ import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } f
 import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
 import VotingSlider from "../entry-vote-slider";
-import moment from "moment";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
@@ -312,8 +311,8 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       entry: { post_id, id }
     } = this.props;
     const { entry } = this.props;
-    const { dateFormatted } = this.props;
-    const past = moment(dateFormatted);
+    const createdDate = entry.created;
+    const past = moment(createdDate);
     const now = moment(new Date());
     const duration = moment.duration(now.diff(past));
     const days = duration.asDays();
@@ -410,11 +409,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
           </>
         )}
         {days >= 7.0 ? (
-          <div className="vote-error" style={{ display: "block", lineHeight: "1.6" }}>
-            <p className="erro-msg">{_t("entry-list-item.old-post-error")}</p>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+          <div className="vote-error error-message">
+            <p>{_t("entry-list-item.old-post-error")}</p>
+            <div className="vote-error-suggestion">
               {_t("entry-list-item.old-post-error-suggestion")}
-              <p style={{ marginLeft: "5px" }}>
+              <p>
                 {
                   <EntryTipBtn
                     {...{ entry, setTipDialogMounted: this.props.setTipDialogMounted }}
@@ -438,7 +437,6 @@ interface Props {
   users: User[];
   activeUser: ActiveUser | null;
   ui: UI;
-  dateFormatted?: string;
   isPostSlider: boolean;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
@@ -522,7 +520,6 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     const { active_votes: votes } = this.props.entry;
     const { dialog, inProgress, tipDialog } = this.state;
     const { upVoted, downVoted } = this.isVoted();
-
     let cls = _c(`btn-vote btn-up-vote ${inProgress ? "in-progress" : ""}`);
 
     if (upVoted || downVoted) {
@@ -605,7 +602,6 @@ export default (p: Props) => {
     users: p.users,
     activeUser: p.activeUser,
     ui: p.ui,
-    dateFormatted: p.dateFormatted,
     isPostSlider: p.isPostSlider,
     setActiveUser: p.setActiveUser,
     updateActiveUser: p.updateActiveUser,

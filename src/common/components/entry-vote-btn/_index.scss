@@ -4,6 +4,7 @@
   @media (max-width: $xxsm-break) {
     margin-right: 5px;
   }
+
   .btn-vote {
     @include btn-vote;
   }
@@ -257,6 +258,7 @@
   @media screen and (max-width: 1700px) {
     width: 50vw;
   }
+
   @media screen and (max-width: 1100px) {
     width: 65vw;
   }
@@ -278,6 +280,7 @@
 
   @media screen and (max-width: 320px) {
     width: 88vw;
+
     .percentage {
       width: 60px !important;
     }
@@ -381,6 +384,7 @@
     @include themify(night) {
       background-color: $transparent !important;
     }
+
     @include themify(day) {
       background-color: $white !important;
     }
@@ -394,10 +398,10 @@
       color: $white !important;
       background-color: $red2 !important;
 
-    svg {
-      fill: $white !important;
+      svg {
+        fill: $white !important;
+      }
     }
-  }
   }
 }
 
@@ -407,9 +411,10 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
-p {
-  margin:0px;
-}
+
+  p {
+    margin: 0px;
+  }
 
   @media screen and (max-width: 480px) {
     p {
@@ -420,7 +425,7 @@ p {
   }
 }
 
-.no-rotate svg{
+.no-rotate svg {
   transform: rotate(0deg) !important;
 }
 
@@ -430,9 +435,10 @@ p {
   display: flex;
   justify-content: center;
   margin-top: 8px;
-p {
-  margin:0px;
-}
+
+  p {
+    margin: 0px;
+  }
 
   @media screen and (max-width: 480px) {
     p {
@@ -449,9 +455,10 @@ p {
   display: flex;
   justify-content: center;
   margin-top: 8px;
-p {
-  margin:0px;
-}
+
+  p {
+    margin: 0px;
+  }
 
   @media screen and (max-width: 480px) {
     p {
@@ -479,4 +486,19 @@ datalist {
     display: none;
   }
 
+}
+
+.error-message {
+  display: block;
+  line-height: 1.6;
+}
+
+.vote-error-suggestion {
+  display: flex;
+  justify-content: center;
+
+  p {
+    margin-left: 5px;
+    margin-top: 2px;
+  }
 }
