@@ -232,7 +232,7 @@ export class ProposalListItem extends Component<Props, State> {
         {proposal.id === isReturnProposalId && (
           <div className="return-proposal">{_t("proposals.return-description")}</div>
         )}
-        {votes && <ProposalVotes {...this.props} onHide={this.toggleVotes} />}
+        {votes && <ProposalVotes {...this.props} votes={strVotes} onHide={this.toggleVotes} />}
       </div>
     );
   }
