@@ -68,6 +68,15 @@ export const detectEvent = (eventType: string) => {
   window.dispatchEvent(ev);
 };
 
+export const toolbarEventListener = (event: Event, eventType: string) => {
+  const detail = {
+    event: event,
+    eventType: eventType
+  };
+  const ev = new CustomEvent("eventListener", { detail });
+  window.dispatchEvent(ev);
+};
+
 export class EditorToolbar extends Component<Props> {
   state: State = {
     gallery: false,
@@ -142,23 +151,10 @@ export class EditorToolbar extends Component<Props> {
     window.addEventListener("codeBlock", this.code);
     window.addEventListener("blockquote", this.quote);
     window.addEventListener("image", this.toggleImage);
-    setTimeout(() => {
-      const el = this.getTargetEl();
-      if (el) {
-        el.addEventListener("dragover", this.onDragOver);
-        el.addEventListener("drop", this.drop);
-        el.addEventListener("paste", this.onPaste);
-      }
-    }, 0);
+    window.addEventListener("eventListener", this.onEventListener);
   }
 
   componentWillUnmount() {
-    const el = this.getTargetEl();
-    if (el) {
-      el.removeEventListener("dragover", this.onDragOver);
-      el.removeEventListener("drop", this.drop);
-      el.removeEventListener("paste", this.onPaste);
-    }
     window.removeEventListener("bold", this.bold);
     window.removeEventListener("italic", this.italic);
     window.removeEventListener("table", this.table);
@@ -166,7 +162,25 @@ export class EditorToolbar extends Component<Props> {
     window.removeEventListener("codeBlock", this.code);
     window.removeEventListener("blockquote", this.quote);
     window.removeEventListener("image", this.toggleImage);
+    window.removeEventListener("eventListener", this.onEventListener);
   }
+
+  onEventListener = (e: Event) => {
+    const detail = (e as CustomEvent).detail;
+    switch (detail.eventType) {
+      case "paste":
+        this.onPaste(detail.event);
+        break;
+      case "dragover":
+        this.onDragOver(detail.event);
+        break;
+      case "drop":
+        this.drop(detail.event);
+        break;
+      default:
+      // code block
+    }
+  };
 
   getTargetEl = (): HTMLInputElement | null => {
     const holder = this.holder.current;
