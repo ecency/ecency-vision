@@ -79,6 +79,7 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
   }
 
   search = () => {
+    const { originalVoters } = this.state;
     if (this.props.searchText) {
       this.setState(
         {
@@ -89,6 +90,8 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
         },
         this.searchCallback
       );
+    } else {
+      this.setState({ voters: originalVoters, loading: false });
     }
   };
 
