@@ -249,14 +249,9 @@ class SubmitPage extends BaseComponent<Props, State> {
       const el = this.holder?.current;
 
       if (el) {
-        el.addEventListener("dragover", function (event) {
-          toolbarEventListener(event, "dragover");
-        });
-        el.addEventListener("drop", function (event) {
-          toolbarEventListener(event, "drop");
-        });
-        el.addEventListener("paste", function (event) {
-          toolbarEventListener(event, "paste");
+        const events = ["dragover", "drop", "paste"];
+        events.map(function (e: string) {
+          el.addEventListener(e, (event) => toolbarEventListener(event, e));
         });
       }
     }

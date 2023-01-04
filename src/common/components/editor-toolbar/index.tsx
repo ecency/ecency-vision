@@ -73,7 +73,7 @@ export const toolbarEventListener = (event: Event, eventType: string) => {
     event: event,
     eventType: eventType
   };
-  const ev = new CustomEvent("eventListener", { detail });
+  const ev = new CustomEvent("customToolbarEvent", { detail });
   window.dispatchEvent(ev);
 };
 
@@ -151,7 +151,7 @@ export class EditorToolbar extends Component<Props> {
     window.addEventListener("codeBlock", this.code);
     window.addEventListener("blockquote", this.quote);
     window.addEventListener("image", this.toggleImage);
-    window.addEventListener("eventListener", this.onEventListener);
+    window.addEventListener("customToolbarEvent", this.handleCustomToolbarEvent);
   }
 
   componentWillUnmount() {
@@ -162,10 +162,10 @@ export class EditorToolbar extends Component<Props> {
     window.removeEventListener("codeBlock", this.code);
     window.removeEventListener("blockquote", this.quote);
     window.removeEventListener("image", this.toggleImage);
-    window.removeEventListener("eventListener", this.onEventListener);
+    window.removeEventListener("customToolbarEvent", this.handleCustomToolbarEvent);
   }
 
-  onEventListener = (e: Event) => {
+  handleCustomToolbarEvent = (e: Event) => {
     const detail = (e as CustomEvent).detail;
     switch (detail.eventType) {
       case "paste":
@@ -177,8 +177,6 @@ export class EditorToolbar extends Component<Props> {
       case "drop":
         this.drop(detail.event);
         break;
-      default:
-      // code block
     }
   };
 
