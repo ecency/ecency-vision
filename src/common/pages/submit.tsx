@@ -244,18 +244,47 @@ class SubmitPage extends BaseComponent<Props, State> {
       this.detectDraft().then();
     }
   }
+
+  componentWillUnmount(): void {
+    this.removeToolbarEventListners();
+  }
+
   addToolbarEventListners = () => {
     if (this.holder) {
       const el = this.holder?.current;
 
       if (el) {
-        const events = ["dragover", "drop", "paste"];
-        events.map(function (e: string) {
-          el.addEventListener(e, (event) => toolbarEventListener(event, e));
-        });
+        el.addEventListener("paste", this.handlePaste);
+        el.addEventListener("dragover", this.handleDragover);
+        el.addEventListener("drop", this.handleDrop);
       }
     }
   };
+
+  removeToolbarEventListners = () => {
+    if (this.holder) {
+      const el = this.holder?.current;
+
+      if (el) {
+        el.removeEventListener("paste", this.handlePaste);
+        el.removeEventListener("dragover", this.handleDragover);
+        el.removeEventListener("drop", this.handleDrop);
+      }
+    }
+  };
+
+  handlePaste = (event: Event): void => {
+    toolbarEventListener(event, "paste");
+  };
+
+  handleDragover = (event: Event): void => {
+    toolbarEventListener(event, "dragover");
+  };
+
+  handleDrop = (event: Event): void => {
+    toolbarEventListener(event, "drop");
+  };
+
   handleValidForm = (value: boolean) => {
     this.setState({ disabled: value });
   };
