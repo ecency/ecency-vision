@@ -127,15 +127,15 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
         <table className="table">
           <thead>
             <tr>                
-              <th>Token Name</th>
+              <th>{_t("wallet-portfolio.name")}</th>
               {!global?.isMobile && 
-              <th >Price</th>}
-              <th >% Change</th>
+              <th>{_t("wallet-portfolio.price")}</th>}
+              <th>{_t("wallet-portfolio.change")}</th>
               {!global?.isMobile &&
-              <th >Trend</th>
+              <th >{_t("wallet-portfolio.trend")}</th>
               }
-              <th>Balance</th>
-              <th >Value</th>
+              <th>{_t("wallet-portfolio.balance")}</th>
+              <th >{_t("wallet-portfolio.value")}</th>
             </tr>
           </thead>
           <tbody>
@@ -246,14 +246,8 @@ export default (p: Props) => {
     global: p.global,
     dynamicProps: p.dynamicProps,
     account: p.account,
-    // // activeUser: p.activeUser,
-    // transactions: p.transactions,
-    // // signingKey: p.signingKey,
-    // // addAccount: p.addAccount,
     updateActiveUser: p.updateActiveUser,
-    // // setSigningKey: p.setSigningKey,
     updateWalletValues: p.updateWalletValues,
-    // // fetchPoints: p.fetchPoints,
     history: p.history
   };
 
