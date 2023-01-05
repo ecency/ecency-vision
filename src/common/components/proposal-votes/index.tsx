@@ -72,9 +72,13 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
     this.load();
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    const { voters } = this.state;
     if (prevProps.searchText !== this.props.searchText) {
       this.search();
+    }
+    if (prevState.voters !== voters) {
+      this.setState({ noOfPages: Math.ceil(voters.length / 12) });
     }
   }
 
@@ -150,8 +154,7 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
           {
             voters,
             originalVoters: uniqueOriginalVoters,
-            loading: false,
-            noOfPages: Math.ceil(voters.length / 12)
+            loading: false
           },
           this.search
         );
