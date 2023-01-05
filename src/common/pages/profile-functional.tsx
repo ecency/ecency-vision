@@ -25,6 +25,8 @@ import ProfileCover from "../components/profile-cover";
 import ProfileCommunities from "../components/profile-communities";
 import ProfileSettings from "../components/profile-settings";
 import ProfileReferrals from "../components/profile-referrals";
+import WalletPortfolio from "../components/wallet-portfolio";
+import TokenDetails from "../components/token-details";
 import WalletHive from "../components/wallet-hive";
 import WalletHiveEngine from "../components/wallet-hive-engine";
 import WalletEcency from "../components/wallet-ecency";
@@ -53,6 +55,7 @@ interface MatchParams {
   username: string;
   section?: string;
   search?: string;
+  symbol?: string;
 }
 
 interface Props extends PageProps {
@@ -82,6 +85,7 @@ export const Profile = (props: Props) => {
   const [account, setAccount] = useState<Account>({ __loaded: false } as Account);
   const [username, setUsername] = useState("");
   const [section, setSection] = useState("");
+  const [symbol, setSymbol] = useState<any>("");
   const [data, setData] = useState<EntryGroup>({
     entries: [],
     sid: "",
@@ -99,7 +103,7 @@ export const Profile = (props: Props) => {
 
     await ensureAccount();
 
-    const { username, section } = match.params;
+    const { username, section, symbol } = match.params;
     if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
       // fetch posts
       fetchEntries(global.filter, global.tag, false);
@@ -113,6 +117,7 @@ export const Profile = (props: Props) => {
 
     setAccount(account);
     setSection(section || ProfileFilter.blog);
+    setSymbol(symbol || "")
     setUsername(username.replace("@", ""));
 
     await initPinnedEntry(username.replace("@", ""), account);
@@ -124,9 +129,10 @@ export const Profile = (props: Props) => {
     };
   }, []);
   useEffect(() => {
+    setSymbol(props.match.params.symbol);
     setData(props.entries[makeGroupKey(props.global.filter, props.global.tag)]);
     setLoading(false);
-  }, [props.global.filter, props.global.tag, props.entries]);
+  }, [props.global.filter, props.global.tag, props.entries, props.match]);
   useAsyncEffect(
     async (_) => {
       if (prevSearch !== search) {
@@ -509,6 +515,12 @@ export const Profile = (props: Props) => {
                 }
                 if (section === "referrals") {
                   return ProfileReferrals({ ...props, account, updateWalletValues: ensureAccount });
+                }
+                if (section === "portfolio") {
+                  if (symbol && section === "portfolio") {
+                    return TokenDetails({ ...props, account, updateWalletValues: ensureAccount });
+                  }
+                  return WalletPortfolio({ ...props, account, updateWalletValues: ensureAccount }); 
                 }
 
                 if (section === "permissions" && props.activeUser) {

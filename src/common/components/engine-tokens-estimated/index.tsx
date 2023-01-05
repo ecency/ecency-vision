@@ -4,6 +4,7 @@ import { getMetrics } from "../../api/hive-engine";
 
 export const EngineTokensEstimated = (props: any) => {
   const { tokens: userTokens, dynamicProps } = props;
+  // console.log(userTokens)
   const [estimated, setEstimated] = useState(`${_t("wallet.calculating")}...`);
 
   useEffect(() => {

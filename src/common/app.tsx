@@ -23,6 +23,7 @@ import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
 import { connect } from "react-redux";
 import loadable from "@loadable/component";
 import Announcement from "./components/announcement";
+import TokenDetails from "./components/token-details";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -131,6 +132,12 @@ const App = (props: any) => {
           strict={true}
           path={routes.PROPOSAL_DETAIL}
           component={ProposalDetailContainer}
+        />
+        <Route
+          exact={true}
+          strict={true}
+          path={routes.TOKEN_DETAIL}
+          component={ProfilePage}
         />
         <Route exact={true} strict={true} path={routes.ABOUT} component={AboutPage} />
         <Route exact={true} strict={true} path={routes.GUESTS} component={GuestPostPage} />
