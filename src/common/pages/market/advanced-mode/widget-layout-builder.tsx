@@ -31,6 +31,8 @@ interface Props {
   browserHistory: History;
   setLayout: (value: Layout) => void;
   toggleUIProp: (value: ToggleType) => void;
+  amount: number;
+  setAmount: (v: number) => void;
 }
 
 export const WidgetLayoutBuilder = ({
@@ -47,7 +49,9 @@ export const WidgetLayoutBuilder = ({
   browserHistory,
   price,
   setLayout,
-  toggleUIProp
+  toggleUIProp,
+  setAmount,
+  amount
 }: Props) => {
   const onWidgetTypeChanged = (uuid: string, previousType: Widget | undefined, newType: Widget) => {
     setLayout(updateWidgetType(layout, uuid, previousType, newType));
@@ -85,6 +89,8 @@ export const WidgetLayoutBuilder = ({
                 toAsset={toAsset}
                 history={history}
                 widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
+                onAmountClick={(v) => setAmount(v)}
+                onPriceClick={(v) => setPrice(v)}
               />
             </div>
           );
@@ -98,6 +104,7 @@ export const WidgetLayoutBuilder = ({
           return (
             <div className={"layout-col " + col.size}>
               <TradingFormWidget
+                amount={amount}
                 history={browserHistory}
                 activeUser={activeUser}
                 global={global}

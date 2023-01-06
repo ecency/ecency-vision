@@ -19,6 +19,7 @@ interface Props {
   dayChange: DayChange;
   global: Global;
   price: number;
+  amount: number;
   widgetTypeChanged: (type: Widget) => void;
   toggleUIProp: (value: ToggleType) => void;
 }
@@ -32,7 +33,8 @@ export const TradingFormWidget = ({
   price,
   history,
   widgetTypeChanged,
-  toggleUIProp
+  toggleUIProp,
+  amount
 }: Props) => {
   const [loading, setLoading] = useState(false);
   const [buyPeakValue, setBuyPeakValue] = useState(0);
@@ -53,6 +55,7 @@ export const TradingFormWidget = ({
           {activeUser ? (
             <div className="market-advanced-mode-trading-form-widget d-flex">
               <HiveBarter
+                prefilledAmount={amount}
                 isInline={true}
                 type={1}
                 available={buyBalance}
@@ -68,6 +71,7 @@ export const TradingFormWidget = ({
                 onTransactionSuccess={() => {}}
               />
               <HiveBarter
+                prefilledAmount={amount}
                 isInline={true}
                 type={2}
                 available={sellBalance}

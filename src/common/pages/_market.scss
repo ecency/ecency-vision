@@ -171,6 +171,10 @@ thead, .pagination {
                 font-weight: 500;
                 grid-template-columns: 1fr 1fr 1fr;
 
+                &.selectable:hover {
+                    opacity: 0.5;
+                }
+
                 &.history-widget-header {
                     padding: 0.5rem 0;
                     font-weight: 400;
@@ -201,6 +205,14 @@ thead, .pagination {
                 &.buy .history-widget-row-progress {
                     right: 0;
                     background-color: $success;
+                }
+
+                &.selectable:hover {
+                    opacity: 1;
+                }
+
+                &.selectable > .price:hover, &.selectable > .amount:hover {
+                    opacity: .5;
                 }
             }
         }

@@ -92,7 +92,7 @@ export const HistoryWidget = ({
           <div className="scrollable">
             {items.map((item, key) => (
               <div
-                className="history-widget-row"
+                className="history-widget-row selectable"
                 key={key}
                 onClick={() => onItemClick(item.price / item.amount)}
               >

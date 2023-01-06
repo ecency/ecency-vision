@@ -16,6 +16,8 @@ interface Props {
   fromAsset: MarketAsset;
   toAsset: MarketAsset;
   widgetTypeChanged: (type: Widget) => void;
+  onPriceClick: (value: number) => void;
+  onAmountClick: (value: number) => void;
 }
 
 interface StakeItem {
@@ -29,7 +31,9 @@ export const StakeWidget = ({
   fromAsset,
   toAsset,
   browserHistory,
-  widgetTypeChanged
+  widgetTypeChanged,
+  onPriceClick,
+  onAmountClick
 }: Props) => {
   const [storedFraction, setStoredFraction] = useLocalStorage<number>(PREFIX + "_amml_st_fr");
   const [storedViewType, setStoredViewType] = useLocalStorage<StakeWidgetViewType>(
@@ -140,13 +144,17 @@ export const StakeWidget = ({
               <div>
                 {[StakeWidgetViewType.All, StakeWidgetViewType.Sell].includes(viewType) &&
                   sells.map((sell, key) => (
-                    <div className="history-widget-row sell" key={key}>
+                    <div className="history-widget-row selectable sell" key={key}>
                       <div
                         className="history-widget-row-progress"
                         style={{ width: (sell.amount / maxSell) * 100 + "%" }}
                       />
-                      <div className="text-danger">{sell.price}</div>
-                      <div>{sell.amount.toFixed(2)}</div>
+                      <div className="text-danger price" onClick={() => onPriceClick(sell.price)}>
+                        {sell.price}
+                      </div>
+                      <div className="amount" onClick={() => onAmountClick(sell.amount)}>
+                        {sell.amount.toFixed(2)}
+                      </div>
                       <div>{formattedNumber(sell.total, { fractionDigits: 2 })}</div>
                     </div>
                   ))}
@@ -158,13 +166,17 @@ export const StakeWidget = ({
               <div>
                 {[StakeWidgetViewType.All, StakeWidgetViewType.Buy].includes(viewType) &&
                   buys.map((buy, key) => (
-                    <div className="history-widget-row buy" key={key}>
+                    <div className="history-widget-row selectable buy" key={key}>
                       <div
                         className="history-widget-row-progress"
                         style={{ width: (buy.amount / maxBuy) * 100 + "%" }}
                       />
-                      <div className="text-success">{buy.price}</div>
-                      <div>{buy.amount.toFixed(2)}</div>
+                      <div className="text-success price" onClick={() => onPriceClick(buy.price)}>
+                        {buy.price}
+                      </div>
+                      <div className="amount" onClick={() => onAmountClick(buy.amount)}>
+                        {buy.amount.toFixed(2)}
+                      </div>
                       <div>{formattedNumber(buy.total, { fractionDigits: 2 })}</div>
                     </div>
                   ))}

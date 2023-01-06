@@ -36,6 +36,7 @@ export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp 
   const [history, setHistory] = useState<OrdersData | null>(null);
   const [buyBalance, setBuyBalance] = useState<string>("0");
   const [sellBalance, setSellBalance] = useState<string>("0");
+  const [amount, setAmount] = useState(0);
 
   return (
     <div className="advanced-mode">
@@ -66,6 +67,7 @@ export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp 
           activeUser={activeUser}
           global={global}
           price={price}
+          amount={amount}
           toAsset={toAsset}
           fromAsset={fromAsset}
           sellBalance={sellBalance}
@@ -73,6 +75,7 @@ export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp 
           history={history}
           dayChange={dayChange}
           setPrice={setPrice}
+          setAmount={setAmount}
           setLayout={(layout) => {
             setLayout(layout);
             setLsLayout(layout);
