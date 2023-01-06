@@ -17,6 +17,13 @@ interface Props {
   widgetTypeChanged: (type: Widget) => void;
 }
 
+interface TriggerFetch {
+  fetch: boolean;
+  loadMore: boolean;
+}
+
+const TRIGGER_FETCH_DEFAULT: TriggerFetch = { fetch: false, loadMore: false };
+
 export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props) => {
   const chartRef = useRef<any>();
 
@@ -34,20 +41,20 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
   const [chartSeries, setChartSeries] = useState<ISeriesApi<any> | null>(null);
   const [bucketSecondsList, setBucketSecondsList] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [triggerFetch, setTriggerFetch] = useState(false);
+  const [triggerFetch, setTriggerFetch] = useState<TriggerFetch>(TRIGGER_FETCH_DEFAULT);
   const [isZoomed, setIsZoomed] = useState(false);
   const [lastTimeRange, setLastTimeRange] = useState<TimeRange | null>(null);
 
   useDebounce(
     () => {
-      if (!triggerFetch) return;
+      if (!triggerFetch.fetch) return;
 
       setEndDate(startDate.clone().subtract(bucketSeconds, "seconds"));
       setStartDate(
         getNewStartDate(startDate.clone().subtract(bucketSeconds, "seconds"), "subtract")
       );
-      fetchData(true);
-      setTriggerFetch(false);
+      fetchData(triggerFetch.loadMore);
+      setTriggerFetch(TRIGGER_FETCH_DEFAULT);
     },
     300,
     [triggerFetch]
@@ -61,15 +68,19 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
   useEffect(() => {
     const fromDate = lastTimeRange ? new Date(Number(lastTimeRange.from) * 1000) : null;
     if (fromDate) {
-      if (lastTimeRange?.from === data[0].time) setTriggerFetch(true);
+      if (lastTimeRange?.from === data[0].time) setTriggerFetch({ fetch: true, loadMore: true });
     }
   }, [lastTimeRange]);
 
   useEffect(() => {
+    if (chartSeries) {
+      chart?.removeSeries(chartSeries);
+      setChartSeries(null);
+    }
     setData([]);
     setEndDate(moment());
     setStartDate(getNewStartDate(moment(), "subtract"));
-    setTriggerFetch(true);
+    setTriggerFetch({ fetch: true, loadMore: false });
 
     setStoredBucketSeconds(bucketSeconds);
   }, [bucketSeconds]);
