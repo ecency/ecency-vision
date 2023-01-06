@@ -6,6 +6,7 @@ import moment, { Moment } from "moment";
 import { MarketAsset } from "../market-swap-form/market-pair";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
 import { History } from "history";
+import { AutoSizer, List } from "react-virtualized";
 
 interface Props {
   fromAsset: MarketAsset;
@@ -76,6 +77,7 @@ export const HistoryWidget = ({
   return (
     <MarketAdvancedModeWidget
       history={browserHistory}
+      className="market-advanced-mode-history-widget"
       type={Widget.History}
       title={_t("market.advanced.history")}
       children={
@@ -89,21 +91,30 @@ export const HistoryWidget = ({
             </div>
             <div>{_t("market.advanced.history-widget.time")}</div>
           </div>
-          <div className="scrollable">
-            {items.map((item, key) => (
-              <div
-                className="history-widget-row selectable"
-                key={key}
-                onClick={() => onItemClick(item.price / item.amount)}
-              >
-                <div className={item.action === "buy" ? "text-success" : "text-danger"}>
-                  {(item.price / item.amount).toFixed(5)}
-                </div>
-                <div>{item.amount}</div>
-                <div>{getDate(item.date)}</div>
-              </div>
-            ))}
-          </div>
+          <AutoSizer>
+            {({ height, width }) => (
+              <List
+                height={height}
+                width={width}
+                rowCount={items.length}
+                rowHeight={19}
+                rowRenderer={({ key, index, style }) => (
+                  <div
+                    className="history-widget-row selectable"
+                    style={style}
+                    key={key}
+                    onClick={() => onItemClick(items[index].price / items[index].amount)}
+                  >
+                    <div className={items[index].action === "buy" ? "text-success" : "text-danger"}>
+                      {(items[index].price / items[index].amount).toFixed(5)}
+                    </div>
+                    <div>{items[index].amount}</div>
+                    <div>{getDate(items[index].date)}</div>
+                  </div>
+                )}
+              />
+            )}
+          </AutoSizer>
         </div>
       }
       widgetTypeChanged={widgetTypeChanged}

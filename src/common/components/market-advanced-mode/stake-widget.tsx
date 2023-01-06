@@ -57,12 +57,12 @@ export const StakeWidget = ({
     if (!history) return;
 
     let sells = buildStakeItems(history.asks, "desc", fraction);
-    // if (!unlimited) sells = sells.slice(sells.length - 1 - rowsCount, sells.length);
+    sells = sells.slice(sells.length - 1 - (unlimited ? rowsCount * 2 : rowsCount), sells.length);
     setSells(sells);
     setMaxSell(Math.min(5000, Math.max(...sells.map((i) => i.amount))));
 
     let buys = buildStakeItems(history.bids, "desc", fraction);
-    // if (!unlimited) buys = buys.slice(0, rowsCount);
+    buys = buys.slice(0, unlimited ? rowsCount * 2 : rowsCount);
     setBuys(buys);
     setMaxBuy(Math.min(5000, Math.max(...buys.map((i) => i.amount))));
   };

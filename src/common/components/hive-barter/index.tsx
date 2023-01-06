@@ -177,7 +177,7 @@ export const HiveBarter = ({
               value={isNaN(total) ? 0 : total}
               onChange={(e) => setTotalValue(e.target.value)}
             />
-            <InputGroup.Text className="rounded-left">HBD($)</InputGroup.Text>
+            <InputGroup.Text className="rounded-left">HBD</InputGroup.Text>
           </InputGroup>
         </Form.Group>
         <Button block={true} type="submit" disabled={disabled}>

@@ -78,28 +78,6 @@ thead, .pagination {
             }
         }
 
-        .advanced-mode-layout {
-            display: grid;
-
-            .layout-row {
-                display: flex;
-                width: 100%;
-
-                @include media-breakpoint-down(md) {
-                    flex-direction: column;
-                }
-            }
-
-            .layout-col.expanded {
-                width: 100%;
-            }
-
-            .layout-col.collapsed {
-                width: auto;
-                min-width: 350px;
-            }
-        }
-
         .advanced-mode-toolbar {
             align-items: center;
 
@@ -156,11 +134,8 @@ thead, .pagination {
         .history-widget-content {
             padding-top: 0.5rem;
             padding-left: 0.69rem;
-
-            .scrollable {
-                max-height: calc(100vh - 96px - 80px - 2.5rem);
-                overflow-y: auto;
-            }
+            height: calc(100% - 31px - 45px);
+            min-height: 400px;
 
             .history-widget-row {
                 cursor: pointer;
@@ -185,7 +160,6 @@ thead, .pagination {
 
         .market-stake-widget-sell, .market-stake-widget-buy {
             overflow-y: auto;
-            max-height: calc(50vh - 48px - 40px - 0.4rem);
 
             .history-widget-row {
                 position: relative;
@@ -273,7 +247,54 @@ thead, .pagination {
         }
 
         .market-advanced-mode-trading-view-widget {
-            height: calc(100vh - 557px);
+            min-height: 500px;
+        }
+
+        .widget-layout-builder {
+            display: grid;
+            grid-template-areas:
+                    "stake tv history"
+                    "stake tf history"
+                    "oo oo oo";
+            grid-template-columns: 1fr 3fr 1fr;
+
+            @include media-breakpoint-down(md) {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                        "stake"
+                        "tv"
+                        "history"
+                        "tf"
+                        "oo";
+            }
+
+            .market-advanced-mode-history-widget {
+                grid-area: history;
+
+                @include media-breakpoint-down(md) {
+                    .history-widget-content {
+                        margin-bottom: 40px;
+                    }
+                }
+            }
+
+            .market-advanced-mode-stake-widget {
+                grid-area: stake;
+            }
+
+            .market-advanced-mode-tf-widget {
+                grid-area: tf;
+            }
+
+            .market-advanced-mode-tv-widget {
+                grid-area: tv;
+                width: 100%;
+                height: 100%;
+            }
+
+            .market-advanced-mode-oo-widget {
+                grid-area: oo;
+            }
         }
     }
 }

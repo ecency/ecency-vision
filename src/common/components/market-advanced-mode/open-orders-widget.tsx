@@ -44,6 +44,7 @@ export const OpenOrdersWidget = ({
     <MarketAdvancedModeWidget
       history={history}
       type={Widget.OpenOrders}
+      className="market-advanced-mode-oo-widget"
       title={_t("market.advanced.open-orders")}
       children={
         activeUser ? (

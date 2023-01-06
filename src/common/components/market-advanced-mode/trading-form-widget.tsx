@@ -49,6 +49,7 @@ export const TradingFormWidget = ({
     <MarketAdvancedModeWidget
       type={Widget.TradingForm}
       history={history}
+      className="market-advanced-mode-tf-widget"
       title={_t("market.advanced.form")}
       children={
         <div>

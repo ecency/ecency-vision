@@ -147,5 +147,50 @@ export const WidgetLayoutBuilder = ({
     return <></>;
   };
 
-  return <>{layout.rows.map((row) => makeRow(row))}</>;
+  return (
+    <div className="widget-layout-builder">
+      <HistoryWidget
+        browserHistory={browserHistory}
+        fromAsset={fromAsset}
+        toAsset={toAsset}
+        history={history}
+        onItemClick={(v) => setPrice(v)}
+        widgetTypeChanged={(type) => {}}
+      />
+      <StakeWidget
+        browserHistory={browserHistory}
+        fromAsset={fromAsset}
+        toAsset={toAsset}
+        history={history}
+        widgetTypeChanged={(type) => {}}
+        onAmountClick={(v) => setAmount(v)}
+        onPriceClick={(v) => setPrice(v)}
+      />
+      <TradingFormWidget
+        amount={amount}
+        history={browserHistory}
+        activeUser={activeUser}
+        global={global}
+        dayChange={dayChange}
+        buyBalance={buyBalance}
+        sellBalance={sellBalance}
+        price={price}
+        widgetTypeChanged={(type) => {}}
+        toggleUIProp={toggleUIProp}
+      />
+      <SsrSuspense fallback={<></>}>
+        <TradingViewWidget
+          global={global}
+          history={browserHistory}
+          widgetTypeChanged={(type) => {}}
+        />
+      </SsrSuspense>
+      <OpenOrdersWidget
+        history={browserHistory}
+        activeUser={activeUser}
+        widgetTypeChanged={(type) => {}}
+        toggleUIProp={toggleUIProp}
+      />
+    </div>
+  );
 };
