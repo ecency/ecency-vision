@@ -62,6 +62,7 @@ export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp 
       />
       <div className="advanced-mode-layout">
         <WidgetLayoutBuilder
+          usdPrice={usdPrice}
           browserHistory={browserHistory}
           layout={layout}
           activeUser={activeUser}

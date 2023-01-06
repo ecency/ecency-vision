@@ -134,8 +134,6 @@ thead, .pagination {
         .history-widget-content {
             padding-top: 0.5rem;
             padding-left: 0.69rem;
-            height: calc(100% - 31px - 45px);
-            min-height: 400px;
 
             .history-widget-row {
                 cursor: pointer;
@@ -155,6 +153,17 @@ thead, .pagination {
                     font-weight: 400;
                     font-size: 0.75rem;
                 }
+            }
+        }
+
+        .market-stake-widget {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: calc(100% - 39px - 55px);
+
+            &.one-type {
+                justify-content: start;
             }
         }
 
@@ -276,6 +285,11 @@ thead, .pagination {
                         margin-bottom: 40px;
                     }
                 }
+
+                .history-widget-content {
+                    height: calc(100% - 31px - 45px);
+                    min-height: 400px;
+                }
             }
 
             .market-advanced-mode-stake-widget {
@@ -294,6 +308,23 @@ thead, .pagination {
 
             .market-advanced-mode-oo-widget {
                 grid-area: oo;
+            }
+        }
+
+        .market-stake-widget-current-price {
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            padding-left: 0.5rem;
+
+            .price {
+                font-size: 1.25rem;
+            }
+
+            .usd-price {
+                margin-left: 1rem;
+                font-size: 0.75rem;
+                opacity: .75;
             }
         }
     }

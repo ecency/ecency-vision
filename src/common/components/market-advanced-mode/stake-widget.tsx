@@ -11,6 +11,8 @@ import { useLocalStorage } from "react-use";
 import { PREFIX } from "../../util/local-storage";
 
 interface Props {
+  price: number;
+  usdPrice: number;
   browserHistory: History;
   history: OrdersData | null;
   fromAsset: MarketAsset;
@@ -33,7 +35,9 @@ export const StakeWidget = ({
   browserHistory,
   widgetTypeChanged,
   onPriceClick,
-  onAmountClick
+  onAmountClick,
+  price,
+  usdPrice
 }: Props) => {
   const [storedFraction, setStoredFraction] = useLocalStorage<number>(PREFIX + "_amml_st_fr");
   const [storedViewType, setStoredViewType] = useLocalStorage<StakeWidgetViewType>(
@@ -47,7 +51,7 @@ export const StakeWidget = ({
   const [fraction, setFraction] = useState(storedFraction ?? 0.00001);
   const [viewType, setViewType] = useState(storedViewType ?? StakeWidgetViewType.All);
 
-  const rowsCount = 17;
+  const rowsCount = 20;
 
   useEffect(() => {
     buildAllStakeItems(fraction);
@@ -129,61 +133,73 @@ export const StakeWidget = ({
         />
       }
       children={
-        <div className="market-stake-widget">
-          <div className="market-stake-widget-sell">
-            <div className="market-stake-widget-content history-widget-content">
-              <div className="history-widget-row history-widget-header">
-                <div>
-                  {_t("market.advanced.history-widget.price")}({toAsset})
-                </div>
-                <div>
-                  {_t("market.advanced.history-widget.amount")}({fromAsset})
-                </div>
-                <div>{_t("market.advanced.history-widget.volume")}</div>
+        <>
+          <div className="market-stake-widget-content history-widget-content">
+            <div className="history-widget-row history-widget-header">
+              <div>
+                {_t("market.advanced.history-widget.price")}({toAsset})
               </div>
               <div>
-                {[StakeWidgetViewType.All, StakeWidgetViewType.Sell].includes(viewType) &&
-                  sells.map((sell, key) => (
-                    <div className="history-widget-row selectable sell" key={key}>
-                      <div
-                        className="history-widget-row-progress"
-                        style={{ width: (sell.amount / maxSell) * 100 + "%" }}
-                      />
-                      <div className="text-danger price" onClick={() => onPriceClick(sell.price)}>
-                        {sell.price}
+                {_t("market.advanced.history-widget.amount")}({fromAsset})
+              </div>
+              <div>{_t("market.advanced.history-widget.volume")}</div>
+            </div>
+          </div>
+          <div
+            className={
+              "market-stake-widget " + (viewType !== StakeWidgetViewType.All ? "one-type" : "")
+            }
+          >
+            <div className="market-stake-widget-sell">
+              <div className="market-stake-widget-content history-widget-content">
+                <div>
+                  {[StakeWidgetViewType.All, StakeWidgetViewType.Sell].includes(viewType) &&
+                    sells.map((sell, key) => (
+                      <div className="history-widget-row selectable sell" key={key}>
+                        <div
+                          className="history-widget-row-progress"
+                          style={{ width: (sell.amount / maxSell) * 100 + "%" }}
+                        />
+                        <div className="text-danger price" onClick={() => onPriceClick(sell.price)}>
+                          {sell.price}
+                        </div>
+                        <div className="amount" onClick={() => onAmountClick(sell.amount)}>
+                          {sell.amount.toFixed(2)}
+                        </div>
+                        <div>{formattedNumber(sell.total, { fractionDigits: 2 })}</div>
                       </div>
-                      <div className="amount" onClick={() => onAmountClick(sell.amount)}>
-                        {sell.amount.toFixed(2)}
+                    ))}
+                </div>
+              </div>
+            </div>
+            <div className="market-stake-widget-current-price py-2">
+              <span className="price">{price.toFixed(3)}</span>
+              <span className="usd-price">${usdPrice.toFixed(3)}</span>
+            </div>
+            <div className="market-stake-widget-buy">
+              <div className="market-stake-widget-sell pt-0 history-widget-content">
+                <div>
+                  {[StakeWidgetViewType.All, StakeWidgetViewType.Buy].includes(viewType) &&
+                    buys.map((buy, key) => (
+                      <div className="history-widget-row selectable buy" key={key}>
+                        <div
+                          className="history-widget-row-progress"
+                          style={{ width: (buy.amount / maxBuy) * 100 + "%" }}
+                        />
+                        <div className="text-success price" onClick={() => onPriceClick(buy.price)}>
+                          {buy.price}
+                        </div>
+                        <div className="amount" onClick={() => onAmountClick(buy.amount)}>
+                          {buy.amount.toFixed(2)}
+                        </div>
+                        <div>{formattedNumber(buy.total, { fractionDigits: 2 })}</div>
                       </div>
-                      <div>{formattedNumber(sell.total, { fractionDigits: 2 })}</div>
-                    </div>
-                  ))}
+                    ))}
+                </div>
               </div>
             </div>
           </div>
-          <div className="market-stake-widget-buy">
-            <div className="market-stake-widget-sell history-widget-content">
-              <div>
-                {[StakeWidgetViewType.All, StakeWidgetViewType.Buy].includes(viewType) &&
-                  buys.map((buy, key) => (
-                    <div className="history-widget-row selectable buy" key={key}>
-                      <div
-                        className="history-widget-row-progress"
-                        style={{ width: (buy.amount / maxBuy) * 100 + "%" }}
-                      />
-                      <div className="text-success price" onClick={() => onPriceClick(buy.price)}>
-                        {buy.price}
-                      </div>
-                      <div className="amount" onClick={() => onAmountClick(buy.amount)}>
-                        {buy.amount.toFixed(2)}
-                      </div>
-                      <div>{formattedNumber(buy.total, { fractionDigits: 2 })}</div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        </>
       }
       widgetTypeChanged={widgetTypeChanged}
     />
