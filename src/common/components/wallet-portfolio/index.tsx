@@ -140,14 +140,14 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
           </thead>
           <tbody>
               <>
-                <tr onClick={() => this.handleLink("hive")}>
+                <tr className="table-row" onClick={() => this.handleLink("hive")}>
                   <td className="align-middle">
                   <img src={coingeckoData[0]?.image} className="item-image"/>
                     <span>HIVE</span>                    
                   </td>
                   <td className="align-middle">${this.pricePerHive}</td>
                   <td className={`align-middle ${coingeckoData[0]?.price_change_percentage_24h < 0 ? "text-danger" : "text-success"}`}>
-                      <span className="mr-1">
+                      <span>
                         {coingeckoData[0]?.price_change_percentage_24h < 0 ? priceDownSvg : priceUpSvg}
                       </span>
                     {coingeckoData[0]?.price_change_percentage_24h}
@@ -158,14 +158,14 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   <td className="align-middle">{w.balance}</td>
                   <td className="align-middle">${Number(w.balance * this.pricePerHive).toFixed(3)}</td>
                 </tr>
-                <tr onClick={() => this.handleLink("hive-power")}>
+                <tr className="table-row" onClick={() => this.handleLink("hive-power")}>
                   <td className="align-middle">
                   <img src={coingeckoData[0]?.image} className="item-image"/>
                     <span>HIVE-POWER</span>   
                   </td>
                   <td className="align-middle">${this.pricePerHive}</td>
                   <td className={`align-middle ${coingeckoData[0]?.price_change_percentage_24h < 0 ? "text-danger" : "text-success"}`}>
-                      <span className="mr-1">
+                      <span>
                         {coingeckoData[0]?.price_change_percentage_24h < 0 ? priceDownSvg : priceUpSvg}
                       </span>
                     {coingeckoData[0]?.price_change_percentage_24h}
@@ -176,14 +176,14 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   <td className="align-middle">{totalHP}</td>
                   <td className="align-middle">${Number(totalHP * this.pricePerHive).toFixed(3)}</td>
                 </tr>
-                <tr onClick={() => this.handleLink("hbd")}>
+                <tr className="table-row" onClick={() => this.handleLink("hbd")}>
                   <td className="align-middle">
                   <img src={hbdIcom} className="item-image"/>
                   <span>HBD</span>
                   </td>
                   <td className="align-middle">${coingeckoData[1]?.current_price}</td>
                   <td className={`align-middle ${coingeckoData[1]?.price_change_percentage_24h < 0 ? "text-danger" : "text-success"}`}>
-                    <span className="mr-1">
+                    <span>
                         {coingeckoData[1]?.price_change_percentage_24h < 0 ? priceDownSvg : priceUpSvg}
                       </span>
                     {coingeckoData[1]?.price_change_percentage_24h}
@@ -197,7 +197,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
           {allTokens?.map((a: any) =>{
             const changeValue = parseFloat(a?.priceChangePercent);
             return(
-              <tr key={a.symbol} className="table-link" onClick={() => this.handleLink(a.symbol)}>
+              <tr className="table-row" key={a.symbol} onClick={() => this.handleLink(a.symbol)}>
                   <td className="align-middle">
                     <img src={a.icon} className="item-image"/>
                       <span>{a.symbol}</span>
@@ -209,7 +209,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                      <span className={`${changeValue < 0 ? "text-danger" : "text-success"}`}
                      >
                        {a?.symbol === a.symbol && (
-                         <span className="mr-1">
+                         <span>
                            {changeValue < 0 ? priceDownSvg : priceUpSvg}
                          </span>
                        )}

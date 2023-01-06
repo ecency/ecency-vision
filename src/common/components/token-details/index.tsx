@@ -24,7 +24,6 @@ import OpenOrdersList from "../open-orders-list";
 import DropDown from "../dropdown";
 import Transfer, { TransferMode, TransferAsset } from "../transfer";
 import { error, success } from "../feedback";
-import WalletMenu from "../wallet-menu";
 import WithdrawRoutes from "../withdraw-routes";
 
 import HiveWallet from "../../helper/hive-wallet";
@@ -49,7 +48,7 @@ import { _t } from "../../i18n";
 
 import { plusCircle } from "../../img/svg";
 import { dayDiff, dateToFullRelative, hourDiff, secondDiff } from "../../helper/parse-date";
-import { useParams } from "react-router";
+import { EngineTokenDetails } from "../wallet-engine-details";
 
 interface Props {
   history: History;
@@ -881,9 +880,14 @@ export class TokenDetails extends BaseComponent<Props, State> {
               </div>
             )}
 
-            {TransactionList({ ...this.props })}
+            {(params === "hive" || params === "hive-power" || params === "hbd") && <div>
+              {TransactionList({ ...this.props })}
+            </div>}
+
+           {!(params === "hive" || params === "hive-power" || params === "hbd") && <div>
+              <EngineTokenDetails {...this.props} />
+            </div>}
           </div>
-          {/* <WalletMenu global={global} username={account.name} active="hive" /> */}
         </div>
 
         {transfer && (
