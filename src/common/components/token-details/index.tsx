@@ -49,6 +49,8 @@ import { _t } from "../../i18n";
 import { plusCircle } from "../../img/svg";
 import { dayDiff, dateToFullRelative, hourDiff, secondDiff } from "../../helper/parse-date";
 import { EngineTokenDetails } from "../wallet-engine-details";
+import { WalletEcency } from "../wallet-ecency";
+import { Points } from "../../store/points/types";
 
 interface Props {
   history: History;
@@ -64,6 +66,7 @@ interface Props {
   fetchTransactions: (username: string, group?: OperationGroup | "") => void;
   fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
+  points: Points;
 }
 
 interface State {
@@ -884,8 +887,12 @@ export class TokenDetails extends BaseComponent<Props, State> {
               {TransactionList({ ...this.props })}
             </div>}
 
-           {!(params === "hive" || params === "hive-power" || params === "hbd") && <div>
+           {!(params === "hive" || params === "hive-power" || params === "hbd" || params === "points") && <div>
               <EngineTokenDetails {...this.props} />
+            </div>}
+
+            {params === "points" && <div>
+              <WalletEcency {...this.props}/>
             </div>}
           </div>
         </div>
@@ -970,7 +977,8 @@ export default (p: Props) => {
     setSigningKey: p.setSigningKey,
     fetchTransactions: p.fetchTransactions,
     updateWalletValues: p.updateWalletValues,
-    fetchPoints: p.fetchPoints
+    fetchPoints: p.fetchPoints,
+    points: p.points,
   };
 
   return <TokenDetails {...props} />;
