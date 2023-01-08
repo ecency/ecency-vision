@@ -416,10 +416,11 @@
       "completed-orders": "Completed",
       "status": "Status",
       "all-orders": "All",
+      "active": "Active",
       "chart": "Chart",
       "trading-form-auth-required": "You have to been authorized for trade",
       "open-orders-auth-required": "You have to been authorized for see open orders",
-      "empty-open-orders": "No open orders",
+      "empty-open-orders": "No orders",
       "history-widget": {
         "price": "Price",
         "amount": "Amount",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { OpenOrdersData } from "../../api/hive";
 import { OpenOrders } from "../open-orders";
 import { ActiveUser } from "../../store/active-user/types";
@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { ToggleType } from "../../store/ui/types";
 import { useLocalStorage } from "react-use";
 import { PREFIX } from "../../util/local-storage";
-import { Transaction } from "../../store/transactions/types";
+import { LimitOrderCreate, Transaction } from "../../store/transactions/types";
 import { MarketAdvancedModeOrdersTable } from "./market-advanced-mode-orders-table";
 
 interface Props {
@@ -39,6 +39,15 @@ export const OpenOrdersWidget = ({
 }: Props) => {
   const [storedType, setStoredType] = useLocalStorage<TabType>(PREFIX + "_amm_oo_t", "open");
   const [type, setType] = useState<TabType>(storedType ?? "open");
+  const [completedOrders, setCompletedOrders] = useState<LimitOrderCreate[]>([]);
+
+  useEffect(() => {
+    setCompletedOrders(
+      (allOrders as LimitOrderCreate[]).filter(
+        (order) => !openOrdersData.some((oo) => oo.orderid === order.orderid)
+      )
+    );
+  }, [allOrders, openOrdersData]);
 
   const tabs: [TabType, string][] = [
     ["open", _t("market.advanced.open-orders")],
@@ -66,7 +75,18 @@ export const OpenOrdersWidget = ({
 
   const getAllOrders = () =>
     allOrders.length > 0 ? (
-      <MarketAdvancedModeOrdersTable data={allOrders as any} />
+      <MarketAdvancedModeOrdersTable data={allOrders as any} openOrdersData={openOrdersData} />
+    ) : (
+      <div className="market-advanced-mode-trading-form-login-required-widget">
+        <div className="auth-required d-flex justify-content-center align-items-center flex-column">
+          <div className="font-weight-bold mb-3">{_t("market.advanced.empty-open-orders")}</div>
+        </div>
+      </div>
+    );
+
+  const getCompletedOrders = () =>
+    completedOrders.length > 0 ? (
+      <MarketAdvancedModeOrdersTable data={completedOrders} openOrdersData={openOrdersData} />
     ) : (
       <div className="market-advanced-mode-trading-form-login-required-widget">
         <div className="auth-required d-flex justify-content-center align-items-center flex-column">
@@ -103,6 +123,7 @@ export const OpenOrdersWidget = ({
         activeUser ? (
           <div className="market-advanced-mode-oo-content">
             {type === "open" ? getOpenOrders() : null}
+            {type === "completed" ? getCompletedOrders() : null}
             {type === "all" ? getAllOrders() : null}
           </div>
         ) : (

@@ -1,16 +1,18 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Badge, Table } from "react-bootstrap";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { _t } from "../../i18n";
 import { LimitOrderCreate } from "../../store/transactions/types";
+import { OpenOrdersData } from "../../api/hive";
 
 const columns = [_t("market.date"), _t("market.type"), _t("market.price"), "HIVE", "HBD"];
 
 interface Props {
   data: LimitOrderCreate[];
+  openOrdersData: OpenOrdersData[];
 }
 
-export const MarketAdvancedModeOrdersTable = ({ data }: Props) => {
+export const MarketAdvancedModeOrdersTable = ({ data, openOrdersData }: Props) => {
   const getAmount = (amount: string, asset: string) =>
     amount.includes(asset) ? amount.replace(asset, "").trim() : null;
 
@@ -38,6 +40,13 @@ export const MarketAdvancedModeOrdersTable = ({ data }: Props) => {
               <tr key={item.orderid}>
                 <td title={dateToFormatted(item.timestamp)}>
                   {dateToFullRelative(item.timestamp)}
+                  {openOrdersData.some((order) => order.orderid === item.orderid) ? (
+                    <Badge className="ml-2" variant="primary">
+                      {_t("market.advanced.active")}
+                    </Badge>
+                  ) : (
+                    <></>
+                  )}
                 </td>
                 <td
                   className={
@@ -46,7 +55,7 @@ export const MarketAdvancedModeOrdersTable = ({ data }: Props) => {
                 >
                   {item.amount_to_sell?.indexOf("HIVE") > 0 ? "Sell" : "Buy"}
                 </td>
-                <td>{getPrice(item).toFixed(3)}</td>
+                <td>{getPrice(item).toFixed(6)}</td>
                 <td>
                   {getAmount(item.amount_to_sell, "HIVE") ?? getAmount(item.min_to_receive, "HIVE")}
                 </td>
