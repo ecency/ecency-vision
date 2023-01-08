@@ -73,7 +73,6 @@ import { arrowRightSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
 import activeUser from "../../store/active-user";
 import { dateToFullRelative } from "../../helper/parse-date";
-import { base } from "../../constants/defaults.json";
 import { formatNumber } from "../../helper/format-number";
 
 export type TransferMode =
