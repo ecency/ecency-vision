@@ -417,6 +417,7 @@
       "status": "Status",
       "all-orders": "All",
       "active": "Active",
+      "view-details": "View details",
       "chart": "Chart",
       "trading-form-auth-required": "You have to been authorized for trade",
       "open-orders-auth-required": "You have to been authorized for see open orders",

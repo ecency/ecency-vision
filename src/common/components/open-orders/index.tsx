@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { OpenOrdersData } from "../../api/hive";
 import BuySellHiveDialog, { TransactionType } from "../buy-sell-hive";
 import { _t } from "../../i18n";
@@ -78,12 +78,9 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser, co
                     : item.sell_price.base.replace("HBD", "")}
                 </td>
                 <td className="p-2">
-                  <div
-                    className="rounded text-white bg-primary p-1 d-inline pointer"
-                    onClick={() => setIsModalOpen(item.orderid)}
-                  >
-                    Cancel
-                  </div>
+                  <Button size="sm" className="py-0" onClick={() => setIsModalOpen(item.orderid)}>
+                    {_t("g.cancel")}
+                  </Button>
                 </td>
               </tr>
             );
