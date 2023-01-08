@@ -312,6 +312,36 @@ thead, .pagination {
             }
         }
 
+        .market-advanced-mode-oo-widget {
+            font-size: 0.875rem;
+
+            .market-advanced-mode-oo-content {
+                height: 300px;
+                overflow-y: auto;
+            }
+        }
+
+        .market-advanced-mode-oo-widget-tabs {
+            display: flex;
+            gap: 1rem;
+
+            .market-advanced-mode-oo-widget-tab {
+                margin: -0.75rem 0;
+                padding: 0 0.5rem;
+                border-bottom: 2px solid transparent;
+                display: flex;
+                align-items: center;
+                height: 43px;
+                font-size: 0.875rem;
+
+                &.active {
+                    font-weight: 500;
+                    color: $primary;
+                    border-bottom-color: $primary;
+                }
+            }
+        }
+
         .market-stake-widget-current-price {
             font-weight: 500;
             display: flex;

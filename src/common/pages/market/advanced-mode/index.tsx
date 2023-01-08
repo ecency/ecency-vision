@@ -15,6 +15,7 @@ import { History } from "history";
 import { useLocalStorage } from "react-use";
 import { PREFIX } from "../../../util/local-storage";
 import { ToggleType } from "../../../store/ui/types";
+import { Transaction } from "../../../store/transactions/types";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -40,10 +41,12 @@ export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp 
   const [refresh, setRefresh] = useState(false);
   const [openOrdersData, setOpenOrdersData] = useState<OpenOrdersData[]>([]);
   const [openOrdersDataLoading, setOpenOrdersDataLoading] = useState(false);
+  const [allOrders, setAllOrders] = useState<Transaction[]>([]);
 
   return (
     <div className="advanced-mode">
       <MarketObserver
+        setAllOrders={setAllOrders}
         refresh={refresh}
         setRefresh={setRefresh}
         fromAsset={fromAsset}
@@ -70,6 +73,7 @@ export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp 
       />
       <div className="advanced-mode-layout">
         <WidgetLayoutBuilder
+          allOrders={allOrders}
           usdPrice={usdPrice}
           browserHistory={browserHistory}
           layout={layout}

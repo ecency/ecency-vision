@@ -4,6 +4,7 @@ import { HiveHbdObserver } from "./hive-hbd-observer";
 import { DayChange } from "../types/day-change.type";
 import { OpenOrdersData, OrdersData } from "../../../../api/hive";
 import { ActiveUser } from "../../../../store/active-user/types";
+import { Transaction } from "../../../../store/transactions/types";
 
 interface Props {
   fromAsset: MarketAsset;
@@ -16,6 +17,7 @@ interface Props {
   activeUser: ActiveUser | null;
   setOpenOrders: (data: OpenOrdersData[]) => void;
   setOpenOrdersDataLoading: (value: boolean) => void;
+  setAllOrders: (value: Transaction[]) => void;
 }
 
 export const MarketObserver = ({
@@ -28,7 +30,8 @@ export const MarketObserver = ({
   setRefresh,
   activeUser,
   setOpenOrders,
-  setOpenOrdersDataLoading
+  setOpenOrdersDataLoading,
+  setAllOrders
 }: Props) => {
   const hiveHbdPair = [MarketAsset.HBD, MarketAsset.HIVE];
 
@@ -36,6 +39,7 @@ export const MarketObserver = ({
     <>
       {hiveHbdPair.includes(fromAsset) && hiveHbdPair.includes(toAsset) ? (
         <HiveHbdObserver
+          setAllOrders={setAllOrders}
           refresh={refresh}
           setRefresh={setRefresh}
           onDayChange={onDayChange}

@@ -15,6 +15,7 @@ import { History } from "history";
 import { updateWidgetType } from "./utils";
 import { ToggleType } from "../../../store/ui/types";
 import SsrSuspense from "../../../components/ssr-suspense";
+import { Transaction } from "../../../store/transactions/types";
 
 interface Props {
   layout: Layout;
@@ -39,6 +40,7 @@ interface Props {
   openOrdersDataLoading: boolean;
   setOpenOrders: (data: OpenOrdersData[]) => void;
   setRefresh: (value: boolean) => void;
+  allOrders: Transaction[];
 }
 
 export const WidgetLayoutBuilder = ({
@@ -62,103 +64,12 @@ export const WidgetLayoutBuilder = ({
   onSuccessTrade,
   openOrdersData,
   openOrdersDataLoading,
-  setRefresh
+  setRefresh,
+  allOrders
 }: Props) => {
   const onWidgetTypeChanged = (uuid: string, previousType: Widget | undefined, newType: Widget) => {
     setLayout(updateWidgetType(layout, uuid, previousType, newType));
   };
-  //
-  // const makeRow = (row: LayoutRow): JSX.Element => {
-  //   return <div className="layout-row">{row.columns.map((col) => makeCol(col))}</div>;
-  // };
-  //
-  // const makeCol = (col: LayoutColumn): JSX.Element => {
-  //   if (col.rows.length > 0) {
-  //     return <div className={"layout-col " + col.size}>{col.rows.map((row) => makeRow(row))}</div>;
-  //   }
-  //   if (col.widgetType) {
-  //     switch (col.widgetType) {
-  //       case Widget.History:
-  //         return (
-  //           <div className={"layout-col " + col.size}>
-  //             <HistoryWidget
-  //               browserHistory={browserHistory}
-  //               fromAsset={fromAsset}
-  //               toAsset={toAsset}
-  //               history={history}
-  //               onItemClick={(v) => setPrice(v)}
-  //               widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
-  //             />
-  //           </div>
-  //         );
-  //       case Widget.Stake:
-  //         return (
-  //           <div className={"layout-col " + col.size}>
-  //             <StakeWidget
-  //               price={0}
-  //               usdPrice={0}
-  //               browserHistory={browserHistory}
-  //               fromAsset={fromAsset}
-  //               toAsset={toAsset}
-  //               history={history}
-  //               widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
-  //               onAmountClick={(v) => setAmount(v)}
-  //               onPriceClick={(v) => setPrice(v)}
-  //             />
-  //           </div>
-  //         );
-  //       case Widget.Pairs:
-  //         return (
-  //           <div className={"layout-col " + col.size}>
-  //             <PairsWidget history={browserHistory} />
-  //           </div>
-  //         );
-  //       case Widget.TradingForm:
-  //         return (
-  //           <div className={"layout-col " + col.size}>
-  //             <TradingFormWidget
-  //               amount={amount}
-  //               history={browserHistory}
-  //               activeUser={activeUser}
-  //               global={global}
-  //               dayChange={dayChange}
-  //               buyBalance={buyBalance}
-  //               sellBalance={sellBalance}
-  //               price={price}
-  //               widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
-  //               toggleUIProp={toggleUIProp}
-  //             />
-  //           </div>
-  //         );
-  //       case Widget.TradingView:
-  //         return (
-  //           <div className={"layout-col " + col.size}>
-  //             <SsrSuspense fallback={<></>}>
-  //               <TradingViewWidget
-  //                 global={global}
-  //                 history={browserHistory}
-  //                 widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
-  //               />
-  //             </SsrSuspense>
-  //           </div>
-  //         );
-  //       case Widget.OpenOrders:
-  //         return (
-  //           <div className={"layout-col " + col.size}>
-  //             <OpenOrdersWidget
-  //               history={browserHistory}
-  //               activeUser={activeUser}
-  //               widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
-  //               toggleUIProp={toggleUIProp}
-  //             />
-  //           </div>
-  //         );
-  //       default:
-  //         return <></>;
-  //     }
-  //   }
-  //   return <></>;
-  // };
 
   return (
     <div className="widget-layout-builder">
@@ -202,6 +113,7 @@ export const WidgetLayoutBuilder = ({
         />
       </SsrSuspense>
       <OpenOrdersWidget
+        allOrders={allOrders}
         history={browserHistory}
         activeUser={activeUser}
         widgetTypeChanged={(type) => {}}

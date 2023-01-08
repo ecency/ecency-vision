@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   getMarketStatistics,
   getOpenOrder,
@@ -11,6 +11,8 @@ import { getCGMarket } from "../../../../components/market-swap-form/api/coingec
 import { MarketAsset } from "../../../../components/market-swap-form/market-pair";
 import { useInterval } from "react-use";
 import { ActiveUser } from "../../../../store/active-user/types";
+import { fetchTransactions } from "../../../../store/transactions/fetchTransactions";
+import { Transaction } from "../../../../store/transactions/types";
 
 interface Props {
   onDayChange: (dayChange: DayChange) => void;
@@ -21,6 +23,7 @@ interface Props {
   activeUser: ActiveUser | null;
   setOpenOrders: (data: OpenOrdersData[]) => void;
   setOpenOrdersDataLoading: (value: boolean) => void;
+  setAllOrders: (value: Transaction[]) => void;
 }
 
 export const HiveHbdObserver = ({
@@ -31,7 +34,8 @@ export const HiveHbdObserver = ({
   refresh,
   setRefresh,
   setOpenOrders,
-  setOpenOrdersDataLoading
+  setOpenOrdersDataLoading,
+  setAllOrders
 }: Props) => {
   useInterval(() => fetchAllStats(), 10000);
 
@@ -47,7 +51,8 @@ export const HiveHbdObserver = ({
   const fetchAllStats = async () => {
     fetchStats();
     fetchHistory();
-    updateOpenData();
+    fetchOpenOrders();
+    fetchAllOrders();
 
     const usdResponse = await getCGMarket(MarketAsset.HIVE, MarketAsset.HBD);
     if (usdResponse[0]) {
@@ -55,17 +60,19 @@ export const HiveHbdObserver = ({
     }
   };
 
-  useEffect(() => {
-    updateOpenData();
-  }, []);
-
-  const updateOpenData = () => {
+  const fetchOpenOrders = async () => {
     if (activeUser) {
       setOpenOrdersDataLoading(true);
-      getOpenOrder(activeUser.username).then((res) => {
-        setOpenOrders(res);
-        setOpenOrdersDataLoading(false);
-      });
+      const res = await getOpenOrder(activeUser.username);
+      setOpenOrders(res);
+      setOpenOrdersDataLoading(false);
+    }
+  };
+
+  const fetchAllOrders = async () => {
+    if (activeUser) {
+      const history = await fetchTransactions(activeUser.username, "market-orders", -1, 50);
+      setAllOrders(history.filter((item) => item.type === "limit_order_create"));
     }
   };
 

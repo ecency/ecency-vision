@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getOpenOrder, OpenOrdersData } from "../../api/hive";
+import React, { useState } from "react";
+import { OpenOrdersData } from "../../api/hive";
 import { OpenOrders } from "../open-orders";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
@@ -9,6 +9,10 @@ import { History } from "history";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ToggleType } from "../../store/ui/types";
+import { useLocalStorage } from "react-use";
+import { PREFIX } from "../../util/local-storage";
+import { Transaction } from "../../store/transactions/types";
+import { MarketAdvancedModeOrdersTable } from "./market-advanced-mode-orders-table";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -18,7 +22,10 @@ interface Props {
   openOrdersData: OpenOrdersData[];
   openOrdersDataLoading: boolean;
   setRefresh: (value: boolean) => void;
+  allOrders: Transaction[];
 }
+
+type TabType = "open" | "completed" | "all";
 
 export const OpenOrdersWidget = ({
   activeUser,
@@ -27,34 +34,77 @@ export const OpenOrdersWidget = ({
   toggleUIProp,
   openOrdersData,
   openOrdersDataLoading,
-  setRefresh
+  setRefresh,
+  allOrders
 }: Props) => {
+  const [storedType, setStoredType] = useLocalStorage<TabType>(PREFIX + "_amm_oo_t", "open");
+  const [type, setType] = useState<TabType>(storedType ?? "open");
+
+  const tabs: [TabType, string][] = [
+    ["open", _t("market.advanced.open-orders")],
+    ["completed", _t("market.advanced.completed-orders")],
+    ["all", _t("market.advanced.all-orders")]
+  ];
+
+  const getOpenOrders = () =>
+    openOrdersData.length > 0 ? (
+      <OpenOrders
+        onTransactionSuccess={() => setRefresh(true)}
+        data={openOrdersData || []}
+        loading={openOrdersDataLoading}
+        username={(activeUser && activeUser.username) || ""}
+        activeUser={activeUser!}
+        compat={true}
+      />
+    ) : (
+      <div className="market-advanced-mode-trading-form-login-required-widget">
+        <div className="auth-required d-flex justify-content-center align-items-center flex-column">
+          <div className="font-weight-bold mb-3">{_t("market.advanced.empty-open-orders")}</div>
+        </div>
+      </div>
+    );
+
+  const getAllOrders = () =>
+    allOrders.length > 0 ? (
+      <MarketAdvancedModeOrdersTable data={allOrders as any} />
+    ) : (
+      <div className="market-advanced-mode-trading-form-login-required-widget">
+        <div className="auth-required d-flex justify-content-center align-items-center flex-column">
+          <div className="font-weight-bold mb-3">{_t("market.advanced.empty-open-orders")}</div>
+        </div>
+      </div>
+    );
+
   return (
     <MarketAdvancedModeWidget
       history={history}
       type={Widget.OpenOrders}
       className="market-advanced-mode-oo-widget"
-      title={_t("market.advanced.open-orders")}
+      title={
+        <div className="market-advanced-mode-oo-widget-tabs">
+          {tabs.map(([value, title]) => (
+            <div
+              key={value}
+              className={
+                "market-advanced-mode-oo-widget-tab cursor-pointer " +
+                (value === type ? "active" : "")
+              }
+              onClick={() => {
+                setType(value);
+                setStoredType(value);
+              }}
+            >
+              {title}
+            </div>
+          ))}
+        </div>
+      }
       children={
         activeUser ? (
-          openOrdersData.length > 0 ? (
-            <OpenOrders
-              onTransactionSuccess={() => setRefresh(true)}
-              data={openOrdersData || []}
-              loading={openOrdersDataLoading}
-              username={(activeUser && activeUser.username) || ""}
-              activeUser={activeUser!}
-              compat={true}
-            />
-          ) : (
-            <div className="market-advanced-mode-trading-form-login-required-widget">
-              <div className="auth-required d-flex justify-content-center align-items-center flex-column">
-                <div className="font-weight-bold mb-3">
-                  {_t("market.advanced.empty-open-orders")}
-                </div>
-              </div>
-            </div>
-          )
+          <div className="market-advanced-mode-oo-content">
+            {type === "open" ? getOpenOrders() : null}
+            {type === "all" ? getAllOrders() : null}
+          </div>
         ) : (
           <div className="market-advanced-mode-trading-form-login-required-widget">
             <div className="auth-required d-flex justify-content-center align-items-center flex-column">

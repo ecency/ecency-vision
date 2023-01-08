@@ -59,7 +59,13 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser, co
             return (
               <tr key={item.id}>
                 <td title={dateToFormatted(item.created)}>{dateToFullRelative(item.created)}</td>
-                <td>{item.sell_price.base.indexOf("HIVE") > 0 ? "Sell" : "Buy"}</td>
+                <td
+                  className={
+                    item.sell_price.base.indexOf("HIVE") > 0 ? "text-danger" : "text-success"
+                  }
+                >
+                  {item.sell_price.base.indexOf("HIVE") > 0 ? "Sell" : "Buy"}
+                </td>
                 <td>{parseFloat(item.real_price).toFixed(6)}</td>
                 <td>
                   {item.sell_price.base.indexOf("HIVE") > 0
