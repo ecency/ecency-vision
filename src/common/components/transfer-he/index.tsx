@@ -940,10 +940,9 @@ export class Transfer extends BaseComponent<Props, State> {
                     </span>
                     <span className="balance-num" onClick={this.copyBalance}>
                       {formattedNumber(this.getBalance(), {
-                        maximumFractionDigits: precision,
-                        minimumFractionDigits: precision
-                      })}{" "}
-                      {asset}
+                        fractionDigits: precision,
+                        suffix: asset
+                      })}
                     </span>
                     {asset === "HP" && (
                       <div className="balance-hp-hint">{_t("transfer.available-hp-hint")}</div>
@@ -1032,7 +1031,7 @@ export class Transfer extends BaseComponent<Props, State> {
                   )}
                 </div>
                 <div className="amount">
-                  {amount} {asset}
+                  {formattedNumber(amount, { fractionDigits: precision, suffix: asset })}
                 </div>
                 {memo && <div className="memo">{memo}</div>}
               </div>
