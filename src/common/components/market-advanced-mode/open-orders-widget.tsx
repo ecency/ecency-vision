@@ -15,31 +15,20 @@ interface Props {
   history: History;
   widgetTypeChanged: (type: Widget) => void;
   toggleUIProp: (when: ToggleType) => void;
+  openOrdersData: OpenOrdersData[];
+  openOrdersDataLoading: boolean;
+  setRefresh: (value: boolean) => void;
 }
 
 export const OpenOrdersWidget = ({
   activeUser,
   history,
   widgetTypeChanged,
-  toggleUIProp
+  toggleUIProp,
+  openOrdersData,
+  openOrdersDataLoading,
+  setRefresh
 }: Props) => {
-  const [openOrdersData, setOpenOrdersData] = useState<OpenOrdersData[]>([]);
-  const [openOrdersDataLoading, setOpenOrdersDataLoading] = useState(false);
-
-  useEffect(() => {
-    updateOpenData();
-  }, []);
-
-  const updateOpenData = () => {
-    if (activeUser) {
-      setOpenOrdersDataLoading(true);
-      getOpenOrder(activeUser.username).then((res) => {
-        setOpenOrdersData(res);
-        setOpenOrdersDataLoading(false);
-      });
-    }
-  };
-
   return (
     <MarketAdvancedModeWidget
       history={history}
@@ -50,7 +39,7 @@ export const OpenOrdersWidget = ({
         activeUser ? (
           openOrdersData.length > 0 ? (
             <OpenOrders
-              onTransactionSuccess={updateOpenData}
+              onTransactionSuccess={() => setRefresh(true)}
               data={openOrdersData || []}
               loading={openOrdersDataLoading}
               username={(activeUser && activeUser.username) || ""}

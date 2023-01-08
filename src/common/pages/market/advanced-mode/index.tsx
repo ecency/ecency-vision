@@ -6,7 +6,7 @@ import { MarketAsset } from "../../../components/market-swap-form/market-pair";
 import { MarketObserver } from "./pairs";
 import { DayChange } from "./types/day-change.type";
 import { DAY_CHANGE_DEFAULT } from "./consts/day-change.const";
-import { OrdersData } from "../../../api/hive";
+import { OpenOrdersData, OrdersData } from "../../../api/hive";
 import { ActiveUser } from "../../../store/active-user/types";
 import { Global } from "../../../store/global/types";
 import { UserBalanceObserver } from "./user-balance-observer";
@@ -37,15 +37,23 @@ export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp 
   const [buyBalance, setBuyBalance] = useState<string>("0");
   const [sellBalance, setSellBalance] = useState<string>("0");
   const [amount, setAmount] = useState(0);
+  const [refresh, setRefresh] = useState(false);
+  const [openOrdersData, setOpenOrdersData] = useState<OpenOrdersData[]>([]);
+  const [openOrdersDataLoading, setOpenOrdersDataLoading] = useState(false);
 
   return (
     <div className="advanced-mode">
       <MarketObserver
+        refresh={refresh}
+        setRefresh={setRefresh}
         fromAsset={fromAsset}
         toAsset={toAsset}
         onDayChange={(dayChange) => setDayChange(dayChange)}
         onHistoryChange={(history) => setHistory(history)}
         onUsdChange={(usdPrice) => setUsdPrice(usdPrice)}
+        setOpenOrdersDataLoading={setOpenOrdersDataLoading}
+        setOpenOrders={setOpenOrdersData}
+        activeUser={activeUser}
       />
       <UserBalanceObserver
         activeUser={activeUser}
@@ -82,6 +90,11 @@ export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp 
             setLsLayout(layout);
           }}
           toggleUIProp={toggleUIProp}
+          onSuccessTrade={() => setRefresh(true)}
+          openOrdersData={openOrdersData}
+          openOrdersDataLoading={openOrdersDataLoading}
+          setOpenOrders={setOpenOrdersData}
+          setRefresh={setRefresh}
         />
       </div>
     </div>

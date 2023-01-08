@@ -22,6 +22,7 @@ interface Props {
   amount: number;
   widgetTypeChanged: (type: Widget) => void;
   toggleUIProp: (value: ToggleType) => void;
+  onSuccessTrade: () => void;
 }
 
 export const TradingFormWidget = ({
@@ -34,7 +35,8 @@ export const TradingFormWidget = ({
   history,
   widgetTypeChanged,
   toggleUIProp,
-  amount
+  amount,
+  onSuccessTrade
 }: Props) => {
   const [loading, setLoading] = useState(false);
   const [buyPeakValue, setBuyPeakValue] = useState(0);
@@ -69,7 +71,7 @@ export const TradingFormWidget = ({
                 onClickPeakValue={(v) => {
                   setBuyPeakValue(+v);
                 }}
-                onTransactionSuccess={() => {}}
+                onTransactionSuccess={() => onSuccessTrade()}
               />
               <HiveBarter
                 prefilledAmount={amount}
@@ -85,7 +87,7 @@ export const TradingFormWidget = ({
                 onClickPeakValue={(v) => {
                   setSellPeakValue(+v);
                 }}
-                onTransactionSuccess={() => {}}
+                onTransactionSuccess={() => onSuccessTrade()}
               />
             </div>
           ) : (

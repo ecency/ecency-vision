@@ -9,7 +9,7 @@ import { OpenOrdersWidget } from "../../../components/market-advanced-mode/open-
 import { Global } from "../../../store/global/types";
 import { ActiveUser } from "../../../store/active-user/types";
 import { MarketAsset } from "../../../components/market-swap-form/market-pair";
-import { OrdersData } from "../../../api/hive";
+import { OpenOrdersData, OrdersData } from "../../../api/hive";
 import { DayChange } from "./types/day-change.type";
 import { History } from "history";
 import { updateWidgetType } from "./utils";
@@ -34,6 +34,11 @@ interface Props {
   amount: number;
   setAmount: (v: number) => void;
   usdPrice: number;
+  onSuccessTrade: () => void;
+  openOrdersData: OpenOrdersData[];
+  openOrdersDataLoading: boolean;
+  setOpenOrders: (data: OpenOrdersData[]) => void;
+  setRefresh: (value: boolean) => void;
 }
 
 export const WidgetLayoutBuilder = ({
@@ -53,7 +58,11 @@ export const WidgetLayoutBuilder = ({
   toggleUIProp,
   setAmount,
   amount,
-  usdPrice
+  usdPrice,
+  onSuccessTrade,
+  openOrdersData,
+  openOrdersDataLoading,
+  setRefresh
 }: Props) => {
   const onWidgetTypeChanged = (uuid: string, previousType: Widget | undefined, newType: Widget) => {
     setLayout(updateWidgetType(layout, uuid, previousType, newType));
@@ -183,6 +192,7 @@ export const WidgetLayoutBuilder = ({
         price={price}
         widgetTypeChanged={(type) => {}}
         toggleUIProp={toggleUIProp}
+        onSuccessTrade={onSuccessTrade}
       />
       <SsrSuspense fallback={<></>}>
         <TradingViewWidget
@@ -196,6 +206,9 @@ export const WidgetLayoutBuilder = ({
         activeUser={activeUser}
         widgetTypeChanged={(type) => {}}
         toggleUIProp={toggleUIProp}
+        openOrdersDataLoading={openOrdersDataLoading}
+        openOrdersData={openOrdersData}
+        setRefresh={setRefresh}
       />
     </div>
   );
