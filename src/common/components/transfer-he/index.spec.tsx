@@ -11,6 +11,7 @@ import {
 } from "../../helper/test-helper";
 
 import TestRenderer from "react-test-renderer";
+import HiveEngineToken from "../../helper/hive-engine-wallet";
 
 jest.mock("moment", () => () => ({
   fromNow: () => "in 5 days"
@@ -44,11 +45,168 @@ const defProps = {
   fetchPoints: () => {},
   updateWalletValues: () => {},
   onHide: () => {},
-  tokens: [],
+  tokens: [
+    new HiveEngineToken({
+      symbol: "POB",
+      name: "Proof of Brain",
+      precision: 8,
+      stakingEnabled: true,
+      delegationEnabled: true,
+      balance: "5000 POB",
+      stake: "6000 POB",
+      icon: "",
+      delegationsIn: "0 POB",
+      delegationsOut: "0 POB"
+    })
+  ],
   delegationList: []
 };
 
-describe("(1) Hive Engine - Transfer", () => {
+describe("(12) Hive Engine - Transfer 15 POB", () => {
+  const mode: TransferMode = "transfer";
+  const asset: string = "POB";
+  const assetBalance: number = 5000;
+
+  const props = {
+    ...defProps,
+    mode,
+    asset,
+    assetBalance,
+    amount: "15"
+  };
+
+  const component = TestRenderer.create(<Transfer {...props} />);
+  const instance: any = component.getInstance();
+
+  it("(1) Step 1", () => {
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(2) Step 2", () => {
+    instance.setState({ step: 2, to: "bar" });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(3) Step 3", () => {
+    instance.setState({ step: 3 });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(4) Step 4", () => {
+    instance.setState({ step: 4 });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+});
+
+describe("(14) Hive Engine - Transfer 6 mPOB", () => {
+  const mode: TransferMode = "transfer";
+  const asset: string = "POB";
+  const assetBalance: number = 5000;
+
+  const props = {
+    ...defProps,
+    mode,
+    asset,
+    assetBalance,
+    amount: "0.006"
+  };
+
+  const component = TestRenderer.create(<Transfer {...props} />);
+  const instance: any = component.getInstance();
+
+  it("(1) Step 1", () => {
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(2) Step 2", () => {
+    instance.setState({ step: 2, to: "bar" });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(3) Step 3", () => {
+    instance.setState({ step: 3 });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(4) Step 4", () => {
+    instance.setState({ step: 4 });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+});
+
+describe("(15) Hive Engine - Transfer 3 µPOB", () => {
+  const mode: TransferMode = "transfer";
+  const asset: string = "POB";
+  const assetBalance: number = 5000;
+
+  const props = {
+    ...defProps,
+    mode,
+    asset,
+    assetBalance,
+    amount: "0.000003"
+  };
+
+  const component = TestRenderer.create(<Transfer {...props} />);
+  const instance: any = component.getInstance();
+
+  it("(1) Step 1", () => {
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(2) Step 2", () => {
+    instance.setState({ step: 2, to: "bar" });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(3) Step 3", () => {
+    instance.setState({ step: 3 });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(4) Step 4", () => {
+    instance.setState({ step: 4 });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+});
+
+describe("(16) Hive Engine - Transfer 0.07 µPOB", () => {
+  const mode: TransferMode = "transfer";
+  const asset: string = "POB";
+  const assetBalance: number = 5000;
+
+  const props = {
+    ...defProps,
+    mode,
+    asset,
+    assetBalance,
+    amount: "0.00000007"
+  };
+
+  const component = TestRenderer.create(<Transfer {...props} />);
+  const instance: any = component.getInstance();
+
+  it("(1) Step 1", () => {
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(2) Step 2", () => {
+    instance.setState({ step: 2, to: "bar" });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(3) Step 3", () => {
+    instance.setState({ step: 3 });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("(4) Step 4", () => {
+    instance.setState({ step: 4 });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+});
+
+describe("(17) Hive Engine - Transfer 0.01 µPOB", () => {
   const mode: TransferMode = "transfer";
   const asset: string = "POB";
   const assetBalance: number = 5000;
