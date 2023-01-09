@@ -17,6 +17,7 @@ import { EngineTokensEstimated } from "../engine-tokens-estimated";
 import Transfer, { TransferMode } from "../transfer-he";
 import { error, success } from "../feedback";
 import DropDown from "../dropdown";
+import { EngineTransactionList } from "../hive-engine-transactions";
 
 import {
   claimRewards,
@@ -182,7 +183,7 @@ export class EngineTokenDetails extends BaseComponent<Props, State> {
   render() {
     const { global, account, activeUser } = this.props;
     const { rewards, tokens, loading, claiming, claimed } = this.state;
-    console.log(tokens)
+    // console.log(tokens)
     const hasUnclaimedRewards = rewards.length > 0;
     const isMyPage = activeUser && activeUser.username === account.name;
     let rewardsToShowInTooltip = [...rewards];
@@ -200,11 +201,12 @@ export class EngineTokenDetails extends BaseComponent<Props, State> {
           <div className="wallet-info">
           {hasUnclaimedRewards && (
               <div className="unclaimed-rewards">
-                <div className="title">{_t("wallet.unclaimed-rewards")}</div>
                 {rewards?.map((r, i) => {
-                    const reward: any = r?.pending_token / Math.pow(10, r?.precision);                    
-                    return ( r?.symbol === params.toUpperCase() &&
-                      <div className="rewards" key={i}>
+                  const reward: any = r?.pending_token / Math.pow(10, r?.precision);                    
+                  return ( r?.symbol === params.toUpperCase() &&
+                  <div key={i}>
+                    <div className="title">{_t("wallet.unclaimed-rewards")}</div>
+                    <div className="rewards">                        
                        <span className="reward-type">
                           {reward < 0.0001
                             ? `${reward} ${r?.symbol}`
@@ -221,7 +223,8 @@ export class EngineTokenDetails extends BaseComponent<Props, State> {
                             {plusCircle}
                           </a>
                         )}
-                      </div>
+                    </div>
+                  </div>
                     );
                   })}              
               </div>
@@ -229,8 +232,8 @@ export class EngineTokenDetails extends BaseComponent<Props, State> {
 
             {tokens.map((t, i) => {
                 return ( t?.symbol === params.toUpperCase() && 
-                <>
-                <div className="balance-row hive" key={i}>
+                <div key={i}>
+                <div className="balance-row hive">
                       <div className="balance-info">
                         <div className="title">{t?.symbol}</div>
                         <div className="description">
@@ -405,15 +408,17 @@ export class EngineTokenDetails extends BaseComponent<Props, State> {
                   </div>
               </div>
                 </div>
-                </>                   
+                </div>                   
                 )
             })}                        
           </div>
 
         </div>
-                {/* Fetch tokens history */}
                 <div className="dialog-placeholder">
-                  <LinearProgress />
+                  <EngineTransactionList 
+                  global={global} 
+                  account={account} 
+                  params={params} />
                 </div>
                 
         {this.state.transfer && (

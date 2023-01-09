@@ -1,5 +1,7 @@
 {
   "chartApi": "https://info-api.tribaldex.com/market/ohlcv",
   "engineRpcUrl": "https://api.hive-engine.com/rpc/contracts",
-  "engineRewardsUrl": "https://scot-api.hive-engine.com"
+  "engineRewardsUrl": "https://scot-api.hive-engine.com",
+  "mainTransactionUrl": "https://scot-api.hive-engine.com/get_account_history",
+  "otherTransactionsUrl": "https://accounts.hive-engine.com/accountHistory"
 }

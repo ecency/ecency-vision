@@ -27,7 +27,7 @@ import { HiveEngineChart } from "../hive-engine-chart";
 import { History } from "history";
 import { vestsToHp } from "../../helper/vesting";
 import { marketInfo, } from "../../api/misc";
-import { WalletPortfolioChart } from "../wallet-portfolio-chart";
+import { HiveWalletPortfolioChart, HbdWalletPortfolioChart } from "../wallet-portfolio-chart";
 import { getCurrencyTokenRate } from "../../api/private-api";
 
 const hbdIcom = require("./asset/hbd.png")
@@ -196,7 +196,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                     {coingeckoData[0]?.price_change_percentage_24h}
                   </td>
                   <td className="align-middle">
-                    <WalletPortfolioChart coinData={coingeckoData} />
+                    <HiveWalletPortfolioChart coinData={coingeckoData} />
                   </td>
                   <td className="align-middle">{w.balance}</td>
                   <td className="align-middle">${Number(w.balance * this.pricePerHive).toFixed(3)}</td>
@@ -234,7 +234,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                     {coingeckoData[1]?.price_change_percentage_24h}
                   </td>
                   <td className="align-middle">
-                    HBD-CHART
+                    <HbdWalletPortfolioChart />
                   </td>
                   <td className="align-middle">{w.hbdBalance}</td>
                   <td className="align-middle">${Number(w.hbdBalance * coingeckoData[1]?.current_price).toFixed(3)}</td>
