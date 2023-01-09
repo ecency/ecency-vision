@@ -225,6 +225,14 @@ thead, .pagination {
         }
 
         .market-advanced-mode-widget {
+            background: $white;
+            height: 100%;
+            margin: -1px;
+
+            @include themify(night) {
+                background: $dark;
+            }
+
             .custom-dropdown .label {
                 font-size: 14px;
             }
@@ -232,10 +240,14 @@ thead, .pagination {
 
         .market-advanced-mode-widget-settings {
             background-color: $white-three;
+
+            @include themify(night) {
+                background-color: $dark-two;
+            }
         }
 
         .market-advanced-mode-trading-form-widget {
-            @include media-breakpoint-down(lg) {
+            @include media-breakpoint-down(md) {
                 flex-direction: column;
             }
 
@@ -256,30 +268,11 @@ thead, .pagination {
         }
 
         .market-advanced-mode-trading-view-widget {
-            min-height: 500px;
+            height: calc(100% - 44px);
         }
 
         .widget-layout-builder {
-            display: grid;
-            grid-template-areas:
-                    "stake tv history"
-                    "stake tf history"
-                    "oo oo oo";
-            grid-template-columns: 1fr 3fr 1fr;
-
-            @include media-breakpoint-down(md) {
-                grid-template-columns: 1fr;
-                grid-template-areas:
-                        "stake"
-                        "tv"
-                        "history"
-                        "tf"
-                        "oo";
-            }
-
             .market-advanced-mode-history-widget {
-                grid-area: history;
-
                 @include media-breakpoint-down(md) {
                     .history-widget-content {
                         margin-bottom: 40px;
@@ -291,34 +284,16 @@ thead, .pagination {
                     min-height: 400px;
                 }
             }
-
-            .market-advanced-mode-stake-widget {
-                grid-area: stake;
-            }
-
-            .market-advanced-mode-tf-widget {
-                grid-area: tf;
-            }
-
-            .market-advanced-mode-tv-widget {
-                grid-area: tv;
-                width: 100%;
-                height: 100%;
-            }
-
-            .market-advanced-mode-oo-widget {
-                grid-area: oo;
-                min-height: 300px;
-            }
         }
 
         .market-advanced-mode-oo-widget {
             font-size: 0.875rem;
+        }
 
-            .market-advanced-mode-oo-content {
-                height: 300px;
-                overflow-y: auto;
-            }
+        .market-advanced-mode-oo-content {
+            height: calc(100% - 44px);
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .market-advanced-mode-oo-widget-tabs {

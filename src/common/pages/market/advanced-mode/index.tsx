@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Layout } from "./types/layout.type";
 import { DEFAULT_LAYOUT } from "./consts/default-layouts.const";
 import { AdvancedModeToolbar } from "./advanced-mode-toolbar";
 import { MarketAsset } from "../../../components/market-swap-form/market-pair";
@@ -16,6 +15,7 @@ import { useLocalStorage } from "react-use";
 import { PREFIX } from "../../../util/local-storage";
 import { ToggleType } from "../../../store/ui/types";
 import { Transaction } from "../../../store/transactions/types";
+import GridLayout from "react-grid-layout";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -26,9 +26,9 @@ interface Props {
 
 export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp }: Props) => {
   // AMML – advanced mode market layout
-  const [lsLayout, setLsLayout] = useLocalStorage<Layout>(PREFIX + "_amml");
+  const [lsLayout, setLsLayout] = useLocalStorage<GridLayout.Layouts>(PREFIX + "_amml");
 
-  const [layout, setLayout] = useState<Layout>(lsLayout ?? DEFAULT_LAYOUT);
+  const [layout, setLayout] = useState<GridLayout.Layouts>(lsLayout ?? DEFAULT_LAYOUT);
   const [fromAsset, setFromAsset] = useState(MarketAsset.HIVE);
   const [toAsset, setToAsset] = useState(MarketAsset.HBD);
   const [dayChange, setDayChange] = useState<DayChange>(DAY_CHANGE_DEFAULT);

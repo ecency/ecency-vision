@@ -326,3 +326,17 @@ label.font-small {
   font-size: 14px;
   line-height: 18px;
 }
+
+.cursor-drag {
+  cursor: grab;
+}
+
+.react-draggable-dragging {
+  .cursor-drag {
+    cursor: grabbing;
+  }
+}
+
+.react-grid-item.react-grid-placeholder {
+  background-color: $primary;
+}

@@ -56,7 +56,7 @@ export const MarketAdvancedModeWidget = ({
     }));
 
   return (
-    <div className={"market-advanced-mode-widget border-left border-bottom " + className}>
+    <div className={"market-advanced-mode-widget border " + className}>
       <MarketAdvancedModeWidgetHeader
         title={title}
         headerOptions={headerOptions}

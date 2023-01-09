@@ -18,7 +18,7 @@ export const MarketAdvancedModeWidgetHeader = ({ title, headerOptions, settings,
       <div className="d-flex flex-column border-bottom">
         <div className="d-flex justify-content-between align-items-center deck-header position-relative">
           <div className="d-flex align-items-center w-100">
-            <div className="deck-index" />
+            <div className="cursor-drag deck-index" />
             {headerOptions}
             {title ? (
               <div className="d-flex align-items-center ml-3">

@@ -1,5 +1,5 @@
 import { History } from "history";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MarketAdvancedModeWidget } from "./market-advanced-mode-widget";
 import { _t } from "../../i18n";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
@@ -10,6 +10,7 @@ import Dropdown from "../dropdown";
 import { useDebounce, useLocalStorage } from "react-use";
 import { Global } from "../../store/global/types";
 import { PREFIX } from "../../util/local-storage";
+import { useResizeDetector } from "react-resize-detector";
 
 interface Props {
   global: Global;
@@ -25,7 +26,7 @@ interface TriggerFetch {
 const TRIGGER_FETCH_DEFAULT: TriggerFetch = { fetch: false, loadMore: false };
 
 export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props) => {
-  const chartRef = useRef<any>();
+  const { width, height, ref: chartRef } = useResizeDetector();
 
   const [storedBucketSeconds, setStoredBucketSeconds] = useLocalStorage<number>(
     PREFIX + "_amml_tv_bs",
@@ -64,6 +65,12 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
     getMarketBucketSizes().then((sizes) => setBucketSecondsList(sizes));
     buildChart().then(() => fetchData());
   }, []);
+
+  useEffect(() => {
+    if (width && height) {
+      chart?.resize(width, height);
+    }
+  }, [width, height]);
 
   useEffect(() => {
     const fromDate = lastTimeRange ? new Date(Number(lastTimeRange.from) * 1000) : null;
