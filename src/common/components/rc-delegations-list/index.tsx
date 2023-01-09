@@ -9,7 +9,7 @@ import UserAvatar from "../user-avatar";
 import { useParams } from 'react-router';
 
 export const RcDelegationsList = (props: any) => {
-  const limit = 21;
+  // const limit = 21;
   const params: any = useParams();
 
   const { activeUser, rcFormatter, showDelegation, listMode, setToFromList, setAmountFromList } = props
@@ -19,7 +19,7 @@ export const RcDelegationsList = (props: any) => {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);
   const [search, setsearch] = useState("");
-  const [loadList, setLoadList] = useState(limit);
+  const [loadList, setLoadList] = useState(21);
 
   useEffect (() => {
     getOutGoingRcList();   
@@ -32,9 +32,8 @@ export const RcDelegationsList = (props: any) => {
     const delegationsOutList: any = await getOutgoingRc(paramsAccount, "")
         const delegationsOutInfo = delegationsOutList.rc_direct_delegations;
         setOutGoingList(delegationsOutInfo);
+        setHasMore(delegationsOutInfo.length > loadList);        
         setLoading(false);
-        setHasMore(delegationsOutInfo.length > limit);        
-        return delegationsOutInfo;
   };
 
   const getIncomingRcList = async () => {
@@ -44,13 +43,13 @@ export const RcDelegationsList = (props: any) => {
     const incomingInfo = delegationsIn.list
     console.log(incomingInfo)
         setIncoming(incomingInfo);
+        setHasMore(incomingInfo.length > loadList);        
         setLoading(false);
-        setHasMore(incomingInfo.length > limit);        
-        return incomingInfo;
   };
 
   const loadMore = () => {
-    setLoadList(loadList + limit)
+    const moreList = loadList + 7;
+    setLoadList(moreList)
   }
 
   return (   
@@ -131,7 +130,8 @@ export const RcDelegationsList = (props: any) => {
                }             
             </div>}
 
-            {hasMore && <div className="load-more">
+            {(hasMore && outGoingList.length > loadList) && 
+            <div className="load-more">
               <Button disabled={loading || !hasMore} onClick={loadMore}>
                 {_t("g.load-more")}
               </Button>
@@ -139,4 +139,4 @@ export const RcDelegationsList = (props: any) => {
           </div>      
     </div>
   ) 
-}
+};
