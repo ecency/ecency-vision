@@ -14,6 +14,8 @@ import BaseComponent from "../base";
 import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
 import { error } from "../feedback";
+import { Vote, getActiveVotes } from "../../api/hive";
+import { prepareVotes } from "../entry-votes";
 
 import { votingPower } from "../../api/hive";
 import { vote, formatError } from "../../api/operations";
@@ -43,15 +45,17 @@ const getVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
   username: string,
   def: number,
+  previousVote: number | null,
   isPostSlider?: boolean
 ): number => {
   const postUpSliderDefaultValue = ls.get("post_upSlider_value");
   const postDownSliderDefaultValue = ls.get("post_downSlider_value");
   const commentUpSliderDefaultValue = ls.get("comment_upSlider_value");
   const commentDownSliderDefaultValue = ls.get("comment_downSlider_value");
-
+  // console.log("Get Called", previousVote);
   if (isPostSlider) {
     if (type === "up") {
+      // console.log(previousVote)
       return ss.get(`vote-value-${type}-${username}`, postUpSliderDefaultValue ?? def);
     } else {
       return ss.get(`vote-value-${type}-${username}`, postDownSliderDefaultValue ?? def);
@@ -65,6 +69,25 @@ const getVoteValue = (
   }
 };
 
+const getPreviousVote = (entry: Entry, username: string): number => {
+  //  console.log("Get Called");
+  if (username) {
+    getActiveVotes(entry.author, entry.permlink).then((r) => {
+      // console.log(r);
+      let votes = prepareVotes(entry, r);
+      // console.log("votes", votes);
+
+      votes.map((x) => {
+        if (x.voter === username) {
+          // console.log("if run");
+          return x.percent;
+        }
+      });
+    });
+  }
+};
+
+type Test = number | null;
 type Mode = "up" | "down";
 
 interface VoteDialogProps {
@@ -74,8 +97,9 @@ interface VoteDialogProps {
   entry: Entry;
   downVoted: boolean;
   upVoted: boolean;
-  onClick: (percent: number, estimated: number) => void;
   isPostSlider?: boolean;
+  previousVote: any;
+  onClick: (percent: number, estimated: number) => void;
 }
 
 interface VoteDialogState {
@@ -95,13 +119,27 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     upSliderVal: getVoteValue(
       "up",
       this.props.activeUser?.username! + "-" + this.props.entry.post_id,
-      getVoteValue("upPrevious", this.props.activeUser?.username!, 100, this.props.isPostSlider),
+      getVoteValue(
+        "upPrevious",
+        this.props.activeUser?.username!,
+        100,
+        getPreviousVote(this.props.entry, this.props.activeUser.username),
+        this.props.isPostSlider
+      ),
+      getPreviousVote(this.props.entry, this.props.activeUser.username),
       this.props.isPostSlider
     ),
     downSliderVal: getVoteValue(
       "down",
       this.props.activeUser?.username! + "-" + this.props.entry.post_id,
-      getVoteValue("downPrevious", this.props.activeUser?.username!, -1, this.props.isPostSlider),
+      getVoteValue(
+        "downPrevious",
+        this.props.activeUser?.username!,
+        -1,
+        getPreviousVote(this.props.entry, this.props.activeUser.username),
+        this.props.isPostSlider
+      ),
+      getPreviousVote(this.props.entry, this.props.activeUser.username),
       this.props.isPostSlider
     ),
     estimated: 0,
@@ -114,19 +152,37 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       up: getVoteValue(
         "up",
         this.props.activeUser?.username! + "-" + this.props.entry.post_id,
-        getVoteValue("upPrevious", this.props.activeUser?.username!, 100, this.props.isPostSlider),
+        getVoteValue(
+          "upPrevious",
+          this.props.activeUser?.username!,
+          100,
+          getPreviousVote(this.props.entry, this.props.activeUser.username),
+          this.props.isPostSlider
+        ),
+        getPreviousVote(this.props.entry, this.props.activeUser.username),
         this.props.isPostSlider
       ),
       down: getVoteValue(
         "down",
         this.props.activeUser?.username! + "-" + this.props.entry.post_id,
-        getVoteValue("downPrevious", this.props.activeUser?.username!, -1, this.props.isPostSlider),
+        getVoteValue(
+          "downPrevious",
+          this.props.activeUser?.username!,
+          -1,
+          getPreviousVote(this.props.entry, this.props.activeUser.username),
+          this.props.isPostSlider
+        ),
+        getPreviousVote(this.props.entry, this.props.activeUser.username),
         this.props.isPostSlider
       )
     }
   };
 
   componentDidMount(): void {
+    console.log(
+      "Vote Dialog called",
+      this.props.previousVote.then((r) => console.log(r.prepareVotes))
+    );
     this.cleanUpLS();
   }
 
@@ -254,7 +310,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     } = this.props;
     const { upSliderVal, initialVoteValues } = this.state;
     const { upVoted } = this.isVoted();
-
     if (!upVoted || (upVoted && initialVoteValues.up !== upSliderVal)) {
       const estimated = Number(this.estimate(upSliderVal).toFixed(3));
       onClick(upSliderVal, estimated);
@@ -423,13 +478,20 @@ interface Props {
 interface State {
   dialog: boolean;
   inProgress: boolean;
+  previousVotedValue: number | null;
 }
 
 export class EntryVoteBtn extends BaseComponent<Props, State> {
   state: State = {
     dialog: false,
-    inProgress: false
+    inProgress: false,
+    previousVotedValue: 0
   };
+
+  componentDidMount(): void {
+    // this.getPreviousVote();
+    // console.log("getPreviousVote called");
+  }
 
   vote = (percent: number, estimated: number) => {
     this.toggleDialog();
@@ -465,13 +527,11 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     if (!activeUser) {
       return { upVoted: false, downVoted: false };
     }
-
     const { active_votes: votes } = this.props.entry;
 
     const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares > 0);
 
     const downVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares < 0);
-
     return { upVoted, downVoted };
   };
 
@@ -484,14 +544,57 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     this.stateSet({ dialog: false });
   };
 
+  getPreviousVote = async () => {
+    const { activeUser, entry } = this.props;
+    let previousVote;
+    if (!activeUser) {
+      return { previousVote: null };
+    }
+
+    const retData = await getActiveVotes(entry.author, entry.permlink);
+
+    let votes = prepareVotes(entry, retData);
+    // console.log(votes)
+    previousVote = votes.find((x) => {
+      return x.voter === activeUser.username;
+    });
+
+    // console.log(previousVote)
+
+    return { previousVote: previousVote === undefined ? null : previousVote.percent };
+  };
+
   render() {
-    const { activeUser } = this.props;
+    const { activeUser, isPostSlider } = this.props;
     const { active_votes: votes } = this.props.entry;
     const { dialog, inProgress } = this.state;
     const { upVoted, downVoted } = this.isVoted();
+    // let previousPercentage;
+    //  Promise.resolve(this.getPreviousVote()).then((res) => {
+    //   return previousPercentage = res.previousVote;
+    // }
+    // )
+    // console.log(previousPercentage);
+    // this.getPreviousVote().then((r=>
+    //   previousPercentage = r.previousVote
+    //   ));
+    // console.log(previousPercentage);
+
+    //  let previousPercentage = (async ()=>{  await this.getPreviousVote()})()
+    //  previousPercentage.then((r)=>
+    //  console.log(r));
+
+    // let previous  = this.getPreviousVote();
+    // let previousPercentage =  previous.then((r)=>r.previousVote);
+    // console.log(previousPercentage)
+
+    const previous = async () => {
+      return await this.getPreviousVote();
+      // console.log(a.previousVote);
+    };
+    // previous();
 
     let cls = _c(`btn-vote btn-up-vote ${inProgress ? "in-progress" : ""}`);
-
     if (upVoted || downVoted) {
       cls = _c(
         `btn-vote ${
@@ -543,10 +646,11 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                             <VoteDialog
                               {...this.props}
                               activeUser={activeUser as any}
-                              isPostSlider={this.props.isPostSlider}
+                              isPostSlider={isPostSlider}
                               onClick={this.vote}
                               upVoted={upVoted}
                               downVoted={downVoted}
+                              previousVote={previous()}
                             />
                           </span>
                         </div>
