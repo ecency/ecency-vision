@@ -2,16 +2,30 @@ import React from "react";
 import { MarketAsset } from "../../../components/market-swap-form/market-pair";
 import { DayChange } from "./types/day-change.type";
 import formattedNumber from "../../../util/formatted-number";
+import { Button, ButtonGroup } from "react-bootstrap";
+import { set } from "../../../util/local-storage";
+import { MARKET_MODE_LS_TOKEN, MarketMode } from "../market-mode";
+import { ModeSelector } from "../mode-selector";
 
 interface Props {
+  mode: MarketMode;
   fromAsset: MarketAsset;
   toAsset: MarketAsset;
   price: number;
   usdPrice: number;
   dayChange: DayChange;
+  setMode: (mode: MarketMode) => void;
 }
 
-export const AdvancedModeToolbar = ({ fromAsset, toAsset, dayChange, usdPrice, price }: Props) => {
+export const AdvancedModeToolbar = ({
+  mode,
+  fromAsset,
+  toAsset,
+  dayChange,
+  usdPrice,
+  price,
+  setMode
+}: Props) => {
   const getPercent = () => {
     if (dayChange.percent > 0) {
       return `+${dayChange.percent.toFixed(2)}`;
@@ -59,6 +73,13 @@ export const AdvancedModeToolbar = ({ fromAsset, toAsset, dayChange, usdPrice, p
           <div>{formattedNumber(dayChange.totalToAsset)}</div>
         </div>
       </div>
+      <ModeSelector
+        mode={mode}
+        onSelect={(mode) => {
+          setMode(mode);
+          set(MARKET_MODE_LS_TOKEN, mode);
+        }}
+      />
     </div>
   );
 };

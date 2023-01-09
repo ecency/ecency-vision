@@ -55,6 +55,7 @@ const MarketPage = (props: PageProps) => {
           )}
           {mode !== MarketMode.ADVANCED ? (
             <ModeSelector
+              className="mb-5 mx-auto equal-widths"
               mode={mode}
               onSelect={(mode) => {
                 setMode(mode);
@@ -67,7 +68,7 @@ const MarketPage = (props: PageProps) => {
           {mode === MarketMode.SWAP && <SwapMode {...props} />}
           {mode === MarketMode.LIMIT && <LimitMarketMode {...props} />}
           {mode === MarketMode.ADVANCED && (
-            <AdvancedMode {...props} browserHistory={props.history} />
+            <AdvancedMode {...props} browserHistory={props.history} mode={mode} setMode={setMode} />
           )}
         </div>
       </div>

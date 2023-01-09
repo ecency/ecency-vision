@@ -29,8 +29,10 @@ thead, .pagination {
 .mode-selector {
     max-width: 600px;
 
-    .btn-primary {
-        width: 33%;
+    &.equal-widths {
+        .btn-primary {
+            width: 33%;
+        }
     }
 }
 

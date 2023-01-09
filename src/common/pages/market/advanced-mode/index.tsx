@@ -16,15 +16,25 @@ import { PREFIX } from "../../../util/local-storage";
 import { ToggleType } from "../../../store/ui/types";
 import { Transaction } from "../../../store/transactions/types";
 import GridLayout from "react-grid-layout";
+import { MarketMode } from "../market-mode";
 
 interface Props {
+  mode: MarketMode;
+  setMode: (mode: MarketMode) => void;
   activeUser: ActiveUser | null;
   global: Global;
   browserHistory: History;
   toggleUIProp: (what: ToggleType) => void;
 }
 
-export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp }: Props) => {
+export const AdvancedMode = ({
+  activeUser,
+  global,
+  browserHistory,
+  toggleUIProp,
+  mode,
+  setMode
+}: Props) => {
   // AMML – advanced mode market layout
   const [lsLayout, setLsLayout] = useLocalStorage<GridLayout.Layouts>(PREFIX + "_amml");
 
@@ -70,6 +80,8 @@ export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp 
         dayChange={dayChange}
         price={price}
         usdPrice={usdPrice}
+        mode={mode}
+        setMode={setMode}
       />
       <div className="advanced-mode-layout">
         <WidgetLayoutBuilder
