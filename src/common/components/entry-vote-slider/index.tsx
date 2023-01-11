@@ -30,6 +30,7 @@ const VotingSlider = (props: Props) => {
   );
 
   useEffect(() => {
+    setSliderVal(props.value);
     const addEventListnersOnMount = (): void => {
       window.addEventListener("resize", _wondowResizeHandler, true);
     };
