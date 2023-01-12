@@ -27,6 +27,7 @@ export enum EntryFilter {
 export enum ProfileFilter {
   blog = "blog",
   posts = "posts",
+  trail = "trail",
   comments = "comments",
   replies = "replies"
 }
@@ -41,6 +42,7 @@ export enum AllFilter {
   muted = "muted", // To see muted accounts
   blog = "blog", // This might be deleted
   posts = "posts",
+  trail = "trail",
   comments = "comments",
   replies = "replies",
   communities = "communities",

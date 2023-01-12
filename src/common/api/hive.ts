@@ -127,6 +127,9 @@ const handleError = (error: any) => {
 export const getPost = (username: string, permlink: string): Promise<any> =>
   client.call("condenser_api", "get_content", [username, permlink]);
 
+export const getPostNew = (username: string, permlink: string): Promise<any> =>
+  client.call("condenser_api", "get_post", [username, permlink]);
+
 export const getMarketStatistics = (): Promise<MarketStatistics> =>
   client.call("condenser_api", "get_ticker", []);
 
@@ -545,3 +548,16 @@ export interface BlogEntry {
 
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
   client.call("condenser_api", "get_blog_entries", [username, 0, limit]);
+
+export const getAccountVotesTrail = (
+  username: string,
+  limit: number = dataLimit
+): Promise<BlogEntry[]> => {
+  let params = [username, -1, 1000, 1];
+  return client.call("condenser_api", "get_account_history", params).then((data) => {
+    let result = data.map((obj) => obj[1].op[1]);
+    console.log("result getAccountVotesTrail");
+    console.log(result);
+    return Promise.all(result.map((obj) => getPostNew(obj.author, obj.permlink)));
+  });
+};
