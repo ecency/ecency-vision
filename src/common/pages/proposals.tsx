@@ -43,6 +43,8 @@ import parseDate from "../helper/parse-date";
 
 import { closeSvg } from "../img/svg";
 import moment from "moment";
+import { Button } from "react-bootstrap";
+// import  { CreateProposal } from "../components/create-proposal";
 
 enum Filter {
   ALL = "all",
@@ -306,7 +308,14 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                 );
               })}
             </div>
-          </div>
+
+            <div className="d-flex justify-content-center mt-4">
+              <Link to="proposals/create">
+              <Button>Create Proposal</Button>
+              </Link>
+            </div> 
+
+          </div> 
 
           {(() => {
             if (inProgress) {

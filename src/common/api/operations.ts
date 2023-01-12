@@ -1090,6 +1090,38 @@ export const proposalVoteKc = (account: string, proposal: number, approve: boole
   return keychain.broadcast(account, [op], "Active");
 };
 
+export const createProposal = (
+  account: string, 
+  receiver: string, 
+  start: any, 
+  end: any, 
+  dailyPay: any, 
+  subject: string, 
+  link: string
+  ) => {
+  const op: Operation = [
+    "create_proposal",
+    {
+      creator: account,
+      receiver: receiver,
+      start_date: start,
+      end_date: end,
+      daily_pay: {
+      amount: dailyPay,
+      precision: 3,
+      // nai: "@@000000013"
+      },
+      subject: subject,
+      permlink: link
+    }
+  ]
+  console.log(op)
+
+  keychain.broadcast(account, [op], "Active")
+  .then(result => console.log(result))
+  .catch(err => console.log(err));
+}
+
 export const subscribe = (
   username: string,
   community: string
