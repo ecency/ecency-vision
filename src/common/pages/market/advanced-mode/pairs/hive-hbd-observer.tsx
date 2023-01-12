@@ -24,6 +24,7 @@ interface Props {
   setOpenOrders: (data: OpenOrdersData[]) => void;
   setOpenOrdersDataLoading: (value: boolean) => void;
   setAllOrders: (value: Transaction[]) => void;
+  updateRate: number;
 }
 
 export const HiveHbdObserver = ({
@@ -35,9 +36,10 @@ export const HiveHbdObserver = ({
   setRefresh,
   setOpenOrders,
   setOpenOrdersDataLoading,
-  setAllOrders
+  setAllOrders,
+  updateRate
 }: Props) => {
-  useInterval(() => fetchAllStats(), 10000);
+  useInterval(() => fetchAllStats(), updateRate);
 
   useEffect(() => {
     fetchAllStats();

@@ -6,6 +6,7 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import { set } from "../../../util/local-storage";
 import { MARKET_MODE_LS_TOKEN, MarketMode } from "../market-mode";
 import { ModeSelector } from "../mode-selector";
+import { AdvancedModeSettings } from "./advanced-mode-settings";
 
 interface Props {
   mode: MarketMode;
@@ -15,6 +16,8 @@ interface Props {
   usdPrice: number;
   dayChange: DayChange;
   setMode: (mode: MarketMode) => void;
+  updateRate: number;
+  setUpdateRate: (value: number) => void;
 }
 
 export const AdvancedModeToolbar = ({
@@ -24,7 +27,9 @@ export const AdvancedModeToolbar = ({
   dayChange,
   usdPrice,
   price,
-  setMode
+  setMode,
+  updateRate,
+  setUpdateRate
 }: Props) => {
   const getPercent = () => {
     if (dayChange.percent > 0) {
@@ -34,13 +39,13 @@ export const AdvancedModeToolbar = ({
   };
 
   return (
-    <div className="advanced-mode-toolbar d-flex border-bottom border-top px-3 py-3">
-      <div className="trading-pair pr-3 py-2">
+    <div className="advanced-mode-toolbar d-flex border-bottom border-top px-3">
+      <div className="trading-pair py-3 pl-2 pr-3 border-right">
         <b>
           {fromAsset}/{toAsset}
         </b>
       </div>
-      <div className="pair-info border-left px-3 flex-1">
+      <div className="pair-info px-3 flex-1">
         <div className="price">
           <div className={"amount " + (dayChange.percent > 0 ? "text-success" : "text-danger")}>
             {formattedNumber(dayChange.price)}
@@ -73,13 +78,16 @@ export const AdvancedModeToolbar = ({
           <div>{formattedNumber(dayChange.totalToAsset)}</div>
         </div>
       </div>
-      <ModeSelector
-        mode={mode}
-        onSelect={(mode) => {
-          setMode(mode);
-          set(MARKET_MODE_LS_TOKEN, mode);
-        }}
-      />
+      <div className="d-flex align-items-center">
+        <AdvancedModeSettings updateRate={updateRate} setUpdateRate={setUpdateRate} />
+        <ModeSelector
+          mode={mode}
+          onSelect={(mode) => {
+            setMode(mode);
+            set(MARKET_MODE_LS_TOKEN, mode);
+          }}
+        />
+      </div>
     </div>
   );
 };

@@ -18,6 +18,7 @@ interface Props {
   setOpenOrders: (data: OpenOrdersData[]) => void;
   setOpenOrdersDataLoading: (value: boolean) => void;
   setAllOrders: (value: Transaction[]) => void;
+  updateRate: number;
 }
 
 export const MarketObserver = ({
@@ -31,7 +32,8 @@ export const MarketObserver = ({
   activeUser,
   setOpenOrders,
   setOpenOrdersDataLoading,
-  setAllOrders
+  setAllOrders,
+  updateRate
 }: Props) => {
   const hiveHbdPair = [MarketAsset.HBD, MarketAsset.HIVE];
 
@@ -48,6 +50,7 @@ export const MarketObserver = ({
           activeUser={activeUser}
           setOpenOrders={setOpenOrders}
           setOpenOrdersDataLoading={setOpenOrdersDataLoading}
+          updateRate={updateRate}
         />
       ) : (
         <></>

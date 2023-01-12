@@ -63,7 +63,8 @@
     "more-results": "More results",
     "close": "Close",
     "loading": "Loading",
-    "stop": "Stop"
+    "stop": "Stop",
+    "settings": "Settings"
   },
   "confirm": {
     "title": "Are you sure?",

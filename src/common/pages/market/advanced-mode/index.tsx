@@ -35,8 +35,10 @@ export const AdvancedMode = ({
   mode,
   setMode
 }: Props) => {
+  // AMM – advanced mode market
   // AMML – advanced mode market layout
   const [lsLayout, setLsLayout] = useLocalStorage<GridLayout.Layouts>(PREFIX + "_amml");
+  const [updateRate, setUpdateRate] = useLocalStorage<number>(PREFIX + "_amm_ur", 10000);
 
   const [layout, setLayout] = useState<GridLayout.Layouts>(lsLayout ?? DEFAULT_LAYOUT);
   const [fromAsset, setFromAsset] = useState(MarketAsset.HIVE);
@@ -56,6 +58,7 @@ export const AdvancedMode = ({
   return (
     <div className="advanced-mode">
       <MarketObserver
+        updateRate={updateRate!}
         setAllOrders={setAllOrders}
         refresh={refresh}
         setRefresh={setRefresh}
@@ -82,6 +85,8 @@ export const AdvancedMode = ({
         usdPrice={usdPrice}
         mode={mode}
         setMode={setMode}
+        updateRate={updateRate!}
+        setUpdateRate={setUpdateRate}
       />
       <div className="advanced-mode-layout">
         <WidgetLayoutBuilder
