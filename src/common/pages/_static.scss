@@ -449,10 +449,10 @@
   }
 }
 
-.text-not-found{
+.text-not-found {
   font-size: 16px;
 }
-.category-cards{
+.category-cards {
   margin-bottom: 6%;
   border-radius: 6px;
   @include themify(day) {
@@ -460,7 +460,7 @@
   }
 
   @include themify(night) {
-    border: 1px  solid $dark;
+    border: 1px solid $dark;
 
  }
 }

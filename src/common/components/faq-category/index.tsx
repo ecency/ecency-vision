@@ -8,13 +8,13 @@ import { _t } from "../../i18n";
 
 interface Props {
   categoryTitle: string;
-  contentList: Array<string>;
+  contentList: string[];
 }
 
 const FaqCategory = (props: Props) => {
   const [expanded, setExpanded] = useState(false);
-  let tooltip = (
-    <Tooltip id="profile-tooltip1" style={{ zIndex: 10 }}>
+  const tooltip = (
+    <Tooltip id="faq-toggleIcon-tooltip" style={{ zIndex: 10 }}>
       {_t("static.faq.toggle-icon-info")}
     </Tooltip>
   );
@@ -47,15 +47,11 @@ const FaqCategory = (props: Props) => {
         <Accordion.Collapse eventKey="0">
           <Card.Body className="p-0">
             <div>
-              {contentList.map((x) => {
-                return (
-                  <>
-                    <a className="section-content" href={`#${x}`}>
-                      {_t(`static.faq.${x}-header`)}
-                    </a>
-                  </>
-                );
-              })}
+              {contentList.map((x) => (
+                <a className="section-content" href={`#${x}`}>
+                  {_t(`static.faq.${x}-header`)}
+                </a>
+              ))}
             </div>
           </Card.Body>
         </Accordion.Collapse>
