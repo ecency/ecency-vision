@@ -49,7 +49,7 @@ interface State {
   voters: Voter[];
   originalVoters: Voter[];
   sort: SortOption;
-  noOfPages: number;
+  pageCount: number;
   voter: string;
   lastDataLength: number;
   limit: number;
@@ -62,7 +62,7 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
     voters: [],
     originalVoters: [],
     sort: "hp",
-    noOfPages: 0,
+    pageCount: 0,
     voter: "",
     lastDataLength: 0,
     limit: 1000
@@ -78,7 +78,7 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
       this.search();
     }
     if (prevState.voters !== voters) {
-      this.setState({ noOfPages: Math.ceil(voters.length / 12) });
+      this.setState({ pageCount: Math.ceil(voters.length / 12) });
     }
   }
 
@@ -162,8 +162,8 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
   };
 
   handlePageChange = () => {
-    const { noOfPages, page, lastDataLength, limit } = this.state;
-    if (page === noOfPages && lastDataLength === limit) {
+    const { pageCount, page, lastDataLength, limit } = this.state;
+    if (page === pageCount && lastDataLength === limit) {
       this.load();
     }
   };
@@ -179,10 +179,9 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
       .sort((a, b) => {
         const keyA = a[sort]!;
         const keyB = b[sort]!;
-
         if (keyA > keyB) return -1;
-        if (keyA < keyB) return 1;
-        return 0;
+        else if (keyA < keyB) return 1;
+        else return 0;
       })
       .slice(start, end);
 
@@ -192,49 +191,51 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
 
         <div className="voters-list">
           <div className="list-body">
-            {sliced && sliced.length > 0
-              ? sliced.map((x) => {
-                  const strHp = numeral(x.hp).format("0.00,");
-                  const strProxyHp = numeral(x.proxyHp).format("0.00,");
+            {sliced && sliced.length > 0 ? (
+              sliced.map((x) => {
+                const strHp = numeral(x.hp).format("0.00,");
+                const strProxyHp = numeral(x.proxyHp).format("0.00,");
 
-                  return (
-                    <div className="list-item" key={x.name}>
-                      <div className="item-main">
+                return (
+                  <div className="list-item" key={x.name}>
+                    <div className="item-main">
+                      {ProfileLink({
+                        ...this.props,
+                        username: x.name,
+                        children: (
+                          <>{UserAvatar({ ...this.props, username: x.name, size: "small" })}</>
+                        )
+                      })}
+
+                      <div className="item-info">
                         {ProfileLink({
                           ...this.props,
                           username: x.name,
-                          children: (
-                            <>{UserAvatar({ ...this.props, username: x.name, size: "small" })}</>
-                          )
+                          children: <a className="item-name notransalte">{x.name}</a>
                         })}
-
-                        <div className="item-info">
-                          {ProfileLink({
-                            ...this.props,
-                            username: x.name,
-                            children: <a className="item-name notransalte">{x.name}</a>
-                          })}
-                          <span className="item-reputation">{accountReputation(x.reputation)}</span>
-                        </div>
-                      </div>
-                      <div className="item-extra">
-                        <span>{`${strHp} HP`}</span>
-                        {x.proxyHp > 0 && (
-                          <>
-                            {" + "}
-                            <span>
-                              {`${strProxyHp} HP`}
-                              {" (proxy) "}
-                            </span>
-                          </>
-                        )}
+                        <span className="item-reputation">{accountReputation(x.reputation)}</span>
                       </div>
                     </div>
-                  );
-                })
-              : loading
-              ? _t("proposals.searching")
-              : _t("proposals.no-results")}
+                    <div className="item-extra">
+                      <span>{`${strHp} HP`}</span>
+                      {x.proxyHp > 0 && (
+                        <>
+                          {" + "}
+                          <span>
+                            {`${strProxyHp} HP`}
+                            {" (proxy) "}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className="user-info">
+                {loading ? _t("proposals.searching") : _t("proposals.no-results")}
+              </div>
+            )}
           </div>
         </div>
 
