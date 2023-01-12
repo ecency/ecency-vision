@@ -97,7 +97,7 @@ interface VoteDialogState {
 export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   state: VoteDialogState = {
     upSliderVal:
-      !this.props.downVoted && this.props.previousVotedValue
+      this.props.upVoted && this.props.previousVotedValue
         ? this.props.previousVotedValue
         : this.getUpVotedValue(),
     downSliderVal:
@@ -111,33 +111,19 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     showWarning: false,
     showRemove: false,
     initialVoteValues: {
-      up: getVoteValue(
-        "up",
-        this.props.activeUser?.username! + "-" + this.props.entry.post_id,
-        getVoteValue("upPrevious", this.props.activeUser?.username!, 100, this.props.isPostSlider),
-        this.props.isPostSlider
-      ),
-      down: getVoteValue(
-        "down",
-        this.props.activeUser?.username! + "-" + this.props.entry.post_id,
-        getVoteValue("downPrevious", this.props.activeUser?.username!, -1, this.props.isPostSlider),
-        this.props.isPostSlider
-      )
+      up:
+        this.props.upVoted && this.props.previousVotedValue
+          ? this.props.previousVotedValue
+          : this.getUpVotedValue(),
+      down:
+        this.props.downVoted && this.props.previousVotedValue
+          ? this.props.previousVotedValue
+          : this.getDownVotedValue()
     }
   };
 
   componentDidMount(): void {
     this.cleanUpLS();
-  }
-
-  componentDidUpdate(prevProps: VoteDialogProps) {
-    if (prevProps.previousVotedValue !== this.props.previousVotedValue) {
-      this.props.downVoted
-        ? this.setState({
-            downSliderVal: this.props.previousVotedValue ?? this.getDownVotedValue()
-          })
-        : this.setState({ upSliderVal: this.props.previousVotedValue ?? this.getUpVotedValue() });
-    }
   }
 
   getUpVotedValue(): number {
@@ -212,7 +198,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     return voteValue * sign;
   };
 
-  // upSliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
   upSliderChanged = (value: number) => {
     const upSliderVal = Number(value);
     const { initialVoteValues } = this.state;
@@ -228,11 +213,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     });
   };
 
-  // downSliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
   downSliderChanged = (value: number) => {
-    //   const {
-    //     target: { id, value }
-    //   } = e;
     const downSliderVal = Number(value);
     const { initialVoteValues } = this.state;
     const { upVoted, downVoted } = this.props;
@@ -275,6 +256,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   };
 
   upVoteClicked = () => {
+    console.log("CLICKED");
     const {
       onClick,
       activeUser,
@@ -293,6 +275,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
         upSliderVal
       );
     } else if (upVoted && initialVoteValues.up === upSliderVal) {
+      console.log("HERE");
       this.setState({ wrongValueUp: true, wrongValueDown: false });
     }
   };
@@ -350,7 +333,8 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 <FormattedCurrency {...this.props} value={this.estimate(upSliderVal)} fixAt={3} />
               </div>
               <div className="slider slider-up">
-                {this.props.previousVotedValue}
+                {/* {this.props.previousVotedValue}
+                {this.state.upSliderVal} */}
                 <VotingSlider value={upSliderVal} setVoteValue={this.upSliderChanged} mode={mode} />
               </div>
               <div className="percentage">{`${upSliderVal && upSliderVal.toFixed(1)}%`}</div>
@@ -504,16 +488,17 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     return { upVoted, downVoted };
   };
 
-  toggleDialog = () => {
-    const { dialog } = this.state;
-    const ndialog = !dialog;
-    this.stateSet({ dialog: ndialog });
+  toggleDialog = async () => {
+    const ndialog = !this.state.dialog;
 
+    //if dialog is closing do nothing and close
     if (ndialog) {
-      this.getPreviousVote().then((vote) => {
-        this.setState({ previousVotedValue: vote });
-      });
+      const preVote = await this.getPreviousVote();
+      console.log("PREVIOUS VOTE FRM API", preVote);
+      this.setState({ previousVotedValue: preVote });
     }
+
+    this.stateSet({ dialog: ndialog });
   };
 
   handleClickAway = () => {
@@ -522,15 +507,28 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
 
   getPreviousVote = async () => {
     const { activeUser, entry } = this.props;
+    const { upVoted, downVoted } = this.isVoted();
     let previousVote;
     if (!activeUser) {
       return null;
     }
 
-    const retData = await getActiveVotes(entry.author, entry.permlink);
+    let username = this.props.activeUser?.username! + "-" + this.props.entry.post_id;
+    let type = upVoted ? "up" : "down";
+    let sessValue = ss.get(`vote-value-${type}-${username}`, null);
 
+    console.log("SESSION VOTE VALUE", sessValue);
+    if (sessValue !== null) {
+      console.log("Previous vote from session", Date());
+      return sessValue;
+    }
+
+    const retData = await getActiveVotes(entry.author, entry.permlink);
     let votes = prepareVotes(entry, retData);
     previousVote = votes.find((x) => {
+      if (x.voter === activeUser.username) {
+        console.log(x);
+      }
       return x.voter === activeUser.username;
     });
 

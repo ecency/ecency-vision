@@ -7,7 +7,6 @@ import React, {
   MouseEventHandler,
   TouchEventHandler
 } from "react";
-import { setWithdrawVestingRouteHot } from "../../api/operations";
 
 interface Props {
   value: number;
@@ -24,13 +23,11 @@ const VotingSlider = (props: Props) => {
   const [sliderVal, setSliderVal] = useState(Math.abs(props.value));
   const tenOptions = [10, 20, 30, 40, 50, 60, 70, 80, 90];
   const fiveOptions = [25, 50, 75];
-
   const [sliderOptions, setSliderOptions] = useState(
     window.innerWidth > 1600 ? tenOptions : fiveOptions
   );
 
   useEffect(() => {
-    setSliderVal(props.value);
     const addEventListnersOnMount = (): void => {
       window.addEventListener("resize", _wondowResizeHandler, true);
     };

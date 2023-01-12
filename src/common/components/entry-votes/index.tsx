@@ -154,7 +154,6 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
         return 0;
       })
       .slice(start, end);
-    // console.log(votes);
 
     return (
       <>
@@ -256,7 +255,6 @@ export class EntryVotes extends Component<Props, State> {
     const { entry } = this.props;
     const { visible, searchText, searchTextDisabled } = this.state;
     const totalVotes = (entry.active_votes && entry.active_votes.length) || entry.total_votes;
-    // console.log("Entry Votes Props", this.props);
 
     const title =
       totalVotes === 0
