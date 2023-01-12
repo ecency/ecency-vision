@@ -80,7 +80,7 @@ export const MarketAdvancedModeOrdersTable = ({ data, openOrdersData }: Props) =
                         variant="link"
                         size="sm"
                         target="_blank"
-                        href={"https://hiveblocks.com/tx/" + item.trx_id}
+                        href={"https://hivexplorer.com/tx/" + item.trx_id}
                       >
                         {_t("market.advanced.view-details")}
                       </Button>

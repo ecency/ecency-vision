@@ -63,12 +63,12 @@ export const StakeWidget = ({
     let sells = buildStakeItems(history.asks, "desc", fraction);
     sells = sells.slice(sells.length - 1 - (unlimited ? rowsCount * 2 : rowsCount), sells.length);
     setSells(sells);
-    setMaxSell(Math.min(5000, Math.max(...sells.map((i) => i.amount))));
+    setMaxSell(Math.min(500, Math.max(...sells.map((i) => i.amount))));
 
     let buys = buildStakeItems(history.bids, "desc", fraction);
     buys = buys.slice(0, unlimited ? rowsCount * 2 : rowsCount);
     setBuys(buys);
-    setMaxBuy(Math.min(5000, Math.max(...buys.map((i) => i.amount))));
+    setMaxBuy(Math.min(500, Math.max(...buys.map((i) => i.amount))));
   };
 
   const buildStakeItems = (
@@ -98,7 +98,7 @@ export const StakeWidget = ({
         amount: items.reduce((acc, item) => acc + item.hive / 1000, 0),
         price: price,
         // Calculate total funds inside one group
-        total: items.reduce((acc, item) => acc + (item.hbd / 1000) * (item.hive / 1000), 0)
+        total: items.reduce((acc, item) => acc + item.hive / 1000, 0) * price
       }))
       .sort((a, b) => (sort === "desc" ? b.price - a.price : a.price - b.price));
 

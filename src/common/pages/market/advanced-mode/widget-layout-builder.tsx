@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { HistoryWidget } from "../../../components/market-advanced-mode/history-widget";
 import { StakeWidget } from "../../../components/market-advanced-mode/stake-widget";
 import { TradingFormWidget } from "../../../components/market-advanced-mode/trading-form-widget";
@@ -68,9 +68,16 @@ export const WidgetLayoutBuilder = ({
   setRefresh,
   allOrders
 }: Props) => {
+  const [currentBreakpoint, setCurrentBreakpoint] = useState("lg");
+
   const onWidgetTypeChanged = (currentType: string, newType: string) => {
     const layoutCopy: ReactGridLayout.Layouts = JSON.parse(JSON.stringify(layout));
-    layoutCopy;
+    const index = layoutCopy[currentBreakpoint]?.findIndex((item) => item.i === currentType);
+    if (index > -1 && layoutCopy[currentBreakpoint]) {
+      layoutCopy[currentBreakpoint][index].i = newType;
+    }
+    Object.keys(layoutCopy);
+    setLayout(layoutCopy);
   };
 
   return (
@@ -84,6 +91,7 @@ export const WidgetLayoutBuilder = ({
       margin={[0, 0]}
       measureBeforeMount={false}
       draggableHandle=".deck-index"
+      onBreakpointChange={(bp) => setCurrentBreakpoint(bp)}
       onLayoutChange={(layout, layouts) => setLayout(layouts)}
     >
       <div key="h">
@@ -93,7 +101,7 @@ export const WidgetLayoutBuilder = ({
           toAsset={toAsset}
           history={history}
           onItemClick={(v) => setPrice(v)}
-          widgetTypeChanged={(type) => {}}
+          widgetTypeChanged={(type) => onWidgetTypeChanged("h", type)}
         />
       </div>
       <div key="s">
@@ -104,7 +112,7 @@ export const WidgetLayoutBuilder = ({
           fromAsset={fromAsset}
           toAsset={toAsset}
           history={history}
-          widgetTypeChanged={(type) => {}}
+          widgetTypeChanged={(type) => onWidgetTypeChanged("s", type)}
           onAmountClick={(v) => setAmount(v)}
           onPriceClick={(v) => setPrice(v)}
         />
@@ -119,7 +127,7 @@ export const WidgetLayoutBuilder = ({
           buyBalance={buyBalance}
           sellBalance={sellBalance}
           price={price}
-          widgetTypeChanged={(type) => {}}
+          widgetTypeChanged={(type) => onWidgetTypeChanged("tf", type)}
           toggleUIProp={toggleUIProp}
           onSuccessTrade={onSuccessTrade}
         />
@@ -129,7 +137,7 @@ export const WidgetLayoutBuilder = ({
           <TradingViewWidget
             global={global}
             history={browserHistory}
-            widgetTypeChanged={(type) => {}}
+            widgetTypeChanged={(type) => onWidgetTypeChanged("tv", type)}
           />
         </SsrSuspense>
       </div>
@@ -138,7 +146,7 @@ export const WidgetLayoutBuilder = ({
           allOrders={allOrders}
           history={browserHistory}
           activeUser={activeUser}
-          widgetTypeChanged={(type) => {}}
+          widgetTypeChanged={(type) => onWidgetTypeChanged("oo", type)}
           toggleUIProp={toggleUIProp}
           openOrdersDataLoading={openOrdersDataLoading}
           openOrdersData={openOrdersData}

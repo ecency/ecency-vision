@@ -14,7 +14,7 @@ export const PairsWidget = ({ history }: Props) => {
       history={history}
       type={Widget.Pairs}
       title={_t("market.advanced.pairs")}
-      children={<div></div>}
+      children={<div />}
       widgetTypeChanged={() => {}}
     />
   );

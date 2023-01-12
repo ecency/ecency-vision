@@ -61,10 +61,9 @@ export const MarketAdvancedModeWidget = ({
         title={title}
         headerOptions={headerOptions}
         settings={
-          <div className={"p-3 " + settingsClassName}>
-            <Dropdown float="none" label="Widget type" history={history} items={dropdownItems} />
-            {additionalSettings}
-          </div>
+          additionalSettings ? (
+            <div className={"p-3 " + settingsClassName}>{additionalSettings}</div>
+          ) : undefined
         }
       />
       {children}
