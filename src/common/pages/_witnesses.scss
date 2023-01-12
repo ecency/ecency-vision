@@ -48,27 +48,36 @@
       }
     }
   }
+
   .voted-by-voter {
     @include themify(day) {
       background-color: $faded-blue;
     }
-  
+
     @include themify(night) {
       background-color: $tundora;
     }
   }
+
   .witnesses-table {
     margin-bottom: 20px;
     height: 713px;
 
     table {
       min-width: 840px;
+
       @media (max-width: $sm-break) {
         display: none;
       }
     }
 
-    .witness-rank, .witness-card, .witness-miss, .witness-link, .witness-fee, .witness-feed, .witness-version {
+    .witness-rank,
+    .witness-card,
+    .witness-miss,
+    .witness-link,
+    .witness-fee,
+    .witness-feed,
+    .witness-version {
       height: 40px;
       display: flex;
       align-items: center;
@@ -93,7 +102,8 @@
         margin-right: 10px;
       }
     }
-    .witness-ctn{
+
+    .witness-ctn {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -163,8 +173,8 @@
   }
 }
 
-.user-info{
-  margin: 1% 0 0 1%;
+.user-info {
+  margin: 1rem 0 0 1rem;
 }
 
 .table-tools {
@@ -172,17 +182,20 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column-reverse;
-  
+
   @media (max-width: $md-break) {
     display: none;
   }
+
   @media (min-width: $lg-break) {
     flex-direction: row;
   }
+
   .sorter {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+
     @media (min-width: $lg-break) {
       margin-bottom: 0;
     }
