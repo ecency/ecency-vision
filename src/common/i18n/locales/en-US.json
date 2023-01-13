@@ -2,6 +2,9 @@
   "g": {
     "add": "Add",
     "edit": "Edit",
+    "clone": "Clone",
+    "copy": "Copy of",
+    "clone-success": "Draft clone successfully",
     "continue": "Continue",
     "submit": "Write a post",
     "search": "Search",
