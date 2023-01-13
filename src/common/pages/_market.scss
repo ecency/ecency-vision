@@ -288,8 +288,16 @@ thead, .pagination {
             justify-content: center;
         }
 
-        .market-advanced-mode-trading-view-widget {
-            height: calc(100% - 44px);
+        .market-advanced-mode-tv-widget {
+            .market-advanced-mode-trading-view-widget {
+                height: calc(100% - 44px);
+            }
+
+            &.expanded-header {
+                .market-advanced-mode-trading-view-widget {
+                    height: calc(100% - 104px);
+                }
+            }
         }
 
         .widget-layout-builder {

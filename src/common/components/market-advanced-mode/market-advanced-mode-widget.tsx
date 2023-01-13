@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MarketAdvancedModeWidgetHeader } from "./market-advanced-mode-widget-header";
 import Dropdown, { MenuItem } from "../dropdown";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
@@ -28,6 +28,8 @@ export const MarketAdvancedModeWidget = ({
   additionalSettings,
   settingsClassName
 }: Props) => {
+  const [expandedHeader, setExpandedHeader] = useState(false);
+
   const getLabel = (type: Widget): string => {
     switch (type) {
       case Widget.History:
@@ -56,8 +58,16 @@ export const MarketAdvancedModeWidget = ({
     }));
 
   return (
-    <div className={"market-advanced-mode-widget border " + className}>
+    <div
+      className={
+        "market-advanced-mode-widget border " +
+        (expandedHeader ? "expanded-header " : "") +
+        className
+      }
+    >
       <MarketAdvancedModeWidgetHeader
+        expandedHeader={expandedHeader}
+        setExpandedHeader={setExpandedHeader}
         title={title}
         headerOptions={headerOptions}
         settings={
