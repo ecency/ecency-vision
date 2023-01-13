@@ -54,11 +54,8 @@ export const AdvancedModeToolbar = ({
         </div>
         <div className="day-change-price change-price">
           <label>24h change</label>
-          <div>
-            <span>{formattedNumber(dayChange.price - dayChange.close)}</span>
-            <small className={"pl-2 " + (dayChange.percent > 0 ? "text-success" : "text-danger")}>
-              {getPercent()}%
-            </small>
+          <div className={dayChange.percent > 0 ? "text-success" : "text-danger"}>
+            {getPercent()}%
           </div>
         </div>
         <div className="day-high-price change-price">

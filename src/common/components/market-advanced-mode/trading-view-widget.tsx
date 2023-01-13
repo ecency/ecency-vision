@@ -130,7 +130,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
       data.map(({ time, volume, open, close }) => ({
         time,
         value: volume / 1000,
-        color: open >= close ? "rgba(0, 150, 136, 0.8)" : "rgba(255,82,82, 0.8)"
+        color: open < close ? "rgba(0, 150, 136, 0.8)" : "rgba(255,82,82, 0.8)"
       }))
     );
 
