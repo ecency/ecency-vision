@@ -251,7 +251,8 @@ thead, .pagination {
             margin: -1px;
 
             @include themify(night) {
-                background: $dark;
+
+                background-color: $dark-two;
             }
 
             .custom-dropdown .label {
@@ -263,7 +264,7 @@ thead, .pagination {
             background-color: $white-three;
 
             @include themify(night) {
-                background-color: $dark-two;
+                background: $dark;
             }
         }
 

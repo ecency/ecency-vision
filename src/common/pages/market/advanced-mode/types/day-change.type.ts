@@ -5,4 +5,5 @@ export interface DayChange {
   low: number;
   totalFromAsset: string;
   totalToAsset: string;
+  close: number;
 }

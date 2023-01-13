@@ -114,7 +114,15 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
     if (!chart) {
       return;
     }
-    const candleStickSeries = chartSeries ?? chart.addCandlestickSeries();
+    const candleStickSeries =
+      chartSeries ??
+      chart.addCandlestickSeries({
+        priceFormat: {
+          type: "price",
+          precision: 5,
+          minMove: 0.00001
+        }
+      });
     candleStickSeries.setData(data);
 
     const volumeSeries = histoSeries ?? chart.addHistogramSeries(HISTOGRAM_OPTIONS);
