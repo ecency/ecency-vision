@@ -500,23 +500,28 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
 
   getPreviousVote = async () => {
     const { activeUser, entry } = this.props;
-    const { upVoted } = this.isVoted();
+    const { upVoted, downVoted } = this.isVoted();
     let previousVote;
     if (!activeUser) {
       return null;
     }
 
-    let username = this.props.activeUser?.username! + "-" + this.props.entry.post_id;
-    let type = upVoted ? "up" : "down";
-    let sessValue = ss.get(`vote-value-${type}-${username}`, null);
-    if (sessValue !== null) {
-      return sessValue;
-    }
+    if (upVoted || downVoted) {
+      let username = this.props.activeUser?.username! + "-" + this.props.entry.post_id;
+      let type = upVoted ? "up" : "down";
+      let sessValue = ss.get(`vote-value-${type}-${username}`, null);
 
-    const retData = await getActiveVotes(entry.author, entry.permlink);
-    let votes = prepareVotes(entry, retData);
-    previousVote = votes.find((x) => x.voter === activeUser.username);
-    return previousVote === undefined ? null : previousVote.percent;
+      if (sessValue !== null) {
+        return sessValue;
+      }
+
+      const retData = await getActiveVotes(entry.author, entry.permlink);
+      let votes = prepareVotes(entry, retData);
+      previousVote = votes.find((x) => x.voter === activeUser.username);
+      return previousVote === undefined ? null : previousVote.percent;
+    } else {
+      return null;
+    }
   };
 
   render() {
