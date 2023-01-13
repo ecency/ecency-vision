@@ -24,6 +24,17 @@ interface TriggerFetch {
 }
 
 const TRIGGER_FETCH_DEFAULT: TriggerFetch = { fetch: false, loadMore: false };
+const HISTOGRAM_OPTIONS: any = {
+  color: "#26a69a",
+  priceFormat: {
+    type: "volume"
+  },
+  priceScaleId: "",
+  scaleMargins: {
+    top: 0.8,
+    bottom: 0
+  }
+};
 
 export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props) => {
   const { width, height, ref: chartRef } = useResizeDetector();
@@ -40,6 +51,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
   const [bucketSeconds, setBucketSeconds] = useState(storedBucketSeconds ?? 300);
   const [chart, setChart] = useState<IChartApi | null>(null);
   const [chartSeries, setChartSeries] = useState<ISeriesApi<any> | null>(null);
+  const [histoSeries, setHistoSeries] = useState<ISeriesApi<any> | null>(null);
   const [bucketSecondsList, setBucketSecondsList] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [triggerFetch, setTriggerFetch] = useState<TriggerFetch>(TRIGGER_FETCH_DEFAULT);
@@ -75,7 +87,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
   useEffect(() => {
     const fromDate = lastTimeRange ? new Date(Number(lastTimeRange.from) * 1000) : null;
     if (fromDate) {
-      if (lastTimeRange?.from === data[0].time) setTriggerFetch({ fetch: true, loadMore: true });
+      if (lastTimeRange?.from === data[0]?.time) setTriggerFetch({ fetch: true, loadMore: true });
     }
   }, [lastTimeRange]);
 
@@ -84,6 +96,12 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
       chart?.removeSeries(chartSeries);
       setChartSeries(null);
     }
+
+    if (histoSeries) {
+      chart?.removeSeries(histoSeries);
+      setHistoSeries(null);
+    }
+
     setData([]);
     setEndDate(moment());
     setStartDate(getNewStartDate(moment(), "subtract"));
@@ -99,12 +117,22 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
     const candleStickSeries = chartSeries ?? chart.addCandlestickSeries();
     candleStickSeries.setData(data);
 
+    const volumeSeries = histoSeries ?? chart.addHistogramSeries(HISTOGRAM_OPTIONS);
+    volumeSeries.setData(
+      data.map(({ time, volume, open, close }) => ({
+        time,
+        value: volume / 1000,
+        color: open >= close ? "rgba(0, 150, 136, 0.8)" : "rgba(255,82,82, 0.8)"
+      }))
+    );
+
     if (!isZoomed && data.length > 0) {
       chart?.timeScale().fitContent();
       setIsZoomed(true);
     }
 
     setChartSeries(candleStickSeries);
+    setHistoSeries(volumeSeries);
   }, [data, chart]);
 
   useEffect(() => {
@@ -143,6 +171,13 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
   const buildChart = async () => {
     const tradingView = await import("lightweight-charts");
     const chartInstance = tradingView.createChart(chartRef.current, {
+      rightPriceScale: {
+        scaleMargins: {
+          top: 0.3,
+          bottom: 0.25
+        },
+        borderVisible: false
+      },
       timeScale: {
         timeVisible: true
       },
