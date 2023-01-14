@@ -75,6 +75,7 @@ export const MarketSwapForm = ({
 
     setAvailableAssets(nextAvailableAssets);
     setToAsset(nextAvailableAssets.filter((asset) => asset !== fromAsset)[0]);
+    getHiveMarketRate(fromAsset).then((rate) => setMarketRate(rate));
     if (activeUser) setBalance(getBalance(fromAsset, activeUser));
   }, [fromAsset]);
 

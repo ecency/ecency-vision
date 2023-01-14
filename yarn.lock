@@ -1403,18 +1403,21 @@
   dependencies:
     tslib "^2.1.0"
 
-"@hiveio/dhive@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@hiveio/dhive/-/dhive-1.2.1.tgz#bcae9b809c15150e5cb0e64aa571c84b6851bf73"
-  integrity sha512-ZOyYQBXvsqTMGXTf/8mI7rtGvsNjiRM30H8nUWamy0iYjEzYNO/4KL0sSJFGA9dxIQbEMp4h7KfASAJJGFYXyA==
+"@hiveio/dhive@^1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@hiveio/dhive/-/dhive-1.2.5.tgz#0a888c4ab361b50181c217ad736e881e293a9a55"
+  integrity sha512-9D1kT+kWtQUoVkre9BQbfM13kC7f0a/OwS5QeDKeurZEeVIpr4pfTBwV2dTrym8fL7EMMscIQljxmc3fBSP5gA==
   dependencies:
+    bigi "^1.4.2"
     bs58 "^4.0.1"
     bytebuffer "^5.0.1"
     core-js "^3.6.4"
     cross-fetch "^3.0.4"
+    ecurve "^1.0.6"
     https "^1.0.0"
     jsbi "^3.1.4"
     node-fetch "^2.6.0"
+    ripemd160 "^2.0.2"
     secp256k1 "^3.8.0"
     verror "^1.10.0"
     whatwg-fetch "^3.0.0"
@@ -3043,6 +3046,11 @@ big.js@^5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
   integrity sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
+
+bigi@^1.1.0, bigi@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/bigi/-/bigi-1.4.2.tgz#9c665a95f88b8b08fc05cfd731f561859d725825"
+  integrity sha512-ddkU+dFIuEIW8lE7ZwdIAf2UPoM90eaprg5m3YXAVVTmKlqV/9BX4A2M8BOK2yOq6/VgZFVhK6QAxJebhlbhzw==
 
 binary-extensions@^1.0.0:
   version "1.13.1"
@@ -4900,6 +4908,22 @@ eastasianwidth@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
+
+ecc-jsbn@~0.1.1:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"
+  integrity sha1-OoOpBOVDUyh4dMVkt1SThoSamMk=
+  dependencies:
+    jsbn "~0.1.0"
+    safer-buffer "^2.1.0"
+
+ecurve@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/ecurve/-/ecurve-1.0.6.tgz#dfdabbb7149f8d8b78816be5a7d5b83fcf6de797"
+  integrity sha512-/BzEjNfiSuB7jIWKcS/z8FK9jNjmEWvUV2YZ4RLSmcDtP7Lq0m6FvDuSnJpBlDpGRpfRQeTLGLBI8H+kEv0r+w==
+  dependencies:
+    bigi "^1.1.0"
+    safe-buffer "^5.0.1"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -10514,7 +10538,7 @@ rimraf@^3.0.0, rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-ripemd160@^2.0.0, ripemd160@^2.0.1:
+ripemd160@^2.0.0, ripemd160@^2.0.1, ripemd160@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-2.0.2.tgz#a1c1a6f624751577ba5d07914cbc92850585890c"
   integrity sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==
