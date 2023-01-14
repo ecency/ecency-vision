@@ -218,6 +218,10 @@ thead, .pagination {
                 &.selectable > .price:hover, &.selectable > .amount:hover {
                     opacity: .5;
                 }
+
+                .price, .amount {
+                    position: relative;
+                }
             }
         }
 
