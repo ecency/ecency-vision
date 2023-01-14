@@ -9,7 +9,7 @@ import { History } from "history";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ToggleType } from "../../store/ui/types";
-import { useLocalStorage } from "react-use";
+import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
 import { LimitOrderCreate, Transaction } from "../../store/transactions/types";
 import { MarketAdvancedModeOrdersTable } from "./market-advanced-mode-orders-table";

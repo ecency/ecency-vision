@@ -10,7 +10,7 @@ import {
 import { DayChange } from "../types/day-change.type";
 import { getCGMarket } from "../../../../components/market-swap-form/api/coingecko-api";
 import { MarketAsset } from "../../../../components/market-swap-form/market-pair";
-import { useInterval } from "react-use";
+import useInterval from "react-use/lib/useInterval";
 import { ActiveUser } from "../../../../store/active-user/types";
 import { fetchTransactions } from "../../../../store/transactions/fetchTransactions";
 import { Transaction } from "../../../../store/transactions/types";

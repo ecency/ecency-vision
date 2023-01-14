@@ -7,7 +7,8 @@ import { getMarketBucketSizes, getMarketHistory, MarketCandlestickDataItem } fro
 import moment, { Moment } from "moment";
 import { IChartApi, ISeriesApi, Time, TimeRange } from "lightweight-charts";
 import Dropdown from "../dropdown";
-import { useDebounce, useLocalStorage } from "react-use";
+import useLocalStorage from "react-use/lib/useLocalStorage";
+import useDebounce from "react-use/lib/useDebounce";
 import { Global } from "../../store/global/types";
 import { PREFIX } from "../../util/local-storage";
 import { useResizeDetector } from "react-resize-detector";
