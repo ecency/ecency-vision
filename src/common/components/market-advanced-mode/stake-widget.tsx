@@ -7,7 +7,7 @@ import formattedNumber from "../../util/formatted-number";
 import { StakeWidgetHeaderOptions, StakeWidgetViewType } from "./stake-widget-header-options";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
 import { History } from "history";
-import { useLocalStorage } from "react-use";
+import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
 
 interface Props {

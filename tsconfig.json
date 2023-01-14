@@ -37,5 +37,5 @@
     "healthCheck.js",
     "src/desktop/**/*.js"
   ],
-  "types": ["typePatches", "node", "jest", "webpack-env"]
+  "types": ["typePatches", "node", "jest", "webpack-env", "resize-observer-browser"]
 }

@@ -11,7 +11,7 @@ import { Global } from "../../../store/global/types";
 import { UserBalanceObserver } from "./user-balance-observer";
 import { WidgetLayoutBuilder } from "./widget-layout-builder";
 import { History } from "history";
-import { useLocalStorage } from "react-use";
+import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
 import { ToggleType } from "../../../store/ui/types";
 import { Transaction } from "../../../store/transactions/types";
