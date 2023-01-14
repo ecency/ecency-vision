@@ -35,8 +35,7 @@
     "jest",
     "razzle.config.js",
     "healthCheck.js",
-    "src/desktop/**/*.js",
-    "node_modules/react-use"
+    "src/desktop/**/*.js"
   ],
   "types": ["typePatches", "node", "jest", "webpack-env"]
 }
