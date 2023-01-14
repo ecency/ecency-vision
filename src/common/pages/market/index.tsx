@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../common";
 import { LimitMarketMode } from "./limit-mode";
 import { MARKET_MODE_LS_TOKEN, MarketMode } from "./market-mode";
-import { set } from "../../util/local-storage";
+import * as ls from "../../util/local-storage";
 import Feedback from "../../components/feedback";
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
@@ -59,7 +59,7 @@ const MarketPage = (props: PageProps) => {
               mode={mode}
               onSelect={(mode) => {
                 setMode(mode);
-                set(MARKET_MODE_LS_TOKEN, mode);
+                ls.set(MARKET_MODE_LS_TOKEN, mode);
               }}
             />
           ) : (

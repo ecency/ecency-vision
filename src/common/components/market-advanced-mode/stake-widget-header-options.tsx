@@ -6,7 +6,7 @@ import { allStakeSvg, buyStakeSvg, sellStakeSvg } from "../../img/svg";
 export enum StakeWidgetViewType {
   All = "all",
   Sell = "sell",
-  Buy = "Buy"
+  Buy = "buy"
 }
 
 interface Props {

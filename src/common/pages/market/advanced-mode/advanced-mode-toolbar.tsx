@@ -2,8 +2,7 @@ import React from "react";
 import { MarketAsset } from "../../../components/market-swap-form/market-pair";
 import { DayChange } from "./types/day-change.type";
 import formattedNumber from "../../../util/formatted-number";
-import { Button, ButtonGroup } from "react-bootstrap";
-import { set } from "../../../util/local-storage";
+import * as ls from "../../../util/local-storage";
 import { MARKET_MODE_LS_TOKEN, MarketMode } from "../market-mode";
 import { ModeSelector } from "../mode-selector";
 import { AdvancedModeSettings } from "./advanced-mode-settings";
@@ -81,7 +80,7 @@ export const AdvancedModeToolbar = ({
           mode={mode}
           onSelect={(mode) => {
             setMode(mode);
-            set(MARKET_MODE_LS_TOKEN, mode);
+            ls.set(MARKET_MODE_LS_TOKEN, mode);
           }}
         />
       </div>

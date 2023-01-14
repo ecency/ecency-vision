@@ -6,5 +6,6 @@ export const DAY_CHANGE_DEFAULT: DayChange = {
   price: 0,
   percent: 0,
   high: 0,
-  low: 0
+  low: 0,
+  close: 0
 };
