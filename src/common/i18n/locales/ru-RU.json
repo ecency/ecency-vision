@@ -63,7 +63,8 @@
     "more-results": "Больше результатов",
     "close": "Закрыть",
     "loading": "Загрузка",
-    "stop": "Остановить"
+    "stop": "Остановить",
+    "settings": "Settings"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -405,8 +406,30 @@
     "auth-required-title": "Требуется авторизация",
     "auth-required-desc": "Вы должны быть авторизованы для обмена собственных средств",
     "start-new-one": "Начать новый обмен",
+    "signing": "Войти..",
     "success-swap": "Успешно изменено!",
-    "signing": "Войти.."
+    "advanced": {
+      "history": "History",
+      "stake": "Order book",
+      "pairs": "Pairs",
+      "form": "Order form",
+      "open-orders": "Open",
+      "completed-orders": "Completed",
+      "status": "Status",
+      "all-orders": "All",
+      "active": "Active",
+      "view-details": "View details",
+      "chart": "Chart",
+      "trading-form-auth-required": "You have to been authorized for trade",
+      "open-orders-auth-required": "You have to been authorized for see open orders",
+      "empty-open-orders": "No orders",
+      "history-widget": {
+        "price": "Price",
+        "amount": "Amount",
+        "volume": "Volume",
+        "time": "Time"
+      }
+    }
   },
   "list-style": {
     "title": "Переключить стиль списка"
