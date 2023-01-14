@@ -63,7 +63,8 @@
     "more-results": "Daugiau rezultatų",
     "close": "Uždaryti",
     "loading": "Įkeliama",
-    "stop": "Stop"
+    "stop": "Stop",
+    "settings": "Settings"
   },
   "confirm": {
     "title": "Ar esate įsitikinę?",
@@ -405,8 +406,30 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
+    "signing": "Signing..",
     "success-swap": "Successfully swapped!",
-    "signing": "Signing.."
+    "advanced": {
+      "history": "History",
+      "stake": "Order book",
+      "pairs": "Pairs",
+      "form": "Order form",
+      "open-orders": "Open",
+      "completed-orders": "Completed",
+      "status": "Status",
+      "all-orders": "All",
+      "active": "Active",
+      "view-details": "View details",
+      "chart": "Chart",
+      "trading-form-auth-required": "You have to been authorized for trade",
+      "open-orders-auth-required": "You have to been authorized for see open orders",
+      "empty-open-orders": "No orders",
+      "history-widget": {
+        "price": "Price",
+        "amount": "Amount",
+        "volume": "Volume",
+        "time": "Time"
+      }
+    }
   },
   "list-style": {
     "title": "Pasirinkti sąrašo stilių"
