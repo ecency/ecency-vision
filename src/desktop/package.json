@@ -150,7 +150,7 @@
     "electron-log": "^4.2.4",
     "electron-updater": "^4.3.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.0",
     "react-hot-loader": "^4.12.21",
     "source-map-support": "^0.5.19"
   }
