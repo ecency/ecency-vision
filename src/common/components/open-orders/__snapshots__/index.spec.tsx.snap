@@ -39,7 +39,9 @@ exports[`(1) Open orders render default 1`] = `
         >
           23 years ago
         </td>
-        <td>
+        <td
+          className="text-success"
+        >
           Buy
         </td>
         <td>
@@ -54,12 +56,14 @@ exports[`(1) Open orders render default 1`] = `
         <td
           className="p-2"
         >
-          <div
-            className="rounded text-white bg-primary p-1 d-inline pointer"
+          <button
+            className="py-0 btn btn-primary btn-sm"
+            disabled={false}
             onClick={[Function]}
+            type="button"
           >
             Cancel
-          </div>
+          </button>
         </td>
       </tr>
     </tbody>
