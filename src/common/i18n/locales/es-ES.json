@@ -64,7 +64,7 @@
     "close": "Cerrar",
     "loading": "Cargando",
     "stop": "Detener",
-    "settings": "Settings"
+    "settings": "Configuraciones"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -409,25 +409,25 @@
     "signing": "Firmando..",
     "success-swap": "¡Intercambiado con éxito!",
     "advanced": {
-      "history": "History",
-      "stake": "Order book",
-      "pairs": "Pairs",
-      "form": "Order form",
-      "open-orders": "Open",
-      "completed-orders": "Completed",
-      "status": "Status",
-      "all-orders": "All",
-      "active": "Active",
-      "view-details": "View details",
-      "chart": "Chart",
-      "trading-form-auth-required": "You have to been authorized for trade",
-      "open-orders-auth-required": "You have to been authorized for see open orders",
-      "empty-open-orders": "No orders",
+      "history": "Historial",
+      "stake": "Libro de órdenes",
+      "pairs": "Pares",
+      "form": "Formulario de pedido",
+      "open-orders": "Abierto",
+      "completed-orders": "Completada",
+      "status": "Estado",
+      "all-orders": "Todos",
+      "active": "Activo",
+      "view-details": "Ver detalles",
+      "chart": "Gráfico",
+      "trading-form-auth-required": "Tiene que ser autorizado para operar",
+      "open-orders-auth-required": "Tienes que ser autorizado para ver órdenes abiertas",
+      "empty-open-orders": "No hay órdenes",
       "history-widget": {
-        "price": "Price",
-        "amount": "Amount",
-        "volume": "Volume",
-        "time": "Time"
+        "price": "Precio",
+        "amount": "Cantidad",
+        "volume": "Volumen",
+        "time": "Hora"
       }
     }
   },
