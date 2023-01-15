@@ -36,7 +36,7 @@ import { search as searchApi } from "../api/search-api";
 import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
 
-import { getAccountFull } from "../api/hive";
+import { getAccountFull, getAccountVotesTrail } from "../api/hive";
 
 import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";
@@ -102,7 +102,12 @@ export const Profile = (props: Props) => {
     const { username, section } = match.params;
     if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
       // fetch posts
-      fetchEntries(global.filter, global.tag, false);
+      if (section === "trail") {
+        let data = await getAccountVotesTrail(username.replace("@", ""), 10);
+        setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
+      } else {
+        fetchEntries(global.filter, global.tag, false);
+      }
     }
 
     // fetch points

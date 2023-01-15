@@ -15,7 +15,7 @@ export const dataLimit = typeof window !== "undefined" && window.screen.width < 
 const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> =>
   bridgeServer.call("bridge", endpoint, params);
 
-const resolvePost = (post: Entry, observer: string): Promise<Entry> => {
+export const resolvePost = (post: Entry, observer: string): Promise<Entry> => {
   const { json_metadata: json } = post;
 
   if (
