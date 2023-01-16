@@ -8,14 +8,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": [
-      "es6",
-      "es2015",
-      "es2017",
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["es6", "es2015", "es2017", "dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -44,10 +37,5 @@
     "healthCheck.js",
     "src/desktop/**/*.js"
   ],
-  "types": [
-    "typePatches",
-    "node",
-    "jest",
-    "webpack-env"
-  ]
+  "types": ["typePatches", "node", "jest", "webpack-env", "resize-observer-browser"]
 }

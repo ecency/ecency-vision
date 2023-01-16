@@ -9,8 +9,8 @@ import { savePageScroll } from "../../store/persistent-page-scroll";
  * @HOC
  * @param Component Any component where need to persist scroll
  */
-export function withPersistentScroll<P>(Component: ComponentType<P>) {
-  return (props: P) => {
+export function withPersistentScroll(Component: ComponentType<any>) {
+  return (props: any) => {
     const dispatch = useDispatch();
     const location = useLocation();
 

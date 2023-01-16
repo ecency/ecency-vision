@@ -1,7 +1,7 @@
 import { DeckState, UpdateIntervalAction } from "../types";
 import { Dispatch } from "redux";
 import { updateIntervalAct } from "../acts";
-import { set } from "../../../util/local-storage";
+import * as ls from "../../../util/local-storage";
 import { serializeDecks } from "../helpers";
 
 export const setDeckUpdateInterval =
@@ -13,5 +13,5 @@ export const setDeckUpdateInterval =
     if (!username) {
       username = "anonymous";
     }
-    set(`user-${username}-decks`, serializeDecks(items));
+    ls.set(`user-${username}-decks`, serializeDecks(items));
   };

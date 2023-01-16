@@ -2,10 +2,10 @@
 
 exports[`(1) Buying render 1`] = `
 <div
-  className="border p-3 rounded"
+  className="p-2 border p-3 rounded"
 >
   <div
-    className="d-flex justify-content-between align-items-center"
+    className="d-flex justify-content-between align-items-center "
   >
     <h3
       className="mb-0"
@@ -119,7 +119,7 @@ exports[`(1) Buying render 1`] = `
         <span
           className="rounded-left input-group-text"
         >
-          HBD($)
+          HBD
         </span>
       </div>
     </div>
@@ -136,10 +136,10 @@ exports[`(1) Buying render 1`] = `
 
 exports[`(1) Selling render 1`] = `
 <div
-  className="border p-3 rounded"
+  className="p-2 border p-3 rounded"
 >
   <div
-    className="d-flex justify-content-between align-items-center"
+    className="d-flex justify-content-between align-items-center "
   >
     <h3
       className="mb-0"
@@ -253,7 +253,7 @@ exports[`(1) Selling render 1`] = `
         <span
           className="rounded-left input-group-text"
         >
-          HBD($)
+          HBD
         </span>
       </div>
     </div>
