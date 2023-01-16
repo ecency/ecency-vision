@@ -14,7 +14,6 @@ import {
 import { Entry, EntryVote } from "../store/entries/types";
 import { Community } from "../store/communities/types";
 import { Account, FullAccount } from "../store/accounts/types";
-import { rawContentSvg } from "../img/svg";
 import EntryLink, { makePath as makeEntryPath } from "../components/entry-link";
 
 import BaseComponent from "../components/base";
@@ -46,6 +45,7 @@ import EntryTipBtn from "../components/entry-tip-btn";
 import EntryMenu from "../components/entry-menu";
 import AuthorInfoCard from "../components/author-info-card";
 import ReadTime from "../components/entry-read-time";
+import Tooltip from "../components/tooltip";
 
 import * as bridgeApi from "../api/bridge";
 import { comment, formatError } from "../api/operations";
@@ -76,7 +76,12 @@ import dmca from "../constants/dmca.json";
 
 import { getFollowing } from "../api/hive";
 import { history } from "../store";
-import { deleteForeverSvg, pencilOutlineSvg, informationVariantSvg } from "../img/svg";
+import {
+  deleteForeverSvg,
+  pencilOutlineSvg,
+  informationVariantSvg,
+  rawContentSvg
+} from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
@@ -1232,11 +1237,11 @@ class EntryPage extends BaseComponent<Props, State> {
                           </>
                         )}
                         <span className="flex-spacer" />
-
-                        <span style={{ marginRight: "15px" }} onClick={this.toggleRawContent}>
-                          {rawContentSvg}
-                        </span>
-
+                        <Tooltip content={_t("entry.raw")}>
+                          <span style={{ marginRight: "15px" }} onClick={this.toggleRawContent}>
+                            {rawContentSvg}
+                          </span>
+                        </Tooltip>
                         {BookmarkBtn({
                           ...this.props,
                           entry
