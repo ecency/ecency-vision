@@ -166,6 +166,7 @@ export class List extends BaseComponent<Props, State> {
                 activeUser && activeUser.username === account.name
                   ? KeyOrHotDialog({
                       ...this.props,
+                      popOver: true,
                       activeUser: activeUser,
                       children: (
                         <a href="#" className="undelegate">
