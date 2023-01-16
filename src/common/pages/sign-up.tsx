@@ -34,7 +34,6 @@ interface State {
   lockReferral: boolean;
   inProgress: boolean;
   done: boolean;
-  isVerified: boolean;
 }
 
 class SignUpPage extends Component<PageProps, State> {
@@ -46,8 +45,7 @@ class SignUpPage extends Component<PageProps, State> {
     referral: "",
     lockReferral: false,
     inProgress: false,
-    done: false,
-    isVerified: this.props.global.isElectron ? true : false
+    done: false
   };
 
   componentDidMount() {
@@ -86,10 +84,6 @@ class SignUpPage extends Component<PageProps, State> {
     signUp(username, email, referral)
       .then((resp) => {
         this.setState({ inProgress: false });
-        if (!this.state.isVerified) {
-          error(_t("login.captcha-check-required"));
-          return;
-        }
         if (resp && resp.data && resp.data.code) {
           error(resp.data.message);
         } else {
@@ -105,12 +99,6 @@ class SignUpPage extends Component<PageProps, State> {
       });
   };
 
-  captchaCheck = (value: string | null) => {
-    if (value) {
-      this.setState({ isVerified: true });
-    }
-  };
-
   render() {
     const { global } = this.props;
 
@@ -124,7 +112,7 @@ class SignUpPage extends Component<PageProps, State> {
       title: _t("sign-up.header")
     };
 
-    const { username, email, referral, lockReferral, inProgress, done, isVerified } = this.state;
+    const { username, email, referral, lockReferral, inProgress, done } = this.state;
     const spinner = (
       <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
     );
@@ -230,22 +218,8 @@ class SignUpPage extends Component<PageProps, State> {
                           disabled={lockReferral}
                         />
                       </Form.Group>
-                      {!global.isElectron && (
-                        <div style={{ marginTop: "16px", marginBottom: "5px" }}>
-                          <ReCAPTCHA
-                            sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
-                            onChange={this.captchaCheck}
-                            size="normal"
-                          />
-                        </div>
-                      )}
                       <div className="d-flex justify-content-center">
-                        <Button
-                          variant="primary"
-                          block={true}
-                          type="submit"
-                          disabled={inProgress || !isVerified}
-                        >
+                        <Button variant="primary" block={true} type="submit" disabled={inProgress}>
                           {inProgress && spinner} {_t("sign-up.submit")}
                         </Button>
                       </div>

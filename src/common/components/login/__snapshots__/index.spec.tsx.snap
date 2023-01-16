@@ -48,11 +48,6 @@ Array [
         value=""
       />
     </div>
-    <div
-      className="google-recaptcha"
-    >
-      <div />
-    </div>
     <p
       className="login-form-text"
     >
@@ -240,11 +235,6 @@ Array [
         type="password"
         value=""
       />
-    </div>
-    <div
-      className="google-recaptcha"
-    >
-      <div />
     </div>
     <p
       className="login-form-text"
@@ -437,11 +427,6 @@ Array [
         value=""
       />
     </div>
-    <div
-      className="google-recaptcha"
-    >
-      <div />
-    </div>
     <p
       className="login-form-text"
     >
@@ -534,11 +519,6 @@ Array [
         type="password"
         value=""
       />
-    </div>
-    <div
-      className="google-recaptcha"
-    >
-      <div />
     </div>
     <p
       className="login-form-text"
