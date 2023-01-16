@@ -63,12 +63,10 @@ const ProposalCreationPage = (props: any) => {
        const endDate = new Date(end);
        const difference: any = endDate.getTime() - startDate.getTime();
        const daysDifference: number = difference / (1000 * 3600 * 24);
-       console.log(daysDifference)
        return daysDifference
     }
 
     const onSubmit = (e: any) => {
-        console.log(formInput)
         const { activeUser } = props;
         const hbdBalance = Number(props.activeUser.data.hbd_balance.replace("HBD",""))
         e.preventDefault();
@@ -86,9 +84,17 @@ const ProposalCreationPage = (props: any) => {
                 formInput.funding, 
                 formInput.subject, 
                 formInput.link
-                )
+                ).then(
+                    (res: any) => {
+                      console.log({res})
+                      return res;
+                    }
+                  ).catch((e: any) => {
+                    console.log({e})
+                    return e;
+                  });
+                  return;
         }
-        console.log(formInput)
     };
 
     if (loading) {
