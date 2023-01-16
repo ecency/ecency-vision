@@ -43,8 +43,8 @@
     "trending": "akış",
     "created": "akış",
     "muted": "engellenen",
-    "controversial": "controversial",
-    "rising": "rising",
+    "controversial": "tartışmalı",
+    "rising": "Yükselen",
     "found": "bulundu",
     "feed": "akış",
     "blog": "blog",
@@ -58,13 +58,13 @@
     "payout": "Ödeme",
     "learn-more": "Daha fazla bilgi edinin",
     "faq": "SSS",
-    "when": "When",
-    "price": "Price",
+    "when": "Zaman",
+    "price": "Fiyat",
     "more-results": "Daha fazla sonuç",
     "close": "Kapat",
-    "loading": "Loading",
-    "stop": "Stop",
-    "settings": "Settings"
+    "loading": "Yükleniyor",
+    "stop": "Durdur",
+    "settings": "Ayarlar"
   },
   "confirm": {
     "title": "Emin misiniz?",
@@ -72,9 +72,9 @@
     "cancel": "İptal"
   },
   "announcements": {
-    "dismiss": "Dismiss",
-    "next": "Next",
-    "later": "Later"
+    "dismiss": "Yoksay",
+    "next": "Sonraki",
+    "later": "Daha Sonra"
   },
   "entry-filter": {
     "filter-trending": "Popüler",
@@ -87,22 +87,22 @@
     "filter-feed-friends": "Arkadaşlar",
     "filter-feed-subscriptions": "Topluluklar",
     "filter-global": "Genel",
-    "filter-community": "My Community",
-    "filter-controversial": "Controversial",
-    "filter-rising": "Rising",
+    "filter-community": "Topluluklarım",
+    "filter-controversial": "Tartışmalı",
+    "filter-rising": "Yükselen",
     "filter-global-part1": "Bu akışın içeriği ",
     "filter-global-part2": " platform geneli paylaşımlar.",
     "filter-global-part3": " abone olduğunuz topluluklardaki paylaşımlar. Bu akışı doldurmak için daha fazla topluluğa katılabilirsiniz.",
     "filter-global-part4": " takip ettiğiniz kişilerin paylaşımları. Bu akışı doldurmak için daha fazla kişiyi takip edebilirsiniz.",
     "filter-global-discover": "Yeni İnsanlar Keşfet",
     "filter-global-join-communities": "Topluluklara Katıl",
-    "filter-today": "Today",
-    "filter-week": "This week",
-    "filter-month": "This month",
-    "filter-year": "This year",
-    "filter-alltime": "All time",
-    "filter-no-reblog": "Exclude reblog",
-    "filter-with-reblog": "Include reblog"
+    "filter-today": "Bugün",
+    "filter-week": "Bu hafta",
+    "filter-month": "Bu ay",
+    "filter-year": "Bu yıl",
+    "filter-alltime": "Tüm zamanlar",
+    "filter-no-reblog": "Reblogları Gösterme",
+    "filter-with-reblog": "Reblogları Göster"
   },
   "navbar": {
     "discover": "Keşfet",
@@ -147,10 +147,10 @@
     "dark": "koyu",
     "switch-to": "Değiştir",
     "vote-power": "Oylama Gücü:",
-    "boost": "Boost"
+    "boost": "Takviye et"
   },
   "intro": {
-    "title": "Aspire to greatness",
+    "title": "Mükemmelliği hedefleyin",
     "sub-title": "ödüllendirici topluluklar",
     "c2a": "Başla"
   },
@@ -162,7 +162,7 @@
     "login-info-1": "Özel anahtarlarınızı sistemimizde tutmuyoruz.",
     "login-info-2": "Detaylar",
     "error-fields-required": "Lütfen kullanıcı adınızı ve şifrenizi girin",
-    "captcha-check-required": "Please verify if you are a human",
+    "captcha-check-required": "Lütfen insan olduğunuzu doğrulayın",
     "error-public-key": "Halka açık bir anahtar girdiniz. Şifre/WIF gerekli",
     "error-user-fetch": "Kullanıcı bilgileri alınamadı",
     "error-user-not-found": "Bu kullanıcı mevcut değil",
@@ -175,8 +175,8 @@
     "sign-up-text-2": "Hemen yeni hesap oluştur!"
   },
   "sign-up": {
-    "header": "Rewarding communities",
-    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
+    "header": "Ödüllendirici topluluklar",
+    "description": "Özgürce Konuşmaya Önem Verin, Kontrolü Ele Alın, Finansal Özgürlüğe Ulaşın!",
     "bottom-description": "Her bir hesap blok zinciri üzerinde oluşturulur ve bu hesabın kontrolü yalnızca sizin elinizdedir. Blok zinciri ve Ecency'deki her şeyi tek bir hesaptan yönetebilirsiniz.",
     "learn-more": "<a href=\"/faq#how-to-join\">SSS</a> sayfamızdan avantajlar hakkında detaylı bilgi edinebilirsiniz",
     "username": "Kullanıcı adı seçin",
@@ -194,9 +194,9 @@
     "title": "Konular"
   },
   "sort-trending-tags": {
-    "sort": "Sort",
-    "ascending": "Ascending",
-    "descending": "Descending"
+    "sort": "Sırala",
+    "ascending": "Artan",
+    "descending": "Azalan"
   },
   "selected-tags": {
     "title": "Öne Çıkanlar"
@@ -204,7 +204,7 @@
   "entry-list-item": {
     "cross-posted": "tarafından çapraz gönderildi",
     "cross-posted-to": "topluluk",
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} blogunda paylaştı",
     "promoted": "Sponsorlu",
     "pinned": "Sabitlenmiş Gönderi",
     "replies": "1 yorum. Yanıtlamak için tıklayın.",
@@ -247,12 +247,12 @@
     "share": "Paylaş",
     "edit-history": "Geçmişi Görüntüle",
     "pin": "Sabitle",
-    "pin-to-blog": "Pin to blog",
-    "pin-to-community": "Pin to community",
+    "pin-to-blog": "Sabitle",
+    "pin-to-community": "Topluluğa Sabitle",
     "pin-success": "Gönderi sabitlendi",
     "unpin": "Sabitlemeyi kaldır",
-    "unpin-from-blog": "Unpin from blog",
-    "unpin-from-community": "Unpin from community",
+    "unpin-from-blog": "Başa sabitlemeyi kaldır",
+    "unpin-from-community": "Topluluktan sabitlemeyi kaldır",
     "unpin-success": "Gönderi sabitlemesi kaldırıldı",
     "mute": "Engelle",
     "mute-success": "Gönderi engellendi",
@@ -294,23 +294,23 @@
     "pp": "Gizlilik Sözleşmesi"
   },
   "decks": {
-    "users": "User",
-    "header-info": "Click me to see extra options",
-    "username": "Username",
-    "content-type": "Content Type",
-    "trending-topics": "Topics",
-    "search": "Search",
-    "community": "Community",
-    "notifications": "Notifications",
-    "wallet": "Wallet",
-    "favorite": "Favorite",
-    "trending": "Trending",
-    "select": "Select content type",
-    "blogs": "Blogs",
-    "replies": "Replies",
-    "posts": "Posts",
-    "comments": "Comments",
-    "column": "column",
+    "users": "Kullanıcı",
+    "header-info": "Ekstra seçenekleri görmek için bana tıklayın",
+    "username": "Kullanıcı Adı",
+    "content-type": "İçerik Türü",
+    "trending-topics": "Konular",
+    "search": "Ara",
+    "community": "Topluluk",
+    "notifications": "Bildirimler",
+    "wallet": "Cüzdan",
+    "favorite": "Favorilere Ekle",
+    "trending": "Trendler",
+    "select": "İçerik türü seçin",
+    "blogs": "Blog",
+    "replies": "Yanıtlar",
+    "posts": "Gönderiler",
+    "comments": "Yorumlar",
+    "column": "sütun",
     "hot": "Popüler",
     "muted": "Susturulmuş",
     "new": "Yeni",
