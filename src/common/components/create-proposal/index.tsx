@@ -8,7 +8,6 @@ import { _t } from "../../i18n";
 import { pageMapDispatchToProps, pageMapStateToProps } from "../../pages/common";
 import { Button, Form } from "react-bootstrap";
 import { createProposal } from "../../api/operations";
-import communitySelector from "../community-selector";
 import { ActiveUser } from "../../store/active-user/types";
 
 interface Props {
@@ -16,11 +15,13 @@ interface Props {
   }
 
 const ProposalCreationPage = (props: any) => {
-    const { activeUser } = props;
+    // const { activeUser } = props;
 
     const [loading, setLoading] = useState(true);
     const [formInput, steFormInput] = useState<any>({});
-    const [error, setError] = useState<any>({})
+    const [error, setError] = useState<any>({});
+    const [hbdBalanceError, setHbdBalanceError] = useState(false);
+    const [totalDays, setTotalDays] = useState(0)
    
     useEffect(() => {
         setLoading(false)
@@ -52,13 +53,30 @@ const ProposalCreationPage = (props: any) => {
                 [field]:null
             })
         };
+        const days = getDateDifference(formInput.start, formInput.end);
+        setTotalDays(days); 
+       
+    };
+
+    const getDateDifference = (start: any, end: any) => {
+       const startDate = new Date(start);
+       const endDate = new Date(end);
+       const difference: any = endDate.getTime() - startDate.getTime();
+       const daysDifference: number = difference / (1000 * 3600 * 24);
+       console.log(daysDifference)
+       return daysDifference
     }
 
     const onSubmit = (e: any) => {
+        console.log(formInput)
+        const { activeUser } = props;
+        const hbdBalance = Number(props.activeUser.data.hbd_balance.replace("HBD",""))
         e.preventDefault();
         const formErrors = handleFormError();
         if(Object.keys(formErrors).length > 0){
             setError(formErrors)
+        } else if ( hbdBalance < 10 ){
+            setHbdBalanceError(true)
         } else {
             createProposal(
                 activeUser.username, 
@@ -67,9 +85,10 @@ const ProposalCreationPage = (props: any) => {
                 formInput.end, 
                 formInput.funding, 
                 formInput.subject, 
-                formInput.link)
+                formInput.link
+                )
         }
-       
+        console.log(formInput)
     };
 
     if (loading) {
@@ -88,15 +107,17 @@ const ProposalCreationPage = (props: any) => {
         </div>
         <div className="app-content proposals-page">
           <div className="page-header create-proposal mt-5 d-flex justify-content-center flex-direction-column">
-            <h1 className="align-self-center">Create Proposal </h1>
+            <h1 className="align-self-center">{_t("create-proposal.title")}</h1>
+            {hbdBalanceError && <p className="align-self-center text-danger">
+            {_t("create-proposal.hbd-balance-error")}
+            </p>}
             <Form>
                 <Form.Group className="mb-3">
-                    <Form.Label>Creator Username</Form.Label>
+                    <Form.Label>{_t("create-proposal.creator-username")}</Form.Label>
                     <Form.Control 
                     type="text" 
-                    placeholder="@adesojisouljay"
-                    value={activeUser.username}
-                    // isInvalid={!!error.username}
+                    value={formInput.username = props.activeUser.username}
+                    readOnly
                     // onChange={(e: any) => handleChange("username", e.target.value)}
                     />
                     <span className="text-danger">
@@ -104,12 +125,12 @@ const ProposalCreationPage = (props: any) => {
                     </span>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Proposal Description</Form.Label>
+                    <Form.Label>{_t("create-proposal.description")}</Form.Label>
                     <Form.Control 
                     as="textarea" 
                     rows={3} 
-                    placeholder="write a brief subject"
-                    value={formInput.subject}
+                    placeholder={_t("create-proposal.subject")}
+                    value={formInput.subject || ""}
                     isInvalid={!!error.subject}
                     onChange={(e: any) => handleChange("subject", e.target.value)}
                     />
@@ -118,11 +139,11 @@ const ProposalCreationPage = (props: any) => {
                     </span>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Post Link</Form.Label>
+                    <Form.Label>{_t("create-proposal.link")}</Form.Label>
                     <Form.Control 
                     type="text" 
-                    placeholder="enter post link" 
-                    value={formInput.link}
+                    placeholder={_t("create-proposal.link-placeholder")} 
+                    value={formInput.link || ""}
                     isInvalid={!!error.link}
                     onChange={(e: any) => handleChange("link", e.target.value)}
                     />
@@ -131,11 +152,11 @@ const ProposalCreationPage = (props: any) => {
                     </span>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Daily Funding (HBD)</Form.Label>
+                    <Form.Label>{_t("create-proposal.daily-funding")}</Form.Label>
                     <Form.Control 
                     type="text" 
-                    placeholder="Daily amount (HBD)" 
-                    value={formInput.funding}
+                    placeholder={_t("create-proposal.daily-funding-placeholder")} 
+                    value={formInput.funding || ""}
                     isInvalid={!!error.funding}
                     onChange={(e: any) => handleChange("funding", e.target.value)}
                     />
@@ -144,23 +165,25 @@ const ProposalCreationPage = (props: any) => {
                     </span>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Total Amount</Form.Label>
+                    <Form.Label>{_t("create-proposal.total")}</Form.Label>
                     <Form.Control 
                     type="text" 
-                    placeholder="100HBD" 
-                    value={`${Number(!formInput.funding ? null : formInput.funding * 360)} HBD`}
+                    value={formInput.total = !formInput.funding || 
+                        !formInput.start || !formInput.end || Number.isNaN(totalDays * Number(formInput.funding)) ? 0 : 
+                        totalDays * Number(formInput.funding)} 
                     isInvalid={!!error.total}
                     // onChange={(e: any) => handleChange("total", e.target.value)}
+                    readOnly
                     />
                     <span className="text-danger">
                         {error.total}
                     </span>
                 </Form.Group>
                 <Form.Group className="mb-3 date-picker">
-                    <Form.Label>Select Start Date</Form.Label>
+                    <Form.Label>{_t("create-proposal.start-date")}</Form.Label>
                     <Form.Control 
                     type="date" 
-                    value={formInput.start}
+                    value={formInput.start || ""}
                     isInvalid={!!error.start}
                     onChange={(e: any) => handleChange("start", e.target.value)}
                     />
@@ -169,10 +192,10 @@ const ProposalCreationPage = (props: any) => {
                     </span>
                 </Form.Group>
                 <Form.Group className="mb-3 date-picker">
-                    <Form.Label>Select End Date</Form.Label>
+                    <Form.Label>{_t("create-proposal.end-date")}</Form.Label>
                     <Form.Control 
                     type="date" 
-                    value={formInput.end}
+                    value={formInput.end || ""}
                     isInvalid={!!error.end}
                     onChange={(e: any) => handleChange("end", e.target.value)}
                     />
@@ -181,11 +204,11 @@ const ProposalCreationPage = (props: any) => {
                     </span>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Receiver</Form.Label>
+                    <Form.Label>{_t("create-proposal.receiver")}</Form.Label>
                     <Form.Control 
                     type="text" 
-                    placeholder="e.g @demo" 
-                    value={formInput.receiver}
+                    placeholder={_t("create-proposal.receiver-placeholder")} 
+                    value={formInput.receiver || ""}
                     isInvalid={!!error.receiver}
                     onChange={(e: any) => handleChange("receiver", e.target.value)}
                     />
@@ -197,7 +220,7 @@ const ProposalCreationPage = (props: any) => {
                     <Button disabled={!error} className="w-100 p-3 bg-white text-primary"
                     onClick={(e: any) => onSubmit(e)}
                     >
-                        Submit Proposal
+                        {_t("create-proposal.submit")}
                 </Button>
                 </Form.Group>
             </Form>        
