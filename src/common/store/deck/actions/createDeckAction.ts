@@ -1,6 +1,6 @@
 import { CreateAction, DeckState } from "../types";
 import { Dispatch } from "redux";
-import { set } from "../../../util/local-storage";
+import * as ls from "../../../util/local-storage";
 import { serializeDecks } from "../helpers";
 import { createAct } from "../acts";
 
@@ -14,5 +14,5 @@ export const createDeck =
     if (!username) {
       username = "anonymous";
     }
-    set(`user-${username}-decks`, serializeDecks(items));
+    ls.set(`user-${username}-decks`, serializeDecks(items));
   };

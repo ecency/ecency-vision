@@ -41,6 +41,7 @@ describe("(1) Dialog", () => {
     upVoted: false,
     isPostSlider: false,
     setTipDialogMounted: (d: boolean) => {},
+    previousVotedValue: null,
     onClick: () => {}
   };
 
@@ -65,6 +66,7 @@ describe("(2) Btn - No active user", () => {
     users: [],
     activeUser: null,
     isPostSlider: false,
+    previousVotedValue: null,
     ui: UiInstance,
     setActiveUser: () => {},
     updateActiveUser: () => {},
@@ -90,6 +92,7 @@ describe("(3) Btn - Up voted", () => {
     ],
     activeUser: activeUserMaker("user1"),
     isPostSlider: false,
+    previousVotedValue: null,
     ui: UiInstance,
     setActiveUser: () => {},
     updateActiveUser: () => {},
