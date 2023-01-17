@@ -128,7 +128,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     loading: true,
     page: 1,
     lastDataLength: 0,
-    limit: 1000,
+    limit: 300,
     noOfPages: 0,
     startName: "",
     sort: "rank",
@@ -162,7 +162,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     }
     if (prevState.witnesses !== witnesses) {
       this.stateSet({
-        noOfPages: Math.ceil(witnesses.length / 10)
+        noOfPages: Math.ceil(witnesses.length / 30)
       });
     }
   }
@@ -326,8 +326,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     const { witnesses, loading, witnessVotes, proxy, page, sort, searchText, originalWitnesses } =
       this.state;
     const extraWitnesses = witnessVotes.filter((w) => !witnesses.find((y) => y.name === w));
-
-    const pageSize = 10;
+    const pageSize = 30;
     const start = (page - 1) * pageSize;
     const end = start + pageSize;
     const sliced = witnesses
