@@ -9,8 +9,10 @@ import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
 import { History } from "history";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
+import { Global } from "../../store/global/types";
 
 interface Props {
+  global: Global;
   price: number;
   usdPrice: number;
   browserHistory: History;
@@ -37,7 +39,8 @@ export const StakeWidget = ({
   onPriceClick,
   onAmountClick,
   price,
-  usdPrice
+  usdPrice,
+  global
 }: Props) => {
   const [storedFraction, setStoredFraction] = useLocalStorage<number>(PREFIX + "_amml_st_fr");
   const [storedViewType, setStoredViewType] = useLocalStorage<StakeWidgetViewType>(
@@ -51,7 +54,7 @@ export const StakeWidget = ({
   const [fraction, setFraction] = useState(storedFraction ?? 0.00001);
   const [viewType, setViewType] = useState(storedViewType ?? StakeWidgetViewType.All);
 
-  const rowsCount = 20;
+  const rowsCount = global.isMobile ? 5 : 20;
 
   useEffect(() => {
     buildAllStakeItems(fraction);
@@ -142,7 +145,7 @@ export const StakeWidget = ({
               <div>
                 {_t("market.advanced.history-widget.amount")}({fromAsset})
               </div>
-              <div>{_t("market.advanced.history-widget.volume")}</div>
+              {global.isMobile ? <></> : <div>{_t("market.advanced.history-widget.volume")}</div>}
             </div>
           </div>
           <div
@@ -166,7 +169,11 @@ export const StakeWidget = ({
                         <div className="amount" onClick={() => onAmountClick(sell.amount)}>
                           {sell.amount.toFixed(2)}
                         </div>
-                        <div>{formattedNumber(sell.total, { fractionDigits: 2 })}</div>
+                        {global.isMobile ? (
+                          <></>
+                        ) : (
+                          <div>{formattedNumber(sell.total, { fractionDigits: 2 })}</div>
+                        )}
                       </div>
                     ))}
                 </div>
@@ -192,7 +199,11 @@ export const StakeWidget = ({
                         <div className="amount" onClick={() => onAmountClick(buy.amount)}>
                           {buy.amount.toFixed(2)}
                         </div>
-                        <div>{formattedNumber(buy.total, { fractionDigits: 2 })}</div>
+                        {global.isMobile ? (
+                          <></>
+                        ) : (
+                          <div>{formattedNumber(buy.total, { fractionDigits: 2 })}</div>
+                        )}
                       </div>
                     ))}
                 </div>

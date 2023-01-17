@@ -85,7 +85,7 @@ export const WidgetLayoutBuilder = ({
       className="widget-layout-builder"
       layouts={layout}
       breakpoints={{ lg: 1200, md: 996, sm: 768 }}
-      cols={{ lg: 12, md: 2, sm: 1 }}
+      cols={{ lg: 12, md: 2, sm: 3 }}
       compactType="vertical"
       containerPadding={[0, 0]}
       margin={[0, 0]}
@@ -106,6 +106,7 @@ export const WidgetLayoutBuilder = ({
       </div>
       <div key="s">
         <StakeWidget
+          global={global}
           price={dayChange.price}
           usdPrice={usdPrice}
           browserHistory={browserHistory}

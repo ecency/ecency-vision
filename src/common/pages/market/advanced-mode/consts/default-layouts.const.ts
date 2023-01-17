@@ -19,10 +19,10 @@ export const DEFAULT_LAYOUT: GridLayout.Layouts = {
     { i: "oo", x: 1, y: 2, w: 1, h: 3 }
   ],
   sm: [
-    { i: "s", x: 0, y: 0, w: 1, h: 6 },
-    { i: "tv", x: 0, y: 1, w: 1, h: 3 },
-    { i: "h", x: 0, y: 2, w: 1, h: 6 },
-    { i: "tf", x: 0, y: 3, w: 1, h: 5 },
-    { i: "oo", x: 0, y: 4, w: 1, h: 2 }
+    { i: "s", x: 0, y: 0, w: 1, h: 3 },
+    { i: "tv", x: 0, y: 2, w: 3, h: 3 },
+    { i: "h", x: 0, y: 4, w: 3, h: 6 },
+    { i: "tf", x: 1, y: 0, w: 2, h: 3 },
+    { i: "oo", x: 0, y: 1, w: 3, h: 2 }
   ]
 };

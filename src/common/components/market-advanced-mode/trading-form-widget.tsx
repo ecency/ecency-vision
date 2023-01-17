@@ -41,6 +41,7 @@ export const TradingFormWidget = ({
   const [loading, setLoading] = useState(false);
   const [buyPeakValue, setBuyPeakValue] = useState(0);
   const [sellPeakValue, setSellPeakValue] = useState(0);
+  const [activeTab, setActiveTab] = useState("buy");
 
   useEffect(() => {
     setBuyPeakValue(price);
@@ -52,43 +53,74 @@ export const TradingFormWidget = ({
       type={Widget.TradingForm}
       history={history}
       className="market-advanced-mode-tf-widget"
-      title={_t("market.advanced.form")}
+      title={
+        global.isMobile ? (
+          <div className="market-advanced-mode-oo-widget-tabs">
+            <div
+              className={
+                "market-advanced-mode-oo-widget-tab " + (activeTab === "buy" ? "active" : "")
+              }
+              onClick={() => setActiveTab("buy")}
+            >
+              Buy
+            </div>
+            <div
+              className={
+                "market-advanced-mode-oo-widget-tab " + (activeTab === "sell" ? "active" : "")
+              }
+              onClick={() => setActiveTab("sell")}
+            >
+              Sell
+            </div>
+          </div>
+        ) : (
+          _t("market.advanced.form")
+        )
+      }
       children={
         <div>
           {activeUser ? (
             <div className="market-advanced-mode-trading-form-widget d-flex">
-              <HiveBarter
-                prefilledAmount={amount}
-                isInline={true}
-                type={1}
-                available={buyBalance}
-                username={activeUser.username}
-                peakValue={buyPeakValue}
-                basePeakValue={dayChange.low}
-                loading={loading}
-                activeUser={activeUser}
-                global={global}
-                onClickPeakValue={(v) => {
-                  setBuyPeakValue(+v);
-                }}
-                onTransactionSuccess={() => onSuccessTrade()}
-              />
-              <HiveBarter
-                prefilledAmount={amount}
-                isInline={true}
-                type={2}
-                available={sellBalance}
-                username={activeUser.username}
-                peakValue={sellPeakValue}
-                basePeakValue={dayChange.high}
-                loading={loading}
-                activeUser={activeUser}
-                global={global}
-                onClickPeakValue={(v) => {
-                  setSellPeakValue(+v);
-                }}
-                onTransactionSuccess={() => onSuccessTrade()}
-              />
+              {activeTab === "buy" || !global.isMobile ? (
+                <HiveBarter
+                  prefilledAmount={amount}
+                  isInline={true}
+                  type={1}
+                  available={buyBalance}
+                  username={activeUser.username}
+                  peakValue={buyPeakValue}
+                  basePeakValue={dayChange.low}
+                  loading={loading}
+                  activeUser={activeUser}
+                  global={global}
+                  onClickPeakValue={(v) => {
+                    setBuyPeakValue(+v);
+                  }}
+                  onTransactionSuccess={() => onSuccessTrade()}
+                />
+              ) : (
+                <></>
+              )}
+              {activeTab === "sell" || !global.isMobile ? (
+                <HiveBarter
+                  prefilledAmount={amount}
+                  isInline={true}
+                  type={2}
+                  available={sellBalance}
+                  username={activeUser.username}
+                  peakValue={sellPeakValue}
+                  basePeakValue={dayChange.high}
+                  loading={loading}
+                  activeUser={activeUser}
+                  global={global}
+                  onClickPeakValue={(v) => {
+                    setSellPeakValue(+v);
+                  }}
+                  onTransactionSuccess={() => onSuccessTrade()}
+                />
+              ) : (
+                <></>
+              )}
             </div>
           ) : (
             <div className="market-advanced-mode-trading-form-login-required-widget">
