@@ -98,7 +98,6 @@ interface State {
   showMuted: boolean;
   showModMuted: boolean;
   mounted: boolean;
-  dateFormatted: string;
 }
 
 export default class EntryListItem extends Component<Props, State> {
@@ -106,8 +105,7 @@ export default class EntryListItem extends Component<Props, State> {
     showNsfw: false,
     showMuted: false,
     showModMuted: false,
-    mounted: false,
-    dateFormatted: ""
+    mounted: false
   };
 
   public static defaultProps = {
@@ -234,7 +232,6 @@ export default class EntryListItem extends Component<Props, State> {
 
     const dateRelative = dateToRelative(entry.created);
     const dateFormatted = dateToFormatted(entry.created);
-    this.setState({ dateFormatted: dateFormatted });
 
     const isChild = !!entry.parent_author;
 

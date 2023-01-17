@@ -420,13 +420,13 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             <p>{_t("entry-list-item.old-post-error")}</p>
             <div className="vote-error-suggestion">
               {_t("entry-list-item.old-post-error-suggestion")}
-              <p>
+              <div className="tipping-icon">
                 {
                   <EntryTipBtn
                     {...{ entry, setTipDialogMounted: this.props.setTipDialogMounted }}
                   />
                 }
-              </p>
+              </div>
             </div>
           </div>
         ) : (
