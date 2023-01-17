@@ -1238,7 +1238,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         )}
                         <span className="flex-spacer" />
                         <Tooltip content={_t("entry.raw")}>
-                          <span style={{ marginRight: "15px" }} onClick={this.toggleRawContent}>
+                          <span className="raw-content-icon" onClick={this.toggleRawContent}>
                             {rawContentSvg}
                           </span>
                         </Tooltip>
