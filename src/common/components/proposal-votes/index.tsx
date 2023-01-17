@@ -37,10 +37,10 @@ interface Props {
   global: Global;
   dynamicProps: DynamicProps;
   proposal: Proposal;
-  votes: string;
   searchText: string;
   addAccount: (data: Account) => void;
   onHide: () => void;
+  getVotesCount: (votes: number) => void;
 }
 
 interface State {
@@ -112,11 +112,12 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
 
   load = () => {
     this.setState({ loading: true });
-    const { proposal, dynamicProps } = this.props;
+    const { proposal, dynamicProps, getVotesCount } = this.props;
     const { hivePerMVests } = dynamicProps;
     const { voter, limit } = this.state;
     getProposalVotes(proposal.id, voter, limit)
       .then((votes) => {
+        getVotesCount(votes.length);
         this.setState({ voter: votes[votes.length - 1].voter, lastDataLength: votes.length });
         const usernames = [...new Set(votes.map((x) => x.voter))]; // duplicate records come in some way.
 
@@ -273,22 +274,26 @@ interface ProposalVotesProps {
   global: Global;
   dynamicProps: DynamicProps;
   proposal: Proposal;
-  votes: string;
   addAccount: (data: Account) => void;
   onHide: () => void;
 }
 
 interface ProposalVotesState {
   searchText: string;
+  voteCount: number;
 }
 export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesState> {
   state: ProposalVotesState = {
-    searchText: ""
+    searchText: "",
+    voteCount: 0
+  };
+
+  getVotesCount = (num: number) => {
+    this.setState({ voteCount: this.state.voteCount + num });
   };
   render() {
-    const { proposal, onHide, votes } = this.props;
-    const { searchText } = this.state;
-
+    const { proposal, onHide } = this.props;
+    const { searchText, voteCount } = this.state;
     return (
       <Modal
         onHide={onHide}
@@ -300,7 +305,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
       >
         <Modal.Header closeButton={true} className="align-items-center px-0">
           <Modal.Title>
-            {votes + " " + _t("proposals.votes-dialog-title", { n: proposal.id })}
+            {voteCount + " " + _t("proposals.votes-dialog-title", { n: proposal.id })}
           </Modal.Title>
         </Modal.Header>
         <Form.Group className="w-100 mb-3">
@@ -314,7 +319,11 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
           />
         </Form.Group>
         <Modal.Body>
-          <ProposalVotesDetail {...this.props} searchText={searchText} />
+          <ProposalVotesDetail
+            {...this.props}
+            searchText={searchText}
+            getVotesCount={this.getVotesCount}
+          />
         </Modal.Body>
       </Modal>
     );
@@ -327,7 +336,6 @@ export default (p: ProposalVotesProps) => {
     global: p.global,
     dynamicProps: p.dynamicProps,
     proposal: p.proposal,
-    votes: p.votes,
     addAccount: p.addAccount,
     onHide: p.onHide
   };
