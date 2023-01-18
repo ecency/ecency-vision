@@ -94,7 +94,7 @@ thead, .pagination {
 
             @include media-breakpoint-down(xs) {
                 padding-top: 0;
-                flex-direction: column;
+                padding-bottom: 0;
             }
 
             .trading-pair {
@@ -186,6 +186,14 @@ thead, .pagination {
             &.one-type {
                 justify-content: start;
             }
+
+            @include media-breakpoint-down(md) {
+                height: auto;
+
+                .history-widget-row {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
         }
 
         .market-stake-widget-sell, .market-stake-widget-buy {
@@ -229,7 +237,8 @@ thead, .pagination {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            padding-left: 8px;
+            padding-left: 12px;
+            gap: 0.25rem;
 
             .stake-widget-header-view-type {
                 display: flex;

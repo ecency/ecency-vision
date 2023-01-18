@@ -25,7 +25,7 @@ export const StakeWidgetHeaderOptions = ({
   const [fractionValue, setFractionValue] = useState(fraction);
 
   return (
-    <div className="stake-widget-header-options">
+    <div className="stake-widget-header-options flex-wrap">
       <div className="stake-widget-header-view-type">
         <Button
           variant={"link"}
