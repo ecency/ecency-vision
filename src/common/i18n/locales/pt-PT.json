@@ -64,7 +64,7 @@
     "close": "Fechar",
     "loading": "Carregando",
     "stop": "Parar",
-    "settings": "Settings"
+    "settings": "Ajustes"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -72,9 +72,9 @@
     "cancel": "Cancelar"
   },
   "announcements": {
-    "dismiss": "Dismiss",
-    "next": "Next",
-    "later": "Later"
+    "dismiss": "Descartar",
+    "next": "Próximo",
+    "later": "Depois"
   },
   "entry-filter": {
     "filter-trending": "Destaques",
@@ -101,8 +101,8 @@
     "filter-month": "Este mês",
     "filter-year": "Este ano",
     "filter-alltime": "Desde o início",
-    "filter-no-reblog": "Excluir reblog",
-    "filter-with-reblog": "Include reblog"
+    "filter-no-reblog": "Excluir reblogs",
+    "filter-with-reblog": "Incluir reblogs"
   },
   "navbar": {
     "discover": "Descubra",
@@ -175,7 +175,7 @@
     "sign-up-text-2": "Registe-se agora!"
   },
   "sign-up": {
-    "header": "Rewarding communities",
+    "header": "Comunidades gratificantes",
     "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
     "bottom-description": "Cada conta é criada na blockchain da Hive, e só você tem controle sobre seu perfil e ativos. Através da Ecency, você tem uma conta para administrar tudo na blockchain da Hive.",
     "learn-more": "Aprenda mais sobre benefícios acessando nossas <a href=\"/faq#how-to-join\">Perguntas Frequentes</a>",
@@ -194,7 +194,7 @@
     "title": "Tópicos"
   },
   "sort-trending-tags": {
-    "sort": "Sort",
+    "sort": "Ordenar",
     "ascending": "Ascending",
     "descending": "Descending"
   },
@@ -367,11 +367,11 @@
     "orders": "Ordens",
     "date": "Data",
     "open-orders": "Ordens Ativas",
-    "pending-orders": "Pending orders",
+    "pending-orders": "Ordens pendentes",
     "type": "Tipo",
-    "mode-limit": "Limit",
-    "mode-swap": "Swap",
-    "mode-advanced": "Advanced",
+    "mode-limit": "Limite",
+    "mode-swap": "Trocar",
+    "mode-advanced": "Avançado",
     "action": "Ação",
     "trade-history": "Histórico de Compra e Venda",
     "stock-params": "Parâmetros",
@@ -391,7 +391,7 @@
     "swapping": "Swapping...",
     "continue": "Continue",
     "balance": "Balance",
-    "fee": "Fee",
+    "fee": "Taxa",
     "fee-free": "Free",
     "order-book-impact": "Order book impact",
     "swap-title": "Swap your funds",
@@ -425,7 +425,7 @@
       "empty-open-orders": "No orders",
       "history-widget": {
         "price": "Price",
-        "amount": "Amount",
+        "amount": "Quantia",
         "volume": "Volume",
         "time": "Time"
       }
@@ -466,7 +466,7 @@
     "post-word-count": "Words:",
     "post-read-time": "Reading:",
     "post-read-minuites": "min",
-    "raw": "View RAW format"
+    "raw": "Visualizar em formato RAW"
   },
   "edit-history": {
     "title": "Editar Histórico",
@@ -1570,9 +1570,9 @@
       "how-many-vote-body": "<p>Para cada voto positivo com 100% de força realizado, 2% do poder de voto é utilizado. Seu poder de voto é recarregado em 20% por dia. Embora seja possível votar mais de 10 vezes por dia, cada novo voto valerá menos, e seu poder de voto demorará mais tempo para atingir sua força total novamente.</p>",
       "what-is-hivesigner-header": "What is Hivesigner?",
       "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
-      "what-is-keychain-header": "What is Keychain?",
+      "what-is-keychain-header": "O que é Keychain?",
       "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
-      "videos-pictures-stored-header": "Are pictures and video stored on the blockchain?",
+      "videos-pictures-stored-header": "Os vídeos e as fotos são armazenados na blockchain?",
       "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
       "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
       "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>"
@@ -1680,6 +1680,6 @@
     "insufficient-resource-purchase": "Purchase account boost or delegation",
     "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
     "insufficient-resource-wait": "Wait few hours for RC refill",
-    "report": "Report"
+    "report": "Reportar"
   }
 }
