@@ -465,7 +465,8 @@
     "community-in": "in",
     "post-word-count": "Woorden:",
     "post-read-time": "Lezen:",
-    "post-read-minuites": "minuten"
+    "post-read-minuites": "minuten",
+    "raw": "View RAW format"
   },
   "edit-history": {
     "title": "Geschiedenis bewerken",
