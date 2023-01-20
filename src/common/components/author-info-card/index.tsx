@@ -115,9 +115,11 @@ const AuthorInfoCard = (props: Props) => {
           <FollowControls {...props} targetUsername={props?.entry.author} where={"author-card"} />
         )}
 
-        {props?.global?.usePrivate && props?.entry?.author && (
-          <FavoriteBtn {...props} targetUsername={props?.entry.author} />
-        )}
+        {props?.global?.usePrivate &&
+          props?.entry?.author &&
+          props?.entry?.author !== props.activeUser?.username && (
+            <FavoriteBtn {...props} targetUsername={props?.entry.author} />
+          )}
 
         {props?.global?.usePrivate &&
           BookmarkBtn({

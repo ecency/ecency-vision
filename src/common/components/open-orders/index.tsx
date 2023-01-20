@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { OpenOrdersData } from "../../api/hive";
 import BuySellHiveDialog, { TransactionType } from "../buy-sell-hive";
 import { _t } from "../../i18n";
@@ -23,9 +23,10 @@ interface Props {
   username: string;
   onTransactionSuccess: () => void;
   activeUser: ActiveUser;
+  compat?: boolean;
 }
 
-export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: Props) => {
+export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser, compat }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState<number>(0);
 
   return loading ? (
@@ -44,7 +45,7 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
           />
         </>
       ) : null}
-      <h5>{_t("market.open-orders")}</h5>
+      {compat ? <></> : <h5>{_t("market.open-orders")}</h5>}
       <Table striped={true} bordered={true} hover={true} size="sm">
         <thead>
           <tr>
@@ -58,7 +59,13 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
             return (
               <tr key={item.id}>
                 <td title={dateToFormatted(item.created)}>{dateToFullRelative(item.created)}</td>
-                <td>{item.sell_price.base.indexOf("HIVE") > 0 ? "Sell" : "Buy"}</td>
+                <td
+                  className={
+                    item.sell_price.base.indexOf("HIVE") > 0 ? "text-danger" : "text-success"
+                  }
+                >
+                  {item.sell_price.base.indexOf("HIVE") > 0 ? "Sell" : "Buy"}
+                </td>
                 <td>{parseFloat(item.real_price).toFixed(6)}</td>
                 <td>
                   {item.sell_price.base.indexOf("HIVE") > 0
@@ -71,12 +78,9 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
                     : item.sell_price.base.replace("HBD", "")}
                 </td>
                 <td className="p-2">
-                  <div
-                    className="rounded text-white bg-primary p-1 d-inline pointer"
-                    onClick={() => setIsModalOpen(item.orderid)}
-                  >
-                    Cancel
-                  </div>
+                  <Button size="sm" className="py-0" onClick={() => setIsModalOpen(item.orderid)}>
+                    {_t("g.cancel")}
+                  </Button>
                 </td>
               </tr>
             );

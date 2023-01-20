@@ -4,11 +4,12 @@ import { MarketMode } from "./market-mode";
 import { _t } from "../../i18n";
 
 interface Props {
+  className?: string;
   mode: MarketMode;
   onSelect: (mode: MarketMode) => void;
 }
 
-export const ModeSelector = ({ mode, onSelect }: Props) => {
+export const ModeSelector = ({ mode, onSelect, className }: Props) => {
   const [rawMode, setRawMode] = useState("");
 
   useEffect(() => {
@@ -16,7 +17,7 @@ export const ModeSelector = ({ mode, onSelect }: Props) => {
   }, [mode]);
 
   return (
-    <ButtonGroup className="d-flex mb-5 mode-selector mx-auto">
+    <ButtonGroup className={"d-flex mode-selector " + className ?? ""}>
       <Button
         active={rawMode === MarketMode.SWAP}
         onClick={() => {
@@ -37,8 +38,10 @@ export const ModeSelector = ({ mode, onSelect }: Props) => {
       </Button>
       <Button
         active={rawMode === MarketMode.ADVANCED}
-        onClick={() => onSelect(MarketMode.ADVANCED)}
-        disabled={true}
+        onClick={() => {
+          onSelect(MarketMode.ADVANCED);
+          window.location.hash = "advanced";
+        }}
       >
         {_t("market.mode-advanced")}
       </Button>

@@ -111,9 +111,9 @@ exports[`SwapAmountControl should be able to show available assets list 1`] = `
             HIVE
           </option>
           <option
-            value="HBD($)"
+            value="HBD"
           >
-            HBD($)
+            HBD
           </option>
         </select>
       </div>

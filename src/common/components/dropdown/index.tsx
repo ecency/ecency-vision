@@ -19,7 +19,7 @@ export interface MenuItem {
 
 interface Props {
   history: History | null;
-  float: "left" | "right";
+  float: "left" | "right" | "none";
   alignBottom?: boolean;
   header?: string;
   preElem?: JSX.Element;

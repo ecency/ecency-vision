@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { DeckState, ReOrderAction } from "../types";
 import { reorderAct } from "../acts";
-import { set } from "../../../util/local-storage";
+import * as ls from "../../../util/local-storage";
 import { serializeDecks } from "../helpers";
 
 export const reorderDecks =
@@ -13,5 +13,5 @@ export const reorderDecks =
     if (!username) {
       username = "anonymous";
     }
-    set(`user-${username}-decks`, serializeDecks(items));
+    ls.set(`user-${username}-decks`, serializeDecks(items));
   };

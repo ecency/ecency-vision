@@ -70,6 +70,11 @@
     "ok": "Tasdiqlash",
     "cancel": "Rad etish"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "Trendda",
     "filter-hot": "Qaynoq",
@@ -1056,16 +1061,16 @@
     "deleted": "Sevimlilardan olib tashlandi"
   },
   "editor-toolbar": {
-    "bold": "Qalin",
-    "italic": "Kursiv",
+    "bold": "Bold (Alt + B)",
+    "italic": "Italic (Alt + I)",
     "header": "Sarlavha",
-    "code": "Kod",
-    "quote": "Ibora",
+    "code": "Code (Alt + C)",
+    "quote": "Quote (Alt + M)",
     "ul": "Raqamlanmagan ro'yxat",
     "ol": "Raqamlangan ro'yxat",
-    "link": "Havola",
-    "image": "Rasm",
-    "table": "Jadval",
+    "link": "Link (Alt + K)",
+    "image": "Image (Alt + D)",
+    "table": "Table (Alt + T)",
     "table-3-col": "3 ta ustun",
     "table-2-col": "2 ta ustun",
     "table-1-col": "1 ta ustun",

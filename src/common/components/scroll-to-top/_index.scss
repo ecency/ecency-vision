@@ -16,6 +16,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    & ~ .announcement-container {
+      bottom: 6rem;
+    }
   }
 
   svg {

@@ -588,7 +588,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
     const isComment = !!entry.parent_author;
     const ownEntry = activeUser && activeUser.username === entry.author;
-    const isHidden = entry?.net_rshares < -500000000;
+    const isHidden = entry?.net_rshares < -7000000000 && entry?.active_votes.length > 3; // 1000 HPstat
     const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
     const isLowReputation =
       entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
