@@ -18,7 +18,8 @@ import {
 
 import {
   priceUpSvg,
-  priceDownSvg
+  priceDownSvg,
+  plusCircle
 } from "../../img/svg";
 
 import formattedNumber from "../../util/formatted-number";
@@ -29,6 +30,9 @@ import { vestsToHp } from "../../helper/vesting";
 import { marketInfo, } from "../../api/misc";
 import { HiveWalletPortfolioChart, HbdWalletPortfolioChart } from "../wallet-portfolio-chart";
 import { getCurrencyTokenRate } from "../../api/private-api";
+import EngineTokensList from "../engine-tokens-list";
+import { Button, FormControl, Modal } from "react-bootstrap";
+import { updateProfile } from "../../api/operations";
 
 const hbdIcom = require("./asset/hbd.png")
 const ecencyIcon = require("./asset/ecency.jpeg")
@@ -36,7 +40,7 @@ const ecencyIcon = require("./asset/ecency.jpeg")
 interface Props {
   global: Global;
   dynamicProps: DynamicProps;
-  account: Account;
+  account: Account | any;
   history: History;
   updateActiveUser: (data?: Account) => void;
   updateWalletValues: () => void;
@@ -52,6 +56,9 @@ interface State {
   coingeckoData: any;
   estimatedPointsValue: number;
   estimatedPointsValueLoading: boolean;
+  search: string;
+  showTokenList: boolean;
+  favoriteTokens: HiveEngineToken[] | any;
 }
 
 export class WalletPortfolio extends BaseComponent<Props, State> {
@@ -63,17 +70,20 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     converting: 0,
     coingeckoData: [],
     estimatedPointsValue: 0,
-    estimatedPointsValueLoading: false
+    estimatedPointsValueLoading: false,
+    search: "",
+    showTokenList: false,
+    favoriteTokens: []
   };
   _isMounted = false;
   pricePerHive = this.props.dynamicProps.base / this.props.dynamicProps.quote;
-
-  componentDidMount() {    
-    
-    this._isMounted = true;
+  
+  componentDidMount() {
+    this._isMounted = true; 
     this._isMounted && this.engineTokensData();
     this._isMounted && this.dataFromCoinGecko();
-    this._isMounted && this.getEstimatedPointsValue();
+    this._isMounted && this.getEstimatedPointsValue();    
+    this._isMounted && this.loadFavoritesTokens();
   }
 
   componentWillUnmount() {
@@ -82,7 +92,6 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
 
   dataFromCoinGecko = async () => {
     const data = await marketInfo();
-    // console.log(data)
     this.setState({coingeckoData: data})
   }
 
@@ -114,9 +123,9 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     this.setState({ allTokens: tokensUsdValues });
     return tokensUsdValues;
   };
-
+  
   getEstimatedPointsValue = () => {
-    const {
+    const { 
       global: { currency }
     } = this.props;
     this.setState({estimatedPointsValueLoading: true});
@@ -134,12 +143,41 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
 
     handleLink (symbol:string) {
       this.props.history.push(`portfolio/${symbol.toLowerCase()}`)
+    };
+    
+    hideList = () => {
+      this.setState({showTokenList: false})
+    };
+
+    showList = () => {
+      this.setState({showTokenList: true})
+    };
+
+    loadFavoritesTokens = async () => {
+      const { account } = this.props;
+      this.setState({favoriteTokens: account?.profile?.profileTokens, loading: false}) 
     }
+ 
+    addToFavorite = async (token: HiveEngineToken | any) => {
+      const { account } = this.props;
+      const userProfile = JSON.parse(account.posting_json_metadata)
+      const profileTokens: any = account?.profile.profileTokens || []
+      const { profile } = userProfile;  
+      let mappedTokens: any = profileTokens.map((t: any) => t.symbol === token.symbol) 
+      console.log(mappedTokens)
+      if (!mappedTokens.includes(true)){ 
+        console.log("Not on list")
+        profileTokens.push(token)
+      }else {
+        console.log("Token already added")
+      }
+      const newPostMeta: any = {...profile, profileTokens}    
+      updateProfile(account, newPostMeta)  
+    };
 
   render() {
     const { global, dynamicProps, account, points } = this.props;
-    const { allTokens, converting, coingeckoData, estimatedPointsValue } = this.state;
-    // console.log(estimatedPointsValue)
+    const { allTokens, converting, coingeckoData, estimatedPointsValue, search, showTokenList, favoriteTokens, loading } = this.state;
     const { hivePerMVests } = dynamicProps;
     const w = new HiveWallet(account, dynamicProps, converting);
 
@@ -151,7 +189,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
             <span>Total wallet Value: $1.19</span>
           </div>
         <div className="wallet-main mt-3">
-        <table className="table">
+          <table className="table">
           <thead>
             <tr>                
               <th>{_t("wallet-portfolio.name")}</th>
@@ -183,25 +221,6 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   <td className="align-middle">${Number(estimatedPointsValue * Number(points.points)).toFixed(3)}</td>
                 </tr>
 
-                <tr className="table-row" onClick={() => this.handleLink("hive")}>
-                  <td className="align-middle">
-                  <img src={coingeckoData[0]?.image} className="item-image"/>
-                    <span>HIVE</span>                    
-                  </td>
-                  <td className="align-middle">${this.pricePerHive}</td>
-                  <td className={`align-middle ${coingeckoData[0]?.price_change_percentage_24h < 0 ? "text-danger" : "text-success"}`}>
-                      <span>
-                        {coingeckoData[0]?.price_change_percentage_24h < 0 ? priceDownSvg : priceUpSvg}
-                      </span>
-                    {coingeckoData[0]?.price_change_percentage_24h}
-                  </td>
-                  <td className="align-middle">
-                    <HiveWalletPortfolioChart coinData={coingeckoData} />
-                  </td>
-                  <td className="align-middle">{w.balance}</td>
-                  <td className="align-middle">${Number(w.balance * this.pricePerHive).toFixed(3)}</td>
-                </tr>
-
                 <tr className="table-row" onClick={() => this.handleLink("hive-power")}>
                   <td className="align-middle">
                   <img src={coingeckoData[0]?.image} className="item-image"/>
@@ -219,6 +238,25 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   </td>
                   <td className="align-middle">{totalHP}</td>
                   <td className="align-middle">${Number(totalHP * this.pricePerHive).toFixed(3)}</td>
+                </tr>
+
+                <tr className="table-row" onClick={() => this.handleLink("hive")}>
+                  <td className="align-middle">
+                  <img src={coingeckoData[0]?.image} className="item-image"/>
+                    <span>HIVE</span>                    
+                  </td>
+                  <td className="align-middle">${this.pricePerHive}</td>
+                  <td className={`align-middle ${coingeckoData[0]?.price_change_percentage_24h < 0 ? "text-danger" : "text-success"}`}>
+                      <span>
+                        {coingeckoData[0]?.price_change_percentage_24h < 0 ? priceDownSvg : priceUpSvg}
+                      </span>
+                    {coingeckoData[0]?.price_change_percentage_24h}
+                  </td>
+                  <td className="align-middle">
+                    <HiveWalletPortfolioChart coinData={coingeckoData} />
+                  </td>
+                  <td className="align-middle">{w.balance}</td>
+                  <td className="align-middle">${Number(w.balance * this.pricePerHive).toFixed(3)}</td>
                 </tr>
 
                 <tr className="table-row" onClick={() => this.handleLink("hbd")}>
@@ -240,7 +278,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   <td className="align-middle">${Number(w.hbdBalance * coingeckoData[1]?.current_price).toFixed(3)}</td>
                 </tr>
 
-          {allTokens?.map((a: any) =>{
+          {loading ? <LinearProgress/> : favoriteTokens?.map((a: any) =>{
             const changeValue = parseFloat(a?.priceChangePercent);
             return(
               <tr className="table-row" key={a.symbol} onClick={() => this.handleLink(a.symbol)}>
@@ -282,8 +320,50 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                 })}
               </>
           </tbody>
-        </table>
+          </table>
         </div>
+        <div className="d-flex justify-content-center">          
+          <Button
+          className="p-2"
+          onClick={this.showList}
+          >Add Token {plusCircle}</Button> 
+        </div>
+  <Modal 
+    onHide={this.hideList} 
+    show={showTokenList} 
+    centered={true} 
+    animation={false} 
+    size="lg"
+    scrollable
+    style={{height: "100vh"}}
+    >
+    <Modal.Header closeButton={true}>
+      <Modal.Title>
+        Tokens
+      </Modal.Title>
+    </Modal.Header>
+    <Modal.Body> 
+    <div className="list-search-box d-flex justify-content-center mb-3">
+      <FormControl     
+        value={search}
+        placeholder="search token"
+        onChange={(e) => this.setState({search: e.target.value})}
+        style={{width: "50%"}}
+      />
+    </div>
+    {allTokens?.filter((list: any) => 
+               list.name.toLowerCase().startsWith(search) || 
+               list.name.toLowerCase().includes(search)
+               ).map((token: any, i: any) =>(
+      <EngineTokensList 
+      token={token} 
+      showTokenList={showTokenList} 
+      addToFavorite={this.addToFavorite}
+      hideModal={this.hideList}
+      key={i}/>
+    ))}    
+    </Modal.Body>
+  </Modal>    
       </div>
     );
   }

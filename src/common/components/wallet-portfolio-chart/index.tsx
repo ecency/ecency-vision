@@ -16,7 +16,6 @@ export const HiveWalletPortfolioChart = (props: any) => {
 
     const marketChartInfo = async () => {
         const data: any = await marketChart("hive")
-            console.log(data)
             setPrices(data.prices)
     }
     
@@ -143,7 +142,6 @@ export const HbdWalletPortfolioChart = (props: any) => {
 
     const marketChartInfo = async () => {
         const data: any = await marketChart("hive_dollar")
-            console.log(data)
             setPrices(data.prices)
     }
     

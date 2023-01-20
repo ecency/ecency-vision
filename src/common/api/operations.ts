@@ -1262,6 +1262,7 @@ export const updateProfile = (
     cover_image: string;
     profile_image: string;
     pinned: string;
+    profileTokens?: string[]
   }
 ): Promise<TransactionConfirmation> => {
   const params = {
@@ -1764,3 +1765,25 @@ export const unstakeHiveEngineKey = async (
   const result = await hiveClient.broadcast.json(op, key);
   return result;
 };
+
+// export const updateFavoriteTokens = (
+//   account: string, 
+//   jsonM: string, 
+//   postingJsonM: any 
+//   ): Promise<TransactionConfirmation> => {
+
+//   const json = JSON.stringify({
+//     account,
+//     json_metadata: jsonM,
+//     posting_json_metadata: postingJsonM
+//   });
+
+//   const op: Operation[] = [
+//     [
+//       "account_update2",
+//       json
+//     ]
+//   ]
+
+//   return broadcastPostingOperations(account, op)
+// }
