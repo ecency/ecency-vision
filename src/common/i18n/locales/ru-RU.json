@@ -465,7 +465,8 @@
     "community-in": "в",
     "post-word-count": "Слова:",
     "post-read-time": "Чтение:",
-    "post-read-minuites": "мин"
+    "post-read-minuites": "мин",
+    "raw": "View RAW format"
   },
   "edit-history": {
     "title": "История изменений",
