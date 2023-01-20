@@ -117,13 +117,13 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
     const { voter, limit } = this.state;
     getProposalVotes(proposal.id, voter, limit)
       .then((votes) => {
-        getVotesCount(votes.length);
         this.setState({ voter: votes[votes.length - 1].voter, lastDataLength: votes.length });
         const usernames = [...new Set(votes.map((x) => x.voter))]; // duplicate records come in some way.
 
         return getAccounts(usernames);
       })
       .then((resp) => {
+        getVotesCount(resp.length);
         let voters: Voter[] = resp
           .map((account) => {
             const hp = (parseAsset(account.vesting_shares).amount * hivePerMVests) / 1e6;
@@ -294,6 +294,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
   render() {
     const { proposal, onHide } = this.props;
     const { searchText, voteCount } = this.state;
+    const modelTitle = voteCount % 1000 ? voteCount + " " : voteCount + "+" + " ";
     return (
       <Modal
         onHide={onHide}
@@ -305,7 +306,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
       >
         <Modal.Header closeButton={true} className="align-items-center px-0">
           <Modal.Title>
-            {voteCount + " " + _t("proposals.votes-dialog-title", { n: proposal.id })}
+            {modelTitle + _t("proposals.votes-dialog-title", { n: proposal.id })}
           </Modal.Title>
         </Modal.Header>
         <Form.Group className="w-100 mb-3">
