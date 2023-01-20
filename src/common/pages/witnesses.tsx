@@ -1,7 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { Form, FormControl } from "react-bootstrap";
+import { Form, FormControl, Spinner } from "react-bootstrap";
 
 import { pathToRegexp } from "path-to-regexp";
 
@@ -116,7 +116,7 @@ interface State {
   searchText: string;
   originalWitnesses: WitnessTransformed[];
   rank: number;
-  scroll: boolean;
+  spinner: boolean;
 }
 
 class WitnessesPage extends BaseComponent<PageProps, State> {
@@ -128,14 +128,14 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     loading: true,
     page: 1,
     lastDataLength: 0,
-    limit: 300,
+    limit: 31,
     noOfPages: 0,
     startName: "",
     sort: "rank",
     searchText: "",
     originalWitnesses: [],
     rank: 1,
-    scroll: false
+    spinner: false
   };
 
   componentDidMount() {
@@ -171,21 +171,14 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  handleResize = () => {
-    if (innerWidth <= 767) {
-      this.setState({ scroll: true });
-    } else {
-      this.stateSet({ scroll: false });
-    }
-  };
-
   handleScroll = () => {
     const { innerWidth } = window;
     const { lastDataLength, limit } = this.state;
     if (innerWidth <= 767) {
       let b = document.body;
-      let scrollHeight = (b.scrollHeight / 100) * 90;
+      let scrollHeight = (b.scrollHeight / 100) * 91;
       if (window.scrollY >= scrollHeight && lastDataLength === limit) {
+        this.stateSet({ spinner: true });
         this.load();
       }
     }
@@ -295,11 +288,16 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         byWitnessState = this.makeUniqueArray(prevWitnesses);
       }
       this.stateSet(
-        { witnesses: byWitnessState, loading: false, originalWitnesses: uniqueOriginalWitnesses },
+        {
+          witnesses: byWitnessState,
+          loading: false,
+          originalWitnesses: uniqueOriginalWitnesses,
+          spinner: false
+        },
         this.search
       );
     } catch (error) {
-      this.stateSet({ loading: false });
+      this.stateSet({ loading: false, spinner: false });
     }
   };
 
@@ -323,8 +321,17 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
 
     const { global, activeUser, location } = this.props;
     let params = location.search.split("=")[1];
-    const { witnesses, loading, witnessVotes, proxy, page, sort, searchText, originalWitnesses } =
-      this.state;
+    const {
+      witnesses,
+      loading,
+      witnessVotes,
+      proxy,
+      page,
+      sort,
+      searchText,
+      originalWitnesses,
+      spinner
+    } = this.state;
     const extraWitnesses = witnessVotes.filter((w) => !witnesses.find((y) => y.name === w));
     const pageSize = 30;
     const start = (page - 1) * pageSize;
@@ -559,7 +566,16 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
 
                 {loading && <LinearProgress />}
                 {sliced && sliced.length > 0 ? (
-                  <div className="witnesses-table">{table}</div>
+                  <div className="witnesses-table">
+                    {table}
+                    {spinner && (
+                      <Spinner
+                        animation="grow"
+                        variant="primary"
+                        style={{ position: "fixed", bottom: "10%", left: "50%" }}
+                      />
+                    )}
+                  </div>
                 ) : (
                   <div className="witnesses-table">
                     <div className="user-info">
