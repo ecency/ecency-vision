@@ -21,7 +21,6 @@
   z-index: 900;
   right: 2.1rem;
   bottom: 5.5rem;
-  // height: 745px;
   height: 78.5vh;
   width: 435px;
   border-radius: 18px;
@@ -71,15 +70,9 @@
 
 .faq-welcome-message {
   padding: 3rem 0 0 2.5rem;
-
-  // @media (max-width: $sm-break) {
-  //   padding: 2.7rem 0 0 1.5rem;
-  //   font-size: 1.2rem;
-  // }
 }
 
 .faq-content-list {
-  // height: 585px;
   height: 61.5vh;
   margin-top: -2rem;
   overflow-y: auto;
@@ -88,17 +81,10 @@
   z-index: 999;
   border-radius: 14px;
   width: 435px;
-
-
-  // @media (max-width: $sm-break) {
-  //   margin-top: -1.5rem;
-  //   height: 330px;
-  // }
 }
 
 .faq-content-list-item {
   z-index: 999;
-
   height: auto;
   width: 405px;
   margin-left: 1rem;
@@ -131,11 +117,6 @@
   @include themify(night) {
     color: $white-six;
   }
-
-  // @media (max-width: $sm-break) {
-  //   padding: 0.7rem 0.4rem;
-  //   font-size: 1rem;
-  // }
 }
 
 .section {
@@ -143,16 +124,10 @@
 }
 
 .search-bar {
-  // padding: 0 1rem 0 2rem;
   margin: 1rem 0;
-
-  // @media (max-width: $sm-break) {
-  //   padding: 0 1rem;
-  // }
 }
 
 .user-info {
-  // padding: 0 2.5rem;
   padding-left: 4px;
   color: $steel-grey;
   font-size: 14px;
@@ -164,21 +139,11 @@
   @include themify(night) {
     color: $light-grey;
   }
-
-  // @media (max-width: $sm-break) {
-  //   padding: 0 1.2rem;
-  //   font-size: 13px;
-  // }
 }
 
 .username,
 .message {
   padding: 0 2.5rem;
-  // color: $dark-six;
-
-  // @media (max-width: $sm-break) {
-  //   padding: 0 0.7rem;
-  // }
 }
 
 .faq-article {
@@ -199,10 +164,6 @@
     background: $dark-two;
   }
 
-  // @media (max-width: $sm-break) {
-  //   margin: 0.5rem 1rem;
-  //   font-size: 0.8rem;
-  // }
 
   .faq-image {
     margin-right: 0.5rem;
@@ -214,10 +175,6 @@
 .submit-btn {
   float: right;
   margin: 0 2.4rem 1rem 0;
-
-  // @media (max-width: $sm-break) {
-  //   margin: 0 10px 16px 0;
-  // }
 }
 
 .help-content {
@@ -269,7 +226,6 @@
 
   .faq-content-list {
     margin-top: -1.5rem;
-    // height: 480px;
     height: 49vh;
     width: 300px;
   }
@@ -280,7 +236,6 @@
   }
 
   .faq-container {
-    // height: 600px;
     height: 62vh;
     width: 300px;
   }
@@ -290,7 +245,6 @@
   .faq-container {
     height: 72vh;
     width: 84vw;
-
   }
 
   .faq-content-list {
@@ -330,15 +284,16 @@
     .close-btn {
       position: absolute;
       top: 0.5rem;
-      right: 0.3rem ;
+      right: 0.3rem;
     }
-
   }
-  .username , .message {
+
+  .username,
+  .message {
     padding: 0;
   }
+
   .submit-btn {
     margin: 0 0 1rem 0;
   }
-
 }

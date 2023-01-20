@@ -175,16 +175,9 @@ const FloatingFAQ = () => {
                           <InputGroup.Text>@</InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
-                          // disabled={inProgress}
                           autoFocus={true}
                           required={true}
-                          // value={username}
                           placeholder={_t("floating-faq.username")}
-                          // onInvalid={(e: any) =>
-                          //   handleInvalid(e, "beneficiary-editor.", "validation-username")
-                          // }
-                          // onInput={handleOnInput}
-                          // onChange={this.usernameChanged}
                         />
                       </InputGroup>
                     </Form.Group>
@@ -193,27 +186,14 @@ const FloatingFAQ = () => {
                         <Form.Control
                           as="textarea"
                           type="text"
-                          // disabled={inProgress}
                           autoFocus={true}
                           required={true}
                           maxLength={1000}
-                          // value={username}
                           placeholder={_t("floating-faq.message")}
-                          // onInvalid={(e: any) =>
-                          //   handleInvalid(e, "beneficiary-editor.", "validation-username")
-                          // }
-                          // onInput={handleOnInput}
-                          // onChange={this.usernameChanged}
                         />
                       </InputGroup>
                     </Form.Group>
-                    <Button
-                      className="submit-btn"
-                      variant="primary"
-                      // block={true}
-                      type="submit"
-                      // disabled={inProgress || !isVerified}
-                    >
+                    <Button className="submit-btn" variant="primary" type="submit">
                       {_t("floating-faq.submit")}
                     </Button>
                   </Card.Body>
