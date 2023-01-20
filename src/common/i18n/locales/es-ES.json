@@ -465,7 +465,8 @@
     "community-in": "en",
     "post-word-count": "Palabras:",
     "post-read-time": "Leyendo:",
-    "post-read-minuites": "min"
+    "post-read-minuites": "min",
+    "raw": "Ver formato RAW"
   },
   "edit-history": {
     "title": "Editar historial",
