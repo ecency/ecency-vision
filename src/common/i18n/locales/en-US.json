@@ -1411,6 +1411,12 @@
     "copied": "Private key copied into clipboard",
     "error": "Password seem incorrect, please double check!"
   },
+  "account-recovery": {
+    "title": "Change Recovery Account",
+    "curr-recovery-acc": "Current Recovery Account",
+    "new-recovery-acc": "New Recovery Account",
+    "extensions": "Extensions"
+  },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",

@@ -35,6 +35,7 @@ import * as bridgeApi from "../api/bridge";
 import { search as searchApi } from "../api/search-api";
 import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
+import AccountRecovery from "../components/recovery-account";
 
 import { getAccountFull } from "../api/hive";
 
@@ -515,7 +516,7 @@ export const Profile = (props: Props) => {
                   if (account.name === props.activeUser.username) {
                     return (
                       <div className="container-fluid">
-                        <div className="row">
+                        <div className="row pb-4">
                           <div className="col-12 col-md-6">
                             <h6 className="border-bottom pb-3">{_t("view-keys.header")}</h6>
                             <ViewKeys activeUser={props.activeUser} />
@@ -523,6 +524,12 @@ export const Profile = (props: Props) => {
                           <div className="col-12 col-md-6">
                             <h6 className="border-bottom pb-3">{_t("password-update.title")}</h6>
                             <PasswordUpdate activeUser={props.activeUser} />
+                          </div>
+                        </div>
+                        <div className="row pt-3">
+                          <div className="col-12 col-md-6 border-top pt-3">
+                            <h6 className="border-bottom pb-3">{_t("account-recovery.title")}</h6>
+                            <AccountRecovery activeUser={props.activeUser} />
                           </div>
                         </div>
                       </div>

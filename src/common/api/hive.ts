@@ -238,6 +238,7 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
         withdrawn: x.withdrawn,
         witness_votes: x.witness_votes,
         proxy: x.proxy,
+        recovery_account: x.recovery_account,
         proxied_vsf_votes: x.proxied_vsf_votes,
         voting_manabar: x.voting_manabar,
         voting_power: x.voting_power,
