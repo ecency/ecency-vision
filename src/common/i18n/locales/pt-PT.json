@@ -147,7 +147,7 @@
     "dark": "escuro",
     "switch-to": "Alternar",
     "vote-power": "Força do Voto:",
-    "boost": "Boost"
+    "boost": "Impulsionar"
   },
   "intro": {
     "title": "Pense Grande",
@@ -162,7 +162,7 @@
     "login-info-1": "Nós não armazenamos suas chaves privadas.",
     "login-info-2": "Mais informação",
     "error-fields-required": "Por favor insira um nome de usuário e palavra passe /WIF",
-    "captcha-check-required": "Please verify if you are a human",
+    "captcha-check-required": "Por favor, confirme que você é humano",
     "error-public-key": "Você inseriu uma chave pública. Senha/WIF obrigatório",
     "error-user-fetch": "Dados de usuário não foram encontrados",
     "error-user-not-found": "Usuário não existe",
@@ -195,7 +195,7 @@
   },
   "sort-trending-tags": {
     "sort": "Ordenar",
-    "ascending": "Ascending",
+    "ascending": "Ascendente",
     "descending": "Descending"
   },
   "selected-tags": {
@@ -386,7 +386,7 @@
     "lowest-ask": "Oferta mais baixa",
     "decimal-error": "Somente {{decimals}} dígitos decimais permitidos!",
     "from": "From",
-    "to": "To",
+    "to": "Para",
     "sign": "Sign",
     "swapping": "Swapping...",
     "continue": "Continue",
@@ -464,7 +464,7 @@
     "cross-post-community": "comunidade",
     "community-in": "em",
     "post-word-count": "Words:",
-    "post-read-time": "Reading:",
+    "post-read-time": "Lendo:",
     "post-read-minuites": "min",
     "raw": "Visualizar em formato RAW"
   },
@@ -876,12 +876,12 @@
   "purchase-qr": {
     "scan-code": "Scan the QR code with Ecency mobile app",
     "select-user": "Please, select an user",
-    "title": "Account boost",
+    "title": "Impulso de conta",
     "title-points": "Buy points",
     "copied": "Account boost link copied!",
     "select-type": "Select a type",
-    "boost": "Boost",
-    "points": "Points",
+    "boost": "Impulso",
+    "points": "Pontos",
     "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
     "points-amount": "{{n}} points"
   },
@@ -1568,7 +1568,7 @@
       "what-voting-power-body": "<p>O seu poder de voto diminui a cada voto realizado. Ele inicia com 100%, e votando você utiliza uma pequena quantidade do seu poder de voto. Quanto mais votos, menos influência eles terão, portanto a eficácia do voto diminuirá. Recomenda-se 10 votos diários para melhor utilização das recompensas da curadoria.</p>",
       "how-many-vote-header": "Quantas vezes posso votar com o meu poder de voto?",
       "how-many-vote-body": "<p>Para cada voto positivo com 100% de força realizado, 2% do poder de voto é utilizado. Seu poder de voto é recarregado em 20% por dia. Embora seja possível votar mais de 10 vezes por dia, cada novo voto valerá menos, e seu poder de voto demorará mais tempo para atingir sua força total novamente.</p>",
-      "what-is-hivesigner-header": "What is Hivesigner?",
+      "what-is-hivesigner-header": "O que é Hivesigner?",
       "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
       "what-is-keychain-header": "O que é Keychain?",
       "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
@@ -1674,7 +1674,7 @@
     "title": "Principais comunidades"
   },
   "feedback-modal": {
-    "title": "Error details",
+    "title": "Detalhes do erro",
     "question": "How to fix this?",
     "insufficient-resource-title": "How to get more Resource credits?",
     "insufficient-resource-purchase": "Purchase account boost or delegation",
