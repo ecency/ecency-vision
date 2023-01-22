@@ -188,7 +188,16 @@
     "success": "Hemos enviado un correo electrónico a {{email}}.",
     "success-2": "Siga las instrucciones para completar el proceso de registro.",
     "login-text-1": "¿Tienes una cuenta?",
-    "login-text-2": "Iniciar Sesión"
+    "login-text-2": "Iniciar Sesión",
+    "free-account": "Free account",
+    "free-account-desc": "Get a full-fledged Hive account, this method has basic checks to make sure botnet doesn't abuse our signup faucet.",
+    "register-free": "Register free",
+    "buy-account": "Buy account",
+    "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
+    "buy-account-li-1": "Instant creation without extra checks and waiting",
+    "buy-account-li-2": "3x RC compared to normal new accounts",
+    "buy-account-li-3": "300 Points to help you get started",
+    "qr-desc": "Scan with Ecency mobile app to continue"
   },
   "trending-tags": {
     "title": "Temas"
