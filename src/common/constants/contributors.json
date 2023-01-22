@@ -355,4 +355,24 @@
     "name": "solox",
     "contributes": ["Translation (Russian)"]
   }
-]
+],
+ {
+    "name": "alokkumar121",
+    "contributes": ["Guest Curator"]
+  },
+ {
+    "name": "pravesh0 ",
+    "contributes": ["Guest Curator"]
+  },
+ {
+    "name": "reeta0119",
+    "contributes": ["Guest Curator"]
+  },
+ {
+    "name": "ydaiznfts",
+    "contributes": ["Guest Curator"]
+  },
+ {
+    "name": "incublus",
+    "contributes": ["Guest Curator"]
+  }
