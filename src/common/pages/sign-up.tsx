@@ -18,8 +18,15 @@ import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from "react-redux";
+import qrcode from "qrcode";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
+
+enum Stage {
+  FORM = "form",
+  REGISTER_TYPE = "register-type",
+  BUY_ACCOUNT = "buy-account"
+}
 
 export const SignUp = (props: PageProps) => {
   const [lsReferral, setLsReferral] = useLocalStorage<string>(PREFIX + "_referral");
@@ -31,8 +38,10 @@ export const SignUp = (props: PageProps) => {
   const [inProgress, setInProgress] = useState(false);
   const [done, setDone] = useState(false);
   const [isVerified, setIsVerified] = useState(props.global.isElectron);
+  const [stage, setStage] = useState<Stage>(Stage.FORM);
 
   const form = useRef<any>();
+  const qrCodeRef = useRef<any>();
 
   const signupSvg = props.global.isElectron ? "./img/signup.png" : require("../img/signup.png");
   const logoCircle = props.global.isElectron
@@ -52,13 +61,22 @@ export const SignUp = (props: PageProps) => {
     }
   }, []);
 
-  const usernameChanged = (e: FormChangeEvent) => setUsername(e.target.value.toLowerCase());
+  useEffect(() => {
+    if (stage === Stage.BUY_ACCOUNT) {
+      const url = new URL("https://ecency.com");
+      url.pathname = "purchase";
 
-  const emailChanged = (e: FormChangeEvent) => setEmail(e.target.value);
+      const params = new URLSearchParams();
+      params.set("username", username);
+      params.set("email", email);
+      params.set("referral", referral);
+      params.set("type", "account");
+      url.search = params.toString();
+      compileQR(url.toString());
+    }
+  }, [stage]);
 
-  const refCodeChanged = (e: FormChangeEvent) => setReferral(e.target.value.toLowerCase());
-
-  const submit = async () => {
+  const regularRegister = async () => {
     setInProgress(true);
     try {
       const response = await signUp(username, email, referral);
@@ -81,7 +99,12 @@ export const SignUp = (props: PageProps) => {
     }
   };
 
-  const captchaCheck = (value: string | null) => value && setIsVerified(true);
+  const compileQR = async (url: string) => {
+    console.log(url);
+    if (qrCodeRef.current) {
+      qrCodeRef.current.src = await qrcode.toDataURL(url, { width: 300 });
+    }
+  };
 
   return (
     <>
@@ -112,124 +135,175 @@ export const SignUp = (props: PageProps) => {
             <div className="form-image">
               <img src={signupSvg} alt="Signup" />
             </div>
-
-            {(() => {
-              // A test helper to simulate a successful form response.
-              // const done = true;
-              // const email = "loremipsum@gmail.com";
-
-              if (done) {
-                return (
-                  <div className="form-done">
-                    <div className="done-icon">{checkSvg}</div>
-                    <div className="done-text">
-                      <p>{_t("sign-up.success", { email })}</p>
-                      <p>{_t("sign-up.success-2")}</p>
-                    </div>
-                  </div>
-                );
-              }
-
-              return (
-                <div className="form-content">
-                  <Tsx k="sign-up.learn-more">
-                    <div className="form-faq" />
-                  </Tsx>
-
-                  <Form
-                    ref={form}
-                    onSubmit={(e: React.FormEvent) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-
-                      if (!form.current?.checkValidity()) {
-                        return;
-                      }
-
-                      submit();
-                    }}
-                  >
-                    <Form.Group>
-                      <Form.Control
-                        type="text"
-                        placeholder={_t("sign-up.username")}
-                        value={username}
-                        onChange={usernameChanged}
-                        autoFocus={true}
-                        required={true}
-                        onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-username")}
-                        onInput={handleOnInput}
-                      />
-                    </Form.Group>
-                    <Form.Group>
-                      <Form.Control
-                        type="email"
-                        placeholder={_t("sign-up.email")}
-                        value={email}
-                        onChange={emailChanged}
-                        required={true}
-                        onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-email")}
-                        onInput={handleOnInput}
-                      />
-                    </Form.Group>
-                    <Form.Group>
-                      <Form.Control
-                        type="text"
-                        placeholder={_t("sign-up.ref")}
-                        value={referral}
-                        onChange={refCodeChanged}
-                        disabled={lockReferral}
-                      />
-                    </Form.Group>
-                    {!props.global.isElectron && (
-                      <div style={{ marginTop: "16px", marginBottom: "5px" }}>
-                        <ReCAPTCHA
-                          sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
-                          onChange={captchaCheck}
-                          size="normal"
-                        />
-                      </div>
-                    )}
-                    <div className="d-flex justify-content-center">
-                      <Button
-                        variant="primary"
-                        block={true}
-                        type="submit"
-                        disabled={inProgress || !isVerified}
-                      >
-                        {inProgress && (
-                          <Spinner
-                            animation="grow"
-                            variant="light"
-                            size="sm"
-                            style={{ marginRight: "6px" }}
-                          />
-                        )}
-                        {_t("sign-up.submit")}
-                      </Button>
-                    </div>
-                  </Form>
-
-                  <div className="text-center">
-                    {_t("sign-up.login-text-1")}
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        props.toggleUIProp("login");
-                      }}
-                    >
-                      {" "}
-                      {_t("sign-up.login-text-2")}
-                    </a>
-                  </div>
-
-                  <div className="form-bottom-description text-center">
-                    {_t("sign-up.bottom-description")}
-                  </div>
+            {done ? (
+              <div className="form-done">
+                <div className="done-icon">{checkSvg}</div>
+                <div className="done-text">
+                  <p>{_t("sign-up.success", { email })}</p>
+                  <p>{_t("sign-up.success-2")}</p>
                 </div>
-              );
-            })()}
+              </div>
+            ) : (
+              <></>
+            )}
+            {!done && stage !== Stage.BUY_ACCOUNT ? (
+              <div className="form-content">
+                <Tsx k="sign-up.learn-more">
+                  <div className="form-faq" />
+                </Tsx>
+
+                <Form
+                  ref={form}
+                  onSubmit={(e: React.FormEvent) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    if (!form.current?.checkValidity()) {
+                      return;
+                    }
+
+                    if (stage === Stage.FORM) {
+                      setStage(Stage.REGISTER_TYPE);
+                    }
+                  }}
+                >
+                  <Form.Group>
+                    <Form.Control
+                      type="text"
+                      placeholder={_t("sign-up.username")}
+                      value={username}
+                      onChange={(e: FormChangeEvent) => setUsername(e.target.value.toLowerCase())}
+                      autoFocus={true}
+                      required={true}
+                      onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-username")}
+                      onInput={handleOnInput}
+                      disabled={stage === Stage.REGISTER_TYPE}
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Control
+                      type="email"
+                      placeholder={_t("sign-up.email")}
+                      value={email}
+                      onChange={(e: FormChangeEvent) => setEmail(e.target.value)}
+                      required={true}
+                      onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-email")}
+                      onInput={handleOnInput}
+                      disabled={stage === Stage.REGISTER_TYPE}
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Control
+                      type="text"
+                      placeholder={_t("sign-up.ref")}
+                      value={referral}
+                      onChange={(e: FormChangeEvent) => setReferral(e.target.value.toLowerCase())}
+                      disabled={lockReferral || stage === Stage.REGISTER_TYPE}
+                    />
+                  </Form.Group>
+                  {!props.global.isElectron && (
+                    <div
+                      style={{ marginTop: "16px", marginBottom: "5px" }}
+                      hidden={stage === Stage.REGISTER_TYPE}
+                    >
+                      <ReCAPTCHA
+                        sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
+                        onChange={(value: string | null) => value && setIsVerified(true)}
+                        size="normal"
+                      />
+                    </div>
+                  )}
+                  {stage === Stage.FORM ? (
+                    <>
+                      <div className="d-flex justify-content-center">
+                        <Button
+                          variant="primary"
+                          block={true}
+                          type="submit"
+                          disabled={inProgress || !isVerified}
+                        >
+                          {inProgress && (
+                            <Spinner
+                              animation="grow"
+                              variant="light"
+                              size="sm"
+                              style={{ marginRight: "6px" }}
+                            />
+                          )}
+                          {_t("sign-up.submit")}
+                        </Button>
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+
+                  {stage === Stage.REGISTER_TYPE ? (
+                    <div>
+                      <div className="card mb-3">
+                        <div className="card-header">
+                          <b>{_t("sign-up.free-account")}</b>
+                        </div>
+                        <div className="card-body">
+                          <div>{_t("sign-up.free-account-desc")}</div>
+                        </div>
+                        <div className="card-footer">
+                          <Button variant="primary" className="w-100" onClick={regularRegister}>
+                            {_t("sign-up.register-free")}
+                          </Button>
+                        </div>
+                      </div>
+                      <div className="card">
+                        <div className="card-header">
+                          <b>{_t("sign-up.buy-account")}</b>
+                        </div>
+                        <div className="card-body">
+                          <p>{_t("sign-up.buy-account-desc")}</p>
+                          <ul>
+                            <li>{_t("sign-up.buy-account-li-1")}</li>
+                            <li>{_t("sign-up.buy-account-li-2")}</li>
+                            <li>{_t("sign-up.buy-account-li-3")}</li>
+                          </ul>
+                        </div>
+                        <div className="card-footer">
+                          <Button
+                            className="w-100"
+                            variant="primary"
+                            onClick={() => setStage(Stage.BUY_ACCOUNT)}
+                          >
+                            {_t("sign-up.buy-account")} – $2.99
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </Form>
+
+                <div className="text-center">
+                  {_t("sign-up.login-text-1")}
+                  <a className="pl-1" href="#" onClick={(e) => props.toggleUIProp("login")}>
+                    {_t("sign-up.login-text-2")}
+                  </a>
+                </div>
+
+                <div className="form-bottom-description text-center">
+                  {_t("sign-up.bottom-description")}
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+
+            {stage === Stage.BUY_ACCOUNT ? (
+              <div className="d-flex align-items-center flex-column justify-content-center">
+                <div className="my-3">{_t("sign-up.qr-desc")}</div>
+                <img ref={qrCodeRef} />
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
