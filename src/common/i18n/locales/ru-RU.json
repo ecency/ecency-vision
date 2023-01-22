@@ -64,7 +64,7 @@
     "close": "Закрыть",
     "loading": "Загрузка",
     "stop": "Остановить",
-    "settings": "Settings"
+    "settings": "Настройки"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -409,25 +409,25 @@
     "signing": "Войти..",
     "success-swap": "Успешно изменено!",
     "advanced": {
-      "history": "History",
-      "stake": "Order book",
-      "pairs": "Pairs",
-      "form": "Order form",
-      "open-orders": "Open",
-      "completed-orders": "Completed",
-      "status": "Status",
-      "all-orders": "All",
-      "active": "Active",
-      "view-details": "View details",
-      "chart": "Chart",
-      "trading-form-auth-required": "You have to been authorized for trade",
-      "open-orders-auth-required": "You have to been authorized for see open orders",
-      "empty-open-orders": "No orders",
+      "history": "История",
+      "stake": "Список ордеров",
+      "pairs": "Пары",
+      "form": "Форма ордера",
+      "open-orders": "Открыть",
+      "completed-orders": "Завершено",
+      "status": "Статус",
+      "all-orders": "Все",
+      "active": "Активные",
+      "view-details": "Подробнее",
+      "chart": "Диаграмма",
+      "trading-form-auth-required": "Вы должны быть авторизованы для сделки",
+      "open-orders-auth-required": "Вы должны быть авторизованы для просмотра открытых ордеров",
+      "empty-open-orders": "Нет ордеров",
       "history-widget": {
-        "price": "Price",
-        "amount": "Amount",
-        "volume": "Volume",
-        "time": "Time"
+        "price": "Цена",
+        "amount": "Сумма",
+        "volume": "Объем",
+        "time": "Время"
       }
     }
   },
@@ -466,7 +466,7 @@
     "post-word-count": "Слова:",
     "post-read-time": "Чтение:",
     "post-read-minuites": "мин",
-    "raw": "View RAW format"
+    "raw": "Просмотр формата RAW"
   },
   "edit-history": {
     "title": "История изменений",
@@ -805,7 +805,7 @@
     "sort-in-descending": "По убыванию",
     "sort-by-value": "Сумма",
     "sort-by-balance": "Баланс",
-    "sort-by-stake": "Stake",
+    "sort-by-stake": "Заморозить",
     "sort-by-delegations-in": "Делегировано вам",
     "sort-by-delegations-out": "Делегировано другим"
   },
