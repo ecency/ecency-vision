@@ -13,7 +13,7 @@ import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
 import NavBar from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
-import { checkSvg, hiveSvg } from "../img/svg";
+import { appleSvg, checkSvg, googleSvg, hiveSvg } from "../img/svg";
 import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -38,7 +38,7 @@ export const SignUp = (props: PageProps) => {
   const [inProgress, setInProgress] = useState(false);
   const [done, setDone] = useState(false);
   const [isVerified, setIsVerified] = useState(props.global.isElectron);
-  const [stage, setStage] = useState<Stage>(Stage.FORM);
+  const [stage, setStage] = useState<Stage>(Stage.BUY_ACCOUNT);
 
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
@@ -125,28 +125,34 @@ export const SignUp = (props: PageProps) => {
             <img src={signupSvg} alt="Signup" />
           </div>
           <div className="the-form">
-            <div className="form-title">{_t("sign-up.header")}</div>
-            <div className="form-sub-title">{_t("sign-up.description")}</div>
-            <div className="form-icons">
-              <img src={logoCircle} alt="Ecency" title="Ecency" />
-              <span title="Hive">{hiveSvg}</span>
-            </div>
-
-            <div className="form-image">
-              <img src={signupSvg} alt="Signup" />
-            </div>
-            {done ? (
-              <div className="form-done">
-                <div className="done-icon">{checkSvg}</div>
-                <div className="done-text">
-                  <p>{_t("sign-up.success", { email })}</p>
-                  <p>{_t("sign-up.success-2")}</p>
+            {!done && stage === Stage.FORM ? (
+              <>
+                <div className="form-title">{_t("sign-up.header")}</div>
+                <div className="form-sub-title">{_t("sign-up.description")}</div>
+                <div className="form-icons">
+                  <img src={logoCircle} alt="Ecency" title="Ecency" />
+                  <span title="Hive">{hiveSvg}</span>
                 </div>
-              </div>
+
+                <div className="form-image">
+                  <img src={signupSvg} alt="Signup" />
+                </div>
+                {done ? (
+                  <div className="form-done">
+                    <div className="done-icon">{checkSvg}</div>
+                    <div className="done-text">
+                      <p>{_t("sign-up.success", { email })}</p>
+                      <p>{_t("sign-up.success-2")}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </>
             ) : (
               <></>
             )}
-            {!done && stage !== Stage.BUY_ACCOUNT ? (
+            {!done && stage === Stage.FORM ? (
               <div className="form-content">
                 <Tsx k="sign-up.learn-more">
                   <div className="form-faq" />
@@ -177,7 +183,6 @@ export const SignUp = (props: PageProps) => {
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-username")}
                       onInput={handleOnInput}
-                      disabled={stage === Stage.REGISTER_TYPE}
                     />
                   </Form.Group>
                   <Form.Group>
@@ -189,7 +194,6 @@ export const SignUp = (props: PageProps) => {
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-email")}
                       onInput={handleOnInput}
-                      disabled={stage === Stage.REGISTER_TYPE}
                     />
                   </Form.Group>
                   <Form.Group>
@@ -198,14 +202,11 @@ export const SignUp = (props: PageProps) => {
                       placeholder={_t("sign-up.ref")}
                       value={referral}
                       onChange={(e: FormChangeEvent) => setReferral(e.target.value.toLowerCase())}
-                      disabled={lockReferral || stage === Stage.REGISTER_TYPE}
+                      disabled={lockReferral}
                     />
                   </Form.Group>
                   {!props.global.isElectron && (
-                    <div
-                      style={{ marginTop: "16px", marginBottom: "5px" }}
-                      hidden={stage === Stage.REGISTER_TYPE}
-                    >
+                    <div style={{ marginTop: "16px", marginBottom: "5px" }}>
                       <ReCAPTCHA
                         sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
                         onChange={(value: string | null) => value && setIsVerified(true)}
@@ -237,50 +238,7 @@ export const SignUp = (props: PageProps) => {
                   ) : (
                     <></>
                   )}
-
-                  {stage === Stage.REGISTER_TYPE ? (
-                    <div>
-                      <div className="card mb-3">
-                        <div className="card-header">
-                          <b>{_t("sign-up.free-account")}</b>
-                        </div>
-                        <div className="card-body">
-                          <div>{_t("sign-up.free-account-desc")}</div>
-                        </div>
-                        <div className="card-footer">
-                          <Button variant="primary" className="w-100" onClick={regularRegister}>
-                            {_t("sign-up.register-free")}
-                          </Button>
-                        </div>
-                      </div>
-                      <div className="card">
-                        <div className="card-header">
-                          <b>{_t("sign-up.buy-account")}</b>
-                        </div>
-                        <div className="card-body">
-                          <p>{_t("sign-up.buy-account-desc")}</p>
-                          <ul>
-                            <li>{_t("sign-up.buy-account-li-1")}</li>
-                            <li>{_t("sign-up.buy-account-li-2")}</li>
-                            <li>{_t("sign-up.buy-account-li-3")}</li>
-                          </ul>
-                        </div>
-                        <div className="card-footer">
-                          <Button
-                            className="w-100"
-                            variant="primary"
-                            onClick={() => setStage(Stage.BUY_ACCOUNT)}
-                          >
-                            {_t("sign-up.buy-account")} – $2.99
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <></>
-                  )}
                 </Form>
-
                 <div className="text-center">
                   {_t("sign-up.login-text-1")}
                   <a className="pl-1" href="#" onClick={(e) => props.toggleUIProp("login")}>
@@ -296,10 +254,68 @@ export const SignUp = (props: PageProps) => {
               <></>
             )}
 
+            {stage === Stage.REGISTER_TYPE ? (
+              <div className="form-content">
+                <div className="card mb-3">
+                  <div className="card-header">
+                    <b>{_t("sign-up.free-account")}</b>
+                  </div>
+                  <div className="card-body">
+                    <div>{_t("sign-up.free-account-desc")}</div>
+                  </div>
+                  <div className="card-footer">
+                    <Button variant="primary" className="w-100" onClick={regularRegister}>
+                      {_t("sign-up.register-free")}
+                    </Button>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-header">
+                    <b>{_t("sign-up.buy-account")}</b>
+                  </div>
+                  <div className="card-body">
+                    <p>{_t("sign-up.buy-account-desc")}</p>
+                    <ul>
+                      <li>{_t("sign-up.buy-account-li-1")}</li>
+                      <li>{_t("sign-up.buy-account-li-2")}</li>
+                      <li>{_t("sign-up.buy-account-li-3")}</li>
+                    </ul>
+                  </div>
+                  <div className="card-footer">
+                    <Button
+                      className="w-100"
+                      variant="primary"
+                      onClick={() => setStage(Stage.BUY_ACCOUNT)}
+                    >
+                      {_t("sign-up.buy-account")} – $2.99
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+
             {stage === Stage.BUY_ACCOUNT ? (
               <div className="d-flex align-items-center flex-column justify-content-center">
                 <div className="my-3">{_t("sign-up.qr-desc")}</div>
                 <img ref={qrCodeRef} />
+                <div className="d-flex flex-column flex-sm-row">
+                  <a
+                    href="https://ios.ecency.com"
+                    className="btn app-btn mb-2 mb-sm-0 mr-sm-2"
+                    target="_blank"
+                  >
+                    <i className="icon">{appleSvg}</i>
+                    <span className="text">Download on the</span>
+                    <span className="headline">AppStore</span>
+                  </a>
+                  <a href="https://android.ecency.com" className="btn app-btn" target="_blank">
+                    <i className="icon">{googleSvg}</i>
+                    <span className="text">Get it on</span>
+                    <span className="headline">GooglePlay</span>
+                  </a>
+                </div>
               </div>
             ) : (
               <></>
