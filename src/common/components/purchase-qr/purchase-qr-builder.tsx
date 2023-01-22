@@ -20,7 +20,7 @@ interface Props {
   queryProductId?: string;
 }
 
-export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Props) => {
+export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId, location }: Props) => {
   const [username, setUsername] = useState("");
   const qrImgRef = useRef<HTMLImageElement | undefined>();
   const [isQrShow, setIsQrShow] = useState(false);
@@ -43,7 +43,7 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Pro
     if (username) {
       compileQR(getURL());
     }
-  }, [username, type, pointsValue]);
+  }, [username, type, pointsValue, location]);
 
   const compileQR = async (url: string) => {
     if (qrImgRef.current) {
@@ -62,8 +62,17 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Pro
     success(_t("purchase-qr.copied"));
   };
 
-  const getURL = () =>
-    `${defaults.base}/purchase?username=${username}&type=${type}&product_id=${pointsValue}`;
+  const getURL = () => {
+    const url = new URL(defaults.base);
+    url.pathname = "purchase";
+
+    const params = new URLSearchParams(location?.search);
+    params.set("username", username);
+    params.set("type", type);
+    params.set("product_id", pointsValue);
+    url.search = params.toString();
+    return url.toString();
+  };
 
   return (
     <div className="d-flex flex-column align-items-center my-3 px-3 text-center">
