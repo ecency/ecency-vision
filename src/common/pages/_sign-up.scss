@@ -13,6 +13,17 @@
     .left-image {
       display: none;
 
+      @media (max-width: $xl-break) {
+        &.register-type, &.buy-account {
+          display: block;
+          width: 100%;
+
+          img {
+            width: 100%
+          }
+        }
+      }
+
       @media (min-width: $xl-break) {
         width: 50%;
         display: flex;

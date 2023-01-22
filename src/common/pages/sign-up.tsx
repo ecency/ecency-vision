@@ -19,6 +19,7 @@ import { handleInvalid, handleOnInput } from "../util/input-util";
 import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from "react-redux";
 import qrcode from "qrcode";
+import { stat } from "fs";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -39,6 +40,7 @@ export const SignUp = (props: PageProps) => {
   const [done, setDone] = useState(false);
   const [isVerified, setIsVerified] = useState(props.global.isElectron);
   const [stage, setStage] = useState<Stage>(Stage.FORM);
+  const [url, setUrl] = useState("");
 
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
@@ -72,6 +74,8 @@ export const SignUp = (props: PageProps) => {
       params.set("referral", referral);
       params.set("type", "account");
       url.search = params.toString();
+
+      setUrl(url.toString());
       compileQR(url.toString());
     }
   }, [stage]);
@@ -100,7 +104,6 @@ export const SignUp = (props: PageProps) => {
   };
 
   const compileQR = async (url: string) => {
-    console.log(url);
     if (qrCodeRef.current) {
       qrCodeRef.current.src = await qrcode.toDataURL(url, { width: 300 });
     }
@@ -121,7 +124,7 @@ export const SignUp = (props: PageProps) => {
         }
       >
         <div className="sign-up">
-          <div className="left-image">
+          <div className={"left-image " + stage}>
             <img src={signupSvg} alt="Signup" />
           </div>
           <div className="the-form">
@@ -299,7 +302,9 @@ export const SignUp = (props: PageProps) => {
             {stage === Stage.BUY_ACCOUNT ? (
               <div className="d-flex align-items-center flex-column justify-content-center">
                 <div className="my-3">{_t("sign-up.qr-desc")}</div>
-                <img ref={qrCodeRef} />
+                <a href={url}>
+                  <img ref={qrCodeRef} />
+                </a>
                 <div className="d-flex flex-column flex-sm-row">
                   <a
                     href="https://ios.ecency.com"
