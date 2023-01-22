@@ -38,7 +38,7 @@ export const SignUp = (props: PageProps) => {
   const [inProgress, setInProgress] = useState(false);
   const [done, setDone] = useState(false);
   const [isVerified, setIsVerified] = useState(props.global.isElectron);
-  const [stage, setStage] = useState<Stage>(Stage.BUY_ACCOUNT);
+  const [stage, setStage] = useState<Stage>(Stage.FORM);
 
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
