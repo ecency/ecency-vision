@@ -70,6 +70,11 @@
     "ok": "تأكيد",
     "cancel": "إلغاء"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "الشائع",
     "filter-hot": "الساخنة",
@@ -1056,16 +1061,16 @@
     "deleted": "تمت الإزالة من المفضلة"
   },
   "editor-toolbar": {
-    "bold": "عريض",
-    "italic": "مائل",
+    "bold": "Bold (Alt + B)",
+    "italic": "Italic (Alt + I)",
     "header": "الترويسة",
-    "code": "الكود",
-    "quote": "إقتباس",
+    "code": "Code (Alt + C)",
+    "quote": "Quote (Alt + M)",
     "ul": "قائمة غير مرتبة",
     "ol": "قائمة مرتبة",
-    "link": "الرابط",
-    "image": "الصورة",
-    "table": "جدول",
+    "link": "Link (Alt + K)",
+    "image": "Image (Alt + D)",
+    "table": "Table (Alt + T)",
     "table-3-col": "3 أعمدة",
     "table-2-col": "عمودان",
     "table-1-col": "عمود 1",

@@ -11,7 +11,7 @@ exports[`(1) Default render 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Bold"
+      title="Bold (Alt + B)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -25,7 +25,7 @@ exports[`(1) Default render 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Italic"
+      title="Italic (Alt + I)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -78,7 +78,7 @@ exports[`(1) Default render 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Code"
+      title="Code (Alt + C)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -92,7 +92,7 @@ exports[`(1) Default render 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Quote"
+      title="Quote (Alt + M)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -140,7 +140,7 @@ exports[`(1) Default render 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Link"
+      title="Link (Alt + K)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -154,7 +154,7 @@ exports[`(1) Default render 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Image"
+      title="Image (Alt + D)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -168,7 +168,7 @@ exports[`(1) Default render 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Table"
+      title="Table (Alt + T)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -348,7 +348,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Bold"
+      title="Bold (Alt + B)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -362,7 +362,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Italic"
+      title="Italic (Alt + I)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -415,7 +415,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Code"
+      title="Code (Alt + C)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -429,7 +429,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Quote"
+      title="Quote (Alt + M)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -477,7 +477,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Link"
+      title="Link (Alt + K)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -491,7 +491,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Image"
+      title="Image (Alt + D)"
     >
       <svg
         viewBox="0 0 24 24"
@@ -505,7 +505,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Table"
+      title="Table (Alt + T)"
     >
       <svg
         viewBox="0 0 24 24"

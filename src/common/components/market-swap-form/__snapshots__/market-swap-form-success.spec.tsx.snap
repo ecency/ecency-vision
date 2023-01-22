@@ -15,7 +15,7 @@ exports[`MarkSwapFormSuccess should render hbd -> hive 1`] = `
     <span>
       1
        
-      HBD($)
+      HBD
     </span>
     <i
       className="my-3"
@@ -78,7 +78,7 @@ exports[`MarkSwapFormSuccess should render hive -> hbd 1`] = `
     <span>
       1.000
        
-      HBD($)
+      HBD
     </span>
   </div>
   <button

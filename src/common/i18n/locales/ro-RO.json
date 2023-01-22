@@ -70,6 +70,11 @@
     "ok": "Confirmă",
     "cancel": "Anulează"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "Popular",
     "filter-hot": "Fierbinte",
@@ -1056,16 +1061,16 @@
     "deleted": "Eliminat din favorite"
   },
   "editor-toolbar": {
-    "bold": "Îngroșat",
-    "italic": "Italic",
+    "bold": "Bold (Alt + B)",
+    "italic": "Italic (Alt + I)",
     "header": "Titlu",
-    "code": "Cod",
-    "quote": "Citează",
+    "code": "Code (Alt + C)",
+    "quote": "Quote (Alt + M)",
     "ul": "Listă Neordonată",
     "ol": "Listă Ordonată",
-    "link": "Link",
-    "image": "Imagine",
-    "table": "Tabel",
+    "link": "Link (Alt + K)",
+    "image": "Image (Alt + D)",
+    "table": "Table (Alt + T)",
     "table-3-col": "3 coloane",
     "table-2-col": "2 coloane",
     "table-1-col": "1 coloană",

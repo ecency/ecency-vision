@@ -1,0 +1,103 @@
+@import "../../../style/variables";
+
+.announcement-container {
+  position: fixed;
+  z-index: 9000;
+  right: 2rem;
+  bottom: 2rem;
+  width: 500px;
+  border-radius: 6px;
+  transition: .3s ease-in-out;
+
+  @include media-breakpoint-down(sm) {
+    max-width: calc(360px - 0.5rem);
+    width: 100%;
+    right: 0.5rem;
+    bottom: 0.5rem;
+  }
+}
+
+.feedback-announcement {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2.4rem;
+  border-radius: 6px;
+  margin-top: 5px;
+  overflow: auto;
+  box-shadow: 0 6px 20px rgb(0, 0, 0, 0.15);
+  position: relative;
+
+  @include themify(day) {
+    background: $white;
+  }
+
+  @include themify(night) {
+    background: $dark-two;
+  }
+}
+
+.announcement-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  color: $charcoal-grey;
+
+  @include themify(day) {
+    color: $charcoal-grey;
+  }
+
+  @include themify(night) {
+    color: darken($silver, 10);
+  }
+
+  @media (max-width: 580px) {
+    font-size: 1.2rem;
+  }
+}
+
+.announcement-message {
+  line-height: 1.5;
+
+  @media (max-width: 580px) {
+    font-size: 0.9rem;
+  }
+
+  p {
+    @include themify(day) {
+      color: darken($silver, 35);
+    }
+
+    @include themify(night) {
+      color: darken($silver, 10);
+    }
+
+  }
+}
+
+.feedback-announcement {
+  .row {
+    display: flex;
+
+    @media (max-width: 390px) {
+      flex-wrap: wrap;
+    }
+
+  }
+
+  .main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .actions {
+    gap: 0.5rem;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}

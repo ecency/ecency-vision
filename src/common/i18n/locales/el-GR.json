@@ -70,6 +70,11 @@
     "ok": "Επιβεβαίωση",
     "cancel": "Ακύρωση"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "Δημοφιλή",
     "filter-hot": "Καυτά",
@@ -1056,16 +1061,16 @@
     "deleted": "Αφαίρεση από τα αγαπημένα"
   },
   "editor-toolbar": {
-    "bold": "Έντονοι Χαρακτήρες",
-    "italic": "Πλάγια γραφή",
+    "bold": "Bold (Alt + B)",
+    "italic": "Italic (Alt + I)",
     "header": "Κεφαλίδα",
-    "code": "Κώδικας",
-    "quote": "Παράθεση",
+    "code": "Code (Alt + C)",
+    "quote": "Quote (Alt + M)",
     "ul": "Μη ταξινομημένη λίστα",
     "ol": "Ταξινομημένη λίστα",
-    "link": "Σύνδεσμος",
-    "image": "Εικόνα",
-    "table": "Πίνακας",
+    "link": "Link (Alt + K)",
+    "image": "Image (Alt + D)",
+    "table": "Table (Alt + T)",
     "table-3-col": "3 στήλες",
     "table-2-col": "2 στήλες",
     "table-1-col": "1 στήλη",
