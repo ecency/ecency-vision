@@ -188,7 +188,16 @@
     "success": "我们已经向 {{email}} 发送了一封电子邮件。",
     "success-2": "按照说明完成注册过程。",
     "login-text-1": "您是否有账户？",
-    "login-text-2": "登陆"
+    "login-text-2": "登陆",
+    "free-account": "Free account",
+    "free-account-desc": "Get a full-fledged Hive account, this method has basic checks to make sure botnet doesn't abuse our signup faucet.",
+    "register-free": "Register free",
+    "buy-account": "Buy account",
+    "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
+    "buy-account-li-1": "Instant creation without extra checks and waiting",
+    "buy-account-li-2": "3x RC compared to normal new accounts",
+    "buy-account-li-3": "300 Points to help you get started",
+    "qr-desc": "Scan with Ecency mobile app to continue"
   },
   "trending-tags": {
     "title": "主题"
