@@ -188,12 +188,6 @@ export const ProfileCard = (props: Props) => {
           account={account}
       />
       </div>
-        
-      <div className="rc-percentage mt-1 d-flex justify-content-center">
-        <Tooltip content={_t("profile.voting-power")}>
-          <span>{_t("rc-info.resource-credits")}</span>
-        </Tooltip>
-      </div>
 
       {account.__loaded && (
         <div className="stats">

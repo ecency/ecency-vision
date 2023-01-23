@@ -1,12 +1,9 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { _t } from "../../i18n";
 import { Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
-import SuggestionList from "../suggestion-list";
 import LinearProgress from '../linear-progress';
 import { arrowRightSvg } from '../../img/svg';
 import UserAvatar from "../user-avatar";
-import amountFormatCheck from "../../helper/amount-format-check";
-import formattedNumber from "../../util/formatted-number";
 import badActors from "@hiveio/hivescript/bad-actors.json";
 import { error } from "../feedback";
 import { delegateRC, formatError } from '../../api/operations';
@@ -17,21 +14,16 @@ import {
 } from "../../api/hive";
 
 export const ResourceCreditsDelegation = (props: any) => {
-    const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList } = props
+    const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList, delegateeData } = props
     
     const [to, setTo] = useState<string>(toFromList || '');
-    const [amount, setAmount] = useState<string>(amountFromList || '');
+    const [amount, setAmount] = useState<any>(amountFromList || '');
     const [inProgress, setInProgress] = useState<boolean>(false);
     const [step, setStep] = useState<any>(1);
     const [amountError, setAmountError] = useState<string>('');
     const [toError, setToError] = useState<string>('');
     const [toWarning, setToWarning] = useState<string>('');
-    const [toData, setToData] = useState<any>('');
-    const [asset] = useState<string>('RC');
-
-    useEffect(() => {
-      // checkAmount();
-    }, []);
+    const [toData, setToData] = useState<any>(delegateeData || '');
 
     const toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const { value } = e.target;
@@ -42,7 +34,15 @@ export const ResourceCreditsDelegation = (props: any) => {
 
     const amountChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const { value: amount } = e.target;
-        setAmount(amount)
+        setAmount(amount);
+        if (amount === "" || (Number(amount) >= 5000000000 && Number(amount) < Number(resourceCredit[0]))) {
+          setAmountError("")
+        } else if (Number(amount) < 5000000000) { 
+          setAmountError(_t("rc-info.minimum-rc-error"))
+        } else  if (Number(amount) > Number(resourceCredit[0])) {
+          setAmountError(_t("rc-info.insufficient-rc-error"))
+          return;
+        }   
       };
 
     const next = () => {
@@ -60,7 +60,6 @@ export const ResourceCreditsDelegation = (props: any) => {
       const max_rc = `${amount}`;
       delegateRC(username, to, max_rc).then(
        (res: any) => {
-         console.log({res})
          return res;
        }
      ).catch((e: any) => {
@@ -71,42 +70,10 @@ export const ResourceCreditsDelegation = (props: any) => {
      return;
     }
 
-    const canSubmit = toData && !toError && !amountError && !inProgress && !!amount && Number(amount) < Number(resourceCredit);
-    
-    const checkAmount = () => {
-  
-      if (amount === "") {
-        setAmountError("error")
-        return;
-      }
-  
-      if (!amountFormatCheck(amount)) {
-        setAmountError("wrong amount")
-        return;
-      }
-  
-      const dotParts = amount.split(".");
-      if (dotParts.length > 1) {
-        const precision = dotParts[1];
-        if (precision.length > 3) {
-          setAmountError("transfer.amount-precision-error") ;
-          return;
-        }
-      }
-   
-      let balance = Number(resourceCredit);
-      if (Number(amount) > balance) {
-        setAmountError("insufficient resource credits")
-        return;
-      }
+    const canSubmit = (toData || delegateeData) && !toError && 
+    !inProgress && !amountError && !!amount && 
+    (Number(amount) >= 5000000000 && Number(amount) < Number(resourceCredit[0]));
 
-      if (Number(amount) < 5000000) {
-        setAmountError("can not delegate below maximum RC")
-        return;
-      }
-  
-      setAmountError("uuuuuuu")
-    };
 
     const handleTo = async (value:string) => {
       setInProgress(true);
@@ -123,24 +90,19 @@ export const ResourceCreditsDelegation = (props: any) => {
           setToWarning("")
         }    
         setToData(null);   
-        const delegationsOutList: any = await getOutgoingRc(activeUser.username, "")
-        console.log(delegationsOutList)
 
         return getAccount(value)
           .then((resp) => {
             if (resp) {
-              console.log({resp})
               setToError("");
               setToData(resp);           
             } 
             else {
-              console.log("not found")
                 setToError(_t("transfer.to-not-found"))
               };
               return resp;
             })         
           .catch((err) => {
-            console.log(err)
             error(...formatError(err));
           })
           .finally(() => {
@@ -232,26 +194,23 @@ export const ResourceCreditsDelegation = (props: any) => {
                       placeholder={_t("transfer.amount-placeholder")}
                       value={amount}
                       onChange={amountChanged}
-                      className={Number(amount) > Number(resourceCredit) && amountError ? "is-invalid" : ""}
-                    //   autoFocus={mode !== "transfer"}
+                      className={Number(amount) > Number(resourceCredit[0]) && amountError ? "is-invalid" : ""}
                     />
                   </InputGroup>
                 </Col>
               </Form.Group>
 
-              {Number(amount) && Number(amount) < 5000000000 ?  <FormText msg={"Min RC is 5 billion"} type="danger" /> : 
-              Number(amount) > Number(resourceCredit) ?  <FormText msg={"Insufficient RC"} type="danger" /> : 
-              null }
+              {amount < 5000000000 &&  <FormText msg={amountError} type="danger" /> } 
+              {amount > Number(resourceCredit[0]) &&  <FormText msg={amountError} type="danger" /> }
 
               <Row>
                 <Col lg={{ span: 10, offset: 2 }}>
-                  <div className="balance">
+                  <div className="balance space-3">
                     <span className="balance-label">
                       {_t("transfer.balance")}
-                      {": "}
                     </span>
                     <span >
-                     {resourceCredit}
+                     {`: ${resourceCredit[0]}`}
                     </span>
                   </div>
                  

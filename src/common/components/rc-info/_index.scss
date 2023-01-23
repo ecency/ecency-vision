@@ -3,12 +3,31 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     column-gap: 10px;
+
+    .rc-info {
+        padding: 20px;
+        border: 0.5px solid;
+    }
 }
 
-.rc-info {
-    padding: 20px;
-    border: 0.5px solid;
+.rc-header{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .about-rc{
+        gap: 10px;
+
+        span{
+            font-size: 16px;
+        }
+
+        a{
+         font-size: 16px;
+        }
+    }
 }
+
 
 @media (max-width: 1000px) {
     .container {

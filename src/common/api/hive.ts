@@ -398,7 +398,6 @@ export const getOutgoingRc = async (
 export const getIncomingRc = async (user: string): Promise<any[]> => { 
   const data = await fetch(`https://ecency.com/private-api/received-rc/${user}`).then((res: any) =>res.json()).
   then((r: any) => r )
-  console.log(data)
   return data;      
 }
 
@@ -542,7 +541,6 @@ export const downVotingPower = (account: FullAccount): number => {
 
 export const rcPower = (account: RCAccount): number => {
   const calc = client.rc.calculateRCMana(account);
-  console.log(calc);
   const { percentage } = calc;
   return percentage / 100;
 };

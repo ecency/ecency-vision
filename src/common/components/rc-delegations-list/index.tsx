@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Button, FormControl } from 'react-bootstrap'
+import { Button, FormControl } from 'react-bootstrap'
 import { getOutgoingRc, getIncomingRc } from "../../api/hive";
-import { delegateRCKc } from '../../api/operations';
+import { delegateRC } from '../../api/operations';
 import { _t } from '../../i18n';
 import LinearProgress from '../linear-progress';
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import { useParams } from 'react-router';
+import {
+  getAccount,
+} from "../../api/hive";
 
 export const RcDelegationsList = (props: any) => {
-  // const limit = 21;
   const params: any = useParams();
 
-  const { activeUser, rcFormatter, showDelegation, listMode, setToFromList, setAmountFromList } = props
+  const { activeUser, 
+    rcFormatter, 
+    showDelegation, 
+    listMode, 
+    setToFromList, 
+    setAmountFromList, 
+    confirmDelete, 
+    setDelegateeData,
+    setShowDelegationsList } = props
 
   const [outGoingList, setOutGoingList]: any = useState([]);
   const [incoming, setIncoming]: any = useState([]);
@@ -41,7 +51,6 @@ export const RcDelegationsList = (props: any) => {
     const paramsAccount = params.username.substring(1)
     const delegationsIn: any = await getIncomingRc(paramsAccount)
     const incomingInfo = delegationsIn.list
-    console.log(incomingInfo)
         setIncoming(incomingInfo);
         setHasMore(incomingInfo.length > loadList);        
         setLoading(false);
@@ -50,6 +59,11 @@ export const RcDelegationsList = (props: any) => {
   const loadMore = () => {
     const moreList = loadList + 7;
     setLoadList(moreList)
+  }
+
+  const getToData = async (data: any) => {
+   const toData = await getAccount(data)
+   return toData;
   }
 
   return (   
@@ -88,14 +102,20 @@ export const RcDelegationsList = (props: any) => {
                       <span className="item-reputation">{rcFormatter(list.delegated_rc)}</span>     
                       {list.from === activeUser.username && (<>
                       <a className="item-reputation cursor-pointer"
-                      onClick={() => {
+                      onClick={async () => {
                         showDelegation()
-                        setToFromList(list.to)
+                        setShowDelegationsList(false)
                         setAmountFromList(list.delegated_rc)
+                        setToFromList(list.to)
+                        const data = await getToData(list.to)
+                        setDelegateeData(data)
                       }}
                       >{_t("rc-info.update")}</a>          
                       <a className="item-reputation cursor-pointer"
-                      onClick={() => delegateRCKc(activeUser.username, list.to, 0)}
+                      onClick={() => {
+                       confirmDelete()
+                       setToFromList(list.to)
+                      }}
                       >{_t("rc-info.delete")}</a>          
                       </>)}               
                    </div>
@@ -136,7 +156,33 @@ export const RcDelegationsList = (props: any) => {
                 {_t("g.load-more")}
               </Button>
             </div>}
-          </div>      
+          </div>
     </div>
   ) 
 };
+
+export const ConfirmDelete = (props: any) => {
+  const { to, activeUser, hideConfirmDelete } = props;
+  return (
+    <>
+    <div className="container" style={{display: "flex", alignItems: "center", justifyContent: "center", width: "25%", flexDirection: "column"}}>
+       <h5 className="text" style={{width: "350px", alignSelf: "center"}}>
+       {_t("rc-info.confirm-delete")} 
+       </h5>
+       <div className="d-flex justify-content-center p-3">        
+        <Button className="mr-2" variant="outline-secondary"
+        onClick={hideConfirmDelete}
+        >
+          {_t("rc-info.cancel")}
+        </Button>
+        <Button className="ml-2" onClick={() =>{
+          delegateRC(activeUser.username, to, 0)
+          hideConfirmDelete()
+          }}>
+            {_t("rc-info.confirm")}
+        </Button>
+       </div>
+    </div>
+    </>
+  )
+}

@@ -891,12 +891,6 @@ export const delegateRC = (
   delegatees: string,
   max_rc: string | number
 ): Promise<TransactionConfirmation> => {
-
-  const params = {
-    account: delegator,
-    receiver: delegatees,
-    rc: max_rc
-  };
   
   const json = ["delegate_rc", {
     from: delegator,
@@ -905,41 +899,6 @@ export const delegateRC = (
 }];
 
     return broadcastPostingJSON(delegator, 'rc', json)
-};
-
-export const delegateRCHot = (
-  delegator: string,
-  delegatees: string,
-  max_rc: string | number
-) => {
-  const params = {
-    authority: "active",
-    required_auths: `["${delegator}"]`,
-    required_posting_auths: "[]",
-    id: "rc",
-    json: JSON.stringify(['delegate_rc', {
-            from: delegator,
-            delegatees: [delegatees],
-            max_rc: max_rc,
-        }])
-  };
-  
-  return hotSign("custom-json", params, `@${delegator}/wallet`);
-};
-
-export const delegateRCKc = (
-  delegator: string,
-  delegatees: string | any,
-  max_rc: string | number
-) => {
-   const json = JSON.stringify(['delegate_rc', {
-            from: delegator,
-            delegatees: [delegatees],
-            max_rc: max_rc,
-        }]);
-  console.log(json)
-  
-  return keychain.customJson(delegator, "rc", "Posting", json, "RC Delegate");
 };
 
 export const withdrawVesting = (

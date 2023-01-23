@@ -4,49 +4,38 @@ import { _t } from "../../i18n";
 import { findRcAccounts } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation"
 import { RcDelegationsList } from '../rc-delegations-list';
+import { rcFormatter } from '../../util/formatted-number';
+import { ConfirmDelete } from '../rc-delegations-list';
 
 export const ResourceCreditsInfo = (props: any) => {
 
     const [showRcInfo, setShowRcInfo] = useState(false);
     const [delegated, setDelegated] = useState();
     const [receivedDelegation, setReceivedDelegation] = useState();
-    const [resourceCredit, setresourceCredit] = useState();
+    const [resourceCredit, setresourceCredit] = useState<any>();
     const [showDelegationModal, setShowDelegationModal] = useState(false)
     const [showDelegationsList, setShowDelegationsList] = useState(false)
     const [listMode, setListMode] = useState("")
     const [toFromList, setToFromList] = useState('')
     const [amountFromList, setAmountFromList]: any = useState('')
+    const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+    const [delegateeData, setDelegateeData] = useState("")
 
     const { rcPercent, account, activeUser } = props;
 
     useEffect(() => {
         findRcAccounts(account.name).then((r) => {
-          console.log(r)
             const outGoing = r.map((a: any) => a.delegated_rc);
             const delegated = outGoing[0]
             const formatOutGoing: any =  rcFormatter(delegated)
             setDelegated(formatOutGoing);
             const availableResourceCredit: any = r.map((a: any) => a.rc_manabar.current_mana);
-            console.log(availableResourceCredit)
-            // const formatRc: any = rcFormatter(Number(availableResourceCredit));
             setresourceCredit(availableResourceCredit);
             const inComing: any = r.map((a: any) => Number(a.received_delegated_rc));
             const formatIncoming = rcFormatter(inComing);
             setReceivedDelegation(formatIncoming);
           })
     }, []);
-
-    const rcFormatter = (num: number) => {
-      const result: any = 
-      Math.abs(num) > 999 && Math.abs(num) < 1000000 ? 
-      `${Math.sign(num) * parseFloat((Math.abs(num)/1000).toFixed(2))}K` : 
-      Math.abs(num) > 999999 && Math.abs(num) < 1000000000 ? 
-      `${Math.sign(num) * parseFloat((Math.abs(num)/1000000).toFixed(2))}M` : 
-      Math.abs(num) > 999999999 && Math.abs(num) < 1000000000000000 ? 
-      `${Math.sign(num) * parseFloat((Math.abs(num)/1000000000).toFixed(2))}B` : 
-      Math.sign(num)*Math.abs(num);
-      return result
-  }
 
     const showModal = () => {
         setShowRcInfo(true);
@@ -80,24 +69,41 @@ export const ResourceCreditsInfo = (props: any) => {
     const hideList = () => {
       setShowDelegationsList(false)
   };
+
+  const confirmDelete = () => {
+    setShowConfirmDelete(true)
+    setShowDelegationsList(false);
+  }
+
+  const hideConfirmDelete = () => {
+    setShowConfirmDelete(false)
+  }
   return (
       <div>
-        <div className="progress" onClick={showModal}>
+
+        <div className="cursor-pointer d-flex flex-column mb-1"  onClick={showModal}>          
+        <div className="progress">
           <div
           className="progress-bar progress-bar-success"
           role="progressbar"
-          style={{ width: `${rcPercent}%`,  cursor:"pointer" }}
+          style={{ width: `${rcPercent}%`,    }}
           >
           {_t("rc-info.available")}
           </div>
           <div
           className="progress-bar progress-bar-danger"
           role="progressbar"
-          style={{ width: `${100 - rcPercent}%`, cursor:"pointer" }}
+          style={{ width: `${100 - rcPercent}%`,   }}
           >
           {_t("rc-info.used")}
           </div>
-      </div>
+        </div>
+        <div className="rc-percentage mt-2 align-self-center">
+          <span className="cursor-pointer">
+            {_t("rc-info.resource-credits")}
+          </span>
+        </div>
+        </div>
 
     <Modal size='lg' width={'90%'}
       animation={false}
@@ -110,16 +116,24 @@ export const ResourceCreditsInfo = (props: any) => {
       >
       <Modal.Header closeButton={true}>
         <Modal.Title>
+          <div className="rc-header">            
           <span>
             {_t("rc-info.resource-credits")}
           </span>
+          <div className="about-rc">  
+            <span>{_t("rc-info.check-faq")}</span>          
+            <a href={_t("rc-info.learn-more")}>
+            {_t("rc-info.faq-link")}
+            </a>
+          </div>
+          </div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="container">
           <div className="rc-info">
             <p className="h4">{_t("rc-info.resource-credit")}</p>
-            <p>{resourceCredit}</p>          
+            <p>{rcFormatter(resourceCredit)}</p>          
           </div>
 
           <div className="rc-info">
@@ -172,6 +186,9 @@ export const ResourceCreditsInfo = (props: any) => {
     listMode={listMode}
     setToFromList={setToFromList}
     setAmountFromList={setAmountFromList}
+    confirmDelete={confirmDelete}
+    setDelegateeData={setDelegateeData}
+    setShowDelegationsList={setShowDelegationsList}
     />    
     </Modal.Body>
   </Modal>    
@@ -198,9 +215,33 @@ export const ResourceCreditsInfo = (props: any) => {
       hideDelegation={hideDelegation}
       toFromList={toFromList}
       amountFromList={amountFromList}
+      delegateeData={delegateeData}
       />
       </Modal.Body>
     </Modal>
+
+    <Modal
+      animation={false}
+      show={showConfirmDelete}
+      centered={true}
+      onHide={hideConfirmDelete}
+      keyboard={false}
+      className="transfer-dialog modal-thin-header"
+      // size="lg"
+    >
+      <Modal.Header closeButton={true}>
+        <Modal.Title>
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+      <ConfirmDelete
+      activeUser={activeUser}
+      to={toFromList}
+      hideConfirmDelete={hideConfirmDelete}
+      />
+      </Modal.Body>
+    </Modal>
+
     </div>     
     </div>
   );
