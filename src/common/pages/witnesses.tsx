@@ -128,7 +128,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     loading: true,
     page: 1,
     lastDataLength: 0,
-    limit: 31,
+    limit: 35,
     noOfPages: 0,
     startName: "",
     sort: "rank",
