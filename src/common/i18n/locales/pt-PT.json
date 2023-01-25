@@ -205,7 +205,7 @@
   "sort-trending-tags": {
     "sort": "Ordenar",
     "ascending": "Ascendente",
-    "descending": "Descending"
+    "descending": "Descendente"
   },
   "selected-tags": {
     "title": "Destaque"
@@ -397,13 +397,13 @@
     "from": "De",
     "to": "Para",
     "sign": "Assinar",
-    "swapping": "Swapping...",
-    "continue": "Continue",
+    "swapping": "Trocando...",
+    "continue": "Continuar",
     "balance": "Balanço",
     "fee": "Taxa",
     "fee-free": "Grátis",
-    "order-book-impact": "Order book impact",
-    "swap-title": "Swap your funds",
+    "order-book-impact": "Impacto no livro de ordens",
+    "swap-title": "Trocar seus fundos",
     "sign-title": "Assine sua transação",
     "fetching-market": "Atualizando informações do mercado...",
     "back": "Anterior",
@@ -412,31 +412,31 @@
     "more-than-balance": "You've entered more than available balance",
     "invalid-amount": "Invalid from amount. Please, enter less value",
     "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
-    "auth-required-title": "Authorization required",
+    "auth-required-title": "Autorização necessária",
     "auth-required-desc": "You have to be authorized to swap own funds",
-    "start-new-one": "Start new Swap",
-    "signing": "Signing..",
-    "success-swap": "Successfully swapped!",
+    "start-new-one": "Iniciar nova troca",
+    "signing": "Entrando..",
+    "success-swap": "Trocado com sucesso!",
     "advanced": {
-      "history": "History",
-      "stake": "Order book",
-      "pairs": "Pairs",
+      "history": "Hitórico",
+      "stake": "Livro de ordens",
+      "pairs": "Pares",
       "form": "Order form",
       "open-orders": "Open",
-      "completed-orders": "Completed",
+      "completed-orders": "Concluído",
       "status": "Status",
-      "all-orders": "All",
-      "active": "Active",
-      "view-details": "View details",
-      "chart": "Chart",
-      "trading-form-auth-required": "You have to been authorized for trade",
+      "all-orders": "Tudo",
+      "active": "Ativo",
+      "view-details": "Ver detalhes",
+      "chart": "Gráfico",
+      "trading-form-auth-required": "Você deve ter autorização para operar",
       "open-orders-auth-required": "You have to been authorized for see open orders",
       "empty-open-orders": "No orders",
       "history-widget": {
-        "price": "Price",
+        "price": "Preço",
         "amount": "Quantia",
         "volume": "Volume",
-        "time": "Time"
+        "time": "Horário"
       }
     }
   },
@@ -472,7 +472,7 @@
     "cross-post-by": "Repostado por",
     "cross-post-community": "comunidade",
     "community-in": "em",
-    "post-word-count": "Words:",
+    "post-word-count": "Palavras:",
     "post-read-time": "Lendo:",
     "post-read-minuites": "min",
     "raw": "Visualizar em formato RAW"
@@ -634,8 +634,8 @@
     "witnesses": "Testemunhas",
     "proposals": "Propostas",
     "referrals": "Referências",
-    "go-community": "Community page",
-    "com-mod": "Moderator of these communities"
+    "go-community": "Página da comunidade",
+    "com-mod": "Moderador dessas comunidades"
   },
   "profile-info": {
     "joined": "Entrou: {{n}}",
@@ -675,7 +675,7 @@
     "language": "Língua",
     "nsfw": "Mostrar conteúdo adulto",
     "referral-link": "Link de referência",
-    "theme": "Theme Settings",
+    "theme": "Ajustes do Tema",
     "theme-system-default": "Padrão do Sistema",
     "theme-day": "Modo dia",
     "theme-night": "Modo noite",
@@ -726,39 +726,39 @@
     "spk": {
       "claim": {
         "title": "Reivindicar",
-        "unclaimed-rewards": "Unclaimed rewards"
+        "unclaimed-rewards": "Recompensas não reivindicadas"
       },
       "delegate": {
-        "title": "Delegate",
-        "subtitle": "Delegate tokens",
+        "title": "Delegar",
+        "subtitle": "Delegar tokens",
         "node-operator-placeholder": "Select a node operator",
         "delegated-larynx-power": {
           "title": "Delegated LARYNX Power"
         }
       },
       "power-up": {
-        "title": "Power up",
+        "title": "Aumentar Poder",
         "subtitle": "Power up to earn passive rewards"
       },
       "power-down": {
-        "title": "Power down",
+        "title": "Diminuir poder",
         "subtitle": "Power down to earn passive rewards",
-        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
+        "in-progress": "Uma baixa no poder está programada para {{date}} ({{count}} parcelas restantes)"
       },
       "lock": {
-        "title": "Lock Liquidity",
+        "title": "Bloquear Liquidez",
         "subtitle": "Locking Larynx for liquidity reward",
         "button": "Lock liquidity"
       },
       "unlock": {
-        "title": "Unlock Liquidity",
+        "title": "Desbloquear Liquidez",
         "subtitle": "Unlock LARYNX to liquid form",
         "button": "Unlock liquidity"
       },
       "send": {
-        "balance": "Balance",
-        "button": "Send",
-        "from": "From",
+        "balance": "Saldo",
+        "button": "Enviar",
+        "from": "De",
         "to": "Para",
         "amount": "Quantia",
         "optional": "opcional",
@@ -776,7 +776,7 @@
       "larynx-already-claimed": "Already claimed.",
       "larynx-token": "LARYNX Token",
       "larynx-token-description": "The mining token for the SPK network.",
-      "larynx-power": "LARYNX Power",
+      "larynx-power": "Poder LARYNX",
       "larynx-power-description": "Powered tokens used to mine SPK",
       "larynx-power-benefits": {
         "title": "Benefits of LARYNX Power",
@@ -792,11 +792,11 @@
         "2": "Collateral for DEX transactions",
         "3": "Instant Lock | 4 Week Unlock",
         "4": "Requires an operating LARYNX node",
-        "5": "Earns 0.100%"
+        "5": "Ganha 0,100%"
       },
-      "account-value": "Estimated Account Value",
+      "account-value": "Valor de Conta Aproximado",
       "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
-      "larynx-locked": "LARYNX Locked",
+      "larynx-locked": "LARYNX Guardado",
       "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
     }
   },
@@ -809,11 +809,11 @@
     "staked": "Guardado"
   },
   "sort-engine-tokens": {
-    "sort": "Sort",
-    "sort-in-ascending": "Ascending",
-    "sort-in-descending": "Descending",
-    "sort-by-value": "Value",
-    "sort-by-balance": "Balance",
+    "sort": "Ordenar",
+    "sort-in-ascending": "Ascendente",
+    "sort-in-descending": "Descendente",
+    "sort-by-value": "Valor",
+    "sort-by-balance": "Saldo",
     "sort-by-stake": "Stake",
     "sort-by-delegations-in": "Delegations in",
     "sort-by-delegations-out": "Delegations out"
@@ -886,13 +886,13 @@
     "scan-code": "Scan the QR code with Ecency mobile app",
     "select-user": "Please, select an user",
     "title": "Impulso de conta",
-    "title-points": "Buy points",
+    "title-points": "Comprar pontos",
     "copied": "Account boost link copied!",
-    "select-type": "Select a type",
+    "select-type": "Selecione um tipo",
     "boost": "Impulso",
     "points": "Pontos",
     "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
-    "points-amount": "{{n}} points"
+    "points-amount": "{{n}} pontos"
   },
   "promote": {
     "title": "Promover",
@@ -980,11 +980,11 @@
     "reset": "Reiniciar",
     "powering-down": "Você está atualmente fazendo power down.",
     "stop-power-down": "Parar",
-    "claim-title": "Claim",
-    "powerup-title": "Power Up",
+    "claim-title": "Reivindicar",
+    "powerup-title": "Aumentar Poder",
     "powerdown-title": "Power down",
-    "lock-title": "Lock liquidity",
-    "unlock-title": "Unlock liquidity",
+    "lock-title": "Bloquear liquidez",
+    "unlock-title": "Desbloquear liquidez",
     "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
     "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
   },
@@ -1331,7 +1331,7 @@
     "proxy-active-btn-label": "Limpar o Proxy",
     "proxy-votes-for": "@{{username}} votos para",
     "proxy-active-highlighted": "Your proxy votes are highlighted",
-    "check-witness-highlighted": "votes are highlighted"
+    "check-witness-highlighted": "votos estão destacados"
   },
   "referral": {
     "page-title": "Referências",
@@ -1610,12 +1610,12 @@
   "chain-error": {
     "min-root-comment": "Você só pode postar a cada 5 minutos.",
     "identical-vote": "O teu voto actual neste conteúdo é idêntico a este voto.",
-    "insufficient-resource": "Insufficient Resource Credits.",
+    "insufficient-resource": "Créditos de Recurso insuficientes.",
     "delete-comment-with-vote": "Conteúdo com recompensas positivas não podem ser deletados.",
     "comment-cashout": "Após o pagamento, o conteúdo não pode ser deletado.",
     "comment-children": "Conteúdo com respostas ao pode ser deletado.",
     "paid-out-post-forbidden": "Votação de conteúdo pago não está disponível.",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "Chave privada ausente ou inválida."
   },
   "landing-page": {
     "welcome-text": "Bem-vindo à Ecency!",
@@ -1684,8 +1684,8 @@
   },
   "feedback-modal": {
     "title": "Detalhes do erro",
-    "question": "How to fix this?",
-    "insufficient-resource-title": "How to get more Resource credits?",
+    "question": "Como resolver isso?",
+    "insufficient-resource-title": "Como obter mais Créditos de Recurso?",
     "insufficient-resource-purchase": "Purchase account boost or delegation",
     "insufficient-resource-buy-hive": "Compre HIVE e Aumente seu Poder",
     "insufficient-resource-wait": "Espere algumas horas para os seus Recursos de Créditos recarregarem",
