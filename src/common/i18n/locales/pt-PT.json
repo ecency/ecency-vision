@@ -422,7 +422,7 @@
       "stake": "Livro de ordens",
       "pairs": "Pares",
       "form": "Order form",
-      "open-orders": "Open",
+      "open-orders": "Abrir",
       "completed-orders": "Concluído",
       "status": "Status",
       "all-orders": "Tudo",
@@ -430,7 +430,7 @@
       "view-details": "Ver detalhes",
       "chart": "Gráfico",
       "trading-form-auth-required": "Você deve ter autorização para operar",
-      "open-orders-auth-required": "You have to been authorized for see open orders",
+      "open-orders-auth-required": "Você precisa de autorização para ver as ordens em aberto",
       "empty-open-orders": "No orders",
       "history-widget": {
         "price": "Preço",
