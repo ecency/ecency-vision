@@ -265,22 +265,23 @@ export class Drafts extends BaseComponent<Props, State> {
   };
 
   clone = (item: Draft) => {
+    const element = this.state.listRef.current;
     this.setState({ isClone: true });
     const { activeUser } = this.props;
     const { title, body, tags, meta } = item;
     const cloneTitle = _t("g.copy") + " " + title;
     const draftMeta: DraftMetadata = meta!;
-    addDraft(activeUser?.username!, cloneTitle, body, tags, draftMeta).then((resp) => {
-      this.stateSet({ list: this.sort(resp.drafts), isClone: false }, this.handleScroll);
-      success(_t("g.clone-success"));
-    });
+    addDraft(activeUser?.username!, cloneTitle, body, tags, draftMeta)
+      .then((resp) => {
+        this.stateSet({ list: this.sort(resp.drafts), isClone: false });
+        success(_t("g.clone-success"));
+        element.scrollIntoView(true);
+      })
+      .catch(() => {
+        this.setState({ isClone: false });
+        error(_t("g.server-error"));
+      });
   };
-
-  handleScroll = () => {
-    const element = this.state.listRef.current;
-    element.scrollIntoView(true);
-  };
-
   filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
     const { value } = e.target;
     this.stateSet({ filter: value });
