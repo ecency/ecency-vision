@@ -65,7 +65,7 @@
     table {
       min-width: 840px;
 
-      @media (max-width: $sm-break) {
+      @include media-breakpoint-down(sm) {
         display: none;
       }
     }
@@ -186,17 +186,16 @@
     display: none;
   }
 
-  @media (min-width: $lg-break) {
+  @include media-breakpoint-up(lg) {
     flex-direction: row;
   }
 
   .sorter {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
 
-    @media (min-width: $lg-break) {
-      margin-bottom: 0;
+    @include media-breakpoint-only(md) {
+     margin-bottom: 10px;
     }
 
     .label {

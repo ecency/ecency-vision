@@ -176,7 +176,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     const { lastDataLength, limit } = this.state;
     if (innerWidth <= 767) {
       let b = document.body;
-      let scrollHeight = (b.scrollHeight / 100) * 91;
+      let scrollHeight = (b.scrollHeight / 100) * 90;
       if (window.scrollY >= scrollHeight && lastDataLength === limit) {
         this.stateSet({ spinner: true });
         this.load();
