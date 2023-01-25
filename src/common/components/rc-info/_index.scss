@@ -1,13 +1,135 @@
 .container {
+    display: flex;
+    justify-content: space-around;
     padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    column-gap: 10px;
 
-    .rc-info {
-        padding: 20px;
-        border: 0.5px solid;
+    .percent{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        gap: 15px;
+        .circle{
+            width: 160px;
+            height: 160px;
+            position: relative;
+    
+            .outer-circle{
+                width: 160px;
+                height: 160px;
+                background-color: transparent;
+                border-radius: 50%;
+                padding: 20px;
+                box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+                            -6px -6px 10px -1px rgba(0, 0, 0, 0.15);
+        
+                .inner-circle{
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+                                inset 6px 6px 10px -1px rgba(0, 0, 0, 0.2),
+                                -0.5px -0.5px 0px rgba(0, 0, 0, 0.2),
+                                0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+                                0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+        
+                                span{
+                                    font-weight: 500px;
+                                }
+                }
+            }
+    
+            svg{
+                position: absolute;
+                 top: 0;
+                 left: 0;
+                 right: 0;
+                 bottom: 0;
+                 margin: auto;
+            }
+        }
+        .percentage-info{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .unused{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                gap: 10px;
+               
+                .unused-box{
+                    width: 15px;
+                    height: 15px;
+                    background-color: #357ce6;
+                }
+
+            }
+            .used{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                gap: 10px;
+
+                .used-box{
+                    width: 15px;
+                    height: 15px;
+                    background-color: gray;
+                }
+
+            }
+          
+        }
+
     }
+
+
+    .rc-details{
+        display: flex;
+        flex-direction: column;
+        
+        .delegations{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            
+            .outgoing{
+                cursor: pointer;
+                font-size: 14px;
+            }
+            .incoming{
+                cursor: pointer;
+                font-size: 14px;
+            }
+            
+        }
+
+        .line-break{
+
+            hr{
+                background-color: gray;
+            }
+        }
+
+        .extra-details{
+            p{
+                font-size: 16px;
+            }
+            ul{
+                line-height: 30px;
+                li{
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    
 }
 
 .rc-header{

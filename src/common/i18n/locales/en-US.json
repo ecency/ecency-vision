@@ -650,10 +650,10 @@
     "used": "Used",
     "resource-credits": "Rescource Credits",
     "resource-credit": "R C",
-    "delegated": "Outgoing",
-    "received-delegations": "Incoming",
+    "delegated": "Delegations Out",
+    "received-delegations": "Delegations In",
     "delegation-button": "RC Delegations",
-    "rc-available": "Available",
+    "rc-available": "Ratio",
     "rc-used": "Used",
     "outgoing": "Outgoing",
     "incoming": "Incoming",
@@ -666,7 +666,12 @@
     "learn-more": "/faq#what-are-rc",
     "faq-link": " [FAQ]",
     "insufficient-rc-error": "Insufficient resource credits",
-    "minimum-rc-error": "Mininum RC is 5,000,000,000"
+    "minimum-rc-error": "Mininum RC is 5,000,000,000",
+    "extra-details-heading": "What you can do with your current Rc",
+    "extra-details-transfer": "Transfers:",
+    "extra-details-post": "Posts:",
+    "extra-details-comment": "Comments:",
+    "extra-details-upvote": "Upvotes:"
   },
   "profile-edit": {
     "title": "Profile",
