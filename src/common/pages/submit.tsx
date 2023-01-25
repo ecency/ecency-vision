@@ -216,7 +216,6 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     this.detectDraft().then();
 
-    this.checkDraft();
     let selectedThumbnail = ls.get("draft_selected_image");
     if (selectedThumbnail && selectedThumbnail.length > 0) {
       this.selectThumbnails(selectedThumbnail);
@@ -366,21 +365,14 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     const localDraft = ls.get("local_draft") as PostBase;
     if (!localDraft) {
+      this.stateSet({ isDraftEmpty: true });
       return;
     }
 
     const { title, tags, body } = localDraft;
     this.stateSet({ title, tags, body }, this.updatePreview);
-  };
 
-  checkDraft = () => {
-    const localDraft = ls.get("local_draft") as PostBase;
-    if (!localDraft) {
-      this.stateSet({ isDraftEmpty: true });
-      return;
-    }
-
-    for (let key in localDraft) {
+    for (const key in localDraft) {
       if (localDraft[key].length > 0) {
         this.stateSet({ isDraftEmpty: false });
       }
