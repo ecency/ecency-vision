@@ -404,7 +404,7 @@ export interface Witness {
   last_hbd_exchange_update: string;
 }
 
-export const getWitnessesByVote = (from: string = "", limit: number = 50): Promise<Witness[]> =>
+export const getWitnessesByVote = (from: string, limit: number): Promise<Witness[]> =>
   client.call("condenser_api", "get_witnesses_by_vote", [from, limit]);
 
 export interface Proposal {
