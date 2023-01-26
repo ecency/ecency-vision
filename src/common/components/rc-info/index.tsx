@@ -119,7 +119,8 @@ export const ResourceCreditsInfo = (props: any) => {
         </div>
         </div>
 
-    <Modal size='lg' width={'90%'}
+    <Modal 
+      size='lg' 
       animation={false}
       show={showRcInfo}
       centered={true}
