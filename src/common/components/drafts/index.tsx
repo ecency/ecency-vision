@@ -264,23 +264,22 @@ export class Drafts extends BaseComponent<Props, State> {
     onHide();
   };
 
-  clone = (item: Draft) => {
+  clone = async (item: Draft) => {
     const element = this.state.listRef.current;
     this.setState({ isClone: true });
     const { activeUser } = this.props;
     const { title, body, tags, meta } = item;
     const cloneTitle = _t("g.copy") + " " + title;
     const draftMeta: DraftMetadata = meta!;
-    addDraft(activeUser?.username!, cloneTitle, body, tags, draftMeta)
-      .then((resp) => {
-        this.stateSet({ list: this.sort(resp.drafts), isClone: false });
-        success(_t("g.clone-success"));
-        element.scrollIntoView(true);
-      })
-      .catch(() => {
-        this.setState({ isClone: false });
-        error(_t("g.server-error"));
-      });
+    try {
+      const resp = await addDraft(activeUser?.username!, cloneTitle, body, tags, draftMeta);
+      this.stateSet({ list: this.sort(resp.drafts), isClone: false });
+      success(_t("g.clone-success"));
+      element.scrollIntoView(true);
+    } catch (err) {
+      this.setState({ isClone: false });
+      error(_t("g.server-error"));
+    }
   };
   filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
     const { value } = e.target;
