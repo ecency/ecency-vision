@@ -22,6 +22,7 @@ import { Global } from "../../store/global/types";
 import * as ss from "../../util/session-storage";
 
 import TextareaAutocomplete from "../textarea-autocomplete";
+import { AvailableCredits } from "../available-credits";
 
 interface PreviewProps {
   text: string;
@@ -213,22 +214,33 @@ export class Comment extends Component<Props, State> {
             {LoginRequired({
               ...this.props,
               children: (
-                <Button
-                  className="btn-submit"
-                  size="sm"
-                  disabled={inProgress}
-                  onClick={this.submit}
-                >
-                  {inProgress && (
-                    <Spinner
-                      animation="grow"
-                      variant="light"
-                      size="sm"
-                      style={{ marginRight: "6px" }}
+                <>
+                  {this.props.activeUser ? (
+                    <AvailableCredits
+                      className="mr-2"
+                      operation="comment_operation"
+                      username={this.props.activeUser.username}
                     />
-                  )}{" "}
-                  {submitText}
-                </Button>
+                  ) : (
+                    <></>
+                  )}
+                  <Button
+                    className="btn-submit"
+                    size="sm"
+                    disabled={inProgress}
+                    onClick={this.submit}
+                  >
+                    {inProgress && (
+                      <Spinner
+                        animation="grow"
+                        variant="light"
+                        size="sm"
+                        style={{ marginRight: "6px" }}
+                      />
+                    )}{" "}
+                    {submitText}
+                  </Button>
+                </>
               )
             })}
           </div>

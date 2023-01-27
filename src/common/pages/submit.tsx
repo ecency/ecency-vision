@@ -82,6 +82,7 @@ import { checkSvg, contentSaveSvg } from "../img/svg";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import ModalConfirm from "../components/modal-confirm";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
+import { AvailableCredits } from "../components/available-credits";
 
 setProxyBase(defaults.imageServer);
 
@@ -993,16 +994,27 @@ class SubmitPage extends BaseComponent<Props, State> {
                 </Button>
               )}
 
-              <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
-                {advanced ? (
-                  _t("submit.preview")
+              <div className="d-flex align-items-center">
+                {activeUser ? (
+                  <AvailableCredits
+                    className="mr-2"
+                    operation="comment_operation"
+                    username={activeUser.username}
+                  />
                 ) : (
-                  <>
-                    {_t("submit.advanced")}
-                    {this.hasAdvanced() ? " •••" : null}
-                  </>
+                  <></>
                 )}
-              </Button>
+                <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
+                  {advanced ? (
+                    _t("submit.preview")
+                  ) : (
+                    <>
+                      {_t("submit.advanced")}
+                      {this.hasAdvanced() ? " •••" : null}
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
           </div>
           <div className="flex-spacer" />

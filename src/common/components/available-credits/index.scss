@@ -1,0 +1,93 @@
+.available-credits-bar {
+  position: relative;
+  overflow: hidden;
+
+  .progress-bar__background {
+    fill: none;
+    stroke: $gray-200;
+    stroke-width: 6px;
+
+    @include themify(night) {
+      stroke: $gray-700;
+    }
+  }
+
+  .progress-bar__progress {
+    fill: none;
+    stroke: $primary;
+    stroke-dasharray: 100 100;
+    stroke-dashoffset: 100;
+    stroke-linecap: round;
+    stroke-width: 4px;
+    transition: stroke-dashoffset 1s ease-in-out;
+  }
+
+  span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.5rem;
+    font-weight: 700;
+    color: $primary;
+  }
+
+  &.warning .progress-bar__progress, &.warning span {
+    color: $yellow;
+    stroke: $yellow;
+
+    @include themify(day) {
+      color: darken($yellow, 15);
+      stroke: darken($yellow, 5);
+    }
+  }
+
+  &.danger .progress-bar__progress, &.danger span {
+    color: $danger;
+    stroke: $danger;
+
+    @include themify(day) {
+      color: darken($danger, 15);
+      stroke: darken($danger, 5);
+    }
+  }
+}
+
+.available-credits-bar-popper {
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s ease-in-out;
+
+  background: #333;
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .arrow {
+    visibility: hidden;
+
+    &, &::before {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: inherit;
+    }
+
+    &::before {
+      visibility: visible;
+      content: '';
+      transform: rotate(45deg);
+    }
+  }
+}
