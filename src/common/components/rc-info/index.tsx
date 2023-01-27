@@ -6,6 +6,7 @@ import { ResourceCreditsDelegation } from "../rc-delegation"
 import { RcDelegationsList } from '../rc-delegations-list';
 import { rcFormatter } from '../../util/formatted-number';
 import { ConfirmDelete } from '../rc-delegations-list';
+import { getRcOperations } from '../../api/hive';
 
 export const ResourceCreditsInfo = (props: any) => {
   const radius = 70;
@@ -24,6 +25,9 @@ export const ResourceCreditsInfo = (props: any) => {
     const [delegateeData, setDelegateeData] = useState("")
     const [usedOffset, setUsedOffset] = useState<any>(null);
     const [unUsedOffset, setUnUsedOffset] = useState<any>(null);
+    const [commentAmount, setCommentAmount] = useState(null)
+    const [voteAmount, setVoteAmount] = useState(null)
+    const [transferAmount, setTransferAmount] = useState(null)
 
     const { rcPercent, account, activeUser } = props;
 
@@ -38,10 +42,25 @@ export const ResourceCreditsInfo = (props: any) => {
             const inComing: any = r.map((a: any) => Number(a.received_delegated_rc));
             const formatIncoming = rcFormatter(inComing);
             setReceivedDelegation(formatIncoming);
+            
+            const rcOperationsCost = async () => {
+              const rcStats: any = await getRcOperations();
+              const operationCosts = rcStats.result.rc_stats.ops
+              const commentCost = operationCosts.comment_operation.avg_cost
+              const transferCost = operationCosts.transfer_operation.avg_cost
+              const voteCost = operationCosts.vote_operation.avg_cost
+
+              const commentCount: any = Math.ceil(Number(availableResourceCredit[0]) / commentCost);
+              const votetCount: any = Math.ceil(Number(availableResourceCredit[0]) / voteCost);
+              const transferCount: any = Math.ceil(Number(availableResourceCredit[0]) / transferCost);
+              setCommentAmount(commentCount);
+              setVoteAmount(votetCount);
+              setTransferAmount(transferCount);
+            }
+            rcOperationsCost();
           })
           getCircleOffsets();
     }, []);
-
 
     const showModal = () => {
         setShowRcInfo(true);
@@ -65,7 +84,7 @@ export const ResourceCreditsInfo = (props: any) => {
     const showIncomingList = () => {
       setShowDelegationsList(true)
       setListMode("in")
-    }
+    };
 
     const showOutGoingList = () => {
       setShowDelegationsList(true)
@@ -79,18 +98,18 @@ export const ResourceCreditsInfo = (props: any) => {
   const confirmDelete = () => {
     setShowConfirmDelete(true)
     setShowDelegationsList(false);
-  }
+  };
 
   const hideConfirmDelete = () => {
     setShowConfirmDelete(false)
-  }
+  };
 
   const getCircleOffsets = () => {
-    const usedOffset = rcPercent / 100 * dasharray;
-    const unUsedOffset = (100 - rcPercent) / 100 * dasharray;
+    const unUsedOffset = rcPercent / 100 * dasharray;
+    const usedOffset = (100 - rcPercent) / 100 * dasharray;
     setUsedOffset(usedOffset);
     setUnUsedOffset(unUsedOffset);    
-  }
+  };
 
   return (
       <div>
@@ -158,8 +177,8 @@ export const ResourceCreditsInfo = (props: any) => {
 
               <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px" >    
                 <circle className="container-circle" cx="80" cy="80" r={radius} strokeLinecap="round" style={{fill: "none", strokeWidth: "20px", strokeDashoffset:"0", strokeDasharray: dasharray, stroke: "#357ce6"}} />
-                <circle className="available-circle" cx="80" cy="80" r={radius} strokeLinecap="round" style={{fill: "none", strokeWidth: "20px", strokeDashoffset:unUsedOffset, strokeDasharray:"0", stroke: "none"}} />
-                <circle className="used-circle" cx="80" cy="80" r={radius} strokeLinecap="round" style={{fill: "none", strokeWidth: "20px", strokeDashoffset:usedOffset, strokeDasharray:dasharray, stroke: "gray"}} />
+                <circle className="available-circle" cx="80" cy="80" r={radius} strokeLinecap="round" style={{fill: "none", strokeWidth: "20px", strokeDashoffset:usedOffset, strokeDasharray: dasharray, stroke: "#357ce6"}} />
+                <circle className="used-circle" cx="80" cy="80" r={radius} strokeLinecap="round" style={{fill: "none", strokeWidth: "20px", strokeDashoffset:unUsedOffset, strokeDasharray:dasharray, stroke: "red"}} />
               </svg>
             </div>
 
@@ -175,7 +194,7 @@ export const ResourceCreditsInfo = (props: any) => {
               <div className="used-box">
                 </div>
                 <span>
-                  {`${_t("rc-info.rc-used")}: ${100 - rcPercent}%`}
+                  {`${_t("rc-info.rc-used")}: ${(100 - rcPercent).toFixed(2)}%`}
                 </span>
               </div>
             </div>
@@ -199,10 +218,10 @@ export const ResourceCreditsInfo = (props: any) => {
                 <p>{_t("rc-info.extra-details-heading")}</p>
                 <div className="extras">
                   <ul>
-                    <li>{_t("rc-info.extra-details-post")}</li>
-                    <li>{_t("rc-info.extra-details-comment")}</li>
-                    <li>{_t("rc-info.extra-details-transfer")}</li>                 
-                    <li>{_t("rc-info.extra-details-upvote")}</li>                 
+                    <li>{`${_t("rc-info.extra-details-post")} ${commentAmount}`}</li>
+                    <li>{`${_t("rc-info.extra-details-comment")} ${commentAmount}`}</li>
+                    <li>{`${_t("rc-info.extra-details-upvote")} ${voteAmount}`}</li>                 
+                    <li>{`${_t("rc-info.extra-details-transfer")} ${transferAmount}`}</li>                 
                   </ul>
                 </div>
               </div>

@@ -73,7 +73,6 @@ export const ProfileCard = (props: Props) => {
         setSubs([]);
       });
     findRcAccounts(account.name).then((r: RCAccount[]) => {
-      // console.log(r);
       if (r && r[0]) {
         setRcPercent(rcPower(r[0]));
       }

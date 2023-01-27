@@ -593,3 +593,20 @@ export interface BlogEntry {
 
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
   client.call("condenser_api", "get_blog_entries", [username, 0, limit]);
+
+export const getRcOperations = async() => {
+  const data = await fetch('https://api.hive.blog/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        'jsonrpc': '2.0',
+        'method': 'rc_api.get_rc_stats',
+        'params': {},
+        'id': 1
+    })
+});
+const result = await data.json()
+return result;
+}
