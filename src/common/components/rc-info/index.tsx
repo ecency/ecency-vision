@@ -9,28 +9,27 @@ import { ConfirmDelete } from '../rc-delegations-list';
 import { getRcOperations } from '../../api/hive';
 
 export const ResourceCreditsInfo = (props: any) => {
+  const { rcPercent, account, activeUser } = props;
   const radius = 70;
   const dasharray = 440;
-
-    const [showRcInfo, setShowRcInfo] = useState(false);
+  const unUsedOffset = rcPercent / 100 * dasharray;
+  const usedOffset = (100 - rcPercent) / 100 * dasharray;
+  
+  const [showRcInfo, setShowRcInfo] = useState(false);
     const [delegated, setDelegated] = useState();
     const [receivedDelegation, setReceivedDelegation] = useState();
     const [resourceCredit, setresourceCredit] = useState<any>();
-    const [showDelegationModal, setShowDelegationModal] = useState(false)
-    const [showDelegationsList, setShowDelegationsList] = useState(false)
-    const [listMode, setListMode] = useState("")
-    const [toFromList, setToFromList] = useState('')
-    const [amountFromList, setAmountFromList]: any = useState('')
+    const [showDelegationModal, setShowDelegationModal] = useState(false);
+    const [showDelegationsList, setShowDelegationsList] = useState(false);
+    const [listMode, setListMode] = useState("");
+    const [toFromList, setToFromList] = useState('');
+    const [amountFromList, setAmountFromList]: any = useState('');
     const [showConfirmDelete, setShowConfirmDelete] = useState(false);
-    const [delegateeData, setDelegateeData] = useState("")
-    const [usedOffset, setUsedOffset] = useState<any>(null);
-    const [unUsedOffset, setUnUsedOffset] = useState<any>(null);
-    const [commentAmount, setCommentAmount] = useState(null)
-    const [voteAmount, setVoteAmount] = useState(null)
-    const [transferAmount, setTransferAmount] = useState(null)
-
-    const { rcPercent, account, activeUser } = props;
-
+    const [delegateeData, setDelegateeData] = useState("");
+    const [commentAmount, setCommentAmount] = useState(null);
+    const [voteAmount, setVoteAmount] = useState(null);
+    const [transferAmount, setTransferAmount] = useState(null);    
+    
     useEffect(() => {
         findRcAccounts(account.name).then((r) => {
             const outGoing = r.map((a: any) => a.delegated_rc);
@@ -59,7 +58,6 @@ export const ResourceCreditsInfo = (props: any) => {
             }
             rcOperationsCost();
           })
-          getCircleOffsets();
     }, []);
 
     const showModal = () => {
@@ -102,13 +100,6 @@ export const ResourceCreditsInfo = (props: any) => {
 
   const hideConfirmDelete = () => {
     setShowConfirmDelete(false)
-  };
-
-  const getCircleOffsets = () => {
-    const unUsedOffset = rcPercent / 100 * dasharray;
-    const usedOffset = (100 - rcPercent) / 100 * dasharray;
-    setUsedOffset(usedOffset);
-    setUnUsedOffset(unUsedOffset);    
   };
 
   return (
@@ -175,10 +166,10 @@ export const ResourceCreditsInfo = (props: any) => {
                 </div>
               </div>
 
-              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px" >    
-                <circle className="container-circle" cx="80" cy="80" r={radius} strokeLinecap="round" style={{fill: "none", strokeWidth: "20px", strokeDashoffset:"0", strokeDasharray: dasharray, stroke: "#357ce6"}} />
-                <circle className="available-circle" cx="80" cy="80" r={radius} strokeLinecap="round" style={{fill: "none", strokeWidth: "20px", strokeDashoffset:usedOffset, strokeDasharray: dasharray, stroke: "#357ce6"}} />
-                <circle className="used-circle" cx="80" cy="80" r={radius} strokeLinecap="round" style={{fill: "none", strokeWidth: "20px", strokeDashoffset:unUsedOffset, strokeDasharray:dasharray, stroke: "red"}} />
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" >    
+                <circle cx="80" cy="80" r={radius} style={{strokeDashoffset:"0", strokeDasharray: dasharray, stroke: "#357ce6"}} />
+                <circle cx="80" cy="80" r={radius} style={{strokeDashoffset:usedOffset, strokeDasharray: dasharray, stroke: "#357ce6"}} />
+                <circle cx="80" cy="80" r={radius} style={{strokeDashoffset:unUsedOffset, strokeDasharray:dasharray, stroke: "red"}} />
               </svg>
             </div>
 
