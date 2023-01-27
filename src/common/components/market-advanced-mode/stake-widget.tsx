@@ -53,23 +53,24 @@ export const StakeWidget = ({
   const [maxBuy, setMaxBuy] = useState(0);
   const [fraction, setFraction] = useState(storedFraction ?? 0.00001);
   const [viewType, setViewType] = useState(storedViewType ?? StakeWidgetViewType.All);
+  const [unlimited, setUnlimited] = useState(storedViewType !== StakeWidgetViewType.All ?? false);
 
   const rowsCount = global.isMobile ? 5 : 20;
 
   useEffect(() => {
-    buildAllStakeItems(fraction);
+    buildAllStakeItems(fraction, unlimited);
   }, [history]);
 
   const buildAllStakeItems = (fraction: number, unlimited?: boolean) => {
     if (!history) return;
 
     let sells = buildStakeItems(history.asks, "desc", fraction);
-    sells = sells.slice(sells.length - 1 - (unlimited ? rowsCount * 2 : rowsCount), sells.length);
+    sells = sells.slice(sells.length - 1 - (unlimited ? rowsCount * 1.5 : rowsCount), sells.length);
     setSells(sells);
     setMaxSell(Math.min(500, Math.max(...sells.map((i) => i.amount))));
 
     let buys = buildStakeItems(history.bids, "desc", fraction);
-    buys = buys.slice(0, unlimited ? rowsCount * 2 : rowsCount);
+    buys = buys.slice(0, unlimited ? rowsCount * 1.5 : rowsCount);
     setBuys(buys);
     setMaxBuy(Math.min(500, Math.max(...buys.map((i) => i.amount))));
   };
@@ -131,6 +132,7 @@ export const StakeWidget = ({
           onViewTypeChange={(value) => {
             setViewType(value);
             setStoredViewType(value);
+            setUnlimited(value !== StakeWidgetViewType.All);
             if (value !== viewType) buildAllStakeItems(fraction, value !== StakeWidgetViewType.All);
           }}
         />

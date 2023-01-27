@@ -73,6 +73,7 @@ thead, .pagination {
 
     &.ADVANCED {
         .advanced-mode {
+            overflow-x: hidden;
             margin-top: -2.5rem;
 
             @include media-breakpoint-down(sm) {
@@ -82,6 +83,8 @@ thead, .pagination {
 
         .advanced-mode-toolbar {
             align-items: center;
+            position: relative;
+            z-index: 9;
 
             @include media-breakpoint-down(md) {
                 flex-wrap: wrap;
@@ -184,7 +187,13 @@ thead, .pagination {
             height: calc(100% - 39px - 55px);
 
             &.one-type {
-                justify-content: start;
+                justify-content: flex-start;
+
+                .market-stake-widget-sell, .market-stake-widget-buy {
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                }
             }
 
             @include media-breakpoint-down(md) {
