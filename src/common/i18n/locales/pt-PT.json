@@ -2,6 +2,9 @@
   "g": {
     "add": "Adicionar",
     "edit": "Editar",
+    "clone": "Clone",
+    "copy": "Copy of",
+    "clone-success": "Created new draft copy",
     "continue": "Continuar",
     "submit": "Escrever uma publicação",
     "search": "Procurar",
@@ -63,7 +66,8 @@
     "more-results": "Mais resultados",
     "close": "Fechar",
     "loading": "Carregando",
-    "stop": "Parar"
+    "stop": "Parar",
+    "settings": "Ajustes"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -71,9 +75,9 @@
     "cancel": "Cancelar"
   },
   "announcements": {
-    "dismiss": "Dismiss",
-    "next": "Next",
-    "later": "Later"
+    "dismiss": "Descartar",
+    "next": "Próximo",
+    "later": "Depois"
   },
   "entry-filter": {
     "filter-trending": "Destaques",
@@ -100,8 +104,8 @@
     "filter-month": "Este mês",
     "filter-year": "Este ano",
     "filter-alltime": "Desde o início",
-    "filter-no-reblog": "Excluir reblog",
-    "filter-with-reblog": "Include reblog"
+    "filter-no-reblog": "Excluir reblogs",
+    "filter-with-reblog": "Incluir reblogs"
   },
   "navbar": {
     "discover": "Descubra",
@@ -146,7 +150,7 @@
     "dark": "escuro",
     "switch-to": "Alternar",
     "vote-power": "Força do Voto:",
-    "boost": "Boost"
+    "boost": "Impulsionar"
   },
   "intro": {
     "title": "Pense Grande",
@@ -161,7 +165,7 @@
     "login-info-1": "Nós não armazenamos suas chaves privadas.",
     "login-info-2": "Mais informação",
     "error-fields-required": "Por favor insira um nome de usuário e palavra passe /WIF",
-    "captcha-check-required": "Please verify if you are a human",
+    "captcha-check-required": "Por favor, confirme que você é humano",
     "error-public-key": "Você inseriu uma chave pública. Senha/WIF obrigatório",
     "error-user-fetch": "Dados de usuário não foram encontrados",
     "error-user-not-found": "Usuário não existe",
@@ -174,8 +178,8 @@
     "sign-up-text-2": "Registe-se agora!"
   },
   "sign-up": {
-    "header": "Rewarding communities",
-    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
+    "header": "Comunidades gratificantes",
+    "description": "O Valor da Liberdade de Expressão e da Conquista da Liberdade Financeira. Você, no Comando.",
     "bottom-description": "Cada conta é criada na blockchain da Hive, e só você tem controle sobre seu perfil e ativos. Através da Ecency, você tem uma conta para administrar tudo na blockchain da Hive.",
     "learn-more": "Aprenda mais sobre benefícios acessando nossas <a href=\"/faq#how-to-join\">Perguntas Frequentes</a>",
     "username": "Escolha um nome de usuário",
@@ -187,15 +191,24 @@
     "success": "Enviamos um e-mail para {{email}}.",
     "success-2": "Siga as instruções para concluir o processo de inscrição.",
     "login-text-1": "Você tem conta?",
-    "login-text-2": "Entrar"
+    "login-text-2": "Entrar",
+    "free-account": "Conta grátis",
+    "free-account-desc": "Obtenha uma conta completa na Hive. Esse método possui verificações básicas para impedir abuso do nosso sistema de cadastro.",
+    "register-free": "Cadastre-se gratuitamente",
+    "buy-account": "Comprar uma conta",
+    "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
+    "buy-account-li-1": "Criação instantânea. Sem demora e verificações extras",
+    "buy-account-li-2": "3x RC compared to normal new accounts",
+    "buy-account-li-3": "300 Pontos para ajudá-lo no início",
+    "qr-desc": "Aponte utilizando o aplicativo da Ecency para continuar"
   },
   "trending-tags": {
     "title": "Tópicos"
   },
   "sort-trending-tags": {
-    "sort": "Sort",
-    "ascending": "Ascending",
-    "descending": "Descending"
+    "sort": "Ordenar",
+    "ascending": "Ascendente",
+    "descending": "Descendente"
   },
   "selected-tags": {
     "title": "Destaque"
@@ -366,11 +379,11 @@
     "orders": "Ordens",
     "date": "Data",
     "open-orders": "Ordens Ativas",
-    "pending-orders": "Pending orders",
+    "pending-orders": "Ordens pendentes",
     "type": "Tipo",
-    "mode-limit": "Limit",
-    "mode-swap": "Swap",
-    "mode-advanced": "Advanced",
+    "mode-limit": "Limite",
+    "mode-swap": "Trocar",
+    "mode-advanced": "Avançado",
     "action": "Ação",
     "trade-history": "Histórico de Compra e Venda",
     "stock-params": "Parâmetros",
@@ -384,29 +397,51 @@
     "transaction-succeeded": "Transação submetida",
     "lowest-ask": "Oferta mais baixa",
     "decimal-error": "Somente {{decimals}} dígitos decimais permitidos!",
-    "from": "From",
-    "to": "To",
-    "sign": "Sign",
-    "swapping": "Swapping...",
-    "continue": "Continue",
-    "balance": "Balance",
-    "fee": "Fee",
-    "fee-free": "Free",
-    "order-book-impact": "Order book impact",
-    "swap-title": "Swap your funds",
-    "sign-title": "Sign your transaction",
-    "fetching-market": "Fetching market...",
-    "back": "Back",
-    "swap-by": "Sign by {{method}}",
-    "success-title": "Transaction completed",
+    "from": "De",
+    "to": "Para",
+    "sign": "Assinar",
+    "swapping": "Trocando...",
+    "continue": "Continuar",
+    "balance": "Balanço",
+    "fee": "Taxa",
+    "fee-free": "Grátis",
+    "order-book-impact": "Impacto no livro de ordens",
+    "swap-title": "Trocar seus fundos",
+    "sign-title": "Assine sua transação",
+    "fetching-market": "Atualizando informações do mercado...",
+    "back": "Anterior",
+    "swap-by": "Assinado por {{method}}",
+    "success-title": "Transação concluída",
     "more-than-balance": "You've entered more than available balance",
     "invalid-amount": "Invalid from amount. Please, enter less value",
     "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
-    "auth-required-title": "Authorization required",
+    "auth-required-title": "Autorização necessária",
     "auth-required-desc": "You have to be authorized to swap own funds",
-    "start-new-one": "Start new Swap",
-    "success-swap": "Successfully swapped!",
-    "signing": "Signing.."
+    "start-new-one": "Iniciar nova troca",
+    "signing": "Entrando..",
+    "success-swap": "Trocado com sucesso!",
+    "advanced": {
+      "history": "Hitórico",
+      "stake": "Livro de ordens",
+      "pairs": "Pares",
+      "form": "Conteúdo da ordem",
+      "open-orders": "Abrir",
+      "completed-orders": "Concluído",
+      "status": "Status",
+      "all-orders": "Tudo",
+      "active": "Ativo",
+      "view-details": "Ver detalhes",
+      "chart": "Gráfico",
+      "trading-form-auth-required": "You have to be authorized for trade",
+      "open-orders-auth-required": "You have to be authorized to see open orders",
+      "empty-open-orders": "Sem ordens",
+      "history-widget": {
+        "price": "Preço",
+        "amount": "Quantia",
+        "volume": "Volume",
+        "time": "Horário"
+      }
+    }
   },
   "list-style": {
     "title": "Alternar estilo da lista"
@@ -440,9 +475,10 @@
     "cross-post-by": "Repostado por",
     "cross-post-community": "comunidade",
     "community-in": "em",
-    "post-word-count": "Words:",
-    "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-word-count": "Palavras:",
+    "post-read-time": "Lendo:",
+    "post-read-minuites": "min",
+    "raw": "Visualizar em formato RAW"
   },
   "edit-history": {
     "title": "Editar Histórico",
@@ -470,7 +506,7 @@
     "reveal-muted": "Autor silenciado - Revelar comentário",
     "reveal-muted-long-description": "Mostrar respostas adicionais, incluindo aquelas que contém conteúdo ofensivo",
     "reveal": "Revelar comentário",
-    "no-conversation": "No conversation yet, be first to reply",
+    "no-conversation": "Ainda não há conversa. Seja o primeiro a comentar",
     "start-conversation": "Iniciar conversa"
   },
   "community": {
@@ -601,8 +637,8 @@
     "witnesses": "Testemunhas",
     "proposals": "Propostas",
     "referrals": "Referências",
-    "go-community": "Community page",
-    "com-mod": "Moderator of these communities"
+    "go-community": "Página da comunidade",
+    "com-mod": "Moderador dessas comunidades"
   },
   "profile-info": {
     "joined": "Entrou: {{n}}",
@@ -642,7 +678,7 @@
     "language": "Língua",
     "nsfw": "Mostrar conteúdo adulto",
     "referral-link": "Link de referência",
-    "theme": "Theme Settings",
+    "theme": "Ajustes do Tema",
     "theme-system-default": "Padrão do Sistema",
     "theme-day": "Modo dia",
     "theme-night": "Modo noite",
@@ -693,57 +729,57 @@
     "spk": {
       "claim": {
         "title": "Reivindicar",
-        "unclaimed-rewards": "Unclaimed rewards"
+        "unclaimed-rewards": "Recompensas não reivindicadas"
       },
       "delegate": {
-        "title": "Delegate",
-        "subtitle": "Delegate tokens",
-        "node-operator-placeholder": "Select a node operator",
+        "title": "Delegar",
+        "subtitle": "Delegar tokens",
+        "node-operator-placeholder": "Selecionar um operador do nó",
         "delegated-larynx-power": {
-          "title": "Delegated LARYNX Power"
+          "title": "Poder LARYNX delegado"
         }
       },
       "power-up": {
-        "title": "Power up",
+        "title": "Aumentar Poder",
         "subtitle": "Power up to earn passive rewards"
       },
       "power-down": {
-        "title": "Power down",
+        "title": "Diminuir poder",
         "subtitle": "Power down to earn passive rewards",
-        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
+        "in-progress": "Uma baixa no poder está programada para {{date}} ({{count}} parcelas restantes)"
       },
       "lock": {
-        "title": "Lock Liquidity",
+        "title": "Bloquear Liquidez",
         "subtitle": "Locking Larynx for liquidity reward",
-        "button": "Lock liquidity"
+        "button": "Bloquear liquidez"
       },
       "unlock": {
-        "title": "Unlock Liquidity",
-        "subtitle": "Unlock LARYNX to liquid form",
-        "button": "Unlock liquidity"
+        "title": "Desbloquear Liquidez",
+        "subtitle": "Desbloqueie LARYNX para obter liquidez",
+        "button": "Desbloquear liquidez"
       },
       "send": {
-        "balance": "Balance",
-        "button": "Send",
-        "from": "From",
+        "balance": "Saldo",
+        "button": "Enviar",
+        "from": "De",
         "to": "Para",
         "amount": "Quantia",
         "optional": "opcional",
         "title": "Enviar SPK",
         "memo": "Memo",
         "next": "Seguinte",
-        "subtitle": "Move funds to another SPK wallet",
-        "warning": "Transferring more than available balance"
+        "subtitle": "Mover fundos para outra carteira SPK",
+        "warning": "Transferindo quantia maior do que o saldo disponível"
       },
       "token": "Token SPK",
-      "token-description": "The governance token for the SPK network.",
-      "larynx-air": "LARYNX Airdrop Claim",
+      "token-description": "Token de governança para a rede SPK.",
+      "larynx-air": "Reivindicar Airdrop de LARYNX",
       "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
       "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
       "larynx-already-claimed": "Already claimed.",
-      "larynx-token": "LARYNX Token",
+      "larynx-token": "Token LARYNX",
       "larynx-token-description": "The mining token for the SPK network.",
-      "larynx-power": "LARYNX Power",
+      "larynx-power": "Poder LARYNX",
       "larynx-power-description": "Powered tokens used to mine SPK",
       "larynx-power-benefits": {
         "title": "Benefits of LARYNX Power",
@@ -759,11 +795,11 @@
         "2": "Collateral for DEX transactions",
         "3": "Instant Lock | 4 Week Unlock",
         "4": "Requires an operating LARYNX node",
-        "5": "Earns 0.100%"
+        "5": "Ganha 0,100%"
       },
-      "account-value": "Estimated Account Value",
+      "account-value": "Valor de Conta Aproximado",
       "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
-      "larynx-locked": "LARYNX Locked",
+      "larynx-locked": "LARYNX Guardado",
       "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
     }
   },
@@ -776,14 +812,14 @@
     "staked": "Guardado"
   },
   "sort-engine-tokens": {
-    "sort": "Sort",
-    "sort-in-ascending": "Ascending",
-    "sort-in-descending": "Descending",
-    "sort-by-value": "Value",
-    "sort-by-balance": "Balance",
-    "sort-by-stake": "Stake",
-    "sort-by-delegations-in": "Delegations in",
-    "sort-by-delegations-out": "Delegations out"
+    "sort": "Ordenar",
+    "sort-in-ascending": "Ascendente",
+    "sort-in-descending": "Descendente",
+    "sort-by-value": "Valor",
+    "sort-by-balance": "Saldo",
+    "sort-by-stake": "Guardado",
+    "sort-by-delegations-in": "Delegações recebidas",
+    "sort-by-delegations-out": "Delegações efetuadas"
   },
   "wallet-engine-estimated": {
     "title": "Estimated Tokens Value",
@@ -851,15 +887,15 @@
   },
   "purchase-qr": {
     "scan-code": "Scan the QR code with Ecency mobile app",
-    "select-user": "Please, select an user",
-    "title": "Account boost",
-    "title-points": "Buy points",
-    "copied": "Account boost link copied!",
-    "select-type": "Select a type",
-    "boost": "Boost",
-    "points": "Points",
+    "select-user": "Por favor, selecione um usuário",
+    "title": "Impulso de conta",
+    "title-points": "Comprar pontos",
+    "copied": "Link de impulso da conta copiado!",
+    "select-type": "Selecione um tipo",
+    "boost": "Impulso",
+    "points": "Pontos",
     "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
-    "points-amount": "{{n}} points"
+    "points-amount": "{{n}} pontos"
   },
   "promote": {
     "title": "Promover",
@@ -942,18 +978,18 @@
     "power-down-summary": "Diminuição de poder hive concluído como <span class=\"amount\">{{amount}}</span>",
     "claim-interest-summary": "Rendimentos recebidos e adicionados ao saldo da poupança",
     "claim-summary": "Claimed and added to your savings balance",
-    "powerup-summary": "Power up completed successfully",
-    "powerdown-summary": "Power down completed successfully",
+    "powerup-summary": "Aumento de poder realizado com sucesso",
+    "powerdown-summary": "Redução de poder efetuada com sucesso",
     "reset": "Reiniciar",
     "powering-down": "Você está atualmente fazendo power down.",
     "stop-power-down": "Parar",
-    "claim-title": "Claim",
-    "powerup-title": "Power Up",
-    "powerdown-title": "Power down",
-    "lock-title": "Lock liquidity",
-    "unlock-title": "Unlock liquidity",
-    "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
-    "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
+    "claim-title": "Reivindicar",
+    "powerup-title": "Aumentar Poder",
+    "powerdown-title": "Diminuir poder",
+    "lock-title": "Bloquear liquidez",
+    "unlock-title": "Desbloquear liquidez",
+    "lock-summary": "Bloqueio concluído como <span class=\"amount\">{{amount}}</span>",
+    "unlock-summary": "Desbloqueio concluído como <span class=\"amount\">{{amount}}</span>"
   },
   "trx-common": {
     "insufficient-funds": "Saldo insuficiente",
@@ -1027,11 +1063,11 @@
     "pending": "Pendente"
   },
   "collateralized-conversion-requests": {
-    "title": "Collateralized Convert requests",
-    "request-id": "Request id",
-    "collateral_amount": "Collateral",
-    "converted_amount": "Converted",
-    "pending": "Pending"
+    "title": "Pedidos de Conversões Colateralizadas",
+    "request-id": "Id de solicitação",
+    "collateral_amount": "Colateral",
+    "converted_amount": "Convertido",
+    "pending": "Pendente"
   },
   "savings-withdraw": {
     "title": "Sacar da Poupança",
@@ -1061,16 +1097,16 @@
     "deleted": "Removido dos favoritos"
   },
   "editor-toolbar": {
-    "bold": "Bold (Alt + B)",
-    "italic": "Italic (Alt + I)",
+    "bold": "Negrito (Alt + B)",
+    "italic": "Itálico (Alt + I)",
     "header": "Cabeçalho",
-    "code": "Code (Alt + C)",
-    "quote": "Quote (Alt + M)",
+    "code": "Código (Alt + C)",
+    "quote": "Citação (Alt + M)",
     "ul": "Lista desordenada",
     "ol": "Lista ordenada",
     "link": "Link (Alt + K)",
-    "image": "Image (Alt + D)",
-    "table": "Table (Alt + T)",
+    "image": "Imagem (Alt + D)",
+    "table": "Tabela (Alt + T)",
     "table-3-col": "3 colunas",
     "table-2-col": "2 colunas",
     "table-1-col": "1 coluna",
@@ -1088,8 +1124,8 @@
     "recently-used": "Recentemente Utilizado"
   },
   "gif-picker": {
-    "filter-placeholder": "Filter",
-    "credits": "Powered by GIPHY"
+    "filter-placeholder": "Filtro",
+    "credits": "Desenvolvido por GIPHY"
   },
   "submit": {
     "page-title": "Criar uma publicação",
@@ -1171,8 +1207,8 @@
     "voted": "{{source}} votou na sua publicação",
     "mention-post": "{{source}} mencionou-te numa publicação",
     "mention-comment": "{{source}} mencionou-te num comentário",
-    "favorite": "{{source}} made new post",
-    "bookmark": "{{source}} replied to bookmarked content",
+    "favorite": "{{source}} criou nova publicação",
+    "bookmark": "{{source}} respondeu a conteúdo marcado como favorito",
     "followed": "{{source}} segui-te",
     "replied": "{{source}} respondeu-te",
     "reblogged": "{{source}} re-publicou a sua publicação",
@@ -1189,14 +1225,14 @@
     "type-reblogs": "Republicações",
     "type-transfers": "Transferências",
     "type-delegations": "Delegações",
-    "type-nfavorites": "Favorites",
-    "type-nbookmarks": "Bookmarks",
+    "type-nfavorites": "Favoritos",
+    "type-nbookmarks": "Favoritos",
     "group-title-recent": "Recente",
-    "vote-str": "{{p}}% voted your post:",
+    "vote-str": "{{p}}% votou na sua publicação:",
     "reply-str": "respondeu à sua publicação:",
     "mention-str": "mencionou-te em:",
-    "favorite-str": "made new post",
-    "bookmark-str": "replied to bookmarked content",
+    "favorite-str": "criou uma publicação",
+    "bookmark-str": "respondeu a conteúdo adicionado aos favoritos",
     "followed-str": "seguiu",
     "unfollowed-str": "deixou de seguir",
     "ignored-str": "ignorado",
@@ -1282,6 +1318,13 @@
     "page-description": "Seleção de bloco de Consenso",
     "page-description-long": "Papel das testemunhas ou produtores de blocos na blockchain da Hive é atuar como o órgão de governança da rede. A Comunidade elege-os para representar a sua voz e cada utilizador pode eleger até 30 testemunhas. As 20 melhores testemunhas estão produzindo blocos a cada minuto enquanto o repouso permanece como testemunha de backup e tem chance aleatória a cada minuto. Esse papel é parte integrante do mecanismo de consenso da blockchain é executado e recomenda engajamento ao usuário para votar em testemunhas confiáveis.",
     "remaining": "<span>{{n}}</span> de {{max}} votos restantes",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-rank": "Rank",
+    "sort-name": "Name",
+    "sort-fee": "Fee",
+    "searching": "Searching",
+    "no-results": "No results found",
     "list-rank": "Classificação",
     "list-witness": "Testemunha",
     "list-miss": "Perdeu",
@@ -1297,8 +1340,8 @@
     "proxy-active-current": "O teu proxy atual é",
     "proxy-active-btn-label": "Limpar o Proxy",
     "proxy-votes-for": "@{{username}} votos para",
-    "proxy-active-highlighted": "Your proxy votes are highlighted",
-    "check-witness-highlighted": "votes are highlighted"
+    "proxy-active-highlighted": "Seus votos por proxy estão destacados",
+    "check-witness-highlighted": "votos estão destacados"
   },
   "referral": {
     "page-title": "Referências",
@@ -1544,14 +1587,14 @@
       "what-voting-power-body": "<p>O seu poder de voto diminui a cada voto realizado. Ele inicia com 100%, e votando você utiliza uma pequena quantidade do seu poder de voto. Quanto mais votos, menos influência eles terão, portanto a eficácia do voto diminuirá. Recomenda-se 10 votos diários para melhor utilização das recompensas da curadoria.</p>",
       "how-many-vote-header": "Quantas vezes posso votar com o meu poder de voto?",
       "how-many-vote-body": "<p>Para cada voto positivo com 100% de força realizado, 2% do poder de voto é utilizado. Seu poder de voto é recarregado em 20% por dia. Embora seja possível votar mais de 10 vezes por dia, cada novo voto valerá menos, e seu poder de voto demorará mais tempo para atingir sua força total novamente.</p>",
-      "what-is-hivesigner-header": "What is Hivesigner?",
+      "what-is-hivesigner-header": "O que é Hivesigner?",
       "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
-      "what-is-keychain-header": "What is Keychain?",
+      "what-is-keychain-header": "O que é Keychain?",
       "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
-      "videos-pictures-stored-header": "Are pictures and video stored on the blockchain?",
+      "videos-pictures-stored-header": "Os vídeos e as fotos são armazenados na blockchain?",
       "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
-      "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
-      "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>"
+      "value-hive-hbd-header": "O que determina o valor da HIVE e HBD?",
+      "value-hive-hbd-body": "<p>O valor da HIVE está relacionado com a demanda e oferta do token. A forma com a qual o sistema foi concebido proporciona com que a HIVE esteja sempre em demanda e oferta. Enquanto a blockchain da Hive existir com desenvolvimento contínuo, e usuários ativos, sempre haverá procura e oferta de HIVE, agregando assim valor ao token.</p>"
     }
   },
   "contributors": {
@@ -1577,12 +1620,12 @@
   "chain-error": {
     "min-root-comment": "Você só pode postar a cada 5 minutos.",
     "identical-vote": "O teu voto actual neste conteúdo é idêntico a este voto.",
-    "insufficient-resource": "Insufficient Resource Credits.",
+    "insufficient-resource": "Créditos de Recurso insuficientes.",
     "delete-comment-with-vote": "Conteúdo com recompensas positivas não podem ser deletados.",
     "comment-cashout": "Após o pagamento, o conteúdo não pode ser deletado.",
     "comment-children": "Conteúdo com respostas ao pode ser deletado.",
     "paid-out-post-forbidden": "Votação de conteúdo pago não está disponível.",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "Chave privada ausente ou inválida."
   },
   "landing-page": {
     "welcome-text": "Bem-vindo à Ecency!",
@@ -1650,12 +1693,12 @@
     "title": "Principais comunidades"
   },
   "feedback-modal": {
-    "title": "Error details",
-    "question": "How to fix this?",
-    "insufficient-resource-title": "How to get more Resource credits?",
-    "insufficient-resource-purchase": "Purchase account boost or delegation",
-    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
-    "insufficient-resource-wait": "Wait few hours for RC refill",
-    "report": "Report"
+    "title": "Detalhes do erro",
+    "question": "Como resolver isso?",
+    "insufficient-resource-title": "Como obter mais Créditos de Recurso?",
+    "insufficient-resource-purchase": "Comprar impulso de conta ou delegação",
+    "insufficient-resource-buy-hive": "Compre HIVE e Aumente seu Poder",
+    "insufficient-resource-wait": "Espere algumas horas para os seus Recursos de Créditos recarregarem",
+    "report": "Reportar"
   }
 }

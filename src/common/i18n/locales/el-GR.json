@@ -2,6 +2,9 @@
   "g": {
     "add": "Προσθήκη",
     "edit": "Επεξεργασία",
+    "clone": "Clone",
+    "copy": "Copy of",
+    "clone-success": "Created new draft copy",
     "continue": "Συνέχεια",
     "submit": "Γράψτε μια ανάρτηση",
     "search": "Αναζήτηση",
@@ -63,7 +66,8 @@
     "more-results": "Περισσότερα αποτελέσματα",
     "close": "Κλείσιμο",
     "loading": "Φόρτωση",
-    "stop": "Stop"
+    "stop": "Stop",
+    "settings": "Settings"
   },
   "confirm": {
     "title": "Είστε σίγουρος;",
@@ -187,7 +191,16 @@
     "success": "Έχουμε στείλει ένα email στο {{email}}.",
     "success-2": "Ακολουθήστε τις οδηγίες για να ολοκληρώσετε τη διαδικασία εγγραφής.",
     "login-text-1": "Έχετε λογαριασμό;",
-    "login-text-2": "Σύνδεση"
+    "login-text-2": "Σύνδεση",
+    "free-account": "Free account",
+    "free-account-desc": "Get a full-fledged Hive account, this method has basic checks to make sure botnet doesn't abuse our signup faucet.",
+    "register-free": "Register free",
+    "buy-account": "Buy account",
+    "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
+    "buy-account-li-1": "Instant creation without extra checks and waiting",
+    "buy-account-li-2": "3x RC compared to normal new accounts",
+    "buy-account-li-3": "300 Points to help you get started",
+    "qr-desc": "Scan with Ecency mobile app to continue"
   },
   "trending-tags": {
     "title": "Θέματα"
@@ -405,8 +418,30 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
+    "signing": "Signing..",
     "success-swap": "Successfully swapped!",
-    "signing": "Signing.."
+    "advanced": {
+      "history": "History",
+      "stake": "Order book",
+      "pairs": "Pairs",
+      "form": "Order form",
+      "open-orders": "Open",
+      "completed-orders": "Completed",
+      "status": "Status",
+      "all-orders": "All",
+      "active": "Active",
+      "view-details": "View details",
+      "chart": "Chart",
+      "trading-form-auth-required": "You have to be authorized for trade",
+      "open-orders-auth-required": "You have to be authorized to see open orders",
+      "empty-open-orders": "No orders",
+      "history-widget": {
+        "price": "Price",
+        "amount": "Amount",
+        "volume": "Volume",
+        "time": "Time"
+      }
+    }
   },
   "list-style": {
     "title": "Αλλαγή στιλ λίστας"
@@ -442,7 +477,8 @@
     "community-in": "σε",
     "post-word-count": "Words:",
     "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-read-minuites": "min",
+    "raw": "View RAW format"
   },
   "edit-history": {
     "title": "Ιστορικό Επεξεργασίας",
@@ -1282,6 +1318,13 @@
     "page-description": "Consensus block producers selection",
     "page-description-long": "Ο ρόλος των μαρτύρων ή των παραγωγών block στην Hive blockchain είναι να ενεργούν ως φορέας διακυβέρνησης του δικτύου. Η κοινότητα τους εκλέγει για να αντιπροσωπεύουν την φωνή τους και ο κάθε χρήστης μπορεί να ψηφίσει μέχρι και 30 μάρτυρες. Οι κορυφαίοι 20 παράγουν blocks κάθε λεπτό ενώ οι άλλοι παραμένουν ως εναλλακτικοί μάρτυρες και παίρνουν τυχαίες ευκαιρίες κάθε λεπτό. Αυτός ο ρόλος αποτελεί αναπόσπαστο μέρος του μηχανισμού συναίνεσης που λειτουργεί το blockchain και προτείνει τη δέσμευση των χρηστών να ψηφίσουν σε αξιόπιστους μάρτυρες.",
     "remaining": "<span>{{n}}</span>από{{max}} ψήφους που απομένουν",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-rank": "Rank",
+    "sort-name": "Name",
+    "sort-fee": "Fee",
+    "searching": "Searching",
+    "no-results": "No results found",
     "list-rank": "Ιεράρχηση",
     "list-witness": "Μάρτυρας",
     "list-miss": "Αριθμός χαμένων μπλοκ λόγω του διακομιστή / κόμβου του συγκεκριμένου μάρτυρα",

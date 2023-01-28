@@ -2,6 +2,9 @@
   "g": {
     "add": "Dodaj",
     "edit": "Uredite",
+    "clone": "Clone",
+    "copy": "Copy of",
+    "clone-success": "Created new draft copy",
     "continue": "Continue",
     "submit": "Write a post",
     "search": "Pretraži",
@@ -63,7 +66,8 @@
     "more-results": "More results",
     "close": "Close",
     "loading": "Loading",
-    "stop": "Stop"
+    "stop": "Stop",
+    "settings": "Settings"
   },
   "confirm": {
     "title": "Da li ste sigurni?",
@@ -187,7 +191,16 @@
     "success": "Poslali smo email za potvrdu na {{email}}.",
     "success-2": "Sledite uputstva da biste dovršili postupak registracije.",
     "login-text-1": "Da li imate nalog?",
-    "login-text-2": "Prijava"
+    "login-text-2": "Prijava",
+    "free-account": "Free account",
+    "free-account-desc": "Get a full-fledged Hive account, this method has basic checks to make sure botnet doesn't abuse our signup faucet.",
+    "register-free": "Register free",
+    "buy-account": "Buy account",
+    "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
+    "buy-account-li-1": "Instant creation without extra checks and waiting",
+    "buy-account-li-2": "3x RC compared to normal new accounts",
+    "buy-account-li-3": "300 Points to help you get started",
+    "qr-desc": "Scan with Ecency mobile app to continue"
   },
   "trending-tags": {
     "title": "Теме"
@@ -405,8 +418,30 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
+    "signing": "Signing..",
     "success-swap": "Successfully swapped!",
-    "signing": "Signing.."
+    "advanced": {
+      "history": "History",
+      "stake": "Order book",
+      "pairs": "Pairs",
+      "form": "Order form",
+      "open-orders": "Open",
+      "completed-orders": "Completed",
+      "status": "Status",
+      "all-orders": "All",
+      "active": "Active",
+      "view-details": "View details",
+      "chart": "Chart",
+      "trading-form-auth-required": "You have to be authorized for trade",
+      "open-orders-auth-required": "You have to be authorized to see open orders",
+      "empty-open-orders": "No orders",
+      "history-widget": {
+        "price": "Price",
+        "amount": "Amount",
+        "volume": "Volume",
+        "time": "Time"
+      }
+    }
   },
   "list-style": {
     "title": "Prebacivanje liste stila"
@@ -442,7 +477,8 @@
     "community-in": "in",
     "post-word-count": "Words:",
     "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-read-minuites": "min",
+    "raw": "View RAW format"
   },
   "edit-history": {
     "title": "Uredi istoriju",
@@ -1282,6 +1318,13 @@
     "page-description": "Izbor proizvođača koncenzus bloka",
     "page-description-long": "Uloga svedoka ili proizvođača blokova u Hive blockchain-u je da deluju kao upravljačko mrežno telo. Zajednica ih bira da predstavljaju njihov glas i svaki korisnik može odabrati do 30 svedoka. Top 20 svedoka proizvodi blokove svakog minuta, dok ostatak ostaju rezervni svedoci koji dobijaju slučajnu šansu svakog minuta. Ova uloga je sastavni deo mehanizma concenzusa na kome se korisni blockchain i preporučuje angažovanje korisnika da glasaju za pouzdane svedoke.",
     "remaining": "<strong>{n}</strong> od {max} glasova je preostalo",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-rank": "Rank",
+    "sort-name": "Name",
+    "sort-fee": "Fee",
+    "searching": "Searching",
+    "no-results": "No results found",
     "list-rank": "Rang",
     "list-witness": "Svedok (witness)",
     "list-miss": "Propušteno",

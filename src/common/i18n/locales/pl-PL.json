@@ -2,6 +2,9 @@
   "g": {
     "add": "Dodaj",
     "edit": "Edytuj",
+    "clone": "Clone",
+    "copy": "Copy of",
+    "clone-success": "Created new draft copy",
     "continue": "Continue",
     "submit": "Write a post",
     "search": "Szukaj",
@@ -63,7 +66,8 @@
     "more-results": "More results",
     "close": "Zamknij",
     "loading": "Loading",
-    "stop": "Stop"
+    "stop": "Stop",
+    "settings": "Settings"
   },
   "confirm": {
     "title": "Jesteś pewien?",
@@ -187,7 +191,16 @@
     "success": "Wysłaliśmy e-mail weryfikacyjny na adres {{email}}.",
     "success-2": "Postępuj zgodnie z instrukcjami, aby dokończyć proces rejestracji.",
     "login-text-1": "Masz już konto?",
-    "login-text-2": "Zaloguj się"
+    "login-text-2": "Zaloguj się",
+    "free-account": "Free account",
+    "free-account-desc": "Get a full-fledged Hive account, this method has basic checks to make sure botnet doesn't abuse our signup faucet.",
+    "register-free": "Register free",
+    "buy-account": "Buy account",
+    "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
+    "buy-account-li-1": "Instant creation without extra checks and waiting",
+    "buy-account-li-2": "3x RC compared to normal new accounts",
+    "buy-account-li-3": "300 Points to help you get started",
+    "qr-desc": "Scan with Ecency mobile app to continue"
   },
   "trending-tags": {
     "title": "Tematy"
@@ -405,8 +418,30 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
+    "signing": "Signing..",
     "success-swap": "Successfully swapped!",
-    "signing": "Signing.."
+    "advanced": {
+      "history": "History",
+      "stake": "Order book",
+      "pairs": "Pairs",
+      "form": "Order form",
+      "open-orders": "Open",
+      "completed-orders": "Completed",
+      "status": "Status",
+      "all-orders": "All",
+      "active": "Active",
+      "view-details": "View details",
+      "chart": "Chart",
+      "trading-form-auth-required": "You have to be authorized for trade",
+      "open-orders-auth-required": "You have to be authorized to see open orders",
+      "empty-open-orders": "No orders",
+      "history-widget": {
+        "price": "Price",
+        "amount": "Amount",
+        "volume": "Volume",
+        "time": "Time"
+      }
+    }
   },
   "list-style": {
     "title": "Przełącz styl listy"
@@ -442,7 +477,8 @@
     "community-in": "w",
     "post-word-count": "Words:",
     "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-read-minuites": "min",
+    "raw": "View RAW format"
   },
   "edit-history": {
     "title": "Edytuj historię",
@@ -1282,6 +1318,13 @@
     "page-description": "Wybór producentów w ramach konsensusu",
     "page-description-long": "Rolą świadków lub producentów bloków w łańcuchu bloków jest pełnienie funkcji organu zarządzającego siecią. Społeczność wybiera ich do reprezentowania swojego głosu, a każdy użytkownik może wybrać do 30 świadków. 20 czołowych świadków produkuje bloki co minutę, podczas gdy odpoczynek pozostaje rezerwowym świadkiem i co minutę otrzymuje losową szansę. Ta rola jest integralną częścią mechanizmu \"blockchain\" opartego na konsensusie i rekomenduje zaangażowanie użytkowników w głosowanie na zaufanych świadków.",
     "remaining": "<span>{{n}}</span> z {{max}} głosów pozostało",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-rank": "Rank",
+    "sort-name": "Name",
+    "sort-fee": "Fee",
+    "searching": "Searching",
+    "no-results": "No results found",
     "list-rank": "Ranga",
     "list-witness": "Witness",
     "list-miss": "Miss",
