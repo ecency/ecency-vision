@@ -432,8 +432,8 @@
       "active": "Ativo",
       "view-details": "Ver detalhes",
       "chart": "Gráfico",
-      "trading-form-auth-required": "Você deve ter autorização para operar",
-      "open-orders-auth-required": "Você precisa de autorização para ver as ordens em aberto",
+      "trading-form-auth-required": "You have to be authorized for trade",
+      "open-orders-auth-required": "You have to be authorized to see open orders",
       "empty-open-orders": "Sem ordens",
       "history-widget": {
         "price": "Preço",
