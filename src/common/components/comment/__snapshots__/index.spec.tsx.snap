@@ -322,7 +322,7 @@ exports[`(1) Default render 1`] = `
     </div>
   </div>
   <div
-    className="comment-buttons"
+    className="comment-buttons d-flex align-items-centeru"
   >
     <button
       className="btn-submit btn btn-primary btn-sm"
@@ -659,7 +659,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     </div>
   </div>
   <div
-    className="comment-buttons"
+    className="comment-buttons d-flex align-items-centeru"
   >
     <button
       className="btn-submit btn btn-primary btn-sm"

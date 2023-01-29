@@ -4,6 +4,7 @@ import { Subscription } from "../store/subscriptions/types";
 
 import { Client } from "@hiveio/dhive";
 import SERVERS from "../constants/servers.json";
+import { client } from "./hive";
 
 export const bridgeServer = new Client(SERVERS, {
   timeout: 3000,
@@ -210,6 +211,7 @@ export type RcOperation =
   | "vote_operation"
   | "transfer_operation"
   | "custom_json_operation";
+
 export interface RcOperationStats {
   count: number; // number of such operations executed during last day
   avg_cost_rc: number; // average RC cost of single operation
@@ -239,5 +241,5 @@ export interface RcOperationStats {
   };
 }
 
-export const getRcOperationStats = (operation: RcOperation): Promise<RcOperationStats> =>
-  bridgeServer.call("rc_api", "get_rc_operation_stats", { operation });
+export const getRcOperationStats = (): Promise<any> =>
+  bridgeServer.call("rc_api", "get_rc_stats", {});

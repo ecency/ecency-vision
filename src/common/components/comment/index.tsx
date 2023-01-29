@@ -199,7 +199,7 @@ export class Comment extends Component<Props, State> {
               isComment={true}
             />
           </div>
-          <div className="comment-buttons">
+          <div className="comment-buttons d-flex align-items-centeru">
             {this.props.activeUser ? (
               <AvailableCredits
                 className="mr-2"

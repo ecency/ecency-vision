@@ -1,39 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
 import { usePopper } from "react-popper";
-import { findRcAccounts, powerRechargeTime, rcPower } from "../../api/hive";
+import { client, findRcAccounts, powerRechargeTime, rcPower } from "../../api/hive";
 import { _t } from "../../i18n";
 import moment, { Moment } from "moment";
-import useDebounce from "react-use/lib/useDebounce";
-import { RcOperation } from "../../api/bridge";
+import { getRcOperationStats, RcOperation } from "../../api/bridge";
+import { rcFormatter } from "../../util/formatted-number";
 
 interface Props {
   username: string;
   operation: RcOperation;
   className?: string;
-  width?: number;
-  height?: number;
 }
 
-export const AvailableCredits = ({ username, className, width, height, operation }: Props) => {
+export const AvailableCredits = ({ username, className }: Props) => {
   const [rcpFixed, setRcpFixed] = useState(0);
+  const [rcp, setRcp] = useState(0);
   const [rcpRechargeDate, setRcpRechargeDate] = useState<Moment>(moment());
+  const [delegated, setDelegated] = useState("0");
+  const [receivedDelegation, setReceivedDelegation] = useState("0");
+  const [commentAmount, setCommentAmount] = useState(0);
+  const [voteAmount, setVoteAmount] = useState(0);
+  const [transferAmount, setTransferAmount] = useState(0);
 
   const [host, setHost] = useState<any>();
   const [popperElement, setPopperElement] = useState<any>();
   const [isShow, setIsShow] = useState(false);
 
-  const progressRef = useRef<any>();
-
   const popper = usePopper(host, popperElement);
-
-  useDebounce(
-    () => {
-      const percentageComplete = +rcpFixed;
-      progressRef.current.style.strokeDashoffset = 100 - percentageComplete;
-    },
-    200,
-    [rcpFixed]
-  );
 
   useEffect(() => {
     fetchRc();
@@ -43,8 +36,29 @@ export const AvailableCredits = ({ username, className, width, height, operation
     const response = await findRcAccounts(username);
     const account = response[0];
 
+    setRcp(client.rc.calculateRCMana(account).current_mana);
     setRcpFixed(Math.floor(+rcPower(account)));
     setRcpRechargeDate(moment().add(powerRechargeTime(rcPower(account)), "seconds"));
+
+    const outGoing = response.map((a: any) => a.delegated_rc);
+    const delegated = outGoing[0];
+    const formatOutGoing: any = rcFormatter(delegated);
+    setDelegated(formatOutGoing);
+
+    const inComing: any = response.map((a: any) => Number(a.received_delegated_rc));
+    const formatIncoming = rcFormatter(inComing);
+    setReceivedDelegation(formatIncoming);
+
+    const rcStats: any = await getRcOperationStats();
+    const operationCosts = rcStats.rc_stats.ops;
+    const commentCost = operationCosts.comment_operation.avg_cost;
+    const transferCost = operationCosts.transfer_operation.avg_cost;
+    const voteCost = operationCosts.vote_operation.avg_cost;
+
+    const availableResourceCredit: any = response.map((a: any) => a.rc_manabar.current_mana);
+    setCommentAmount(Math.ceil(Number(availableResourceCredit[0]) / commentCost));
+    setVoteAmount(Math.ceil(Number(availableResourceCredit[0]) / voteCost));
+    setTransferAmount(Math.ceil(Number(availableResourceCredit[0]) / transferCost));
   };
 
   const show = () => {
@@ -71,17 +85,16 @@ export const AvailableCredits = ({ username, className, width, height, operation
         onFocus={show}
         onBlur={hide}
       >
-        <svg width={width ?? 32} height={height ?? 32} viewBox="-3 -3 38 38">
-          <circle cx="16" cy="16" r="15.9155" className="progress-bar__background" />
-          <circle
-            ref={progressRef}
-            cx="16"
-            cy="16"
-            r="15.9155"
-            className="progress-bar__progress js-progress-bar"
+        <div className="progress">
+          <div
+            className={"indicator " + (rcpFixed <= 10 ? "danger" : rcpFixed <= 25 ? "warning" : "")}
+            style={{ width: `${rcpFixed}%` }}
           />
-        </svg>
-        <span className={rcpFixed === 100 ? "small" : ""}>{rcpFixed}</span>
+        </div>
+        <div className="d-flex align-items-center">
+          <span>{_t("rc-info.resource-credits")}</span>
+          <span className="value">{rcFormatter(rcp)}</span>
+        </div>
       </div>
       <div
         ref={setPopperElement}
@@ -89,12 +102,47 @@ export const AvailableCredits = ({ username, className, width, height, operation
         style={popper.styles.popper}
         {...popper.attributes.popper}
       >
-        <div className="p-2">
-          {_t("profile-info.rc-power", { n: rcpFixed })}
-          <div>
-            {rcpFixed !== 100 && (
-              <small>{_t("profile-info.recharge-time", { n: rcpRechargeDate.fromNow() })}</small>
-            )}
+        <div>
+          <div className="p-2">
+            <span className="opacity-75">{_t("rc-info.resource-credits")}</span>
+            <div>
+              {rcFormatter(rcp)}({rcpFixed}%)
+            </div>
+            <div>
+              {rcpFixed !== 100 && (
+                <small>{_t("profile-info.recharge-time", { n: rcpRechargeDate.fromNow() })}</small>
+              )}
+            </div>
+          </div>
+          <div className="delegations d-flex flex-column p-2">
+            <span className="incoming mb-1">
+              <div className="opacity-75">{_t("rc-info.received-delegations")}</div>
+              {receivedDelegation}
+            </span>
+            <span className="outgoing">
+              <div className="opacity-75">{_t("rc-info.delegated")}</div>
+              {delegated}
+            </span>
+          </div>
+        </div>
+
+        <div className="extra-details p-2">
+          <span className="d-block mb-2 opacity-5">{_t("rc-info.extra-details-heading")}</span>
+          <div className="extras">
+            <div className="mb-1">
+              <div className="opacity-75">{_t("rc-info.extra-details-post")}</div>
+              {commentAmount}
+            </div>
+            <div className="two-col">
+              <div className="mb-1">
+                <div className="opacity-75">{_t("rc-info.extra-details-upvote")}</div>
+                {voteAmount}
+              </div>
+              <div>
+                <div className="opacity-75">{_t("rc-info.extra-details-transfer")}</div>
+                {transferAmount}
+              </div>
+            </div>
           </div>
         </div>
       </div>

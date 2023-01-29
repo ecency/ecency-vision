@@ -9,29 +9,30 @@ Array [
     onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
-    <svg
-      height={32}
-      viewBox="-3 -3 38 38"
-      width={32}
+    <div
+      className="progress"
     >
-      <circle
-        className="progress-bar__background"
-        cx="16"
-        cy="16"
-        r="15.9155"
+      <div
+        className="indicator danger"
+        style={
+          Object {
+            "width": "0%",
+          }
+        }
       />
-      <circle
-        className="progress-bar__progress js-progress-bar"
-        cx="16"
-        cy="16"
-        r="15.9155"
-      />
-    </svg>
-    <span
-      className=""
+    </div>
+    <div
+      className="d-flex align-items-center"
     >
-      0
-    </span>
+      <span>
+        Resource credits
+      </span>
+      <span
+        className="value"
+      >
+        0
+      </span>
+    </div>
   </div>,
   <div
     className="available-credits-bar-popper "
@@ -43,14 +44,95 @@ Array [
       }
     }
   >
+    <div>
+      <div
+        className="p-2"
+      >
+        <span
+          className="opacity-75"
+        >
+          Resource credits
+        </span>
+        <div>
+          0
+          (
+          0
+          %)
+        </div>
+        <div>
+          <small>
+            (fully charged a few seconds ago)
+          </small>
+        </div>
+      </div>
+      <div
+        className="delegations d-flex flex-column p-2"
+      >
+        <span
+          className="incoming mb-1"
+        >
+          <div
+            className="opacity-75"
+          >
+            Delegations in
+          </div>
+          0
+        </span>
+        <span
+          className="outgoing"
+        >
+          <div
+            className="opacity-75"
+          >
+            Delegations out
+          </div>
+          0
+        </span>
+      </div>
+    </div>
     <div
-      className="p-2"
+      className="extra-details p-2"
     >
-      Resource Credits: 0%
-      <div>
-        <small>
-          (fully charged a few seconds ago)
-        </small>
+      <span
+        className="d-block mb-2 opacity-5"
+      >
+        What you can do with RC
+      </span>
+      <div
+        className="extras"
+      >
+        <div
+          className="mb-1"
+        >
+          <div
+            className="opacity-75"
+          >
+            Posts/Comments
+          </div>
+          0
+        </div>
+        <div
+          className="two-col"
+        >
+          <div
+            className="mb-1"
+          >
+            <div
+              className="opacity-75"
+            >
+              Upvotes
+            </div>
+            0
+          </div>
+          <div>
+            <div
+              className="opacity-75"
+            >
+              Transfers
+            </div>
+            0
+          </div>
+        </div>
       </div>
     </div>
   </div>,
