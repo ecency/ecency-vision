@@ -353,6 +353,7 @@ export const Profile = (props: Props) => {
     const account = props.accounts.find((x) => x.name === username);
     const { section = ProfileFilter.blog } = props.match.params;
     const url = `${defaults.base}/@${username}${section ? `/${section}` : ""}`;
+    const ncount = props.notifications.unread > 0 ? `(${props.notifications.unread}) ` : "";
 
     if (!account) {
       return {};
@@ -360,7 +361,7 @@ export const Profile = (props: Props) => {
 
     return account.__loaded
       ? {
-          title: `${account.profile?.name || account.name}'s ${
+          title: `${ncount}${account.profile?.name || account.name}'s ${
             section ? (section === "engine" ? "tokens" : `${section}`) : ""
           } on decentralized web`,
           description:

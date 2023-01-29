@@ -894,8 +894,10 @@ class SubmitPage extends BaseComponent<Props, State> {
     } = this.state;
 
     //  Meta config
+    const ncount =
+      this.props.notifications.unread > 0 ? `(${this.props.notifications.unread}) ` : "";
     const metaProps = {
-      title: _t("submit.page-title"),
+      title: ncount + _t("submit.page-title"),
       description: _t("submit.page-description")
     };
 
