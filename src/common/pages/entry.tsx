@@ -677,9 +677,11 @@ class EntryPage extends BaseComponent<Props, State> {
     const url = entryCanonical(entry) || "";
 
     const nsfw = entry.json_metadata.tags && entry.json_metadata.tags.includes("nsfw");
+    const ncount =
+      this.props.notifications.unread > 0 ? `(${this.props.notifications.unread}) ` : "";
 
     const metaProps = {
-      title: `${truncate(entry.title, 67)}`,
+      title: `${ncount}${truncate(entry.title, 67)}`,
       description: `${truncate(postBodySummary(entry.body, 210), 140)} by @${entry.author}`,
       url: entry.url,
       canonical: url,
