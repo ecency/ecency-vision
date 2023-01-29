@@ -432,8 +432,8 @@
       "active": "Aktiivinen",
       "view-details": "Näytä yksityiskohdat",
       "chart": "Kaavio",
-      "trading-form-auth-required": "You have to be authorized for trade",
-      "open-orders-auth-required": "You have to be authorized to see open orders",
+      "trading-form-auth-required": "Sinun täytyy olla valtuutettu kauppaan",
+      "open-orders-auth-required": "Sinulla on oltava valtuudet nähdä avoimet tilaukset",
       "empty-open-orders": "Ei tilauksia",
       "history-widget": {
         "price": "Hinta",
