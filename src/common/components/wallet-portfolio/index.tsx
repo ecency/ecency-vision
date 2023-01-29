@@ -3,6 +3,7 @@ import React from "react";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
+import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
 import HiveEngineToken from "../../helper/hive-engine-wallet";
@@ -41,6 +42,7 @@ interface Props {
   global: Global;
   dynamicProps: DynamicProps;
   account: Account | any;
+  activeUser: ActiveUser | null;
   history: History;
   updateActiveUser: (data?: Account) => void;
   updateWalletValues: () => void;
@@ -164,21 +166,24 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       const profileTokens: any = account?.profile.profileTokens || []
       const { profile } = userProfile;  
       let mappedTokens: any = profileTokens.map((t: any) => t.symbol === token.symbol) 
-      console.log(mappedTokens)
+      console.log(profile)
       if (!mappedTokens.includes(true)){ 
         console.log("Not on list")
         profileTokens.push(token)
       }else {
         console.log("Token already added")
       }
-      const newPostMeta: any = {...profile, profileTokens}    
+      const newPostMeta: any = {...profile, profileTokens}
+      console.log(newPostMeta)
       updateProfile(account, newPostMeta)  
     };
 
   render() {
-    const { global, dynamicProps, account, points } = this.props;
+    const { global, dynamicProps, account, points, activeUser } = this.props;
     const { allTokens, converting, coingeckoData, estimatedPointsValue, search, showTokenList, favoriteTokens, loading } = this.state;
     const { hivePerMVests } = dynamicProps;
+
+    const profileTokens: any = account?.profile?.profileTokens
     const w = new HiveWallet(account, dynamicProps, converting);
 
     const totalHP: any = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests));
@@ -278,7 +283,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   <td className="align-middle">${Number(w.hbdBalance * coingeckoData[1]?.current_price).toFixed(3)}</td>
                 </tr>
 
-          {loading ? <LinearProgress/> : favoriteTokens?.map((a: any) =>{
+          {!profileTokens ? <LinearProgress/> : profileTokens?.map((a: any) =>{
             const changeValue = parseFloat(a?.priceChangePercent);
             return(
               <tr className="table-row" key={a.symbol} onClick={() => this.handleLink(a.symbol)}>
@@ -322,12 +327,12 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
           </tbody>
           </table>
         </div>
-        <div className="d-flex justify-content-center">          
+        {activeUser?.username === account.name && <div className="d-flex justify-content-center">          
           <Button
           className="p-2"
           onClick={this.showList}
           >Add Token {plusCircle}</Button> 
-        </div>
+        </div>}
   <Modal 
     onHide={this.hideList} 
     show={showTokenList} 
@@ -374,6 +379,7 @@ export default (p: Props) => {
     global: p.global,
     dynamicProps: p.dynamicProps,
     account: p.account,
+    activeUser: p.activeUser,
     updateActiveUser: p.updateActiveUser,
     updateWalletValues: p.updateWalletValues,
     history: p.history,

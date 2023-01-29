@@ -75,7 +75,6 @@ export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
 
     const { addAccount, onUpdate } = this.props;
     const { profile } = account;
-
     const newProfile = {
       name: profile?.name || "",
       about: profile?.about || "",
@@ -83,7 +82,8 @@ export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
       profile_image: url,
       website: profile?.website || "",
       location: profile?.location || "",
-      pinned: profile?.pinned || ""
+      pinned: profile?.pinned || "",
+      profileTokens: profile?.profileTokens || []
     };
 
     updateProfile(account, newProfile)
