@@ -1,9 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { usePopper } from "react-popper";
-import { client, findRcAccounts, powerRechargeTime, rcPower } from "../../api/hive";
+import {
+  client,
+  findRcAccounts,
+  powerRechargeTime,
+  rcPower,
+  getRcOperationStats,
+  RcOperation
+} from "../../api/hive";
 import { _t } from "../../i18n";
 import moment, { Moment } from "moment";
-import { getRcOperationStats, RcOperation } from "../../api/bridge";
 import { rcFormatter } from "../../util/formatted-number";
 
 interface Props {
