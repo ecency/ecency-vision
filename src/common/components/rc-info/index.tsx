@@ -166,8 +166,7 @@ export const ResourceCreditsInfo = (props: any) => {
               <div className="outer-circle progress">
                 <div className="inner-circle">
                   <span>
-                    {`${rcPercent}%`}
-                                  
+                    {`${rcPercent}%`}                                  
                   </span>            
                 </div>
               </div>
@@ -184,7 +183,6 @@ export const ResourceCreditsInfo = (props: any) => {
                 <div className="unused-box">
                 </div>
                 <span>
-                  {/* {`${_t("rc-info.rc-available")}: ${rcPercent}%`} */}
                   {`${_t("rc-info.rc-available")}: ${rcFormatter(resourceCredit)}`}
                 </span>
               </div>
@@ -192,7 +190,7 @@ export const ResourceCreditsInfo = (props: any) => {
               <div className="used-box">
                 </div>
                 <span>
-                  {`${_t("rc-info.rc-used")}: ${(100 - rcPercent).toFixed(2)}%`}
+                  {`${_t("rc-info.rc-used")}: ${rcFormatter(((100 - rcPercent) / 100 * resourceCredit))}`}
                 </span>
               </div>
             </div>
