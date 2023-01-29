@@ -200,6 +200,15 @@ export class Comment extends Component<Props, State> {
             />
           </div>
           <div className="comment-buttons">
+            {this.props.activeUser ? (
+              <AvailableCredits
+                className="mr-2"
+                operation="comment_operation"
+                username={this.props.activeUser.username}
+              />
+            ) : (
+              <></>
+            )}
             {cancellable && (
               <Button
                 className="btn-cancel"
@@ -214,33 +223,22 @@ export class Comment extends Component<Props, State> {
             {LoginRequired({
               ...this.props,
               children: (
-                <>
-                  {this.props.activeUser ? (
-                    <AvailableCredits
-                      className="mr-2"
-                      operation="comment_operation"
-                      username={this.props.activeUser.username}
+                <Button
+                  className="btn-submit"
+                  size="sm"
+                  disabled={inProgress}
+                  onClick={this.submit}
+                >
+                  {inProgress && (
+                    <Spinner
+                      animation="grow"
+                      variant="light"
+                      size="sm"
+                      style={{ marginRight: "6px" }}
                     />
-                  ) : (
-                    <></>
-                  )}
-                  <Button
-                    className="btn-submit"
-                    size="sm"
-                    disabled={inProgress}
-                    onClick={this.submit}
-                  >
-                    {inProgress && (
-                      <Spinner
-                        animation="grow"
-                        variant="light"
-                        size="sm"
-                        style={{ marginRight: "6px" }}
-                      />
-                    )}{" "}
-                    {submitText}
-                  </Button>
-                </>
+                  )}{" "}
+                  {submitText}
+                </Button>
               )
             })}
           </div>
