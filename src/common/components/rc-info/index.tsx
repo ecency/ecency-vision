@@ -10,6 +10,7 @@ import { getRcOperations } from '../../api/hive';
 
 export const ResourceCreditsInfo = (props: any) => {
   const { rcPercent, account, activeUser } = props;
+
   const radius = 70;
   const dasharray = 440;
   const unUsedOffset = rcPercent / 100 * dasharray;
@@ -28,7 +29,8 @@ export const ResourceCreditsInfo = (props: any) => {
     const [delegateeData, setDelegateeData] = useState("");
     const [commentAmount, setCommentAmount] = useState(null);
     const [voteAmount, setVoteAmount] = useState(null);
-    const [transferAmount, setTransferAmount] = useState(null);    
+    const [transferAmount, setTransferAmount] = useState(null);
+    const [customJsonAmount, setCustomJsonAmount] = useState(null);
     
     useEffect(() => {
         findRcAccounts(account.name).then((r) => {
@@ -44,17 +46,20 @@ export const ResourceCreditsInfo = (props: any) => {
             
             const rcOperationsCost = async () => {
               const rcStats: any = await getRcOperations();
-              const operationCosts = rcStats.result.rc_stats.ops
-              const commentCost = operationCosts.comment_operation.avg_cost
-              const transferCost = operationCosts.transfer_operation.avg_cost
-              const voteCost = operationCosts.vote_operation.avg_cost
+              const operationCosts = rcStats.result.rc_stats.ops;
+              const commentCost = operationCosts.comment_operation.avg_cost;
+              const transferCost = operationCosts.transfer_operation.avg_cost;
+              const voteCost = operationCosts.vote_operation.avg_cost;
+              const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
 
               const commentCount: any = Math.ceil(Number(availableResourceCredit[0]) / commentCost);
               const votetCount: any = Math.ceil(Number(availableResourceCredit[0]) / voteCost);
               const transferCount: any = Math.ceil(Number(availableResourceCredit[0]) / transferCost);
+              const customJsonCount: any = Math.ceil(Number(availableResourceCredit[0]) / customJsonOperationsCosts);
               setCommentAmount(commentCount);
               setVoteAmount(votetCount);
               setTransferAmount(transferCount);
+              setCustomJsonAmount(customJsonCount)
             }
             rcOperationsCost();
           })
@@ -161,7 +166,8 @@ export const ResourceCreditsInfo = (props: any) => {
               <div className="outer-circle progress">
                 <div className="inner-circle">
                   <span>
-                  {rcFormatter(resourceCredit)}                
+                    {`${rcPercent}%`}
+                                  
                   </span>            
                 </div>
               </div>
@@ -178,7 +184,8 @@ export const ResourceCreditsInfo = (props: any) => {
                 <div className="unused-box">
                 </div>
                 <span>
-                  {`${_t("rc-info.rc-available")}: ${rcPercent}%`}
+                  {/* {`${_t("rc-info.rc-available")}: ${rcPercent}%`} */}
+                  {`${_t("rc-info.rc-available")}: ${rcFormatter(resourceCredit)}`}
                 </span>
               </div>
               <div className="used">
@@ -209,10 +216,10 @@ export const ResourceCreditsInfo = (props: any) => {
                 <p>{_t("rc-info.extra-details-heading")}</p>
                 <div className="extras">
                   <ul>
-                    <li>{`${_t("rc-info.extra-details-post")} ${commentAmount}`}</li>
-                    <li>{`${_t("rc-info.extra-details-comment")} ${commentAmount}`}</li>
-                    <li>{`${_t("rc-info.extra-details-upvote")} ${voteAmount}`}</li>                 
-                    <li>{`${_t("rc-info.extra-details-transfer")} ${transferAmount}`}</li>                 
+                    <li>{`${_t("rc-info.comments-posts")} ${commentAmount}`}</li>
+                    <li>{`${_t("rc-info.votes")} ${voteAmount}`}</li>                 
+                    <li>{`${_t("rc-info.transfers")} ${transferAmount}`}</li>                 
+                    <li>{`${_t("rc-info.reblogs-follows")} ${customJsonAmount}`}</li>                 
                   </ul>
                 </div>
               </div>

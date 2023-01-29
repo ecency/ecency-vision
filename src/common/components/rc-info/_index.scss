@@ -105,7 +105,9 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            
+            color: #357ce6;
+            // text-decoration: underline;
+
             .outgoing{
                 cursor: pointer;
                 font-size: 14px;
@@ -131,7 +133,7 @@
             ul{
                 line-height: 30px;
                 li{
-                    font-size: 12px;
+                    font-size: 13px;
                 }
             }
         }
