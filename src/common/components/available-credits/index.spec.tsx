@@ -7,7 +7,9 @@ import { RcOperation } from "../../api/hive";
 it("(1) Default render", () => {
   const props = {
     username: "test",
-    operation: "comment_operation" as RcOperation
+    operation: "comment_operation" as RcOperation,
+    activeUser: {} as any,
+    location: {} as any
   };
   const component = renderer.create(
     <BrowserRouter>
