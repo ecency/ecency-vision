@@ -886,7 +886,7 @@
     "purchase-message": "Tai lähetä mikä tahansa summa osoitteeseen @esteem.app lisäten `points` muistioon ostaessasi Pisteitä."
   },
   "purchase-qr": {
-    "scan-code": "Skannaa QR-koodi Ecency-mobiilisovelluksella",
+    "scan-code": "Scan with Ecency mobile app to continue",
     "select-user": "Valitse käyttäjä",
     "title": "Tilin tehostaminen",
     "title-points": "Osta pisteitä",
