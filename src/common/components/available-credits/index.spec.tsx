@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import { BrowserRouter } from "react-router-dom";
 import { AvailableCredits } from "./index";
-import { RcOperation } from "../../api/bridge";
+import { RcOperation } from "../../api/hive";
 
 it("(1) Default render", () => {
   const props = {
