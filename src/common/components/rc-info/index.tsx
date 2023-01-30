@@ -148,7 +148,7 @@ export const ResourceCreditsInfo = (props: any) => {
             <div className="rc-header">
               <span>{_t("rc-info.resource-credits")}</span>
               <div className="about-rc">
-                <span>{_t("rc-info.check-faq")}</span>
+                <span>{`${_t("rc-info.check-faq")} `}</span>
                 <a href={_t("rc-info.learn-more")}>{_t("rc-info.faq-link")}</a>
               </div>
             </div>
