@@ -1,14 +1,17 @@
 import React, { useState, useCallback } from "react";
-import { _t } from "../../i18n";
-import { Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
-import LinearProgress from "../linear-progress";
-import { arrowRightSvg } from "../../img/svg";
-import UserAvatar from "../user-avatar";
-import badActors from "@hiveio/hivescript/bad-actors.json";
-import { error } from "../feedback";
-import { delegateRC, formatError } from "../../api/operations";
 import _ from "lodash";
-import { getAccount, getOutgoingRc } from "../../api/hive";
+import { Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
+import badActors from "@hiveio/hivescript/bad-actors.json";
+
+import LinearProgress from "../linear-progress";
+import UserAvatar from "../user-avatar";
+import { error } from "../feedback";
+
+import { delegateRC, formatError } from "../../api/operations";
+import { getAccount } from "../../api/hive";
+
+import { arrowRightSvg } from "../../img/svg";
+import { _t } from "../../i18n";
 
 export const ResourceCreditsDelegation = (props: any) => {
   const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList, delegateeData } =

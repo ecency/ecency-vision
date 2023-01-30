@@ -72,11 +72,15 @@ export const ProfileCard = (props: Props) => {
       .catch((e) => {
         setSubs([]);
       });
-    findRcAccounts(account.name).then((r: RCAccount[]) => {
-      if (r && r[0]) {
-        setRcPercent(rcPower(r[0]));
-      }
-    });
+    findRcAccounts(account.name)
+      .then((r: RCAccount[]) => {
+        if (r && r[0]) {
+          setRcPercent(rcPower(r[0]));
+        }
+      })
+      .catch((e) => {
+        setRcPercent(100);
+      });
   }, [account]);
 
   useEffect(() => {
