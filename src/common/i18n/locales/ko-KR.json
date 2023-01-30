@@ -886,7 +886,7 @@
     "purchase-message": "또는 'points'를 메모로 남겨 포인트 구매를 위해 @empty.app에 금액을 보내세요."
   },
   "purchase-qr": {
-    "scan-code": "Scan the QR code with Ecency mobile app",
+    "scan-code": "Scan with Ecency mobile app to continue",
     "select-user": "Please, select an user",
     "title": "Account boost",
     "title-points": "Buy points",
