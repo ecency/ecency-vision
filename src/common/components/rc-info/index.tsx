@@ -7,6 +7,7 @@ import { RcDelegationsList } from "../rc-delegations-list";
 import { rcFormatter } from "../../util/formatted-number";
 import { ConfirmDelete } from "../rc-delegations-list";
 import { getRcOperationStats } from "../../api/hive";
+import RcProgressCircle from "../rc-progress-circle";
 
 export const ResourceCreditsInfo = (props: any) => {
   const { rcPercent, account, activeUser } = props;
@@ -163,35 +164,12 @@ export const ResourceCreditsInfo = (props: any) => {
                     <span>{`${rcPercent}%`}</span>
                   </div>
                 </div>
-
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                  <circle
-                    cx="80"
-                    cy="80"
-                    r={radius}
-                    style={{ strokeDashoffset: "0", strokeDasharray: dasharray, stroke: "#357ce6" }}
-                  />
-                  <circle
-                    cx="80"
-                    cy="80"
-                    r={radius}
-                    style={{
-                      strokeDashoffset: usedOffset,
-                      strokeDasharray: dasharray,
-                      stroke: "#357ce6"
-                    }}
-                  />
-                  <circle
-                    cx="80"
-                    cy="80"
-                    r={radius}
-                    style={{
-                      strokeDashoffset: unUsedOffset,
-                      strokeDasharray: dasharray,
-                      stroke: "red"
-                    }}
-                  />
-                </svg>
+                <RcProgressCircle
+                radius={radius}
+                usedOffset={usedOffset}
+                dasharray={dasharray}
+                unUsedOffset={unUsedOffset}
+                />
               </div>
 
               <div className="percentage-info">
