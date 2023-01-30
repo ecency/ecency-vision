@@ -886,7 +886,7 @@
     "purchase-message": "Ou envie qualquer quantia para @esteem.app com `pontos` no memo, para comprar Pontos."
   },
   "purchase-qr": {
-    "scan-code": "Scan the QR code with Ecency mobile app",
+    "scan-code": "Scan with Ecency mobile app to continue",
     "select-user": "Por favor, selecione um usuário",
     "title": "Impulso de conta",
     "title-points": "Comprar pontos",
