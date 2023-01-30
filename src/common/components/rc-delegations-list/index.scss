@@ -1,9 +1,9 @@
-.list-content {
+.delgations-list {
     height: 500px;
     overflow: auto;
     margin-top: 1px;
   
-    .loading {
+    .delegation-loading {
       position: absolute;
       left: 0;
       top: 0;
@@ -11,8 +11,8 @@
       height: 1px;
     }
   
-    .list {
-      .list-search-box {
+    .list-container {
+      .search-box {
         padding: 10px 0;
         max-width: 300px;
         margin: 0 auto 10px auto;
@@ -21,7 +21,7 @@
       @include user-grid-list(1, 2, 3);
     }
   
-    .load-more {
+    .load-more-btn {
       padding: 20px;
       text-align: center;
     }

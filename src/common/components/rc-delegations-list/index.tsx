@@ -66,21 +66,21 @@ export const RcDelegationsList = (props: any) => {
     return toData;
   };
 
-  return (
-    <div className="list-content">
-      {loading && (
-        <div className="loading">
-          <LinearProgress />
-        </div>
-      )}
-      <div className="list">
-        <div className="list-search-box">
-          <FormControl
-            value={search}
-            placeholder="search list"
-            onChange={(e) => setsearch(e.target.value)}
-          />
-        </div>
+  return (   
+      <div className="delgations-list">
+          {loading && (
+            <div className="delegation-loading">
+              <LinearProgress />
+            </div>
+          )}
+        <div className="list-container">
+            <div className="search-box">
+              <FormControl     
+                value={search}
+                placeholder="search list"
+                onChange={(e) => setsearch(e.target.value)}
+              />
+            </div>
 
         {listMode === "out" && (
           <div className="list-body">
@@ -171,15 +171,15 @@ export const RcDelegationsList = (props: any) => {
           </div>
         )}
 
-        {hasMore && outGoingList.length > loadList && (
-          <div className="load-more">
-            <Button disabled={loading || !hasMore} onClick={loadMore}>
-              {_t("g.load-more")}
-            </Button>
+            {((listMode === "out" && hasMore && outGoingList.length > loadList) || 
+            (listMode === "in" && hasMore && incoming.length > loadList)) && 
+            <div className="load-more-btn">
+              <Button disabled={loading || !hasMore} onClick={loadMore}>
+                {_t("g.load-more")}
+              </Button>
+            </div>}
           </div>
-        )}
       </div>
-    </div>
   );
 };
 
