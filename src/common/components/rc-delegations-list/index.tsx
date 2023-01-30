@@ -27,7 +27,6 @@ export const RcDelegationsList = (props: any) => {
   const [outGoingList, setOutGoingList]: any = useState([]);
   const [incoming, setIncoming]: any = useState([]);
   const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(false);
   const [search, setsearch] = useState("");
   const [loadList, setLoadList] = useState(21);
 
@@ -42,7 +41,6 @@ export const RcDelegationsList = (props: any) => {
     const delegationsOutList: any = await getOutgoingRc(paramsAccount, "");
     const delegationsOutInfo = delegationsOutList.rc_direct_delegations;
     setOutGoingList(delegationsOutInfo);
-    setHasMore(delegationsOutInfo.length > loadList);
     setLoading(false);
   };
 
@@ -52,7 +50,6 @@ export const RcDelegationsList = (props: any) => {
     const delegationsIn: any = await getIncomingRc(paramsAccount);
     const incomingInfo = delegationsIn.list;
     setIncoming(incomingInfo);
-    setHasMore(incomingInfo.length > loadList);
     setLoading(false);
   };
 
@@ -171,10 +168,10 @@ export const RcDelegationsList = (props: any) => {
           </div>
         )}
 
-            {((listMode === "out" && hasMore && outGoingList.length > loadList) || 
-            (listMode === "in" && hasMore && incoming.length > loadList)) && 
+            {((listMode === "in" && incoming.length >= loadList) || 
+            (listMode === "out" && outGoingList.length >= loadList))  && 
             <div className="load-more-btn">
-              <Button disabled={loading || !hasMore} onClick={loadMore}>
+              <Button  onClick={loadMore}>
                 {_t("g.load-more")}
               </Button>
             </div>}
