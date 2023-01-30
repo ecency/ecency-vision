@@ -987,6 +987,17 @@ class SubmitPage extends BaseComponent<Props, State> {
                 activeUser={(activeUser && activeUser.username) || ""}
               />
             </div>
+            {activeUser ? (
+              <AvailableCredits
+                className="mr-2"
+                operation="comment_operation"
+                username={activeUser.username}
+                activeUser={activeUser}
+                location={this.props.location}
+              />
+            ) : (
+              <></>
+            )}
             <div className="bottom-toolbar">
               {editingEntry === null && (
                 <Button variant="outline-info" onClick={() => this.setState({ clearModal: true })}>
@@ -995,15 +1006,6 @@ class SubmitPage extends BaseComponent<Props, State> {
               )}
 
               <div className="d-flex align-items-center">
-                {activeUser ? (
-                  <AvailableCredits
-                    className="mr-2"
-                    operation="comment_operation"
-                    username={activeUser.username}
-                  />
-                ) : (
-                  <></>
-                )}
                 <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
                   {advanced ? (
                     _t("submit.preview")

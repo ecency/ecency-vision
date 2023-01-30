@@ -11,14 +11,19 @@ import {
 import { _t } from "../../i18n";
 import moment, { Moment } from "moment";
 import { rcFormatter } from "../../util/formatted-number";
+import { PurchaseQrDialog } from "../purchase-qr";
+import { ActiveUser } from "../../store/active-user/types";
+import { Location } from "history";
 
 interface Props {
   username: string;
   operation: RcOperation;
+  activeUser: ActiveUser | null;
+  location: Location;
   className?: string;
 }
 
-export const AvailableCredits = ({ username, className }: Props) => {
+export const AvailableCredits = ({ username, className, activeUser, location }: Props) => {
   const [rcpFixed, setRcpFixed] = useState(0);
   const [rcp, setRcp] = useState(0);
   const [rcpRechargeDate, setRcpRechargeDate] = useState<Moment>(moment());
@@ -27,6 +32,7 @@ export const AvailableCredits = ({ username, className }: Props) => {
   const [commentAmount, setCommentAmount] = useState(0);
   const [voteAmount, setVoteAmount] = useState(0);
   const [transferAmount, setTransferAmount] = useState(0);
+  const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
 
   const [host, setHost] = useState<any>();
   const [popperElement, setPopperElement] = useState<any>();
@@ -79,27 +85,30 @@ export const AvailableCredits = ({ username, className }: Props) => {
 
   return (
     <>
-      <div
-        ref={setHost}
-        className={
-          "available-credits-bar " +
-          className +
-          (rcpFixed <= 10 ? " danger" : rcpFixed <= 25 ? " warning" : "")
-        }
-        onMouseOver={show}
-        onMouseLeave={hide}
-        onFocus={show}
-        onBlur={hide}
-      >
-        <div className="progress">
-          <div
-            className={"indicator " + (rcpFixed <= 10 ? "danger" : rcpFixed <= 25 ? "warning" : "")}
-            style={{ width: `${rcpFixed}%` }}
-          />
+      <div className="available-credits d-flex align-items-center justify-content-between w-100 pr-2">
+        <div
+          ref={setHost}
+          className={
+            "available-credits-bar w-100 " +
+            className +
+            (rcpFixed <= 10 ? " danger" : rcpFixed <= 25 ? " warning" : "")
+          }
+          onMouseOver={show}
+          onMouseLeave={hide}
+          onFocus={show}
+          onBlur={hide}
+        >
+          <div className="progress">
+            <div
+              className={
+                "indicator " + (rcpFixed <= 10 ? "danger" : rcpFixed <= 25 ? "warning" : "")
+              }
+              style={{ width: `${rcpFixed}%` }}
+            />
+          </div>
         </div>
-        <div className="d-flex align-items-center">
-          <span>{_t("rc-info.resource-credits")}</span>
-          <span className="value">{rcFormatter(rcp)}</span>
+        <div className="btn btn-link px-0" onClick={() => setShowPurchaseDialog(true)}>
+          {_t("rc-info.boost")}
         </div>
       </div>
       <div
@@ -152,6 +161,12 @@ export const AvailableCredits = ({ username, className }: Props) => {
           </div>
         </div>
       </div>
+      <PurchaseQrDialog
+        show={showPurchaseDialog}
+        setShow={(v) => setShowPurchaseDialog(v)}
+        activeUser={activeUser}
+        location={location}
+      />
     </>
   );
 };

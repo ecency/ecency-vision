@@ -320,9 +320,12 @@ exports[`(1) Default render 1`] = `
         value=""
       />
     </div>
+    <div
+      className="editor-toolbar bottom"
+    />
   </div>
   <div
-    className="comment-buttons d-flex align-items-centeru"
+    className="comment-buttons d-flex align-items-center mt-3"
   >
     <button
       className="btn-submit btn btn-primary btn-sm"
@@ -657,9 +660,12 @@ exports[`(2) Cancellable, in progress 1`] = `
         value=""
       />
     </div>
+    <div
+      className="editor-toolbar bottom"
+    />
   </div>
   <div
-    className="comment-buttons d-flex align-items-centeru"
+    className="comment-buttons d-flex align-items-center mt-3"
   >
     <button
       className="btn-submit btn btn-primary btn-sm"

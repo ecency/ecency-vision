@@ -23,6 +23,7 @@ import * as ss from "../../util/session-storage";
 
 import TextareaAutocomplete from "../textarea-autocomplete";
 import { AvailableCredits } from "../available-credits";
+import { Location } from "history";
 
 interface PreviewProps {
   text: string;
@@ -61,6 +62,7 @@ interface Props {
   ui: UI;
   global: Global;
   entry: Entry;
+  location: Location;
   inProgress?: boolean;
   isCommented?: boolean;
   cancellable?: boolean;
@@ -198,17 +200,21 @@ export class Comment extends Component<Props, State> {
               activeUser={(activeUser && activeUser.username) || ""}
               isComment={true}
             />
+            <div className="editor-toolbar bottom">
+              {this.props.activeUser ? (
+                <AvailableCredits
+                  className="p-2 w-100"
+                  operation="comment_operation"
+                  username={this.props.activeUser.username}
+                  activeUser={activeUser}
+                  location={this.props.location}
+                />
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
-          <div className="comment-buttons d-flex align-items-centeru">
-            {this.props.activeUser ? (
-              <AvailableCredits
-                className="mr-2"
-                operation="comment_operation"
-                username={this.props.activeUser.username}
-              />
-            ) : (
-              <></>
-            )}
+          <div className="comment-buttons d-flex align-items-center mt-3">
             {cancellable && (
               <Button
                 className="btn-cancel"
@@ -269,7 +275,8 @@ export default (p: Props) => {
     onSubmit: p.onSubmit,
     resetSelection: p.resetSelection,
     onCancel: p.onCancel,
-    inputRef: p.inputRef
+    inputRef: p.inputRef,
+    location: p.location
   };
 
   return <Comment {...props} />;

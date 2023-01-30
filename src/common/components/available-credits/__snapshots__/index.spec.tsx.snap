@@ -3,35 +3,33 @@
 exports[`(1) Default render 1`] = `
 Array [
   <div
-    className="available-credits-bar undefined danger"
-    onBlur={[Function]}
-    onFocus={[Function]}
-    onMouseLeave={[Function]}
-    onMouseOver={[Function]}
+    className="available-credits d-flex align-items-center justify-content-between w-100 pr-2"
   >
     <div
-      className="progress"
+      className="available-credits-bar w-100 undefined danger"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
     >
       <div
-        className="indicator danger"
-        style={
-          Object {
-            "width": "0%",
+        className="progress"
+      >
+        <div
+          className="indicator danger"
+          style={
+            Object {
+              "width": "0%",
+            }
           }
-        }
-      />
+        />
+      </div>
     </div>
     <div
-      className="d-flex align-items-center"
+      className="btn btn-link px-0"
+      onClick={[Function]}
     >
-      <span>
-        Resource credits
-      </span>
-      <span
-        className="value"
-      >
-        0
-      </span>
+      Boost
     </div>
   </div>,
   <div
@@ -96,7 +94,7 @@ Array [
       <span
         className="d-block mb-2 opacity-5"
       >
-        What you can do with RC
+        What you can do with RC?
       </span>
       <div
         className="extras"
@@ -120,7 +118,7 @@ Array [
             <div
               className="opacity-75"
             >
-              Upvotes
+              Votes
             </div>
             0
           </div>

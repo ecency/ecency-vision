@@ -1698,6 +1698,7 @@
     "extra-details-transfer": "Transfers",
     "extra-details-post": "Posts/Comments",
     "extra-details-upvote": "Votes",
-    "resource-credits": "Resource credits"
+    "resource-credits": "Resource credits",
+    "boost": "Boost"
   }
 }

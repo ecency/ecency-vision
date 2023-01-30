@@ -1,54 +1,50 @@
-.available-credits-bar {
-  position: relative;
-  overflow: hidden;
+.available-credits {
+  .available-credits-bar {
+    position: relative;
+    overflow: hidden;
 
-  .progress {
-    background-color: $gray-200;
-    height: 8px;
-    width: 100%;
-    border-radius: 4px;
-    padding: 2px;
-    margin-bottom: 4px;
+    .progress {
+      background-color: $gray-200;
+      height: 8px;
+      width: 100%;
+      border-radius: 4px;
+      padding: 2px;
 
-    @include themify(night) {
-      stroke: $gray-700;
-    }
-
-    .indicator {
-      height: 4px;
-      border-radius: 2px;
-      background-color: $primary;
-      transition: stroke-dashoffset 1s ease-in-out;
-
-      &.warning {
-        background-color: $yellow;
-
-        @include themify(night) {
-          background-color: darken($yellow, 15);
-        }
+      @include themify(night) {
+        stroke: $gray-700;
       }
 
-      &.danger {
-        background-color: $danger;
+      .indicator {
+        height: 4px;
+        border-radius: 2px;
+        background-color: $primary;
+        transition: stroke-dashoffset 1s ease-in-out;
 
-        @include themify(night) {
-          background-color: darken($danger, 15);
+        &.warning {
+          background-color: $yellow;
+
+          @include themify(night) {
+            background-color: darken($yellow, 15);
+          }
+        }
+
+        &.danger {
+          background-color: $danger;
+
+          @include themify(night) {
+            background-color: darken($danger, 15);
+          }
         }
       }
     }
   }
 
-  span {
+  .btn-link {
+    font-family: $font-family-base;
+    font-weight: bold;
     font-size: 0.75rem;
-    color: $dark-two;
-    opacity: 0.5;
-
-    &.value {
-      opacity: 1;
-      color: $primary;
-      font-weight: bold;
-      padding-left: 4px;
-    }
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
   }
 }
 
@@ -65,7 +61,6 @@
   border-radius: 0.25rem;
   display: grid;
   grid-template-columns: min-content min-content;
-  margin: 1rem;
 
   span, p {
     white-space: nowrap;
