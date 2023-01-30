@@ -41,7 +41,11 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
   const popper = usePopper(host, popperElement);
 
   useEffect(() => {
-    fetchRc();
+    try {
+      fetchRc();
+    } catch (error) {
+      console.log(error);
+    }
   }, [username]);
 
   const fetchRc = async () => {
