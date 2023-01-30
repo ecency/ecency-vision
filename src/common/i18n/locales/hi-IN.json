@@ -886,7 +886,7 @@
     "purchase-message": "या प्वॉइंट्स खरीदने के लिए मेमो के रूप में `अंक' के साथ @esteem.app को कोई भी राशि भेजें।"
   },
   "purchase-qr": {
-    "scan-code": "Scan the QR code with Ecency mobile app",
+    "scan-code": "Scan with Ecency mobile app to continue",
     "select-user": "कृपया, उपयोगकर्ता को चुने",
     "title": "खाता बूस्ट",
     "title-points": "अंक खरीदें",
