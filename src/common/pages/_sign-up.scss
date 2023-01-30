@@ -160,7 +160,15 @@
   }
 
   .app-btn {
-    color: $white;
+    @include themify(day) {
+      color: $white;
+    }
+  
+    @include themify(night) {
+      background: lighten($dark-sky-blue, 6);
+      color: $dark-two;
+    }
+    
     border-radius: 8px;
     display: grid;
     grid-template-areas:

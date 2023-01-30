@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Alert, Button, Form, InputGroup } from "react-bootstrap";
 import { _t } from "../../i18n";
-import { lookupAccounts } from "../../api/hive";
 import { error, success } from "../feedback";
-import { formatError } from "../../api/operations";
 import qrcode from "qrcode";
 import { copyContent } from "../../img/svg";
 import { ActiveUser } from "../../store/active-user/types";
@@ -75,8 +73,8 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId, locat
   };
 
   return (
-    <div className="d-flex flex-column align-items-center my-3 px-3 text-center">
-      <h2>{isQrShow ? _t("purchase-qr.scan-code") : _t("purchase-qr.select-user")}</h2>
+    <div className="d-flex flex-column align-items-center px-3 text-center">
+      <h6>{isQrShow ? _t("purchase-qr.scan-code") : _t("purchase-qr.select-user")}</h6>
       <div className="w-100 mt-4">
         <SearchByUsername
           activeUser={activeUser}
