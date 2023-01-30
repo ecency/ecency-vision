@@ -1098,7 +1098,7 @@ export const createProposal = (
   dailyPay: any, 
   subject: string, 
   link: string
-  ): Promise<TransactionConfirmation> => {
+  ) => {
   const op: Operation = [
     "create_proposal",
     {
@@ -1106,15 +1106,15 @@ export const createProposal = (
       receiver: receiver,
       start_date: start,
       end_date: end,
-      daily_pay: {
-      amount: dailyPay,
-      precision: 3,
-      },
+      daily_pay: `${Number(dailyPay).toFixed(3)} HBD`,
       subject: subject,
       permlink: link
     }
   ]
-  return broadcastPostingJSON(account, 'amount', op)
+  keychain.broadcast(account, [op], "Active")
+  .then(result => console.log(result))
+  .catch(err => console.log(err));
+  // return broadcastPostingJSON(account, 'amount', op)
 }
 
 export const subscribe = (

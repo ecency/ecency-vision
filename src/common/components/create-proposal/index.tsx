@@ -8,35 +8,31 @@ import { _t } from "../../i18n";
 import { pageMapDispatchToProps, pageMapStateToProps } from "../../pages/common";
 import { Button, Form } from "react-bootstrap";
 import { createProposal } from "../../api/operations";
-import { ActiveUser } from "../../store/active-user/types";
-
-interface Props {
-    activeUser: ActiveUser | null;
-  }
 
 const ProposalCreationPage = (props: any) => {
-    // const { activeUser } = props;
+    const { activeUser } = props;
 
     const [loading, setLoading] = useState(true);
     const [formInput, steFormInput] = useState<any>({});
     const [error, setError] = useState<any>({});
     const [hbdBalanceError, setHbdBalanceError] = useState(false);
-    const [totalDays, setTotalDays] = useState(0)
+    const [total, setTotal] = useState(0);
    
     useEffect(() => {
         setLoading(false)
     }, [])
 
     const handleFormError = () => {
-        const { receiver,subject, start, end, funding, link } = formInput;
+        const { receiver,subject, start, end, funding, link, total } = formInput;
         const newError: any = {};
 
-        if(!receiver || receiver === "") newError.receiver = "Please enter receiver"
+        // if(!receiver || receiver === "") newError.receiver = "Please enter receiver"
         if(!subject || subject === "") newError.subject = "Please enter subject"
         if(!start || start === "") newError.start = "Please select start date"
         if(!end || end === "") newError.end = "Please select end date"
         if(!funding || funding === "") newError.funding = "Please enter funding amount"
-        if(!link || link === "") newError.link = "Please enter post link"
+        if(!link) newError.link = "Please enter post link"
+        if(Number(total) <= 0) newError.total = "Invalid amount"
 
         return newError;
     }
@@ -53,9 +49,6 @@ const ProposalCreationPage = (props: any) => {
                 [field]:null
             })
         };
-        const days = getDateDifference(formInput.start, formInput.end);
-        setTotalDays(days); 
-       
     };
 
     const getDateDifference = (start: any, end: any) => {
@@ -67,32 +60,23 @@ const ProposalCreationPage = (props: any) => {
     }
 
     const onSubmit = (e: any) => {
-        const { activeUser } = props;
         const hbdBalance = Number(props.activeUser.data.hbd_balance.replace("HBD",""))
         e.preventDefault();
         const formErrors = handleFormError();
         if(Object.keys(formErrors).length > 0){
             setError(formErrors)
-        } else if ( hbdBalance < 10 ){
+        } else if ( hbdBalance < 0.00010 ){
             setHbdBalanceError(true)
         } else {
             createProposal(
                 activeUser.username, 
-                formInput.receiver, 
-                formInput.start, 
-                formInput.end, 
+                formInput.receiver || activeUser.username, 
+                `${formInput.start}T00:00:00`, 
+                `${formInput.end}T00:00:00`, 
                 formInput.funding, 
                 formInput.subject, 
-                formInput.link
-                ).then(
-                    (res: any) => {
-                      console.log({res})
-                      return res;
-                    }
-                  ).catch((e: any) => {
-                    console.log({e})
-                    return e;
-                  });
+                formInput.link.split("/")[5]
+                )
                   return;
         }
     };
@@ -164,7 +148,10 @@ const ProposalCreationPage = (props: any) => {
                     placeholder={_t("create-proposal.daily-funding-placeholder")} 
                     value={formInput.funding || ""}
                     isInvalid={!!error.funding}
-                    onChange={(e: any) => handleChange("funding", e.target.value)}
+                    onChange={(e: any) => {
+                        handleChange("funding", e.target.value);
+                        setTotal(getDateDifference(formInput.start, formInput.end) * Number(e.target.value))
+                    }}
                     />
                     <span className="text-danger">
                         {error.funding}
@@ -175,10 +162,10 @@ const ProposalCreationPage = (props: any) => {
                     <Form.Control 
                     type="text" 
                     value={formInput.total = !formInput.funding || 
-                        !formInput.start || !formInput.end || Number.isNaN(totalDays * Number(formInput.funding)) ? 0 : 
-                        totalDays * Number(formInput.funding)} 
+                        !formInput.start || !formInput.end ? 0 : 
+                        total} 
                     isInvalid={!!error.total}
-                    // onChange={(e: any) => handleChange("total", e.target.value)}
+                    onChange={() => handleChange("total", Number(total))}
                     readOnly
                     />
                     <span className="text-danger">
@@ -191,7 +178,10 @@ const ProposalCreationPage = (props: any) => {
                     type="date" 
                     value={formInput.start || ""}
                     isInvalid={!!error.start}
-                    onChange={(e: any) => handleChange("start", e.target.value)}
+                    onChange={(e: any) => {
+                        handleChange("start", e.target.value);
+                        setTotal(getDateDifference(e.target.value, formInput.end) * Number(formInput.funding))
+                    }}
                     />
                     <span className="text-danger">
                         {error.start}
@@ -203,7 +193,10 @@ const ProposalCreationPage = (props: any) => {
                     type="date" 
                     value={formInput.end || ""}
                     isInvalid={!!error.end}
-                    onChange={(e: any) => handleChange("end", e.target.value)}
+                    onChange={(e: any) => {
+                        handleChange("end", e.target.value)
+                        setTotal(getDateDifference(formInput.start, e.target.value) * Number(formInput.funding))
+                    }}
                     />
                     <span className="text-danger">
                         {error.end}
