@@ -165,10 +165,10 @@ export const ResourceCreditsInfo = (props: any) => {
                   </div>
                 </div>
                 <RcProgressCircle
-                radius={radius}
-                usedOffset={usedOffset}
-                dasharray={dasharray}
-                unUsedOffset={unUsedOffset}
+                  radius={radius}
+                  usedOffset={usedOffset}
+                  dasharray={dasharray}
+                  unUsedOffset={unUsedOffset}
                 />
               </div>
 
@@ -262,7 +262,7 @@ export const ResourceCreditsInfo = (props: any) => {
           size="lg"
         >
           <Modal.Header closeButton={true}>
-            <Modal.Title></Modal.Title>
+            <Modal.Title/>
           </Modal.Header>
           <Modal.Body>
             <ResourceCreditsDelegation
@@ -287,7 +287,7 @@ export const ResourceCreditsInfo = (props: any) => {
           // size="lg"
         >
           <Modal.Header closeButton={true}>
-            <Modal.Title></Modal.Title>
+            <Modal.Title/>
           </Modal.Header>
           <Modal.Body>
             <ConfirmDelete
