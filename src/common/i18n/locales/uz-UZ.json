@@ -886,7 +886,7 @@
     "purchase-message": "Yoki Ballarni xarid qilish uchun eslatmadagi “ballar” bilan @esteem.app manziliga istalgan summani yuboring."
   },
   "purchase-qr": {
-    "scan-code": "Ecency mobil ilovasi yordamida QR kodini skanerlang",
+    "scan-code": "Scan with Ecency mobile app to continue",
     "select-user": "Iltimos, foydalanuvchini tanlang",
     "title": "Akkauntni kuchaytirish",
     "title-points": "Ballarni sotib olish",
