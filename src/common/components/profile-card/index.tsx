@@ -31,7 +31,7 @@ import { Skeleton } from "../skeleton";
 import { dateToFormatted } from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 import { Subscription } from "../../store/subscriptions/types";
-import { ResourceCreditsInfo } from "../rc-info"
+import { ResourceCreditsInfo } from "../rc-info";
 
 interface Props {
   global: Global;
@@ -181,11 +181,7 @@ export const ProfileCard = (props: Props) => {
       )}
 
       <div>
-        <ResourceCreditsInfo 
-          {...props}
-          rcPercent={rcPercent} 
-          account={account}
-      />
+        <ResourceCreditsInfo {...props} rcPercent={rcPercent} account={account} />
       </div>
 
       {account.__loaded && (

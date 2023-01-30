@@ -891,14 +891,16 @@ export const delegateRC = (
   delegatees: string,
   max_rc: string | number
 ): Promise<TransactionConfirmation> => {
-  
-  const json = ["delegate_rc", {
-    from: delegator,
-    delegatees: [delegatees],
-    max_rc: max_rc,
-}];
+  const json = [
+    "delegate_rc",
+    {
+      from: delegator,
+      delegatees: [delegatees],
+      max_rc: max_rc
+    }
+  ];
 
-    return broadcastPostingJSON(delegator, 'rc', json)
+  return broadcastPostingJSON(delegator, "rc", json);
 };
 
 export const withdrawVesting = (
