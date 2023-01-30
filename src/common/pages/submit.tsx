@@ -82,6 +82,7 @@ import { checkSvg, contentSaveSvg } from "../img/svg";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import ModalConfirm from "../components/modal-confirm";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
+import { AvailableCredits } from "../components/available-credits";
 
 setProxyBase(defaults.imageServer);
 
@@ -988,6 +989,17 @@ class SubmitPage extends BaseComponent<Props, State> {
                 activeUser={(activeUser && activeUser.username) || ""}
               />
             </div>
+            {activeUser ? (
+              <AvailableCredits
+                className="mr-2"
+                operation="comment_operation"
+                username={activeUser.username}
+                activeUser={activeUser}
+                location={this.props.location}
+              />
+            ) : (
+              <></>
+            )}
             <div className="bottom-toolbar">
               {editingEntry === null && (
                 <Button variant="outline-info" onClick={() => this.setState({ clearModal: true })}>
@@ -995,16 +1007,18 @@ class SubmitPage extends BaseComponent<Props, State> {
                 </Button>
               )}
 
-              <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
-                {advanced ? (
-                  _t("submit.preview")
-                ) : (
-                  <>
-                    {_t("submit.advanced")}
-                    {this.hasAdvanced() ? " •••" : null}
-                  </>
-                )}
-              </Button>
+              <div className="d-flex align-items-center">
+                <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
+                  {advanced ? (
+                    _t("submit.preview")
+                  ) : (
+                    <>
+                      {_t("submit.advanced")}
+                      {this.hasAdvanced() ? " •••" : null}
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
           </div>
           <div className="flex-spacer" />
