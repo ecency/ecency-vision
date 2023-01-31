@@ -1141,6 +1141,7 @@
     "publish": "Опубликовать",
     "update": "Обновить",
     "save-draft": "Сохранить черновик",
+    "load-draft": "Load Draft",
     "draft-saved": "Черновик сохранён",
     "update-draft": "Обновить черновик",
     "draft-updated": "Черновик обновлён",
