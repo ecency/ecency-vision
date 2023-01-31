@@ -1141,6 +1141,7 @@
     "publish": "Yayınla",
     "update": "Güncelle",
     "save-draft": "Taslağı Kaydet",
+    "load-draft": "Load Draft",
     "draft-saved": "Taslak kaydedildi",
     "update-draft": "Taslağı Güncelle",
     "draft-updated": "Taslak güncellendi",
