@@ -1141,6 +1141,7 @@
     "publish": "Опублікувати",
     "update": "Оновити",
     "save-draft": "Зберегти чернетку",
+    "load-draft": "Load Draft",
     "draft-saved": "Чернетку збережено",
     "update-draft": "Оновлення чернетки",
     "draft-updated": "Чернетку оновлено",
