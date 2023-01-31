@@ -8,6 +8,11 @@ import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import { useParams } from "react-router";
 import { getAccount } from "../../api/hive";
+import { Account } from "../../store/accounts/types";
+
+interface Props {
+  addAccount: (data: Account) => void;
+}
 
 export const RcDelegationsList = (props: any) => {
   const params: any = useParams();
@@ -80,20 +85,22 @@ export const RcDelegationsList = (props: any) => {
             </div>
 
         {listMode === "out" && (
-          <div className="list-body">
+          <>
+          {outGoingList.length > 0 ? <div className="list-body">
             {outGoingList
               ?.slice(0, loadList)
               .filter(
                 (list: any) =>
                   list.to.toLowerCase().startsWith(search) || list.to.toLowerCase().includes(search)
               )
-              .map((list: any, i: any) => (
+              .map((list: any, i: any) => { 
+              return (
                 <div className="list-item" key={i}>
                   <div className="item-main">
                     {ProfileLink({
                       ...props,
                       username: list.to,
-                      children: <>{UserAvatar({ ...props, username: list.to, size: "small" })}</>
+                      children: <>{UserAvatar({ ...props, size: "small", username: list.to })}</>
                     })}
                     <div className="item-info">
                       {ProfileLink({
@@ -131,12 +138,14 @@ export const RcDelegationsList = (props: any) => {
                     </div>
                   </div>
                 </div>
-              ))}
-          </div>
+              )})}
+          </div> : <p>{_t("rc-info.no-outgoing")}</p>}
+          </>
         )}
 
         {listMode === "in" && (
-          <div className="list-body">
+          <>
+          {incoming.length > 0 ? <div className="list-body">
             {incoming
               ?.slice(0, loadList)
               .filter(
@@ -165,7 +174,8 @@ export const RcDelegationsList = (props: any) => {
                   </div>
                 </div>
               ))}
-          </div>
+          </div> : <p>{_t("rc-info.no-incoming")}</p>}
+          </>
         )}
 
             {((listMode === "in" && incoming.length >= loadList) || 
@@ -215,3 +225,12 @@ export const ConfirmDelete = (props: any) => {
     </>
   );
 };
+
+export default (p: Props) => {
+  const props: Props = {
+    addAccount: p.addAccount
+  };
+
+  return <RcDelegationsList {...props} />;
+};
+

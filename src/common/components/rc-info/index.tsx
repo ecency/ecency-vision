@@ -235,7 +235,7 @@ export const ResourceCreditsInfo = (props: any) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <RcDelegationsList
+          <RcDelegationsList {...props}
             activeUser={activeUser}
             rcFormatter={rcFormatter}
             delegated={delegated}
