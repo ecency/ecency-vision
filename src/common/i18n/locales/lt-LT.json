@@ -1141,6 +1141,7 @@
     "publish": "Paskelbti",
     "update": "Atnaujinti",
     "save-draft": "Išsaugoti Juodraštį",
+    "load-draft": "Load Draft",
     "draft-saved": "Juodraštis išsaugotas",
     "update-draft": "Atnaujinti Juodraštį",
     "draft-updated": "Juodraštis įkeltas",
