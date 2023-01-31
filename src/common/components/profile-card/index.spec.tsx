@@ -14,7 +14,8 @@ import {
   activeUserInstance,
   activeUserMaker,
   fullAccountInstance,
-  allOver
+  allOver,
+  flushPending
 } from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
@@ -101,6 +102,6 @@ it("(3) Should show profile edits", async () => {
       <ProfileCard {...props} />
     </StaticRouter>
   );
-  await allOver();
+  await flushPending();
   expect(component.toJSON()).toMatchSnapshot();
 });

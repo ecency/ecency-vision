@@ -34,38 +34,40 @@ export const ResourceCreditsInfo = (props: any) => {
   const [customJsonAmount, setCustomJsonAmount] = useState(null);
 
   useEffect(() => {
-    findRcAccounts(account.name).then((r) => {
-      const outGoing = r.map((a: any) => a.delegated_rc);
-      const delegated = outGoing[0];
-      const formatOutGoing: any = rcFormatter(delegated);
-      setDelegated(formatOutGoing);
-      const availableResourceCredit: any = r.map((a: any) => a.rc_manabar.current_mana);
-      setresourceCredit(availableResourceCredit);
-      const inComing: any = r.map((a: any) => Number(a.received_delegated_rc));
-      const formatIncoming = rcFormatter(inComing);
-      setReceivedDelegation(formatIncoming);
+    findRcAccounts(account.name)
+      .then((r) => {
+        const outGoing = r.map((a: any) => a.delegated_rc);
+        const delegated = outGoing[0];
+        const formatOutGoing: any = rcFormatter(delegated);
+        setDelegated(formatOutGoing);
+        const availableResourceCredit: any = r.map((a: any) => a.rc_manabar.current_mana);
+        setresourceCredit(availableResourceCredit);
+        const inComing: any = r.map((a: any) => Number(a.received_delegated_rc));
+        const formatIncoming = rcFormatter(inComing);
+        setReceivedDelegation(formatIncoming);
 
-      const rcOperationsCost = async () => {
-        const rcStats: any = await getRcOperationStats();
-        const operationCosts = rcStats.rc_stats.ops;
-        const commentCost = operationCosts.comment_operation.avg_cost;
-        const transferCost = operationCosts.transfer_operation.avg_cost;
-        const voteCost = operationCosts.vote_operation.avg_cost;
-        const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
+        const rcOperationsCost = async () => {
+          const rcStats: any = await getRcOperationStats();
+          const operationCosts = rcStats.rc_stats.ops;
+          const commentCost = operationCosts.comment_operation.avg_cost;
+          const transferCost = operationCosts.transfer_operation.avg_cost;
+          const voteCost = operationCosts.vote_operation.avg_cost;
+          const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
 
-        const commentCount: any = Math.ceil(Number(availableResourceCredit[0]) / commentCost);
-        const votetCount: any = Math.ceil(Number(availableResourceCredit[0]) / voteCost);
-        const transferCount: any = Math.ceil(Number(availableResourceCredit[0]) / transferCost);
-        const customJsonCount: any = Math.ceil(
-          Number(availableResourceCredit[0]) / customJsonOperationsCosts
-        );
-        setCommentAmount(commentCount);
-        setVoteAmount(votetCount);
-        setTransferAmount(transferCount);
-        setCustomJsonAmount(customJsonCount);
-      };
-      rcOperationsCost();
-    });
+          const commentCount: any = Math.ceil(Number(availableResourceCredit[0]) / commentCost);
+          const votetCount: any = Math.ceil(Number(availableResourceCredit[0]) / voteCost);
+          const transferCount: any = Math.ceil(Number(availableResourceCredit[0]) / transferCost);
+          const customJsonCount: any = Math.ceil(
+            Number(availableResourceCredit[0]) / customJsonOperationsCosts
+          );
+          setCommentAmount(commentCount);
+          setVoteAmount(votetCount);
+          setTransferAmount(transferCount);
+          setCustomJsonAmount(customJsonCount);
+        };
+        rcOperationsCost();
+      })
+      .catch(console.log);
   }, []);
 
   const showModal = () => {

@@ -30,9 +30,11 @@ import { ActiveUser } from "../store/active-user/types";
 import { FullAccount } from "../store/accounts/types";
 import { SearchResponse, AccountSearchResult } from "../api/search-api";
 import { AssetSymbol } from "@hiveio/dhive";
-import ConversionRequests from "../components/converts";
+import { setImmediate as flushMicroTasks } from "timers";
 
 export const allOver = () => new Promise((resolve) => setImmediate(resolve));
+
+export const flushPending = () => new Promise(flushMicroTasks);
 
 export const activeUserMaker = (name: string): ActiveUser => {
   return {
