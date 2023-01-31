@@ -657,6 +657,16 @@
     "link-copied": "Enlace de búsqueda copiado al portapapeles",
     "no-posts-found": "¡No se encontró nada!"
   },
+  "rc-info": {
+    "delegated": "Delegaciones emitidas",
+    "received-delegations": "Delegaciones recibidas",
+    "extra-details-heading": "¿Qué puedes hacer con RC?",
+    "extra-details-transfer": "Transacciones",
+    "extra-details-post": "Publicaciones/Comentarios",
+    "extra-details-upvote": "Votos",
+    "resource-credits": "Créditos de recursos",
+    "boost": "Impulsar"
+  },
   "profile-edit": {
     "title": "Perfil",
     "name": "Nombre para mostrar",
@@ -1707,15 +1717,5 @@
     "insufficient-resource-buy-hive": "Comprar HIVE y aumentar poder",
     "insufficient-resource-wait": "Espere unas horas para la recarga de RC",
     "report": "Reporte"
-  },
-  "rc-info": {
-    "delegated": "Delegaciones emitidas",
-    "received-delegations": "Delegaciones recibidas",
-    "extra-details-heading": "¿Qué puedes hacer con RC?",
-    "extra-details-transfer": "Transacciones",
-    "extra-details-post": "Publicaciones/Comentarios",
-    "extra-details-upvote": "Votos",
-    "resource-credits": "Créditos de recursos",
-    "boost": "Impulsar"
   }
 }
