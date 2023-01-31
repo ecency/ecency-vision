@@ -67,7 +67,7 @@ const ProposalCreationPage = (props: any) => {
         const formErrors = handleFormError();
         if(Object.keys(formErrors).length > 0){
             setError(formErrors)
-        } else if ( hbdBalance < 0.00010 ){
+        } else if ( hbdBalance < 10 ){
             setHbdBalanceError(true)
         } else {
             createProposal(
