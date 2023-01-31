@@ -1141,6 +1141,7 @@
     "publish": "Terbitkan",
     "update": "Perbaharui",
     "save-draft": "Simpan Konsep",
+    "load-draft": "Load Draft",
     "draft-saved": "Konsep disimpan",
     "update-draft": "Perbaharui Konsep",
     "draft-updated": "Konsep diperbarui",
