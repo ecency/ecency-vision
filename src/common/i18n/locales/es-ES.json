@@ -1151,7 +1151,7 @@
     "publish": "Publicar",
     "update": "Actualizar",
     "save-draft": "Guardar borrador",
-    "load-draft": "Load Draft",
+    "load-draft": "Cargar borrador",
     "draft-saved": "Borrador guardado",
     "update-draft": "Actualizar borrador",
     "draft-updated": "Borrador actualizado",
@@ -1387,12 +1387,12 @@
     "daily-funded": "financiamiento diario",
     "daily-budget": "presupuesto diario",
     "total-budget": "presupuesto total",
-    "search-placeholder": "Search",
-    "sort": "Sort",
-    "sort-reputation": "Reputation",
-    "sort-hp": "Hive Power",
-    "no-results": "No results found",
-    "searching": "Searching"
+    "search-placeholder": "Buscar",
+    "sort": "Ordenar",
+    "sort-reputation": "Reputación",
+    "sort-hp": "Potencia de Hive",
+    "no-results": "No se encontraron resultados",
+    "searching": "Buscando"
   },
   "gallery": {
     "title": "Galería",
