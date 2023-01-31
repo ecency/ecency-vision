@@ -77,11 +77,12 @@ import * as ls from "../util/local-storage";
 
 import { version } from "../../../package.json";
 
-import { checkSvg, contentSaveSvg } from "../img/svg";
+import { checkSvg, contentSaveSvg, contentLoadSvg } from "../img/svg";
 
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import ModalConfirm from "../components/modal-confirm";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
+import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 
 setProxyBase(defaults.imageServer);
@@ -169,6 +170,8 @@ interface State extends PostBase, Advanced {
   thumbnails: string[];
   selectedThumbnail: string;
   selectionTouched: boolean;
+  isDraftEmpty: boolean;
+  drafts: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -196,7 +199,9 @@ class SubmitPage extends BaseComponent<Props, State> {
       body: "",
       description: ""
     },
-    disabled: true
+    disabled: true,
+    isDraftEmpty: true,
+    drafts: false
   };
 
   _updateTimer: any = null;
@@ -361,11 +366,18 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     const localDraft = ls.get("local_draft") as PostBase;
     if (!localDraft) {
+      this.stateSet({ isDraftEmpty: true });
       return;
     }
 
     const { title, tags, body } = localDraft;
     this.stateSet({ title, tags, body }, this.updatePreview);
+
+    for (const key in localDraft) {
+      if (localDraft[key].length > 0) {
+        this.stateSet({ isDraftEmpty: false });
+      }
+    }
   };
 
   saveLocalDraft = (): void => {
@@ -487,7 +499,8 @@ class SubmitPage extends BaseComponent<Props, State> {
         beneficiaries: [],
         schedule: null,
         reblogSwitch: false,
-        clearModal: false
+        clearModal: false,
+        isDraftEmpty: true
       },
       () => {
         this.clearAdvanced();
@@ -536,6 +549,11 @@ class SubmitPage extends BaseComponent<Props, State> {
       this.stateSet({ preview: { title, tags, body, description }, thumbnails: thumbnails || [] });
       if (editingEntry === null) {
         this.saveLocalDraft();
+      }
+      if (title.length || tags.length || body.length) {
+        this.stateSet({ isDraftEmpty: false });
+      } else {
+        this.stateSet({ isDraftEmpty: true });
       }
     }, 500);
   };
@@ -891,7 +909,8 @@ class SubmitPage extends BaseComponent<Props, State> {
       clearModal,
       selectedThumbnail,
       thumbnails,
-      disabled
+      disabled,
+      drafts
     } = this.state;
 
     //  Meta config
@@ -1046,18 +1065,40 @@ class SubmitPage extends BaseComponent<Props, State> {
                   <>
                     <span />
                     <div>
-                      {global.usePrivate && (
-                        <Button
-                          variant="outline-primary"
-                          style={{ marginRight: "6px" }}
-                          onClick={this.saveDraft}
-                          disabled={disabled || saving || posting}
-                        >
-                          {contentSaveSvg}{" "}
-                          {editingDraft === null
-                            ? _t("submit.save-draft")
-                            : _t("submit.update-draft")}
-                        </Button>
+                      {global.usePrivate && this.state.isDraftEmpty ? (
+                        <>
+                          {LoginRequired({
+                            ...this.props,
+                            children: (
+                              <Button
+                                variant="outline-primary"
+                                style={{ marginRight: "6px" }}
+                                onClick={() => this.stateSet({ drafts: !drafts })}
+                              >
+                                {contentLoadSvg} {_t("submit.load-draft")}
+                              </Button>
+                            )
+                          })}
+                        </>
+                      ) : (
+                        <>
+                          {LoginRequired({
+                            ...this.props,
+                            children: (
+                              <Button
+                                variant="outline-primary"
+                                style={{ marginRight: "6px" }}
+                                onClick={this.saveDraft}
+                                disabled={disabled || saving || posting}
+                              >
+                                {contentSaveSvg}{" "}
+                                {editingDraft === null
+                                  ? _t("submit.save-draft")
+                                  : _t("submit.update-draft")}
+                              </Button>
+                            )
+                          })}
+                        </>
                       )}
                       {LoginRequired({
                         ...this.props,
@@ -1074,6 +1115,13 @@ class SubmitPage extends BaseComponent<Props, State> {
                       })}
                     </div>
                   </>
+                )}
+                {drafts && activeUser && (
+                  <Drafts
+                    {...this.props}
+                    onHide={() => this.setState({ drafts: !drafts })}
+                    activeUser={activeUser}
+                  />
                 )}
 
                 {editingEntry !== null && (
