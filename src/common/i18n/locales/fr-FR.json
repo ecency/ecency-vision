@@ -1141,6 +1141,7 @@
     "publish": "Publier",
     "update": "Mettre à jour",
     "save-draft": "Sauvegarder le brouillon",
+    "load-draft": "Load Draft",
     "draft-saved": "Brouillon sauvegardé",
     "update-draft": "Mettre à jour le brouillon",
     "draft-updated": "Brouillon mis à jour",
