@@ -1141,6 +1141,7 @@
     "publish": "发布",
     "update": "更新",
     "save-draft": "存为草稿",
+    "load-draft": "Load Draft",
     "draft-saved": "草稿已保存",
     "update-draft": "更新草稿",
     "draft-updated": "草稿已更新",
