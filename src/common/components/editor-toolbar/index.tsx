@@ -69,11 +69,7 @@ export const detectEvent = (eventType: string) => {
 };
 
 export const toolbarEventListener = (event: Event, eventType: string) => {
-  const detail = {
-    event: event,
-    eventType: eventType
-  };
-  const ev = new CustomEvent("customToolbarEvent", { detail });
+  const ev = new CustomEvent("customToolbarEvent", { detail: { event, eventType } });
   window.dispatchEvent(ev);
 };
 
