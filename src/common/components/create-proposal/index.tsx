@@ -1,5 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Theme from "../theme";
 import NavBar from "../navbar";
@@ -8,6 +7,8 @@ import { _t } from "../../i18n";
 import { pageMapDispatchToProps, pageMapStateToProps } from "../../pages/common";
 import { Button, Form } from "react-bootstrap";
 import { createProposal } from "../../api/operations";
+import { getAccount } from "../../api/hive";
+import _ from "lodash";
 
 const ProposalCreationPage = (props: any) => {
     const { activeUser } = props;
@@ -17,16 +18,17 @@ const ProposalCreationPage = (props: any) => {
     const [error, setError] = useState<any>({});
     const [hbdBalanceError, setHbdBalanceError] = useState(false);
     const [total, setTotal] = useState(0);
+    const [receieverData, setReceiverData] = useState<any>("");
+    const [receiverError, setReceiverError] = useState<any>("")
    
     useEffect(() => {
         setLoading(false)
     }, [])
 
     const handleFormError = () => {
-        const { receiver,subject, start, end, funding, link, total } = formInput;
+        const { subject, start, end, funding, link, total } = formInput;
         const newError: any = {};
 
-        // if(!receiver || receiver === "") newError.receiver = "Please enter receiver"
         if(!subject || subject === "") newError.subject = "Please enter subject"
         if(!start || start === "") newError.start = "Please select start date"
         if(!end || end === "") newError.end = "Please select end date"
@@ -81,16 +83,33 @@ const ProposalCreationPage = (props: any) => {
         }
     };
 
-    if (loading) {
-      return (
-        <>
-          <LinearProgress />
-        </>
-      );
+    const validateccount = async (account: string) => {        
+        setLoading(true)
+        return getAccount(account)
+        .then((resp) => {
+            if (resp) {
+                console.log(resp)
+                setReceiverError("")
+            setReceiverData(resp)
+            } else {
+                console.log("user not found")
+                setReceiverError("user not found")
+            }
+            return resp;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+        .finally(() => {
+            setLoading(false)
+        });
     }
-    
+
+    const delayedVerify = useCallback(_.debounce(validateccount, 3000, { leading: true }), []);
+
     return (
       <>
+        {loading &&  <LinearProgress />}
         <div>
         <Theme global={props.global} />
             { NavBar({ ...props })}
@@ -98,9 +117,11 @@ const ProposalCreationPage = (props: any) => {
         <div className="app-content proposals-page">
           <div className="page-header create-proposal mt-5 d-flex justify-content-center flex-direction-column">
             <h1 className="align-self-center">{_t("create-proposal.title")}</h1>
+
             {hbdBalanceError && <p className="align-self-center text-danger">
             {_t("create-proposal.hbd-balance-error")}
             </p>}
+
             <Form>
                 <Form.Group className="mb-3">
                     <Form.Label>{_t("create-proposal.creator-username")}</Form.Label>
@@ -209,18 +230,23 @@ const ProposalCreationPage = (props: any) => {
                     placeholder={_t("create-proposal.receiver-placeholder")} 
                     value={formInput.receiver || ""}
                     isInvalid={!!error.receiver}
-                    onChange={(e: any) => handleChange("receiver", e.target.value)}
+                    onChange={(e: any) => {
+                        handleChange("receiver", e.target.value);
+                        delayedVerify(e.target.value)
+                    }}
                     />
                     <span className="text-danger">
-                        {error.receiver}
+                        {receiverError}
                     </span>
                 </Form.Group>
-                <Form.Group controlId="submit">
-                    <Button disabled={!error} className="w-100 p-3 bg-white text-primary"
-                    onClick={(e: any) => onSubmit(e)}
+                <Form.Group controlId="submit" className="d-flex justify-content-center">
+                    <Button disabled={!receieverData || receiverError } className="p-3 bg-white text-primary submit-proposal"
+                    onClick={(e: any) => {
+                        onSubmit(e)
+                    }}
                     >
                         {_t("create-proposal.submit")}
-                </Button>
+                    </Button>
                 </Form.Group>
             </Form>        
           </div>
