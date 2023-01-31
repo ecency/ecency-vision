@@ -1141,6 +1141,7 @@
     "publish": "Publish",
     "update": "Update",
     "save-draft": "Save Draft",
+    "load-draft": "Load Draft",
     "draft-saved": "Draft saved",
     "update-draft": "Update Draft",
     "draft-updated": "Draft updated",
