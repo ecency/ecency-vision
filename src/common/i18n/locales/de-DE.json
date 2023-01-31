@@ -1141,6 +1141,7 @@
     "publish": "Veröffentlichen",
     "update": "Aktualisieren",
     "save-draft": "Entwurf speichern",
+    "load-draft": "Load Draft",
     "draft-saved": "Entwurf gespeichert",
     "update-draft": "Entwurf aktualisieren",
     "draft-updated": "Entwurf aktualisiert",
