@@ -886,6 +886,23 @@ export const delegateVestingSharesKc = (
   return keychain.broadcast(delegator, [op], "Active");
 };
 
+export const delegateRC = (
+  delegator: string,
+  delegatees: string,
+  max_rc: string | number
+): Promise<TransactionConfirmation> => {
+  const json = [
+    "delegate_rc",
+    {
+      from: delegator,
+      delegatees: [delegatees],
+      max_rc: max_rc
+    }
+  ];
+
+  return broadcastPostingJSON(delegator, "rc", json);
+};
+
 export const withdrawVesting = (
   account: string,
   key: PrivateKey,

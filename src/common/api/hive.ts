@@ -386,6 +386,25 @@ export const getVestingDelegations = (
 ): Promise<DelegatedVestingShare[]> =>
   client.database.call("get_vesting_delegations", [username, from, limit]);
 
+export const getOutgoingRc = async (
+  from: string,
+  to: string = "",
+  limit: number = 50
+): Promise<any[]> => {
+  const data = await client.call("rc_api", "list_rc_direct_delegations", {
+    start: [from, to],
+    limit: limit
+  });
+  return data;
+};
+
+export const getIncomingRc = async (user: string): Promise<any[]> => {
+  const data = await fetch(`https://ecency.com/private-api/received-rc/${user}`)
+    .then((res: any) => res.json())
+    .then((r: any) => r);
+  return data;
+};
+
 export interface Witness {
   total_missed: number;
   url: string;
