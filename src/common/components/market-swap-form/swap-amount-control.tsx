@@ -61,8 +61,8 @@ export const SwapAmountControl = ({
   return (
     <Form.Group className={"px-3 pt-3 pb-5 mb-0 border " + className}>
       <Form.Label>{_t(labelKey)}</Form.Label>
-      <div className="d-flex align-items-center">
-        <div>
+      <div className="d-flex align-items-center w-100">
+        <div className="w-100">
           <Form.Control
             className="amount-control pl-0"
             value={formatValue(value)}

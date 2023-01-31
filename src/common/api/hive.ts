@@ -12,7 +12,7 @@ import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
 import { dataLimit } from "./bridge";
-import moment from "moment";
+import moment, { Moment } from "moment";
 
 export const client = new Client(SERVERS, {
   timeout: 3000,
@@ -102,6 +102,26 @@ export interface OrdersDataItem {
   real_price: string;
 }
 
+export interface MarketCandlestickDataItem {
+  hive: {
+    high: number;
+    low: number;
+    open: number;
+    close: number;
+    volume: number;
+  };
+  id: number;
+  non_hive: {
+    high: number;
+    low: number;
+    open: number;
+    close: number;
+    volume: number;
+  };
+  open: string;
+  seconds: number;
+}
+
 export interface TradeDataItem {
   current_pays: string;
   date: number;
@@ -140,6 +160,19 @@ export const getTradeHistory = (limit: number = 1000): Promise<OrdersDataItem[]>
   let todayEarlier = moment(Date.now()).subtract(10, "h").format().split("+")[0];
   let todayNow = moment(Date.now()).format().split("+")[0];
   return client.call("condenser_api", "get_trade_history", [todayEarlier, todayNow, limit]);
+};
+
+export const getMarketBucketSizes = (): Promise<number[]> =>
+  client.call("condenser_api", "get_market_history_buckets", []);
+
+export const getMarketHistory = (
+  seconds: number,
+  startDate: Moment,
+  endDate: Moment
+): Promise<MarketCandlestickDataItem[]> => {
+  let todayEarlier = startDate.format().split("+")[0];
+  let todayNow = endDate.format().split("+")[0];
+  return client.call("condenser_api", "get_market_history", [seconds, todayEarlier, todayNow]);
 };
 
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
@@ -371,7 +404,7 @@ export interface Witness {
   last_hbd_exchange_update: string;
 }
 
-export const getWitnessesByVote = (from: string = "", limit: number = 50): Promise<Witness[]> =>
+export const getWitnessesByVote = (from: string, limit: number): Promise<Witness[]> =>
   client.call("condenser_api", "get_witnesses_by_vote", [from, limit]);
 
 export interface Proposal {
@@ -545,3 +578,41 @@ export interface BlogEntry {
 
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
   client.call("condenser_api", "get_blog_entries", [username, 0, limit]);
+
+// @source https://ecency.com/hive-139531/@andablackwidow/rc-stats-in-1-27
+export type RcOperation =
+  | "comment_operation"
+  | "vote_operation"
+  | "transfer_operation"
+  | "custom_json_operation";
+
+export interface RcOperationStats {
+  count: number; // number of such operations executed during last day
+  avg_cost_rc: number; // average RC cost of single operation
+  resource_cost: {
+    // average RC cost split between various resources
+    history_rc: number;
+    tokens_rc: number;
+    market_rc: number;
+    state_rc: number;
+    exec_rc: number;
+  };
+  resource_cost_share: {
+    // share of resource cost in average final cost (expressed in basis points)
+    history_bp: number;
+    tokens_bp: number;
+    market_bp: number;
+    state_bp: number;
+    exec_bp: number;
+  };
+  resource_usage: {
+    // average consumption of resources per operation
+    history_bytes: number; // - size of transaction in bytes
+    tokens: string; // - number of tokens (always 0 or 1 (with exception of multiop) - tokens are internally expressed with 4 digit precision
+    market_bytes: number; // - size of transaction in bytes when it belongs to market category or 0 otherwise
+    state_hbytes: number; // - hour-bytes of state
+    exec_ns: number; // - nanoseconds of execution time
+  };
+}
+
+export const getRcOperationStats = (): Promise<any> => client.call("rc_api", "get_rc_stats", {});

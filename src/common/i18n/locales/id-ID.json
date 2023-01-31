@@ -2,6 +2,9 @@
   "g": {
     "add": "Tambahkan",
     "edit": "Edit",
+    "clone": "Clone",
+    "copy": "Copy of",
+    "clone-success": "Created new draft copy",
     "continue": "Continue",
     "submit": "Tulislah sebuah postingan",
     "search": "Cari",
@@ -63,7 +66,8 @@
     "more-results": "More results",
     "close": "Tutup",
     "loading": "Loading",
-    "stop": "Stop"
+    "stop": "Stop",
+    "settings": "Settings"
   },
   "confirm": {
     "title": "Apakah anda yakin?",
@@ -187,7 +191,16 @@
     "success": "Kami sudah mengirimkan email ke {{email}}.",
     "success-2": "Ikuti petunjuk melengkapi proses pendaftaran.",
     "login-text-1": "Apakah anda memiliki akun?",
-    "login-text-2": "Masuk"
+    "login-text-2": "Masuk",
+    "free-account": "Free account",
+    "free-account-desc": "Get a full-fledged Hive account, this method has basic checks to make sure botnet doesn't abuse our signup faucet.",
+    "register-free": "Register free",
+    "buy-account": "Buy account",
+    "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
+    "buy-account-li-1": "Instant creation without extra checks and waiting",
+    "buy-account-li-2": "3x RC compared to normal new accounts",
+    "buy-account-li-3": "300 Points to help you get started",
+    "qr-desc": "Scan with Ecency mobile app to continue"
   },
   "trending-tags": {
     "title": "Topik"
@@ -405,8 +418,30 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
+    "signing": "Signing..",
     "success-swap": "Successfully swapped!",
-    "signing": "Signing.."
+    "advanced": {
+      "history": "History",
+      "stake": "Order book",
+      "pairs": "Pairs",
+      "form": "Order form",
+      "open-orders": "Open",
+      "completed-orders": "Completed",
+      "status": "Status",
+      "all-orders": "All",
+      "active": "Active",
+      "view-details": "View details",
+      "chart": "Chart",
+      "trading-form-auth-required": "You have to be authorized for trade",
+      "open-orders-auth-required": "You have to be authorized to see open orders",
+      "empty-open-orders": "No orders",
+      "history-widget": {
+        "price": "Price",
+        "amount": "Amount",
+        "volume": "Volume",
+        "time": "Time"
+      }
+    }
   },
   "list-style": {
     "title": "Gaya daftar kotak"
@@ -442,7 +477,8 @@
     "community-in": "di",
     "post-word-count": "Words:",
     "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-read-minuites": "min",
+    "raw": "View RAW format"
   },
   "edit-history": {
     "title": "Riwayat Penyuntingan",
@@ -1282,6 +1318,13 @@
     "page-description": "Seleksi konsensus produser block",
     "page-description-long": "Peran saksi atau produsen blok di Hive blockchain adalah bertindak sebagai badan tata kelola jaringan. Komunitas memilih mereka untuk mewakili suara mereka dan setiap pengguna dapat memilih hingga 30 saksi. 20 saksi teratas menghasilkan blok setiap menit sementara sisanya tetap sebagai saksi cadangan dan mendapat peluang acak setiap menit. Peran ini merupakan bagian integral dari mekanisme konsensus yang dijalankan blockchain dan merekomendasikan keterlibatan pengguna untuk memberikan suara pada saksi tepercaya.",
     "remaining": "</span>{{n}}</span> dari {{maks}} sisa vote",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-rank": "Rank",
+    "sort-name": "Name",
+    "sort-fee": "Fee",
+    "searching": "Searching",
+    "no-results": "No results found",
     "list-rank": "Ranking",
     "list-witness": "Saksi",
     "list-miss": "Hilang",

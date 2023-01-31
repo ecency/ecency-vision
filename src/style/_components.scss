@@ -2,6 +2,9 @@
 @import "mixins";
 @import "animations";
 
+@import "/node_modules/react-grid-layout/css/styles.css";
+@import "/node_modules/react-resizable/css/styles.css";
+
 @import "../common/components/404";
 @import "../common/components/navbar";
 @import "../common/components/user-nav";
@@ -134,6 +137,7 @@
 @import "../common/components/market-swap-form/";
 @import "../common/components/market-swap-active-orders/";
 @import "../common/components/announcement";
+@import "../common/components/available-credits";
 @import "../desktop/app/components/navbar";
 @import "../desktop/app/components/updater";
 

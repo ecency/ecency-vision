@@ -128,6 +128,38 @@ exports[`(2) Test with data. 1`] = `
               className="btn-controls"
             >
               <a
+                className="btn-clone"
+                onClick={[Function]}
+              >
+                <span
+                  title="Clone"
+                >
+                  <svg
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    strokeLinecap="square"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      height="13"
+                      rx="2"
+                      ry="2"
+                      width="13"
+                      x="9"
+                      y="9"
+                    />
+                    <path
+                      d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                    />
+                  </svg>
+                </span>
+              </a>
+              <a
                 className="btn-edit"
                 onClick={[Function]}
               >
@@ -260,6 +292,38 @@ exports[`(2) Test with data. 1`] = `
               className="btn-controls"
             >
               <a
+                className="btn-clone"
+                onClick={[Function]}
+              >
+                <span
+                  title="Clone"
+                >
+                  <svg
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    strokeLinecap="square"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      height="13"
+                      rx="2"
+                      ry="2"
+                      width="13"
+                      x="9"
+                      y="9"
+                    />
+                    <path
+                      d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                    />
+                  </svg>
+                </span>
+              </a>
+              <a
                 className="btn-edit"
                 onClick={[Function]}
               >
@@ -391,6 +455,38 @@ exports[`(2) Test with data. 1`] = `
             <div
               className="btn-controls"
             >
+              <a
+                className="btn-clone"
+                onClick={[Function]}
+              >
+                <span
+                  title="Clone"
+                >
+                  <svg
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    strokeLinecap="square"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      height="13"
+                      rx="2"
+                      ry="2"
+                      width="13"
+                      x="9"
+                      y="9"
+                    />
+                    <path
+                      d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                    />
+                  </svg>
+                </span>
+              </a>
               <a
                 className="btn-edit"
                 onClick={[Function]}

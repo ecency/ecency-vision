@@ -13,6 +13,19 @@
     .left-image {
       display: none;
 
+      @media (max-width: $xl-break) {
+        &.register-type, &.buy-account {
+          display: block;
+          width: 100%;
+          max-width: 500px;
+          margin: 0 auto;
+
+          img {
+            width: 100%
+          }
+        }
+      }
+
       @media (min-width: $xl-break) {
         width: 50%;
         display: flex;
@@ -27,7 +40,12 @@
 
     .the-form {
       @media (min-width: $xl-break) {
+        height: calc(100vh - 6rem);
         width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
       }
 
       .form-title {
@@ -131,5 +149,63 @@
         }
       }
     }
+  }
+
+  .card {
+    line-height: 1.5;
+
+    ul {
+      margin-bottom: 0;
+    }
+  }
+
+  .app-btn {
+    @include themify(day) {
+      color: $white;
+    }
+  
+    @include themify(night) {
+      background: lighten($dark-sky-blue, 6);
+      color: $dark-two;
+    }
+    
+    border-radius: 8px;
+    display: grid;
+    grid-template-areas:
+            "icon text"
+            "icon headline";
+    align-items: center;
+    text-align: left;
+
+    &::after {
+      content: none;
+    }
+
+    .text {
+      grid-area: text;
+      font-size: 0.75rem;
+    }
+
+    .icon {
+      grid-area: icon;
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+
+      path {
+        fill: $white;
+      }
+    }
+
+    .headline {
+      grid-area: headline;
+    }
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    @include button-variant($dark-two, $dark-two);
   }
 }

@@ -2,6 +2,9 @@
   "g": {
     "add": "Agregar",
     "edit": "Editar",
+    "clone": "Clonar",
+    "copy": "Copia de",
+    "clone-success": "Nueva copia de borrador creada",
     "continue": "Continuar",
     "submit": "Escribe una publicación",
     "search": "Buscar",
@@ -63,7 +66,8 @@
     "more-results": "Más resultados",
     "close": "Cerrar",
     "loading": "Cargando",
-    "stop": "Detener"
+    "stop": "Detener",
+    "settings": "Configuraciones"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -71,9 +75,9 @@
     "cancel": "Cancelar"
   },
   "announcements": {
-    "dismiss": "Dismiss",
-    "next": "Next",
-    "later": "Later"
+    "dismiss": "Descartar",
+    "next": "Siguiente",
+    "later": "Más tarde"
   },
   "entry-filter": {
     "filter-trending": "Tendencias",
@@ -187,7 +191,16 @@
     "success": "Hemos enviado un correo electrónico a {{email}}.",
     "success-2": "Siga las instrucciones para completar el proceso de registro.",
     "login-text-1": "¿Tienes una cuenta?",
-    "login-text-2": "Iniciar Sesión"
+    "login-text-2": "Iniciar Sesión",
+    "free-account": "Cuenta gratuita",
+    "free-account-desc": "Obtenga una cuenta de Hive completa, este método tiene comprobaciones básicas para asegurarse de que la red de bots no abusa de nuestro grifo de registro.",
+    "register-free": "Regístrate Gratis",
+    "buy-account": "Comprar cuenta",
+    "buy-account-desc": "Obtén una cuenta completa de Hive sin chequeos extra y con algunos beneficios, como:",
+    "buy-account-li-1": "Creación instantánea sin chequeos extra y esperas",
+    "buy-account-li-2": "3x RC comparado con cuentas nuevas normales",
+    "buy-account-li-3": "300 puntos para ayudarte a comenzar",
+    "qr-desc": "Escanear con aplicación móvil de Ecency para continuar"
   },
   "trending-tags": {
     "title": "Temas"
@@ -405,8 +418,30 @@
     "auth-required-title": "Se requiere autorización",
     "auth-required-desc": "Tienes que estar autorizado para intercambiar fondos propios",
     "start-new-one": "Iniciar nuevo Intercambio",
+    "signing": "Firmando..",
     "success-swap": "¡Intercambiado con éxito!",
-    "signing": "Firmando.."
+    "advanced": {
+      "history": "Historial",
+      "stake": "Libro de órdenes",
+      "pairs": "Pares",
+      "form": "Formulario de pedido",
+      "open-orders": "Abierto",
+      "completed-orders": "Completada",
+      "status": "Estado",
+      "all-orders": "Todos",
+      "active": "Activo",
+      "view-details": "Ver detalles",
+      "chart": "Gráfico",
+      "trading-form-auth-required": "You have to be authorized for trade",
+      "open-orders-auth-required": "You have to be authorized to see open orders",
+      "empty-open-orders": "No hay órdenes",
+      "history-widget": {
+        "price": "Precio",
+        "amount": "Cantidad",
+        "volume": "Volumen",
+        "time": "Hora"
+      }
+    }
   },
   "list-style": {
     "title": "Alternar estilo de líneas"
@@ -442,7 +477,8 @@
     "community-in": "en",
     "post-word-count": "Palabras:",
     "post-read-time": "Leyendo:",
-    "post-read-minuites": "min"
+    "post-read-minuites": "min",
+    "raw": "Ver formato RAW"
   },
   "edit-history": {
     "title": "Editar historial",
@@ -1282,6 +1318,13 @@
     "page-description": "Selección de productores de bloques de consenso",
     "page-description-long": "El rol de los testigos o productores de bloques en la cadena de bloques de Hive es actuar como el cuerpo de gobernanza de la red. La comunidad los elige para representar su voz y cada usuario puede elegir hasta 30 testigos. Los 20 mejores testigos están produciendo bloques cada minuto mientras que los demás permanece como testigo de la copia de seguridad y obtiene una oportunidad aleatorizada cada minuto. Este rol es parte integral del mecanismo de consenso en el que se ejecuta blockchain y recomienda el compromiso del usuario para votar en testigos de confianza.",
     "remaining": "<span>{{n}}</span> de {{max}} votos restantes",
+    "search-placeholder": "Buscar",
+    "sort": "Ordenar",
+    "sort-rank": "Clasificación",
+    "sort-name": "Nombre",
+    "sort-fee": "Comisión",
+    "searching": "Buscando",
+    "no-results": "No se encontraron resultados",
     "list-rank": "Clasificación",
     "list-witness": "Testigos",
     "list-miss": "Fallos",

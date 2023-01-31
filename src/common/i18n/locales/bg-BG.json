@@ -2,6 +2,9 @@
   "g": {
     "add": "Добави",
     "edit": "Редактиране",
+    "clone": "Clone",
+    "copy": "Copy of",
+    "clone-success": "Created new draft copy",
     "continue": "Continue",
     "submit": "Напиши публикация",
     "search": "Търси",
@@ -63,7 +66,8 @@
     "more-results": "More results",
     "close": "Затвори",
     "loading": "Loading",
-    "stop": "Stop"
+    "stop": "Stop",
+    "settings": "Settings"
   },
   "confirm": {
     "title": "Сигурни ли сте?",
@@ -187,7 +191,16 @@
     "success": "Изпратихме имейл на {{email}}.",
     "success-2": "Следвайте инструкциите за да завършите регистрирането.",
     "login-text-1": "Имате ли акаунт?",
-    "login-text-2": "Вход"
+    "login-text-2": "Вход",
+    "free-account": "Free account",
+    "free-account-desc": "Get a full-fledged Hive account, this method has basic checks to make sure botnet doesn't abuse our signup faucet.",
+    "register-free": "Register free",
+    "buy-account": "Buy account",
+    "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
+    "buy-account-li-1": "Instant creation without extra checks and waiting",
+    "buy-account-li-2": "3x RC compared to normal new accounts",
+    "buy-account-li-3": "300 Points to help you get started",
+    "qr-desc": "Scan with Ecency mobile app to continue"
   },
   "trending-tags": {
     "title": "Tеми"
@@ -405,8 +418,30 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
+    "signing": "Signing..",
     "success-swap": "Successfully swapped!",
-    "signing": "Signing.."
+    "advanced": {
+      "history": "History",
+      "stake": "Order book",
+      "pairs": "Pairs",
+      "form": "Order form",
+      "open-orders": "Open",
+      "completed-orders": "Completed",
+      "status": "Status",
+      "all-orders": "All",
+      "active": "Active",
+      "view-details": "View details",
+      "chart": "Chart",
+      "trading-form-auth-required": "You have to be authorized for trade",
+      "open-orders-auth-required": "You have to be authorized to see open orders",
+      "empty-open-orders": "No orders",
+      "history-widget": {
+        "price": "Price",
+        "amount": "Amount",
+        "volume": "Volume",
+        "time": "Time"
+      }
+    }
   },
   "list-style": {
     "title": "Избери стила на репликите"
@@ -442,7 +477,8 @@
     "community-in": "in",
     "post-word-count": "Words:",
     "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-read-minuites": "min",
+    "raw": "View RAW format"
   },
   "edit-history": {
     "title": "История на промените",
@@ -1282,6 +1318,13 @@
     "page-description": "Избор на производители на консенсус",
     "page-description-long": "Ролята на свидетелите и създателите на блокове в Hive блокчейн е да действат като управляващи органи на мрежата. Обществото ги избира да представляват техния глас и всеки потребител може да избере до 30 свидетеля. Най-добрите 20 свидетеля произвеждат блок всяка минута докато останалите остават като резервни свидетели и имат разбъркан шанс всяка минута. Тази роля е съществена част от механизма за консенсус върху които блокчейн работи и е препоръчително потребителите да гласуват само за доверени свидетели.",
     "remaining": "<span>{{n}}</span> от {{max}} гласа оставащи",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-rank": "Rank",
+    "sort-name": "Name",
+    "sort-fee": "Fee",
+    "searching": "Searching",
+    "no-results": "No results found",
     "list-rank": "Ранг",
     "list-witness": "Свидетели",
     "list-miss": "Пропуски",

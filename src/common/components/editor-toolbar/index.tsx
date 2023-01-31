@@ -368,7 +368,7 @@ export class EditorToolbar extends Component<Props> {
         error(_t("editor-toolbar.image-error-cache"));
       }
     } catch (e) {
-      if (e.response?.status === 413) {
+      if (e && e.response?.status === 413) {
         error(_t("editor-toolbar.image-error-size"));
       } else {
         error(_t("editor-toolbar.image-error"));

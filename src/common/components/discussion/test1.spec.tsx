@@ -43,6 +43,7 @@ const defProps = {
   ui: UiInstance,
   parent,
   community: null,
+  isRawContent: false,
   discussion,
   addAccount: () => {},
   setActiveUser: () => {},

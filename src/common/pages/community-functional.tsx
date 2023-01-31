@@ -179,8 +179,9 @@ export const CommunityPage = (props: Props) => {
 
   const getMetaProps = () => {
     const { filter } = props.match.params;
+    const ncount = props.notifications.unread > 0 ? `(${props.notifications.unread}) ` : "";
     const fC = capitalize(filter);
-    const title = `${community!!.title.trim()} community ${filter} list`;
+    const title = `${ncount}${community!!.title.trim()} community ${filter} list`;
     const description = _t("community.page-description", {
       f: `${fC} ${community!!.title.trim()}`
     });

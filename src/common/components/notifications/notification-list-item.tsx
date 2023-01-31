@@ -9,7 +9,7 @@ import _c from "../../util/fix-class-names";
 import Tooltip from "../tooltip";
 import { _t } from "../../i18n";
 import { postBodySummary } from "@ecency/render-helper";
-import formattedNumber from "../../util/formatted-number";
+import formattedNumber, { rcFormatter } from "../../util/formatted-number";
 import { vestsToHp } from "../../helper/vesting";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
@@ -293,9 +293,16 @@ export default class NotificationListItem extends Component<{
                   <span className="item-action">
                     {_t("notifications.delegations-str")}{" "}
                     <span className="transfer-amount">
-                      {formattedNumber(vestsToHp(parseFloat(notification.amount), hivePerMVests), {
-                        suffix: "HP"
-                      })}
+                      {notification.amount.includes("VESTS")
+                        ? formattedNumber(
+                            vestsToHp(parseFloat(notification.amount), hivePerMVests),
+                            {
+                              suffix: "HP"
+                            }
+                          )
+                        : formattedNumber(rcFormatter(parseFloat(notification.amount)), {
+                            suffix: "RC"
+                          })}
                     </span>
                   </span>
                 </div>
