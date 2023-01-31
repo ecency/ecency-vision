@@ -444,8 +444,8 @@ export interface ProposalVote {
 
 export const getProposalVotes = (
   proposalId: number,
-  voter: string = "",
-  limit: number = 300
+  voter: string,
+  limit: number
 ): Promise<ProposalVote[]> =>
   client
     .call("condenser_api", "list_proposal_votes", [[proposalId, voter], limit, "by_proposal_voter"])
