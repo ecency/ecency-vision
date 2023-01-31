@@ -1141,6 +1141,7 @@
     "publish": "게시하기",
     "update": "업데이트",
     "save-draft": "임시 저장",
+    "load-draft": "Load Draft",
     "draft-saved": "임시 보관함에 저장했습니다",
     "update-draft": "임시 보관함 업데이트",
     "draft-updated": "임시 보관함 업데이트되었습니다",
