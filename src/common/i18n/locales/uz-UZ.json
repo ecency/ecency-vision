@@ -1141,6 +1141,7 @@
     "publish": "Nashr qilish",
     "update": "Yangilash",
     "save-draft": "Qoralamani saqlash",
+    "load-draft": "Load Draft",
     "draft-saved": "Qoralama saqlandi",
     "update-draft": "Qoralamani yangilash",
     "draft-updated": "Qoralama yangilandi",
