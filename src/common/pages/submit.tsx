@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Ref } from "react";
 
 import { connect } from "react-redux";
 
@@ -42,7 +42,7 @@ import { makePath as makePathEntry } from "../components/entry-link";
 import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
-import { detectEvent } from "../components/editor-toolbar";
+import { detectEvent, toolbarEventListener } from "../components/editor-toolbar";
 
 import {
   addDraft,
@@ -175,6 +175,11 @@ interface State extends PostBase, Advanced {
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
+  holder: React.RefObject<HTMLDivElement>;
+  constructor(props: Props) {
+    super(props);
+    this.holder = React.createRef();
+  }
   state: State = {
     title: "",
     tags: [],
@@ -221,6 +226,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     if (selectedThumbnail && selectedThumbnail.length > 0) {
       this.selectThumbnails(selectedThumbnail);
     }
+
+    this.addToolbarEventListners();
   };
 
   componentDidUpdate(prevProps: Readonly<Props>) {
@@ -243,6 +250,46 @@ class SubmitPage extends BaseComponent<Props, State> {
       this.detectDraft().then();
     }
   }
+
+  componentWillUnmount(): void {
+    this.removeToolbarEventListners();
+  }
+
+  addToolbarEventListners = () => {
+    if (this.holder) {
+      const el = this.holder?.current;
+
+      if (el) {
+        el.addEventListener("paste", this.handlePaste);
+        el.addEventListener("dragover", this.handleDragover);
+        el.addEventListener("drop", this.handleDrop);
+      }
+    }
+  };
+
+  removeToolbarEventListners = () => {
+    if (this.holder) {
+      const el = this.holder?.current;
+
+      if (el) {
+        el.removeEventListener("paste", this.handlePaste);
+        el.removeEventListener("dragover", this.handleDragover);
+        el.removeEventListener("drop", this.handleDrop);
+      }
+    }
+  };
+
+  handlePaste = (event: Event): void => {
+    toolbarEventListener(event, "paste");
+  };
+
+  handleDragover = (event: Event): void => {
+    toolbarEventListener(event, "dragover");
+  };
+
+  handleDrop = (event: Event): void => {
+    toolbarEventListener(event, "drop");
+  };
 
   handleValidForm = (value: boolean) => {
     this.setState({ disabled: value });
@@ -992,7 +1039,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 onValid: this.handleValidForm
               })}
             </div>
-            <div className="body-input" onKeyDown={this.handleShortcuts}>
+            <div className="body-input" onKeyDown={this.handleShortcuts} ref={this.holder}>
               <TextareaAutocomplete
                 acceptCharset="UTF-8"
                 global={this.props.global}
