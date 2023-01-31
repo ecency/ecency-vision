@@ -1141,6 +1141,7 @@
     "publish": "Julkaise",
     "update": "Päivitä",
     "save-draft": "Tallenna luonnos",
+    "load-draft": "Load Draft",
     "draft-saved": "Luonnos tallennettu",
     "update-draft": "Päivitä luonnos",
     "draft-updated": "Luonnos päivitetty",
