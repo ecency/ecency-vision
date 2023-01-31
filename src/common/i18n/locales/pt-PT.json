@@ -1141,6 +1141,7 @@
     "publish": "Publicar",
     "update": "Atualizar",
     "save-draft": "Guardar Rascunho",
+    "load-draft": "Load Draft",
     "draft-saved": "Rascunho guardado",
     "update-draft": "Atualizar Rascunho",
     "draft-updated": "Rascunho atualizado",
