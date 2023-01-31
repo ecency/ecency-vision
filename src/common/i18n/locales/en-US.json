@@ -1424,7 +1424,11 @@
       "contact-email": "Email us"
     },
     "faq": {
-      "toggle-icon-info": "click me",
+      "about-ecency": "About Ecency",
+      "working": "Working of Ecency",
+      "about-blockchain": "About Blockchain",
+      "features": "Features of Ecency",
+      "toggle-icon-info": "Tap on me to toggle",
       "page-title": "How can we help you?",
       "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Table of Contents",

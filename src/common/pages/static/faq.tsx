@@ -167,17 +167,20 @@ class FaqPage extends Component<PageProps, FAQPageState> {
               </>
             ) : (
               <div className="category-cards">
-                <FaqCategory categoryTitle={"About Ecency"} contentList={dataToShow.slice(0, 5)} />
                 <FaqCategory
-                  categoryTitle={"Working of Ecency"}
+                  categoryTitle={_t(`static.faq.about-ecency`)}
+                  contentList={dataToShow.slice(0, 5)}
+                />
+                <FaqCategory
+                  categoryTitle={_t(`static.faq.working`)}
                   contentList={dataToShow.slice(5, 10)}
                 />
                 <FaqCategory
-                  categoryTitle={"About Blockchain"}
+                  categoryTitle={_t(`static.faq.about-blockchain`)}
                   contentList={dataToShow.slice(10, 15)}
                 />
                 <FaqCategory
-                  categoryTitle={"Features of Ecency"}
+                  categoryTitle={_t(`static.faq.features`)}
                   contentList={dataToShow.slice(15, 34)}
                 />
               </div>

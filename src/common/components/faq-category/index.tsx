@@ -48,7 +48,7 @@ const FaqCategory = (props: Props) => {
           <Card.Body className="p-0">
             <div>
               {contentList.map((x) => (
-                <a className="section-content" href={`#${x}`}>
+                <a key={x} className="section-content" href={`#${x}`}>
                   {_t(`static.faq.${x}-header`)}
                 </a>
               ))}
