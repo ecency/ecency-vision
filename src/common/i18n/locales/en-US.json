@@ -671,7 +671,11 @@
     "transfers": "Transfers:",
     "comments-posts": "Posts / Comments:",
     "votes": "Votes:",
-    "reblogs-follows": "Reblogs / Follows:"
+    "reblogs-follows": "Reblogs / Follows:",
+    "no-outgoing": "No outgoing delegation",
+    "no-incoming": "No incoming delegation",
+    "delegate-title": "Delegate",
+    "delegate-sub-title": "Delegate Resource Credit"
   },
   "profile-edit": {
     "title": "Profile",

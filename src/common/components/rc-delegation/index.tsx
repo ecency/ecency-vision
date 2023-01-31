@@ -123,8 +123,8 @@ export const ResourceCreditsDelegation = (props: any) => {
     <div className="transaction-form-header">
       <div className="step-no">1</div>
       <div className="box-titles">
-        <div className="main-title">Delegate</div>
-        <div className="sub-title">Delegate Resource Credit</div>
+        <div className="main-title">{_t("rc-info.delegate-title")}</div>
+        <div className="sub-title">{_t("rc-info.delegate-sub-title")}</div>
       </div>
     </div>
   );
