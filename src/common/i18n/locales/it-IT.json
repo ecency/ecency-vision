@@ -1141,6 +1141,7 @@
     "publish": "Pubblica",
     "update": "Aggiorna",
     "save-draft": "Salva bozza",
+    "load-draft": "Load Draft",
     "draft-saved": "Bozza salvata",
     "update-draft": "Aggiorna bozza",
     "draft-updated": "Bozza aggiornata",
