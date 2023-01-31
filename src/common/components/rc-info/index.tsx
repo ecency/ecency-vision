@@ -235,7 +235,8 @@ export const ResourceCreditsInfo = (props: any) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <RcDelegationsList {...props}
+          <RcDelegationsList
+            {...props}
             activeUser={activeUser}
             rcFormatter={rcFormatter}
             delegated={delegated}
@@ -262,7 +263,7 @@ export const ResourceCreditsInfo = (props: any) => {
           size="lg"
         >
           <Modal.Header closeButton={true}>
-            <Modal.Title/>
+            <Modal.Title />
           </Modal.Header>
           <Modal.Body>
             <ResourceCreditsDelegation
@@ -287,7 +288,7 @@ export const ResourceCreditsInfo = (props: any) => {
           // size="lg"
         >
           <Modal.Header closeButton={true}>
-            <Modal.Title/>
+            <Modal.Title />
           </Modal.Header>
           <Modal.Body>
             <ConfirmDelete

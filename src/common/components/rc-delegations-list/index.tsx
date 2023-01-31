@@ -68,125 +68,138 @@ export const RcDelegationsList = (props: any) => {
     return toData;
   };
 
-  return (   
-      <div className="delgations-list">
-          {loading && (
-            <div className="delegation-loading">
-              <LinearProgress />
-            </div>
-          )}
-        <div className="list-container">
-            <div className="search-box">
-              <FormControl     
-                value={search}
-                placeholder="search list"
-                onChange={(e) => setsearch(e.target.value)}
-              />
-            </div>
+  return (
+    <div className="delgations-list">
+      {loading && (
+        <div className="delegation-loading">
+          <LinearProgress />
+        </div>
+      )}
+      <div className="list-container">
+        <div className="search-box">
+          <FormControl
+            value={search}
+            placeholder="search list"
+            onChange={(e) => setsearch(e.target.value)}
+          />
+        </div>
 
         {listMode === "out" && (
           <>
-          {outGoingList.length > 0 ? <div className="list-body">
-            {outGoingList
-              ?.slice(0, loadList)
-              .filter(
-                (list: any) =>
-                  list.to.toLowerCase().startsWith(search) || list.to.toLowerCase().includes(search)
-              )
-              .map((list: any, i: any) => { 
-              return (
-                <div className="list-item" key={i}>
-                  <div className="item-main">
-                    {ProfileLink({
-                      ...props,
-                      username: list.to,
-                      children: <>{UserAvatar({ ...props, size: "small", username: list.to })}</>
-                    })}
-                    <div className="item-info">
-                      {ProfileLink({
-                        ...props,
-                        username: list.to,
-                        children: <a className="item-name notransalte">{list.to}</a>
-                      })}
-                      <span className="item-reputation">{rcFormatter(list.delegated_rc)}</span>
-                      {list.from === activeUser.username && (
-                        <>
-                          <a
-                            className="item-reputation cursor-pointer"
-                            onClick={async () => {
-                              showDelegation();
-                              setShowDelegationsList(false);
-                              setAmountFromList(list.delegated_rc);
-                              setToFromList(list.to);
-                              const data = await getToData(list.to);
-                              setDelegateeData(data);
-                            }}
-                          >
-                            {_t("rc-info.update")}
-                          </a>
-                          <a
-                            className="item-reputation cursor-pointer"
-                            onClick={() => {
-                              confirmDelete();
-                              setToFromList(list.to);
-                            }}
-                          >
-                            {_t("rc-info.delete")}
-                          </a>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )})}
-          </div> : <p>{_t("rc-info.no-outgoing")}</p>}
+            {outGoingList.length > 0 ? (
+              <div className="list-body">
+                {outGoingList
+                  ?.slice(0, loadList)
+                  .filter(
+                    (list: any) =>
+                      list.to.toLowerCase().startsWith(search) ||
+                      list.to.toLowerCase().includes(search)
+                  )
+                  .map((list: any, i: any) => {
+                    return (
+                      <div className="list-item" key={i}>
+                        <div className="item-main">
+                          {ProfileLink({
+                            ...props,
+                            username: list.to,
+                            children: (
+                              <>{UserAvatar({ ...props, size: "small", username: list.to })}</>
+                            )
+                          })}
+                          <div className="item-info">
+                            {ProfileLink({
+                              ...props,
+                              username: list.to,
+                              children: <a className="item-name notransalte">{list.to}</a>
+                            })}
+                            <span className="item-reputation">
+                              {rcFormatter(list.delegated_rc)}
+                            </span>
+                            {list.from === activeUser.username && (
+                              <>
+                                <a
+                                  className="item-reputation cursor-pointer"
+                                  onClick={async () => {
+                                    showDelegation();
+                                    setShowDelegationsList(false);
+                                    setAmountFromList(list.delegated_rc);
+                                    setToFromList(list.to);
+                                    const data = await getToData(list.to);
+                                    setDelegateeData(data);
+                                  }}
+                                >
+                                  {_t("rc-info.update")}
+                                </a>
+                                <a
+                                  className="item-reputation cursor-pointer"
+                                  onClick={() => {
+                                    confirmDelete();
+                                    setToFromList(list.to);
+                                  }}
+                                >
+                                  {_t("rc-info.delete")}
+                                </a>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            ) : (
+              <p>{_t("rc-info.no-outgoing")}</p>
+            )}
           </>
         )}
 
         {listMode === "in" && (
           <>
-          {incoming.length > 0 ? <div className="list-body">
-            {incoming
-              ?.slice(0, loadList)
-              .filter(
-                (list: any) =>
-                  list.sender.toLowerCase().startsWith(search) ||
-                  list.sender.toLowerCase().includes(search)
-              )
-              .map((list: any, i: any) => (
-                <div className="list-item" key={i}>
-                  <div className="item-main">
-                    {ProfileLink({
-                      ...props,
-                      username: list.sender,
-                      children: (
-                        <>{UserAvatar({ ...props, username: list.sender, size: "small" })}</>
-                      )
-                    })}
-                    <div className="item-info">
-                      {ProfileLink({
-                        ...props,
-                        username: list.sender,
-                        children: <a className="item-name notransalte">{list.sender}</a>
-                      })}
-                      <span className="item-reputation">{rcFormatter(list.amount)}</span>
+            {incoming.length > 0 ? (
+              <div className="list-body">
+                {incoming
+                  ?.slice(0, loadList)
+                  .filter(
+                    (list: any) =>
+                      list.sender.toLowerCase().startsWith(search) ||
+                      list.sender.toLowerCase().includes(search)
+                  )
+                  .map((list: any, i: any) => (
+                    <div className="list-item" key={i}>
+                      <div className="item-main">
+                        {ProfileLink({
+                          ...props,
+                          username: list.sender,
+                          children: (
+                            <>{UserAvatar({ ...props, username: list.sender, size: "small" })}</>
+                          )
+                        })}
+                        <div className="item-info">
+                          {ProfileLink({
+                            ...props,
+                            username: list.sender,
+                            children: <a className="item-name notransalte">{list.sender}</a>
+                          })}
+                          <span className="item-reputation">{rcFormatter(list.amount)}</span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))}
-          </div> : <p>{_t("rc-info.no-incoming")}</p>}
+                  ))}
+              </div>
+            ) : (
+              <p>{_t("rc-info.no-incoming")}</p>
+            )}
           </>
         )}
 
-            {((listMode === "in" && incoming.length >= loadList) || 
-            (listMode === "out" && outGoingList.length >= loadList))  && 
-            <div className="load-more-btn">
-              <Button  onClick={loadMore}>
-                {_t("g.load-more")}
-              </Button>
-            </div>}
+        {((listMode === "in" && incoming.length >= loadList) ||
+          (listMode === "out" && outGoingList.length >= loadList)) && (
+          <div className="load-more-btn">
+            <Button onClick={loadMore}>{_t("g.load-more")}</Button>
           </div>
+        )}
       </div>
+    </div>
   );
 };
 
@@ -233,4 +246,3 @@ export default (p: Props) => {
 
   return <RcDelegationsList {...props} />;
 };
-
