@@ -1141,6 +1141,7 @@
     "publish": "Publicar",
     "update": "Actualizar",
     "save-draft": "Guardar borrador",
+    "load-draft": "Load Draft",
     "draft-saved": "Borrador guardado",
     "update-draft": "Actualizar borrador",
     "draft-updated": "Borrador actualizado",
