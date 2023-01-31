@@ -1376,7 +1376,13 @@
     "see-all": "모든 제안서 보기",
     "daily-funded": "일일 자금 지원",
     "daily-budget": "일일 예산",
-    "total-budget": "총 예산"
+    "total-budget": "총 예산",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-reputation": "Reputation",
+    "sort-hp": "Hive Power",
+    "no-results": "No results found",
+    "searching": "Searching"
   },
   "gallery": {
     "title": "갤러리",
