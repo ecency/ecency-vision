@@ -657,6 +657,16 @@
     "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Found nothing!"
   },
+  "rc-info": {
+    "delegated": "Delegations out",
+    "received-delegations": "Delegations in",
+    "extra-details-heading": "What you can do with RC?",
+    "extra-details-transfer": "Transfers",
+    "extra-details-post": "Posts/Comments",
+    "extra-details-upvote": "Votes",
+    "resource-credits": "Resource credits",
+    "boost": "Boost"
+  },
   "profile-edit": {
     "title": "Profil",
     "name": "Nom affiché",
@@ -1707,15 +1717,5 @@
     "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
     "insufficient-resource-wait": "Wait few hours for RC refill",
     "report": "Report"
-  },
-  "rc-info": {
-    "delegated": "Delegations out",
-    "received-delegations": "Delegations in",
-    "extra-details-heading": "What you can do with RC?",
-    "extra-details-transfer": "Transfers",
-    "extra-details-post": "Posts/Comments",
-    "extra-details-upvote": "Votes",
-    "resource-credits": "Resource credits",
-    "boost": "Boost"
   }
 }
