@@ -1141,6 +1141,7 @@
     "publish": "Objavi",
     "update": "Ažuriraj",
     "save-draft": "Sačuvaj Nacrt",
+    "load-draft": "Load Draft",
     "draft-saved": "Nacrt sačuvan",
     "update-draft": "Ažuriraj nacrt",
     "draft-updated": "Nacrt ažuriran",
