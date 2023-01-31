@@ -676,6 +676,11 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     const [parentPermlink] = tags;
     const jsonMeta = this.buildMetadata();
+    let promissesGetImagesDimensions = [];
+    jsonMeta.image_ratios = await Promise.all(
+      jsonMeta.image.map((element) => this.getHeightAndWidthFromDataUrl(element)).slice(0, 5)
+    );
+
     const options = makeCommentOptions(author, permlink, reward, beneficiaries);
     this.stateSet({ posting: true });
     comment(author, "", parentPermlink, permlink, title, cbody, jsonMeta, options, true)
@@ -736,12 +741,17 @@ class SubmitPage extends BaseComponent<Props, State> {
       newBody = patch;
     }
 
-    const jsonMeta = Object.assign(
+    let jsonMeta = Object.assign(
       {},
       json_metadata,
       this.buildMetadata(),
       { tags },
       { description }
+    );
+
+    let promissesGetImagesDimensions = [];
+    jsonMeta.image_ratios = await Promise.all(
+      jsonMeta.image.map((element) => this.getHeightAndWidthFromDataUrl(element)).slice(0, 5)
     );
 
     this.stateSet({ posting: true });
@@ -911,8 +921,22 @@ class SubmitPage extends BaseComponent<Props, State> {
       meta.image = [...new Set(meta.image)];
     }
     const summary = description === null ? postBodySummary(this.state.body, 200) : description;
+
     return makeJsonMetaData(meta, tags, summary, version);
   };
+
+  getHeightAndWidthFromDataUrl = (dataURL) =>
+    new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        resolve({
+          height: img.height,
+          width: img.width,
+          url: dataURL
+        });
+      };
+      img.src = dataURL;
+    });
 
   handleShortcuts = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.altKey && e.key === "b") {
