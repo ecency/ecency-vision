@@ -41,40 +41,40 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
   const popper = usePopper(host, popperElement);
 
   useEffect(() => {
-    try {
-      fetchRc();
-    } catch (error) {
-      console.log(error);
-    }
+    fetchRc();
   }, [username]);
 
   const fetchRc = async () => {
-    const response = await findRcAccounts(username);
-    const account = response[0];
+    try {
+      const response = await findRcAccounts(username);
+      const account = response[0];
 
-    setRcp(client.rc.calculateRCMana(account).current_mana);
-    setRcpFixed(Math.floor(+rcPower(account)));
-    setRcpRechargeDate(moment().add(powerRechargeTime(rcPower(account)), "seconds"));
+      setRcp(client.rc.calculateRCMana(account).current_mana);
+      setRcpFixed(Math.floor(+rcPower(account)));
+      setRcpRechargeDate(moment().add(powerRechargeTime(rcPower(account)), "seconds"));
 
-    const outGoing = response.map((a: any) => a.delegated_rc);
-    const delegated = outGoing[0];
-    const formatOutGoing: any = rcFormatter(delegated);
-    setDelegated(formatOutGoing);
+      const outGoing = response.map((a: any) => a.delegated_rc);
+      const delegated = outGoing[0];
+      const formatOutGoing: any = rcFormatter(delegated);
+      setDelegated(formatOutGoing);
 
-    const inComing: any = response.map((a: any) => Number(a.received_delegated_rc));
-    const formatIncoming = rcFormatter(inComing);
-    setReceivedDelegation(formatIncoming);
+      const inComing: any = response.map((a: any) => Number(a.received_delegated_rc));
+      const formatIncoming = rcFormatter(inComing);
+      setReceivedDelegation(formatIncoming);
 
-    const rcStats: any = await getRcOperationStats();
-    const operationCosts = rcStats.rc_stats.ops;
-    const commentCost = operationCosts.comment_operation.avg_cost;
-    const transferCost = operationCosts.transfer_operation.avg_cost;
-    const voteCost = operationCosts.vote_operation.avg_cost;
+      const rcStats: any = await getRcOperationStats();
+      const operationCosts = rcStats.rc_stats.ops;
+      const commentCost = operationCosts.comment_operation.avg_cost;
+      const transferCost = operationCosts.transfer_operation.avg_cost;
+      const voteCost = operationCosts.vote_operation.avg_cost;
 
-    const availableResourceCredit: any = response.map((a: any) => a.rc_manabar.current_mana);
-    setCommentAmount(Math.ceil(Number(availableResourceCredit[0]) / commentCost));
-    setVoteAmount(Math.ceil(Number(availableResourceCredit[0]) / voteCost));
-    setTransferAmount(Math.ceil(Number(availableResourceCredit[0]) / transferCost));
+      const availableResourceCredit: any = response.map((a: any) => a.rc_manabar.current_mana);
+      setCommentAmount(Math.ceil(Number(availableResourceCredit[0]) / commentCost));
+      setVoteAmount(Math.ceil(Number(availableResourceCredit[0]) / voteCost));
+      setTransferAmount(Math.ceil(Number(availableResourceCredit[0]) / transferCost));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const show = () => {

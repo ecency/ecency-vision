@@ -36,6 +36,8 @@ export const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 export const flushPending = () => new Promise(flushMicroTasks);
 
+export const flushPromises = () => new Promise(process.nextTick);
+
 export const activeUserMaker = (name: string): ActiveUser => {
   return {
     username: name,
