@@ -675,11 +675,14 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     const [parentPermlink] = tags;
-    const jsonMeta = this.buildMetadata();
-    let promissesGetImagesDimensions = [];
-    jsonMeta.image_ratios = await Promise.all(
-      jsonMeta.image.map((element) => this.getHeightAndWidthFromDataUrl(element)).slice(0, 5)
-    );
+    let jsonMeta = this.buildMetadata();
+    if (jsonMeta && jsonMeta.image && jsonMeta.image.length > 0) {
+      jsonMeta.image_ratios = await Promise.all(
+        jsonMeta.image
+          .map((element: string) => this.getHeightAndWidthFromDataUrl(element))
+          .slice(0, 5)
+      );
+    }
 
     const options = makeCommentOptions(author, permlink, reward, beneficiaries);
     this.stateSet({ posting: true });
@@ -749,10 +752,13 @@ class SubmitPage extends BaseComponent<Props, State> {
       { description }
     );
 
-    let promissesGetImagesDimensions = [];
-    jsonMeta.image_ratios = await Promise.all(
-      jsonMeta.image.map((element) => this.getHeightAndWidthFromDataUrl(element)).slice(0, 5)
-    );
+    if (jsonMeta && jsonMeta.image && jsonMeta.image.length > 0) {
+      jsonMeta.image_ratios = await Promise.all(
+        jsonMeta.image
+          .map((element: string) => this.getHeightAndWidthFromDataUrl(element))
+          .slice(0, 5)
+      );
+    }
 
     this.stateSet({ posting: true });
 
@@ -925,7 +931,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     return makeJsonMetaData(meta, tags, summary, version);
   };
 
-  getHeightAndWidthFromDataUrl = (dataURL) =>
+  getHeightAndWidthFromDataUrl = (dataURL: string) =>
     new Promise((resolve) => {
       const img = new Image();
       img.onload = () => {
