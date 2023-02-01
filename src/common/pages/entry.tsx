@@ -1184,7 +1184,6 @@ class EntryPage extends BaseComponent<Props, State> {
                           ...this.props,
                           entry
                         })}
-                        {/* {<EntryTipBtn {...{ entry }} />} */}
                         {EntryTipBtn({
                           ...this.props,
                           entry

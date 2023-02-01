@@ -427,15 +427,12 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             )}
           </>
         )}
-        {days >= 7.0 ? (
+        {days >= 7.0 && this.props.isPostSlider ? (
           <div className="vote-error error-message">
             <p>{_t("entry-list-item.old-post-error")}</p>
             <div className="vote-error-suggestion">
               {_t("entry-list-item.old-post-error-suggestion")}
               <div className="tipping-icon">
-                {/* <EntryTipBtn
-                     {...{ entry, setTipDialogMounted: this.props.setTipDialogMounted }}
-                   /> */}
                 {EntryTipBtn({
                   ...this.props
                 })}
