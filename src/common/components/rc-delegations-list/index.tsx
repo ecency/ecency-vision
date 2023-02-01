@@ -85,71 +85,67 @@ export const RcDelegationsList = (props: any) => {
         </div>
 
         {listMode === "out" && (
-          <>
-            {outGoingList.length > 0 ? (
-              <div className="list-body">
-                {outGoingList
-                  ?.slice(0, loadList)
-                  .filter(
-                    (list: any) =>
-                      list.to.toLowerCase().startsWith(search) ||
-                      list.to.toLowerCase().includes(search)
-                  )
-                  .map((list: any, i: any) => {
-                    return (
-                      <div className="list-item" key={i}>
-                        <div className="item-main">
-                          {ProfileLink({
-                            ...props,
-                            username: list.to,
-                            children: (
-                              <>{UserAvatar({ ...props, size: "small", username: list.to })}</>
-                            )
-                          })}
-                          <div className="item-info">
-                            {ProfileLink({
-                              ...props,
-                              username: list.to,
-                              children: <a className="item-name notransalte">{list.to}</a>
-                            })}
-                            <span className="item-reputation">
-                              {rcFormatter(list.delegated_rc)}
-                            </span>
-                            {list.from === activeUser.username && (
-                              <>
-                                <a
-                                  className="item-reputation cursor-pointer"
-                                  onClick={async () => {
-                                    showDelegation();
-                                    setShowDelegationsList(false);
-                                    setAmountFromList(list.delegated_rc);
-                                    setToFromList(list.to);
-                                    const data = await getToData(list.to);
-                                    setDelegateeData(data);
-                                  }}
-                                >
-                                  {_t("rc-info.update")}
-                                </a>
-                                <a
-                                  className="item-reputation cursor-pointer"
-                                  onClick={() => {
-                                    confirmDelete();
-                                    setToFromList(list.to);
-                                  }}
-                                >
-                                  {_t("rc-info.delete")}
-                                </a>
-                              </>
-                            )}
-                          </div>
-                        </div>
+          <>           
+          {outGoingList.length > 0 ? <div className="list-body">
+            {outGoingList
+              ?.slice(0, loadList)
+              .filter(
+                (list: any) =>
+                  list.to.toLowerCase().startsWith(search) || list.to.toLowerCase().includes(search)
+              )
+              .map((list: any, i: any) => { 
+              return (
+                <div className="list-item" key={i}>
+                  <div className="item-main">
+                    <div>                      
+                      {ProfileLink({
+                        ...props,
+                        username: list.to,
+                        children: <>{UserAvatar({ ...props, size: "small", username: list.to })}</>
+                      })}
+                    </div>
+                    <div className="item-info d-flex">
+                      <div>                        
+                        {ProfileLink({
+                          ...props,
+                          username: list.to,
+                          children: <a className="item-name notransalte">{list.to}</a>
+                        })}
                       </div>
-                    );
-                  })}
-              </div>
-            ) : (
-              <p>{_t("rc-info.no-outgoing")}</p>
-            )}
+                      <div className="actionable d-flex">                        
+                        {list.from === activeUser.username && (
+                          <div className="actions">
+                            <span
+                              className="item-reputation cursor-pointer"
+                              onClick={async () => {
+                                showDelegation();
+                                setShowDelegationsList(false);
+                                setAmountFromList(list.delegated_rc);
+                                setToFromList(list.to);
+                                const data = await getToData(list.to);
+                                setDelegateeData(data);
+                              }}
+                            >
+                              {_t("rc-info.update")}
+                            </span>
+                            <span
+                              className="item-reputation cursor-pointer"
+                              onClick={() => {
+                                confirmDelete();
+                                setToFromList(list.to);
+                              }}
+                            >
+                              {_t("rc-info.delete")}
+                            </span>
+                          </div>
+                        )}
+                        <span className="item-reputation">{rcFormatter(list.delegated_rc)}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )})}
+          </div> : <p>{_t("rc-info.no-outgoing")}</p>}
           </>
         )}
 
