@@ -31,7 +31,9 @@ const defProps = {
   global: globalInstance,
   dynamicProps: dynamicPropsIntance1,
   communities: [],
-  community: null,
+  account: {
+    name: "user1"
+  },
   users: [],
   activeUser: null,
   reblogs: emptyReblogs,
@@ -54,7 +56,9 @@ const defProps = {
   addCommunity: () => {},
   trackEntryPin: () => {},
   setSigningKey: () => {},
-  setEntryPin: () => {}
+  setEntryPin: () => {},
+  fetchPoints: () => {},
+  updateWalletValues: () => {}
 };
 
 it("(1) Default render", async () => {

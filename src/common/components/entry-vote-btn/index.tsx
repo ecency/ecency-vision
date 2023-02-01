@@ -73,6 +73,10 @@ type Mode = "up" | "down";
 
 interface VoteDialogProps {
   global: Global;
+  users: User[];
+  ui: UI;
+  account: Account;
+  signingKey: string;
   activeUser: ActiveUser;
   dynamicProps: DynamicProps;
   entry: Entry;
@@ -82,6 +86,14 @@ interface VoteDialogProps {
   previousVotedValue: number | null;
   setTipDialogMounted: (d: boolean) => void;
   onClick: (percent: number, estimated: number) => void;
+  fetchPoints: (username: string, type?: number) => void;
+  updateWalletValues: () => void;
+  addAccount: (data: Account) => void;
+  setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data?: Account) => void;
+  deleteUser: (username: string) => void;
+  toggleUIProp: (what: ToggleType) => void;
+  setSigningKey: (key: string) => void;
 }
 
 interface VoteDialogState {
@@ -421,11 +433,12 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             <div className="vote-error-suggestion">
               {_t("entry-list-item.old-post-error-suggestion")}
               <div className="tipping-icon">
-                {
-                  <EntryTipBtn
-                    {...{ entry, setTipDialogMounted: this.props.setTipDialogMounted }}
-                  />
-                }
+                {/* <EntryTipBtn
+                     {...{ entry, setTipDialogMounted: this.props.setTipDialogMounted }}
+                   /> */}
+                {EntryTipBtn({
+                  ...this.props
+                })}
               </div>
             </div>
           </div>
@@ -445,11 +458,17 @@ interface Props {
   activeUser: ActiveUser | null;
   ui: UI;
   isPostSlider: boolean;
+  signingKey: string;
+  account: Account;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
   afterVote: (votes: EntryVote[], estimated: number) => void;
+  fetchPoints: (username: string, type?: number) => void;
+  updateWalletValues: () => void;
+  addAccount: (data: Account) => void;
+  setSigningKey: (key: string) => void;
 }
 
 interface State {
@@ -556,6 +575,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
   };
 
   render() {
+    // console.log("Entry Vote Btn Props", this.props);
     const { activeUser, isPostSlider } = this.props;
     const { active_votes: votes } = this.props.entry;
     const { dialog, inProgress, tipDialog, previousVotedValue } = this.state;
@@ -643,11 +663,17 @@ export default (p: Props) => {
     activeUser: p.activeUser,
     ui: p.ui,
     isPostSlider: p.isPostSlider,
+    signingKey: p.signingKey,
+    account: p.account,
     setActiveUser: p.setActiveUser,
     updateActiveUser: p.updateActiveUser,
     deleteUser: p.deleteUser,
     toggleUIProp: p.toggleUIProp,
-    afterVote: p.afterVote
+    afterVote: p.afterVote,
+    fetchPoints: p.fetchPoints,
+    updateWalletValues: p.updateWalletValues,
+    addAccount: p.addAccount,
+    setSigningKey: p.setSigningKey
   };
 
   return <EntryVoteBtn {...props} />;

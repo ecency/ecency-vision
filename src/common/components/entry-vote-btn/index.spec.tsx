@@ -37,12 +37,26 @@ describe("(1) Dialog", () => {
     dynamicProps: dynamicPropsIntance1,
     global: globalInstance,
     entry: entryInstance1,
+    users: [],
     downVoted: false,
     upVoted: false,
+    ui: UiInstance,
     isPostSlider: false,
-    setTipDialogMounted: (d: boolean) => {},
+    account: {
+      name: "user1"
+    },
+    signingKey: "",
     previousVotedValue: null,
-    onClick: () => {}
+    setTipDialogMounted: (d: boolean) => {},
+    onClick: () => {},
+    fetchPoints: () => {},
+    updateWalletValues: () => {},
+    addAccount: () => {},
+    setSigningKey: () => {},
+    updateActiveUser: () => {},
+    deleteUser: () => {},
+    toggleUIProp: () => {},
+    setActiveUser: () => {}
   };
 
   const component = renderer.create(<VoteDialog {...props} />);
@@ -68,11 +82,19 @@ describe("(2) Btn - No active user", () => {
     isPostSlider: false,
     previousVotedValue: null,
     ui: UiInstance,
+    signingKey: "",
+    account: {
+      name: "user1"
+    },
     setActiveUser: () => {},
     updateActiveUser: () => {},
     deleteUser: () => {},
     afterVote: () => {},
-    toggleUIProp: () => {}
+    toggleUIProp: () => {},
+    fetchPoints: () => {},
+    updateWalletValues: () => {},
+    addAccount: () => {},
+    setSigningKey: () => {}
   };
 
   const component = renderer.create(<EntryVoteBtn {...props} />);
@@ -94,11 +116,19 @@ describe("(3) Btn - Up voted", () => {
     isPostSlider: false,
     previousVotedValue: null,
     ui: UiInstance,
+    signingKey: "",
+    account: {
+      name: "user1"
+    },
     setActiveUser: () => {},
     updateActiveUser: () => {},
     deleteUser: () => {},
     afterVote: () => {},
-    toggleUIProp: () => {}
+    toggleUIProp: () => {},
+    fetchPoints: () => {},
+    updateWalletValues: () => {},
+    addAccount: () => {},
+    setSigningKey: () => {}
   };
 
   const component = renderer.create(<EntryVoteBtn {...props} />);

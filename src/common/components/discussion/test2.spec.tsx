@@ -3,7 +3,7 @@ import React from "react";
 import Discussion from "./index";
 
 import { Discussion as DiscussionType, SortOrder } from "../../store/discussion/types";
-import { allOver, UiInstance } from "../../helper/test-helper";
+import { allOver, UiInstance, entryInstance1 } from "../../helper/test-helper";
 
 import { create, act } from "react-test-renderer";
 
@@ -36,6 +36,11 @@ const defProps = {
   community: null,
   discussion,
   ui: UiInstance,
+  account: {
+    name: "user1"
+  },
+  signingKey: "",
+  entry: entryInstance1,
   addAccount: () => {},
   setActiveUser: () => {},
   updateActiveUser: () => {},
@@ -47,6 +52,9 @@ const defProps = {
   addReply: () => {},
   deleteReply: () => {},
   toggleUIProp: () => {},
+  setSigningKey: () => {},
+  fetchPoints: () => {},
+  updateWalletValues: () => {},
   hideControls: false
 };
 

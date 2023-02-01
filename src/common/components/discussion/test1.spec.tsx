@@ -15,6 +15,7 @@ import {
   activeUserMaker,
   communityInstance1,
   UiInstance,
+  entryInstance1,
   allOver
 } from "../../helper/test-helper";
 
@@ -44,6 +45,11 @@ const defProps = {
   parent,
   community: null,
   discussion,
+  account: {
+    name: "user1"
+  },
+  signingKey: "",
+  entry: entryInstance1,
   addAccount: () => {},
   setActiveUser: () => {},
   updateActiveUser: () => {},
@@ -55,6 +61,9 @@ const defProps = {
   addReply: () => {},
   deleteReply: () => {},
   toggleUIProp: () => {},
+  setSigningKey: () => {},
+  fetchPoints: () => {},
+  updateWalletValues: () => {},
   hideControls: false
 };
 

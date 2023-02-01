@@ -95,9 +95,12 @@ interface ItemProps {
   users: User[];
   activeUser: ActiveUser | null;
   discussion: DiscussionType;
+  account: Account;
   entry: Entry;
   community: Community | null;
   ui: UI;
+  signingKey: string;
+  hideControls: boolean;
   addAccount: (data: Account) => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
@@ -106,7 +109,9 @@ interface ItemProps {
   addReply: (reply: Entry) => void;
   deleteReply: (reply: Entry) => void;
   toggleUIProp: (what: ToggleType) => void;
-  hideControls: boolean;
+  fetchPoints: (username: string, type?: number) => void;
+  updateWalletValues: () => void;
+  setSigningKey: (key: string) => void;
 }
 
 interface ItemState {
@@ -504,9 +509,13 @@ interface ListProps {
   users: User[];
   activeUser: ActiveUser | null;
   discussion: DiscussionType;
+  account: Account;
   parent: Entry;
   community: Community | null;
   ui: UI;
+  signingKey: string;
+  entry: Entry;
+  hideControls: boolean;
   addAccount: (data: Account) => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
@@ -515,7 +524,9 @@ interface ListProps {
   addReply: (reply: Entry) => void;
   deleteReply: (reply: Entry) => void;
   toggleUIProp: (what: ToggleType) => void;
-  hideControls: boolean;
+  fetchPoints: (username: string, type?: number) => void;
+  updateWalletValues: () => void;
+  setSigningKey: (key: string) => void;
 }
 
 interface ListState {
@@ -626,7 +637,11 @@ interface Props {
   parent: Entry;
   community: Community | null;
   discussion: DiscussionType;
+  account: Account;
+  signingKey: string;
+  entry: Entry;
   ui: UI;
+  hideControls: boolean;
   addAccount: (data: Account) => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
@@ -638,7 +653,9 @@ interface Props {
   addReply: (reply: Entry) => void;
   deleteReply: (reply: Entry) => void;
   toggleUIProp: (what: ToggleType) => void;
-  hideControls: boolean;
+  fetchPoints: (username: string, type?: number) => void;
+  updateWalletValues: () => void;
+  setSigningKey: (key: string) => void;
 }
 
 interface State {
@@ -798,7 +815,11 @@ export default (p: Props) => {
     parent: p.parent,
     community: p.community,
     discussion: p.discussion,
+    account: p.account,
+    entry: p.entry,
+    signingKey: p.signingKey,
     ui: p.ui,
+    hideControls: p.hideControls,
     addAccount: p.addAccount,
     setActiveUser: p.setActiveUser,
     updateActiveUser: p.updateActiveUser,
@@ -810,7 +831,9 @@ export default (p: Props) => {
     addReply: p.addReply,
     deleteReply: p.deleteReply,
     toggleUIProp: p.toggleUIProp,
-    hideControls: p.hideControls
+    fetchPoints: p.fetchPoints,
+    updateWalletValues: p.updateWalletValues,
+    setSigningKey: p.setSigningKey
   };
 
   return <Discussion {...props} />;
