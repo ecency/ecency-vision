@@ -20,6 +20,14 @@
     & ~ .announcement-container {
       bottom: 6rem;
     }
+    & ~ .help-btn {
+      bottom: 1.3rem;
+      right: 5rem;
+    }
+    & ~ .faq-container{
+      bottom: 4.8rem;
+      right: 5rem;
+    }
   }
 
   svg {
