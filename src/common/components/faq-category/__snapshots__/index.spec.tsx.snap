@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="section-container"
+  className="faq-container section-container"
 >
   <div
     className="accordion"

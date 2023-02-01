@@ -21,7 +21,7 @@ const FaqCategory = (props: Props) => {
 
   const { contentList, categoryTitle } = props;
   return (
-    <div className="section-container">
+    <div className="faq-container section-container">
       <Accordion className={expanded ? "border-bottom" : ""}>
         <div className="d-flex flex-column border-bottom">
           <div className="d-flex justify-content-between align-items-center section-card position-relative">
