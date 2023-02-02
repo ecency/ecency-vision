@@ -9,6 +9,7 @@ import UserAvatar from "../user-avatar";
 import { useParams } from "react-router";
 import { getAccount } from "../../api/hive";
 import { Account } from "../../store/accounts/types";
+import Tooltip from "../tooltip";
 
 interface Props {
   addAccount: (data: Account) => void;
@@ -85,67 +86,69 @@ export const RcDelegationsList = (props: any) => {
         </div>
 
         {listMode === "out" && (
-          <>           
-          {outGoingList.length > 0 ? <div className="list-body">
-            {outGoingList
-              ?.slice(0, loadList)
-              .filter(
-                (list: any) =>
-                  list.to.toLowerCase().startsWith(search) || list.to.toLowerCase().includes(search)
-              )
-              .map((list: any, i: any) => { 
-              return (
-                <div className="list-item" key={i}>
-                  <div className="item-main">
-                    <div>                      
-                      {ProfileLink({
-                        ...props,
-                        username: list.to,
-                        children: <>{UserAvatar({ ...props, size: "small", username: list.to })}</>
-                      })}
-                    </div>
-                    <div className="item-info d-flex">
-                      <div>                        
-                        {ProfileLink({
-                          ...props,
-                          username: list.to,
-                          children: <a className="item-name notransalte">{list.to}</a>
-                        })}
-                      </div>
-                      <div className="actionable d-flex">                        
-                        {list.from === activeUser.username && (
-                          <div className="actions">
-                            <span
-                              className="item-reputation cursor-pointer"
-                              onClick={async () => {
-                                showDelegation();
-                                setShowDelegationsList(false);
-                                setAmountFromList(list.delegated_rc);
-                                setToFromList(list.to);
-                                const data = await getToData(list.to);
-                                setDelegateeData(data);
-                              }}
-                            >
-                              {_t("rc-info.update")}
-                            </span>
-                            <span
-                              className="item-reputation cursor-pointer"
-                              onClick={() => {
-                                confirmDelete();
-                                setToFromList(list.to);
-                              }}
-                            >
-                              {_t("rc-info.delete")}
-                            </span>
+          <>
+            {outGoingList.length > 0 ? (
+              <div className="list-body">
+                {outGoingList
+                  ?.slice(0, loadList)
+                  .filter(
+                    (list: any) =>
+                      list.to.toLowerCase().startsWith(search) ||
+                      list.to.toLowerCase().includes(search)
+                  )
+                  .map((list: any, i: any) => {
+                    return (
+                      <div className="list-item" key={list.to}>
+                        <div className="item-main">
+                          {ProfileLink({
+                            ...props,
+                            username: list.to,
+                            children: (
+                              <>{UserAvatar({ ...props, username: list.to, size: "small" })}</>
+                            )
+                          })}
+                          <div className="item-info">
+                            {ProfileLink({
+                              ...props,
+                              username: list.to,
+                              children: <a className="item-name notransalte">{list.to}</a>
+                            })}
                           </div>
-                        )}
-                        <span className="item-reputation">{rcFormatter(list.delegated_rc)}</span>
+                        </div>
+                        <div className="item-extra">
+                          <Tooltip content={list.delegated_rc}>
+                            <span>{rcFormatter(list.delegated_rc)}</span>
+                          </Tooltip>
+                          <a
+                            href="#"
+                            onClick={async () => {
+                              showDelegation();
+                              setShowDelegationsList(false);
+                              setAmountFromList(list.delegated_rc);
+                              setToFromList(list.to);
+                              const data = await getToData(list.to);
+                              setDelegateeData(data);
+                            }}
+                          >
+                            {_t("rc-info.update")}
+                          </a>
+                          <a
+                            href="#"
+                            onClick={() => {
+                              confirmDelete();
+                              setToFromList(list.to);
+                            }}
+                          >
+                            {_t("rc-info.delete")}
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              )})}
-          </div> : <p>{_t("rc-info.no-outgoing")}</p>}
+                    );
+                  })}
+              </div>
+            ) : (
+              <p>{_t("rc-info.no-outgoing")}</p>
+            )}
           </>
         )}
 
@@ -161,7 +164,7 @@ export const RcDelegationsList = (props: any) => {
                       list.sender.toLowerCase().includes(search)
                   )
                   .map((list: any, i: any) => (
-                    <div className="list-item" key={i}>
+                    <div className="list-item" key={list.sender}>
                       <div className="item-main">
                         {ProfileLink({
                           ...props,
@@ -176,7 +179,11 @@ export const RcDelegationsList = (props: any) => {
                             username: list.sender,
                             children: <a className="item-name notransalte">{list.sender}</a>
                           })}
-                          <span className="item-reputation">{rcFormatter(list.amount)}</span>
+                        </div>
+                        <div className="item-extra">
+                          <Tooltip content={list.amount}>
+                            <span>{rcFormatter(list.amount)}</span>
+                          </Tooltip>
                         </div>
                       </div>
                     </div>
