@@ -60,6 +60,9 @@ export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
   };
 
   toggleDialog = () => {
+    console.log("Profile Dialog");
+    const { account } = this.props;
+    console.log(account);
     const { dialog } = this.state;
     this.stateSet({ dialog: !dialog });
   };

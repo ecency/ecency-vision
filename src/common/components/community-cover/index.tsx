@@ -71,7 +71,6 @@ class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageSt
 
     const { addAccount } = this.props;
     const { profile } = account;
-
     const newProfile = {
       name: profile?.name || "",
       about: profile?.about || "",
@@ -132,6 +131,7 @@ interface Props {
   history: History;
   global: Global;
   community: Community;
+  accountWithProfile?: Account | null;
   account: Account;
   users: User[];
   activeUser: ActiveUser | null;
@@ -159,15 +159,22 @@ export class CommunityCover extends Component<Props> {
   }
 
   render() {
-    const { global, account, community, activeUser, users } = this.props;
+    const { global, account, community, activeUser, users, accountWithProfile } = this.props;
+    console.log("account in community cover page ", accountWithProfile);
 
     let bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
     if (community) {
-      bgImage = `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${
-        community.name
-      }/cover`;
+      if (accountWithProfile.profile?.cover_image) {
+        bgImage = accountWithProfile.profile?.cover_image;
+      } else {
+        bgImage = `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${
+          community.name
+        }/cover`;
+      }
     }
-
+    bgImage = `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${
+      community.name
+    }/cover`;
     let style = {};
     if (bgImage) {
       style = { backgroundImage: `url('${bgImage}')` };

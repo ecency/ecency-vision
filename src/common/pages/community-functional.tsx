@@ -51,6 +51,7 @@ export const CommunityPage = (props: Props) => {
 
   const [community, setCommunity] = useState<Community | null>(null);
   const [account, setAccount] = useState<Account | null>(null);
+  const [accountWithProfile, setAccountWithProfile] = useState<Account | null>(null);
   const [loading, setLoading] = useState(true);
   const [typing, setTyping] = useState(false);
   const [search, setSearch] = useState(getSearchParam());
@@ -71,6 +72,8 @@ export const CommunityPage = (props: Props) => {
 
     fetchSubscriptions();
   }, []);
+
+  useEffect(() => {}, [accountWithProfile]);
 
   useEffect(() => {
     const { match, fetchEntries } = props;
@@ -119,11 +122,12 @@ export const CommunityPage = (props: Props) => {
     const name = match.params.name;
     const community = communities.find((x) => x.name === name);
     const account = accounts.find((x) => x.name === name);
-
+    console.log("Account in Community functional", account);
     // Community or account data aren't in reducer. Show loading indicator.
     if (!community || !account) setLoading(true);
     try {
       const data = await getCommunity(name, activeUser?.username);
+      console.log(data);
       if (data) {
         addCommunity(data);
         setCommunity(data);
@@ -131,6 +135,8 @@ export const CommunityPage = (props: Props) => {
       if (data?.name === name) {
         addAccount(data);
         setAccount(data);
+        const fullData = { ...account, ...data };
+        setAccountWithProfile(fullData);
       }
     } finally {
       setLoading(false);
@@ -179,9 +185,8 @@ export const CommunityPage = (props: Props) => {
 
   const getMetaProps = () => {
     const { filter } = props.match.params;
-    const ncount = props.notifications.unread > 0 ? `(${props.notifications.unread}) ` : "";
     const fC = capitalize(filter);
-    const title = `${ncount}${community!!.title.trim()} community ${filter} list`;
+    const title = `${community!!.title.trim()} community ${filter} list`;
     const description = _t("community.page-description", {
       f: `${fC} ${community!!.title.trim()}`
     });
@@ -225,7 +230,12 @@ export const CommunityPage = (props: Props) => {
         </span>
         <div className="content-side">
           <CommunityMenu {...props} community={community} />
-          <CommunityCover {...props} account={account!!} community={community} />
+          <CommunityCover
+            {...props}
+            account={account!!}
+            community={community}
+            accountWithProfile={accountWithProfile}
+          />
 
           {(() => {
             if (props.match.params.filter === "subscribers") {
