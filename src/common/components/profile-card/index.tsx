@@ -84,6 +84,7 @@ export const ProfileCard = (props: Props) => {
   }, [account]);
 
   useEffect(() => {
+    console.log("Edit Pic is calling from here");
     setIsmounted(true);
     return () => setIsmounted(false);
   }, []);

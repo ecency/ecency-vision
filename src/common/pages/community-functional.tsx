@@ -119,7 +119,7 @@ export const CommunityPage = (props: Props) => {
     const name = match.params.name;
     const community = communities.find((x) => x.name === name);
     const account = accounts.find((x) => x.name === name);
-
+    console.log("Account in Community functional", account);
     // Community or account data aren't in reducer. Show loading indicator.
     if (!community || !account) setLoading(true);
     try {
@@ -129,8 +129,10 @@ export const CommunityPage = (props: Props) => {
         setCommunity(data);
       }
       if (data?.name === name) {
-        addAccount(data);
-        setAccount(data);
+        // addAccount(data);
+        // setAccount(data);
+        addAccount(account);
+        setAccount(account);
       }
     } finally {
       setLoading(false);
@@ -179,9 +181,8 @@ export const CommunityPage = (props: Props) => {
 
   const getMetaProps = () => {
     const { filter } = props.match.params;
-    const ncount = props.notifications.unread > 0 ? `(${props.notifications.unread}) ` : "";
     const fC = capitalize(filter);
-    const title = `${ncount}${community!!.title.trim()} community ${filter} list`;
+    const title = `${community!!.title.trim()} community ${filter} list`;
     const description = _t("community.page-description", {
       f: `${fC} ${community!!.title.trim()}`
     });

@@ -56,6 +56,9 @@ class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageSt
   };
 
   toggleDialog = () => {
+    console.log("Community cover dialog");
+    const { account } = this.props;
+    console.log(account);
     const { dialog } = this.state;
     this.stateSet({ dialog: !dialog });
   };
@@ -71,7 +74,7 @@ class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageSt
 
     const { addAccount } = this.props;
     const { profile } = account;
-
+    console.log("Profile", profile);
     const newProfile = {
       name: profile?.name || "",
       about: profile?.about || "",
@@ -162,12 +165,17 @@ export class CommunityCover extends Component<Props> {
     const { global, account, community, activeUser, users } = this.props;
 
     let bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
+    console.log(community);
     if (community) {
       bgImage = `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${
         community.name
       }/cover`;
+
+      bgImage = account.profile.profile_image;
     }
 
+    ("https://images.ecency.com/DQmdgyHen3WN1FsA3wQpKEV9y1AP1PJ3cesySGXcTHdz6Hn/pexels_binyamin_mellish_1396122.jpg");
+    console.log();
     let style = {};
     if (bgImage) {
       style = { backgroundImage: `url('${bgImage}')` };
