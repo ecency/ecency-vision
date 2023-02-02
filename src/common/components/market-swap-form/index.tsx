@@ -87,8 +87,6 @@ export const MarketSwapForm = ({
     setFromAsset(toAsset);
     setTo(from);
     setFrom(to);
-    setUsdFromMarketRate(usdToMarketRate);
-    setUsdToMarketRate(usdFromMarketRate);
     setMarketRate(1 / marketRate);
   };
 
