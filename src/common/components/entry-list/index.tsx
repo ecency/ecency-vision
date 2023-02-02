@@ -38,7 +38,7 @@ interface Props {
   ui: UI;
   entryPinTracker: EntryPinTracker;
   signingKey: string;
-  account: Account;
+  account?: Account;
   match?: match<any>;
   addAccount: (data: Account) => void;
   updateEntry: (entry: any) => void;
@@ -54,8 +54,8 @@ interface Props {
   setSigningKey: (key: string) => void;
   setEntryPin: (entry: Entry, pin: boolean) => void;
   pinEntry?: (entry: Entry | null) => void;
-  fetchPoints: (username: string, type?: number) => void;
-  updateWalletValues: () => void;
+  fetchPoints?: (username: string, type?: number) => void;
+  updateWalletValues?: () => void;
 }
 
 interface State {

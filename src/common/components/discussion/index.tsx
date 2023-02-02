@@ -95,11 +95,11 @@ interface ItemProps {
   users: User[];
   activeUser: ActiveUser | null;
   discussion: DiscussionType;
-  account: Account;
+  account?: Account;
   entry: Entry;
   community: Community | null;
   ui: UI;
-  signingKey: string;
+  signingKey?: string;
   hideControls: boolean;
   addAccount: (data: Account) => void;
   setActiveUser: (username: string | null) => void;
@@ -109,9 +109,9 @@ interface ItemProps {
   addReply: (reply: Entry) => void;
   deleteReply: (reply: Entry) => void;
   toggleUIProp: (what: ToggleType) => void;
-  fetchPoints: (username: string, type?: number) => void;
-  updateWalletValues: () => void;
-  setSigningKey: (key: string) => void;
+  fetchPoints?: (username: string, type?: number) => void;
+  updateWalletValues?: () => void;
+  setSigningKey?: (key: string) => void;
 }
 
 interface ItemState {
@@ -509,12 +509,12 @@ interface ListProps {
   users: User[];
   activeUser: ActiveUser | null;
   discussion: DiscussionType;
-  account: Account;
+  account?: Account;
   parent: Entry;
   community: Community | null;
   ui: UI;
-  signingKey: string;
-  entry: Entry;
+  signingKey?: string;
+  entry?: Entry;
   hideControls: boolean;
   addAccount: (data: Account) => void;
   setActiveUser: (username: string | null) => void;
@@ -524,9 +524,9 @@ interface ListProps {
   addReply: (reply: Entry) => void;
   deleteReply: (reply: Entry) => void;
   toggleUIProp: (what: ToggleType) => void;
-  fetchPoints: (username: string, type?: number) => void;
-  updateWalletValues: () => void;
-  setSigningKey: (key: string) => void;
+  fetchPoints?: (username: string, type?: number) => void;
+  updateWalletValues?: () => void;
+  setSigningKey?: (key: string) => void;
 }
 
 interface ListState {
@@ -637,9 +637,9 @@ interface Props {
   parent: Entry;
   community: Community | null;
   discussion: DiscussionType;
-  account: Account;
-  signingKey: string;
-  entry: Entry;
+  account?: Account;
+  signingKey?: string;
+  entry?: Entry;
   ui: UI;
   hideControls: boolean;
   addAccount: (data: Account) => void;
@@ -653,9 +653,9 @@ interface Props {
   addReply: (reply: Entry) => void;
   deleteReply: (reply: Entry) => void;
   toggleUIProp: (what: ToggleType) => void;
-  fetchPoints: (username: string, type?: number) => void;
-  updateWalletValues: () => void;
-  setSigningKey: (key: string) => void;
+  fetchPoints?: (username: string, type?: number) => void;
+  updateWalletValues?: () => void;
+  setSigningKey?: (key: string) => void;
 }
 
 interface State {

@@ -74,7 +74,7 @@ interface Props {
   asAuthor: string;
   promoted: boolean;
   order: number;
-  account: Account;
+  account?: Account;
   match?: match<MatchParams>;
   addAccount: (data: Account) => void;
   updateEntry: (entry: any) => void;
@@ -91,8 +91,8 @@ interface Props {
   setEntryPin: (entry: Entry, pin: boolean) => void;
   muted?: boolean;
   pinEntry?: (entry: Entry | null) => void;
-  fetchPoints: (username: string, type?: number) => void;
-  updateWalletValues: () => void;
+  fetchPoints?: (username: string, type?: number) => void;
+  updateWalletValues?: () => void;
 }
 
 interface State {

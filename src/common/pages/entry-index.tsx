@@ -14,6 +14,7 @@ import { DeckView } from "../components/deck-view";
 import { Entry } from "../store/entries/types";
 import { TopCommunitiesWidget } from "../components/top-communities-widget";
 import * as ls from "../util/local-storage";
+import { Account } from "../store/accounts/types";
 
 interface Props extends PageProps {
   loading: boolean;
@@ -35,6 +36,7 @@ class EntryIndexPage extends Component<Props, State> {
   };
 
   componentDidMount() {
+    console.log("Entry index props", this.props);
     const { global, fetchEntries, fetchTrendingTags } = this.props;
     fetchEntries(global.filter, global.tag, false);
     fetchTrendingTags();

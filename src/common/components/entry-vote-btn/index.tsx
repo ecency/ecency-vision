@@ -75,9 +75,9 @@ interface VoteDialogProps {
   global: Global;
   users: User[];
   ui: UI;
-  account: Account;
-  signingKey: string;
-  activeUser: ActiveUser;
+  account?: Account;
+  signingKey?: string | undefined;
+  activeUser: ActiveUser | null;
   dynamicProps: DynamicProps;
   entry: Entry;
   downVoted: boolean;
@@ -86,14 +86,14 @@ interface VoteDialogProps {
   previousVotedValue: number | null;
   setTipDialogMounted: (d: boolean) => void;
   onClick: (percent: number, estimated: number) => void;
-  fetchPoints: (username: string, type?: number) => void;
-  updateWalletValues: () => void;
-  addAccount: (data: Account) => void;
-  setActiveUser: (username: string | null) => void;
-  updateActiveUser: (data?: Account) => void;
-  deleteUser: (username: string) => void;
-  toggleUIProp: (what: ToggleType) => void;
-  setSigningKey: (key: string) => void;
+  fetchPoints?: (username: string, type?: number) => void;
+  updateWalletValues?: () => void;
+  addAccount?: (data: Account) => void;
+  setActiveUser?: (username: string | null) => void;
+  updateActiveUser?: (data?: Account) => void;
+  deleteUser?: (username: string) => void;
+  toggleUIProp?: (what: ToggleType) => void;
+  setSigningKey?: (key: string) => void;
 }
 
 interface VoteDialogState {
@@ -137,6 +137,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   };
 
   componentDidMount(): void {
+    console.log(this.props);
     this.cleanUpLS();
   }
 
@@ -335,6 +336,59 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const now = moment(new Date());
     const duration = moment.duration(now.diff(past));
     const days = duration.asDays();
+    const {
+      global,
+      dynamicProps,
+      users,
+      ui,
+      activeUser,
+      signingKey,
+      fetchPoints,
+      account,
+      updateWalletValues,
+      addAccount,
+      setActiveUser,
+      updateActiveUser,
+      deleteUser,
+      toggleUIProp,
+      setSigningKey,
+      setTipDialogMounted
+    } = this.props;
+    // console.log("signingKey", signingKey);
+    // if (
+    //   account &&
+    //   signingKey &&
+    //   fetchPoints &&
+    //   updateWalletValues &&
+    //   addAccount &&
+    //   setActiveUser &&
+    //   updateActiveUser &&
+    //   deleteUser &&
+    //   toggleUIProp &&
+    //   setSigningKey
+    // ) {
+    //   console.log("TRUEEEEEEEEEEEEEEEE");
+    // }
+    const EntryTipProps = {
+      global,
+      dynamicProps,
+      users,
+      ui,
+      activeUser,
+      signingKey,
+      fetchPoints,
+      entry,
+      account,
+      updateWalletValues,
+      addAccount,
+      setActiveUser,
+      updateActiveUser,
+      deleteUser,
+      toggleUIProp,
+      setSigningKey,
+      setTipDialogMounted
+    };
+    console.log(EntryTipProps);
     return (
       <>
         {mode === "up" && (
@@ -432,11 +486,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             <p>{_t("entry-list-item.old-post-error")}</p>
             <div className="vote-error-suggestion">
               {_t("entry-list-item.old-post-error-suggestion")}
-              <div className="tipping-icon">
-                {EntryTipBtn({
-                  ...this.props
-                })}
-              </div>
+              <div className="tipping-icon">{EntryTipBtn(EntryTipProps)}</div>
             </div>
           </div>
         ) : (
@@ -455,17 +505,17 @@ interface Props {
   activeUser: ActiveUser | null;
   ui: UI;
   isPostSlider: boolean;
-  signingKey: string;
-  account: Account;
+  signingKey?: string;
+  account?: Account;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
   afterVote: (votes: EntryVote[], estimated: number) => void;
-  fetchPoints: (username: string, type?: number) => void;
-  updateWalletValues: () => void;
-  addAccount: (data: Account) => void;
-  setSigningKey: (key: string) => void;
+  fetchPoints?: (username: string, type?: number) => void;
+  updateWalletValues?: () => void;
+  addAccount?: (data: Account) => void;
+  setSigningKey?: (key: string) => void;
 }
 
 interface State {
@@ -572,7 +622,6 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
   };
 
   render() {
-    // console.log("Entry Vote Btn Props", this.props);
     const { activeUser, isPostSlider } = this.props;
     const { active_votes: votes } = this.props.entry;
     const { dialog, inProgress, tipDialog, previousVotedValue } = this.state;
