@@ -34,42 +34,41 @@
     background: $dark-two;
   }
 
-}
-
-.faq-welcome {
-  display: flex;
-  height: 22%;
-  border-radius: 18px 18px 0 0;
-  z-index: 999;
-  color: $white;
-
-  @include themify(day) {
-    background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
-  }
-
-  @include themify(night) {
-    background-image: linear-gradient(to left, $dark-indigo, $dusk-blue);
-  }
-
-  .close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+  .faq-welcome {
+    display: flex;
+    height: 22%;
+    border-radius: 18px 18px 0 0;
+    z-index: 999;
+    color: $white;
 
     @include themify(day) {
-      background: $dusk-blue;
-      border: none;
+      background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
     }
 
     @include themify(night) {
-      background: $dark-indigo;
-      border: none;
+      background-image: linear-gradient(to left, $dark-indigo, $dusk-blue);
+    }
+
+    .faq-welcome-message {
+      padding: 3rem 0 0 2.5rem;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+
+      @include themify(day) {
+        background: $dusk-blue;
+        border: none;
+      }
+
+      @include themify(night) {
+        background: $dark-indigo;
+        border: none;
+      }
     }
   }
-}
-
-.faq-welcome-message {
-  padding: 3rem 0 0 2.5rem;
 }
 
 .faq-content-list {
@@ -98,7 +97,6 @@
   @include themify(night) {
     background: $dark;
   }
-
 }
 
 .contact-us {
@@ -150,7 +148,7 @@
 .faq-article {
   display: flex;
   margin: 1rem 0;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   padding: 0.6rem 1rem;
   line-height: 1.5;
   font-size: 14px;
@@ -164,7 +162,6 @@
     color: $white-five;
     background: $dark-two;
   }
-
 
   .faq-image {
     margin-right: 0.5rem;
