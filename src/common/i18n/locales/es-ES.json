@@ -660,11 +660,11 @@
   "rc-info": {
     "available": "Disponible",
     "used": "Usado",
-    "resource-credits": "Créditos de recursos",
+    "resource-credits": "Resource Credits",
     "resource-credit": "CR",
     "delegated": "Delegaciones emitidas",
     "received-delegations": "Delegaciones recibidas",
-    "delegation-button": "Delegaciones de RC",
+    "delegation-button": "Delegate RC",
     "rc-available": "Disponible",
     "rc-used": "Usado",
     "outgoing": "Emitiendo",
