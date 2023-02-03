@@ -13,10 +13,16 @@
     height: 1px;
   }
   .list-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 80vh;
+
     .search-box {
       padding: 0;
       max-width: 300px;
-      margin: -10px auto 5px auto;
+      margin: 0 auto 5px auto;
+      align-self: center;
     }
     @include user-grid-list(1, 2, 3);
   }
