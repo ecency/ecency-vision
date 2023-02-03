@@ -1231,7 +1231,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                     <h2 className="panel-header-title">{_t("submit.advanced")}</h2>
                   </div>
                   <div className="panel-body">
-                    <div className="container">
+                    <div className="container-panel">
                       {editingEntry === null && (
                         <>
                           <Form.Group as={Row}>
