@@ -23,7 +23,7 @@ import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
 import capitalize from "../util/capitalize";
 import { Community } from "../store/communities/types";
-import { Account } from "../store/accounts/types";
+import { Account, FullAccount } from "../store/accounts/types";
 import { CommunityMenu } from "../components/community-menu";
 import { CommunityCover } from "../components/community-cover";
 import { NotFound } from "../components/404";
@@ -50,8 +50,7 @@ export const CommunityPage = (props: Props) => {
   };
 
   const [community, setCommunity] = useState<Community | null>(null);
-  const [account, setAccount] = useState<Account | null>(null);
-  const [accountWithProfile, setAccountWithProfile] = useState<Account | null>(null);
+  const [account, setAccount] = useState<FullAccount | null>(null);
   const [loading, setLoading] = useState(true);
   const [typing, setTyping] = useState(false);
   const [search, setSearch] = useState(getSearchParam());
@@ -73,7 +72,7 @@ export const CommunityPage = (props: Props) => {
     fetchSubscriptions();
   }, []);
 
-  useEffect(() => {}, [accountWithProfile]);
+  // useEffect(() => {}, [accountWithProfile]);
 
   useEffect(() => {
     const { match, fetchEntries } = props;
@@ -133,10 +132,11 @@ export const CommunityPage = (props: Props) => {
         setCommunity(data);
       }
       if (data?.name === name) {
-        addAccount(data);
-        setAccount(data);
-        const fullData = { ...account, ...data };
-        setAccountWithProfile(fullData);
+        const fullAccountData = { ...account, ...data };
+        console.log(fullAccountData);
+        addAccount(fullAccountData);
+        setAccount(fullAccountData);
+        // setAccountWithProfile(fullAccountData);
       }
     } finally {
       setLoading(false);
@@ -230,12 +230,7 @@ export const CommunityPage = (props: Props) => {
         </span>
         <div className="content-side">
           <CommunityMenu {...props} community={community} />
-          <CommunityCover
-            {...props}
-            account={account!!}
-            community={community}
-            accountWithProfile={accountWithProfile}
-          />
+          <CommunityCover {...props} account={account!!} community={community} />
 
           {(() => {
             if (props.match.params.filter === "subscribers") {

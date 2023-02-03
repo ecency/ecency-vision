@@ -134,8 +134,7 @@ interface Props {
   history: History;
   global: Global;
   community: Community;
-  accountWithProfile?: Account | null;
-  account: Account;
+  account: FullAccount;
   users: User[];
   activeUser: ActiveUser | null;
   subscriptions: Subscription[];
@@ -162,27 +161,35 @@ export class CommunityCover extends Component<Props> {
   }
 
   render() {
-    const { global, account, community, activeUser, users, accountWithProfile } = this.props;
-    console.log("account in community cover page ", accountWithProfile);
+    const { global, account, community, activeUser, users } = this.props;
 
     let bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
-    console.log(community);
-    if (community) {
-      if (accountWithProfile.profile?.cover_image) {
-        bgImage = accountWithProfile.profile?.cover_image;
-      } else {
-        bgImage = `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${
-          community.name
-        }/cover`;
-      }
+    console.log(account);
+
+    if (account?.profile?.cover_image) {
+      bgImage = account?.profile?.cover_image;
+    } else if (community) {
+      bgImage = `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${
+        community.name
+      }/cover`;
     }
-    bgImage = `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${
-      community.name
-    }/cover`;
+
+    // if (community) {
+    //   if (accountWithProfile.profile?.cover_image) {
+    //     bgImage = accountWithProfile.profile?.cover_image;
+    //   } else {
+    //     bgImage = `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${
+    //       community.name
+    //     }/cover`;
+    //   }
+    // }
+
     let style = {};
     if (bgImage) {
       style = { backgroundImage: `url('${bgImage}')` };
     }
+
+    console.log(bgImage);
 
     const subscribers = formattedNumber(community.subscribers, { fractionDigits: 0 });
     const rewards = formattedNumber(community.sum_pending, { fractionDigits: 0 });
