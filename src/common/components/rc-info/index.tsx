@@ -158,7 +158,7 @@ export const ResourceCreditsInfo = (props: any) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="container">
+          <div className="rc-infocontainer">
             <div className="percent">
               <div className="circle">
                 <div className="outer-circle progress">
