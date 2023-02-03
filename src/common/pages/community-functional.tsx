@@ -23,7 +23,7 @@ import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
 import capitalize from "../util/capitalize";
 import { Community } from "../store/communities/types";
-import { Account, FullAccount } from "../store/accounts/types";
+import { Account } from "../store/accounts/types";
 import { CommunityMenu } from "../components/community-menu";
 import { CommunityCover } from "../components/community-cover";
 import { NotFound } from "../components/404";
@@ -72,8 +72,6 @@ export const CommunityPage = (props: Props) => {
     fetchSubscriptions();
   }, []);
 
-  // useEffect(() => {}, [accountWithProfile]);
-
   useEffect(() => {
     const { match, fetchEntries } = props;
     const { filter, name } = match.params;
@@ -121,22 +119,18 @@ export const CommunityPage = (props: Props) => {
     const name = match.params.name;
     const community = communities.find((x) => x.name === name);
     const account = accounts.find((x) => x.name === name);
-    console.log("Account in Community functional", account);
     // Community or account data aren't in reducer. Show loading indicator.
     if (!community || !account) setLoading(true);
     try {
       const data = await getCommunity(name, activeUser?.username);
-      console.log(data);
       if (data) {
         addCommunity(data);
         setCommunity(data);
       }
       if (data?.name === name) {
         const fullAccountData = { ...account, ...data };
-        console.log(fullAccountData);
         addAccount(fullAccountData);
         setAccount(fullAccountData);
-        // setAccountWithProfile(fullAccountData);
       }
     } finally {
       setLoading(false);

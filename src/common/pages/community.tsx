@@ -227,6 +227,7 @@ class CommunityPage extends BaseComponent<Props, State> {
   render() {
     const { global, entries, communities, accounts, match } = this.props;
     const { loading, search, searchData, searchDataLoading, typing } = this.state;
+
     const navBar = global.isElectron
       ? NavBarElectron({
           ...this.props,
