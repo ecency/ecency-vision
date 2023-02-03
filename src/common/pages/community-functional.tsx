@@ -50,7 +50,7 @@ export const CommunityPage = (props: Props) => {
   };
 
   const [community, setCommunity] = useState<Community | null>(null);
-  const [account, setAccount] = useState<FullAccount | null>(null);
+  const [account, setAccount] = useState<Account | null>(null);
   const [loading, setLoading] = useState(true);
   const [typing, setTyping] = useState(false);
   const [search, setSearch] = useState(getSearchParam());
