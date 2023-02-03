@@ -177,7 +177,7 @@ export const ResourceCreditsInfo = (props: any) => {
               <div className="percentage-info">
                 <div className="unused">
                   <div className="unused-box" />
-                  <span>{`${_t("rc-info.rc-available")}: ${rcFormatter(resourceCredit)}`}</span>
+                  <span>{`${_t("rc-info.rc-available")}: ${rcFormatter(rcPercent / 100 * resourceCredit)}`}</span>
                 </div>
                 <div className="used">
                   <div className="used-box" />
