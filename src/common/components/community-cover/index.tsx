@@ -56,6 +56,9 @@ class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageSt
   };
 
   toggleDialog = () => {
+    console.log("Community cover dialog");
+    const { account } = this.props;
+    console.log(account);
     const { dialog } = this.state;
     this.stateSet({ dialog: !dialog });
   };
@@ -163,6 +166,7 @@ export class CommunityCover extends Component<Props> {
     console.log("account in community cover page ", accountWithProfile);
 
     let bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
+    console.log(community);
     if (community) {
       if (accountWithProfile.profile?.cover_image) {
         bgImage = accountWithProfile.profile?.cover_image;
