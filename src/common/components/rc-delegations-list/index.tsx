@@ -31,6 +31,7 @@ export const RcDelegationsList = (props: any) => {
   } = props;
 
   const [outGoingList, setOutGoingList]: any = useState([]);
+  const [otherUser, setOtherUser]: any = useState("");
   const [incoming, setIncoming]: any = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setsearch] = useState("");
@@ -44,6 +45,7 @@ export const RcDelegationsList = (props: any) => {
   const getOutGoingRcList = async () => {
     setLoading(true);
     const paramsAccount = params.username.substring(1);
+    setOtherUser(paramsAccount);
     const delegationsOutList: any = await getOutgoingRc(paramsAccount, "");
     const delegationsOutInfo = delegationsOutList.rc_direct_delegations;
     setOutGoingList(delegationsOutInfo);
@@ -119,28 +121,32 @@ export const RcDelegationsList = (props: any) => {
                           <Tooltip content={list.delegated_rc}>
                             <span>{rcFormatter(list.delegated_rc)}</span>
                           </Tooltip>
-                          <a
-                            href="#"
-                            onClick={async () => {
-                              showDelegation();
-                              setShowDelegationsList(false);
-                              setAmountFromList(list.delegated_rc);
-                              setToFromList(list.to);
-                              const data = await getToData(list.to);
-                              setDelegateeData(data);
-                            }}
-                          >
-                            {_t("rc-info.update")}
-                          </a>
-                          <a
-                            href="#"
-                            onClick={() => {
-                              confirmDelete();
-                              setToFromList(list.to);
-                            }}
-                          >
-                            {_t("rc-info.delete")}
-                          </a>
+                          {activeUser && otherUser == activeUser.username && (
+                            <>
+                              <a
+                                href="#"
+                                onClick={async () => {
+                                  showDelegation();
+                                  setShowDelegationsList(false);
+                                  setAmountFromList(list.delegated_rc);
+                                  setToFromList(list.to);
+                                  const data = await getToData(list.to);
+                                  setDelegateeData(data);
+                                }}
+                              >
+                                {_t("rc-info.update")}
+                              </a>
+                              <a
+                                href="#"
+                                onClick={() => {
+                                  confirmDelete();
+                                  setToFromList(list.to);
+                                }}
+                              >
+                                {_t("rc-info.delete")}
+                              </a>
+                            </>
+                          )}
                         </div>
                       </div>
                     );
