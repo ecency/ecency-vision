@@ -48,6 +48,10 @@ import { withPersistentScroll } from "../components/with-persistent-scroll";
 import useAsyncEffect from "use-async-effect";
 import { usePrevious } from "../util/use-previous";
 import WalletSpk from "../components/wallet-spk";
+import configureStore from "../store/configure";
+import {} from "../store/configure";
+
+const store = configureStore(window["__PRELOADED_STATE__"]);
 
 interface MatchParams {
   username: string;
@@ -104,7 +108,9 @@ export const Profile = (props: Props) => {
       // fetch posts
       if (section === "trail") {
         let data = await getAccountVotesTrail(username.replace("@", ""), 10);
-        setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
+        store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
+
+        //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
       } else {
         fetchEntries(global.filter, global.tag, false);
       }
