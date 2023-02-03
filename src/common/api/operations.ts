@@ -1272,15 +1272,7 @@ export const communityRewardsRegisterKc = (name: string) => {
 
 export const updateProfile = (
   account: Account,
-  newProfile: {
-    name: string;
-    about: string;
-    website: string;
-    location: string;
-    cover_image: string;
-    profile_image: string;
-    pinned: string;
-  }
+  newProfile: any
 ): Promise<TransactionConfirmation> => {
   const params = {
     account: account.name,

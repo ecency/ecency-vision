@@ -129,9 +129,8 @@ export const CommunityPage = (props: Props) => {
         setCommunity(data);
       }
       if (data?.name === name) {
-        const fullAccountData = { ...account, ...data };
         addAccount(data);
-        setAccount(fullAccountData);
+        setAccount({ ...account, ...data });
       }
     } finally {
       setLoading(false);

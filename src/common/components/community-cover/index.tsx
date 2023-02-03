@@ -73,16 +73,10 @@ class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageSt
     const { profile } = account;
 
     const newProfile = {
-      name: profile?.name || "",
-      about: profile?.about || "",
-      cover_image: url,
-      profile_image: profile?.profile_image || "",
-      website: profile?.website || "",
-      location: profile?.location || "",
-      pinned: profile?.pinned || ""
+      cover_image: url
     };
 
-    updateProfile(account, newProfile)
+    updateProfile(account, { ...profile, ...newProfile })
       .then((r) => {
         success(_t("community-cover.cover-image-updated"));
         return getAccount(account.name);
@@ -163,13 +157,9 @@ export class CommunityCover extends Component<Props> {
 
     let bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
     if (community) {
-      if (Object.keys(account).includes("profile") && account["profile"].cover_image) {
-        bgImage = account["profile"].cover_image;
-      } else {
-        bgImage = `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${
-          community.name
-        }/cover`;
-      }
+      bgImage = `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${
+        community.name
+      }/cover`;
     }
 
     let style = {};
