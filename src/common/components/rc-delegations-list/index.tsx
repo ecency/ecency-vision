@@ -31,7 +31,7 @@ export const RcDelegationsList = (props: any) => {
   } = props;
 
   const [outGoingList, setOutGoingList]: any = useState([]);
-  const [otherUser, setOtherUser]: any = useState("");
+  const [otherUser, setOtherUser]: any = useState(params.username.substring(1));
   const [incoming, setIncoming]: any = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setsearch] = useState("");
@@ -44,9 +44,7 @@ export const RcDelegationsList = (props: any) => {
 
   const getOutGoingRcList = async () => {
     setLoading(true);
-    const paramsAccount = params.username.substring(1);
-    setOtherUser(paramsAccount);
-    const delegationsOutList: any = await getOutgoingRc(paramsAccount, "");
+    const delegationsOutList: any = await getOutgoingRc(otherUser, "");
     const delegationsOutInfo = delegationsOutList.rc_direct_delegations;
     setOutGoingList(delegationsOutInfo);
     setLoading(false);
@@ -54,8 +52,7 @@ export const RcDelegationsList = (props: any) => {
 
   const getIncomingRcList = async () => {
     setLoading(true);
-    const paramsAccount = params.username.substring(1);
-    const delegationsIn: any = await getIncomingRc(paramsAccount);
+    const delegationsIn: any = await getIncomingRc(otherUser);
     const incomingInfo = delegationsIn.list;
     setIncoming(incomingInfo);
     setLoading(false);
