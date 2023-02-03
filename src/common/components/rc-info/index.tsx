@@ -177,7 +177,9 @@ export const ResourceCreditsInfo = (props: any) => {
               <div className="percentage-info">
                 <div className="unused">
                   <div className="unused-box" />
-                  <span>{`${_t("rc-info.rc-available")}: ${rcFormatter(rcPercent / 100 * resourceCredit)}`}</span>
+                  <span>{`${_t("rc-info.rc-available")}: ${rcFormatter(
+                    (rcPercent / 100) * resourceCredit
+                  )}`}</span>
                 </div>
                 <div className="used">
                   <div className="used-box" />
@@ -219,7 +221,9 @@ export const ResourceCreditsInfo = (props: any) => {
           </div>
 
           <div className="d-flex justify-content-center mt-3">
-            <Button onClick={showDelegation}>{_t("rc-info.delegation-button")}</Button>
+            {activeUser && (
+              <Button onClick={showDelegation}>{_t("rc-info.delegation-button")}</Button>
+            )}
           </div>
         </Modal.Body>
       </Modal>
