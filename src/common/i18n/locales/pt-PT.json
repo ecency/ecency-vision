@@ -2,9 +2,9 @@
   "g": {
     "add": "Adicionar",
     "edit": "Editar",
-    "clone": "Clone",
-    "copy": "Copy of",
-    "clone-success": "Created new draft copy",
+    "clone": "Duplicar",
+    "copy": "Cópia de",
+    "clone-success": "Cópia de rascunho criada",
     "continue": "Continuar",
     "submit": "Escrever uma publicação",
     "search": "Procurar",
@@ -657,6 +657,42 @@
     "link-copied": "Link de pesquisa copiado para a área de transferência",
     "no-posts-found": "Nada encontrado!"
   },
+  "rc-info": {
+    "available": "Disponível",
+    "used": "Utilizado",
+    "resource-credits": "Créditos de Recursos",
+    "resource-credit": "CR",
+    "delegated": "Delegações Realizadas",
+    "received-delegations": "Delegações Recebidas",
+    "delegation-button": "Delegações de CR",
+    "rc-available": "Disponível",
+    "rc-used": "Utilizado",
+    "outgoing": "Saída",
+    "incoming": "Recebidos",
+    "delete": "apagar",
+    "update": "atualizar",
+    "confirm-delete": "Tem certeza?",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "check-faq": "Saiba mais sobre CR no nosso",
+    "learn-more": "/faq#oque-sao-cr",
+    "faq-link": "Perguntas Frequentes",
+    "insufficient-rc-error": "Créditos de recursos insuficientes",
+    "minimum-rc-error": "O mínimo é 5,000,000,000 para os CR",
+    "extra-details-heading": "O que você pode fazer com seus CR atuais?",
+    "transfers": "Transferências:",
+    "comments-posts": "Posts / Comments:",
+    "votes": "Votes:",
+    "reblogs-follows": "Reblogs / Follows:",
+    "no-outgoing": "No outgoing delegation",
+    "no-incoming": "No incoming delegation",
+    "delegate-title": "Delegar",
+    "delegate-sub-title": "Delegar Créditos de Recursos",
+    "extra-details-transfer": "Transferências",
+    "extra-details-post": "Publicações/Comentários",
+    "extra-details-upvote": "Votos",
+    "boost": "Impulso"
+  },
   "profile-edit": {
     "title": "Perfil",
     "name": "Nome Exibido",
@@ -741,7 +777,7 @@
       },
       "power-up": {
         "title": "Aumentar Poder",
-        "subtitle": "Power up to earn passive rewards"
+        "subtitle": "Aumente o poder para obter rendimentos"
       },
       "power-down": {
         "title": "Diminuir poder",
@@ -776,14 +812,14 @@
       "larynx-air": "Reivindicar Airdrop de LARYNX",
       "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
       "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
-      "larynx-already-claimed": "Already claimed.",
+      "larynx-already-claimed": "Já reivindicado.",
       "larynx-token": "Token LARYNX",
       "larynx-token-description": "The mining token for the SPK network.",
       "larynx-power": "Poder LARYNX",
       "larynx-power-description": "Powered tokens used to mine SPK",
       "larynx-power-benefits": {
         "title": "Benefits of LARYNX Power",
-        "1": "Earns SPK governance tokens",
+        "1": "Rende tokens de governança SPK",
         "2": "Instant Lock | 4 Week Unlock",
         "3": "Delegate to node service accounts to build consensus (DPoS)",
         "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
@@ -793,7 +829,7 @@
         "title": "Benefits of LARYNX Locked",
         "1": "Proof of Stake Consensus",
         "2": "Collateral for DEX transactions",
-        "3": "Instant Lock | 4 Week Unlock",
+        "3": "Bloqueio Instantâneo | Desbloqueio em 4 Semanas",
         "4": "Requires an operating LARYNX node",
         "5": "Ganha 0,100%"
       },
@@ -822,7 +858,7 @@
     "sort-by-delegations-out": "Delegações efetuadas"
   },
   "wallet-engine-estimated": {
-    "title": "Estimated Tokens Value",
+    "title": "Valor Estimado dos Tokens",
     "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
@@ -886,7 +922,7 @@
     "purchase-message": "Ou envie qualquer quantia para @esteem.app com `pontos` no memo, para comprar Pontos."
   },
   "purchase-qr": {
-    "scan-code": "Scan the QR code with Ecency mobile app",
+    "scan-code": "Aponte a câmera utilizando o aplicativo da Ecency para continuar",
     "select-user": "Por favor, selecione um usuário",
     "title": "Impulso de conta",
     "title-points": "Comprar pontos",
@@ -1141,6 +1177,7 @@
     "publish": "Publicar",
     "update": "Atualizar",
     "save-draft": "Guardar Rascunho",
+    "load-draft": "Carregar Rascunho",
     "draft-saved": "Rascunho guardado",
     "update-draft": "Atualizar Rascunho",
     "draft-updated": "Rascunho atualizado",
@@ -1318,13 +1355,13 @@
     "page-description": "Seleção de bloco de Consenso",
     "page-description-long": "Papel das testemunhas ou produtores de blocos na blockchain da Hive é atuar como o órgão de governança da rede. A Comunidade elege-os para representar a sua voz e cada utilizador pode eleger até 30 testemunhas. As 20 melhores testemunhas estão produzindo blocos a cada minuto enquanto o repouso permanece como testemunha de backup e tem chance aleatória a cada minuto. Esse papel é parte integrante do mecanismo de consenso da blockchain é executado e recomenda engajamento ao usuário para votar em testemunhas confiáveis.",
     "remaining": "<span>{{n}}</span> de {{max}} votos restantes",
-    "search-placeholder": "Search",
-    "sort": "Sort",
-    "sort-rank": "Rank",
-    "sort-name": "Name",
-    "sort-fee": "Fee",
-    "searching": "Searching",
-    "no-results": "No results found",
+    "search-placeholder": "Procurar",
+    "sort": "Ordenar",
+    "sort-rank": "Classificar",
+    "sort-name": "Nome",
+    "sort-fee": "Taxa",
+    "searching": "Procurando",
+    "no-results": "Nenhum resultado encontrado",
     "list-rank": "Classificação",
     "list-witness": "Testemunha",
     "list-miss": "Perdeu",
@@ -1375,7 +1412,13 @@
     "see-all": "ver todas as propostas",
     "daily-funded": "fundo diário",
     "daily-budget": "orçamento diário",
-    "total-budget": "orçamento total"
+    "total-budget": "orçamento total",
+    "search-placeholder": "Procurar",
+    "sort": "Ordenar",
+    "sort-reputation": "Reputação",
+    "sort-hp": "Poder Hive",
+    "no-results": "Nenhum resultado encontrado",
+    "searching": "Procurando"
   },
   "gallery": {
     "title": "Galeria",
@@ -1467,6 +1510,11 @@
       "contact-email": "Envie-nos um email"
     },
     "faq": {
+      "about-ecency": "Sobre a Ecency",
+      "working": "Trabalho da Ecency",
+      "about-blockchain": "Sobre a Blockchain",
+      "features": "Características da Ecency",
+      "toggle-icon-info": "Toque em mim para alternar",
       "page-title": "Como podemos ajudá-lo?",
       "search-link-copied": "Link de pesquisa copiado para a área de transferência",
       "page-sub-title": "Tabela de conteúdos",
@@ -1550,7 +1598,7 @@
       "what-are-hd-header": "O que são HIVE DOLLARS ou HBD?",
       "what-are-hd-body": "<p>Hive Dollars, ou HBD, na sua abreviação, são tokens que valem $1,00 dólar em HIVE, proporcionalmente. Hive Dollars podem ser trocados por HIVE e transferidos para outras contas, seja por comércio ou troca. Hive Dollars também podem ser convertidos em HIVE, através de um procedimento que leva 3 dias e meio.</p>",
       "what-delegated-hp-header": "O que é Hive Power delegado?",
-      "what-delegated-hp-body": "<p>Poder Hive pode ser delegado por um usuário a outro. Quando um usuário recebe uma delegação de Poder Hive, seus Créditos de Recurso, votos de conteúdo e recompensas de curadoria são calculadas como se a delegação constituisse seu próprio Poder Hive. Usuários recebedores de delegações não podem diminuir ou sacar o Poder Hive delegado por outra conta, já que ele pertence ao dono original.</p>",
+      "what-delegated-hp-body": "<p>Poder Hive pode ser delegado por um usuário a outro. Quando um usuário recebe uma delegação de Poder Hive, seus Créditos de Recursos (CR), votos de conteúdo e recompensas de curadoria são aumentados como se a delegação recebida passasse a constituir seu próprio Poder Hive. Usuários que recebem delegações não podem diminuir ou sacar o Poder Hive delegado por outra conta, já que os tokens pertencem ao dono originário.</p>",
       "what-powering-up-header": "O que é fazer Power Up?",
       "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "O que significa fazer Power Down?",
@@ -1620,7 +1668,7 @@
   "chain-error": {
     "min-root-comment": "Você só pode postar a cada 5 minutos.",
     "identical-vote": "O teu voto actual neste conteúdo é idêntico a este voto.",
-    "insufficient-resource": "Créditos de Recurso insuficientes.",
+    "insufficient-resource": "Créditos de Recursos insuficientes.",
     "delete-comment-with-vote": "Conteúdo com recompensas positivas não podem ser deletados.",
     "comment-cashout": "Após o pagamento, o conteúdo não pode ser deletado.",
     "comment-children": "Conteúdo com respostas ao pode ser deletado.",
@@ -1695,10 +1743,10 @@
   "feedback-modal": {
     "title": "Detalhes do erro",
     "question": "Como resolver isso?",
-    "insufficient-resource-title": "Como obter mais Créditos de Recurso?",
+    "insufficient-resource-title": "Como obter mais Créditos de Recursos?",
     "insufficient-resource-purchase": "Comprar impulso de conta ou delegação",
     "insufficient-resource-buy-hive": "Compre HIVE e Aumente seu Poder",
-    "insufficient-resource-wait": "Espere algumas horas para os seus Recursos de Créditos recarregarem",
+    "insufficient-resource-wait": "Espere algumas horas para os seus Créditos de Recursos recarregarem",
     "report": "Reportar"
   }
 }
