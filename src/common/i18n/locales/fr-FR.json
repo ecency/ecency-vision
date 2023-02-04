@@ -1484,7 +1484,7 @@
   "add-image-mobile": {
     "title": "Add Image",
     "recent-title": "Recently uploaded",
-    "gallery": "Gallery",
+    "gallery": "Gallerie",
     "upload": "Upload image"
   },
   "add-link": {
@@ -1527,13 +1527,13 @@
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "What's the difference from other Social Networks?",
       "what-is-difference-body": "<p>The primary difference, Ecency is based on a blockchain which means content is immutable and uncensorable. You own your community and account, nobody but you have full control of your data. Empowering true free speech. Ecency is also opensource, rewarding and innovative, built and owned by users. Aspire for greatness!</p>",
-      "why-choose-ecency-header": "Why would I choose Ecency?",
+      "why-choose-ecency-header": "Pourquoi choisir Ecency ?",
       "why-choose-ecency-body": "<p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
-      "how-ecency-works-header": "How does Ecency work?",
+      "how-ecency-works-header": "Comment fonctionne Ecency ?",
       "how-ecency-works-body": "<p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
-      "how-to-join-header": "How to join Ecency?",
+      "how-to-join-header": "Comment rejoindre Ecency ?",
       "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master password to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
-      "how-to-signin-header": "How to sign in to Ecency?",
+      "how-to-signin-header": "Comment se connecter à Ecency ?",
       "how-to-signin-body": "<p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
       "how-referrals-work-header": "How referral system work on Ecency?",
       "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
@@ -1646,8 +1646,8 @@
     }
   },
   "contributors": {
-    "title": "Contributors",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "title": "Contributeurs",
+    "description": "Ces grandes personnes ont contribué d'une manière ou d'une autre à Ecency, nous aimerions tous les remercier. Si vous voulez rejoindre notre équipe en contribuant à la traduction, aux idées, au développement, au design, à la sensibilisation sociale, n'hésitez pas à vous joindre. Pour en savoir plus, lisez notre <a href=\"/faq#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
     "cut": "Couper",
@@ -1666,7 +1666,7 @@
     "restart": "Redémarrer"
   },
   "chain-error": {
-    "min-root-comment": "You may only post once every five minutes.",
+    "min-root-comment": "Vous ne pouvez poster qu'une seule fois toutes les cinq minutes.",
     "identical-vote": "Your current vote on this content is identical to this vote.",
     "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
