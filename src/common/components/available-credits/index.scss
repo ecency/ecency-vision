@@ -52,7 +52,7 @@
   opacity: 0;
   visibility: hidden;
   transition: .3s ease-in-out;
-  z-index: 9;
+  z-index: 999;
   background: $gray-800;
   color: $white;
   font-weight: bold;
@@ -61,6 +61,10 @@
   border-radius: 0.25rem;
   display: grid;
   grid-template-columns: min-content min-content;
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr;
+  }
 
   span, p {
     white-space: nowrap;
@@ -98,6 +102,10 @@
 
   .extra-details {
     border-left: 1px solid $gray-700;
+
+    @include media-breakpoint-down(md) {
+      border-left: 0;
+    }
 
     .two-col {
       display: grid;
