@@ -111,9 +111,13 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
             />
           </div>
         </div>
-        <div className="btn btn-link px-0" onClick={() => setShowPurchaseDialog(true)}>
-          {_t("rc-info.boost")}
-        </div>
+        {commentAmount <= 5 ? (
+          <div className="btn btn-link px-0" onClick={() => setShowPurchaseDialog(true)}>
+            {_t("rc-info.boost")}
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       <div
         ref={setPopperElement}
