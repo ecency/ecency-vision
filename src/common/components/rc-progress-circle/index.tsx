@@ -27,7 +27,7 @@ const RcProgressCircle = (props: any) => {
         style={{
           strokeDashoffset: unUsedOffset,
           strokeDasharray: dasharray,
-          stroke: "red"
+          stroke: "#F0706A"
         }}
       />
     </svg>

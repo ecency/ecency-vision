@@ -124,7 +124,7 @@ export const ResourceCreditsInfo = (props: any) => {
             {_t("rc-info.available")}
           </div>
           <div
-            className="progress-bar progress-bar-danger"
+            className="progress-bar used"
             role="progressbar"
             style={{ width: `${100 - rcPercent}%` }}
           >

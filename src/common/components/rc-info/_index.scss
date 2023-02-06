@@ -95,7 +95,7 @@
                 .used-box{
                     width: 15px;
                     height: 15px;
-                    background-color: red;
+                    background-color: #F0706A;
                 }
 
             }
@@ -176,4 +176,8 @@
          font-size: 16px;
         }
     }
+}
+
+.progress-bar.used {
+    background-color: #F0706A;
 }
