@@ -88,7 +88,7 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
           onChange={this.handleChange}
           {...(isComment ? {} : { boundariesElement: ".body-input" })}
           minChar={2}
-          dropdownStyle={{ zIndex: 1000 }}
+          dropdownStyle={{ zIndex: 14 }}
           trigger={{
             ["@"]: {
               dataProvider: (token) => {
