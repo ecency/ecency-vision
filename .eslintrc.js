@@ -25,18 +25,14 @@ module.exports = {
   plugins: ["eslint-plugin-react", "@typescript-eslint", "@typescript-eslint/tslint"],
   root: true,
   rules: {
-    "react/jsx-boolean-value": "error",
     "react/jsx-key": "error",
     "react/jsx-no-bind": "off",
     "react/jsx-wrap-multilines": "off",
     "react/self-closing-comp": "error",
-    "@typescript-eslint/tslint/config": [
-      "error",
-      {
-        rules: {
-          "jsx-no-string-ref": true
-        }
-      }
-    ]
+    "react/no-unescaped-entities": "off",
+    "react/display-name": "off",
+    "react/jsx-boolean-value": "off",
+    "react/jsx-no-target-blank": "off",
+    "react/no-children-prop": "off"
   }
 };
