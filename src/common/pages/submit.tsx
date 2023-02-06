@@ -1,4 +1,4 @@
-import React, { Component, Ref } from "react";
+import React, { Component } from "react";
 
 import { connect } from "react-redux";
 
@@ -175,10 +175,10 @@ interface State extends PostBase, Advanced {
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
-  holder: React.RefObject<HTMLDivElement>;
+  postBodyRef: React.RefObject<HTMLDivElement>;
   constructor(props: Props) {
     super(props);
-    this.holder = React.createRef();
+    this.postBodyRef = React.createRef();
   }
   state: State = {
     title: "",
@@ -256,8 +256,8 @@ class SubmitPage extends BaseComponent<Props, State> {
   }
 
   addToolbarEventListners = () => {
-    if (this.holder) {
-      const el = this.holder?.current;
+    if (this.postBodyRef) {
+      const el = this.postBodyRef?.current;
 
       if (el) {
         el.addEventListener("paste", this.handlePaste);
@@ -268,8 +268,8 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   removeToolbarEventListners = () => {
-    if (this.holder) {
-      const el = this.holder?.current;
+    if (this.postBodyRef) {
+      const el = this.postBodyRef?.current;
 
       if (el) {
         el.removeEventListener("paste", this.handlePaste);
@@ -1069,7 +1069,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 onValid: this.handleValidForm
               })}
             </div>
-            <div className="body-input" onKeyDown={this.handleShortcuts} ref={this.holder}>
+            <div className="body-input" onKeyDown={this.handleShortcuts} ref={this.postBodyRef}>
               <TextareaAutocomplete
                 acceptCharset="UTF-8"
                 global={this.props.global}
