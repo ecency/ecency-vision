@@ -179,7 +179,6 @@ export class Comment extends Component<Props, State> {
   };
 
   addToolbarEventListners = () => {
-    console.log("Runnnnnnnnn");
     if (this.commentBodyRef) {
       const el = this.commentBodyRef?.current;
 
