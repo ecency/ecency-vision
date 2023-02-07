@@ -1,9 +1,16 @@
 .faq-container.section-container {
+  cursor: pointer;
   @include themify(night) {
     background: $dark;
   }
 }
+
+.section :hover {
+  background: $light-powder-blue;
+}
+
 .faq-container {
+
   .section-title {
     font-weight: bold;
     font-size: 1rem;
