@@ -41,6 +41,7 @@ interface Props {
   addAccount: (data: Account) => void;
   onHide: () => void;
   getVotesCount: (votes: number) => void;
+  checkIsMoreData: (check: boolean) => void;
 }
 
 interface State {
@@ -84,6 +85,8 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
 
   search = () => {
     const { originalVoters } = this.state;
+    const { getVotesCount } = this.props;
+    getVotesCount(originalVoters.length);
     if (this.props.searchText) {
       this.setState(
         {
@@ -112,7 +115,7 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
 
   load = () => {
     this.setState({ loading: true });
-    const { proposal, dynamicProps, getVotesCount } = this.props;
+    const { proposal, dynamicProps, checkIsMoreData } = this.props;
     const { hivePerMVests } = dynamicProps;
     const { voter, limit } = this.state;
     getProposalVotes(proposal.id, voter, limit)
@@ -123,7 +126,9 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
         return getAccounts(usernames);
       })
       .then((resp) => {
-        getVotesCount(resp.length);
+        if (resp.length < limit) {
+          checkIsMoreData(false);
+        }
         let voters: Voter[] = resp
           .map((account) => {
             const hp = (parseAsset(account.vesting_shares).amount * hivePerMVests) / 1e6;
@@ -280,21 +285,28 @@ interface ProposalVotesProps {
 
 interface ProposalVotesState {
   searchText: string;
-  voteCount: number;
+  voteCount: string;
+  isMoreData: boolean;
 }
 export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesState> {
   state: ProposalVotesState = {
     searchText: "",
-    voteCount: 0
+    voteCount: "",
+    isMoreData: true
   };
 
   getVotesCount = (num: number) => {
-    this.setState({ voteCount: this.state.voteCount + num });
+    const voteCount = num.toString();
+    this.setState({ voteCount: voteCount });
+  };
+
+  checkIsMoreData = (check: boolean) => {
+    this.setState({ isMoreData: check });
   };
   render() {
     const { proposal, onHide } = this.props;
-    const { searchText, voteCount } = this.state;
-    const modelTitle = voteCount % 1000 ? voteCount + " " : voteCount + "+" + " ";
+    const { searchText, voteCount, isMoreData } = this.state;
+    const modalTitle = isMoreData && voteCount ? voteCount + "+" + " " : voteCount + " ";
     return (
       <Modal
         onHide={onHide}
@@ -306,7 +318,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
       >
         <Modal.Header closeButton={true} className="align-items-center px-0">
           <Modal.Title>
-            {modelTitle + _t("proposals.votes-dialog-title", { n: proposal.id })}
+            {modalTitle + _t("proposals.votes-dialog-title", { n: proposal.id })}
           </Modal.Title>
         </Modal.Header>
         <Form.Group className="w-100 mb-3">
@@ -324,6 +336,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
             {...this.props}
             searchText={searchText}
             getVotesCount={this.getVotesCount}
+            checkIsMoreData={this.checkIsMoreData}
           />
         </Modal.Body>
       </Modal>
