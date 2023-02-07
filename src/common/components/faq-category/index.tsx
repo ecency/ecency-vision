@@ -51,7 +51,7 @@ const FaqCategory = (props: Props) => {
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body className="p-0">
-            <div>
+            <div className="section-body">
               {contentList.map((x) => (
                 <a key={x} className="section-content" href={`#${x}`}>
                   {_t(`static.faq.${x}-header`)}
