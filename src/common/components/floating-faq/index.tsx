@@ -219,30 +219,6 @@ const FloatingFAQ = () => {
                     >
                       {_t("floating-faq.submit")}
                     </Button>
-                    <Button
-                      className="mt-2 details-button px-0"
-                      variant="link"
-                      onClick={() =>
-                        window.open(
-                          "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",
-                          "_blank"
-                        )
-                      }
-                    >
-                      {"Click me"}
-                    </Button>
-                    <Button
-                      className="mt-2 details-button px-0"
-                      variant="link"
-                      onClick={() =>
-                        window.open(
-                          "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",
-                          "_blank"
-                        )
-                      }
-                    >
-                      {"Click me"}
-                    </Button>
                   </Card.Body>
                 </Accordion.Collapse>
               </Accordion>
