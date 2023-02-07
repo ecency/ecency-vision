@@ -1,5 +1,6 @@
-.container{
-    display: flex;align-items: center;
+.portfolio-list-container{
+    display: flex;
+    align-items: center;
     justify-content: space-between;
 
     .token-list{
@@ -19,9 +20,9 @@
 
     .add-btn{
 
-        button{
-            padding: 5px;
-            border-radius: 5px;
+        input{
+            width: 20px;
+            height: 20px;
         }
     }
 }

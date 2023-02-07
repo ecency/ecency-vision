@@ -61,6 +61,7 @@ interface State {
   search: string;
   showTokenList: boolean;
   favoriteTokens: HiveEngineToken[] | any;
+  selectedTokens: HiveEngineToken[] | any;
 }
 
 export class WalletPortfolio extends BaseComponent<Props, State> {
@@ -75,7 +76,8 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     estimatedPointsValueLoading: false,
     search: "",
     showTokenList: false,
-    favoriteTokens: []
+    favoriteTokens: [],
+    selectedTokens: [],
   };
   _isMounted = false;
   pricePerHive = this.props.dynamicProps.base / this.props.dynamicProps.quote;
@@ -107,9 +109,11 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       let eachMetric = allMarketTokens?.find((m: any) => m?.symbol === item?.symbol);
       return {
         ...item,
-        ...eachMetric
+        ...eachMetric,
+        "type": "Engine"
       };
     });
+    console.log(balanceMetrics)
     let tokensUsdValues: any = balanceMetrics?.map((w: any) => {
       const usd_value =
         w?.symbol === "SWAP.HIVE"
@@ -121,7 +125,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
         ...w,
         usd_value
       };
-    });
+    });    
     this.setState({ allTokens: tokensUsdValues });
     return tokensUsdValues;
   };
@@ -159,24 +163,36 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       const { account } = this.props;
       this.setState({favoriteTokens: account?.profile?.profileTokens, loading: false}) 
     }
- 
-    addToFavorite = async (token: HiveEngineToken | any) => {
+
+    handleOnChange = (e: any, token: any) => {
       const { account } = this.props;
-      const userProfile = JSON.parse(account.posting_json_metadata)
-      const profileTokens: any = account?.profile.profileTokens || []
-      const { profile } = userProfile;  
-      let mappedTokens: any = profileTokens.map((t: any) => t.symbol === token.symbol) 
-      console.log(profile)
-      if (!mappedTokens.includes(true)){ 
-        console.log("Not on list")
-        profileTokens.push(token)
-      }else {
-        console.log("Token already added")
-      }
+      const { selectedTokens } = this.state;
+      const userProfile = JSON.parse(account.posting_json_metadata);
+      const userTokens = userProfile.profile.profileTokens
+      const isInProfile = userTokens?.map((item: any) => item.symbol === token.symbol)
+      const isSelected = selectedTokens.includes(token);
+      
+    if (e?.target?.checked && !isSelected && !isInProfile.includes(true)) {
+        this.setState({selectedTokens: [...selectedTokens, ...token]})
+      // console.log(token.name + " added to list")
+    } else {
+      this.setState({selectedTokens: [...selectedTokens]})
+      // console.log("can't add token")
+    }      
+    }
+
+    addToProfile= () => {
+      const { account } = this.props;
+      const { selectedTokens } = this.state
+      const userProfile = JSON.parse(account.posting_json_metadata);
+      const { profile } = userProfile;
+      let { profileTokens } = profile;
+           profileTokens = [...profileTokens, ...selectedTokens];
+
       const newPostMeta: any = {...profile, profileTokens}
       console.log(newPostMeta)
-      updateProfile(account, newPostMeta)  
-    };
+      updateProfile(account, newPostMeta)
+    }
 
   render() {
     const { global, dynamicProps, account, points, activeUser } = this.props;
@@ -338,7 +354,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     show={showTokenList} 
     centered={true} 
     animation={false} 
-    size="lg"
+    // size="lg"
     scrollable
     style={{height: "100vh"}}
     >
@@ -347,26 +363,35 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
         Tokens
       </Modal.Title>
     </Modal.Header>
-    <Modal.Body> 
-    <div className="list-search-box d-flex justify-content-center mb-3">
-      <FormControl     
-        value={search}
-        placeholder="search token"
-        onChange={(e) => this.setState({search: e.target.value})}
-        style={{width: "50%"}}
-      />
-    </div>
-    {allTokens?.filter((list: any) => 
-               list.name.toLowerCase().startsWith(search) || 
-               list.name.toLowerCase().includes(search)
-               ).map((token: any, i: any) =>(
-      <EngineTokensList 
-      token={token} 
-      showTokenList={showTokenList} 
-      addToFavorite={this.addToFavorite}
-      hideModal={this.hideList}
-      key={i}/>
-    ))}    
+    <Modal.Body>
+      <div className="d-flex flex-column">        
+          <div className="list-search-box d-flex justify-content-center mb-3">
+            <FormControl     
+              value={search}
+              placeholder="search token"
+              onChange={(e) => this.setState({search: e.target.value})}
+              style={{width: "50%"}}
+            />
+          </div>
+          {allTokens?.slice(0, 10).filter((list: any) => 
+                    list?.name.toLowerCase().startsWith(search) || 
+                    list?.name.toLowerCase().includes(search)
+                    ).map((token: any, i: any) =>(
+            <EngineTokensList 
+            token={token} 
+            showTokenList={showTokenList} 
+            handleOnChange={this.handleOnChange}
+            />
+          ))}
+          <div className="confirm-btn align-self-center">
+            <Button
+            onClick={() => {
+              this.addToProfile();
+              this.hideList();
+            }}
+            >Confirm</Button>
+          </div>
+      </div>
     </Modal.Body>
   </Modal>    
       </div>

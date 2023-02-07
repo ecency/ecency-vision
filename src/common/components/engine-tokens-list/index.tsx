@@ -2,19 +2,11 @@ import React, { useEffect, useState} from 'react'
 import { _t } from '../../i18n';
 
 const EngineTokensList = (props: any) => {
-    const { token, addToFavorite, hideModal } = props;
+    const { token, handleOnChange } = props;
     
-    
-    useEffect(() => {
-    }, []);
-
-    const addToken = () => {
-        addToFavorite(token); 
-        hideModal();
-    }
   return (
     <>
-    <div className="list-body container cursor-pointer">
+    <div className="list-body portfolio-list-container cursor-pointer">
         <div className="token-list">
           <img src={token.icon} />
           <span className="item-name notransalte cursor-pointer">
@@ -22,9 +14,11 @@ const EngineTokensList = (props: any) => {
           </span>                      
         </div>
         <div className='add-btn'>
-            <button
-            onClick={addToken}
-            >Add {token.symbol}</button>
+          <input
+            type="checkbox"
+            value={token?.name}
+            onChange={(e) => handleOnChange(e, token)}
+          />
         </div>
     </div>   
     </>
