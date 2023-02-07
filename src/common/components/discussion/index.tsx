@@ -66,6 +66,7 @@ import { ProfilePopover } from "../profile-popover";
 interface ItemBodyProps {
   entry: Entry;
   global: Global;
+  isRawContent: boolean;
 }
 
 export class ItemBody extends Component<ItemBodyProps> {
@@ -79,10 +80,16 @@ export class ItemBody extends Component<ItemBodyProps> {
     const renderedBody = { __html: renderPostBody(entry.body, false, global.canUseWebp) };
 
     return (
-      <div
-        className="item-body markdown-view mini-markdown"
-        dangerouslySetInnerHTML={renderedBody}
-      />
+      <>
+        {!this.props.isRawContent ? (
+          <div
+            className="item-body markdown-view mini-markdown"
+            dangerouslySetInnerHTML={renderedBody}
+          />
+        ) : (
+          <pre className="item-body markdown-view mini-markdown">{entry.body}</pre>
+        )}
+      </>
     );
   }
 }
@@ -97,6 +104,7 @@ interface ItemProps {
   discussion: DiscussionType;
   entry: Entry;
   community: Community | null;
+  isRawContent: boolean;
   ui: UI;
   addAccount: (data: Account) => void;
   setActiveUser: (username: string | null) => void;
@@ -379,6 +387,7 @@ export const Item = (props: ItemProps) => {
             const isLowReputation =
               entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
             const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry;
+            const { isRawContent } = props;
 
             return (
               <>
@@ -410,7 +419,7 @@ export const Item = (props: ItemProps) => {
                   </div>
                 )}
 
-                <ItemBody global={global} entry={entry} />
+                <ItemBody global={global} entry={entry} isRawContent={isRawContent} />
                 {props.hideControls ? (
                   <></>
                 ) : (
@@ -506,6 +515,7 @@ interface ListProps {
   discussion: DiscussionType;
   parent: Entry;
   community: Community | null;
+  isRawContent: boolean;
   ui: UI;
   addAccount: (data: Account) => void;
   setActiveUser: (username: string | null) => void;
@@ -566,7 +576,7 @@ export class List extends Component<ListProps> {
   };
 
   render() {
-    const { discussion, parent, activeUser } = this.props;
+    const { discussion, parent, activeUser, isRawContent } = this.props;
     const { isHiddenPermitted, mutedData } = this.state;
 
     const { list } = discussion;
@@ -601,6 +611,7 @@ export class List extends Component<ListProps> {
             {...this.props}
             entry={d}
             hideControls={this.props.hideControls}
+            isRawContent={isRawContent}
           />
         ))}
         {!isHiddenPermitted && mutedContent.length > 0 && activeUser && activeUser.username && (
@@ -625,6 +636,7 @@ interface Props {
   activeUser: ActiveUser | null;
   parent: Entry;
   community: Community | null;
+  isRawContent: boolean;
   discussion: DiscussionType;
   ui: UI;
   addAccount: (data: Account) => void;
@@ -661,6 +673,9 @@ export class Discussion extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
+    if (prevProps.isRawContent !== this.props.isRawContent) {
+      this.show();
+    }
     const { parent } = this.props;
     if (parent.url !== prevProps.parent.url) {
       // url changed
@@ -705,7 +720,7 @@ export class Discussion extends Component<Props, State> {
   };
 
   render() {
-    const { parent, discussion, activeUser } = this.props;
+    const { parent, discussion, activeUser, isRawContent } = this.props;
     const { visible } = this.state;
     const { loading, order } = discussion;
     const count = parent.children;
@@ -781,7 +796,7 @@ export class Discussion extends Component<Props, State> {
             </div>
           )}
         </div>
-        <List {...this.props} parent={parent} />
+        <List {...this.props} parent={parent} isRawContent={isRawContent} />
       </div>
     );
   }
@@ -798,6 +813,7 @@ export default (p: Props) => {
     parent: p.parent,
     community: p.community,
     discussion: p.discussion,
+    isRawContent: p.isRawContent,
     ui: p.ui,
     addAccount: p.addAccount,
     setActiveUser: p.setActiveUser,

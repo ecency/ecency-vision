@@ -9,8 +9,10 @@ import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
 import { History } from "history";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
+import { Global } from "../../store/global/types";
 
 interface Props {
+  global: Global;
   price: number;
   usdPrice: number;
   browserHistory: History;
@@ -37,7 +39,8 @@ export const StakeWidget = ({
   onPriceClick,
   onAmountClick,
   price,
-  usdPrice
+  usdPrice,
+  global
 }: Props) => {
   const [storedFraction, setStoredFraction] = useLocalStorage<number>(PREFIX + "_amml_st_fr");
   const [storedViewType, setStoredViewType] = useLocalStorage<StakeWidgetViewType>(
@@ -50,23 +53,24 @@ export const StakeWidget = ({
   const [maxBuy, setMaxBuy] = useState(0);
   const [fraction, setFraction] = useState(storedFraction ?? 0.00001);
   const [viewType, setViewType] = useState(storedViewType ?? StakeWidgetViewType.All);
+  const [unlimited, setUnlimited] = useState(storedViewType !== StakeWidgetViewType.All ?? false);
 
-  const rowsCount = 20;
+  const rowsCount = global.isMobile ? 5 : 20;
 
   useEffect(() => {
-    buildAllStakeItems(fraction);
+    buildAllStakeItems(fraction, unlimited);
   }, [history]);
 
   const buildAllStakeItems = (fraction: number, unlimited?: boolean) => {
     if (!history) return;
 
     let sells = buildStakeItems(history.asks, "desc", fraction);
-    sells = sells.slice(sells.length - 1 - (unlimited ? rowsCount * 2 : rowsCount), sells.length);
+    sells = sells.slice(sells.length - 1 - (unlimited ? rowsCount * 1.5 : rowsCount), sells.length);
     setSells(sells);
     setMaxSell(Math.min(500, Math.max(...sells.map((i) => i.amount))));
 
     let buys = buildStakeItems(history.bids, "desc", fraction);
-    buys = buys.slice(0, unlimited ? rowsCount * 2 : rowsCount);
+    buys = buys.slice(0, unlimited ? rowsCount * 1.5 : rowsCount);
     setBuys(buys);
     setMaxBuy(Math.min(500, Math.max(...buys.map((i) => i.amount))));
   };
@@ -128,6 +132,7 @@ export const StakeWidget = ({
           onViewTypeChange={(value) => {
             setViewType(value);
             setStoredViewType(value);
+            setUnlimited(value !== StakeWidgetViewType.All);
             if (value !== viewType) buildAllStakeItems(fraction, value !== StakeWidgetViewType.All);
           }}
         />
@@ -142,7 +147,7 @@ export const StakeWidget = ({
               <div>
                 {_t("market.advanced.history-widget.amount")}({fromAsset})
               </div>
-              <div>{_t("market.advanced.history-widget.volume")}</div>
+              {global.isMobile ? <></> : <div>{_t("market.advanced.history-widget.volume")}</div>}
             </div>
           </div>
           <div
@@ -166,7 +171,11 @@ export const StakeWidget = ({
                         <div className="amount" onClick={() => onAmountClick(sell.amount)}>
                           {sell.amount.toFixed(2)}
                         </div>
-                        <div>{formattedNumber(sell.total, { fractionDigits: 2 })}</div>
+                        {global.isMobile ? (
+                          <></>
+                        ) : (
+                          <div>{formattedNumber(sell.total, { fractionDigits: 2 })}</div>
+                        )}
                       </div>
                     ))}
                 </div>
@@ -192,7 +201,11 @@ export const StakeWidget = ({
                         <div className="amount" onClick={() => onAmountClick(buy.amount)}>
                           {buy.amount.toFixed(2)}
                         </div>
-                        <div>{formattedNumber(buy.total, { fractionDigits: 2 })}</div>
+                        {global.isMobile ? (
+                          <></>
+                        ) : (
+                          <div>{formattedNumber(buy.total, { fractionDigits: 2 })}</div>
+                        )}
                       </div>
                     ))}
                 </div>

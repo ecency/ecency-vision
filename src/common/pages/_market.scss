@@ -73,6 +73,7 @@ thead, .pagination {
 
     &.ADVANCED {
         .advanced-mode {
+            overflow-x: hidden;
             margin-top: -2.5rem;
 
             @include media-breakpoint-down(sm) {
@@ -82,6 +83,8 @@ thead, .pagination {
 
         .advanced-mode-toolbar {
             align-items: center;
+            position: relative;
+            z-index: 9;
 
             @include media-breakpoint-down(md) {
                 flex-wrap: wrap;
@@ -94,7 +97,7 @@ thead, .pagination {
 
             @include media-breakpoint-down(xs) {
                 padding-top: 0;
-                flex-direction: column;
+                padding-bottom: 0;
             }
 
             .trading-pair {
@@ -184,7 +187,21 @@ thead, .pagination {
             height: calc(100% - 39px - 55px);
 
             &.one-type {
-                justify-content: start;
+                justify-content: flex-start;
+
+                .market-stake-widget-sell, .market-stake-widget-buy {
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                }
+            }
+
+            @include media-breakpoint-down(md) {
+                height: auto;
+
+                .history-widget-row {
+                    grid-template-columns: 1fr 1fr;
+                }
             }
         }
 
@@ -229,7 +246,8 @@ thead, .pagination {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            padding-left: 8px;
+            padding-left: 12px;
+            gap: 0.25rem;
 
             .stake-widget-header-view-type {
                 display: flex;

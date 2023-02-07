@@ -77,16 +77,10 @@ export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
     const { profile } = account;
 
     const newProfile = {
-      name: profile?.name || "",
-      about: profile?.about || "",
-      cover_image: profile?.cover_image || "",
-      profile_image: url,
-      website: profile?.website || "",
-      location: profile?.location || "",
-      pinned: profile?.pinned || ""
+      profile_image: url
     };
 
-    updateProfile(account, newProfile)
+    updateProfile(account, { ...profile, ...newProfile })
       .then((r) => {
         success(_t("community-card.profile-image-updated"));
         return getAccount(account.name);

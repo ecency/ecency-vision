@@ -4,7 +4,7 @@
   "description": "Ecency desktop application reimagined for Windows, Mac, Linux users, start earning cryptocurrency!",
   "private": false,
   "author": "Ecency <hello@ecency.com>",
-  "version": "3.0.30",
+  "version": "3.0.31",
   "copyright": "© 2020, Ecency",
   "license": "MIT",
   "homepage": "https://ecency.com",
@@ -144,14 +144,17 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.0.9"
   },
+  "peerDependencies": {
+    "sass": "^1.56.2"
+  },
   "dependencies": {
     "@babel/plugin-syntax-import-meta": "^7.10.4",
     "electron-debug": "^3.1.0",
     "electron-log": "^4.2.4",
     "electron-updater": "^4.3.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "node-sass": "^6.0.1",
     "react-hot-loader": "^4.12.21",
-    "source-map-support": "^0.5.19"
+    "source-map-support": "^0.5.19",
+    "sass-loader": "10.1.1"
   }
 }

@@ -18,11 +18,11 @@ export const PurchaseQrTypes = ({ value, setValue, className }: Props) => {
   const [input, setInput] = useState("");
   const items: Item[] = [
     { value: "099points", title: _t("purchase-qr.points-amount", { n: "500" }) },
-    { value: "199points", title: _t("purchase-qr.points-amount", { n: "1000" }) },
-    { value: "499points", title: _t("purchase-qr.points-amount", { n: "2500" }) },
-    { value: "999points", title: _t("purchase-qr.points-amount", { n: "5000" }) },
-    { value: "4999points", title: _t("purchase-qr.points-amount", { n: "25000" }) },
-    { value: "9999points", title: _t("purchase-qr.points-amount", { n: "50000" }) }
+    { value: "199points", title: _t("purchase-qr.points-amount", { n: "1100" }) },
+    { value: "499points", title: _t("purchase-qr.points-amount", { n: "2700" }) },
+    { value: "999points", title: _t("purchase-qr.points-amount", { n: "5500" }) },
+    { value: "4999points", title: _t("purchase-qr.points-amount", { n: "28500" }) },
+    { value: "9999points", title: _t("purchase-qr.points-amount", { n: "60000" }) }
   ];
   useEffect(() => {
     setInput(items.find((i) => i.value === value)!.title);

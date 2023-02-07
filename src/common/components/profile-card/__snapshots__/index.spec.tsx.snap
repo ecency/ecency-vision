@@ -55,27 +55,6 @@ exports[`(2) Render with loaded data 1`] = `
     </div>
   </h1>
   <div
-    className="vpower-line"
-  >
-    <div
-      className="vpower-line-inner"
-      style={
-        Object {
-          "width": "94.76%",
-        }
-      }
-    />
-  </div>
-  <div
-    className="vpower-percentage"
-  >
-    <span
-      title="Voting Power"
-    >
-      94.76
-    </span>
-  </div>
-  <div
     className="basic-info"
   >
     <div
@@ -87,6 +66,51 @@ exports[`(2) Render with loaded data 1`] = `
       className="about"
     >
       Lorem ipsum dolor sit amet
+    </div>
+  </div>
+  <div>
+    <div>
+      <div
+        className="cursor-pointer d-flex flex-column mb-1"
+        onClick={[Function]}
+      >
+        <div
+          className="progress"
+        >
+          <div
+            className="progress-bar progress-bar-success"
+            role="progressbar"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            Available
+          </div>
+          <div
+            className="progress-bar used"
+            role="progressbar"
+            style={
+              Object {
+                "width": "0%",
+              }
+            }
+          >
+            Used
+          </div>
+        </div>
+        <div
+          className="rc-percentage mt-2 align-self-center"
+        >
+          <span
+            className="cursor-pointer"
+          >
+            Resource Credits
+          </span>
+        </div>
+      </div>
+      <div />
     </div>
   </div>
   <div
@@ -221,27 +245,6 @@ exports[`(3) Should show profile edits 1`] = `
     </div>
   </h1>
   <div
-    className="vpower-line"
-  >
-    <div
-      className="vpower-line-inner"
-      style={
-        Object {
-          "width": "94.76%",
-        }
-      }
-    />
-  </div>
-  <div
-    className="vpower-percentage"
-  >
-    <span
-      title="Voting Power"
-    >
-      94.76
-    </span>
-  </div>
-  <div
     className="basic-info"
   >
     <div
@@ -253,6 +256,51 @@ exports[`(3) Should show profile edits 1`] = `
       className="about"
     >
       Lorem ipsum dolor sit amet
+    </div>
+  </div>
+  <div>
+    <div>
+      <div
+        className="cursor-pointer d-flex flex-column mb-1"
+        onClick={[Function]}
+      >
+        <div
+          className="progress"
+        >
+          <div
+            className="progress-bar progress-bar-success"
+            role="progressbar"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            Available
+          </div>
+          <div
+            className="progress-bar used"
+            role="progressbar"
+            style={
+              Object {
+                "width": "0%",
+              }
+            }
+          >
+            Used
+          </div>
+        </div>
+        <div
+          className="rc-percentage mt-2 align-self-center"
+        >
+          <span
+            className="cursor-pointer"
+          >
+            Resource Credits
+          </span>
+        </div>
+      </div>
+      <div />
     </div>
   </div>
   <div
