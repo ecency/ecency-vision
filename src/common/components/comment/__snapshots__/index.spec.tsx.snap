@@ -267,6 +267,7 @@ exports[`(1) Default render 1`] = `
   />
   <div
     className="comment-body"
+    onKeyDown={[Function]}
   >
     <div
       className="rta  "
@@ -607,6 +608,7 @@ exports[`(2) Cancellable, in progress 1`] = `
   />
   <div
     className="comment-body"
+    onKeyDown={[Function]}
   >
     <div
       className="rta  "
