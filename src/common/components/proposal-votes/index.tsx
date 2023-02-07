@@ -285,18 +285,19 @@ interface ProposalVotesProps {
 
 interface ProposalVotesState {
   searchText: string;
-  voteCount: number;
+  voteCount: string;
   isMoreData: boolean;
 }
 export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesState> {
   state: ProposalVotesState = {
     searchText: "",
-    voteCount: 0,
+    voteCount: "",
     isMoreData: true
   };
 
   getVotesCount = (num: number) => {
-    this.setState({ voteCount: num });
+    const voteCount = num.toString();
+    this.setState({ voteCount: voteCount });
   };
 
   checkIsMoreData = (check: boolean) => {
@@ -305,7 +306,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
   render() {
     const { proposal, onHide } = this.props;
     const { searchText, voteCount, isMoreData } = this.state;
-    const modelTitle = isMoreData ? voteCount + "+" + " " : voteCount + " ";
+    const modalTitle = isMoreData && voteCount ? voteCount + "+" + " " : voteCount + " ";
     return (
       <Modal
         onHide={onHide}
@@ -317,7 +318,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
       >
         <Modal.Header closeButton={true} className="align-items-center px-0">
           <Modal.Title>
-            {modelTitle + _t("proposals.votes-dialog-title", { n: proposal.id })}
+            {modalTitle + _t("proposals.votes-dialog-title", { n: proposal.id })}
           </Modal.Title>
         </Modal.Header>
         <Form.Group className="w-100 mb-3">
