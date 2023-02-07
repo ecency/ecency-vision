@@ -6,7 +6,13 @@
 }
 
 .section :hover {
-  background: $light-powder-blue;
+  @include themify(day) {
+    background: $light-powder-blue;
+  }
+
+  @include themify(night) {
+    background: $gunmetal;
+  }
 }
 
 .faq-container {
