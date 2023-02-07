@@ -921,7 +921,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     } else if (selectedThumbnail === localThumbnail) {
       ls.remove("draft_selected_image");
     } else {
-      meta.image = [selectedThumbnail];
+      meta.image = selectedThumbnail ? [selectedThumbnail] : [];
     }
     if (meta.image) {
       meta.image = [...new Set(meta.image)];
