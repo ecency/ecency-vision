@@ -10,6 +10,7 @@ import { Entry } from "../../store/entries/types";
 
 import EditorToolbar from "../editor-toolbar";
 import LoginRequired from "../login-required";
+import { detectEvent, toolbarEventListener } from "../../components/editor-toolbar";
 
 import defaults from "../../constants/defaults.json";
 
@@ -86,6 +87,11 @@ interface State {
 }
 
 export class Comment extends Component<Props, State> {
+  commentBodyRef: React.RefObject<HTMLDivElement>;
+  constructor(props: Props) {
+    super(props);
+    this.commentBodyRef = React.createRef();
+  }
   state: State = {
     text: "",
     preview: "",
@@ -101,6 +107,8 @@ export class Comment extends Component<Props, State> {
     const { defText } = this.props;
     this.setState({ text: defText || "", preview: defText || "" });
     this.cleanUpLS();
+
+    this.addToolbarEventListners();
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -116,6 +124,11 @@ export class Comment extends Component<Props, State> {
       this.setState({ text: "", preview: "" });
     }
   }
+
+  componentWillUnmount(): void {
+    this.removeToolbarEventListners();
+  }
+
   //TODO: Delete this after 3.0.22 release
   cleanUpLS = () => {
     Object.entries(localStorage)
@@ -165,6 +178,65 @@ export class Comment extends Component<Props, State> {
     if (onCancel) onCancel();
   };
 
+  addToolbarEventListners = () => {
+    if (this.commentBodyRef) {
+      const el = this.commentBodyRef?.current;
+
+      if (el) {
+        el.addEventListener("paste", this.handlePaste);
+        el.addEventListener("dragover", this.handleDragover);
+        el.addEventListener("drop", this.handleDrop);
+      }
+    }
+  };
+
+  removeToolbarEventListners = () => {
+    if (this.commentBodyRef) {
+      const el = this.commentBodyRef?.current;
+
+      if (el) {
+        el.removeEventListener("paste", this.handlePaste);
+        el.removeEventListener("dragover", this.handleDragover);
+        el.removeEventListener("drop", this.handleDrop);
+      }
+    }
+  };
+
+  handlePaste = (event: Event): void => {
+    toolbarEventListener(event, "paste");
+  };
+
+  handleDragover = (event: Event): void => {
+    toolbarEventListener(event, "dragover");
+  };
+
+  handleDrop = (event: Event): void => {
+    toolbarEventListener(event, "drop");
+  };
+  handleShortcuts = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.altKey && e.key === "b") {
+      detectEvent("bold");
+    }
+    if (e.altKey && e.key === "i") {
+      detectEvent("italic");
+    }
+    if (e.altKey && e.key === "t") {
+      detectEvent("table");
+    }
+    if (e.altKey && e.key === "k") {
+      detectEvent("link");
+    }
+    if (e.altKey && e.key === "c") {
+      detectEvent("codeBlock");
+    }
+    if (e.altKey && e.key === "d") {
+      detectEvent("image");
+    }
+    if (e.altKey && e.key === "m") {
+      detectEvent("blockquote");
+    }
+  };
+
   render() {
     const { inProgress, cancellable, autoFocus, submitText, inputRef, activeUser } = this.props;
     const { text, preview, showEmoji, showGif, inputHeight } = this.state;
@@ -179,7 +251,7 @@ export class Comment extends Component<Props, State> {
           }
         >
           {EditorToolbar({ ...this.props, sm: true, showEmoji })}
-          <div className="comment-body">
+          <div className="comment-body" onKeyDown={this.handleShortcuts} ref={this.commentBodyRef}>
             <TextareaAutocomplete
               className={`the-editor accepts-emoji ${text.length > 20 ? "expanded" : ""}`}
               as="textarea"

@@ -209,7 +209,7 @@ export const SignUp = (props: PageProps) => {
                     />
                   </Form.Group>
                   {!props.global.isElectron && (
-                    <div style={{ marginTop: "16px", marginBottom: "5px" }}>
+                    <div style={{ marginTop: "16px", marginBottom: "7px" }}>
                       <ReCAPTCHA
                         sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
                         onChange={(value: string | null) => value && setIsVerified(true)}
