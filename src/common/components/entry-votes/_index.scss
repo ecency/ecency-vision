@@ -110,7 +110,7 @@
     &.voted {
       animation: heartbeat 1s;
       svg {
-        fill: rgb(74, 144, 226);
+        fill: $dark-sky-blue;
       }
     }
   }
