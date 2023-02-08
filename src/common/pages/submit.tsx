@@ -941,6 +941,9 @@ class SubmitPage extends BaseComponent<Props, State> {
           url: dataURL
         });
       };
+      img.onerror = function () {
+        resolve({ url: dataURL });
+      };
       img.src = dataURL;
     });
 
