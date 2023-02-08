@@ -33,6 +33,9 @@ export const SignUp = (props: PageProps) => {
   const [lsReferral, setLsReferral] = useLocalStorage<string>(PREFIX + "_referral");
 
   const [username, setUsername] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [usernameTouched, setUsernameTouched] = useState(false);
+
   const [email, setEmail] = useState("");
   const [referral, setReferral] = useState("");
   const [lockReferral, setLockReferral] = useState(false);
@@ -79,6 +82,25 @@ export const SignUp = (props: PageProps) => {
       compileQR(url.toString());
     }
   }, [stage]);
+
+  useEffect(() => {
+    setUsernameError("");
+
+    if (!username && !usernameTouched) {
+      return;
+    }
+    if (username.length < 3) {
+      setUsernameError(_t("sign-up.username-min-length-error"));
+    } else if (username.length > 16) {
+      setUsernameError(_t("sign-up.username-max-length-error"));
+    } else if (!/^[\x00-\x7F]*$/.test(username[0])) {
+      setUsernameError(_t("sign-up.username-no-ascii-first-letter-error"));
+    } else if (!/^([a-zA-Z0-9]|-|\.)+$/.test(username)) {
+      setUsernameError(_t("sign-up.username-contains-symbols-error"));
+    } else if (username.includes("--")) {
+      setUsernameError(_t("sign-up.username-contains-double-hyphens"));
+    }
+  }, [username, usernameTouched]);
 
   const regularRegister = async () => {
     setInProgress(true);
@@ -171,6 +193,10 @@ export const SignUp = (props: PageProps) => {
                       return;
                     }
 
+                    if (usernameError) {
+                      return;
+                    }
+
                     if (stage === Stage.FORM) {
                       setStage(Stage.REGISTER_TYPE);
                     }
@@ -185,8 +211,11 @@ export const SignUp = (props: PageProps) => {
                       autoFocus={true}
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-username")}
+                      isInvalid={usernameError !== ""}
                       onInput={handleOnInput}
+                      onBlur={() => setUsernameTouched(true)}
                     />
+                    <Form.Text className="text-danger pl-3">{usernameError}</Form.Text>
                   </Form.Group>
                   <Form.Group>
                     <Form.Control
@@ -224,7 +253,7 @@ export const SignUp = (props: PageProps) => {
                           variant="primary"
                           block={true}
                           type="submit"
-                          disabled={inProgress || !isVerified}
+                          disabled={inProgress || !isVerified || !!usernameError}
                         >
                           {inProgress && (
                             <Spinner
