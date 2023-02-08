@@ -107,11 +107,14 @@
     &.no-data {
       cursor: default;
     }
-    &.voted {
-      animation: heartbeat 1s;
-      svg {
-        fill: $dark-sky-blue;
+    .heart-icon {
+      &.voted {
+        animation: heartbeat 1s ease-in-out forwards;
+        svg {
+          fill: $dark-sky-blue;
+        }
       }
     }
+
   }
 }
