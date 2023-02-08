@@ -78,24 +78,18 @@
     transform: scale(1);
     -webkit-transform-origin: center center;
     transform-origin: center center;
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  25% {
-    -webkit-transform: scale(1.4);
-    transform: scale(1.4);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
-  50% {
-    -webkit-transform: scale(1.8);
-    transform: scale(1.8);
+  33% {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
     -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
   }
-  75% {
-    -webkit-transform: scale(2);
-    transform: scale(2);
+  66% {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
@@ -106,6 +100,7 @@
     animation-timing-function: ease-in;
   }
 }
+
 
 @keyframes rotate-scale-up {
   0% {
