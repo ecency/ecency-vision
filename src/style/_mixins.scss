@@ -380,6 +380,9 @@
         color: $white;
       }
     }
+    &.primary-btn-done {
+      animation: rotate-scale-up-ver 1s;
+    }
   }
 
   &.btn-down-vote {
@@ -400,6 +403,9 @@
 
     svg {
       transform: rotate(180deg);
+    }
+    &.secondary-btn-done {
+      animation: rotate-scale-down-ver 1s;
     }
   }
 
