@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Button, Form, FormControl, Modal, Spinner } from "react-bootstrap";
+
 import { ActiveUser } from "../../store/active-user/types";
+
 import { _t } from "../../i18n";
-import { getAccount } from "../../api/hive";
+import { getAccount, findAccountRecoveryRequest } from "../../api/hive";
+
+import { changeRecoveryAccount } from "../../api/operations";
 
 interface Props {
   activeUser: ActiveUser;
 }
 export default function AccountRecovery({ activeUser }: Props) {
   const [currRecoveryAccount, setCurrRecoveryAccount] = useState("");
+  const [newRecoveryAccount, setNewCurrRecoveryAccount] = useState("");
 
   useEffect(() => {
     getCurrentAccount();
@@ -19,6 +24,20 @@ export default function AccountRecovery({ activeUser }: Props) {
     const account = await getAccount(activeUser?.username);
     const { recovery_account } = account;
     setCurrRecoveryAccount(recovery_account);
+  };
+
+  const update = () => {
+    console.log("Update run");
+    findAccountRecoveryRequest(activeUser.username).then((resp) => {
+      console.log(resp);
+      if (resp.requests.length) {
+        // changeRecoveryAccount(activeUser.username,)
+      } else {
+        changeRecoveryAccount(activeUser.username, newRecoveryAccount, []).then((resp) => {
+          console.log(resp);
+        });
+      }
+    });
   };
   // form = React.createRef<HTMLFormElement>();
   return (
@@ -38,7 +57,7 @@ export default function AccountRecovery({ activeUser }: Props) {
           //   return;
           // }
 
-          // this.update();
+          update();
         }}
       >
         <Form.Group controlId="account-name">
@@ -48,11 +67,11 @@ export default function AccountRecovery({ activeUser }: Props) {
         <Form.Group controlId="cur-pass">
           <Form.Label>{_t("account-recovery.new-recovery-acc")}</Form.Label>
           <Form.Control
-            // value={curPass}
-            // onChange={this.curPassChanged}
+            value={newRecoveryAccount}
+            onChange={(e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) =>
+              setNewCurrRecoveryAccount(e.target.value)
+            }
             required={true}
-            // onInvalid={(e: any) => handleInvalid(e, "password-update.", "validation-password")}
-            // onInput={handleOnInput}
             type="text"
             autoFocus={true}
             autoComplete="off"
@@ -63,7 +82,6 @@ export default function AccountRecovery({ activeUser }: Props) {
           <Form.Control
             // value={newPass2}
             // onChange={this.newPass2Changed}
-            required={true}
             type="text"
             autoComplete="off"
             // onInvalid={(e: any) => handleInvalid(e, "password-update.", "validation-password")}

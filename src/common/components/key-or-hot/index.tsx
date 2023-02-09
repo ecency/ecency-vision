@@ -80,6 +80,7 @@ export class KeyOrHot extends Component<Props, State> {
   };
 
   render() {
+    console.log("Key or Hot called");
     const { inProgress, global } = this.props;
     const { key } = this.state;
     const hsLogo = global.isElectron

@@ -579,3 +579,6 @@ export interface BlogEntry {
 
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
   client.call("condenser_api", "get_blog_entries", [username, 0, limit]);
+
+export const findAccountRecoveryRequest = (account: string): Promise<any> =>
+  client.call("database_api", "find_change_recovery_account_requests", { accounts: [account] });

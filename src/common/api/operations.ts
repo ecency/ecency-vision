@@ -264,6 +264,24 @@ export const vote = (
   });
 };
 
+export const changeRecoveryAccount = (
+  username: string,
+  new_recovery_account: string,
+  extensions: []
+): Promise<TransactionConfirmation> => {
+  const params = {
+    change_recovery_account: username,
+    new_recovery_account,
+    extensions
+  };
+
+  const opArray: Operation[] = [["change_recovery_account", params]];
+
+  return broadcastPostingOperations(username, opArray).then((r: TransactionConfirmation) => {
+    return r;
+  });
+};
+
 export const follow = (follower: string, following: string): Promise<TransactionConfirmation> => {
   const json = [
     "follow",
