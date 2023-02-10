@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react'
 import { _t } from '../../i18n';
 
 const EngineTokensList = (props: any) => {
-    const { token, handleOnChange } = props;
+    const { token, handleOnChange, ischecked } = props;
     
   return (
     <>
@@ -17,6 +17,7 @@ const EngineTokensList = (props: any) => {
           <input
             type="checkbox"
             value={token?.name}
+            checked={ischecked}
             onChange={(e) => handleOnChange(e, token)}
           />
         </div>

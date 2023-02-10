@@ -9,6 +9,7 @@ import {
     getOtherTransactions    
   } from "../../api/hive-engine";
 import LinearProgress from '../linear-progress';
+import { dateToFullRelative } from "../../helper/parse-date";
 
 export const EngineTransactionList = (props: any) => {
 
@@ -21,7 +22,7 @@ export const EngineTransactionList = (props: any) => {
 
     useEffect(() => {
         otherTokenTransactions();
-        getMainTransactions()
+        getMainTransactions();
     }, [])
 
     const getMainTransactions = async () => {
@@ -40,8 +41,8 @@ export const EngineTransactionList = (props: any) => {
 
     const getTransactionTime = (timestamp: number) => {
         let date: any = new Date(timestamp * 1000)
-        return date.toDateString();
-    }
+        return dateToFullRelative(date.toJSON());
+    };
 
     const loadMore = () => {  
         const moreItems = loadLimit + 10;

@@ -34,9 +34,12 @@ import { getCurrencyTokenRate } from "../../api/private-api";
 import EngineTokensList from "../engine-tokens-list";
 import { Button, FormControl, Modal } from "react-bootstrap";
 import { updateProfile } from "../../api/operations";
+import { getSpkWallet, getMarketInfo, getLarynxData } from "../../api/spk-api";
 
 const hbdIcom = require("./asset/hbd.png")
 const ecencyIcon = require("./asset/ecency.jpeg")
+const spkIcon = require("./asset/spklogo.png")
+const engineIcon = require("./asset/engine.png")
 
 interface Props {
   global: Global;
@@ -62,6 +65,10 @@ interface State {
   showTokenList: boolean;
   favoriteTokens: HiveEngineToken[] | any;
   selectedTokens: HiveEngineToken[] | any;
+  isChecked: boolean;
+  tokenBalance: number;
+  larynxTokenBalance: number;
+  larynxPowerBalance: number;
 }
 
 export class WalletPortfolio extends BaseComponent<Props, State> {
@@ -78,6 +85,10 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     showTokenList: false,
     favoriteTokens: [],
     selectedTokens: [],
+    isChecked: false,
+    tokenBalance: 0,
+    larynxTokenBalance: 0,
+    larynxPowerBalance: 0,
   };
   _isMounted = false;
   pricePerHive = this.props.dynamicProps.base / this.props.dynamicProps.quote;
@@ -87,7 +98,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     this._isMounted && this.engineTokensData();
     this._isMounted && this.dataFromCoinGecko();
     this._isMounted && this.getEstimatedPointsValue();    
-    this._isMounted && this.loadFavoritesTokens();
+    this._isMounted && this.getSpkTokens();
   }
 
   componentWillUnmount() {
@@ -101,6 +112,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
 
   engineTokensData = async () => {
     const allMarketTokens = await getMetrics();
+    const spkTokens = await this.getSpkTokens();
     const { account } = this.props;
 
     const userTokens: any = await getHiveEngineTokenBalances(account.name);
@@ -113,7 +125,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
         "type": "Engine"
       };
     });
-    console.log(balanceMetrics)
+    
     let tokensUsdValues: any = balanceMetrics?.map((w: any) => {
       const usd_value =
         w?.symbol === "SWAP.HIVE"
@@ -125,8 +137,9 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
         ...w,
         usd_value
       };
-    });    
-    this.setState({ allTokens: tokensUsdValues });
+    });
+    console.log(tokensUsdValues)
+    this.setState({ allTokens: [...tokensUsdValues,  ...spkTokens] });
     return tokensUsdValues;
   };
   
@@ -159,44 +172,60 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       this.setState({showTokenList: true})
     };
 
-    loadFavoritesTokens = async () => {
-      const { account } = this.props;
-      this.setState({favoriteTokens: account?.profile?.profileTokens, loading: false}) 
-    }
-
     handleOnChange = (e: any, token: any) => {
       const { account } = this.props;
-      const { selectedTokens } = this.state;
+      const { selectedTokens, isChecked } = this.state;
       const userProfile = JSON.parse(account.posting_json_metadata);
       const userTokens = userProfile.profile.profileTokens
       const isInProfile = userTokens?.map((item: any) => item.symbol === token.symbol)
       const isSelected = selectedTokens.includes(token);
       
     if (e?.target?.checked && !isSelected && !isInProfile.includes(true)) {
-        this.setState({selectedTokens: [...selectedTokens, ...token]})
-      // console.log(token.name + " added to list")
+        this.setState({selectedTokens: [...selectedTokens, ...token], isChecked: e.target.checked})
+        e.target.checked === true;
     } else {
-      this.setState({selectedTokens: [...selectedTokens]})
-      // console.log("can't add token")
-    }      
+      this.setState({selectedTokens: [...selectedTokens], isChecked: e.target.checked})
+    } 
     }
 
-    addToProfile= () => {
+    addToProfile= async () => {
       const { account } = this.props;
-      const { selectedTokens } = this.state
+      const { selectedTokens } = this.state;
+      const spkTokens = await this.getSpkTokens();
+      console.log(spkTokens)
       const userProfile = JSON.parse(account.posting_json_metadata);
       const { profile } = userProfile;
       let { profileTokens } = profile;
            profileTokens = [...profileTokens, ...selectedTokens];
 
       const newPostMeta: any = {...profile, profileTokens}
-      console.log(newPostMeta)
+   
       updateProfile(account, newPostMeta)
-    }
+    };
+
+    getSpkTokens = async () => {
+      const wallet = await getSpkWallet(this.props.account.name);
+      const marketData = await getMarketInfo();
+      const larynxData = await getLarynxData()
+      // sample would have to replace this with original data, just adding this as a template for profile tokens
+      const spkTokens = [
+        {"spk": wallet.spk / 1000, "type": "Spk", "name": "SPK", "icon": spkIcon, "symbol": "SPK"}, 
+        {"larynx":  wallet.balance / 1000, "type": "Spk", "name": "LARYNX", "icon": spkIcon, "symbol": "LARYNX"}, 
+        {"lp": wallet.poweredUp / 1000, "type": "Spk", "name": "LP", "icon": spkIcon, "symbol": "LP"}
+      ]
+
+      this.setState({
+        tokenBalance: wallet.spk / 1000 ,
+        larynxTokenBalance: wallet.balance / 1000,
+        larynxPowerBalance: wallet.poweredUp / 1000
+      })
+      return spkTokens;
+
+    };
 
   render() {
     const { global, dynamicProps, account, points, activeUser } = this.props;
-    const { allTokens, converting, coingeckoData, estimatedPointsValue, search, showTokenList, favoriteTokens, loading } = this.state;
+    const { allTokens, converting, coingeckoData, estimatedPointsValue, search, showTokenList, isChecked, loading } = this.state;
     const { hivePerMVests } = dynamicProps;
 
     const profileTokens: any = account?.profile?.profileTokens
@@ -233,10 +262,10 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   </td>
                   <td className="align-middle">${estimatedPointsValue}</td>
                   <td className="align-middle">
-                    -------------------
+                    ----------
                   </td>
                   <td className="align-middle">
-                    -------------------
+                    ----------
                   </td>
                   <td className="align-middle">{points.points}</td>
                   <td className="align-middle">${Number(estimatedPointsValue * Number(points.points)).toFixed(3)}</td>
@@ -255,7 +284,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                     {coingeckoData[0]?.price_change_percentage_24h}
                   </td>
                   <td className="align-middle">
-                    -------------------
+                    ----------
                   </td>
                   <td className="align-middle">{totalHP}</td>
                   <td className="align-middle">${Number(totalHP * this.pricePerHive).toFixed(3)}</td>
@@ -303,10 +332,11 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
             const changeValue = parseFloat(a?.priceChangePercent);
             return(
               <tr className="table-row" key={a.symbol} onClick={() => this.handleLink(a.symbol)}>
-                  <td className="align-middle">
-                    <span className="new-feature">                      
+                  <td className=" d-flex align-items-center">
+                    <div className="token-image">                      
                       <img src={a.icon} className="item-image"/>
-                    </span>
+                      <img src={a.type === "Engine" ? engineIcon : spkIcon} className="type-image"/>
+                    </div>
                       <span>{a.symbol}</span>
                   </td>
                  {!global?.isMobile && <td className="align-middle">
@@ -373,7 +403,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
               style={{width: "50%"}}
             />
           </div>
-          {allTokens?.slice(0, 10).filter((list: any) => 
+          {allTokens?.slice(0, 30).filter((list: any) => 
                     list?.name.toLowerCase().startsWith(search) || 
                     list?.name.toLowerCase().includes(search)
                     ).map((token: any, i: any) =>(
@@ -381,6 +411,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
             token={token} 
             showTokenList={showTokenList} 
             handleOnChange={this.handleOnChange}
+            isChecked={isChecked}
             />
           ))}
           <div className="confirm-btn align-self-center">
