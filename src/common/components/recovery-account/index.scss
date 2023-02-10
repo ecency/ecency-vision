@@ -1,3 +1,12 @@
+.dialog-content {
+  .error-info {
+    color: $red2 ;
+    font-size: 80%;
+    font-weight: 400
+
+  }
+}
+
 .recovery-dialog-content {
   .recovery-change-form-header {
     border-bottom: 1px solid #e7e7e7;
@@ -9,8 +18,6 @@
     padding: 24px 32px;
     margin: 1px 0 0 0;
   }
-
-
   .confirmation {
     margin-bottom: 30px;
 
@@ -51,3 +58,4 @@
     }
   }
 }
+

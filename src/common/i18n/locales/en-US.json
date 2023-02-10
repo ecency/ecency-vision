@@ -1418,7 +1418,8 @@
     "extensions": "Extensions",
     "confirm-title": "Confirm your transaction",
     "confirm-sub-title": "Please, check if everything is correct",
-    "req-error": "Sorry your request of recover account change is already in progress"
+    "req-error": "Sorry your request of recover account change is already in progress",
+    "to-not-found": "The user that you are tyring to set, does not exist!"
   },
   "add-image": {
     "title": "Add Image",

@@ -265,21 +265,21 @@ export const vote = (
 };
 
 export const changeRecoveryAccount = (
-  username: string,
+  account_to_recover: string,
   new_recovery_account: string,
-  extensions: []
+  extensions: [],
+  key: PrivateKey
 ): Promise<TransactionConfirmation> => {
-  const params = {
-    change_recovery_account: username,
-    new_recovery_account,
-    extensions
-  };
-
-  const opArray: Operation[] = [["change_recovery_account", params]];
-
-  return broadcastPostingOperations(username, opArray).then((r: TransactionConfirmation) => {
-    return r;
-  });
+  const op: Operation = [
+    "change_recovery_account",
+    {
+      account_to_recover,
+      new_recovery_account,
+      extensions
+    }
+  ];
+  console.log(op);
+  return hiveClient.broadcast.sendOperations([op], key);
 };
 
 export const follow = (follower: string, following: string): Promise<TransactionConfirmation> => {

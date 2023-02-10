@@ -14,6 +14,7 @@ import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { getAccount, findAccountRecoveryRequest } from "../../api/hive";
 import { changeRecoveryAccount } from "../../api/operations";
+import PopoverConfirm from "../popover-confirm";
 
 interface Props {
   global: Global;
@@ -25,17 +26,16 @@ export default function AccountRecovery(props: Props) {
   const form = useRef<HTMLFormElement>(null);
   const [keyDialog, setKeyDialog] = useState(false);
   const [inProgress, setInProgress] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [popOver, setPopOver] = useState(false);
   const [step, setStep] = useState(1);
+  const [toError, setToError] = useState("");
   const [currRecoveryAccount, setCurrRecoveryAccount] = useState("");
   const [newRecoveryAccount, setNewCurrRecoveryAccount] = useState("");
 
   useEffect(() => {
     getCurrentAccount();
   }, []);
-
-  useEffect(() => {
-    console.log(step);
-  }, [step]);
 
   const getCurrentAccount = async () => {
     const account = await getAccount(props.activeUser!.username);
@@ -48,26 +48,37 @@ export default function AccountRecovery(props: Props) {
     setStep(1);
   };
 
-  const currRecoveryAccountChange = (
+  const currRecoveryAccountChange = async (
     e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
   ) => {
     setNewCurrRecoveryAccount(e.target.value);
+    if (e.target.value.length === 0) {
+      setDisabled(true);
+      setToError("");
+      return;
+    } else {
+      const resp = await getAccount(e.target.value);
+      if (resp) {
+        setDisabled(false);
+        setToError("");
+      } else {
+        setDisabled(true);
+        setToError(_t("account-recovery.to-not-found"));
+      }
+    }
   };
 
   const update = async () => {
-    console.log("Update run");
+    console.log("update run");
     const resp = await findAccountRecoveryRequest(props.activeUser!.username);
     if (resp.requests.length) {
-      error(_t("account-recovery.req-error"));
+      setPopOver(true);
     } else {
       toggleKeyDialog();
-      // changeRecoveryAccount(activeUser.username, newRecoveryAccount, []).then((resp) => {
-      //   console.log(resp);
-      // });
     }
   };
   const onKey = (key: PrivateKey): void => {
-    console.log("On key press");
+    const resp = changeRecoveryAccount(props.activeUser!.username, newRecoveryAccount, [], key);
   };
 
   const onHot = () => {
@@ -113,8 +124,10 @@ export default function AccountRecovery(props: Props) {
             type="text"
             autoFocus={true}
             autoComplete="off"
+            className={toError ? "is-invalid" : ""}
           />
         </Form.Group>
+        {toError && <small className="error-info">{toError}</small>}
         <Form.Group controlId="re-new-pass">
           <Form.Label>{_t("account-recovery.extensions")}</Form.Label>
           <Form.Control
@@ -126,9 +139,26 @@ export default function AccountRecovery(props: Props) {
             // onInput={handleOnInput}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          {_t("g.update")}
-        </Button>
+        {popOver ? (
+          <div className="main">
+            <PopoverConfirm
+              placement="left"
+              trigger="click"
+              onConfirm={() => toggleKeyDialog()}
+              titleText="Your request is in progress. Doing this agian will update your request"
+            >
+              <div onClick={(e) => e.stopPropagation()}>
+                <Button disabled={disabled} variant="primary" type="submit">
+                  {_t("g.update")}
+                </Button>
+              </div>
+            </PopoverConfirm>
+          </div>
+        ) : (
+          <Button disabled={disabled} variant="primary" type="submit">
+            {_t("g.update")}
+          </Button>
+        )}
       </Form>
 
       {keyDialog && step === 2 && (
