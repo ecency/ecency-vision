@@ -89,19 +89,21 @@ export const SignUp = (props: PageProps) => {
     if (!username && !usernameTouched) {
       return;
     }
-    username.split(".").some((item) => {
-      if (item.length < 3) {
-        setUsernameError(_t("sign-up.username-min-length-error"));
-      } else if (item.length > 16) {
-        setUsernameError(_t("sign-up.username-max-length-error"));
-      } else if (!/^[\x00-\x7F]*$/.test(item[0])) {
-        setUsernameError(_t("sign-up.username-no-ascii-first-letter-error"));
-      } else if (!/^([a-zA-Z0-9]|-|\.)+$/.test(item)) {
-        setUsernameError(_t("sign-up.username-contains-symbols-error"));
-      } else if (item.includes("--")) {
-        setUsernameError(_t("sign-up.username-contains-double-hyphens"));
-      }
-    });
+    if (username.length > 16) {
+      setUsernameError(_t("sign-up.username-max-length-error"));
+    } else {
+      username.split(".").some((item) => {
+        if (item.length < 3) {
+          setUsernameError(_t("sign-up.username-min-length-error"));
+        } else if (!/^[\x00-\x7F]*$/.test(item[0])) {
+          setUsernameError(_t("sign-up.username-no-ascii-first-letter-error"));
+        } else if (!/^([a-zA-Z0-9]|-|\.)+$/.test(item)) {
+          setUsernameError(_t("sign-up.username-contains-symbols-error"));
+        } else if (item.includes("--")) {
+          setUsernameError(_t("sign-up.username-contains-double-hyphens"));
+        }
+      });
+    }
   }, [username, usernameTouched]);
 
   const regularRegister = async () => {
