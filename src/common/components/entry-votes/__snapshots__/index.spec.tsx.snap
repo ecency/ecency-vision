@@ -9,19 +9,22 @@ exports[`(1) Default render 1`] = `
     onClick={[Function]}
     title="10 Votes"
   >
-    <svg
-      fill="currentColor"
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      className="heart-icon"
     >
-      <path
-        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-        fillRule="evenodd"
-      />
-    </svg>
-     
+      <svg
+        fill="currentColor"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </div>
     10
   </span>
 </div>
@@ -36,19 +39,22 @@ exports[`(2) No votes 1`] = `
     onClick={[Function]}
     title=" Votes"
   >
-    <svg
-      fill="currentColor"
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      className="heart-icon"
     >
-      <path
-        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-        fillRule="evenodd"
-      />
-    </svg>
-     
+      <svg
+        fill="currentColor"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </div>
   </span>
 </div>
 `;
