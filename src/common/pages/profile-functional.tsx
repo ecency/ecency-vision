@@ -527,7 +527,7 @@ export const Profile = (props: Props) => {
                           </div>
                           <div className="col-lg-4 col-md-6 col-sm-12">
                             <h6 className="border-bottom pb-3">{_t("account-recovery.title")}</h6>
-                            <AccountRecovery activeUser={props.activeUser} />
+                            <AccountRecovery {...props} />
                           </div>
                         </div>
                       </div>

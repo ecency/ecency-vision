@@ -656,6 +656,7 @@ export class Transfer extends BaseComponent<Props, State> {
       delegationList
     } = this.state;
     const { hivePerMVests } = dynamicProps;
+    console.log("Transer called");
 
     const recent = [
       ...new Set(
