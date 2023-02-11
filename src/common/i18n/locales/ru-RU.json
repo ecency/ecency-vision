@@ -2,6 +2,9 @@
   "g": {
     "add": "Добавить",
     "edit": "Изменить",
+    "clone": "Клонировать",
+    "copy": "Копия",
+    "clone-success": "Создан новый черновик",
     "continue": "Продолжить",
     "submit": "Написать пост",
     "search": "Поиск",
@@ -63,7 +66,8 @@
     "more-results": "Больше результатов",
     "close": "Закрыть",
     "loading": "Загрузка",
-    "stop": "Остановить"
+    "stop": "Остановить",
+    "settings": "Настройки"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -71,9 +75,9 @@
     "cancel": "Отменить"
   },
   "announcements": {
-    "dismiss": "Dismiss",
-    "next": "Next",
-    "later": "Later"
+    "dismiss": "Скрыть",
+    "next": "Далее",
+    "later": "Позже"
   },
   "entry-filter": {
     "filter-trending": "В тренде",
@@ -161,7 +165,7 @@
     "login-info-1": "Мы не храним ваши приватные ключи.",
     "login-info-2": "Подробнее",
     "error-fields-required": "Пожалуйста, введите имя пользователя и приватный ключ",
-    "captcha-check-required": "Please verify if you are a human",
+    "captcha-check-required": "Пожалуйста, подтвердите, что вы человек",
     "error-public-key": "Вы ввели публичный ключ, а нужен приватный или пароль",
     "error-user-fetch": "Данные пользователя не могут быть получены",
     "error-user-not-found": "Пользователь не существует",
@@ -187,15 +191,24 @@
     "success": "Мы отправили письмо на адрес {{email}}.",
     "success-2": "Следуйте инструкциям для завершения процесса регистрации.",
     "login-text-1": "Есть ли у вас учетная запись?",
-    "login-text-2": "Войти"
+    "login-text-2": "Войти",
+    "free-account": "Бесплатный аккаунт",
+    "free-account-desc": "Получите полноценную учетную запись Hive, этот метод имеет базовые проверки, чтобы убедиться, что ботнет не злоупотребляет нашим сборщиком регистрации.",
+    "register-free": "Зарегистрироваться бесплатно",
+    "buy-account": "Купить аккаунт",
+    "buy-account-desc": "Получите полноценную учетную запись Hive без дополнительных проверок и нескольких привилегий, таких как:",
+    "buy-account-li-1": "Мгновенное создание без дополнительных проверок и ожидания",
+    "buy-account-li-2": "3x RC по сравнению с обычными новыми аккаунтами",
+    "buy-account-li-3": "300 очков, чтобы помочь вам начать",
+    "qr-desc": "Сканируйте мобильное приложение Ecency, чтобы продолжить"
   },
   "trending-tags": {
     "title": "Темы"
   },
   "sort-trending-tags": {
-    "sort": "Sort",
-    "ascending": "Ascending",
-    "descending": "Descending"
+    "sort": "Сортировка",
+    "ascending": "По возрастанию",
+    "descending": "По убыванию"
   },
   "selected-tags": {
     "title": "Рекомендуем"
@@ -366,11 +379,11 @@
     "orders": "Заявки",
     "date": "Дата",
     "open-orders": "Открытые ордера",
-    "pending-orders": "Pending orders",
+    "pending-orders": "Ожидающие заказы",
     "type": "Тип",
     "mode-limit": "Лимит",
-    "mode-swap": "Swap",
-    "mode-advanced": "Advanced",
+    "mode-swap": "Обменять",
+    "mode-advanced": "Дополнительно",
     "action": "Действие",
     "trade-history": "История сделок",
     "stock-params": "Параметры",
@@ -386,27 +399,49 @@
     "decimal-error": "Разрешены только {{decimals}} знаков после запятой!",
     "from": "От",
     "to": "Кому",
-    "sign": "Sign",
-    "swapping": "Swapping...",
+    "sign": "Войти",
+    "swapping": "Обмен...",
     "continue": "Продолжить",
     "balance": "Баланс",
     "fee": "Комиссия",
     "fee-free": "Бесплатно",
     "order-book-impact": "Order book impact",
-    "swap-title": "Swap your funds",
-    "sign-title": "Sign your transaction",
-    "fetching-market": "Fetching market...",
+    "swap-title": "Поменять свои средства",
+    "sign-title": "Подпишите свою транзакцию",
+    "fetching-market": "Извлечение рынка...",
     "back": "Назад",
-    "swap-by": "Sign by {{method}}",
-    "success-title": "Transaction completed",
-    "more-than-balance": "You've entered more than available balance",
-    "invalid-amount": "Invalid from amount. Please, enter less value",
-    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
-    "auth-required-title": "Authorization required",
-    "auth-required-desc": "You have to be authorized to swap own funds",
+    "swap-by": "Подписать {{method}}",
+    "success-title": "Транзакция завершена",
+    "more-than-balance": "Вы ввели число больше, чем доступный остаток",
+    "invalid-amount": "Недопустимая сумма. Пожалуйста, введите меньшее значение",
+    "too-much-slippage": "Мы настоятельно рекомендуем вам уменьшить сумму для лучшей цены!",
+    "auth-required-title": "Требуется авторизация",
+    "auth-required-desc": "Вы должны быть авторизованы для обмена собственных средств",
     "start-new-one": "Начать новый обмен",
-    "success-swap": "Successfully swapped!",
-    "signing": "Signing.."
+    "signing": "Войти..",
+    "success-swap": "Успешно изменено!",
+    "advanced": {
+      "history": "История",
+      "stake": "Список ордеров",
+      "pairs": "Пары",
+      "form": "Форма ордера",
+      "open-orders": "Открыть",
+      "completed-orders": "Завершено",
+      "status": "Статус",
+      "all-orders": "Все",
+      "active": "Активные",
+      "view-details": "Подробнее",
+      "chart": "Диаграмма",
+      "trading-form-auth-required": "Вы должны быть авторизованы для сделки",
+      "open-orders-auth-required": "Вы должны быть авторизованы, чтобы увидеть открытые ордера",
+      "empty-open-orders": "Нет ордеров",
+      "history-widget": {
+        "price": "Цена",
+        "amount": "Сумма",
+        "volume": "Объем",
+        "time": "Время"
+      }
+    }
   },
   "list-style": {
     "title": "Переключить стиль списка"
@@ -442,7 +477,8 @@
     "community-in": "в",
     "post-word-count": "Слова:",
     "post-read-time": "Чтение:",
-    "post-read-minuites": "мин"
+    "post-read-minuites": "мин",
+    "raw": "Просмотр формата RAW"
   },
   "edit-history": {
     "title": "История изменений",
@@ -621,6 +657,42 @@
     "link-copied": "Ссылка скопирована в буфер обмена",
     "no-posts-found": "Ничего не найдено!"
   },
+  "rc-info": {
+    "available": "Доступно",
+    "used": "Использовано",
+    "resource-credits": "Resource Credits",
+    "resource-credit": "RC",
+    "delegated": "Делегировано другим",
+    "received-delegations": "Делегировано вам",
+    "delegation-button": "Делегировать RC",
+    "rc-available": "Доступно",
+    "rc-used": "Использовано",
+    "outgoing": "Исходящие",
+    "incoming": "Входящие",
+    "delete": "удалить",
+    "update": "обновить",
+    "confirm-delete": "Вы уверены?",
+    "confirm": "Подтвердить",
+    "cancel": "Отмена",
+    "check-faq": "Learn more about RC in our",
+    "learn-more": "/faq#что-are-rc",
+    "faq-link": "FAQ",
+    "insufficient-rc-error": "Insufficient resource credits",
+    "minimum-rc-error": "Mininum RC is 5,000,000,000",
+    "extra-details-heading": "Что возможно с текущей версией RC?",
+    "transfers": "Переводы:",
+    "comments-posts": "Посты / Комментарии:",
+    "votes": "Голоса:",
+    "reblogs-follows": "Репосты / Подписки:",
+    "no-outgoing": "Нет исходящей делегации",
+    "no-incoming": "Нет входящей делегации",
+    "delegate-title": "Делегировать",
+    "delegate-sub-title": "Delegate Resource Credit",
+    "extra-details-transfer": "Переводы",
+    "extra-details-post": "Посты/Комментарии",
+    "extra-details-upvote": "Голоса",
+    "boost": "Продвинуть"
+  },
   "profile-edit": {
     "title": "Профиль",
     "name": "Отображаемое имя",
@@ -776,18 +848,18 @@
     "staked": "Заморожено"
   },
   "sort-engine-tokens": {
-    "sort": "Sort",
-    "sort-in-ascending": "Ascending",
-    "sort-in-descending": "Descending",
-    "sort-by-value": "Value",
-    "sort-by-balance": "Balance",
-    "sort-by-stake": "Stake",
-    "sort-by-delegations-in": "Delegations in",
-    "sort-by-delegations-out": "Delegations out"
+    "sort": "Сортировка",
+    "sort-in-ascending": "По возрастанию",
+    "sort-in-descending": "По убыванию",
+    "sort-by-value": "Сумма",
+    "sort-by-balance": "Баланс",
+    "sort-by-stake": "Заморозить",
+    "sort-by-delegations-in": "Делегировано вам",
+    "sort-by-delegations-out": "Делегировано другим"
   },
   "wallet-engine-estimated": {
-    "title": "Estimated Tokens Value",
-    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+    "title": "Оценка стоимости токенов",
+    "description": "Примернная стоисть в долларах США для всех токенов находящихся в вашем кошельке."
   },
   "withdraw-routes": {
     "title": "Аккаунты для вывода",
@@ -850,7 +922,7 @@
     "purchase-message": "Или отправьте любую сумму на @esteem.app, указав в примечании `points`, чтобы приобрести Поинты."
   },
   "purchase-qr": {
-    "scan-code": "Сканируйте QR-код с помощью мобильного приложения Ecency",
+    "scan-code": "Scan with Ecency mobile app to continue",
     "select-user": "Пожалуйста, выберите пользователя",
     "title": "Прокачка аккаунта",
     "title-points": "Купить баллы",
@@ -1061,16 +1133,16 @@
     "deleted": "Удалено из избранного"
   },
   "editor-toolbar": {
-    "bold": "Bold (Alt + B)",
-    "italic": "Italic (Alt + I)",
+    "bold": "Полужирный (Alt + B)",
+    "italic": "Курсив (Alt + I)",
     "header": "Заголовок",
-    "code": "Code (Alt + C)",
-    "quote": "Quote (Alt + M)",
+    "code": "Код (Alt + C)",
+    "quote": "Цитата (Alt + M)",
     "ul": "Маркированный список",
     "ol": "Нумерованный список",
-    "link": "Link (Alt + K)",
-    "image": "Image (Alt + D)",
-    "table": "Table (Alt + T)",
+    "link": "Ссылка (Alt + K)",
+    "image": "Изображение (Alt + D)",
+    "table": "Таблица (Alt + T)",
     "table-3-col": "3 колонки",
     "table-2-col": "2 колонки",
     "table-1-col": "1 колонка",
@@ -1088,8 +1160,8 @@
     "recently-used": "Недавно использованные"
   },
   "gif-picker": {
-    "filter-placeholder": "Filter",
-    "credits": "Powered by GIPHY"
+    "filter-placeholder": "Фильтр",
+    "credits": "При поддержке GIPHY"
   },
   "submit": {
     "page-title": "Создать пост",
@@ -1105,6 +1177,7 @@
     "publish": "Опубликовать",
     "update": "Обновить",
     "save-draft": "Сохранить черновик",
+    "load-draft": "Загрузить черновик",
     "draft-saved": "Черновик сохранён",
     "update-draft": "Обновить черновик",
     "draft-updated": "Черновик обновлён",
@@ -1172,7 +1245,7 @@
     "mention-post": "{{source}} упомянул вас в посте",
     "mention-comment": "{{source}} упомянул вас в комментарии",
     "favorite": "{{source}} опубликовал новый пост",
-    "bookmark": "{{source}} replied to bookmarked content",
+    "bookmark": "{{source}} ответил на содержимое закладок",
     "followed": "{{source}} подписался на вас",
     "replied": "{{source}} ответил вам",
     "reblogged": "{{source}} сделал репост вашего поста",
@@ -1190,13 +1263,13 @@
     "type-transfers": "Переводы",
     "type-delegations": "Делегации",
     "type-nfavorites": "Избранное",
-    "type-nbookmarks": "Bookmarks",
+    "type-nbookmarks": "Закладки",
     "group-title-recent": "Недавние",
     "vote-str": "{{p}}% проголосовали за ваш пост:",
     "reply-str": "ответил на ваш пост:",
     "mention-str": "упомянул вас в:",
     "favorite-str": "новый пост",
-    "bookmark-str": "replied to bookmarked content",
+    "bookmark-str": "ответил на содержимое закладок",
     "followed-str": "подписался на",
     "unfollowed-str": "отписался",
     "ignored-str": "заблокировал",
@@ -1282,6 +1355,13 @@
     "page-description": "Выбор производителей блоков консенсуса",
     "page-description-long": "Роль свидетелей или производителей блоков в блокчейне Hive заключается в том, чтобы действовать как орган управления сетью. Сообщество выбирает достойные кандидатуры и голосует за них, каждый пользователь может проголосовать за 30 свидетелей. Топ 20 свидетелей создают блоки каждую минуту, в то время как остальные остаются в качестве резервных и получают случайный шанс подписать блок. Роль свидетеля является неотъемлемой частью блокчейна и механизма консенсуса, что побуждает пользователей голосовать за выбранных кандидатов.",
     "remaining": "<span>Осталось голосов: {{n}}</span> из {{max}}",
+    "search-placeholder": "Поиск",
+    "sort": "Сортировка",
+    "sort-rank": "Ранг",
+    "sort-name": "Имя",
+    "sort-fee": "Комиссия",
+    "searching": "Поиск",
+    "no-results": "Ничего не найдено",
     "list-rank": "Рейтинг",
     "list-witness": "Свидетель",
     "list-miss": "Пропущено",
@@ -1332,7 +1412,13 @@
     "see-all": "посмотреть все предложения",
     "daily-funded": "ежедневное финансирование",
     "daily-budget": "ежедневный бюджет",
-    "total-budget": "общий бюджет"
+    "total-budget": "общий бюджет",
+    "search-placeholder": "Поиск",
+    "sort": "Сортировка",
+    "sort-reputation": "Репутация",
+    "sort-hp": "Hive Сила",
+    "no-results": "Ничего не найдено",
+    "searching": "Поиск"
   },
   "gallery": {
     "title": "Галерея",
@@ -1424,6 +1510,11 @@
       "contact-email": "Напишите нам"
     },
     "faq": {
+      "about-ecency": "О Ecency",
+      "working": "Работать в Ecency",
+      "about-blockchain": "О блокчейне",
+      "features": "Характеристики Ecency",
+      "toggle-icon-info": "Нажмите на меня, чтобы переключить",
       "page-title": "Чем мы можем вам помочь?",
       "search-link-copied": "Ссылка скопирована в буфер обмена",
       "page-sub-title": "Содержание",
@@ -1509,9 +1600,9 @@
       "what-delegated-hp-header": "Что такое делегирование Hive Power?",
       "what-delegated-hp-body": "<p>Hive Power может быть делегирована другим пользователем. Когда пользователю делегирована Hive Power, его ресурсные кредиты, голоса за контент и вознаграждения за курирование рассчитываются так, как если бы это была его собственная Hive Power. Однако пользователи не могут включить понижение или вывести делегированную ему силу, поскольку Hive Power по-прежнему принадлежит первоначальному владельцу.</p>",
       "what-powering-up-header": "Что значит повысить силу?",
-      "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
+      "what-powering-up-body": "<p>Вы можете преобразовать заработанные токены Hive в Hive Power в любое время. Это означает, что ваши HIVE хранятся в кошельке и конвертируется в HIVE Power, что увеличивает вашу силу голоса и ресурсные кредиты в блокчейне. Наличие HP увеличивает количество наград за кураторство. Наличие большего количества HP, даёт владельцу возможность увеличить влияния на развитие проекта путём выбора свидетелей HIVE.</p>",
       "what-powering-down-header": "Как понизить силу?",
-      "what-powering-down-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
+      "what-powering-down-body": "<p>Hive Power можно отключить в тех же кошельках, где его можно включить. Когда вы включите понижение силы, HIVE Power не будет сразу доступен как HIVE. Он конвертируется в 13 равных частей и еженедельно переводится в ваш кошелёк HIVE, причем первая часть становится доступной только через неделю после начала понижения.</p>",
       "why-different-keys-header": "Почему ключи разные?",
       "why-different-keys-body": "<p>Существуют разные ключи с соответствующими разрешениями для того, что вы делаете.<ul><li> Ключи публикации — этот ключ следует использовать для действий в социальных сетях, таких как публикация, комментирование и голосование. Этот ключ имеет ограниченный набор разрешений и не может использоваться для денежных действий. Таким образом, вы не можете потерять деньги, если кто-то другой получит доступ к этому ключу.</li><li> Активный ключ — этот ключ имеет дополнительные разрешения для более конфиденциальных денежных действий, таких как передача и обмен токенов. При выполнении действия, связанного с кошельком, вам может быть предложено пройти аутентификацию с помощью вашего активного ключа. Вы должны вводить свой активный ключ только в приложения, которым вы доверяете, потому что любой, у кого есть доступ к этому ключу, может получить ваши токены. Сделайте себе одолжение и сохраните этот ключ в безопасном месте, чтобы не потерять токены в будущем.</li><li> Ключ владельца - это самый мощный ключ, потому что он может изменить любой ключ учетной записи, включая ключ владельца. В идеале он должен храниться в автономном режиме и использоваться только для восстановления скомпрометированной учетной записи.</li></ul></p>",
       "stolen-hive-hbd-header": "Что я могу сделать, если мои токены Hive dollar или Hive украдены или отправлены на неправильный счет?",

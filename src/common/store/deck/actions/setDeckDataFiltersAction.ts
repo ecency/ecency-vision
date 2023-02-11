@@ -1,7 +1,7 @@
 import { DeckState, SetDataFiltersAction } from "../types";
 import { Dispatch } from "redux";
 import { setDataFiltersAct } from "../acts";
-import { set } from "../../../util/local-storage";
+import * as ls from "../../../util/local-storage";
 import { serializeDecks } from "../helpers";
 
 export const setDeckDataFilters =
@@ -13,5 +13,5 @@ export const setDeckDataFilters =
     if (!data.username) {
       data.username = "anonymous";
     }
-    set(`user-${data.username}-decks`, serializeDecks(items));
+    ls.set(`user-${data.username}-decks`, serializeDecks(items));
   };

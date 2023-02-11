@@ -219,19 +219,22 @@ exports[`(1) Full render with active user 1`] = `
                 onClick={[Function]}
                 title=" Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
               </span>
             </div>
             <a
@@ -397,19 +400,22 @@ exports[`(1) Full render with active user 1`] = `
                 onClick={[Function]}
                 title=" Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
               </span>
             </div>
             <a
@@ -577,19 +583,22 @@ exports[`(1) Full render with active user 1`] = `
                     onClick={[Function]}
                     title=" Votes"
                   >
-                    <svg
-                      fill="currentColor"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      className="heart-icon"
                     >
-                      <path
-                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                        fillRule="evenodd"
-                      />
-                    </svg>
-                     
+                      <svg
+                        fill="currentColor"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                          fillRule="evenodd"
+                        />
+                      </svg>
+                    </div>
                   </span>
                 </div>
                 <a
@@ -757,19 +766,22 @@ exports[`(1) Full render with active user 1`] = `
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -937,19 +949,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title=" Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
               </span>
             </div>
             <a
@@ -1115,19 +1130,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -1294,19 +1312,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -1473,19 +1494,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="2 Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 2
               </span>
             </div>
@@ -1652,19 +1676,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="2 Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 2
               </span>
             </div>
@@ -1937,19 +1964,22 @@ exports[`(3) With selected item 1`] = `
                 onClick={[Function]}
                 title=" Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
               </span>
             </div>
             <a
@@ -2115,19 +2145,22 @@ exports[`(3) With selected item 1`] = `
                 onClick={[Function]}
                 title=" Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
               </span>
             </div>
             <a
@@ -2295,19 +2328,22 @@ exports[`(3) With selected item 1`] = `
                     onClick={[Function]}
                     title=" Votes"
                   >
-                    <svg
-                      fill="currentColor"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      className="heart-icon"
                     >
-                      <path
-                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                        fillRule="evenodd"
-                      />
-                    </svg>
-                     
+                      <svg
+                        fill="currentColor"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                          fillRule="evenodd"
+                        />
+                      </svg>
+                    </div>
                   </span>
                 </div>
                 <a
@@ -2475,19 +2511,22 @@ exports[`(3) With selected item 1`] = `
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -2655,19 +2694,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title=" Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
               </span>
             </div>
             <a
@@ -2833,19 +2875,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -3012,19 +3057,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -3191,19 +3239,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="2 Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 2
               </span>
             </div>
@@ -3370,19 +3421,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="2 Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 2
               </span>
             </div>
@@ -3632,19 +3686,22 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 onClick={[Function]}
                 title=" Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
               </span>
             </div>
             <a
@@ -3817,19 +3874,22 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 onClick={[Function]}
                 title=" Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
               </span>
             </div>
             <a

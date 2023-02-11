@@ -51,8 +51,11 @@ const defProps = {
   global: globalInstance,
   dynamicProps: dynamicPropsIntance1,
   proposal: proposalInstance,
+  searchText: " ",
   addAccount: () => {},
-  onHide: () => {}
+  getVotesCount: () => {},
+  onHide: () => {},
+  checkIsMoreData: () => {}
 };
 
 it("(1) Default render.", async () => {

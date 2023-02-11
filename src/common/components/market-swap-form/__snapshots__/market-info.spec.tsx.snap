@@ -6,7 +6,7 @@ exports[`should render market rate 1`] = `
     className="market-info font-weight-bold d-block mb-4 "
   >
     1 
-    HBD($)
+    HBD
      = 
     2.000
      
