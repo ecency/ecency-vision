@@ -20,6 +20,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from "react-redux";
 import qrcode from "qrcode";
 import { stat } from "fs";
+import { getAccount } from "../api/hive";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -44,6 +45,7 @@ export const SignUp = (props: PageProps) => {
   const [isVerified, setIsVerified] = useState(props.global.isElectron);
   const [stage, setStage] = useState<Stage>(Stage.FORM);
   const [url, setUrl] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
@@ -85,22 +87,28 @@ export const SignUp = (props: PageProps) => {
 
   useEffect(() => {
     setUsernameError("");
+    setIsDisabled(false);
 
     if (!username && !usernameTouched) {
       return;
     }
     if (username.length > 16) {
       setUsernameError(_t("sign-up.username-max-length-error"));
+      setIsDisabled(true);
     } else {
       username.split(".").some((item) => {
         if (item.length < 3) {
           setUsernameError(_t("sign-up.username-min-length-error"));
+          setIsDisabled(true);
         } else if (!/^[\x00-\x7F]*$/.test(item[0])) {
           setUsernameError(_t("sign-up.username-no-ascii-first-letter-error"));
+          setIsDisabled(true);
         } else if (!/^([a-zA-Z0-9]|-|\.)+$/.test(item)) {
           setUsernameError(_t("sign-up.username-contains-symbols-error"));
+          setIsDisabled(true);
         } else if (item.includes("--")) {
           setUsernameError(_t("sign-up.username-contains-double-hyphens"));
+          setIsDisabled(true);
         }
       });
     }
@@ -189,7 +197,7 @@ export const SignUp = (props: PageProps) => {
 
                 <Form
                   ref={form}
-                  onSubmit={(e: React.FormEvent) => {
+                  onSubmit={async (e: React.FormEvent) => {
                     e.preventDefault();
                     e.stopPropagation();
 
@@ -198,6 +206,12 @@ export const SignUp = (props: PageProps) => {
                     }
 
                     if (usernameError) {
+                      return;
+                    }
+
+                    const existingAccount = await getAccount(username);
+                    if (existingAccount) {
+                      setUsernameError(_t("sign-up.username-exists"));
                       return;
                     }
 
@@ -257,7 +271,7 @@ export const SignUp = (props: PageProps) => {
                           variant="primary"
                           block={true}
                           type="submit"
-                          disabled={inProgress || !isVerified || !!usernameError}
+                          disabled={inProgress || !isVerified || isDisabled}
                         >
                           {inProgress && (
                             <Spinner
