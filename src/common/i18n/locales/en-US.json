@@ -1420,6 +1420,23 @@
     "no-results": "No results found",
     "searching": "Searching"
   },
+  "create-proposal": {
+    "title": "Create Proposal",
+    "hbd-balance-error": "You must have at least 10HBD to submit a proposal",
+    "creator-username": "Creator",
+    "description": "Proposal Description",
+    "subject": "Write a brief subject",
+    "link": "Post Link",
+    "link-placeholder": "Enter post link",
+    "daily-funding": "Daily Funding (HBD)",
+    "daily-funding-placeholder": "Daily amount",
+    "total": "Total",
+    "start-date": "Select Start Date",
+    "end-date": "Select End Date",
+    "receiver": "Receiver",
+    "submit": "Submit Proposal",
+    "receiver-placeholder": "eg @demo"
+  },
   "gallery": {
     "title": "Gallery",
     "copied": "Copied to clipboard"

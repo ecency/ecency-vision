@@ -23,6 +23,7 @@ import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
 import { connect } from "react-redux";
 import loadable from "@loadable/component";
 import Announcement from "./components/announcement";
+import  { ProposalCreationContainer }  from "./components/create-proposal";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -38,7 +39,7 @@ const WitnessesContainer = loadable(() => import("./pages/witnesses"));
 const WitnessesPage = (props: any) => <WitnessesContainer {...props} />;
 
 const AuthContainer = loadable(() => import("./pages/auth"));
-const AuthPage = (props: any) => <AuthContainer {...props} />;
+const AuthPage = (props: any) => <AuthContainer {...props} />; 
 
 const SubmitContainer = loadable(() => import("./pages/submit"));
 const SubmitPage = (props: any) => <SubmitContainer {...props} />;
@@ -131,6 +132,12 @@ const App = (props: any) => {
           strict={true}
           path={routes.PROPOSAL_DETAIL}
           component={ProposalDetailContainer}
+        />
+        <Route
+          exact={true} 
+          strict={true}
+          path={routes.PROPOSAL_CREATE}
+          component={ProposalCreationContainer}
         />
         <Route exact={true} strict={true} path={routes.ABOUT} component={AboutPage} />
         <Route exact={true} strict={true} path={routes.GUESTS} component={GuestPostPage} />

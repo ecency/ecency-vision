@@ -37,5 +37,6 @@ export default {
   WITNESSES: `/witnesses`,
   PROPOSALS: `/proposals`,
   PROPOSAL_DETAIL: `/proposals/:id(\\d+)`,
+  PROPOSAL_CREATE: `/:section(proposals)/:create`,
   PURCHASE: "/purchase"
 };
