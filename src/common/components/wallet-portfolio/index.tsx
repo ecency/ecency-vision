@@ -412,6 +412,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
             showTokenList={showTokenList} 
             handleOnChange={this.handleOnChange}
             isChecked={isChecked}
+            key={i}
             />
           ))}
           <div className="confirm-btn align-self-center">
