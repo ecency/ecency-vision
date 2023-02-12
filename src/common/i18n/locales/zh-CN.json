@@ -201,12 +201,12 @@
     "buy-account-li-2": "3x RC compared to normal new accounts",
     "buy-account-li-3": "300 Points to help you get started",
     "qr-desc": "Scan with Ecency mobile app to continue",
-    "username-min-length-error": "Length should be at least 3 symbol",
-    "username-max-length-error": "Length should be no more than 16 symbols",
-    "username-no-ascii-first-letter-error": "First letter should be in ASCII",
-    "username-contains-symbols-error": "Should contains letters, numbers, hyphen only",
-    "username-contains-double-hyphens": "Should not contain double hyphens",
-    "username-exists": "This usernames already exists. Please, try another one"
+    "username-min-length-error": "Length of username should be at least 3 characters",
+    "username-max-length-error": "Length of username should be no more than 16 characters",
+    "username-no-ascii-first-letter-error": "First character should be a Letter",
+    "username-contains-symbols-error": "Should contain Letters, Numbers, Hyphen only",
+    "username-contains-double-hyphens": "Should not contain double Hyphens",
+    "username-exists": "This username already registered. Please, try another one"
   },
   "trending-tags": {
     "title": "主题"
