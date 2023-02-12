@@ -200,7 +200,13 @@
     "buy-account-li-1": "Creación instantánea sin chequeos extra y esperas",
     "buy-account-li-2": "3x RC comparado con cuentas nuevas normales",
     "buy-account-li-3": "300 puntos para ayudarte a comenzar",
-    "qr-desc": "Escanear con aplicación móvil de Ecency para continuar"
+    "qr-desc": "Escanear con aplicación móvil de Ecency para continuar",
+    "username-min-length-error": "Length should be at least 3 symbol",
+    "username-max-length-error": "Length should be no more than 16 symbols",
+    "username-no-ascii-first-letter-error": "First letter should be in ASCII",
+    "username-contains-symbols-error": "Should contains letters, numbers, hyphen only",
+    "username-contains-double-hyphens": "Should not contain double hyphens",
+    "username-exists": "This usernames already exists. Please, try another one"
   },
   "trending-tags": {
     "title": "Temas"
