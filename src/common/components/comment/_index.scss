@@ -34,7 +34,8 @@
     }
 
     .rta {
-      height: auto !important;
+      min-height: 80px;
+      // height: auto !important;
     }
 
     .form-control {
