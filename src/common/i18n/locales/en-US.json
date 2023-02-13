@@ -158,7 +158,9 @@
     "change": "% Change",
     "trend": "Trend",
     "balance": "Balance",
-    "value": "Value"
+    "value": "Value",
+    "show-trend": "Show trend",
+    "total-value": "Total Wallet Value:"
   },
   "intro": {
     "title": "Aspire to greatness",

@@ -69,6 +69,7 @@ interface State {
   tokenBalance: number;
   larynxTokenBalance: number;
   larynxPowerBalance: number;
+  showChart: boolean;
 }
 
 export class WalletPortfolio extends BaseComponent<Props, State> {
@@ -89,6 +90,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     tokenBalance: 0,
     larynxTokenBalance: 0,
     larynxPowerBalance: 0,
+    showChart: false,
   };
   _isMounted = false;
   pricePerHive = this.props.dynamicProps.base / this.props.dynamicProps.quote;
@@ -138,7 +140,6 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
         usd_value
       };
     });
-    console.log(tokensUsdValues)
     this.setState({ allTokens: [...tokensUsdValues,  ...spkTokens] });
     return tokensUsdValues;
   };
@@ -192,7 +193,6 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       const { account } = this.props;
       const { selectedTokens } = this.state;
       const spkTokens = await this.getSpkTokens();
-      console.log(spkTokens)
       const userProfile = JSON.parse(account.posting_json_metadata);
       const { profile } = userProfile;
       let { profileTokens } = profile;
@@ -207,7 +207,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       const wallet = await getSpkWallet(this.props.account.name);
       const marketData = await getMarketInfo();
       const larynxData = await getLarynxData()
-      // sample would have to replace this with original data, just adding this as a template for profile tokens
+      // sample would have to replace this with original/non-hardcoded data, just adding this as a template
       const spkTokens = [
         {"spk": wallet.spk / 1000, "type": "Spk", "name": "SPK", "icon": spkIcon, "symbol": "SPK"}, 
         {"larynx":  wallet.balance / 1000, "type": "Spk", "name": "LARYNX", "icon": spkIcon, "symbol": "LARYNX"}, 
@@ -223,9 +223,13 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
 
     };
 
+    toggleChart = (e: any)=> {
+      this.setState({showChart: e.target.checked})
+    }
+
   render() {
     const { global, dynamicProps, account, points, activeUser } = this.props;
-    const { allTokens, converting, coingeckoData, estimatedPointsValue, search, showTokenList, isChecked, loading } = this.state;
+    const { allTokens, converting, coingeckoData, estimatedPointsValue, search, showTokenList, isChecked, showChart } = this.state;
     const { hivePerMVests } = dynamicProps;
 
     const profileTokens: any = account?.profile?.profileTokens
@@ -235,8 +239,17 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
    
     return (
       <div className="wallet-hive-engine">
-          <div className="d-flex justify-content-center">
-            <span>Total wallet Value: $1.19</span>
+          <div className="table-top d-flex">
+            <span>{_t("wallet-portfolio.total-value")} $1.19</span>
+            <div className="toggle">              
+              <span className=" text-primary">
+              {_t("wallet-portfolio.show-trend")}
+              </span>
+              <label className="toggle-chart">
+                  <input type="checkbox" checked={showChart} onChange={this.toggleChart} />
+                  <span className="switch" />
+              </label>
+            </div>
           </div>
         <div className="wallet-main mt-3">
           <table className="table">
@@ -246,7 +259,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
               {!global?.isMobile && 
               <th>{_t("wallet-portfolio.price")}</th>}
               <th>{_t("wallet-portfolio.change")}</th>
-              {!global?.isMobile &&
+              {!global?.isMobile && showChart &&
               <th >{_t("wallet-portfolio.trend")}</th>
               }
               <th>{_t("wallet-portfolio.balance")}</th>
@@ -262,11 +275,11 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   </td>
                   <td className="align-middle">${estimatedPointsValue}</td>
                   <td className="align-middle">
-                    ----------
+                    ---
                   </td>
-                  <td className="align-middle">
-                    ----------
-                  </td>
+                  {!global?.isMobile && showChart && <td className="align-middle">
+                    ---
+                  </td>}
                   <td className="align-middle">{points.points}</td>
                   <td className="align-middle">${Number(estimatedPointsValue * Number(points.points)).toFixed(3)}</td>
                 </tr>
@@ -283,9 +296,9 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                       </span>
                     {coingeckoData[0]?.price_change_percentage_24h}
                   </td>
-                  <td className="align-middle">
-                    ----------
-                  </td>
+                  {!global?.isMobile && showChart && <td className="align-middle">
+                    ---
+                  </td>}
                   <td className="align-middle">{totalHP}</td>
                   <td className="align-middle">${Number(totalHP * this.pricePerHive).toFixed(3)}</td>
                 </tr>
@@ -302,9 +315,9 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                       </span>
                     {coingeckoData[0]?.price_change_percentage_24h}
                   </td>
-                  <td className="align-middle">
+                  {!global?.isMobile && showChart && <td className="align-middle">
                     <HiveWalletPortfolioChart coinData={coingeckoData} />
-                  </td>
+                  </td>}
                   <td className="align-middle">{w.balance}</td>
                   <td className="align-middle">${Number(w.balance * this.pricePerHive).toFixed(3)}</td>
                 </tr>
@@ -321,9 +334,9 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                       </span>
                     {coingeckoData[1]?.price_change_percentage_24h}
                   </td>
-                  <td className="align-middle">
+                  {!global?.isMobile && showChart && <td className="align-middle">
                     <HbdWalletPortfolioChart />
-                  </td>
+                  </td>}
                   <td className="align-middle">{w.hbdBalance}</td>
                   <td className="align-middle">${Number(w.hbdBalance * coingeckoData[1]?.current_price).toFixed(3)}</td>
                 </tr>
@@ -353,7 +366,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                        {a?.symbol === a.symbol ? a?.priceChangePercent : null}
                      </span>
                   </td>
-                  {!global?.isMobile && <td className="align-middle">
+                  {!global?.isMobile && showChart && <td className="align-middle">
                       <span>
                           <div>
                             <HiveEngineChart items={a} />
