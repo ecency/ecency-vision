@@ -354,7 +354,7 @@
   {
     "name": "solox",
     "contributes": ["Translation (Russian)"]
-  }
+  },
  {
     "name": "alokkumar121",
     "contributes": ["Guest Curator"]
@@ -373,6 +373,14 @@
   },
  {
     "name": "incublus",
+    "contributes": ["Guest Curator"]
+  },
+   {
+    "name": "blessedkid-121",
+    "contributes": ["Guest Curator"]
+  },
+ {
+    "name": "jesustiano",
     "contributes": ["Guest Curator"]
   }
 ]
