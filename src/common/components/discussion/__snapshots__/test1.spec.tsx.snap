@@ -215,9 +215,8 @@ exports[`(1) Full render with active user 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
                 <div
                   className="heart-icon"
@@ -235,6 +234,7 @@ exports[`(1) Full render with active user 1`] = `
                     />
                   </svg>
                 </div>
+                0
               </span>
             </div>
             <a
@@ -396,9 +396,8 @@ exports[`(1) Full render with active user 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
                 <div
                   className="heart-icon"
@@ -416,6 +415,7 @@ exports[`(1) Full render with active user 1`] = `
                     />
                   </svg>
                 </div>
+                0
               </span>
             </div>
             <a
@@ -579,9 +579,8 @@ exports[`(1) Full render with active user 1`] = `
                   className="entry-votes notranslate"
                 >
                   <span
-                    className="inner-btn"
-                    onClick={[Function]}
-                    title=" Votes"
+                    className="inner-btn no-data"
+                    title="No Votes"
                   >
                     <div
                       className="heart-icon"
@@ -599,6 +598,7 @@ exports[`(1) Full render with active user 1`] = `
                         />
                       </svg>
                     </div>
+                    0
                   </span>
                 </div>
                 <a
@@ -945,9 +945,8 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
                 <div
                   className="heart-icon"
@@ -965,6 +964,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                     />
                   </svg>
                 </div>
+                0
               </span>
             </div>
             <a
@@ -1960,9 +1960,8 @@ exports[`(3) With selected item 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
                 <div
                   className="heart-icon"
@@ -1980,6 +1979,7 @@ exports[`(3) With selected item 1`] = `
                     />
                   </svg>
                 </div>
+                0
               </span>
             </div>
             <a
@@ -2141,9 +2141,8 @@ exports[`(3) With selected item 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
                 <div
                   className="heart-icon"
@@ -2161,6 +2160,7 @@ exports[`(3) With selected item 1`] = `
                     />
                   </svg>
                 </div>
+                0
               </span>
             </div>
             <a
@@ -2324,9 +2324,8 @@ exports[`(3) With selected item 1`] = `
                   className="entry-votes notranslate"
                 >
                   <span
-                    className="inner-btn"
-                    onClick={[Function]}
-                    title=" Votes"
+                    className="inner-btn no-data"
+                    title="No Votes"
                   >
                     <div
                       className="heart-icon"
@@ -2344,6 +2343,7 @@ exports[`(3) With selected item 1`] = `
                         />
                       </svg>
                     </div>
+                    0
                   </span>
                 </div>
                 <a
@@ -2690,9 +2690,8 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
                 <div
                   className="heart-icon"
@@ -2710,6 +2709,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                     />
                   </svg>
                 </div>
+                0
               </span>
             </div>
             <a
@@ -3682,9 +3682,8 @@ exports[`(4) Show mute button, muted comment 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
                 <div
                   className="heart-icon"
@@ -3702,6 +3701,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
                     />
                   </svg>
                 </div>
+                0
               </span>
             </div>
             <a
@@ -3870,9 +3870,8 @@ exports[`(4) Show mute button, muted comment 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
                 <div
                   className="heart-icon"
@@ -3890,6 +3889,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
                     />
                   </svg>
                 </div>
+                0
               </span>
             </div>
             <a

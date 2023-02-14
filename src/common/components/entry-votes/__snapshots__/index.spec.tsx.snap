@@ -35,9 +35,8 @@ exports[`(2) No votes 1`] = `
   className="entry-votes notranslate"
 >
   <span
-    className="inner-btn"
-    onClick={[Function]}
-    title=" Votes"
+    className="inner-btn no-data"
+    title="No Votes"
   >
     <div
       className="heart-icon"
@@ -55,6 +54,7 @@ exports[`(2) No votes 1`] = `
         />
       </svg>
     </div>
+    0
   </span>
 </div>
 `;

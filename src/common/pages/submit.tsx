@@ -421,7 +421,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     this.stateSet({ title, tags, body }, this.updatePreview);
 
     for (const key in localDraft) {
-      if (localDraft[key] && localDraft[key].length > 0) {
+      if (localDraft[key]?.length > 0) {
         this.stateSet({ isDraftEmpty: false });
       }
     }

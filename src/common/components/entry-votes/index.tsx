@@ -255,7 +255,7 @@ export class EntryVotes extends Component<Props, State> {
   };
 
   componentDidUpdate(prevProps: Readonly<Props>) {
-    if (prevProps.entry.active_votes.length !== this.props.entry.active_votes.length) {
+    if (prevProps.entry?.active_votes?.length !== this.props.entry?.active_votes?.length) {
       this.setState({ isVoted: true });
     }
   }
@@ -263,7 +263,7 @@ export class EntryVotes extends Component<Props, State> {
   render() {
     const { entry } = this.props;
     const { visible, searchText, searchTextDisabled, isVoted } = this.state;
-    const totalVotes = (entry.active_votes && entry.active_votes.length) || entry.total_votes;
+    const totalVotes = (entry.active_votes && entry.active_votes.length) || entry.total_votes || 0;
     let cls = _c(`heart-icon ${isVoted ? "voted" : ""}`);
 
     const title =
