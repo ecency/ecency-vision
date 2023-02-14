@@ -100,6 +100,7 @@ export const fullAccountInstance: FullAccount = {
   withdrawn: "87017000000",
   witness_votes: ["blocktrades", "good-karma", "gtg"],
   proxy: "",
+  recovery_account: "",
   proxied_vsf_votes: [0, 0, 0, 0],
   voting_manabar: { current_mana: "6195193441", last_update_time: 1607690265 },
   downvote_manabar: { current_mana: "36303329010", last_update_time: 1609750587 },
