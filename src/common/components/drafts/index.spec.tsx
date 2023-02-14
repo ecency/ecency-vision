@@ -76,7 +76,8 @@ it("(1) Default render.", async () => {
     location: createLocation({}),
     global: globalInstance,
     activeUser: { ...activeUser },
-    onHide: () => {}
+    onHide: () => {},
+    onPick: () => {}
   };
 
   const component = await renderer.create(<Drafts {...props} />);
@@ -92,7 +93,8 @@ it("(2) Test with data.", async () => {
     location: createLocation({}),
     global: globalInstance,
     activeUser: { ...activeUser },
-    onHide: () => {}
+    onHide: () => {},
+    onPick: () => {}
   };
 
   const component = renderer.create(<Drafts {...props} />);

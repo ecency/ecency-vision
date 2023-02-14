@@ -1,105 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(1) Default render. 1`] = `
-<div
-  className="voters-list"
->
+Array [
   <div
-    className="list-body"
+    className="voters-list"
   >
     <div
-      className="list-item"
+      className="list-body"
     >
       <div
-        className="item-main"
+        className="user-info"
       >
-        <a
-          href="/@foo"
-          onClick={[Function]}
-        >
-          <span
-            className="user-avatar small"
-            style={
-              Object {
-                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
-              }
-            }
-          />
-        </a>
-        <div
-          className="item-info"
-        >
-          <a
-            className="item-name notransalte"
-            href="/@foo"
-            onClick={[Function]}
-          >
-            foo
-          </a>
-          <span
-            className="item-reputation"
-          >
-            77
-          </span>
-        </div>
-      </div>
-      <div
-        className="item-extra"
-      >
-        <span>
-          126,434.601 HP
-        </span>
+        No results found
       </div>
     </div>
+  </div>,
+  <div
+    className="list-tools"
+  >
     <div
-      className="list-item"
+      className="pages"
+    />
+    <div
+      className="sorter"
     >
-      <div
-        className="item-main"
+      <span
+        className="label"
       >
-        <a
-          href="/@bar"
-          onClick={[Function]}
-        >
-          <span
-            className="user-avatar small"
-            style={
-              Object {
-                "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/small)",
-              }
-            }
-          />
-        </a>
-        <div
-          className="item-info"
-        >
-          <a
-            className="item-name notransalte"
-            href="/@bar"
-            onClick={[Function]}
-          >
-            bar
-          </a>
-          <span
-            className="item-reputation"
-          >
-            62
-          </span>
-        </div>
-      </div>
-      <div
-        className="item-extra"
+        Sort
+      </span>
+      <select
+        className="form-control"
+        onChange={[Function]}
+        value="hp"
       >
-        <span>
-          3,236.532 HP
-        </span>
-         + 
-        <span>
-          5,492.800 HP
-           (proxy) 
-        </span>
-      </div>
+        <option
+          value="reputation"
+        >
+          Reputation
+        </option>
+        <option
+          value="hp"
+        >
+          Hive Power
+        </option>
+      </select>
     </div>
-  </div>
-</div>
+  </div>,
+]
 `;

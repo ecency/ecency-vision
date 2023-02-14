@@ -4,6 +4,10 @@
   .editor-toolbar {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+
+    &.bottom {
+      border-radius: 0 0 8px 8px;
+    }
   }
 
   .comment-body {
@@ -17,6 +21,20 @@
 
     @include themify(night) {
       background: lighten($dark-two, 6);
+    }
+
+    textarea {
+      @include themify(day) {
+        background: $white-two;
+      }
+
+      @include themify(night) {
+        background: lighten($dark-two, 6);
+      }
+    }
+
+    .rta {
+      height: auto !important;
     }
 
     .form-control {

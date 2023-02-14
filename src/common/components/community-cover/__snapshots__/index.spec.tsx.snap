@@ -8,7 +8,7 @@ exports[`(1) Render with loaded account object 1`] = `
     className="cover-image"
     style={
       Object {
-        "backgroundImage": "url('https://images.ecency.com/p/Y2iXpRRkNSnseh3NuL6KUBitJTXrc5K3Kfvsq9JK3SkbY.png?format=match&mode=fit')",
+        "backgroundImage": "url('https://images.ecency.com/u/hive-148441/cover')",
       }
     }
   />
@@ -103,7 +103,11 @@ exports[`(2) Render with not loaded account object 1`] = `
 >
   <div
     className="cover-image"
-    style={Object {}}
+    style={
+      Object {
+        "backgroundImage": "url('https://images.ecency.com/u/hive-148441/cover')",
+      }
+    }
   />
   <div
     className="community-stats"
@@ -198,7 +202,7 @@ exports[`(3) No bg image - Day theme 1`] = `
     className="cover-image"
     style={
       Object {
-        "backgroundImage": "url('cover-fallback-day.png')",
+        "backgroundImage": "url('https://images.ecency.com/u/hive-148441/cover')",
       }
     }
   />
@@ -295,7 +299,7 @@ exports[`(4) No bg image - Night theme 1`] = `
     className="cover-image"
     style={
       Object {
-        "backgroundImage": "url('cover-fallback-night.png')",
+        "backgroundImage": "url('https://images.ecency.com/u/hive-148441/cover')",
       }
     }
   />

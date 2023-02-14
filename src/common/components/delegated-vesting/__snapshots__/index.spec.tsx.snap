@@ -689,13 +689,21 @@ exports[`(3) With delegator active user 1`] = `
           >
             98.527 HP
           </span>
-          <a
-            className="undelegate"
-            href="#"
-            onClick={[Function]}
+          <div
+            className="main"
           >
-            undelegate
-          </a>
+            <div
+              onClick={[Function]}
+            >
+              <a
+                className="undelegate"
+                href="#"
+                onClick={[Function]}
+              >
+                undelegate
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -737,13 +745,21 @@ exports[`(3) With delegator active user 1`] = `
           >
             15.066 HP
           </span>
-          <a
-            className="undelegate"
-            href="#"
-            onClick={[Function]}
+          <div
+            className="main"
           >
-            undelegate
-          </a>
+            <div
+              onClick={[Function]}
+            >
+              <a
+                className="undelegate"
+                href="#"
+                onClick={[Function]}
+              >
+                undelegate
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -785,13 +801,21 @@ exports[`(3) With delegator active user 1`] = `
           >
             14.257 HP
           </span>
-          <a
-            className="undelegate"
-            href="#"
-            onClick={[Function]}
+          <div
+            className="main"
           >
-            undelegate
-          </a>
+            <div
+              onClick={[Function]}
+            >
+              <a
+                className="undelegate"
+                href="#"
+                onClick={[Function]}
+              >
+                undelegate
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -833,13 +857,21 @@ exports[`(3) With delegator active user 1`] = `
           >
             7.628 HP
           </span>
-          <a
-            className="undelegate"
-            href="#"
-            onClick={[Function]}
+          <div
+            className="main"
           >
-            undelegate
-          </a>
+            <div
+              onClick={[Function]}
+            >
+              <a
+                className="undelegate"
+                href="#"
+                onClick={[Function]}
+              >
+                undelegate
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -881,13 +913,21 @@ exports[`(3) With delegator active user 1`] = `
           >
             1.006 HP
           </span>
-          <a
-            className="undelegate"
-            href="#"
-            onClick={[Function]}
+          <div
+            className="main"
           >
-            undelegate
-          </a>
+            <div
+              onClick={[Function]}
+            >
+              <a
+                className="undelegate"
+                href="#"
+                onClick={[Function]}
+              >
+                undelegate
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -34,6 +34,7 @@ const defProps = {
   activeUser: null,
   parent: { ...parent, children: 0 },
   community: null,
+  isRawContent: false,
   discussion,
   ui: UiInstance,
   addAccount: () => {},

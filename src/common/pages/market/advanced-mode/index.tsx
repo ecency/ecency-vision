@@ -78,6 +78,7 @@ export const AdvancedMode = ({
         setSellBalance={(v) => setSellBalance(v)}
       />
       <AdvancedModeToolbar
+        global={global}
         fromAsset={fromAsset}
         toAsset={toAsset}
         dayChange={dayChange}
