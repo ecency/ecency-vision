@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { Button, Form, FormControl, Modal, Spinner } from "react-bootstrap";
 
@@ -13,7 +13,12 @@ import { error } from "../feedback";
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { getAccount, findAccountRecoveryRequest } from "../../api/hive";
-import { changeRecoveryAccount } from "../../api/operations";
+import {
+  changeRecoveryAccount,
+  formatError,
+  changeRecoveryAccountHot,
+  changeRecoveryAccountKc
+} from "../../api/operations";
 import PopoverConfirm from "../popover-confirm";
 
 interface Props {
@@ -23,7 +28,6 @@ interface Props {
   setSigningKey: (key: string) => void;
 }
 export default function AccountRecovery(props: Props) {
-  const form = useRef<HTMLFormElement>(null);
   const [keyDialog, setKeyDialog] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [disabled, setDisabled] = useState(true);
@@ -35,6 +39,7 @@ export default function AccountRecovery(props: Props) {
 
   useEffect(() => {
     getCurrentAccount();
+    getRecoveryRequest();
   }, []);
 
   const getCurrentAccount = async () => {
@@ -43,16 +48,22 @@ export default function AccountRecovery(props: Props) {
     setCurrRecoveryAccount(recovery_account);
   };
 
-  const toggleKeyDialog = () => {
-    setKeyDialog(!keyDialog);
-    setStep(1);
+  const getRecoveryRequest = async () => {
+    const resp = await findAccountRecoveryRequest(props.activeUser!.username);
+    if (resp.requests.length) {
+      setPopOver(true);
+    }
   };
 
-  const currRecoveryAccountChange = async (
+  const toggleKeyDialog = () => {
+    setKeyDialog(!keyDialog);
+  };
+
+  const newRecoveryAccountChange = async (
     e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
   ) => {
     setNewCurrRecoveryAccount(e.target.value);
-    if (e.target.value.length === 0) {
+    if (!e.target.value) {
       setDisabled(true);
       setToError("");
       return;
@@ -68,25 +79,38 @@ export default function AccountRecovery(props: Props) {
     }
   };
 
-  const update = async () => {
-    console.log("update run");
-    const resp = await findAccountRecoveryRequest(props.activeUser!.username);
-    if (resp.requests.length) {
-      setPopOver(true);
-    } else {
-      toggleKeyDialog();
+  const update = () => {
+    if (!popOver) {
+      setKeyDialog(true);
     }
   };
+
   const onKey = (key: PrivateKey): void => {
-    const resp = changeRecoveryAccount(props.activeUser!.username, newRecoveryAccount, [], key);
+    let promise: Promise<any> = changeRecoveryAccount(
+      props.activeUser!.username,
+      newRecoveryAccount,
+      [],
+      key
+    );
+    promise
+      .then((resp) => {
+        if (resp.id) {
+          setKeyDialog(true);
+          setStep(3);
+        }
+      })
+      .catch((err) => {
+        error(...formatError(err));
+      });
   };
 
   const onHot = () => {
-    console.log("On Hot press");
+    changeRecoveryAccountHot(props.activeUser!.username, newRecoveryAccount, []);
+    setKeyDialog(false);
   };
 
   const onKc = () => {
-    console.log("On KC press");
+    changeRecoveryAccountKc(props.activeUser!.username, newRecoveryAccount, []);
   };
 
   const back = () => {
@@ -97,17 +121,22 @@ export default function AccountRecovery(props: Props) {
     setStep(2);
   };
 
+  const finish = () => {
+    setKeyDialog(false);
+    setNewCurrRecoveryAccount("");
+  };
+
+  const handleConfirm = () => {
+    setKeyDialog(true);
+    setStep(1);
+  };
+
   return (
     <div className="dialog-content">
       <Form
-        ref={form}
         onSubmit={(e: React.FormEvent) => {
           e.preventDefault();
           e.stopPropagation();
-
-          if (!form.current?.checkValidity()) {
-            return;
-          }
           update();
         }}
       >
@@ -119,7 +148,7 @@ export default function AccountRecovery(props: Props) {
           <Form.Label>{_t("account-recovery.new-recovery-acc")}</Form.Label>
           <Form.Control
             value={newRecoveryAccount}
-            onChange={currRecoveryAccountChange}
+            onChange={newRecoveryAccountChange}
             required={true}
             type="text"
             autoFocus={true}
@@ -128,23 +157,13 @@ export default function AccountRecovery(props: Props) {
           />
         </Form.Group>
         {toError && <small className="error-info">{toError}</small>}
-        <Form.Group controlId="re-new-pass">
-          <Form.Label>{_t("account-recovery.extensions")}</Form.Label>
-          <Form.Control
-            // value={newPass2}
-            // onChange={this.newPass2Changed}
-            type="text"
-            autoComplete="off"
-            // onInvalid={(e: any) => handleInvalid(e, "password-update.", "validation-password")}
-            // onInput={handleOnInput}
-          />
-        </Form.Group>
+
         {popOver ? (
           <div className="main">
             <PopoverConfirm
               placement="left"
               trigger="click"
-              onConfirm={() => toggleKeyDialog()}
+              onConfirm={() => handleConfirm()}
               titleText="Your request is in progress. Doing this agian will update your request"
             >
               <div onClick={(e) => e.stopPropagation()}>
@@ -160,44 +179,6 @@ export default function AccountRecovery(props: Props) {
           </Button>
         )}
       </Form>
-
-      {keyDialog && step === 2 && (
-        <Modal
-          animation={false}
-          show={true}
-          centered={true}
-          onHide={toggleKeyDialog}
-          keyboard={false}
-          className="key-or-hot-modal modal-thin-header"
-        >
-          <Modal.Header closeButton={true} />
-          <Modal.Body>
-            {keyOrHot({
-              global: props.global,
-              activeUser: props.activeUser,
-              signingKey: props.signingKey,
-              setSigningKey: props.setSigningKey,
-              inProgress: false,
-              onKey: (key) => {
-                toggleKeyDialog();
-                onKey(key);
-              },
-              onHot: () => {
-                toggleKeyDialog();
-                if (onHot) {
-                  onHot();
-                }
-              },
-              onKc: () => {
-                toggleKeyDialog();
-                if (onKc) {
-                  onKc();
-                }
-              }
-            })}
-          </Modal.Body>
-        </Modal>
-      )}
 
       {keyDialog && step === 1 && (
         <Modal
@@ -215,11 +196,11 @@ export default function AccountRecovery(props: Props) {
               <div className="recovery-change-form">
                 <div className="recovery-change-form-header">
                   <div className="step-no">1</div>
-                  <div className="recover-box-titles">
+                  <div className="recovery-box-titles">
                     <div className="recovery-main-title">
                       {_t("account-recovery.confirm-title")}
                     </div>
-                    <div className=" recovery-sub-title">
+                    <div className="recovery-sub-title">
                       {_t("account-recovery.confirm-sub-title")}
                     </div>
                   </div>
@@ -253,6 +234,84 @@ export default function AccountRecovery(props: Props) {
                     </Button>
                   </div>
                 </div>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
+      )}
+
+      {keyDialog && step === 2 && (
+        <Modal
+          animation={false}
+          show={true}
+          centered={true}
+          onHide={toggleKeyDialog}
+          keyboard={false}
+          className="key-or-hot-modal modal-thin-header"
+        >
+          <Modal.Header closeButton={true} />
+          <Modal.Body>
+            <div className="sign-form-header">
+              <div className="step-no">2</div>
+              <div className="recovery-box-titles">
+                <div className="recovery-main-title">{_t("account-recovery.sign-title")}</div>
+                <div className="recovery-sub-title">{_t("account-recovery.sign-sub-title")}</div>
+              </div>
+            </div>
+            {keyOrHot({
+              global: props.global,
+              activeUser: props.activeUser,
+              signingKey: props.signingKey,
+              setSigningKey: props.setSigningKey,
+              inProgress: false,
+              onKey: (key) => {
+                toggleKeyDialog();
+                onKey(key);
+              },
+              onHot: () => {
+                toggleKeyDialog();
+                if (onHot) {
+                  onHot();
+                }
+              },
+              onKc: () => {
+                toggleKeyDialog();
+                if (onKc) {
+                  onKc();
+                }
+              }
+            })}
+          </Modal.Body>
+        </Modal>
+      )}
+
+      {keyDialog && step === 3 && (
+        <Modal
+          animation={false}
+          show={true}
+          centered={true}
+          onHide={toggleKeyDialog}
+          keyboard={false}
+          className="trx-success-modal modal-thin-header"
+          size="lg"
+        >
+          <Modal.Header closeButton={true} />
+          <Modal.Body>
+            <div className="recovery-success-header border-bottom">
+              <div className="step-no">3</div>
+              <div className="recover-success-titles">
+                <div className="recovery-main-title">{_t("trx-common.success-title")}</div>
+                <div className="recovery-sub-title">{_t("trx-common.success-sub-title")}</div>
+              </div>
+            </div>
+
+            <div className="recovery-success-body">
+              <div className="recovery-success-content">
+                <span> {_t("account-recovery.success-message")}</span>
+              </div>
+              <div className="d-flex justify-content-center">
+                <span className="hr-6px-btn-spacer" />
+                <Button onClick={finish}>{_t("g.finish")}</Button>
               </div>
             </div>
           </Modal.Body>

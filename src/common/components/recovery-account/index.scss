@@ -1,10 +1,32 @@
 .dialog-content {
   .error-info {
-    color: $red2 ;
+    color: $red2;
     font-size: 80%;
-    font-weight: 400
-
+    font-weight: 400;
+    display: block;
+    margin-bottom: 8px;
   }
+}
+
+.sign-form-header {
+  display: flex;
+}
+.recovery-main-title {
+  font-weight: bold;
+}
+
+.recovery-success-header{
+  display: flex;
+  .recover-success-titles {
+    padding-top: 8px;
+  }
+}
+.recovery-success-body {
+  margin: 2rem 0 1.4rem 0;
+}
+.recovery-success-content{
+  text-align: center;
+  margin-bottom: 1.4rem;
 }
 
 .recovery-dialog-content {
@@ -58,4 +80,3 @@
     }
   }
 }
-

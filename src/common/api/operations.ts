@@ -278,8 +278,42 @@ export const changeRecoveryAccount = (
       extensions
     }
   ];
-  console.log(op);
   return hiveClient.broadcast.sendOperations([op], key);
+};
+
+export const changeRecoveryAccountHot = (
+  account_to_recover: string,
+  new_recovery_account: string,
+  extensions: []
+) => {
+  const op: Operation = [
+    "change_recovery_account",
+    {
+      account_to_recover,
+      new_recovery_account,
+      extensions
+    }
+  ];
+
+  const params: Parameters = { callback: `https://ecency.com/@${account_to_recover}/permissions` };
+  return hs.sendOperation(op, params, () => {});
+};
+
+export const changeRecoveryAccountKc = (
+  account_to_recover: string,
+  new_recovery_account: string,
+  extensions: []
+) => {
+  const op: Operation = [
+    "change_recovery_account",
+    {
+      account_to_recover,
+      new_recovery_account,
+      extensions
+    }
+  ];
+
+  return keychain.broadcast(account_to_recover, [op], "Active");
 };
 
 export const follow = (follower: string, following: string): Promise<TransactionConfirmation> => {
