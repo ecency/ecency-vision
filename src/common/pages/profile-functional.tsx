@@ -93,6 +93,13 @@ export const Profile = (props: Props) => {
     error: null,
     hasMore: false
   });
+  const [dataTrail, setDataTrail] = useState<EntryGroup>({
+    entries: [],
+    sid: "",
+    loading: false,
+    error: null,
+    hasMore: false
+  });
 
   useAsyncEffect(async (_) => {
     const { accounts, match, global, fetchEntries, fetchPoints } = props;
@@ -108,12 +115,11 @@ export const Profile = (props: Props) => {
       // fetch posts
       if (section === "trail") {
         let data = await getAccountVotesTrail(username.replace("@", ""), 10);
-        store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
-
+        //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
+        setDataTrail({ ...dataTrail, entries: data.reverse() });
         //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
-      } else {
-        fetchEntries(global.filter, global.tag, false);
       }
+      fetchEntries(global.filter, global.tag, false);
     }
 
     // fetch points
@@ -543,8 +549,16 @@ export const Profile = (props: Props) => {
                   }
                 }
 
-                if (data !== undefined) {
-                  let entryList = data?.entries;
+                if (data !== undefined || (section === "trail" && dataTrail !== undefined)) {
+                  let entryList;
+                  switch (section) {
+                    case "trail":
+                      entryList = dataTrail?.entries;
+                      break;
+                    default:
+                      entryList = data?.entries;
+                      break;
+                  }
                   const { profile } = account as FullAccount;
                   entryList = entryList.filter((item) => item.permlink !== profile?.pinned);
                   if (pinnedEntry) {
