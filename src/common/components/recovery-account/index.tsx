@@ -10,6 +10,7 @@ import keyOrHot from "../key-or-hot";
 import UserAvatar from "../user-avatar";
 import { error } from "../feedback";
 import PopoverConfirm from "../popover-confirm";
+import LinearProgress from "../linear-progress";
 
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
@@ -62,8 +63,10 @@ export default function AccountRecovery(props: Props) {
   const newRecoveryAccountChange = async (
     e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
   ) => {
+    e.persist();
     setNewCurrRecoveryAccount(e.target.value);
-    if (!e.target.value) {
+
+    if (e.target.value.length == 0) {
       setDisabled(true);
       setToError("");
       return;
@@ -73,8 +76,10 @@ export default function AccountRecovery(props: Props) {
         setDisabled(false);
         setToError("");
       } else {
-        setDisabled(true);
-        setToError(_t("account-recovery.to-not-found"));
+        if (e.target.value.length > 0) {
+          setDisabled(true);
+          setToError(_t("account-recovery.to-not-found"));
+        }
       }
     }
   };
@@ -86,6 +91,7 @@ export default function AccountRecovery(props: Props) {
   };
 
   const onKey = (key: PrivateKey): void => {
+    setInProgress(true);
     let promise: Promise<any> = changeRecoveryAccount(
       props.activeUser!.username,
       newRecoveryAccount,
@@ -95,6 +101,7 @@ export default function AccountRecovery(props: Props) {
     promise
       .then((resp) => {
         if (resp.id) {
+          setInProgress(false);
           setKeyDialog(true);
           setStep(3);
         }
@@ -131,6 +138,110 @@ export default function AccountRecovery(props: Props) {
     setStep(1);
   };
 
+  const confirmationModal = () => {
+    return (
+      <div className="recovery-dialog-content">
+        <div className="recovery-change-form">
+          <div className="recovery-change-form-header">
+            <div className="step-no">1</div>
+            <div className="recovery-box-titles">
+              <div className="recovery-main-title">{_t("account-recovery.confirm-title")}</div>
+              <div className="recovery-sub-title">{_t("account-recovery.confirm-sub-title")}</div>
+            </div>
+          </div>
+          <div className="recovery-change-form-body">
+            <div className="confirmation">
+              <div className="users">
+                <div className="from-user">
+                  {UserAvatar({
+                    ...props,
+                    username: props.activeUser!.username,
+                    size: "large"
+                  })}
+                </div>
+
+                <>
+                  <div className="arrow">{arrowRightSvg}</div>
+                  <div className="to-user">
+                    {UserAvatar({ ...props, username: newRecoveryAccount, size: "large" })}
+                  </div>
+                </>
+              </div>
+            </div>
+            <div className="d-flex justify-content-center">
+              <Button variant="outline-secondary" onClick={back}>
+                {_t("g.back")}
+              </Button>
+              <span className="hr-6px-btn-spacer" />
+              <Button onClick={confirm}>{_t("transfer.confirm")}</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const signkeyModal = () => {
+    return (
+      <>
+        <div className="sign-form-header border-bottom">
+          <div className="step-no">2</div>
+          <div className="recovery-sign-box-titles">
+            <div className="recovery-main-title">{_t("account-recovery.sign-title")}</div>
+            <div className="recovery-sub-title">{_t("account-recovery.sign-sub-title")}</div>
+          </div>
+        </div>
+        {inProgress && <LinearProgress />}
+        {keyOrHot({
+          global: props.global,
+          activeUser: props.activeUser,
+          signingKey: props.signingKey,
+          setSigningKey: props.setSigningKey,
+          inProgress: inProgress,
+          onKey: (key) => {
+            onKey(key);
+          },
+          onHot: () => {
+            toggleKeyDialog();
+            if (onHot) {
+              onHot();
+            }
+          },
+          onKc: () => {
+            toggleKeyDialog();
+            if (onKc) {
+              onKc();
+            }
+          }
+        })}
+      </>
+    );
+  };
+
+  const successModal = () => {
+    return (
+      <>
+        <div className="recovery-success-header border-bottom">
+          <div className="step-no">3</div>
+          <div className="recover-success-titles">
+            <div className="recovery-main-title">{_t("trx-common.success-title")}</div>
+            <div className="recovery-sub-title">{_t("trx-common.success-sub-title")}</div>
+          </div>
+        </div>
+
+        <div className="recovery-success-body">
+          <div className="recovery-success-content">
+            <span> {_t("account-recovery.success-message")}</span>
+          </div>
+          <div className="d-flex justify-content-center">
+            <span className="hr-6px-btn-spacer" />
+            <Button onClick={finish}>{_t("g.finish")}</Button>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="dialog-content">
       <Form
@@ -159,9 +270,9 @@ export default function AccountRecovery(props: Props) {
         {toError && <small className="error-info">{toError}</small>}
 
         {popOver ? (
-          <div className="main">
+          <div className="popOver">
             <PopoverConfirm
-              placement="left"
+              placement="top"
               trigger="click"
               onConfirm={() => handleConfirm()}
               titleText={_t("account-recovery.info-message")}
@@ -180,7 +291,7 @@ export default function AccountRecovery(props: Props) {
         )}
       </Form>
 
-      {keyDialog && step === 1 && (
+      {keyDialog && (
         <Modal
           animation={false}
           show={true}
@@ -192,126 +303,9 @@ export default function AccountRecovery(props: Props) {
         >
           <Modal.Header closeButton={true} />
           <Modal.Body>
-            <div className="recovery-dialog-content">
-              <div className="recovery-change-form">
-                <div className="recovery-change-form-header">
-                  <div className="step-no">1</div>
-                  <div className="recovery-box-titles">
-                    <div className="recovery-main-title">
-                      {_t("account-recovery.confirm-title")}
-                    </div>
-                    <div className="recovery-sub-title">
-                      {_t("account-recovery.confirm-sub-title")}
-                    </div>
-                  </div>
-                </div>
-                <div className="recovery-change-form-body">
-                  <div className="confirmation">
-                    <div className="users">
-                      <div className="from-user">
-                        {UserAvatar({
-                          ...props,
-                          username: props.activeUser!.username,
-                          size: "large"
-                        })}
-                      </div>
-
-                      <>
-                        <div className="arrow">{arrowRightSvg}</div>
-                        <div className="to-user">
-                          {UserAvatar({ ...props, username: newRecoveryAccount, size: "large" })}
-                        </div>
-                      </>
-                    </div>
-                  </div>
-                  <div className="d-flex justify-content-center">
-                    <Button variant="outline-secondary" onClick={back}>
-                      {_t("g.back")}
-                    </Button>
-                    <span className="hr-6px-btn-spacer" />
-                    <Button onClick={confirm}>{_t("transfer.confirm")}</Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>
-      )}
-
-      {keyDialog && step === 2 && (
-        <Modal
-          animation={false}
-          show={true}
-          centered={true}
-          onHide={toggleKeyDialog}
-          keyboard={false}
-          className="key-or-hot-modal modal-thin-header"
-        >
-          <Modal.Header closeButton={true} />
-          <Modal.Body>
-            <div className="sign-form-header">
-              <div className="step-no">2</div>
-              <div className="recovery-sign-box-titles">
-                <div className="recovery-main-title">{_t("account-recovery.sign-title")}</div>
-                <div className="recovery-sub-title">{_t("account-recovery.sign-sub-title")}</div>
-              </div>
-            </div>
-            {keyOrHot({
-              global: props.global,
-              activeUser: props.activeUser,
-              signingKey: props.signingKey,
-              setSigningKey: props.setSigningKey,
-              inProgress: false,
-              onKey: (key) => {
-                toggleKeyDialog();
-                onKey(key);
-              },
-              onHot: () => {
-                toggleKeyDialog();
-                if (onHot) {
-                  onHot();
-                }
-              },
-              onKc: () => {
-                toggleKeyDialog();
-                if (onKc) {
-                  onKc();
-                }
-              }
-            })}
-          </Modal.Body>
-        </Modal>
-      )}
-
-      {keyDialog && step === 3 && (
-        <Modal
-          animation={false}
-          show={true}
-          centered={true}
-          onHide={toggleKeyDialog}
-          keyboard={false}
-          className="trx-success-modal modal-thin-header"
-          size="lg"
-        >
-          <Modal.Header closeButton={true} />
-          <Modal.Body>
-            <div className="recovery-success-header border-bottom">
-              <div className="step-no">3</div>
-              <div className="recover-success-titles">
-                <div className="recovery-main-title">{_t("trx-common.success-title")}</div>
-                <div className="recovery-sub-title">{_t("trx-common.success-sub-title")}</div>
-              </div>
-            </div>
-
-            <div className="recovery-success-body">
-              <div className="recovery-success-content">
-                <span> {_t("account-recovery.success-message")}</span>
-              </div>
-              <div className="d-flex justify-content-center">
-                <span className="hr-6px-btn-spacer" />
-                <Button onClick={finish}>{_t("g.finish")}</Button>
-              </div>
-            </div>
+            {step === Number(1) && confirmationModal()}
+            {step === Number(2) && signkeyModal()}
+            {step === Number(3) && successModal()}
           </Modal.Body>
         </Modal>
       )}
