@@ -243,7 +243,7 @@ export default function AccountRecovery(props: Props) {
   };
 
   return (
-    <div className="dialog-content">
+    <div className="recovery-form-content">
       <Form
         onSubmit={(e: React.FormEvent) => {
           e.preventDefault();
@@ -270,7 +270,7 @@ export default function AccountRecovery(props: Props) {
         {toError && <small className="error-info">{toError}</small>}
 
         {popOver ? (
-          <div className="popOver">
+          <div className="main">
             <PopoverConfirm
               placement="top"
               trigger="click"
