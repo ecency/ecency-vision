@@ -1,4 +1,4 @@
-.recovery-form-content {
+.account-recovery-form {
   .error-info {
     color: $red2;
     font-size: 80%;
@@ -8,40 +8,13 @@
   }
 }
 
-.sign-form-header {
-  display: flex;
-  .recovery-sign-box-titles {
-    margin-top: 9px;
-  }
-}
-
-.recovery-main-title {
-  font-weight: bold;
-}
-
-.recovery-success-header {
-  display: flex;
-  .recover-success-titles {
-    padding-top: 8px;
-  }
-}
-
-.recovery-success-body {
-  margin: 2rem 0 1.4rem 0;
-}
-
-.recovery-success-content {
-  text-align: center;
-  margin-bottom: 1.4rem;
-}
-
-.recovery-dialog-content {
-  .recovery-change-form-header {
+.recovery-confirm-dialog {
+  .recovery-confirm-dialog-header {
     border-bottom: 1px solid $white-four;
     align-items: center;
     display: flex;
   }
-  .recovery-change-form-body {
+  .recovery-confirm-dialog-body {
     padding: 24px 32px;
     margin: 1px 0 0 0;
 
@@ -84,5 +57,31 @@
         }
       }
     }
+  }
+}
+
+.recovery-sign-dialog-header {
+  display: flex;
+  .recovery-sign-dialog-titles {
+    margin-top: 9px;
+  }
+}
+
+.recovery-main-title {
+  font-weight: bold;
+}
+
+.recovery-success-dialog-header {
+  display: flex;
+  .recovery-success-dialog-titles {
+    padding-top: 8px;
+  }
+}
+
+.recovery-success-dialog-body {
+  margin: 2rem 0 1.4rem 0;
+  .recovery-success-dialog-content {
+    text-align: center;
+    margin-bottom: 1.4rem;
   }
 }

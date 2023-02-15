@@ -140,16 +140,16 @@ export default function AccountRecovery(props: Props) {
 
   const confirmationModal = () => {
     return (
-      <div className="recovery-dialog-content">
-        <div className="recovery-change-form">
-          <div className="recovery-change-form-header">
+      <div className="recovery-confirm-dialog">
+        <div className="recovery-confirm-dialog-content">
+          <div className="recovery-confirm-dialog-header">
             <div className="step-no">1</div>
-            <div className="recovery-box-titles">
+            <div className="recovery-confirm-box-titles">
               <div className="recovery-main-title">{_t("account-recovery.confirm-title")}</div>
               <div className="recovery-sub-title">{_t("account-recovery.confirm-sub-title")}</div>
             </div>
           </div>
-          <div className="recovery-change-form-body">
+          <div className="recovery-confirm-dialog-body">
             <div className="confirmation">
               <div className="users">
                 <div className="from-user">
@@ -184,9 +184,9 @@ export default function AccountRecovery(props: Props) {
   const signkeyModal = () => {
     return (
       <>
-        <div className="sign-form-header border-bottom">
+        <div className="recovery-sign-dialog-header border-bottom">
           <div className="step-no">2</div>
-          <div className="recovery-sign-box-titles">
+          <div className="recovery-sign-dialog-titles">
             <div className="recovery-main-title">{_t("account-recovery.sign-title")}</div>
             <div className="recovery-sub-title">{_t("account-recovery.sign-sub-title")}</div>
           </div>
@@ -221,16 +221,16 @@ export default function AccountRecovery(props: Props) {
   const successModal = () => {
     return (
       <>
-        <div className="recovery-success-header border-bottom">
+        <div className="recovery-success-dialog-header border-bottom">
           <div className="step-no">3</div>
-          <div className="recover-success-titles">
+          <div className="recovery-success-dialog-titles">
             <div className="recovery-main-title">{_t("trx-common.success-title")}</div>
             <div className="recovery-sub-title">{_t("trx-common.success-sub-title")}</div>
           </div>
         </div>
 
-        <div className="recovery-success-body">
-          <div className="recovery-success-content">
+        <div className="recovery-success-dialog-body">
+          <div className="recovery-success-dialog-content">
             <span> {_t("account-recovery.success-message")}</span>
           </div>
           <div className="d-flex justify-content-center">
@@ -243,7 +243,7 @@ export default function AccountRecovery(props: Props) {
   };
 
   return (
-    <div className="recovery-form-content">
+    <div className="account-recovery-form">
       <Form
         onSubmit={(e: React.FormEvent) => {
           e.preventDefault();
