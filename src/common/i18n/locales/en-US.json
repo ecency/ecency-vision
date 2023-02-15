@@ -1422,7 +1422,8 @@
     "to-not-found": "The user that you are tyring to set, does not exist!",
     "sign-title": "Sign transaction",
     "sign-sub-title": "Sign your transaction",
-    "success-message": "Your new change recovery account request is approved after 30 days "
+    "success-message": "Your new change recovery account request is approved after 30 days",
+    "info-message": "Your request is in progress. Doing this agian will update your request"
   },
   "add-image": {
     "title": "Add Image",

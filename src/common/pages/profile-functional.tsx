@@ -552,13 +552,13 @@ export const Profile = (props: Props) => {
                         <div className="container-fluid">
                           <div className="row pb-4">
                             <div className="col-lg-6 col-md-6 col-sm-6">
-                              {tabState === 1 ? <ViewKeys activeUser={props.activeUser} /> : ""}
+                              {tabState === 1 ? <ViewKeys activeUser={props.activeUser} /> : <></>}
                               {tabState === 2 ? (
                                 <PasswordUpdate activeUser={props.activeUser} />
                               ) : (
-                                ""
+                                <></>
                               )}
-                              {tabState === 3 ? <AccountRecovery {...props} /> : ""}
+                              {tabState === 3 ? <AccountRecovery {...props} /> : <></>}
                             </div>
                           </div>
                         </div>

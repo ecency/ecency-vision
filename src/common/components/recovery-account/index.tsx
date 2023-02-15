@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Button, Form, FormControl, Modal, Spinner } from "react-bootstrap";
+import { Button, Form, FormControl, Modal } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
@@ -9,6 +9,7 @@ import { PrivateKey } from "@hiveio/dhive";
 import keyOrHot from "../key-or-hot";
 import UserAvatar from "../user-avatar";
 import { error } from "../feedback";
+import PopoverConfirm from "../popover-confirm";
 
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
@@ -19,7 +20,6 @@ import {
   changeRecoveryAccountHot,
   changeRecoveryAccountKc
 } from "../../api/operations";
-import PopoverConfirm from "../popover-confirm";
 
 interface Props {
   global: Global;
@@ -164,7 +164,7 @@ export default function AccountRecovery(props: Props) {
               placement="left"
               trigger="click"
               onConfirm={() => handleConfirm()}
-              titleText="Your request is in progress. Doing this agian will update your request"
+              titleText={_t("account-recovery.info-message")}
             >
               <div onClick={(e) => e.stopPropagation()}>
                 <Button disabled={disabled} variant="primary" type="submit">
@@ -225,13 +225,11 @@ export default function AccountRecovery(props: Props) {
                     </div>
                   </div>
                   <div className="d-flex justify-content-center">
-                    <Button variant="outline-secondary" disabled={inProgress} onClick={back}>
+                    <Button variant="outline-secondary" onClick={back}>
                       {_t("g.back")}
                     </Button>
                     <span className="hr-6px-btn-spacer" />
-                    <Button disabled={inProgress} onClick={confirm}>
-                      {_t("transfer.confirm")}
-                    </Button>
+                    <Button onClick={confirm}>{_t("transfer.confirm")}</Button>
                   </div>
                 </div>
               </div>
