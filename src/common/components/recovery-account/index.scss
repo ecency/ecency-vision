@@ -44,42 +44,43 @@
   .recovery-change-form-body {
     padding: 24px 32px;
     margin: 1px 0 0 0;
-  }
-  .confirmation {
-    margin-bottom: 30px;
 
-    .users {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 20px;
+    .confirmation {
+      margin-bottom: 30px;
 
-      .from-user,
-      .to-user,
-      .arrow {
-        height: 100px;
-        width: 100px;
-      }
-
-      .from-user,
-      .to-user {
-        cursor: pointer;
-
-        .user-avatar {
-          height: 100%;
-          width: 100%;
-        }
-      }
-
-      .arrow {
-        align-items: center;
-        color: $silver;
+      .users {
         display: flex;
-        justify-content: center;
-        opacity: 0.4;
+        justify-content: space-around;
+        margin-bottom: 20px;
 
-        svg {
-          height: 60px;
-          width: 60px;
+        .from-user,
+        .to-user,
+        .arrow {
+          height: 100px;
+          width: 100px;
+        }
+
+        .from-user,
+        .to-user {
+          cursor: pointer;
+
+          .user-avatar {
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        .arrow {
+          align-items: center;
+          color: $silver;
+          display: flex;
+          justify-content: center;
+          opacity: 0.4;
+
+          svg {
+            height: 60px;
+            width: 60px;
+          }
         }
       }
     }

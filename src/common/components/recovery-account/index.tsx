@@ -118,7 +118,7 @@ export default function AccountRecovery(props: Props) {
   };
 
   const confirm = () => {
-    setStep(3);
+    setStep(2);
   };
 
   const finish = () => {
