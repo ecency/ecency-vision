@@ -118,7 +118,7 @@ export default function AccountRecovery(props: Props) {
   };
 
   const confirm = () => {
-    setStep(2);
+    setStep(3);
   };
 
   const finish = () => {
@@ -251,7 +251,7 @@ export default function AccountRecovery(props: Props) {
           <Modal.Body>
             <div className="sign-form-header">
               <div className="step-no">2</div>
-              <div className="recovery-box-titles">
+              <div className="recovery-sign-box-titles">
                 <div className="recovery-main-title">{_t("account-recovery.sign-title")}</div>
                 <div className="recovery-sub-title">{_t("account-recovery.sign-sub-title")}</div>
               </div>

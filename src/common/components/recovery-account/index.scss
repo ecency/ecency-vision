@@ -10,21 +10,27 @@
 
 .sign-form-header {
   display: flex;
+  .recovery-sign-box-titles {
+    margin-top: 9px;
+  }
 }
+
 .recovery-main-title {
   font-weight: bold;
 }
 
-.recovery-success-header{
+.recovery-success-header {
   display: flex;
   .recover-success-titles {
     padding-top: 8px;
   }
 }
+
 .recovery-success-body {
   margin: 2rem 0 1.4rem 0;
 }
-.recovery-success-content{
+
+.recovery-success-content {
   text-align: center;
   margin-bottom: 1.4rem;
 }
@@ -35,7 +41,6 @@
     align-items: center;
     display: flex;
   }
-
   .recovery-change-form-body {
     padding: 24px 32px;
     margin: 1px 0 0 0;
