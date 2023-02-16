@@ -288,7 +288,10 @@ export class Preferences extends BaseComponent<Props, State> {
                     </Form.Control>
                   </Form.Group>
                 </Col>
-                <div className="preferences-header">{_t("preferences.entry-item-options")}</div>
+                <Col lg={6} xl={12}>
+                  {_t("preferences.entry-item-options")}{" "}
+                </Col>
+                <hr />
                 <Col lg={6} xl={4}>
                   <Form.Group>
                     <Form.Label>{_t("preferences.show-self-vote")}</Form.Label>
@@ -330,6 +333,7 @@ export class Preferences extends BaseComponent<Props, State> {
                 <Col lg={6} xl={4}>
                   <Form.Group>
                     <Form.Label>{_t("preferences.show-front-end")}</Form.Label>
+                    <hr />
                     <Form.Control
                       type="text"
                       value={JSON.stringify(global.showFrontEnd)}
