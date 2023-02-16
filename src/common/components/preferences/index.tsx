@@ -333,7 +333,6 @@ export class Preferences extends BaseComponent<Props, State> {
                 <Col lg={6} xl={4}>
                   <Form.Group>
                     <Form.Label>{_t("preferences.show-front-end")}</Form.Label>
-                    <hr />
                     <Form.Control
                       type="text"
                       value={JSON.stringify(global.showFrontEnd)}
