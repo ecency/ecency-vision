@@ -21,5 +21,6 @@
   "showSelfVote": true,
   "showRewardSplit": true,
   "lowRewardThreshold": 10,
-  "showFrontEnd": true
+  "showFrontEnd": true,
+  "isEcency": false
 }
