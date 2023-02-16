@@ -214,6 +214,17 @@ export default function AccountRecovery(props: Props) {
             }
           }
         })}
+        <p className="text-center">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setStep(1);
+            }}
+          >
+            {_t("g.back")}
+          </a>
+        </p>
       </>
     );
   };
