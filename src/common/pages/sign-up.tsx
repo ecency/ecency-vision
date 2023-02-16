@@ -94,7 +94,7 @@ export const SignUp = (props: PageProps) => {
         setDone(true);
         setLsReferral(undefined);
       }
-    } catch (e: any) {
+    } catch (e) {
       if (e.response?.data?.message) {
         error(e.response.data.message);
       }
