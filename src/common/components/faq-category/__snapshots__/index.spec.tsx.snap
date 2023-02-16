@@ -72,7 +72,9 @@ exports[`(1) Default render 1`] = `
       <div
         className="p-0 card-body"
       >
-        <div />
+        <div
+          className="section-body"
+        />
       </div>
     </div>
   </div>
