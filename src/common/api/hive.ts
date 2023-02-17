@@ -5,6 +5,13 @@ import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 import { TrendingTag } from "../store/trending-tags/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { FullAccount, AccountProfile, AccountFollowStats } from "../store/accounts/types";
+import {
+  AccountUpdateOperation,
+  CustomJsonOperation,
+  Operation,
+  PrivateKey,
+  TransactionConfirmation
+} from "@hiveio/dhive";
 
 import parseAsset from "../helper/parse-asset";
 import { vestsToRshares } from "../helper/vesting";
@@ -635,3 +642,20 @@ export interface RcOperationStats {
 }
 
 export const getRcOperationStats = (): Promise<any> => client.call("rc_api", "get_rc_stats", {});
+
+export const Revoke = (operation: Operation): Promise<TransactionConfirmation> =>
+  // const newPosting = {
+  //   weight_threshold,
+  //   account_auths,
+  //   key_auths
+  // };
+
+  // const params = [
+  //   {
+  //     account,
+  //     posting: newPosting,
+  //     memo_key,
+  //     json_metadata
+  //   }
+  // ];
+  client.call("condenser_api", "broadcast_transaction", [operation]);

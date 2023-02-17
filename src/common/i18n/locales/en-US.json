@@ -1480,6 +1480,21 @@
     "copied": "Private key copied into clipboard",
     "error": "Password seem incorrect, please double check!"
   },
+  "manage-authorities": {
+    "type": "Type",
+    "key": "Key",
+    "weight": "Weight",
+    "posting": "Posting",
+    "revoke": "Revoke",
+    "owner": "owner",
+    "active": "active",
+    "posting-text": "posting",
+    "copy": "Copy",
+    "import": "Import private key",
+    "sign-title": "Sign transaction",
+    "sign-sub-title": "Sign your transaction",
+    "success-message": "You revoke the permission of posting from "
+  },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",

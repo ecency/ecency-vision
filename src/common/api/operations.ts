@@ -1774,3 +1774,33 @@ export const unstakeHiveEngineKey = async (
   const result = await hiveClient.broadcast.json(op, key);
   return result;
 };
+
+// export const Revoke = (
+//   account: string,
+//   weight_threshold: number,
+//   account_auths: any[],
+//   key_auths: any[],
+//   memo_key: string,
+//   json_metadata: string,
+//   key: any
+// ): Promise<TransactionConfirmation> => {
+//   const newPosting = {
+//     weight_threshold,
+//     account_auths,
+//     key_auths
+//   };
+//   console.log(newPosting, key);
+//   const op: Operation = [
+//     "account_update",
+//     {
+//       account,
+//       posting: newPosting,
+//       memo_key,
+//       json_metadata
+//     }
+//   ];
+
+//   console.log([op]);
+
+//   return broadcastPostingOperations(account, op)
+// };

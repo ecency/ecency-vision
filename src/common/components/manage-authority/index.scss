@@ -1,0 +1,44 @@
+.authority-table {
+  table {
+    .table-head {
+      background: $white-six;
+    }
+    td {
+      padding: 1.75rem 12px !important;
+    }
+    .copy-btn {
+      margin-right: 1rem;
+      // margin-bottom: 1rem;
+
+      @include media-breakpoint-down(lg) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.sign-dialog-header {
+  display: flex;
+  .sign-dialog-titles {
+    margin-top: 9px;
+  }
+}
+
+.success-dialog-header {
+  display: flex;
+  .success-dialog-titles {
+    padding-top: 8px;
+  }
+}
+
+.success-dialog-body {
+  margin: 2rem 0 1.4rem 0;
+  .success-dialog-content {
+    text-align: center;
+    margin-bottom: 1.4rem;
+  }
+}
+
+.authority-main-title {
+  font-weight: bold;
+}

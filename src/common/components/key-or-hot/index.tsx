@@ -16,7 +16,7 @@ import { keySvg } from "../../img/svg";
 
 interface Props {
   global: Global;
-  activeUser: ActiveUser;
+  activeUser: ActiveUser | null;
   signingKey: string;
   setSigningKey: (key: string) => void;
   inProgress: boolean;
@@ -55,7 +55,7 @@ export class KeyOrHot extends Component<Props, State> {
       }
     } else {
       // master key
-      pKey = PrivateKey.fromLogin(activeUser.username, key, "active");
+      pKey = PrivateKey.fromLogin(activeUser!.username, key, "active");
     }
 
     const { onKey, setSigningKey } = this.props;

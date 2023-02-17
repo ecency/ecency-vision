@@ -35,6 +35,7 @@ import * as bridgeApi from "../api/bridge";
 import { search as searchApi } from "../api/search-api";
 import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
+import ManageAuthorities from "../components/manage-authority";
 
 import { getAccountFull } from "../api/hive";
 
@@ -516,7 +517,7 @@ export const Profile = (props: Props) => {
                   if (account.name === props.activeUser.username) {
                     return (
                       <div className="container-fluid">
-                        <div className="row">
+                        {/* <div className="row">
                           <div className="col-12 col-md-6">
                             <h6 className="border-bottom pb-3">{_t("view-keys.header")}</h6>
                             <ViewKeys activeUser={props.activeUser} />
@@ -524,6 +525,12 @@ export const Profile = (props: Props) => {
                           <div className="col-12 col-md-6">
                             <h6 className="border-bottom pb-3">{_t("password-update.title")}</h6>
                             <PasswordUpdate activeUser={props.activeUser} />
+                          </div>
+                        </div> */}
+                        <div>
+                          <div>
+                            <h6 className="pb-3">Manage Authorities</h6>
+                            <ManageAuthorities {...props} />
                           </div>
                         </div>
                       </div>
