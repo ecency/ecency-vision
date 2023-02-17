@@ -204,14 +204,16 @@ export default function ManageAuthorities(props: Props) {
         <tbody>
           {postingsAuthority && postingsAuthority.length > 0 ? (
             <>
-              {postingsAuthority.map((account) => {
+              {postingsAuthority.map((account, i) => {
                 return (
                   <>
                     <tr className="tabl-row" key={account}>
-                      <td className="type-data">{_t("manage-authorities.posting")}</td>
+                      <td key={account[0]} className="type-data">
+                        {_t("manage-authorities.posting")}
+                      </td>
                       {
                         <>
-                          <td style={{ display: "flex" }}>
+                          <td key={i} style={{ display: "flex" }}>
                             {UserAvatar({
                               global: props.global,
                               username: account[0],
@@ -311,8 +313,8 @@ export default function ManageAuthorities(props: Props) {
         >
           <Modal.Header closeButton={true} />
           <Modal.Body>
-            {step === Number(1) && signkeyModal()}
-            {step === Number(2) && successModal()}
+            {step === 1 && signkeyModal()}
+            {step === 2 && successModal()}
           </Modal.Body>
         </Modal>
       )}

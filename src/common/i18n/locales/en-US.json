@@ -1484,7 +1484,7 @@
     "type": "Type",
     "key": "Key",
     "weight": "Weight",
-    "posting": "Posting",
+    "posting": "posting",
     "revoke": "Revoke",
     "owner": "owner",
     "active": "active",
