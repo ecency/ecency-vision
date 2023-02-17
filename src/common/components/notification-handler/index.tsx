@@ -6,6 +6,7 @@ import { Notifications } from "../../store/notifications/types";
 import { NotificationsWebSocket } from "../../api/notifications-ws-api";
 import { isSupported } from "@firebase/messaging";
 import { NotifyTypes } from "../../enums";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 interface Props {
   global: Global;
@@ -18,7 +19,7 @@ interface Props {
   fetchNotificationsSettings: (username: string) => void;
 }
 
-export default class NotificationHandler extends Component<Props> {
+class NotificationHandler extends Component<Props> {
   private nws = new NotificationsWebSocket();
   private countInterval: any = null;
 
@@ -100,3 +101,29 @@ export default class NotificationHandler extends Component<Props> {
     return <></>;
   }
 }
+
+export default () => {
+  const {
+    global,
+    activeUser,
+    ui,
+    notifications,
+    fetchNotifications,
+    fetchNotificationsSettings,
+    fetchUnreadNotificationCount,
+    toggleUIProp
+  } = useMappedStore();
+
+  return (
+    <NotificationHandler
+      global={global}
+      activeUser={activeUser}
+      ui={ui}
+      notifications={notifications}
+      fetchNotifications={fetchNotifications}
+      fetchUnreadNotificationCount={fetchUnreadNotificationCount}
+      toggleUIProp={toggleUIProp}
+      fetchNotificationsSettings={fetchNotificationsSettings}
+    />
+  );
+};

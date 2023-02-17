@@ -17,6 +17,7 @@ import { error } from "../feedback";
 import { getBookmarks, Bookmark, getFavorites, Favorite } from "../../api/private-api";
 
 import { _t } from "../../i18n";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 interface BookmarksProps {
   history: History;
@@ -200,7 +201,7 @@ interface DialogState {
   section: DialogSection;
 }
 
-export default class BookmarksDialog extends Component<DialogProps, DialogState> {
+class BookmarksDialog extends Component<DialogProps, DialogState> {
   state: DialogState = {
     section: "bookmarks"
   };
@@ -252,3 +253,17 @@ export default class BookmarksDialog extends Component<DialogProps, DialogState>
     );
   }
 }
+
+export default ({ history, onHide }: Pick<BookmarksProps, "history" | "onHide">) => {
+  const { global, activeUser, addAccount } = useMappedStore();
+
+  return (
+    <BookmarksDialog
+      history={history}
+      global={global}
+      activeUser={activeUser}
+      addAccount={addAccount}
+      onHide={onHide}
+    />
+  );
+};

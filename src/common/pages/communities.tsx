@@ -118,7 +118,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
               reloadFn: this.fetch,
               reloading: loading
             })
-          : NavBar({ ...this.props })}
+          : NavBar({ history: this.props.history })}
 
         <div className={containerClasses}>
           <div className="community-list">

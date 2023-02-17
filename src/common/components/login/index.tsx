@@ -44,6 +44,8 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 import { deleteForeverSvg } from "../../img/svg";
+import { useMappedStore } from "../../store/use-mapped-store";
+import { useLocation } from "react-router";
 
 declare var window: AppWindow;
 
@@ -693,7 +695,7 @@ interface Props {
   toggleUIProp: (what: ToggleType) => void;
 }
 
-export default class LoginDialog extends Component<Props> {
+class LoginDialog extends Component<Props> {
   userListRef = React.createRef();
 
   hide = () => {
@@ -766,3 +768,34 @@ export default class LoginDialog extends Component<Props> {
     );
   }
 }
+
+export default ({ history }: Pick<Props, "history">) => {
+  const {
+    global,
+    ui,
+    users,
+    activeUser,
+    addUser,
+    setActiveUser,
+    updateActiveUser,
+    deleteUser,
+    toggleUIProp
+  } = useMappedStore();
+  const location = useLocation();
+
+  return (
+    <LoginDialog
+      history={history}
+      location={location}
+      global={global}
+      ui={ui}
+      users={users}
+      activeUser={activeUser}
+      addUser={addUser}
+      setActiveUser={setActiveUser}
+      updateActiveUser={updateActiveUser}
+      deleteUser={deleteUser}
+      toggleUIProp={toggleUIProp}
+    />
+  );
+};

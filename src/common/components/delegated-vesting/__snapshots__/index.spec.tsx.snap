@@ -1138,3 +1138,111 @@ exports[`(4) Empty List 1`] = `
   </div>
 </div>
 `;
+
+exports[`(4) Empty List 2`] = `null`;
+
+exports[`(4) Empty List 3`] = `null`;
+
+exports[`(4) Empty List 4`] = `
+<div
+  className="delegated-vesting-content"
+>
+  <div
+    className="user-list"
+  >
+    <div
+      className="list-body"
+    >
+      <div
+        className="empty-list"
+      >
+        Nothing here
+      </div>
+    </div>
+    <ul
+      className="mt-4 pagination"
+    >
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            «
+          </span>
+          <span
+            className="sr-only"
+          >
+            First
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            ‹
+          </span>
+          <span
+            className="sr-only"
+          >
+            Previous
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            ›
+          </span>
+          <span
+            className="sr-only"
+          >
+            Next
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            »
+          </span>
+          <span
+            className="sr-only"
+          >
+            Last
+          </span>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

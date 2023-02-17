@@ -182,7 +182,6 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                       children: (
                         <a className="d-flex align-center gap-2">
                           {UserAvatar({
-                            global: global,
                             size: "medium",
                             username: row.username
                           })}

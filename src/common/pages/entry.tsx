@@ -450,6 +450,7 @@ class EntryPage extends BaseComponent<Props, State> {
               pending_payout_value: String(newPayout)
             });
           }
+          return;
         })
         .catch((e) => {
           console.log(e);
@@ -717,7 +718,7 @@ class EntryPage extends BaseComponent<Props, State> {
                     username: entry.author,
                     children: (
                       <div className="cross-post-author">
-                        {UserAvatar({ ...this.props, username: entry.author, size: "medium" })}
+                        {UserAvatar({ username: entry.author, size: "medium" })}
                         {`@${entry.author}`}
                       </div>
                     )
@@ -808,7 +809,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                   children: (
                                     <div className="author-avatar">
                                       {UserAvatar({
-                                        ...this.props,
                                         username: originalEntry.author,
                                         size: "medium"
                                       })}
@@ -998,7 +998,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                 children: (
                                   <div className="author-avatar">
                                     {UserAvatar({
-                                      ...this.props,
                                       username: entry.author,
                                       size: "medium"
                                     })}

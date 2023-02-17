@@ -174,8 +174,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue, decks }: any) =>
         <>
           {userAvatar({
             username: i.name || i,
-            size: "medium",
-            global: {} as any
+            size: "medium"
           })}{" "}
           <span style={{ marginLeft: "4px" }}>{valueToShow}</span>
         </>

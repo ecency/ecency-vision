@@ -519,11 +519,11 @@ export class NavBar extends Component<Props, State> {
               </ToolTip>
             </div>
 
-            {activeUser && <UserNav {...this.props} activeUser={activeUser} />}
+            {activeUser && <UserNav {...this.props} />}
           </div>
 
           {ui.login && <Login {...this.props} />}
-          {global.usePrivate && <NotificationHandler {...this.props} />}
+          {global.usePrivate && <NotificationHandler />}
         </div>
         {global.newVersion && (
           <Updater global={global} dismissNewVersion={this.props.dismissNewVersion} />

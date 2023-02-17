@@ -145,7 +145,6 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
                     {props.entity.includes("/")
                       ? null
                       : UserAvatar({
-                          global: this.props.global,
                           username: props.entity,
                           size: "small"
                         })}

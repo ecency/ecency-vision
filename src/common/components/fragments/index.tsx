@@ -22,6 +22,7 @@ import {
 
 import PopoverConfirm from "../popover-confirm";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 // ADD
 interface AddProps {
@@ -480,7 +481,7 @@ export class Fragments extends BaseComponent<Props, State> {
   }
 }
 
-export default class FragmentsDialog extends Component<Props> {
+class FragmentsDialog extends Component<Props> {
   hide = () => {
     const { onHide } = this.props;
     onHide();
@@ -499,3 +500,8 @@ export default class FragmentsDialog extends Component<Props> {
     );
   }
 }
+
+export default ({ onHide, onPick }: Pick<Props, "onHide" | "onPick">) => {
+  const { activeUser } = useMappedStore();
+  return <FragmentsDialog activeUser={activeUser!!} onHide={onHide} onPick={onPick} />;
+};

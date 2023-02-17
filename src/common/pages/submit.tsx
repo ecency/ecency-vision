@@ -1197,11 +1197,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                   </>
                 )}
                 {drafts && activeUser && (
-                  <Drafts
-                    {...this.props}
-                    onHide={() => this.setState({ drafts: !drafts })}
-                    activeUser={activeUser}
-                  />
+                  <Drafts {...this.props} onHide={() => this.setState({ drafts: !drafts })} />
                 )}
 
                 {editingEntry !== null && (

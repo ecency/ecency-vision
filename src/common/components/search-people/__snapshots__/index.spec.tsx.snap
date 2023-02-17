@@ -177,3 +177,26 @@ exports[`(2) No matches 1`] = `
   </div>
 </div>
 `;
+
+exports[`(2) No matches 2`] = `
+<div
+  className="card search-people"
+>
+  <div
+    className="card-header"
+  >
+    <strong>
+      People
+    </strong>
+  </div>
+  <div
+    className="card-body"
+  >
+    <span
+      className="text-muted"
+    >
+      Nothing found
+    </span>
+  </div>
+</div>
+`;
