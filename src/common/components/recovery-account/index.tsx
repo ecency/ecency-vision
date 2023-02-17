@@ -314,9 +314,9 @@ export default function AccountRecovery(props: Props) {
         >
           <Modal.Header closeButton={true} />
           <Modal.Body>
-            {step === Number(1) && confirmationModal()}
-            {step === Number(2) && signkeyModal()}
-            {step === Number(3) && successModal()}
+            {step === 1 && confirmationModal()}
+            {step === 2 && signkeyModal()}
+            {step === 3 && successModal()}
           </Modal.Body>
         </Modal>
       )}
