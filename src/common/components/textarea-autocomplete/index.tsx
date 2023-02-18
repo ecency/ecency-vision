@@ -142,12 +142,9 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 
                 return (
                   <>
-                    {props.entity.includes("/")
-                      ? null
-                      : UserAvatar({
-                          username: props.entity,
-                          size: "small"
-                        })}
+                    {props.entity.includes("/") ? null : (
+                      <UserAvatar username="props.entity" size="small" />
+                    )}
                     <span style={{ marginLeft: "8px" }}>{textToShow}</span>
                   </>
                 );

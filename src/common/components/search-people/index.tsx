@@ -99,7 +99,7 @@ export class SearchPeople extends BaseComponent<Props, State> {
                           {ProfileLink({
                             ...this.props,
                             username,
-                            children: <>{UserAvatar({ ...this.props, username, size: "medium" })}</>
+                            children: <UserAvatar username={username} size="medium" />
                           })}
                           <div className="item-title">
                             {ProfileLink({

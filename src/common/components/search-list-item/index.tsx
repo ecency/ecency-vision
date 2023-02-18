@@ -101,7 +101,7 @@ class SearchListItem extends Component<Props> {
                 username: res.author,
                 children: (
                   <a className="author-avatar">
-                    {UserAvatar({ ...this.props, username: res.author, size: "small" })}
+                    <UserAvatar username={res.author} size="small" />
                   </a>
                 )
               })}

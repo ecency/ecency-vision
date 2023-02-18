@@ -168,9 +168,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
                         {ProfileLink({
                           ...this.props,
                           username: x.voter,
-                          children: (
-                            <>{UserAvatar({ ...this.props, username: x.voter, size: "small" })}</>
-                          )
+                          children: <UserAvatar username={x.voter} size="small" />
                         })}
 
                         <div className="item-info">

@@ -120,7 +120,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
                       }}
                     >
                       <div className="item-main">
-                        {UserAvatar({ ...this.props, username: x.name, size: "small" })}
+                        <UserAvatar username={x.name} size="small" />
                         <div className="item-info">
                           <span className="item-name notransalte">{x.title}</span>
                         </div>
@@ -152,7 +152,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
               }}
             >
               <div className="item-main">
-                {UserAvatar({ ...this.props, username: activeUser.username, size: "small" })}
+                <UserAvatar username={activeUser.username} size="small" />
                 <div className="item-info">
                   <span className="item-name notransalte">{_t("community-selector.my-blog")}</span>
                 </div>
@@ -173,7 +173,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
                     }}
                   >
                     <div className="item-main">
-                      {UserAvatar({ ...this.props, username: x[0], size: "small" })}
+                      <UserAvatar username={x[0]} size="small" />
                       <div className="item-info">
                         <span className="item-name notransalte">{x[1]}</span>
                       </div>
@@ -269,7 +269,7 @@ export class CommunitySelector extends BaseComponent<Props, State> {
     if (community) {
       content = (
         <>
-          {UserAvatar({ ...this.props, username: community.name, size: "small" })}
+          <UserAvatar username={community.name} size="small" />
           <span className="label">{community.title}</span> {menuDownSvg}
         </>
       );
@@ -277,7 +277,7 @@ export class CommunitySelector extends BaseComponent<Props, State> {
       if (tags.length > 0 || picked) {
         content = (
           <>
-            {UserAvatar({ ...this.props, username: activeUser.username, size: "small" })}
+            <UserAvatar username={activeUser.username} size="small" />
             <span className="label">{_t("community-selector.my-blog")}</span> {menuDownSvg}
           </>
         );

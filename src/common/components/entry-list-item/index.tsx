@@ -340,7 +340,7 @@ export default class EntryListItem extends Component<Props, State> {
                   username: entry.author,
                   children: (
                     <a className="author-avatar d-sm-block">
-                      {UserAvatar({ ...this.props, username: entry.author, size: "small" })}
+                      <UserAvatar username={entry.author} size="small" />
                     </a>
                   )
                 })}

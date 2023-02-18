@@ -51,7 +51,7 @@ export default class NotificationListItem extends Component<{
       afterClick: this.afterClick,
       children: (
         <a className="source-avatar">
-          {UserAvatar({ ...this.props, username: notification.source, size: "medium" })}
+          <UserAvatar username={notification?.source} size="medium" />
         </a>
       )
     });

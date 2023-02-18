@@ -635,7 +635,7 @@ class EntryPage extends BaseComponent<Props, State> {
                     username: entry.author,
                     children: (
                       <div className="cross-post-author">
-                        {UserAvatar({ username: entry.author, size: "medium" })}
+                        <UserAvatar username={entry.author} size="medium" />
                         {`@${entry.author}`}
                       </div>
                     )
@@ -753,10 +753,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                   username: originalEntry.author,
                                   children: (
                                     <div className="author-avatar">
-                                      {UserAvatar({
-                                        username: originalEntry.author,
-                                        size: "medium"
-                                      })}
+                                      <UserAvatar username={originalEntry.author} size="medium" />
                                     </div>
                                   )
                                 })}
@@ -940,10 +937,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                 username: entry.author,
                                 children: (
                                   <div className="author-avatar">
-                                    {UserAvatar({
-                                      username: entry.author,
-                                      size: "medium"
-                                    })}
+                                    <UserAvatar username={entry.author} size="medium" />
                                   </div>
                                 )
                               })}

@@ -81,11 +81,7 @@ export class Bookmarks extends BaseComponent<BookmarksProps, BookmarksState> {
                       },
                       children: (
                         <div className="dialog-list-item">
-                          {UserAvatar({
-                            ...this.props,
-                            username: item.author,
-                            size: "medium"
-                          })}
+                          <UserAvatar username={item.author} size="medium" />
                           <div className="item-body">
                             <span className="author with-slash">{item.author}</span>
                             <span className="permlink">{item.permlink}</span>
@@ -164,11 +160,7 @@ export class Favorites extends BaseComponent<FavoritesProps, FavoritesState> {
                       },
                       children: (
                         <div className="dialog-list-item">
-                          {UserAvatar({
-                            ...this.props,
-                            username: item.account,
-                            size: "medium"
-                          })}
+                          <UserAvatar username={item.account} size="medium" />
                           <div className="item-body">
                             <span className="author notranslate">{item.account}</span>
                           </div>

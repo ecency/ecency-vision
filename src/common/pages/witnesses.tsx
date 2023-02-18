@@ -392,11 +392,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                       children: (
                         <span className="witness-card notranslate">
                           {" "}
-                          {UserAvatar({
-                            ...this.props,
-                            username: row.name,
-                            size: "medium"
-                          })}
+                          <UserAvatar username={row.name} size="medium" />
                           <div className={"witness-ctn"}>
                             {row.signingKey === "STM1111111111111111111111111111111114T1Anm" ? (
                               <s>{row.name}</s>

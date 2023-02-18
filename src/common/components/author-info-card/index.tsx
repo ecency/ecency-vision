@@ -74,11 +74,7 @@ const AuthorInfoCard = (props: Props) => {
             username: props?.entry?.author,
             children: (
               <div className="author-avatar">
-                {UserAvatar({
-                  ...props,
-                  username: props?.entry?.author,
-                  size: "medium"
-                })}
+                <UserAvatar username={props?.entry?.author} size="medium" />
               </div>
             )
           })}

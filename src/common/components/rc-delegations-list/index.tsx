@@ -102,9 +102,7 @@ export const RcDelegationsList = (props: any) => {
                           {ProfileLink({
                             ...props,
                             username: list.to,
-                            children: (
-                              <>{UserAvatar({ ...props, username: list.to, size: "small" })}</>
-                            )
+                            children: <UserAvatar username={list.to} size="small" />
                           })}
                           <div className="item-info">
                             {ProfileLink({
@@ -172,9 +170,7 @@ export const RcDelegationsList = (props: any) => {
                         {ProfileLink({
                           ...props,
                           username: list.sender,
-                          children: (
-                            <>{UserAvatar({ ...props, username: list.sender, size: "small" })}</>
-                          )
+                          children: <UserAvatar username={list.sender} size="small" />
                         })}
                         <div className="item-info">
                           {ProfileLink({

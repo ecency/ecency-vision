@@ -131,7 +131,7 @@ export class Subscribers extends BaseComponent<Props, State> {
                       {ProfileLink({
                         ...this.props,
                         username,
-                        children: <>{UserAvatar({ ...this.props, username, size: "small" })}</>
+                        children: <UserAvatar username={username} size="small" />
                       })}
                       <div className="item-info">
                         {ProfileLink({

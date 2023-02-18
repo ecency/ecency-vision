@@ -183,7 +183,7 @@ export class List extends BaseComponent<ListProps, ListState> {
               {ProfileLink({
                 ...this.props,
                 username: item.name,
-                children: <>{UserAvatar({ ...this.props, username: item.name, size: "small" })}</>
+                children: <UserAvatar username={item.name} size="small" />
               })}
               <div className="item-info">
                 {ProfileLink({

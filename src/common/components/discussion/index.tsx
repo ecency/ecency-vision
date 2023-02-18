@@ -324,7 +324,7 @@ export const Item = (props: ItemProps) => {
             username: entry.author,
             children: (
               <a className="d-sm-inline-block">
-                {UserAvatar({ ...props, username: entry.author, size: "medium" })}
+                <UserAvatar username={entry.author} size="medium" />
               </a>
             )
           })}

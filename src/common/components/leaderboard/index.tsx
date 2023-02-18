@@ -111,7 +111,9 @@ export class LeaderBoard extends BaseComponent<Props, State> {
                       ...this.props,
                       username: r._id,
                       children: (
-                        <a>{UserAvatar({ ...this.props, size: "medium", username: r._id })}</a>
+                        <a>
+                          <UserAvatar size="medium" username={r._id} />
+                        </a>
                       )
                     })}
                   </div>

@@ -88,7 +88,7 @@ export class CommunityRoles extends Component<Props, State> {
                       username,
                       children: (
                         <a className="user">
-                          {UserAvatar({ ...this.props, username, size: "medium" })}{" "}
+                          <UserAvatar username={username} size="medium" />{" "}
                           <span className="username">{username}</span>
                         </a>
                       )

@@ -250,7 +250,7 @@ class UserNav extends Component<Props, State> {
 
     const dropDownConfig = {
       history: this.props.history,
-      label: UserAvatar({ ...this.props, username: activeUser.username, size: "medium" }),
+      label: <UserAvatar username={activeUser.username} size="medium" />,
       items: dropDownItems,
       preElem: preDropDownElem
     };

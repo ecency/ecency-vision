@@ -508,7 +508,7 @@ export class Transfer extends BaseComponent<Props, State> {
       renderer: (i: string) => {
         return (
           <>
-            {UserAvatar({ ...this.props, username: i, size: "medium" })}{" "}
+            <UserAvatar username={i} size="medium" />
             <span style={{ marginLeft: "4px" }}>{i}</span>
           </>
         );
@@ -780,13 +780,13 @@ export class Transfer extends BaseComponent<Props, State> {
                 <div className="confirm-title">{_t(`transfer.${titleLngKey}`)}</div>
                 <div className="users">
                   <div className="from-user">
-                    {UserAvatar({ ...this.props, username: activeUser.username, size: "medium" })}
+                    <UserAvatar username={activeUser.username} size="medium" />
                   </div>
                   {showTo && (
                     <>
                       <div className="arrow">{arrowRightSvg}</div>
                       <div className="to-user">
-                        {UserAvatar({ ...this.props, username: to, size: "medium" })}
+                        <UserAvatar username={to} size="medium" />
                       </div>
                     </>
                   )}

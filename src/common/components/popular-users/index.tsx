@@ -75,7 +75,9 @@ export class PopularUsers extends BaseComponent<Props, State> {
                     ...this.props,
                     username: r.name,
                     children: (
-                      <a>{UserAvatar({ ...this.props, size: "medium", username: r.name })}</a>
+                      <a>
+                        <UserAvatar username={r.name} size="medium" />
+                      </a>
                     )
                   })}
                   <div className="user-info">

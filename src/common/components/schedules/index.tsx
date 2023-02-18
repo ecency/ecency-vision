@@ -82,7 +82,7 @@ export class ListItem extends Component<ItemProps> {
           <div className="item-header-main">
             <div className="author-part">
               <a className="author-avatar">
-                {UserAvatar({ ...this.props, username: author, size: "medium" })}
+                <UserAvatar username={author} size="medium" />
               </a>
               <a className="author">
                 {author}

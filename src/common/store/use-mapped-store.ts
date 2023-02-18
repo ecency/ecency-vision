@@ -1,5 +1,4 @@
-import { useDispatch, useStore } from "react-redux";
-import { useState } from "react";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { AppState } from "./index";
 import { bindActionCreators } from "redux";
 import "./actions";
@@ -9,14 +8,15 @@ export const useMappedStore = () => {
   const store = useStore<AppState>();
   const dispatch = useDispatch();
 
-  const [state, setState] = useState(store.getState());
-
-  store.subscribe(() => {
-    setState(store.getState());
+  const storeStateAccessor: AppState = store.getState();
+  const storeStateAccessorProxy = new Proxy<AppState>(storeStateAccessor, {
+    get(target, p, receiver: any): any {
+      return useSelector((state) => state[p]);
+    }
   });
 
   return {
-    ...state,
+    ...storeStateAccessorProxy,
     ...bindActionCreators(getActions(), dispatch)
   };
 };

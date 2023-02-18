@@ -130,7 +130,11 @@ export const Curation = (props: Props) => {
                   {ProfileLink({
                     ...props,
                     username: r.account,
-                    children: <a>{UserAvatar({ ...props, size: "medium", username: r.account })}</a>
+                    children: (
+                      <a>
+                        <UserAvatar username={r.account} size="small" />
+                      </a>
+                    )
                   })}
                 </div>
                 <div className="username">
