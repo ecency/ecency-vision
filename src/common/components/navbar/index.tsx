@@ -251,7 +251,8 @@ export class NavBar extends Component<Props, State> {
             "feed",
             "referrals",
             "followers",
-            "following"
+            "following",
+            "trail"
           ].includes(global.filter))
         ? "/hot"
         : global.filter === "feed"

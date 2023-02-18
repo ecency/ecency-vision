@@ -48,7 +48,6 @@ import { withPersistentScroll } from "../components/with-persistent-scroll";
 import useAsyncEffect from "use-async-effect";
 import { usePrevious } from "../util/use-previous";
 import WalletSpk from "../components/wallet-spk";
-import {} from "../store/configure";
 
 interface MatchParams {
   username: string;
@@ -361,7 +360,10 @@ export const Profile = (props: Props) => {
         })
       : NavBar({ ...props });
   };
-
+  useEffect(() => {
+    console.log("props");
+    console.log(props);
+  }, []);
   const getMetaProps = () => {
     const username = props.match.params.username.replace("@", "");
     const account = props.accounts.find((x) => x.name === username);
