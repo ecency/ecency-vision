@@ -512,13 +512,15 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         <ScrollToTop />
         <Theme global={this.props.global} />
         <Feedback activeUser={this.props.activeUser} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props,
-              reloadFn: this.load,
-              reloading: loading
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props,
+            reloadFn: this.load,
+            reloading: loading
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
         <div className={"app-content witnesses-page" + containerClasses}>
           {(() => {
             if (loading && !originalWitnesses.length) {

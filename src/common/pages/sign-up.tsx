@@ -149,7 +149,7 @@ export const SignUp = (props: PageProps) => {
       <ScrollToTop />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
-      {props.global.isElectron ? NavBarElectron({ ...props }) : NavBar({ ...props })}
+      {props.global.isElectron ? NavBarElectron({ ...props }) : <NavBar history={props.history} />}
       <div
         className={
           props.global.isElectron

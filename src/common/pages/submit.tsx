@@ -1021,11 +1021,13 @@ class SubmitPage extends BaseComponent<Props, State> {
           />
         )}
         {global.isElectron && <MdHandler global={this.props.global} history={this.props.history} />}
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
 
         <div
           className={_c(

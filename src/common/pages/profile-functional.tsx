@@ -338,13 +338,15 @@ export const Profile = (props: Props) => {
   const delayedSearch = useCallback(_.debounce(handleInputChange, 3000, { leading: true }), []);
 
   const getNavBar = () => {
-    return props.global.isElectron
-      ? NavBarElectron({
-          ...props,
-          reloadFn: reload,
-          reloading: loading
-        })
-      : NavBar({ ...props });
+    return props.global.isElectron ? (
+      NavBarElectron({
+        ...props,
+        reloadFn: reload,
+        reloading: loading
+      })
+    ) : (
+      <NavBar history={props.history} />
+    );
   };
 
   const getMetaProps = () => {

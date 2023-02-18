@@ -554,13 +554,15 @@ class EntryPage extends BaseComponent<Props, State> {
     const { global, history, match, location } = this.props;
     const { isRawContent } = this.state;
 
-    let navBar = global.isElectron
-      ? NavBarElectron({
-          ...this.props,
-          reloadFn: this.reload,
-          reloading: loading
-        })
-      : NavBar({ ...this.props });
+    let navBar = global.isElectron ? (
+      NavBarElectron({
+        ...this.props,
+        reloadFn: this.reload,
+        reloading: loading
+      })
+    ) : (
+      <NavBar history={this.props.history} match={this.props.match} />
+    );
 
     if (loading) {
       navBar = (

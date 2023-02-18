@@ -61,11 +61,13 @@ class SearchPage extends SearchBase {
       <>
         <Meta {...metaProps} />
         <Theme global={this.props.global} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
         <div className={containerClasses}>
           <div className="search-main">
             <SearchComment {...this.props} limit={8} />
@@ -106,11 +108,13 @@ class SearchMorePage extends SearchBase {
       <>
         <Meta {...metaProps} />
         <Theme global={this.props.global} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
         <div className={containerClasses}>
           <SearchComment {...this.props} />
         </div>
