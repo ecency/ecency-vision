@@ -48,10 +48,7 @@ import { withPersistentScroll } from "../components/with-persistent-scroll";
 import useAsyncEffect from "use-async-effect";
 import { usePrevious } from "../util/use-previous";
 import WalletSpk from "../components/wallet-spk";
-import configureStore from "../store/configure";
 import {} from "../store/configure";
-
-const store = configureStore(window["__PRELOADED_STATE__"]);
 
 interface MatchParams {
   username: string;
