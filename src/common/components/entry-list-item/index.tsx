@@ -219,12 +219,12 @@ export default class EntryListItem extends Component<Props, State> {
 
     const imgGrid: string =
       (global.canUseWebp
-        ? catchPostImage(entry, 600, 500, "webp")
-        : catchPostImage(entry, 600, 500)) || noImage;
+        ? catchPostImage(entry, 0, 0, "webp")
+        : catchPostImage(entry, 0, 0)) || noImage;
     const imgRow: string =
       (global.canUseWebp
-        ? catchPostImage(entry, 260, 200, "webp")
-        : catchPostImage(entry, 260, 200)) || noImage;
+        ? catchPostImage(entry, 0, 0, "webp")
+        : catchPostImage(entry, 0, 0)) || noImage;
     let svgSizeRow = imgRow === noImage ? "noImage" : "";
     let svgSizeGrid = imgGrid === noImage ? "172px" : "auto";
 
