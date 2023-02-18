@@ -114,8 +114,9 @@ export const Profile = (props: Props) => {
         //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
         setDataTrail({ ...dataTrail, entries: data.reverse() });
         //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
+      } else {
+        fetchEntries(global.filter, global.tag, false);
       }
-      fetchEntries(global.filter, global.tag, false);
     }
 
     // fetch points
@@ -153,6 +154,7 @@ export const Profile = (props: Props) => {
   useAsyncEffect(
     async (_) => {
       const { global, fetchEntries, history } = props;
+
       const nextUsername = props.match.params.username.replace("@", "");
       const nextSection = props.match.params.section;
       const nextAccount = props.accounts.find((x) => x.name === nextUsername);
@@ -186,7 +188,14 @@ export const Profile = (props: Props) => {
 
       // filter or username changed. fetch posts.
       if (nextSection !== prevMatchSection || `@${nextUsername}` !== prevMatchUsername) {
-        fetchEntries(global.filter, global.tag, false);
+        if (nextSection === "trail") {
+          let data = await getAccountVotesTrail(username.replace("@", ""), 10);
+          //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
+          setDataTrail({ ...dataTrail, entries: data.reverse() });
+          //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
+        } else {
+          fetchEntries(global.filter, global.tag, false);
+        }
       }
 
       if (entries) {
