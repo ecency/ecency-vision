@@ -125,13 +125,15 @@ export const getSpkWallet = async (username: string): Promise<SpkApiWallet> => {
 };
 export const getMarketInfo = async (): Promise<SpkApiWallet> => {
   const resp = await axios.get<SpkApiWallet>(`${spkNode}/dex`);
-  console.log(resp.data)
+  // console.log(resp.data)
   return resp.data;
 };
 
 export const getLarynxData = async () => {
   fetch(`https://spknode.blocktrades.us/dex`).then((data: any)=> data.json())
-  .then((result: any) => console.log(result))
+  .then((result: any) =>{ 
+  // console.log(result)
+  })
 }
 
 export const getMarkets = async (): Promise<Markets> => {

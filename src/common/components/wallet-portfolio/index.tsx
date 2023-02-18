@@ -35,6 +35,7 @@ import EngineTokensList from "../engine-tokens-list";
 import { Button, FormControl, Modal } from "react-bootstrap";
 import { updateProfile } from "../../api/operations";
 import { getSpkWallet, getMarketInfo, getLarynxData } from "../../api/spk-api";
+import { findIndex } from "lodash";
 
 const hbdIcom = require("./asset/hbd.png")
 const ecencyIcon = require("./asset/ecency.jpeg")
@@ -178,14 +179,17 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       const { selectedTokens, isChecked } = this.state;
       const userProfile = JSON.parse(account.posting_json_metadata);
       const userTokens = userProfile.profile.profileTokens
-      const isInProfile = userTokens?.map((item: any) => item.symbol === token.symbol)
-      const isSelected = selectedTokens.includes(token);
+      const isInProfile = userTokens?.filter((item: any) => item.symbol !== token.symbol)
+      const index = findIndex((item: any) => item.symbol !== token.symbol)
+      console.log(index)
+      // const isSelected = selectedTokens.includes(token);
       
-    if (e?.target?.checked && !isSelected && !isInProfile.includes(true)) {
-        this.setState({selectedTokens: [...selectedTokens, ...token], isChecked: e.target.checked})
-        e.target.checked === true;
+    if (e?.target?.checked) {
+        this.setState({selectedTokens: [...userTokens, ...token]})
+        // console.log([...selectedTokens, ...isInProfile])
     } else {
-      this.setState({selectedTokens: [...selectedTokens], isChecked: e.target.checked})
+      const newArray = selectedTokens.splice(index, 1)
+      this.setState({selectedTokens: [...newArray]})
     } 
     }
 
@@ -196,7 +200,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       const userProfile = JSON.parse(account.posting_json_metadata);
       const { profile } = userProfile;
       let { profileTokens } = profile;
-           profileTokens = [...profileTokens, ...selectedTokens];
+           profileTokens = [...selectedTokens];
 
       const newPostMeta: any = {...profile, profileTokens}
    
@@ -419,15 +423,19 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
           {allTokens?.slice(0, 30).filter((list: any) => 
                     list?.name.toLowerCase().startsWith(search) || 
                     list?.name.toLowerCase().includes(search)
-                    ).map((token: any, i: any) =>(
-            <EngineTokensList 
+                    ).map((token: any, i: any) =>{
+                      const favoriteToken = profileTokens?.find((favorite: any) => favorite.symbol === token.symbol )
+                      // console.log(token)
+                      // console.log(favoriteToken)
+          return  (<EngineTokensList 
             token={token} 
             showTokenList={showTokenList} 
             handleOnChange={this.handleOnChange}
             isChecked={isChecked}
             key={i}
-            />
-          ))}
+            favoriteToken={favoriteToken}
+            />)
+                    })}
           <div className="confirm-btn align-self-center">
             <Button
             onClick={() => {
