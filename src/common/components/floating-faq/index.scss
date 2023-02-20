@@ -3,8 +3,6 @@
   z-index: 900;
   right: 2rem;
   bottom: 2rem;
-  background: $dark-sky-blue;
-  color: $white;
   border-radius: 20px 2px 20px 20px !important;
   padding: 10px 20px 10px 10px !important;
 
@@ -140,6 +138,7 @@
   .username,
   .message {
     padding: 0 2.5rem;
+    margin-top: 1rem;
   }
 
   .faq-article {
@@ -182,7 +181,7 @@
   }
 }
 
-@media screen and (max-width: $sm-break) and (min-width: 285px) {
+@include media-breakpoint-down(sm) {
   .faq-container {
     height: 62vh;
     width: 300px;
@@ -285,7 +284,7 @@
 
     .username,
     .message {
-      padding: 0;
+      padding: 0 0.7rem;
     }
 
     .submit-btn {

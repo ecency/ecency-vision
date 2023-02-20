@@ -67,6 +67,7 @@ const FloatingFAQ = () => {
     <>
       <Button
         className="help-btn"
+        variant="primary"
         onClick={() => {
           setShow(!show);
         }}
