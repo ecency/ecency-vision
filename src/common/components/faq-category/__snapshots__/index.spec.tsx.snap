@@ -21,9 +21,7 @@ exports[`(1) Default render 1`] = `
           >
             <div
               className="section-title ml-1"
-            >
-              
-            </div>
+            />
           </div>
         </div>
         <button

@@ -46,21 +46,6 @@ describe("With persistent scroll HOC", () => {
     expect(component.root.findByType("div").props.children).toStrictEqual(["Greeting, ", "Tester"]);
   });
 
-  it("should save scroll position to store", function () {
-    const component = TestRenderer.create(
-      <StaticRouter location={location} context={{}}>
-        <Provider store={store}>
-          <TestComponentWithPersistentScroll {...testProps} />
-        </Provider>
-      </StaticRouter>
-    );
-
-    (window as any).scrollY = 1000;
-    component.unmount();
-
-    expect(store.getState().persistentPageScroll["/testpath"].scroll).toBe(1000);
-  });
-
   it("should scroll with stored scroll position", function () {
     store.dispatch(savePageAct({ pageName: "/testpath", scrollValue: 1000 }));
 

@@ -103,8 +103,6 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
-      
       <div
         className="form-group row"
       >
@@ -161,7 +159,6 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
       <div
         className="row"
       >
@@ -220,7 +217,6 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
           </small>
         </div>
       </div>
-      
       <div
         className="form-group row"
       >
@@ -330,7 +326,6 @@ exports[`(1) Transfer HIVE (2) Step 2 1`] = `
            
           HIVE
         </div>
-        
       </div>
       <div
         className="d-flex justify-content-center"
@@ -653,8 +648,6 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
-      
       <div
         className="form-group row"
       >
@@ -711,7 +704,6 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
       <div
         className="row"
       >
@@ -770,7 +762,6 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
           </small>
         </div>
       </div>
-      
       <div
         className="form-group row"
       >
@@ -1086,8 +1077,6 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
-      
       <div
         className="form-group row"
       >
@@ -1144,7 +1133,6 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
       <div
         className="row"
       >
@@ -1203,7 +1191,6 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
           </small>
         </div>
       </div>
-      
       <div
         className="form-group row"
       >
@@ -1313,7 +1300,6 @@ exports[`(3) Transfer POINT (2) Step 2 1`] = `
            
           POINT
         </div>
-        
       </div>
       <div
         className="d-flex justify-content-center"
@@ -1515,8 +1501,6 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
-      
       <div
         className="form-group row"
       >
@@ -1567,7 +1551,6 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
       <div
         className="row"
       >
@@ -1626,7 +1609,6 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
           </small>
         </div>
       </div>
-      
       <div
         className="form-group row"
       >
@@ -1736,7 +1718,6 @@ exports[`(4) Transfer to Savings - HBD (2) Step 2 1`] = `
            
           HBD
         </div>
-        
       </div>
       <div
         className="d-flex justify-content-center"
@@ -1938,8 +1919,6 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
-      
       <div
         className="form-group row"
       >
@@ -1990,7 +1969,6 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
       <div
         className="row"
       >
@@ -2049,7 +2027,6 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
           </small>
         </div>
       </div>
-      
       <div
         className="form-group row"
       >
@@ -2159,7 +2136,6 @@ exports[`(5) Withdraw Savings - HIVE (2) Step 2 1`] = `
            
           HIVE
         </div>
-        
       </div>
       <div
         className="d-flex justify-content-center"
@@ -2356,7 +2332,6 @@ exports[`(6) Convert (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
       <div
         className="row"
       >
@@ -2468,7 +2443,6 @@ exports[`(6) Convert (2) Step 2 1`] = `
            
           HBD
         </div>
-        
       </div>
       <div
         className="d-flex justify-content-center"
@@ -2670,8 +2644,6 @@ exports[`(7) Power up (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
-      
       <div
         className="form-group row"
       >
@@ -2706,7 +2678,6 @@ exports[`(7) Power up (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
       <div
         className="row"
       >
@@ -2842,7 +2813,6 @@ exports[`(7) Power up (2) Step 2 1`] = `
            
           HIVE
         </div>
-        
       </div>
       <div
         className="d-flex justify-content-center"
@@ -3044,8 +3014,6 @@ exports[`(8) Delegate (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
-      
       <div
         className="form-group row"
       >
@@ -3080,7 +3048,6 @@ exports[`(8) Delegate (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
       <div
         className="row"
       >
@@ -3226,7 +3193,6 @@ exports[`(8) Delegate (2) Step 2 1`] = `
         >
           1.946443 VESTS
         </div>
-        
       </div>
       <div
         className="d-flex justify-content-center"
@@ -3423,7 +3389,6 @@ exports[`(9) Power down (1) Step 1 1`] = `
           </div>
         </div>
       </div>
-      
       <div
         className="row"
       >
@@ -3550,7 +3515,6 @@ exports[`(9) Power down (2) Step 2 1`] = `
         >
           3892.887237 VESTS
         </div>
-        
       </div>
       <div
         className="d-flex justify-content-center"

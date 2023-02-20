@@ -117,7 +117,6 @@ exports[`(1) Default render 1`] = `
         <div
           className="dropdown-btn"
         >
-          
           <div
             className="menu-down"
           >
@@ -339,7 +338,6 @@ Array [
           <div
             className="dropdown-btn"
           >
-            
             <div
               className="menu-down"
             >
@@ -592,7 +590,6 @@ exports[`(3) Night Theme 1`] = `
         <div
           className="dropdown-btn"
         >
-          
           <div
             className="menu-down"
           >
@@ -813,7 +810,6 @@ exports[`(4) With active user 1`] = `
         <div
           className="dropdown-btn"
         >
-          
           <div
             className="menu-down"
           >
@@ -1088,7 +1084,6 @@ exports[`(5) With active user && usePrivate = false 1`] = `
         <div
           className="dropdown-btn"
         >
-          
           <div
             className="menu-down"
           >
