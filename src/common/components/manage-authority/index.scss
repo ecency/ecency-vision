@@ -8,12 +8,25 @@
     }
     .copy-btn {
       margin-right: 1rem;
-      // margin-bottom: 1rem;
-
-      @include media-breakpoint-down(lg) {
-        margin-bottom: 10px;
-      }
     }
+    .import-btn {
+      width: 154px;
+    }
+    .action-btns {
+      width: 260px;
+    }
+  }
+
+  .username {
+    display: flex;
+
+    .user-img {
+      margin: -2px 5px 0 0;
+    }
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 }
 

@@ -4,14 +4,14 @@ import { Button, Modal } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 
-import { Revoke } from "../../api/hive";
+import { Revoke } from "../../api/operations";
 import { getAccounts } from "../../api/hive";
 import { _t } from "../../i18n";
 import UserAvatar from "../user-avatar/index";
 import { success } from "../feedback";
 import keyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
-import { Operation, PrivateKey } from "@hiveio/dhive";
+import { PrivateKey } from "@hiveio/dhive";
 
 interface Props {
   global: Global;
@@ -38,6 +38,7 @@ export default function ManageAuthorities(props: Props) {
   const getAccountData = async () => {
     const resp = await getAccounts([props.activeUser!.username]);
     if (resp) {
+      console.log(resp);
       setWeight(resp[0].active.weight_threshold);
       setPostingsAuthority(resp[0].posting.account_auths);
       setPostingKey([resp[0].memo_key, resp[0].active.weight_threshold]);
@@ -59,33 +60,34 @@ export default function ManageAuthorities(props: Props) {
     console.log(postingsAuthority);
     const newAccountAuths = postingsAuthority.filter((x) => x[0] !== account);
     console.log(newAccountAuths);
-    const newPosting = {
-      weight_threshold: weight,
-      account_auths: newAccountAuths,
-      key_auths: active
-    };
-    console.log(newPosting);
-    const op: Operation = [
-      "account_update",
-      {
-        account,
-        posting: newPosting,
-        memo_key: posting[0],
-        json_metadata: ""
-      }
-    ];
-    // const promoise = Revoke(
-    //   props.activeUser!.username,
-    //   weight,
-    //   newAccountAuths,
-    //   active,
-    //   posting[0],
-    //   ""
-    // );
-    // promoise.then((resp) => {
-    //   console.log(resp);
-    // });
-    const promise = Revoke(op);
+    // const newPosting = {
+    //   weight_threshold: weight,
+    //   account_auths: newAccountAuths,
+    //   key_auths: active
+    // };
+    // console.log(newPosting);
+    // const op: Operation = [
+    //   "account_update",
+    //   {
+    //     account,
+    //     posting: newPosting,
+    //     memo_key: posting[0],
+    //     json_metadata: ""
+    //   }
+    // ];
+    const promoise = Revoke(
+      props.activeUser!.username,
+      weight,
+      newAccountAuths,
+      [["STM8mBt3qoYrPLNJezqBfpUss19HcMsLsKjkbDL47HxVeUHSKxbV1", 1]],
+      posting[0],
+      "",
+      "5JYF7hTtXXcvW1gDsw6vBnSnbsdAtBKc28UcaLM7cNMm5xabmY6"
+    );
+    promoise.then((resp) => {
+      console.log(resp);
+    });
+    // const promise = Revoke(op);
   };
 
   const copyToClipboard = (text: string) => {
@@ -213,17 +215,20 @@ export default function ManageAuthorities(props: Props) {
                       </td>
                       {
                         <>
-                          <td key={i} style={{ display: "flex" }}>
-                            {UserAvatar({
-                              global: props.global,
-                              username: account[0],
-                              size: "small"
-                            })}
+                          <td key={i}>
                             <a
-                              style={{ marginTop: "2px", marginLeft: "6px" }}
+                              className="username"
                               target="_blank"
                               href={`https://ecency.com/@${account[0]}`}
                             >
+                              <div className="user-img">
+                                {UserAvatar({
+                                  global: props.global,
+                                  username: account[0],
+                                  size: "small"
+                                })}
+                              </div>
+
                               {account[0]}
                             </a>
                           </td>
@@ -250,47 +255,61 @@ export default function ManageAuthorities(props: Props) {
           <tr>
             <td> {_t("manage-authorities.owner")}</td>
             <td>{owner[0]}</td>
-            <td>
-              <Button
-                className="copy-btn"
-                variant="outline-primary"
-                onClick={() => copyToClipboard(owner[0])}
-              >
-                {_t("manage-authorities.copy")}
-              </Button>
-              <Button variant="outline-primary">{_t("manage-authorities.import")}</Button>
-            </td>
+            <div className=".action-btns">
+              <td>
+                <Button
+                  className="copy-btn"
+                  variant="outline-primary"
+                  onClick={() => copyToClipboard(owner[0])}
+                >
+                  {_t("manage-authorities.copy")}
+                </Button>
+                <Button className="import-btn" variant="outline-primary">
+                  {_t("manage-authorities.import")}
+                </Button>
+              </td>
+            </div>
+
             <td>{owner[1]}</td>
           </tr>
           <tr>
             <td> {_t("manage-authorities.active")}</td>
             <td>{active[0]}</td>
-            <td>
-              <Button
-                className="copy-btn"
-                variant="outline-primary"
-                onClick={() => copyToClipboard(active[0])}
-              >
-                {_t("manage-authorities.copy")}
-              </Button>
-              <Button variant="outline-primary">{_t("manage-authorities.import")}</Button>
-            </td>
+            <div className="action-btns">
+              <td>
+                <Button
+                  className="copy-btn"
+                  variant="outline-primary"
+                  onClick={() => copyToClipboard(active[0])}
+                >
+                  {_t("manage-authorities.copy")}
+                </Button>
+                <Button className="import-btn" variant="outline-primary">
+                  {_t("manage-authorities.import")}
+                </Button>
+              </td>
+            </div>
 
             <td>{active[1]}</td>
           </tr>
           <tr>
             <td> {_t("manage-authorities.posting-text")}</td>
             <td>{posting[0]}</td>
-            <td>
-              <Button
-                className="copy-btn"
-                variant="outline-primary"
-                onClick={() => copyToClipboard(posting[0])}
-              >
-                {_t("manage-authorities.copy")}
-              </Button>
-              <Button variant="outline-primary">{_t("manage-authorities.import")}</Button>
-            </td>
+            <div className="action-btns">
+              <td>
+                <Button
+                  className="copy-btn"
+                  variant="outline-primary"
+                  onClick={() => copyToClipboard(posting[0])}
+                >
+                  {_t("manage-authorities.copy")}
+                </Button>
+                <Button className="import-btn" variant="outline-primary">
+                  {_t("manage-authorities.import")}
+                </Button>
+              </td>
+            </div>
+
             <td>{posting[1]}</td>
           </tr>
         </tbody>

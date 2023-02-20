@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="container authority-table"
+>
+  <table
+    className="table table-responsive"
+  >
+    <thead
+      className="table-head"
+    >
+      <tr>
+        <th>
+          Type
+        </th>
+        <th>
+          Key
+        </th>
+        <th />
+        <th>
+          Weight
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+           
+          owner
+        </td>
+        <td />
+        <div
+          className=".action-btns"
+        >
+          <td>
+            <button
+              className="copy-btn btn btn-outline-primary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Copy
+            </button>
+            <button
+              className="import-btn btn btn-outline-primary"
+              disabled={false}
+              type="button"
+            >
+              Import private key
+            </button>
+          </td>
+        </div>
+        <td />
+      </tr>
+      <tr>
+        <td>
+           
+          active
+        </td>
+        <td />
+        <div
+          className="action-btns"
+        >
+          <td>
+            <button
+              className="copy-btn btn btn-outline-primary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Copy
+            </button>
+            <button
+              className="import-btn btn btn-outline-primary"
+              disabled={false}
+              type="button"
+            >
+              Import private key
+            </button>
+          </td>
+        </div>
+        <td />
+      </tr>
+      <tr>
+        <td>
+           
+          posting
+        </td>
+        <td />
+        <div
+          className="action-btns"
+        >
+          <td>
+            <button
+              className="copy-btn btn btn-outline-primary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Copy
+            </button>
+            <button
+              className="import-btn btn btn-outline-primary"
+              disabled={false}
+              type="button"
+            >
+              Import private key
+            </button>
+          </td>
+        </div>
+        <td />
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
