@@ -19,16 +19,9 @@ exports[`(1) Default render - With data. 1`] = `
           <a
             href="/@foo"
             onClick={[Function]}
-          >
-            <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-          </a>
+            size="medium"
+            username="foo"
+          />
         </div>
         <div
           className="activity-content"
@@ -68,16 +61,9 @@ exports[`(1) Default render - With data. 1`] = `
           <a
             href="/@foo"
             onClick={[Function]}
-          >
-            <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-          </a>
+            size="medium"
+            username="foo"
+          />
         </div>
         <div
           className="activity-content"
@@ -120,16 +106,9 @@ exports[`(1) Default render - With data. 1`] = `
           <a
             href="/@foo"
             onClick={[Function]}
-          >
-            <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-          </a>
+            size="medium"
+            username="foo"
+          />
         </div>
         <div
           className="activity-content"
@@ -169,16 +148,9 @@ exports[`(1) Default render - With data. 1`] = `
           <a
             href="/@foo"
             onClick={[Function]}
-          >
-            <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-          </a>
+            size="medium"
+            username="foo"
+          />
         </div>
         <div
           className="activity-content"

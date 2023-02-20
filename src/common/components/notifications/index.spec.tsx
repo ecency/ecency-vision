@@ -16,6 +16,7 @@ import {
   apiReblogNotification,
   apiTransferNotification
 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 describe("(1) NotificationListItem", () => {
   const defProps = {
@@ -29,49 +30,49 @@ describe("(1) NotificationListItem", () => {
 
   it("(1) Vote ", () => {
     const props = { ...defProps, notification: apiVoteNotification };
-    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
+    const renderer = withStore(<NotificationListItem {...props} />);
 
     expect(renderer.toJSON()).toMatchSnapshot();
   });
 
   it("(2) Mention ", () => {
     const props = { ...defProps, notification: apiMentionNotification };
-    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
+    const renderer = withStore(<NotificationListItem {...props} />);
 
     expect(renderer.toJSON()).toMatchSnapshot();
   });
 
   it("(3) Follow ", () => {
     const props = { ...defProps, notification: apiFollowNotification };
-    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
+    const renderer = withStore(<NotificationListItem {...props} />);
 
     expect(renderer.toJSON()).toMatchSnapshot();
   });
 
   it("(4) Unfollow ", () => {
     const props = { ...defProps, notification: apiUnfollowNotification };
-    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
+    const renderer = withStore(<NotificationListItem {...props} />);
 
     expect(renderer.toJSON()).toMatchSnapshot();
   });
 
   it("(5) Reply ", () => {
     const props = { ...defProps, notification: apiReplyNotification };
-    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
+    const renderer = withStore(<NotificationListItem {...props} />);
 
     expect(renderer.toJSON()).toMatchSnapshot();
   });
 
   it("(6) Reblog ", () => {
     const props = { ...defProps, notification: apiReblogNotification };
-    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
+    const renderer = withStore(<NotificationListItem {...props} />);
 
     expect(renderer.toJSON()).toMatchSnapshot();
   });
 
   it("(7) Transfer ", () => {
     const props = { ...defProps, notification: apiTransferNotification };
-    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
+    const renderer = withStore(<NotificationListItem {...props} />);
 
     expect(renderer.toJSON()).toMatchSnapshot();
   });

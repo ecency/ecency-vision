@@ -29,16 +29,9 @@ exports[`(1) Default render 1`] = `
             <a
               href="/@foo"
               onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                  }
-                }
-              />
-            </a>
+              size="medium"
+              username="foo"
+            />
             <div
               className="item-title"
             >
@@ -72,16 +65,9 @@ exports[`(1) Default render 1`] = `
             <a
               href="/@bar"
               onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
-                  }
-                }
-              />
-            </a>
+              size="medium"
+              username="bar"
+            />
             <div
               className="item-title"
             >
@@ -115,16 +101,9 @@ exports[`(1) Default render 1`] = `
             <a
               href="/@baz"
               onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
-                  }
-                }
-              />
-            </a>
+              size="medium"
+              username="baz"
+            />
             <div
               className="item-title"
             >
@@ -156,29 +135,6 @@ exports[`(1) Default render 1`] = `
 `;
 
 exports[`(2) No matches 1`] = `
-<div
-  className="card search-people"
->
-  <div
-    className="card-header"
-  >
-    <strong>
-      People
-    </strong>
-  </div>
-  <div
-    className="card-body"
-  >
-    <span
-      className="text-muted"
-    >
-      Nothing found
-    </span>
-  </div>
-</div>
-`;
-
-exports[`(2) No matches 2`] = `
 <div
   className="card search-people"
 >

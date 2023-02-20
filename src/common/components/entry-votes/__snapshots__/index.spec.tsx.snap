@@ -76,16 +76,9 @@ Array [
           <a
             href="/@user1"
             onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
-                }
-              }
-            />
-          </a>
+            size="small"
+            username="user1"
+          />
           <div
             className="item-info"
           >
@@ -130,16 +123,9 @@ Array [
           <a
             href="/@user2"
             onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
-                }
-              }
-            />
-          </a>
+            size="small"
+            username="user2"
+          />
           <div
             className="item-info"
           >

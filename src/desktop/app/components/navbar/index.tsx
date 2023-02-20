@@ -407,7 +407,7 @@ export class NavBar extends Component<Props, State> {
     const tagValue = global.tag ? `/${global.tag}` : "";
     const logoHref = activeUser
       ? communityPage ||
-        (global.tag.includes("@") &&
+        (global.tag?.includes("@") &&
           [
             "engine",
             "wallet",
@@ -485,7 +485,7 @@ export class NavBar extends Component<Props, State> {
               <DropDown {...textMenuConfig} float="right" />
             </div>
 
-            {SwitchLang({ ...this.props })}
+            <SwitchLang {...this.props} />
 
             <ToolTip content={themeText}>
               <div className="switch-theme" onClick={this.changeTheme}>

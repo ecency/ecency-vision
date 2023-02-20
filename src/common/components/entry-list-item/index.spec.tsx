@@ -22,6 +22,7 @@ import {
 import { ListStyle } from "../../store/global/types";
 
 import EntryListItem from "./index";
+import { withStore } from "../../tests/with-store";
 
 mockDate.set(1591398131176);
 
@@ -58,7 +59,7 @@ const defProps = {
 };
 
 it("(1) Default render", async () => {
-  const renderer = await TestRenderer.create(
+  const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...defProps} />
     </StaticRouter>
@@ -75,7 +76,7 @@ it("(2) Grid view", async () => {
       listStyle: ListStyle.grid
     }
   };
-  const renderer = await TestRenderer.create(
+  const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...props} />
     </StaticRouter>
@@ -95,7 +96,7 @@ it("(3) Nsfw", async () => {
       }
     }
   };
-  const renderer = await TestRenderer.create(
+  const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...props} />
     </StaticRouter>
@@ -116,7 +117,7 @@ it("(4) Nsfw with active user", async () => {
     },
     activeUser: activeUserMaker("foo")
   };
-  const renderer = await TestRenderer.create(
+  const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...props} />
     </StaticRouter>
@@ -140,7 +141,7 @@ it("(5) Nsfw but allowed", async () => {
       nsfw: true
     }
   };
-  const renderer = await TestRenderer.create(
+  const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...props} />
     </StaticRouter>
@@ -156,7 +157,7 @@ it("(6) Cross post. Bottom menu", async () => {
     order: 2
   };
 
-  const renderer = await TestRenderer.create(
+  const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...props} />
     </StaticRouter>

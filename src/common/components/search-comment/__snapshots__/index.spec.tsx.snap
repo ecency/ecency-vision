@@ -3650,36 +3650,3 @@ exports[`(4) No matches 1`] = `
   </div>
 </div>
 `;
-
-exports[`(4) No matches 2`] = `null`;
-
-exports[`(4) No matches 3`] = `null`;
-
-exports[`(4) No matches 4`] = `
-<div
-  className="card search-comment"
->
-  <div
-    className="card-header d-flex justify-content-between align-items-center"
-  >
-    <div>
-      <strong>
-        Results
-      </strong>
-    </div>
-    <a
-      href="#"
-      onClick={[Function]}
-    >
-      Advanced
-    </a>
-  </div>
-  <div
-    className="card-body"
-  >
-    <span>
-      Nothing found
-    </span>
-  </div>
-</div>
-`;

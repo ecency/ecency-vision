@@ -96,17 +96,13 @@ export class SearchPeople extends BaseComponent<Props, State> {
                     return (
                       <div className="list-item" key={username}>
                         <div className="item-header">
-                          {ProfileLink({
-                            ...this.props,
-                            username,
-                            children: <UserAvatar username={username} size="medium" />
-                          })}
+                          <ProfileLink {...this.props} username={username}>
+                            <UserAvatar username={username} size="medium" />
+                          </ProfileLink>
                           <div className="item-title">
-                            {ProfileLink({
-                              ...this.props,
-                              username,
-                              children: <a className="item-name notransalte">{i.full_name}</a>
-                            })}
+                            <ProfileLink {...this.props} username={username}>
+                              <a className="item-name notransalte">{i.full_name}</a>
+                            </ProfileLink>
                             <span className="item-sub-title">
                               {"@"}
                               {i.name}

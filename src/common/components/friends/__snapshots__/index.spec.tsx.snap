@@ -30,16 +30,9 @@ exports[`(1) Render list 1`] = `
           <a
             href="/@user1"
             onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
-                }
-              }
-            />
-          </a>
+            size="small"
+            username="user1"
+          />
           <div
             className="item-info"
           >
@@ -62,16 +55,9 @@ exports[`(1) Render list 1`] = `
           <a
             href="/@user2"
             onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
-                }
-              }
-            />
-          </a>
+            size="small"
+            username="user2"
+          />
           <div
             className="item-info"
           >
@@ -94,16 +80,9 @@ exports[`(1) Render list 1`] = `
           <a
             href="/@user3"
             onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
-                }
-              }
-            />
-          </a>
+            size="small"
+            username="user3"
+          />
           <div
             className="item-info"
           >

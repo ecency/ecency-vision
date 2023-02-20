@@ -982,7 +982,7 @@ exports[`(5) With active user && usePrivate = false 1`] = `
       className="brand"
     >
       <a
-        href="/hot"
+        href="/undefined"
         onClick={[Function]}
       >
         <img
@@ -1139,7 +1139,7 @@ exports[`(5) With active user && usePrivate = false 1`] = `
     <div
       className="switch-theme"
       onClick={[Function]}
-      title="Night Theme"
+      title="Day Theme"
     >
       <svg
         viewBox="0 0 24 24"
