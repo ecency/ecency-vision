@@ -89,7 +89,7 @@ exports[`(2) Render with loaded data 1`] = `
             Available
           </div>
           <div
-            className="progress-bar progress-bar-danger"
+            className="progress-bar used"
             role="progressbar"
             style={
               Object {
@@ -279,7 +279,7 @@ exports[`(3) Should show profile edits 1`] = `
             Available
           </div>
           <div
-            className="progress-bar progress-bar-danger"
+            className="progress-bar used"
             role="progressbar"
             style={
               Object {

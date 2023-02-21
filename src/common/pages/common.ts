@@ -20,57 +20,19 @@ import { Points } from "../store/points/types";
 import { EntryPinTracker } from "../store/entry-pin-tracker/types";
 
 import {
-  toggleTheme,
-  hideIntro,
-  toggleListStyle,
-  dismissNewVersion,
-  muteNotifications,
-  unMuteNotifications,
-  setCurrency,
-  setLang,
-  setNsfw,
-  setLastIndexPath
-} from "../store/global";
-import { fetchTrendingTags } from "../store/trending-tags";
-import { updateSubscriptions } from "../store/subscriptions";
-import { fetchEntries, addEntry, updateEntry, invalidateEntries } from "../store/entries";
-import {
-  fetchDiscussion,
-  sortDiscussion,
-  resetDiscussion,
-  updateReply,
-  addReply,
-  deleteReply
-} from "../store/discussion";
-import { addAccount } from "../store/accounts";
-import { addCommunity } from "../store/communities";
-import { fetchTransactions, resetTransactions } from "../store/transactions";
-import { addUser, deleteUser } from "../store/users";
-import { setActiveUser, updateActiveUser } from "../store/active-user";
-import { toggleUIProp } from "../store/ui";
-import { fetchReblogs, addReblog, deleteReblog } from "../store/reblogs";
-import {
-  fetchNotifications,
-  fetchUnreadNotificationCount,
-  setNotificationsFilter,
-  markNotifications,
   updateNotificationsSettings,
   fetchNotificationsSettings,
   setNotificationsSettingsItem
 } from "../store/notifications";
-import { fetchPoints, resetPoints } from "../store/points";
-import { setSigningKey } from "../store/signing-key";
-import { trackEntryPin, setEntryPin } from "../store/entry-pin-tracker";
 import {
   createDeck,
   deleteDeck,
   fetchDeckData,
   loadDeckFromStorage,
-  reorderDecks,
-  setDeckDataFilters,
-  setDeckUpdateInterval
+  reorderDecks
 } from "../store/deck";
 import { savePageScroll } from "../store/persistent-page-scroll";
+import { getActions } from "../store/actions";
 
 export interface PageProps {
   history: History;
@@ -175,62 +137,4 @@ export const pageMapStateToProps = (state: AppState) => ({
 });
 
 export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
-  bindActionCreators(
-    {
-      toggleTheme,
-      hideIntro,
-      toggleListStyle,
-      muteNotifications,
-      unMuteNotifications,
-      setCurrency,
-      setLang,
-      setNsfw,
-      setLastIndexPath,
-      dismissNewVersion,
-      fetchTrendingTags,
-      updateSubscriptions,
-      fetchEntries,
-      addEntry,
-      updateEntry,
-      invalidateEntries,
-      fetchDiscussion,
-      sortDiscussion,
-      resetDiscussion,
-      updateReply,
-      addReply,
-      deleteReply,
-      addAccount,
-      addCommunity,
-      fetchTransactions,
-      resetTransactions,
-      addUser,
-      deleteUser,
-      setActiveUser,
-      updateActiveUser,
-      toggleUIProp,
-      addReblog,
-      deleteReblog,
-      fetchReblogs,
-      fetchNotifications,
-      fetchUnreadNotificationCount,
-      setNotificationsFilter,
-      markNotifications,
-      fetchPoints,
-      resetPoints,
-      setSigningKey,
-      trackEntryPin,
-      setEntryPin,
-      createDeck,
-      fetchDeckData,
-      loadDeckFromStorage,
-      deleteDeck,
-      reorderDecks,
-      savePageScroll,
-      setDeckUpdateInterval,
-      setDeckDataFilters,
-      updateNotificationsSettings,
-      fetchNotificationsSettings,
-      setNotificationsSettingsItem
-    },
-    dispatch
-  );
+  bindActionCreators(getActions(), dispatch);

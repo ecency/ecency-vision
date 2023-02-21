@@ -24,6 +24,7 @@ import parseDate, { dateToFormatted, dateToFullRelative } from "../../helper/par
 import accountReputation from "../../helper/account-reputation";
 
 import formattedNumber from "../../util/formatted-number";
+import _c from "../../util/fix-class-names";
 
 import { _t } from "../../i18n";
 
@@ -237,13 +238,15 @@ interface State {
   visible: boolean;
   searchText: string;
   searchTextDisabled: boolean;
+  isVoted: boolean;
 }
 
 export class EntryVotes extends Component<Props, State> {
   state: State = {
     visible: false,
     searchText: "",
-    searchTextDisabled: true
+    searchTextDisabled: true,
+    isVoted: false
   };
 
   toggle = () => {
@@ -251,10 +254,17 @@ export class EntryVotes extends Component<Props, State> {
     this.setState({ visible: !visible, searchText: "" });
   };
 
+  componentDidUpdate(prevProps: Readonly<Props>) {
+    if (prevProps.entry?.active_votes?.length !== this.props.entry?.active_votes?.length) {
+      this.setState({ isVoted: true });
+    }
+  }
+
   render() {
     const { entry } = this.props;
-    const { visible, searchText, searchTextDisabled } = this.state;
-    const totalVotes = (entry.active_votes && entry.active_votes.length) || entry.total_votes;
+    const { visible, searchText, searchTextDisabled, isVoted } = this.state;
+    const totalVotes = (entry.active_votes && entry.active_votes.length) || entry.total_votes || 0;
+    let cls = _c(`heart-icon ${isVoted ? "voted" : ""}`);
 
     const title =
       totalVotes === 0
@@ -265,7 +275,8 @@ export class EntryVotes extends Component<Props, State> {
 
     const child = (
       <>
-        {heartSvg} {totalVotes}
+        <div className={cls}>{heartSvg}</div>
+        {totalVotes}
       </>
     );
 

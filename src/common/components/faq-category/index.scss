@@ -3,7 +3,24 @@
     background: $dark;
   }
 }
+
 .faq-container {
+  .section {
+    cursor: pointer;
+  }
+  .section :hover {
+    @include themify(day) {
+      background: $light-powder-blue;
+    }
+
+    @include themify(night) {
+      background: $gunmetal;
+    }
+  }
+  .section-body {
+    padding: 9px 0px;
+  }
+
   .section-title {
     font-weight: bold;
     font-size: 1rem;

@@ -54,7 +54,8 @@ const defProps = {
   searchText: " ",
   addAccount: () => {},
   getVotesCount: () => {},
-  onHide: () => {}
+  onHide: () => {},
+  checkIsMoreData: () => {}
 };
 
 it("(1) Default render.", async () => {

@@ -8,53 +8,61 @@ exports[`(1) Default render 1`] = `
     className="accordion"
   >
     <div
-      className="d-flex flex-column border-bottom"
+      className="card"
+      onClick={[Function]}
     >
       <div
-        className="d-flex justify-content-between align-items-center section-card position-relative"
+        className="section d-flex flex-column border-bottom"
+        onClick={[Function]}
       >
         <div
-          className="d-flex align-items-center"
+          className="d-flex justify-content-between align-items-center section-card position-relative"
         >
           <div
-            className="d-flex align-items-center ml-3"
+            className="d-flex align-items-center"
           >
             <div
-              className="section-title ml-1"
-            />
-          </div>
-        </div>
-        <button
-          className="p-0 btn btn-link"
-          disabled={false}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-          type="button"
-        >
-          <div
-            className="pointer"
-            onClick={[Function]}
-          >
-            <span>
-              <svg
-                className="slider-svg-down"
-                viewBox="6 8.59 12 7.41"
+              className="d-flex align-items-center ml-3"
+            >
+              <div
+                className="section-title ml-1"
               >
-                <path
-                  d="M0 0h24v24H0V0z"
-                  fill="none"
-                />
-                <path
-                  d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
+                
+              </div>
+            </div>
           </div>
-        </button>
+          <button
+            className="p-0 btn btn-link"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+            type="button"
+          >
+            <div
+              className="pointer"
+              onClick={[Function]}
+            >
+              <span>
+                <svg
+                  className="slider-svg-down"
+                  viewBox="6 8.59 12 7.41"
+                >
+                  <path
+                    d="M0 0h24v24H0V0z"
+                    fill="none"
+                  />
+                  <path
+                    d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
     <div
@@ -64,7 +72,9 @@ exports[`(1) Default render 1`] = `
       <div
         className="p-0 card-body"
       >
-        <div />
+        <div
+          className="section-body"
+        />
       </div>
     </div>
   </div>

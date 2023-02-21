@@ -20,6 +20,8 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import { appleSvg, checkSvg, googleSvg, hiveSvg } from "../img/svg";
 import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
+import { getAccount } from "../api/hive";
+
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -33,6 +35,9 @@ export const SignUp = (props: PageProps) => {
   const [lsReferral, setLsReferral] = useLocalStorage<string>(PREFIX + "_referral");
 
   const [username, setUsername] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [usernameTouched, setUsernameTouched] = useState(false);
+
   const [email, setEmail] = useState("");
   const [referral, setReferral] = useState("");
   const [lockReferral, setLockReferral] = useState(false);
@@ -41,6 +46,7 @@ export const SignUp = (props: PageProps) => {
   const [isVerified, setIsVerified] = useState(props.global.isElectron);
   const [stage, setStage] = useState<Stage>(Stage.FORM);
   const [url, setUrl] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
@@ -79,6 +85,35 @@ export const SignUp = (props: PageProps) => {
       compileQR(url.toString());
     }
   }, [stage]);
+
+  useEffect(() => {
+    setUsernameError("");
+    setIsDisabled(false);
+
+    if (!username && !usernameTouched) {
+      return;
+    }
+    if (username.length > 16) {
+      setUsernameError(_t("sign-up.username-max-length-error"));
+      setIsDisabled(true);
+    } else {
+      username.split(".").some((item) => {
+        if (item.length < 3) {
+          setUsernameError(_t("sign-up.username-min-length-error"));
+          setIsDisabled(true);
+        } else if (!/^[\x00-\x7F]*$/.test(item[0])) {
+          setUsernameError(_t("sign-up.username-no-ascii-first-letter-error"));
+          setIsDisabled(true);
+        } else if (!/^([a-zA-Z0-9]|-|\.)+$/.test(item)) {
+          setUsernameError(_t("sign-up.username-contains-symbols-error"));
+          setIsDisabled(true);
+        } else if (item.includes("--")) {
+          setUsernameError(_t("sign-up.username-contains-double-hyphens"));
+          setIsDisabled(true);
+        }
+      });
+    }
+  }, [username, usernameTouched]);
 
   const regularRegister = async () => {
     setInProgress(true);
@@ -163,11 +198,21 @@ export const SignUp = (props: PageProps) => {
 
                 <Form
                   ref={form}
-                  onSubmit={(e: React.FormEvent) => {
+                  onSubmit={async (e: React.FormEvent) => {
                     e.preventDefault();
                     e.stopPropagation();
 
                     if (!form.current?.checkValidity()) {
+                      return;
+                    }
+
+                    if (usernameError) {
+                      return;
+                    }
+
+                    const existingAccount = await getAccount(username);
+                    if (existingAccount) {
+                      setUsernameError(_t("sign-up.username-exists"));
                       return;
                     }
 
@@ -185,8 +230,11 @@ export const SignUp = (props: PageProps) => {
                       autoFocus={true}
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-username")}
+                      isInvalid={usernameError !== ""}
                       onInput={handleOnInput}
+                      onBlur={() => setUsernameTouched(true)}
                     />
+                    <Form.Text className="text-danger pl-3">{usernameError}</Form.Text>
                   </Form.Group>
                   <Form.Group>
                     <Form.Control
@@ -209,7 +257,7 @@ export const SignUp = (props: PageProps) => {
                     />
                   </Form.Group>
                   {!props.global.isElectron && (
-                    <div style={{ marginTop: "16px", marginBottom: "5px" }}>
+                    <div style={{ marginTop: "16px", marginBottom: "7px" }}>
                       <ReCAPTCHA
                         sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
                         onChange={(value: string | null) => value && setIsVerified(true)}
@@ -224,7 +272,7 @@ export const SignUp = (props: PageProps) => {
                           variant="primary"
                           block={true}
                           type="submit"
-                          disabled={inProgress || !isVerified}
+                          disabled={inProgress || !isVerified || isDisabled}
                         >
                           {inProgress && (
                             <Spinner

@@ -190,19 +190,22 @@ exports[`(1) Default render 1`] = `
           onClick={[Function]}
           title="10 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           10
         </span>
       </div>
@@ -466,19 +469,22 @@ exports[`(2) Grid view 1`] = `
           onClick={[Function]}
           title="10 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           10
         </span>
       </div>
@@ -747,19 +753,22 @@ exports[`(3) Nsfw 1`] = `
           onClick={[Function]}
           title="10 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           10
         </span>
       </div>
@@ -1027,19 +1036,22 @@ exports[`(4) Nsfw with active user 1`] = `
           onClick={[Function]}
           title="10 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           10
         </span>
       </div>
@@ -1304,19 +1316,22 @@ exports[`(5) Nsfw but allowed 1`] = `
           onClick={[Function]}
           title="10 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           10
         </span>
       </div>
@@ -1613,19 +1628,22 @@ exports[`(6) Cross post. Bottom menu 1`] = `
           onClick={[Function]}
           title="59 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           59
         </span>
       </div>

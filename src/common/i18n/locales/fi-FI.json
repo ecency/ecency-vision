@@ -200,7 +200,13 @@
     "buy-account-li-1": "Välitön luonti ilman ylimääräisiä tarkistuksia ja odottamista",
     "buy-account-li-2": "3x RC verrattuna tavanomaisiin uusiin tileihin",
     "buy-account-li-3": "300 pistettä päästäksesi alkuun",
-    "qr-desc": "Skannaa Ecency-mobiilisovelluksella jatkaaksesi"
+    "qr-desc": "Skannaa Ecency-mobiilisovelluksella jatkaaksesi",
+    "username-min-length-error": "Length of username should be at least 3 characters",
+    "username-max-length-error": "Length of username should be no more than 16 characters",
+    "username-no-ascii-first-letter-error": "First character should be a Letter",
+    "username-contains-symbols-error": "Should contain Letters, Numbers, Hyphen only",
+    "username-contains-double-hyphens": "Should not contain double Hyphens",
+    "username-exists": "This username already registered. Please, try another one"
   },
   "trending-tags": {
     "title": "Aiheet"
@@ -660,11 +666,11 @@
   "rc-info": {
     "available": "Saatavilla",
     "used": "Käytetty",
-    "resource-credits": "Resource Credits",
+    "resource-credits": "Resurssipisteet",
     "resource-credit": "RC",
     "delegated": "Annetut Valtuutukset",
     "received-delegations": "Saadut Valtuutukset",
-    "delegation-button": "Delegate RC",
+    "delegation-button": "Valtuuta RC",
     "rc-available": "Saatavilla",
     "rc-used": "Käytetty",
     "outgoing": "Lähtevä",
@@ -679,7 +685,7 @@
     "faq-link": "UKK:sta",
     "insufficient-rc-error": "Liian vähän Resurssipisteitä",
     "minimum-rc-error": "Minimi RC on 5,000,000.000",
-    "extra-details-heading": "What's possible with current available RC?",
+    "extra-details-heading": "Mikä on mahdollista nykyisellä käytettävissä olevalla RC:llä?",
     "transfers": "Siirrot:",
     "comments-posts": "Julkaisut/Kommentit:",
     "votes": "Äänet:",
