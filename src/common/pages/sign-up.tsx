@@ -22,7 +22,6 @@ import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import { getAccount } from "../api/hive";
 
-
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
 enum Stage {
