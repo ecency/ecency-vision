@@ -121,10 +121,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     }
   };
 
-  componentDidMount(): void {
-    this.cleanUpLS();
-  }
-
   getUpVotedValue(): number {
     return getVoteValue(
       "up",
@@ -229,13 +225,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
   changeMode = (m: Mode) => {
     this.setState({ mode: m });
-  };
-  //TODO: Delete this after 3.0.22 release
-  cleanUpLS = () => {
-    Object.entries(localStorage)
-      .map((x) => x[0])
-      .filter((x) => x.includes("ecency_vote-value-"))
-      .map((x) => localStorage.removeItem(x));
   };
 
   isVoted = () => {
