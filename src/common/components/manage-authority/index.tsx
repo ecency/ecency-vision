@@ -38,7 +38,6 @@ export default function ManageAuthorities(props: Props) {
   const getAccountData = async () => {
     const resp = await getAccounts([props.activeUser!.username]);
     if (resp) {
-      console.log(resp);
       setWeight(resp[0].active.weight_threshold);
       setPostingsAuthority(resp[0].posting.account_auths);
       setPostingKey([resp[0].memo_key, resp[0].active.weight_threshold]);
@@ -55,11 +54,7 @@ export default function ManageAuthorities(props: Props) {
     setTargetAccount(account);
     setKeyDialog(true);
     setStep(1);
-    console.log(active);
-    console.log("revoke clicked", account);
-    console.log(postingsAuthority);
     const newAccountAuths = postingsAuthority.filter((x) => x[0] !== account);
-    console.log(newAccountAuths);
     // const newPosting = {
     //   weight_threshold: weight,
     //   account_auths: newAccountAuths,
@@ -210,27 +205,29 @@ export default function ManageAuthorities(props: Props) {
                 return (
                   <>
                     <tr className="tabl-row" key={account}>
-                      <td key={account[0]} className="type-data">
+                      <td key={account[0]} className="col-type-content">
                         {_t("manage-authorities.posting")}
                       </td>
                       {
                         <>
                           <td key={i}>
-                            <a
-                              className="username"
-                              target="_blank"
-                              href={`https://ecency.com/@${account[0]}`}
-                            >
-                              <div className="user-img">
-                                {UserAvatar({
-                                  global: props.global,
-                                  username: account[0],
-                                  size: "small"
-                                })}
-                              </div>
+                            <div className="col-key-content">
+                              <a
+                                className="username"
+                                target="_blank"
+                                href={`https://ecency.com/@${account[0]}`}
+                              >
+                                <div className="user-img">
+                                  {UserAvatar({
+                                    global: props.global,
+                                    username: account[0],
+                                    size: "small"
+                                  })}
+                                </div>
 
-                              {account[0]}
-                            </a>
+                                {account[0]}
+                              </a>
+                            </div>
                           </td>
                           <td>
                             {" "}
@@ -241,7 +238,7 @@ export default function ManageAuthorities(props: Props) {
                               {_t("manage-authorities.revoke")}
                             </Button>
                           </td>
-                          <td>{account[1]}</td>
+                          <td className="col-weight-content">{account[1]}</td>
                         </>
                       }
                     </tr>
@@ -253,8 +250,8 @@ export default function ManageAuthorities(props: Props) {
             <></>
           )}
           <tr>
-            <td> {_t("manage-authorities.owner")}</td>
-            <td>{owner[0]}</td>
+            <td className="col-type-content"> {_t("manage-authorities.owner")}</td>
+            <td className="key">{owner[0]}</td>
             <div className=".action-btns">
               <td>
                 <Button
@@ -270,11 +267,11 @@ export default function ManageAuthorities(props: Props) {
               </td>
             </div>
 
-            <td>{owner[1]}</td>
+            <td className="col-weight-content">{owner[1]}</td>
           </tr>
           <tr>
-            <td> {_t("manage-authorities.active")}</td>
-            <td>{active[0]}</td>
+            <td className="col-type-content"> {_t("manage-authorities.active")}</td>
+            <td className="key">{active[0]}</td>
             <div className="action-btns">
               <td>
                 <Button
@@ -290,11 +287,11 @@ export default function ManageAuthorities(props: Props) {
               </td>
             </div>
 
-            <td>{active[1]}</td>
+            <td className="col-weight-content">{active[1]}</td>
           </tr>
           <tr>
-            <td> {_t("manage-authorities.posting-text")}</td>
-            <td>{posting[0]}</td>
+            <td className="col-type-content"> {_t("manage-authorities.posting")}</td>
+            <td className="key">{posting[0]}</td>
             <div className="action-btns">
               <td>
                 <Button
@@ -310,7 +307,7 @@ export default function ManageAuthorities(props: Props) {
               </td>
             </div>
 
-            <td>{posting[1]}</td>
+            <td className="col-weight-content">{posting[1]}</td>
           </tr>
         </tbody>
       </table>

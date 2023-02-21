@@ -1789,26 +1789,43 @@ export const Revoke = (
     account_auths,
     key_auths
   };
-  console.log(newPosting, key);
-  const op: Operation = [
-    "account_update",
-    {
-      account,
-      posting: newPosting,
-      memo_key,
-      json_metadata
-    }
-  ];
 
-  console.log([op]);
+  const params = {
+    account,
+    posting: newPosting,
+    memo_key,
+    json_metadata
+  };
 
-  const promise = hiveClient.broadcast.sendOperations([op], key);
-  promise
-    .then((resp) => {
-      console.log(resp);
-    })
-    .catch((e) => {
-      console.log(e.message);
-    });
-  return promise;
+  const opArray: Operation[] = [["account_update", params]];
+
+  console.log(opArray);
+
+  return broadcastPostingOperations(account, opArray).then((r: TransactionConfirmation) => {
+    console.log(r);
+    return r;
+  });
+
+  // console.log(newPosting, key);
+  // const op: Operation = [
+  //   "account_update",
+  //   {
+  //     account,
+  //     posting: newPosting,
+  //     memo_key,
+  //     json_metadata
+  //   }
+  // ];
+
+  // console.log([op]);
+
+  // const promise = hiveClient.broadcast.sendOperations([op], key);
+  // promise
+  //   .then((resp) => {
+  //     console.log(resp);
+  //   })
+  //   .catch((e) => {
+  //     console.log(e.message);
+  //   });
+  // return promise;
 };

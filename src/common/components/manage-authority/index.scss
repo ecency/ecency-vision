@@ -3,35 +3,56 @@
     .table-head {
       background: $white-six;
     }
+
+    .col-type-content {
+      color: $warm-grey;
+    }
+
+    .col-weight-content {
+      text-align: center;
+    }
+    
+    .key {
+      color: $light-black;
+    }
+
     td {
       padding: 1.75rem 12px !important;
     }
+
     .copy-btn {
       margin-right: 1rem;
     }
+
     .import-btn {
       width: 154px;
     }
+
     .action-btns {
       width: 260px;
     }
-  }
 
-  .username {
-    display: flex;
+    .col-key-content {
+      display: inline-block;
 
-    .user-img {
-      margin: -2px 5px 0 0;
+      .username {
+        display: flex;
+
+        .user-img {
+          margin: -2px 5px 0 0;
+        }
+      }
     }
-  }
 
-  a:hover {
-    text-decoration: underline;
+    a:hover {
+      text-decoration: underline;
+    }
   }
 }
 
 .sign-dialog-header {
   display: flex;
+
   .sign-dialog-titles {
     margin-top: 9px;
   }
@@ -39,6 +60,7 @@
 
 .success-dialog-header {
   display: flex;
+
   .success-dialog-titles {
     padding-top: 8px;
   }
@@ -46,6 +68,7 @@
 
 .success-dialog-body {
   margin: 2rem 0 1.4rem 0;
+
   .success-dialog-content {
     text-align: center;
     margin-bottom: 1.4rem;

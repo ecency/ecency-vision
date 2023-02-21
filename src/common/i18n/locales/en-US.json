@@ -1488,7 +1488,6 @@
     "revoke": "Revoke",
     "owner": "owner",
     "active": "active",
-    "posting-text": "posting",
     "copy": "Copy",
     "import": "Import private key",
     "sign-title": "Sign transaction",
