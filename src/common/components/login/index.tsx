@@ -48,13 +48,19 @@ import { deleteForeverSvg } from "../../img/svg";
 declare var window: AppWindow;
 
 interface LoginKcProps {
+  history: History;
   toggleUIProp: (what: ToggleType) => void;
+  setActiveUser: (username: string | null) => void;
+  deleteUser: (username: string) => void;
   doLogin: (
     hsCode: string,
     postingKey: null | undefined | string,
     account: Account
   ) => Promise<void>;
   global: Global;
+  userListRef?: any;
+  activeUser: ActiveUser | null;
+  users: User[];
 }
 
 interface LoginKcState {
@@ -84,6 +90,48 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     toggleUIProp("login");
   };
 
+  userSelect = (user: User) => {
+    const { doLogin } = this.props;
+
+    this.stateSet({ inProgress: true });
+
+    getAccount(user.username)
+      .then((account) => {
+        let token = getRefreshToken(user.username);
+        if (!token) {
+          error(`${_t("login.error-user-not-found-cache")}`);
+        }
+        return token ? doLogin(token, user.postingKey, account) : this.userDelete(user);
+      })
+      .then(() => {
+        this.hide();
+        let shouldShowTutorialJourney = ls.get(`${user.username}HadTutorial`);
+
+        if (
+          !shouldShowTutorialJourney &&
+          shouldShowTutorialJourney &&
+          shouldShowTutorialJourney !== "true"
+        ) {
+          ls.set(`${user.username}HadTutorial`, "false");
+        }
+      })
+      .catch(() => {
+        error(_t("g.server-error"));
+      })
+      .finally(() => {
+        this.stateSet({ inProgress: false });
+      });
+  };
+
+  userDelete = (user: User) => {
+    const { activeUser, deleteUser, setActiveUser } = this.props;
+    deleteUser(user.username);
+
+    // logout if active user
+    if (activeUser && user.username === activeUser.username) {
+      setActiveUser(null);
+    }
+  };
   login = async () => {
     const { hsClientId } = this.props.global;
     const { username } = this.state;
@@ -154,6 +202,24 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
       });
   };
 
+  hsLogin = () => {
+    const { global, history } = this.props;
+    const { hsClientId } = global;
+    if (global.isElectron) {
+      hsLogin(hsClientId)
+        .then((r) => {
+          this.hide();
+          history.push(`/auth?code=${r.code}`);
+        })
+        .catch((e) => {
+          error(e);
+        });
+      return;
+    }
+
+    window.location.href = getAuthUrl(hsClientId);
+  };
+
   back = () => {
     const { toggleUIProp } = this.props;
     toggleUIProp("loginKc");
@@ -162,6 +228,13 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
   render() {
     const { username, inProgress } = this.state;
     const { global } = this.props;
+
+    const { users, userListRef } = this.props;
+    const logo = global.isElectron ? "./img/logo-circle.svg" : require("../../img/logo-circle.svg");
+
+    const hsLogo = global.isElectron
+      ? "./img/hive-signer.svg"
+      : require("../../img/hive-signer.svg");
 
     const keyChainLogo = global.isElectron
       ? "./img/keychain.png"
@@ -173,6 +246,37 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
 
     return (
       <>
+        {users.length === 0 && (
+          <div className="dialog-header">
+            <img src={logo} alt="Logo" />
+            <h2>{_t("login.title")}</h2>
+          </div>
+        )}
+
+        {users.length > 0 && (
+          <>
+            <div className="user-list" ref={userListRef}>
+              <div className="user-list-header">{_t("g.login-as")}</div>
+              <div className="user-list-body">
+                {users.map((u) => {
+                  return (
+                    <UserItem
+                      key={u.username}
+                      {...this.props}
+                      disabled={inProgress}
+                      user={u}
+                      onSelect={this.userSelect}
+                      onDelete={this.userDelete}
+                      containerRef={userListRef}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+            <OrDivider />
+          </>
+        )}
+
         <div className="dialog-header">
           <img src={keyChainLogo} alt="Logo" />
           <h2>{_t("login.with-keychain")}</h2>
@@ -194,13 +298,36 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
               onKeyDown={this.inputKeyDown}
             />
           </Form.Group>
-          <Button disabled={inProgress} block={true} onClick={this.login}>
+          <Button
+            disabled={inProgress || username.length < 3 || username.length > 16}
+            block={true}
+            onClick={this.login}
+          >
             {inProgress && spinner}
             {_t("g.login")}
           </Button>
-          <Button variant="outline-primary" disabled={inProgress} block={true} onClick={this.back}>
-            {_t("g.back")}
-          </Button>
+          <OrDivider />
+          <div className="hs-login">
+            <a
+              className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)}
+              onClick={this.back}
+            >
+              login with a password or private key
+            </a>
+          </div>
+          <div className="hs-login">
+            <a
+              className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)}
+              onClick={this.hsLogin}
+            >
+              <img
+                src={global.isElectron ? "./img/hive-signer.svg" : hsLogo}
+                className="hs-logo"
+                alt="hivesigner"
+              />{" "}
+              {_t("login.with-hive-signer")}
+            </a>
+          </div>
         </Form>
       </>
     );
@@ -606,7 +733,11 @@ export class Login extends BaseComponent<LoginProps, State> {
               {_t("login.login-info-2")}
             </a>
           </p>
-          <Button disabled={inProgress} block={true} onClick={this.login}>
+          <Button
+            disabled={inProgress || username.length < 3 || username.length > 16}
+            block={true}
+            onClick={this.login}
+          >
             {inProgress && username && key && spinner}
             {_t("g.login")}
           </Button>
@@ -683,9 +814,6 @@ export default class LoginDialog extends Component<Props> {
 
   componentWillUnmount() {
     const { toggleUIProp, ui } = this.props;
-    if (ui.loginKc) {
-      toggleUIProp("loginKc");
-    }
   }
 
   doLogin = async (hsCode: string, postingKey: null | undefined | string, account: Account) => {
@@ -725,7 +853,7 @@ export default class LoginDialog extends Component<Props> {
   };
 
   render() {
-    const { ui } = this.props;
+    const { ui, users } = this.props;
 
     return (
       <Modal
@@ -740,7 +868,9 @@ export default class LoginDialog extends Component<Props> {
           {!ui.loginKc && (
             <Login {...this.props} doLogin={this.doLogin} userListRef={this.userListRef} />
           )}
-          {ui.loginKc && <LoginKc {...this.props} doLogin={this.doLogin} />}
+          {ui.loginKc && (
+            <LoginKc {...this.props} userListRef={this.userListRef} doLogin={this.doLogin} />
+          )}
         </Modal.Body>
       </Modal>
     );
