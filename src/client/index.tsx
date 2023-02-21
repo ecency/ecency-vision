@@ -12,7 +12,7 @@ import "../style/theme-day.scss";
 import "../style/theme-night.scss";
 import "./base-handlers";
 import { loadableReady } from "@loadable/component";
-
+import { toggleLoginKcAct } from "../common/store/ui";
 declare var window: AppWindow;
 
 const store = configureStore(window["__PRELOADED_STATE__"]);
@@ -53,6 +53,7 @@ loadableReady().then(() => {
     setTimeout(() => {
       if (window.hive_keychain) {
         window.hive_keychain.requestHandshake(() => {
+          store.dispatch(toggleLoginKcAct());
           store.dispatch(hasKeyChainAct());
         });
       }
