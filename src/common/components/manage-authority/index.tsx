@@ -4,13 +4,14 @@ import { Button, Modal } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 
-import { Revoke } from "../../api/operations";
-import { getAccounts } from "../../api/hive";
-import { _t } from "../../i18n";
 import UserAvatar from "../user-avatar/index";
-import { success } from "../feedback";
+import { error, success } from "../feedback";
 import keyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
+
+import { _t } from "../../i18n";
+import { formatError, Revoke } from "../../api/operations";
+import { getAccounts } from "../../api/hive";
 import { PrivateKey } from "@hiveio/dhive";
 
 interface Props {
@@ -22,12 +23,14 @@ interface Props {
 
 export default function ManageAuthorities(props: Props) {
   const [postingsAuthority, setPostingsAuthority] = useState<Array<any>>([]);
+  const [newPostingsAuthority, setNewPostingsAuthority] = useState<Array<any>>([]);
   const [posting, setPostingKey] = useState<Array<any>>([]);
   const [owner, setOwner] = useState<Array<any>>([]);
   const [active, setActiveKey] = useState<Array<any>>([]);
   const [weight, setWeight] = useState(0);
   const [step, setStep] = useState(0);
   const [keyDialog, setKeyDialog] = useState(false);
+  const [memokey, setMemoKey] = useState("");
   const [targetAccount, setTargetAccount] = useState("");
   const [inProgress, setInProgress] = useState(false);
 
@@ -40,9 +43,10 @@ export default function ManageAuthorities(props: Props) {
     if (resp) {
       setWeight(resp[0].active.weight_threshold);
       setPostingsAuthority(resp[0].posting.account_auths);
-      setPostingKey([resp[0].memo_key, resp[0].active.weight_threshold]);
+      setPostingKey(resp[0].posting.key_auths[0]);
       setOwner(resp[0].owner.key_auths[0]);
       setActiveKey(resp[0].active.key_auths[0]);
+      setMemoKey(resp[0].memo_key);
     }
   };
 
@@ -54,35 +58,7 @@ export default function ManageAuthorities(props: Props) {
     setTargetAccount(account);
     setKeyDialog(true);
     setStep(1);
-    const newAccountAuths = postingsAuthority.filter((x) => x[0] !== account);
-    // const newPosting = {
-    //   weight_threshold: weight,
-    //   account_auths: newAccountAuths,
-    //   key_auths: active
-    // };
-    // console.log(newPosting);
-    // const op: Operation = [
-    //   "account_update",
-    //   {
-    //     account,
-    //     posting: newPosting,
-    //     memo_key: posting[0],
-    //     json_metadata: ""
-    //   }
-    // ];
-    const promoise = Revoke(
-      props.activeUser!.username,
-      weight,
-      newAccountAuths,
-      [["STM8mBt3qoYrPLNJezqBfpUss19HcMsLsKjkbDL47HxVeUHSKxbV1", 1]],
-      posting[0],
-      "",
-      "5JYF7hTtXXcvW1gDsw6vBnSnbsdAtBKc28UcaLM7cNMm5xabmY6"
-    );
-    promoise.then((resp) => {
-      console.log(resp);
-    });
-    // const promise = Revoke(op);
+    setNewPostingsAuthority(postingsAuthority.filter((x) => x[0] !== account));
   };
 
   const copyToClipboard = (text: string) => {
@@ -96,7 +72,28 @@ export default function ManageAuthorities(props: Props) {
   };
 
   const onKey = (key: PrivateKey): void => {
-    setStep(2);
+    const promise = Revoke(
+      props.activeUser!.username,
+      weight,
+      newPostingsAuthority,
+      [posting],
+      memokey,
+      "",
+      key
+    );
+    promise
+      .then((resp) => {
+        if (resp.id) {
+          setKeyDialog(true);
+          setStep(2);
+        }
+      })
+      .catch((err) => {
+        error(...formatError(err));
+      })
+      .finally(() => {
+        setInProgress(false);
+      });
   };
 
   const onHot = () => {
