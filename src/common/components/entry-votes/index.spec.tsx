@@ -26,6 +26,7 @@ it("(1) Default render", () => {
   const props = {
     history: createBrowserHistory(),
     global: { ...globalInstance },
+    activeUser: null,
     entry: { ...entryInstance1 },
     addAccount: (data: any) => {}
   };
@@ -38,6 +39,7 @@ it("(2) No votes", () => {
   const props = {
     history: createBrowserHistory(),
     global: { ...globalInstance },
+    activeUser: null,
     entry: { ...entryInstance1, ...{ active_votes: [] } },
     addAccount: (data: any) => {}
   };
