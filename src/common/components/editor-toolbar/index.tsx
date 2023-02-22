@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
 import isEqual from "react-fast-compare";
+import axios from "axios";
 
 import { ActiveUser } from "../../store/active-user/types";
 import { User } from "../../store/users/types";
@@ -14,19 +14,12 @@ import Fragments from "../fragments";
 import AddImage from "../add-image";
 import AddImageMobile from "../add-image-mobile";
 import AddLink from "../add-link";
-
 import { uploadImage } from "../../api/misc";
-
 import { addImage } from "../../api/private-api";
-
 import { error } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import { insertOrReplace, replace } from "../../util/input-util";
-
 import { getAccessToken } from "../../helper/user-token";
-
 import _c from "../../util/fix-class-names";
 
 import {
@@ -375,8 +368,8 @@ export class EditorToolbar extends Component<Props> {
       } else {
         error(_t("editor-toolbar.image-error-cache"));
       }
-    } catch (e) {
-      if (e && e.response?.status === 413) {
+    } catch (e: unknown) {
+      if (axios.isAxiosError(e) && e.response?.status === 413) {
         error(_t("editor-toolbar.image-error-size"));
       } else {
         error(_t("editor-toolbar.image-error"));

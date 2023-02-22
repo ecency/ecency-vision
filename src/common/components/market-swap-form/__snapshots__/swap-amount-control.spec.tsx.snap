@@ -6,9 +6,7 @@ exports[`SwapAmountControl should be able to render element after balance 1`] = 
 >
   <label
     className="form-label"
-  >
-    
-  </label>
+  />
   <div
     className="d-flex align-items-center w-100"
   >
@@ -74,9 +72,7 @@ exports[`SwapAmountControl should be able to show available assets list 1`] = `
 >
   <label
     className="form-label"
-  >
-    
-  </label>
+  />
   <div
     className="d-flex align-items-center w-100"
   >
@@ -132,9 +128,7 @@ exports[`SwapAmountControl should render balance showing 1`] = `
 >
   <label
     className="form-label"
-  >
-    
-  </label>
+  />
   <div
     className="d-flex align-items-center w-100"
   >
@@ -197,9 +191,7 @@ exports[`SwapAmountControl should render correctly 1`] = `
 >
   <label
     className="form-label"
-  >
-    
-  </label>
+  />
   <div
     className="d-flex align-items-center w-100"
   >
@@ -250,9 +242,7 @@ exports[`SwapAmountControl should render disabled state 1`] = `
 >
   <label
     className="form-label"
-  >
-    
-  </label>
+  />
   <div
     className="d-flex align-items-center w-100"
   >
@@ -356,9 +346,7 @@ exports[`SwapAmountControl should set className 1`] = `
 >
   <label
     className="form-label"
-  >
-    
-  </label>
+  />
   <div
     className="d-flex align-items-center w-100"
   >

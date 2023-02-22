@@ -15,15 +15,10 @@ exports[`Renders a message 1`] = `
   <div
     className="d-flex flex-column w-50 ml-5"
   >
-    <h2>
-      
-    </h2>
+    <h2 />
     <p
       className="text-muted lead"
-    >
-      
-    </p>
-    
+    />
   </div>
 </div>
 `;

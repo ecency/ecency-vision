@@ -575,7 +575,6 @@ exports[`(2) With active user 1`] = `
                 <div
                   className="dropdown-btn"
                 >
-                  
                   <div
                     className="menu-down"
                   >
@@ -1166,7 +1165,6 @@ exports[`(3) Active user with unclaimed points 1`] = `
                 <div
                   className="dropdown-btn"
                 >
-                  
                   <div
                     className="menu-down"
                   >
