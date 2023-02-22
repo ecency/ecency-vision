@@ -119,7 +119,7 @@ export const ProfileCard = (props: Props) => {
   const loggedIn = activeUser && activeUser.username;
   // TODO: use better conditions throughout app than .__loaded, remove all instances that rely on .__loaded
 
-  if (!account.__loaded) {
+  if (!account?.__loaded) {
     return (
       <div className="profile-card">
         <div className="profile-avatar">
