@@ -834,7 +834,7 @@
       "larynx-locked-benefits": {
         "title": "Benefits of LARYNX Locked",
         "1": "Proof of Stake Consensus",
-        "2": "Collateral for DEX transactions",
+        "2": "Colateral para transações na DEX",
         "3": "Bloqueio Instantâneo | Desbloqueio em 4 Semanas",
         "4": "Requires an operating LARYNX node",
         "5": "Ganha 0,100%"
@@ -936,7 +936,7 @@
     "select-type": "Selecione um tipo",
     "boost": "Impulso",
     "points": "Pontos",
-    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
+    "boost-info": "A Ecency tem o direito de revogar as delegações e os impulsos em caso de uso impróprio",
     "points-amount": "{{n}} pontos"
   },
   "promote": {
