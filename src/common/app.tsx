@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
 import EntryContainer from "./pages/entry";
@@ -21,50 +21,49 @@ import * as ls from "./util/local-storage";
 import i18n from "i18next";
 import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
 import { connect } from "react-redux";
-import loadable from "@loadable/component";
 import Announcement from "./components/announcement";
 
 // Define lazy pages
-const ProfileContainer = loadable(() => import("./pages/profile-functional"));
+const ProfileContainer = lazy(() => import("./pages/profile-functional"));
 const ProfilePage = (props: any) => <ProfileContainer {...props} />;
 
-const CommunityContainer = loadable(() => import("./pages/community-functional"));
+const CommunityContainer = lazy(() => import("./pages/community-functional"));
 const CommunityPage = (props: any) => <CommunityContainer {...props} />;
 
-const DiscoverContainer = loadable(() => import("./pages/discover"));
+const DiscoverContainer = lazy(() => import("./pages/discover"));
 const DiscoverPage = (props: any) => <DiscoverContainer {...props} />;
 
-const WitnessesContainer = loadable(() => import("./pages/witnesses"));
+const WitnessesContainer = lazy(() => import("./pages/witnesses"));
 const WitnessesPage = (props: any) => <WitnessesContainer {...props} />;
 
-const AuthContainer = loadable(() => import("./pages/auth"));
+const AuthContainer = lazy(() => import("./pages/auth"));
 const AuthPage = (props: any) => <AuthContainer {...props} />;
 
-const SubmitContainer = loadable(() => import("./pages/submit"));
+const SubmitContainer = lazy(() => import("./pages/submit"));
 const SubmitPage = (props: any) => <SubmitContainer {...props} />;
 
-const MarketContainer = loadable(() => import("./pages/market"));
+const MarketContainer = lazy(() => import("./pages/market"));
 const MarketPage = (props: any) => <MarketContainer {...props} />;
 
-const SignUpContainer = loadable(() => import("./pages/sign-up"));
+const SignUpContainer = lazy(() => import("./pages/sign-up"));
 const SignUpPage = (props: any) => <SignUpContainer {...props} />;
 
-const CommunitiesContainer = loadable(() => import("./pages/communities"));
+const CommunitiesContainer = lazy(() => import("./pages/communities"));
 const CommunitiesPage = (props: any) => <CommunitiesContainer {...props} />;
 
-const CommunityCreateContainer = loadable(() => import("./pages/community-create"));
+const CommunityCreateContainer = lazy(() => import("./pages/community-create"));
 const CommunityCreatePage = (props: any) => <CommunityCreateContainer {...props} />;
 
-const CommunityCreateHSContainer = loadable(() => import("./pages/community-create-hs"));
+const CommunityCreateHSContainer = lazy(() => import("./pages/community-create-hs"));
 const CommunityCreateHSPage = (props: any) => <CommunityCreateHSContainer {...props} />;
 
-const EntryAMPContainer = loadable(() => import("./pages/amp/entry-amp-page"));
+const EntryAMPContainer = lazy(() => import("./pages/amp/entry-amp-page"));
 const EntryPage = (props: any) => {
   const [isAmp, setIsAmp] = useState(props.location.search.includes("?amps"));
   return isAmp ? <EntryAMPContainer {...props} /> : <EntryContainer {...props} />;
 };
 
-const PurchaseContainer = loadable(() => import("./pages/purchase"));
+const PurchaseContainer = lazy(() => import("./pages/purchase"));
 const PurchasePage = (props: any) => <PurchaseContainer {...props} />;
 
 const App = (props: any) => {
@@ -80,7 +79,7 @@ const App = (props: any) => {
   }, []);
 
   return (
-    <>
+    <Suspense fallback={<></>}>
       <Tracker />
       <Switch>
         <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
@@ -144,7 +143,7 @@ const App = (props: any) => {
       </Switch>
 
       <Announcement activeUser={props.activeUser} />
-    </>
+    </Suspense>
   );
 };
 
