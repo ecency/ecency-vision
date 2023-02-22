@@ -1,5 +1,7 @@
 "use strict";
 
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+
 module.exports = {
   plugins: ["typescript", "scss"],
   options: {
@@ -19,6 +21,9 @@ module.exports = {
     },
     paths // the modified paths that will be used by Razzle.
   }) {
+    if (target === "web") {
+      webpackConfig.plugins.push(new BundleAnalyzerPlugin());
+    }
     webpackConfig.devtool = dev ? "source-map" : false;
     return webpackConfig;
   }
