@@ -1802,3 +1802,59 @@ export const Revoke = (
 
   return hiveClient.broadcast.sendOperations([op], key);
 };
+
+export const RevokeHot = (
+  account: string,
+  weight_threshold: number,
+  account_auths: any[],
+  key_auths: any[],
+  memo_key: string,
+  json_metadata: string
+) => {
+  const newPosting = {
+    weight_threshold,
+    account_auths,
+    key_auths
+  };
+
+  const op: Operation = [
+    "account_update",
+    {
+      account,
+      posting: newPosting,
+      memo_key,
+      json_metadata
+    }
+  ];
+
+  const params: Parameters = { callback: `https://ecency.com/@${account}/permissions` };
+
+  return hs.sendOperation(op, params, () => {});
+};
+
+export const RevokeKc = (
+  account: string,
+  weight_threshold: number,
+  account_auths: any[],
+  key_auths: any[],
+  memo_key: string,
+  json_metadata: string
+) => {
+  const newPosting = {
+    weight_threshold,
+    account_auths,
+    key_auths
+  };
+
+  const op: Operation = [
+    "account_update",
+    {
+      account,
+      posting: newPosting,
+      memo_key,
+      json_metadata
+    }
+  ];
+
+  return keychain.broadcast(account, [op], "Active");
+};

@@ -10,7 +10,7 @@ import keyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
 
 import { _t } from "../../i18n";
-import { formatError, Revoke } from "../../api/operations";
+import { formatError, Revoke, RevokeHot, RevokeKc } from "../../api/operations";
 import { getAccounts } from "../../api/hive";
 import { PrivateKey } from "@hiveio/dhive";
 
@@ -72,6 +72,7 @@ export default function ManageAuthorities(props: Props) {
   };
 
   const onKey = (key: PrivateKey): void => {
+    setInProgress(true);
     const promise = Revoke(
       props.activeUser!.username,
       weight,
@@ -97,13 +98,17 @@ export default function ManageAuthorities(props: Props) {
   };
 
   const onHot = () => {
+    RevokeHot(props.activeUser!.username, weight, newPostingsAuthority, [posting], memokey, "");
     setKeyDialog(false);
   };
 
-  const onKc = () => {};
+  const onKc = () => {
+    RevokeKc(props.activeUser!.username, weight, newPostingsAuthority, [posting], memokey, "");
+  };
 
   const finish = () => {
     setKeyDialog(false);
+    getAccountData();
   };
 
   const signkeyModal = () => {
@@ -122,7 +127,7 @@ export default function ManageAuthorities(props: Props) {
           activeUser: props.activeUser,
           signingKey: props.signingKey,
           setSigningKey: props.setSigningKey,
-          inProgress: false,
+          inProgress: inProgress,
           onKey: (key) => {
             onKey(key);
           },
