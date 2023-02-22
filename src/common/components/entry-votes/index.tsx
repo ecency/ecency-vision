@@ -9,6 +9,7 @@ import { Modal, Spinner } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
 import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar/index";
@@ -228,6 +229,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
 interface Props {
   history: History;
   global: Global;
+  activeUser: ActiveUser | null;
   entry: Entry;
   addAccount: (data: Account) => void;
 }
@@ -236,7 +238,7 @@ interface State {
   visible: boolean;
   searchText: string;
   searchTextDisabled: boolean;
-  isVoted: boolean;
+  vote: boolean;
 }
 
 export class EntryVotes extends Component<Props, State> {
@@ -244,7 +246,7 @@ export class EntryVotes extends Component<Props, State> {
     visible: false,
     searchText: "",
     searchTextDisabled: true,
-    isVoted: false
+    vote: false
   };
 
   toggle = () => {
@@ -254,15 +256,29 @@ export class EntryVotes extends Component<Props, State> {
 
   componentDidUpdate(prevProps: Readonly<Props>) {
     if (prevProps.entry?.active_votes?.length !== this.props.entry?.active_votes?.length) {
-      this.setState({ isVoted: true });
+      this.setState({ vote: true });
     }
   }
 
+  isVoted = () => {
+    const { activeUser } = this.props;
+
+    if (!activeUser) {
+      return { voted: false };
+    }
+    const { active_votes: votes } = this.props.entry;
+
+    const voted = votes && votes.some((v) => v.voter === activeUser.username);
+
+    return { voted };
+  };
+
   render() {
     const { entry } = this.props;
-    const { visible, searchText, searchTextDisabled, isVoted } = this.state;
+    const { visible, searchText, searchTextDisabled, vote } = this.state;
     const totalVotes = (entry.active_votes && entry.active_votes.length) || entry.total_votes || 0;
-    let cls = _c(`heart-icon ${isVoted ? "voted" : ""}`);
+    const { voted } = this.isVoted();
+    let cls = _c(`heart-icon ${voted ? "voted" : ""} ${vote ? "vote-done" : ""} `);
 
     const title =
       totalVotes === 0
@@ -342,6 +358,7 @@ export default (p: Props) => {
     history: p.history,
     global: p.global,
     entry: p.entry,
+    activeUser: p.activeUser,
     addAccount: p.addAccount
   };
 

@@ -913,20 +913,23 @@ export class Transfer extends BaseComponent<Props, State> {
                       <div className="balance-hp-hint">{_t("transfer.available-hp-hint")}</div>
                     )}
                   </div>
-                  {to.length > 0 && Number(amount) > 0 && toData?.__loaded && mode === "delegate" && (
-                    <div className="text-muted mt-1 override-warning">
-                      {_t("transfer.override-warning-1")}
-                      {delegateAccount && (
-                        <>
-                          <br />
-                          {_t("transfer.override-warning-2", {
-                            account: to,
-                            previousAmount: formattedNumber(previousAmount)
-                          })}
-                        </>
-                      )}
-                    </div>
-                  )}
+                  {to.length > 0 &&
+                    Number(amount) > 0 &&
+                    toData?.__loaded &&
+                    mode === "delegate" && (
+                      <div className="text-muted mt-1 override-warning">
+                        {_t("transfer.override-warning-1")}
+                        {delegateAccount && (
+                          <>
+                            <br />
+                            {_t("transfer.override-warning-2", {
+                              account: to,
+                              previousAmount: formattedNumber(previousAmount)
+                            })}
+                          </>
+                        )}
+                      </div>
+                    )}
                   {(() => {
                     if (mode === "power-down") {
                       const hive = Math.round((Number(amount) / 13) * 1000) / 1000;

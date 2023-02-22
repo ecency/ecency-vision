@@ -57,9 +57,7 @@ exports[`should render success title 1`] = `
 >
   <div
     className="text-primary font-weight-bold"
-  >
-    
-  </div>
+  />
 </div>
 `;
 
@@ -69,8 +67,6 @@ exports[`should render swap title 1`] = `
 >
   <div
     className="text-primary font-weight-bold"
-  >
-    
-  </div>
+  />
 </div>
 `;

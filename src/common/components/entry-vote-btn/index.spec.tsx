@@ -44,16 +44,19 @@ describe("(1) Dialog", () => {
     onClick: () => {}
   };
 
-  const component = renderer.create(<VoteDialog {...props} />);
-  const instance: any = component.getInstance();
-
   it("(1) Up vote", () => {
+    const component = renderer.create(<VoteDialog {...props} />);
+    const instance: any = component.getInstance();
     expect(component.toJSON()).toMatchSnapshot();
+    component.unmount();
   });
 
   it("(2) Down vote", () => {
+    const component = renderer.create(<VoteDialog {...props} />);
+    const instance: any = component.getInstance();
     instance.changeMode("down");
     expect(component.toJSON()).toMatchSnapshot();
+    component.unmount();
   });
 });
 
@@ -74,10 +77,10 @@ describe("(2) Btn - No active user", () => {
     toggleUIProp: () => {}
   };
 
-  const component = renderer.create(<EntryVoteBtn {...props} />);
-
   it("(1) Render", () => {
+    const component = renderer.create(<EntryVoteBtn {...props} />);
     expect(component.toJSON()).toMatchSnapshot();
+    component.unmount();
   });
 });
 
@@ -100,10 +103,9 @@ describe("(3) Btn - Up voted", () => {
     toggleUIProp: () => {}
   };
 
-  const component = renderer.create(<EntryVoteBtn {...props} />);
-  const instance: any = component.getInstance();
-
   it("(1) Render", () => {
+    const component = renderer.create(<EntryVoteBtn {...props} />);
     expect(component.toJSON()).toMatchSnapshot();
+    component.unmount();
   });
 });

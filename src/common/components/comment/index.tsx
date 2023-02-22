@@ -106,7 +106,6 @@ export class Comment extends Component<Props, State> {
   componentDidMount(): void {
     const { defText } = this.props;
     this.setState({ text: defText || "", preview: defText || "" });
-    this.cleanUpLS();
 
     this.addToolbarEventListners();
   }
@@ -128,14 +127,6 @@ export class Comment extends Component<Props, State> {
   componentWillUnmount(): void {
     this.removeToolbarEventListners();
   }
-
-  //TODO: Delete this after 3.0.22 release
-  cleanUpLS = () => {
-    Object.entries(localStorage)
-      .map((x) => x[0])
-      .filter((x) => x.includes("ecency_reply_draft_"))
-      .map((x) => localStorage.removeItem(x));
-  };
 
   updateLsCommentDraft = (text: string) => {
     const { entry } = this.props;
