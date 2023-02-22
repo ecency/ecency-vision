@@ -101,13 +101,15 @@ export default function AccountRecovery(props: Props) {
     promise
       .then((resp) => {
         if (resp.id) {
-          setInProgress(false);
           setKeyDialog(true);
           setStep(3);
         }
       })
       .catch((err) => {
         error(...formatError(err));
+      })
+      .finally(() => {
+        setInProgress(false);
       });
   };
 
