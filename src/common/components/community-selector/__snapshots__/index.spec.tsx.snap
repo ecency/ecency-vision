@@ -54,37 +54,6 @@ exports[`(2) Tags with no community 1`] = `
 </a>
 `;
 
-exports[`(2) Tags with no community 2`] = `
-<a
-  className="community-selector"
-  href="#"
-  onClick={[Function]}
->
-  <span
-    className="user-avatar small"
-    style={
-      Object {
-        "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
-      }
-    }
-  />
-  <span
-    className="label"
-  >
-    My Blog
-  </span>
-   
-  <svg
-    viewBox="0 0 24 24"
-  >
-    <path
-      d="M7,10L12,15L17,10H7Z"
-      fill="currentColor"
-    />
-  </svg>
-</a>
-`;
-
 exports[`(3) Tags with community. but in the end 1`] = `
 <a
   className="community-selector"
