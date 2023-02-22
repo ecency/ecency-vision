@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react'
 import { _t } from '../../i18n';
 
 const EngineTokensList = (props: any) => {
-    const { token, handleOnChange, ischecked, favoriteToken } = props;
+    const { token, handleOnChange, isChecked, favoriteToken } = props;
 
     const [checked, setChecked] = useState(favoriteToken)
     
@@ -19,9 +19,10 @@ const EngineTokensList = (props: any) => {
           <input
             type="checkbox"
             value={token?.name}
-            checked={checked}
+            checked={checked ? true : false}
             onChange={(e) => {
-              handleOnChange(e, token)
+              console.log(e.target.checked, checked)
+              handleOnChange(e.target.checked, token);
               setChecked(!checked)
             }}
           />
