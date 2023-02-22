@@ -21,7 +21,7 @@ module.exports = {
     },
     paths // the modified paths that will be used by Razzle.
   }) {
-    if (target === "web") {
+    if (target === "web" && dev) {
       webpackConfig.plugins.push(new BundleAnalyzerPlugin());
     }
     webpackConfig.devtool = dev ? "source-map" : false;
