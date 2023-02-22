@@ -72,8 +72,10 @@ const FloatingFAQ = () => {
           setShow(!show);
         }}
       >
-        {helpIconSvg}
-        <div className="help">{_t("floating-faq.help")}</div>
+        <div className="help-button-content">
+          {helpIconSvg}
+          <div className="help">{_t("floating-faq.help")}</div>
+        </div>
       </Button>
       {show ? (
         <div className="faq-container">

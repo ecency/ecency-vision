@@ -2,23 +2,28 @@
   position: fixed;
   z-index: 900;
   right: 2rem;
-  bottom: 2rem;
+  bottom: 1rem;
   border-radius: 20px 2px 20px 20px !important;
   padding: 10px 20px 10px 10px !important;
+  height: 40px;
 
-  .help {
-    display: inline-block;
-    margin-left: 0.4rem;
-    position: relative;
-    top: 1px;
+  .help-button-content {
+    margin-top: -3px;
+
+    .help {
+      display: inline-block;
+      margin-left: 0.4rem;
+      position: relative;
+      top: 1px;
+    }
   }
 }
 
 .faq-container {
   position: fixed;
-  z-index: 900;
+  z-index: 3;
   right: 2.1rem;
-  bottom: 5.5rem;
+  bottom: 4.1rem;
   height: 75vh;
   width: 435px;
   border-radius: 18px;
