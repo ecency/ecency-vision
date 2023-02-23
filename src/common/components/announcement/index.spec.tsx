@@ -13,5 +13,4 @@ it("(1) Default render", () => {
     </BrowserRouter>
   );
   expect(component.toJSON()).toMatchSnapshot();
-  component.unmount();
 });
