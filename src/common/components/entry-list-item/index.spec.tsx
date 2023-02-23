@@ -91,7 +91,7 @@ it("(3) Nsfw", async () => {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...(entryInstance1.json_metadata.tags as string[]), "nsfw"]
+        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
       }
     }
   };
@@ -111,7 +111,7 @@ it("(4) Nsfw with active user", async () => {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...(entryInstance1.json_metadata.tags as string[]), "nsfw"]
+        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
       }
     },
     activeUser: activeUserMaker("foo")
@@ -132,7 +132,7 @@ it("(5) Nsfw but allowed", async () => {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...(entryInstance1.json_metadata.tags as string[]), "nsfw"]
+        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
       }
     },
     global: {

@@ -1,13 +1,14 @@
-import React, { lazy } from "react";
+import React from "react";
+import loadable from "@loadable/component";
 
-const AboutContainer = lazy(() => import("./about"));
-const ContributeContainer = lazy(() => import("./contribute"));
-const ContributorsContainer = lazy(() => import("./contributors"));
-const FaqContainer = lazy(() => import("./faq"));
-const GuestPostContainer = lazy(() => import("./guest-post"));
-const PrivacyContainer = lazy(() => import("./privacy"));
-const TosContainer = lazy(() => import("./tos"));
-const WhitePaperContainer = lazy(() => import("./white-paper"));
+const AboutContainer = loadable(() => import("./about"));
+const ContributeContainer = loadable(() => import("./contribute"));
+const ContributorsContainer = loadable(() => import("./contributors"));
+const FaqContainer = loadable(() => import("./faq"));
+const GuestPostContainer = loadable(() => import("./guest-post"));
+const PrivacyContainer = loadable(() => import("./privacy"));
+const TosContainer = loadable(() => import("./tos"));
+const WhitePaperContainer = loadable(() => import("./white-paper"));
 
 export const AboutPage = (props: any) => <AboutContainer {...props} />;
 export const ContributePage = (props: any) => <ContributeContainer {...props} />;

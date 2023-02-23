@@ -103,6 +103,8 @@ exports[`(1) Hive Engine - Transfer (1) Step 1 1`] = `
           </div>
         </div>
       </div>
+      
+      
       <div
         className="form-group row"
       >
@@ -136,7 +138,9 @@ exports[`(1) Hive Engine - Transfer (1) Step 1 1`] = `
             />
             <span
               className="balance-num align-self-center ml-1"
-            />
+            >
+              
+            </span>
           </div>
         </div>
       </div>
@@ -174,6 +178,7 @@ exports[`(1) Hive Engine - Transfer (1) Step 1 1`] = `
             >
               0
                
+              
             </span>
           </div>
         </div>
@@ -210,6 +215,7 @@ exports[`(1) Hive Engine - Transfer (1) Step 1 1`] = `
           </small>
         </div>
       </div>
+      
       <div
         className="form-group row"
       >
@@ -317,7 +323,9 @@ exports[`(1) Hive Engine - Transfer (2) Step 2 1`] = `
         >
           0.001
            
+          
         </div>
+        
       </div>
       <div
         className="d-flex justify-content-center"
@@ -640,6 +648,8 @@ exports[`(2) Hive Engine - Delegate (1) Step 1 1`] = `
           </div>
         </div>
       </div>
+      
+      
       <div
         className="form-group row"
       >
@@ -673,7 +683,9 @@ exports[`(2) Hive Engine - Delegate (1) Step 1 1`] = `
             />
             <span
               className="balance-num align-self-center ml-1"
-            />
+            >
+              
+            </span>
           </div>
         </div>
       </div>
@@ -711,6 +723,7 @@ exports[`(2) Hive Engine - Delegate (1) Step 1 1`] = `
             >
               0
                
+              
             </span>
           </div>
         </div>
@@ -822,6 +835,7 @@ exports[`(2) Hive Engine - Delegate (2) Step 2 1`] = `
         >
           0.001
            
+          
         </div>
         <div
           className="memo"
@@ -998,6 +1012,8 @@ exports[`(3) Hive Engine - Undelegate (1) Step 1 1`] = `
           </div>
         </div>
       </div>
+      
+      
       <div
         className="form-group row"
       >
@@ -1031,7 +1047,9 @@ exports[`(3) Hive Engine - Undelegate (1) Step 1 1`] = `
             />
             <span
               className="balance-num align-self-center ml-1"
-            />
+            >
+              
+            </span>
           </div>
         </div>
       </div>
@@ -1069,6 +1087,7 @@ exports[`(3) Hive Engine - Undelegate (1) Step 1 1`] = `
             >
               0
                
+              
             </span>
           </div>
         </div>
@@ -1180,7 +1199,9 @@ exports[`(3) Hive Engine - Undelegate (2) Step 2 1`] = `
         >
           0.001
            
+          
         </div>
+        
       </div>
       <div
         className="d-flex justify-content-center"
@@ -1382,6 +1403,8 @@ exports[`(4) Hive Engine - Stake (1) Step 1 1`] = `
           </div>
         </div>
       </div>
+      
+      
       <div
         className="form-group row"
       >
@@ -1415,7 +1438,9 @@ exports[`(4) Hive Engine - Stake (1) Step 1 1`] = `
             />
             <span
               className="balance-num align-self-center ml-1"
-            />
+            >
+              
+            </span>
           </div>
         </div>
       </div>
@@ -1453,6 +1478,7 @@ exports[`(4) Hive Engine - Stake (1) Step 1 1`] = `
             >
               0
                
+              
             </span>
           </div>
         </div>
@@ -1564,7 +1590,9 @@ exports[`(4) Hive Engine - Stake (2) Step 2 1`] = `
         >
           0.001
            
+          
         </div>
+        
       </div>
       <div
         className="d-flex justify-content-center"
@@ -1760,7 +1788,9 @@ exports[`(5) Hive Engine - Unstake (1) Step 1 1`] = `
             />
             <span
               className="balance-num align-self-center ml-1"
-            />
+            >
+              
+            </span>
           </div>
         </div>
       </div>
@@ -1798,6 +1828,7 @@ exports[`(5) Hive Engine - Unstake (1) Step 1 1`] = `
             >
               0
                
+              
             </span>
           </div>
         </div>
@@ -1885,7 +1916,9 @@ exports[`(5) Hive Engine - Unstake (2) Step 2 1`] = `
         >
           0.001
            
+          
         </div>
+        
       </div>
       <div
         className="d-flex justify-content-center"

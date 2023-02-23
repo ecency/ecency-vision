@@ -1,5 +1,5 @@
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
-import React, { lazy, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Meta from "../components/meta";
 import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
@@ -10,10 +10,11 @@ import NavBar from "../components/navbar";
 import { makeGroupKey } from "../store/entries";
 import { connect } from "react-redux";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
+import loadable from "@loadable/component";
 import { useMappedStore } from "../store/use-mapped-store";
 
-const LandingPage = lazy(() => import("../components/landing-page"));
-const EntryIndexContainer = lazy(() => import("./entry-index"));
+const LandingPage = loadable(() => import("../components/landing-page"));
+const EntryIndexContainer = loadable(() => import("./entry-index"));
 
 const Index = (props: PageProps) => {
   const [step, setStep] = useState(1);

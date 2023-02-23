@@ -62,7 +62,9 @@ exports[`(1) Default render 1`] = `
         <td>
           owner
         </td>
-        <td />
+        <td>
+          
+        </td>
       </tr>
       <tr>
         <td>
@@ -90,7 +92,9 @@ exports[`(1) Default render 1`] = `
         <td>
           admin
         </td>
-        <td />
+        <td>
+          
+        </td>
       </tr>
     </tbody>
   </table>
@@ -159,7 +163,9 @@ exports[`(2) Should not show add user button 1`] = `
         <td>
           owner
         </td>
-        <td />
+        <td>
+          
+        </td>
       </tr>
       <tr>
         <td>
@@ -187,7 +193,9 @@ exports[`(2) Should not show add user button 1`] = `
         <td>
           admin
         </td>
-        <td />
+        <td>
+          
+        </td>
       </tr>
     </tbody>
   </table>
@@ -256,7 +264,9 @@ exports[`(3) Should show add user button 1`] = `
         <td>
           owner
         </td>
-        <td />
+        <td>
+          
+        </td>
       </tr>
       <tr>
         <td>
@@ -289,7 +299,9 @@ exports[`(3) Should show add user button 1`] = `
             admin
           </a>
         </td>
-        <td />
+        <td>
+          
+        </td>
       </tr>
     </tbody>
   </table>
