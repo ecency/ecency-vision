@@ -1,0 +1,9 @@
+{
+  "extends": ["tslint-react"],
+  "rules": {
+    "jsx-alignment": false,
+    "jsx-wrap-multiline": false,
+    "jsx-no-multiline-js": false,
+    "jsx-no-lambda": false
+  }
+}
