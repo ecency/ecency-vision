@@ -236,7 +236,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
     const { active_votes: votes } = this.props.entry;
 
-    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares > 0);
+    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares >= 0);
 
     const downVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares < 0);
 
