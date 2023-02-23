@@ -1,4 +1,7 @@
 "use strict";
+const LoadableWebpackPlugin = require("@loadable/webpack-plugin");
+const { loadableTransformer } = require("loadable-ts-transformer");
+const path = require("path");
 
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
@@ -21,6 +24,24 @@ module.exports = {
     },
     paths // the modified paths that will be used by Razzle.
   }) {
+    // Do some stuff to webpackConfig
+    if (target === "web") {
+      const filename = path.resolve(__dirname, "build");
+      // saving stats file to build folder
+      // without this, stats files will go into
+      // build/public folder
+      // webpackConfig.plugins.push(
+      //   new LoadableWebpackPlugin({
+      //     outputAsset: true,
+      //     writeToDisk: { filename },
+      //   })
+      // );
+    }
+
+    // Enable SSR lazy-loading
+    // const tsLoader = webpackConfig.module.rules.find(rule => !(rule.test instanceof Array) && rule.test && rule.test.test('.tsx'));
+    // tsLoader.use[0].options.getCustomTransformers = () => ({ before: [loadableTransformer] });
+
     if (target === "web" && dev) {
       webpackConfig.plugins.push(new BundleAnalyzerPlugin());
     }
