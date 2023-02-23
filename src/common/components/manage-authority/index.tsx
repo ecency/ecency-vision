@@ -206,30 +206,28 @@ export default function ManageAuthorities(props: Props) {
               {postingsAuthority.map((account, i) => {
                 return (
                   <>
-                    <tr className="tabl-row" key={account}>
-                      <td key={account[0]} className="col-type-content">
-                        {_t("manage-authorities.posting")}
-                      </td>
+                    <tr key={i} className="tabl-row">
+                      <td className="col-type-content">{_t("manage-authorities.posting")}</td>
                       {
                         <>
-                          <td key={i}>
-                            <div className="col-key-content">
+                          <td>
+                            <p className="col-key-content">
                               <a
                                 className="username"
                                 target="_blank"
                                 href={`https://ecency.com/@${account[0]}`}
                               >
-                                <div className="user-img">
+                                <span className="user-img">
                                   {UserAvatar({
                                     global: props.global,
                                     username: account[0],
                                     size: "small"
                                   })}
-                                </div>
+                                </span>
 
                                 {account[0]}
                               </a>
-                            </div>
+                            </p>
                           </td>
                           <td>
                             {" "}
@@ -254,8 +252,8 @@ export default function ManageAuthorities(props: Props) {
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.owner")}</td>
             <td className="key">{owner[0]}</td>
-            <div className=".action-btns">
-              <td>
+            <td>
+              <p className="action-btns">
                 <Button
                   className="copy-btn"
                   variant="outline-primary"
@@ -266,16 +264,16 @@ export default function ManageAuthorities(props: Props) {
                 <Button className="import-btn" variant="outline-primary">
                   {_t("manage-authorities.import")}
                 </Button>
-              </td>
-            </div>
+              </p>
+            </td>
 
             <td className="col-weight-content">{owner[1]}</td>
           </tr>
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.active")}</td>
             <td className="key">{active[0]}</td>
-            <div className="action-btns">
-              <td>
+            <td className="action-btns">
+              <p>
                 <Button
                   className="copy-btn"
                   variant="outline-primary"
@@ -286,16 +284,16 @@ export default function ManageAuthorities(props: Props) {
                 <Button className="import-btn" variant="outline-primary">
                   {_t("manage-authorities.import")}
                 </Button>
-              </td>
-            </div>
+              </p>
+            </td>
 
             <td className="col-weight-content">{active[1]}</td>
           </tr>
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.posting")}</td>
             <td className="key">{posting[0]}</td>
-            <div className="action-btns">
-              <td>
+            <td className="action-btns">
+              <p>
                 <Button
                   className="copy-btn"
                   variant="outline-primary"
@@ -306,8 +304,8 @@ export default function ManageAuthorities(props: Props) {
                 <Button className="import-btn" variant="outline-primary">
                   {_t("manage-authorities.import")}
                 </Button>
-              </td>
-            </div>
+              </p>
+            </td>
 
             <td className="col-weight-content">{posting[1]}</td>
           </tr>
