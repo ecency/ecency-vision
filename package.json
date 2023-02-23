@@ -134,7 +134,7 @@
     "razzle-dev-utils": "^4.2.18",
     "razzle-plugin-scss": "^4.2.18",
     "razzle-plugin-typescript": "^4.2.18",
-    "react-test-renderer": "^18.2.0",
+    "react-test-renderer": "^16.13.1",
     "timers": "^0.1.1",
     "ts-jest": "^26.4.2",
     "tslint": "^6.1.3",

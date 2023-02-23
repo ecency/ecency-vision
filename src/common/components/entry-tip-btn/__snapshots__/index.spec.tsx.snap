@@ -124,6 +124,8 @@ exports[`(2) Dialog 1`] = `
           </div>
         </div>
       </div>
+      
+      
       <div
         className="form-group row"
       >
@@ -180,6 +182,7 @@ exports[`(2) Dialog 1`] = `
           </div>
         </div>
       </div>
+      
       <div
         className="row"
       >
@@ -238,6 +241,7 @@ exports[`(2) Dialog 1`] = `
           </small>
         </div>
       </div>
+      
       <div
         className="form-group row"
       >

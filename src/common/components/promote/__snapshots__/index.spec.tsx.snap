@@ -49,6 +49,7 @@ exports[`(1) Default render 1`] = `
             readOnly={true}
             value="500.000 POINTS"
           />
+          
         </div>
       </div>
       <div
@@ -75,6 +76,7 @@ exports[`(1) Default render 1`] = `
             />
             <div />
           </div>
+          
           <small
             className="text-muted form-text"
           >
@@ -231,6 +233,7 @@ exports[`(2) Insufficient Funds 1`] = `
             />
             <div />
           </div>
+          
           <small
             className="text-muted form-text"
           >
@@ -356,6 +359,7 @@ exports[`(3) With entry 1`] = `
             readOnly={true}
             value="500.000 POINTS"
           />
+          
         </div>
       </div>
       <div
@@ -382,6 +386,7 @@ exports[`(3) With entry 1`] = `
             />
             <div />
           </div>
+          
           <small
             className="text-muted form-text"
           >
