@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
@@ -10,9 +10,12 @@ import keyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
 
 import { _t } from "../../i18n";
+import _ from "lodash";
 import { formatError, Revoke, RevokeHot, RevokeKc } from "../../api/operations";
 import { getAccounts } from "../../api/hive";
+import * as ls from "../../util/local-storage";
 import { PrivateKey } from "@hiveio/dhive";
+import { generateKeys } from "../../helper/generate-private-keys";
 
 interface Props {
   global: Global;
@@ -33,25 +36,50 @@ export default function ManageAuthorities(props: Props) {
   const [memokey, setMemoKey] = useState("");
   const [targetAccount, setTargetAccount] = useState("");
   const [inProgress, setInProgress] = useState(false);
+  const [curPass, setCurPass] = useState("");
+  const [publicOwnerKey, setPublicOwnerKey] = useState<any>();
+  const [publicActiveKey, setPublicActiveKey] = useState<any>();
+  const [publicPostingKey, setPublicPostingKey] = useState<any>();
+  const [ownerReveal, setOwnerReveal] = useState(true);
+  const [activeReveal, setActiveReveal] = useState(true);
+  const [postingReveal, setPostingReveal] = useState(true);
+  const [privateOwnerKey, setPrivateOwnerKey] = useState("");
+  const [privateActiveKey, setPrivateActiveKey] = useState("");
+  const [privatePostingKey, setPrivatePostingKey] = useState("");
 
   useEffect(() => {
     getAccountData();
+    getKeys();
   }, []);
 
   const getAccountData = async () => {
-    const resp = await getAccounts([props.activeUser!.username]);
-    if (resp) {
-      setWeight(resp[0].active.weight_threshold);
-      setPostingsAuthority(resp[0].posting.account_auths);
-      setPostingKey(resp[0].posting.key_auths[0]);
-      setOwner(resp[0].owner.key_auths[0]);
-      setActiveKey(resp[0].active.key_auths[0]);
-      setMemoKey(resp[0].memo_key);
+    const response = await getAccounts([props.activeUser!.username]);
+    if (response) {
+      const resp = response[0];
+      setWeight(resp.active.weight_threshold);
+      setPostingsAuthority(resp.posting.account_auths);
+      setPostingKey(resp.posting.key_auths[0]);
+      setOwner(resp.owner.key_auths[0]);
+      setActiveKey(resp.active.key_auths[0]);
+      setMemoKey(resp.memo_key);
+      setPublicOwnerKey(resp.owner.key_auths[0][0]);
+      setPublicActiveKey(resp.active.key_auths[0][0]);
+      setPublicPostingKey(resp.posting.key_auths[0][0]);
     }
   };
 
   const toggleKeyDialog = () => {
     setKeyDialog(!keyDialog);
+  };
+
+  const getKeys = () => {
+    const { activeUser } = props;
+    const keys = ls.get(`${activeUser?.username}_private_keys`);
+    if (!_.isEmpty(keys)) {
+      setPrivateOwnerKey(keys.owner);
+      setPrivateActiveKey(keys.active);
+      setPrivatePostingKey(keys.posting);
+    }
   };
 
   const handleRevoke = (account: string) => {
@@ -61,6 +89,18 @@ export default function ManageAuthorities(props: Props) {
     setNewPostingsAuthority(postingsAuthority.filter((x) => x[0] !== account));
   };
 
+  const handleOwnerReveal = () => {
+    setOwnerReveal(!ownerReveal);
+  };
+
+  const handleActiveReveal = () => {
+    setActiveReveal(!activeReveal);
+  };
+
+  const handlePostingReveal = () => {
+    setPostingReveal(!postingReveal);
+  };
+
   const copyToClipboard = (text: string) => {
     const textField = document.createElement("textarea");
     textField.innerText = text;
@@ -68,7 +108,7 @@ export default function ManageAuthorities(props: Props) {
     textField.select();
     document.execCommand("copy");
     textField.remove();
-    success(_t("view-keys.copied"));
+    success(_t("manage-authorities.copied"));
   };
 
   const onKey = (key: PrivateKey): void => {
@@ -109,6 +149,73 @@ export default function ManageAuthorities(props: Props) {
   const finish = () => {
     setKeyDialog(false);
     getAccountData();
+  };
+
+  const handleImportBtn = () => {
+    setKeyDialog(true);
+    setStep(3);
+  };
+
+  const handleSubmit = () => {
+    const { activeUser } = props;
+    const privateKeys = generateKeys(activeUser!, curPass);
+    if (!_.isEmpty(privateKeys)) {
+      ls.set(`${activeUser?.username}_private_keys`, privateKeys);
+      setStep(4);
+      getKeys();
+    }
+  };
+
+  const passwordModal = () => {
+    return (
+      <>
+        <div className="sign-dialog-header border-bottom">
+          <div className="step-no">1</div>
+          <div className="sign-dialog-titles">
+            <div className="authority-main-title">{_t("manage-authorities.password-title")}</div>
+            <div className="authority-sub-title">{_t("manage-authorities.password-sub-title")}</div>
+          </div>
+        </div>
+        {inProgress && <LinearProgress />}
+        <div className="curr-password">
+          <Form.Group controlId="formPlaintextPassword">
+            <Form.Label>{_t("view-keys.cur-pass")}</Form.Label>
+            <Form.Control
+              value={curPass}
+              onChange={(e) => setCurPass(e.target.value)}
+              required={true}
+              type="password"
+              autoFocus={true}
+              autoComplete="off"
+            />
+          </Form.Group>
+          <Button onClick={handleSubmit}>{_t("manage-authorities.submit")}</Button>
+        </div>
+      </>
+    );
+  };
+
+  const keySuccessModal = () => {
+    return (
+      <>
+        <div className="sign-dialog-header border-bottom">
+          <div className="step-no">2</div>
+          <div className="sign-dialog-titles">
+            <div className="authority-main-title">{_t("trx-common.success-title")}</div>
+            <div className="authority-sub-title">{_t("trx-common.success-sub-title")}</div>
+          </div>
+        </div>
+        <div className="success-dialog-body">
+          <div className="success-dialog-content">
+            <span>{_t("manage-authorities.keys-success-message")} </span>
+          </div>
+          <div className="d-flex justify-content-center">
+            <span className="hr-6px-btn-spacer" />
+            <Button onClick={finish}>{_t("g.finish")}</Button>
+          </div>
+        </div>
+      </>
+    );
   };
 
   const signkeyModal = () => {
@@ -251,19 +358,37 @@ export default function ManageAuthorities(props: Props) {
           )}
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.owner")}</td>
-            <td className="key">{owner[0]}</td>
+            <td className="key">{ownerReveal ? publicOwnerKey : privateOwnerKey}</td>
             <td>
               <p className="action-btns">
                 <Button
                   className="copy-btn"
                   variant="outline-primary"
-                  onClick={() => copyToClipboard(owner[0])}
+                  onClick={() =>
+                    ownerReveal ? copyToClipboard(publicOwnerKey) : copyToClipboard(privateOwnerKey)
+                  }
                 >
                   {_t("manage-authorities.copy")}
                 </Button>
-                <Button className="import-btn" variant="outline-primary">
-                  {_t("manage-authorities.import")}
-                </Button>
+                {privateOwnerKey ? (
+                  <Button
+                    className="reveal-btn"
+                    variant="outline-primary"
+                    onClick={handleOwnerReveal}
+                  >
+                    {ownerReveal
+                      ? _t("manage-authorities.reveal-private-key")
+                      : _t("manage-authorities.reveal-public-key")}
+                  </Button>
+                ) : (
+                  <Button
+                    className="import-btn"
+                    variant="outline-primary"
+                    onClick={handleImportBtn}
+                  >
+                    {_t("manage-authorities.import")}
+                  </Button>
+                )}
               </p>
             </td>
 
@@ -271,19 +396,39 @@ export default function ManageAuthorities(props: Props) {
           </tr>
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.active")}</td>
-            <td className="key">{active[0]}</td>
+            <td className="key">{activeReveal ? publicActiveKey : privateActiveKey}</td>
             <td className="action-btns">
               <p>
                 <Button
                   className="copy-btn"
                   variant="outline-primary"
-                  onClick={() => copyToClipboard(active[0])}
+                  onClick={() => {
+                    activeReveal
+                      ? copyToClipboard(publicActiveKey)
+                      : copyToClipboard(privateActiveKey);
+                  }}
                 >
                   {_t("manage-authorities.copy")}
                 </Button>
-                <Button className="import-btn" variant="outline-primary">
-                  {_t("manage-authorities.import")}
-                </Button>
+                {privateActiveKey ? (
+                  <Button
+                    className="reveal-btn"
+                    variant="outline-primary"
+                    onClick={handleActiveReveal}
+                  >
+                    {activeReveal
+                      ? _t("manage-authorities.reveal-private-key")
+                      : _t("manage-authorities.reveal-public-key")}
+                  </Button>
+                ) : (
+                  <Button
+                    className="import-btn"
+                    variant="outline-primary"
+                    onClick={handleImportBtn}
+                  >
+                    {_t("manage-authorities.import")}
+                  </Button>
+                )}
               </p>
             </td>
 
@@ -291,19 +436,39 @@ export default function ManageAuthorities(props: Props) {
           </tr>
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.posting")}</td>
-            <td className="key">{posting[0]}</td>
+            <td className="key">{postingReveal ? publicPostingKey : privatePostingKey}</td>
             <td className="action-btns">
               <p>
                 <Button
                   className="copy-btn"
                   variant="outline-primary"
-                  onClick={() => copyToClipboard(posting[0])}
+                  onClick={() =>
+                    postingReveal
+                      ? copyToClipboard(publicPostingKey)
+                      : copyToClipboard(privatePostingKey)
+                  }
                 >
                   {_t("manage-authorities.copy")}
                 </Button>
-                <Button className="import-btn" variant="outline-primary">
-                  {_t("manage-authorities.import")}
-                </Button>
+                {privatePostingKey ? (
+                  <Button
+                    className="reveal-btn"
+                    variant="outline-primary"
+                    onClick={handlePostingReveal}
+                  >
+                    {postingReveal
+                      ? _t("manage-authorities.reveal-private-key")
+                      : _t("manage-authorities.reveal-public-key")}
+                  </Button>
+                ) : (
+                  <Button
+                    className="import-btn"
+                    variant="outline-primary"
+                    onClick={handleImportBtn}
+                  >
+                    {_t("manage-authorities.import")}
+                  </Button>
+                )}
               </p>
             </td>
 
@@ -316,7 +481,7 @@ export default function ManageAuthorities(props: Props) {
 
   return (
     <div className="container authority-table">
-      {table()}
+      {publicPostingKey && table()}
       {keyDialog && (
         <Modal
           animation={false}
@@ -324,13 +489,15 @@ export default function ManageAuthorities(props: Props) {
           centered={true}
           onHide={toggleKeyDialog}
           keyboard={false}
-          className="recovery-dialog modal-thin-header"
+          className="authorities-dialog modal-thin-header"
           size="lg"
         >
           <Modal.Header closeButton={true} />
           <Modal.Body>
             {step === 1 && signkeyModal()}
             {step === 2 && successModal()}
+            {step === 3 && passwordModal()}
+            {step === 4 && keySuccessModal()}
           </Modal.Body>
         </Modal>
       )}

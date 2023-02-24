@@ -517,7 +517,7 @@ export const Profile = (props: Props) => {
                   if (account.name === props.activeUser.username) {
                     return (
                       <div className="container-fluid">
-                        {/* <div className="row">
+                        <div className="row">
                           <div className="col-12 col-md-6">
                             <h6 className="border-bottom pb-3">{_t("view-keys.header")}</h6>
                             <ViewKeys activeUser={props.activeUser} />
@@ -526,7 +526,7 @@ export const Profile = (props: Props) => {
                             <h6 className="border-bottom pb-3">{_t("password-update.title")}</h6>
                             <PasswordUpdate activeUser={props.activeUser} />
                           </div>
-                        </div> */}
+                        </div>
                         <div>
                           <div>
                             <h6 className="pb-3">Manage Authorities</h6>

@@ -1,20 +1,17 @@
 import React from "react";
 
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
-
-import { PrivateKey, KeyRole } from "@hiveio/dhive";
-
 import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
-import { error, success } from "../feedback";
-
-import { formatError } from "../../api/operations";
+import { success } from "../feedback";
 
 import { _t } from "../../i18n";
-
+import _ from "lodash";
+import * as ls from "../../util/local-storage";
 import { copyContent } from "../../img/svg";
 import truncate from "../../util/truncate";
+import { generateKeys } from "../../helper/generate-private-keys";
 
 interface Props {
   activeUser: ActiveUser;
@@ -40,34 +37,13 @@ export default class ViewKeys extends BaseComponent<Props, State> {
     this.stateSet({ curPass: e.target.value });
   };
 
-  genKeys = () => {
+  getKeys = () => {
     const { activeUser } = this.props;
     const { curPass } = this.state;
-
-    if (!activeUser.data.__loaded) {
-      return;
-    }
-
-    this.stateSet({ inProgress: true });
-
-    const newPrivateKeys = { active: "", memo: "", owner: "", posting: "" };
-    let keyCheck = "";
-
-    try {
-      ["owner", "active", "posting", "memo"].forEach((r) => {
-        const k = PrivateKey.fromLogin(activeUser.username, curPass, r as KeyRole);
-        newPrivateKeys[r] = k.toString();
-        if (r === "memo") keyCheck = k.createPublic().toString();
-      });
-    } catch (err) {
-      error(...formatError(err));
-    }
-
-    if (activeUser.data.memo_key !== keyCheck) {
-      error(_t("view-keys.error"));
-      this.stateSet({ inProgress: false, keys: {} });
-    } else {
-      this.stateSet({ inProgress: false, keys: newPrivateKeys });
+    const privateKeys = generateKeys(activeUser, curPass);
+    if (!_.isEmpty(privateKeys)) {
+      this.setState({ keys: privateKeys });
+      ls.set(`${activeUser?.username}_private_keys`, privateKeys);
     }
   };
 
@@ -97,7 +73,7 @@ export default class ViewKeys extends BaseComponent<Props, State> {
               return;
             }
 
-            this.genKeys();
+            this.getKeys();
           }}
         >
           <Form.Group controlId="account-name">
@@ -118,7 +94,7 @@ export default class ViewKeys extends BaseComponent<Props, State> {
           <Form.Group controlId="keys-view">
             <div>
               {!keys.memo && (
-                <Button variant="outline-primary" onClick={this.genKeys}>
+                <Button variant="outline-primary" onClick={this.getKeys}>
                   {_t("view-keys.view-keys")}
                 </Button>
               )}

@@ -25,15 +25,19 @@ exports[`(1) Default render 1`] = `
     </thead>
     <tbody>
       <tr>
-        <td>
+        <td
+          className="col-type-content"
+        >
            
           owner
         </td>
-        <td />
-        <div
-          className=".action-btns"
-        >
-          <td>
+        <td
+          className="key"
+        />
+        <td>
+          <p
+            className="action-btns"
+          >
             <button
               className="copy-btn btn btn-outline-primary"
               disabled={false}
@@ -45,24 +49,31 @@ exports[`(1) Default render 1`] = `
             <button
               className="import-btn btn btn-outline-primary"
               disabled={false}
+              onClick={[Function]}
               type="button"
             >
               Import private key
             </button>
-          </td>
-        </div>
-        <td />
+          </p>
+        </td>
+        <td
+          className="col-weight-content"
+        />
       </tr>
       <tr>
-        <td>
+        <td
+          className="col-type-content"
+        >
            
           active
         </td>
-        <td />
-        <div
+        <td
+          className="key"
+        />
+        <td
           className="action-btns"
         >
-          <td>
+          <p>
             <button
               className="copy-btn btn btn-outline-primary"
               disabled={false}
@@ -74,24 +85,31 @@ exports[`(1) Default render 1`] = `
             <button
               className="import-btn btn btn-outline-primary"
               disabled={false}
+              onClick={[Function]}
               type="button"
             >
               Import private key
             </button>
-          </td>
-        </div>
-        <td />
+          </p>
+        </td>
+        <td
+          className="col-weight-content"
+        />
       </tr>
       <tr>
-        <td>
+        <td
+          className="col-type-content"
+        >
            
           posting
         </td>
-        <td />
-        <div
+        <td
+          className="key"
+        />
+        <td
           className="action-btns"
         >
-          <td>
+          <p>
             <button
               className="copy-btn btn btn-outline-primary"
               disabled={false}
@@ -103,13 +121,16 @@ exports[`(1) Default render 1`] = `
             <button
               className="import-btn btn btn-outline-primary"
               disabled={false}
+              onClick={[Function]}
               type="button"
             >
               Import private key
             </button>
-          </td>
-        </div>
-        <td />
+          </p>
+        </td>
+        <td
+          className="col-weight-content"
+        />
       </tr>
     </tbody>
   </table>

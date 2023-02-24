@@ -40,6 +40,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
 
 import { _t } from "../../i18n";
+import _ from "lodash";
+import { generateKeys } from "../../helper/generate-private-keys";
 
 import _c from "../../util/fix-class-names";
 
@@ -270,6 +272,7 @@ interface LoginProps {
   setActiveUser: (username: string | null) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
+  setKey: (key: string) => void;
   doLogin: (
     hsCode: string,
     postingKey: null | undefined | string,
@@ -397,6 +400,7 @@ export class Login extends BaseComponent<LoginProps, State> {
   login = async () => {
     const { hsClientId } = this.props.global;
     const { username, key } = this.state;
+    const { setKey } = this.props;
 
     if (username === "" || key === "") {
       error(_t("login.error-fields-required"));
@@ -452,6 +456,7 @@ export class Login extends BaseComponent<LoginProps, State> {
       // Login with master or active private key
       // Get active private key from user entered code
       if (isPlainPassword) {
+        setKey(key);
         thePrivateKey = PrivateKey.fromLogin(account.name, key, "active");
       } else {
         thePrivateKey = PrivateKey.fromString(key);
@@ -693,7 +698,15 @@ interface Props {
   toggleUIProp: (what: ToggleType) => void;
 }
 
-export default class LoginDialog extends Component<Props> {
+interface LoginState {
+  key: string;
+}
+
+export default class LoginDialog extends Component<Props, LoginState> {
+  state: LoginState = {
+    key: ""
+  };
+
   userListRef = React.createRef();
 
   hide = () => {
@@ -701,10 +714,24 @@ export default class LoginDialog extends Component<Props> {
     toggleUIProp("login");
   };
 
+  setKey = (password: string) => {
+    this.setState({ key: password });
+  };
+
   componentWillUnmount() {
     const { toggleUIProp, ui } = this.props;
     if (ui.loginKc) {
       toggleUIProp("loginKc");
+    }
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    const { activeUser } = this.props;
+    if (prevProps.activeUser !== activeUser && this.state.key) {
+      const privateKeys = generateKeys(activeUser!, this.state.key);
+      if (!_.isEmpty(privateKeys)) {
+        ls.set(`${activeUser?.username}_private_keys`, privateKeys);
+      }
     }
   }
 
@@ -758,7 +785,12 @@ export default class LoginDialog extends Component<Props> {
         <Modal.Header closeButton={true} />
         <Modal.Body>
           {!ui.loginKc && (
-            <Login {...this.props} doLogin={this.doLogin} userListRef={this.userListRef} />
+            <Login
+              {...this.props}
+              doLogin={this.doLogin}
+              userListRef={this.userListRef}
+              setKey={this.setKey}
+            />
           )}
           {ui.loginKc && <LoginKc {...this.props} doLogin={this.doLogin} />}
         </Modal.Body>

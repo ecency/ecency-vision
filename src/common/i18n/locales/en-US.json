@@ -1492,7 +1492,14 @@
     "import": "Import private key",
     "sign-title": "Sign transaction",
     "sign-sub-title": "Sign your transaction",
-    "success-message": "You revoke the permission of posting from "
+    "success-message": "You revoke the permission of posting from ",
+    "copied": "Key copied into clipboard",
+    "keys-success-message": "Authorities keys imported successfully",
+    "password-title": "Enter password",
+    "password-sub-title": "Enter your password",
+    "reveal-public-key": "Reveal public key",
+    "reveal-private-key": "Reveal private key",
+    "submit": "Submit"
   },
   "add-image": {
     "title": "Add Image",

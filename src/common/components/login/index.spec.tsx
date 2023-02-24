@@ -16,7 +16,8 @@ const defProps = {
   setActiveUser: () => {},
   deleteUser: () => {},
   toggleUIProp: () => {},
-  doLogin: async () => {}
+  doLogin: async () => {},
+  setKey: () => {}
 };
 
 it("(1) Default render", () => {
