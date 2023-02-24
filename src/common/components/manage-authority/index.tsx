@@ -308,7 +308,7 @@ export default function ManageAuthorities(props: Props) {
           </tr>
         </thead>
         <tbody>
-          {postingsAuthority && postingsAuthority.length > 0 ? (
+          {postingsAuthority && postingsAuthority.length > 0 && (
             <>
               {postingsAuthority.map((account, i) => {
                 return (
@@ -353,8 +353,6 @@ export default function ManageAuthorities(props: Props) {
                 );
               })}
             </>
-          ) : (
-            <></>
           )}
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.owner")}</td>

@@ -642,20 +642,3 @@ export interface RcOperationStats {
 }
 
 export const getRcOperationStats = (): Promise<any> => client.call("rc_api", "get_rc_stats", {});
-
-export const Revoke = (operation: Operation): Promise<TransactionConfirmation> =>
-  // const newPosting = {
-  //   weight_threshold,
-  //   account_auths,
-  //   key_auths
-  // };
-
-  // const params = [
-  //   {
-  //     account,
-  //     posting: newPosting,
-  //     memo_key,
-  //     json_metadata
-  //   }
-  // ];
-  client.call("condenser_api", "broadcast_transaction", [operation]);
