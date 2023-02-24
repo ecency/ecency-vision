@@ -43,9 +43,7 @@ export default function ManageAuthorities(props: Props) {
   const [ownerReveal, setOwnerReveal] = useState(true);
   const [activeReveal, setActiveReveal] = useState(true);
   const [postingReveal, setPostingReveal] = useState(true);
-  const [privateOwnerKey, setPrivateOwnerKey] = useState("");
-  const [privateActiveKey, setPrivateActiveKey] = useState("");
-  const [privatePostingKey, setPrivatePostingKey] = useState("");
+  const [privateKeys, setPrivatekeys] = useState({});
 
   useEffect(() => {
     getAccountData();
@@ -76,9 +74,7 @@ export default function ManageAuthorities(props: Props) {
     const { activeUser } = props;
     const keys = ls.get(`${activeUser?.username}_private_keys`);
     if (!_.isEmpty(keys)) {
-      setPrivateOwnerKey(keys.owner);
-      setPrivateActiveKey(keys.active);
-      setPrivatePostingKey(keys.posting);
+      setPrivatekeys(keys);
     }
   };
 
@@ -356,19 +352,21 @@ export default function ManageAuthorities(props: Props) {
           )}
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.owner")}</td>
-            <td className="key">{ownerReveal ? publicOwnerKey : privateOwnerKey}</td>
+            <td className="key">{ownerReveal ? publicOwnerKey : privateKeys["owner"]}</td>
             <td>
               <p className="action-btns">
                 <Button
                   className="copy-btn"
                   variant="outline-primary"
                   onClick={() =>
-                    ownerReveal ? copyToClipboard(publicOwnerKey) : copyToClipboard(privateOwnerKey)
+                    ownerReveal
+                      ? copyToClipboard(publicOwnerKey)
+                      : copyToClipboard(privateKeys["owner"])
                   }
                 >
                   {_t("manage-authorities.copy")}
                 </Button>
-                {privateOwnerKey ? (
+                {privateKeys["owner"] ? (
                   <Button
                     className="reveal-btn"
                     variant="outline-primary"
@@ -394,7 +392,7 @@ export default function ManageAuthorities(props: Props) {
           </tr>
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.active")}</td>
-            <td className="key">{activeReveal ? publicActiveKey : privateActiveKey}</td>
+            <td className="key">{activeReveal ? publicActiveKey : privateKeys["active"]}</td>
             <td className="action-btns">
               <p>
                 <Button
@@ -403,12 +401,12 @@ export default function ManageAuthorities(props: Props) {
                   onClick={() => {
                     activeReveal
                       ? copyToClipboard(publicActiveKey)
-                      : copyToClipboard(privateActiveKey);
+                      : copyToClipboard(privateKeys["active"]);
                   }}
                 >
                   {_t("manage-authorities.copy")}
                 </Button>
-                {privateActiveKey ? (
+                {privateKeys["active"] ? (
                   <Button
                     className="reveal-btn"
                     variant="outline-primary"
@@ -434,7 +432,7 @@ export default function ManageAuthorities(props: Props) {
           </tr>
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.posting")}</td>
-            <td className="key">{postingReveal ? publicPostingKey : privatePostingKey}</td>
+            <td className="key">{postingReveal ? publicPostingKey : privateKeys["posting"]}</td>
             <td className="action-btns">
               <p>
                 <Button
@@ -443,12 +441,12 @@ export default function ManageAuthorities(props: Props) {
                   onClick={() =>
                     postingReveal
                       ? copyToClipboard(publicPostingKey)
-                      : copyToClipboard(privatePostingKey)
+                      : copyToClipboard(privateKeys["posting"])
                   }
                 >
                   {_t("manage-authorities.copy")}
                 </Button>
-                {privatePostingKey ? (
+                {privateKeys["posting"] ? (
                   <Button
                     className="reveal-btn"
                     variant="outline-primary"
