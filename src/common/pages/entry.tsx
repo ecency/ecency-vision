@@ -636,8 +636,8 @@ class EntryPage extends BaseComponent<Props, State> {
     const community = this.getCommunity();
 
     const reputation = accountReputation(entry.author_reputation);
-    const published = moment(parseDate(entry.created));
-    const modified = moment(parseDate(entry.updated));
+    const published = moment(parseDate(entry.created + "Z"));
+    const modified = moment(parseDate(entry.updated + "Z"));
 
     // Sometimes tag list comes with duplicate items
     const tags = entry.json_metadata.tags && [...new Set(entry.json_metadata.tags)];
