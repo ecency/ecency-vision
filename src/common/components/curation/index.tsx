@@ -132,7 +132,7 @@ export const Curation = (props: Props) => {
                     username: r.account,
                     children: (
                       <a>
-                        <UserAvatar username={r.account} size="small" />
+                        <UserAvatar username={r.account} size="medium" />
                       </a>
                     )
                   })}

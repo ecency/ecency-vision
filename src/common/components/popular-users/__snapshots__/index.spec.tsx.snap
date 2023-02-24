@@ -38,33 +38,41 @@ exports[`(1) Render with data. 1`] = `
         href="/@foo"
         onClick={[Function]}
       >
-        <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+        <a>
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </a>
       </a>
       <div
         className="user-info"
       >
         <a
-          className="display-name"
           href="/@foo"
           onClick={[Function]}
         >
-          Foo
+          <a
+            className="display-name"
+          >
+            Foo
+          </a>
         </a>
         <a
-          className="name notranslate"
           href="/@foo"
           onClick={[Function]}
         >
-           
-          @
-          foo
+          <a
+            className="name notranslate"
+          >
+             
+            @
+            foo
+          </a>
         </a>
         <div
           className="about"
@@ -80,33 +88,41 @@ exports[`(1) Render with data. 1`] = `
         href="/@bar"
         onClick={[Function]}
       >
-        <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+        <a>
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </a>
       </a>
       <div
         className="user-info"
       >
         <a
-          className="display-name"
           href="/@bar"
           onClick={[Function]}
         >
-          Bar
+          <a
+            className="display-name"
+          >
+            Bar
+          </a>
         </a>
         <a
-          className="name notranslate"
           href="/@bar"
           onClick={[Function]}
         >
-           
-          @
-          bar
+          <a
+            className="name notranslate"
+          >
+             
+            @
+            bar
+          </a>
         </a>
         <div
           className="about"
@@ -122,33 +138,41 @@ exports[`(1) Render with data. 1`] = `
         href="/@baz"
         onClick={[Function]}
       >
-        <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
+        <a>
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </a>
       </a>
       <div
         className="user-info"
       >
         <a
-          className="display-name"
           href="/@baz"
           onClick={[Function]}
         >
-          Baz
+          <a
+            className="display-name"
+          >
+            Baz
+          </a>
         </a>
         <a
-          className="name notranslate"
           href="/@baz"
           onClick={[Function]}
         >
-           
-          @
-          baz
+          <a
+            className="name notranslate"
+          >
+             
+            @
+            baz
+          </a>
         </a>
         <div
           className="about"

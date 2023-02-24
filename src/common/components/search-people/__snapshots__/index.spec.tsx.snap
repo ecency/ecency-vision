@@ -29,18 +29,28 @@ exports[`(1) Default render 1`] = `
             <a
               href="/@foo"
               onClick={[Function]}
-              size="medium"
-              username="foo"
-            />
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                  }
+                }
+              />
+            </a>
             <div
               className="item-title"
             >
               <a
-                className="item-name notransalte"
                 href="/@foo"
                 onClick={[Function]}
               >
-                Foo
+                <a
+                  className="item-name notransalte"
+                >
+                  Foo
+                </a>
               </a>
               <span
                 className="item-sub-title"
@@ -65,18 +75,28 @@ exports[`(1) Default render 1`] = `
             <a
               href="/@bar"
               onClick={[Function]}
-              size="medium"
-              username="bar"
-            />
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+                  }
+                }
+              />
+            </a>
             <div
               className="item-title"
             >
               <a
-                className="item-name notransalte"
                 href="/@bar"
                 onClick={[Function]}
               >
-                Bar
+                <a
+                  className="item-name notransalte"
+                >
+                  Bar
+                </a>
               </a>
               <span
                 className="item-sub-title"
@@ -101,18 +121,28 @@ exports[`(1) Default render 1`] = `
             <a
               href="/@baz"
               onClick={[Function]}
-              size="medium"
-              username="baz"
-            />
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
+                  }
+                }
+              />
+            </a>
             <div
               className="item-title"
             >
               <a
-                className="item-name notransalte"
                 href="/@baz"
                 onClick={[Function]}
               >
-                Baz
+                <a
+                  className="item-name notransalte"
+                >
+                  Baz
+                </a>
               </a>
               <span
                 className="item-sub-title"

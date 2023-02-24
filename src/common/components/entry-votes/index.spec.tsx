@@ -5,6 +5,7 @@ import renderer from "react-test-renderer";
 import { createBrowserHistory } from "history";
 
 import { globalInstance, entryInstance1, votesInstance1 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../constants/defaults.json", () => ({
   imageServer: "https://images.ecency.com"
@@ -44,7 +45,7 @@ it("(2) No votes", () => {
     addAccount: (data: any) => {}
   };
 
-  const component = renderer.create(<EntryVotes {...props} />);
+  const component = withStore(<EntryVotes {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -57,7 +58,7 @@ const detailProps = {
   searchText: ""
 };
 
-const component = renderer.create(<EntryVotesDetail {...detailProps} />);
+const component = withStore(<EntryVotesDetail {...detailProps} />);
 
 it("(3) Render of detail with votes", () => {
   expect(component.toJSON()).toMatchSnapshot();

@@ -7,6 +7,7 @@ import renderer from "react-test-renderer";
 import { createBrowserHistory } from "history";
 
 import { globalInstance } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../constants/defaults.json", () => ({
   imageServer: "https://images.ecency.com"
@@ -59,7 +60,7 @@ const props = {
   addAccount: () => {}
 };
 
-const component = renderer.create(<List {...props} mode="follower" />);
+const component = withStore(<List {...props} mode="follower" />);
 
 it("(1) Render list", () => {
   expect(component.toJSON()).toMatchSnapshot();

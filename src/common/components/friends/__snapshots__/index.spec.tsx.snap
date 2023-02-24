@@ -30,18 +30,28 @@ exports[`(1) Render list 1`] = `
           <a
             href="/@user1"
             onClick={[Function]}
-            size="small"
-            username="user1"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@user1"
               onClick={[Function]}
             >
-              user1
+              <a
+                className="item-name notransalte"
+              >
+                user1
+              </a>
             </a>
           </div>
         </div>
@@ -55,18 +65,28 @@ exports[`(1) Render list 1`] = `
           <a
             href="/@user2"
             onClick={[Function]}
-            size="small"
-            username="user2"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@user2"
               onClick={[Function]}
             >
-              user2
+              <a
+                className="item-name notransalte"
+              >
+                user2
+              </a>
             </a>
           </div>
         </div>
@@ -80,18 +100,28 @@ exports[`(1) Render list 1`] = `
           <a
             href="/@user3"
             onClick={[Function]}
-            size="small"
-            username="user3"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@user3"
               onClick={[Function]}
             >
-              user3
+              <a
+                className="item-name notransalte"
+              >
+                user3
+              </a>
             </a>
           </div>
         </div>

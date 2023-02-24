@@ -19,18 +19,28 @@ exports[`(1) Default render. 1`] = `
           <a
             href="/@bluemist"
             onClick={[Function]}
-            size="small"
-            username="bluemist"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@bluemist"
               onClick={[Function]}
             >
-              bluemist
+              <a
+                className="item-name notransalte"
+              >
+                bluemist
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -49,18 +59,28 @@ exports[`(1) Default render. 1`] = `
           <a
             href="/@foo"
             onClick={[Function]}
-            size="small"
-            username="foo"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@foo"
               onClick={[Function]}
             >
-              foo
+              <a
+                className="item-name notransalte"
+              >
+                foo
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -79,18 +99,28 @@ exports[`(1) Default render. 1`] = `
           <a
             href="/@bar"
             onClick={[Function]}
-            size="small"
-            username="bar"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@bar"
               onClick={[Function]}
             >
-              bar
+              <a
+                className="item-name notransalte"
+              >
+                bar
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -109,18 +139,28 @@ exports[`(1) Default render. 1`] = `
           <a
             href="/@baz"
             onClick={[Function]}
-            size="small"
-            username="baz"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@baz"
               onClick={[Function]}
             >
-              baz
+              <a
+                className="item-name notransalte"
+              >
+                baz
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -139,18 +179,28 @@ exports[`(1) Default render. 1`] = `
           <a
             href="/@lorem"
             onClick={[Function]}
-            size="small"
-            username="lorem"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/lorem/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@lorem"
               onClick={[Function]}
             >
-              lorem
+              <a
+                className="item-name notransalte"
+              >
+                lorem
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -169,18 +219,28 @@ exports[`(1) Default render. 1`] = `
           <a
             href="/@ipsum"
             onClick={[Function]}
-            size="small"
-            username="ipsum"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/ipsum/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@ipsum"
               onClick={[Function]}
             >
-              ipsum
+              <a
+                className="item-name notransalte"
+              >
+                ipsum
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -199,18 +259,28 @@ exports[`(1) Default render. 1`] = `
           <a
             href="/@dolor"
             onClick={[Function]}
-            size="small"
-            username="dolor"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/dolor/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@dolor"
               onClick={[Function]}
             >
-              dolor
+              <a
+                className="item-name notransalte"
+              >
+                dolor
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -244,18 +314,28 @@ exports[`(2) Active user. 1`] = `
           <a
             href="/@bluemist"
             onClick={[Function]}
-            size="small"
-            username="bluemist"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@bluemist"
               onClick={[Function]}
             >
-              bluemist
+              <a
+                className="item-name notransalte"
+              >
+                bluemist
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -279,18 +359,28 @@ exports[`(2) Active user. 1`] = `
           <a
             href="/@foo"
             onClick={[Function]}
-            size="small"
-            username="foo"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@foo"
               onClick={[Function]}
             >
-              foo
+              <a
+                className="item-name notransalte"
+              >
+                foo
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -328,18 +418,28 @@ exports[`(2) Active user. 1`] = `
           <a
             href="/@bar"
             onClick={[Function]}
-            size="small"
-            username="bar"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@bar"
               onClick={[Function]}
             >
-              bar
+              <a
+                className="item-name notransalte"
+              >
+                bar
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -377,18 +477,28 @@ exports[`(2) Active user. 1`] = `
           <a
             href="/@baz"
             onClick={[Function]}
-            size="small"
-            username="baz"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@baz"
               onClick={[Function]}
             >
-              baz
+              <a
+                className="item-name notransalte"
+              >
+                baz
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -426,18 +536,28 @@ exports[`(2) Active user. 1`] = `
           <a
             href="/@lorem"
             onClick={[Function]}
-            size="small"
-            username="lorem"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/lorem/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@lorem"
               onClick={[Function]}
             >
-              lorem
+              <a
+                className="item-name notransalte"
+              >
+                lorem
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -475,18 +595,28 @@ exports[`(2) Active user. 1`] = `
           <a
             href="/@ipsum"
             onClick={[Function]}
-            size="small"
-            username="ipsum"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/ipsum/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@ipsum"
               onClick={[Function]}
             >
-              ipsum
+              <a
+                className="item-name notransalte"
+              >
+                ipsum
+              </a>
             </a>
             <span
               className="item-reputation"
@@ -524,18 +654,28 @@ exports[`(2) Active user. 1`] = `
           <a
             href="/@dolor"
             onClick={[Function]}
-            size="small"
-            username="dolor"
-          />
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/dolor/avatar/small)",
+                }
+              }
+            />
+          </a>
           <div
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@dolor"
               onClick={[Function]}
             >
-              dolor
+              <a
+                className="item-name notransalte"
+              >
+                dolor
+              </a>
             </a>
             <span
               className="item-reputation"

@@ -20,18 +20,21 @@ exports[`(1) Default render 1`] = `
           id="good-karma-awesome-hive"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+            <a
+              className="author-avatar d-sm-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -276,18 +279,21 @@ exports[`(2) Grid view 1`] = `
           id="good-karma-awesome-hive"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+            <a
+              className="author-avatar d-sm-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -556,18 +562,21 @@ exports[`(3) Nsfw 1`] = `
           id="good-karma-awesome-hive"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+            <a
+              className="author-avatar d-sm-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -841,18 +850,21 @@ exports[`(4) Nsfw with active user 1`] = `
           id="good-karma-awesome-hive"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+            <a
+              className="author-avatar d-sm-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -1125,18 +1137,21 @@ exports[`(5) Nsfw but allowed 1`] = `
           id="good-karma-awesome-hive"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+            <a
+              className="author-avatar d-sm-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -1395,11 +1410,14 @@ exports[`(6) Cross post. Bottom menu 1`] = `
     className="cross-item"
   >
     <a
-      className="cross-item-author notranslate"
       href="/@regenerette"
       onClick={[Function]}
     >
-      @regenerette
+      <a
+        className="cross-item-author notranslate"
+      >
+        @regenerette
+      </a>
     </a>
      
     cross-posted
@@ -1438,18 +1456,21 @@ exports[`(6) Cross post. Bottom menu 1`] = `
           id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@regenerette"
             onClick={[Function]}
           >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/regenerette/avatar/small)",
+            <a
+              className="author-avatar d-sm-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/regenerette/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
