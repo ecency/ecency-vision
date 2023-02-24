@@ -25,6 +25,7 @@ exports[`(1) No tags 1`] = `
     />
     <div />
   </div>
+  
 </div>
 `;
 
@@ -53,6 +54,7 @@ exports[`(2) With tags 1`] = `
     />
     <div />
   </div>
+  
   <div
     className="tag-list"
   >
@@ -135,5 +137,6 @@ exports[`(3) No tags with focus 1`] = `
     />
     <div />
   </div>
+  
 </div>
 `;

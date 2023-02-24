@@ -360,7 +360,7 @@ export const Profile = (props: Props) => {
       return {};
     }
 
-    return account.__loaded
+    return account?.__loaded
       ? {
           title: `${ncount}${account.profile?.name || account.name}'s ${
             section ? (section === "engine" ? "tokens" : `${section}`) : ""
@@ -435,7 +435,7 @@ export const Profile = (props: Props) => {
       >
         <div className="profile-side">{ProfileCard({ ...props, account, section })}</div>
         <span itemScope={true} itemType="http://schema.org/Person">
-          {account.__loaded && (
+          {account?.__loaded && (
             <meta itemProp="name" content={account.profile?.name || account.name} />
           )}
         </span>

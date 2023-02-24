@@ -356,6 +356,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                   NotifyTypes.TRANSFERS
                 )
               ]}
+              menuHide={false}
               history={this.props.history || history}
               label={
                 <span className={_c(`list-action ${loading ? "disabled" : ""}`)}>

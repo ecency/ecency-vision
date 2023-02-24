@@ -1495,7 +1495,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 title="2 Votes"
               >
                 <div
-                  className="heart-icon"
+                  className="heart-icon voted"
                 >
                   <svg
                     fill="currentColor"
@@ -3240,7 +3240,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 title="2 Votes"
               >
                 <div
-                  className="heart-icon"
+                  className="heart-icon voted"
                 >
                   <svg
                     fill="currentColor"

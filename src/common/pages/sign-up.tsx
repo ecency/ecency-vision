@@ -128,7 +128,7 @@ export const SignUp = (props: PageProps) => {
         setDone(true);
         setLsReferral(undefined);
       }
-    } catch (e: unknown) {
+    } catch (e) {
       if (axios.isAxiosError(e) && e.response?.data?.message) {
         error(e.response.data.message);
       }

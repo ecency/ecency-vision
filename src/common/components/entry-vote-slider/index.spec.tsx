@@ -12,5 +12,4 @@ const component = renderer.create(<VotingSlider {...props} />);
 
 it("(1) Default render", () => {
   expect(component.toJSON()).toMatchSnapshot();
-  component.unmount();
 });

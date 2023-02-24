@@ -9,5 +9,4 @@ it("(1) Default render", () => {
   };
   const component = renderer.create(<FaqCategory {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
-  component.unmount();
 });
