@@ -8,6 +8,8 @@ import isElectron from "../util/is-electron";
 
 import { BeneficiaryRoute } from "../api/operations";
 
+import { name } from "../constants/defaults.json";
+
 const permlinkRnd = () => (Math.random() + 1).toString(16).substring(2);
 
 export const createPermlink = (title: string, random: boolean = false): string => {
@@ -85,7 +87,8 @@ export const extractMetaData = (body: string): MetaData => {
   return out;
 };
 
-export const makeApp = (appVer: string) => `ecency/${appVer}-${isElectron() ? "surfer" : "vision"}`;
+export const makeApp = (appVer: string) =>
+  `${name}/${appVer}-${isElectron() ? "surfer" : "vision"}`;
 
 export const makeJsonMetaData = (
   meta: MetaData,
