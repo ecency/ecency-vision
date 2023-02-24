@@ -5,13 +5,6 @@ import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 import { TrendingTag } from "../store/trending-tags/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { FullAccount, AccountProfile, AccountFollowStats } from "../store/accounts/types";
-import {
-  AccountUpdateOperation,
-  CustomJsonOperation,
-  Operation,
-  PrivateKey,
-  TransactionConfirmation
-} from "@hiveio/dhive";
 
 import parseAsset from "../helper/parse-asset";
 import { vestsToRshares } from "../helper/vesting";
