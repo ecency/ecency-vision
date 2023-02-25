@@ -96,7 +96,7 @@ export class CommunityListItem extends Component<Props> {
                   {ProfileLink({
                     ...this.props,
                     username: x,
-                    children: <a className="admin">{x}</a>
+                    children: <span className="admin">{x}</span>
                   })}
                 </Fragment>
               ))}

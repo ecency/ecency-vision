@@ -75,26 +75,26 @@ export class PopularUsers extends BaseComponent<Props, State> {
                     ...this.props,
                     username: r.name,
                     children: (
-                      <a>
+                      <span>
                         <UserAvatar username={r.name} size="medium" />
-                      </a>
+                      </span>
                     )
                   })}
                   <div className="user-info">
                     {ProfileLink({
                       ...this.props,
                       username: r.name,
-                      children: <a className="display-name">{r.full_name}</a>
+                      children: <span className="display-name">{r.full_name}</span>
                     })}
                     {ProfileLink({
                       ...this.props,
                       username: r.name,
                       children: (
-                        <a className="name notranslate">
+                        <span className="name notranslate">
                           {" "}
                           {"@"}
                           {r.name}
-                        </a>
+                        </span>
                       )
                     })}
                     <div className="about">{r.about}</div>

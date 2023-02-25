@@ -108,7 +108,7 @@ export const RcDelegationsList = (props: any) => {
                             {ProfileLink({
                               ...props,
                               username: list.to,
-                              children: <a className="item-name notransalte">{list.to}</a>
+                              children: <span className="item-name notranslate">{list.to}</span>
                             })}
                           </div>
                         </div>
@@ -176,7 +176,7 @@ export const RcDelegationsList = (props: any) => {
                           {ProfileLink({
                             ...props,
                             username: list.sender,
-                            children: <a className="item-name notransalte">{list.sender}</a>
+                            children: <span className="item-name notranslate">{list.sender}</span>
                           })}
                         </div>
                         <div className="item-extra">

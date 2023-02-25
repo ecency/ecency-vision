@@ -87,10 +87,10 @@ export class CommunityRoles extends Component<Props, State> {
                       ...this.props,
                       username,
                       children: (
-                        <a className="user">
+                        <span className="user">
                           <UserAvatar username={username} size="medium" />{" "}
                           <span className="username">{username}</span>
-                        </a>
+                        </span>
                       )
                     })}
                   </td>

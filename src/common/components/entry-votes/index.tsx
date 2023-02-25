@@ -174,7 +174,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
                           {ProfileLink({
                             ...this.props,
                             username: x.voter,
-                            children: <a className="item-name notransalte">{x.voter}</a>
+                            children: <span className="item-name notranslate">{x.voter}</span>
                           })}
                           <span className="item-reputation">{accountReputation(x.reputation)}</span>
                         </div>

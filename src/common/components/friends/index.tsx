@@ -189,7 +189,7 @@ export class List extends BaseComponent<ListProps, ListState> {
                 {ProfileLink({
                   ...this.props,
                   username: item.name,
-                  children: <a className="item-name notransalte">{item.name}</a>
+                  children: <span className="item-name notranslate">{item.name}</span>
                 })}
                 {item?.reputation !== undefined && (
                   <span className="item-reputation">{accountReputation(item.reputation)}</span>

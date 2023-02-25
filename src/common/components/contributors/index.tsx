@@ -66,7 +66,7 @@ export class Contributors extends Component<Props, State> {
                       {ProfileLink({
                         ...this.props,
                         username,
-                        children: <a className="item-name notransalte">{username}</a>
+                        children: <span className="item-name notranslate">{username}</span>
                       })}
                     </div>
                   </div>

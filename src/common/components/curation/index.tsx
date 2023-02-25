@@ -131,9 +131,9 @@ export const Curation = (props: Props) => {
                     ...props,
                     username: r.account,
                     children: (
-                      <a>
+                      <span>
                         <UserAvatar username={r.account} size="medium" />
-                      </a>
+                      </span>
                     )
                   })}
                 </div>
@@ -141,7 +141,7 @@ export const Curation = (props: Props) => {
                   {ProfileLink({
                     ...props,
                     username: r.account,
-                    children: <a>{r.account}</a>
+                    children: <span>{r.account}</span>
                   })}
                 </div>
                 <div className="score">{r.votes}</div>

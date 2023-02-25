@@ -101,7 +101,7 @@ export class SearchPeople extends BaseComponent<Props, State> {
                           </ProfileLink>
                           <div className="item-title">
                             <ProfileLink {...this.props} username={username}>
-                              <a className="item-name notransalte">{i.full_name}</a>
+                              <span className="item-name notranslate">{i.full_name}</span>
                             </ProfileLink>
                             <span className="item-sub-title">
                               {"@"}

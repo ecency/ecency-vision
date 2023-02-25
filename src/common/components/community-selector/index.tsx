@@ -122,7 +122,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
                       <div className="item-main">
                         <UserAvatar username={x.name} size="small" />
                         <div className="item-info">
-                          <span className="item-name notransalte">{x.title}</span>
+                          <span className="item-name notranslate">{x.title}</span>
                         </div>
                       </div>
                     </a>
@@ -154,7 +154,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
               <div className="item-main">
                 <UserAvatar username={activeUser.username} size="small" />
                 <div className="item-info">
-                  <span className="item-name notransalte">{_t("community-selector.my-blog")}</span>
+                  <span className="item-name notranslate">{_t("community-selector.my-blog")}</span>
                 </div>
               </div>
             </a>
@@ -175,7 +175,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
                     <div className="item-main">
                       <UserAvatar username={x[0]} size="small" />
                       <div className="item-info">
-                        <span className="item-name notransalte">{x[1]}</span>
+                        <span className="item-name notranslate">{x[1]}</span>
                       </div>
                     </div>
                   </a>
