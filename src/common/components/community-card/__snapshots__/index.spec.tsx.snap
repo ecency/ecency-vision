@@ -129,11 +129,11 @@ exports[`(1) Default render 1`] = `
             href="/@bluemist"
             onClick={[Function]}
           >
-            <a
+            <span
               className="username"
             >
               @bluemist
-            </a>
+            </span>
           </a>
           <span
             className="role"
@@ -281,11 +281,11 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
             href="/@bluemist"
             onClick={[Function]}
           >
-            <a
+            <span
               className="username"
             >
               @bluemist
-            </a>
+            </span>
           </a>
           <span
             className="role"
@@ -470,11 +470,11 @@ exports[`(3) usePrivate = false 1`] = `
             href="/@bluemist"
             onClick={[Function]}
           >
-            <a
+            <span
               className="username"
             >
               @bluemist
-            </a>
+            </span>
           </a>
           <span
             className="role"

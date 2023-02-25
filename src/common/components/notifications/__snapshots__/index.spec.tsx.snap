@@ -24,7 +24,7 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
         href="/@fooo10"
         onClick={[Function]}
       >
-        <a
+        <span
           className="source-avatar"
         >
           <span
@@ -35,7 +35,7 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
               }
             }
           />
-        </a>
+        </span>
       </a>
     </div>
     <div
@@ -48,12 +48,12 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
           href="/@fooo10"
           onClick={[Function]}
         >
-          <a
+          <span
             className="source-name"
           >
              
             fooo10
-          </a>
+          </span>
         </a>
         <span
           className="item-action"
@@ -101,7 +101,7 @@ exports[`(1) NotificationListItem (2) Mention  1`] = `
         href="/@ecency.stats"
         onClick={[Function]}
       >
-        <a
+        <span
           className="source-avatar"
         >
           <span
@@ -112,7 +112,7 @@ exports[`(1) NotificationListItem (2) Mention  1`] = `
               }
             }
           />
-        </a>
+        </span>
       </a>
     </div>
     <div
@@ -125,12 +125,12 @@ exports[`(1) NotificationListItem (2) Mention  1`] = `
           href="/@ecency.stats"
           onClick={[Function]}
         >
-          <a
+          <span
             className="source-name"
           >
              
             ecency.stats
-          </a>
+          </span>
         </a>
         <span
           className="item-action"
@@ -178,7 +178,7 @@ exports[`(1) NotificationListItem (3) Follow  1`] = `
         href="/@fooo10"
         onClick={[Function]}
       >
-        <a
+        <span
           className="source-avatar"
         >
           <span
@@ -189,7 +189,7 @@ exports[`(1) NotificationListItem (3) Follow  1`] = `
               }
             }
           />
-        </a>
+        </span>
       </a>
     </div>
     <div
@@ -202,12 +202,12 @@ exports[`(1) NotificationListItem (3) Follow  1`] = `
           href="/@fooo10"
           onClick={[Function]}
         >
-          <a
+          <span
             className="source-name"
           >
              
             fooo10
-          </a>
+          </span>
         </a>
       </div>
       <div
@@ -242,7 +242,7 @@ exports[`(1) NotificationListItem (4) Unfollow  1`] = `
         href="/@fooo102"
         onClick={[Function]}
       >
-        <a
+        <span
           className="source-avatar"
         >
           <span
@@ -253,7 +253,7 @@ exports[`(1) NotificationListItem (4) Unfollow  1`] = `
               }
             }
           />
-        </a>
+        </span>
       </a>
     </div>
     <div
@@ -266,12 +266,12 @@ exports[`(1) NotificationListItem (4) Unfollow  1`] = `
           href="/@fooo102"
           onClick={[Function]}
         >
-          <a
+          <span
             className="source-name"
           >
              
             fooo102
-          </a>
+          </span>
         </a>
       </div>
       <div
@@ -306,7 +306,7 @@ exports[`(1) NotificationListItem (5) Reply  1`] = `
         href="/@dunsky"
         onClick={[Function]}
       >
-        <a
+        <span
           className="source-avatar"
         >
           <span
@@ -317,7 +317,7 @@ exports[`(1) NotificationListItem (5) Reply  1`] = `
               }
             }
           />
-        </a>
+        </span>
       </a>
     </div>
     <div
@@ -330,12 +330,12 @@ exports[`(1) NotificationListItem (5) Reply  1`] = `
           href="/@dunsky"
           onClick={[Function]}
         >
-          <a
+          <span
             className="source-name"
           >
              
             dunsky
-          </a>
+          </span>
         </a>
         <span
           className="item-action"
@@ -393,7 +393,7 @@ exports[`(1) NotificationListItem (6) Reblog  1`] = `
         href="/@foo220"
         onClick={[Function]}
       >
-        <a
+        <span
           className="source-avatar"
         >
           <span
@@ -404,7 +404,7 @@ exports[`(1) NotificationListItem (6) Reblog  1`] = `
               }
             }
           />
-        </a>
+        </span>
       </a>
     </div>
     <div
@@ -417,12 +417,12 @@ exports[`(1) NotificationListItem (6) Reblog  1`] = `
           href="/@foo220"
           onClick={[Function]}
         >
-          <a
+          <span
             className="source-name"
           >
              
             foo220
-          </a>
+          </span>
         </a>
         <span
           className="item-action"
@@ -464,7 +464,7 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
         href="/@bar212"
         onClick={[Function]}
       >
-        <a
+        <span
           className="source-avatar"
         >
           <span
@@ -475,7 +475,7 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
               }
             }
           />
-        </a>
+        </span>
       </a>
     </div>
     <div
@@ -488,12 +488,12 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
           href="/@bar212"
           onClick={[Function]}
         >
-          <a
+          <span
             className="source-name"
           >
              
             bar212
-          </a>
+          </span>
         </a>
         <span
           className="item-action"

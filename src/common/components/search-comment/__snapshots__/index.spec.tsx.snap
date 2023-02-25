@@ -46,18 +46,14 @@ exports[`(1) Default render 1`] = `
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@good-karma"
@@ -196,18 +192,14 @@ Integration examples to get started: Esteem/
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -353,18 +345,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@good-karma"
@@ -500,18 +488,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -652,18 +636,14 @@ We are 5 days away from official release of
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@good-karma"
@@ -804,18 +784,14 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -954,18 +930,14 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -1105,18 +1077,14 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -1298,18 +1266,14 @@ exports[`(2) With limit 1`] = `
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@good-karma"
@@ -1448,18 +1412,14 @@ Integration examples to get started: Esteem/
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -1605,18 +1565,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@good-karma"
@@ -1752,18 +1708,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -1904,18 +1856,14 @@ We are 5 days away from official release of
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@good-karma"
@@ -2056,18 +2004,14 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -2206,18 +2150,14 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -2357,18 +2297,14 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -2560,18 +2496,14 @@ exports[`(3) Hide show more button 1`] = `
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@good-karma"
@@ -2710,18 +2642,14 @@ Integration examples to get started: Esteem/
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -2867,18 +2795,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@good-karma"
@@ -3014,18 +2938,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -3166,18 +3086,14 @@ We are 5 days away from official release of
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@good-karma"
@@ -3318,18 +3234,14 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -3468,18 +3380,14 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"
@@ -3619,18 +3527,14 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 href="/@ecency"
                 onClick={[Function]}
               >
-                <a
-                  className="author-avatar"
-                >
-                  <span
-                    className="user-avatar small"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                      }
+                <span
+                  className="user-avatar small"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
                     }
-                  />
-                </a>
+                  }
+                />
               </a>
               <a
                 href="/@ecency"

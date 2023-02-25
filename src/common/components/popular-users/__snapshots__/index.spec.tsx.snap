@@ -38,7 +38,7 @@ exports[`(1) Render with data. 1`] = `
         href="/@foo"
         onClick={[Function]}
       >
-        <a>
+        <span>
           <span
             className="user-avatar medium"
             style={
@@ -47,7 +47,7 @@ exports[`(1) Render with data. 1`] = `
               }
             }
           />
-        </a>
+        </span>
       </a>
       <div
         className="user-info"
@@ -56,23 +56,23 @@ exports[`(1) Render with data. 1`] = `
           href="/@foo"
           onClick={[Function]}
         >
-          <a
+          <span
             className="display-name"
           >
             Foo
-          </a>
+          </span>
         </a>
         <a
           href="/@foo"
           onClick={[Function]}
         >
-          <a
+          <span
             className="name notranslate"
           >
              
             @
             foo
-          </a>
+          </span>
         </a>
         <div
           className="about"
@@ -88,7 +88,7 @@ exports[`(1) Render with data. 1`] = `
         href="/@bar"
         onClick={[Function]}
       >
-        <a>
+        <span>
           <span
             className="user-avatar medium"
             style={
@@ -97,7 +97,7 @@ exports[`(1) Render with data. 1`] = `
               }
             }
           />
-        </a>
+        </span>
       </a>
       <div
         className="user-info"
@@ -106,23 +106,23 @@ exports[`(1) Render with data. 1`] = `
           href="/@bar"
           onClick={[Function]}
         >
-          <a
+          <span
             className="display-name"
           >
             Bar
-          </a>
+          </span>
         </a>
         <a
           href="/@bar"
           onClick={[Function]}
         >
-          <a
+          <span
             className="name notranslate"
           >
              
             @
             bar
-          </a>
+          </span>
         </a>
         <div
           className="about"
@@ -138,7 +138,7 @@ exports[`(1) Render with data. 1`] = `
         href="/@baz"
         onClick={[Function]}
       >
-        <a>
+        <span>
           <span
             className="user-avatar medium"
             style={
@@ -147,7 +147,7 @@ exports[`(1) Render with data. 1`] = `
               }
             }
           />
-        </a>
+        </span>
       </a>
       <div
         className="user-info"
@@ -156,23 +156,23 @@ exports[`(1) Render with data. 1`] = `
           href="/@baz"
           onClick={[Function]}
         >
-          <a
+          <span
             className="display-name"
           >
             Baz
-          </a>
+          </span>
         </a>
         <a
           href="/@baz"
           onClick={[Function]}
         >
-          <a
+          <span
             className="name notranslate"
           >
              
             @
             baz
-          </a>
+          </span>
         </a>
         <div
           className="about"

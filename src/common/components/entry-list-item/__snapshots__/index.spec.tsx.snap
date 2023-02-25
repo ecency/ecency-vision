@@ -23,7 +23,7 @@ exports[`(1) Default render 1`] = `
             href="/@good-karma"
             onClick={[Function]}
           >
-            <a
+            <span
               className="author-avatar d-sm-block"
             >
               <span
@@ -34,7 +34,7 @@ exports[`(1) Default render 1`] = `
                   }
                 }
               />
-            </a>
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -282,7 +282,7 @@ exports[`(2) Grid view 1`] = `
             href="/@good-karma"
             onClick={[Function]}
           >
-            <a
+            <span
               className="author-avatar d-sm-block"
             >
               <span
@@ -293,7 +293,7 @@ exports[`(2) Grid view 1`] = `
                   }
                 }
               />
-            </a>
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -565,7 +565,7 @@ exports[`(3) Nsfw 1`] = `
             href="/@good-karma"
             onClick={[Function]}
           >
-            <a
+            <span
               className="author-avatar d-sm-block"
             >
               <span
@@ -576,7 +576,7 @@ exports[`(3) Nsfw 1`] = `
                   }
                 }
               />
-            </a>
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -853,7 +853,7 @@ exports[`(4) Nsfw with active user 1`] = `
             href="/@good-karma"
             onClick={[Function]}
           >
-            <a
+            <span
               className="author-avatar d-sm-block"
             >
               <span
@@ -864,7 +864,7 @@ exports[`(4) Nsfw with active user 1`] = `
                   }
                 }
               />
-            </a>
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -1140,7 +1140,7 @@ exports[`(5) Nsfw but allowed 1`] = `
             href="/@good-karma"
             onClick={[Function]}
           >
-            <a
+            <span
               className="author-avatar d-sm-block"
             >
               <span
@@ -1151,7 +1151,7 @@ exports[`(5) Nsfw but allowed 1`] = `
                   }
                 }
               />
-            </a>
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -1413,11 +1413,11 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       href="/@regenerette"
       onClick={[Function]}
     >
-      <a
+      <span
         className="cross-item-author notranslate"
       >
         @regenerette
-      </a>
+      </span>
     </a>
      
     cross-posted
@@ -1459,7 +1459,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             href="/@regenerette"
             onClick={[Function]}
           >
-            <a
+            <span
               className="author-avatar d-sm-block"
             >
               <span
@@ -1470,7 +1470,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
                   }
                 }
               />
-            </a>
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"

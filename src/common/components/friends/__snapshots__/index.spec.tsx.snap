@@ -47,11 +47,11 @@ exports[`(1) Render list 1`] = `
               href="/@user1"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 user1
-              </a>
+              </span>
             </a>
           </div>
         </div>
@@ -82,11 +82,11 @@ exports[`(1) Render list 1`] = `
               href="/@user2"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 user2
-              </a>
+              </span>
             </a>
           </div>
         </div>
@@ -117,11 +117,11 @@ exports[`(1) Render list 1`] = `
               href="/@user3"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 user3
-              </a>
+              </span>
             </a>
           </div>
         </div>

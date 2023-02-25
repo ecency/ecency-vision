@@ -46,11 +46,11 @@ exports[`(1) Default render 1`] = `
                 href="/@foo"
                 onClick={[Function]}
               >
-                <a
-                  className="item-name notransalte"
+                <span
+                  className="item-name notranslate"
                 >
                   Foo
-                </a>
+                </span>
               </a>
               <span
                 className="item-sub-title"
@@ -92,11 +92,11 @@ exports[`(1) Default render 1`] = `
                 href="/@bar"
                 onClick={[Function]}
               >
-                <a
-                  className="item-name notransalte"
+                <span
+                  className="item-name notranslate"
                 >
                   Bar
-                </a>
+                </span>
               </a>
               <span
                 className="item-sub-title"
@@ -138,11 +138,11 @@ exports[`(1) Default render 1`] = `
                 href="/@baz"
                 onClick={[Function]}
               >
-                <a
-                  className="item-name notransalte"
+                <span
+                  className="item-name notranslate"
                 >
                   Baz
-                </a>
+                </span>
               </a>
               <span
                 className="item-sub-title"

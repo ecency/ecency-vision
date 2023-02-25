@@ -36,11 +36,11 @@ exports[`(1) Default render. 1`] = `
               href="/@bluemist"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 bluemist
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -76,11 +76,11 @@ exports[`(1) Default render. 1`] = `
               href="/@foo"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 foo
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -116,11 +116,11 @@ exports[`(1) Default render. 1`] = `
               href="/@bar"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 bar
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -156,11 +156,11 @@ exports[`(1) Default render. 1`] = `
               href="/@baz"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 baz
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -196,11 +196,11 @@ exports[`(1) Default render. 1`] = `
               href="/@lorem"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 lorem
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -236,11 +236,11 @@ exports[`(1) Default render. 1`] = `
               href="/@ipsum"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 ipsum
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -276,11 +276,11 @@ exports[`(1) Default render. 1`] = `
               href="/@dolor"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 dolor
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -331,11 +331,11 @@ exports[`(2) Active user. 1`] = `
               href="/@bluemist"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 bluemist
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -376,11 +376,11 @@ exports[`(2) Active user. 1`] = `
               href="/@foo"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 foo
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -435,11 +435,11 @@ exports[`(2) Active user. 1`] = `
               href="/@bar"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 bar
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -494,11 +494,11 @@ exports[`(2) Active user. 1`] = `
               href="/@baz"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 baz
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -553,11 +553,11 @@ exports[`(2) Active user. 1`] = `
               href="/@lorem"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 lorem
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -612,11 +612,11 @@ exports[`(2) Active user. 1`] = `
               href="/@ipsum"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 ipsum
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"
@@ -671,11 +671,11 @@ exports[`(2) Active user. 1`] = `
               href="/@dolor"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 dolor
-              </a>
+              </span>
             </a>
             <span
               className="item-reputation"

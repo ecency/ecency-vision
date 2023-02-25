@@ -99,11 +99,7 @@ class SearchListItem extends Component<Props> {
               {ProfileLink({
                 ...this.props,
                 username: res.author,
-                children: (
-                  <span className="author-avatar">
-                    <UserAvatar username={res.author} size="small" />
-                  </span>
-                )
+                children: <UserAvatar username={res.author} size="small" />
               })}
               {ProfileLink({
                 ...this.props,

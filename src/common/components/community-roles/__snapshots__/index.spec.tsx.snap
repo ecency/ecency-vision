@@ -42,7 +42,7 @@ exports[`(1) Default render 1`] = `
             href="/@hive-148441"
             onClick={[Function]}
           >
-            <a
+            <span
               className="user"
             >
               <span
@@ -59,7 +59,7 @@ exports[`(1) Default render 1`] = `
               >
                 hive-148441
               </span>
-            </a>
+            </span>
           </a>
         </td>
         <td>
@@ -75,7 +75,7 @@ exports[`(1) Default render 1`] = `
             href="/@bluemist"
             onClick={[Function]}
           >
-            <a
+            <span
               className="user"
             >
               <span
@@ -92,7 +92,7 @@ exports[`(1) Default render 1`] = `
               >
                 bluemist
               </span>
-            </a>
+            </span>
           </a>
         </td>
         <td>
@@ -149,7 +149,7 @@ exports[`(2) Should not show add user button 1`] = `
             href="/@hive-148441"
             onClick={[Function]}
           >
-            <a
+            <span
               className="user"
             >
               <span
@@ -166,7 +166,7 @@ exports[`(2) Should not show add user button 1`] = `
               >
                 hive-148441
               </span>
-            </a>
+            </span>
           </a>
         </td>
         <td>
@@ -182,7 +182,7 @@ exports[`(2) Should not show add user button 1`] = `
             href="/@bluemist"
             onClick={[Function]}
           >
-            <a
+            <span
               className="user"
             >
               <span
@@ -199,7 +199,7 @@ exports[`(2) Should not show add user button 1`] = `
               >
                 bluemist
               </span>
-            </a>
+            </span>
           </a>
         </td>
         <td>
@@ -256,7 +256,7 @@ exports[`(3) Should show add user button 1`] = `
             href="/@hive-148441"
             onClick={[Function]}
           >
-            <a
+            <span
               className="user"
             >
               <span
@@ -273,7 +273,7 @@ exports[`(3) Should show add user button 1`] = `
               >
                 hive-148441
               </span>
-            </a>
+            </span>
           </a>
         </td>
         <td>
@@ -289,7 +289,7 @@ exports[`(3) Should show add user button 1`] = `
             href="/@bluemist"
             onClick={[Function]}
           >
-            <a
+            <span
               className="user"
             >
               <span
@@ -306,7 +306,7 @@ exports[`(3) Should show add user button 1`] = `
               >
                 bluemist
               </span>
-            </a>
+            </span>
           </a>
         </td>
         <td>

@@ -36,11 +36,11 @@ exports[`(1) Default render 1`] = `
               href="/@user2"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 user2
-              </a>
+              </span>
             </a>
           </div>
         </div>
@@ -80,11 +80,11 @@ exports[`(1) Default render 1`] = `
               href="/@user3"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 user3
-              </a>
+              </span>
             </a>
           </div>
         </div>
@@ -124,11 +124,11 @@ exports[`(1) Default render 1`] = `
               href="/@user4"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 user4
-              </a>
+              </span>
             </a>
           </div>
         </div>
@@ -168,11 +168,11 @@ exports[`(1) Default render 1`] = `
               href="/@user1"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 user1
-              </a>
+              </span>
             </a>
           </div>
         </div>
@@ -212,11 +212,11 @@ exports[`(1) Default render 1`] = `
               href="/@user5"
               onClick={[Function]}
             >
-              <a
-                className="item-name notransalte"
+              <span
+                className="item-name notranslate"
               >
                 user5
-              </a>
+              </span>
             </a>
           </div>
         </div>
