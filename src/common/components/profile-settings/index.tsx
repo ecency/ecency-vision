@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { ActiveUser } from "../../store/active-user/types";
 import { Account } from "../../store/accounts/types";
-import { Global } from "../../store/global/types";
+import { Global, Theme } from "../../store/global/types";
 
 import ProfileEdit from "../profile-edit";
 import Preferences from "../preferences";
@@ -23,7 +23,7 @@ interface Props {
   setCurrency: (currency: string, rate: number, symbol: string) => void;
   setLang: (lang: string) => void;
   setNsfw: (value: boolean) => void;
-  toggleTheme: (theme_key?: string) => void;
+  toggleTheme: (theme_key?: Theme) => void;
 }
 
 export class ProfileSettings extends Component<Props> {

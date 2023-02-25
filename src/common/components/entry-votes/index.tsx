@@ -166,19 +166,15 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
                   return (
                     <div className="list-item" key={x.voter}>
                       <div className="item-main">
-                        {ProfileLink({
-                          ...this.props,
-                          username: x.voter,
-                          children: (
-                            <>{UserAvatar({ ...this.props, username: x.voter, size: "small" })}</>
-                          )
-                        })}
+                        <ProfileLink {...this.props} username={x.voter}>
+                          <UserAvatar username={x.voter} size="small" />
+                        </ProfileLink>
 
                         <div className="item-info">
                           {ProfileLink({
                             ...this.props,
                             username: x.voter,
-                            children: <a className="item-name notransalte">{x.voter}</a>
+                            children: <span className="item-name notranslate">{x.voter}</span>
                           })}
                           <span className="item-reputation">{accountReputation(x.reputation)}</span>
                         </div>

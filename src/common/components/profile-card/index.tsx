@@ -123,7 +123,7 @@ export const ProfileCard = (props: Props) => {
     return (
       <div className="profile-card">
         <div className="profile-avatar">
-          {UserAvatar({ ...props, username: account.name, size: "xLarge" })}
+          <UserAvatar username={account.name} size="xLarge" />
         </div>
 
         <h1>
@@ -143,12 +143,7 @@ export const ProfileCard = (props: Props) => {
   return (
     <div className="profile-card">
       <div className="profile-avatar">
-        {UserAvatar({
-          ...props,
-          username: account.name,
-          size: "xLarge",
-          src: account.profile?.profile_image
-        })}
+        <UserAvatar username={account.name} size="xLarge" src={account.profile?.profile_image} />
         {isMyProfile && isSettings && (
           <EditPic
             {...props}

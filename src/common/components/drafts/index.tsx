@@ -28,6 +28,8 @@ import { deleteForeverSvg, pencilOutlineSvg, cloneOutlineSvg } from "../../img/s
 
 import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
+import { useMappedStore } from "../../store/use-mapped-store";
+import { useLocation } from "react-router";
 
 setProxyBase(defaults.imageServer);
 
@@ -72,7 +74,7 @@ export class ListItem extends Component<ItemProps> {
           <div className="item-header-main">
             <div className="author-part">
               <a className="author-avatar">
-                {UserAvatar({ ...this.props, username: author, size: "medium" })}
+                <UserAvatar username={author} size="medium" />
               </a>
               <a className="author">
                 {author}
@@ -342,7 +344,7 @@ export class Drafts extends BaseComponent<Props, State> {
   }
 }
 
-export default class DraftsDialog extends Component<Props> {
+class DraftsDialog extends Component<Props> {
   hide = () => {
     const { onHide } = this.props;
     onHide();
@@ -361,3 +363,18 @@ export default class DraftsDialog extends Component<Props> {
     );
   }
 }
+
+export default ({ history, onHide }: Pick<Props, "history" | "onHide">) => {
+  const { global, activeUser } = useMappedStore();
+  const location = useLocation();
+
+  return (
+    <DraftsDialog
+      global={global}
+      history={history}
+      location={location}
+      activeUser={activeUser!!}
+      onHide={onHide}
+    />
+  );
+};

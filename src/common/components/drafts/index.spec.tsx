@@ -12,6 +12,7 @@ import {
   communityInstance1,
   allOver
 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 let TEST_MODE = 0;
 
@@ -80,7 +81,7 @@ it("(1) Default render.", async () => {
     onPick: () => {}
   };
 
-  const component = await renderer.create(<Drafts {...props} />);
+  const component = await withStore(<Drafts {...props} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });
@@ -97,7 +98,7 @@ it("(2) Test with data.", async () => {
     onPick: () => {}
   };
 
-  const component = renderer.create(<Drafts {...props} />);
+  const component = withStore(<Drafts {...props} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });

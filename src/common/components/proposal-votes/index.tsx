@@ -208,16 +208,14 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
                       {ProfileLink({
                         ...this.props,
                         username: x.name,
-                        children: (
-                          <>{UserAvatar({ ...this.props, username: x.name, size: "small" })}</>
-                        )
+                        children: <UserAvatar username={x.name} size="small" />
                       })}
 
                       <div className="item-info">
                         {ProfileLink({
                           ...this.props,
                           username: x.name,
-                          children: <a className="item-name notransalte">{x.name}</a>
+                          children: <span className="item-name notranslate">{x.name}</span>
                         })}
                         <span className="item-reputation">{accountReputation(x.reputation)}</span>
                       </div>

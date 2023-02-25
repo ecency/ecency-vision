@@ -566,8 +566,6 @@ export class EditorToolbar extends Component<Props> {
         />
         {gallery && activeUser && (
           <Gallery
-            global={global}
-            activeUser={activeUser}
             onHide={this.toggleGallery}
             onPick={(url: string) => {
               const fileName = "";
@@ -578,7 +576,6 @@ export class EditorToolbar extends Component<Props> {
         )}
         {fragments && activeUser && (
           <Fragments
-            activeUser={activeUser}
             onHide={this.toggleFragments}
             onPick={(body: string) => {
               this.insertText(body);

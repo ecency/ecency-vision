@@ -101,20 +101,22 @@ const Index = (props: PageProps) => {
       <ScrollToTop />
       <Theme global={store.global} />
       <Feedback activeUser={store.activeUser} />
-      {store.global.isElectron
-        ? NavBarElectron({
-            ...props,
-            reloadFn: reload,
-            reloading: loading,
-            step,
-            setStepTwo: () => setNewStep(2)
-          })
-        : NavBar({
-            ...props,
-            step,
-            setStepOne: () => setNewStep(1),
-            setStepTwo: () => setNewStep(2)
-          })}
+      {store.global.isElectron ? (
+        NavBarElectron({
+          ...props,
+          reloadFn: reload,
+          reloading: loading,
+          step,
+          setStepTwo: () => setNewStep(2)
+        })
+      ) : (
+        <NavBar
+          history={props.history}
+          step={step}
+          setStepOne={() => setNewStep(1)}
+          setStepTwo={() => setNewStep(2)}
+        />
+      )}
       {showLandingPage && (
         <LandingPage {...props} loading={loading} setLoading={setLoading} setStep={setNewStep} />
       )}

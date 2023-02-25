@@ -10,6 +10,7 @@ import {
   globalInstance,
   allOver
 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../constants/defaults.json", () => ({
   imageServer: "https://images.ecency.com"
@@ -40,14 +41,14 @@ const defaultProps = {
 };
 
 it("(1) Default render", async () => {
-  const component = renderer.create(<List {...defaultProps} />);
+  const component = withStore(<List {...defaultProps} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });
 
 it("(2) Empty list", async () => {
   MOCK_MODE = 2;
-  const component = renderer && renderer.create(<List {...defaultProps} />);
+  const component = withStore(<List {...defaultProps} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });

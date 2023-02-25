@@ -227,7 +227,7 @@ export class CommunityCard extends Component<Props, State> {
               {ProfileLink({
                 ...this.props,
                 username: m[0],
-                children: <a className="username">{`@${m[0]}`}</a>
+                children: <span className="username">{`@${m[0]}`}</span>
               })}
               <span className="role">{m[1]}</span>
               {m[2] !== "" && <span className="extra">{m[2]}</span>}
@@ -252,12 +252,11 @@ export class CommunityCard extends Component<Props, State> {
               }}
             />
           )}
-          {UserAvatar({
-            ...this.props,
-            username: community.name,
-            size: "xLarge",
-            src: account.__loaded && useNewImage ? account.profile?.profile_image : undefined
-          })}
+          <UserAvatar
+            username={community.name}
+            size="xLarge"
+            src={account.__loaded && useNewImage ? account.profile?.profile_image : undefined}
+          />
         </div>
         <div className="community-info">
           <h1>

@@ -110,7 +110,7 @@ class ListItem extends Component<ListItemProps> {
           {ProfileLink({
             ...this.props,
             username,
-            children: <>{UserAvatar({ ...this.props, username, size: "medium" })}</>
+            children: <UserAvatar username={username} size="medium" />
           })}
         </div>
         <div className="activity-content">

@@ -8,7 +8,7 @@ import Feedback from "../../components/feedback";
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import NavBarElectron from "../../../desktop/app/components/navbar";
-import { NavBar } from "../../components/navbar";
+import NavBar from "../../components/navbar";
 import Meta from "../../components/meta";
 import { ModeSelector } from "./mode-selector";
 import { SwapMode } from "./swap-mode";

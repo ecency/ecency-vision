@@ -240,13 +240,13 @@ export const ResourceCreditsDelegation = (props: any) => {
               <div className="confirm-title">Delegate</div>
               <div className="users">
                 <div className="from-user">
-                  {UserAvatar({ ...props, username: activeUser.username, size: "large" })}
+                  <UserAvatar username={activeUser.username} size="large" />
                 </div>
                 {
                   <>
                     <div className="arrow">{arrowRightSvg}</div>
                     <div className="to-user">
-                      {UserAvatar({ ...props, username: to, size: "large" })}
+                      <UserAvatar username={to} size="large" />
                     </div>
                   </>
                 }

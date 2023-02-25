@@ -90,11 +90,13 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         <ScrollToTop />
         <Feedback activeUser={this.props.activeUser} />
         <Theme global={this.props.global} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
 
         <div
           className={"app-content static-page faq-page" + containerClasses}
