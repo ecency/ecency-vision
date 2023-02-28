@@ -113,7 +113,7 @@ export const Profile = (props: Props) => {
         let data = await getAccountVotesTrail(username.replace("@", ""), -1);
         console.log(data);
         //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
-        setDataTrail({ ...dataTrail, entries: data.reverse() });
+        setDataTrail({ ...dataTrail.entries, entries: data.reverse() });
         //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
       } else {
         fetchEntries(global.filter, global.tag, false);
@@ -193,7 +193,7 @@ export const Profile = (props: Props) => {
           let data = await getAccountVotesTrail(username.replace("@", ""), -1);
           console.log(data);
           //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
-          setDataTrail({ ...dataTrail, entries: data.reverse() });
+          setDataTrail({ ...dataTrail.entries, entries: data.reverse() });
           //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
         } else {
           fetchEntries(global.filter, global.tag, false);
@@ -285,17 +285,19 @@ export const Profile = (props: Props) => {
     const { loading, hasMore } = data;
     console.log("section");
     console.log(section);
+    console.log("dataTrail.entries");
+    console.log(dataTrail.entries);
 
     if (section === "trail") {
       let data = await getAccountVotesTrail(
         username.replace("@", ""),
-        Math.abs(dataTrail.entries.length) * -1
+        dataTrail.entries.length - 1
       );
       console.log("data on bottomReached");
       console.log(data);
 
       //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
-      setDataTrail({ ...dataTrail, entries: data.reverse() });
+      setDataTrail({ ...dataTrail.entries, entries: data.reverse() });
       //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
     } else {
       if (!loading && hasMore) {

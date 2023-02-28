@@ -546,8 +546,12 @@ export interface BlogEntry {
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
   client.call("condenser_api", "get_blog_entries", [username, 0, limit]);
 
-export const getAccountVotesTrail = (username: string, skip: number = -1): Promise<BlogEntry[]> => {
-  let params = [username, skip, 10, 1];
+export const getAccountVotesTrail = (
+  username: string,
+  start = -1,
+  limit = 20
+): Promise<BlogEntry[]> => {
+  let params = [username, start, limit, 1];
   console.log("params");
   console.log(params);
 
