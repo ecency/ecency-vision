@@ -556,7 +556,16 @@ export const getAccountVotesTrail = (
   console.log(params);
 
   return client.call("condenser_api", "get_account_history", params).then((data) => {
-    let result = data.map((obj) => obj[1].op[1]).filter((obj) => obj.voter === username);
-    return Promise.all(result.map((obj) => getPostNew(obj.author, obj.permlink, username)));
+    let result = data
+      .map((obj) => {
+        return { ...obj[1].op[1], num: obj[0] };
+      })
+      .filter((obj) => obj.voter === username);
+    console.log("result");
+    console.log(result);
+
+    return Promise.all(
+      result.map((obj) => getPostNew(obj.author, obj.permlink, username, obj.num))
+    );
   });
 };

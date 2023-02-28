@@ -283,21 +283,21 @@ export const Profile = (props: Props) => {
 
     const data = entries[groupKey];
     const { loading, hasMore } = data;
-    console.log("section");
-    console.log(section);
-    console.log("dataTrail.entries");
-    console.log(dataTrail.entries);
 
     if (section === "trail") {
       let data = await getAccountVotesTrail(
         username.replace("@", ""),
-        dataTrail.entries.length - 1
+        dataTrail.entries.at(-1).num - 1
       );
-      console.log("data on bottomReached");
-      console.log(data);
 
       //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
-      setDataTrail({ ...dataTrail.entries, entries: data.reverse() });
+      //setDataTrail({ ...dataTrail.entries, entries: data.reverse() });
+      let newDataTrail = _.unionBy(dataTrail.entries, data.reverse(), (obj) => obj.post_id);
+      console.log("newDataTrail");
+      console.log(newDataTrail);
+
+      setDataTrail({ ...dataTrail.entries, entries: newDataTrail });
+
       //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
     } else {
       if (!loading && hasMore) {
@@ -578,7 +578,12 @@ export const Profile = (props: Props) => {
                   }
                 }
 
-                if (data !== undefined || (section === "trail" && dataTrail !== undefined)) {
+                if (
+                  data !== undefined ||
+                  (section === "trail" &&
+                    dataTrail.entries !== undefined &&
+                    dataTrail.entries.length > 0)
+                ) {
                   let entryList;
                   switch (section) {
                     case "trail":
@@ -588,6 +593,10 @@ export const Profile = (props: Props) => {
                       entryList = data?.entries;
                       break;
                   }
+                  console.log("entryList");
+                  console.log(entryList);
+                  console.log("dataTrail");
+                  console.log(dataTrail);
                   const { profile } = account as FullAccount;
                   entryList = entryList.filter((item) => item.permlink !== profile?.pinned);
                   if (pinnedEntry) {
