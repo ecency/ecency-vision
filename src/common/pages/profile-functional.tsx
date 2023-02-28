@@ -110,7 +110,8 @@ export const Profile = (props: Props) => {
     if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
       // fetch posts
       if (section === "trail") {
-        let data = await getAccountVotesTrail(username.replace("@", ""), 10);
+        let data = await getAccountVotesTrail(username.replace("@", ""), -1);
+        console.log(data);
         //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
         setDataTrail({ ...dataTrail, entries: data.reverse() });
         //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
@@ -189,7 +190,8 @@ export const Profile = (props: Props) => {
       // filter or username changed. fetch posts.
       if (nextSection !== prevMatchSection || `@${nextUsername}` !== prevMatchUsername) {
         if (nextSection === "trail") {
-          let data = await getAccountVotesTrail(username.replace("@", ""), 10);
+          let data = await getAccountVotesTrail(username.replace("@", ""), -1);
+          console.log(data);
           //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
           setDataTrail({ ...dataTrail, entries: data.reverse() });
           //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
@@ -272,16 +274,33 @@ export const Profile = (props: Props) => {
     }
   };
 
-  const bottomReached = () => {
-    const { global, entries, fetchEntries } = props;
+  const bottomReached = async () => {
+    const { global, entries, fetchEntries, match } = props;
+    const { username, section } = match.params;
+
     const { filter, tag } = global;
     const groupKey = makeGroupKey(filter, tag);
 
     const data = entries[groupKey];
     const { loading, hasMore } = data;
+    console.log("section");
+    console.log(section);
 
-    if (!loading && hasMore) {
-      fetchEntries(filter, tag, true);
+    if (section === "trail") {
+      let data = await getAccountVotesTrail(
+        username.replace("@", ""),
+        Math.abs(dataTrail.entries.length) * -1
+      );
+      console.log("data on bottomReached");
+      console.log(data);
+
+      //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
+      setDataTrail({ ...dataTrail, entries: data.reverse() });
+      //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
+    } else {
+      if (!loading && hasMore) {
+        fetchEntries(filter, tag, true);
+      }
     }
   };
 
