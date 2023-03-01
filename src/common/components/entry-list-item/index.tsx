@@ -341,7 +341,7 @@ export default class EntryListItem extends Component<Props, State> {
                   ...this.props,
                   username: entry.author,
                   children: (
-                    <span className="author-avatar d-sm-block">
+                    <span className="author-avatar d-block">
                       <UserAvatar username={entry.author} size="small" />
                     </span>
                   )

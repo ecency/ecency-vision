@@ -24,7 +24,7 @@ exports[`(1) Default render 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-sm-block"
+              className="author-avatar d-block"
             >
               <span
                 className="user-avatar small"
@@ -283,7 +283,7 @@ exports[`(2) Grid view 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-sm-block"
+              className="author-avatar d-block"
             >
               <span
                 className="user-avatar small"
@@ -566,7 +566,7 @@ exports[`(3) Nsfw 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-sm-block"
+              className="author-avatar d-block"
             >
               <span
                 className="user-avatar small"
@@ -854,7 +854,7 @@ exports[`(4) Nsfw with active user 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-sm-block"
+              className="author-avatar d-block"
             >
               <span
                 className="user-avatar small"
@@ -1141,7 +1141,7 @@ exports[`(5) Nsfw but allowed 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-sm-block"
+              className="author-avatar d-block"
             >
               <span
                 className="user-avatar small"
@@ -1460,7 +1460,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-sm-block"
+              className="author-avatar d-block"
             >
               <span
                 className="user-avatar small"
