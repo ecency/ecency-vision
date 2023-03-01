@@ -111,7 +111,6 @@ export const Profile = (props: Props) => {
       // fetch posts
       if (section === "trail") {
         let data = await getAccountVotesTrail(username.replace("@", ""), -1);
-        console.log(data);
         //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
         setDataTrail({ ...dataTrail.entries, entries: data.reverse() });
         //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
@@ -191,7 +190,6 @@ export const Profile = (props: Props) => {
       if (nextSection !== prevMatchSection || `@${nextUsername}` !== prevMatchUsername) {
         if (nextSection === "trail") {
           let data = await getAccountVotesTrail(username.replace("@", ""), -1);
-          console.log(data);
           //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
           setDataTrail({ ...dataTrail.entries, entries: data.reverse() });
           //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
@@ -293,11 +291,7 @@ export const Profile = (props: Props) => {
       //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
       //setDataTrail({ ...dataTrail.entries, entries: data.reverse() });
       let newDataTrail = _.unionBy(dataTrail.entries, data.reverse(), (obj) => obj.post_id);
-      console.log("newDataTrail");
-      console.log(newDataTrail);
-
       setDataTrail({ ...dataTrail.entries, entries: newDataTrail });
-
       //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
     } else {
       if (!loading && hasMore) {
@@ -390,10 +384,6 @@ export const Profile = (props: Props) => {
         })
       : NavBar({ ...props });
   };
-  useEffect(() => {
-    console.log("props");
-    console.log(props);
-  }, []);
   const getMetaProps = () => {
     const username = props.match.params.username.replace("@", "");
     const account = props.accounts.find((x) => x.name === username);
@@ -593,10 +583,6 @@ export const Profile = (props: Props) => {
                       entryList = data?.entries;
                       break;
                   }
-                  console.log("entryList");
-                  console.log(entryList);
-                  console.log("dataTrail");
-                  console.log(dataTrail);
                   const { profile } = account as FullAccount;
                   entryList = entryList.filter((item) => item.permlink !== profile?.pinned);
                   if (pinnedEntry) {
