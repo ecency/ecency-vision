@@ -2,6 +2,9 @@
   "g": {
     "add": "Add",
     "edit": "Modifică",
+    "clone": "Clone",
+    "copy": "Copy of",
+    "clone-success": "Created new draft copy",
     "continue": "Continue",
     "submit": "Write a post",
     "search": "Caută",
@@ -63,7 +66,8 @@
     "more-results": "More results",
     "close": "Close",
     "loading": "Loading",
-    "stop": "Stop"
+    "stop": "Stop",
+    "settings": "Settings"
   },
   "confirm": {
     "title": "Ești sigur?",
@@ -187,7 +191,22 @@
     "success": "Ți-am trimis un e-mail la {{email}}.",
     "success-2": "Urmează instrucțiunile pentru a finaliza procesul de înscriere.",
     "login-text-1": "Am deja un cont?",
-    "login-text-2": "Autentificare"
+    "login-text-2": "Autentificare",
+    "free-account": "Free account",
+    "free-account-desc": "Get a full-fledged Hive account, this method has basic checks to make sure botnet doesn't abuse our signup faucet.",
+    "register-free": "Register free",
+    "buy-account": "Buy account",
+    "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
+    "buy-account-li-1": "Instant creation without extra checks and waiting",
+    "buy-account-li-2": "3x RC compared to normal new accounts",
+    "buy-account-li-3": "300 Points to help you get started",
+    "qr-desc": "Scan with Ecency mobile app to continue",
+    "username-min-length-error": "Length of username should be at least 3 characters",
+    "username-max-length-error": "Length of username should be no more than 16 characters",
+    "username-no-ascii-first-letter-error": "First character should be a Letter",
+    "username-contains-symbols-error": "Should contain Letters, Numbers, Hyphen only",
+    "username-contains-double-hyphens": "Should not contain double Hyphens",
+    "username-exists": "This username already registered. Please, try another one"
   },
   "trending-tags": {
     "title": "Subiecte"
@@ -405,8 +424,30 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
+    "signing": "Signing..",
     "success-swap": "Successfully swapped!",
-    "signing": "Signing.."
+    "advanced": {
+      "history": "History",
+      "stake": "Order book",
+      "pairs": "Pairs",
+      "form": "Order form",
+      "open-orders": "Open",
+      "completed-orders": "Completed",
+      "status": "Status",
+      "all-orders": "All",
+      "active": "Active",
+      "view-details": "View details",
+      "chart": "Chart",
+      "trading-form-auth-required": "You have to be authorized for trade",
+      "open-orders-auth-required": "You have to be authorized to see open orders",
+      "empty-open-orders": "No orders",
+      "history-widget": {
+        "price": "Price",
+        "amount": "Amount",
+        "volume": "Volume",
+        "time": "Time"
+      }
+    }
   },
   "list-style": {
     "title": "Toggle list style"
@@ -442,7 +483,8 @@
     "community-in": "in",
     "post-word-count": "Words:",
     "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-read-minuites": "min",
+    "raw": "View RAW format"
   },
   "edit-history": {
     "title": "Istoric modificări",
@@ -620,6 +662,42 @@
     "create-posts": "Let's create a new post",
     "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Found nothing!"
+  },
+  "rc-info": {
+    "available": "Available",
+    "used": "Used",
+    "resource-credits": "Resource Credits",
+    "resource-credit": "RC",
+    "delegated": "Delegations Out",
+    "received-delegations": "Delegations In",
+    "delegation-button": "Delegate RC",
+    "rc-available": "Available",
+    "rc-used": "Used",
+    "outgoing": "Outgoing",
+    "incoming": "Incoming",
+    "delete": "delete",
+    "update": "update",
+    "confirm-delete": "Are you sure?",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "check-faq": "Learn more about RC in our",
+    "learn-more": "/faq#what-are-rc",
+    "faq-link": "FAQ",
+    "insufficient-rc-error": "Insufficient resource credits",
+    "minimum-rc-error": "Mininum RC is 5,000,000,000",
+    "extra-details-heading": "What's possible with current available RC?",
+    "transfers": "Transfers:",
+    "comments-posts": "Posts / Comments:",
+    "votes": "Votes:",
+    "reblogs-follows": "Reblogs / Follows:",
+    "no-outgoing": "No outgoing delegation",
+    "no-incoming": "No incoming delegation",
+    "delegate-title": "Delegate",
+    "delegate-sub-title": "Delegate Resource Credit",
+    "extra-details-transfer": "Transfers",
+    "extra-details-post": "Posts/Comments",
+    "extra-details-upvote": "Votes",
+    "boost": "Boost"
   },
   "profile-edit": {
     "title": "Profil",
@@ -850,7 +928,7 @@
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "purchase-qr": {
-    "scan-code": "Scan the QR code with Ecency mobile app",
+    "scan-code": "Scan with Ecency mobile app to continue",
     "select-user": "Please, select an user",
     "title": "Account boost",
     "title-points": "Buy points",
@@ -1105,6 +1183,7 @@
     "publish": "Publică",
     "update": "Actualizare",
     "save-draft": "Salvare schiţă",
+    "load-draft": "Load Draft",
     "draft-saved": "Schiță salvată",
     "update-draft": "Update Draft",
     "draft-updated": "Draft updated",
@@ -1282,6 +1361,13 @@
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> voturi rămase din {{max}}",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-rank": "Rank",
+    "sort-name": "Name",
+    "sort-fee": "Fee",
+    "searching": "Searching",
+    "no-results": "No results found",
     "list-rank": "Rang",
     "list-witness": "Martor",
     "list-miss": "Ratări",
@@ -1332,7 +1418,13 @@
     "see-all": "see all proposals",
     "daily-funded": "daily funded",
     "daily-budget": "daily budget",
-    "total-budget": "total budget"
+    "total-budget": "total budget",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-reputation": "Reputation",
+    "sort-hp": "Hive Power",
+    "no-results": "No results found",
+    "searching": "Searching"
   },
   "gallery": {
     "title": "Galerie",
@@ -1424,6 +1516,11 @@
       "contact-email": "Contactează-ne via e-mail"
     },
     "faq": {
+      "about-ecency": "About Ecency",
+      "working": "Working of Ecency",
+      "about-blockchain": "About Blockchain",
+      "features": "Features of Ecency",
+      "toggle-icon-info": "Tap on me to toggle",
       "page-title": "How can we help you?",
       "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Tabla de materii",

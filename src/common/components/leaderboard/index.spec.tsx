@@ -5,6 +5,7 @@ import { createBrowserHistory } from "history";
 import { globalInstance, allOver } from "../../helper/test-helper";
 
 import { LeaderBoard } from "./index";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../api/private-api", () => ({
   getLeaderboard: (duration: string) =>
@@ -25,7 +26,7 @@ it("(1) Render with data.", async () => {
     addAccount: () => {}
   };
 
-  const component = await renderer.create(<LeaderBoard {...props} />);
+  const component = await withStore(<LeaderBoard {...props} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });

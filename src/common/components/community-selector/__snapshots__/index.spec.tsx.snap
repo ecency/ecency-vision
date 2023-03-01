@@ -190,7 +190,7 @@ exports[`(6) Browser 1`] = `
             className="item-info"
           >
             <span
-              className="item-name notransalte"
+              className="item-name notranslate"
             >
               My Blog
             </span>
@@ -217,7 +217,7 @@ exports[`(6) Browser 1`] = `
             className="item-info"
           >
             <span
-              className="item-name notransalte"
+              className="item-name notranslate"
             >
               Ecency
             </span>
@@ -244,7 +244,7 @@ exports[`(6) Browser 1`] = `
             className="item-info"
           >
             <span
-              className="item-name notransalte"
+              className="item-name notranslate"
             >
               Foo
             </span>
@@ -271,7 +271,7 @@ exports[`(6) Browser 1`] = `
             className="item-info"
           >
             <span
-              className="item-name notransalte"
+              className="item-name notranslate"
             >
               Bar
             </span>

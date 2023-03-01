@@ -7,7 +7,7 @@ import WitnessVoteBtn from "../witness-vote-btn";
 
 export const WitnessCard = ({ voted, row, witness, onSuccess, ...other }: any) => {
   return (
-    <div className="p-3 mb-3 border rounded">
+    <div className="witnesses-card p-3 mb-3 border rounded">
       <div className="d-flex align-items-center justify-content-between">
         <div>
           <h3>

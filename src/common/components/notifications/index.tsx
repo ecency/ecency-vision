@@ -23,6 +23,7 @@ import {
   setNotificationsSettingsItem,
   updateNotificationsSettings
 } from "../../store/notifications";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 export const date2key = (s: string): string => {
   if (s === "Yesterday") {
@@ -355,6 +356,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                   NotifyTypes.TRANSFERS
                 )
               ]}
+              menuHide={false}
               history={this.props.history || history}
               label={
                 <span className={_c(`list-action ${loading ? "disabled" : ""}`)}>
@@ -390,7 +392,7 @@ export class DialogContent extends Component<NotificationProps, any> {
   }
 }
 
-export default class NotificationsDialog extends Component<NotificationProps> {
+class NotificationsDialog extends Component<NotificationProps> {
   hide = () => {
     const { toggleUIProp } = this.props;
     toggleUIProp("notifications");
@@ -406,3 +408,42 @@ export default class NotificationsDialog extends Component<NotificationProps> {
     );
   }
 }
+
+export default ({ history }: Pick<NotificationProps, "history">) => {
+  const {
+    global,
+    activeUser,
+    dynamicProps,
+    notifications,
+    fetchNotifications,
+    fetchUnreadNotificationCount,
+    setNotificationsFilter,
+    markNotifications,
+    toggleUIProp,
+    addAccount,
+    muteNotifications,
+    unMuteNotifications,
+    updateNotificationsSettings,
+    setNotificationsSettingsItem
+  } = useMappedStore();
+
+  return (
+    <NotificationsDialog
+      global={global}
+      history={history}
+      activeUser={activeUser!!}
+      dynamicProps={dynamicProps}
+      notifications={notifications}
+      fetchNotifications={fetchNotifications}
+      fetchUnreadNotificationCount={fetchUnreadNotificationCount}
+      setNotificationsFilter={setNotificationsFilter}
+      markNotifications={markNotifications}
+      toggleUIProp={toggleUIProp}
+      addAccount={addAccount}
+      muteNotifications={muteNotifications}
+      unMuteNotifications={unMuteNotifications}
+      updateNotificationsSettings={updateNotificationsSettings}
+      setNotificationsSettingsItem={setNotificationsSettingsItem}
+    />
+  );
+};

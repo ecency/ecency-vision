@@ -18,7 +18,11 @@ const Purchase = (props: PageProps) => {
   const [productId, setProductId] = useState("999points");
 
   const getNavBar = () => {
-    return props.global.isElectron ? NavBarElectron({ ...props }) : NavBar({ ...props });
+    return props.global.isElectron ? (
+      NavBarElectron({ ...props })
+    ) : (
+      <NavBar history={props.history} />
+    );
   };
 
   const getMetaProps = () => {

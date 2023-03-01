@@ -7,6 +7,7 @@ import { StaticRouter } from "react-router-dom";
 import { CommunityCard } from "./index";
 
 import { communityInstance1, globalInstance, activeUserMaker } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 it("(1) Default render", () => {
   const props = {
@@ -24,7 +25,7 @@ it("(1) Default render", () => {
     addCommunity: () => {}
   };
 
-  const component = renderer.create(<CommunityCard {...props} />);
+  const component = withStore(<CommunityCard {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -44,7 +45,7 @@ it("(2) Should show edit buttons with nsfw label", () => {
     addCommunity: () => {}
   };
 
-  const component = renderer.create(
+  const component = withStore(
     <StaticRouter location="/hive-148441" context={{}}>
       <CommunityCard {...props} />
     </StaticRouter>
@@ -71,7 +72,7 @@ it("(3) usePrivate = false", () => {
     addCommunity: () => {}
   };
 
-  const component = renderer.create(
+  const component = withStore(
     <StaticRouter location="/hive-148441" context={{}}>
       <CommunityCard {...props} />
     </StaticRouter>

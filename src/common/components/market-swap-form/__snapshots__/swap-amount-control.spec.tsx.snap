@@ -10,9 +10,11 @@ exports[`SwapAmountControl should be able to render element after balance 1`] = 
     
   </label>
   <div
-    className="d-flex align-items-center"
+    className="d-flex align-items-center w-100"
   >
-    <div>
+    <div
+      className="w-100"
+    >
       <input
         className="amount-control pl-0 form-control"
         disabled={false}
@@ -76,9 +78,11 @@ exports[`SwapAmountControl should be able to show available assets list 1`] = `
     
   </label>
   <div
-    className="d-flex align-items-center"
+    className="d-flex align-items-center w-100"
   >
-    <div>
+    <div
+      className="w-100"
+    >
       <input
         className="amount-control pl-0 form-control"
         disabled={false}
@@ -111,9 +115,9 @@ exports[`SwapAmountControl should be able to show available assets list 1`] = `
             HIVE
           </option>
           <option
-            value="HBD($)"
+            value="HBD"
           >
-            HBD($)
+            HBD
           </option>
         </select>
       </div>
@@ -132,9 +136,11 @@ exports[`SwapAmountControl should render balance showing 1`] = `
     
   </label>
   <div
-    className="d-flex align-items-center"
+    className="d-flex align-items-center w-100"
   >
-    <div>
+    <div
+      className="w-100"
+    >
       <input
         className="amount-control pl-0 form-control"
         disabled={false}
@@ -195,9 +201,11 @@ exports[`SwapAmountControl should render correctly 1`] = `
     
   </label>
   <div
-    className="d-flex align-items-center"
+    className="d-flex align-items-center w-100"
   >
-    <div>
+    <div
+      className="w-100"
+    >
       <input
         className="amount-control pl-0 form-control"
         disabled={false}
@@ -246,9 +254,11 @@ exports[`SwapAmountControl should render disabled state 1`] = `
     
   </label>
   <div
-    className="d-flex align-items-center"
+    className="d-flex align-items-center w-100"
   >
-    <div>
+    <div
+      className="w-100"
+    >
       <input
         className="amount-control pl-0 form-control"
         disabled={true}
@@ -297,9 +307,11 @@ exports[`SwapAmountControl should render label 1`] = `
     Test
   </label>
   <div
-    className="d-flex align-items-center"
+    className="d-flex align-items-center w-100"
   >
-    <div>
+    <div
+      className="w-100"
+    >
       <input
         className="amount-control pl-0 form-control"
         disabled={false}
@@ -348,9 +360,11 @@ exports[`SwapAmountControl should set className 1`] = `
     
   </label>
   <div
-    className="d-flex align-items-center"
+    className="d-flex align-items-center w-100"
   >
-    <div>
+    <div
+      className="w-100"
+    >
       <input
         className="amount-control pl-0 form-control"
         disabled={false}

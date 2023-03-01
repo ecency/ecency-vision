@@ -112,13 +112,15 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
         <Meta {...metaProps} />
         <ScrollToTop />
         <Theme global={this.props.global} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props,
-              reloadFn: this.fetch,
-              reloading: loading
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props,
+            reloadFn: this.fetch,
+            reloading: loading
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
 
         <div className={containerClasses}>
           <div className="community-list">

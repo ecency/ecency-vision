@@ -19,7 +19,7 @@ export interface MenuItem {
 
 interface Props {
   history: History | null;
-  float: "left" | "right";
+  float: "left" | "right" | "none";
   alignBottom?: boolean;
   header?: string;
   preElem?: JSX.Element;
@@ -31,9 +31,11 @@ interface Props {
   onHide?: () => void;
   className?: string;
   withPadding?: boolean;
+  menuHide?: boolean;
 }
 
 const MyDropDown = (props: Props) => {
+  const { menuHide = true } = props;
   const [menu, setMenu] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -91,7 +93,9 @@ const MyDropDown = (props: Props) => {
   };
 
   const itemClicked = (i: MenuItem) => {
-    hideMenu();
+    if (menuHide) {
+      hideMenu();
+    }
 
     setTimeout(() => {
       if (i?.href) {
@@ -195,7 +199,8 @@ export default (p: Props) => {
     onShow: p?.onShow,
     onHide: p?.onHide,
     className: p?.className,
-    withPadding: p?.withPadding
+    withPadding: p?.withPadding,
+    menuHide: p?.menuHide
   };
 
   return <MyDropDown {...props} />;

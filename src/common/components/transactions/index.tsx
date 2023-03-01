@@ -529,9 +529,11 @@ export class TransactionRow extends Component<RowProps> {
 
     if (tr.type === "account_witness_proxy") {
       flag = true;
-      icon = tr.proxy
-        ? TwoUserAvatar({ global: global, from: tr.account, to: tr.proxy, size: "small" })
-        : UserAvatar({ global: global, username: tr.account, size: "small" });
+      icon = tr.proxy ? (
+        TwoUserAvatar({ global: global, from: tr.account, to: tr.proxy, size: "small" })
+      ) : (
+        <UserAvatar username={tr.account} size="small" />
+      );
 
       details = (
         <span>

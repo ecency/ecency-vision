@@ -28,7 +28,7 @@ import { CommunityMenu } from "../components/community-menu";
 import { CommunityCover } from "../components/community-cover";
 import { NotFound } from "../components/404";
 import NavBarElectron from "../../desktop/app/components/navbar";
-import { NavBar } from "../components/navbar";
+import NavBar from "../components/navbar";
 import { CommunityCard } from "../components/community-card";
 import { CommunityRoles } from "../components/community-roles";
 import { EntryListContent } from "../components/entry-list";
@@ -130,7 +130,7 @@ export const CommunityPage = (props: Props) => {
       }
       if (data?.name === name) {
         addAccount(data);
-        setAccount(data);
+        setAccount({ ...account, ...data });
       }
     } finally {
       setLoading(false);
@@ -179,8 +179,9 @@ export const CommunityPage = (props: Props) => {
 
   const getMetaProps = () => {
     const { filter } = props.match.params;
+    const ncount = props.notifications.unread > 0 ? `(${props.notifications.unread}) ` : "";
     const fC = capitalize(filter);
-    const title = `${community!!.title.trim()} community ${filter} list`;
+    const title = `${ncount}${community!!.title.trim()} community ${filter} list`;
     const description = _t("community.page-description", {
       f: `${fC} ${community!!.title.trim()}`
     });

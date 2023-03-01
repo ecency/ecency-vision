@@ -39,11 +39,13 @@ class DiscoverPage extends Component<PageProps> {
         <ScrollToTop />
         <FullHeight />
         <Theme global={this.props.global} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
         <div className={containerClasses}>
           {global.usePrivate && <div className="top-users">{LeaderBoard({ ...this.props })}</div>}
           {global.usePrivate && <div className="curation-users">{Curation({ ...this.props })}</div>}

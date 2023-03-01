@@ -131,13 +131,13 @@ export class Subscribers extends BaseComponent<Props, State> {
                       {ProfileLink({
                         ...this.props,
                         username,
-                        children: <>{UserAvatar({ ...this.props, username, size: "small" })}</>
+                        children: <UserAvatar username={username} size="small" />
                       })}
                       <div className="item-info">
                         {ProfileLink({
                           ...this.props,
                           username,
-                          children: <a className="item-name notransalte">{username}</a>
+                          children: <span className="item-name notranslate">{username}</span>
                         })}
                         {account?.reputation !== undefined && (
                           <span className="item-reputation">

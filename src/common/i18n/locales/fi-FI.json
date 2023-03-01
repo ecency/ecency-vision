@@ -2,6 +2,9 @@
   "g": {
     "add": "Lisää",
     "edit": "Muokkaa",
+    "clone": "Klooni",
+    "copy": "Kopio",
+    "clone-success": "Uusi luonnos luotu",
     "continue": "Jatka",
     "submit": "Kirjoita julkaisu",
     "search": "Haku",
@@ -63,7 +66,8 @@
     "more-results": "Lisää tuloksia",
     "close": "Sulje",
     "loading": "Ladataan",
-    "stop": "Lopeta"
+    "stop": "Lopeta",
+    "settings": "Asetukset"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -71,12 +75,12 @@
     "cancel": "Peruuta"
   },
   "announcements": {
-    "dismiss": "Dismiss",
-    "next": "Next",
-    "later": "Later"
+    "dismiss": "Hylkää",
+    "next": "Seuraava",
+    "later": "Myöhemmin"
   },
   "entry-filter": {
-    "filter-trending": "Nousussa",
+    "filter-trending": "Trendit",
     "filter-hot": "Kuumat",
     "filter-created": "Uusimmat",
     "filter-promoted": "Korostettu",
@@ -161,7 +165,7 @@
     "login-info-1": "Emme tallenna yksityisiä avaimiasi.",
     "login-info-2": "Lisätietoja",
     "error-fields-required": "Syötä käyttäjänimi ja yksityinen avain",
-    "captcha-check-required": "Please verify if you are a human",
+    "captcha-check-required": "Varmista olevasi ihminen",
     "error-public-key": "Lisäsit public keyn. Vaaditaan salasana/WIF",
     "error-user-fetch": "Käyttäjätietoja ei voitu ladata",
     "error-user-not-found": "Käyttäjää ei ole olemassa",
@@ -187,22 +191,37 @@
     "success": "Olemme lähettäneet vahvistuksen sähköpostiin {{email}}.",
     "success-2": "Seuraa ohjeita suorittaaksesi rekisteröinti.",
     "login-text-1": "Onko sinulla jo käyttäjätili?",
-    "login-text-2": "Kirjaudu sisään"
+    "login-text-2": "Kirjaudu sisään",
+    "free-account": "Ilmainen tili",
+    "free-account-desc": "Hanki täysimittainen Hive tili, tällä menetelmällä on perustarkastukset varmistaaksesi, että botnet ei väärinkäytä kirjautumishanaa.",
+    "register-free": "Rekisteröidy ilmaiseksi",
+    "buy-account": "Osta Tili",
+    "buy-account-desc": "Hanki täysimittainen Hive-tili ilman ylimääräisiä tarkastuksia ja muutamia etuja, kuten:",
+    "buy-account-li-1": "Välitön luonti ilman ylimääräisiä tarkistuksia ja odottamista",
+    "buy-account-li-2": "3x RC verrattuna tavanomaisiin uusiin tileihin",
+    "buy-account-li-3": "300 pistettä päästäksesi alkuun",
+    "qr-desc": "Skannaa Ecency-mobiilisovelluksella jatkaaksesi",
+    "username-min-length-error": "Length of username should be at least 3 characters",
+    "username-max-length-error": "Length of username should be no more than 16 characters",
+    "username-no-ascii-first-letter-error": "First character should be a Letter",
+    "username-contains-symbols-error": "Should contain Letters, Numbers, Hyphen only",
+    "username-contains-double-hyphens": "Should not contain double Hyphens",
+    "username-exists": "This username already registered. Please, try another one"
   },
   "trending-tags": {
     "title": "Aiheet"
   },
   "sort-trending-tags": {
-    "sort": "Sort",
-    "ascending": "Ascending",
-    "descending": "Descending"
+    "sort": "Lajittele",
+    "ascending": "Nouseva",
+    "descending": "Laskeva"
   },
   "selected-tags": {
     "title": "Suositellut"
   },
   "entry-list-item": {
-    "cross-posted": "ristiinlähetetty",
-    "cross-posted-to": "saaja",
+    "cross-posted": "ristiinlähetetti",
+    "cross-posted-to": "yhteisöön",
     "reblogged": "{{n}} uudelleenjaettu",
     "promoted": "Korostettu",
     "pinned": "Kiinnitetty julkaisu",
@@ -303,7 +322,7 @@
     "notifications": "Ilmoitukset",
     "wallet": "Lompakko",
     "favorite": "Suosikki",
-    "trending": "Nousussa",
+    "trending": "Trendit",
     "select": "Valitse sisältötyypit",
     "blogs": "Blogit",
     "replies": "Vastaukset",
@@ -386,13 +405,13 @@
     "decimal-error": "Vain {{decimals}} desimaaliluvut sallittu!",
     "from": "Lähettäjä",
     "to": "Vastaanottaja",
-    "sign": "Sign",
+    "sign": "Allekirjoita",
     "swapping": "Vaihdetaan...",
     "continue": "Jatka",
     "balance": "Saldo",
     "fee": "Kulut",
     "fee-free": "Ilmainen",
-    "order-book-impact": "Order book impact",
+    "order-book-impact": "Vaikutus tilauskantaan",
     "swap-title": "Vaihda varojasi",
     "sign-title": "Allekirjoita tapahtuma",
     "fetching-market": "Haetaan markkinoita...",
@@ -400,13 +419,35 @@
     "swap-by": "Allekirjoita {{method}}",
     "success-title": "Siirto suoritettu",
     "more-than-balance": "Olet syöttänyt enemmän, kuin on käytettävissä olevaa saldoa",
-    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "invalid-amount": "Virheellinen summa. Syötä pienempi arvo",
     "too-much-slippage": "Suosittelemme sinua vähentämään määrää paremman hinnoittelun vuoksi!",
     "auth-required-title": "Valtuutus vaaditaan",
     "auth-required-desc": "Sinulla on oltava valtuudet vaihtaaksesi omia varojasi",
     "start-new-one": "Aloita uusi Vaihto",
+    "signing": "Kirjataan..",
     "success-swap": "Vaihdettu onnistuneesti!",
-    "signing": "Signing.."
+    "advanced": {
+      "history": "Historia",
+      "stake": "Tilauskanta",
+      "pairs": "Parit",
+      "form": "Tilauslomake",
+      "open-orders": "Avoimet",
+      "completed-orders": "Valmistunut",
+      "status": "Tila",
+      "all-orders": "Kaikki",
+      "active": "Aktiivinen",
+      "view-details": "Näytä yksityiskohdat",
+      "chart": "Kaavio",
+      "trading-form-auth-required": "Sinun täytyy olla valtuutettu kauppaan",
+      "open-orders-auth-required": "Sinulla on oltava valtuudet nähdä avoimet tilaukset",
+      "empty-open-orders": "Ei tilauksia",
+      "history-widget": {
+        "price": "Hinta",
+        "amount": "Määrä",
+        "volume": "Volyymi",
+        "time": "Aika"
+      }
+    }
   },
   "list-style": {
     "title": "Vaihda listaustyyliä"
@@ -441,8 +482,9 @@
     "cross-post-community": "yhteisö",
     "community-in": " ",
     "post-word-count": "Sanoja:",
-    "post-read-time": "Luettu:",
-    "post-read-minuites": "min"
+    "post-read-time": "Luettavaa:",
+    "post-read-minuites": "min",
+    "raw": "Näytä RAW-muoto"
   },
   "edit-history": {
     "title": "Muokkaushistoria",
@@ -462,7 +504,7 @@
     "replies": "1 Kommentti",
     "n-replies": "{{n}} Kommenttia",
     "order": "Järjestys",
-    "order-trending": "Nousussa",
+    "order-trending": "Trendit",
     "order-reputation": "Maine",
     "order-votes": "Äänet",
     "order-created": "Ikä",
@@ -621,6 +663,42 @@
     "link-copied": "Hakulinkki kopioitiin leikepöydälle",
     "no-posts-found": "Ei löytynyt mitään!"
   },
+  "rc-info": {
+    "available": "Saatavilla",
+    "used": "Käytetty",
+    "resource-credits": "Resurssipisteet",
+    "resource-credit": "RC",
+    "delegated": "Annetut Valtuutukset",
+    "received-delegations": "Saadut Valtuutukset",
+    "delegation-button": "Valtuuta RC",
+    "rc-available": "Saatavilla",
+    "rc-used": "Käytetty",
+    "outgoing": "Lähtevä",
+    "incoming": "Saapuva",
+    "delete": "poista",
+    "update": "päivitä",
+    "confirm-delete": "Oletko varma?",
+    "confirm": "Vahvista",
+    "cancel": "Peruuta",
+    "check-faq": "Lue lisää RC:stä",
+    "learn-more": "/faq#what-are-rc",
+    "faq-link": "UKK:sta",
+    "insufficient-rc-error": "Liian vähän Resurssipisteitä",
+    "minimum-rc-error": "Minimi RC on 5,000,000.000",
+    "extra-details-heading": "Mikä on mahdollista nykyisellä käytettävissä olevalla RC:llä?",
+    "transfers": "Siirrot:",
+    "comments-posts": "Julkaisut/Kommentit:",
+    "votes": "Äänet:",
+    "reblogs-follows": "Uudelleenjaot / Seuraamiset:",
+    "no-outgoing": "Ei meneviä valtuutuksia",
+    "no-incoming": "Ei saapuvia siirtoja",
+    "delegate-title": "Valtuuta",
+    "delegate-sub-title": "Valtuuta Resurssipisteitä",
+    "extra-details-transfer": "Siirrot",
+    "extra-details-post": "Julkaisut/Kommentit",
+    "extra-details-upvote": "Äänet",
+    "boost": "Tehosta"
+  },
   "profile-edit": {
     "title": "Profiili",
     "name": "Näyttönimi",
@@ -776,18 +854,18 @@
     "staked": "Panostettu"
   },
   "sort-engine-tokens": {
-    "sort": "Sort",
-    "sort-in-ascending": "Ascending",
-    "sort-in-descending": "Descending",
-    "sort-by-value": "Value",
-    "sort-by-balance": "Balance",
-    "sort-by-stake": "Stake",
-    "sort-by-delegations-in": "Delegations in",
-    "sort-by-delegations-out": "Delegations out"
+    "sort": "Lajittele",
+    "sort-in-ascending": "Nouseva",
+    "sort-in-descending": "Laskeva",
+    "sort-by-value": "Arvo",
+    "sort-by-balance": "Saldo",
+    "sort-by-stake": "Panos",
+    "sort-by-delegations-in": "Saadut Valtuutukset",
+    "sort-by-delegations-out": "Annetut Valtuutukset"
   },
   "wallet-engine-estimated": {
-    "title": "Estimated Tokens Value",
-    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+    "title": "Arvioitu Merkkien Arvo",
+    "description": "Suhteellinen USD-arvo kaikille engine-merkeille lompakossasi."
   },
   "withdraw-routes": {
     "title": "Palauta tilit",
@@ -850,7 +928,7 @@
     "purchase-message": "Tai lähetä mikä tahansa summa osoitteeseen @esteem.app lisäten `points` muistioon ostaessasi Pisteitä."
   },
   "purchase-qr": {
-    "scan-code": "Skannaa QR-koodi Ecency-mobiilisovelluksella",
+    "scan-code": "Skannaa Ecency-mobiilisovelluksella jatkaaksesi",
     "select-user": "Valitse käyttäjä",
     "title": "Tilin tehostaminen",
     "title-points": "Osta pisteitä",
@@ -909,7 +987,7 @@
     "claim-interest-title": "Lunasta HBD-korko",
     "claim-interest-sub-title": "Nosta pieni summa, joka perutaan heti",
     "from": "Lähettäjä",
-    "to": "Saaja",
+    "to": "Yhteisöön",
     "to-placeholder": "käyttäjänimi",
     "to-not-found": "Siirrolle ei löydy käyttäjää!",
     "to-bad-actor": "Pidä huolta lähettäessäsi tälle tilille. Varmista kirjoitusasu mahdollisen vedätyksen vuoksi.",
@@ -1061,16 +1139,16 @@
     "deleted": "Poistettu suosikeista"
   },
   "editor-toolbar": {
-    "bold": "Bold (Alt + B)",
-    "italic": "Italic (Alt + I)",
+    "bold": "Lihavoitu (Alt + B)",
+    "italic": "Kursivoitu (Alt + I)",
     "header": "Otsikko",
-    "code": "Code (Alt + C)",
-    "quote": "Quote (Alt + M)",
+    "code": "Koodi (Alt + C)",
+    "quote": "Lainaus (Alt + M)",
     "ul": "Järjestämätön lista",
     "ol": "Järjestetty luettelo",
-    "link": "Link (Alt + K)",
-    "image": "Image (Alt + D)",
-    "table": "Table (Alt + T)",
+    "link": "Linkki (Alt + K)",
+    "image": "Kuva (Alt + D)",
+    "table": "Taulukko (Alt + T)",
     "table-3-col": "3 saraketta",
     "table-2-col": "2 saraketta",
     "table-1-col": "1 sarake",
@@ -1088,8 +1166,8 @@
     "recently-used": "Äskettäin käytetyt"
   },
   "gif-picker": {
-    "filter-placeholder": "Filter",
-    "credits": "Powered by GIPHY"
+    "filter-placeholder": "Suodata",
+    "credits": "Palvelun tarjoaa GIPHY"
   },
   "submit": {
     "page-title": "Luo artikkeli",
@@ -1105,6 +1183,7 @@
     "publish": "Julkaise",
     "update": "Päivitä",
     "save-draft": "Tallenna luonnos",
+    "load-draft": "Lataa luonnos",
     "draft-saved": "Luonnos tallennettu",
     "update-draft": "Päivitä luonnos",
     "draft-updated": "Luonnos päivitetty",
@@ -1172,7 +1251,7 @@
     "mention-post": "{{source}} mainitsi sinut julkaisussa",
     "mention-comment": "{{source}} mainitsi sinut kommentissa",
     "favorite": "{{source}} teki uuden julkaisun",
-    "bookmark": "{{source}} replied to bookmarked content",
+    "bookmark": "{{source}} vastasi kirjanmerkittyyn sisältöön",
     "followed": "{{source}} seurasi sinua",
     "replied": "{{source}} vastasi",
     "reblogged": "{{source}} jakoi julkaisusi",
@@ -1190,13 +1269,13 @@
     "type-transfers": "Siirrot",
     "type-delegations": "Valtuutukset",
     "type-nfavorites": "Suosikit",
-    "type-nbookmarks": "Bookmarks",
+    "type-nbookmarks": "Kirjanmerkit",
     "group-title-recent": "Viimeisimmät",
     "vote-str": "{{p}} äänesti julkaisuasi:",
     "reply-str": "vastasi julkaisuusi:",
     "mention-str": "mainitsi sinut:",
     "favorite-str": "teki uuden julkaisun",
-    "bookmark-str": "replied to bookmarked content",
+    "bookmark-str": "vastasi kirjanmerkittyyn sisältöön",
     "followed-str": "seurasi",
     "unfollowed-str": "lopetti seuraamisen",
     "ignored-str": "sivuutetut",
@@ -1282,6 +1361,13 @@
     "page-description": "Konsuspohjaisten lohkotuottajien valinta",
     "page-description-long": "Hive-lohkoketjun todistajat toimivat verkoston hallintoelimenä. Yhteisö valitsee heidät edustamaan itseään ja jokainen käyttäjä voi valita jopa 30 todistajaa. Kovimmat 20 todistajaa tuottavat lohkoja minuutin välein, samalla kun muut toimivat varmuuskopioinnin todistajina saaden satunnaisen mahdollisuuden joka minuutti. Tämä rooli on erottamaton osa konsensusmekanismien lohkoketjua ja suosittelmme, että käyttäjät sitoutuvat äänestämään luotettavia todistajia.",
     "remaining": "<span>{{n}}</span> {{max}} äänestä jäljellä",
+    "search-placeholder": "Haku",
+    "sort": "Lajittele",
+    "sort-rank": "Sijoitus",
+    "sort-name": "Nimi",
+    "sort-fee": "Kulut",
+    "searching": "Etsitään",
+    "no-results": "Tuloksia ei löytynyt",
     "list-rank": "Sijoitus",
     "list-witness": "Todistaja",
     "list-miss": "Ohi",
@@ -1332,7 +1418,13 @@
     "see-all": "katso kaikki ehdotukset",
     "daily-funded": "päivittäin rahoitettu",
     "daily-budget": "päivittäinen budjetti",
-    "total-budget": "budjetti yhteensä"
+    "total-budget": "budjetti yhteensä",
+    "search-placeholder": "Haku",
+    "sort": "Lajittele",
+    "sort-reputation": "Maine",
+    "sort-hp": "Hive Power",
+    "no-results": "Tuloksia ei löytynyt",
+    "searching": "Etsitään"
   },
   "gallery": {
     "title": "Galleria",
@@ -1424,6 +1516,11 @@
       "contact-email": "Lähetä meille sähköpostia"
     },
     "faq": {
+      "about-ecency": "Tietoja Ecencystä",
+      "working": "Ecencyn toiminta",
+      "about-blockchain": "Tietoa Lohkoketjusta",
+      "features": "Ecencyn ominaisuudet",
+      "toggle-icon-info": "Napauta vaihtaaksesi",
       "page-title": "Kuinka voimme auttaa sinua?",
       "search-link-copied": "Hakulinkki kopioitu leikepöydälle",
       "page-sub-title": "Sisällysluettelo",
@@ -1509,9 +1606,9 @@
       "what-delegated-hp-header": "Mikä on valtuutettu Hive Power?",
       "what-delegated-hp-body": "<p>Hive Poweria voidaan siirtää toisille käyttäjille. Kun käyttäjä on valtuutettu Hive Powerilla - heidän resurssihyvitykset, sisältöäänet ja tarkistuspalkkiot lasketaan ikään kuin se olisi heidän oma Hive Power. Käyttäjät eivät kuitenkaan pysty heikentämään tai käyttämään valtuutettua Hive Poweria, koska se kuuluu edelleen alkuperäiselle omistajalle.</p>",
       "what-powering-up-header": "Mitä vahvistaminen on?",
-      "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
+      "what-powering-up-body": "<p>Voit vahvistaa ansaittuja Hive-merkkejä Hive Poweriksi milloin tahansa. Se tarkoittaa, että HIVE pidetään lompakossa ja muunnetaan HIVE Poweriksi, joka lisää äänivaltaa ja resurssihyvityksiä lohkoketjussa. Halliten enemmän Hive Poweria lisäät myös tarkastuspalkkioita ja uusia omia ansaintamerkkejä. Enemmän HP lisää myös vaikutusvaltaa Hiven todistajia äänestäessä.</p>",
       "what-powering-down-header": "Mitä heikentäminen on?",
-      "what-powering-down-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
+      "what-powering-down-body": "<p>Hive Poweria voidaan heikentää samoissa lompakoissa, joissa sitä voidaan vahvistaa. Heikentämisessä HIVE Power ei ole käytettävissä HIVEnä välittömästi. Se muunnetaan 13 yhtä suureen osaan ja siirretään viikoittain HIVE-lompakkoon, ensimmäinen osa on saatavilla vasta viikon kuluttua heikentämisen aloittamisesta.</p>",
       "why-different-keys-header": "Miksi on olemassa erilaisia avaimia?",
       "why-different-keys-body": "<p>On olemassa erilaisia avaimia, joilla on asianmukaiset oikeudet riippuen tarkoituksesta. <ul><li>Julkaisuavaimet - tätä avainta tulisi käyttää sosiaalisen verkostoitumisen toimintaan, kuten julkaisemiseen, kommentointiin ja äänestämiseen. Tällä avaimella on rajalliset luvat, eikä sitä voida käyttää rahapoliittisissa toimissa. Joten et voi menettää rahaa, jos joku muu saa pääsyn tähän avaimeen.</li><li>Aktiivinen avain - tällä avaimella on lisäoikeudet arkaluonteisempiin rahaan liittyviin toimiin, kuten merkkien siirtämiseen ja vaihtamiseen. Kun suoritat lompakkoon liittyvää toimintoa, sinua saatetaan kehottaa todentamaan aktiivisella avaimellasi. Sinun pitäisi syöttää Active Key sovelluksiin, joihin luotat, koska kuka tahansa, jolla on pääsy tähän avaimeen, voi ottaa merkkisi. Tee hyvin ja tallenna tämä avain turvallisesti välttäen polettien menettämisen tulevaisuudessa.</li><li>Omistaja-avain - on tehokkain avain, koska sillä voi muuttaa mitä tahansa tilin avainta, mukaan lukien omistajaavaimen. Ihannetapauksessa se on tarkoitettu tallennettavaksi offline-tilaan, sekä sitä käytetään vain tilin palauttamiseen.</li></ul></p>",
       "stolen-hive-hbd-header": "Mitä voin tehdä, jos HIVE tai Hive dollar on varastettu tai lähetetty väärä määrä?",
@@ -1522,8 +1619,8 @@
       "how-use-tags-body": "<p>Käyttäjät voivat luoda valitsemansa tunnisteet, mutta valitsemalla hyödyllisen tunnisteen käyttäjät voivat huomata viestisi erittäin helposti. Esimerkiksi ensimmäisestä julkaisusta voi tulla suosittu vain käyttämällä johdantotunnistetta. Varmista, että käytät viesteihisi liittyviä tunnisteita, muuten viestisi voi saada alaäänen virheiden vuoksi.</p>",
       "why-publish-gray-header": "Miksi Julkaise-painike on harmaa?",
       "why-publish-gray-body": "<p>Julkaisun kirjoittamisen jälkeen saata nähdä, että Julkaise-painike on edelleen harmaa, varmista että valitsit hyvän otsikon ja ainakin yhden kelvollisen tunnuksen. Niiden puuttuessa julkaisupainike poistetaan käytöstä.</p>",
-      "what-links-show-header": "Mitä Nousussa, Kuumat, Uudet, Nousevat ja Kiistanalaiset linkit näyttävät?",
-      "what-links-show-body": "<p>Tämä on tapa lajitella sisältöä Ecencyssä. <ul><li>Nousussa - Usein mainitut tai keskustellut julkaisut.</li><li>Kuumat - Suosittuja viestejä parin viime tunnin ajalta.</li><li>Uudet - Uusimmat julkaisut lajitellaan julkaisuajan mukaan.</li><li>Nousevat - Julkaisut, joilla on enemmän kommentteja ja ääniä verraten muihin.</li><li>Kiistanalainen - Suhteellisen suuri määrä ääniä ylös ja alas.</li></ul></p>",
+      "what-links-show-header": "Mitä Trendit, Kuumat, Uudet, Nousevat ja Kiistanalaiset linkit näyttävät?",
+      "what-links-show-body": "<p>Tämä on tapa lajitella sisältöä Ecencyssä. <ul><li>Trendit - Usein mainitut tai keskustellut julkaisut.</li><li>Kuumat - Suosittuja viestejä parin viime tunnin ajalta.</li><li>Uudet - Uusimmat julkaisut lajitellaan julkaisuajan mukaan.</li><li>Nousevat - Julkaisut, joilla on enemmän kommentteja ja ääniä verraten muihin.</li><li>Kiistanalainen - Suhteellisen suuri määrä ääniä ylös ja alas.</li></ul></p>",
       "what-my-rewards-header": "Millaisia palkkioita minulla on lompakossa?",
       "what-my-rewards-body": "<p>Lompakossa on kahdenlaisia palkintoja: <ul><li>Tarkistuspalkinnot - Palkinnot ylennysäänistä ja kommenteista.</li><li>Julkaisupalkinnot - Omista viesteistä ja kommenteista ansaitut palkkiot.</li><li>Pistepalkintoja - Sosiaalisuus ja vuorovaikutus palkitaan myös Ecency-pisteillä.</li></ul><p/>",
       "what-information-profile-header": "Millaisia tietoja profiilissäni on esillä?",

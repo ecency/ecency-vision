@@ -10,7 +10,8 @@ import {
   fullAccountInstance
 } from "../../helper/test-helper";
 
-import TestRenderer from "react-test-renderer";
+import TestRenderer, { ReactTestInstance } from "react-test-renderer";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("moment", () => () => ({
   fromNow: () => "in 5 days"
@@ -57,8 +58,8 @@ describe("(1) Hive Engine - Transfer", () => {
     assetBalance
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -92,8 +93,8 @@ describe("(2) Hive Engine - Delegate", () => {
     assetBalance
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -124,8 +125,8 @@ describe("(3) Hive Engine - Undelegate", () => {
     assetBalance
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -154,8 +155,8 @@ describe("(4) Hive Engine - Stake", () => {
     assetBalance
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -184,8 +185,8 @@ describe("(5) Hive Engine - Unstake", () => {
     assetBalance
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();

@@ -5,6 +5,7 @@ import { createBrowserHistory } from "history";
 import { PopularUsers } from "./index";
 
 import { globalInstance, allOver, accountSearchResultInstance } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../api/search-api", () => ({
   searchAccount: (duration: string) =>
@@ -20,7 +21,7 @@ it("(1) Render with data.", async () => {
     addAccount: () => {}
   };
 
-  const component = await renderer.create(<PopularUsers {...props} />);
+  const component = await withStore(<PopularUsers {...props} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });

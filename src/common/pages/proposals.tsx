@@ -225,13 +225,15 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
       isReturnProposalId,
       thresholdProposalId
     } = this.state;
-    const navBar = global.isElectron
-      ? NavBarElectron({
-          ...this.props,
-          reloadFn: this.load,
-          reloading: loading
-        })
-      : NavBar({ ...this.props });
+    const navBar = global.isElectron ? (
+      NavBarElectron({
+        ...this.props,
+        reloadFn: this.load,
+        reloading: loading
+      })
+    ) : (
+      <NavBar history={this.props.history} />
+    );
 
     if (loading) {
       return (
@@ -395,13 +397,15 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
     const { global } = this.props;
     const { loading, proposal, entry } = this.state;
 
-    const navBar = global.isElectron
-      ? NavBarElectron({
-          ...this.props,
-          reloadFn: this.load,
-          reloading: loading
-        })
-      : NavBar({ ...this.props });
+    const navBar = global.isElectron ? (
+      NavBarElectron({
+        ...this.props,
+        reloadFn: this.load,
+        reloading: loading
+      })
+    ) : (
+      <NavBar history={this.props.history} />
+    );
 
     if (loading) {
       return (

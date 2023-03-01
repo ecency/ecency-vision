@@ -88,6 +88,7 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
           onChange={this.handleChange}
           {...(isComment ? {} : { boundariesElement: ".body-input" })}
           minChar={2}
+          dropdownStyle={{ zIndex: 14 }}
           trigger={{
             ["@"]: {
               dataProvider: (token) => {
@@ -141,13 +142,9 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 
                 return (
                   <>
-                    {props.entity.includes("/")
-                      ? null
-                      : UserAvatar({
-                          global: this.props.global,
-                          username: props.entity,
-                          size: "small"
-                        })}
+                    {props.entity.includes("/") ? null : (
+                      <UserAvatar username="props.entity" size="small" />
+                    )}
                     <span style={{ marginLeft: "8px" }}>{textToShow}</span>
                   </>
                 );

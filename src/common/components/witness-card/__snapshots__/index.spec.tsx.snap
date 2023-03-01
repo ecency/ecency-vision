@@ -2,7 +2,7 @@
 
 exports[`(1) renders witness card successfully 1`] = `
 <div
-  className="p-3 mb-3 border rounded"
+  className="witnesses-card p-3 mb-3 border rounded"
 >
   <div
     className="d-flex align-items-center justify-content-between"

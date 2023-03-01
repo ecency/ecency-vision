@@ -75,11 +75,7 @@ export class CommunityListItem extends Component<Props> {
         <div className="item-content">
           <h2 className="item-title">
             <div className="item-details">
-              {UserAvatar({
-                ...this.props,
-                username: community.name,
-                size: this.props.small ? "small" : "medium"
-              })}
+              <UserAvatar username={community.name} size={this.props.small ? "small" : "medium"} />
               <Link to={makePath(defaults.filter, community.name)}>{community.title}</Link>
             </div>
             {this.props.small && this.getItemsControls()}
@@ -100,7 +96,7 @@ export class CommunityListItem extends Component<Props> {
                   {ProfileLink({
                     ...this.props,
                     username: x,
-                    children: <a className="admin">{x}</a>
+                    children: <span className="admin">{x}</span>
                   })}
                 </Fragment>
               ))}

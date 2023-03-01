@@ -143,11 +143,7 @@ export class ProposalListItem extends Component<Props, State> {
         <div className="item-content">
           <div className="left-side">
             <div className="proposal-users-card">
-              {UserAvatar({
-                ...this.props,
-                username: proposal.creator,
-                size: "small"
-              })}
+              <UserAvatar username={proposal.creator} size="small" />
               <span className="users">
                 {_t("proposals.by")}{" "}
                 {ProfileLink({

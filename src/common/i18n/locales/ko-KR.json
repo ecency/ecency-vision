@@ -2,6 +2,9 @@
   "g": {
     "add": "추가",
     "edit": "편집",
+    "clone": "Clone",
+    "copy": "Copy of",
+    "clone-success": "Created new draft copy",
     "continue": "Continue",
     "submit": "글쓰기",
     "search": "검색",
@@ -63,7 +66,8 @@
     "more-results": "더 많은 결과 보기",
     "close": "닫기",
     "loading": "Loading",
-    "stop": "Stop"
+    "stop": "Stop",
+    "settings": "Settings"
   },
   "confirm": {
     "title": "정말 진행하시겠습니까?",
@@ -187,7 +191,22 @@
     "success": "{{email}}로 이메일을 발송하였습니다.",
     "success-2": "안내에 따라 가입 절차를 완료하세요.",
     "login-text-1": "계정이 없으신가요?",
-    "login-text-2": "로그인"
+    "login-text-2": "로그인",
+    "free-account": "Free account",
+    "free-account-desc": "Get a full-fledged Hive account, this method has basic checks to make sure botnet doesn't abuse our signup faucet.",
+    "register-free": "Register free",
+    "buy-account": "Buy account",
+    "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
+    "buy-account-li-1": "Instant creation without extra checks and waiting",
+    "buy-account-li-2": "3x RC compared to normal new accounts",
+    "buy-account-li-3": "300 Points to help you get started",
+    "qr-desc": "Scan with Ecency mobile app to continue",
+    "username-min-length-error": "Length of username should be at least 3 characters",
+    "username-max-length-error": "Length of username should be no more than 16 characters",
+    "username-no-ascii-first-letter-error": "First character should be a Letter",
+    "username-contains-symbols-error": "Should contain Letters, Numbers, Hyphen only",
+    "username-contains-double-hyphens": "Should not contain double Hyphens",
+    "username-exists": "This username already registered. Please, try another one"
   },
   "trending-tags": {
     "title": "주제"
@@ -405,8 +424,30 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
+    "signing": "Signing..",
     "success-swap": "Successfully swapped!",
-    "signing": "Signing.."
+    "advanced": {
+      "history": "History",
+      "stake": "Order book",
+      "pairs": "Pairs",
+      "form": "Order form",
+      "open-orders": "Open",
+      "completed-orders": "Completed",
+      "status": "Status",
+      "all-orders": "All",
+      "active": "Active",
+      "view-details": "View details",
+      "chart": "Chart",
+      "trading-form-auth-required": "You have to be authorized for trade",
+      "open-orders-auth-required": "You have to be authorized to see open orders",
+      "empty-open-orders": "No orders",
+      "history-widget": {
+        "price": "Price",
+        "amount": "Amount",
+        "volume": "Volume",
+        "time": "Time"
+      }
+    }
   },
   "list-style": {
     "title": "토글 리스트 스타일"
@@ -442,7 +483,8 @@
     "community-in": "에서",
     "post-word-count": "Words:",
     "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-read-minuites": "min",
+    "raw": "View RAW format"
   },
   "edit-history": {
     "title": "편집 내역",
@@ -620,6 +662,42 @@
     "create-posts": "새 게시물을 작성해 봅시다.",
     "link-copied": "Search link copied to clipboard",
     "no-posts-found": "검색 결과가 없습니다!"
+  },
+  "rc-info": {
+    "available": "Available",
+    "used": "Used",
+    "resource-credits": "Resource Credits",
+    "resource-credit": "RC",
+    "delegated": "Delegations Out",
+    "received-delegations": "Delegations In",
+    "delegation-button": "Delegate RC",
+    "rc-available": "Available",
+    "rc-used": "Used",
+    "outgoing": "Outgoing",
+    "incoming": "Incoming",
+    "delete": "delete",
+    "update": "update",
+    "confirm-delete": "Are you sure?",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "check-faq": "Learn more about RC in our",
+    "learn-more": "/faq#what-are-rc",
+    "faq-link": "FAQ",
+    "insufficient-rc-error": "Insufficient resource credits",
+    "minimum-rc-error": "Mininum RC is 5,000,000,000",
+    "extra-details-heading": "What's possible with current available RC?",
+    "transfers": "Transfers:",
+    "comments-posts": "Posts / Comments:",
+    "votes": "Votes:",
+    "reblogs-follows": "Reblogs / Follows:",
+    "no-outgoing": "No outgoing delegation",
+    "no-incoming": "No incoming delegation",
+    "delegate-title": "Delegate",
+    "delegate-sub-title": "Delegate Resource Credit",
+    "extra-details-transfer": "Transfers",
+    "extra-details-post": "Posts/Comments",
+    "extra-details-upvote": "Votes",
+    "boost": "Boost"
   },
   "profile-edit": {
     "title": "프로필",
@@ -850,7 +928,7 @@
     "purchase-message": "또는 'points'를 메모로 남겨 포인트 구매를 위해 @empty.app에 금액을 보내세요."
   },
   "purchase-qr": {
-    "scan-code": "Scan the QR code with Ecency mobile app",
+    "scan-code": "Scan with Ecency mobile app to continue",
     "select-user": "Please, select an user",
     "title": "Account boost",
     "title-points": "Buy points",
@@ -1105,6 +1183,7 @@
     "publish": "게시하기",
     "update": "업데이트",
     "save-draft": "임시 저장",
+    "load-draft": "Load Draft",
     "draft-saved": "임시 보관함에 저장했습니다",
     "update-draft": "임시 보관함 업데이트",
     "draft-updated": "임시 보관함 업데이트되었습니다",
@@ -1282,6 +1361,13 @@
     "page-description": "합의 블록 생산자 선택",
     "page-description-long": "하이브 블록체인에서 증인 또는 블록 생산자의 역할은 네트워크의 거버넌스 기관 역할을 하는 것입니다. 커뮤니티는 자신의 목소리를 대변하기 위해 그들을 선택하고 각 사용자는 최대 30명의 증인을 선택할 수 있습니다. 상위 20명의 증인은 매분 블록을 생성하고 나머지는 백업 증인으로 남아 매분 무작위 기회를 얻습니다. 이 역할은 블록체인이 실행되는 합의 메커니즘의 필수적인 부분이며 신뢰할 수 있는 증인에게 투표하기 위해 사용자 참여를 권장합니다.",
     "remaining": "총 {{max}} 개의 투표권 중 <span>{{n}}</span> 개가 남았습니다",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-rank": "Rank",
+    "sort-name": "Name",
+    "sort-fee": "Fee",
+    "searching": "Searching",
+    "no-results": "No results found",
     "list-rank": "랭크",
     "list-witness": "증인",
     "list-miss": "누락",
@@ -1332,7 +1418,13 @@
     "see-all": "모든 제안서 보기",
     "daily-funded": "일일 자금 지원",
     "daily-budget": "일일 예산",
-    "total-budget": "총 예산"
+    "total-budget": "총 예산",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-reputation": "Reputation",
+    "sort-hp": "Hive Power",
+    "no-results": "No results found",
+    "searching": "Searching"
   },
   "gallery": {
     "title": "갤러리",
@@ -1424,6 +1516,11 @@
       "contact-email": "이메일 문의"
     },
     "faq": {
+      "about-ecency": "About Ecency",
+      "working": "Working of Ecency",
+      "about-blockchain": "About Blockchain",
+      "features": "Features of Ecency",
+      "toggle-icon-info": "Tap on me to toggle",
       "page-title": "어떻게 도와 드릴까요?",
       "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "목차",
