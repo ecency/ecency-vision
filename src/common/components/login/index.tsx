@@ -28,6 +28,7 @@ import { error } from "../feedback";
 
 import { getAuthUrl, makeHsCode } from "../../helper/hive-signer";
 import { hsLogin } from "../../../desktop/app/helper/hive-signer";
+import { generateKeys } from "../../helper/generate-private-keys";
 
 import { getAccount } from "../../api/hive";
 import { usrActivity } from "../../api/private-api";
@@ -42,7 +43,6 @@ import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../h
 
 import { _t } from "../../i18n";
 import _ from "lodash";
-import { generateKeys } from "../../helper/generate-private-keys";
 
 import _c from "../../util/fix-class-names";
 

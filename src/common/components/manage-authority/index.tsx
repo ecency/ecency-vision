@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 
+import * as ls from "../../util/local-storage";
+import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
+import { decodeObj, encodeObj } from "../../util/encoder";
+
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
+import { User } from "../../store/users/types";
+import { Account } from "../../store/accounts/types";
 
 import UserAvatar from "../user-avatar/index";
 import { error, success } from "../feedback";
@@ -13,12 +19,7 @@ import { _t } from "../../i18n";
 import _ from "lodash";
 import { formatError, Revoke, RevokeHot, RevokeKc } from "../../api/operations";
 import { getAccounts } from "../../api/hive";
-import * as ls from "../../util/local-storage";
-import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 import { generateKeys } from "../../helper/generate-private-keys";
-import { decodeObj, encodeObj } from "../../util/encoder";
-import { User } from "../../store/users/types";
-import { Account } from "../../store/accounts/types";
 
 interface Props {
   global: Global;
