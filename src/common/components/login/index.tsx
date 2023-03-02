@@ -407,10 +407,10 @@ export class Login extends BaseComponent<LoginProps, State> {
       error(_t("login.error-fields-required"));
       return;
     }
-    // if (!this.state.isVerified) {
-    //   error(_t("login.captcha-check-required"));
-    //   return;
-    // }
+    if (!this.state.isVerified) {
+      error(_t("login.captcha-check-required"));
+      return;
+    }
     // Warn if the code is a public key
     try {
       PublicKey.fromString(key);
@@ -520,14 +520,14 @@ export class Login extends BaseComponent<LoginProps, State> {
           const privateKeys = generateKeys(this.props.activeUser!, key);
           const updatedUser: User = { ...currentUser[0], ...privateKeys };
           addUser(updatedUser);
-        }
-
-        if (withPostingKey) {
-          const updatedUser: User = { ...currentUser[0], posting: thePrivateKey.toString() };
-          addUser(updatedUser);
         } else {
-          const updatedUser: User = { ...currentUser[0], active: thePrivateKey.toString() };
-          addUser(updatedUser);
+          if (withPostingKey) {
+            const updatedUser: User = { ...currentUser[0], posting: thePrivateKey.toString() };
+            addUser(updatedUser);
+          } else {
+            const updatedUser: User = { ...currentUser[0], active: thePrivateKey.toString() };
+            addUser(updatedUser);
+          }
         }
 
         if (
@@ -631,7 +631,7 @@ export class Login extends BaseComponent<LoginProps, State> {
               onKeyDown={this.inputKeyDown}
             />
           </Form.Group>
-          {/* {!global.isElectron && (
+          {!global.isElectron && (
             <div className="google-recaptcha">
               <ReCAPTCHA
                 sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
@@ -639,7 +639,7 @@ export class Login extends BaseComponent<LoginProps, State> {
                 size="normal"
               />
             </div>
-          )} */}
+          )}
           <p className="login-form-text">
             {_t("login.login-info-1")}{" "}
             <a
@@ -658,7 +658,7 @@ export class Login extends BaseComponent<LoginProps, State> {
               {_t("login.login-info-2")}
             </a>
           </p>
-          <Button disabled={inProgress} block={true} onClick={this.login}>
+          <Button disabled={inProgress || !isVerified} block={true} onClick={this.login}>
             {inProgress && username && key && spinner}
             {_t("g.login")}
           </Button>
