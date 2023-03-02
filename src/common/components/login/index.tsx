@@ -500,35 +500,37 @@ export class Login extends BaseComponent<LoginProps, State> {
     this.stateSet({ inProgress: true });
 
     const { doLogin } = this.props;
-
-    doLogin(code, withPostingKey ? key : null, account)
-      .then(() => {
-        //decode user object.
-        var user = ls.getByPrefix("user_").map((x) => {
-          const u = decodeObj(x) as User;
-          return {
-            username: u.username,
-            refreshToken: u.refreshToken,
-            accessToken: u.accessToken,
-            expiresIn: u.expiresIn,
-            postingKey: u.postingKey
-          };
-        });
-        var currentUser = user.filter((x) => x.username === this.props.activeUser?.username);
-        //generate and store private keys in case of login with password.
-        if (isPlainPassword) {
-          const privateKeys = generateKeys(this.props.activeUser!, key);
-          const updatedUser: User = { ...currentUser[0], ...privateKeys };
+    const generateKeysAfterLogin = (activeUser: ActiveUser) => {
+      //decode user object.
+      var user = ls.getByPrefix("user_").map((x) => {
+        const u = decodeObj(x) as User;
+        return {
+          username: u.username,
+          refreshToken: u.refreshToken,
+          accessToken: u.accessToken,
+          expiresIn: u.expiresIn,
+          postingKey: u.postingKey
+        };
+      });
+      var currentUser = user.filter((x) => x.username === activeUser?.username);
+      //generate and store private keys in case of login with password.
+      if (isPlainPassword) {
+        const privateKeys = generateKeys(activeUser!, key);
+        const updatedUser: User = { ...currentUser[0], ...privateKeys };
+        addUser(updatedUser);
+      } else {
+        if (withPostingKey) {
+          const updatedUser: User = { ...currentUser[0], posting: thePrivateKey.toString() };
           addUser(updatedUser);
         } else {
-          if (withPostingKey) {
-            const updatedUser: User = { ...currentUser[0], posting: thePrivateKey.toString() };
-            addUser(updatedUser);
-          } else {
-            const updatedUser: User = { ...currentUser[0], active: thePrivateKey.toString() };
-            addUser(updatedUser);
-          }
+          const updatedUser: User = { ...currentUser[0], active: thePrivateKey.toString() };
+          addUser(updatedUser);
         }
+      }
+    };
+    doLogin(code, withPostingKey ? key : null, account)
+      .then(() => {
+        generateKeysAfterLogin(this.props.activeUser!);
 
         if (
           !ls.get(`${username}HadTutorial`) ||

@@ -43,7 +43,6 @@ export default class ViewKeys extends BaseComponent<Props, State> {
     const privateKeys = generateKeys(activeUser, curPass);
     if (!_.isEmpty(privateKeys)) {
       this.setState({ keys: privateKeys });
-      ls.set(`${activeUser?.username}_private_keys`, privateKeys);
     }
   };
 
