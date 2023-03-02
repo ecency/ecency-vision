@@ -14,10 +14,10 @@ const defProps = {
   users: [],
   activeUser: null,
   setActiveUser: () => {},
+  addUser: () => {},
   deleteUser: () => {},
   toggleUIProp: () => {},
-  doLogin: async () => {},
-  setKey: () => {}
+  doLogin: async () => {}
 };
 
 it("(1) Default render", () => {

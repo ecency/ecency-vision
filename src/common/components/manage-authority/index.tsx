@@ -14,8 +14,11 @@ import _ from "lodash";
 import { formatError, Revoke, RevokeHot, RevokeKc } from "../../api/operations";
 import { getAccounts } from "../../api/hive";
 import * as ls from "../../util/local-storage";
-import { PrivateKey } from "@hiveio/dhive";
+import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 import { generateKeys } from "../../helper/generate-private-keys";
+import { decodeObj, encodeObj } from "../../util/encoder";
+import { User } from "../../store/users/types";
+import { Account } from "../../store/accounts/types";
 
 interface Props {
   global: Global;
@@ -36,7 +39,7 @@ export default function ManageAuthorities(props: Props) {
   const [memokey, setMemoKey] = useState("");
   const [targetAccount, setTargetAccount] = useState("");
   const [inProgress, setInProgress] = useState(false);
-  const [curPass, setCurPass] = useState("");
+  const [key, setKey] = useState("");
   const [publicOwnerKey, setPublicOwnerKey] = useState<any>();
   const [publicActiveKey, setPublicActiveKey] = useState<any>();
   const [publicPostingKey, setPublicPostingKey] = useState<any>();
@@ -44,6 +47,8 @@ export default function ManageAuthorities(props: Props) {
   const [activeReveal, setActiveReveal] = useState(true);
   const [postingReveal, setPostingReveal] = useState(true);
   const [privateKeys, setPrivatekeys] = useState({});
+  const [account, setAccount] = useState<Account>();
+  const [keyType, setKeyType] = useState("");
 
   useEffect(() => {
     getAccountData();
@@ -54,6 +59,7 @@ export default function ManageAuthorities(props: Props) {
     const response = await getAccounts([props.activeUser!.username]);
     if (response) {
       const resp = response[0];
+      setAccount(response[0]);
       setWeight(resp.active.weight_threshold);
       setPostingsAuthority(resp.posting.account_auths);
       setPostingKey(resp.posting.key_auths[0]);
@@ -72,9 +78,24 @@ export default function ManageAuthorities(props: Props) {
 
   const getKeys = () => {
     const { activeUser } = props;
-    const keys = ls.get(`${activeUser?.username}_private_keys`);
-    if (!_.isEmpty(keys)) {
-      setPrivatekeys(keys);
+    const user = ls.getByPrefix("user_").map((x) => {
+      const u = decodeObj(x) as User;
+      return {
+        username: u.username,
+        active: u.active,
+        owner: u.owner,
+        posting: u.posting,
+        memo: u.memo
+      };
+    });
+    const currentUser = user.filter((x) => x.username === activeUser?.username);
+    if (currentUser) {
+      const pKeys = {
+        active: currentUser[0].active,
+        owner: currentUser[0].owner,
+        posting: currentUser[0].posting
+      };
+      setPrivatekeys(pKeys);
     }
   };
 
@@ -147,18 +168,123 @@ export default function ManageAuthorities(props: Props) {
     getAccountData();
   };
 
-  const handleImportBtn = () => {
+  const handleImportBtn = (type: string) => {
+    setKeyType(type);
     setKeyDialog(true);
     setStep(3);
   };
 
+  const updateUser = (activeUser: ActiveUser, updatedUser: User) => {
+    ls.set(`user_${activeUser!.username}`, encodeObj(updatedUser));
+  };
   const handleSubmit = () => {
     const { activeUser } = props;
-    const privateKeys = generateKeys(activeUser!, curPass);
-    if (!_.isEmpty(privateKeys)) {
-      ls.set(`${activeUser?.username}_private_keys`, privateKeys);
-      setStep(4);
-      getKeys();
+    //decode user object.
+    var user = ls.getByPrefix("user_").map((x) => {
+      const u = decodeObj(x) as User;
+      return {
+        username: u.username,
+        refreshToken: u.refreshToken,
+        accessToken: u.accessToken,
+        expiresIn: u.expiresIn,
+        postingKey: u.postingKey,
+        owner: u.owner,
+        active: u.active,
+        posting: u.posting,
+        memo: u.memo
+      };
+    });
+    var currentUser = user.filter((x) => x.username === props.activeUser?.username);
+
+    if (key === "") {
+      error(_t("manage-authorities.error-fields-required"));
+      return;
+    }
+
+    try {
+      PublicKey.fromString(key);
+      error(_t("login.error-public-key"));
+      return;
+    } catch (e) {}
+
+    // Posting public key of the account
+
+    const isPlainPassword = !cryptoUtils.isWif(key);
+
+    let thePrivateKey: PrivateKey;
+
+    // Whether using posting private key to login
+    let withPostingKey = false;
+
+    if (
+      !isPlainPassword &&
+      publicOwnerKey.includes(PrivateKey.fromString(key).createPublic().toString())
+    ) {
+      thePrivateKey = PrivateKey.fromString(key);
+      const ownerKey = thePrivateKey.toString();
+      if (ownerKey === key && keyType === "owner") {
+        const updatedUser: User = { ...currentUser[0], owner: ownerKey };
+        updateUser(activeUser!, updatedUser);
+        setStep(4);
+        getKeys();
+      } else {
+        error(_t("manage-authorities.error-wrong-key"));
+      }
+      return;
+    }
+
+    if (
+      !isPlainPassword &&
+      publicPostingKey.includes(PrivateKey.fromString(key).createPublic().toString())
+    ) {
+      // Login with posting private key
+      withPostingKey = true;
+      thePrivateKey = PrivateKey.fromString(key);
+      const postingKey = thePrivateKey.toString();
+      if (postingKey === key && keyType === "posting") {
+        const updatedUser: User = { ...currentUser[0], posting: postingKey };
+        updateUser(activeUser!, updatedUser);
+        setStep(4);
+        getKeys();
+      } else {
+        error(_t("manage-authorities.error-wrong-key"));
+      }
+    } else {
+      // Login with master or active private key
+      // Get active private key from user entered code
+      if (isPlainPassword) {
+        thePrivateKey = PrivateKey.fromLogin(account!.name, key, "active");
+        const privateKeys = generateKeys(activeUser!, key);
+        if (!_.isEmpty(privateKeys)) {
+          const updatedUser: User = { ...currentUser[0], ...(privateKeys as object) };
+          updateUser(activeUser!, updatedUser);
+          setStep(4);
+          getKeys();
+        }
+      } else {
+        const actKey = publicActiveKey.includes(
+          PrivateKey.fromString(key).createPublic().toString()
+        );
+        thePrivateKey = PrivateKey.fromString(key);
+        const activeKey = thePrivateKey.toString();
+        if (activeKey === key && keyType === "active" && actKey) {
+          const updatedUser: User = { ...currentUser[0], active: activeKey };
+          updateUser(activeUser!, updatedUser);
+          setStep(4);
+          getKeys();
+        } else {
+          error(_t("manage-authorities.error-wrong-key"));
+        }
+      }
+
+      // Generate public key from the private key
+      const activePublicInput = thePrivateKey.createPublic().toString();
+
+      // Compare keys
+      if (!publicActiveKey.includes(activePublicInput)) {
+        error(_t("login.error-authenticate")); // enter master or active key
+        return;
+      }
     }
   };
 
@@ -175,10 +301,11 @@ export default function ManageAuthorities(props: Props) {
         {inProgress && <LinearProgress />}
         <div className="curr-password">
           <Form.Group controlId="formPlaintextPassword">
-            <Form.Label>{_t("view-keys.cur-pass")}</Form.Label>
+            <Form.Label>Master password/Private key</Form.Label>
             <Form.Control
-              value={curPass}
-              onChange={(e) => setCurPass(e.target.value)}
+              value={key}
+              placeholder="Enter Master pasword/private key"
+              onChange={(e) => setKey(e.target.value)}
               required={true}
               type="password"
               autoFocus={true}
@@ -380,7 +507,7 @@ export default function ManageAuthorities(props: Props) {
                   <Button
                     className="import-btn"
                     variant="outline-primary"
-                    onClick={handleImportBtn}
+                    onClick={() => handleImportBtn("owner")}
                   >
                     {_t("manage-authorities.import")}
                   </Button>
@@ -420,7 +547,7 @@ export default function ManageAuthorities(props: Props) {
                   <Button
                     className="import-btn"
                     variant="outline-primary"
-                    onClick={handleImportBtn}
+                    onClick={() => handleImportBtn("active")}
                   >
                     {_t("manage-authorities.import")}
                   </Button>
@@ -460,7 +587,7 @@ export default function ManageAuthorities(props: Props) {
                   <Button
                     className="import-btn"
                     variant="outline-primary"
-                    onClick={handleImportBtn}
+                    onClick={() => handleImportBtn("posting")}
                   >
                     {_t("manage-authorities.import")}
                   </Button>

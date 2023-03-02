@@ -8,6 +8,7 @@ import { PrivateKey, PublicKey, cryptoUtils } from "@hiveio/dhive";
 
 import { History, Location } from "history";
 import * as ls from "../../util/local-storage";
+import { decodeObj } from "../../util/encoder";
 
 import { AppWindow } from "../../../client/window";
 
@@ -270,9 +271,9 @@ interface LoginProps {
   users: User[];
   activeUser: ActiveUser | null;
   setActiveUser: (username: string | null) => void;
+  addUser: (user: User) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
-  setKey: (key: string) => void;
   doLogin: (
     hsCode: string,
     postingKey: null | undefined | string,
@@ -400,16 +401,16 @@ export class Login extends BaseComponent<LoginProps, State> {
   login = async () => {
     const { hsClientId } = this.props.global;
     const { username, key } = this.state;
-    const { setKey } = this.props;
+    const { addUser } = this.props;
 
     if (username === "" || key === "") {
       error(_t("login.error-fields-required"));
       return;
     }
-    if (!this.state.isVerified) {
-      error(_t("login.captcha-check-required"));
-      return;
-    }
+    // if (!this.state.isVerified) {
+    //   error(_t("login.captcha-check-required"));
+    //   return;
+    // }
     // Warn if the code is a public key
     try {
       PublicKey.fromString(key);
@@ -456,7 +457,6 @@ export class Login extends BaseComponent<LoginProps, State> {
       // Login with master or active private key
       // Get active private key from user entered code
       if (isPlainPassword) {
-        setKey(key);
         thePrivateKey = PrivateKey.fromLogin(account.name, key, "active");
       } else {
         thePrivateKey = PrivateKey.fromString(key);
@@ -503,6 +503,33 @@ export class Login extends BaseComponent<LoginProps, State> {
 
     doLogin(code, withPostingKey ? key : null, account)
       .then(() => {
+        //decode user object.
+        var user = ls.getByPrefix("user_").map((x) => {
+          const u = decodeObj(x) as User;
+          return {
+            username: u.username,
+            refreshToken: u.refreshToken,
+            accessToken: u.accessToken,
+            expiresIn: u.expiresIn,
+            postingKey: u.postingKey
+          };
+        });
+        var currentUser = user.filter((x) => x.username === this.props.activeUser?.username);
+        //generate and store private keys in case of login with password.
+        if (isPlainPassword) {
+          const privateKeys = generateKeys(this.props.activeUser!, key);
+          const updatedUser: User = { ...currentUser[0], ...privateKeys };
+          addUser(updatedUser);
+        }
+
+        if (withPostingKey) {
+          const updatedUser: User = { ...currentUser[0], posting: thePrivateKey.toString() };
+          addUser(updatedUser);
+        } else {
+          const updatedUser: User = { ...currentUser[0], active: thePrivateKey.toString() };
+          addUser(updatedUser);
+        }
+
         if (
           !ls.get(`${username}HadTutorial`) ||
           (ls.get(`${username}HadTutorial`) && ls.get(`${username}HadTutorial`) !== "true")
@@ -604,7 +631,7 @@ export class Login extends BaseComponent<LoginProps, State> {
               onKeyDown={this.inputKeyDown}
             />
           </Form.Group>
-          {!global.isElectron && (
+          {/* {!global.isElectron && (
             <div className="google-recaptcha">
               <ReCAPTCHA
                 sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
@@ -612,7 +639,7 @@ export class Login extends BaseComponent<LoginProps, State> {
                 size="normal"
               />
             </div>
-          )}
+          )} */}
           <p className="login-form-text">
             {_t("login.login-info-1")}{" "}
             <a
@@ -631,7 +658,7 @@ export class Login extends BaseComponent<LoginProps, State> {
               {_t("login.login-info-2")}
             </a>
           </p>
-          <Button disabled={inProgress || !isVerified} block={true} onClick={this.login}>
+          <Button disabled={inProgress} block={true} onClick={this.login}>
             {inProgress && username && key && spinner}
             {_t("g.login")}
           </Button>
@@ -698,15 +725,7 @@ interface Props {
   toggleUIProp: (what: ToggleType) => void;
 }
 
-interface LoginState {
-  key: string;
-}
-
-export default class LoginDialog extends Component<Props, LoginState> {
-  state: LoginState = {
-    key: ""
-  };
-
+export default class LoginDialog extends Component<Props> {
   userListRef = React.createRef();
 
   hide = () => {
@@ -714,24 +733,10 @@ export default class LoginDialog extends Component<Props, LoginState> {
     toggleUIProp("login");
   };
 
-  setKey = (password: string) => {
-    this.setState({ key: password });
-  };
-
   componentWillUnmount() {
     const { toggleUIProp, ui } = this.props;
     if (ui.loginKc) {
       toggleUIProp("loginKc");
-    }
-  }
-
-  componentDidUpdate(prevProps: Readonly<Props>): void {
-    const { activeUser } = this.props;
-    if (prevProps.activeUser !== activeUser && this.state.key) {
-      const privateKeys = generateKeys(activeUser!, this.state.key);
-      if (!_.isEmpty(privateKeys)) {
-        ls.set(`${activeUser?.username}_private_keys`, privateKeys);
-      }
     }
   }
 
@@ -785,12 +790,7 @@ export default class LoginDialog extends Component<Props, LoginState> {
         <Modal.Header closeButton={true} />
         <Modal.Body>
           {!ui.loginKc && (
-            <Login
-              {...this.props}
-              doLogin={this.doLogin}
-              userListRef={this.userListRef}
-              setKey={this.setKey}
-            />
+            <Login {...this.props} doLogin={this.doLogin} userListRef={this.userListRef} />
           )}
           {ui.loginKc && <LoginKc {...this.props} doLogin={this.doLogin} />}
         </Modal.Body>

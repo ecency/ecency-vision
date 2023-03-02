@@ -1,9 +1,14 @@
+import { PrivateKey } from "@hiveio/dhive";
 export interface User {
   username: string;
   accessToken: string;
   refreshToken: string;
   expiresIn: number;
   postingKey: null | undefined | string;
+  owner?: string;
+  active?: string | PrivateKey;
+  posting?: string | PrivateKey;
+  memo?: string;
 }
 
 export enum ActionTypes {
