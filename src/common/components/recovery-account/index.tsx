@@ -90,27 +90,24 @@ export default function AccountRecovery(props: Props) {
     }
   };
 
-  const onKey = (key: PrivateKey): void => {
-    setInProgress(true);
-    let promise: Promise<any> = changeRecoveryAccount(
-      props.activeUser!.username,
-      newRecoveryAccount,
-      [],
-      key
-    );
-    promise
-      .then((resp) => {
-        if (resp.id) {
-          setKeyDialog(true);
-          setStep(3);
-        }
-      })
-      .catch((err) => {
-        error(...formatError(err));
-      })
-      .finally(() => {
-        setInProgress(false);
-      });
+  const onKey = async (key: PrivateKey) => {
+    try {
+      setInProgress(true);
+      let result = await changeRecoveryAccount(
+        props.activeUser!.username,
+        newRecoveryAccount,
+        [],
+        key
+      );
+      if (result.id) {
+        setKeyDialog(true);
+        setStep(3);
+      }
+    } catch (err) {
+      error(...formatError(err));
+    } finally {
+      setInProgress(false);
+    }
   };
 
   const onHot = () => {
