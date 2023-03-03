@@ -193,7 +193,6 @@
             }
 
             .separator {
-              @extend .circle-separator;
               display: none;
               @media (min-width: $md-break) {
                 display: block;

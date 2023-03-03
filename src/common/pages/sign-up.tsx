@@ -21,6 +21,7 @@ import { appleSvg, checkSvg, googleSvg, hiveSvg } from "../img/svg";
 import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import { getAccount } from "../api/hive";
+import "./sign-up.scss";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 

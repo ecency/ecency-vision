@@ -16,6 +16,7 @@ import { _t } from "../i18n";
 import { getCommunities, getSubscriptions } from "../api/bridge";
 import defaults from "../constants/defaults.json";
 import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
+import "./communities.scss";
 
 interface State {
   list: Community[];

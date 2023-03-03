@@ -334,7 +334,7 @@ export const Item = (props: ItemProps) => {
             <div className="d-flex align-items-center" id={`${entry.author}-${entry.permlink}`}>
               <ProfilePopover {...props} />
             </div>
-            <span className="separator" />
+            <span className="separator circle-separator" />
             {EntryLink({
               ...props,
               entry,
