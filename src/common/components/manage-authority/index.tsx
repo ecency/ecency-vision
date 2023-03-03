@@ -185,17 +185,10 @@ export default function ManageAuthorities(props: Props) {
       .getByPrefix("user_")
       .map((x) => {
         const u = decodeObj(x) as User;
-        return {
-          username: u.username,
-          refreshToken: u.refreshToken,
-          accessToken: u.accessToken,
-          expiresIn: u.expiresIn,
-          postingKey: u.postingKey,
-          privateKeys: u.privateKeys
-        };
+        return u;
       })
       .filter((x) => x.username === props.activeUser?.username);
-    console.log(currentUser);
+
     if (key === "") {
       error(_t("manage-authorities.error-fields-required"));
       return;
@@ -225,10 +218,6 @@ export default function ManageAuthorities(props: Props) {
       const ownerKey = thePrivateKey.toString();
       if (ownerKey === key && keyType === Type.Owner) {
         keys = { owner: ownerKey };
-        // const updatedUser: User = { ...currentUser[0], owner: ownerKey };
-        // updateUser(activeUser!, updatedUser);
-        // setStep(4);
-        // getKeys();
       } else {
         error(_t("manage-authorities.error-wrong-key"));
       }
@@ -243,10 +232,6 @@ export default function ManageAuthorities(props: Props) {
         const postingKey = thePrivateKey.toString();
         if (postingKey === key && keyType === Type.Posting) {
           keys = { posting: postingKey };
-          // const updatedUser: User = { ...currentUser[0], posting: postingKey };
-          // updateUser(activeUser!, updatedUser);
-          // setStep(4);
-          // getKeys();
         } else {
           error(_t("manage-authorities.error-wrong-key"));
         }
@@ -256,12 +241,6 @@ export default function ManageAuthorities(props: Props) {
         if (isPlainPassword) {
           thePrivateKey = PrivateKey.fromLogin(account!.name, key, "active");
           keys = generateKeys(activeUser!, key);
-          // if (!_.isEmpty(privateKeys)) {
-          //   const updatedUser: User = { ...currentUser[0], ...(privateKeys as object) };
-          //   updateUser(activeUser!, updatedUser);
-          //   setStep(4);
-          //   getKeys();
-          // }
         } else {
           const actKey = publicActiveKey.includes(
             PrivateKey.fromString(key).createPublic().toString()
@@ -269,12 +248,7 @@ export default function ManageAuthorities(props: Props) {
           thePrivateKey = PrivateKey.fromString(key);
           const activeKey = thePrivateKey.toString();
           if (activeKey === key && keyType === Type.Active && actKey) {
-            console.log("Active key");
             keys = { active: activeKey };
-            // const updatedUser: User = { ...currentUser[0], active: activeKey };
-            // updateUser(activeUser!, updatedUser);
-            // setStep(4);
-            // getKeys();
           } else {
             error(_t("manage-authorities.error-wrong-key"));
           }
@@ -282,9 +256,6 @@ export default function ManageAuthorities(props: Props) {
 
         // Generate public key from the private key
         const activePublicInput = thePrivateKey.createPublic().toString();
-        console.log(activePublicInput);
-        console.log(publicActiveKey);
-        console.log(!publicActiveKey.includes(activePublicInput));
 
         // Compare keys
         if (!publicActiveKey.includes(activePublicInput)) {
@@ -294,12 +265,11 @@ export default function ManageAuthorities(props: Props) {
       }
     }
     const pKeys = currentUser[0].privateKeys;
-    console.log(pKeys);
+
     const updatedUser: User = {
       ...currentUser[0],
       ...{ ...{ privateKeys: { ...pKeys, ...keys } } }
     };
-    console.log(updatedUser);
     updateUser(activeUser!, updatedUser);
     setStep(4);
     getKeys();
@@ -510,7 +480,7 @@ export default function ManageAuthorities(props: Props) {
                 >
                   {_t("manage-authorities.copy")}
                 </Button>
-                {privateKeys["owner"] ? (
+                {privateKeys?.owner! ? (
                   <Button
                     className="reveal-btn"
                     variant="outline-primary"
@@ -550,7 +520,7 @@ export default function ManageAuthorities(props: Props) {
                 >
                   {_t("manage-authorities.copy")}
                 </Button>
-                {privateKeys["active"] ? (
+                {privateKeys?.active! ? (
                   <Button
                     className="reveal-btn"
                     variant="outline-primary"
@@ -590,7 +560,7 @@ export default function ManageAuthorities(props: Props) {
                 >
                   {_t("manage-authorities.copy")}
                 </Button>
-                {privateKeys["posting"] ? (
+                {privateKeys?.posting! ? (
                   <Button
                     className="reveal-btn"
                     variant="outline-primary"
