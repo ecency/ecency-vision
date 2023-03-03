@@ -7,7 +7,7 @@ import { decodeObj, encodeObj } from "../../util/encoder";
 
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
-import { User } from "../../store/users/types";
+import { User, UserKeys } from "../../store/users/types";
 import { Account } from "../../store/accounts/types";
 
 import UserAvatar from "../user-avatar/index";
@@ -54,7 +54,7 @@ export default function ManageAuthorities(props: Props) {
   const [ownerReveal, setOwnerReveal] = useState(true);
   const [activeReveal, setActiveReveal] = useState(true);
   const [postingReveal, setPostingReveal] = useState(true);
-  const [privateKeys, setPrivatekeys] = useState({});
+  const [privateKeys, setPrivatekeys] = useState<UserKeys>({});
   const [account, setAccount] = useState<Account>();
   const [keyType, setKeyType] = useState("");
 
@@ -86,24 +86,19 @@ export default function ManageAuthorities(props: Props) {
 
   const getKeys = () => {
     const { activeUser } = props;
-    const user = ls.getByPrefix("user_").map((x) => {
-      const u = decodeObj(x) as User;
-      return {
-        username: u.username,
-        active: u.active,
-        owner: u.owner,
-        posting: u.posting,
-        memo: u.memo
-      };
-    });
-    const currentUser = user.filter((x) => x.username === activeUser?.username);
+    const currentUser = ls
+      .getByPrefix("user_")
+      .map((x) => {
+        const u = decodeObj(x) as User;
+        return {
+          username: u.username,
+          privateKeys: u.privateKeys!
+        };
+      })
+      .filter((x) => x.username === activeUser?.username);
+
     if (currentUser) {
-      const pKeys = {
-        active: currentUser[0].active,
-        owner: currentUser[0].owner,
-        posting: currentUser[0].posting
-      };
-      setPrivatekeys(pKeys);
+      setPrivatekeys(currentUser[0].privateKeys);
     }
   };
 

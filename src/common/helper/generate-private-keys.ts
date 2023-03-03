@@ -3,10 +3,11 @@ import { formatError } from "../api/operations";
 import { error } from "../components/feedback";
 import { _t } from "../i18n";
 import { ActiveUser } from "../store/active-user/types";
+import { UserKeys } from "../store/users/types";
 
-export const generateKeys = (activeUser: ActiveUser, password: string) => {
+export const generateKeys = (activeUser: ActiveUser, password: string): UserKeys => {
   if (!activeUser.data.__loaded) {
-    return;
+    return {};
   }
 
   const newPrivateKeys = { active: "", memo: "", owner: "", posting: "" };

@@ -14,7 +14,7 @@ import { AppWindow } from "../../../client/window";
 
 import { Global } from "../../store/global/types";
 import { UI } from "../../store/ui/types";
-import { User } from "../../store/users/types";
+import { User, UserKeys } from "../../store/users/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { ToggleType } from "../../store/ui/types";
@@ -500,10 +500,12 @@ export class Login extends BaseComponent<LoginProps, State> {
     this.stateSet({ inProgress: true });
 
     const { doLogin } = this.props;
+
     const generateKeysAfterLogin = (activeUser: ActiveUser) => {
       //decode user object.
       var user = ls.getByPrefix("user_").map((x) => {
         const u = decodeObj(x) as User;
+
         return {
           username: u.username,
           refreshToken: u.refreshToken,
@@ -512,22 +514,25 @@ export class Login extends BaseComponent<LoginProps, State> {
           postingKey: u.postingKey
         };
       });
+
       var currentUser = user.filter((x) => x.username === activeUser?.username);
       //generate and store private keys in case of login with password.
+      var keys: UserKeys = {};
+
       if (isPlainPassword) {
-        const privateKeys = generateKeys(activeUser!, key);
-        const updatedUser: User = { ...currentUser[0], ...privateKeys };
-        addUser(updatedUser);
+        keys = generateKeys(activeUser!, key);
       } else {
         if (withPostingKey) {
-          const updatedUser: User = { ...currentUser[0], posting: thePrivateKey.toString() };
-          addUser(updatedUser);
+          keys = { posting: thePrivateKey.toString() };
         } else {
-          const updatedUser: User = { ...currentUser[0], active: thePrivateKey.toString() };
-          addUser(updatedUser);
+          keys = { active: thePrivateKey.toString() };
         }
       }
+
+      const updatedUser: User = { ...currentUser[0], ...{ privateKeys: keys } };
+      addUser(updatedUser);
     };
+
     doLogin(code, withPostingKey ? key : null, account)
       .then(() => {
         generateKeysAfterLogin(this.props.activeUser!);
