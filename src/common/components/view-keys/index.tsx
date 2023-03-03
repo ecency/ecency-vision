@@ -8,7 +8,6 @@ import { success } from "../feedback";
 
 import { _t } from "../../i18n";
 import _ from "lodash";
-import * as ls from "../../util/local-storage";
 import { copyContent } from "../../img/svg";
 import truncate from "../../util/truncate";
 import { generateKeys } from "../../helper/generate-private-keys";

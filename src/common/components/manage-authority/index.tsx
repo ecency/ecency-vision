@@ -15,11 +15,12 @@ import { error, success } from "../feedback";
 import keyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
 
-import { _t } from "../../i18n";
-import _ from "lodash";
 import { formatError, Revoke, RevokeHot, RevokeKc } from "../../api/operations";
 import { getAccounts } from "../../api/hive";
 import { generateKeys } from "../../helper/generate-private-keys";
+
+import { _t } from "../../i18n";
+import _ from "lodash";
 
 interface Props {
   global: Global;
@@ -27,6 +28,12 @@ interface Props {
   signingKey: string;
   setSigningKey: (key: string) => void;
 }
+
+const Type = {
+  Owner: "owner",
+  Active: "active",
+  Posting: "posting"
+};
 
 export default function ManageAuthorities(props: Props) {
   const [postingsAuthority, setPostingsAuthority] = useState<Array<any>>([]);
@@ -129,30 +136,27 @@ export default function ManageAuthorities(props: Props) {
     success(_t("manage-authorities.copied"));
   };
 
-  const onKey = (key: PrivateKey): void => {
-    setInProgress(true);
-    const promise = Revoke(
-      props.activeUser!.username,
-      weight,
-      newPostingsAuthority,
-      [posting],
-      memokey,
-      "",
-      key
-    );
-    promise
-      .then((resp) => {
-        if (resp.id) {
-          setKeyDialog(true);
-          setStep(2);
-        }
-      })
-      .catch((err) => {
-        error(...formatError(err));
-      })
-      .finally(() => {
-        setInProgress(false);
-      });
+  const onKey = async (key: PrivateKey) => {
+    try {
+      setInProgress(true);
+      const resp = await Revoke(
+        props.activeUser!.username,
+        weight,
+        newPostingsAuthority,
+        [posting],
+        memokey,
+        "",
+        key
+      );
+      if (resp.id) {
+        setKeyDialog(true);
+        setStep(2);
+      }
+    } catch (err) {
+      error(...formatError(err));
+    } finally {
+      setInProgress(false);
+    }
   };
 
   const onHot = () => {
@@ -178,6 +182,7 @@ export default function ManageAuthorities(props: Props) {
   const updateUser = (activeUser: ActiveUser, updatedUser: User) => {
     ls.set(`user_${activeUser!.username}`, encodeObj(updatedUser));
   };
+
   const handleSubmit = () => {
     const { activeUser } = props;
     //decode user object.
@@ -223,7 +228,7 @@ export default function ManageAuthorities(props: Props) {
     ) {
       thePrivateKey = PrivateKey.fromString(key);
       const ownerKey = thePrivateKey.toString();
-      if (ownerKey === key && keyType === "owner") {
+      if (ownerKey === key && keyType === Type.Owner) {
         const updatedUser: User = { ...currentUser[0], owner: ownerKey };
         updateUser(activeUser!, updatedUser);
         setStep(4);
@@ -242,7 +247,7 @@ export default function ManageAuthorities(props: Props) {
       withPostingKey = true;
       thePrivateKey = PrivateKey.fromString(key);
       const postingKey = thePrivateKey.toString();
-      if (postingKey === key && keyType === "posting") {
+      if (postingKey === key && keyType === Type.Posting) {
         const updatedUser: User = { ...currentUser[0], posting: postingKey };
         updateUser(activeUser!, updatedUser);
         setStep(4);
@@ -268,7 +273,7 @@ export default function ManageAuthorities(props: Props) {
         );
         thePrivateKey = PrivateKey.fromString(key);
         const activeKey = thePrivateKey.toString();
-        if (activeKey === key && keyType === "active" && actKey) {
+        if (activeKey === key && keyType === Type.Active && actKey) {
           const updatedUser: User = { ...currentUser[0], active: activeKey };
           updateUser(activeUser!, updatedUser);
           setStep(4);
@@ -508,7 +513,7 @@ export default function ManageAuthorities(props: Props) {
                   <Button
                     className="import-btn"
                     variant="outline-primary"
-                    onClick={() => handleImportBtn("owner")}
+                    onClick={() => handleImportBtn(Type.Owner)}
                   >
                     {_t("manage-authorities.import")}
                   </Button>
@@ -548,7 +553,7 @@ export default function ManageAuthorities(props: Props) {
                   <Button
                     className="import-btn"
                     variant="outline-primary"
-                    onClick={() => handleImportBtn("active")}
+                    onClick={() => handleImportBtn(Type.Active)}
                   >
                     {_t("manage-authorities.import")}
                   </Button>
@@ -588,7 +593,7 @@ export default function ManageAuthorities(props: Props) {
                   <Button
                     className="import-btn"
                     variant="outline-primary"
-                    onClick={() => handleImportBtn("posting")}
+                    onClick={() => handleImportBtn(Type.Posting)}
                   >
                     {_t("manage-authorities.import")}
                   </Button>
