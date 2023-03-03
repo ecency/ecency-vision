@@ -2,8 +2,8 @@ import { PrivateKey } from "@hiveio/dhive";
 
 export interface UserKeys {
   owner?: string;
-  active?: string | PrivateKey;
-  posting?: string | PrivateKey;
+  active?: string;
+  posting?: string;
   memo?: string;
 }
 export interface User {

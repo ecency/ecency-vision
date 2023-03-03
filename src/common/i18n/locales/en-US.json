@@ -1501,7 +1501,8 @@
     "reveal-private-key": "Reveal private key",
     "submit": "Submit",
     "error-fields-required": "Please enter private key",
-    "error-wrong-key": "Please enter correct private key"
+    "error-wrong-key": "Please enter correct private key",
+    "password-label": "Master password/Private key"
   },
   "add-image": {
     "title": "Add Image",

@@ -96,13 +96,13 @@ export default function ManageAuthorities(props: Props) {
         };
       })
       .filter((x) => x.username === activeUser?.username);
-
     if (currentUser) {
       setPrivatekeys(currentUser[0].privateKeys);
     }
   };
 
   const handleRevoke = (account: string) => {
+    console.log(privateKeys);
     setTargetAccount(account);
     setKeyDialog(true);
     setStep(1);
@@ -181,22 +181,21 @@ export default function ManageAuthorities(props: Props) {
   const handleSubmit = () => {
     const { activeUser } = props;
     //decode user object.
-    var user = ls.getByPrefix("user_").map((x) => {
-      const u = decodeObj(x) as User;
-      return {
-        username: u.username,
-        refreshToken: u.refreshToken,
-        accessToken: u.accessToken,
-        expiresIn: u.expiresIn,
-        postingKey: u.postingKey,
-        owner: u.owner,
-        active: u.active,
-        posting: u.posting,
-        memo: u.memo
-      };
-    });
-    var currentUser = user.filter((x) => x.username === props.activeUser?.username);
-
+    const currentUser = ls
+      .getByPrefix("user_")
+      .map((x) => {
+        const u = decodeObj(x) as User;
+        return {
+          username: u.username,
+          refreshToken: u.refreshToken,
+          accessToken: u.accessToken,
+          expiresIn: u.expiresIn,
+          postingKey: u.postingKey,
+          privateKeys: u.privateKeys
+        };
+      })
+      .filter((x) => x.username === props.activeUser?.username);
+    console.log(currentUser);
     if (key === "") {
       error(_t("manage-authorities.error-fields-required"));
       return;
@@ -216,6 +215,7 @@ export default function ManageAuthorities(props: Props) {
 
     // Whether using posting private key to login
     let withPostingKey = false;
+    var keys: UserKeys = {};
 
     if (
       !isPlainPassword &&
@@ -224,69 +224,85 @@ export default function ManageAuthorities(props: Props) {
       thePrivateKey = PrivateKey.fromString(key);
       const ownerKey = thePrivateKey.toString();
       if (ownerKey === key && keyType === Type.Owner) {
-        const updatedUser: User = { ...currentUser[0], owner: ownerKey };
-        updateUser(activeUser!, updatedUser);
-        setStep(4);
-        getKeys();
-      } else {
-        error(_t("manage-authorities.error-wrong-key"));
-      }
-      return;
-    }
-
-    if (
-      !isPlainPassword &&
-      publicPostingKey.includes(PrivateKey.fromString(key).createPublic().toString())
-    ) {
-      // Login with posting private key
-      withPostingKey = true;
-      thePrivateKey = PrivateKey.fromString(key);
-      const postingKey = thePrivateKey.toString();
-      if (postingKey === key && keyType === Type.Posting) {
-        const updatedUser: User = { ...currentUser[0], posting: postingKey };
-        updateUser(activeUser!, updatedUser);
-        setStep(4);
-        getKeys();
+        keys = { owner: ownerKey };
+        // const updatedUser: User = { ...currentUser[0], owner: ownerKey };
+        // updateUser(activeUser!, updatedUser);
+        // setStep(4);
+        // getKeys();
       } else {
         error(_t("manage-authorities.error-wrong-key"));
       }
     } else {
-      // Login with master or active private key
-      // Get active private key from user entered code
-      if (isPlainPassword) {
-        thePrivateKey = PrivateKey.fromLogin(account!.name, key, "active");
-        const privateKeys = generateKeys(activeUser!, key);
-        if (!_.isEmpty(privateKeys)) {
-          const updatedUser: User = { ...currentUser[0], ...(privateKeys as object) };
-          updateUser(activeUser!, updatedUser);
-          setStep(4);
-          getKeys();
-        }
-      } else {
-        const actKey = publicActiveKey.includes(
-          PrivateKey.fromString(key).createPublic().toString()
-        );
+      if (
+        !isPlainPassword &&
+        publicPostingKey.includes(PrivateKey.fromString(key).createPublic().toString())
+      ) {
+        // Login with posting private key
+        withPostingKey = true;
         thePrivateKey = PrivateKey.fromString(key);
-        const activeKey = thePrivateKey.toString();
-        if (activeKey === key && keyType === Type.Active && actKey) {
-          const updatedUser: User = { ...currentUser[0], active: activeKey };
-          updateUser(activeUser!, updatedUser);
-          setStep(4);
-          getKeys();
+        const postingKey = thePrivateKey.toString();
+        if (postingKey === key && keyType === Type.Posting) {
+          keys = { posting: postingKey };
+          // const updatedUser: User = { ...currentUser[0], posting: postingKey };
+          // updateUser(activeUser!, updatedUser);
+          // setStep(4);
+          // getKeys();
         } else {
           error(_t("manage-authorities.error-wrong-key"));
         }
-      }
+      } else {
+        // Login with master or active private key
+        // Get active private key from user entered code
+        if (isPlainPassword) {
+          thePrivateKey = PrivateKey.fromLogin(account!.name, key, "active");
+          keys = generateKeys(activeUser!, key);
+          // if (!_.isEmpty(privateKeys)) {
+          //   const updatedUser: User = { ...currentUser[0], ...(privateKeys as object) };
+          //   updateUser(activeUser!, updatedUser);
+          //   setStep(4);
+          //   getKeys();
+          // }
+        } else {
+          const actKey = publicActiveKey.includes(
+            PrivateKey.fromString(key).createPublic().toString()
+          );
+          thePrivateKey = PrivateKey.fromString(key);
+          const activeKey = thePrivateKey.toString();
+          if (activeKey === key && keyType === Type.Active && actKey) {
+            console.log("Active key");
+            keys = { active: activeKey };
+            // const updatedUser: User = { ...currentUser[0], active: activeKey };
+            // updateUser(activeUser!, updatedUser);
+            // setStep(4);
+            // getKeys();
+          } else {
+            error(_t("manage-authorities.error-wrong-key"));
+          }
+        }
 
-      // Generate public key from the private key
-      const activePublicInput = thePrivateKey.createPublic().toString();
+        // Generate public key from the private key
+        const activePublicInput = thePrivateKey.createPublic().toString();
+        console.log(activePublicInput);
+        console.log(publicActiveKey);
+        console.log(!publicActiveKey.includes(activePublicInput));
 
-      // Compare keys
-      if (!publicActiveKey.includes(activePublicInput)) {
-        error(_t("login.error-authenticate")); // enter master or active key
-        return;
+        // Compare keys
+        if (!publicActiveKey.includes(activePublicInput)) {
+          error(_t("login.error-authenticate")); // enter master or active key
+          return;
+        }
       }
     }
+    const pKeys = currentUser[0].privateKeys;
+    console.log(pKeys);
+    const updatedUser: User = {
+      ...currentUser[0],
+      ...{ ...{ privateKeys: { ...pKeys, ...keys } } }
+    };
+    console.log(updatedUser);
+    updateUser(activeUser!, updatedUser);
+    setStep(4);
+    getKeys();
   };
 
   const passwordModal = () => {
@@ -302,7 +318,7 @@ export default function ManageAuthorities(props: Props) {
         {inProgress && <LinearProgress />}
         <div className="curr-password">
           <Form.Group controlId="formPlaintextPassword">
-            <Form.Label>Master password/Private key</Form.Label>
+            <Form.Label>{_t("manage-authorities.password-label")}</Form.Label>
             <Form.Control
               value={key}
               placeholder="Enter Master pasword/private key"
@@ -480,7 +496,7 @@ export default function ManageAuthorities(props: Props) {
           )}
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.owner")}</td>
-            <td className="key">{ownerReveal ? publicOwnerKey : privateKeys["owner"]}</td>
+            <td className="key">{ownerReveal ? publicOwnerKey : privateKeys?.owner!}</td>
             <td>
               <p className="action-btns">
                 <Button
@@ -489,7 +505,7 @@ export default function ManageAuthorities(props: Props) {
                   onClick={() =>
                     ownerReveal
                       ? copyToClipboard(publicOwnerKey)
-                      : copyToClipboard(privateKeys["owner"])
+                      : copyToClipboard(privateKeys?.owner!)
                   }
                 >
                   {_t("manage-authorities.copy")}
@@ -520,7 +536,7 @@ export default function ManageAuthorities(props: Props) {
           </tr>
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.active")}</td>
-            <td className="key">{activeReveal ? publicActiveKey : privateKeys["active"]}</td>
+            <td className="key">{activeReveal ? publicActiveKey : privateKeys?.active!}</td>
             <td className="action-btns">
               <p>
                 <Button
@@ -529,7 +545,7 @@ export default function ManageAuthorities(props: Props) {
                   onClick={() => {
                     activeReveal
                       ? copyToClipboard(publicActiveKey)
-                      : copyToClipboard(privateKeys["active"]);
+                      : copyToClipboard(privateKeys?.active!);
                   }}
                 >
                   {_t("manage-authorities.copy")}
@@ -560,7 +576,7 @@ export default function ManageAuthorities(props: Props) {
           </tr>
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.posting")}</td>
-            <td className="key">{postingReveal ? publicPostingKey : privateKeys["posting"]}</td>
+            <td className="key">{postingReveal ? publicPostingKey : privateKeys?.posting!}</td>
             <td className="action-btns">
               <p>
                 <Button
@@ -569,7 +585,7 @@ export default function ManageAuthorities(props: Props) {
                   onClick={() =>
                     postingReveal
                       ? copyToClipboard(publicPostingKey)
-                      : copyToClipboard(privateKeys["posting"])
+                      : copyToClipboard(privateKeys?.posting!)
                   }
                 >
                   {_t("manage-authorities.copy")}
