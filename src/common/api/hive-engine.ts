@@ -192,7 +192,7 @@ export const getMarketData = async (symbol: any) => {
 export async function getTransactions(symbol: string, account: string, limit: number, offset?: number): Promise<any> {
   const url: any = engine.mainTransactionUrl;
   return axios({
-    url: url,
+    url,
     method: "GET",
     params: {
       account,
@@ -208,7 +208,7 @@ export async function getTransactions(symbol: string, account: string, limit: nu
 export async function getOtherTransactions(account: string, limit: number, symbol: string, offset: number = 0) {
   const url: any = engine.otherTransactionsUrl;
   const response = await axios({
-    url: url,
+    url,
     method: "GET",
     params: {
       account,
