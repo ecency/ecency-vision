@@ -67,11 +67,11 @@ const handleChainError = (strErr: string): [string | null, ErrorTypes] => {
   if (/You may only post once every/.test(strErr)) {
     return [_t("chain-error.min-root-comment"), ErrorTypes.COMMON];
   } else if (/Your current vote on this comment is identical/.test(strErr)) {
-    return [_t("chain-error.identical-vote"), ErrorTypes.COMMON];
+    return [_t("chain-error.identical-vote"), ErrorTypes.INFO];
   } else if (/Please wait to transact, or power up/.test(strErr)) {
     return [_t("chain-error.insufficient-resource"), ErrorTypes.INSUFFICIENT_RESOURCE_CREDITS];
   } else if (/Cannot delete a comment with net positive/.test(strErr)) {
-    return [_t("chain-error.delete-comment-with-vote"), ErrorTypes.COMMON];
+    return [_t("chain-error.delete-comment-with-vote"), ErrorTypes.INFO];
   } else if (/children == 0/.test(strErr)) {
     return [_t("chain-error.comment-children"), ErrorTypes.COMMON];
   } else if (/comment_cashout/.test(strErr)) {
@@ -79,7 +79,9 @@ const handleChainError = (strErr: string): [string | null, ErrorTypes] => {
   } else if (/Votes evaluating for comment that is paid out is forbidden/.test(strErr)) {
     return [_t("chain-error.paid-out-post-forbidden"), ErrorTypes.COMMON];
   } else if (/Missing Active Authority/.test(strErr)) {
-    return [_t("chain-error.missing-authority"), ErrorTypes.COMMON];
+    return [_t("chain-error.missing-authority"), ErrorTypes.INFO];
+  } else if (/Missing Owner Authority/.test(strErr)) {
+    return [_t("chain-error.missing-owner-authority"), ErrorTypes.INFO];
   }
 
   return [null, ErrorTypes.COMMON];
@@ -313,7 +315,7 @@ export const changeRecoveryAccountKc = (
     }
   ];
 
-  return keychain.broadcast(account_to_recover, [op], "Active");
+  return keychain.broadcast(account_to_recover, [op], "Owner");
 };
 
 export const follow = (follower: string, following: string): Promise<TransactionConfirmation> => {

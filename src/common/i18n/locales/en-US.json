@@ -1421,8 +1421,8 @@
     "to-not-found": "The user that you are tyring to set, does not exist!",
     "sign-title": "Sign transaction",
     "sign-sub-title": "Sign your transaction",
-    "success-message": "Your new change recovery agent request is effective after 30 days",
-    "info-message": "Your request is in progress. Doing this again will update existing request"
+    "success-message": "New recovery agent is effective after 30 days",
+    "info-message": "Recovery agent change is already in progress. Update existing request?!"
   },
   "add-image": {
     "title": "Add Image",
@@ -1618,7 +1618,8 @@
     "comment-cashout": "Content after their payout cannot be deleted.",
     "comment-children": "Cannot delete a content with replies.",
     "paid-out-post-forbidden": "Voting for paid out content is not available.",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "This operation requires Active private key or authority.",
+    "missing-owner-authority": "This operation requires Owner private key or authority."
   },
   "landing-page": {
     "welcome-text": "Welcome to Ecency!",
