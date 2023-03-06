@@ -49,7 +49,7 @@ import defaults from "../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
 import { match } from "react-router-dom";
 import { getPost } from "../../api/bridge";
-import { SearchResult } from "../../api/search-api";
+import "./_index.scss";
 
 setProxyBase(defaults.imageServer);
 

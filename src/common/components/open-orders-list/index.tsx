@@ -18,6 +18,7 @@ import MyPagination from "../pagination";
 import { getOpenOrder, OpenOrdersData } from "../../api/hive";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { AssetSymbol } from "@hiveio/dhive";
+import "./_index.scss";
 
 interface Props {
   global: Global;

@@ -10,6 +10,7 @@ import Link from "../alink";
 import { apiBase } from "../../api/helper";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import isElectron from "../../util/is-electron";
+import "./_index.scss";
 
 export default (props: any) => {
   const { global } = props;

@@ -30,6 +30,7 @@ import _c from "../../util/fix-class-names";
 import { _t } from "../../i18n";
 
 import { heartSvg } from "../../img/svg";
+import "./_index.scss";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   // const totalPayout =

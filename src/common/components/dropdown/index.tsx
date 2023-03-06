@@ -3,6 +3,7 @@ import { History } from "history";
 
 import { menuDownSvg } from "../../img/svg";
 import _c from "../../util/fix-class-names";
+import "./_index.scss";
 
 export interface MenuItem {
   label: string | JSX.Element;

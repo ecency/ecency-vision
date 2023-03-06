@@ -10,6 +10,7 @@ import { useParams } from "react-router";
 import { getAccount } from "../../api/hive";
 import { Account } from "../../store/accounts/types";
 import Tooltip from "../tooltip";
+import "./index.scss";
 
 interface Props {
   addAccount: (data: Account) => void;

@@ -25,6 +25,7 @@ import SearchQuery, { SearchType } from "../../helper/search-query";
 import { search, SearchResult } from "../../api/search-api";
 
 import { _t } from "../../i18n";
+import "./_index.scss";
 
 enum SearchSort {
   POPULARITY = "popularity",

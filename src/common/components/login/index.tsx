@@ -46,6 +46,7 @@ import _c from "../../util/fix-class-names";
 import { deleteForeverSvg } from "../../img/svg";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
+import "./_index.scss";
 
 declare var window: AppWindow;
 

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Global } from "../../store/global/types";
 
 import defaults from "../../constants/defaults.json";
+import "./_index.scss";
 
 interface Props {
   global: Global;

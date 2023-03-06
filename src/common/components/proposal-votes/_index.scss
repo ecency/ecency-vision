@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .proposal-votes-dialog {
   .modal-content {
     padding-left: 1.5rem;

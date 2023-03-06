@@ -24,6 +24,7 @@ import truncate from "../../util/truncate";
 import formattedNumber from "../../util/formatted-number";
 
 import defaults from "../../constants/defaults.json";
+import "./_index.scss";
 
 interface Props {
   history: History;

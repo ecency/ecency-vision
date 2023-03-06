@@ -17,6 +17,7 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 import { bookmarkOutlineSvg, bookmarkSvg } from "../../img/svg";
+import "./_index.scss";
 
 export interface Props {
   entry: Entry;

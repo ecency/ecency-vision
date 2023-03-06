@@ -17,6 +17,7 @@ import { error } from "../feedback";
 import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
+import "./_index.scss";
 
 interface DialogProps {
   entry: Entry;

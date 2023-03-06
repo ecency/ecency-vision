@@ -7,6 +7,7 @@ import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import { History } from "history";
 import { Global } from "../../store/global/types";
+import "./wallet-spk-delegated-power-dialog.scss";
 
 interface Props {
   show: boolean;

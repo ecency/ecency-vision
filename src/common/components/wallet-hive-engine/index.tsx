@@ -16,6 +16,7 @@ import { SortEngineTokens } from "../sort-hive-engine-tokens";
 import { EngineTokensEstimated } from "../engine-tokens-estimated";
 import Transfer, { TransferMode } from "../transfer-he";
 import { error, success } from "../feedback";
+import "./_index.scss";
 
 import {
   claimRewards,

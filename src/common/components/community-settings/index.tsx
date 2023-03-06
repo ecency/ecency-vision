@@ -17,6 +17,7 @@ import { updateCommunity, formatError } from "../../api/operations";
 
 import { _t } from "../../i18n";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
+import "./_index.scss";
 
 const langOpts = [
   { id: "af", name: "Afrikaans" },

@@ -14,6 +14,7 @@ import { Global } from "../../store/global/types";
 import { MarketSwapFormHeader } from "./market-swap-form-header";
 import { checkSvg, swapSvg } from "../../img/svg";
 import { MarketSwapFormSuccess } from "./market-swap-form-success";
+import "./index.scss";
 
 export interface Props {
   activeUser: ActiveUser | null;

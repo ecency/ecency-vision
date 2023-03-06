@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
-import { Form, Modal, Pagination } from "react-bootstrap";
+import { Form, Modal } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -36,6 +36,7 @@ import formattedNumber from "../../util/formatted-number";
 
 import _c from "../../util/fix-class-names";
 import MyPagination from "../pagination";
+import "./_index.scss";
 
 interface Props {
   history: History;

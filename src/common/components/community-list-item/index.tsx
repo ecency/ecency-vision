@@ -24,6 +24,7 @@ import defaults from "../../constants/defaults.json";
 import { _t } from "../../i18n";
 
 import formattedNumber from "../../util/formatted-number";
+import "./_index.scss";
 
 interface Props {
   history: History;

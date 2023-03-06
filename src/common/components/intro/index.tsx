@@ -7,9 +7,7 @@ import { Global } from "../../store/global/types";
 import { _t } from "../../i18n";
 
 import { closeSvg } from "../../img/svg";
-
-// const friends = require('../../img/welcome_community.png');
-// const friendsWebp = require('../../img/welcome_community.webp');
+import "./_index.scss";
 
 interface Props {
   global: Global;

@@ -7,6 +7,8 @@ import { FeedbackModal } from "../feedback-modal";
 import { ErrorTypes } from "../../enums";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
+import "./_index.scss";
+
 export const error = (message: string, errorType = ErrorTypes.COMMON) => {
   const detail: ErrorFeedbackObject = {
     id: random(),

@@ -21,6 +21,7 @@ import _c from "../../util/fix-class-names";
 import { vestsToHp } from "../../helper/vesting";
 import formattedNumber from "../../util/formatted-number";
 import { getAccounts } from "../../api/hive";
+import "./_index.scss";
 
 interface Props {
   global: Global;
