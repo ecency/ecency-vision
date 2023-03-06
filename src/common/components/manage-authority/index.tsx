@@ -102,7 +102,6 @@ export default function ManageAuthorities(props: Props) {
   };
 
   const handleRevoke = (account: string) => {
-    console.log(privateKeys);
     setTargetAccount(account);
     setKeyDialog(true);
     setStep(1);
@@ -189,7 +188,7 @@ export default function ManageAuthorities(props: Props) {
       })
       .filter((x) => x.username === props.activeUser?.username);
 
-    if (key === "") {
+    if (!key.length) {
       error(_t("manage-authorities.error-fields-required"));
       return;
     }
@@ -200,42 +199,82 @@ export default function ManageAuthorities(props: Props) {
       return;
     } catch (e) {}
 
-    // Posting public key of the account
-
     const isPlainPassword = !cryptoUtils.isWif(key);
 
     let thePrivateKey!: PrivateKey;
-    console.log(isPlainPassword);
-
-    // Whether using posting private key to login
-    let withPostingKey = false;
     var keys: UserKeys = {};
-    // if (isPlainPassword) {
-    //   console.log("plain password entered");
-    //   thePrivateKey = PrivateKey.fromLogin(account!.name, key, "active");
-    //   keys = generateKeys(activeUser!, key);
-    //   console.log(thePrivateKey);
-    //   const activePublicInput = thePrivateKey.createPublic().toString();
-    //   if (!publicActiveKey.includes(activePublicInput)) {
-    //     error(_t("login.error-authenticate")); // enter master or active key
+
+    if (isPlainPassword) {
+      thePrivateKey = PrivateKey.fromLogin(account!.name, key, "active");
+      keys = generateKeys(activeUser!, key);
+      const activePublicInput = thePrivateKey.createPublic().toString();
+      if (!publicActiveKey.includes(activePublicInput)) {
+        error(_t("login.error-authenticate")); // enter master or active key
+        return;
+      }
+    } else {
+      if (publicOwnerKey.includes(PrivateKey.fromString(key).createPublic().toString())) {
+        thePrivateKey = PrivateKey.fromString(key);
+        const ownerKey = thePrivateKey.toString();
+        if (ownerKey === key && keyType === Type.Owner) {
+          keys = { owner: ownerKey };
+        } else {
+          error(_t("manage-authorities.error-wrong-key"));
+          return;
+        }
+      } else if (publicPostingKey.includes(PrivateKey.fromString(key).createPublic().toString())) {
+        thePrivateKey = PrivateKey.fromString(key);
+        const postingKey = thePrivateKey.toString();
+        if (postingKey === key && keyType === Type.Posting) {
+          keys = { posting: postingKey };
+        } else {
+          error(_t("manage-authorities.error-wrong-key"));
+          return;
+        }
+      } else {
+        if (publicActiveKey.includes(PrivateKey.fromString(key).createPublic().toString())) {
+          thePrivateKey = PrivateKey.fromString(key);
+          const activeKey = thePrivateKey.toString();
+          if (activeKey === key && keyType === Type.Active) {
+            keys = { active: activeKey };
+          } else {
+            error(_t("manage-authorities.error-wrong-key"));
+            return;
+          }
+        } else {
+          error(_t("manage-authorities.error-wrong-key"));
+          return;
+        }
+      }
+    }
+
+    const pKeys = currentUser[0].privateKeys;
+    const updatedUser: User = {
+      ...currentUser[0],
+      ...{ ...{ privateKeys: { ...pKeys, ...keys } } }
+    };
+    updateUser(activeUser!, updatedUser);
+    setStep(4);
+    getKeys();
+
+    // if (
+    //   !isPlainPassword &&
+    //   publicOwnerKey.includes(PrivateKey.fromString(key).createPublic().toString())
+    // ) {
+    //   thePrivateKey = PrivateKey.fromString(key);
+    //   const ownerKey = thePrivateKey.toString();
+    //   if (ownerKey === key && keyType === Type.Owner) {
+    //     keys = { owner: ownerKey };
+    //   } else {
+    //     error(_t("manage-authorities.error-wrong-key"));
     //     return;
     //   }
     // } else {
     //   if (
-    //     publicOwnerKey.includes(PrivateKey.fromString(key).createPublic().toString())
+    //     !isPlainPassword &&
+    //     publicPostingKey.includes(PrivateKey.fromString(key).createPublic().toString())
     //   ) {
-    //     console.log("owner key enetered");
-    //     thePrivateKey = PrivateKey.fromString(key);
-    //     const ownerKey = thePrivateKey.toString();
-    //     console.log(ownerKey);
-    //     if (ownerKey === key && keyType === Type.Owner) {
-    //       keys = { owner: ownerKey };
-    //     } else {
-    //       error(_t("manage-authorities.error-wrong-key"));
-    //       return;
-    //     }
-    //   } else if (publicPostingKey.includes(PrivateKey.fromString(key).createPublic().toString())) {
-    //     console.log("posting key enetered");
+    //     // Login with posting private key
     //     withPostingKey = true;
     //     thePrivateKey = PrivateKey.fromString(key);
     //     const postingKey = thePrivateKey.toString();
@@ -246,21 +285,36 @@ export default function ManageAuthorities(props: Props) {
     //       return;
     //     }
     //   } else {
-    //     if (publicActiveKey.includes(PrivateKey.fromString(key).createPublic().toString())) {
-    //       console.log("active key enetered");
+    //     // Login with master or active private key
+    //     // Get active private key from user entered code
+    //     if (isPlainPassword) {
+    //       thePrivateKey = PrivateKey.fromLogin(account!.name, key, "active");
+    //       keys = generateKeys(activeUser!, key);
+    //     } else {
+    //       const actKey = publicActiveKey.includes(
+    //         PrivateKey.fromString(key).createPublic().toString()
+    //       );
     //       thePrivateKey = PrivateKey.fromString(key);
     //       const activeKey = thePrivateKey.toString();
-    //       if (activeKey === key && keyType === Type.Active) {
+    //       if (activeKey === key && keyType === Type.Active && actKey) {
     //         keys = { active: activeKey };
     //       } else {
     //         error(_t("manage-authorities.error-wrong-key"));
     //         return;
     //       }
     //     }
+
+    //     // Generate public key from the private key
+    //     const activePublicInput = thePrivateKey.createPublic().toString();
+    //     // Compare keys
+    //     if (!publicActiveKey.includes(activePublicInput)) {
+    //       error(_t("login.error-authenticate")); // enter master or active key
+    //       return;
+    //     }
     //   }
     // }
-
     // const pKeys = currentUser[0].privateKeys;
+
     // const updatedUser: User = {
     //   ...currentUser[0],
     //   ...{ ...{ privateKeys: { ...pKeys, ...keys } } }
@@ -268,72 +322,6 @@ export default function ManageAuthorities(props: Props) {
     // updateUser(activeUser!, updatedUser);
     // setStep(4);
     // getKeys();
-
-    if (
-      !isPlainPassword &&
-      publicOwnerKey.includes(PrivateKey.fromString(key).createPublic().toString())
-    ) {
-      thePrivateKey = PrivateKey.fromString(key);
-      const ownerKey = thePrivateKey.toString();
-      if (ownerKey === key && keyType === Type.Owner) {
-        keys = { owner: ownerKey };
-      } else {
-        error(_t("manage-authorities.error-wrong-key"));
-        return;
-      }
-    } else {
-      if (
-        !isPlainPassword &&
-        publicPostingKey.includes(PrivateKey.fromString(key).createPublic().toString())
-      ) {
-        // Login with posting private key
-        withPostingKey = true;
-        thePrivateKey = PrivateKey.fromString(key);
-        const postingKey = thePrivateKey.toString();
-        if (postingKey === key && keyType === Type.Posting) {
-          keys = { posting: postingKey };
-        } else {
-          error(_t("manage-authorities.error-wrong-key"));
-          return;
-        }
-      } else {
-        // Login with master or active private key
-        // Get active private key from user entered code
-        if (isPlainPassword) {
-          thePrivateKey = PrivateKey.fromLogin(account!.name, key, "active");
-          keys = generateKeys(activeUser!, key);
-        } else {
-          const actKey = publicActiveKey.includes(
-            PrivateKey.fromString(key).createPublic().toString()
-          );
-          thePrivateKey = PrivateKey.fromString(key);
-          const activeKey = thePrivateKey.toString();
-          if (activeKey === key && keyType === Type.Active && actKey) {
-            keys = { active: activeKey };
-          } else {
-            error(_t("manage-authorities.error-wrong-key"));
-            return;
-          }
-        }
-
-        // Generate public key from the private key
-        const activePublicInput = thePrivateKey.createPublic().toString();
-        // Compare keys
-        if (!publicActiveKey.includes(activePublicInput)) {
-          error(_t("login.error-authenticate")); // enter master or active key
-          return;
-        }
-      }
-    }
-    const pKeys = currentUser[0].privateKeys;
-
-    const updatedUser: User = {
-      ...currentUser[0],
-      ...{ ...{ privateKeys: { ...pKeys, ...keys } } }
-    };
-    updateUser(activeUser!, updatedUser);
-    setStep(4);
-    getKeys();
   };
 
   const passwordModal = () => {
