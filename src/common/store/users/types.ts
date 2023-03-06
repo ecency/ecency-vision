@@ -6,6 +6,7 @@ export interface UserKeys {
   posting?: string;
   memo?: string;
 }
+
 export interface User {
   username: string;
   accessToken: string;

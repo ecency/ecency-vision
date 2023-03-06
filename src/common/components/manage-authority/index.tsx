@@ -8,7 +8,8 @@ import { decodeObj, encodeObj } from "../../util/encoder";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 import { User, UserKeys } from "../../store/users/types";
-import { Account } from "../../store/accounts/types";
+
+import { Keytype, AccountDataType } from "./types";
 
 import UserAvatar from "../user-avatar/index";
 import { error, success } from "../feedback";
@@ -29,33 +30,18 @@ interface Props {
   setSigningKey: (key: string) => void;
 }
 
-const Type = {
-  Owner: "owner",
-  Active: "active",
-  Posting: "posting"
-};
-
 export default function ManageAuthorities(props: Props) {
-  const [postingsAuthority, setPostingsAuthority] = useState<Array<any>>([]);
+  const [accountData, setAccountdata] = useState<AccountDataType>();
   const [newPostingsAuthority, setNewPostingsAuthority] = useState<Array<any>>([]);
-  const [posting, setPostingKey] = useState<Array<any>>([]);
-  const [owner, setOwner] = useState<Array<any>>([]);
-  const [active, setActiveKey] = useState<Array<any>>([]);
-  const [weight, setWeight] = useState(0);
   const [step, setStep] = useState(0);
   const [keyDialog, setKeyDialog] = useState(false);
-  const [memokey, setMemoKey] = useState("");
   const [targetAccount, setTargetAccount] = useState("");
   const [inProgress, setInProgress] = useState(false);
   const [key, setKey] = useState("");
-  const [publicOwnerKey, setPublicOwnerKey] = useState<any>();
-  const [publicActiveKey, setPublicActiveKey] = useState<any>();
-  const [publicPostingKey, setPublicPostingKey] = useState<any>();
   const [ownerReveal, setOwnerReveal] = useState(true);
   const [activeReveal, setActiveReveal] = useState(true);
   const [postingReveal, setPostingReveal] = useState(true);
   const [privateKeys, setPrivatekeys] = useState<UserKeys>({});
-  const [account, setAccount] = useState<Account>();
   const [keyType, setKeyType] = useState("");
 
   useEffect(() => {
@@ -67,16 +53,18 @@ export default function ManageAuthorities(props: Props) {
     const response = await getAccounts([props.activeUser!.username]);
     if (response) {
       const resp = response[0];
-      setAccount(response[0]);
-      setWeight(resp.active.weight_threshold);
-      setPostingsAuthority(resp.posting.account_auths);
-      setPostingKey(resp.posting.key_auths[0]);
-      setOwner(resp.owner.key_auths[0]);
-      setActiveKey(resp.active.key_auths[0]);
-      setMemoKey(resp.memo_key);
-      setPublicOwnerKey(resp.owner.key_auths[0][0]);
-      setPublicActiveKey(resp.active.key_auths[0][0]);
-      setPublicPostingKey(resp.posting.key_auths[0][0]);
+      setAccountdata({
+        postingsAuthority: resp.posting.account_auths,
+        posting: resp.posting.key_auths[0],
+        owner: resp.owner.key_auths[0],
+        active: resp.active.key_auths[0],
+        weight: resp.active.weight_threshold,
+        memokey: resp.memo_key,
+        account: response[0],
+        publicOwnerKey: resp.owner.key_auths[0][0],
+        publicActiveKey: resp.active.key_auths[0][0],
+        publicPostingKey: resp.posting.key_auths[0][0]
+      });
     }
   };
 
@@ -105,7 +93,7 @@ export default function ManageAuthorities(props: Props) {
     setTargetAccount(account);
     setKeyDialog(true);
     setStep(1);
-    setNewPostingsAuthority(postingsAuthority.filter((x) => x[0] !== account));
+    setNewPostingsAuthority(accountData!.postingsAuthority.filter((x) => x[0] !== account));
   };
 
   const handleOwnerReveal = () => {
@@ -135,10 +123,10 @@ export default function ManageAuthorities(props: Props) {
       setInProgress(true);
       const resp = await Revoke(
         props.activeUser!.username,
-        weight,
+        accountData!.weight,
         newPostingsAuthority,
-        [posting],
-        memokey,
+        [accountData!.posting],
+        accountData!.memokey,
         "",
         key
       );
@@ -154,12 +142,26 @@ export default function ManageAuthorities(props: Props) {
   };
 
   const onHot = () => {
-    RevokeHot(props.activeUser!.username, weight, newPostingsAuthority, [posting], memokey, "");
+    RevokeHot(
+      props.activeUser!.username,
+      accountData!.weight,
+      newPostingsAuthority,
+      [accountData!.posting],
+      accountData!.memokey,
+      ""
+    );
     setKeyDialog(false);
   };
 
   const onKc = () => {
-    RevokeKc(props.activeUser!.username, weight, newPostingsAuthority, [posting], memokey, "");
+    RevokeKc(
+      props.activeUser!.username,
+      accountData!.weight,
+      newPostingsAuthority,
+      [accountData!.posting],
+      accountData!.memokey,
+      ""
+    );
   };
 
   const finish = () => {
@@ -205,37 +207,45 @@ export default function ManageAuthorities(props: Props) {
     var keys: UserKeys = {};
 
     if (isPlainPassword) {
-      thePrivateKey = PrivateKey.fromLogin(account!.name, key, "active");
+      thePrivateKey = PrivateKey.fromLogin(accountData!.account.name, key, "active");
       keys = generateKeys(activeUser!, key);
       const activePublicInput = thePrivateKey.createPublic().toString();
-      if (!publicActiveKey.includes(activePublicInput)) {
+      if (!accountData!.publicActiveKey.includes(activePublicInput)) {
         error(_t("login.error-authenticate")); // enter master or active key
         return;
       }
     } else {
-      if (publicOwnerKey.includes(PrivateKey.fromString(key).createPublic().toString())) {
+      if (
+        accountData!.publicOwnerKey.includes(PrivateKey.fromString(key).createPublic().toString())
+      ) {
         thePrivateKey = PrivateKey.fromString(key);
         const ownerKey = thePrivateKey.toString();
-        if (ownerKey === key && keyType === Type.Owner) {
+        if (ownerKey === key && keyType === Keytype.Owner) {
           keys = { owner: ownerKey };
         } else {
           error(_t("manage-authorities.error-wrong-key"));
           return;
         }
-      } else if (publicPostingKey.includes(PrivateKey.fromString(key).createPublic().toString())) {
+      } else if (
+        accountData!.publicPostingKey.includes(PrivateKey.fromString(key).createPublic().toString())
+      ) {
         thePrivateKey = PrivateKey.fromString(key);
         const postingKey = thePrivateKey.toString();
-        if (postingKey === key && keyType === Type.Posting) {
+        if (postingKey === key && keyType === Keytype.Posting) {
           keys = { posting: postingKey };
         } else {
           error(_t("manage-authorities.error-wrong-key"));
           return;
         }
       } else {
-        if (publicActiveKey.includes(PrivateKey.fromString(key).createPublic().toString())) {
+        if (
+          accountData!.publicActiveKey.includes(
+            PrivateKey.fromString(key).createPublic().toString()
+          )
+        ) {
           thePrivateKey = PrivateKey.fromString(key);
           const activeKey = thePrivateKey.toString();
-          if (activeKey === key && keyType === Type.Active) {
+          if (activeKey === key && keyType === Keytype.Active) {
             keys = { active: activeKey };
           } else {
             error(_t("manage-authorities.error-wrong-key"));
@@ -467,9 +477,9 @@ export default function ManageAuthorities(props: Props) {
           </tr>
         </thead>
         <tbody>
-          {postingsAuthority && postingsAuthority.length > 0 && (
+          {accountData!.postingsAuthority && accountData!.postingsAuthority.length > 0 && (
             <>
-              {postingsAuthority.map((account, i) => {
+              {accountData!.postingsAuthority.map((account, i) => {
                 return (
                   <>
                     <tr key={i} className="tabl-row">
@@ -515,7 +525,9 @@ export default function ManageAuthorities(props: Props) {
           )}
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.owner")}</td>
-            <td className="key">{ownerReveal ? publicOwnerKey : privateKeys?.owner!}</td>
+            <td className="key">
+              {ownerReveal ? accountData!.publicOwnerKey : privateKeys?.owner!}
+            </td>
             <td>
               <p className="action-btns">
                 <Button
@@ -523,7 +535,7 @@ export default function ManageAuthorities(props: Props) {
                   variant="outline-primary"
                   onClick={() =>
                     ownerReveal
-                      ? copyToClipboard(publicOwnerKey)
+                      ? copyToClipboard(accountData!.publicOwnerKey)
                       : copyToClipboard(privateKeys?.owner!)
                   }
                 >
@@ -543,7 +555,7 @@ export default function ManageAuthorities(props: Props) {
                   <Button
                     className="import-btn"
                     variant="outline-primary"
-                    onClick={() => handleImportBtn(Type.Owner)}
+                    onClick={() => handleImportBtn(Keytype.Owner)}
                   >
                     {_t("manage-authorities.import")}
                   </Button>
@@ -551,11 +563,13 @@ export default function ManageAuthorities(props: Props) {
               </p>
             </td>
 
-            <td className="col-weight-content">{owner[1]}</td>
+            <td className="col-weight-content">{accountData!.owner[1]}</td>
           </tr>
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.active")}</td>
-            <td className="key">{activeReveal ? publicActiveKey : privateKeys?.active!}</td>
+            <td className="key">
+              {activeReveal ? accountData!.publicActiveKey : privateKeys?.active!}
+            </td>
             <td className="action-btns">
               <p>
                 <Button
@@ -563,7 +577,7 @@ export default function ManageAuthorities(props: Props) {
                   variant="outline-primary"
                   onClick={() => {
                     activeReveal
-                      ? copyToClipboard(publicActiveKey)
+                      ? copyToClipboard(accountData!.publicActiveKey)
                       : copyToClipboard(privateKeys?.active!);
                   }}
                 >
@@ -583,7 +597,7 @@ export default function ManageAuthorities(props: Props) {
                   <Button
                     className="import-btn"
                     variant="outline-primary"
-                    onClick={() => handleImportBtn(Type.Active)}
+                    onClick={() => handleImportBtn(Keytype.Active)}
                   >
                     {_t("manage-authorities.import")}
                   </Button>
@@ -591,11 +605,13 @@ export default function ManageAuthorities(props: Props) {
               </p>
             </td>
 
-            <td className="col-weight-content">{active[1]}</td>
+            <td className="col-weight-content">{accountData!.active[1]}</td>
           </tr>
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.posting")}</td>
-            <td className="key">{postingReveal ? publicPostingKey : privateKeys?.posting!}</td>
+            <td className="key">
+              {postingReveal ? accountData!.publicPostingKey : privateKeys?.posting!}
+            </td>
             <td className="action-btns">
               <p>
                 <Button
@@ -603,7 +619,7 @@ export default function ManageAuthorities(props: Props) {
                   variant="outline-primary"
                   onClick={() =>
                     postingReveal
-                      ? copyToClipboard(publicPostingKey)
+                      ? copyToClipboard(accountData!.publicPostingKey)
                       : copyToClipboard(privateKeys?.posting!)
                   }
                 >
@@ -623,7 +639,7 @@ export default function ManageAuthorities(props: Props) {
                   <Button
                     className="import-btn"
                     variant="outline-primary"
-                    onClick={() => handleImportBtn(Type.Posting)}
+                    onClick={() => handleImportBtn(Keytype.Posting)}
                   >
                     {_t("manage-authorities.import")}
                   </Button>
@@ -631,7 +647,7 @@ export default function ManageAuthorities(props: Props) {
               </p>
             </td>
 
-            <td className="col-weight-content">{posting[1]}</td>
+            <td className="col-weight-content">{accountData!.posting[1]}</td>
           </tr>
         </tbody>
       </table>
@@ -640,7 +656,7 @@ export default function ManageAuthorities(props: Props) {
 
   return (
     <div className="container authority-table">
-      {publicPostingKey && table()}
+      {accountData && table()}
       {keyDialog && (
         <Modal
           animation={false}
