@@ -1412,17 +1412,17 @@
     "error": "Password seem incorrect, please double check!"
   },
   "account-recovery": {
-    "title": "Change Recovery Account",
-    "curr-recovery-acc": "Current Recovery Account",
-    "new-recovery-acc": "New Recovery Account",
+    "title": "Change Recovery Agent",
+    "curr-recovery-acc": "Current Recovery Agent",
+    "new-recovery-acc": "New Recovery Agent",
     "confirm-title": "Confirm your transaction",
     "confirm-sub-title": "Please, check if everything is correct",
-    "req-error": "Sorry your request of recover account change is already in progress",
+    "req-error": "Sorry! Your request of recover agent change is already in progress",
     "to-not-found": "The user that you are tyring to set, does not exist!",
     "sign-title": "Sign transaction",
     "sign-sub-title": "Sign your transaction",
-    "success-message": "Your new change recovery account request is approved after 30 days",
-    "info-message": "Your request is in progress. Doing this agian will update your request"
+    "success-message": "Your new change recovery agent request is effective after 30 days",
+    "info-message": "Your request is in progress. Doing this again will update existing request"
   },
   "add-image": {
     "title": "Add Image",
