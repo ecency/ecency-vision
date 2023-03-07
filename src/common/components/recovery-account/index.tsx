@@ -37,6 +37,7 @@ export default function AccountRecovery(props: Props) {
   const [toError, setToError] = useState("");
   const [currRecoveryAccount, setCurrRecoveryAccount] = useState("");
   const [newRecoveryAccount, setNewCurrRecoveryAccount] = useState("");
+  const [pendingRecoveryAccount, setPendingRecoveryAccount] = useState("");
 
   useEffect(() => {
     getCurrentAccount();
@@ -52,6 +53,7 @@ export default function AccountRecovery(props: Props) {
   const getRecoveryRequest = async () => {
     const resp = await findAccountRecoveryRequest(props.activeUser!.username);
     if (resp.requests.length) {
+      setPendingRecoveryAccount(resp.requests[0].recovery_account);
       setPopOver(true);
     }
   };
@@ -285,7 +287,7 @@ export default function AccountRecovery(props: Props) {
               placement="top"
               trigger="click"
               onConfirm={() => handleConfirm()}
-              titleText={_t("account-recovery.info-message")}
+              titleText={_t("account-recovery.info-message", { n: pendingRecoveryAccount })}
             >
               <div onClick={(e) => e.stopPropagation()}>
                 <Button disabled={disabled} variant="primary" type="submit">
