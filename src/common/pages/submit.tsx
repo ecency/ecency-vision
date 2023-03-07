@@ -935,11 +935,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     new Promise((resolve) => {
       const img = new Image();
       img.onload = () => {
-        resolve({
-          height: img.height,
-          width: img.width,
-          url: dataURL
-        });
+        resolve(img.width / img.height);
       };
       img.onerror = function () {
         resolve({ url: dataURL });
