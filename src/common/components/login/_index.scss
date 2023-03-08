@@ -4,6 +4,7 @@
 @import "src/style/mixins";
 
 .login-modal {
+  overflow-y: scroll !important;
   .modal-body {
     width: 100%;
     max-width: 390px;
