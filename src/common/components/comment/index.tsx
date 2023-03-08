@@ -1,6 +1,6 @@
 import React, { Component, Ref } from "react";
 
-import { Form, FormControl, Button, Spinner } from "react-bootstrap";
+import { FormControl, Button, Spinner } from "react-bootstrap";
 
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -25,6 +25,7 @@ import * as ss from "../../util/session-storage";
 import TextareaAutocomplete from "../textarea-autocomplete";
 import { AvailableCredits } from "../available-credits";
 import { Location } from "history";
+import "./_index.scss";
 
 interface PreviewProps {
   text: string;

@@ -86,6 +86,7 @@ import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
+import "./entry.scss";
 
 setProxyBase(defaults.imageServer);
 
@@ -846,7 +847,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                     <span className="date" title={published.format("LLLL")}>
                                       {published.fromNow()}
                                     </span>
-                                    <span className="separator" />
+                                    <span className="separator circle-separator" />
                                     <div className="entry-tag">
                                       <span className="in-tag">{_t("entry.community-in")}</span>
                                       {Tag({
@@ -1032,7 +1033,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                   <span className="date" title={published.format("LLLL")}>
                                     {published.fromNow()}
                                   </span>
-                                  <span className="separator" />
+                                  <span className="separator circle-separator" />
                                   <div className="entry-tag">
                                     <span className="in-tag">{_t("entry.community-in")}</span>
                                     {Tag({
@@ -1172,7 +1173,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         <div className="date" title={published.format("LLLL")}>
                           {published.fromNow()}
                         </div>
-                        <span className="separator" />
+                        <span className="separator circle-separator" />
                         {ProfileLink({
                           ...this.props,
                           username: entry.author,
@@ -1190,7 +1191,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         })}
                         {app && (
                           <>
-                            <span className="separator" />
+                            <span className="separator circle-separator" />
                             <span
                               itemProp="publisher"
                               itemScope={true}

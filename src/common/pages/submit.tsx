@@ -43,6 +43,7 @@ import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
 import { detectEvent, toolbarEventListener } from "../components/editor-toolbar";
+import "./submit.scss";
 
 import {
   addDraft,

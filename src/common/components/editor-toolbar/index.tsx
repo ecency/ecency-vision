@@ -21,6 +21,7 @@ import { _t } from "../../i18n";
 import { insertOrReplace, replace } from "../../util/input-util";
 import { getAccessToken } from "../../helper/user-token";
 import _c from "../../util/fix-class-names";
+import "./_index.scss";
 
 import {
   formatBoldSvg,

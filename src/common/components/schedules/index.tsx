@@ -36,6 +36,7 @@ import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-he
 import { dateToFormatted, dateToFullRelative, dateToRelative } from "../../helper/parse-date";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
+import "./_index.scss";
 
 setProxyBase(defaults.imageServer);
 

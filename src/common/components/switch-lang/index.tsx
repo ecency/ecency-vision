@@ -16,6 +16,7 @@ import { langOptions } from "../../i18n";
 
 import * as ls from "../../util/local-storage";
 import { useMappedStore } from "../../store/use-mapped-store";
+import "./_index.scss";
 
 interface Props {
   history: History;

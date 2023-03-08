@@ -32,6 +32,7 @@ import { dateToFormatted } from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 import { Subscription } from "../../store/subscriptions/types";
 import { ResourceCreditsInfo } from "../rc-info";
+import "./_index.scss";
 
 interface Props {
   global: Global;

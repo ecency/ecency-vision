@@ -5,6 +5,7 @@ import { _t } from "../../i18n";
 
 import { copyContent, magnifySvg } from "../../img/svg";
 import { success } from "../feedback";
+import "./_index.scss";
 
 type Props = any;
 

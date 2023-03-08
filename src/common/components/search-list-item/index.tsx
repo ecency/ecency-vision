@@ -27,6 +27,7 @@ import { SearchResult } from "../../api/search-api";
 
 import { peopleSvg, commentSvg } from "../../img/svg";
 import { dateToFormatted, dateToRelative } from "../../helper/parse-date";
+import "./_index.scss";
 
 interface Props {
   history: History;

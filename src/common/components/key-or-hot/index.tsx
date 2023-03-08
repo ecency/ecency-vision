@@ -13,6 +13,7 @@ import { error } from "../feedback";
 import { _t } from "../../i18n";
 
 import { keySvg } from "../../img/svg";
+import "./index.scss";
 
 interface Props {
   global: Global;

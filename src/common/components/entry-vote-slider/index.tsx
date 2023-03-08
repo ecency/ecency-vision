@@ -1,12 +1,5 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  ReactElement,
-  useCallback,
-  MouseEventHandler,
-  TouchEventHandler
-} from "react";
+import React, { useState, useRef, useEffect, ReactElement, useCallback } from "react";
+import "./_index.scss";
 
 interface Props {
   value: number;

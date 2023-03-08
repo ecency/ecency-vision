@@ -10,6 +10,7 @@ import { lookupAccounts } from "../../api/hive";
 import { searchPath } from "../../api/search-api";
 import { isMobile } from "../../util/is-mobile";
 import NoSSR from "../../util/no-ssr";
+import "./_index.scss";
 
 interface State {
   value: string;

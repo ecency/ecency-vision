@@ -18,6 +18,7 @@ import { getBookmarks, Bookmark, getFavorites, Favorite } from "../../api/privat
 
 import { _t } from "../../i18n";
 import { useMappedStore } from "../../store/use-mapped-store";
+import "./_index.scss";
 
 interface BookmarksProps {
   history: History;

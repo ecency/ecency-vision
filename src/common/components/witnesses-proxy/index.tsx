@@ -16,6 +16,7 @@ import { error } from "../feedback";
 import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from "../../api/operations";
 
 import { _t } from "../../i18n";
+import "./_index.scss";
 
 interface Props {
   global: Global;

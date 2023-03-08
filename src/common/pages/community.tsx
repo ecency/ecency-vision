@@ -41,6 +41,7 @@ import capitalize from "../util/capitalize";
 import defaults from "../constants/defaults.json";
 import SearchBox from "../components/search-box";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
+import "./community.scss";
 
 interface MatchParams {
   filter: string;

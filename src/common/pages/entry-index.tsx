@@ -14,6 +14,7 @@ import { DeckView } from "../components/deck-view";
 import { Entry } from "../store/entries/types";
 import { TopCommunitiesWidget } from "../components/top-communities-widget";
 import * as ls from "../util/local-storage";
+import "./entry-index.scss";
 
 interface Props extends PageProps {
   loading: boolean;

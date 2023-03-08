@@ -11,6 +11,7 @@ import { useLocation } from "react-router";
 import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { ActiveUser } from "../../store/active-user/types";
+import "./index.scss";
 
 interface Props {
   activeUser: ActiveUser | null;

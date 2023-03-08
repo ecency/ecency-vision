@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./_index.scss";
 
 export default class LinearProgress extends Component {
   render() {

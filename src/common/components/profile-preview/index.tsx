@@ -16,6 +16,7 @@ import { User } from "../../store/users/types";
 import { FavoriteBtn } from "../favorite-btn";
 import FollowControls from "../follow-controls";
 import { Skeleton } from "../skeleton";
+import "./index.scss";
 
 interface Props {
   username: string;
