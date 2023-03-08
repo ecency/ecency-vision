@@ -24,6 +24,32 @@
     flex-grow: 1;
     padding-bottom: 60px;
 
+    .permission-menu {
+      display: flex;
+      justify-content: space-between;
+
+      margin-bottom: 1rem;
+
+      @media (max-width: $md-break) {
+        margin-left: 19px;
+      }
+      @media (max-width: $sm-break) {
+        margin-left: 10px;
+      }
+      .tab {
+        cursor: pointer;
+
+        @media (max-width: $sm-break) {
+          font-size: 14px;
+        }
+      }
+      .current-tab {
+        cursor: pointer;
+        font-weight: 600;
+        color: $dark-sky-blue;
+      }
+    }
+
     @media (min-width: $lg-break) {
       .entry-list {
         .entry-list-body.grid-view {
