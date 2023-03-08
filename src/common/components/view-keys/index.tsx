@@ -15,7 +15,7 @@ import { _t } from "../../i18n";
 
 import { copyContent } from "../../img/svg";
 import truncate from "../../util/truncate";
-
+import "./_index.scss";
 interface Props {
   activeUser: ActiveUser;
   onUpdate?: () => void;

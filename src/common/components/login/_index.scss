@@ -1,4 +1,10 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .login-modal {
+  overflow-y: scroll !important;
   .modal-body {
     width: 100%;
     max-width: 390px;
@@ -181,5 +187,5 @@
   }
 }          
 .google-recaptcha{
-  margin-top: 16px;
+  margin: 16px 0px;
 }

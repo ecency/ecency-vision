@@ -33,6 +33,7 @@ import { getAccount } from "../../api/hive";
 import { _t } from "../../i18n";
 
 import { pencilOutlineSvg } from "../../img/svg";
+import "./_index.scss";
 
 const coverFallbackDay = require("../../img/cover-fallback-day.png");
 const coverFallbackNight = require("../../img/cover-fallback-night.png");
@@ -73,16 +74,10 @@ class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageSt
     const { profile } = account;
 
     const newProfile = {
-      name: profile?.name || "",
-      about: profile?.about || "",
-      cover_image: url,
-      profile_image: profile?.profile_image || "",
-      website: profile?.website || "",
-      location: profile?.location || "",
-      pinned: profile?.pinned || ""
+      cover_image: url
     };
 
-    updateProfile(account, newProfile)
+    updateProfile(account, { ...profile, ...newProfile })
       .then((r) => {
         success(_t("community-cover.cover-image-updated"));
         return getAccount(account.name);
@@ -161,18 +156,11 @@ export class CommunityCover extends Component<Props> {
   render() {
     const { global, account, community, activeUser, users } = this.props;
 
-    let bgImage = "";
-
-    if (account.__loaded) {
-      bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
-      if (account.profile?.cover_image) {
-        bgImage = proxifyImageSrc(
-          account.profile.cover_image,
-          0,
-          0,
-          global.canUseWebp ? "webp" : "match"
-        );
-      }
+    let bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
+    if (community) {
+      bgImage = `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${
+        community.name
+      }/cover`;
     }
 
     let style = {};

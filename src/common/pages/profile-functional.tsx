@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState, useCallback } from "react";
 import { match } from "react-router";
 
 import { Redirect } from "react-router-dom";
-import { History } from "history";
 import _ from "lodash";
 import { _t } from "../i18n";
 import { ListStyle } from "../store/global/types";
@@ -49,6 +48,7 @@ import { withPersistentScroll } from "../components/with-persistent-scroll";
 import useAsyncEffect from "use-async-effect";
 import { usePrevious } from "../util/use-previous";
 import WalletSpk from "../components/wallet-spk";
+import "./profile.scss";
 
 interface MatchParams {
   username: string;
@@ -58,7 +58,6 @@ interface MatchParams {
 
 interface Props extends PageProps {
   match: match<MatchParams>;
-  history: History;
 }
 
 export const Profile = (props: Props) => {
@@ -341,13 +340,15 @@ export const Profile = (props: Props) => {
   const delayedSearch = useCallback(_.debounce(handleInputChange, 3000, { leading: true }), []);
 
   const getNavBar = () => {
-    return props.global.isElectron
-      ? NavBarElectron({
-          ...props,
-          reloadFn: reload,
-          reloading: loading
-        })
-      : NavBar({ ...props });
+    return props.global.isElectron ? (
+      NavBarElectron({
+        ...props,
+        reloadFn: reload,
+        reloading: loading
+      })
+    ) : (
+      <NavBar history={props.history} />
+    );
   };
 
   const getMetaProps = () => {
@@ -355,14 +356,15 @@ export const Profile = (props: Props) => {
     const account = props.accounts.find((x) => x.name === username);
     const { section = ProfileFilter.blog } = props.match.params;
     const url = `${defaults.base}/@${username}${section ? `/${section}` : ""}`;
+    const ncount = props.notifications.unread > 0 ? `(${props.notifications.unread}) ` : "";
 
     if (!account) {
       return {};
     }
 
-    return account.__loaded
+    return account?.__loaded
       ? {
-          title: `${account.profile?.name || account.name}'s ${
+          title: `${ncount}${account.profile?.name || account.name}'s ${
             section ? (section === "engine" ? "tokens" : `${section}`) : ""
           } on decentralized web`,
           description:
@@ -435,7 +437,7 @@ export const Profile = (props: Props) => {
       >
         <div className="profile-side">{ProfileCard({ ...props, account, section })}</div>
         <span itemScope={true} itemType="http://schema.org/Person">
-          {account.__loaded && (
+          {account?.__loaded && (
             <meta itemProp="name" content={account.profile?.name || account.name} />
           )}
         </span>

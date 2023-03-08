@@ -65,11 +65,11 @@ export const AdvancedModeToolbar = ({
           </div>
           <div className="day-high-price change-price">
             <label>24h high</label>
-            <div>{formattedNumber(dayChange.low)}</div>
+            <div>{formattedNumber(dayChange.high)}</div>
           </div>
           <div className="day-low-price change-price">
             <label>24h low</label>
-            <div>{formattedNumber(dayChange.high)}</div>
+            <div>{formattedNumber(dayChange.low)}</div>
           </div>
           <div className="day-1-total change-price">
             <label>24h volume({fromAsset})</label>

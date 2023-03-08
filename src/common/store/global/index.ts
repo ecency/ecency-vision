@@ -135,13 +135,11 @@ export const toggleTheme =
     Cookies.set("theme", newTheme, { expires: 365 });
 
     dispatch(themeChangeAct(newTheme));
-    if (isMobile) {
-      let body: any = document.getElementsByTagName("body");
-      if (!body) return;
-      body = body[0];
-      body.classList.remove(`theme-${theme}`);
-      body.classList.add(`theme-${newTheme}`);
-    }
+    let body: any = document.getElementsByTagName("body");
+    if (!body) return;
+    body = body[0];
+    body.classList.remove(`theme-${theme}`);
+    body.classList.add(`theme-${newTheme}`);
   };
 
 export const toggleListStyle =

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import {
   communities,
   globalTrending,
@@ -21,6 +21,7 @@ import NotificationListItem from "../notifications/notification-list-item";
 import { _t } from "../../i18n";
 import { error } from "../feedback";
 import { IdentifiableDeckModel } from "./types";
+import "./_index.scss";
 
 const DeckViewContainer = ({
   global,

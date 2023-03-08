@@ -71,6 +71,37 @@
 //end animations with rotation only
 
 //start animations with rotation and scaling
+
+@keyframes heartbeat {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  66% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+}
+
+
 @keyframes rotate-scale-up {
   0% {
     -webkit-transform: scale(1) rotateZ(0);

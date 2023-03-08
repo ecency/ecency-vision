@@ -16,6 +16,7 @@ import { witnessVote, witnessVoteHot, witnessVoteKc, formatError } from "../../a
 import _c from "../../util/fix-class-names";
 
 import { chevronUpSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface Props {
   global: Global;

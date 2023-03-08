@@ -11,9 +11,8 @@ import Curation from "../components/curation";
 import PopularUsers from "../components/popular-users";
 import FullHeight from "../components/full-height";
 import ScrollToTop from "../components/scroll-to-top";
-
+import "./discover.scss";
 import { _t } from "../i18n";
-
 import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
 
 class DiscoverPage extends Component<PageProps> {
@@ -39,11 +38,13 @@ class DiscoverPage extends Component<PageProps> {
         <ScrollToTop />
         <FullHeight />
         <Theme global={this.props.global} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
         <div className={containerClasses}>
           {global.usePrivate && <div className="top-users">{LeaderBoard({ ...this.props })}</div>}
           {global.usePrivate && <div className="curation-users">{Curation({ ...this.props })}</div>}

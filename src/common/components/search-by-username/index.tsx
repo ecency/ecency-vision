@@ -2,7 +2,7 @@ import { Form, InputGroup } from "react-bootstrap";
 import { _t } from "../../i18n";
 import SuggestionList from "../suggestion-list";
 import React, { useEffect, useState } from "react";
-import userAvatar from "../user-avatar";
+import UserAvatar from "../user-avatar";
 import { lookupAccounts } from "../../api/hive";
 import { error } from "../feedback";
 import { formatError } from "../../api/operations";
@@ -85,11 +85,7 @@ export const SearchByUsername = ({
     renderer: (i: any) => {
       return (
         <>
-          {userAvatar({
-            username: i.name || i,
-            size: "medium",
-            global: {} as any
-          })}{" "}
+          <UserAvatar username={i.username || i} size="medium" />{" "}
           <span style={{ marginLeft: "4px" }}>{i}</span>
         </>
       );

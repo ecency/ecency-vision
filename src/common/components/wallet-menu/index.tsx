@@ -8,6 +8,7 @@ import _c from "../../util/fix-class-names";
 
 import { hiveSvg, spkSvg } from "../../img/svg";
 import { hiveEngineSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface Props {
   global: Global;

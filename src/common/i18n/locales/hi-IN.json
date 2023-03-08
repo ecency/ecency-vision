@@ -2,6 +2,9 @@
   "g": {
     "add": "जोड़ें",
     "edit": "संपादित करें",
+    "clone": "Clone",
+    "copy": "Copy of",
+    "clone-success": "Created new draft copy",
     "continue": "जारी रखें",
     "submit": "एक पोस्ट लिखें",
     "search": "खोजें",
@@ -63,7 +66,8 @@
     "more-results": "और नतीजे",
     "close": "बंद करें",
     "loading": "लोड हो रहा है",
-    "stop": "रुको"
+    "stop": "रुको",
+    "settings": "Settings"
   },
   "confirm": {
     "title": "क्या आपको यकीन है?",
@@ -187,7 +191,22 @@
     "success": "हमने {{email}} को एक ईमेल भेजा है।",
     "success-2": "साइनअप प्रक्रिया को पूरा करने के लिए निर्देशों का पालन करें।",
     "login-text-1": "क्या आपका अकाउंट है?",
-    "login-text-2": "प्रवेश करें"
+    "login-text-2": "प्रवेश करें",
+    "free-account": "Free account",
+    "free-account-desc": "Get a full-fledged Hive account, this method has basic checks to make sure botnet doesn't abuse our signup faucet.",
+    "register-free": "Register free",
+    "buy-account": "Buy account",
+    "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
+    "buy-account-li-1": "Instant creation without extra checks and waiting",
+    "buy-account-li-2": "3x RC compared to normal new accounts",
+    "buy-account-li-3": "300 Points to help you get started",
+    "qr-desc": "Scan with Ecency mobile app to continue",
+    "username-min-length-error": "Length of username should be at least 3 characters",
+    "username-max-length-error": "Length of username should be no more than 16 characters",
+    "username-no-ascii-first-letter-error": "First character should be a Letter",
+    "username-contains-symbols-error": "Should contain Letters, Numbers, Hyphen only",
+    "username-contains-double-hyphens": "Should not contain double Hyphens",
+    "username-exists": "This username already registered. Please, try another one"
   },
   "trending-tags": {
     "title": "विषय"
@@ -405,8 +424,30 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
+    "signing": "Signing..",
     "success-swap": "Successfully swapped!",
-    "signing": "Signing.."
+    "advanced": {
+      "history": "History",
+      "stake": "Order book",
+      "pairs": "Pairs",
+      "form": "Order form",
+      "open-orders": "Open",
+      "completed-orders": "Completed",
+      "status": "Status",
+      "all-orders": "All",
+      "active": "Active",
+      "view-details": "View details",
+      "chart": "Chart",
+      "trading-form-auth-required": "You have to be authorized for trade",
+      "open-orders-auth-required": "You have to be authorized to see open orders",
+      "empty-open-orders": "No orders",
+      "history-widget": {
+        "price": "Price",
+        "amount": "Amount",
+        "volume": "Volume",
+        "time": "Time"
+      }
+    }
   },
   "list-style": {
     "title": "टॉगल सूची शैली"
@@ -442,7 +483,8 @@
     "community-in": "में",
     "post-word-count": "शब्दों:",
     "post-read-time": "पढ़ना:",
-    "post-read-minuites": "मिन"
+    "post-read-minuites": "मिन",
+    "raw": "View RAW format"
   },
   "edit-history": {
     "title": "इतिहास संपादित करें",
@@ -620,6 +662,42 @@
     "create-posts": "आइए एक नई पोस्ट बनाएं",
     "link-copied": "खोज लिंक को क्लिपबोर्ड पर कॉपी किया गया",
     "no-posts-found": "कुछ भी नहीं मिला!"
+  },
+  "rc-info": {
+    "available": "Available",
+    "used": "Used",
+    "resource-credits": "Resource Credits",
+    "resource-credit": "RC",
+    "delegated": "Delegations Out",
+    "received-delegations": "Delegations In",
+    "delegation-button": "Delegate RC",
+    "rc-available": "Available",
+    "rc-used": "Used",
+    "outgoing": "Outgoing",
+    "incoming": "Incoming",
+    "delete": "delete",
+    "update": "update",
+    "confirm-delete": "Are you sure?",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "check-faq": "Learn more about RC in our",
+    "learn-more": "/faq#what-are-rc",
+    "faq-link": "FAQ",
+    "insufficient-rc-error": "Insufficient resource credits",
+    "minimum-rc-error": "Mininum RC is 5,000,000,000",
+    "extra-details-heading": "What's possible with current available RC?",
+    "transfers": "Transfers:",
+    "comments-posts": "Posts / Comments:",
+    "votes": "Votes:",
+    "reblogs-follows": "Reblogs / Follows:",
+    "no-outgoing": "No outgoing delegation",
+    "no-incoming": "No incoming delegation",
+    "delegate-title": "Delegate",
+    "delegate-sub-title": "Delegate Resource Credit",
+    "extra-details-transfer": "Transfers",
+    "extra-details-post": "Posts/Comments",
+    "extra-details-upvote": "Votes",
+    "boost": "Boost"
   },
   "profile-edit": {
     "title": "रूपरेखा",
@@ -850,7 +928,7 @@
     "purchase-message": "या प्वॉइंट्स खरीदने के लिए मेमो के रूप में `अंक' के साथ @esteem.app को कोई भी राशि भेजें।"
   },
   "purchase-qr": {
-    "scan-code": "Scan the QR code with Ecency mobile app",
+    "scan-code": "Scan with Ecency mobile app to continue",
     "select-user": "कृपया, उपयोगकर्ता को चुने",
     "title": "खाता बूस्ट",
     "title-points": "अंक खरीदें",
@@ -1105,6 +1183,7 @@
     "publish": "प्रकाशित करें",
     "update": "अपडेट करें",
     "save-draft": "लिखित को सुरक्षित करो",
+    "load-draft": "Load Draft",
     "draft-saved": "ड्राफ्ट में रक्षित हुवा",
     "update-draft": "ड्राफ्ट अपडेट करें",
     "draft-updated": "ड्राफ्ट अपडेट किया गया",
@@ -1282,6 +1361,13 @@
     "page-description": "सर्वसम्मति ब्लॉक उत्पादकों का चयन",
     "page-description-long": "हाइव ब्लॉकचैन में गवाहों या ब्लॉक उत्पादकों की भूमिका नेटवर्क के प्रशासन निकाय के रूप में कार्य करना है। समुदाय उन्हें अपनी आवाज़ का प्रतिनिधित्व करने के लिए चुनता है और प्रत्येक उपयोगकर्ता 30 गवाहों का चुनाव कर सकता है। शीर्ष 20 गवाह हर मिनट ब्लॉक का उत्पादन कर रहे हैं, जबकि बाकी बैकअप गवाह के रूप में बने हुए हैं और हर मिनट यादृच्छिक रूप से मौका मिलता है। यह भूमिका सर्वसम्मति तंत्र ब्लॉकचेन का अभिन्न अंग है और विश्वसनीय गवाहों को वोट करने के लिए उपयोगकर्ता की सगाई की सिफारिश करती है।",
     "remaining": "<span> {{n}} </span> {{max}} वोट शेष हैं",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-rank": "Rank",
+    "sort-name": "Name",
+    "sort-fee": "Fee",
+    "searching": "Searching",
+    "no-results": "No results found",
     "list-rank": "स्थान",
     "list-witness": "गवाह",
     "list-miss": "मिस",
@@ -1332,7 +1418,13 @@
     "see-all": "सभी प्रस्ताव देखें",
     "daily-funded": "दैनिक वित्त पोषित",
     "daily-budget": "दैनिक बजट",
-    "total-budget": "कुल बजट"
+    "total-budget": "कुल बजट",
+    "search-placeholder": "Search",
+    "sort": "Sort",
+    "sort-reputation": "Reputation",
+    "sort-hp": "Hive Power",
+    "no-results": "No results found",
+    "searching": "Searching"
   },
   "gallery": {
     "title": "चित्रशाला",
@@ -1424,6 +1516,11 @@
       "contact-email": "हमें इमेल करें"
     },
     "faq": {
+      "about-ecency": "About Ecency",
+      "working": "Working of Ecency",
+      "about-blockchain": "About Blockchain",
+      "features": "Features of Ecency",
+      "toggle-icon-info": "Tap on me to toggle",
       "page-title": "हम आपकी कैसे मदद कर सकते हैं?",
       "search-link-copied": "खोज लिंक को क्लिपबोर्ड पर कॉपी किया गया",
       "page-sub-title": "विषय - सूची",

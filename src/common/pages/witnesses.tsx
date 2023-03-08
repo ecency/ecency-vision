@@ -1,6 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
+import { Form, FormControl, Spinner } from "react-bootstrap";
 
 import { pathToRegexp } from "path-to-regexp";
 
@@ -19,6 +20,7 @@ import WitnessVoteBtn from "../components/witness-vote-btn";
 import WitnessesExtra from "../components/witnesses-extra";
 import WitnessesProxy from "../components/witnesses-proxy";
 import WitnessesActiveProxy from "../components/witnesses-active-proxy";
+import Pagination from "../components/pagination";
 
 import routes from "../../common/routes";
 
@@ -33,6 +35,7 @@ import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common
 import { FullAccount } from "../store/accounts/types";
 import { WitnessCard } from "../components/witness-card";
 import { dateToRelative } from "../helper/parse-date";
+import "./witnesses.scss";
 
 interface WitnessTransformed {
   rank: number;
@@ -51,9 +54,11 @@ interface WitnessTransformed {
   witnessBy?: string;
 }
 
-const transform = (list: Witness[]): WitnessTransformed[] => {
+type SortOption = "rank" | "name" | "fee";
+
+const transform = (list: Witness[], rankState: number): WitnessTransformed[] => {
   return list.map((x, i) => {
-    const rank = i + 1;
+    const rank = i + rankState;
 
     const { props } = x;
 
@@ -103,6 +108,16 @@ interface State {
   proxyVotes: string[];
   proxy: string;
   loading: boolean;
+  page: number;
+  lastDataLength: number;
+  limit: number;
+  noOfPages: number;
+  startName: string;
+  sort: SortOption;
+  searchText: string;
+  originalWitnesses: WitnessTransformed[];
+  rank: number;
+  spinner: boolean;
 }
 
 class WitnessesPage extends BaseComponent<PageProps, State> {
@@ -111,14 +126,27 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     witnessVotes: [],
     proxyVotes: [],
     proxy: "",
-    loading: true
+    loading: true,
+    page: 1,
+    lastDataLength: 0,
+    limit: 35,
+    noOfPages: 0,
+    startName: "",
+    sort: "rank",
+    searchText: "",
+    originalWitnesses: [],
+    rank: 1,
+    spinner: false
   };
 
   componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
     this.load();
   }
 
   componentDidUpdate(prevProps: Readonly<PageProps>, prevState: Readonly<State>, snapshot?: any) {
+    window.addEventListener("scroll", this.handleScroll);
+    const { witnesses } = this.state;
     // active user changed
     if (this.props.activeUser?.username !== prevProps.activeUser?.username) {
       this.stateSet({ loading: true }, () => {
@@ -130,9 +158,64 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         this.load();
       });
     }
+    if (prevState.searchText !== this.state.searchText) {
+      this.search();
+    }
+    if (prevState.witnesses !== witnesses) {
+      this.stateSet({
+        noOfPages: Math.ceil(witnesses.length / 30)
+      });
+    }
   }
 
+  componentWillUnmount(): void {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const { innerWidth } = window;
+    const { lastDataLength, limit } = this.state;
+    if (innerWidth <= 767) {
+      let b = document.body;
+      let scrollHeight = (b.scrollHeight / 100) * 90;
+      if (window.scrollY >= scrollHeight && lastDataLength === limit) {
+        this.stateSet({ spinner: true });
+        this.load();
+      }
+    }
+  };
+
+  search = () => {
+    const { searchText, originalWitnesses } = this.state;
+    this.stateSet({ rank: originalWitnesses[originalWitnesses.length - 1].rank });
+    if (searchText) {
+      this.setState(
+        {
+          witnesses: this.state.originalWitnesses.filter((item) =>
+            item.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
+          ),
+          page: 1
+        },
+        this.searchCallback
+      );
+    } else {
+      this.setState({ witnesses: originalWitnesses, loading: false });
+    }
+  };
+
+  searchCallback = () => {
+    const { witnesses, lastDataLength, limit } = this.state;
+    if (!witnesses.length && lastDataLength === limit) {
+      this.load();
+    }
+  };
+
+  sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    this.stateSet({ sort: e.target.value as SortOption });
+  };
+
   load = async () => {
+    const { startName, limit, rank } = this.state;
     this.stateSet({ loading: true });
 
     const { activeUser, location } = this.props;
@@ -155,8 +238,12 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     } else {
       this.stateSet({ witnessVotes: [], proxy: "" });
     }
-    const witnesses = await getWitnessesByVote();
-    await this.getWitness(transform(witnesses));
+    const witnesses = await getWitnessesByVote(startName, limit);
+    await this.getWitness(transform(witnesses, rank));
+    this.stateSet({
+      lastDataLength: witnesses.length,
+      startName: witnesses[witnesses.length - 1].owner
+    });
   };
 
   addWitness = (name: string) => {
@@ -177,7 +264,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     });
     try {
       const accounts: FullAccount[] = await getAccounts(witnessUserNamesArray);
-      const byWitnessState: WitnessTransformed[] = witnessArray.map(
+      let byWitnessState: WitnessTransformed[] = witnessArray.map(
         (item: WitnessTransformed, index: number) => {
           try {
             const parsedArray = JSON.parse(
@@ -194,9 +281,35 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
           }
         }
       );
-      this.stateSet({ witnesses: byWitnessState, loading: false });
+      const { witnesses, originalWitnesses, startName } = this.state;
+      let newOriginalWitnesses = originalWitnesses.concat(byWitnessState);
+      let uniqueOriginalWitnesses = this.makeUniqueArray(newOriginalWitnesses);
+      if (startName) {
+        let prevWitnesses = witnesses.concat(byWitnessState);
+        byWitnessState = this.makeUniqueArray(prevWitnesses);
+      }
+      this.stateSet(
+        {
+          witnesses: byWitnessState,
+          loading: false,
+          originalWitnesses: uniqueOriginalWitnesses,
+          spinner: false
+        },
+        this.search
+      );
     } catch (error) {
-      console.log("Something went wrong: ", error);
+      this.stateSet({ loading: false, spinner: false });
+    }
+  };
+
+  makeUniqueArray = (array: WitnessTransformed[]) => {
+    return [...new Map(array.map((item) => [item["name"], item])).values()];
+  };
+
+  handlePageChange = () => {
+    const { noOfPages, page, lastDataLength, limit } = this.state;
+    if (page === noOfPages && lastDataLength === limit) {
+      this.load();
     }
   };
 
@@ -209,12 +322,35 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
 
     const { global, activeUser, location } = this.props;
     let params = location.search.split("=")[1];
-    const { witnesses, loading, witnessVotes, proxy } = this.state;
+    const {
+      witnesses,
+      loading,
+      witnessVotes,
+      proxy,
+      page,
+      sort,
+      searchText,
+      originalWitnesses,
+      spinner
+    } = this.state;
     const extraWitnesses = witnessVotes.filter((w) => !witnesses.find((y) => y.name === w));
+    const pageSize = 30;
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
+    const sliced = witnesses
+      .sort((a, b) => {
+        const keyA = a[sort]!;
+        const keyB = b[sort]!;
+
+        if (keyA < keyB) return -1;
+        if (keyA > keyB) return 1;
+        return 0;
+      })
+      .slice(start, end);
 
     const table = (
       <>
-        <table className="table d-none d-sm-block">
+        <table className="table">
           <thead>
             <tr>
               <th className="col-rank">{_t("witnesses.list-rank")}</th>
@@ -227,7 +363,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
             </tr>
           </thead>
           <tbody>
-            {witnesses.map((row, i) => {
+            {sliced.map((row, i) => {
               return (
                 <tr
                   key={`${row.name}-${row.rank}${i}`}
@@ -257,11 +393,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                       children: (
                         <span className="witness-card notranslate">
                           {" "}
-                          {UserAvatar({
-                            ...this.props,
-                            username: row.name,
-                            size: "medium"
-                          })}
+                          <UserAvatar username={row.name} size="medium" />
                           <div className={"witness-ctn"}>
                             {row.signingKey === "STM1111111111111111111111111111111114T1Anm" ? (
                               <s>{row.name}</s>
@@ -360,6 +492,19 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         )}
       </div>
     );
+
+    const search = (
+      <Form.Group className="mb-3 w-100">
+        <Form.Control
+          type="text"
+          placeholder={_t("witnesses.search-placeholder")}
+          value={searchText}
+          onChange={(e) => {
+            this.setState({ searchText: e.target.value });
+          }}
+        />
+      </Form.Group>
+    );
     let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
@@ -368,16 +513,18 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         <ScrollToTop />
         <Theme global={this.props.global} />
         <Feedback activeUser={this.props.activeUser} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props,
-              reloadFn: this.load,
-              reloading: loading
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props,
+            reloadFn: this.load,
+            reloading: loading
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
         <div className={"app-content witnesses-page" + containerClasses}>
           {(() => {
-            if (loading) {
+            if (loading && !originalWitnesses.length) {
               return (
                 <>
                   {header}
@@ -402,7 +549,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
             return (
               <>
                 {header}
-
                 <div>
                   {proxy || params ? (
                     <WitnessesActiveProxy
@@ -415,8 +561,54 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                     />
                   ) : null}
                 </div>
+                <div className="search-bar">{search}</div>
 
-                <div className="table-responsive witnesses-table">{table}</div>
+                {loading && <LinearProgress />}
+                {sliced && sliced.length > 0 ? (
+                  <div className="witnesses-table">
+                    {table}
+                    {spinner && (
+                      <Spinner
+                        animation="grow"
+                        variant="primary"
+                        style={{ position: "fixed", bottom: "10%", left: "50%" }}
+                      />
+                    )}
+                  </div>
+                ) : (
+                  <div className="witnesses-table">
+                    <div className="user-info">
+                      {loading ? _t("witnesses.searching") : _t("witnesses.no-results")}
+                    </div>
+                  </div>
+                )}
+
+                <div className="table-tools">
+                  <div className="pagination">
+                    {witnesses.length > pageSize && (
+                      <Pagination
+                        dataLength={witnesses.length}
+                        pageSize={pageSize}
+                        maxItems={4}
+                        page={page}
+                        onPageChange={(page) => {
+                          this.setState({ page }, () => {
+                            this.handlePageChange();
+                          });
+                        }}
+                      />
+                    )}
+                  </div>
+
+                  <div className="sorter">
+                    <span className="label">{_t("witnesses.sort")}</span>
+                    <Form.Control as="select" onChange={this.sortChanged} value={sort}>
+                      <option value="rank">{_t("witnesses.sort-rank")}</option>
+                      <option value="name">{_t("witnesses.sort-name")}</option>
+                      <option value="fee">{_t("witnesses.sort-fee")}</option>
+                    </Form.Control>
+                  </div>
+                </div>
                 <div className="witnesses-controls">
                   {!proxy
                     ? WitnessesExtra({

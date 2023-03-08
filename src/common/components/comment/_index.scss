@@ -1,9 +1,18 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .comment-box {
   margin: 10px 0 15px 0;
 
   .editor-toolbar {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+
+    &.bottom {
+      border-radius: 0 0 8px 8px;
+    }
   }
 
   .comment-body {
@@ -17,6 +26,21 @@
 
     @include themify(night) {
       background: lighten($dark-two, 6);
+    }
+
+    textarea {
+      @include themify(day) {
+        background: $white-two;
+      }
+
+      @include themify(night) {
+        background: lighten($dark-two, 6);
+      }
+    }
+
+    .rta {
+      min-height: 80px;
+      // height: auto !important;
     }
 
     .form-control {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Manager, Reference, Popper } from "react-popper";
 import { ProfilePreview } from "../profile-preview";
 import { menuDownSvg } from "../../img/svg";
+import "./index.scss";
 
 export const ProfilePopover = (props: any) => {
   const { global, entry } = props;

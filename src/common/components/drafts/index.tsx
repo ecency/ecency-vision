@@ -14,20 +14,23 @@ import LinearProgress from "../linear-progress";
 import PopoverConfirm from "../popover-confirm";
 import Tooltip from "../tooltip";
 import Tag from "../tag";
-import { error } from "../feedback";
+import { error, success } from "../feedback";
 
 import { _t } from "../../i18n";
 
-import { getDrafts, Draft, deleteDraft } from "../../api/private-api";
+import { getDrafts, Draft, deleteDraft, addDraft, DraftMetadata } from "../../api/private-api";
 
 import accountReputation from "../../helper/account-reputation";
 
 import defaults from "../../constants/defaults.json";
 
-import { deleteForeverSvg, pencilOutlineSvg } from "../../img/svg";
+import { deleteForeverSvg, pencilOutlineSvg, cloneOutlineSvg } from "../../img/svg";
 
 import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
+import { useMappedStore } from "../../store/use-mapped-store";
+import { useLocation } from "react-router";
+import "./_index.scss";
 
 setProxyBase(defaults.imageServer);
 
@@ -38,11 +41,12 @@ interface ItemProps {
   activeUser: ActiveUser;
   editFn: (item: Draft) => void;
   deleteFn: (item: Draft) => void;
+  cloneFn: (item: Draft) => void;
 }
 
 export class ListItem extends Component<ItemProps> {
   render() {
-    const { activeUser, draft, editFn, deleteFn, global } = this.props;
+    const { activeUser, draft, editFn, deleteFn, cloneFn, global } = this.props;
     if (!activeUser.data.__loaded) {
       return null;
     }
@@ -71,7 +75,7 @@ export class ListItem extends Component<ItemProps> {
           <div className="item-header-main">
             <div className="author-part">
               <a className="author-avatar">
-                {UserAvatar({ ...this.props, username: author, size: "medium" })}
+                <UserAvatar username={author} size="medium" />
               </a>
               <a className="author">
                 {author}
@@ -132,6 +136,16 @@ export class ListItem extends Component<ItemProps> {
             <span />
             <div className="btn-controls">
               <a
+                className="btn-clone"
+                onClick={() => {
+                  cloneFn(draft);
+                }}
+              >
+                <Tooltip content={_t("g.clone")}>
+                  <span>{cloneOutlineSvg}</span>
+                </Tooltip>
+              </a>
+              <a
                 className="btn-edit"
                 onClick={() => {
                   editFn(draft);
@@ -174,6 +188,8 @@ interface State {
   list: Draft[];
   filter: string;
   innerRef: any;
+  listRef: any;
+  isClone: boolean;
 }
 
 export class Drafts extends BaseComponent<Props, State> {
@@ -183,7 +199,9 @@ export class Drafts extends BaseComponent<Props, State> {
       loading: true,
       list: [],
       filter: "",
-      innerRef: React.createRef()
+      innerRef: React.createRef(),
+      listRef: React.createRef(),
+      isClone: false
     };
   }
 
@@ -249,13 +267,30 @@ export class Drafts extends BaseComponent<Props, State> {
     onHide();
   };
 
+  clone = async (item: Draft) => {
+    const element = this.state.listRef.current;
+    this.setState({ isClone: true });
+    const { activeUser } = this.props;
+    const { title, body, tags, meta } = item;
+    const cloneTitle = _t("g.copy") + " " + title;
+    const draftMeta: DraftMetadata = meta!;
+    try {
+      const resp = await addDraft(activeUser?.username!, cloneTitle, body, tags, draftMeta);
+      this.stateSet({ list: this.sort(resp.drafts), isClone: false });
+      success(_t("g.clone-success"));
+      element.scrollIntoView(true);
+    } catch (err) {
+      this.setState({ isClone: false });
+      error(_t("g.server-error"));
+    }
+  };
   filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
     const { value } = e.target;
     this.stateSet({ filter: value });
   };
 
   render() {
-    const { list, filter, loading } = this.state;
+    const { list, filter, loading, isClone } = this.state;
 
     return (
       <div className="dialog-content">
@@ -283,12 +318,12 @@ export class Drafts extends BaseComponent<Props, State> {
                   onChange={this.filterChanged}
                 />
               </div>
-
+              {isClone && <LinearProgress />}
               {items.length === 0 && <span className="text-muted">{_t("g.no-matches")}</span>}
 
               {items.length > 0 && (
                 <div className="drafts-list">
-                  <div className="drafts-list-body">
+                  <div className="drafts-list-body" ref={this.state.listRef}>
                     {items.map((item) => (
                       <ListItem
                         key={item._id}
@@ -296,6 +331,7 @@ export class Drafts extends BaseComponent<Props, State> {
                         draft={item}
                         editFn={this.edit}
                         deleteFn={this.delete}
+                        cloneFn={this.clone}
                       />
                     ))}
                   </div>
@@ -309,7 +345,7 @@ export class Drafts extends BaseComponent<Props, State> {
   }
 }
 
-export default class DraftsDialog extends Component<Props> {
+class DraftsDialog extends Component<Props> {
   hide = () => {
     const { onHide } = this.props;
     onHide();
@@ -328,3 +364,18 @@ export default class DraftsDialog extends Component<Props> {
     );
   }
 }
+
+export default ({ history, onHide }: Pick<Props, "history" | "onHide">) => {
+  const { global, activeUser } = useMappedStore();
+  const location = useLocation();
+
+  return (
+    <DraftsDialog
+      global={global}
+      history={history}
+      location={location}
+      activeUser={activeUser!!}
+      onHide={onHide}
+    />
+  );
+};

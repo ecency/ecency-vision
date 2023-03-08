@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import DownloadTrigger from "../download-trigger";
 import SSRSuspense from "../ssr-suspense";
 import { Global } from "../../store/global/types";
+import "./_index.scss";
 const Market = React.lazy(() => import("./market"));
 
 interface MarketDataProps {

@@ -6,6 +6,7 @@ import { createBrowserHistory, createLocation } from "history";
 import { CommunityRoles } from "./index";
 
 import { communityInstance1, globalInstance, activeUserMaker } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 it("(1) Default render", () => {
   const props = {
@@ -18,7 +19,7 @@ it("(1) Default render", () => {
     addCommunity: () => {}
   };
 
-  const component = renderer.create(<CommunityRoles {...props} />);
+  const component = withStore(<CommunityRoles {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -33,7 +34,7 @@ it("(2) Should not show add user button", () => {
     addCommunity: () => {}
   };
 
-  const component = renderer.create(<CommunityRoles {...props} />);
+  const component = withStore(<CommunityRoles {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -48,6 +49,6 @@ it("(3) Should show add user button", () => {
     addCommunity: () => {}
   };
 
-  const component = renderer.create(<CommunityRoles {...props} />);
+  const component = withStore(<CommunityRoles {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });

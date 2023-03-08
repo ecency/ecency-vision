@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .drafts-modal {
   .modal-body {
     .dialog-content {
@@ -8,6 +13,7 @@
       }
 
       .drafts-list {
+        margin-top: 7px;
         height: 520px;
         overflow: auto;
 
@@ -35,6 +41,10 @@
               align-items: center;
 
               .btn-controls {
+                .btn-clone {
+                  margin-right: 20px;
+                }
+
                 .btn-edit {
                   margin-right: 20px;
                 }
@@ -44,7 +54,8 @@
                 }
 
                 .btn-delete,
-                .btn-edit {
+                .btn-edit,
+                .btn-clone {
                   cursor: pointer;
 
                   svg {

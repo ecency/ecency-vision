@@ -39,23 +39,26 @@ exports[`(1) Default render 1`] = `
       <tr>
         <td>
           <a
-            className="user"
             href="/@hive-148441"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
-                }
-              }
-            />
-             
-            <span
-              className="username"
+              className="user"
             >
-              hive-148441
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
+                  }
+                }
+              />
+               
+              <span
+                className="username"
+              >
+                hive-148441
+              </span>
             </span>
           </a>
         </td>
@@ -69,23 +72,26 @@ exports[`(1) Default render 1`] = `
       <tr>
         <td>
           <a
-            className="user"
             href="/@bluemist"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
-                }
-              }
-            />
-             
-            <span
-              className="username"
+              className="user"
             >
-              bluemist
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
+                  }
+                }
+              />
+               
+              <span
+                className="username"
+              >
+                bluemist
+              </span>
             </span>
           </a>
         </td>
@@ -140,23 +146,26 @@ exports[`(2) Should not show add user button 1`] = `
       <tr>
         <td>
           <a
-            className="user"
             href="/@hive-148441"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
-                }
-              }
-            />
-             
-            <span
-              className="username"
+              className="user"
             >
-              hive-148441
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
+                  }
+                }
+              />
+               
+              <span
+                className="username"
+              >
+                hive-148441
+              </span>
             </span>
           </a>
         </td>
@@ -170,23 +179,26 @@ exports[`(2) Should not show add user button 1`] = `
       <tr>
         <td>
           <a
-            className="user"
             href="/@bluemist"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
-                }
-              }
-            />
-             
-            <span
-              className="username"
+              className="user"
             >
-              bluemist
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
+                  }
+                }
+              />
+               
+              <span
+                className="username"
+              >
+                bluemist
+              </span>
             </span>
           </a>
         </td>
@@ -241,23 +253,26 @@ exports[`(3) Should show add user button 1`] = `
       <tr>
         <td>
           <a
-            className="user"
             href="/@hive-148441"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
-                }
-              }
-            />
-             
-            <span
-              className="username"
+              className="user"
             >
-              hive-148441
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
+                  }
+                }
+              />
+               
+              <span
+                className="username"
+              >
+                hive-148441
+              </span>
             </span>
           </a>
         </td>
@@ -271,23 +286,26 @@ exports[`(3) Should show add user button 1`] = `
       <tr>
         <td>
           <a
-            className="user"
             href="/@bluemist"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
-                }
-              }
-            />
-             
-            <span
-              className="username"
+              className="user"
             >
-              bluemist
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
+                  }
+                }
+              />
+               
+              <span
+                className="username"
+              >
+                bluemist
+              </span>
             </span>
           </a>
         </td>

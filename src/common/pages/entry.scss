@@ -1,3 +1,8 @@
+@import "src/style/bootstrap_vars";
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/mixins";
+
 .circle-separator {
   border-radius: 50%;
   height: 4px;
@@ -16,11 +21,13 @@
     background: $dark-grey-blue;
   }
 }
+
 .edit-btn {
   width: 20px;
   height: 20px;
   margin-right: 14px;
   cursor: pointer;
+
   @include themify(day) {
     color: $steel-grey;
   }
@@ -227,6 +234,7 @@
         line-height: 100%;
         margin-bottom: 15px;
         position: relative;
+
         @media (min-width: $sm-break) {
           font-size: 18px;
         }
@@ -293,7 +301,6 @@
             flex-direction: column;
 
             .separator {
-              @extend .circle-separator;
               display: none;
             }
 
@@ -409,7 +416,6 @@
         }
 
         .separator {
-          @extend .circle-separator;
 
           &:first-of-type {
             display: none;
@@ -487,6 +493,11 @@
             height: 17px;
           }
         }
+
+        .raw-content-icon {
+          margin-right: 15px;
+          cursor: pointer;
+        }
       }
     }
 
@@ -517,60 +528,83 @@
 
 @media screen and (max-width: 1210px) {
   div#word-count {
-  display: none
+    display: none
   }
-  }
-  @media (min-width: 1400px) {
-   div#word-count {
+}
+
+@media (min-width: 1400px) {
+  div#word-count {
     right: 13.5%;
-}  }
-  @media (min-width: 1600px) {
-   div#word-count {
+  }
+}
+
+@media (min-width: 1600px) {
+  div#word-count {
     right: 15%;
-}  }
-  @media (min-width: 1700px) {
-   div#word-count {
+  }
+}
+
+@media (min-width: 1700px) {
+  div#word-count {
     right: 18%;
-}  }
-  @media (min-width: 1800px) {
-   div#word-count {
+  }
+}
+
+@media (min-width: 1800px) {
+  div#word-count {
     right: 20%;
-}  }
-  @media (min-width: 2000px) {
-   div#word-count {
-    right: 23%;}
   }
-  @media (min-width: 2200px) {
-   div#word-count {
-    right: 25%;}
+}
+
+@media (min-width: 2000px) {
+  div#word-count {
+    right: 23%;
   }
-  @media (min-width: 2500px) {
-   div#word-count {
-    right: 27%;}
+}
+
+@media (min-width: 2200px) {
+  div#word-count {
+    right: 25%;
   }
-  @media (min-width: 3000px) {
-   div#word-count {
+}
+
+@media (min-width: 2500px) {
+  div#word-count {
+    right: 27%;
+  }
+}
+
+@media (min-width: 3000px) {
+  div#word-count {
     right: 31%;
- } }
-  @media (min-width: 3500px) {
-   div#word-count {
+  }
+}
+
+@media (min-width: 3500px) {
+  div#word-count {
     right: 34%;
- } }
-  @media (min-width: 4000px) {
-   div#word-count {
+  }
+}
+
+@media (min-width: 4000px) {
+  div#word-count {
     right: 36%;
- } }
+  }
+}
+
 #word-count {
   position: fixed;
   top: 250px;
   right: 100px;
   display: block;
 }
+
 @media screen and (min-width: 1210px) {
   div.post-info {
-  display: none
+    display: none
   }
-  }
+}
+
 .post-info {
   margin-right: 10px;
 }

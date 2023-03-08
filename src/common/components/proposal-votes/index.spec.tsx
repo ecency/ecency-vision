@@ -12,6 +12,7 @@ import {
 import { createBrowserHistory } from "history";
 
 import { ProposalVotesDetail } from "./index";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../api/hive", () => ({
   getProposalVotes: (proposalId: number, voter: string = "", limit: number = 300) =>
@@ -51,14 +52,17 @@ const defProps = {
   global: globalInstance,
   dynamicProps: dynamicPropsIntance1,
   proposal: proposalInstance,
+  searchText: " ",
   addAccount: () => {},
-  onHide: () => {}
+  getVotesCount: () => {},
+  onHide: () => {},
+  checkIsMoreData: () => {}
 };
 
 it("(1) Default render.", async () => {
   const props = { ...defProps };
 
-  const component = renderer.create(<ProposalVotesDetail {...props} />);
+  const component = withStore(<ProposalVotesDetail {...props} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });

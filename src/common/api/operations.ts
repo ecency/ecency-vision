@@ -32,6 +32,7 @@ import { formatNumber } from "../helper/format-number";
 export interface MetaData {
   links?: string[];
   image?: string[];
+  image_ratios?: any;
   thumbnails?: string[];
   users?: string[];
   tags?: string[];
@@ -940,6 +941,23 @@ export const delegateVestingSharesKc = (
   return keychain.broadcast(delegator, [op], "Active");
 };
 
+export const delegateRC = (
+  delegator: string,
+  delegatees: string,
+  max_rc: string | number
+): Promise<TransactionConfirmation> => {
+  const json = [
+    "delegate_rc",
+    {
+      from: delegator,
+      delegatees: [delegatees],
+      max_rc: max_rc
+    }
+  ];
+
+  return broadcastPostingJSON(delegator, "rc", json);
+};
+
 export const withdrawVesting = (
   account: string,
   key: PrivateKey,
@@ -1308,15 +1326,7 @@ export const communityRewardsRegisterKc = (name: string) => {
 
 export const updateProfile = (
   account: Account,
-  newProfile: {
-    name: string;
-    about: string;
-    website: string;
-    location: string;
-    cover_image: string;
-    profile_image: string;
-    pinned: string;
-  }
+  newProfile: any
 ): Promise<TransactionConfirmation> => {
   const params = {
     account: account.name,

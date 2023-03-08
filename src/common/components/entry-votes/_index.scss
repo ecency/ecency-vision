@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .entry-votes-modal {
   .modal-content {
     padding-left: 1.5rem;
@@ -97,7 +102,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    @media(max-width: $xxsm-break){
+    @media (max-width: $xxsm-break) {
       font-size: 12px;
       svg {
         padding: 0 3px 0 5px;
@@ -106,6 +111,20 @@
 
     &.no-data {
       cursor: default;
+    }
+    .heart-icon {
+      &.voted {
+        svg {
+          fill: $dark-sky-blue;
+        }
+      }
+
+      &.vote-done {
+        animation: heartbeat 1s ease-in-out forwards;
+        svg {
+          fill: $dark-sky-blue;
+        }
+      }
     }
   }
 }

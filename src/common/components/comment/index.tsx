@@ -1,6 +1,6 @@
 import React, { Component, Ref } from "react";
 
-import { Form, FormControl, Button, Spinner } from "react-bootstrap";
+import { FormControl, Button, Spinner } from "react-bootstrap";
 
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -10,6 +10,7 @@ import { Entry } from "../../store/entries/types";
 
 import EditorToolbar from "../editor-toolbar";
 import LoginRequired from "../login-required";
+import { detectEvent, toolbarEventListener } from "../../components/editor-toolbar";
 
 import defaults from "../../constants/defaults.json";
 
@@ -22,6 +23,9 @@ import { Global } from "../../store/global/types";
 import * as ss from "../../util/session-storage";
 
 import TextareaAutocomplete from "../textarea-autocomplete";
+import { AvailableCredits } from "../available-credits";
+import { Location } from "history";
+import "./_index.scss";
 
 interface PreviewProps {
   text: string;
@@ -60,6 +64,7 @@ interface Props {
   ui: UI;
   global: Global;
   entry: Entry;
+  location: Location;
   inProgress?: boolean;
   isCommented?: boolean;
   cancellable?: boolean;
@@ -83,6 +88,11 @@ interface State {
 }
 
 export class Comment extends Component<Props, State> {
+  commentBodyRef: React.RefObject<HTMLDivElement>;
+  constructor(props: Props) {
+    super(props);
+    this.commentBodyRef = React.createRef();
+  }
   state: State = {
     text: "",
     preview: "",
@@ -97,7 +107,8 @@ export class Comment extends Component<Props, State> {
   componentDidMount(): void {
     const { defText } = this.props;
     this.setState({ text: defText || "", preview: defText || "" });
-    this.cleanUpLS();
+
+    this.addToolbarEventListners();
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -113,13 +124,10 @@ export class Comment extends Component<Props, State> {
       this.setState({ text: "", preview: "" });
     }
   }
-  //TODO: Delete this after 3.0.22 release
-  cleanUpLS = () => {
-    Object.entries(localStorage)
-      .map((x) => x[0])
-      .filter((x) => x.includes("ecency_reply_draft_"))
-      .map((x) => localStorage.removeItem(x));
-  };
+
+  componentWillUnmount(): void {
+    this.removeToolbarEventListners();
+  }
 
   updateLsCommentDraft = (text: string) => {
     const { entry } = this.props;
@@ -162,6 +170,65 @@ export class Comment extends Component<Props, State> {
     if (onCancel) onCancel();
   };
 
+  addToolbarEventListners = () => {
+    if (this.commentBodyRef) {
+      const el = this.commentBodyRef?.current;
+
+      if (el) {
+        el.addEventListener("paste", this.handlePaste);
+        el.addEventListener("dragover", this.handleDragover);
+        el.addEventListener("drop", this.handleDrop);
+      }
+    }
+  };
+
+  removeToolbarEventListners = () => {
+    if (this.commentBodyRef) {
+      const el = this.commentBodyRef?.current;
+
+      if (el) {
+        el.removeEventListener("paste", this.handlePaste);
+        el.removeEventListener("dragover", this.handleDragover);
+        el.removeEventListener("drop", this.handleDrop);
+      }
+    }
+  };
+
+  handlePaste = (event: Event): void => {
+    toolbarEventListener(event, "paste");
+  };
+
+  handleDragover = (event: Event): void => {
+    toolbarEventListener(event, "dragover");
+  };
+
+  handleDrop = (event: Event): void => {
+    toolbarEventListener(event, "drop");
+  };
+  handleShortcuts = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.altKey && e.key === "b") {
+      detectEvent("bold");
+    }
+    if (e.altKey && e.key === "i") {
+      detectEvent("italic");
+    }
+    if (e.altKey && e.key === "t") {
+      detectEvent("table");
+    }
+    if (e.altKey && e.key === "k") {
+      detectEvent("link");
+    }
+    if (e.altKey && e.key === "c") {
+      detectEvent("codeBlock");
+    }
+    if (e.altKey && e.key === "d") {
+      detectEvent("image");
+    }
+    if (e.altKey && e.key === "m") {
+      detectEvent("blockquote");
+    }
+  };
+
   render() {
     const { inProgress, cancellable, autoFocus, submitText, inputRef, activeUser } = this.props;
     const { text, preview, showEmoji, showGif, inputHeight } = this.state;
@@ -176,7 +243,7 @@ export class Comment extends Component<Props, State> {
           }
         >
           {EditorToolbar({ ...this.props, sm: true, showEmoji })}
-          <div className="comment-body">
+          <div className="comment-body" onKeyDown={this.handleShortcuts} ref={this.commentBodyRef}>
             <TextareaAutocomplete
               className={`the-editor accepts-emoji ${text.length > 20 ? "expanded" : ""}`}
               as="textarea"
@@ -197,8 +264,21 @@ export class Comment extends Component<Props, State> {
               activeUser={(activeUser && activeUser.username) || ""}
               isComment={true}
             />
+            <div className="editor-toolbar bottom">
+              {this.props.activeUser ? (
+                <AvailableCredits
+                  className="p-2 w-100"
+                  operation="comment_operation"
+                  username={this.props.activeUser.username}
+                  activeUser={activeUser}
+                  location={this.props.location}
+                />
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
-          <div className="comment-buttons">
+          <div className="comment-buttons d-flex align-items-center mt-3">
             {cancellable && (
               <Button
                 className="btn-cancel"
@@ -259,7 +339,8 @@ export default (p: Props) => {
     onSubmit: p.onSubmit,
     resetSelection: p.resetSelection,
     onCancel: p.onCancel,
-    inputRef: p.inputRef
+    inputRef: p.inputRef,
+    location: p.location
   };
 
   return <Comment {...props} />;

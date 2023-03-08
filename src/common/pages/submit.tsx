@@ -42,7 +42,8 @@ import { makePath as makePathEntry } from "../components/entry-link";
 import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
-import { detectEvent } from "../components/editor-toolbar";
+import { detectEvent, toolbarEventListener } from "../components/editor-toolbar";
+import "./submit.scss";
 
 import {
   addDraft,
@@ -77,11 +78,13 @@ import * as ls from "../util/local-storage";
 
 import { version } from "../../../package.json";
 
-import { checkSvg, contentSaveSvg } from "../img/svg";
+import { checkSvg, contentSaveSvg, contentLoadSvg } from "../img/svg";
 
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import ModalConfirm from "../components/modal-confirm";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
+import Drafts from "../components/drafts";
+import { AvailableCredits } from "../components/available-credits";
 
 setProxyBase(defaults.imageServer);
 
@@ -168,9 +171,16 @@ interface State extends PostBase, Advanced {
   thumbnails: string[];
   selectedThumbnail: string;
   selectionTouched: boolean;
+  isDraftEmpty: boolean;
+  drafts: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
+  postBodyRef: React.RefObject<HTMLDivElement>;
+  constructor(props: Props) {
+    super(props);
+    this.postBodyRef = React.createRef();
+  }
   state: State = {
     title: "",
     tags: [],
@@ -195,7 +205,9 @@ class SubmitPage extends BaseComponent<Props, State> {
       body: "",
       description: ""
     },
-    disabled: true
+    disabled: true,
+    isDraftEmpty: true,
+    drafts: false
   };
 
   _updateTimer: any = null;
@@ -215,6 +227,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     if (selectedThumbnail && selectedThumbnail.length > 0) {
       this.selectThumbnails(selectedThumbnail);
     }
+
+    this.addToolbarEventListners();
   };
 
   componentDidUpdate(prevProps: Readonly<Props>) {
@@ -237,6 +251,46 @@ class SubmitPage extends BaseComponent<Props, State> {
       this.detectDraft().then();
     }
   }
+
+  componentWillUnmount(): void {
+    this.removeToolbarEventListners();
+  }
+
+  addToolbarEventListners = () => {
+    if (this.postBodyRef) {
+      const el = this.postBodyRef?.current;
+
+      if (el) {
+        el.addEventListener("paste", this.handlePaste);
+        el.addEventListener("dragover", this.handleDragover);
+        el.addEventListener("drop", this.handleDrop);
+      }
+    }
+  };
+
+  removeToolbarEventListners = () => {
+    if (this.postBodyRef) {
+      const el = this.postBodyRef?.current;
+
+      if (el) {
+        el.removeEventListener("paste", this.handlePaste);
+        el.removeEventListener("dragover", this.handleDragover);
+        el.removeEventListener("drop", this.handleDrop);
+      }
+    }
+  };
+
+  handlePaste = (event: Event): void => {
+    toolbarEventListener(event, "paste");
+  };
+
+  handleDragover = (event: Event): void => {
+    toolbarEventListener(event, "dragover");
+  };
+
+  handleDrop = (event: Event): void => {
+    toolbarEventListener(event, "drop");
+  };
 
   handleValidForm = (value: boolean) => {
     this.setState({ disabled: value });
@@ -360,11 +414,18 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     const localDraft = ls.get("local_draft") as PostBase;
     if (!localDraft) {
+      this.stateSet({ isDraftEmpty: true });
       return;
     }
 
     const { title, tags, body } = localDraft;
     this.stateSet({ title, tags, body }, this.updatePreview);
+
+    for (const key in localDraft) {
+      if (localDraft[key]?.length > 0) {
+        this.stateSet({ isDraftEmpty: false });
+      }
+    }
   };
 
   saveLocalDraft = (): void => {
@@ -486,7 +547,8 @@ class SubmitPage extends BaseComponent<Props, State> {
         beneficiaries: [],
         schedule: null,
         reblogSwitch: false,
-        clearModal: false
+        clearModal: false,
+        isDraftEmpty: true
       },
       () => {
         this.clearAdvanced();
@@ -535,6 +597,11 @@ class SubmitPage extends BaseComponent<Props, State> {
       this.stateSet({ preview: { title, tags, body, description }, thumbnails: thumbnails || [] });
       if (editingEntry === null) {
         this.saveLocalDraft();
+      }
+      if (title.length || tags.length || body.length) {
+        this.stateSet({ isDraftEmpty: false });
+      } else {
+        this.stateSet({ isDraftEmpty: true });
       }
     }, 500);
   };
@@ -609,7 +676,15 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     const [parentPermlink] = tags;
-    const jsonMeta = this.buildMetadata();
+    let jsonMeta = this.buildMetadata();
+    if (jsonMeta && jsonMeta.image && jsonMeta.image.length > 0) {
+      jsonMeta.image_ratios = await Promise.all(
+        jsonMeta.image
+          .slice(0, 5)
+          .map((element: string) => this.getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
+      );
+    }
+
     const options = makeCommentOptions(author, permlink, reward, beneficiaries);
     this.stateSet({ posting: true });
     comment(author, "", parentPermlink, permlink, title, cbody, jsonMeta, options, true)
@@ -670,13 +745,21 @@ class SubmitPage extends BaseComponent<Props, State> {
       newBody = patch;
     }
 
-    const jsonMeta = Object.assign(
+    let jsonMeta = Object.assign(
       {},
       json_metadata,
       this.buildMetadata(),
       { tags },
       { description }
     );
+
+    if (jsonMeta && jsonMeta.image && jsonMeta.image.length > 0) {
+      jsonMeta.image_ratios = await Promise.all(
+        jsonMeta.image
+          .slice(0, 5)
+          .map((element: string) => this.getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
+      );
+    }
 
     this.stateSet({ posting: true });
 
@@ -839,14 +922,27 @@ class SubmitPage extends BaseComponent<Props, State> {
     } else if (selectedThumbnail === localThumbnail) {
       ls.remove("draft_selected_image");
     } else {
-      meta.image = [selectedThumbnail];
+      meta.image = selectedThumbnail ? [selectedThumbnail] : [];
     }
     if (meta.image) {
       meta.image = [...new Set(meta.image)];
     }
     const summary = description === null ? postBodySummary(this.state.body, 200) : description;
+
     return makeJsonMetaData(meta, tags, summary, version);
   };
+
+  getHeightAndWidthFromDataUrl = (dataURL: string) =>
+    new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        resolve(img.width / img.height);
+      };
+      img.onerror = function () {
+        resolve(0);
+      };
+      img.src = dataURL;
+    });
 
   handleShortcuts = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.altKey && e.key === "b") {
@@ -890,12 +986,15 @@ class SubmitPage extends BaseComponent<Props, State> {
       clearModal,
       selectedThumbnail,
       thumbnails,
-      disabled
+      disabled,
+      drafts
     } = this.state;
 
     //  Meta config
+    const ncount =
+      this.props.notifications.unread > 0 ? `(${this.props.notifications.unread}) ` : "";
     const metaProps = {
-      title: _t("submit.page-title"),
+      title: ncount + _t("submit.page-title"),
       description: _t("submit.page-description")
     };
 
@@ -919,11 +1018,13 @@ class SubmitPage extends BaseComponent<Props, State> {
           />
         )}
         {global.isElectron && <MdHandler global={this.props.global} history={this.props.history} />}
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
 
         <div
           className={_c(
@@ -970,7 +1071,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 onValid: this.handleValidForm
               })}
             </div>
-            <div className="body-input" onKeyDown={this.handleShortcuts}>
+            <div className="body-input" onKeyDown={this.handleShortcuts} ref={this.postBodyRef}>
               <TextareaAutocomplete
                 acceptCharset="UTF-8"
                 global={this.props.global}
@@ -986,6 +1087,17 @@ class SubmitPage extends BaseComponent<Props, State> {
                 activeUser={(activeUser && activeUser.username) || ""}
               />
             </div>
+            {activeUser ? (
+              <AvailableCredits
+                className="mr-2"
+                operation="comment_operation"
+                username={activeUser.username}
+                activeUser={activeUser}
+                location={this.props.location}
+              />
+            ) : (
+              <></>
+            )}
             <div className="bottom-toolbar">
               {editingEntry === null && (
                 <Button variant="outline-info" onClick={() => this.setState({ clearModal: true })}>
@@ -993,16 +1105,18 @@ class SubmitPage extends BaseComponent<Props, State> {
                 </Button>
               )}
 
-              <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
-                {advanced ? (
-                  _t("submit.preview")
-                ) : (
-                  <>
-                    {_t("submit.advanced")}
-                    {this.hasAdvanced() ? " •••" : null}
-                  </>
-                )}
-              </Button>
+              <div className="d-flex align-items-center">
+                <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
+                  {advanced ? (
+                    _t("submit.preview")
+                  ) : (
+                    <>
+                      {_t("submit.advanced")}
+                      {this.hasAdvanced() ? " •••" : null}
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
           </div>
           <div className="flex-spacer" />
@@ -1030,18 +1144,40 @@ class SubmitPage extends BaseComponent<Props, State> {
                   <>
                     <span />
                     <div>
-                      {global.usePrivate && (
-                        <Button
-                          variant="outline-primary"
-                          style={{ marginRight: "6px" }}
-                          onClick={this.saveDraft}
-                          disabled={disabled || saving || posting}
-                        >
-                          {contentSaveSvg}{" "}
-                          {editingDraft === null
-                            ? _t("submit.save-draft")
-                            : _t("submit.update-draft")}
-                        </Button>
+                      {global.usePrivate && this.state.isDraftEmpty ? (
+                        <>
+                          {LoginRequired({
+                            ...this.props,
+                            children: (
+                              <Button
+                                variant="outline-primary"
+                                style={{ marginRight: "6px" }}
+                                onClick={() => this.stateSet({ drafts: !drafts })}
+                              >
+                                {contentLoadSvg} {_t("submit.load-draft")}
+                              </Button>
+                            )
+                          })}
+                        </>
+                      ) : (
+                        <>
+                          {LoginRequired({
+                            ...this.props,
+                            children: (
+                              <Button
+                                variant="outline-primary"
+                                style={{ marginRight: "6px" }}
+                                onClick={this.saveDraft}
+                                disabled={disabled || saving || posting}
+                              >
+                                {contentSaveSvg}{" "}
+                                {editingDraft === null
+                                  ? _t("submit.save-draft")
+                                  : _t("submit.update-draft")}
+                              </Button>
+                            )
+                          })}
+                        </>
                       )}
                       {LoginRequired({
                         ...this.props,
@@ -1058,6 +1194,9 @@ class SubmitPage extends BaseComponent<Props, State> {
                       })}
                     </div>
                   </>
+                )}
+                {drafts && activeUser && (
+                  <Drafts {...this.props} onHide={() => this.setState({ drafts: !drafts })} />
                 )}
 
                 {editingEntry !== null && (

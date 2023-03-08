@@ -1,0 +1,121 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.available-credits {
+  .available-credits-bar {
+    position: relative;
+    overflow: hidden;
+
+    .progress {
+      background-color: $gray-200;
+      height: 8px;
+      width: 100%;
+      border-radius: 4px;
+      padding: 2px;
+
+      @include themify(night) {
+        stroke: $gray-700;
+      }
+
+      .indicator {
+        height: 4px;
+        border-radius: 2px;
+        background-color: $primary;
+        transition: stroke-dashoffset 1s ease-in-out;
+
+        &.warning {
+          background-color: $yellow;
+
+          @include themify(night) {
+            background-color: darken($yellow, 15);
+          }
+        }
+
+        &.danger {
+          background-color: $danger;
+
+          @include themify(night) {
+            background-color: darken($danger, 15);
+          }
+        }
+      }
+    }
+  }
+
+  .btn-link {
+    font-family: $font-family-base;
+    font-weight: bold;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+  }
+}
+
+.available-credits-bar-popper {
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s ease-in-out;
+  z-index: 13;
+  background: $gray-800;
+  color: $white;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  display: grid;
+  grid-template-columns: min-content min-content;
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr;
+  }
+
+  span, p {
+    white-space: nowrap;
+  }
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .arrow {
+    visibility: hidden;
+
+    &, &::before {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: inherit;
+    }
+
+    &::before {
+      visibility: visible;
+      content: '';
+      transform: rotate(45deg);
+    }
+  }
+
+  .opacity-75 {
+    opacity: 0.75;
+  }
+
+  .opacity-5 {
+    opacity: 0.5;
+  }
+
+  .extra-details {
+    border-left: 1px solid $gray-700;
+
+    @include media-breakpoint-down(md) {
+      border-left: 0;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 0.5rem;
+    }
+  }
+}

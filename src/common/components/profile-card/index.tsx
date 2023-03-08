@@ -3,6 +3,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { History } from "history";
 
 import { Link } from "react-router-dom";
+import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
 import { Global } from "../../store/global/types";
 import { Account, FullAccount } from "../../store/accounts/types";
@@ -18,7 +19,7 @@ import formattedNumber from "../../util/formatted-number";
 
 import defaults from "../../constants/defaults.json";
 
-import { votingPower } from "../../api/hive";
+import { findRcAccounts, rcPower, votingPower } from "../../api/hive";
 
 import { _t } from "../../i18n";
 
@@ -30,6 +31,8 @@ import { Skeleton } from "../skeleton";
 import { dateToFormatted } from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 import { Subscription } from "../../store/subscriptions/types";
+import { ResourceCreditsInfo } from "../rc-info";
+import "./_index.scss";
 
 interface Props {
   global: Global;
@@ -48,6 +51,7 @@ export const ProfileCard = (props: Props) => {
   const [isMounted, setIsmounted] = useState(false);
   const [followsActiveUserLoading, setFollowsActiveUserLoading] = useState(false);
   const [subs, setSubs] = useState([] as Subscription[]);
+  const [rcPercent, setRcPercent] = useState(100);
 
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({} as any), []);
@@ -69,6 +73,15 @@ export const ProfileCard = (props: Props) => {
       .catch((e) => {
         setSubs([]);
       });
+    findRcAccounts(account.name)
+      .then((r: RCAccount[]) => {
+        if (r && r[0]) {
+          setRcPercent(rcPower(r[0]));
+        }
+      })
+      .catch((e) => {
+        setRcPercent(100);
+      });
   }, [account]);
 
   useEffect(() => {
@@ -81,7 +94,7 @@ export const ProfileCard = (props: Props) => {
     setFollowingList(false);
     setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
     isMounted && getFollowsInfo(account.name);
-  }, [account.name]);
+  }, [account?.name]);
 
   const getFollowsInfo = (username: string) => {
     if (activeUser) {
@@ -105,12 +118,13 @@ export const ProfileCard = (props: Props) => {
     setFollowingList(!followingList);
   };
   const loggedIn = activeUser && activeUser.username;
+  // TODO: use better conditions throughout app than .__loaded, remove all instances that rely on .__loaded
 
-  if (!account.__loaded) {
+  if (!account?.__loaded) {
     return (
       <div className="profile-card">
         <div className="profile-avatar">
-          {UserAvatar({ ...props, username: account.name, size: "xLarge" })}
+          <UserAvatar username={account.name} size="xLarge" />
         </div>
 
         <h1>
@@ -119,8 +133,6 @@ export const ProfileCard = (props: Props) => {
       </div>
     );
   }
-
-  const vPower = votingPower(account);
 
   const isMyProfile =
     activeUser &&
@@ -132,12 +144,7 @@ export const ProfileCard = (props: Props) => {
   return (
     <div className="profile-card">
       <div className="profile-avatar">
-        {UserAvatar({
-          ...props,
-          username: account.name,
-          size: "xLarge",
-          src: account.profile?.profile_image
-        })}
+        <UserAvatar username={account.name} size="xLarge" src={account.profile?.profile_image} />
         {isMyProfile && isSettings && (
           <EditPic
             {...props}
@@ -157,15 +164,6 @@ export const ProfileCard = (props: Props) => {
         <div className="username">{account.name}</div>
       </h1>
 
-      <div className="vpower-line">
-        <div className="vpower-line-inner" style={{ width: `${vPower}%` }} />
-      </div>
-
-      <div className="vpower-percentage">
-        <Tooltip content={_t("profile.voting-power")}>
-          <span>{vPower.toFixed(2)}</span>
-        </Tooltip>
-      </div>
       {loggedIn && !isMyProfile && (
         <div className="d-flex justify-content-center mb-3 d-md-block">
           {followsActiveUserLoading ? (
@@ -182,6 +180,10 @@ export const ProfileCard = (props: Props) => {
           {account.profile?.about && <div className="about">{account.profile.about}</div>}
         </div>
       )}
+
+      <div>
+        <ResourceCreditsInfo {...props} rcPercent={rcPercent} account={account} />
+      </div>
 
       {account.__loaded && (
         <div className="stats">

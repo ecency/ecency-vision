@@ -23,6 +23,8 @@ import clipboard from "../../util/clipboard";
 
 import defaults from "../../constants/defaults.json";
 import { Global } from "../../store/global/types";
+import { useMappedStore } from "../../store/use-mapped-store";
+import "./_index.scss";
 
 setProxyBase(defaults.imageServer);
 
@@ -144,7 +146,7 @@ export class Gallery extends BaseComponent<Props, State> {
   }
 }
 
-export default class GalleryDialog extends Component<Props> {
+class GalleryDialog extends Component<Props> {
   hide = () => {
     const { onHide } = this.props;
     onHide();
@@ -163,3 +165,9 @@ export default class GalleryDialog extends Component<Props> {
     );
   }
 }
+
+export default ({ onHide, onPick }: Pick<Props, "onHide" | "onPick">) => {
+  const { global, activeUser } = useMappedStore();
+
+  return <GalleryDialog global={global} activeUser={activeUser} onHide={onHide} onPick={onPick} />;
+};

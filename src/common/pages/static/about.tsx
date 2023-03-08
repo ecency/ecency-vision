@@ -35,11 +35,13 @@ class AboutPage extends Component<PageProps> {
         <Meta {...metaProps} />
         <ScrollToTop />
         <Theme global={this.props.global} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
 
         <div className={"app-content static-page about-page" + containerClasses}>
           <div className="about-cloud">

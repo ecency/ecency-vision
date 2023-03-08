@@ -17,6 +17,7 @@ import {
   UiInstance,
   allOver
 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("moment", () => () => ({
   fromNow: () => "3 days ago",
@@ -43,6 +44,7 @@ const defProps = {
   ui: UiInstance,
   parent,
   community: null,
+  isRawContent: false,
   discussion,
   addAccount: () => {},
   setActiveUser: () => {},
@@ -60,7 +62,7 @@ const defProps = {
 
 it("(1) Full render with active user", async () => {
   // render the component
-  let component = await create(<Discussion {...defProps} />);
+  let component = await withStore(<Discussion {...defProps} />);
 
   // make assertions on component
   expect(component.toJSON()).toMatchSnapshot();
@@ -72,7 +74,7 @@ it("(2) Full render with no active user", async () => {
     activeUser: null
   };
   // render the component
-  let component = await create(<Discussion {...props} />);
+  let component = await withStore(<Discussion {...props} />);
 
   // make assertions on component
   expect(component.toJSON()).toMatchSnapshot();
@@ -84,7 +86,7 @@ it("(3) With selected item", async () => {
     location: createLocation({ hash: "#@forykw/re-esteemapp-202067t12246786z" })
   };
   // render the component
-  let component = await create(<Discussion {...props} />);
+  let component = await withStore(<Discussion {...props} />);
 
   // make assertions on component
   expect(component.toJSON()).toMatchSnapshot();
@@ -109,7 +111,7 @@ it("(4) Show mute button, muted comment", async () => {
   };
 
   // render the component
-  const component = await create(<Discussion {...nProps} />);
+  const component = await withStore(<Discussion {...nProps} />);
 
   // make assertions on component
   expect(component.toJSON()).toMatchSnapshot();
