@@ -16,16 +16,17 @@ import { Transfer } from "../transfer";
 import Tooltip from "../tooltip";
 
 import { _t } from "../../i18n";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 import { giftOutlineSvg } from "../../img/svg";
 
 interface Props {
-  global: Global;
-  dynamicProps: DynamicProps;
+  global: Global; //
+  dynamicProps: DynamicProps; //
   users: User[];
   ui: UI;
-  activeUser: ActiveUser | null;
-  entry: Entry;
+  activeUser: ActiveUser | null; //
+  entry: Entry; //
   signingKey: string;
   account: Account;
   fetchPoints: (username: string, type?: number) => void;
@@ -36,7 +37,7 @@ interface Props {
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
   setSigningKey: (key: string) => void;
-  setTipDialogMounted?: (d: boolean) => void;
+  setTipDialogMounted?: (d: boolean) => void; //
 }
 
 interface DialogProps extends Props {
@@ -163,3 +164,43 @@ export default (p: Props) => {
 
   return <EntryTipBtn {...props} />;
 };
+
+// export default ({
+//   entry,
+//   dynamicProps,
+//   activeUser,
+//   global
+// }: Pick<Props, "entry" | "dynamicProps" | "activeUser" | "global">) => {
+//   const {
+//     users,
+//     ui,
+//     fetchPoints,
+//     signingKey,
+//     addAccount,
+//     setActiveUser,
+//     updateActiveUser,
+//     deleteUser,
+//     toggleUIProp,
+//     setSigningKey
+//   } = useMappedStore();
+
+//   const props = {
+//     global: global,
+//     dynamicProps: dynamicProps,
+//     users: users,
+//     ui: ui,
+//     account: account,
+//     fetchPoints: fetchPoints,
+//     updateWalletValues: updateWalletValues,
+//     activeUser: activeUser,
+//     entry: entry,
+//     signingKey: signingKey,
+//     addAccount: addAccount,
+//     setActiveUser: setActiveUser,
+//     updateActiveUser: updateActiveUser,
+//     deleteUser: deleteUser,
+//     toggleUIProp: toggleUIProp,
+//     setSigningKey: setSigningKey
+//   };
+//   return <EntryTipBtn {...props} />;
+// };

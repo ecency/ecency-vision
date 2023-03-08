@@ -33,7 +33,6 @@ import _c from "../../util/fix-class-names";
 import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } from "../../img/svg";
 import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
-import { useMappedStore } from "../../store/use-mapped-store";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
@@ -425,39 +424,17 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             )}
           </>
         )}
-        {/* {days >= 7.0 && this.props.isPostSlider ? (
+        {days >= 7.0 && this.props.isPostSlider ? (
           <div className="vote-error error-message">
             <p>{_t("entry-list-item.old-post-error")}</p>
             <div className="vote-error-suggestion">
               {_t("entry-list-item.old-post-error-suggestion")}
-              <div className="tipping-icon"> */}
-        {/* {
-                  <EntryTipBtn
-                    global={this.props.global}
-                    dynamicProps={this.props.dynamicProps}
-                    users={users}
-                    ui={ui}
-                    activeUser={this.props.activeUser}
-                    entry={this.props.entry}
-                    signingKey={signingKey}
-                    // account = {account}
-                    fetchPoints={fetchPoints}
-                    // updateWalletValues = { updateWalletValues}
-                    addAccount={addAccount}
-                    setActiveUser={setActiveUser}
-                    updateActiveUser={updateActiveUser}
-                    deleteUser={deleteUser}
-                    toggleUIProp={toggleUIProp}
-                    setSigningKey={setSigningKey}
-                    setTipDialogMounted={this.props.setTipDialogMounted}
-                  />
-                } */}
-        {/* </div>
+              {/* <div className="tipping-icon">{<EntryTipBtn {...this.props} />}</div> */}
             </div>
           </div>
         ) : (
           <></>
-        )} */}
+        )}
       </>
     );
   }
@@ -661,43 +638,21 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
   }
 }
 
-// export default (p: Props) => {
-//   const props = {
-//     global: p.global,
-//     dynamicProps: p.dynamicProps,
-//     entry: p.entry,
-//     users: p.users,
-//     activeUser: p.activeUser,
-//     ui: p.ui,
-//     isPostSlider: p.isPostSlider,
-//     setActiveUser: p.setActiveUser,
-//     updateActiveUser: p.updateActiveUser,
-//     deleteUser: p.deleteUser,
-//     toggleUIProp: p.toggleUIProp,
-//     afterVote: p.afterVote
-//   };
-
-//   return <EntryVoteBtn {...props} />;
-// };
-
 export default (p: Props) => {
-  // const { global, activeUser } = useMappedStore();
-  // const location = useLocation();
+  const props = {
+    global: p.global,
+    dynamicProps: p.dynamicProps,
+    entry: p.entry,
+    users: p.users,
+    activeUser: p.activeUser,
+    ui: p.ui,
+    isPostSlider: p.isPostSlider,
+    setActiveUser: p.setActiveUser,
+    updateActiveUser: p.updateActiveUser,
+    deleteUser: p.deleteUser,
+    toggleUIProp: p.toggleUIProp,
+    afterVote: p.afterVote
+  };
 
-  return (
-    <EntryVoteBtn
-      global={p.global}
-      dynamicProps={p.dynamicProps}
-      entry={p.entry}
-      users={p.users}
-      activeUser={p.activeUser}
-      ui={p.ui}
-      isPostSlider={p.isPostSlider}
-      setActiveUser={p.setActiveUser}
-      updateActiveUser={p.updateActiveUser}
-      deleteUser={p.deleteUser}
-      toggleUIProp={p.toggleUIProp}
-      afterVote={p.afterVote}
-    />
-  );
+  return <EntryVoteBtn {...props} />;
 };
