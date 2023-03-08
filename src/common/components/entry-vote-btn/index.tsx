@@ -316,21 +316,22 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const {
       entry: { post_id, id }
     } = this.props;
+    console.log("Props", this.props);
     const days = this.getDays();
-    const {
-      ui,
-      users,
-      signingKey,
-      accounts,
-      fetchPoints,
-      addAccount,
-      setActiveUser,
-      updateActiveUser,
-      deleteUser,
-      toggleUIProp,
-      setSigningKey
-    } = useMappedStore();
-    console.log(accounts);
+    // const {
+    //   ui,
+    //   users,
+    //   signingKey,
+    //   accounts,
+    //   fetchPoints,
+    //   addAccount,
+    //   setActiveUser,
+    //   updateActiveUser,
+    //   deleteUser,
+    //   toggleUIProp,
+    //   setSigningKey
+    // } = useMappedStore();
+    // console.log(accounts);
 
     return (
       <>
@@ -660,21 +661,43 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
   }
 }
 
-export default (p: Props) => {
-  const props = {
-    global: p.global,
-    dynamicProps: p.dynamicProps,
-    entry: p.entry,
-    users: p.users,
-    activeUser: p.activeUser,
-    ui: p.ui,
-    isPostSlider: p.isPostSlider,
-    setActiveUser: p.setActiveUser,
-    updateActiveUser: p.updateActiveUser,
-    deleteUser: p.deleteUser,
-    toggleUIProp: p.toggleUIProp,
-    afterVote: p.afterVote
-  };
+// export default (p: Props) => {
+//   const props = {
+//     global: p.global,
+//     dynamicProps: p.dynamicProps,
+//     entry: p.entry,
+//     users: p.users,
+//     activeUser: p.activeUser,
+//     ui: p.ui,
+//     isPostSlider: p.isPostSlider,
+//     setActiveUser: p.setActiveUser,
+//     updateActiveUser: p.updateActiveUser,
+//     deleteUser: p.deleteUser,
+//     toggleUIProp: p.toggleUIProp,
+//     afterVote: p.afterVote
+//   };
 
-  return <EntryVoteBtn {...props} />;
+//   return <EntryVoteBtn {...props} />;
+// };
+
+export default (p: Props) => {
+  // const { global, activeUser } = useMappedStore();
+  // const location = useLocation();
+
+  return (
+    <EntryVoteBtn
+      global={p.global}
+      dynamicProps={p.dynamicProps}
+      entry={p.entry}
+      users={p.users}
+      activeUser={p.activeUser}
+      ui={p.ui}
+      isPostSlider={p.isPostSlider}
+      setActiveUser={p.setActiveUser}
+      updateActiveUser={p.updateActiveUser}
+      deleteUser={p.deleteUser}
+      toggleUIProp={p.toggleUIProp}
+      afterVote={p.afterVote}
+    />
+  );
 };
