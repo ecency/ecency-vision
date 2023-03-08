@@ -679,8 +679,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     if (jsonMeta && jsonMeta.image && jsonMeta.image.length > 0) {
       jsonMeta.image_ratios = await Promise.all(
         jsonMeta.image
-          .map((element: string) => this.getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
           .slice(0, 5)
+          .map((element: string) => this.getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
       );
     }
 
@@ -938,7 +938,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         resolve(img.width / img.height);
       };
       img.onerror = function () {
-        resolve({ url: dataURL });
+        resolve(0);
       };
       img.src = dataURL;
     });
