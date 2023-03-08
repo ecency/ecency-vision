@@ -1480,6 +1480,19 @@
     "copied": "Yksityinen avain kopioitu leikepöydälle",
     "error": "Salasana vaikuttaa virheelliseltä, ole hyvä ja tarkista uudelleen!"
   },
+  "account-recovery": {
+    "title": "Change Recovery Agent",
+    "curr-recovery-acc": "Current Recovery Agent",
+    "new-recovery-acc": "New Recovery Agent",
+    "confirm-title": "Confirm your transaction",
+    "confirm-sub-title": "Please, check if everything is correct",
+    "req-error": "Sorry! Your request of recover agent change is already in progress",
+    "to-not-found": "The user that you are tyring to set, does not exist!",
+    "sign-title": "Sign transaction",
+    "sign-sub-title": "Sign your transaction",
+    "success-message": "New recovery agent is effective after 30 days",
+    "info-message": "Overwrite pending request? @{{n}}"
+  },
   "add-image": {
     "title": "Lisää kuva",
     "text-label": "Kuvateksti",
@@ -1679,7 +1692,8 @@
     "comment-cashout": "Sisältöä ei voi poistaa niiden maksun jälkeen.",
     "comment-children": "Keskustelua, jossa on vastauksia, ei voi poistaa.",
     "paid-out-post-forbidden": "Äänestäminen maksetusta sisällöstä ei ole saatavilla.",
-    "missing-authority": "Puuttuva tai virheellinen valtuusavain."
+    "missing-authority": "This operation requires Active private key or authority.",
+    "missing-owner-authority": "This operation requires Owner private key or authority."
   },
   "landing-page": {
     "welcome-text": "Tervetuloa Ecencyyn!",
