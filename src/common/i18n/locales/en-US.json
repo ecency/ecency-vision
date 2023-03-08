@@ -1422,7 +1422,7 @@
     "sign-title": "Sign transaction",
     "sign-sub-title": "Sign your transaction",
     "success-message": "New recovery agent is effective after 30 days",
-    "info-message": "Recovery agent change is already in progress.You have a pending change recovery agent for {{n}} . Update existing request?!"
+    "info-message": "Overwrite pending request? @{{n}}"
   },
   "add-image": {
     "title": "Add Image",
