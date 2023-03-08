@@ -75,6 +75,7 @@ const FloatingFAQ = () => {
     for (const p of data.path) {
       if (routerLocation.pathname.match(p)) {
         setDisplay(true);
+        //you can also set the defaultFaqKeys state here.
         break;
       } else {
         setDisplay(false);
@@ -83,9 +84,10 @@ const FloatingFAQ = () => {
     //get categories from json file for testing.
     for (const c of data.categories) {
       if (routerLocation.pathname.includes(c)) {
-        console.log("Reached");
-        // setDefaultFaqKeys()
+        setDatatoShow(faqKeys.slice(5, 13));
         break;
+      } else {
+        setDatatoShow(defaultFaqKeys);
       }
     }
   };
@@ -108,7 +110,7 @@ const FloatingFAQ = () => {
               </div>
             </Button>
           )}
-          {show ? (
+          {show && display ? (
             <div className="faq-container">
               <div className="faq-welcome">
                 <h3 className="faq-welcome-message">{_t("floating-faq.welcome")}</h3>
