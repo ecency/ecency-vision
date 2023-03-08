@@ -1480,6 +1480,19 @@
     "copied": "개인 키를 클립보드에 복사하였습니다",
     "error": "비밀번호가 잘못된 것 같습니다, 다시 한 번 확인하세요!"
   },
+  "account-recovery": {
+    "title": "Change Recovery Agent",
+    "curr-recovery-acc": "Current Recovery Agent",
+    "new-recovery-acc": "New Recovery Agent",
+    "confirm-title": "Confirm your transaction",
+    "confirm-sub-title": "Please, check if everything is correct",
+    "req-error": "Sorry! Your request of recover agent change is already in progress",
+    "to-not-found": "The user that you are tyring to set, does not exist!",
+    "sign-title": "Sign transaction",
+    "sign-sub-title": "Sign your transaction",
+    "success-message": "New recovery agent is effective after 30 days",
+    "info-message": "Overwrite pending request? @{{n}}"
+  },
   "add-image": {
     "title": "이미지 추가",
     "text-label": "이미지 텍스트",
@@ -1679,7 +1692,8 @@
     "comment-cashout": "지불 후 콘텐츠는 삭제할 수 없습니다.",
     "comment-children": "답글이 달린 콘텐츠는 삭제할 수 없습니다.",
     "paid-out-post-forbidden": "유료 콘텐츠에 대한 투표는 불가능합니다.",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "This operation requires Active private key or authority.",
+    "missing-owner-authority": "This operation requires Owner private key or authority."
   },
   "landing-page": {
     "welcome-text": "Ecency에 환영합니다!",
