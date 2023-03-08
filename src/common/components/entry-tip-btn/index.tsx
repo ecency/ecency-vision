@@ -36,6 +36,7 @@ interface Props {
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
   setSigningKey: (key: string) => void;
+  setTipDialogMounted?: (d: boolean) => void;
 }
 
 interface DialogProps extends Props {
@@ -43,6 +44,20 @@ interface DialogProps extends Props {
 }
 
 export class TippingDialog extends Component<DialogProps> {
+  componentDidMount(): void {
+    if (this.props.setTipDialogMounted) {
+      console.log("Mount run");
+      this.props.setTipDialogMounted(true);
+    }
+  }
+
+  componentWillUnmount(): void {
+    if (this.props.setTipDialogMounted) {
+      console.log("UnMount run");
+      this.props.setTipDialogMounted(false);
+    }
+  }
+
   render() {
     const { global, entry, activeUser } = this.props;
 
@@ -90,6 +105,7 @@ export class EntryTipBtn extends Component<Props, State> {
   render() {
     const { activeUser } = this.props;
     const { dialog } = this.state;
+    console.log(this.props);
 
     return (
       <>
