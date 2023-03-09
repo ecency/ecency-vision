@@ -24,10 +24,6 @@ Object {
   "thumbnails": Array [
     "http://www.xx.com/a.png",
   ],
-  "users": Array [
-    "lorem",
-    "ipsum",
-  ],
 }
 `;
 
@@ -37,16 +33,9 @@ Object {
     "http://www.xx.com/a.png",
     "https://img.esteem.ws/h74zrad2fh.jpg",
   ],
-  "links": Array [
-    "http://www.google.com/foo/bar",
-  ],
   "thumbnails": Array [
     "http://www.xx.com/a.png",
     "https://img.esteem.ws/h74zrad2fh.jpg",
-  ],
-  "users": Array [
-    "lorem",
-    "ipsum",
   ],
 }
 `;
@@ -136,16 +125,9 @@ Object {
     "http://www.xx.com/a.png",
     "https://img.esteem.ws/h74zrad2fh.jpg",
   ],
-  "links": Array [
-    "http://www.google.com/foo/bar",
-  ],
   "tags": Array [
     "esteem",
     "art",
-  ],
-  "users": Array [
-    "lorem",
-    "ipsum",
   ],
 }
 `;
