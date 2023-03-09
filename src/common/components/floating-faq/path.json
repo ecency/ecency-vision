@@ -1,4 +1,8 @@
 {
-  "path": ["/hot", "/created", "/rising"],
-  "categories": ["created", "discover", "@"]
+  "faqPaths": [
+    {
+      "path": "/hot",
+      "categories": "hot"
+    }
+  ]
 }
