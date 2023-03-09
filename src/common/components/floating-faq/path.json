@@ -2,7 +2,53 @@
   "faqPaths": [
     {
       "path": "/hot",
-      "categories": "hot"
+      "categories": [
+        "what-is-ecency",
+        "what-is-difference",
+        "what-is-hive",
+        "why-choose-ecency",
+        "how-ecency-works"
+      ]
+    },
+    {
+      "path": "/created",
+      "categories": [
+        "why-score-going-down",
+        "what-can-post",
+        "what-are-tags",
+        "how-use-tags",
+        "add-images-videos",
+        "what-thumbnail-image"
+      ]
+    },
+    {
+      "path": "/discover",
+      "categories": [
+        "can-change-username",
+        "can-delete-account",
+        "how-to-signin",
+        "what-is-hivesigner"
+      ]
+    },
+    {
+      "path": "/rising",
+      "categories": [
+        "what-information-profile",
+        "what-is-points",
+        "where-tokens-come",
+        "value-hive-hbd",
+        "what-are-hive"
+      ]
+    },
+    {
+      "path": "/@",
+      "categories": [
+        "what-are-hd",
+        "what-delegated-hp",
+        "what-powering-up",
+        "what-powering-down",
+        "what-are-rc"
+      ]
     }
   ]
 }

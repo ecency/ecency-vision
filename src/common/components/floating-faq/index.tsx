@@ -40,26 +40,34 @@ const FloatingFAQ = () => {
   }, [routerLocation]);
 
   useEffect(() => {
+    if (!searchText) {
+      setDatatoShow(defaultFaqKeys);
+      return;
+    }
+
+    let finalArray = [...new Set(defaultFaqKeys.concat(faqKeys))];
     let searchResult: string[] = [];
-    faqKeys.map((x) => {
+    finalArray.map((x) => {
       const isSearchValid = _t(`static.faq.${x}-body`)
         .toLocaleLowerCase()
         .includes(searchText.toLocaleLowerCase());
       if (isSearchValid) {
         searchResult.push(x);
       }
-      setDatatoShow(searchResult);
     });
-    if (!searchText) {
-      setDatatoShow(defaultFaqKeys);
-    }
+
+    setDatatoShow(searchResult);
   }, [searchText]);
 
   useEffect(() => {
     const faqKeys = [...faqKeysGeneral];
     setFaqKeys(faqKeys);
-    setDefaultFaqKeys(faqKeys.slice(0, 4));
-    setDatatoShow(faqKeys.slice(0, 4));
+    for (const p of data.faqPaths) {
+      if (routerLocation.pathname.match(p.path)) {
+        setDefaultFaqKeys(p.categories);
+        setDatatoShow(p.categories);
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -72,23 +80,13 @@ const FloatingFAQ = () => {
   }, [expandedHelp, expandedContact]);
 
   const handleRouterChange = () => {
-    for (const p of data.path) {
-      if (routerLocation.pathname.match(p)) {
+    setDisplay(false);
+    for (const p of data.faqPaths) {
+      if (routerLocation.pathname.match(p.path)) {
         setDisplay(true);
-        //you can also set the defaultFaqKeys state here.
+        setDatatoShow(p.categories);
+        setDefaultFaqKeys(p.categories);
         break;
-      } else {
-        setDisplay(false);
-      }
-    }
-    //get categories from json file for testing.
-    for (const c of data.categories) {
-      if (routerLocation.pathname.includes(c)) {
-        //set the suggested articles justr for testing.
-        setDatatoShow(faqKeys.slice(5, 13));
-        break;
-      } else {
-        setDatatoShow(defaultFaqKeys);
       }
     }
   };
