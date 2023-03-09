@@ -1481,17 +1481,17 @@
     "error": "Пароль кажется неверным, проверьте ещё раз!"
   },
   "account-recovery": {
-    "title": "Change Recovery Agent",
-    "curr-recovery-acc": "Current Recovery Agent",
-    "new-recovery-acc": "New Recovery Agent",
-    "confirm-title": "Confirm your transaction",
-    "confirm-sub-title": "Please, check if everything is correct",
-    "req-error": "Sorry! Your request of recover agent change is already in progress",
-    "to-not-found": "The user that you are tyring to set, does not exist!",
-    "sign-title": "Sign transaction",
-    "sign-sub-title": "Sign your transaction",
-    "success-message": "New recovery agent is effective after 30 days",
-    "info-message": "Overwrite pending request? @{{n}}"
+    "title": "Изменить агента восстановления",
+    "curr-recovery-acc": "Агент восстановления",
+    "new-recovery-acc": "Новый агент восстановления",
+    "confirm-title": "Подтвердить транзакцию",
+    "confirm-sub-title": "Пожалуйста, убедитесь что всё верно",
+    "req-error": "Извините! Ваш запрос на изменение агента восстановления уже находится в процессе",
+    "to-not-found": "Пользователь, которого вы пытаетесь установить, не существует!",
+    "sign-title": "Подписать транзакцию",
+    "sign-sub-title": "Подпишите транзакцию",
+    "success-message": "Новый агент восстановления будет эффективен через 30 дней",
+    "info-message": "Перезаписать ожидающий запрос? @{{n}}"
   },
   "add-image": {
     "title": "Добавить изображение",
@@ -1692,8 +1692,8 @@
     "comment-cashout": "Контент после выплаты не может быть удален.",
     "comment-children": "Невозможно удалить контент с ответами.",
     "paid-out-post-forbidden": "Нельзя голосовать за контент, по которому уже прошла выплата.",
-    "missing-authority": "This operation requires Active private key or authority.",
-    "missing-owner-authority": "This operation requires Owner private key or authority."
+    "missing-authority": "Эта операция требует активного приватного ключа или пароля.",
+    "missing-owner-authority": "Эта операция требует приватного ключа владельца или пароля."
   },
   "landing-page": {
     "welcome-text": "Добро пожаловать в Ecency!",
