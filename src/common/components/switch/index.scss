@@ -1,4 +1,8 @@
 @use "sass:math";
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
 
 .switch-toggler {
   $width: 48px;

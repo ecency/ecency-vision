@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { History, Location } from "history";
-import _ from "lodash";
-
 import { Global, ProfileFilter } from "../../store/global/types";
 import { Account, FullAccount } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
@@ -20,7 +18,7 @@ import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
 import isCommunity from "../../helper/is-community";
 import { match } from "react-router-dom";
-import { SearchResult } from "../../api/search-api";
+import "./_index.scss";
 
 interface Props {
   history: History;

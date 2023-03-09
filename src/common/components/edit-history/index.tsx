@@ -25,6 +25,7 @@ import { commentHistory, CommentHistoryListItem } from "../../api/private-api";
 
 import { historySvg, tagSvg } from "../../img/svg";
 import { dateToFormatted } from "../../helper/parse-date";
+import "./index.scss";
 
 const dmp = new diff_match_patch();
 

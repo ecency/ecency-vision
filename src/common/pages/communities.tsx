@@ -16,6 +16,7 @@ import { _t } from "../i18n";
 import { getCommunities, getSubscriptions } from "../api/bridge";
 import defaults from "../constants/defaults.json";
 import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
+import "./communities.scss";
 
 interface State {
   list: Community[];
@@ -112,13 +113,15 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
         <Meta {...metaProps} />
         <ScrollToTop />
         <Theme global={this.props.global} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props,
-              reloadFn: this.fetch,
-              reloading: loading
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props,
+            reloadFn: this.fetch,
+            reloading: loading
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
 
         <div className={containerClasses}>
           <div className="community-list">

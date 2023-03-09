@@ -1,22 +1,15 @@
 import React, { Fragment } from "react";
-
 import { Link } from "react-router-dom";
-
 import { connect } from "react-redux";
-
 import { match } from "react-router";
-
 import numeral from "numeral";
-
 // import { debounce } from 'lodash';
 import _ from "lodash";
 
 import defaults from "../constants/defaults.json";
 
 import { renderPostBody, setProxyBase, catchPostImage } from "@ecency/render-helper";
-
 setProxyBase(defaults.imageServer);
-
 import { Entry } from "../store/entries/types";
 
 import BaseComponent from "../components/base";
@@ -43,6 +36,7 @@ import parseDate from "../helper/parse-date";
 
 import { closeSvg } from "../img/svg";
 import moment from "moment";
+import "./proposals.scss";
 
 enum Filter {
   ALL = "all",
@@ -225,13 +219,15 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
       isReturnProposalId,
       thresholdProposalId
     } = this.state;
-    const navBar = global.isElectron
-      ? NavBarElectron({
-          ...this.props,
-          reloadFn: this.load,
-          reloading: loading
-        })
-      : NavBar({ ...this.props });
+    const navBar = global.isElectron ? (
+      NavBarElectron({
+        ...this.props,
+        reloadFn: this.load,
+        reloading: loading
+      })
+    ) : (
+      <NavBar history={this.props.history} />
+    );
 
     if (loading) {
       return (
@@ -395,13 +391,15 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
     const { global } = this.props;
     const { loading, proposal, entry } = this.state;
 
-    const navBar = global.isElectron
-      ? NavBarElectron({
-          ...this.props,
-          reloadFn: this.load,
-          reloading: loading
-        })
-      : NavBar({ ...this.props });
+    const navBar = global.isElectron ? (
+      NavBarElectron({
+        ...this.props,
+        reloadFn: this.load,
+        reloading: loading
+      })
+    ) : (
+      <NavBar history={this.props.history} />
+    );
 
     if (loading) {
       return (

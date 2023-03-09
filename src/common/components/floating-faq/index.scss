@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .help-btn {
   position: fixed;
   z-index: 900;
@@ -74,7 +79,7 @@
   }
   .faq-content-list {
     height: 59vh;
-    margin-top: -2rem;
+    margin-top: -2.4rem;
     overflow-y: auto;
     overflow-x: hidden;
     position: absolute;
@@ -106,11 +111,11 @@
 
   .section-title {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: 1rem 0.7rem;
 
     @include themify(day) {
-      color: $charcoal-grey;
+      color: $light-black;
     }
 
     @include themify(night) {
@@ -118,6 +123,7 @@
     }
   }
   .section {
+    padding: 12px;
     cursor: pointer;
     padding-right: 1rem;
   }
@@ -197,7 +203,7 @@
     }
 
     .faq-content-list {
-      margin-top: -1.5rem;
+      margin-top: -1.9rem;
       height: 49vh;
       width: 300px;
 

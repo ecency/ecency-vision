@@ -12,6 +12,7 @@ import {
   activeUserMaker,
   allOver
 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../constants/defaults.json", () => ({
   imageServer: "https://images.ecency.com"
@@ -47,7 +48,7 @@ const defaultProps = {
 };
 
 it("(1) Default render", async () => {
-  const component = renderer.create(<List {...defaultProps} />);
+  const component = withStore(<List {...defaultProps} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });
@@ -57,7 +58,7 @@ it("(2) With active user", async () => {
     ...defaultProps,
     activeUser: activeUserMaker("bar")
   };
-  const component = renderer.create(<List {...props} />);
+  const component = withStore(<List {...props} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });
@@ -67,14 +68,14 @@ it("(3) With delegator active user", async () => {
     ...defaultProps,
     activeUser: activeUserMaker("foo")
   };
-  const component = renderer.create(<List {...props} />);
+  const component = withStore(<List {...props} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });
 
 it("(4) Empty List", async () => {
   MOCK_MODE = 2;
-  const component = renderer.create(<List {...defaultProps} />);
+  const component = withStore(<List {...defaultProps} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });

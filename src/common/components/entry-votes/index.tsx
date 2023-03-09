@@ -9,6 +9,7 @@ import { Modal, Spinner } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
 import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar/index";
@@ -24,10 +25,12 @@ import parseDate, { dateToFormatted, dateToFullRelative } from "../../helper/par
 import accountReputation from "../../helper/account-reputation";
 
 import formattedNumber from "../../util/formatted-number";
+import _c from "../../util/fix-class-names";
 
 import { _t } from "../../i18n";
 
 import { heartSvg } from "../../img/svg";
+import "./_index.scss";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   // const totalPayout =
@@ -164,19 +167,15 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
                   return (
                     <div className="list-item" key={x.voter}>
                       <div className="item-main">
-                        {ProfileLink({
-                          ...this.props,
-                          username: x.voter,
-                          children: (
-                            <>{UserAvatar({ ...this.props, username: x.voter, size: "small" })}</>
-                          )
-                        })}
+                        <ProfileLink {...this.props} username={x.voter}>
+                          <UserAvatar username={x.voter} size="small" />
+                        </ProfileLink>
 
                         <div className="item-info">
                           {ProfileLink({
                             ...this.props,
                             username: x.voter,
-                            children: <a className="item-name notransalte">{x.voter}</a>
+                            children: <span className="item-name notranslate">{x.voter}</span>
                           })}
                           <span className="item-reputation">{accountReputation(x.reputation)}</span>
                         </div>
@@ -229,6 +228,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
 interface Props {
   history: History;
   global: Global;
+  activeUser: ActiveUser | null;
   entry: Entry;
   addAccount: (data: Account) => void;
 }
@@ -237,13 +237,15 @@ interface State {
   visible: boolean;
   searchText: string;
   searchTextDisabled: boolean;
+  vote: boolean;
 }
 
 export class EntryVotes extends Component<Props, State> {
   state: State = {
     visible: false,
     searchText: "",
-    searchTextDisabled: true
+    searchTextDisabled: true,
+    vote: false
   };
 
   toggle = () => {
@@ -251,10 +253,31 @@ export class EntryVotes extends Component<Props, State> {
     this.setState({ visible: !visible, searchText: "" });
   };
 
+  componentDidUpdate(prevProps: Readonly<Props>) {
+    if (prevProps.entry?.active_votes?.length !== this.props.entry?.active_votes?.length) {
+      this.setState({ vote: true });
+    }
+  }
+
+  isVoted = () => {
+    const { activeUser } = this.props;
+
+    if (!activeUser) {
+      return { voted: false };
+    }
+    const { active_votes: votes } = this.props.entry;
+
+    const voted = votes && votes.some((v) => v.voter === activeUser.username);
+
+    return { voted };
+  };
+
   render() {
     const { entry } = this.props;
-    const { visible, searchText, searchTextDisabled } = this.state;
-    const totalVotes = (entry.active_votes && entry.active_votes.length) || entry.total_votes;
+    const { visible, searchText, searchTextDisabled, vote } = this.state;
+    const totalVotes = (entry.active_votes && entry.active_votes.length) || entry.total_votes || 0;
+    const { voted } = this.isVoted();
+    let cls = _c(`heart-icon ${voted ? "voted" : ""} ${vote ? "vote-done" : ""} `);
 
     const title =
       totalVotes === 0
@@ -265,7 +288,8 @@ export class EntryVotes extends Component<Props, State> {
 
     const child = (
       <>
-        {heartSvg} {totalVotes}
+        <div className={cls}>{heartSvg}</div>
+        {totalVotes}
       </>
     );
 
@@ -333,6 +357,7 @@ export default (p: Props) => {
     history: p.history,
     global: p.global,
     entry: p.entry,
+    activeUser: p.activeUser,
     addAccount: p.addAccount
   };
 

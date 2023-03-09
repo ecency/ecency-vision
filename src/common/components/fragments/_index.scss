@@ -1,9 +1,12 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .fragments-modal {
   .modal-body {
     .dialog-content {
       min-height: 590px;
-
-
 
       .dialog-controls {
         height: 70px;

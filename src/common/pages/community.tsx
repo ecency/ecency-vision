@@ -41,6 +41,7 @@ import capitalize from "../util/capitalize";
 import defaults from "../constants/defaults.json";
 import SearchBox from "../components/search-box";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
+import "./community.scss";
 
 interface MatchParams {
   filter: string;
@@ -228,13 +229,15 @@ class CommunityPage extends BaseComponent<Props, State> {
     const { global, entries, communities, accounts, match } = this.props;
     const { loading, search, searchData, searchDataLoading, typing } = this.state;
 
-    const navBar = global.isElectron
-      ? NavBarElectron({
-          ...this.props,
-          reloadFn: this.reload,
-          reloading: loading
-        })
-      : NavBar({ ...this.props });
+    const navBar = global.isElectron ? (
+      NavBarElectron({
+        ...this.props,
+        reloadFn: this.reload,
+        reloading: loading
+      })
+    ) : (
+      <NavBar history={this.props.history} match={this.props.match} />
+    );
 
     if (loading) {
       return (

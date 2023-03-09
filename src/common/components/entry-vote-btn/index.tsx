@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-
-import { Form, FormControl } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { Entry, EntryVote } from "../../store/entries/types";
@@ -9,7 +6,6 @@ import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { UI, ToggleType } from "../../store/ui/types";
-
 import BaseComponent from "../base";
 import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
@@ -17,21 +13,16 @@ import { error } from "../feedback";
 import { getActiveVotes } from "../../api/hive";
 import { prepareVotes } from "../entry-votes";
 import VotingSlider from "../entry-vote-slider";
-
 import { votingPower } from "../../api/hive";
 import { vote, formatError } from "../../api/operations";
-
 import parseAsset from "../../helper/parse-asset";
-
 import * as ss from "../../util/session-storage";
-
 import * as ls from "../../util/local-storage";
-
 import _c from "../../util/fix-class-names";
-
 import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } from "../../img/svg";
 import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
+import "./_index.scss";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
@@ -120,10 +111,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
           : this.getDownVotedValue()
     }
   };
-
-  componentDidMount(): void {
-    this.cleanUpLS();
-  }
 
   getUpVotedValue(): number {
     return getVoteValue(
@@ -230,13 +217,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   changeMode = (m: Mode) => {
     this.setState({ mode: m });
   };
-  //TODO: Delete this after 3.0.22 release
-  cleanUpLS = () => {
-    Object.entries(localStorage)
-      .map((x) => x[0])
-      .filter((x) => x.includes("ecency_vote-value-"))
-      .map((x) => localStorage.removeItem(x));
-  };
 
   isVoted = () => {
     const { activeUser } = this.props;
@@ -247,7 +227,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
     const { active_votes: votes } = this.props.entry;
 
-    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares > 0);
+    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares >= 0);
 
     const downVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares < 0);
 

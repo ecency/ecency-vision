@@ -18,7 +18,9 @@ import {
 import isElectron from "../../util/is-electron";
 import { error } from "../feedback";
 import SuggestionList from "../suggestion-list";
-import userAvatar from "../user-avatar";
+import UserAvatar from "../user-avatar";
+import "./_index.scss";
+
 const ModalHeader = Modal.Header;
 
 const comingSoon = isElectron() ? "./img/coming-soon.png" : require("../../img/coming-soon.png");
@@ -172,11 +174,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue, decks }: any) =>
       let valueToShow = selectedValue === _t("decks.community") ? i.title : i;
       return (
         <>
-          {userAvatar({
-            username: i.name || i,
-            size: "medium",
-            global: {} as any
-          })}{" "}
+          <UserAvatar username={i.name || i} size="small" />{" "}
           <span style={{ marginLeft: "4px" }}>{valueToShow}</span>
         </>
       );

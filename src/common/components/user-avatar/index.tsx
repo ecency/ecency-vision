@@ -4,6 +4,8 @@ import { Global } from "../../store/global/types";
 
 import defaults from "../../constants/defaults.json";
 import { proxifyImageSrc } from "@ecency/render-helper";
+import { useMappedStore } from "../../store/use-mapped-store";
+import "./_index.scss";
 
 interface Props {
   global: Global;
@@ -26,9 +28,11 @@ export class UserAvatar extends Component<Props> {
   }
 }
 
-export default (p: Props) => {
+export default (p: Omit<Props, "global">) => {
+  const { global } = useMappedStore();
+
   const props = {
-    global: p.global,
+    global,
     username: p.username,
     size: p.size,
     src: p.src

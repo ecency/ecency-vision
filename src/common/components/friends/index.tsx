@@ -19,6 +19,7 @@ import { _t } from "../../i18n";
 
 import accountReputation from "../../helper/account-reputation";
 import formattedNumber from "../../util/formatted-number";
+import "./_index.scss";
 
 interface Friend {
   name: string;
@@ -183,13 +184,13 @@ export class List extends BaseComponent<ListProps, ListState> {
               {ProfileLink({
                 ...this.props,
                 username: item.name,
-                children: <>{UserAvatar({ ...this.props, username: item.name, size: "small" })}</>
+                children: <UserAvatar username={item.name} size="small" />
               })}
               <div className="item-info">
                 {ProfileLink({
                   ...this.props,
                   username: item.name,
-                  children: <a className="item-name notransalte">{item.name}</a>
+                  children: <span className="item-name notranslate">{item.name}</span>
                 })}
                 {item?.reputation !== undefined && (
                   <span className="item-reputation">{accountReputation(item.reputation)}</span>

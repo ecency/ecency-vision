@@ -16,6 +16,8 @@ import data from "./path.json";
 
 import { _t } from "../../i18n";
 
+import "./index.scss";
+
 const FloatingFAQ = () => {
   const routerLocation = useLocation();
   const [show, setShow] = useState(false);

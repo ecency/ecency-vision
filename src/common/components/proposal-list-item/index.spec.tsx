@@ -15,6 +15,7 @@ import {
 } from "../../helper/test-helper";
 
 import { ProposalListItem } from "./index";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../util/now", () => () => new Date("November 22, 2020 03:24:00"));
 
@@ -45,7 +46,7 @@ const defProps = {
 
 it("(1) Default render.", async () => {
   const props = { ...defProps };
-  const component = renderer.create(
+  const component = withStore(
     <StaticRouter location="/" context={{}}>
       <ProposalListItem {...props} />
     </StaticRouter>

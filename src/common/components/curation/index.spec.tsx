@@ -30,4 +30,5 @@ it("(1) Render with data.", async () => {
   const root = await create(<Curation {...props} />);
   // make assertions on root
   expect(root.toJSON()).toMatchSnapshot();
+  root.unmount();
 });

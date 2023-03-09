@@ -16,6 +16,7 @@ import UserAvatar from "../user-avatar";
 import CommunityRoleEditDialog from "../community-role-edit";
 
 import { _t } from "../../i18n";
+import "./_index.scss";
 
 interface Props {
   history: History;
@@ -87,10 +88,10 @@ export class CommunityRoles extends Component<Props, State> {
                       ...this.props,
                       username,
                       children: (
-                        <a className="user">
-                          {UserAvatar({ ...this.props, username, size: "medium" })}{" "}
+                        <span className="user">
+                          <UserAvatar username={username} size="medium" />{" "}
                           <span className="username">{username}</span>
-                        </a>
+                        </span>
                       )
                     })}
                   </td>

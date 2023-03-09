@@ -15,6 +15,8 @@ import { _t } from "../../i18n";
 import { langOptions } from "../../i18n";
 
 import * as ls from "../../util/local-storage";
+import { useMappedStore } from "../../store/use-mapped-store";
+import "./_index.scss";
 
 interface Props {
   history: History;
@@ -59,12 +61,14 @@ export class SwitchLang extends Component<Props> {
   }
 }
 
-export default (p: Props) => {
+export default (p: Pick<Props, "history" | "label">) => {
+  const { global, setLang } = useMappedStore();
+
   const props = {
     history: p.history,
-    global: p.global,
+    global,
     label: p.label,
-    setLang: p.setLang
+    setLang
   };
 
   return <SwitchLang {...props} />;

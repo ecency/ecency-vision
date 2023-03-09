@@ -33,6 +33,7 @@ import { getAccount } from "../../api/hive";
 import { _t } from "../../i18n";
 
 import { pencilOutlineSvg } from "../../img/svg";
+import "./_index.scss";
 
 const coverFallbackDay = require("../../img/cover-fallback-day.png");
 const coverFallbackNight = require("../../img/cover-fallback-night.png");

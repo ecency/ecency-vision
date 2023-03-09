@@ -17,6 +17,9 @@ import SearchSuggester from "../search-suggester";
 import { _t } from "../../i18n";
 
 import queryString from "query-string";
+import { useMappedStore } from "../../store/use-mapped-store";
+import { useLocation } from "react-router";
+import "./_index.scss";
 
 interface Props {
   history: History;
@@ -119,13 +122,16 @@ export class Search extends BaseComponent<Props, State> {
   }
 }
 
-export default (p: Props) => {
+export default (p: Pick<Props, "history" | "containerClassName">) => {
+  const { global, trendingTags, fetchTrendingTags } = useMappedStore();
+  const location = useLocation();
+
   const props: Props = {
     history: p.history,
-    location: p.location,
-    global: p.global,
-    trendingTags: p.trendingTags,
-    fetchTrendingTags: p.fetchTrendingTags,
+    location,
+    global,
+    trendingTags,
+    fetchTrendingTags,
     containerClassName: p.containerClassName
   };
   return <Search {...props} />;

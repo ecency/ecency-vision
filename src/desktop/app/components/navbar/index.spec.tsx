@@ -15,6 +15,9 @@ import {
   dynamicPropsIntance1
 } from "../../../../common/helper/test-helper";
 import { initialState as trendingTags } from "../../../../common/store/trending-tags";
+import { withStore } from "../../../../common/tests/with-store";
+
+jest.useFakeTimers();
 
 const defProps = {
   history: createBrowserHistory(),
@@ -43,18 +46,17 @@ const defProps = {
   setLang: () => {},
   dismissNewVersion: () => {},
   reloadFn: () => {},
-  reloading: false,
   fetchNotificationsSettings: () => {},
-  updateNotificationsSettings: () => {}
+  updateNotificationsSettings: () => {},
+  reloading: false
 } as any;
 
 it("(1) Default render", () => {
-  const component = <NavBar {...defProps} />;
-
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
-      {component}
-    </StaticRouter>
+      <NavBar {...defProps} />
+    </StaticRouter>,
+    defProps
   );
 
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -70,12 +72,12 @@ it("(2) With updater", () => {
       }
     }
   };
-  const component = <NavBar {...props} />;
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
-      {component}
-    </StaticRouter>
+      <NavBar {...props} />
+    </StaticRouter>,
+    props
   );
 
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -91,12 +93,12 @@ it("(3) Night Theme", () => {
       }
     }
   };
-  const component = <NavBar {...props} />;
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
-      {component}
-    </StaticRouter>
+      <NavBar {...props} />
+    </StaticRouter>,
+    props
   );
 
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -106,15 +108,15 @@ it("(4) With active user", () => {
   const props = {
     ...defProps,
     ...{
-      activeUser: { ...activeUserInstance }
+      activeUser: activeUserInstance
     }
   };
-  const component = <NavBar {...props} />;
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
-      {component}
-    </StaticRouter>
+      <NavBar {...props} />
+    </StaticRouter>,
+    props
   );
 
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -127,17 +129,15 @@ it("(5) With active user && usePrivate = false", () => {
       activeUser: { ...activeUserInstance }
     },
     global: {
-      ...globalInstance,
       usePrivate: false
     }
   };
 
-  const component = <NavBar {...props} />;
-
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
-      {component}
-    </StaticRouter>
+      <NavBar {...props} />
+    </StaticRouter>,
+    props
   );
 
   expect(renderer.toJSON()).toMatchSnapshot();

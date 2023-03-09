@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { History, Location } from "history";
 import { _t } from "../../i18n";
 import ClickAwayListener from "../clickaway-listener";
+import "./_index.scss";
 
 interface Props {
   history?: History;

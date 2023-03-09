@@ -43,11 +43,14 @@ exports[`(1) Default render 1`] = `
               className="item-title"
             >
               <a
-                className="item-name notransalte"
                 href="/@foo"
                 onClick={[Function]}
               >
-                Foo
+                <span
+                  className="item-name notranslate"
+                >
+                  Foo
+                </span>
               </a>
               <span
                 className="item-sub-title"
@@ -86,11 +89,14 @@ exports[`(1) Default render 1`] = `
               className="item-title"
             >
               <a
-                className="item-name notransalte"
                 href="/@bar"
                 onClick={[Function]}
               >
-                Bar
+                <span
+                  className="item-name notranslate"
+                >
+                  Bar
+                </span>
               </a>
               <span
                 className="item-sub-title"
@@ -129,11 +135,14 @@ exports[`(1) Default render 1`] = `
               className="item-title"
             >
               <a
-                className="item-name notransalte"
                 href="/@baz"
                 onClick={[Function]}
               >
-                Baz
+                <span
+                  className="item-name notranslate"
+                >
+                  Baz
+                </span>
               </a>
               <span
                 className="item-sub-title"

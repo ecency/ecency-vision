@@ -49,7 +49,7 @@ import defaults from "../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
 import { match } from "react-router-dom";
 import { getPost } from "../../api/bridge";
-import { SearchResult } from "../../api/search-api";
+import "./_index.scss";
 
 setProxyBase(defaults.imageServer);
 
@@ -295,7 +295,9 @@ export default class EntryListItem extends Component<Props, State> {
                 {ProfileLink({
                   ...this.props,
                   username: theEntry.author,
-                  children: <a className="cross-item-author notranslate">{`@${theEntry.author}`}</a>
+                  children: (
+                    <span className="cross-item-author notranslate">{`@${theEntry.author}`}</span>
+                  )
                 })}{" "}
                 {_t("entry-list-item.cross-posted")}{" "}
                 {EntryLink({
@@ -339,9 +341,9 @@ export default class EntryListItem extends Component<Props, State> {
                   ...this.props,
                   username: entry.author,
                   children: (
-                    <a className="author-avatar d-sm-block">
-                      {UserAvatar({ ...this.props, username: entry.author, size: "small" })}
-                    </a>
+                    <span className="author-avatar d-block">
+                      <UserAvatar username={entry.author} size="small" />
+                    </span>
                   )
                 })}
 

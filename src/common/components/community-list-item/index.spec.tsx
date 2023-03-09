@@ -7,6 +7,7 @@ import { createBrowserHistory } from "history";
 import { StaticRouter } from "react-router-dom";
 
 import { communityInstance1, UiInstance, globalInstance } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 it("(1) Default render", () => {
   const props = {
@@ -27,7 +28,7 @@ it("(1) Default render", () => {
 
   const comp = <CommunityListItem {...props} />;
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/@username" context={{}}>
       {comp}
     </StaticRouter>

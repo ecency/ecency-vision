@@ -24,12 +24,16 @@ exports[`(1) Default render 1`] = `
     <div
       className="brand"
     >
-      <img
-        alt="Logo"
-        className="logo"
+      <a
+        href="/hot"
         onClick={[Function]}
-        src="logo-circle.svg"
-      />
+      >
+        <img
+          alt="Logo"
+          className="logo"
+          src="logo-circle.svg"
+        />
+      </a>
     </div>
     <div
       className="text-menu"
@@ -59,12 +63,16 @@ exports[`(1) Default render 1`] = `
       <div
         className="brand"
       >
-        <img
-          alt="Logo"
-          className="logo"
+        <a
+          href="/hot"
           onClick={[Function]}
-          src="logo-circle.svg"
-        />
+        >
+          <img
+            alt="Logo"
+            className="logo"
+            src="logo-circle.svg"
+          />
+        </a>
       </div>
       <div
         className="text-menu"
@@ -188,46 +196,99 @@ exports[`(1) Default render 1`] = `
       </div>
       <div
         className="btn-menu"
-      >
-        <div>
+      />
+      <div>
+        <div
+          className="user-nav"
+        >
           <div
-            className="login-required"
+            className="user-points cursor-pointer"
+            onClick={[Function]}
           >
-            <button
-              className="btn-login btn-primary btn btn-primary"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
+            <svg
+              height="16px"
+              version="1.1"
+              viewBox="0 0 512 512"
+              width="16px"
             >
-              Login
-            </button>
-            <a
-              className="btn btn-primary"
-              href="/signup"
-              onClick={[Function]}
-            >
-              Signup
-            </a>
+              <path
+                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
+                fill="currentColor"
+              />
+              <path
+                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
+                fill="currentColor"
+              />
+            </svg>
           </div>
+          <a
+            className="user-wallet"
+            href="/@foo/wallet"
+            onClick={[Function]}
+            title="Wallet"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+          <span
+            className="notifications"
+            onClick={[Function]}
+            title="Notifications"
+          >
+            <svg
+              fill="#ffffff"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 0h24v24H0V0z"
+                fill="none"
+              />
+              <path
+                d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
+              />
+            </svg>
+          </span>
           <div
-            className="submit-post"
+            className="custom-dropdown float-right"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <a
-              className="btn btn-outline-primary"
-              href="/submit"
-              onClick={[Function]}
-              title="Create Post"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </a>
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
           </div>
+        </div>
+        <div
+          className="submit-post"
+        >
+          <a
+            className="btn btn-outline-primary"
+            href="/submit"
+            onClick={[Function]}
+            title="Create Post"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
@@ -241,6 +302,71 @@ exports[`(1) Default render 1`] = `
       <div
         className="mt-2 pt-5 w-100"
       >
+        <a
+          href="/@foo"
+          onClick={[Function]}
+        >
+          <div
+            className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative"
+          >
+            <span
+              className="user-avatar large"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+            <div
+              className="ml-2"
+            >
+              <b>
+                @
+                foo
+              </b>
+              <div
+                className="mt-1 text-white"
+              >
+                Vote Power:
+                 
+                <span>
+                  <svg
+                    fill="none"
+                    height="8"
+                    viewBox="0 0 13 8"
+                    width="13"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.623 6.59424L6.43483 1.40602L1.24661 6.59424"
+                      stroke="#535E65"
+                      strokeLinecap="square"
+                    />
+                  </svg>
+                </span>
+                 
+                % 
+                <span>
+                  <svg
+                    fill="none"
+                    height="8"
+                    viewBox="0 0 13 8"
+                    width="13"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
+                      stroke="#535E65"
+                      strokeLinecap="square"
+                    />
+                  </svg>
+                </span>
+                 
+                %
+              </div>
+            </div>
+          </div>
+        </a>
         <div
           onClick={[Function]}
         >
@@ -266,78 +392,6 @@ exports[`(1) Default render 1`] = `
             </div>
           </div>
         </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon"
-          >
-            <svg
-              fill="none"
-              height="18"
-              viewBox="0 0 18 18"
-              width="18"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g
-                clipPath="url(#clip0)"
-              >
-                <path
-                  d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
-                  fill="#202020"
-                />
-                <path
-                  d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
-                  fill="#202020"
-                />
-              </g>
-              <defs>
-                <clipPath
-                  id="clip0"
-                >
-                  <rect
-                    fill="white"
-                    height="17.343"
-                    transform="translate(0.203125 0.328613)"
-                    width="17.343"
-                  />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Login
-          </div>
-        </div>
-        <a
-          href="/signup"
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Signup
-            </div>
-          </div>
-        </a>
         <a
           href="/submit"
           onClick={[Function]}
@@ -368,7 +422,171 @@ exports[`(1) Default render 1`] = `
             </div>
           </div>
         </a>
-        <div />
+        <div>
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark"
+            onClick={[Function]}
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                fill="none"
+                height="18"
+                viewBox="0 0 18 18"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  clipPath="url(#clip0)"
+                >
+                  <path
+                    d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
+                    fill="#202020"
+                  />
+                  <path
+                    d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
+                    fill="#202020"
+                  />
+                </g>
+                <defs>
+                  <clipPath
+                    id="clip0"
+                  >
+                    <rect
+                      fill="white"
+                      height="17.343"
+                      transform="translate(0.203125 0.328613)"
+                      width="17.343"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Profile menu
+            </div>
+            <div
+              className="ml-3 text-15 icon-stroke"
+            >
+              <svg
+                fill="none"
+                height="8"
+                viewBox="0 0 13 8"
+                width="13"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
+                  stroke="#535E65"
+                  strokeLinecap="square"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon text-dark"
+          >
+            <svg
+              fill="none"
+              height="21"
+              viewBox="0 0 17 21"
+              width="17"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.4616 16.4474C16.4028 16.4092 15.9603 16.0993 15.5173 15.1616C14.7037 13.4396 14.5329 11.0139 14.5329 9.28223C14.5329 9.27469 14.5327 9.26723 14.5325 9.25973C14.5236 6.97109 13.1532 4.9982 11.1921 4.11301V2.75922C11.1921 1.5307 10.1943 0.53125 8.96777 0.53125H8.78343C7.55695 0.53125 6.55913 1.5307 6.55913 2.75922V4.11293C4.59148 5.00098 3.21831 6.98394 3.21831 9.28223C3.21831 11.0139 3.04753 13.4396 2.2339 15.1616C1.79089 16.0992 1.34843 16.4092 1.2896 16.4474C1.04187 16.562 0.919721 16.8269 0.976713 17.0953C1.03425 17.3663 1.28761 17.5532 1.56429 17.5532H5.8591C5.88308 19.1993 7.2266 20.5312 8.87562 20.5312C10.5246 20.5312 11.8682 19.1993 11.8921 17.5532H16.1869C16.4636 17.5532 16.717 17.3663 16.7745 17.0953C16.8314 16.8269 16.7093 16.562 16.4616 16.4474ZM7.73105 2.75922C7.73105 2.17793 8.20316 1.70504 8.78347 1.70504H8.96781C9.54812 1.70504 10.0202 2.17793 10.0202 2.75922V3.73254C9.65038 3.65609 9.26753 3.61586 8.87546 3.61586C8.48351 3.61586 8.10078 3.65605 7.73109 3.73242V2.75922H7.73105ZM8.87562 19.3575C7.87277 19.3575 7.05476 18.5521 7.03097 17.5532H10.7202C10.6965 18.5521 9.87847 19.3575 8.87562 19.3575ZM11.235 16.3794C11.2349 16.3794 2.89964 16.3794 2.89964 16.3794C3.00101 16.2214 3.10417 16.0425 3.20671 15.8404C3.99203 14.2918 4.39023 12.0854 4.39023 9.28223C4.39023 6.805 6.4023 4.78965 8.87542 4.78965C11.3485 4.78965 13.3606 6.805 13.3606 9.28418C13.3606 9.29141 13.3607 9.29859 13.361 9.30578C13.3632 12.0977 13.7614 14.2962 14.5445 15.8404C14.6471 16.0426 14.7503 16.2214 14.8516 16.3794H11.235Z"
+                fill="#202020"
+              />
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Notifications
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon text-dark"
+          >
+            <svg
+              height="16px"
+              version="1.1"
+              viewBox="0 0 512 512"
+              width="16px"
+            >
+              <path
+                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
+                fill="currentColor"
+              />
+              <path
+                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Boost
+          </div>
+        </div>
+        <a
+          href="/@foo/wallet"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="icon-stroke text-dark"
+            >
+              <svg
+                fill="none"
+                height="15"
+                viewBox="0 0 20 15"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  height="12.3505"
+                  rx="1.5"
+                  stroke="#202020"
+                  width="18.3451"
+                  x="0.703125"
+                  y="1.3623"
+                />
+                <path
+                  d="M1.85352 4.93359L17.8971 4.93359"
+                  stroke="#202020"
+                  strokeLinecap="square"
+                  strokeLinejoin="round"
+                  strokeWidth="3"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15 d-flex"
+            >
+              Wallet
+               
+              <div
+                className="dot align-self-start ml-1"
+              />
+            </div>
+          </div>
+        </a>
         <div
           className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
         >
@@ -483,12 +701,16 @@ exports[`(2) Night Theme 1`] = `
     <div
       className="brand"
     >
-      <img
-        alt="Logo"
-        className="logo"
+      <a
+        href="/hot"
         onClick={[Function]}
-        src="logo-circle.svg"
-      />
+      >
+        <img
+          alt="Logo"
+          className="logo"
+          src="logo-circle.svg"
+        />
+      </a>
     </div>
     <div
       className="text-menu"
@@ -518,12 +740,16 @@ exports[`(2) Night Theme 1`] = `
       <div
         className="brand"
       >
-        <img
-          alt="Logo"
-          className="logo"
+        <a
+          href="/hot"
           onClick={[Function]}
-          src="logo-circle.svg"
-        />
+        >
+          <img
+            alt="Logo"
+            className="logo"
+            src="logo-circle.svg"
+          />
+        </a>
       </div>
       <div
         className="text-menu"
@@ -618,7 +844,7 @@ exports[`(2) Night Theme 1`] = `
         <div
           className="switch-theme"
           onClick={[Function]}
-          title="Day Theme"
+          title="Night Theme"
         >
           <svg
             viewBox="0 0 24 24"
@@ -647,46 +873,99 @@ exports[`(2) Night Theme 1`] = `
       </div>
       <div
         className="btn-menu"
-      >
-        <div>
+      />
+      <div>
+        <div
+          className="user-nav"
+        >
           <div
-            className="login-required"
+            className="user-points cursor-pointer"
+            onClick={[Function]}
           >
-            <button
-              className="btn-login btn-primary btn btn-primary"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
+            <svg
+              height="16px"
+              version="1.1"
+              viewBox="0 0 512 512"
+              width="16px"
             >
-              Login
-            </button>
-            <a
-              className="btn btn-primary"
-              href="/signup"
-              onClick={[Function]}
-            >
-              Signup
-            </a>
+              <path
+                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
+                fill="currentColor"
+              />
+              <path
+                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
+                fill="currentColor"
+              />
+            </svg>
           </div>
+          <a
+            className="user-wallet"
+            href="/@foo/wallet"
+            onClick={[Function]}
+            title="Wallet"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+          <span
+            className="notifications"
+            onClick={[Function]}
+            title="Notifications"
+          >
+            <svg
+              fill="#ffffff"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 0h24v24H0V0z"
+                fill="none"
+              />
+              <path
+                d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
+              />
+            </svg>
+          </span>
           <div
-            className="submit-post"
+            className="custom-dropdown float-right"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <a
-              className="btn btn-outline-primary"
-              href="/submit"
-              onClick={[Function]}
-              title="Create Post"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </a>
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
           </div>
+        </div>
+        <div
+          className="submit-post"
+        >
+          <a
+            className="btn btn-outline-primary"
+            href="/submit"
+            onClick={[Function]}
+            title="Create Post"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
@@ -700,6 +979,71 @@ exports[`(2) Night Theme 1`] = `
       <div
         className="mt-2 pt-5 w-100"
       >
+        <a
+          href="/@foo"
+          onClick={[Function]}
+        >
+          <div
+            className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative"
+          >
+            <span
+              className="user-avatar large"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+            <div
+              className="ml-2"
+            >
+              <b>
+                @
+                foo
+              </b>
+              <div
+                className="mt-1 text-white"
+              >
+                Vote Power:
+                 
+                <span>
+                  <svg
+                    fill="none"
+                    height="8"
+                    viewBox="0 0 13 8"
+                    width="13"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.623 6.59424L6.43483 1.40602L1.24661 6.59424"
+                      stroke="#535E65"
+                      strokeLinecap="square"
+                    />
+                  </svg>
+                </span>
+                 
+                % 
+                <span>
+                  <svg
+                    fill="none"
+                    height="8"
+                    viewBox="0 0 13 8"
+                    width="13"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
+                      stroke="#535E65"
+                      strokeLinecap="square"
+                    />
+                  </svg>
+                </span>
+                 
+                %
+              </div>
+            </div>
+          </div>
+        </a>
         <div
           onClick={[Function]}
         >
@@ -725,78 +1069,6 @@ exports[`(2) Night Theme 1`] = `
             </div>
           </div>
         </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon"
-          >
-            <svg
-              fill="none"
-              height="18"
-              viewBox="0 0 18 18"
-              width="18"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g
-                clipPath="url(#clip0)"
-              >
-                <path
-                  d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
-                  fill="#202020"
-                />
-                <path
-                  d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
-                  fill="#202020"
-                />
-              </g>
-              <defs>
-                <clipPath
-                  id="clip0"
-                >
-                  <rect
-                    fill="white"
-                    height="17.343"
-                    transform="translate(0.203125 0.328613)"
-                    width="17.343"
-                  />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Login
-          </div>
-        </div>
-        <a
-          href="/signup"
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Signup
-            </div>
-          </div>
-        </a>
         <a
           href="/submit"
           onClick={[Function]}
@@ -827,7 +1099,171 @@ exports[`(2) Night Theme 1`] = `
             </div>
           </div>
         </a>
-        <div />
+        <div>
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark"
+            onClick={[Function]}
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                fill="none"
+                height="18"
+                viewBox="0 0 18 18"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  clipPath="url(#clip0)"
+                >
+                  <path
+                    d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
+                    fill="#202020"
+                  />
+                  <path
+                    d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
+                    fill="#202020"
+                  />
+                </g>
+                <defs>
+                  <clipPath
+                    id="clip0"
+                  >
+                    <rect
+                      fill="white"
+                      height="17.343"
+                      transform="translate(0.203125 0.328613)"
+                      width="17.343"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Profile menu
+            </div>
+            <div
+              className="ml-3 text-15 icon-stroke"
+            >
+              <svg
+                fill="none"
+                height="8"
+                viewBox="0 0 13 8"
+                width="13"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
+                  stroke="#535E65"
+                  strokeLinecap="square"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon text-dark"
+          >
+            <svg
+              fill="none"
+              height="21"
+              viewBox="0 0 17 21"
+              width="17"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.4616 16.4474C16.4028 16.4092 15.9603 16.0993 15.5173 15.1616C14.7037 13.4396 14.5329 11.0139 14.5329 9.28223C14.5329 9.27469 14.5327 9.26723 14.5325 9.25973C14.5236 6.97109 13.1532 4.9982 11.1921 4.11301V2.75922C11.1921 1.5307 10.1943 0.53125 8.96777 0.53125H8.78343C7.55695 0.53125 6.55913 1.5307 6.55913 2.75922V4.11293C4.59148 5.00098 3.21831 6.98394 3.21831 9.28223C3.21831 11.0139 3.04753 13.4396 2.2339 15.1616C1.79089 16.0992 1.34843 16.4092 1.2896 16.4474C1.04187 16.562 0.919721 16.8269 0.976713 17.0953C1.03425 17.3663 1.28761 17.5532 1.56429 17.5532H5.8591C5.88308 19.1993 7.2266 20.5312 8.87562 20.5312C10.5246 20.5312 11.8682 19.1993 11.8921 17.5532H16.1869C16.4636 17.5532 16.717 17.3663 16.7745 17.0953C16.8314 16.8269 16.7093 16.562 16.4616 16.4474ZM7.73105 2.75922C7.73105 2.17793 8.20316 1.70504 8.78347 1.70504H8.96781C9.54812 1.70504 10.0202 2.17793 10.0202 2.75922V3.73254C9.65038 3.65609 9.26753 3.61586 8.87546 3.61586C8.48351 3.61586 8.10078 3.65605 7.73109 3.73242V2.75922H7.73105ZM8.87562 19.3575C7.87277 19.3575 7.05476 18.5521 7.03097 17.5532H10.7202C10.6965 18.5521 9.87847 19.3575 8.87562 19.3575ZM11.235 16.3794C11.2349 16.3794 2.89964 16.3794 2.89964 16.3794C3.00101 16.2214 3.10417 16.0425 3.20671 15.8404C3.99203 14.2918 4.39023 12.0854 4.39023 9.28223C4.39023 6.805 6.4023 4.78965 8.87542 4.78965C11.3485 4.78965 13.3606 6.805 13.3606 9.28418C13.3606 9.29141 13.3607 9.29859 13.361 9.30578C13.3632 12.0977 13.7614 14.2962 14.5445 15.8404C14.6471 16.0426 14.7503 16.2214 14.8516 16.3794H11.235Z"
+                fill="#202020"
+              />
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Notifications
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon text-dark"
+          >
+            <svg
+              height="16px"
+              version="1.1"
+              viewBox="0 0 512 512"
+              width="16px"
+            >
+              <path
+                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
+                fill="currentColor"
+              />
+              <path
+                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Boost
+          </div>
+        </div>
+        <a
+          href="/@foo/wallet"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="icon-stroke text-dark"
+            >
+              <svg
+                fill="none"
+                height="15"
+                viewBox="0 0 20 15"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  height="12.3505"
+                  rx="1.5"
+                  stroke="#202020"
+                  width="18.3451"
+                  x="0.703125"
+                  y="1.3623"
+                />
+                <path
+                  d="M1.85352 4.93359L17.8971 4.93359"
+                  stroke="#202020"
+                  strokeLinecap="square"
+                  strokeLinejoin="round"
+                  strokeWidth="3"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15 d-flex"
+            >
+              Wallet
+               
+              <div
+                className="dot align-self-start ml-1"
+              />
+            </div>
+          </div>
+        </a>
         <div
           className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
         >
@@ -893,62 +1329,15 @@ exports[`(2) Night Theme 1`] = `
           >
             <svg
               fill="none"
-              height="20"
-              viewBox="0 0 20 20"
-              width="20"
+              height="16"
+              viewBox="0 0 17 16"
+              width="17"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g
-                clipPath="url(#clip0)"
-              >
-                <path
-                  d="M9.99889 16.6946C9.62198 16.6946 9.31641 17.0002 9.31641 17.3771V19.3175C9.31641 19.6944 9.62198 20 9.99889 20C10.3759 20 10.6814 19.6944 10.6814 19.3175V17.3771C10.6814 17.0001 10.3758 16.6946 9.99889 16.6946Z"
-                  fill="#A6ACAF"
-                />
-                <path
-                  d="M9.99889 3.30582C10.3759 3.30582 10.6814 3.00025 10.6814 2.62334V0.682726C10.6814 0.305814 10.3759 0.000244141 9.99889 0.000244141C9.62198 0.000244141 9.31641 0.305814 9.31641 0.682726V2.62334C9.31641 3.00025 9.62198 3.30582 9.99889 3.30582Z"
-                  fill="#A6ACAF"
-                />
-                <path
-                  d="M4.30116 14.7337L2.92855 16.1055C2.66193 16.372 2.66184 16.8041 2.92828 17.0707C3.06159 17.204 3.23631 17.2707 3.41102 17.2707C3.58565 17.2707 3.76018 17.2041 3.89349 17.0709L5.2661 15.6991C5.53272 15.4326 5.53281 15.0005 5.26637 14.7339C4.99975 14.4673 4.56769 14.4673 4.30116 14.7337Z"
-                  fill="#A6ACAF"
-                />
-                <path
-                  d="M15.2156 5.46545C15.3903 5.46545 15.5649 5.39884 15.6982 5.26562L17.0706 3.89374C17.3372 3.62721 17.3372 3.19515 17.0708 2.92853C16.8043 2.66191 16.3722 2.66181 16.1056 2.92844L14.7332 4.30032C14.4666 4.56676 14.4665 4.99891 14.733 5.26544C14.8662 5.39884 15.0409 5.46545 15.2156 5.46545Z"
-                  fill="#A6ACAF"
-                />
-                <path
-                  d="M3.3054 10.0003C3.3054 9.62344 2.99983 9.31787 2.62292 9.31787H0.682482C0.30557 9.31787 0 9.62344 0 10.0003C0 10.3773 0.30557 10.6828 0.682482 10.6828H2.62292C2.99983 10.6828 3.3054 10.3773 3.3054 10.0003Z"
-                  fill="#A6ACAF"
-                />
-                <path
-                  d="M19.3172 9.31787H17.3758C16.9988 9.31787 16.6934 9.62344 16.6934 10.0003C16.6934 10.3773 16.9988 10.6828 17.3758 10.6828H19.3172C19.6942 10.6828 19.9997 10.3773 19.9997 10.0003C19.9997 9.62353 19.6942 9.31787 19.3172 9.31787Z"
-                  fill="#A6ACAF"
-                />
-                <path
-                  d="M4.30225 5.26551C4.43547 5.39873 4.61018 5.46534 4.78481 5.46534C4.95943 5.46534 5.13415 5.39873 5.26737 5.26551C5.5339 4.99898 5.5339 4.56683 5.26737 4.3003L3.89549 2.92842C3.62896 2.66188 3.19681 2.66188 2.93037 2.92842C2.66384 3.19495 2.66384 3.6271 2.93037 3.89354L4.30225 5.26551Z"
-                  fill="#A6ACAF"
-                />
-                <path
-                  d="M15.6984 14.7327C15.4319 14.4661 14.9997 14.466 14.7332 14.7326C14.4666 14.9991 14.4666 15.4312 14.7331 15.6977L16.1048 17.0696C16.2381 17.2029 16.4127 17.2695 16.5874 17.2695C16.7621 17.2695 16.9368 17.2029 17.07 17.0697C17.3366 16.8031 17.3366 16.371 17.0701 16.1045L15.6984 14.7327Z"
-                  fill="#A6ACAF"
-                />
-                <path
-                  d="M9.9993 5.00024C7.07036 5.00024 5 7.07201 5 10.0011C5 12.9302 7.07036 15.0002 9.9993 15.0002C12.9285 15.0002 15 12.9302 15 10.0011C15 7.07201 12.9284 5.00024 9.9993 5.00024ZM9.9993 13.9482C7.823 13.9482 6.05246 12.1775 6.05246 10.0011C6.05246 7.82465 7.823 6.05393 9.9993 6.05393C12.1759 6.05393 13.9466 7.82465 13.9466 10.0011C13.9466 12.1775 12.1759 13.9482 9.9993 13.9482Z"
-                  fill="#A6ACAF"
-                />
-              </g>
-              <defs>
-                <clipPath
-                  id="clip0"
-                >
-                  <rect
-                    fill="white"
-                    height="20"
-                    width="20"
-                  />
-                </clipPath>
-              </defs>
+              <path
+                d="M16.5982 9.10563C16.4244 9.06459 16.2506 9.10563 16.0985 9.20822C15.5336 9.65964 14.8819 10.029 14.1649 10.2752C13.4914 10.5214 12.7528 10.6446 11.9707 10.6446C10.2109 10.6446 8.60323 9.96742 7.45179 8.87992C6.30035 7.79241 5.58341 6.27401 5.58341 4.61197C5.58341 3.91433 5.71376 3.2372 5.93102 2.62163C6.17 1.96503 6.5176 1.36998 6.97383 0.857004C7.16936 0.631295 7.12591 0.302991 6.88693 0.118321C6.73486 0.0157259 6.56105 -0.0253121 6.38725 0.0157259C4.5406 0.487662 2.93292 1.53413 1.78148 2.92942C0.673485 4.30419 0 6.00726 0 7.87449C0 10.1111 0.955915 12.1424 2.52014 13.6198C4.08436 15.0972 6.23517 16 8.60323 16C10.602 16 12.4486 15.3434 13.9259 14.2559C15.425 13.1479 16.5113 11.5679 16.9675 9.76223C17.0761 9.45445 16.9023 9.16718 16.5982 9.10563ZM13.2742 13.3941C12.0141 14.338 10.4064 14.9125 8.64668 14.9125C6.58278 14.9125 4.7144 14.1123 3.36743 12.8401C2.02046 11.5679 1.17317 9.80327 1.17317 7.85397C1.17317 6.23297 1.73803 4.75561 2.71567 3.56551C3.38915 2.74475 4.23644 2.06762 5.21408 1.59569C5.10545 1.82139 4.99683 2.0471 4.90993 2.29333C4.6275 3.03201 4.49715 3.81173 4.49715 4.63249C4.49715 6.58179 5.34443 8.36695 6.6914 9.63912C8.03837 10.9113 9.92848 11.7115 11.9924 11.7115C12.9049 11.7115 13.7739 11.5679 14.5777 11.2806C14.8601 11.178 15.1426 11.0754 15.4033 10.9523C14.8819 11.8962 14.1649 12.7375 13.2742 13.3941Z"
+                fill="black"
+              />
             </svg>
           </div>
           <div
@@ -956,7 +1345,7 @@ exports[`(2) Night Theme 1`] = `
           >
             Switch
              
-            light
+            dark
           </div>
         </div>
       </div>
@@ -1843,6 +2232,26 @@ exports[`(4) With active user && usePrivate = false 1`] = `
         <div
           className="user-nav"
         >
+          <div
+            className="user-points cursor-pointer"
+            onClick={[Function]}
+          >
+            <svg
+              height="16px"
+              version="1.1"
+              viewBox="0 0 512 512"
+              width="16px"
+            >
+              <path
+                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
+                fill="currentColor"
+              />
+              <path
+                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
           <a
             className="user-wallet"
             href="/@foo/wallet"
@@ -1858,6 +2267,25 @@ exports[`(4) With active user && usePrivate = false 1`] = `
               />
             </svg>
           </a>
+          <span
+            className="notifications"
+            onClick={[Function]}
+            title="Notifications"
+          >
+            <svg
+              fill="#ffffff"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 0h24v24H0V0z"
+                fill="none"
+              />
+              <path
+                d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
+              />
+            </svg>
+          </span>
           <div
             className="custom-dropdown float-right"
             onClick={[Function]}

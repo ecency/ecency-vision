@@ -17,6 +17,7 @@ import {
   allOver,
   flushPending
 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../constants/defaults.json", () => ({
   imageServer: "https://images.ecency.com",
@@ -59,7 +60,7 @@ const defProps = {
 };
 
 it("(1) Render with not loaded data", async () => {
-  const component = create(
+  const component = withStore(
     <StaticRouter location="/" context={{}}>
       <ProfileCard {...defProps} />
     </StaticRouter>
@@ -74,7 +75,7 @@ it("(2) Render with loaded data", async () => {
     account: accountFull
   };
 
-  const component = create(
+  const component = withStore(
     <StaticRouter location="/" context={{}}>
       <ProfileCard {...props} />
     </StaticRouter>
@@ -97,7 +98,7 @@ it("(3) Should show profile edits", async () => {
     }
   };
 
-  const component = create(
+  const component = withStore(
     <StaticRouter location="/" context={{}}>
       <ProfileCard {...props} />
     </StaticRouter>
