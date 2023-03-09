@@ -84,6 +84,7 @@ const FloatingFAQ = () => {
     //get categories from json file for testing.
     for (const c of data.categories) {
       if (routerLocation.pathname.includes(c)) {
+        //set the suggested articles justr for testing.
         setDatatoShow(faqKeys.slice(5, 13));
         break;
       } else {
