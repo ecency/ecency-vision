@@ -315,22 +315,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const {
       entry: { post_id, id }
     } = this.props;
-    console.log("Props", this.props);
     const days = this.getDays();
-    // const {
-    //   ui,
-    //   users,
-    //   signingKey,
-    //   accounts,
-    //   fetchPoints,
-    //   addAccount,
-    //   setActiveUser,
-    //   updateActiveUser,
-    //   deleteUser,
-    //   toggleUIProp,
-    //   setSigningKey
-    // } = useMappedStore();
-    // console.log(accounts);
 
     return (
       <>
@@ -429,7 +414,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             <p>{_t("entry-list-item.old-post-error")}</p>
             <div className="vote-error-suggestion">
               {_t("entry-list-item.old-post-error-suggestion")}
-              {/* <div className="tipping-icon">{<EntryTipBtn {...this.props} />}</div> */}
+              <div className="tipping-icon">{<EntryTipBtn {...this.props} />}</div>
             </div>
           </div>
         ) : (
