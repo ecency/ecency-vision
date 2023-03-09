@@ -1481,17 +1481,17 @@
     "error": "Salasana vaikuttaa virheelliseltä, ole hyvä ja tarkista uudelleen!"
   },
   "account-recovery": {
-    "title": "Change Recovery Agent",
-    "curr-recovery-acc": "Current Recovery Agent",
-    "new-recovery-acc": "New Recovery Agent",
-    "confirm-title": "Confirm your transaction",
-    "confirm-sub-title": "Please, check if everything is correct",
+    "title": "Vaihda palautusedustaja",
+    "curr-recovery-acc": "Nykyinen palautusedustaja",
+    "new-recovery-acc": "Uusi palautusedustaja",
+    "confirm-title": "Vahvista siirtotapahtuma",
+    "confirm-sub-title": "Tarkista että kaikki on oikein",
     "req-error": "Sorry! Your request of recover agent change is already in progress",
-    "to-not-found": "The user that you are tyring to set, does not exist!",
-    "sign-title": "Sign transaction",
-    "sign-sub-title": "Sign your transaction",
+    "to-not-found": "Määritettyä käyttäjää ei ole olemassa!",
+    "sign-title": "Allekirjoita tapahtuma",
+    "sign-sub-title": "Allekirjoita tapahtuma",
     "success-message": "New recovery agent is effective after 30 days",
-    "info-message": "Overwrite pending request? @{{n}}"
+    "info-message": "Korvataanko odottava pyyntö? @{{n}}"
   },
   "add-image": {
     "title": "Lisää kuva",
@@ -1692,8 +1692,8 @@
     "comment-cashout": "Sisältöä ei voi poistaa niiden maksun jälkeen.",
     "comment-children": "Keskustelua, jossa on vastauksia, ei voi poistaa.",
     "paid-out-post-forbidden": "Äänestäminen maksetusta sisällöstä ei ole saatavilla.",
-    "missing-authority": "This operation requires Active private key or authority.",
-    "missing-owner-authority": "This operation requires Owner private key or authority."
+    "missing-authority": "Tämä operaatio vaatii aktiivisen yksityisen avaimen tai valtuuden.",
+    "missing-owner-authority": "Tämä toiminto vaatii omistajan yksityisen avaimen tai valtuuden."
   },
   "landing-page": {
     "welcome-text": "Tervetuloa Ecencyyn!",
