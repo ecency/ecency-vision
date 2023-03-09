@@ -30,11 +30,9 @@ import { ErrorTypes } from "../enums";
 import { formatNumber } from "../helper/format-number";
 
 export interface MetaData {
-  // links?: string[];
   image?: string[];
   image_ratios?: any;
   thumbnails?: string[];
-  // users?: string[];
   tags?: string[];
   app?: string;
   format?: string;

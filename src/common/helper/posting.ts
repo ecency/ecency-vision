@@ -65,9 +65,6 @@ export const extractMetaData = (body: string): MetaData => {
     }
   }
 
-  // if (matchedLinks.length) {
-  //   out.links = matchedLinks.slice(0, 10);
-  // }
   if (matchedImages.length) {
     out.image = matchedImages.slice(0, 10);
     out.thumbnails = matchedImages;
@@ -78,10 +75,6 @@ export const extractMetaData = (body: string): MetaData => {
       matchedUsers.push(mUsers[i].trim().substring(1));
     }
   }
-
-  // if (matchedUsers.length) {
-  //   out.users = matchedUsers.slice(0, 10);
-  // }
   return out;
 };
 
