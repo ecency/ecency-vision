@@ -23,7 +23,7 @@
     white-space: nowrap;
     width: 60px;
 
-    @media (max-width: $sm-break - 1px) {
+    @media (max-width: ($sm-break - 1px)) {
       font-size: 13px;
     }
   }

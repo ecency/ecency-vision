@@ -80,7 +80,7 @@
           white-space: nowrap;
         }
 
-        @media (max-width: $xl-break + 100) {
+        @media (max-width: ($xl-break + 100)) {
           .nav-pills {
             flex-wrap: nowrap;
             max-width: 350px;

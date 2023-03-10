@@ -17,12 +17,11 @@ import formattedNumber from "../../util/formatted-number";
 import MyPagination from "../pagination";
 import {
   CollateralizedConversionRequest,
-  ConversionRequest,
-  getCollateralizedConversionRequests,
-  getConversionRequests
+  getCollateralizedConversionRequests
 } from "../../api/hive";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 
+import "./_index.scss";
 interface Props {
   global: Global;
   history: History;
