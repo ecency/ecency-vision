@@ -1478,6 +1478,7 @@
     "error": "Password seem incorrect, please double check!"
   },
   "manage-authorities": {
+    "title": "Manage Authorities",
     "type": "Type",
     "key": "Key",
     "weight": "Weight",

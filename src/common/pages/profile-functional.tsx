@@ -528,7 +528,7 @@ export const Profile = (props: Props) => {
                               }
                               onClick={() => setTabState(1)}
                             >
-                              {_t("view-keys.header")}
+                              {_t("manage-authorities.title")}
                             </h6>
                           </div>
                           <div className="permission-menu-items">
@@ -538,7 +538,7 @@ export const Profile = (props: Props) => {
                               }
                               onClick={() => setTabState(2)}
                             >
-                              {_t("password-update.title")}
+                              {_t("account-recovery.title")}
                             </h6>
                           </div>
                           <div className="permission-menu-items">
@@ -548,20 +548,16 @@ export const Profile = (props: Props) => {
                               }
                               onClick={() => setTabState(3)}
                             >
-                              {_t("account-recovery.title")}
+                              {_t("password-update.title")}
                             </h6>
                           </div>
                         </div>
                         <div className="container-fluid">
                           <div className="row pb-4">
                             <div className="col-lg-6 col-md-6 col-sm-6">
-                              {tabState === 1 ? <ViewKeys activeUser={props.activeUser} /> : <></>}
-                              {tabState === 2 ? (
-                                <PasswordUpdate activeUser={props.activeUser} />
-                              ) : (
-                                <></>
-                              )}
-                              {tabState === 3 ? <AccountRecovery {...props} /> : <></>}
+                              {tabState === 1 && <ManageAuthorities {...props} />}
+                              {tabState === 2 && <AccountRecovery {...props} />}
+                              {tabState === 3 && <PasswordUpdate activeUser={props.activeUser} />}
                             </div>
                           </div>
                         </div>

@@ -22,6 +22,7 @@ import { generateKeys } from "../../helper/generate-private-keys";
 
 import { _t } from "../../i18n";
 import _ from "lodash";
+import "./index.scss";
 
 interface Props {
   global: Global;
@@ -429,7 +430,6 @@ export default function ManageAuthorities(props: Props) {
                               >
                                 <span className="user-img">
                                   {UserAvatar({
-                                    global: props.global,
                                     username: account[0],
                                     size: "small"
                                   })}
