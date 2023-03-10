@@ -16,7 +16,9 @@ exports[`(1) Default render 1`] = `
       href="/@foo"
       onClick={[Function]}
     >
-      @foo's
+      <span>
+        @foo's
+      </span>
     </a>
      
     votes are highlighted

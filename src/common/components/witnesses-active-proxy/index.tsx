@@ -21,6 +21,7 @@ import { getAccount } from "../../api/hive";
 import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from "../../api/operations";
 
 import { _t } from "../../i18n";
+import "./_index.scss";
 interface Props {
   history: History;
   global: Global;

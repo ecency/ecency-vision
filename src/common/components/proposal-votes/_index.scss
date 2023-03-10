@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .proposal-votes-dialog {
   .modal-content {
     padding-left: 1.5rem;
@@ -15,31 +20,32 @@
 
     }
   }
-}
 
-.list-tools {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column-reverse;
-
-  @media (min-width: $lg-break) {
-    flex-direction: row;
-  }
-
-  .sorter {
+  .list-tools {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+
     @media (min-width: $lg-break) {
-      margin-bottom: 0;
+      flex-direction: row;
     }
 
-    .label {
-      margin-right: 4px;
+    .sorter {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      @media (min-width: $lg-break) {
+        margin-bottom: 0;
+      }
+
+      .label {
+        margin-right: 4px;
+      }
     }
   }
-}
-.user-info {
-  margin: 1rem 0 0 1rem;
+
+  .user-info {
+    margin: 1rem 0 0 1rem;
+  }
 }

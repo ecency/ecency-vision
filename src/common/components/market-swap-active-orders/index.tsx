@@ -6,6 +6,7 @@ import { GenericOrderItem } from "./generic-order-item";
 import { _t } from "../../i18n";
 import BuySellHiveDialog, { TransactionType } from "../buy-sell-hive";
 import { Global } from "../../store/global/types";
+import "./index.scss";
 
 interface Props {
   activeUser: ActiveUser;

@@ -12,6 +12,7 @@ import {
   communityInstance1,
   allOver
 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 let TEST_MODE = 0;
 
@@ -109,7 +110,7 @@ const defProps = {
 };
 
 it("(1) Empty list", async () => {
-  const component = renderer.create(<Schedules {...defProps} />);
+  const component = withStore(<Schedules {...defProps} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });
@@ -117,7 +118,7 @@ it("(1) Empty list", async () => {
 it("(2) With data", async () => {
   TEST_MODE = 1;
 
-  const component = renderer.create(<Schedules {...defProps} />);
+  const component = withStore(<Schedules {...defProps} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });

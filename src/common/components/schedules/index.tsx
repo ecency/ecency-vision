@@ -34,6 +34,9 @@ import {
 
 import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
 import { dateToFormatted, dateToFullRelative, dateToRelative } from "../../helper/parse-date";
+import { useMappedStore } from "../../store/use-mapped-store";
+import { useLocation } from "react-router";
+import "./_index.scss";
 
 setProxyBase(defaults.imageServer);
 
@@ -80,7 +83,7 @@ export class ListItem extends Component<ItemProps> {
           <div className="item-header-main">
             <div className="author-part">
               <a className="author-avatar">
-                {UserAvatar({ ...this.props, username: author, size: "medium" })}
+                <UserAvatar username={author} size="medium" />
               </a>
               <a className="author">
                 {author}
@@ -342,7 +345,7 @@ export class Schedules extends BaseComponent<Props, State> {
   }
 }
 
-export default class SchedulesDialog extends Component<Props> {
+class SchedulesDialog extends Component<Props> {
   hide = () => {
     const { onHide } = this.props;
     onHide();
@@ -361,3 +364,18 @@ export default class SchedulesDialog extends Component<Props> {
     );
   }
 }
+
+export default ({ history, onHide }: Pick<Props, "history" | "onHide">) => {
+  const { global, activeUser } = useMappedStore();
+  const location = useLocation();
+
+  return (
+    <SchedulesDialog
+      global={global}
+      history={history}
+      location={location}
+      activeUser={activeUser!!}
+      onHide={onHide}
+    />
+  );
+};

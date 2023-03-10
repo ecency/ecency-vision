@@ -19,6 +19,7 @@ import { searchAccount, AccountSearchResult } from "../../api/search-api";
 import { _t } from "../../i18n";
 
 import truncate from "../../util/truncate";
+import "./_index.scss";
 
 interface Props {
   history: History;
@@ -96,17 +97,13 @@ export class SearchPeople extends BaseComponent<Props, State> {
                     return (
                       <div className="list-item" key={username}>
                         <div className="item-header">
-                          {ProfileLink({
-                            ...this.props,
-                            username,
-                            children: <>{UserAvatar({ ...this.props, username, size: "medium" })}</>
-                          })}
+                          <ProfileLink {...this.props} username={username}>
+                            <UserAvatar username={username} size="medium" />
+                          </ProfileLink>
                           <div className="item-title">
-                            {ProfileLink({
-                              ...this.props,
-                              username,
-                              children: <a className="item-name notransalte">{i.full_name}</a>
-                            })}
+                            <ProfileLink {...this.props} username={username}>
+                              <span className="item-name notranslate">{i.full_name}</span>
+                            </ProfileLink>
                             <span className="item-sub-title">
                               {"@"}
                               {i.name}

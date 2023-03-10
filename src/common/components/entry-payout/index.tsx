@@ -16,6 +16,7 @@ import formattedNumber from "../../util/formatted-number";
 import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
+import "./_index.scss";
 
 interface Props {
   global: Global;

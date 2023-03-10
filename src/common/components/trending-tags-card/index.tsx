@@ -11,7 +11,7 @@ import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 import { ActiveUser } from "../../store/active-user/types";
-// import { SortTrendingTagss } from "../sort-trending-tags";
+import "./_index.scss";
 
 interface Props {
   history: History;

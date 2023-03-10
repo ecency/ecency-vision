@@ -12,6 +12,7 @@ import { copyContent } from "../../img/svg";
 import truncate from "../../util/truncate";
 import { generateKeys } from "../../helper/generate-private-keys";
 
+import "./_index.scss";
 interface Props {
   activeUser: ActiveUser;
   onUpdate?: () => void;

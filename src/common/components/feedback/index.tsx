@@ -7,6 +7,8 @@ import { FeedbackModal } from "../feedback-modal";
 import { ErrorTypes } from "../../enums";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
+import "./_index.scss";
+
 export const error = (message: string, errorType = ErrorTypes.COMMON) => {
   const detail: ErrorFeedbackObject = {
     id: random(),
@@ -116,7 +118,7 @@ export default class Feedback extends BaseComponent<Props, State> {
                   <div className=" d-flex flex-column align-items-start">
                     {x.message}
                     <div className="d-flex">
-                      {errorType(x) !== ErrorTypes.COMMON ? (
+                      {errorType(x) !== ErrorTypes.COMMON && errorType(x) !== ErrorTypes.INFO ? (
                         <Button
                           className="mt-2 details-button px-0 mr-3"
                           variant="link"
@@ -127,18 +129,20 @@ export default class Feedback extends BaseComponent<Props, State> {
                       ) : (
                         <></>
                       )}
-                      <Button
-                        className="mt-2 details-button px-0"
-                        variant="link"
-                        onClick={() =>
-                          window.open(
-                            "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",
-                            "_blank"
-                          )
-                        }
-                      >
-                        {_t("feedback-modal.report")}
-                      </Button>
+                      {!ErrorTypes.INFO && (
+                        <Button
+                          className="mt-2 details-button px-0"
+                          variant="link"
+                          onClick={() =>
+                            window.open(
+                              "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",
+                              "_blank"
+                            )
+                          }
+                        >
+                          {_t("feedback-modal.report")}
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>

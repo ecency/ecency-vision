@@ -30,8 +30,10 @@ exports[`(1) Default render. 1`] = `
             href="/@good-karma"
             onClick={[Function]}
           >
-             
-            good-karma
+            <span>
+               
+              good-karma
+            </span>
           </a>
            
           for
@@ -40,8 +42,10 @@ exports[`(1) Default render. 1`] = `
             href="/@ecency"
             onClick={[Function]}
           >
-             
-            ecency
+            <span>
+               
+              ecency
+            </span>
           </a>
         </span>
       </div>

@@ -1,0 +1,27 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+$xxsm-break: 300px;
+$xsm-break: 320px;
+$xs-break: map-get($grid-breakpoints, "xs");
+$sm-break: map-get($grid-breakpoints, "sm");
+$md-break: map-get($grid-breakpoints, "md");
+$lg-break: map-get($grid-breakpoints, "lg");
+$xl-break: map-get($grid-breakpoints, "xl");
+$xxl-break: "1440px";
+$xxxl-break: "1600px";
+$zindex-navbar-sm: 200;
+$zindex-navbar-overlay-sm: 201;
+$zindex-navbar-overlay-backdrop-sm: 202;
+
+// Duplicated variables for CSS
+$list-group-bg-d: $white;
+$list-group-border-color-d: rgba($black, .125);
+$list-group-action-color-d: $gray-700;
+$list-group-hover-bg-d: $gray-100;
+$list-group-action-active-bg-d: $gray-200;
+$border-color-d: $gray-300;
+
+// App variables
+$box-shadow-alt: 0 .1rem 1rem rgba($black, .10);

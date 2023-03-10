@@ -21,6 +21,7 @@ import _c from "../../util/fix-class-names";
 import { vestsToHp } from "../../helper/vesting";
 import formattedNumber from "../../util/formatted-number";
 import { getAccounts } from "../../api/hive";
+import "./_index.scss";
 
 interface Props {
   global: Global;
@@ -130,14 +131,18 @@ export const Curation = (props: Props) => {
                   {ProfileLink({
                     ...props,
                     username: r.account,
-                    children: <a>{UserAvatar({ ...props, size: "medium", username: r.account })}</a>
+                    children: (
+                      <span>
+                        <UserAvatar username={r.account} size="medium" />
+                      </span>
+                    )
                   })}
                 </div>
                 <div className="username">
                   {ProfileLink({
                     ...props,
                     username: r.account,
-                    children: <a>{r.account}</a>
+                    children: <span>{r.account}</span>
                   })}
                 </div>
                 <div className="score">{r.votes}</div>

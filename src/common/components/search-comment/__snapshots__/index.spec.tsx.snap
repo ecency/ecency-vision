@@ -43,7 +43,6 @@ exports[`(1) Default render 1`] = `
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@good-karma"
                 onClick={[Function]}
               >
@@ -57,16 +56,19 @@ exports[`(1) Default render 1`] = `
                 />
               </a>
               <a
-                className="author"
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                good-karma
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  77
-                </span>
+                  good-karma
+                  <span
+                    className="author-reputation"
+                  >
+                    77
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -187,7 +189,6 @@ Integration examples to get started: Esteem/
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -201,16 +202,19 @@ Integration examples to get started: Esteem/
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -338,7 +342,6 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@good-karma"
                 onClick={[Function]}
               >
@@ -352,16 +355,19 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 />
               </a>
               <a
-                className="author"
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                good-karma
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  77
-                </span>
+                  good-karma
+                  <span
+                    className="author-reputation"
+                  >
+                    77
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -479,7 +485,6 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -493,16 +498,19 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -625,7 +633,6 @@ We are 5 days away from official release of
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@good-karma"
                 onClick={[Function]}
               >
@@ -639,16 +646,19 @@ We are 5 days away from official release of
                 />
               </a>
               <a
-                className="author"
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                good-karma
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  77
-                </span>
+                  good-karma
+                  <span
+                    className="author-reputation"
+                  >
+                    77
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -771,7 +781,6 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -785,16 +794,19 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -915,7 +927,6 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -929,16 +940,19 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -1060,7 +1074,6 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -1074,16 +1087,19 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -1247,7 +1263,6 @@ exports[`(2) With limit 1`] = `
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@good-karma"
                 onClick={[Function]}
               >
@@ -1261,16 +1276,19 @@ exports[`(2) With limit 1`] = `
                 />
               </a>
               <a
-                className="author"
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                good-karma
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  77
-                </span>
+                  good-karma
+                  <span
+                    className="author-reputation"
+                  >
+                    77
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -1391,7 +1409,6 @@ Integration examples to get started: Esteem/
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -1405,16 +1422,19 @@ Integration examples to get started: Esteem/
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -1542,7 +1562,6 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@good-karma"
                 onClick={[Function]}
               >
@@ -1556,16 +1575,19 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 />
               </a>
               <a
-                className="author"
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                good-karma
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  77
-                </span>
+                  good-karma
+                  <span
+                    className="author-reputation"
+                  >
+                    77
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -1683,7 +1705,6 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -1697,16 +1718,19 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -1829,7 +1853,6 @@ We are 5 days away from official release of
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@good-karma"
                 onClick={[Function]}
               >
@@ -1843,16 +1866,19 @@ We are 5 days away from official release of
                 />
               </a>
               <a
-                className="author"
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                good-karma
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  77
-                </span>
+                  good-karma
+                  <span
+                    className="author-reputation"
+                  >
+                    77
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -1975,7 +2001,6 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -1989,16 +2014,19 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -2119,7 +2147,6 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -2133,16 +2160,19 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -2264,7 +2294,6 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -2278,16 +2307,19 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -2461,7 +2493,6 @@ exports[`(3) Hide show more button 1`] = `
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@good-karma"
                 onClick={[Function]}
               >
@@ -2475,16 +2506,19 @@ exports[`(3) Hide show more button 1`] = `
                 />
               </a>
               <a
-                className="author"
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                good-karma
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  77
-                </span>
+                  good-karma
+                  <span
+                    className="author-reputation"
+                  >
+                    77
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -2605,7 +2639,6 @@ Integration examples to get started: Esteem/
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -2619,16 +2652,19 @@ Integration examples to get started: Esteem/
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -2756,7 +2792,6 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@good-karma"
                 onClick={[Function]}
               >
@@ -2770,16 +2805,19 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 />
               </a>
               <a
-                className="author"
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                good-karma
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  77
-                </span>
+                  good-karma
+                  <span
+                    className="author-reputation"
+                  >
+                    77
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -2897,7 +2935,6 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -2911,16 +2948,19 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -3043,7 +3083,6 @@ We are 5 days away from official release of
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@good-karma"
                 onClick={[Function]}
               >
@@ -3057,16 +3096,19 @@ We are 5 days away from official release of
                 />
               </a>
               <a
-                className="author"
                 href="/@good-karma"
                 onClick={[Function]}
               >
-                good-karma
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  77
-                </span>
+                  good-karma
+                  <span
+                    className="author-reputation"
+                  >
+                    77
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -3189,7 +3231,6 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -3203,16 +3244,19 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -3333,7 +3377,6 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -3347,16 +3390,19 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a
@@ -3478,7 +3524,6 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="author-part"
             >
               <a
-                className="author-avatar"
                 href="/@ecency"
                 onClick={[Function]}
               >
@@ -3492,16 +3537,19 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
                 />
               </a>
               <a
-                className="author"
                 href="/@ecency"
                 onClick={[Function]}
               >
-                ecency
-                <span
-                  className="author-reputation"
+                <div
+                  className="author"
                 >
-                  70
-                </span>
+                  ecency
+                  <span
+                    className="author-reputation"
+                  >
+                    70
+                  </span>
+                </div>
               </a>
             </div>
             <a

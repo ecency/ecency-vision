@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import DropDown, { MenuItem } from "../dropdown";
 import { _t } from "../../i18n";
 import { sortSvg } from "../../img/svg";
+import "./_index.scss";
 
 export const SortCommunities = (props: any) => {
   const { sortCommunitiesInAsc, sortCommunitiesInDsc } = props;

@@ -11,6 +11,7 @@ import BaseComponent from "../base";
 import { _t } from "../../i18n";
 
 import { closeSvg, timeSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface Props {
   date: Moment | null;

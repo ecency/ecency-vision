@@ -18,7 +18,7 @@ import Tooltip from "../tooltip";
 import { _t } from "../../i18n";
 
 import { giftOutlineSvg } from "../../img/svg";
-
+import "./_index.scss";
 interface Props {
   global: Global;
   dynamicProps: DynamicProps;

@@ -84,18 +84,21 @@ exports[`(1) Full render with active user 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@forykw"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -150,7 +153,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -265,18 +268,21 @@ exports[`(1) Full render with active user 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@brittandjosie"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -331,7 +337,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -448,18 +454,21 @@ exports[`(1) Full render with active user 1`] = `
               className="item-figure"
             >
               <a
-                className="d-sm-inline-block"
                 href="/@ardpien"
                 onClick={[Function]}
               >
                 <span
-                  className="user-avatar medium"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                  className="d-sm-inline-block"
+                >
+                  <span
+                    className="user-avatar medium"
+                    style={
+                      Object {
+                        "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                      }
                     }
-                  }
-                />
+                  />
+                </span>
               </a>
             </div>
             <div
@@ -514,7 +523,7 @@ exports[`(1) Full render with active user 1`] = `
                   </div>
                 </div>
                 <span
-                  className="separator"
+                  className="separator circle-separator"
                 />
                 <a
                   className="date"
@@ -631,18 +640,21 @@ exports[`(1) Full render with active user 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@ardpien"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -697,7 +709,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -813,18 +825,21 @@ exports[`(1) Full render with active user 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@iliyan90"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -879,7 +894,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -995,18 +1010,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@trincowski"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -1061,7 +1079,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1177,18 +1195,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@foxkoit"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -1243,7 +1264,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1359,18 +1380,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@irisworld"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -1425,7 +1449,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1495,7 +1519,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 title="2 Votes"
               >
                 <div
-                  className="heart-icon"
+                  className="heart-icon voted"
                 >
                   <svg
                     fill="currentColor"
@@ -1541,18 +1565,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@behiver"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -1607,7 +1634,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1829,18 +1856,21 @@ exports[`(3) With selected item 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@forykw"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -1895,7 +1925,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2010,18 +2040,21 @@ exports[`(3) With selected item 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@brittandjosie"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -2076,7 +2109,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2193,18 +2226,21 @@ exports[`(3) With selected item 1`] = `
               className="item-figure"
             >
               <a
-                className="d-sm-inline-block"
                 href="/@ardpien"
                 onClick={[Function]}
               >
                 <span
-                  className="user-avatar medium"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                  className="d-sm-inline-block"
+                >
+                  <span
+                    className="user-avatar medium"
+                    style={
+                      Object {
+                        "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                      }
                     }
-                  }
-                />
+                  />
+                </span>
               </a>
             </div>
             <div
@@ -2259,7 +2295,7 @@ exports[`(3) With selected item 1`] = `
                   </div>
                 </div>
                 <span
-                  className="separator"
+                  className="separator circle-separator"
                 />
                 <a
                   className="date"
@@ -2376,18 +2412,21 @@ exports[`(3) With selected item 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@ardpien"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -2442,7 +2481,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2558,18 +2597,21 @@ exports[`(3) With selected item 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@iliyan90"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -2624,7 +2666,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2740,18 +2782,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@trincowski"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -2806,7 +2851,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2922,18 +2967,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@foxkoit"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -2988,7 +3036,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3104,18 +3152,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@irisworld"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -3170,7 +3221,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3240,7 +3291,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 title="2 Votes"
               >
                 <div
-                  className="heart-icon"
+                  className="heart-icon voted"
                 >
                   <svg
                     fill="currentColor"
@@ -3286,18 +3337,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@behiver"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -3352,7 +3406,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3538,18 +3592,21 @@ exports[`(4) Show mute button, muted comment 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@forykw"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -3604,7 +3661,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3739,18 +3796,21 @@ exports[`(4) Show mute button, muted comment 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@brittandjosie"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -3805,7 +3865,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"

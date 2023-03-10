@@ -86,6 +86,7 @@ import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
+import "./entry.scss";
 
 setProxyBase(defaults.imageServer);
 
@@ -450,6 +451,7 @@ class EntryPage extends BaseComponent<Props, State> {
               pending_payout_value: String(newPayout)
             });
           }
+          return;
         })
         .catch((e) => {
           console.log(e);
@@ -553,13 +555,15 @@ class EntryPage extends BaseComponent<Props, State> {
     const { global, history, match, location } = this.props;
     const { isRawContent } = this.state;
 
-    let navBar = global.isElectron
-      ? NavBarElectron({
-          ...this.props,
-          reloadFn: this.reload,
-          reloading: loading
-        })
-      : NavBar({ ...this.props });
+    let navBar = global.isElectron ? (
+      NavBarElectron({
+        ...this.props,
+        reloadFn: this.reload,
+        reloading: loading
+      })
+    ) : (
+      <NavBar history={this.props.history} match={this.props.match} />
+    );
 
     if (loading) {
       navBar = (
@@ -717,7 +721,7 @@ class EntryPage extends BaseComponent<Props, State> {
                     username: entry.author,
                     children: (
                       <div className="cross-post-author">
-                        {UserAvatar({ ...this.props, username: entry.author, size: "medium" })}
+                        <UserAvatar username={entry.author} size="medium" />
                         {`@${entry.author}`}
                       </div>
                     )
@@ -807,11 +811,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                   username: originalEntry.author,
                                   children: (
                                     <div className="author-avatar">
-                                      {UserAvatar({
-                                        ...this.props,
-                                        username: originalEntry.author,
-                                        size: "medium"
-                                      })}
+                                      <UserAvatar username={originalEntry.author} size="medium" />
                                     </div>
                                   )
                                 })}
@@ -847,7 +847,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                     <span className="date" title={published.format("LLLL")}>
                                       {published.fromNow()}
                                     </span>
-                                    <span className="separator" />
+                                    <span className="separator circle-separator" />
                                     <div className="entry-tag">
                                       <span className="in-tag">{_t("entry.community-in")}</span>
                                       {Tag({
@@ -997,11 +997,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                 username: entry.author,
                                 children: (
                                   <div className="author-avatar">
-                                    {UserAvatar({
-                                      ...this.props,
-                                      username: entry.author,
-                                      size: "medium"
-                                    })}
+                                    <UserAvatar username={entry.author} size="medium" />
                                   </div>
                                 )
                               })}
@@ -1037,7 +1033,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                   <span className="date" title={published.format("LLLL")}>
                                     {published.fromNow()}
                                   </span>
-                                  <span className="separator" />
+                                  <span className="separator circle-separator" />
                                   <div className="entry-tag">
                                     <span className="in-tag">{_t("entry.community-in")}</span>
                                     {Tag({
@@ -1177,7 +1173,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         <div className="date" title={published.format("LLLL")}>
                           {published.fromNow()}
                         </div>
-                        <span className="separator" />
+                        <span className="separator circle-separator" />
                         {ProfileLink({
                           ...this.props,
                           username: entry.author,
@@ -1195,7 +1191,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         })}
                         {app && (
                           <>
-                            <span className="separator" />
+                            <span className="separator circle-separator" />
                             <span
                               itemProp="publisher"
                               itemScope={true}

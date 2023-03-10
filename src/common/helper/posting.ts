@@ -42,46 +42,27 @@ export const createPermlink = (title: string, random: boolean = false): string =
 
 export const extractMetaData = (body: string): MetaData => {
   const urlReg = /(\b(https?|ftp):\/\/[A-Z0-9+&@#/%?=~_|!:,.;-]*[-A-Z0-9+&@#/%=~_|])/gim;
-  const userReg = /(^|\s)(@[a-z][-.a-z\d]+[a-z\d])/gim;
   const imgReg = /(https?:\/\/.*\.(?:tiff?|jpe?g|gif|png|svg|ico|heic|webp))/gim;
 
   const out: MetaData = {};
-
   const mUrls = body.match(urlReg);
-  const mUsers = body.match(userReg);
 
   const matchedImages = [];
-  const matchedLinks = [];
-  const matchedUsers = [];
 
   if (mUrls) {
     for (let i = 0; i < mUrls.length; i++) {
       const ind = mUrls[i].match(imgReg);
       if (ind) {
         matchedImages.push(mUrls[i]);
-      } else {
-        matchedLinks.push(mUrls[i]);
       }
     }
   }
 
-  if (matchedLinks.length) {
-    out.links = matchedLinks.slice(0, 10);
-  }
   if (matchedImages.length) {
     out.image = matchedImages.slice(0, 10);
     out.thumbnails = matchedImages;
   }
 
-  if (mUsers) {
-    for (let i = 0; i < mUsers.length; i++) {
-      matchedUsers.push(mUsers[i].trim().substring(1));
-    }
-  }
-
-  if (matchedUsers.length) {
-    out.users = matchedUsers.slice(0, 10);
-  }
   return out;
 };
 

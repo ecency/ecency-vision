@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .delgations-list {
   @include user-grid-list(1, 2, 2);
   min-height: 361px;

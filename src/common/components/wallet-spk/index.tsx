@@ -55,7 +55,6 @@ export interface State {
   selectedAsset: "SPK" | "LARYNX" | "LP";
   selectedType: "transfer" | "delegate" | "powerup" | "powerdown" | "lock" | "unlock";
   claim: string;
-  airdropClaim: string;
   claiming: boolean;
   headBlock: number;
   powerDownList: string[];
@@ -90,7 +89,6 @@ class WalletSpk extends Component<Props, State> {
       selectedAsset: "SPK",
       selectedType: "transfer",
       claim: "0",
-      airdropClaim: "0",
       claiming: false,
       headBlock: 0,
       powerDownList: [],
@@ -117,22 +115,7 @@ class WalletSpk extends Component<Props, State> {
     }
   }
 
-  airCalc = (data: SpkApiWallet): string => {
-    if (
-      data.drop?.last_claim
-        ? new Date().getMonth() + 1 != parseInt(data.drop?.last_claim.toString(), 16) &&
-          data.drop?.availible.amount > 0
-        : data.drop?.availible.amount > 0
-    ) {
-      return (data.drop.availible.amount / Math.pow(10, data.drop.availible.precision)).toFixed(
-        data.drop.availible.precision
-      );
-    } else {
-      return "0";
-    }
-  };
-
-  claimRewards = (type: string) => {
+  claimRewards = () => {
     const { activeUser } = this.props;
     const { claiming } = this.state;
 
@@ -142,37 +125,20 @@ class WalletSpk extends Component<Props, State> {
 
     this.setState({ claiming: true });
 
-    if (type === "airdrop") {
-      return claimAirdropLarynxRewards(activeUser.username)
-        .then((account) => {
-          success(_t("wallet.claim-reward-balance-ok"));
-        })
-        .then(() => {
-          this.setState({ airdropClaim: "0" });
-        })
-        .catch((err) => {
-          console.log(err);
-          error(...formatError(err));
-        })
-        .finally(() => {
-          this.setState({ claiming: false });
-        });
-    } else {
-      return claimLarynxRewards(activeUser.username)
-        .then((account) => {
-          success(_t("wallet.claim-reward-balance-ok"));
-        })
-        .then(() => {
-          this.setState({ claim: "0" });
-        })
-        .catch((err) => {
-          console.log(err);
-          error(...formatError(err));
-        })
-        .finally(() => {
-          this.setState({ claiming: false });
-        });
-    }
+    return claimLarynxRewards(activeUser.username)
+      .then((account) => {
+        success(_t("wallet.claim-reward-balance-ok"));
+      })
+      .then(() => {
+        this.setState({ claim: "0" });
+      })
+      .catch((err) => {
+        console.log(err);
+        error(...formatError(err));
+      })
+      .finally(() => {
+        this.setState({ claiming: false });
+      });
   };
 
   async fetch() {
@@ -189,7 +155,6 @@ class WalletSpk extends Component<Props, State> {
         larynxGrantingPower: wallet.granting?.t ? format(wallet.granting.t / 1000) : "",
         larynxLockedBalance: wallet.gov > 0 ? format(wallet.gov / 1000) : "",
         claim: format(wallet.claim / 1000),
-        airdropClaim: this.airCalc(wallet),
         larynxPowerRate: "0.010",
         headBlock: wallet.head_block,
         powerDownList: Object.values(wallet.power_downs),
@@ -271,15 +236,7 @@ class WalletSpk extends Component<Props, State> {
                 claiming={false}
                 asset={"LARYNX"}
                 isActiveUserWallet={this.props.isActiveUserWallet}
-                onClaim={() => this.claimRewards("claim")}
-              />
-            ) : +this.state.airdropClaim > 0 ? (
-              <WalletSpkUnclaimedPoints
-                claim={this.state.airdropClaim}
-                claiming={false}
-                asset={"LARYNX Airdrop"}
-                isActiveUserWallet={this.props.isActiveUserWallet}
-                onClaim={() => this.claimRewards("airdrop")}
+                onClaim={() => this.claimRewards()}
               />
             ) : (
               <></>

@@ -54,6 +54,7 @@ export interface FullAccount {
   withdrawn: string;
   witness_votes: string[];
   proxy: string;
+  recovery_account: string;
   proxied_vsf_votes: number[] | string[];
   voting_manabar: {
     current_mana: string | number;

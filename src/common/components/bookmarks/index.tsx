@@ -17,6 +17,8 @@ import { error } from "../feedback";
 import { getBookmarks, Bookmark, getFavorites, Favorite } from "../../api/private-api";
 
 import { _t } from "../../i18n";
+import { useMappedStore } from "../../store/use-mapped-store";
+import "./_index.scss";
 
 interface BookmarksProps {
   history: History;
@@ -80,11 +82,7 @@ export class Bookmarks extends BaseComponent<BookmarksProps, BookmarksState> {
                       },
                       children: (
                         <div className="dialog-list-item">
-                          {UserAvatar({
-                            ...this.props,
-                            username: item.author,
-                            size: "medium"
-                          })}
+                          <UserAvatar username={item.author} size="medium" />
                           <div className="item-body">
                             <span className="author with-slash">{item.author}</span>
                             <span className="permlink">{item.permlink}</span>
@@ -163,11 +161,7 @@ export class Favorites extends BaseComponent<FavoritesProps, FavoritesState> {
                       },
                       children: (
                         <div className="dialog-list-item">
-                          {UserAvatar({
-                            ...this.props,
-                            username: item.account,
-                            size: "medium"
-                          })}
+                          <UserAvatar username={item.account} size="medium" />
                           <div className="item-body">
                             <span className="author notranslate">{item.account}</span>
                           </div>
@@ -200,7 +194,7 @@ interface DialogState {
   section: DialogSection;
 }
 
-export default class BookmarksDialog extends Component<DialogProps, DialogState> {
+class BookmarksDialog extends Component<DialogProps, DialogState> {
   state: DialogState = {
     section: "bookmarks"
   };
@@ -252,3 +246,17 @@ export default class BookmarksDialog extends Component<DialogProps, DialogState>
     );
   }
 }
+
+export default ({ history, onHide }: Pick<BookmarksProps, "history" | "onHide">) => {
+  const { global, activeUser, addAccount } = useMappedStore();
+
+  return (
+    <BookmarksDialog
+      history={history}
+      global={global}
+      activeUser={activeUser}
+      addAccount={addAccount}
+      onHide={onHide}
+    />
+  );
+};

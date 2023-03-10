@@ -10,6 +10,7 @@ import { ActiveUser } from "../../store/active-user/types";
 import KeyOrHot from "../key-or-hot";
 
 import PopoverConfirm from "../popover-confirm";
+import "./index.scss";
 
 interface Props {
   global: Global;

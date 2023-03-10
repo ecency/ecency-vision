@@ -12,6 +12,7 @@ import currencies from "../../constants/currencies.json";
 import { ActiveUser } from "../../store/active-user/types";
 import { copyContent } from "../../img/svg";
 import * as ls from "../../util/local-storage";
+import "./_index.scss";
 
 interface Props {
   global: Global;
@@ -21,7 +22,7 @@ interface Props {
   setLang: (lang: string) => void;
   setNsfw: (value: boolean) => void;
   activeUser: ActiveUser;
-  toggleTheme: (theme_key?: string) => void;
+  toggleTheme: (theme_key?: Theme) => void;
 }
 
 interface State {
@@ -59,7 +60,7 @@ export class Preferences extends BaseComponent<Props, State> {
       ls.set("theme", value);
     }
     this.setState({ ...this.state, defaultTheme: value });
-    toggleTheme(value);
+    toggleTheme(value as Theme);
     success(_t("preferences.updated"));
   };
 

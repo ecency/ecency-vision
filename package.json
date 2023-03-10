@@ -13,7 +13,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@ecency/render-helper": "^2.2.21",
+    "@ecency/render-helper": "^2.2.22",
     "@ecency/render-helper-amp": "^1.1.0",
     "@firebase/analytics": "^0.8.0",
     "@firebase/app": "^0.7.28",
@@ -136,6 +136,7 @@
     "typescript": "^3.5.3",
     "url-loader": "^4.1.1",
     "webpack": "4.46.0",
+    "webpack-bundle-analyzer": "^4.8.0",
     "webpack-dev-server": "3.11.0"
   },
   "resolutions": {
