@@ -2,8 +2,6 @@ import React, { Component } from "react";
 
 import { PrivateKey, cryptoUtils } from "@hiveio/dhive";
 
-import numeral from "numeral";
-
 import isEqual from "react-fast-compare";
 
 import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
@@ -28,12 +26,7 @@ import amountFormatCheck from "../../helper/amount-format-check";
 import parseAsset from "../../helper/parse-asset";
 import { vestsToHp, hpToVests } from "../../helper/vesting";
 
-import {
-  DelegatedVestingShare,
-  getAccount,
-  getAccountFull,
-  getVestingDelegations
-} from "../../api/hive";
+import { getAccount, getAccountFull, getVestingDelegations } from "../../api/hive";
 
 import {
   transfer,
@@ -71,9 +64,9 @@ import { Tsx } from "../../i18n/helper";
 
 import { arrowRightSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
-import activeUser from "../../store/active-user";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { formatNumber } from "../../helper/format-number";
+import "./_index.scss";
 
 export type TransferMode =
   | "transfer"
