@@ -111,6 +111,8 @@ export const Profile = (props: Props) => {
     const accountUsername = username.replace("@", "");
     const account = accounts.find((x) => x.name === accountUsername) as FullAccount;
 
+    if (!account) return;
+
     setAccount(account);
     setSection(section || ProfileFilter.blog);
     setUsername(username.replace("@", ""));
@@ -354,11 +356,7 @@ export const Profile = (props: Props) => {
     const { section = ProfileFilter.blog } = props.match.params;
     const url = `${defaults.base}/@${username}${section ? `/${section}` : ""}`;
 
-    if (!account) {
-      return {};
-    }
-
-    return account.__loaded
+    return account?.__loaded
       ? {
           title: `${account.profile?.name || account.name}'s ${
             section ? (section === "engine" ? "tokens" : `${section}`) : ""
@@ -401,6 +399,10 @@ export const Profile = (props: Props) => {
 
   // Pin entry directly from menu
   const pinEntry = (entry: Entry | null) => {
+    if (!account?.__loaded) {
+      return;
+    }
+
     const updatedAccount = {
       ...account,
       profile: {
@@ -415,6 +417,14 @@ export const Profile = (props: Props) => {
     setPinnedEntry(null);
     setPinnedEntry(entry);
   };
+
+  // shouldn't happen but it has happened...
+  // I have not been able to reproduce this intentionally.
+  if (!account) {
+    console.log("Saved from a Type exception");
+    ensureAccount();
+    return null;
+  }
 
   return (
     <>
