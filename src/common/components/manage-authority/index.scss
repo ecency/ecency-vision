@@ -3,9 +3,8 @@
 @import "src/style/bootstrap_vars";
 @import "src/style/mixins";
 
-
 .authority-table {
-  table {
+ .table {
     .table-head {
       background: $white-six;
     }
@@ -16,8 +15,11 @@
 
     .col-weight-content {
       text-align: center;
+      @media (max-width: 1280px) {
+        display: none;
+      }
     }
-    
+
     .key {
       color: $light-black;
     }
@@ -87,4 +89,14 @@
 
 .authority-main-title {
   font-weight: bold;
+}
+
+@include media-breakpoint-down(md) {
+  .copy-btn {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .reveal-btn {
+    display: block;
+  }
 }

@@ -553,9 +553,9 @@ export const Profile = (props: Props) => {
                           </div>
                         </div>
                         <div className="container-fluid">
+                          {tabState === 1 && <ManageAuthorities {...props} />}
                           <div className="row pb-4">
                             <div className="col-lg-6 col-md-6 col-sm-6">
-                              {tabState === 1 && <ManageAuthorities {...props} />}
                               {tabState === 2 && <AccountRecovery {...props} />}
                               {tabState === 3 && <PasswordUpdate activeUser={props.activeUser} />}
                             </div>

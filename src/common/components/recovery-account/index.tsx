@@ -21,7 +21,7 @@ import {
   changeRecoveryAccountHot,
   changeRecoveryAccountKc
 } from "../../api/operations";
-
+import "./index.scss";
 interface Props {
   global: Global;
   activeUser: ActiveUser | null;

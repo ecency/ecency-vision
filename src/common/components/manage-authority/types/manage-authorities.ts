@@ -6,6 +6,12 @@ export const Keytype = {
   Posting: "posting"
 };
 
+export interface PublicKeys {
+  publicOwnerKey?: any;
+  publicActiveKey?: any;
+  publicPostingKey?: any;
+}
+
 export interface AccountDataType {
   postingsAuthority: Array<any>;
   posting: Array<any>;
@@ -14,7 +20,13 @@ export interface AccountDataType {
   weight: number;
   memokey: string;
   account: Account;
-  publicOwnerKey: any;
-  publicActiveKey: any;
-  publicPostingKey: any;
+  PublicKeys: {
+    publicOwnerKey: any;
+    publicActiveKey: any;
+    publicPostingKey: any;
+  };
 }
+
+export const actionType = {
+  Revoke: "revoke"
+};

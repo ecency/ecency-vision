@@ -9,12 +9,13 @@ import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 import { User, UserKeys } from "../../store/users/types";
 
-import { Keytype, AccountDataType } from "./types";
+import { Keytype, AccountDataType, PublicKeys, actionType } from "./types";
 
 import UserAvatar from "../user-avatar/index";
 import { error, success } from "../feedback";
 import keyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
+import ManageAuthIcon from "../manage-auth-icon";
 
 import { formatError, Revoke, RevokeHot, RevokeKc } from "../../api/operations";
 import { getAccounts } from "../../api/hive";
@@ -44,11 +45,39 @@ export default function ManageAuthorities(props: Props) {
   const [postingReveal, setPostingReveal] = useState(true);
   const [privateKeys, setPrivatekeys] = useState<UserKeys>({});
   const [keyType, setKeyType] = useState("");
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
+  const [formattedPrivateKeys, setFormattedPrivatekeys] = useState<UserKeys>({});
+  const [formattedPublicKeys, setFormattedPublickeys] = useState<PublicKeys>({});
 
   useEffect(() => {
     getAccountData();
     getKeys();
   }, []);
+
+  useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => {
+        const ismobile = window.innerWidth < 1200;
+        if (ismobile !== isMobile) {
+          setIsMobile(ismobile);
+        }
+      },
+      false
+    );
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (isMobile) {
+      keysSetter();
+    }
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (isMobile) {
+      keysSetter();
+    }
+  }, [accountData]);
 
   const getAccountData = async () => {
     const response = await getAccounts([props.activeUser!.username]);
@@ -62,11 +91,32 @@ export default function ManageAuthorities(props: Props) {
         weight: resp.active.weight_threshold,
         memokey: resp.memo_key,
         account: response[0],
-        publicOwnerKey: resp.owner.key_auths[0][0],
-        publicActiveKey: resp.active.key_auths[0][0],
-        publicPostingKey: resp.posting.key_auths[0][0]
+        PublicKeys: {
+          publicOwnerKey: resp.owner.key_auths[0][0],
+          publicActiveKey: resp.active.key_auths[0][0],
+          publicPostingKey: resp.posting.key_auths[0][0]
+        }
       });
     }
+  };
+
+  const keysFormatter = (keyObject: any) => {
+    let encrypKeys = {};
+    for (const pkey in keyObject) {
+      const Pkey = keyObject[pkey];
+      let firstThreeChars = Pkey.substr(0, 3);
+      let lastThreeChars = Pkey.substr(Pkey.length - 3);
+      let finalString = firstThreeChars + "*******" + lastThreeChars;
+      Object.assign(encrypKeys, { [pkey]: finalString });
+    }
+    return encrypKeys;
+  };
+
+  const keysSetter = () => {
+    const encryPrivatekeys = keysFormatter(privateKeys);
+    const encrypPublicKeys = keysFormatter(accountData?.PublicKeys);
+    setFormattedPrivatekeys(encryPrivatekeys);
+    setFormattedPublickeys(encrypPublicKeys);
   };
 
   const toggleKeyDialog = () => {
@@ -91,6 +141,7 @@ export default function ManageAuthorities(props: Props) {
   };
 
   const handleRevoke = (account: string) => {
+    keysSetter();
     setTargetAccount(account);
     setKeyDialog(true);
     setStep(1);
@@ -211,13 +262,15 @@ export default function ManageAuthorities(props: Props) {
       thePrivateKey = PrivateKey.fromLogin(accountData!.account.name, key, "active");
       keys = generateKeys(activeUser!, key);
       const activePublicInput = thePrivateKey.createPublic().toString();
-      if (!accountData!.publicActiveKey.includes(activePublicInput)) {
+      if (!accountData!.PublicKeys.publicActiveKey.includes(activePublicInput)) {
         error(_t("login.error-authenticate")); // enter master or active key
         return;
       }
     } else {
       if (
-        accountData!.publicOwnerKey.includes(PrivateKey.fromString(key).createPublic().toString())
+        accountData!.PublicKeys.publicOwnerKey.includes(
+          PrivateKey.fromString(key).createPublic().toString()
+        )
       ) {
         thePrivateKey = PrivateKey.fromString(key);
         const ownerKey = thePrivateKey.toString();
@@ -228,7 +281,9 @@ export default function ManageAuthorities(props: Props) {
           return;
         }
       } else if (
-        accountData!.publicPostingKey.includes(PrivateKey.fromString(key).createPublic().toString())
+        accountData!.PublicKeys.publicPostingKey.includes(
+          PrivateKey.fromString(key).createPublic().toString()
+        )
       ) {
         thePrivateKey = PrivateKey.fromString(key);
         const postingKey = thePrivateKey.toString();
@@ -240,7 +295,7 @@ export default function ManageAuthorities(props: Props) {
         }
       } else {
         if (
-          accountData!.publicActiveKey.includes(
+          accountData!.PublicKeys.publicActiveKey.includes(
             PrivateKey.fromString(key).createPublic().toString()
           )
         ) {
@@ -402,13 +457,13 @@ export default function ManageAuthorities(props: Props) {
 
   const table = () => {
     return (
-      <table className="table table-responsive">
+      <table className="table">
         <thead className="table-head">
           <tr>
             <th>{_t("manage-authorities.type")}</th>
             <th>{_t("manage-authorities.key")}</th>
             <th></th>
-            <th>{_t("manage-authorities.weight")}</th>
+            <th className="col-weight-content">{_t("manage-authorities.weight")}</th>
           </tr>
         </thead>
         <tbody>
@@ -429,17 +484,14 @@ export default function ManageAuthorities(props: Props) {
                                 href={`https://ecency.com/@${account[0]}`}
                               >
                                 <span className="user-img">
-                                  {UserAvatar({
-                                    username: account[0],
-                                    size: "small"
-                                  })}
+                                  <UserAvatar username={account[0]} size="small" />
                                 </span>
 
                                 {account[0]}
                               </a>
                             </p>
                           </td>
-                          <td>
+                          <td className="d-none d-sm-block">
                             {" "}
                             <Button
                               onClick={() => handleRevoke(account[0])}
@@ -447,6 +499,32 @@ export default function ManageAuthorities(props: Props) {
                             >
                               {_t("manage-authorities.revoke")}
                             </Button>
+                          </td>
+                          <td className="d-sm-none">
+                            {ManageAuthIcon({
+                              type: actionType.Revoke,
+                              account: account[0]
+                              // global: props.global,
+                              // activeUser: props.activeUser,
+                              // signingKey: props.signingKey,
+                              // setSigningKey: props.setSigningKey,
+                              // inProgress: inProgress,
+                              // onKey: (key) => {
+                              //   onKey(key);
+                              // },
+                              // onHot: () => {
+                              //   toggleKeyDialog();
+                              //   if (onHot) {
+                              //     onHot();
+                              //   }
+                              // },
+                              // onKc: () => {
+                              //   toggleKeyDialog();
+                              //   if (onKc) {
+                              //     onKc();
+                              //   }
+                              // }
+                            })}
                           </td>
                           <td className="col-weight-content">{account[1]}</td>
                         </>
@@ -460,16 +538,22 @@ export default function ManageAuthorities(props: Props) {
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.owner")}</td>
             <td className="key">
-              {ownerReveal ? accountData!.publicOwnerKey : privateKeys?.owner!}
+              {ownerReveal
+                ? isMobile
+                  ? formattedPublicKeys.publicOwnerKey
+                  : accountData!.PublicKeys.publicOwnerKey
+                : isMobile
+                ? formattedPrivateKeys.owner
+                : privateKeys?.owner!}
             </td>
-            <td>
+            <td className="d-none d-sm-block">
               <p className="action-btns">
                 <Button
                   className="copy-btn"
                   variant="outline-primary"
                   onClick={() =>
                     ownerReveal
-                      ? copyToClipboard(accountData!.publicOwnerKey)
+                      ? copyToClipboard(accountData!.PublicKeys.publicOwnerKey)
                       : copyToClipboard(privateKeys?.owner!)
                   }
                 >
@@ -502,16 +586,22 @@ export default function ManageAuthorities(props: Props) {
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.active")}</td>
             <td className="key">
-              {activeReveal ? accountData!.publicActiveKey : privateKeys?.active!}
+              {activeReveal
+                ? isMobile
+                  ? formattedPublicKeys.publicActiveKey
+                  : accountData!.PublicKeys.publicActiveKey
+                : isMobile
+                ? formattedPrivateKeys.active
+                : privateKeys?.active!}
             </td>
-            <td className="action-btns">
-              <p>
+            <td className="d-none d-sm-block">
+              <p className="action-btns">
                 <Button
                   className="copy-btn"
                   variant="outline-primary"
                   onClick={() => {
                     activeReveal
-                      ? copyToClipboard(accountData!.publicActiveKey)
+                      ? copyToClipboard(accountData!.PublicKeys.publicActiveKey)
                       : copyToClipboard(privateKeys?.active!);
                   }}
                 >
@@ -544,16 +634,22 @@ export default function ManageAuthorities(props: Props) {
           <tr>
             <td className="col-type-content"> {_t("manage-authorities.posting")}</td>
             <td className="key">
-              {postingReveal ? accountData!.publicPostingKey : privateKeys?.posting!}
+              {postingReveal
+                ? isMobile
+                  ? formattedPublicKeys.publicPostingKey
+                  : accountData!.PublicKeys.publicPostingKey
+                : isMobile
+                ? formattedPrivateKeys.posting
+                : privateKeys?.posting!}
             </td>
-            <td className="action-btns">
-              <p>
+            <td className="d-none d-sm-block">
+              <p className="action-btns">
                 <Button
                   className="copy-btn"
                   variant="outline-primary"
                   onClick={() =>
                     postingReveal
-                      ? copyToClipboard(accountData!.publicPostingKey)
+                      ? copyToClipboard(accountData!.PublicKeys.publicPostingKey)
                       : copyToClipboard(privateKeys?.posting!)
                   }
                 >
@@ -589,8 +685,9 @@ export default function ManageAuthorities(props: Props) {
   };
 
   return (
-    <div className="container authority-table">
-      {accountData && table()}
+    <>
+      <div className="authority-table">{accountData && table()}</div>
+
       {keyDialog && (
         <Modal
           animation={false}
@@ -610,6 +707,6 @@ export default function ManageAuthorities(props: Props) {
           </Modal.Body>
         </Modal>
       )}
-    </div>
+    </>
   );
 }
