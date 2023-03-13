@@ -200,7 +200,13 @@
     "buy-account-li-1": "Instant creation without extra checks and waiting",
     "buy-account-li-2": "3x RC compared to normal new accounts",
     "buy-account-li-3": "300 Points to help you get started",
-    "qr-desc": "Scan with Ecency mobile app to continue"
+    "qr-desc": "Scan with Ecency mobile app to continue",
+    "username-min-length-error": "Length of username should be at least 3 characters",
+    "username-max-length-error": "Length of username should be no more than 16 characters",
+    "username-no-ascii-first-letter-error": "First character should be a Letter",
+    "username-contains-symbols-error": "Should contain Letters, Numbers, Hyphen only",
+    "username-contains-double-hyphens": "Should not contain double Hyphens",
+    "username-exists": "This username already registered. Please, try another one"
   },
   "trending-tags": {
     "title": "Topics"
@@ -660,11 +666,11 @@
   "rc-info": {
     "available": "Available",
     "used": "Used",
-    "resource-credits": "Rescource Credits",
+    "resource-credits": "Resource Credits",
     "resource-credit": "RC",
     "delegated": "Delegations Out",
     "received-delegations": "Delegations In",
-    "delegation-button": "RC Delegations",
+    "delegation-button": "Delegate RC",
     "rc-available": "Available",
     "rc-used": "Used",
     "outgoing": "Outgoing",
@@ -679,7 +685,7 @@
     "faq-link": "FAQ",
     "insufficient-rc-error": "Insufficient resource credits",
     "minimum-rc-error": "Mininum RC is 5,000,000,000",
-    "extra-details-heading": "What you can do with your current RC?",
+    "extra-details-heading": "What's possible with current available RC?",
     "transfers": "Transfers:",
     "comments-posts": "Posts / Comments:",
     "votes": "Votes:",
@@ -809,9 +815,6 @@
       },
       "token": "SPK Token",
       "token-description": "The governance token for the SPK network.",
-      "larynx-air": "LARYNX Airdrop Claim",
-      "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
-      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
       "larynx-already-claimed": "Already claimed.",
       "larynx-token": "LARYNX Token",
       "larynx-token-description": "The mining token for the SPK network.",
@@ -1474,6 +1477,19 @@
     "copied": "Private key copied into clipboard",
     "error": "Password seem incorrect, please double check!"
   },
+  "account-recovery": {
+    "title": "Change Recovery Agent",
+    "curr-recovery-acc": "Current Recovery Agent",
+    "new-recovery-acc": "New Recovery Agent",
+    "confirm-title": "Confirm your transaction",
+    "confirm-sub-title": "Please, check if everything is correct",
+    "req-error": "Sorry! Your request of recover agent change is already in progress",
+    "to-not-found": "The user that you are tyring to set, does not exist!",
+    "sign-title": "Sign transaction",
+    "sign-sub-title": "Sign your transaction",
+    "success-message": "New recovery agent is effective after 30 days",
+    "info-message": "Overwrite pending request? @{{n}}"
+  },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
@@ -1514,9 +1530,6 @@
       "working": "Working of Ecency",
       "about-blockchain": "About Blockchain",
       "features": "Features of Ecency",
-      "feed": "How feed works",
-      "market": "Features of Market",
-      "wallet": "How to work with wallet",
       "toggle-icon-info": "Tap on me to toggle",
       "page-title": "How can we help you?",
       "search-link-copied": "Search link copied to clipboard",
@@ -1525,7 +1538,7 @@
       "search": "Related results for {{search}} filtered below",
       "search-not-found": "Nothing was found. To ask our community, join our ",
       "search-placeholder": "Search our articles",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based decentralized social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators with true/full ownership.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. There are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> who work together to bring the vision to masses.</p><p>Ecency is hub of communities powered by cutting edge technology where users are getting paid for their time, resources and learn while having complete control over their account, communities and content. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
+      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based decentralized social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators with true/full ownership.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">Feruz Muradov</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. There are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> who work together to bring the vision to masses.</p><p>Ecency is hub of communities powered by cutting edge technology where users are getting paid for their time, resources and learn while having complete control over their account, communities and content. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "What is Hive blockchain?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "What's the difference from other Social Networks?",
@@ -1541,7 +1554,7 @@
       "how-referrals-work-header": "How referral system work on Ecency?",
       "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
       "what-is-points-header": "What are Ecency Points and how to use them?",
-      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps. <ul><li>Publishing posts (15 points)</li><li>Commenting (5 points)</li><li>Voting for publications, upvoting (0.3 points)</li><li>Being online (0.25 points for every 15 minutes and + 10 bonus points per day)</li><li>Sharing posts (1 point)</li><li>Checking in (0.25 points)</li><li>When you log in Ecency (10 points)</li><li>For each 1000 HP delegation (100 points)</li><li>When your community has 100 members you can be supported by Ecency and receive points for per post published in your community. ( 20 points)</li></ul> </p>",
+      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
       "where-tokens-come-header": "Where do the tokens come from?",
       "where-tokens-come-body": "<p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
       "how-promotion-work-header": "How content promotion works?",
@@ -1599,7 +1612,7 @@
       "what-are-hive-power-header": "What are HIVE POWER?",
       "what-are-hive-power-body": "<p>Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other's rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.</p>",
       "what-are-hd-header": "What are HIVE DOLLARS or HBD?",
-      "what-are-hd-body": "<p>Hive Dollars (commonly abbreviated HBD) are tokens worth about $1.00 of HIVE. Hive Dollars can be traded with HIVE, and transferred to other accounts for commerce or exchange. Hive Dollars may also be converted into HIVE via a process that takes 3.5 days. </p>",
+      "what-are-hd-body": "<p>Hive Dollars (commonly abbreviated HBD) are tokens worth about $1.00 of HIVE. Hive Dollars can be traded with HIVE, and transferred to other accounts for commerce or exchange. Hive Dollars may also be converted into HIVE via a process that takes 3.5 days.</p>",
       "what-delegated-hp-header": "What is delegated Hive Power?",
       "what-delegated-hp-body": "<p>Hive Power can be delegated to users by another user. When user is delegated Hive Power - their Resource Credits, content votes, and curation rewards are calculated as if it were their own Hive Power. Users are not able to power down or cash out delegated Hive Power however, as it still belongs to the original owner.</p>",
       "what-powering-up-header": "What is powering up?",
@@ -1616,6 +1629,8 @@
       "how-use-tags-body": "<p>Users can create the tags of their choice but by choosing a useful tag users may reveal your post very easy. For example, your first indrotuction post can be popular just by using introduction tag. Be sure that you are using tags that are related to your post otherwise your post may get downvotes for mistagging.</p>",
       "why-publish-gray-header": "Why is the Publish button grayed out?",
       "why-publish-gray-body": "<p>After writing your post you can see that Publish button is still gray, be sure that you chose a good title and at least one valid tag. If you miss them Publish button will be disabled.</p>",
+      "what-links-show-header": "What do the Trending, Hot, New, Rising and Controversial links show?",
+      "what-links-show-body": "<p>This is the way of sorting content on Ecency. <ul><li>Trending - Widely mentioned or discussed posts.</li><li>Hot - Popular posts in last couple hours.</li><li>New - The newest posts sorted by the published time.</li><li>Rising - Posts that have more comments and votes compare to others.</li><li>Controversial - Has a relatively equal number of upvotes and downvotes.</li></ul></p>",
       "what-my-rewards-header": "What kind of rewards I have in my wallet?",
       "what-my-rewards-body": "<p>There are three kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
       "what-information-profile-header": "What kind of information is shown on my profile?",
@@ -1644,8 +1659,6 @@
       "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
       "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
       "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>",
-      "what-links-show-header": "What do the Trending, Hot, New, Rising and Controversial links show?",
-      "what-links-show-body": "<p>This is the way of sorting content on Ecency. <ul><li>Trending - Widely mentioned or discussed posts.</li><li>Hot - Popular posts in last couple hours.</li><li>New - The newest posts sorted by the published time.</li><li>Rising - Posts that have more comments and votes compare to others.</li><li>Controversial - Has a relatively equal number of upvotes and downvotes.</li></ul></p>",
       "exclude-reblogs-feed-header": "How to exclude reblogs from Friends Feed?",
       "exclude-reblogs-feed-body": "<p>Your Feed includes posts about your friends' activity, including when your friends reblog posts they want. If you don't want to see posts about a friend's reblogged activity in your Feed, you can sort it by Excluding Reblog option that can be found on the top right.</p> ",
       "how-to-sort-feed-header": "How to sort Trending, Hot, and New links?",
@@ -1656,7 +1669,7 @@
       "how-find-information-followers-body": "<p>You can see the number of people you're following and your Followers by clicking Followers and Following below your cover photo.</p>",
       "how-to-search-header": "How to search something on Ecency?",
       "how-to-search-body": "<p>Click search icon in the top left on Ecency. Type who or what you want to search for, then click on the list of results. When typing something, you may see predictions for what you're looking for. If you see what you're looking for in these predictions, click it to save time searching.</p>",
-      "what-appears-search-header": "What appears in search reasults?", 
+      "what-appears-search-header": "What appears in search reasults?",
       "what-appears-search-body": "<p>Your search results are based on the posts, communities, accounts and topics that you searched for.</p>",
       "what-are-referrals-header": "What are referrals?",
       "what-are-referrals-body": "<p>Your referral is link that can be shared to invite friends to the platform. You can see a list of all the users you have referred to the Ecency, Copy your referral link and other informations by clicking Referrals under your cover photo. </p>",
@@ -1710,7 +1723,7 @@
       "how-schedule-body": "<p>You can schedule a post to publish at a specific time. <ul><li>Click on the pen icon and write a post.Then Click on the Advanced right under your post. </li><li>Choose Schedule option.</li><li>Select the date and time that you want the post to publish.</li><li>Click Apply then Schedule button.</li></ul></p>",
       "how-delete-scheduled-header": "How to edit or delete a scheduled post?",
       "how-delete-scheduled-body": "<p>From the main Menu choose Schedule. Thee you will se a list of scheduled posts. Under posts there are 2 options: Move to drafts(there you can reschedule, edit)or delete scheduled post.</p>",
-      "how-set-beneficiaries-header": "How to set beneficiaries?", 
+      "how-set-beneficiaries-header": "How to set beneficiaries?",
       "how-set-beneficiaries-body": "<p>You can set beneficiaries to share author reward with other accounts. Authors may share their rewards with others for a variety of reasons. It's up to you how much of your reward you want to share with. First create Post then Click Advanced. There you can Set Beneficiaries by clicking on it.  Choose username and percent of the reward you want to share and click Done.</p>",
       "possible-current-RC-header": "What's possible with my current available RC?",
       "possible-current-RC-body": "<p>Below your username, there is a brief description of your RC. Click on the bottom of this information. You will have complete details on how many RC you have, your RC delegations, and how many activities you can perform with your existing RC.</p>",
@@ -1727,9 +1740,7 @@
       "what-do-hive-tokens-header": "What can I do with my Hive tokens?",
       "what-do-hive-tokens-body": "<p>In the Ecency wallet, you can perform various operations on your Hives:  <img src=\"{i.imgur.com/X6QOtcU.png}\"/>  <ul><li>Transfer- If you want to Transfer your Hive to someone, you can select Transfer and fill in the account name and amount of Hives to Transfer it.</li><li>Transfer to Savings- By transferring your Hive to Savings, you will get annual Interest from them.</li><li>Power Up- When powered up, your HIVE becomes staked and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. You can Power Up Hive and Save it in your Account or Transfer it to other accounts as Hive Power through filling account name field.</li><li>Trade Token- Clicking on it redirects you the Ecency Market Page where you can exchange tokens. Hive can be Swapped to HBD wihtout waiting period 3,5 days.</li></ul> </p>",
       "what-delegated-HP-header": "What is Delegated Hive Power?",
-      "what-delegated-HP-body":"<p>When you delegate Hive power you make a portion of your HIVE Power available to another user. Delegated Hive Power increases Voting Powe, Curation Rewards and Recourse Credits of that account. When a delegation is cancelled the HIVE Power will only be available again after 7 days.</p>"
-
-      
+      "what-delegated-HP-body": "<p>When you delegate Hive power you make a portion of your HIVE Power available to another user. Delegated Hive Power increases Voting Powe, Curation Rewards and Recourse Credits of that account. When a delegation is cancelled the HIVE Power will only be available again after 7 days.</p>"
     }
   },
   "contributors": {
@@ -1760,7 +1771,8 @@
     "comment-cashout": "Content after their payout cannot be deleted.",
     "comment-children": "Cannot delete a content with replies.",
     "paid-out-post-forbidden": "Voting for paid out content is not available.",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "This operation requires Active private key or authority.",
+    "missing-owner-authority": "This operation requires Owner private key or authority."
   },
   "landing-page": {
     "welcome-text": "Welcome to Ecency!",
@@ -1791,7 +1803,7 @@
     "download-for-ios": "Download for IOS",
     "download-for-android": "Download for Android",
     "our-history": "Our History",
-    "our-history-p-one": "<b>Ecency</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
+    "our-history-p-one": "<b>Ecency</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> Feruz Muradov </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
     "our-history-p-two": "Since then we have been continuing to build for Web 3.0 and improve our blockchain-based social network, making sure apps are as accessible as possible, secure and in many languages the world speaks.",
     "our-vision": "Our Vision",
     "our-vision-p-one": "We want to bring a secure and rewarding blockchain experience to all people. Social media without any limits and censorship, where only you control your own account and your communities. Secured by blockchain, powered by people.",
