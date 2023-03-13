@@ -168,7 +168,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     this.setState({ showTokenList: true });
   };
 
-  handleOnChange = (e: any, token: any) => {
+  handleChange = (e: any, token: any) => {
     const { account } = this.props;
     const { selectedTokens, isChecked } = this.state;
     const json_data = JSON.parse(account.posting_json_metadata);
@@ -256,6 +256,14 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     this.setState({ showChart: e.target.checked });
   };
 
+  formatCurrency = (price: number | string) => {
+    const formatted = price.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
+    return formatted
+  }
+
   render() {
     const { global, dynamicProps, account, points, activeUser } = this.props;
     const {
@@ -273,12 +281,35 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     const profileTokens: any = account?.profile?.profileTokens;
     const w = new HiveWallet(account, dynamicProps, converting);
 
+    console.log(w)
+
     const totalHP: any = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests));
+
+    const profiletokenValues = profileTokens?.map((w: any) => {
+      return w.symbol === "SWAP.HIVE"
+        ? Number(this.pricePerHive * w.balance)
+        : w.lastPrice === 0
+        ? 0
+        : Number(w.lastPrice * this.pricePerHive * w.balance);
+    });
+
+    const totalProfileTokensValue = profiletokenValues?.reduce((x: any, y: any) => {
+      const totalValue = +(x + y).toFixed(3);
+      return totalValue;
+    }, 0);
+
+    const totalHPValue = Number(totalHP * this.pricePerHive)
+    const totalPointsValue = Number(estimatedPointsValue * Number(points.points))
+    const totalHiveValue = Number(w.balance * this.pricePerHive)
+    const totalHbdValue = Number(w.hbdBalance * coingeckoData[1]?.current_price)
+    const estimatedTotal = Number(totalHPValue + totalHiveValue + totalPointsValue + totalHbdValue + totalProfileTokensValue)
 
     return (
       <div className="wallet-hive-engine">
         <div className="table-top d-flex">
-          <span>{_t("wallet-portfolio.total-value")} $1.19</span>
+          <span>{_t("wallet-portfolio.total-value")} {this.formatCurrency(estimatedTotal)}</span>
+          {/* <span>Hive Savings: {w.savingBalance}Hive</span>
+          <span>Hbd Savings: {this.formatCurrency(w.savingBalanceHbd)}</span> */}
           <div className="toggle">
             <span className=" text-primary">{_t("wallet-portfolio.show-trend")}</span>
             <label className="toggle-chart">
@@ -304,21 +335,21 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                 <tr className="table-row" onClick={() => this.handleLink("points")}>
                   <td className="align-middle">
                     <img src={ecencyIcon} className="item-image" />
-                    <span>ECENCY POINT</span>
+                    <span>{_t("wallet-portfolio.points")}</span>
                   </td>
                   <td className="align-middle">${estimatedPointsValue}</td>
                   <td className="align-middle">---</td>
                   {!global?.isMobile && showChart && <td className="align-middle">---</td>}
                   <td className="align-middle">{points.points}</td>
                   <td className="align-middle">
-                    ${Number(estimatedPointsValue * Number(points.points)).toFixed(3)}
+                    {this.formatCurrency(totalPointsValue)}
                   </td>
                 </tr>
 
                 <tr className="table-row" onClick={() => this.handleLink("hive-power")}>
                   <td className="align-middle">
                     <img src={coingeckoData[0]?.image} className="item-image" />
-                    <span>HIVE-POWER</span>
+                    <span>{_t("wallet-portfolio.hive-power")}</span>
                   </td>
                   <td className="align-middle">${this.pricePerHive}</td>
                   <td
@@ -338,14 +369,14 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   {!global?.isMobile && showChart && <td className="align-middle">---</td>}
                   <td className="align-middle">{totalHP}</td>
                   <td className="align-middle">
-                    ${Number(totalHP * this.pricePerHive).toFixed(3)}
+                  {this.formatCurrency(totalHPValue)}
                   </td>
                 </tr>
 
                 <tr className="table-row" onClick={() => this.handleLink("hive")}>
                   <td className="align-middle">
                     <img src={coingeckoData[0]?.image} className="item-image" />
-                    <span>HIVE</span>
+                    <span>{_t("wallet-portfolio.hive")}</span>
                   </td>
                   <td className="align-middle">${this.pricePerHive}</td>
                   <td
@@ -369,14 +400,14 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   )}
                   <td className="align-middle">{w.balance}</td>
                   <td className="align-middle">
-                    ${Number(w.balance * this.pricePerHive).toFixed(3)}
+                  {this.formatCurrency(totalHiveValue)}
                   </td>
                 </tr>
 
                 <tr className="table-row" onClick={() => this.handleLink("hbd")}>
                   <td className="align-middle">
                     <img src={hbdIcom} className="item-image" />
-                    <span>HBD</span>
+                    <span>{_t("wallet-portfolio.hbd")}</span>
                   </td>
                   <td className="align-middle">${coingeckoData[1]?.current_price}</td>
                   <td
@@ -400,7 +431,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   )}
                   <td className="align-middle">{w.hbdBalance}</td>
                   <td className="align-middle">
-                    ${Number(w.hbdBalance * coingeckoData[1]?.current_price).toFixed(3)}
+                  {this.formatCurrency(totalHbdValue)}
                   </td>
                 </tr>
 
@@ -451,7 +482,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                           <span>{a.balance}</span>
                         </td>
                         <td className="align-middle">
-                          <span>${a.usd_value}</span>
+                          <span>{this.formatCurrency(a.usd_value)}</span>
                         </td>
                       </tr>
                     );
@@ -512,7 +543,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                     <EngineTokensList
                       token={token}
                       showTokenList={showTokenList}
-                      handleOnChange={this.handleOnChange}
+                      handleChange={this.handleChange}
                       isChecked={isChecked}
                       key={i}
                       favoriteToken={favoriteToken}
