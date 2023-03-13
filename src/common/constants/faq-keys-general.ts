@@ -53,7 +53,7 @@ export const faqKeysGeneral = [
   "how-to-bookmark",
   "how-to-favorite",
   "what-notifications-get",
-  "turn-off-notifications-",
+  "turn-off-notifications",
   "getting-post-notifications",
   "getting-post-notifications",
   "manage-notifications",
