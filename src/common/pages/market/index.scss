@@ -2,6 +2,9 @@
 @import "src/style/colors";
 @import "src/style/variables";
 @import "src/style/mixins";
+@import "src/common/components/deck";
+@import "src/common/components/deck-view";
+@import "src/common/components/deck-add-modal";
 
 .loading-hive {
     width: 100%;

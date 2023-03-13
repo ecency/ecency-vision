@@ -34,6 +34,7 @@ import { CommunityRoles } from "../components/community-roles";
 import { EntryListContent } from "../components/entry-list";
 import { connect } from "react-redux";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
+import "./community.scss";
 
 interface MatchParams {
   filter: string;
