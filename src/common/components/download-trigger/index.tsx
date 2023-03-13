@@ -8,6 +8,7 @@ import { geLatestDesktopTag } from "../../api/misc";
 
 import platform from "../../util/platform";
 import { history } from "../../store";
+import "./_index.scss";
 
 interface ContentState {
   desktopTag: string;

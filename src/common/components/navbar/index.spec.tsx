@@ -16,6 +16,7 @@ import {
   dynamicPropsIntance1
 } from "../../helper/test-helper";
 import "./matchMedia";
+import { withStore } from "../../tests/with-store";
 
 const defProps = {
   history: createBrowserHistory(),
@@ -52,7 +53,7 @@ const defProps = {
 it("(1) Default render", () => {
   const component = <NavBar {...defProps} />;
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
       {component}
     </StaticRouter>
@@ -73,7 +74,7 @@ it("(2) Night Theme", () => {
   };
   const component = <NavBar {...props} />;
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
       {component}
     </StaticRouter>
@@ -91,7 +92,7 @@ it("(3) With active user", () => {
   };
   const component = <NavBar {...props} />;
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
       {component}
     </StaticRouter>
@@ -114,7 +115,7 @@ it("(4) With active user && usePrivate = false", () => {
 
   const component = <NavBar {...props} />;
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
       {component}
     </StaticRouter>

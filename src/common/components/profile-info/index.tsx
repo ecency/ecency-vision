@@ -24,6 +24,7 @@ import { _t } from "../../i18n";
 
 import { informationVariantSvg, hiveSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
+import "./_index.scss";
 
 interface ContentProps {
   account: FullAccount;

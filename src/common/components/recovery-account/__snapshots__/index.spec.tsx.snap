@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="account-recovery-form"
+>
+  <form
+    className=""
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="account-name"
+      >
+        Current Recovery Agent
+      </label>
+      <input
+        className="form-control"
+        id="account-name"
+        readOnly={true}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="cur-pass"
+      >
+        New Recovery Agent
+      </label>
+      <input
+        autoComplete="off"
+        autoFocus={true}
+        className="form-control"
+        id="cur-pass"
+        onChange={[Function]}
+        required={true}
+        type="text"
+        value=""
+      />
+    </div>
+    
+    <button
+      className="btn btn-primary"
+      disabled={true}
+      type="submit"
+    >
+      Update
+    </button>
+  </form>
+</div>
+`;

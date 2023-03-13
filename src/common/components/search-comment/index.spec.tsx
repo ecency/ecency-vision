@@ -9,6 +9,7 @@ import { StaticRouter } from "react-router-dom";
 import { globalInstance, allOver, searchResponseInstance } from "../../helper/test-helper";
 
 import { SearchComment } from "./index";
+import { withStore } from "../../tests/with-store";
 
 mockDate.set(1591398131174);
 
@@ -48,7 +49,7 @@ const defProps = {
 it("(1) Default render", async () => {
   const props = { ...defProps };
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
       <SearchComment {...props} />
     </StaticRouter>
@@ -63,7 +64,7 @@ it("(2) With limit", async () => {
     limit: 8
   };
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
       <SearchComment {...props} />
     </StaticRouter>
@@ -80,7 +81,7 @@ it("(3) Hide show more button", async () => {
     limit: 8
   };
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
       <SearchComment {...props} />
     </StaticRouter>
@@ -96,7 +97,7 @@ it("(4) No matches", async () => {
     ...defProps
   };
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
       <SearchComment {...props} />
     </StaticRouter>

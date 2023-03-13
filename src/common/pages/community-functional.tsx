@@ -28,12 +28,13 @@ import { CommunityMenu } from "../components/community-menu";
 import { CommunityCover } from "../components/community-cover";
 import { NotFound } from "../components/404";
 import NavBarElectron from "../../desktop/app/components/navbar";
-import { NavBar } from "../components/navbar";
+import NavBar from "../components/navbar";
 import { CommunityCard } from "../components/community-card";
 import { CommunityRoles } from "../components/community-roles";
 import { EntryListContent } from "../components/entry-list";
 import { connect } from "react-redux";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
+import "./community.scss";
 
 interface MatchParams {
   filter: string;

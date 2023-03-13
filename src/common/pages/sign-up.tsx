@@ -1,10 +1,14 @@
-import React, { useRef } from "react";
-import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
-import { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { connect } from "react-redux";
+import qrcode from "qrcode";
+import axios from "axios";
 import queryString from "query-string";
 import useLocalStorage from "react-use/lib/useLocalStorage";
-import { PREFIX } from "../util/local-storage";
 import { Button, Form, FormControl, Spinner } from "react-bootstrap";
+
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
+import { PREFIX } from "../util/local-storage";
 import { signUp } from "../api/private-api";
 import Feedback, { error } from "../components/feedback";
 import { _t } from "../i18n";
@@ -16,10 +20,8 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import { appleSvg, checkSvg, googleSvg, hiveSvg } from "../img/svg";
 import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
-import ReCAPTCHA from "react-google-recaptcha";
-import { connect } from "react-redux";
-import qrcode from "qrcode";
-import { stat } from "fs";
+import { getAccount } from "../api/hive";
+import "./sign-up.scss";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -33,6 +35,9 @@ export const SignUp = (props: PageProps) => {
   const [lsReferral, setLsReferral] = useLocalStorage<string>(PREFIX + "_referral");
 
   const [username, setUsername] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [usernameTouched, setUsernameTouched] = useState(false);
+
   const [email, setEmail] = useState("");
   const [referral, setReferral] = useState("");
   const [lockReferral, setLockReferral] = useState(false);
@@ -41,6 +46,7 @@ export const SignUp = (props: PageProps) => {
   const [isVerified, setIsVerified] = useState(props.global.isElectron);
   const [stage, setStage] = useState<Stage>(Stage.FORM);
   const [url, setUrl] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
@@ -80,6 +86,35 @@ export const SignUp = (props: PageProps) => {
     }
   }, [stage]);
 
+  useEffect(() => {
+    setUsernameError("");
+    setIsDisabled(false);
+
+    if (!username && !usernameTouched) {
+      return;
+    }
+    if (username.length > 16) {
+      setUsernameError(_t("sign-up.username-max-length-error"));
+      setIsDisabled(true);
+    } else {
+      username.split(".").some((item) => {
+        if (item.length < 3) {
+          setUsernameError(_t("sign-up.username-min-length-error"));
+          setIsDisabled(true);
+        } else if (!/^[\x00-\x7F]*$/.test(item[0])) {
+          setUsernameError(_t("sign-up.username-no-ascii-first-letter-error"));
+          setIsDisabled(true);
+        } else if (!/^([a-zA-Z0-9]|-|\.)+$/.test(item)) {
+          setUsernameError(_t("sign-up.username-contains-symbols-error"));
+          setIsDisabled(true);
+        } else if (item.includes("--")) {
+          setUsernameError(_t("sign-up.username-contains-double-hyphens"));
+          setIsDisabled(true);
+        }
+      });
+    }
+  }, [username, usernameTouched]);
+
   const regularRegister = async () => {
     setInProgress(true);
     try {
@@ -95,7 +130,7 @@ export const SignUp = (props: PageProps) => {
         setLsReferral(undefined);
       }
     } catch (e) {
-      if (e.response?.data?.message) {
+      if (axios.isAxiosError(e) && e.response?.data?.message) {
         error(e.response.data.message);
       }
     } finally {
@@ -115,7 +150,7 @@ export const SignUp = (props: PageProps) => {
       <ScrollToTop />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
-      {props.global.isElectron ? NavBarElectron({ ...props }) : NavBar({ ...props })}
+      {props.global.isElectron ? NavBarElectron({ ...props }) : <NavBar history={props.history} />}
       <div
         className={
           props.global.isElectron
@@ -163,11 +198,21 @@ export const SignUp = (props: PageProps) => {
 
                 <Form
                   ref={form}
-                  onSubmit={(e: React.FormEvent) => {
+                  onSubmit={async (e: React.FormEvent) => {
                     e.preventDefault();
                     e.stopPropagation();
 
                     if (!form.current?.checkValidity()) {
+                      return;
+                    }
+
+                    if (usernameError) {
+                      return;
+                    }
+
+                    const existingAccount = await getAccount(username);
+                    if (existingAccount) {
+                      setUsernameError(_t("sign-up.username-exists"));
                       return;
                     }
 
@@ -185,8 +230,11 @@ export const SignUp = (props: PageProps) => {
                       autoFocus={true}
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-username")}
+                      isInvalid={usernameError !== ""}
                       onInput={handleOnInput}
+                      onBlur={() => setUsernameTouched(true)}
                     />
+                    <Form.Text className="text-danger pl-3">{usernameError}</Form.Text>
                   </Form.Group>
                   <Form.Group>
                     <Form.Control
@@ -224,7 +272,7 @@ export const SignUp = (props: PageProps) => {
                           variant="primary"
                           block={true}
                           type="submit"
-                          disabled={inProgress || !isVerified}
+                          disabled={inProgress || !isVerified || isDisabled}
                         >
                           {inProgress && (
                             <Spinner

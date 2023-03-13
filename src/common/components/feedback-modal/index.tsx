@@ -6,6 +6,7 @@ import { ErrorTypes } from "../../enums";
 import { InsufficientResourceCreditsDetails } from "./insufficient-resource-credits-details";
 import { CommonDetails } from "./common-details";
 import { ActiveUser } from "../../store/active-user/types";
+import "./_index.scss";
 
 interface Props {
   activeUser: ActiveUser | null;

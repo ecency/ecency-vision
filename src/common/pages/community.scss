@@ -1,4 +1,7 @@
-.profile-page {
+@import "src/style/bootstrap_vars";
+@import "src/style/variables";
+
+.community-page {
   flex-direction: column;
 
   @media (min-width: $md-break) {
@@ -13,7 +16,7 @@
     }
 
     @media (min-width: $lg-break) {
-      width: 200px;
+      width: 280px;
     }
   }
 

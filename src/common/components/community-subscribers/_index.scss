@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .community-subscribers {
   .user-list {
     @include user-grid-list(1, 2, 4);

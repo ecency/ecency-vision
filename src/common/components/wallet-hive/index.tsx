@@ -49,6 +49,7 @@ import { _t } from "../../i18n";
 
 import { plusCircle } from "../../img/svg";
 import { dayDiff, dateToFullRelative, hourDiff, secondDiff } from "../../helper/parse-date";
+import "./_index.scss";
 
 interface Props {
   history: History;

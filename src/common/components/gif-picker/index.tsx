@@ -6,7 +6,7 @@ import { _t } from "../../i18n";
 import { insertOrReplace } from "../../util/input-util";
 import _ from "lodash";
 import { fetchGif } from "../../api/misc";
-
+import "./_index.scss";
 interface Props {
   fallback?: (e: string) => void;
   shGif: boolean;

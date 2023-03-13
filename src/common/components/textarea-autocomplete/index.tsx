@@ -10,6 +10,7 @@ import { lookupAccounts } from "../../api/hive";
 import { searchPath } from "../../api/search-api";
 import { isMobile } from "../../util/is-mobile";
 import NoSSR from "../../util/no-ssr";
+import "./_index.scss";
 
 interface State {
   value: string;
@@ -142,13 +143,9 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 
                 return (
                   <>
-                    {props.entity.includes("/")
-                      ? null
-                      : UserAvatar({
-                          global: this.props.global,
-                          username: props.entity,
-                          size: "small"
-                        })}
+                    {props.entity.includes("/") ? null : (
+                      <UserAvatar username="props.entity" size="small" />
+                    )}
                     <span style={{ marginLeft: "8px" }}>{textToShow}</span>
                   </>
                 );

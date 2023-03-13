@@ -26,6 +26,7 @@ import { error, success } from "../feedback";
 import { _t } from "../../i18n";
 
 import { claimPoints, getCurrencyTokenRate } from "../../api/private-api";
+import "./_index.scss";
 
 import {
   accountGroupSvg,

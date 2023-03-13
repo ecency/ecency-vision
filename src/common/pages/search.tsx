@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
-
 import queryString from "query-string";
-
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
@@ -12,10 +9,9 @@ import SearchComment from "../components/search-comment";
 import SearchPeople from "../components/search-people";
 import SearchTopics from "../components/search-topics";
 import SearchCommunities from "../components/search-communities";
-
 import { _t } from "../i18n";
-
 import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
+import "./search.scss";
 
 interface State {
   q: string;
@@ -61,11 +57,13 @@ class SearchPage extends SearchBase {
       <>
         <Meta {...metaProps} />
         <Theme global={this.props.global} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
         <div className={containerClasses}>
           <div className="search-main">
             <SearchComment {...this.props} limit={8} />
@@ -106,11 +104,13 @@ class SearchMorePage extends SearchBase {
       <>
         <Meta {...metaProps} />
         <Theme global={this.props.global} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
         <div className={containerClasses}>
           <SearchComment {...this.props} />
         </div>

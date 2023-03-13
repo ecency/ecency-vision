@@ -19,6 +19,7 @@ import { setUserRole, formatError } from "../../api/operations";
 
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
+import "./_index.scss";
 
 interface Props {
   global: Global;

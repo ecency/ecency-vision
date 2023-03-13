@@ -11,6 +11,7 @@ import { makeGroupKey } from "../store/entries";
 import { connect } from "react-redux";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
 import loadable from "@loadable/component";
+import { useMappedStore } from "../store/use-mapped-store";
 
 const LandingPage = loadable(() => import("../components/landing-page"));
 const EntryIndexContainer = loadable(() => import("./entry-index"));
@@ -21,30 +22,31 @@ const Index = (props: PageProps) => {
   const [loading, setLoading] = useState(false);
   const [showLandingPage, setShowLandingPage] = useState(false);
   const [showEntryPage, setShowEntryPage] = useState(false);
+  const store = useMappedStore();
 
   useEffect(() => {
     setTimeout(() => moveToSection(props.location.hash), 1000);
 
     return () => {
-      props.setLastIndexPath(showLandingPage ? "landing" : "feed");
+      store.setLastIndexPath(showLandingPage ? "landing" : "feed");
     };
   }, [showEntryPage, showLandingPage]);
 
   useEffect(() => {
-    initStep(props.activeUser ? 2 : 1);
-    if (props.global.usePrivate && !props.activeUser && props.location.search === "?login") {
-      props.toggleUIProp("login");
+    initStep(store.activeUser ? 2 : 1);
+    if (store.global.usePrivate && !store.activeUser && props.location.search === "?login") {
+      store.toggleUIProp("login");
     }
-  }, [props.activeUser, props.location.pathname]);
+  }, [store.activeUser, props.location.pathname]);
 
   const reload = () => {
-    const { global, fetchEntries, invalidateEntries } = props;
+    const { global, fetchEntries, invalidateEntries } = store;
     invalidateEntries(makeGroupKey(global.filter, global.tag));
     fetchEntries(global.filter, global.tag, false);
   };
 
   const setNewStep = (step: number) => {
-    props.setLastIndexPath(null);
+    store.setLastIndexPath(null);
     setStep(step);
     initStep(step);
   };
@@ -58,15 +60,15 @@ const Index = (props: PageProps) => {
 
   const initStep = (nextStep?: number) => {
     let currentStep = nextStep || step;
-    if (props.global.lastIndexPath === "landing" && props.activeUser === null) {
+    if (store.global.lastIndexPath === "landing" && store.activeUser === null) {
       currentStep = 1;
-    } else if (props.global.lastIndexPath === "feed" && props.activeUser === null) {
+    } else if (store.global.lastIndexPath === "feed" && store.activeUser === null) {
       currentStep = 2;
     }
 
     const nextShowLandingPage =
       currentStep === 1 &&
-      props.activeUser === null &&
+      store.activeUser === null &&
       props.location &&
       "/" === props.location?.pathname;
     const nextShowEntryPage =
@@ -90,29 +92,31 @@ const Index = (props: PageProps) => {
       setShowEntryPage(nextShowEntryPage);
     }
 
-    setMetaProps(getMetaProps(props));
+    setMetaProps(getMetaProps(store));
   };
 
   return (
     <>
       <Meta {...metaProps} />
       <ScrollToTop />
-      <Theme global={props.global} />
-      <Feedback activeUser={props.activeUser} />
-      {props.global.isElectron
-        ? NavBarElectron({
-            ...props,
-            reloadFn: reload,
-            reloading: loading,
-            step,
-            setStepTwo: () => setNewStep(2)
-          })
-        : NavBar({
-            ...props,
-            step,
-            setStepOne: () => setNewStep(1),
-            setStepTwo: () => setNewStep(2)
-          })}
+      <Theme global={store.global} />
+      <Feedback activeUser={store.activeUser} />
+      {store.global.isElectron ? (
+        NavBarElectron({
+          ...props,
+          reloadFn: reload,
+          reloading: loading,
+          step,
+          setStepTwo: () => setNewStep(2)
+        })
+      ) : (
+        <NavBar
+          history={props.history}
+          step={step}
+          setStepOne={() => setNewStep(1)}
+          setStepTwo={() => setNewStep(2)}
+        />
+      )}
       {showLandingPage && (
         <LandingPage {...props} loading={loading} setLoading={setLoading} setStep={setNewStep} />
       )}

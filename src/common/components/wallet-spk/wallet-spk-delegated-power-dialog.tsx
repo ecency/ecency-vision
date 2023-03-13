@@ -7,6 +7,7 @@ import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import { History } from "history";
 import { Global } from "../../store/global/types";
+import "./wallet-spk-delegated-power-dialog.scss";
 
 interface Props {
   show: boolean;
@@ -63,17 +64,11 @@ export const WalletSpkDelegatedPowerDialog = ({
                   <div className="list-item" key={username}>
                     <div className="item-main">
                       <ProfileLink username={username} history={history} addAccount={addAccount}>
-                        {UserAvatar({ global, username, size: "small" })}
+                        <UserAvatar username={username} size="small" />
                       </ProfileLink>
-                      {ProfileLink({
-                        history,
-                        addAccount,
-                        username,
-                        children: <>{UserAvatar({ global, username, size: "small" })}</>
-                      })}
                       <div className="item-info">
                         <ProfileLink history={history} username={username} addAccount={addAccount}>
-                          <a className="item-name notransalte">{username}</a>
+                          <span className="item-name notranslate">{username}</span>
                         </ProfileLink>
                       </div>
                     </div>

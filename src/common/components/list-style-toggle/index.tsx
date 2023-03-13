@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-
 import isEqual from "react-fast-compare";
-
 import DropDown, { MenuItem } from "../dropdown";
-
 import { Global } from "../../store/global/types";
-
 import { _t } from "../../i18n";
-
-import _c from "../../util/fix-class-names";
-
 import { viewModuleSvg, gridView, listView, menuDownSvg, viewStackedSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface Props {
   global: Global;

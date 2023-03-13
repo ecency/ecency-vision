@@ -24,6 +24,7 @@ import parseAsset from "../../helper/parse-asset";
 
 import formattedNumber from "../../util/formatted-number";
 import MyPagination from "../pagination";
+import "./_index.scss";
 
 interface Props {
   global: Global;
@@ -118,13 +119,13 @@ export class List extends BaseComponent<Props, State> {
                     {ProfileLink({
                       ...this.props,
                       username,
-                      children: <>{UserAvatar({ ...this.props, username, size: "small" })}</>
+                      children: <UserAvatar username={username} size="small" />
                     })}
                     <div className="item-info">
                       {ProfileLink({
                         ...this.props,
                         username,
-                        children: <a className="item-name notransalte">{username}</a>
+                        children: <span className="item-name notranslate">{username}</span>
                       })}
                     </div>
                   </div>

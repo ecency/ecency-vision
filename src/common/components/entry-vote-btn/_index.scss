@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .entry-vote-btn {
   margin-right: 10px;
 
@@ -18,7 +23,7 @@
     white-space: nowrap;
     width: 60px;
 
-    @media (max-width: $sm-break - 1px) {
+    @media (max-width: ($sm-break - 1px)) {
       font-size: 13px;
     }
   }

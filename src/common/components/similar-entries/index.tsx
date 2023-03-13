@@ -22,6 +22,7 @@ import { _t } from "../../i18n";
 
 import { dateToFullRelative } from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
+import "./_index.scss";
 
 interface Props {
   history: History;

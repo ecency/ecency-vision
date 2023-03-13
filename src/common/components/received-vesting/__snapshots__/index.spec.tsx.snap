@@ -33,11 +33,14 @@ exports[`(1) Default render 1`] = `
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@user2"
               onClick={[Function]}
             >
-              user2
+              <span
+                className="item-name notranslate"
+              >
+                user2
+              </span>
             </a>
           </div>
         </div>
@@ -74,11 +77,14 @@ exports[`(1) Default render 1`] = `
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@user3"
               onClick={[Function]}
             >
-              user3
+              <span
+                className="item-name notranslate"
+              >
+                user3
+              </span>
             </a>
           </div>
         </div>
@@ -115,11 +121,14 @@ exports[`(1) Default render 1`] = `
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@user4"
               onClick={[Function]}
             >
-              user4
+              <span
+                className="item-name notranslate"
+              >
+                user4
+              </span>
             </a>
           </div>
         </div>
@@ -156,11 +165,14 @@ exports[`(1) Default render 1`] = `
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@user1"
               onClick={[Function]}
             >
-              user1
+              <span
+                className="item-name notranslate"
+              >
+                user1
+              </span>
             </a>
           </div>
         </div>
@@ -197,11 +209,14 @@ exports[`(1) Default render 1`] = `
             className="item-info"
           >
             <a
-              className="item-name notransalte"
               href="/@user5"
               onClick={[Function]}
             >
-              user5
+              <span
+                className="item-name notranslate"
+              >
+                user5
+              </span>
             </a>
           </div>
         </div>

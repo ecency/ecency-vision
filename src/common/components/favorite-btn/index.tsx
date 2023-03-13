@@ -17,6 +17,7 @@ import { checkFavorite, addFavorite, deleteFavorite } from "../../api/private-ap
 import { _t } from "../../i18n";
 
 import { personFavoriteSvg, personFavoriteOutlineSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface Props {
   targetUsername: string;

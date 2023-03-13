@@ -42,8 +42,12 @@ export const rcFormatter = (num: number) => {
       ? `${Math.sign(num) * parseFloat((Math.abs(num) / 1000).toFixed(2))}K`
       : Math.abs(num) > 999999 && Math.abs(num) < 1000000000
       ? `${Math.sign(num) * parseFloat((Math.abs(num) / 1000000).toFixed(2))}M`
-      : Math.abs(num) > 999999999 && Math.abs(num) < 1000000000000000
+      : Math.abs(num) > 999999999 && Math.abs(num) < 1000000000000
       ? `${Math.sign(num) * parseFloat((Math.abs(num) / 1000000000).toFixed(2))}B`
+      : Math.abs(num) > 999999999999 && Math.abs(num) < 1000000000000000
+      ? `${Math.sign(num) * parseFloat((Math.abs(num) / 1000000000000).toFixed(2))}T`
+      : Math.abs(num) > 999999999999999 && Math.abs(num) < 1000000000000000000
+      ? `${Math.sign(num) * parseFloat((Math.abs(num) / 1000000000000000).toFixed(2))}Q`
       : Math.sign(num) * Math.abs(num);
   return result;
 };

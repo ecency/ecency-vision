@@ -1,4 +1,7 @@
-@import "../../../style/variables";
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
 
 .announcement-container {
   position: fixed;

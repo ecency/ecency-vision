@@ -14,6 +14,7 @@ import { rcFormatter } from "../../util/formatted-number";
 import { PurchaseQrDialog } from "../purchase-qr";
 import { ActiveUser } from "../../store/active-user/types";
 import { Location } from "history";
+import "./index.scss";
 
 interface Props {
   username: string;

@@ -279,63 +279,65 @@ export const fetchNotificationsSettings =
     initFirebase(isFbMessagingSupported);
     let token = username + (isElectron() ? "-desktop" : "-web");
     let oldToken = ls.get("fb-notifications-token");
-    const permission = await Notification.requestPermission();
-    if (permission === "granted" && isFbMessagingSupported) {
-      try {
-        token = await getFcmToken();
-      } catch (e) {
-        isFbMessagingSupported = false;
-        oldToken = null;
+    if ("Notification" in window) {
+      const permission = await Notification.requestPermission();
+      if (permission === "granted" && isFbMessagingSupported) {
+        try {
+          token = await getFcmToken();
+        } catch (e) {
+          isFbMessagingSupported = false;
+          oldToken = null;
+        }
       }
-    }
 
-    try {
-      const settings = await getNotificationSetting(username, oldToken || token);
-      dispatch(setSettingsAct(settings));
-    } catch (e) {
-      const wasMutedPreviously = ls.get("notifications") === false;
-      const settings = {
-        ...(getState().notifications.settings as ApiNotificationSetting),
-        notify_types: wasMutedPreviously
-          ? []
-          : ([
-              NotifyTypes.COMMENT,
-              NotifyTypes.FOLLOW,
-              NotifyTypes.MENTION,
-              NotifyTypes.FAVORITES,
-              NotifyTypes.BOOKMARKS,
-              NotifyTypes.VOTE,
-              NotifyTypes.RE_BLOG,
-              NotifyTypes.TRANSFERS
-            ] as number[])
-      };
-      dispatch(setSettingsAct(settings));
-      ls.remove("notifications");
+      try {
+        const settings = await getNotificationSetting(username, oldToken || token);
+        dispatch(setSettingsAct(settings));
+      } catch (e) {
+        const wasMutedPreviously = ls.get("notifications") === false;
+        const settings = {
+          ...(getState().notifications.settings as ApiNotificationSetting),
+          notify_types: wasMutedPreviously
+            ? []
+            : ([
+                NotifyTypes.COMMENT,
+                NotifyTypes.FOLLOW,
+                NotifyTypes.MENTION,
+                NotifyTypes.FAVORITES,
+                NotifyTypes.BOOKMARKS,
+                NotifyTypes.VOTE,
+                NotifyTypes.RE_BLOG,
+                NotifyTypes.TRANSFERS
+              ] as number[])
+        };
+        dispatch(setSettingsAct(settings));
+        ls.remove("notifications");
 
-      // @ts-ignore
-      dispatch(updateNotificationsSettings(username, token));
-    }
-
-    if (permission === "granted") {
-      if (oldToken !== token) {
         // @ts-ignore
         dispatch(updateNotificationsSettings(username, token));
-        ls.set("fb-notifications-token", token);
       }
 
-      if (isFbMessagingSupported) {
-        listenFCM(() => {
-          playNotificationSound(getState().global.isElectron);
+      if (permission === "granted") {
+        if (oldToken !== token) {
           // @ts-ignore
-          dispatch(fetchUnreadNotificationCount());
+          dispatch(updateNotificationsSettings(username, token));
+          ls.set("fb-notifications-token", token);
+        }
 
-          // @ts-ignore
-          dispatch(fetchNotifications(null));
-        });
+        if (isFbMessagingSupported) {
+          listenFCM(() => {
+            playNotificationSound(getState().global.isElectron);
+            // @ts-ignore
+            dispatch(fetchUnreadNotificationCount());
+
+            // @ts-ignore
+            dispatch(fetchNotifications(null));
+          });
+        }
       }
+
+      dispatch(setFbSupportedAct(isFbMessagingSupported ? "granted" : "denied"));
     }
-
-    dispatch(setFbSupportedAct(isFbMessagingSupported ? "granted" : "denied"));
   };
 
 /* Action Creators */

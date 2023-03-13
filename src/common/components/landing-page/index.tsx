@@ -10,6 +10,7 @@ import Link from "../alink";
 import { apiBase } from "../../api/helper";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import isElectron from "../../util/is-electron";
+import "./_index.scss";
 
 export default (props: any) => {
   const { global } = props;
@@ -219,7 +220,7 @@ export default (props: any) => {
             </div>
             <ul>
               <li>
-                <h3>98M</h3>
+                <h3>108M</h3>
                 <p>{_t("landing-page.posts")}</p>
               </li>
               <li>
@@ -229,11 +230,11 @@ export default (props: any) => {
             </ul>
             <ul>
               <li>
-                <h3>47M</h3>
+                <h3>446M</h3>
                 <p>{_t("landing-page.points-distrubuted")}</p>
               </li>
               <li>
-                <h3>75K</h3>
+                <h3>100K</h3>
                 <p>{_t("landing-page.new-users")}</p>
               </li>
             </ul>
@@ -408,27 +409,6 @@ export default (props: any) => {
             <div className="text-group">
               <h2>{_t("landing-page.our-team")}</h2>
               <ul>
-                <li>
-                  <img src={FounderImg} alt="Founder" loading="lazy" />
-                  <div className="text-wrapper">
-                    <Link to="/@good-karma">@good-karma</Link>
-                    <p>{_t("landing-page.founder")}</p>
-                  </div>
-                </li>
-                <li>
-                  <img src={DevopsImg} alt="Devops" loading="lazy" />
-                  <div className="text-wrapper">
-                    <Link to="/@talhasch">@talhasch</Link>
-                    <p>{_t("landing-page.devops-guru")}</p>
-                  </div>
-                </li>
-                <li>
-                  <img src={DesignGuru} alt="Designer" loading="lazy" />
-                  <div className="text-wrapper">
-                    <Link to="/@dunsky">@dunsky</Link>
-                    <p>{_t("landing-page.design-guru")}</p>
-                  </div>
-                </li>
                 <li className="last-element">
                   <Link to="/contributors">{_t("landing-page.community-contributors")}</Link>
                   <Link to="/witnesses">{_t("landing-page.blockchain-witnesses")}</Link>

@@ -32,6 +32,7 @@ import { dateToFormatted } from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 import { Subscription } from "../../store/subscriptions/types";
 import { ResourceCreditsInfo } from "../rc-info";
+import "./_index.scss";
 
 interface Props {
   global: Global;
@@ -93,7 +94,7 @@ export const ProfileCard = (props: Props) => {
     setFollowingList(false);
     setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
     isMounted && getFollowsInfo(account.name);
-  }, [account.name]);
+  }, [account?.name]);
 
   const getFollowsInfo = (username: string) => {
     if (activeUser) {
@@ -117,12 +118,13 @@ export const ProfileCard = (props: Props) => {
     setFollowingList(!followingList);
   };
   const loggedIn = activeUser && activeUser.username;
+  // TODO: use better conditions throughout app than .__loaded, remove all instances that rely on .__loaded
 
-  if (!account.__loaded) {
+  if (!account?.__loaded) {
     return (
       <div className="profile-card">
         <div className="profile-avatar">
-          {UserAvatar({ ...props, username: account.name, size: "xLarge" })}
+          <UserAvatar username={account.name} size="xLarge" />
         </div>
 
         <h1>
@@ -142,12 +144,7 @@ export const ProfileCard = (props: Props) => {
   return (
     <div className="profile-card">
       <div className="profile-avatar">
-        {UserAvatar({
-          ...props,
-          username: account.name,
-          size: "xLarge",
-          src: account.profile?.profile_image
-        })}
+        <UserAvatar username={account.name} size="xLarge" src={account.profile?.profile_image} />
         {isMyProfile && isSettings && (
           <EditPic
             {...props}

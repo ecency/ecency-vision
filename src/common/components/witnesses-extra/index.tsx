@@ -12,6 +12,7 @@ import BaseComponent from "../base";
 import WitnessVoteBtn from "../witness-vote-btn";
 
 import { _t } from "../../i18n";
+import "./_index.scss";
 
 interface Props {
   global: Global;

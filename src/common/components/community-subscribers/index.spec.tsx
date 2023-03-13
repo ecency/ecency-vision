@@ -12,6 +12,7 @@ import {
   activeUserMaker,
   allOver
 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../api/bridge", () => ({
   getSubscribers: () =>
@@ -52,7 +53,7 @@ const defProps = {
 };
 
 it("(1) Default render.", async () => {
-  const component = await renderer.create(<Subscribers {...defProps} />);
+  const component = await withStore(<Subscribers {...defProps} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });
@@ -62,7 +63,7 @@ it("(2) Active user.", async () => {
     ...defProps,
     activeUser: activeUserMaker("bluemist")
   };
-  const component = await renderer.create(<Subscribers {...props} />);
+  const component = await withStore(<Subscribers {...props} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });

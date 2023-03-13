@@ -19,6 +19,7 @@ import { getSubscriptions } from "../../api/bridge";
 import { _t } from "../../i18n";
 import { Link } from "react-router-dom";
 import { SortCommunities } from "../sort-profile-communities";
+import "./_index.scss";
 
 interface Props {
   global: Global;

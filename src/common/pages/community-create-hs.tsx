@@ -130,11 +130,13 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
         <Meta {...metaProps} />
         <Theme global={global} />
         <Feedback activeUser={activeUser} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
 
         <div className={containerClasses}>
           <div className="community-form">
