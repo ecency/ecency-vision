@@ -2,6 +2,6 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="container authority-table"
+  className="authority-table"
 />
 `;

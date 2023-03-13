@@ -3,13 +3,15 @@ import { Account } from "../../../store/accounts/types";
 export const Keytype = {
   Owner: "owner",
   Active: "active",
-  Posting: "posting"
+  Posting: "posting",
+  Memo: "memo"
 };
 
 export interface PublicKeys {
   publicOwnerKey?: any;
   publicActiveKey?: any;
   publicPostingKey?: any;
+  publicMemoKey?: any;
 }
 
 export interface AccountDataType {
@@ -24,9 +26,13 @@ export interface AccountDataType {
     publicOwnerKey: any;
     publicActiveKey: any;
     publicPostingKey: any;
+    publicMemoKey: any;
   };
 }
 
 export const actionType = {
-  Revoke: "revoke"
+  Revoke: "revoke",
+  Keys: "keys",
+  Import: "import",
+  Reveal: "reveal"
 };

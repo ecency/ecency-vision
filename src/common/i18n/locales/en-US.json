@@ -1500,7 +1500,9 @@
     "submit": "Submit",
     "error-fields-required": "Please enter private key",
     "error-wrong-key": "Please enter correct private key",
-    "password-label": "Master password/Private key"
+    "password-label": "Master password/Private key",
+    "actions": "Actions",
+    "memo": "memo"
   },
   "account-recovery": {
     "title": "Change Recovery Agent",

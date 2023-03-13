@@ -4,7 +4,7 @@
 @import "src/style/mixins";
 
 .authority-table {
- .table {
+  .table {
     .table-head {
       background: $white-six;
     }
@@ -12,7 +12,10 @@
     .col-type-content {
       color: $warm-grey;
     }
-
+   
+    .col-action {
+      text-align: right;
+    }
     .col-weight-content {
       text-align: center;
       @media (max-width: 1280px) {
@@ -20,24 +23,8 @@
       }
     }
 
-    .key {
-      color: $light-black;
-    }
-
     td {
       padding: 1.75rem 12px !important;
-    }
-
-    .copy-btn {
-      margin-right: 1rem;
-    }
-
-    .import-btn {
-      width: 154px;
-    }
-
-    .action-btns {
-      width: 260px;
     }
 
     .col-key-content {
@@ -51,15 +38,10 @@
         }
       }
     }
-
     a:hover {
       text-decoration: underline;
     }
   }
-}
-
-.curr-password {
-  margin-top: 2rem;
 }
 
 .sign-dialog-header {
@@ -89,14 +71,4 @@
 
 .authority-main-title {
   font-weight: bold;
-}
-
-@include media-breakpoint-down(md) {
-  .copy-btn {
-    display: block;
-    margin-bottom: 1rem;
-  }
-  .reveal-btn {
-    display: block;
-  }
 }
