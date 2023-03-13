@@ -1,4 +1,4 @@
-import { Client, RCAPI, utils } from "@hiveio/dhive";
+import { Client, RCAPI } from "@hiveio/dhive";
 
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 

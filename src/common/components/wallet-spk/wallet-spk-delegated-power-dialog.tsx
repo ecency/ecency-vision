@@ -66,12 +66,6 @@ export const WalletSpkDelegatedPowerDialog = ({
                       <ProfileLink username={username} history={history} addAccount={addAccount}>
                         <UserAvatar username={username} size="small" />
                       </ProfileLink>
-                      {ProfileLink({
-                        history,
-                        addAccount,
-                        username,
-                        children: <UserAvatar username={username} size="small" />
-                      })}
                       <div className="item-info">
                         <ProfileLink history={history} username={username} addAccount={addAccount}>
                           <span className="item-name notranslate">{username}</span>
