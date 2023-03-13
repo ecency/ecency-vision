@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import { _t } from '../../i18n';
+import "./index.scss";
 
 const EngineTokensList = (props: any) => {
     const { token, handleChange, isChecked, favoriteToken } = props;

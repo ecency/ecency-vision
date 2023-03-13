@@ -28,6 +28,7 @@ import { Button, FormControl, Modal } from "react-bootstrap";
 import { updateProfile } from "../../api/operations";
 import { getSpkWallet, getMarketInfo, getLarynxData } from "../../api/spk-api";
 import { findIndex } from "lodash";
+import "./index.scss";
 
 const hbdIcom = require("./asset/hbd.png");
 const ecencyIcon = require("./asset/ecency.jpeg");
