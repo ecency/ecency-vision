@@ -18,9 +18,9 @@ class EntryBodyExtra extends Component<Props> {
 
   setBackground = () => {
     if (this.props.global.theme === Theme.day) {
-      this.zoom?.update({ background: "#FFFFFF" });
+      this.zoom?.update({ background: "#ffffff" });
     } else {
-      this.zoom?.update({ background: "#000000" });
+      this.zoom?.update({ background: "#131111" });
     }
   };
 
