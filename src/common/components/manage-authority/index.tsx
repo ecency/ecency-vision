@@ -83,7 +83,6 @@ export default function ManageAuthorities(props: Props) {
         newPostingsAuthority,
         [accountData!.posting],
         accountData!.memokey,
-        "",
         key
       );
       if (resp.id) {
@@ -103,8 +102,7 @@ export default function ManageAuthorities(props: Props) {
       accountData!.weight,
       newPostingsAuthority,
       [accountData!.posting],
-      accountData!.memokey,
-      ""
+      accountData!.memokey
     );
     setKeyDialog(false);
   };
@@ -115,8 +113,7 @@ export default function ManageAuthorities(props: Props) {
       accountData!.weight,
       newPostingsAuthority,
       [accountData!.posting],
-      accountData!.memokey,
-      ""
+      accountData!.memokey
     );
   };
 

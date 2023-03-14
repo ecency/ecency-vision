@@ -33,7 +33,6 @@ export default function ManageKeys(props: Props) {
   const [formattedPublicKeys, setFormattedPublickeys] = useState<PublicKeys>({});
   const [keyType, setKeyType] = useState("");
   const [privateKeys, setPrivatekeys] = useState<UserKeys>({});
-  const [inProgress, setInProgress] = useState(false);
   const [key, setKey] = useState("");
   const [keyDialog, setKeyDialog] = useState(false);
   const [step, setStep] = useState(0);
@@ -262,21 +261,27 @@ export default function ManageKeys(props: Props) {
             <div className="authority-sub-title">{_t("manage-authorities.password-sub-title")}</div>
           </div>
         </div>
-        {inProgress && <LinearProgress />}
         <div className="curr-password">
-          <Form.Group controlId="formPlaintextPassword">
-            <Form.Label>{_t("manage-authorities.password-label")}</Form.Label>
-            <Form.Control
-              value={key}
-              placeholder="Enter Master pasword/private key"
-              onChange={(e) => setKey(e.target.value)}
-              required={true}
-              type="password"
-              autoFocus={true}
-              autoComplete="off"
-            />
-          </Form.Group>
-          <Button onClick={handleSubmit}>{_t("manage-authorities.submit")}</Button>
+          <Form
+            className="keys-form"
+            onSubmit={(e: React.FormEvent) => {
+              e.preventDefault();
+            }}
+          >
+            <Form.Group>
+              <Form.Label>{_t("manage-authorities.password-label")}</Form.Label>
+              <Form.Control
+                value={key}
+                placeholder={_t("manage-authorities.placeholder")}
+                onChange={(e) => setKey(e.target.value)}
+                required={true}
+                type="password"
+                autoFocus={true}
+                autoComplete="off"
+              />
+            </Form.Group>
+            <Button onClick={handleSubmit}>{_t("manage-authorities.submit")}</Button>
+          </Form>
         </div>
       </>
     );

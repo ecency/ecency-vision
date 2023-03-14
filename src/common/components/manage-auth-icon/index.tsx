@@ -1,21 +1,24 @@
 import React, { Component } from "react";
 import { History } from "history";
-import { KebabMenu, revokeSvg, copyContent, copyOutlinSvg, keyOutlineSvg } from "../../img/svg";
-import "./index.scss";
-import DropDown, { MenuItem } from "../dropdown";
-import { _t } from "../../i18n";
+import { PrivateKey } from "@hiveio/dhive";
+
 import { actionType } from "../manage-authority/types";
+import DropDown, { MenuItem } from "../dropdown";
+
+import { KebabMenu, revokeSvg, copyOutlinSvg, keyOutlineSvg } from "../../img/svg";
+import { _t } from "../../i18n";
+import "./index.scss";
 
 interface Props {
   type: string;
   account?: string;
   history: History | null;
-  Pkey?: any;
+  Pkey?: PrivateKey | string;
   label?: string;
   action?: string;
   keyType?: string;
   onRevoke?: (account: string) => void;
-  onCopy?: (key: any) => void;
+  onCopy?: (text: string) => void;
   onImport?: (type: string) => void;
   onReveal?: () => void;
 }
@@ -31,7 +34,7 @@ export class ManageAuthIcon extends Component<Props> {
   copyClicked = () => {
     const { onCopy, Pkey, label } = this.props;
     if (onCopy) {
-      onCopy(Pkey);
+      onCopy(Pkey!.toString());
     }
   };
   keysHandleClicked = () => {
@@ -71,8 +74,6 @@ export class ManageAuthIcon extends Component<Props> {
           }
         ];
         break;
-      // default:
-      //   // code block
     }
 
     const menuConfig = {

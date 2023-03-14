@@ -32,7 +32,6 @@ import SearchListItem from "../components/search-list-item";
 import SearchBox from "../components/search-box";
 import * as bridgeApi from "../api/bridge";
 import { search as searchApi } from "../api/search-api";
-import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
 import ManageAuthorities from "../components/manage-authority";
 import AccountRecovery from "../components/recovery-account";

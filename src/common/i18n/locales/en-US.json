@@ -1502,7 +1502,8 @@
     "error-wrong-key": "Please enter correct private key",
     "password-label": "Master password/Private key",
     "actions": "Actions",
-    "memo": "memo"
+    "memo": "memo",
+    "placeholder": "Enter Master pasword/private key"
   },
   "account-recovery": {
     "title": "Change Recovery Agent",

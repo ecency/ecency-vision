@@ -1833,7 +1833,6 @@ export const Revoke = (
   account_auths: string[],
   key_auths: any[],
   memo_key: string,
-  json_metadata: string,
   key: PrivateKey
 ): Promise<TransactionConfirmation> => {
   const newPosting = {
@@ -1848,7 +1847,7 @@ export const Revoke = (
       account,
       posting: newPosting,
       memo_key,
-      json_metadata
+      json_metadata: ""
     }
   ];
 
@@ -1860,8 +1859,7 @@ export const RevokeHot = (
   weight_threshold: number,
   account_auths: string[],
   key_auths: any[],
-  memo_key: string,
-  json_metadata: string
+  memo_key: string
 ) => {
   const newPosting = {
     weight_threshold,
@@ -1875,7 +1873,7 @@ export const RevokeHot = (
       account,
       posting: newPosting,
       memo_key,
-      json_metadata
+      json_metadata: ""
     }
   ];
 
@@ -1889,8 +1887,7 @@ export const RevokeKc = (
   weight_threshold: number,
   account_auths: string[],
   key_auths: any[],
-  memo_key: string,
-  json_metadata: string
+  memo_key: string
 ) => {
   const newPosting = {
     weight_threshold,
@@ -1904,7 +1901,7 @@ export const RevokeKc = (
       account,
       posting: newPosting,
       memo_key,
-      json_metadata
+      json_metadata: ""
     }
   ];
 

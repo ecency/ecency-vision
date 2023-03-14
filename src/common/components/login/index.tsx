@@ -42,8 +42,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
 
 import { _t } from "../../i18n";
-import _ from "lodash";
-
 import _c from "../../util/fix-class-names";
 
 import { deleteForeverSvg } from "../../img/svg";

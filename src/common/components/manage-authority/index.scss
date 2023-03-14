@@ -8,11 +8,9 @@
     .table-head {
       background: $white-six;
     }
-
     .col-type-content {
       color: $warm-grey;
     }
-   
     .col-action {
       text-align: right;
     }
@@ -29,15 +27,14 @@
 
     .col-key-content {
       display: inline-block;
-
       .username {
         display: flex;
-
         .user-img {
           margin: -2px 5px 0 0;
         }
       }
     }
+
     a:hover {
       text-decoration: underline;
     }
@@ -46,7 +43,6 @@
 
 .sign-dialog-header {
   display: flex;
-
   .sign-dialog-titles {
     margin-top: 9px;
   }
@@ -54,7 +50,6 @@
 
 .success-dialog-header {
   display: flex;
-
   .success-dialog-titles {
     padding-top: 8px;
   }
@@ -62,7 +57,6 @@
 
 .success-dialog-body {
   margin: 2rem 0 1.4rem 0;
-
   .success-dialog-content {
     text-align: center;
     margin-bottom: 1.4rem;
