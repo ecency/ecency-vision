@@ -27,8 +27,7 @@ import routes from "../../common/routes";
 
 import { DesktopWindow } from "./window";
 
-import "../../style/theme-day.scss";
-import "../../style/theme-night.scss";
+import "../../style/style.scss";
 
 import "../../client/base-handlers";
 

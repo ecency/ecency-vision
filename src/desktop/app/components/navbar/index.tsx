@@ -50,6 +50,7 @@ import {
   translateSvg
 } from "../../../../common/img/svg";
 import isElectron from "../../../../common/util/is-electron";
+import "./_index.scss";
 
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
 
