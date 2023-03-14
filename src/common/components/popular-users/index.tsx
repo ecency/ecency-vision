@@ -17,6 +17,7 @@ import _c from "../../util/fix-class-names";
 import { _t } from "../../i18n";
 
 import { syncSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface Props {
   global: Global;

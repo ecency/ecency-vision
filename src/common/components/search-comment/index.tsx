@@ -25,6 +25,7 @@ import SearchQuery, { SearchType } from "../../helper/search-query";
 import { search, SearchResult } from "../../api/search-api";
 
 import { _t } from "../../i18n";
+import "./_index.scss";
 
 enum SearchSort {
   POPULARITY = "popularity",
@@ -70,7 +71,7 @@ const pureState = (props: Props): State => {
 
   const q = qs.q as string;
   const sort = (qs.sort as SearchSort) || SearchSort.POPULARITY;
-  const date = (qs.date as DateOpt) || ls.get("recent_date");
+  const date = (qs.date as DateOpt) || ls.get("recent_date", "month");
   const hideLow = !(qs.hd && qs.hd === "0");
   const advanced = !!(qs.adv && qs.adv === "1");
   const sq = new SearchQuery(q);
@@ -336,7 +337,11 @@ export class SearchComment extends BaseComponent<Props, State> {
             </Form.Group>
             <Form.Group as={Col} sm="2" controlId="form-date">
               <Form.Label>{_t("search-comment.date")}</Form.Label>
-              <Form.Control as="select" value={ls.get("recent_date")} onChange={this.dateChanged}>
+              <Form.Control
+                as="select"
+                value={ls.get("recent_date", "month")}
+                onChange={this.dateChanged}
+              >
                 {Object.values(DateOpt).map((x) => (
                   <option value={x} key={x}>
                     {_t(`search-comment.date-${x}`)}

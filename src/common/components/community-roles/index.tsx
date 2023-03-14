@@ -16,6 +16,7 @@ import UserAvatar from "../user-avatar";
 import CommunityRoleEditDialog from "../community-role-edit";
 
 import { _t } from "../../i18n";
+import "./_index.scss";
 
 interface Props {
   history: History;

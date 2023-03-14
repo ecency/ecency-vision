@@ -9,6 +9,7 @@ import { Global } from "../../store/global/types";
 import isElectron from "../../util/is-electron";
 
 const logoCircle = require("../../img/logo-circle.svg");
+import "./_index.scss";
 
 interface Props {
   history: History;

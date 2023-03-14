@@ -11,7 +11,7 @@ import FollowControls from "../follow-controls";
 import ProfileLink from "../profile-link";
 import { Skeleton } from "../skeleton";
 import UserAvatar from "../user-avatar";
-
+import "./_index.scss";
 interface MatchParams {
   category: string;
   permlink: string;

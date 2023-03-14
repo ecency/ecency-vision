@@ -24,6 +24,7 @@ import parseAsset from "../../helper/parse-asset";
 
 import formattedNumber from "../../util/formatted-number";
 import MyPagination from "../pagination";
+import "./_index.scss";
 
 interface Props {
   global: Global;

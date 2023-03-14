@@ -4,6 +4,7 @@ import { MarketStatistics } from "../../api/hive";
 import { _t } from "../../i18n";
 import { isMobile } from "../../util/is-mobile";
 import { Skeleton } from "../skeleton";
+import "./index.scss";
 
 interface Props {
   loading: boolean;

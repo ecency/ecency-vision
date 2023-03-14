@@ -34,6 +34,7 @@ import * as bridgeApi from "../api/bridge";
 import { search as searchApi } from "../api/search-api";
 import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
+import AccountRecovery from "../components/recovery-account";
 
 import { getAccountFull, getAccountVotesTrail } from "../api/hive";
 
@@ -47,7 +48,7 @@ import { withPersistentScroll } from "../components/with-persistent-scroll";
 import useAsyncEffect from "use-async-effect";
 import { usePrevious } from "../util/use-previous";
 import WalletSpk from "../components/wallet-spk";
-import { toggleTheme } from "../store/global";
+import "./profile.scss";
 
 interface MatchParams {
   username: string;
@@ -74,6 +75,7 @@ export const Profile = (props: Props) => {
   const [loading, setLoading] = useState(true);
   const [typing, setTyping] = useState(false);
   const [isDefaultPost, setIsDefaultPost] = useState(false);
+  const [tabState, setTabState] = useState(1);
   const [searchDataLoading, setSearchDataLoading] = useState(searchParam.length > 0);
   const [search, setSearch] = useState(searchParam);
   const [pinnedEntry, setPinnedEntry] = useState<Entry | null>(null);
@@ -552,18 +554,53 @@ export const Profile = (props: Props) => {
                 if (section === "permissions" && props.activeUser) {
                   if (account.name === props.activeUser.username) {
                     return (
-                      <div className="container-fluid">
-                        <div className="row">
-                          <div className="col-12 col-md-6">
-                            <h6 className="border-bottom pb-3">{_t("view-keys.header")}</h6>
-                            <ViewKeys activeUser={props.activeUser} />
+                      <>
+                        <div className="permission-menu">
+                          <div className="permission-menu-items">
+                            <h6
+                              className={
+                                tabState === 1 ? "border-bottom pb-3 tab current-tab" : "tab"
+                              }
+                              onClick={() => setTabState(1)}
+                            >
+                              {_t("view-keys.header")}
+                            </h6>
                           </div>
-                          <div className="col-12 col-md-6">
-                            <h6 className="border-bottom pb-3">{_t("password-update.title")}</h6>
-                            <PasswordUpdate activeUser={props.activeUser} />
+                          <div className="permission-menu-items">
+                            <h6
+                              className={
+                                tabState === 2 ? "border-bottom pb-3 tab current-tab" : "tab"
+                              }
+                              onClick={() => setTabState(2)}
+                            >
+                              {_t("password-update.title")}
+                            </h6>
+                          </div>
+                          <div className="permission-menu-items">
+                            <h6
+                              className={
+                                tabState === 3 ? "border-bottom pb-3 tab current-tab" : "tab"
+                              }
+                              onClick={() => setTabState(3)}
+                            >
+                              {_t("account-recovery.title")}
+                            </h6>
                           </div>
                         </div>
-                      </div>
+                        <div className="container-fluid">
+                          <div className="row pb-4">
+                            <div className="col-lg-6 col-md-6 col-sm-6">
+                              {tabState === 1 ? <ViewKeys activeUser={props.activeUser} /> : <></>}
+                              {tabState === 2 ? (
+                                <PasswordUpdate activeUser={props.activeUser} />
+                              ) : (
+                                <></>
+                              )}
+                              {tabState === 3 ? <AccountRecovery {...props} /> : <></>}
+                            </div>
+                          </div>
+                        </div>
+                      </>
                     );
                   } else {
                     return <Redirect to={`/@${account.name}`} />;

@@ -23,6 +23,7 @@ import {
 import PopoverConfirm from "../popover-confirm";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import { useMappedStore } from "../../store/use-mapped-store";
+import "./_index.scss";
 
 // ADD
 interface AddProps {

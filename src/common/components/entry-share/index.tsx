@@ -15,6 +15,7 @@ import {
 } from "../../helper/url-share";
 
 import { _t } from "../../i18n";
+import "./_index.scss";
 
 interface Props {
   entry: Entry;

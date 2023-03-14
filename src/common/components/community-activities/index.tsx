@@ -20,6 +20,7 @@ import { getAccountNotifications, AccountNotification } from "../../api/bridge";
 import { _t } from "../../i18n";
 
 import { dateToFullRelative } from "../../helper/parse-date";
+import "./_index.scss";
 
 interface ListItemProps {
   history: History;

@@ -19,6 +19,7 @@ import { searchAccount, AccountSearchResult } from "../../api/search-api";
 import { _t } from "../../i18n";
 
 import truncate from "../../util/truncate";
+import "./_index.scss";
 
 interface Props {
   history: History;

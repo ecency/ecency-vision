@@ -43,6 +43,7 @@ import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
 import { detectEvent, toolbarEventListener } from "../components/editor-toolbar";
+import "./submit.scss";
 
 import {
   addDraft,
@@ -679,8 +680,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     if (jsonMeta && jsonMeta.image && jsonMeta.image.length > 0) {
       jsonMeta.image_ratios = await Promise.all(
         jsonMeta.image
-          .map((element: string) => this.getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
           .slice(0, 5)
+          .map((element: string) => this.getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
       );
     }
 
@@ -755,8 +756,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     if (jsonMeta && jsonMeta.image && jsonMeta.image.length > 0) {
       jsonMeta.image_ratios = await Promise.all(
         jsonMeta.image
-          .map((element: string) => this.getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
           .slice(0, 5)
+          .map((element: string) => this.getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
       );
     }
 
@@ -935,14 +936,10 @@ class SubmitPage extends BaseComponent<Props, State> {
     new Promise((resolve) => {
       const img = new Image();
       img.onload = () => {
-        resolve({
-          height: img.height,
-          width: img.width,
-          url: dataURL
-        });
+        resolve(img.width / img.height);
       };
       img.onerror = function () {
-        resolve({ url: dataURL });
+        resolve(0);
       };
       img.src = dataURL;
     });

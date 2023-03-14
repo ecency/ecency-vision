@@ -1,17 +1,10 @@
 import React, { Component } from "react";
-
 import { Link } from "react-router-dom";
-
 import { History } from "history";
-
 import { Global } from "../../store/global/types";
-
 import { makePath } from "../tag";
-
 import _c from "../../util/fix-class-names";
-
 import { _t } from "../../i18n";
-
 import {
   paletteOutlineSvg,
   virusOutline,
@@ -28,6 +21,7 @@ import {
   spaSvg,
   walletTravelSvg
 } from "../../img/svg";
+import "./_index.scss";
 
 interface Props {
   history: History;

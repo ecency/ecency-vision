@@ -153,7 +153,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -337,7 +337,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -523,7 +523,7 @@ exports[`(1) Full render with active user 1`] = `
                   </div>
                 </div>
                 <span
-                  className="separator"
+                  className="separator circle-separator"
                 />
                 <a
                   className="date"
@@ -709,7 +709,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -894,7 +894,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1079,7 +1079,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1264,7 +1264,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1449,7 +1449,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1634,7 +1634,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1925,7 +1925,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2109,7 +2109,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2295,7 +2295,7 @@ exports[`(3) With selected item 1`] = `
                   </div>
                 </div>
                 <span
-                  className="separator"
+                  className="separator circle-separator"
                 />
                 <a
                   className="date"
@@ -2481,7 +2481,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2666,7 +2666,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2851,7 +2851,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3036,7 +3036,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3221,7 +3221,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3406,7 +3406,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3661,7 +3661,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3865,7 +3865,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"

@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .community-card {
   position: relative;
 
@@ -81,7 +86,7 @@
 
   .community-sections {
     overflow-x: hidden;
-    @media (max-width: $md-break - 1px) {
+    @media (max-width: ($md-break - 1px)) {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -90,7 +95,7 @@
     .community-section {
       margin-bottom: 16px;
 
-      @media (max-width: $md-break - 1px) {
+      @media (max-width: ($md-break - 1px)) {
         &:not(:last-child) {
           margin-right: 4px;
         }
@@ -119,7 +124,7 @@
           margin-right: 10px;
         }
 
-        @media (max-width: $md-break - 1px) {
+        @media (max-width: ($md-break - 1px)) {
           cursor: pointer;
           font-size: 96%;
           padding: 6px;
@@ -137,7 +142,7 @@
       }
 
       .section-content {
-        @media (max-width: $md-break - 1px) {
+        @media (max-width: ($md-break - 1px)) {
           display: none;
         }
 

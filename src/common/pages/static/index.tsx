@@ -1,5 +1,6 @@
 import React from "react";
 import loadable from "@loadable/component";
+import "./index.scss";
 
 const AboutContainer = loadable(() => import("./about"));
 const ContributeContainer = loadable(() => import("./contribute"));

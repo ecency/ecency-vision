@@ -4,6 +4,7 @@ import ReactHighcharts from "react-highcharts";
 import moment from "moment";
 import { _t } from "../../i18n";
 import { getMarketData } from "../../api/hive-engine";
+import "./_index.scss";
 
 export const HiveEngineChart = (props: any) => {
   const { items, theme } = props;

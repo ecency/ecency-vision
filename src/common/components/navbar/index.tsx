@@ -46,6 +46,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import usePrevious from "react-use/lib/usePrevious";
 import { Theme } from "../../store/global/types";
+import "./_index.scss";
 
 const GLOBAL_FILTERS = [
   "engine",

@@ -53,9 +53,7 @@ describe("extractMetadata", () => {
 describe("makeJsonMetaData", () => {
   it("(1) ", () => {
     const meta = {
-      image: ["http://www.xx.com/a.png", "https://img.esteem.ws/h74zrad2fh.jpg"],
-      links: ["http://www.google.com/foo/bar"],
-      users: ["lorem", "ipsum"]
+      image: ["http://www.xx.com/a.png", "https://img.esteem.ws/h74zrad2fh.jpg"]
     };
     const tags = ["esteem", "art"];
 

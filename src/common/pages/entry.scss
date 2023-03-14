@@ -1,3 +1,8 @@
+@import "src/style/bootstrap_vars";
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/mixins";
+
 .circle-separator {
   border-radius: 50%;
   height: 4px;
@@ -296,7 +301,6 @@
             flex-direction: column;
 
             .separator {
-              @extend .circle-separator;
               display: none;
             }
 
@@ -412,7 +416,6 @@
         }
 
         .separator {
-          @extend .circle-separator;
 
           &:first-of-type {
             display: none;

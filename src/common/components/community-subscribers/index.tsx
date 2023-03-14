@@ -25,6 +25,7 @@ import { getSubscribers } from "../../api/bridge";
 import { _t } from "../../i18n";
 
 import { pencilOutlineSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface MinifiedAccount {
   name: string;

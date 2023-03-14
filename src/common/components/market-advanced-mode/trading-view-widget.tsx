@@ -3,15 +3,16 @@ import React, { useEffect, useState } from "react";
 import { MarketAdvancedModeWidget } from "./market-advanced-mode-widget";
 import { _t } from "../../i18n";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
-import { getMarketBucketSizes, getMarketHistory, MarketCandlestickDataItem } from "../../api/hive";
+import { getMarketBucketSizes } from "../../api/hive";
 import moment, { Moment } from "moment";
-import { IChartApi, ISeriesApi, Time, TimeRange } from "lightweight-charts";
+import { IChartApi, ISeriesApi, TimeRange } from "lightweight-charts";
 import Dropdown from "../dropdown";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import useDebounce from "react-use/lib/useDebounce";
 import { Global } from "../../store/global/types";
 import { PREFIX } from "../../util/local-storage";
 import { useResizeDetector } from "react-resize-detector";
+import { useTradingViewApi } from "./api";
 
 interface Props {
   global: Global;
@@ -45,7 +46,6 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
     300
   );
 
-  const [originalData, setOriginalData] = useState<MarketCandlestickDataItem[]>([]);
   const [data, setData] = useState<any[]>([]);
   const [startDate, setStartDate] = useState<Moment>(moment().subtract(8, "hours"));
   const [endDate, setEndDate] = useState<Moment>(moment());
@@ -54,10 +54,11 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
   const [chartSeries, setChartSeries] = useState<ISeriesApi<any> | null>(null);
   const [histoSeries, setHistoSeries] = useState<ISeriesApi<any> | null>(null);
   const [bucketSecondsList, setBucketSecondsList] = useState<number[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [triggerFetch, setTriggerFetch] = useState<TriggerFetch>(TRIGGER_FETCH_DEFAULT);
   const [isZoomed, setIsZoomed] = useState(false);
   const [lastTimeRange, setLastTimeRange] = useState<TimeRange | null>(null);
+
+  const { fetchData } = useTradingViewApi(setData);
 
   useDebounce(
     () => {
@@ -67,7 +68,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
       setStartDate(
         getNewStartDate(startDate.clone().subtract(bucketSeconds, "seconds"), "subtract")
       );
-      fetchData(triggerFetch.loadMore);
+      fetchData(bucketSeconds, startDate, endDate, triggerFetch.loadMore);
       setTriggerFetch(TRIGGER_FETCH_DEFAULT);
     },
     300,
@@ -76,7 +77,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
 
   useEffect(() => {
     getMarketBucketSizes().then((sizes) => setBucketSecondsList(sizes));
-    buildChart().then(() => fetchData());
+    buildChart().then(() => fetchData(bucketSeconds, startDate, endDate));
   }, []);
 
   useEffect(() => {
@@ -149,33 +150,6 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
       chart.options().layout.textColor = global.theme == "night" ? "#fff" : "#000";
     }
   }, [global.theme]);
-
-  const fetchData = async (loadMore?: boolean) => {
-    setIsLoading(true);
-    const apiData = await getMarketHistory(bucketSeconds, startDate, endDate);
-    let transformedData: MarketCandlestickDataItem[] = [];
-
-    if (loadMore) {
-      transformedData = [...originalData, ...apiData];
-    } else {
-      transformedData = apiData;
-    }
-    setOriginalData(transformedData);
-
-    const dataMap = transformedData
-      .map(({ hive, non_hive, open }) => ({
-        close: non_hive.close / hive.close,
-        open: non_hive.open / hive.open,
-        low: non_hive.low / hive.low,
-        high: non_hive.high / hive.high,
-        volume: hive.volume,
-        time: Math.floor(moment(open).toDate().getTime() / 1000) as Time
-      }))
-      .reduce((acc, item) => acc.set(item.time, item), new Map<Time, any>());
-    setData(Array.from(dataMap.values()).sort((a, b) => Number(a.time) - Number(b.time)));
-
-    setIsLoading(false);
-  };
 
   const buildChart = async () => {
     const tradingView = await import("lightweight-charts");

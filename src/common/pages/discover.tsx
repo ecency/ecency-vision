@@ -11,9 +11,8 @@ import Curation from "../components/curation";
 import PopularUsers from "../components/popular-users";
 import FullHeight from "../components/full-height";
 import ScrollToTop from "../components/scroll-to-top";
-
+import "./discover.scss";
 import { _t } from "../i18n";
-
 import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
 
 class DiscoverPage extends Component<PageProps> {

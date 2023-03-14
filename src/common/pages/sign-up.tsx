@@ -21,6 +21,7 @@ import { appleSvg, checkSvg, googleSvg, hiveSvg } from "../img/svg";
 import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import { getAccount } from "../api/hive";
+import "./sign-up.scss";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -42,7 +43,7 @@ export const SignUp = (props: PageProps) => {
   const [lockReferral, setLockReferral] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [done, setDone] = useState(false);
-  const [isVerified, setIsVerified] = useState(props.global.isElectron);
+  const [isVerified, setIsVerified] = useState(false);
   const [stage, setStage] = useState<Stage>(Stage.FORM);
   const [url, setUrl] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
@@ -57,6 +58,9 @@ export const SignUp = (props: PageProps) => {
 
   useEffect(() => {
     const { referral } = queryString.parse(props.location.search);
+    if (props.global.isElectron) {
+      setIsVerified(true);
+    }
     if (referral && typeof referral === "string") {
       setReferral(referral);
       setLockReferral(true);

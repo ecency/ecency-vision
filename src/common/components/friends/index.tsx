@@ -19,6 +19,7 @@ import { _t } from "../../i18n";
 
 import accountReputation from "../../helper/account-reputation";
 import formattedNumber from "../../util/formatted-number";
+import "./_index.scss";
 
 interface Friend {
   name: string;

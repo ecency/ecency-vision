@@ -49,7 +49,7 @@ import defaults from "../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
 import { match } from "react-router-dom";
 import { getPost } from "../../api/bridge";
-import { SearchResult } from "../../api/search-api";
+import "./_index.scss";
 
 setProxyBase(defaults.imageServer);
 
@@ -341,7 +341,7 @@ export default class EntryListItem extends Component<Props, State> {
                   ...this.props,
                   username: entry.author,
                   children: (
-                    <span className="author-avatar d-sm-block">
+                    <span className="author-avatar d-block">
                       <UserAvatar username={entry.author} size="small" />
                     </span>
                   )
