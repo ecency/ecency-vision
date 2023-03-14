@@ -4,7 +4,6 @@ import { getMetrics } from "../../api/hive-engine";
 
 export const EngineTokensEstimated = (props: any) => {
   const { tokens: userTokens, dynamicProps } = props;
-  // console.log(userTokens)
   const [estimated, setEstimated] = useState(`${_t("wallet.calculating")}...`);
 
   useEffect(() => {
@@ -23,8 +22,6 @@ export const EngineTokensEstimated = (props: any) => {
         ...eachMetric
       };
     });
-
-    //  const walletTokens = mappedBalanceMetrics.filter((w: any) => w.balance !== 0 || w.stakedBalance !== 0)
 
     const tokens_usd_prices = mappedBalanceMetrics.map((w: any) => {
       return w.symbol === "SWAP.HIVE"
