@@ -1830,11 +1830,11 @@ export const unstakeHiveEngineKey = async (
 export const Revoke = (
   account: string,
   weight_threshold: number,
-  account_auths: any[],
+  account_auths: string[],
   key_auths: any[],
   memo_key: string,
   json_metadata: string,
-  key: any
+  key: PrivateKey
 ): Promise<TransactionConfirmation> => {
   const newPosting = {
     weight_threshold,
@@ -1858,7 +1858,7 @@ export const Revoke = (
 export const RevokeHot = (
   account: string,
   weight_threshold: number,
-  account_auths: any[],
+  account_auths: string[],
   key_auths: any[],
   memo_key: string,
   json_metadata: string
@@ -1887,7 +1887,7 @@ export const RevokeHot = (
 export const RevokeKc = (
   account: string,
   weight_threshold: number,
-  account_auths: any[],
+  account_auths: string[],
   key_auths: any[],
   memo_key: string,
   json_metadata: string
