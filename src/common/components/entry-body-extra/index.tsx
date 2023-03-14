@@ -6,7 +6,6 @@ import { Entry } from "../../store/entries/types";
 import { Global, Theme } from "../../store/global/types";
 
 import { injectTwitter } from "../../util/twitter";
-import { useMappedStore } from "../../store/use-mapped-store";
 
 interface Props {
   entry: Entry;
@@ -58,10 +57,9 @@ class EntryBodyExtra extends Component<Props> {
 }
 
 export default (p: Props) => {
-  const { global } = useMappedStore();
   const props = {
     entry: p.entry,
-    global: global
+    global: p.global
   };
 
   return <EntryBodyExtra {...props} />;

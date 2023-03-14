@@ -1308,7 +1308,7 @@ class EntryPage extends BaseComponent<Props, State> {
           </div>
         </div>
         {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory} />}
-        <EntryBodyExtra entry={entry} />
+        <EntryBodyExtra entry={entry} global={global} />
       </>
     );
   }
