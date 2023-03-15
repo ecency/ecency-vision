@@ -1,44 +1,23 @@
 import React from "react";
-import { proxifyImageSrc } from "@ecency/render-helper";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { OperationGroup, Transactions } from "../../store/transactions/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import HiveEngineToken from "../../helper/hive-engine-wallet";
 import LinearProgress from "../linear-progress";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
-import WalletMenu from "../wallet-menu";
-import { SortEngineTokens } from "../sort-hive-engine-tokens";
-import { EngineTokensEstimated } from "../engine-tokens-estimated";
 import Transfer, { TransferMode } from "../transfer-he";
 import { error, success } from "../feedback";
 import DropDown from "../dropdown";
 import { EngineTransactionList } from "../hive-engine-transactions";
-
 import {
   claimRewards,
   getHiveEngineTokenBalances,
   getUnclaimedRewards,
-  TokenStatus,
-  getMetrics
+  TokenStatus
 } from "../../api/hive-engine";
-
-import {
-  informationVariantSvg,
-  plusCircle,
-  transferOutlineSvg,
-  lockOutlineSvg,
-  unlockOutlineSvg,
-  delegateOutlineSvg,
-  undelegateOutlineSvg,
-  priceUpSvg,
-  priceDownSvg
-} from "../../img/svg";
-
+import { plusCircle } from "../../img/svg";
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
 import { _t } from "../../i18n";
@@ -183,7 +162,6 @@ export class EngineTokenDetails extends BaseComponent<Props, State> {
   render() {
     const { global, account, activeUser } = this.props;
     const { rewards, tokens, loading, claiming, claimed } = this.state;
-    // console.log(tokens)
     const hasUnclaimedRewards = rewards.length > 0;
     const isMyPage = activeUser && activeUser.username === account.name;
     let rewardsToShowInTooltip = [...rewards];
@@ -310,7 +288,6 @@ export class EngineTokenDetails extends BaseComponent<Props, State> {
                     let dropDownConfig: any;
                     if (isMyPage) {
                       dropDownConfig = {
-                        // history: this.props.history,
                         label: "",
                         items: [
                           {
@@ -353,7 +330,6 @@ export class EngineTokenDetails extends BaseComponent<Props, State> {
                       };
                     } else if (activeUser) {
                       dropDownConfig = {
-                        // history: this.props.history,
                         label: "",
                         items: [
                           {

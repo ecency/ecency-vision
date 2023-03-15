@@ -179,12 +179,9 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
 
     if (index > 0) {
       profileTokens.splice(index, 1);
-      // console.log("Splicing");
     }
 
     this.setState((prevState) => {
-      const { isChecked } = prevState;
-      // console.log(e, prevState.selectedTokens);
       return {
         isChecked: e ? true : false,
         selectedTokens: !e
@@ -221,7 +218,6 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     const wallet = await getSpkWallet(this.props.account.name);
     const marketData = await getMarketInfo();
     const larynxData = await getLarynxData();
-    // sample would have to replace this with original/non-hardcoded data, just adding this as a template
     const spkTokens = [
       { 
         spk: wallet.spk / 1000, 
@@ -309,8 +305,6 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       <div className="wallet-hive-engine">
         <div className="table-top d-flex">
           <span>{_t("wallet-portfolio.total-value")} {this.formatCurrency(estimatedTotal)}</span>
-          {/* <span>Hive Savings: {w.savingBalance}Hive</span>
-          <span>Hbd Savings: {this.formatCurrency(w.savingBalanceHbd)}</span> */}
           <div className="toggle">
             <span className=" text-primary">{_t("wallet-portfolio.show-trend")}</span>
             <label className="toggle-chart">
@@ -538,8 +532,6 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                       : [...profileTokens, ...this.state.selectedTokens]?.find(
                           (favorite: any) => favorite.symbol === token.symbol
                         );
-                  // console.log(token)
-                  // console.log(favoriteToken)
                   return (
                     <EngineTokensList
                       token={token}

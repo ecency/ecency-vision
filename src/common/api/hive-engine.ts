@@ -165,12 +165,7 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
     },
     id: 1
   };
-
-  // const result = await axios
-  //     .post(HIVE_ENGINE_RPC_URL, data, {
-  //       headers: { "Content-type": "application/json" }
-  //     })
-  //     return result;
+  
   return axios
     .post(HIVE_ENGINE_RPC_URL, data, {
       headers: { "Content-type": "application/json" }
