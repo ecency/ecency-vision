@@ -292,7 +292,8 @@ export class Login extends BaseComponent<LoginProps, State> {
     username: "",
     key: "",
     inProgress: false,
-    isVerified: this.props.global.isElectron ? true : false
+    // isVerified: this.props.global.isElectron ? true : false
+    isVerified: true
   };
 
   shouldComponentUpdate(nextProps: Readonly<LoginProps>, nextState: Readonly<State>): boolean {
@@ -391,9 +392,10 @@ export class Login extends BaseComponent<LoginProps, State> {
   };
 
   captchaCheck = (value: string | null) => {
-    if (value) {
-      this.setState({ isVerified: true });
-    }
+    this.setState({ isVerified: true });
+    // if (value) {
+    //   this.setState({ isVerified: true });
+    // }
   };
 
   login = async () => {

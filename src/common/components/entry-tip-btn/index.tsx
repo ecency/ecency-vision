@@ -46,6 +46,7 @@ interface DialogProps extends Props {
 
 export class TippingDialog extends Component<DialogProps> {
   componentDidMount(): void {
+    console.log(this.props);
     if (this.props.setTipDialogMounted) {
       console.log("Mount run");
       this.props.setTipDialogMounted(true);
@@ -141,65 +142,65 @@ export class EntryTipBtn extends Component<Props, State> {
   }
 }
 
-// export default (p: Props) => {
-//   const props = {
-//     global: p.global,
-//     dynamicProps: p.dynamicProps,
-//     users: p.users,
-//     ui: p.ui,
-//     account: p.account,
-//     fetchPoints: p.fetchPoints,
-//     updateWalletValues: p.updateWalletValues,
-//     activeUser: p.activeUser,
-//     entry: p.entry,
-//     signingKey: p.signingKey,
-//     addAccount: p.addAccount,
-//     setActiveUser: p.setActiveUser,
-//     updateActiveUser: p.updateActiveUser,
-//     deleteUser: p.deleteUser,
-//     toggleUIProp: p.toggleUIProp,
-//     setSigningKey: p.setSigningKey
-//   };
-
-//   return <EntryTipBtn {...props} />;
-// };
-
-export default ({
-  entry,
-  dynamicProps,
-  activeUser,
-  global
-}: Pick<Props, "entry" | "dynamicProps" | "activeUser" | "global">) => {
-  const {
-    users,
-    ui,
-    fetchPoints,
-    signingKey,
-    addAccount,
-    setActiveUser,
-    updateActiveUser,
-    deleteUser,
-    toggleUIProp,
-    setSigningKey
-  } = useMappedStore();
-
+export default (p: Props) => {
   const props = {
-    global: global,
-    dynamicProps: dynamicProps,
-    users: users,
-    ui: ui,
-    account: account,
-    fetchPoints: fetchPoints,
-    updateWalletValues: updateWalletValues,
-    activeUser: activeUser,
-    entry: entry,
-    signingKey: signingKey,
-    addAccount: addAccount,
-    setActiveUser: setActiveUser,
-    updateActiveUser: updateActiveUser,
-    deleteUser: deleteUser,
-    toggleUIProp: toggleUIProp,
-    setSigningKey: setSigningKey
+    global: p.global,
+    dynamicProps: p.dynamicProps,
+    users: p.users,
+    ui: p.ui,
+    account: p.account,
+    fetchPoints: p.fetchPoints,
+    updateWalletValues: p.updateWalletValues,
+    activeUser: p.activeUser,
+    entry: p.entry,
+    signingKey: p.signingKey,
+    addAccount: p.addAccount,
+    setActiveUser: p.setActiveUser,
+    updateActiveUser: p.updateActiveUser,
+    deleteUser: p.deleteUser,
+    toggleUIProp: p.toggleUIProp,
+    setSigningKey: p.setSigningKey
   };
+
   return <EntryTipBtn {...props} />;
 };
+
+// export default ({
+//   entry,
+//   dynamicProps,
+//   activeUser,
+//   global
+// }: Pick<Props, "entry" | "dynamicProps" | "activeUser" | "global">) => {
+//   const {
+//     users,
+//     ui,
+//     fetchPoints,
+//     signingKey,
+//     addAccount,
+//     setActiveUser,
+//     updateActiveUser,
+//     deleteUser,
+//     toggleUIProp,
+//     setSigningKey
+//   } = useMappedStore();
+
+//   const props = {
+//     global: global,
+//     dynamicProps: dynamicProps,
+//     users: users,
+//     ui: ui,
+//     account: account,
+//     fetchPoints: fetchPoints,
+//     updateWalletValues: updateWalletValues,
+//     activeUser: activeUser,
+//     entry: entry,
+//     signingKey: signingKey,
+//     addAccount: addAccount,
+//     setActiveUser: setActiveUser,
+//     updateActiveUser: updateActiveUser,
+//     deleteUser: deleteUser,
+//     toggleUIProp: toggleUIProp,
+//     setSigningKey: setSigningKey
+//   };
+//   return <EntryTipBtn {...props} />;
+// };
