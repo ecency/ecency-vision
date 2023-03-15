@@ -45,6 +45,7 @@ import {
   gifIcon,
   videoSvg
 } from "../../img/svg";
+import { VideoUpload } from "../video-upload-threespeak";
 
 interface Props {
   global: Global;
@@ -556,10 +557,14 @@ export class EditorToolbar extends Component<Props> {
           )}
 
           <Tooltip content="Upload Video">
-            <div className="editor-tool" role="none">
-              <div className="new-feature">
-                {videoSvg}
-              </div>
+            <div className="editor-tool" role="none"  
+            // Test
+            onClick={(e: React.MouseEvent<HTMLElement>) => {
+                          e.stopPropagation();
+                          const el = this.fileInput.current;
+                          if (el) el.click();
+                        }}>
+                <VideoUpload/>
             </div>
           </Tooltip>
 
