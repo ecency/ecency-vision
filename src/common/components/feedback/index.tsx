@@ -1,9 +1,10 @@
 import React from "react";
 import BaseComponent from "../base";
 import random from "../../util/rnd";
-import { alertCircleSvg, checkSvg, informationSvg } from "../../img/svg";
+import { alertCircleSvg, checkSvg, closeSvg, informationSvg } from "../../img/svg";
 import { Button } from "react-bootstrap";
 import { FeedbackModal } from "../feedback-modal";
+import ProgressBar from "../progress-bar";
 import { ErrorTypes } from "../../enums";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
@@ -48,6 +49,12 @@ export interface FeedbackObject {
   message: string;
 }
 
+export const ProgressBarType = {
+  SUCCESS: "success",
+  ERROR: "error",
+  INFO: "info"
+};
+
 export interface ErrorFeedbackObject extends FeedbackObject {
   errorType: ErrorTypes;
 }
@@ -60,13 +67,15 @@ interface State {
   list: FeedbackObject[];
   showDialog: boolean;
   detailedObject: FeedbackObject | null;
+  display: boolean;
 }
 
 export default class Feedback extends BaseComponent<Props, State> {
   state: State = {
     list: [],
     showDialog: false,
-    detailedObject: null
+    detailedObject: null,
+    display: true
   };
 
   componentDidMount() {
@@ -79,7 +88,7 @@ export default class Feedback extends BaseComponent<Props, State> {
   }
 
   onFeedback = (e: Event) => {
-    // mountCheck(true);
+    this.setState({ display: true });
     const detail: FeedbackObject = (e as CustomEvent).detail;
 
     const { list } = this.state;
@@ -94,7 +103,6 @@ export default class Feedback extends BaseComponent<Props, State> {
       const { list } = this.state;
       const newList = list.filter((x) => x.id !== detail.id);
       this.stateSet({ list: newList });
-      // mountCheck(false);
     }, 5000);
   };
 
@@ -103,60 +111,85 @@ export default class Feedback extends BaseComponent<Props, State> {
     const errorType = (x: FeedbackObject) => (x as ErrorFeedbackObject).errorType;
     return (
       <div className={"feedback-container" + (list.length > 0 ? " " + "visible" : "")}>
-        {list.map((x) => {
-          switch (x.type) {
-            case "success":
-              return (
-                <div key={x.id} className="feedback-success">
-                  {checkSvg} {x.message}
-                </div>
-              );
-            case "error":
-              return (
-                <div key={x.id} className="feedback-error d-flex align-items-start">
-                  {alertCircleSvg}
-                  <div className=" d-flex flex-column align-items-start">
-                    {x.message}
-                    <div className="d-flex">
-                      {errorType(x) !== ErrorTypes.COMMON && errorType(x) !== ErrorTypes.INFO ? (
-                        <Button
-                          className="mt-2 details-button px-0 mr-3"
-                          variant="link"
-                          onClick={() => this.setState({ showDialog: true, detailedObject: x })}
+        {this.state.display &&
+          list.map((x) => {
+            switch (x.type) {
+              case "success":
+                return (
+                  <>
+                    <div key={x.id} className="feedback-success">
+                      <div className="feedback-content">
+                        <div
+                          className="feedback-close-btn"
+                          onClick={() => this.setState({ display: false })}
                         >
-                          {_t("feedback-modal.question")}
-                        </Button>
-                      ) : (
-                        <></>
-                      )}
-                      {!ErrorTypes.INFO && (
-                        <Button
-                          className="mt-2 details-button px-0"
-                          variant="link"
-                          onClick={() =>
-                            window.open(
-                              "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",
-                              "_blank"
-                            )
-                          }
-                        >
-                          {_t("feedback-modal.report")}
-                        </Button>
-                      )}
+                          {closeSvg}
+                        </div>
+                        {checkSvg} {x.message}
+                      </div>
+                      <ProgressBar progressBarType={ProgressBarType.SUCCESS} />
                     </div>
+                  </>
+                );
+              case "error":
+                return (
+                  <div key={x.id} className="feedback-error align-items-start">
+                    <div className="feedback-content">
+                      <div className="feedback-close-btn">{closeSvg}</div>
+                      <div className="error-content">
+                        {alertCircleSvg}
+                        <div className=" d-flex flex-column align-items-start">
+                          {x.message}
+                          <div className="d-flex">
+                            {errorType(x) !== ErrorTypes.COMMON &&
+                            errorType(x) !== ErrorTypes.INFO ? (
+                              <Button
+                                className="mt-2 details-button px-0 mr-3"
+                                variant="link"
+                                onClick={() =>
+                                  this.setState({ showDialog: true, detailedObject: x })
+                                }
+                              >
+                                {_t("feedback-modal.question")}
+                              </Button>
+                            ) : (
+                              <></>
+                            )}
+                            {!ErrorTypes.INFO && (
+                              <Button
+                                className="mt-2 details-button px-0"
+                                variant="link"
+                                onClick={() =>
+                                  window.open(
+                                    "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",
+                                    "_blank"
+                                  )
+                                }
+                              >
+                                {_t("feedback-modal.report")}
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <ProgressBar progressBarType={ProgressBarType.ERROR} />
                   </div>
-                </div>
-              );
-            case "info":
-              return (
-                <div key={x.id} className="feedback-info">
-                  {informationSvg} {x.message}
-                </div>
-              );
-            default:
-              return null;
-          }
-        })}
+                );
+              case "info":
+                return (
+                  <div key={x.id} className="feedback-info">
+                    <div className="feedback-content">
+                      <div className="feedback-close-btn">{closeSvg}</div>
+                      {informationSvg} {x.message}
+                    </div>
+                    <ProgressBar progressBarType={ProgressBarType.INFO} />
+                  </div>
+                );
+              default:
+                return null;
+            }
+          })}
 
         {this.state.detailedObject ? (
           <FeedbackModal

@@ -15,12 +15,12 @@
 }
 
 .feedback-container {
+  display: block;
   position: fixed;
   z-index: 99;
   right: 20px;
   bottom: 60px;
   width: 260px;
-
   &.visible ~ .announcement-container {
     bottom: 10rem !important;
   }
@@ -29,24 +29,24 @@
     width: 500px;
   }
 
-  .feedback-success, .feedback-error, .feedback-info {
+  .feedback-success,
+  .feedback-error,
+  .feedback-info {
     box-shadow: $box-shadow;
     border-radius: 6px;
-    padding: 8px 6px;
-    display: flex;
+
+    // display: flex;
     align-items: center;
     margin-bottom: 6px;
-    animation: feedback-anim .5s;
+    animation: feedback-anim 0.5s;
 
     @include themify(day) {
       background: $dark-two;
-      border: 1px solid $dark;
       color: $white-four;
     }
 
     @include themify(night) {
       background: $white-four;
-      border: 1px solid $warm-grey;
       color: $dark;
     }
 
@@ -54,6 +54,29 @@
       height: 20px;
       margin-right: 6px;
     }
+    .feedback-content {
+      padding: 24px 6px 0px 6px;
+    }
+    .feedback-close-btn {
+      position: absolute;
+      right: 2px;
+      margin-top: -15px;
+      cursor: pointer;
+      @include themify(day) {
+        svg {
+          color: $white-three;
+        }
+      }
+      @include themify(night) {
+        svg {
+          color: $charcoal-grey;
+        }
+      }
+    }
+  }
+
+  .error-content {
+    display: flex;
   }
 
   .feedback-success {
@@ -77,17 +100,17 @@
 
 .theme-day .details-button {
   color: #fff;
-  opacity: .5;
+  opacity: 0.5;
 
   &:hover {
     color: #fff;
-    opacity: .75;
+    opacity: 0.75;
   }
 }
 
 .theme-night .details-button {
   color: $primary;
-  opacity: .75;
+  opacity: 0.75;
 
   &:hover {
     opacity: 1;
