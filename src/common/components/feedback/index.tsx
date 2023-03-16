@@ -48,12 +48,6 @@ export interface FeedbackObject {
   message: string;
 }
 
-export const ProgressBarType = {
-  SUCCESS: "success",
-  ERROR: "error",
-  INFO: "info"
-};
-
 export interface ErrorFeedbackObject extends FeedbackObject {
   errorType: ErrorTypes;
 }
@@ -186,7 +180,7 @@ export default class Feedback extends BaseComponent<Props, State> {
                       </div>
 
                       <div className="toast-progress-bar">
-                        <div className="filler success" style={style}></div>
+                        <div className="filler success" style={style} />
                       </div>
                     </div>
                   </>
@@ -242,7 +236,7 @@ export default class Feedback extends BaseComponent<Props, State> {
                     </div>
 
                     <div className="toast-progress-bar">
-                      <div className="filler error" style={style}></div>
+                      <div className="filler error" style={style} />
                     </div>
                   </div>
                 );
@@ -261,7 +255,7 @@ export default class Feedback extends BaseComponent<Props, State> {
                       {informationSvg} {x.message}
                     </div>
                     <div className="toast-progress-bar">
-                      <div className="filler info" style={style}></div>
+                      <div className="filler info" style={style} />
                     </div>
                   </div>
                 );
