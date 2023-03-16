@@ -4,7 +4,6 @@ import random from "../../util/rnd";
 import { alertCircleSvg, checkSvg, closeSvg, informationSvg } from "../../img/svg";
 import { Button } from "react-bootstrap";
 import { FeedbackModal } from "../feedback-modal";
-import ProgressBar from "../progress-bar";
 import { ErrorTypes } from "../../enums";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
@@ -68,27 +67,79 @@ interface State {
   showDialog: boolean;
   detailedObject: FeedbackObject | null;
   display: boolean;
+  progress: number;
+  intervalState: boolean;
 }
 
 export default class Feedback extends BaseComponent<Props, State> {
+  intervalID: any;
+  constructor(props: Props) {
+    super(props);
+    this.intervalID = null;
+  }
   state: State = {
     list: [],
     showDialog: false,
     detailedObject: null,
-    display: true
+    display: true,
+    progress: 100,
+    intervalState: true
   };
 
   componentDidMount() {
     window.addEventListener("feedback", this.onFeedback);
   }
 
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>): void {
+    if (prevState.progress !== this.state.progress) {
+      if (this.state.progress === -2.5) {
+        this.stateSet({ display: false, progress: 100, list: [], intervalState: true });
+        this.stopTimer();
+      }
+    }
+  }
+
   componentWillUnmount() {
     super.componentWillUnmount();
     window.removeEventListener("feedback", this.onFeedback);
+    clearInterval(this.intervalID);
   }
+
+  startTimer = () => {
+    const setWidth = () => {
+      if (this.state.intervalState) {
+        this.setState({ intervalState: false });
+        return;
+      }
+      const { progress } = this.state;
+      this.stateSet({ progress: progress - 2.5 });
+    };
+
+    const interval = setInterval(
+      (function hello() {
+        setWidth();
+        return hello;
+      })(),
+      125
+    );
+    this.intervalID = interval;
+  };
+
+  stopTimer = () => {
+    clearInterval(this.intervalID);
+  };
+
+  handleMouseEnter = () => {
+    this.stopTimer();
+  };
+
+  handleMouseleave = () => {
+    this.startTimer();
+  };
 
   onFeedback = (e: Event) => {
     this.setState({ display: true });
+    this.startTimer();
     const detail: FeedbackObject = (e as CustomEvent).detail;
 
     const { list } = this.state;
@@ -98,20 +149,24 @@ export default class Feedback extends BaseComponent<Props, State> {
 
     const newList = [...list, detail];
     this.stateSet({ list: newList });
-
-    setTimeout(() => {
-      const { list } = this.state;
-      const newList = list.filter((x) => x.id !== detail.id);
-      this.stateSet({ list: newList });
-    }, 5000);
   };
 
   render() {
-    const { list } = this.state;
+    const { list, display, progress } = this.state;
+    if (progress === -2.5) {
+      return null;
+    }
+    const style = {
+      width: `${progress}%`
+    };
     const errorType = (x: FeedbackObject) => (x as ErrorFeedbackObject).errorType;
     return (
-      <div className={"feedback-container" + (list.length > 0 ? " " + "visible" : "")}>
-        {this.state.display &&
+      <div
+        className={"feedback-container" + (list.length > 0 ? " " + "visible" : "")}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseleave}
+      >
+        {display &&
           list.map((x) => {
             switch (x.type) {
               case "success":
@@ -121,13 +176,18 @@ export default class Feedback extends BaseComponent<Props, State> {
                       <div className="feedback-content">
                         <div
                           className="feedback-close-btn"
-                          onClick={() => this.setState({ display: false })}
+                          onClick={() =>
+                            this.setState({ display: false, progress: 100, intervalState: true })
+                          }
                         >
                           {closeSvg}
                         </div>
                         {checkSvg} {x.message}
                       </div>
-                      <ProgressBar progressBarType={ProgressBarType.SUCCESS} />
+
+                      <div className="toast-progress-bar">
+                        <div className="filler success" style={style}></div>
+                      </div>
                     </div>
                   </>
                 );
@@ -135,7 +195,14 @@ export default class Feedback extends BaseComponent<Props, State> {
                 return (
                   <div key={x.id} className="feedback-error align-items-start">
                     <div className="feedback-content">
-                      <div className="feedback-close-btn">{closeSvg}</div>
+                      <div
+                        className="feedback-close-btn"
+                        onClick={() =>
+                          this.setState({ display: false, progress: 100, intervalState: true })
+                        }
+                      >
+                        {closeSvg}
+                      </div>
                       <div className="error-content">
                         {alertCircleSvg}
                         <div className=" d-flex flex-column align-items-start">
@@ -173,17 +240,29 @@ export default class Feedback extends BaseComponent<Props, State> {
                         </div>
                       </div>
                     </div>
-                    <ProgressBar progressBarType={ProgressBarType.ERROR} />
+
+                    <div className="toast-progress-bar">
+                      <div className="filler error" style={style}></div>
+                    </div>
                   </div>
                 );
               case "info":
                 return (
                   <div key={x.id} className="feedback-info">
                     <div className="feedback-content">
-                      <div className="feedback-close-btn">{closeSvg}</div>
+                      <div
+                        className="feedback-close-btn"
+                        onClick={() =>
+                          this.setState({ display: false, progress: 100, intervalState: true })
+                        }
+                      >
+                        {closeSvg}
+                      </div>
                       {informationSvg} {x.message}
                     </div>
-                    <ProgressBar progressBarType={ProgressBarType.INFO} />
+                    <div className="toast-progress-bar">
+                      <div className="filler info" style={style}></div>
+                    </div>
                   </div>
                 );
               default:
