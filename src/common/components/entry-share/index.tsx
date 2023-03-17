@@ -73,7 +73,7 @@ export default class EntryShare extends BaseComponent<Props> {
         <Modal.Header closeButton={true}>
           <Modal.Title>{_t("entry-share.title")}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="entry-share-modal-body">
           <div className="share-buttons">
             <div className="share-button" onClick={this.reddit}>
               {redditSvg}
