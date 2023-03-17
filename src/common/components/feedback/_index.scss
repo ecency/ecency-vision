@@ -50,15 +50,30 @@
 
     svg {
       height: 20px;
-      margin-right: 6px;
+      // margin-right: 6px;
     }
-    .feedback-content {
+    .feedback-body {
       padding: 24px 6px 0px 6px;
+    }
+
+    .feedback-content {
+      display: flex;
+      .feedback-img {
+        @media (max-width: $md-break) {
+          margin-right: 0.8rem;
+        }
+        margin-right: 2.3rem;
+        margin-left: 0.5rem;
+        border-radius: 50%;
+        &.success-img {
+          background: $green2;
+        }
+      }
     }
     .feedback-close-btn {
       position: absolute;
-      right: 2px;
-      margin-top: -15px;
+      right: 6px;
+      margin-top: -19px;
       cursor: pointer;
       @include themify(day) {
         svg {
@@ -104,11 +119,19 @@
 
   .error-content {
     display: flex;
+
+    .error-img {
+      @media (max-width: $md-break) {
+        margin-right: 0.8rem !important;
+      }
+      margin-left: 0.5rem;
+      margin-right: 2.3rem;
+    }
   }
 
   .feedback-success {
     svg {
-      color: $green1;
+      color: $white;
     }
   }
 
@@ -120,7 +143,7 @@
 
   .feedback-info {
     svg {
-      color: $duck-egg-blue;
+      color: $dark-sky-blue;
     }
   }
 }

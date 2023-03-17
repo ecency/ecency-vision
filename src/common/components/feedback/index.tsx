@@ -167,7 +167,7 @@ export default class Feedback extends BaseComponent<Props, State> {
                 return (
                   <>
                     <div key={x.id} className="feedback-success">
-                      <div className="feedback-content">
+                      <div className="feedback-body">
                         <div
                           className="feedback-close-btn"
                           onClick={() =>
@@ -176,7 +176,10 @@ export default class Feedback extends BaseComponent<Props, State> {
                         >
                           {closeSvg}
                         </div>
-                        {checkSvg} {x.message}
+                        <div className="feedback-content">
+                          <div className="feedback-img success-img">{checkSvg}</div>
+                          {x.message}
+                        </div>
                       </div>
 
                       <div className="toast-progress-bar">
@@ -188,7 +191,7 @@ export default class Feedback extends BaseComponent<Props, State> {
               case "error":
                 return (
                   <div key={x.id} className="feedback-error align-items-start">
-                    <div className="feedback-content">
+                    <div className="feedback-body">
                       <div
                         className="feedback-close-btn"
                         onClick={() =>
@@ -198,7 +201,8 @@ export default class Feedback extends BaseComponent<Props, State> {
                         {closeSvg}
                       </div>
                       <div className="error-content">
-                        {alertCircleSvg}
+                        <div className="error-img">{alertCircleSvg}</div>
+
                         <div className=" d-flex flex-column align-items-start">
                           {x.message}
                           <div className="d-flex">
@@ -243,7 +247,7 @@ export default class Feedback extends BaseComponent<Props, State> {
               case "info":
                 return (
                   <div key={x.id} className="feedback-info">
-                    <div className="feedback-content">
+                    <div className="feedback-body">
                       <div
                         className="feedback-close-btn"
                         onClick={() =>
@@ -252,7 +256,10 @@ export default class Feedback extends BaseComponent<Props, State> {
                       >
                         {closeSvg}
                       </div>
-                      {informationSvg} {x.message}
+                      <div className="feedback-content">
+                        <div className="feedback-img">{informationSvg}</div>
+                        {x.message}
+                      </div>
                     </div>
                     <div className="toast-progress-bar">
                       <div className="filler info" style={style} />

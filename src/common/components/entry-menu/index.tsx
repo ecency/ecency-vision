@@ -21,7 +21,7 @@ import MuteBtn from "../mute-btn";
 import Promote from "../promote";
 import Boost from "../boost";
 import ModalConfirm from "../modal-confirm";
-import { error, success } from "../feedback";
+import { error, info, success } from "../feedback";
 import DropDown, { MenuItem } from "../dropdown";
 import CrossPost from "../cross-post";
 
@@ -212,7 +212,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
       u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}`;
     }
     clipboard(u);
-    success(_t("entry.address-copied"));
+    info(_t("entry.address-copied"));
   };
 
   edit = () => {
