@@ -1,4 +1,5 @@
 import defaults from "../constants/defaults.json";
+import auth from "../pages/auth";
 
 export const makeEsteemUrl = (cat: string, author: string, permlink: string): string =>
   `${defaults.base}/${cat}/@${author}/${permlink}`;
@@ -37,4 +38,9 @@ export const makeShareUrlTwitter = (
 export const makeShareUrlFacebook = (cat: string, author: string, permlink: string): string => {
   const u = makeEsteemUrl(cat, author, permlink);
   return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(u)}`;
+};
+
+export const makeShareUrlLinkedin = (cat: string, author: string, permlink: string): string => {
+  const u = makeEsteemUrl(cat, author, permlink);
+  return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(u)}`;
 };
