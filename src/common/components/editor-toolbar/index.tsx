@@ -82,6 +82,7 @@ export class EditorToolbar extends Component<Props> {
 
   holder = React.createRef<HTMLDivElement>();
   fileInput = React.createRef<HTMLInputElement>();
+  videoInput = React.createRef<HTMLInputElement>();
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
     return (
@@ -343,6 +344,12 @@ export class EditorToolbar extends Component<Props> {
     // reset input
     e.target.value = "";
   };
+  
+  videoInputChanged = (e: any | React.ChangeEvent<HTMLInputElement>): void => {
+   console.log(e.target.files)
+   console.log(e.target.files[0])
+    
+  };
 
   upload = async (file: File) => {
     const { activeUser, global } = this.props;
@@ -561,7 +568,7 @@ export class EditorToolbar extends Component<Props> {
             // Test
             onClick={(e: React.MouseEvent<HTMLElement>) => {
                           e.stopPropagation();
-                          const el = this.fileInput.current;
+                          const el = this.videoInput.current;
                           if (el) el.click();
                         }}>
                 <VideoUpload/>
@@ -575,6 +582,15 @@ export class EditorToolbar extends Component<Props> {
           ref={this.fileInput}
           type="file"
           accept="image/*"
+          multiple={true}
+          style={{ display: "none" }}
+        />
+        <input
+          onChange={this.videoInputChanged}
+          className="file-input"
+          ref={this.videoInput}
+          type="file"
+          accept="video/*"
           multiple={true}
           style={{ display: "none" }}
         />
