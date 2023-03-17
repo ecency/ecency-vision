@@ -46,6 +46,7 @@ import {
   videoSvg
 } from "../../img/svg";
 import { VideoUpload } from "../video-upload-threespeak";
+import uploadToThreeSpeak from "../../api/threespeak";
 
 interface Props {
   global: Global;
@@ -345,10 +346,17 @@ export class EditorToolbar extends Component<Props> {
     e.target.value = "";
   };
   
-  videoInputChanged = (e: any | React.ChangeEvent<HTMLInputElement>): void => {
-   console.log(e.target.files)
-   console.log(e.target.files[0])
-    
+  videoInputChanged = async (e: any | React.ChangeEvent<HTMLInputElement>): Promise<any> => {
+    const { activeUser, global } = this.props;
+    console.log(activeUser?.username)
+    // console.log(e.target.files);
+    console.log(e.target.files[0]);
+    const upload = await uploadToThreeSpeak(
+      activeUser?.username,
+      e.target.files[0],
+      "https://1164326579-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2Fcryptowatch-guides%2F-MGtBBISJf5x2Uk-ldVl%2F-MGtLa7ILcJT6oJemFX3%2F0.gif?generation=1599763801987719&alt=media"
+    );
+    console.log( upload );
   };
 
   upload = async (file: File) => {

@@ -32,6 +32,7 @@
     "@types/webscopeio__react-textarea-autocomplete": "^4.7.2",
     "@webscopeio/react-textarea-autocomplete": "^4.8.1",
     "axios": "^0.21.2",
+    "axios-cookiejar-support": "^4.0.6",
     "bs58": "^4.0.1",
     "connected-react-router": "^6.8.0",
     "cookie-parser": "^1.4.5",
@@ -79,6 +80,8 @@
     "serialize-javascript": "^3.1.0",
     "sortablejs": "^1.13.0",
     "speakingurl": "^14.0.1",
+    "tough-cookie": "^4.1.2",
+    "tus-js-client": "^3.1.0",
     "use-async-effect": "^2.2.6",
     "xss": "^1.0.8"
   },
