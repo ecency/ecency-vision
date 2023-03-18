@@ -1,12 +1,17 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .skeleton {
-    animation: anim-fadein-out 2s infinite;
-    border-radius: 0.25rem;
+  animation: anim-fadein-out 2s infinite;
+  border-radius: 0.25rem;
 
-    @include themify(night) {
-        background-color: $dark;
-      }
+  @include themify(night) {
+    background-color: $dark;
+  }
 
-    @include themify(day) {
-        background-color: lighten($white-four, 4);
-    }
+  @include themify(day) {
+    background-color: lighten($white-four, 4);
+  }
 }

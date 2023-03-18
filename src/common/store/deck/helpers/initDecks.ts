@@ -14,7 +14,7 @@ export const initDecks = (data: SerializedDeckModel[], listItems: Record<string,
     let icon = person; // Handle conditional icons and listItemComponent
     let listItemComponent: any = listItems.SearchListItem; // Handle conditional icons and listItemComponent
     let title = item.header.title.toLowerCase();
-    let dataFilters = item.dataFilters || null;
+    let dataFilters = item?.dataFilters || null;
     if (title.includes(_t("decks.trending-topics").toLowerCase())) {
       icon = hot;
       listItemComponent = listItems.HotListItem;

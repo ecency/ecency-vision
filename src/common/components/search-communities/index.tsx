@@ -24,6 +24,7 @@ import truncate from "../../util/truncate";
 import formattedNumber from "../../util/formatted-number";
 
 import defaults from "../../constants/defaults.json";
+import "./_index.scss";
 
 interface Props {
   history: History;
@@ -107,7 +108,7 @@ export class SearchCommunities extends BaseComponent<Props, State> {
                     <div key={community.name} className="list-item">
                       <div className="item-header">
                         <Link to={link}>
-                          {UserAvatar({ ...this.props, username: community.name, size: "medium" })}
+                          <UserAvatar username={community.name} size="medium" />
                         </Link>
                         <div className="item-title">
                           <Link to={link}>{community.title}</Link>

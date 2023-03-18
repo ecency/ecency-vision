@@ -17,6 +17,7 @@ import { searchTag, TagSearchResult } from "../../api/search-api";
 import { _t } from "../../i18n";
 
 import defaults from "../../constants/defaults.json";
+import "./_index.scss";
 
 interface Props {
   history: History;

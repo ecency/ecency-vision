@@ -21,18 +21,21 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
       className="source"
     >
       <a
-        className="source-avatar"
         href="/@fooo10"
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
+          className="source-avatar"
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </span>
       </a>
     </div>
     <div
@@ -42,12 +45,15 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
         className="first-line"
       >
         <a
-          className="source-name"
           href="/@fooo10"
           onClick={[Function]}
         >
-           
-          fooo10
+          <span
+            className="source-name"
+          >
+             
+            fooo10
+          </span>
         </a>
         <span
           className="item-action"
@@ -92,18 +98,21 @@ exports[`(1) NotificationListItem (2) Mention  1`] = `
       className="source"
     >
       <a
-        className="source-avatar"
         href="/@ecency.stats"
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/ecency.stats/avatar/medium)",
+          className="source-avatar"
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/ecency.stats/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </span>
       </a>
     </div>
     <div
@@ -113,12 +122,15 @@ exports[`(1) NotificationListItem (2) Mention  1`] = `
         className="first-line"
       >
         <a
-          className="source-name"
           href="/@ecency.stats"
           onClick={[Function]}
         >
-           
-          ecency.stats
+          <span
+            className="source-name"
+          >
+             
+            ecency.stats
+          </span>
         </a>
         <span
           className="item-action"
@@ -163,18 +175,21 @@ exports[`(1) NotificationListItem (3) Follow  1`] = `
       className="source"
     >
       <a
-        className="source-avatar"
         href="/@fooo10"
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
+          className="source-avatar"
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </span>
       </a>
     </div>
     <div
@@ -184,12 +199,15 @@ exports[`(1) NotificationListItem (3) Follow  1`] = `
         className="first-line"
       >
         <a
-          className="source-name"
           href="/@fooo10"
           onClick={[Function]}
         >
-           
-          fooo10
+          <span
+            className="source-name"
+          >
+             
+            fooo10
+          </span>
         </a>
       </div>
       <div
@@ -221,18 +239,21 @@ exports[`(1) NotificationListItem (4) Unfollow  1`] = `
       className="source"
     >
       <a
-        className="source-avatar"
         href="/@fooo102"
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/fooo102/avatar/medium)",
+          className="source-avatar"
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/fooo102/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </span>
       </a>
     </div>
     <div
@@ -242,12 +263,15 @@ exports[`(1) NotificationListItem (4) Unfollow  1`] = `
         className="first-line"
       >
         <a
-          className="source-name"
           href="/@fooo102"
           onClick={[Function]}
         >
-           
-          fooo102
+          <span
+            className="source-name"
+          >
+             
+            fooo102
+          </span>
         </a>
       </div>
       <div
@@ -279,18 +303,21 @@ exports[`(1) NotificationListItem (5) Reply  1`] = `
       className="source"
     >
       <a
-        className="source-avatar"
         href="/@dunsky"
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/dunsky/avatar/medium)",
+          className="source-avatar"
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/dunsky/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </span>
       </a>
     </div>
     <div
@@ -300,12 +327,15 @@ exports[`(1) NotificationListItem (5) Reply  1`] = `
         className="first-line"
       >
         <a
-          className="source-name"
           href="/@dunsky"
           onClick={[Function]}
         >
-           
-          dunsky
+          <span
+            className="source-name"
+          >
+             
+            dunsky
+          </span>
         </a>
         <span
           className="item-action"
@@ -360,18 +390,21 @@ exports[`(1) NotificationListItem (6) Reblog  1`] = `
       className="source"
     >
       <a
-        className="source-avatar"
         href="/@foo220"
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/foo220/avatar/medium)",
+          className="source-avatar"
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/foo220/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </span>
       </a>
     </div>
     <div
@@ -381,12 +414,15 @@ exports[`(1) NotificationListItem (6) Reblog  1`] = `
         className="first-line"
       >
         <a
-          className="source-name"
           href="/@foo220"
           onClick={[Function]}
         >
-           
-          foo220
+          <span
+            className="source-name"
+          >
+             
+            foo220
+          </span>
         </a>
         <span
           className="item-action"
@@ -425,18 +461,21 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
       className="source"
     >
       <a
-        className="source-avatar"
         href="/@bar212"
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/bar212/avatar/medium)",
+          className="source-avatar"
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/bar212/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </span>
       </a>
     </div>
     <div
@@ -446,12 +485,15 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
         className="first-line"
       >
         <a
-          className="source-name"
           href="/@bar212"
           onClick={[Function]}
         >
-           
-          bar212
+          <span
+            className="source-name"
+          >
+             
+            bar212
+          </span>
         </a>
         <span
           className="item-action"

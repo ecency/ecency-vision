@@ -17,6 +17,7 @@ import _c from "../../util/fix-class-names";
 import { _t } from "../../i18n";
 
 import { syncSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface Props {
   global: Global;
@@ -75,24 +76,26 @@ export class PopularUsers extends BaseComponent<Props, State> {
                     ...this.props,
                     username: r.name,
                     children: (
-                      <a>{UserAvatar({ ...this.props, size: "medium", username: r.name })}</a>
+                      <span>
+                        <UserAvatar username={r.name} size="medium" />
+                      </span>
                     )
                   })}
                   <div className="user-info">
                     {ProfileLink({
                       ...this.props,
                       username: r.name,
-                      children: <a className="display-name">{r.full_name}</a>
+                      children: <span className="display-name">{r.full_name}</span>
                     })}
                     {ProfileLink({
                       ...this.props,
                       username: r.name,
                       children: (
-                        <a className="name notranslate">
+                        <span className="name notranslate">
                           {" "}
                           {"@"}
                           {r.name}
-                        </a>
+                        </span>
                       )
                     })}
                     <div className="about">{r.about}</div>

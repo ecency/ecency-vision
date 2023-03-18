@@ -5,6 +5,8 @@ exports[`(1) Render 1`] = `
   href="/@username"
   onClick={[Function]}
 >
-  username
+  <span>
+    username
+  </span>
 </a>
 `;

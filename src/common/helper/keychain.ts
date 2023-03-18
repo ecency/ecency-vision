@@ -9,7 +9,7 @@ interface TxResponse {
   result: string;
 }
 
-type AuthorityTypes = "Posting" | "Active" | "Memo";
+type AuthorityTypes = "Owner" | "Active" | "Posting" | "Memo";
 
 type Keys = { active: any; posting: any; memo: any };
 

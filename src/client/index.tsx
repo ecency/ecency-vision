@@ -8,8 +8,7 @@ import { clientStoreTasks } from "../common/store/helper";
 import { history } from "../common/store";
 import App from "../common/app";
 import { AppWindow } from "./window";
-import "../style/theme-day.scss";
-import "../style/theme-night.scss";
+import "../style/style.scss";
 import "./base-handlers";
 import { loadableReady } from "@loadable/component";
 

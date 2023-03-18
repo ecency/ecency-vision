@@ -10,6 +10,7 @@ import { useParams } from "react-router";
 import { getAccount } from "../../api/hive";
 import { Account } from "../../store/accounts/types";
 import Tooltip from "../tooltip";
+import "./index.scss";
 
 interface Props {
   addAccount: (data: Account) => void;
@@ -102,15 +103,13 @@ export const RcDelegationsList = (props: any) => {
                           {ProfileLink({
                             ...props,
                             username: list.to,
-                            children: (
-                              <>{UserAvatar({ ...props, username: list.to, size: "small" })}</>
-                            )
+                            children: <UserAvatar username={list.to} size="small" />
                           })}
                           <div className="item-info">
                             {ProfileLink({
                               ...props,
                               username: list.to,
-                              children: <a className="item-name notransalte">{list.to}</a>
+                              children: <span className="item-name notranslate">{list.to}</span>
                             })}
                           </div>
                         </div>
@@ -172,15 +171,13 @@ export const RcDelegationsList = (props: any) => {
                         {ProfileLink({
                           ...props,
                           username: list.sender,
-                          children: (
-                            <>{UserAvatar({ ...props, username: list.sender, size: "small" })}</>
-                          )
+                          children: <UserAvatar username={list.sender} size="small" />
                         })}
                         <div className="item-info">
                           {ProfileLink({
                             ...props,
                             username: list.sender,
-                            children: <a className="item-name notransalte">{list.sender}</a>
+                            children: <span className="item-name notranslate">{list.sender}</span>
                           })}
                         </div>
                         <div className="item-extra">

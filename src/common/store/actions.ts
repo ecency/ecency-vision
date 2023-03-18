@@ -51,7 +51,8 @@ import {
 } from "./deck";
 import { savePageScroll } from "./persistent-page-scroll";
 
-export const getActions = () => ({
+// @note Do not use it directly
+export const ACTIONS = {
   toggleTheme,
   hideIntro,
   toggleListStyle,
@@ -106,4 +107,8 @@ export const getActions = () => ({
   updateNotificationsSettings,
   fetchNotificationsSettings,
   setNotificationsSettingsItem
+};
+
+export const getActions = () => ({
+  ...ACTIONS
 });

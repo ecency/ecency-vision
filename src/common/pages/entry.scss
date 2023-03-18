@@ -1,3 +1,5 @@
+@import "../../style/vars_mixins";
+
 .circle-separator {
   border-radius: 50%;
   height: 4px;
@@ -296,7 +298,6 @@
             flex-direction: column;
 
             .separator {
-              @extend .circle-separator;
               display: none;
             }
 
@@ -412,7 +413,6 @@
         }
 
         .separator {
-          @extend .circle-separator;
 
           &:first-of-type {
             display: none;

@@ -20,6 +20,7 @@ import { proposalVote, proposalVoteHot, proposalVoteKc, formatError } from "../.
 import _c from "../../util/fix-class-names";
 
 import { chevronUpSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface Props {
   history: History;

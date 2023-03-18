@@ -414,11 +414,13 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         <Meta {...metaProps} />
         <Theme global={global} />
         <Feedback activeUser={activeUser} />
-        {global.isElectron
-          ? NavBarElectron({
-              ...this.props
-            })
-          : NavBar({ ...this.props })}
+        {global.isElectron ? (
+          NavBarElectron({
+            ...this.props
+          })
+        ) : (
+          <NavBar history={this.props.history} />
+        )}
 
         <div className={containerClasses}>
           <div className="row align-items-center justify-content-center m-0 w-100">

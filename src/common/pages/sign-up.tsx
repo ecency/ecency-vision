@@ -1,10 +1,14 @@
-import React, { useRef } from "react";
-import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
-import { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { connect } from "react-redux";
+import qrcode from "qrcode";
+import axios from "axios";
 import queryString from "query-string";
 import useLocalStorage from "react-use/lib/useLocalStorage";
-import { PREFIX } from "../util/local-storage";
 import { Button, Form, FormControl, Spinner } from "react-bootstrap";
+
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
+import { PREFIX } from "../util/local-storage";
 import { signUp } from "../api/private-api";
 import Feedback, { error } from "../components/feedback";
 import { _t } from "../i18n";
@@ -16,11 +20,8 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import { appleSvg, checkSvg, googleSvg, hiveSvg } from "../img/svg";
 import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
-import ReCAPTCHA from "react-google-recaptcha";
-import { connect } from "react-redux";
-import qrcode from "qrcode";
-import { stat } from "fs";
 import { getAccount } from "../api/hive";
+import "./sign-up.scss";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -42,7 +43,7 @@ export const SignUp = (props: PageProps) => {
   const [lockReferral, setLockReferral] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [done, setDone] = useState(false);
-  const [isVerified, setIsVerified] = useState(props.global.isElectron);
+  const [isVerified, setIsVerified] = useState(false);
   const [stage, setStage] = useState<Stage>(Stage.FORM);
   const [url, setUrl] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
@@ -57,6 +58,9 @@ export const SignUp = (props: PageProps) => {
 
   useEffect(() => {
     const { referral } = queryString.parse(props.location.search);
+    if (props.global.isElectron) {
+      setIsVerified(true);
+    }
     if (referral && typeof referral === "string") {
       setReferral(referral);
       setLockReferral(true);
@@ -129,7 +133,7 @@ export const SignUp = (props: PageProps) => {
         setLsReferral(undefined);
       }
     } catch (e) {
-      if (e.response?.data?.message) {
+      if (axios.isAxiosError(e) && e.response?.data?.message) {
         error(e.response.data.message);
       }
     } finally {
@@ -149,7 +153,7 @@ export const SignUp = (props: PageProps) => {
       <ScrollToTop />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
-      {props.global.isElectron ? NavBarElectron({ ...props }) : NavBar({ ...props })}
+      {props.global.isElectron ? NavBarElectron({ ...props }) : <NavBar history={props.history} />}
       <div
         className={
           props.global.isElectron

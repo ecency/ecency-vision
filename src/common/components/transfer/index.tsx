@@ -2,8 +2,6 @@ import React, { Component } from "react";
 
 import { PrivateKey, cryptoUtils } from "@hiveio/dhive";
 
-import numeral from "numeral";
-
 import isEqual from "react-fast-compare";
 
 import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
@@ -28,12 +26,7 @@ import amountFormatCheck from "../../helper/amount-format-check";
 import parseAsset from "../../helper/parse-asset";
 import { vestsToHp, hpToVests } from "../../helper/vesting";
 
-import {
-  DelegatedVestingShare,
-  getAccount,
-  getAccountFull,
-  getVestingDelegations
-} from "../../api/hive";
+import { getAccount, getAccountFull, getVestingDelegations } from "../../api/hive";
 
 import {
   transfer,
@@ -71,9 +64,9 @@ import { Tsx } from "../../i18n/helper";
 
 import { arrowRightSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
-import activeUser from "../../store/active-user";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { formatNumber } from "../../helper/format-number";
+import "./_index.scss";
 
 export type TransferMode =
   | "transfer"
@@ -163,6 +156,7 @@ interface State {
   memoError: string;
   toWarning: string;
   amount: string;
+  delegatedAmount: number;
   amountError: string;
   memo: string;
   inProgress: boolean;
@@ -195,6 +189,7 @@ const pureState = (props: Props): State => {
     memoError: "",
     toWarning: "",
     amount: props.amount || "0.001",
+    delegatedAmount: 0,
     amountError: "",
     memo: props.memo || "",
     inProgress: false,
@@ -301,8 +296,10 @@ export class Transfer extends BaseComponent<Props, State> {
                         )
                       )
                     )
-                  : "";
+                  : 0;
+
                 this.setState({
+                  delegatedAmount: previousAmount,
                   delegationList: res as any[],
                   amount: previousAmount ? previousAmount.toString() : "0.001"
                 });
@@ -325,7 +322,7 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   checkAmount = () => {
-    const { amount } = this.state;
+    const { amount, delegatedAmount } = this.state;
 
     if (amount === "") {
       this.stateSet({ amountError: "" });
@@ -347,7 +344,8 @@ export class Transfer extends BaseComponent<Props, State> {
     }
 
     let balance = Number(this.formatBalance(this.getBalance()));
-    if (parseFloat(amount) > balance) {
+
+    if (parseFloat(amount) > balance + delegatedAmount) {
       this.stateSet({ amountError: _t("trx-common.insufficient-funds") });
       return;
     }
@@ -649,6 +647,7 @@ export class Transfer extends BaseComponent<Props, State> {
       toWarning,
       amount,
       amountError,
+      delegatedAmount,
       memoError,
       memo,
       inProgress,
@@ -685,7 +684,7 @@ export class Transfer extends BaseComponent<Props, State> {
       renderer: (i: string) => {
         return (
           <>
-            {UserAvatar({ ...this.props, username: i, size: "medium" })}{" "}
+            <UserAvatar username={i} size="medium" />
             <span style={{ marginLeft: "4px" }}>{i}</span>
           </>
         );
@@ -738,13 +737,10 @@ export class Transfer extends BaseComponent<Props, State> {
           (item as DelegateVestingShares).delegatee === to &&
           (item as DelegateVestingShares).delegator === activeUser.username
       );
-    const previousAmount = delegateAccount
-      ? vestsToHp(Number(parseAsset(delegateAccount!.vesting_shares).amount), hivePerMVests)
-      : "";
 
     let balance: string | number = this.formatBalance(this.getBalance());
-    if (previousAmount) {
-      balance = Number(balance) + previousAmount;
+    if (delegatedAmount) {
+      balance = Number(balance) + delegatedAmount;
       balance = Number(balance).toFixed(3);
     }
 
@@ -921,7 +917,7 @@ export class Transfer extends BaseComponent<Props, State> {
                           <br />
                           {_t("transfer.override-warning-2", {
                             account: to,
-                            previousAmount: formattedNumber(previousAmount)
+                            previousAmount: formattedNumber(delegatedAmount)
                           })}
                         </>
                       )}
@@ -983,13 +979,13 @@ export class Transfer extends BaseComponent<Props, State> {
                 <div className="confirm-title">{_t(`transfer.${titleLngKey}`)}</div>
                 <div className="users">
                   <div className="from-user">
-                    {UserAvatar({ ...this.props, username: activeUser.username, size: "large" })}
+                    <UserAvatar username={activeUser.username} size="large" />
                   </div>
                   {showTo && (
                     <>
                       <div className="arrow">{arrowRightSvg}</div>
                       <div className="to-user">
-                        {UserAvatar({ ...this.props, username: to, size: "large" })}
+                        <UserAvatar username={to} size="large" />
                       </div>
                     </>
                   )}

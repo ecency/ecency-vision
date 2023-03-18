@@ -1,13 +1,11 @@
 import React from "react";
-
 import { History } from "history";
-
 import isEqual from "react-fast-compare";
+import moment from "moment";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { FormControl } from "react-bootstrap";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { OperationGroup, Transactions } from "../../store/transactions/types";
 import BaseComponent from "../base";
@@ -18,13 +16,13 @@ import Transfer, { TransferMode, TransferAsset } from "../transfer";
 import LinearProgress from "../linear-progress";
 import { shareVariantSvg } from "../../img/svg";
 import { getReferrals, ReferralItem, getReferralsStats, ReferralStat } from "../../api/private-api";
-import SearchBox from "../search-box";
 // import clipboard from '../../util/clipboard';
 
 import { _t } from "../../i18n";
 import { success } from "../feedback";
 import { Tsx } from "../../i18n/helper";
-import moment from "moment";
+
+import "./index.scss";
 
 interface Props {
   history: History;
@@ -180,14 +178,10 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                       addAccount: () => {},
                       username: row.username,
                       children: (
-                        <a className="d-flex align-center gap-2">
-                          {UserAvatar({
-                            global: global,
-                            size: "medium",
-                            username: row.username
-                          })}
+                        <span className="d-flex align-center gap-2">
+                          <UserAvatar size="medium" username={row.username} />
                           <span className="d-block align-self-center ml-2">{row.username}</span>
-                        </a>
+                        </span>
                       )
                     })}
                   </td>

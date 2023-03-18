@@ -10,6 +10,7 @@ import { DynamicProps } from "../../store/dynamic-props/types";
 import defaults from "../../constants/defaults.json";
 
 import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
+import "./_index.scss";
 
 setProxyBase(defaults.imageServer);
 

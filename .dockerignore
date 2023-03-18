@@ -7,3 +7,4 @@
 **/node_modules
 **/docker-compose.yml
 **/docker-compose.production.yml
+stats.json
