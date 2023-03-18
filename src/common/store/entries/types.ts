@@ -1,3 +1,4 @@
+import { BlogEntry } from "../../api/hive";
 import { SearchResult } from "../../api/search-api";
 import { LocationChangeAction } from "../common";
 
@@ -60,6 +61,7 @@ export interface Entry {
   permlink: string;
   post_id: number;
   id?: number;
+  num?: number;
   promoted: string;
   reblogged_by?: string[] | any;
   replies: any[];
@@ -73,6 +75,15 @@ export interface Entry {
 export interface EntryGroup {
   // filter(arg0: (entry: any) => boolean): EntryGroup;
   entries: Entry[];
+  error: string | null;
+  sid: string; //scroll_id for controversial/rising results
+  loading: boolean;
+  hasMore: boolean;
+}
+
+export interface BlogEntryGroup {
+  // filter(arg0: (entry: any) => boolean): EntryGroup;
+  entries: BlogEntry[];
   error: string | null;
   sid: string; //scroll_id for controversial/rising results
   loading: boolean;
