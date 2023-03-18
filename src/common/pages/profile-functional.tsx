@@ -36,7 +36,7 @@ import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
 import AccountRecovery from "../components/recovery-account";
 
-import { getAccountFull, getAccountVotesTrail } from "../api/hive";
+import { BlogEntry, getAccountFull, getAccountVotesTrail } from "../api/hive";
 
 import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";
@@ -284,16 +284,14 @@ export const Profile = (props: Props) => {
     const { loading, hasMore } = data;
 
     if (section === "trail") {
-      let data = await getAccountVotesTrail(
-        username.replace("@", ""),
-        dataTrail.entries.at(-1).num - 1
-      );
-
-      //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
-      //setDataTrail({ ...dataTrail.entries, entries: data.reverse() });
-      let newDataTrail = _.unionBy(dataTrail.entries, data.reverse(), (obj) => obj.post_id);
-      setDataTrail({ ...dataTrail, entries: newDataTrail });
-      //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
+      if (dataTrail.entries.length > 0) {
+        let data = await getAccountVotesTrail(
+          username.replace("@", ""),
+          (dataTrail.entries as Array<BlogEntry>).at(-1)!.num! - 1
+        );
+        let newDataTrail = _.unionBy(dataTrail.entries, data.reverse(), (obj) => obj.post_id);
+        setDataTrail({ ...dataTrail, entries: newDataTrail });
+      }
     } else {
       if (!loading && hasMore) {
         fetchEntries(filter, tag, true);
