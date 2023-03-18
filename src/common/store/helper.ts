@@ -179,8 +179,3 @@ export const clientStoreTasks = (store: Store<AppState>) => {
     store.dispatch(setNsfw(true));
   }
 };
-export const trailEntries = (store: Store<AppState>, username: string) => {
-  getAccountVotesTrail(username).then((r) => {
-    store.dispatch(entriesFetchedAct("__promoted__", r, "", false));
-  });
-};
