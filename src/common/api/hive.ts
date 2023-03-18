@@ -607,19 +607,18 @@ export const getAccountVotesTrail = (
   let params = [username, start, limit, 1];
   return client.call("condenser_api", "get_account_history", params).then((data) => {
     let result = data
-      .map((obj) => {
+      .map((obj: any) => {
         return { ...obj[1].op[1], num: obj[0] };
       })
-      .filter((obj) => obj.voter === username);
+      .filter((obj: any) => obj.voter === username);
     return Promise.all(
-      result.map((obj) => getPostNew(obj.author, obj.permlink, username, obj.num))
+      result.map((obj: any) => getPostNew(obj.author, obj.permlink, username, obj.num))
     );
   });
 };
 
 export const findAccountRecoveryRequest = (account: string): Promise<any> =>
   client.call("database_api", "find_change_recovery_account_requests", { accounts: [account] });
-
 
 // @source https://ecency.com/hive-139531/@andablackwidow/rc-stats-in-1-27
 export type RcOperation =
@@ -658,4 +657,3 @@ export interface RcOperationStats {
 }
 
 export const getRcOperationStats = (): Promise<any> => client.call("rc_api", "get_rc_stats", {});
-
