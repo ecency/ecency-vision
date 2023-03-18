@@ -623,7 +623,9 @@ export const Profile = (props: Props) => {
                       break;
                   }
                   const { profile } = account as FullAccount;
-                  entryList = entryList.filter((item) => item.permlink !== profile?.pinned);
+                  entryList = (entryList as Entry[]).filter(
+                    (item) => item.permlink !== profile?.pinned
+                  );
                   if (pinnedEntry) {
                     entryList.unshift(pinnedEntry);
                   }

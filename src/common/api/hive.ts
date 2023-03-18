@@ -591,6 +591,7 @@ export const getSavingsWithdrawFrom = (account: string): Promise<SavingsWithdraw
 export interface BlogEntry {
   blog: string;
   entry_id: number;
+  post_id?: number;
   author: string;
   permlink: string;
   reblogged_on: string;
