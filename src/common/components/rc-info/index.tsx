@@ -21,7 +21,7 @@ export const ResourceCreditsInfo = (props: any) => {
   const [showRcInfo, setShowRcInfo] = useState(false);
   const [delegated, setDelegated] = useState();
   const [receivedDelegation, setReceivedDelegation] = useState();
-  const [resourceCredit, setresourceCredit] = useState<any>();
+  const [resourceCredit, setResourceCredit] = useState<any>();
   const [showDelegationModal, setShowDelegationModal] = useState(false);
   const [showDelegationsList, setShowDelegationsList] = useState(false);
   const [listMode, setListMode] = useState("");
@@ -29,10 +29,10 @@ export const ResourceCreditsInfo = (props: any) => {
   const [amountFromList, setAmountFromList]: any = useState("");
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [delegateeData, setDelegateeData] = useState("");
-  const [commentAmount, setCommentAmount] = useState(null);
-  const [voteAmount, setVoteAmount] = useState(null);
-  const [transferAmount, setTransferAmount] = useState(null);
-  const [customJsonAmount, setCustomJsonAmount] = useState(null);
+  const [commentAmount, setCommentAmount] = useState(0);
+  const [voteAmount, setVoteAmount] = useState(0);
+  const [transferAmount, setTransferAmount] = useState(0);
+  const [customJsonAmount, setCustomJsonAmount] = useState(0);
 
   useEffect(() => {
     findRcAccounts(account.name)
@@ -41,11 +41,12 @@ export const ResourceCreditsInfo = (props: any) => {
         const delegated = outGoing[0];
         const formatOutGoing: any = rcFormatter(delegated);
         setDelegated(formatOutGoing);
-        const availableResourceCredit: any = r.map((a: any) => a.rc_manabar.current_mana);
-        setresourceCredit(availableResourceCredit);
+        const availableResourceCredit: any = r.map((a: any) => Number(a.rc_manabar.current_mana));
         const inComing: any = r.map((a: any) => Number(a.received_delegated_rc));
         const formatIncoming = rcFormatter(inComing);
+        const totalRc = Number(availableResourceCredit) + Number(inComing)
         setReceivedDelegation(formatIncoming);
+        setResourceCredit(totalRc);
 
         const rcOperationsCost = async () => {
           const rcStats: any = await getRcOperationStats();
@@ -55,11 +56,11 @@ export const ResourceCreditsInfo = (props: any) => {
           const voteCost = operationCosts.vote_operation.avg_cost;
           const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
 
-          const commentCount: any = Math.ceil(Number(availableResourceCredit[0]) / commentCost);
-          const votetCount: any = Math.ceil(Number(availableResourceCredit[0]) / voteCost);
-          const transferCount: any = Math.ceil(Number(availableResourceCredit[0]) / transferCost);
-          const customJsonCount: any = Math.ceil(
-            Number(availableResourceCredit[0]) / customJsonOperationsCosts
+          const commentCount: number = Math.ceil(Number(availableResourceCredit) / commentCost);
+          const votetCount: number = Math.ceil(Number(availableResourceCredit) / voteCost);
+          const transferCount: number = Math.ceil(Number(availableResourceCredit) / transferCost);
+          const customJsonCount: number = Math.ceil(
+            Number(availableResourceCredit) / customJsonOperationsCosts
           );
           setCommentAmount(commentCount);
           setVoteAmount(votetCount);
