@@ -35,7 +35,7 @@ export default {
    */
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
-    modules: [path.join(__dirname, "..", "app"), "node_modules"],
+    modules: [path.join(__dirname, "..", "app"), "node_modules", path.join(__dirname, "../../../")],
     alias: {
       jsbi: path.resolve(__dirname, "../../../", "node_modules", "jsbi", "dist", "jsbi-cjs.js")
     }

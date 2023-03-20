@@ -1,6 +1,5 @@
-@import "src/style/bootstrap_vars";
-@import "src/style/variables";
-@import "witnesses";
+@import "../../style/vars_mixins";
+@import "./witnesses";
 
 .profile-page {
   flex-direction: column;
