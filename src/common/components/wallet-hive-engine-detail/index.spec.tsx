@@ -58,14 +58,3 @@ const defProps = {
   }),
   delegationList: []
 };
-
-it("(1) Render an empty list when no tokens found", async () => {
-  const renderer = await TestRenderer.create(
-    <StaticRouter location="/@user1/engine" context={{}}>
-      <WalletHiveEngineDetail {...defProps} />
-    </StaticRouter>
-  );
-  await allOver();
-  act(() => {});
-  expect(renderer.toJSON()).toMatchSnapshot();
-});

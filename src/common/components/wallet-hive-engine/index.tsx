@@ -74,6 +74,7 @@ interface Props {
   setSigningKey: (key: string) => void;
   fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
+  transferAsset: null | string;
 }
 
 interface State {
@@ -86,7 +87,6 @@ interface State {
   claimed: boolean;
   transfer: boolean;
   transferMode: null | TransferMode;
-  transferAsset: null | string;
   assetBalance: number;
   allTokens: any;
 }
@@ -102,7 +102,6 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     transfer: false,
     transferMode: null,
     delegationList: [],
-    transferAsset: null,
     assetBalance: 0,
     allTokens: null
   };
@@ -126,7 +125,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   }
 
   clearToken = () => {
-    this.stateSet({ transferAsset: null });
+    const { account, history } = this.props;
+    history.push(`/@${account.name}/engine`);
   };
 
   sortTokensInAscending: any = () => {
@@ -239,7 +239,6 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this.stateSet({
       transfer: true,
       transferMode: mode,
-      transferAsset: asset,
       assetBalance: balance
     });
   };
@@ -330,11 +329,13 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   };
 
   setActiveToken(newToken: string, e: any) {
+    const { history, account } = this.props;
+    const { name } = account;
     if (e) {
       // @ts-ignore
       e.preventDefault();
     }
-    this.setState({ transferAsset: newToken });
+    history.push(`/@${name}/${newToken.toLowerCase()}`);
   }
 
   modifyTokenValues(delta: HiveEngineTokenEntryDelta) {
@@ -350,18 +351,9 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   }
 
   render() {
-    const { global, dynamicProps, account, activeUser } = this.props;
-    const {
-      rewards,
-      tokens,
-      loading,
-      claiming,
-      claimed,
-      utokens,
-      transferAsset,
-      delegationList,
-      allTokens
-    } = this.state;
+    const { global, dynamicProps, account, activeUser, transferAsset } = this.props;
+    const { rewards, tokens, loading, claiming, claimed, utokens, delegationList, allTokens } =
+      this.state;
     const hasUnclaimedRewards = rewards.length > 0;
     const hasMultipleUnclaimedRewards = rewards.length > 1;
     const isMyPage = activeUser && activeUser.username === account.name;
@@ -469,16 +461,13 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 )}
               </div>
             )}
-
             <div className="balance-row alternative">
               <div className="balance-info">
                 <div className="title">{_t("wallet-engine.title")}</div>
                 <div className="description">{_t("wallet-engine.description")}</div>
               </div>
             </div>
-
             <EngineTokensEstimated tokens={utokens} dynamicProps={dynamicProps} />
-
             {tokens.length >= 3 && (
               <div className="wallet-info">
                 <SortEngineTokens
@@ -492,7 +481,6 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 />
               </div>
             )}
-
             <div className={transferAsset ? "flex-row" : "entry-list"}>
               {loading ? (
                 <div className="dialog-placeholder">
@@ -794,7 +782,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
             activeUser={activeUser!}
             to={isMyPage ? undefined : account.name}
             mode={this.state.transferMode!}
-            asset={this.state.transferAsset!}
+            asset={this.props.transferAsset!}
             onHide={this.closeTransferDialog}
             assetBalance={this.state.assetBalance}
             tokens={tokens}
@@ -820,7 +808,8 @@ export default (p: Props) => {
     updateActiveUser: p.updateActiveUser,
     setSigningKey: p.setSigningKey,
     updateWalletValues: p.updateWalletValues,
-    fetchPoints: p.fetchPoints
+    fetchPoints: p.fetchPoints,
+    transferAsset: p.transferAsset
   };
 
   return <WalletHiveEngine {...props} />;

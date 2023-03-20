@@ -49,6 +49,8 @@ import { withPersistentScroll } from "../components/with-persistent-scroll";
 import useAsyncEffect from "use-async-effect";
 import { usePrevious } from "../util/use-previous";
 import WalletSpk from "../components/wallet-spk";
+import { getTokenBalances } from "../api/hive-engine";
+
 interface MatchParams {
   username: string;
   section?: string;
@@ -90,6 +92,7 @@ export const Profile = (props: Props) => {
     error: null,
     hasMore: false
   });
+  const [tokenList, setTokenList] = useState<Array<string>>([]);
 
   useAsyncEffect(async (_) => {
     const { accounts, match, global, fetchEntries, fetchPoints } = props;
@@ -118,6 +121,17 @@ export const Profile = (props: Props) => {
 
     await initPinnedEntry(username.replace("@", ""), account);
 
+    const rawData = await getTokenBalances(username.replace("@", ""));
+    const newTokenNames = (() => {
+      try {
+        return rawData.map((d) => d.symbol);
+      } catch (e) {
+        return [];
+      }
+    })();
+
+    setTokenList(newTokenNames);
+
     return () => {
       const { resetTransactions, resetPoints } = props;
       resetTransactions();
@@ -134,6 +148,18 @@ export const Profile = (props: Props) => {
         let searchText = search.replace("?q=", "");
         setSearchDataLoading(searchText.length > 0);
         searchText.length > 0 && (await handleInputChange(searchText));
+      }
+      if (prevMatchUsername !== username) {
+        const rawData = await getTokenBalances(username.replace("@", ""));
+        const newTokenNames = (() => {
+          try {
+            return rawData.map((d) => d.symbol);
+          } catch (e) {
+            return [];
+          }
+        })();
+
+        setTokenList(newTokenNames);
       }
     },
     [props.location]
@@ -490,8 +516,22 @@ export const Profile = (props: Props) => {
                   return WalletHive({ ...props, account, updateWalletValues: ensureAccount });
                 }
                 if (section === "engine") {
-                  return WalletHiveEngine({ ...props, account, updateWalletValues: ensureAccount });
+                  return WalletHiveEngine({
+                    ...props,
+                    account,
+                    updateWalletValues: ensureAccount,
+                    transferAsset: null
+                  });
                 }
+                if (tokenList.find((x) => section.toUpperCase() === x)) {
+                  return WalletHiveEngine({
+                    ...props,
+                    account,
+                    updateWalletValues: ensureAccount,
+                    transferAsset: section.toUpperCase()
+                  });
+                }
+
                 if (section === "spk") {
                   return WalletSpk({
                     ...props,
