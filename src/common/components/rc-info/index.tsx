@@ -44,7 +44,7 @@ export const ResourceCreditsInfo = (props: any) => {
         const availableResourceCredit: any = r.map((a: any) => Number(a.rc_manabar.current_mana));
         const inComing: any = r.map((a: any) => Number(a.received_delegated_rc));
         const formatIncoming = rcFormatter(inComing);
-        const totalRc = Number(availableResourceCredit) + Number(inComing)
+        const totalRc = Number(availableResourceCredit) + Number(inComing);
         setReceivedDelegation(formatIncoming);
         setResourceCredit(totalRc);
 
