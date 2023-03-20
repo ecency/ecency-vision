@@ -3,7 +3,7 @@ const tus = require("tus-js-client");
 
 const axios = require("axios").default;
 const { CookieJar } = require("tough-cookie");
-const { wrapper } = require("axios-cookiejar-support");
+const { wrapper } = require("axios-cookiejar-support"); 
 
 const jar = new CookieJar();
 const client = wrapper(axios.create({ jar }));
