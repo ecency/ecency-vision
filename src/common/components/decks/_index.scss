@@ -1,0 +1,8 @@
+.decks {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+
+  .decks-container, *[data-rbd-droppable-id] {
+    height: 100vh;
+  }
+}

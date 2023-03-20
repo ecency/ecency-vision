@@ -360,7 +360,8 @@
     "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
     "filters": "Filters",
     "history": "History",
-    "type": "Type"
+    "type": "Type",
+    "add-column": "Add column"
   },
   "market-data": {
     "title": "Market price",

@@ -10,7 +10,7 @@ import TrendingTagsCard from "../components/trending-tags-card";
 import MarketData from "../components/market-data";
 import _c from "../util/fix-class-names";
 import { PageProps } from "./common";
-import { DeckView } from "../components/deck-view";
+import { Decks } from "../components/decks";
 import { Entry } from "../store/entries/types";
 import { TopCommunitiesWidget } from "../components/top-communities-widget";
 import * as ls from "../util/local-storage";
@@ -137,7 +137,7 @@ class EntryIndexPage extends Component<Props, State> {
       <>
         <div className={containerClasses}>
           {global.listStyle === ListStyle.deck ? (
-            <DeckView />
+            <Decks />
           ) : (
             <>
               <div className="tags-side">
