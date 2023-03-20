@@ -135,7 +135,8 @@ const defProps = {
   updateActiveUser: () => {},
   setSigningKey: () => {},
   fetchPoints: () => {},
-  updateWalletValues: () => {}
+  updateWalletValues: () => {},
+  transferAsset: null
 };
 
 it("(1) Render an empty list when no tokens found", async () => {

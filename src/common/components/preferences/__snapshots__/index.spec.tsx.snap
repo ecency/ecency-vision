@@ -397,10 +397,12 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
     <div
-      className="preferences-header"
+      className="col-xl-12 col-lg-6"
     >
       Entry Item Options
+       
     </div>
+    <hr />
     <div
       className="col-xl-4 col-lg-6"
     >

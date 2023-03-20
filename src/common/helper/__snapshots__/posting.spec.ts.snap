@@ -129,7 +129,7 @@ Object {
 
 exports[`makeJsonMetaData (1)  1`] = `
 Object {
-  "app": "ecency/2.0.0-vision",
+  "app": "proofofbrain-blog/2.0.0-vision",
   "description": "",
   "format": "markdown+html",
   "image": Array [
@@ -152,7 +152,7 @@ Object {
 
 exports[`makeJsonMetadataReply (1) 1`] = `
 Object {
-  "app": "ecency/1.1-vision",
+  "app": "proofofbrain-blog/1.1-vision",
   "format": "markdown+html",
   "tags": Array [
     "foo",
