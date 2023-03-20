@@ -287,7 +287,7 @@ export const Profile = (props: Props) => {
       if (dataTrail.entries.length > 0) {
         let data = await getAccountVotesTrail(
           username.replace("@", ""),
-          (dataTrail.entries as Array<BlogEntry>).at(-1)!.num! - 1
+          (dataTrail.entries as Array<BlogEntry>)[dataTrail.entries.length - 1]!.num! - 1
         );
         let newDataTrail = _.unionBy(dataTrail.entries, data.reverse(), (obj) => obj.post_id);
         setDataTrail({ ...dataTrail, entries: newDataTrail });
