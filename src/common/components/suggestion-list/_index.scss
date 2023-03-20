@@ -15,7 +15,6 @@
   }
 
   .search-suggestion-list {
-    // position: absolute;
     display: block;
     left: 0;
     top: 100%;
@@ -73,7 +72,7 @@
 
           &:hover,
           &:focus {
-            background: $dark-seven;
+            background: $metallic-blue;
             color: $white;
           }
         }

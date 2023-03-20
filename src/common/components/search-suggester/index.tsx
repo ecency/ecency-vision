@@ -159,7 +159,6 @@ export class SearchSuggester extends BaseComponent<Props, State> {
 
     // Search ALL
     if (!!value) {
-      const limit_result = 5;
       // tags
       const tags_suggestions = trendingTags.list
         .filter((x: string) => x.toLowerCase().indexOf(value.toLowerCase()) === 0)
