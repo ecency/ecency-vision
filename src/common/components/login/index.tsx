@@ -38,7 +38,7 @@ import { getRefreshToken } from "../../helper/user-token";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
-
+import { logUser } from "../../helper/log-user";
 import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
@@ -98,6 +98,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     getAccount(user.username)
       .then((account) => {
         let token = getRefreshToken(user.username);
+
         if (!token) {
           error(`${_t("login.error-user-not-found-cache")}`);
         }
@@ -841,6 +842,10 @@ export default class LoginDialog extends Component<Props> {
       if (global.usePrivate) {
         // login activity
         usrActivity(user.username, 20);
+      }
+
+      if (user.username) {
+        logUser(user.username, global);
       }
 
       // redirection based on path name

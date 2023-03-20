@@ -13,7 +13,7 @@ import { entryRssHandler, authorRssHandler } from "./handlers/rss";
 import * as http from "http";
 import * as net from "net";
 import * as authApi from "./handlers/auth-api";
-import { cleanURL, authCheck, stripLastSlash } from "./util";
+import { cleanURL, authCheck, stripLastSlash, serverLogUser } from "./util";
 import { coingeckoHandler } from "./handlers/coingecko.handler";
 import config from "../config";
 import defaults from "../common/constants/defaults.json";
@@ -87,7 +87,7 @@ server
   .get("^/public-nodes.json$", nodeList)
   // Auth Api
   .post("^/auth-api/hs-token-refresh$", authCheck, authApi.hsTokenRefresh)
-
+  .post("^/userlog-api", serverLogUser)
   // Health check script for docker swarm
   .get("^/healthcheck.json$", healthCheck)
   // CoinGecko market rate API

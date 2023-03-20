@@ -1,5 +1,5 @@
 import { buildHotSignUrl } from "./hive-signer";
-
+// should mock AppURL here for testing somehow...
 describe("hotSign", () => {
   it("should build hot signing url", () => {
     const params = {

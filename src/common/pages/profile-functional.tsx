@@ -110,13 +110,16 @@ export const Profile = (props: Props) => {
     fetchPoints(username);
 
     const accountUsername = username.replace("@", "");
-    const account = accounts.find((x) => x.name === accountUsername) as FullAccount;
+    const account = accounts.find((x) => x.name === accountUsername);
 
-    setAccount(account);
-    setSection(section || ProfileFilter.blog);
-    setUsername(username.replace("@", ""));
+    if (account) {
+      // no account.  return early.
+      setAccount(account);
+      setSection(section || ProfileFilter.blog);
+      setUsername(username.replace("@", ""));
 
-    await initPinnedEntry(username.replace("@", ""), account);
+      await initPinnedEntry(username.replace("@", ""), account);
+    }
 
     return () => {
       const { resetTransactions, resetPoints } = props;
@@ -434,7 +437,7 @@ export const Profile = (props: Props) => {
       >
         <div className="profile-side">{ProfileCard({ ...props, account, section })}</div>
         <span itemScope={true} itemType="http://schema.org/Person">
-          {account.__loaded && (
+          {account?.__loaded && (
             <meta itemProp="name" content={account.profile?.name || account.name} />
           )}
         </span>

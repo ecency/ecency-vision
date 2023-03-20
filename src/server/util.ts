@@ -63,3 +63,10 @@ export const authCheck = (req: any, res: any, next: any) => {
     res.json({ error: "Define HIVESIGNER_SECRET ENV variable or set USE_PRIVATE=1" });
   }
 };
+
+export const serverLogUser = (req: any, res: any, next: any) => {
+  const { body } = req;
+  const { username, lang } = body;
+  const cd = new Date();
+  console.log(`LogUser: ${cd.toISOString()} @${username} ${lang}`);
+};

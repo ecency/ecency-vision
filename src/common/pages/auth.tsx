@@ -17,6 +17,7 @@ import { getAccount } from "../api/hive";
 import { usrActivity } from "../api/private-api";
 import { hsTokenRenew } from "../api/auth-api";
 import { validateToken } from "../helper/hive-signer";
+import { logUser } from "../helper/log-user";
 
 interface Props {
   history: History;
@@ -29,7 +30,7 @@ interface Props {
 
 class AuthPage extends Component<Props> {
   componentDidMount() {
-    const { location, history, addUser, setActiveUser, updateActiveUser } = this.props;
+    const { location, history, addUser, setActiveUser, updateActiveUser, global } = this.props;
     const qs = queryString.parse(location.search);
     const code = qs.code as string;
     if (code) {
@@ -52,6 +53,7 @@ class AuthPage extends Component<Props> {
                 usrActivity(user.username, 20);
               })
               .finally(() => {
+                logUser(user.username, global);
                 history.push(`/@${user.username}/feed`);
               });
           })

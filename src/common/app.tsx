@@ -22,7 +22,6 @@ import i18n from "i18next";
 import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
 import { connect } from "react-redux";
 import loadable from "@loadable/component";
-
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
 const ProfilePage = (props: any) => <ProfileContainer {...props} />;
