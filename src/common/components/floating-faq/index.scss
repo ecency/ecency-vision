@@ -24,7 +24,7 @@
   }
 }
 
-.faq-container {
+.floating-container {
   position: fixed;
   z-index: 3;
   right: 2.1rem;
@@ -193,7 +193,7 @@
 }
 
 @include media-breakpoint-down(sm) {
-  .faq-container {
+  .floating-container {
     height: 62vh;
     width: 300px;
 
@@ -248,7 +248,7 @@
 }
 
 @media (max-width: 285px) {
-  .faq-container {
+  .floating-container {
     height: 72vh;
     width: 84vw;
 
