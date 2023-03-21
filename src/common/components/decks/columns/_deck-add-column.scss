@@ -1,0 +1,57 @@
+@import "src/style/bootstrap_vars";
+
+.deck-add-column {
+
+  .deck-content {
+
+    .subtitle {
+      font-weight: bold;
+
+      @include padding(1rem);
+      @include font-size(1rem);
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: min-content 1fr;
+      grid-template-areas:
+        "icon title"
+        "icon description";
+      align-items: center;
+      grid-gap: 0.25rem;
+
+      @include transition(0.3s);
+      @include padding-left(1rem);
+      @include padding-right(1rem);
+      @include padding-top(0.75rem);
+      @include padding-bottom(0.75rem);
+
+      &:hover {
+        background-color: lighten($faded-blue, 3);
+      }
+
+      svg {
+        grid-area: icon;
+        width: 18px;
+
+        @include margin-right(0.75rem);
+
+        path {
+          fill: $pastel-blue;
+        }
+      }
+
+      .title {
+        grid-area: title;
+        font-weight: bold;
+      }
+
+      .description {
+        grid-area: description;
+        opacity: 0.75;
+
+        @include font-size(0.875rem);
+      }
+    }
+  }
+}

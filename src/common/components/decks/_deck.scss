@@ -4,9 +4,73 @@
 @import "src/style/mixins";
 
 .deck {
+  height: 100vh;
   background-color: $white;
-  overflow: hidden;
-  max-width: 400px;
+  width: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-left: 4px solid $gray-300;
+  border-right: 4px solid $gray-300;
+
+  .accordion .deck-header {
+    padding: 0.69rem;
+    display: grid;
+    border-bottom: 1px solid $gray-200;
+
+    .deck-index {
+      grid-area: drag-icon;
+    }
+
+    .header-title {
+      grid-area: title;
+    }
+
+    .accordion-toggle {
+      grid-area: dropdown;
+    }
+
+    .icon {
+      grid-area: icon;
+    }
+
+    .username {
+      grid-area: username;
+    }
+  }
+
+  > .deck-header {
+    background-color: rgba($white, 0.5);
+    backdrop-filter: blur(1rem);
+
+    &.header-sticky {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9;
+    }
+
+    &.primary {
+      .header-title {
+        font-weight: bold;
+
+        @include font-size(2rem);
+        @include margin-top(2rem);
+      }
+
+      .accordion .deck-header {
+        grid-template-areas:
+          "drag-icon empty dropdown"
+          "title title title";
+        grid-template-columns: min-content 1fr min-content;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+    max-width: 100%;
+  }
 
   @include themify(night) {
     background-color: $dark-two;
@@ -14,10 +78,6 @@
 
   .cog-icon {
     width: 16px;
-  }
-
-  .deck-header {
-    padding: 0.69rem !important;
   }
 
   .icon {
@@ -38,23 +98,6 @@
     font-size: 16px;
     font-weight: 600;
     text-transform: capitalize;
-  }
-
-  .deck-index {
-    font-size: 13px;
-    font-weight: 400;
-    background-image: url(../../img/index-bg.png);
-    background-size: contain;
-    background-position-y: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10px;
-    cursor: grabbing;
   }
 
   .hot-item-index {
@@ -120,6 +163,7 @@
 
   .deck-body .item-controls {
     max-width: 80%;
+
     .comments {
       path {
         fill: $light-grey !important;

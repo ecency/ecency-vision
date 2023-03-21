@@ -1,8 +1,18 @@
+@import "src/style/bootstrap_vars";
+
 .decks {
   display: grid;
   grid-template-columns: 72px 1fr;
+  color: $black;
 
   .decks-container, *[data-rbd-droppable-id] {
     height: 100vh;
+  }
+
+  #draggable-container {
+    background-color: $gray-300;
+    display: flex;
+    overflow: auto;
+    scroll-behavior: smooth;
   }
 }
