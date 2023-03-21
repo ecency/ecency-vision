@@ -2,6 +2,7 @@
 @import "src/style/variables";
 @import "src/style/bootstrap_vars";
 @import "src/style/mixins";
+@import "src/common/components/entry-index-menu";
 
 .wallet-hive-engine {
   @include wallet;

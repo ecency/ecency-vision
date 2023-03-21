@@ -55,6 +55,7 @@ import { Tsx } from "../../i18n/helper";
 import { arrowRightSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
 import { dateToFullRelative } from "../../helper/parse-date";
+import "./_index.scss";
 
 export type TransferMode = "transfer" | "delegate" | "undelegate" | "stake" | "unstake";
 
