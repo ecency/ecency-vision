@@ -57,7 +57,8 @@ export const initialState: Global = {
   showSelfVote: defaults.showSelfVote,
   showRewardSplit: defaults.showRewardSplit,
   lowRewardThreshold: defaults.lowRewardThreshold,
-  showFrontEnd: defaults.showFrontEnd
+  showFrontEnd: defaults.showFrontEnd,
+  menuOrder: (defaults && defaults.menuOrder) || ["hive"]
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

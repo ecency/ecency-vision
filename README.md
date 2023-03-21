@@ -34,8 +34,8 @@ Feel free to test it out and submit improvements and pull requests.
 
 ##### Clone
 
-`$ git clone https://github.com/ecency/ecency-vision`
-
+`$ git clone https://github.com/steemfiles/ecency-vision`
+`$ git checkout proofofbrainbranding`
 `$ cd ecency-vision`
 
 ##### Install dependencies
@@ -54,7 +54,7 @@ Feel free to test it out and submit improvements and pull requests.
 
 * `REDIS_URL` - support for caching amp pages
 
-###### Hivesigner Variables
+##### Hivesigner Variables
 
 When setting up another service like Ecency with Ecency-vision software:
 
@@ -64,7 +64,7 @@ When setting up another service like Ecency with Ecency-vision software:
 1. You may leave `HIVESIGNER_ID` and `HIVESIGNER_SECRET` environment variables unset and optionally set USE_PRIVATE=1 and leave "base" in the constants/defaults.json set to "https://ecency.com". Your new site will contain more features as it will use Ecency's private API. This is by far the easiest option.
 2. You may change `base` to the URL of your own site, but you will have to set environment variables `HIVESIGNER_ID` and `HIVESIGNER_SECRET`; set USE_PRIVATE=0 as well as configure your the `HIVESIGNER_ID` account at the [Hivesigner website.](https://hivesigner.com/profile). Hivesigner will need a `secret`, in the form of a long lowercase hexadecimal number. The HIVESIGNER_SECRET should be set to this value.
 
-###### Hivesigner Login Process
+##### Hivesigner Login Process
 
 In order to validate a login, and do posting level operations, this software relies on Hivesigner. A user @alice will use login credentials to login to the site via one of several methods, but the site will communicate with Hivesigner and ask it to do all posting operations on behalf of @alice. Hivesigner can and will do this because both @alice will have given posting authority to the `HIVESIGNER_ID` user and the `HIVESIGNER_ID` user will have given its posting authority to Hivesigner.
 
@@ -74,17 +74,29 @@ If you are setting up your own website other than Ecency.com, you can still leav
 The 'appURL' member should be the URL of the front end you are running. If you are running this testing, it should be "http://localhost" so hiveSigner redirects you back to localhost. The default is 'https://ecency.com'.
 The testnet member should be set to false, unless you want to use a Hive testnet
 
-##### Start website in dev
+#### defaults.json file
+
+The defaults.json set site settings. Some of these are defaults that the user can change. Some are default and
+cannot be changed. The key difference here is that data here is exported to the front end and thus readable by the
+front end and at some point, even the user. Things that should not be secret from the user can go here, even if they
+may not be able to change some things.
+
+###### menuOrder
+
+The menuOrder item determines which order the wallet menu order items should occur. Possible values are,
+"pob", "points", "hive", "engine" and "spk". Nothing else is supported.
+
+## Start website in dev
 
 `$ yarn start`
 
-##### Start desktop in dev
+## Start desktop in dev
 
 `$ cd src/desktop`
 `$ yarn`
 `$ yarn dev`
 
-##### Pushing new code / Pull requests
+## Pushing new code / Pull requests
 
 - Make sure to branch off your changes from `development` branch.
 - Make sure to run `yarn test` and add tests to your changes.

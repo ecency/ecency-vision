@@ -76,6 +76,7 @@ export interface Global {
   showRewardSplit: boolean;
   lowRewardThreshold: number;
   showFrontEnd: boolean;
+  menuOrder: Array<string>;
 }
 
 export enum ActionTypes {

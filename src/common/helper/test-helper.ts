@@ -157,7 +157,8 @@ export const globalInstance: Global = {
   showSelfVote: true,
   showRewardSplit: true,
   lowRewardThreshold: 100,
-  showFrontEnd: true
+  showFrontEnd: true,
+  menuOrder: ["points", "hive", "engine", "spk"]
 };
 
 export const TrendingTagsInstance: TrendingTags = {
