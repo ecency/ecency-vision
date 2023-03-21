@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
-import { Form, Modal, Pagination } from "react-bootstrap";
+import { Form, Modal } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -36,6 +36,7 @@ import formattedNumber from "../../util/formatted-number";
 
 import _c from "../../util/fix-class-names";
 import MyPagination from "../pagination";
+import "./_index.scss";
 
 interface Props {
   history: History;
@@ -166,6 +167,7 @@ export class List extends BaseComponent<Props, State> {
                 activeUser && activeUser.username === account.name
                   ? KeyOrHotDialog({
                       ...this.props,
+                      popOver: true,
                       activeUser: activeUser,
                       children: (
                         <a href="#" className="undelegate">
@@ -202,15 +204,13 @@ export class List extends BaseComponent<Props, State> {
                     {ProfileLink({
                       ...this.props,
                       username,
-                      children: (
-                        <>{UserAvatar({ ...this.props, username: x.delegatee, size: "small" })}</>
-                      )
+                      children: <UserAvatar username={x.delegatee} size="small" />
                     })}
                     <div className="item-info">
                       {ProfileLink({
                         ...this.props,
                         username,
-                        children: <a className="item-name notransalte">{username}</a>
+                        children: <span className="item-name notranslate">{username}</span>
                       })}
                     </div>
                   </div>

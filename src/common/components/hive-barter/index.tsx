@@ -22,6 +22,7 @@ interface Props {
   onTransactionSuccess: () => void;
   prefilledAmount?: any;
   prefilledTotal?: any;
+  isInline?: boolean;
 }
 
 export const HiveBarter = ({
@@ -36,7 +37,8 @@ export const HiveBarter = ({
   global,
   onTransactionSuccess,
   prefilledAmount,
-  prefilledTotal
+  prefilledTotal,
+  isInline
 }: Props) => {
   const [price, setPrice] = useState(peakValue.toFixed(6));
   const [amount, setAmount] = useState<any>(0.0);
@@ -110,9 +112,17 @@ export const HiveBarter = ({
   return loading ? (
     <Skeleton className="loading-hive" />
   ) : (
-    <div className="border p-3 rounded">
-      <div className="d-flex justify-content-between align-items-center">
-        <h3 className="mb-0">{type === 1 ? _t("market.buy") : _t("market.sell")} HIVE</h3>
+    <div className={"p-2 " + (isInline ? "flex-1" : "border p-3 rounded")}>
+      <div
+        className={"d-flex justify-content-between align-items-center " + (isInline ? "mb-3" : "")}
+      >
+        {isInline ? (
+          <span className="font-weight-bold">
+            {type === 1 ? _t("market.buy") : _t("market.sell")} HIVE
+          </span>
+        ) : (
+          <h3 className="mb-0">{type === 1 ? _t("market.buy") : _t("market.sell")} HIVE</h3>
+        )}
         <div>
           <small className="d-flex cursor-pointer" onClick={() => prefillFromBalance()}>
             <div className="mr-1 text-primary">{_t("market.available")}:</div>
@@ -128,7 +138,7 @@ export const HiveBarter = ({
           </small>
         </div>
       </div>
-      <hr />
+      {isInline ? <></> : <hr />}
       <Form
         onSubmit={(e) => {
           e.preventDefault();
@@ -136,7 +146,7 @@ export const HiveBarter = ({
         }}
       >
         <Form.Group>
-          <Form.Label>{_t("market.price")}</Form.Label>
+          <Form.Label className={isInline ? "font-small" : ""}>{_t("market.price")}</Form.Label>
           <InputGroup>
             <Form.Control
               value={price}
@@ -148,7 +158,7 @@ export const HiveBarter = ({
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>{_t("market.amount")}</Form.Label>
+          <Form.Label className={isInline ? "font-small" : ""}>{_t("market.amount")}</Form.Label>
           <InputGroup>
             <Form.Control
               placeholder="0.0"
@@ -160,14 +170,14 @@ export const HiveBarter = ({
         </Form.Group>
 
         <Form.Group className="mb-4">
-          <Form.Label>{_t("market.total")}</Form.Label>
+          <Form.Label className={isInline ? "font-small" : ""}>{_t("market.total")}</Form.Label>
           <InputGroup>
             <Form.Control
               placeholder="0.0"
               value={isNaN(total) ? 0 : total}
               onChange={(e) => setTotalValue(e.target.value)}
             />
-            <InputGroup.Text className="rounded-left">HBD($)</InputGroup.Text>
+            <InputGroup.Text className="rounded-left">HBD</InputGroup.Text>
           </InputGroup>
         </Form.Group>
         <Button block={true} type="submit" disabled={disabled}>

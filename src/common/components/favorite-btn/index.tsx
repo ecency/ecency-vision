@@ -16,7 +16,8 @@ import { checkFavorite, addFavorite, deleteFavorite } from "../../api/private-ap
 
 import { _t } from "../../i18n";
 
-import { starSvg, starOutlineSvg } from "../../img/svg";
+import { personFavoriteSvg, personFavoriteOutlineSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface Props {
   targetUsername: string;
@@ -112,7 +113,7 @@ export class FavoriteBtn extends BaseComponent<Props, State> {
           <span className="favorite-btn">
             <Tooltip content={_t("favorite-btn.add")}>
               <Button disabled={inProgress} onClick={this.delete}>
-                {starOutlineSvg}
+                {personFavoriteOutlineSvg}
               </Button>
             </Tooltip>
           </span>
@@ -125,7 +126,7 @@ export class FavoriteBtn extends BaseComponent<Props, State> {
         <span className="favorite-btn">
           <Tooltip content={_t("favorite-btn.delete")}>
             <Button disabled={inProgress} onClick={this.delete}>
-              {starSvg}
+              {personFavoriteSvg}
             </Button>
           </Tooltip>
         </span>
@@ -136,7 +137,7 @@ export class FavoriteBtn extends BaseComponent<Props, State> {
       <span className="favorite-btn">
         <Tooltip content={_t("favorite-btn.add")}>
           <Button disabled={inProgress} onClick={this.add}>
-            {starOutlineSvg}
+            {personFavoriteOutlineSvg}
           </Button>
         </Tooltip>
       </span>

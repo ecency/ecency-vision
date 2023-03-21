@@ -11,7 +11,7 @@ import FollowControls from "../follow-controls";
 import ProfileLink from "../profile-link";
 import { Skeleton } from "../skeleton";
 import UserAvatar from "../user-avatar";
-
+import "./_index.scss";
 interface MatchParams {
   category: string;
   permlink: string;
@@ -74,11 +74,7 @@ const AuthorInfoCard = (props: Props) => {
             username: props?.entry?.author,
             children: (
               <div className="author-avatar">
-                {UserAvatar({
-                  ...props,
-                  username: props?.entry?.author,
-                  size: "medium"
-                })}
+                <UserAvatar username={props?.entry?.author} size="medium" />
               </div>
             )
           })}
@@ -115,9 +111,11 @@ const AuthorInfoCard = (props: Props) => {
           <FollowControls {...props} targetUsername={props?.entry.author} where={"author-card"} />
         )}
 
-        {props?.global?.usePrivate && props?.entry?.author && (
-          <FavoriteBtn {...props} targetUsername={props?.entry.author} />
-        )}
+        {props?.global?.usePrivate &&
+          props?.entry?.author &&
+          props?.entry?.author !== props.activeUser?.username && (
+            <FavoriteBtn {...props} targetUsername={props?.entry.author} />
+          )}
 
         {props?.global?.usePrivate &&
           BookmarkBtn({

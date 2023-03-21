@@ -20,18 +20,21 @@ exports[`(1) Default render 1`] = `
           id="good-karma-awesome-hive"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
             <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+              className="author-avatar d-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -190,19 +193,22 @@ exports[`(1) Default render 1`] = `
           onClick={[Function]}
           title="10 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           10
         </span>
       </div>
@@ -273,18 +279,21 @@ exports[`(2) Grid view 1`] = `
           id="good-karma-awesome-hive"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
             <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+              className="author-avatar d-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -442,19 +451,22 @@ exports[`(2) Grid view 1`] = `
           onClick={[Function]}
           title="10 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           10
         </span>
       </div>
@@ -550,18 +562,21 @@ exports[`(3) Nsfw 1`] = `
           id="good-karma-awesome-hive"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
             <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+              className="author-avatar d-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -724,19 +739,22 @@ exports[`(3) Nsfw 1`] = `
           onClick={[Function]}
           title="10 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           10
         </span>
       </div>
@@ -832,18 +850,21 @@ exports[`(4) Nsfw with active user 1`] = `
           id="good-karma-awesome-hive"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
             <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+              className="author-avatar d-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -1005,19 +1026,22 @@ exports[`(4) Nsfw with active user 1`] = `
           onClick={[Function]}
           title="10 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           10
         </span>
       </div>
@@ -1113,18 +1137,21 @@ exports[`(5) Nsfw but allowed 1`] = `
           id="good-karma-awesome-hive"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
             <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+              className="author-avatar d-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -1283,19 +1310,22 @@ exports[`(5) Nsfw but allowed 1`] = `
           onClick={[Function]}
           title="10 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           10
         </span>
       </div>
@@ -1380,11 +1410,14 @@ exports[`(6) Cross post. Bottom menu 1`] = `
     className="cross-item"
   >
     <a
-      className="cross-item-author notranslate"
       href="/@regenerette"
       onClick={[Function]}
     >
-      @regenerette
+      <span
+        className="cross-item-author notranslate"
+      >
+        @regenerette
+      </span>
     </a>
      
     cross-posted
@@ -1423,18 +1456,21 @@ exports[`(6) Cross post. Bottom menu 1`] = `
           id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
         >
           <a
-            className="author-avatar d-sm-block"
             href="/@regenerette"
             onClick={[Function]}
           >
             <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/regenerette/avatar/small)",
+              className="author-avatar d-block"
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/regenerette/avatar/small)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
           <div
             className="author btn notranslate d-flex d-sm-none align-items-center"
@@ -1593,19 +1629,22 @@ exports[`(6) Cross post. Bottom menu 1`] = `
           onClick={[Function]}
           title="59 Votes"
         >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            className="heart-icon"
           >
-            <path
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              fillRule="evenodd"
-            />
-          </svg>
-           
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
           59
         </span>
       </div>

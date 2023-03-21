@@ -52,7 +52,7 @@ import {
   rocketLaunchSvg,
   shuffleVariantSvg
 } from "../../img/svg";
-import { SearchResult } from "../../api/search-api";
+import "./_index.scss";
 
 interface Props {
   history: History;

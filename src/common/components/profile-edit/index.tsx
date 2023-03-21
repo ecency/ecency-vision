@@ -13,6 +13,7 @@ import { _t } from "../../i18n";
 
 import { updateProfile } from "../../api/operations";
 import { getAccount } from "../../api/hive";
+import "./index.scss";
 
 interface Props {
   activeUser: ActiveUser;

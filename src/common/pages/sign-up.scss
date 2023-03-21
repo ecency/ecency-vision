@@ -1,0 +1,213 @@
+@import "../../style/vars_mixins";
+
+.sign-up-page {
+  display: block;
+
+  .sign-up {
+    max-width: 1400px;
+    margin: auto;
+
+    @media (min-width: $xl-break) {
+      display: flex;
+      margin-top: 35px;
+    }
+
+    .left-image {
+      display: none;
+
+      @media (max-width: $xl-break) {
+        &.register-type, &.buy-account {
+          display: block;
+          width: 100%;
+          max-width: 500px;
+          margin: 0 auto;
+
+          img {
+            width: 100%
+          }
+        }
+      }
+
+      @media (min-width: $xl-break) {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        img {
+          width: 100%
+        }
+      }
+    }
+
+    .the-form {
+      @media (min-width: $xl-break) {
+        height: calc(100vh - 6rem);
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .form-title {
+        font-size: 28px;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 10px;
+
+        @media (min-width: $xl-break) {
+          font-size: 32px;
+        }
+      }
+
+      .form-sub-title {
+        opacity: 0.7;
+        text-align: center;
+      }
+
+      .form-icons {
+        text-align: center;
+        margin: 22px 0 12px 0;
+
+        @media (min-width: $xl-break) {
+          margin: 56px 0;
+        }
+
+        img, svg {
+          height: 44px;
+        }
+
+        img {
+          margin-right: 60px;
+        }
+
+        svg {
+          color: #D2323E;
+        }
+      }
+
+      .form-image {
+        margin-bottom: 6px;
+        text-align: center;
+
+        @media (min-width: $xl-break) {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          max-width: 400px;
+        }
+      }
+
+      .form-done {
+        margin: 20px auto;
+        text-align: center;
+        background: lighten($dark-sky-blue, 36);
+        border-radius: 25px;
+        padding: 12px;
+        max-width: 420px;
+
+        .done-icon {
+          width: 40px;
+          height: 40px;
+          margin: 0 auto 20px auto;
+          background: $dark-sky-blue;
+          border-radius: 50%;
+          color: $white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            height: 24px;
+          }
+        }
+
+        .done-text {
+          color: $dark-sky-blue;
+        }
+      }
+
+      .form-content {
+        max-width: 460px;
+        margin: auto;
+
+        form {
+          margin-bottom: 26px;
+        }
+
+        .form-do-login, .form-bottom-description, .form-faq {
+          opacity: 0.7;
+          text-align: center;
+          margin-bottom: 22px;
+        }
+
+        .form-bottom-description {
+          margin-bottom: 0px;
+          margin-top: 16px;
+          line-height: 22px;
+        }
+      }
+    }
+  }
+
+  .card {
+    line-height: 1.5;
+
+    ul {
+      margin-bottom: 0;
+    }
+  }
+
+  .app-btn {
+    @include themify(day) {
+      color: $white;
+    }
+  
+    @include themify(night) {
+      background: lighten($dark-sky-blue, 6);
+      color: $dark-two;
+    }
+    
+    border-radius: 8px;
+    display: grid;
+    grid-template-areas:
+            "icon text"
+            "icon headline";
+    align-items: center;
+    text-align: left;
+
+    &::after {
+      content: none;
+    }
+
+    .text {
+      grid-area: text;
+      font-size: 0.75rem;
+    }
+
+    .icon {
+      grid-area: icon;
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+
+      path {
+        fill: $white;
+      }
+    }
+
+    .headline {
+      grid-area: headline;
+    }
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    @include button-variant($dark-two, $dark-two);
+  }
+}

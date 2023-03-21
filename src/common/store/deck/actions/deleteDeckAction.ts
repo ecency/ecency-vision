@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import { deleteAct } from "../acts";
-import { set } from "../../../util/local-storage";
+import * as ls from "../../../util/local-storage";
 import { serializeDecks } from "../helpers";
 import { DeckState } from "../types";
 
@@ -13,5 +13,5 @@ export const deleteDeck =
     if (!username) {
       username = "anonymous";
     }
-    set(`user-${username}-decks`, serializeDecks(items));
+    ls.set(`user-${username}-decks`, serializeDecks(items));
   };

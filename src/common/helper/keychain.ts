@@ -9,12 +9,12 @@ interface TxResponse {
   result: string;
 }
 
-type AuthorityTypes = "Posting" | "Active" | "Memo";
+type AuthorityTypes = "Owner" | "Active" | "Posting" | "Memo";
 
 type Keys = { active: any; posting: any; memo: any };
 
-export const handshake = (): Promise<TxResponse> =>
-  new Promise<TxResponse>((resolve) => {
+export const handshake = (): Promise<void> =>
+  new Promise<void>((resolve) => {
     window.hive_keychain?.requestHandshake(() => {
       resolve();
     });

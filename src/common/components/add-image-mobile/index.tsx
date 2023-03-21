@@ -15,10 +15,8 @@ import { getImages, UserImage } from "../../api/private-api";
 import { error } from "../feedback";
 
 import { _t } from "../../i18n";
-
-import _c from "../../util/fix-class-names";
-
 import defaults from "../../constants/defaults.json";
+import "./_index.scss";
 
 setProxyBase(defaults.imageServer);
 

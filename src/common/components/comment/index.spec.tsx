@@ -28,6 +28,7 @@ const defProps = {
   cancellable: false,
   autoFocus: true,
   inputRef: null,
+  location: {} as any,
   setActiveUser: () => {},
   updateActiveUser: () => {},
   deleteUser: () => {},

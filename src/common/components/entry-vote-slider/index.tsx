@@ -1,13 +1,5 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  ReactElement,
-  useCallback,
-  MouseEventHandler,
-  TouchEventHandler
-} from "react";
-import { setWithdrawVestingRouteHot } from "../../api/operations";
+import React, { useState, useRef, useEffect, ReactElement, useCallback } from "react";
+import "./_index.scss";
 
 interface Props {
   value: number;
@@ -24,7 +16,6 @@ const VotingSlider = (props: Props) => {
   const [sliderVal, setSliderVal] = useState(Math.abs(props.value));
   const tenOptions = [10, 20, 30, 40, 50, 60, 70, 80, 90];
   const fiveOptions = [25, 50, 75];
-
   const [sliderOptions, setSliderOptions] = useState(
     window.innerWidth > 1600 ? tenOptions : fiveOptions
   );

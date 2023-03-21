@@ -1,9 +1,14 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .emoji-picker.gif {
   // width: 280px;
   width: 430px !important;
   position: absolute;
   right: 0;
-  z-index: 100;
+  z-index: 12;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   padding: 14px 6px;

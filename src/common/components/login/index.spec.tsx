@@ -7,6 +7,7 @@ import { createBrowserHistory } from "history";
 import { Login } from "./index";
 
 import { globalInstance, activeUserMaker } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 const defProps = {
   history: createBrowserHistory(),
@@ -44,7 +45,7 @@ it("(2) With users", () => {
 
   const props = { ...defProps, users };
 
-  const component = renderer.create(<Login {...props} />);
+  const component = withStore(<Login {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -70,7 +71,7 @@ it("(3) With users and active user", () => {
 
   const props = { ...defProps, users, activeUser };
 
-  const component = renderer.create(<Login {...props} />);
+  const component = withStore(<Login {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -80,6 +81,6 @@ it("(4) Show keychain option", () => {
     global: { ...globalInstance, hasKeyChain: true }
   };
 
-  const component = renderer.create(<Login {...props} />);
+  const component = withStore(<Login {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });

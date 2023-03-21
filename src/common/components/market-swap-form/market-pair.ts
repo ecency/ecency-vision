@@ -1,6 +1,6 @@
 export enum MarketAsset {
   HIVE = "HIVE",
-  HBD = "HBD($)"
+  HBD = "HBD"
 }
 
 export const MarketPairs = {

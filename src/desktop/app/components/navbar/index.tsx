@@ -50,6 +50,7 @@ import {
   translateSvg
 } from "../../../../common/img/svg";
 import isElectron from "../../../../common/util/is-electron";
+import "./_index.scss";
 
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
 
@@ -405,30 +406,31 @@ export class NavBar extends Component<Props, State> {
     const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
     const communityPage = match && match.params.name && isCommunity(match.params.name);
     const tagValue = global.tag ? `/${global.tag}` : "";
-    const logoHref = activeUser
-      ? communityPage ||
-        (global.tag.includes("@") &&
-          [
-            "engine",
-            "wallet",
-            "points",
-            "communities",
-            "settings",
-            "permissions",
-            "comments",
-            "replies",
-            "blog",
-            "posts",
-            "feed",
-            "referrals",
-            "followers",
-            "following"
-          ].includes(global.filter))
-        ? "/hot"
-        : global.filter === "feed"
-        ? `${tagValue}/${global.filter}`
-        : `/${global.filter}${tagValue}`
-      : "/";
+    const logoHref =
+      (activeUser
+        ? communityPage ||
+          (global.tag?.includes("@") &&
+            [
+              "engine",
+              "wallet",
+              "points",
+              "communities",
+              "settings",
+              "permissions",
+              "comments",
+              "replies",
+              "blog",
+              "posts",
+              "feed",
+              "referrals",
+              "followers",
+              "following"
+            ].includes(global.filter))
+          ? "/hot"
+          : global.filter === "feed"
+          ? `${tagValue}/${global.filter}`
+          : `/${global.filter}${tagValue}`
+        : "/") ?? "/";
 
     const { floating } = this.state;
 
@@ -485,7 +487,7 @@ export class NavBar extends Component<Props, State> {
               <DropDown {...textMenuConfig} float="right" />
             </div>
 
-            {SwitchLang({ ...this.props })}
+            <SwitchLang {...this.props} />
 
             <ToolTip content={themeText}>
               <div className="switch-theme" onClick={this.changeTheme}>
@@ -519,11 +521,11 @@ export class NavBar extends Component<Props, State> {
               </ToolTip>
             </div>
 
-            {activeUser && <UserNav {...this.props} activeUser={activeUser} />}
+            {activeUser && <UserNav {...this.props} />}
           </div>
 
           {ui.login && <Login {...this.props} />}
-          {global.usePrivate && <NotificationHandler {...this.props} />}
+          {global.usePrivate && <NotificationHandler />}
         </div>
         {global.newVersion && (
           <Updater global={global} dismissNewVersion={this.props.dismissNewVersion} />

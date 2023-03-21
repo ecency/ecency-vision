@@ -1,0 +1,64 @@
+@import "../../style/vars_mixins";
+@import "./witnesses";
+
+.profile-page {
+  flex-direction: column;
+
+  @media (min-width: $md-break) {
+    flex-direction: row;
+  }
+
+  .profile-side {
+    @media (min-width: $md-break) {
+      width: 198px;
+      margin-right: 30px;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: $lg-break) {
+      width: 200px;
+    }
+  }
+
+  .content-side {
+    flex-grow: 1;
+    padding-bottom: 60px;
+
+    .permission-menu {
+      display: flex;
+      justify-content: space-between;
+
+      margin-bottom: 1rem;
+
+      @media (max-width: $md-break) {
+        margin-left: 19px;
+      }
+      @media (max-width: $sm-break) {
+        margin-left: 10px;
+      }
+      .tab {
+        cursor: pointer;
+
+        @media (max-width: $sm-break) {
+          font-size: 14px;
+        }
+      }
+      .current-tab {
+        cursor: pointer;
+        font-weight: 600;
+        color: $dark-sky-blue;
+      }
+    }
+
+    @media (min-width: $lg-break) {
+      .entry-list {
+        .entry-list-body.grid-view {
+          align-content: stretch;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+      }
+    }
+  }
+}

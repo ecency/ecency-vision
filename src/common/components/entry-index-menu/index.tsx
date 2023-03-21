@@ -19,6 +19,7 @@ import { apiBase } from "../../api/helper";
 import { Introduction } from "../introduction";
 import { EntryIndexMenuDropdown } from "../entry-index-menu-dropdown";
 import { UI, ToggleType } from "../../store/ui/types";
+import "./_index.scss";
 
 interface Props {
   history: History;

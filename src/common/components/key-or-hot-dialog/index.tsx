@@ -9,10 +9,14 @@ import { ActiveUser } from "../../store/active-user/types";
 
 import KeyOrHot from "../key-or-hot";
 
+import PopoverConfirm from "../popover-confirm";
+import "./index.scss";
+
 interface Props {
   global: Global;
   activeUser: ActiveUser;
   signingKey: string;
+  popOver?: boolean;
   setSigningKey: (key: string) => void;
   children: JSX.Element;
   onKey: (key: PrivateKey) => void;
@@ -26,6 +30,8 @@ interface State {
 }
 
 export class KeyOrHotDialog extends Component<Props, State> {
+  static defaultProps: { popOver: boolean };
+
   state: State = {
     keyDialog: false
   };
@@ -39,19 +45,31 @@ export class KeyOrHotDialog extends Component<Props, State> {
   };
 
   render() {
-    const { children, onKey, onHot, onKc } = this.props;
+    const { children, onKey, onHot, onKc, popOver } = this.props;
     const { keyDialog } = this.state;
 
     const newChildren = React.cloneElement(children, {
       onClick: (e: React.MouseEvent) => {
         e.preventDefault();
-        this.toggleKeyDialog();
+        return !popOver && this.toggleKeyDialog();
       }
     });
 
     return (
       <>
-        {newChildren}
+        {popOver ? (
+          <div className="main">
+            <PopoverConfirm
+              placement="left"
+              trigger="click"
+              onConfirm={() => this.toggleKeyDialog()}
+            >
+              <div onClick={(e) => e.stopPropagation()}>{newChildren}</div>
+            </PopoverConfirm>
+          </div>
+        ) : (
+          newChildren
+        )}
 
         {keyDialog && (
           <Modal
@@ -92,11 +110,16 @@ export class KeyOrHotDialog extends Component<Props, State> {
   }
 }
 
+KeyOrHotDialog.defaultProps = {
+  popOver: false
+};
+
 export default (p: Props) => {
   const props = {
     global: p.global,
     activeUser: p.activeUser,
     signingKey: p.signingKey,
+    popOver: p.popOver,
     setSigningKey: p.setSigningKey,
     children: p.children,
     onKey: p.onKey,

@@ -7,6 +7,7 @@ import { createBrowserHistory, createLocation } from "history";
 import { StaticRouter } from "react-router-dom";
 
 import { SearchCommunities } from "./index";
+import { withStore } from "../../tests/with-store";
 
 let TEST_MODE = 0;
 
@@ -32,7 +33,7 @@ const defProps = {
 it("(1) Default render", async () => {
   const props = { ...defProps };
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
       <SearchCommunities {...props} />
     </StaticRouter>
@@ -45,7 +46,7 @@ it("(2) No matches", async () => {
   TEST_MODE = 1;
   const props = { ...defProps };
 
-  const renderer = TestRenderer.create(
+  const renderer = withStore(
     <StaticRouter location="/" context={{}}>
       <SearchCommunities {...props} />
     </StaticRouter>

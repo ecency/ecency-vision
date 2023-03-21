@@ -14,6 +14,7 @@ import { Global } from "../../store/global/types";
 import { MarketSwapFormHeader } from "./market-swap-form-header";
 import { checkSvg, swapSvg } from "../../img/svg";
 import { MarketSwapFormSuccess } from "./market-swap-form-success";
+import "./index.scss";
 
 export interface Props {
   activeUser: ActiveUser | null;
@@ -75,7 +76,11 @@ export const MarketSwapForm = ({
 
     setAvailableAssets(nextAvailableAssets);
     setToAsset(nextAvailableAssets.filter((asset) => asset !== fromAsset)[0]);
+    getHiveMarketRate(fromAsset).then((rate) => setMarketRate(rate));
     if (activeUser) setBalance(getBalance(fromAsset, activeUser));
+
+    setUsdFromMarketRate(usdToMarketRate);
+    setUsdToMarketRate(usdFromMarketRate);
   }, [fromAsset]);
 
   const swap = () => {
@@ -83,8 +88,6 @@ export const MarketSwapForm = ({
     setFromAsset(toAsset);
     setTo(from);
     setFrom(to);
-    setUsdFromMarketRate(usdToMarketRate);
-    setUsdToMarketRate(usdFromMarketRate);
     setMarketRate(1 / marketRate);
   };
 

@@ -14,7 +14,6 @@ import {
 import { Entry, EntryVote } from "../store/entries/types";
 import { Community } from "../store/communities/types";
 import { Account, FullAccount } from "../store/accounts/types";
-
 import EntryLink, { makePath as makeEntryPath } from "../components/entry-link";
 
 import BaseComponent from "../components/base";
@@ -46,6 +45,7 @@ import EntryTipBtn from "../components/entry-tip-btn";
 import EntryMenu from "../components/entry-menu";
 import AuthorInfoCard from "../components/author-info-card";
 import ReadTime from "../components/entry-read-time";
+import Tooltip from "../components/tooltip";
 
 import * as bridgeApi from "../api/bridge";
 import { comment, formatError } from "../api/operations";
@@ -76,11 +76,17 @@ import dmca from "../constants/dmca.json";
 
 import { getFollowing } from "../api/hive";
 import { history } from "../store";
-import { deleteForeverSvg, pencilOutlineSvg, informationVariantSvg } from "../img/svg";
+import {
+  deleteForeverSvg,
+  pencilOutlineSvg,
+  informationVariantSvg,
+  rawContentSvg
+} from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
+import "./entry.scss";
 
 setProxyBase(defaults.imageServer);
 
@@ -105,6 +111,7 @@ interface State {
   editHistory: boolean;
   showProfileBox: boolean;
   showWordCount: boolean;
+  isRawContent: boolean;
   entryIsMuted: boolean;
   selection: string;
   isCommented: boolean;
@@ -124,6 +131,7 @@ class EntryPage extends BaseComponent<Props, State> {
     isCommented: false,
     showProfileBox: false,
     showWordCount: false,
+    isRawContent: false,
     entryIsMuted: false,
     isMounted: false,
     selection: "",
@@ -150,9 +158,13 @@ class EntryPage extends BaseComponent<Props, State> {
     const entry = this.getEntry();
 
     const { location, global } = this.props;
-    if (global.usePrivate && location.search === "?history") {
+    const queryParams = new URLSearchParams(location.search);
+    if (global.usePrivate && queryParams.has("history")) {
       this.toggleEditHistory();
+    } else if (global.usePrivate && queryParams.has("raw")) {
+      this.setState({ isRawContent: true });
     }
+
     window.addEventListener("scroll", this.detect);
     window.addEventListener("resize", this.detect);
     let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`);
@@ -283,6 +295,27 @@ class EntryPage extends BaseComponent<Props, State> {
   toggleEdit = () => {
     const { edit } = this.state;
     this.stateSet({ edit: !edit });
+  };
+
+  toggleRawContent = () => {
+    const { isRawContent } = this.state;
+    this.setState({ isRawContent: !isRawContent }, this.handleURL);
+  };
+
+  handleURL = () => {
+    const { isRawContent } = this.state;
+    const { history } = this.props;
+    if (isRawContent) {
+      history.push(`${history.location.pathname}?raw`);
+    } else {
+      const queryParams = new URLSearchParams(location.search);
+      if (queryParams.has("raw")) {
+        queryParams.delete("raw");
+        history.replace({
+          search: queryParams.toString()
+        });
+      }
+    }
   };
 
   deleted = async () => {
@@ -418,6 +451,7 @@ class EntryPage extends BaseComponent<Props, State> {
               pending_payout_value: String(newPayout)
             });
           }
+          return;
         })
         .catch((e) => {
           console.log(e);
@@ -519,14 +553,17 @@ class EntryPage extends BaseComponent<Props, State> {
       showWordCount
     } = this.state;
     const { global, history, match, location } = this.props;
+    const { isRawContent } = this.state;
 
-    let navBar = global.isElectron
-      ? NavBarElectron({
-          ...this.props,
-          reloadFn: this.reload,
-          reloading: loading
-        })
-      : NavBar({ ...this.props });
+    let navBar = global.isElectron ? (
+      NavBarElectron({
+        ...this.props,
+        reloadFn: this.reload,
+        reloading: loading
+      })
+    ) : (
+      <NavBar history={this.props.history} match={this.props.match} />
+    );
 
     if (loading) {
       navBar = (
@@ -644,9 +681,11 @@ class EntryPage extends BaseComponent<Props, State> {
     const url = entryCanonical(entry) || "";
 
     const nsfw = entry.json_metadata.tags && entry.json_metadata.tags.includes("nsfw");
+    const ncount =
+      this.props.notifications.unread > 0 ? `(${this.props.notifications.unread}) ` : "";
 
     const metaProps = {
-      title: `${truncate(entry.title, 67)}`,
+      title: `${ncount}${truncate(entry.title, 67)}`,
       description: `${truncate(postBodySummary(entry.body, 210), 140)} by @${entry.author}`,
       url: entry.url,
       canonical: url,
@@ -682,7 +721,7 @@ class EntryPage extends BaseComponent<Props, State> {
                     username: entry.author,
                     children: (
                       <div className="cross-post-author">
-                        {UserAvatar({ ...this.props, username: entry.author, size: "medium" })}
+                        <UserAvatar username={entry.author} size="medium" />
                         {`@${entry.author}`}
                       </div>
                     )
@@ -772,11 +811,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                   username: originalEntry.author,
                                   children: (
                                     <div className="author-avatar">
-                                      {UserAvatar({
-                                        ...this.props,
-                                        username: originalEntry.author,
-                                        size: "medium"
-                                      })}
+                                      <UserAvatar username={originalEntry.author} size="medium" />
                                     </div>
                                   )
                                 })}
@@ -812,7 +847,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                     <span className="date" title={published.format("LLLL")}>
                                       {published.fromNow()}
                                     </span>
-                                    <span className="separator" />
+                                    <span className="separator circle-separator" />
                                     <div className="entry-tag">
                                       <span className="in-tag">{_t("entry.community-in")}</span>
                                       {Tag({
@@ -962,11 +997,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                 username: entry.author,
                                 children: (
                                   <div className="author-avatar">
-                                    {UserAvatar({
-                                      ...this.props,
-                                      username: entry.author,
-                                      size: "medium"
-                                    })}
+                                    <UserAvatar username={entry.author} size="medium" />
                                   </div>
                                 )
                               })}
@@ -1002,7 +1033,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                   <span className="date" title={published.format("LLLL")}>
                                     {published.fromNow()}
                                   </span>
-                                  <span className="separator" />
+                                  <span className="separator circle-separator" />
                                   <div className="entry-tag">
                                     <span className="in-tag">{_t("entry.community-in")}</span>
                                     {Tag({
@@ -1040,36 +1071,43 @@ class EntryPage extends BaseComponent<Props, State> {
                             </div>
                           </div>
                           <meta itemProp="headline name" content={entry.title} />
-
-                          {!edit ? (
+                          {!this.state.isRawContent ? (
                             <>
-                              <SelectionPopover
-                                postUrl={entry.url}
-                                onQuotesClick={(text: string) => {
-                                  this.setState({ selection: `>${text}\n\n` });
-                                  (this.commentInput! as any).current!.focus();
-                                }}
-                              >
-                                <div
-                                  itemProp="articleBody"
-                                  className="entry-body markdown-view user-selectable"
-                                  dangerouslySetInnerHTML={renderedBody}
-                                />
-                              </SelectionPopover>
+                              {!edit ? (
+                                <>
+                                  <SelectionPopover
+                                    postUrl={entry.url}
+                                    onQuotesClick={(text: string) => {
+                                      this.setState({ selection: `>${text}\n\n` });
+                                      (this.commentInput! as any).current!.focus();
+                                    }}
+                                  >
+                                    <div
+                                      itemProp="articleBody"
+                                      className="entry-body markdown-view user-selectable"
+                                      dangerouslySetInnerHTML={renderedBody}
+                                    />
+                                  </SelectionPopover>
+                                </>
+                              ) : (
+                                Comment({
+                                  ...this.props,
+                                  defText: entry.body,
+                                  submitText: _t("g.update"),
+                                  cancellable: true,
+                                  onSubmit: this.updateReply,
+                                  onCancel: this.toggleEdit,
+                                  inProgress: replying,
+                                  autoFocus: true,
+                                  inputRef: this.commentInput,
+                                  entry: entry
+                                })
+                              )}
                             </>
                           ) : (
-                            Comment({
-                              ...this.props,
-                              defText: entry.body,
-                              submitText: _t("g.update"),
-                              cancellable: true,
-                              onSubmit: this.updateReply,
-                              onCancel: this.toggleEdit,
-                              inProgress: replying,
-                              autoFocus: true,
-                              inputRef: this.commentInput,
-                              entry: entry
-                            })
+                            <pre className="entry-body markdown-view user-selectable">
+                              {entry.body}
+                            </pre>
                           )}
 
                           {/* <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
@@ -1135,7 +1173,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         <div className="date" title={published.format("LLLL")}>
                           {published.fromNow()}
                         </div>
-                        <span className="separator" />
+                        <span className="separator circle-separator" />
                         {ProfileLink({
                           ...this.props,
                           username: entry.author,
@@ -1153,7 +1191,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         })}
                         {app && (
                           <>
-                            <span className="separator" />
+                            <span className="separator circle-separator" />
                             <span
                               itemProp="publisher"
                               itemScope={true}
@@ -1197,6 +1235,11 @@ class EntryPage extends BaseComponent<Props, State> {
                           </>
                         )}
                         <span className="flex-spacer" />
+                        <Tooltip content={_t("entry.raw")}>
+                          <span className="raw-content-icon" onClick={this.toggleRawContent}>
+                            {rawContentSvg}
+                          </span>
+                        </Tooltip>
                         {BookmarkBtn({
                           ...this.props,
                           entry
@@ -1255,7 +1298,8 @@ class EntryPage extends BaseComponent<Props, State> {
                       ...this.props,
                       parent: entry,
                       community,
-                      hideControls: false
+                      hideControls: false,
+                      isRawContent: this.state.isRawContent
                     })}
                   </>
                 );

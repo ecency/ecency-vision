@@ -1,10 +1,51 @@
-.proposal-votes-dialog {
-  .modal-body {
-    height: 500px;
-    overflow: auto;
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
 
+.proposal-votes-dialog {
+  .modal-content {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .modal-body {
+    padding: 0 0 10px 0;
+    
     .voters-list {
       @include user-grid-list(1, 1, 2);
+      margin-bottom: 20px;
+      height: 440px;
+      overflow: auto;
+
     }
+  }
+
+  .list-tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+
+    @media (min-width: $lg-break) {
+      flex-direction: row;
+    }
+
+    .sorter {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      @media (min-width: $lg-break) {
+        margin-bottom: 0;
+      }
+
+      .label {
+        margin-right: 4px;
+      }
+    }
+  }
+
+  .user-info {
+    margin: 1rem 0 0 1rem;
   }
 }

@@ -116,6 +116,7 @@ Array [
     ],
     "proxy": "",
     "received_vesting_shares": "0.000000 VESTS",
+    "recovery_account": "",
     "reputation": "1021265023022",
     "reward_hbd_balance": "0.000 HBD",
     "reward_hive_balance": "0.000 HIVE",

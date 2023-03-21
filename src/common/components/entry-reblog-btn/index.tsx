@@ -6,20 +6,16 @@ import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Reblogs } from "../../store/reblogs/types";
 import { UI, ToggleType } from "../../store/ui/types";
-
 import BaseComponent from "../base";
 import Tooltip from "../tooltip";
 import LoginRequired from "../login-required";
 import PopoverConfirm from "../popover-confirm";
 import { error, success, info } from "../feedback";
-
 import { reblog, formatError } from "../../api/operations";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
-
 import { repeatSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface Props {
   entry: Entry;

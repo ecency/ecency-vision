@@ -39,6 +39,9 @@ import {
   setNotificationsSettingsItem
 } from "../../store/notifications";
 import { PurchaseQrDialog } from "../purchase-qr";
+import { useMappedStore } from "../../store/use-mapped-store";
+import { useLocation } from "react-router";
+import "./_index.scss";
 
 class WalletBadge extends Component<{
   activeUser: ActiveUser;
@@ -127,7 +130,7 @@ interface State {
   showPurchaseDialog: boolean;
 }
 
-export default class UserNav extends Component<Props, State> {
+class UserNav extends Component<Props, State> {
   state: State = {
     gallery: false,
     drafts: false,
@@ -248,7 +251,7 @@ export default class UserNav extends Component<Props, State> {
 
     const dropDownConfig = {
       history: this.props.history,
-      label: UserAvatar({ ...this.props, username: activeUser.username, size: "medium" }),
+      label: <UserAvatar username={activeUser.username} size="medium" />,
       items: dropDownItems,
       preElem: preDropDownElem
     };
@@ -297,3 +300,54 @@ export default class UserNav extends Component<Props, State> {
     );
   }
 }
+
+export default ({ history }: Pick<Props, "history">) => {
+  const {
+    global,
+    dynamicProps,
+    users,
+    ui,
+    activeUser,
+    notifications,
+    setActiveUser,
+    updateActiveUser,
+    deleteUser,
+    addAccount,
+    fetchNotifications,
+    fetchUnreadNotificationCount,
+    setNotificationsFilter,
+    markNotifications,
+    toggleUIProp,
+    muteNotifications,
+    unMuteNotifications,
+    updateNotificationsSettings,
+    setNotificationsSettingsItem
+  } = useMappedStore();
+  const location = useLocation();
+
+  return (
+    <UserNav
+      global={global}
+      dynamicProps={dynamicProps}
+      history={history}
+      location={location}
+      users={users}
+      ui={ui}
+      activeUser={activeUser!!}
+      notifications={notifications}
+      setActiveUser={setActiveUser}
+      updateActiveUser={updateActiveUser}
+      deleteUser={deleteUser}
+      addAccount={addAccount}
+      fetchNotifications={fetchNotifications}
+      fetchUnreadNotificationCount={fetchUnreadNotificationCount}
+      setNotificationsFilter={setNotificationsFilter}
+      markNotifications={markNotifications}
+      toggleUIProp={toggleUIProp}
+      muteNotifications={muteNotifications}
+      unMuteNotifications={unMuteNotifications}
+      updateNotificationsSettings={updateNotificationsSettings}
+      setNotificationsSettingsItem={setNotificationsSettingsItem}
+    />
+  );
+};

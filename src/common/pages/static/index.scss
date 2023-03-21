@@ -1,0 +1,471 @@
+@import "src/style/bootstrap_vars";
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/mixins";
+
+.static-page {
+  &.about-page {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+
+    .about-cloud {
+      .about-inner {
+        background: #f4f7f9;
+        padding: 20px 0;
+        position: relative;
+
+        @media (min-width: $md-break) {
+          padding: 80px 0;
+        }
+
+        .about-content {
+          color: #000000;
+          margin: auto;
+          max-width: 620px;
+          padding: 0 20px;
+          position: relative;
+          text-align: center;
+
+          .about-title {
+            color: #000000;
+            font-weight: 400;
+
+            span {
+              color: $dusk-blue;
+              font-weight: 600;
+            }
+
+            @media (min-width: $md-break) {
+              font-size: 40px;
+            }
+          }
+
+          .arrow-1 {
+            background: url(../../img/arrow1-about.png) no-repeat;
+            background-size: 100%;
+            height: 27px; // 45px;
+            position: absolute;
+            right: 2%;
+            top: -6px;
+            width: 27px; // 45px;
+
+            @media (min-width: $xsm-break) {
+              right: 12%;
+            }
+
+            @media (min-width: $sm-break) {
+              right: 22%;
+            }
+          }
+
+          .arrow-2 {
+            background: url(../../img/arrow2-about.png) no-repeat;
+            background-size: 100%;
+            height: 27px; // 45px;
+            left: -10%;
+            position: absolute;
+            top: 22%;
+            width: 27px; // 45px;
+
+            @media (min-width: $xsm-break) {
+              top: 18%;
+              left: 0;
+            }
+
+            @media (min-width: $sm-break) {
+              top: 28%;
+              left: -2%;
+            }
+          }
+        }
+
+        .sub-cloud {
+          height: 40px;
+          margin-top: 20px;
+          position: relative;
+
+          @media (min-width: $sm-break) {
+            margin-top: 40px;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: -50px;
+          }
+
+          .cloud-1 {
+            animation: shake2 26s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+            background: url(../../img/cloud1-about.png) no-repeat;
+            background-size: 100%;
+            height: 42px;
+            left: calc(50% - 62px);
+            position: absolute;
+            top: 2px;
+            width: 57px;
+
+            @media (min-width: $sm-break) {
+              width: 77px;
+              height: 57px;
+              left: calc(50% - 82px);
+            }
+          }
+
+          .cloud-2 {
+            animation: shake3 26s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+            background: url(../../img/cloud2-about.png) no-repeat;
+            background-size: 100%;
+            height: 30px;
+            position: absolute;
+            right: calc(50% - 54px);
+            top: 0;
+            width: 44px;
+
+            @media (min-width: $sm-break) {
+              width: 64px;
+              height: 44px;
+              right: calc(50% - 76px);
+            }
+          }
+
+          .arrow-1 {
+            background: url(../../img/arrow3-about.png) no-repeat;
+            background-size: 100%;
+            height: 30px;
+            margin: auto;
+            width: 30px;
+
+            @media (min-width: $sm-break) {
+              width: 40px;
+              height: 40px;
+            }
+          }
+        }
+      }
+
+      .up-cloud {
+        background: url(../../img/back-clouds-up.png) center repeat-x;
+      }
+
+      .down-cloud {
+        background: url(../../img/back-clouds-down.png) center repeat-x;
+      }
+
+      .up-cloud,
+      .down-cloud {
+        background-size: 632px 90px;
+        height: 90px;
+
+        @media (min-width: $md-break) {
+          height: 165px;
+          background-size: 100% 100%;
+        }
+      }
+    }
+
+    .downloads {
+      margin: 20px auto 100px auto;
+      max-width: 600px;
+
+      .downloads-title {
+        color: $dark-sky-blue;
+        font-size: 42px;
+        font-weight: 400;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+
+      .downloads-text {
+        color: $steel-grey;
+        font-weight: 300;
+        margin-bottom: 22px;
+        text-align: center;
+      }
+
+      .download-buttons {
+        display: flex;
+        justify-content: center;
+        padding: 0 10px;
+
+        @media (min-width: $md-break) {
+          padding: 0;
+        }
+
+        .download-button {
+          border-radius: 32px;
+          color: #fff;
+          display: block;
+          line-height: 100%;
+          padding: 20px 0;
+          text-align: center;
+          width: 120px;
+
+          @media (min-width: $md-break) {
+            width: 140px;
+          }
+
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+
+          &.btn-desktop {
+            background: $dark-sky-blue;
+          }
+
+          &.btn-ios {
+            background: #a7adaf;
+          }
+
+          &.btn-android {
+            background: #adc548;
+          }
+        }
+      }
+    }
+
+    .faq {
+      margin: 90px auto 40px auto;
+
+      .faq-title {
+        color: $dark-sky-blue;
+        font-size: 42px;
+        font-weight: 400;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+
+      .faq-links {
+        text-align: center;
+
+        .faq-link {
+          color: $charcoal-grey;
+          font-size: 20px;
+        }
+      }
+    }
+
+    .contacts {
+      margin: 90px auto 40px auto;
+
+      @media (min-width: $md-break) {
+        margin-bottom: 100px;
+      }
+
+      .contacts-title {
+        color: $dark-sky-blue;
+        font-size: 42px;
+        font-weight: 400;
+        margin-bottom: 26px;
+        text-align: center;
+
+        @media (min-width: $md-break) {
+          margin-bottom: 36px;
+        }
+      }
+
+      .contacts-links {
+        @media (min-width: $md-break) {
+          display: flex;
+          justify-content: center;
+        }
+
+        .contacts-link {
+          align-items: center;
+          color: $steel-grey !important;
+          display: flex;
+          font-size: 20px;
+          justify-content: center;
+          margin-bottom: 16px;
+
+          @media (min-width: $md-break) {
+            display: inline-flex;
+            margin-bottom: 16px;
+            font-size: 15px;
+          }
+
+          @media (min-width: $lg-break) {
+            font-size: 16px;
+          }
+
+          svg {
+            height: 12px;
+            margin-right: 4px;
+            color: $steel-grey;
+          }
+
+          &:not(:last-child) {
+            margin-right: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  &.guest-post-page {
+    justify-content: center;
+  }
+
+  &.tos-page {
+    h5, h6 {
+      font-weight: normal;
+    }
+  }
+
+  &.faq-page {
+    .table-contents {
+      margin-top: 20px;
+      margin-bottom: 40px;
+
+      li {
+        line-height: 1.7rem;
+        margin-bottom: 1rem;
+     
+        a {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .faq-list {
+      .faq-item {
+        line-height: 1.5;
+        margin-bottom: 60px;
+
+        .anchor {
+          display: block;
+          height: 70px;
+          margin-top: -70px;
+          visibility: hidden;
+        }
+
+        .faq-item-body {
+          img {
+            max-width: 100%;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+  }
+
+  .static-content {
+    margin: auto;
+    max-width: 800px;
+    width: 100%;
+    padding: 10px;
+
+  
+    .page-title {
+      color: $dark-sky-blue !important;
+    }
+
+    .static-last-updated {
+      margin-bottom: 2.3rem;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 4px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 4rem;
+      @media(max-width: $md-break) {
+        font-size: 2.5rem;
+      }
+    }
+
+
+    h2 {
+      font-size: 28px;
+      margin: 2.3rem 0 1.2rem 0;
+    }
+
+    h3 {
+      font-size: 24px;
+      font-weight: 400;
+      margin-top: 1rem;
+    }
+
+    p {
+      line-height: 1.7rem;
+      font-size: 1.2rem;
+      @media(max-width: $md-break) {
+        line-height: 2.1rem;
+      }
+    }
+  }
+  &.contribute-page {
+    li {
+      line-height: 1.7rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &.contributors-page {
+    @media (min-width: $lg-break) {
+      flex-direction: row;
+      height: calc(100% - 104px) !important;
+    }
+
+    .contributors {
+      flex-grow: 1;
+      margin-bottom: 40px;
+      .list-description {
+        line-height: 1.7;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.search-container {
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: rgba(0,0,0,70%);
+}
+
+.faq-title {
+  @media (max-width: $sm-break) {
+    font-size: 23px !important;
+    line-height: 19px !important;
+  }
+  @media (max-width: 330px) {
+    font-size: 19px !important;
+  }
+}
+
+.helper-text {
+  @media (max-width: $sm-break) {
+    font-size: 13px !important;
+    line-height: 13px !important;
+    max-height: 100px;
+    overflow-y: auto;
+  }
+  @media (max-width: 330px) {
+    font-size: 11px !important;
+    max-height: 50px;
+  }
+}
+
+.text-not-found {
+  font-size: 16px;
+}
+.category-cards {
+  margin-bottom: 6%;
+  border-radius: 6px;
+  @include themify(day) {
+    border: 1px solid #dee2e6;
+  }
+
+  @include themify(night) {
+    border: 1px solid $dark;
+
+ }
+}

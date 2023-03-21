@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { _t } from "../../i18n";
+import "./_index.scss";
 
 export interface Props {
   title: string;

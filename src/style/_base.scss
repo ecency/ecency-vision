@@ -1,6 +1,3 @@
-@import "variables";
-@import "mixins";
-
 html {
   text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
   -webkit-text-size-adjust: 100%;
@@ -75,7 +72,7 @@ select {
   }
 }
 
-// Adds external link icon to _blanl links
+// Adds external link icon to _blank links
 a[target="_blank"] {
   &:after {
     display: inline-block;
@@ -96,8 +93,7 @@ a[target="_blank"] {
 // main layout
 .app-content {
   padding: 0 10px;
-  margin: 0 auto 30px auto;
-  margin-top: 6rem;;
+  margin: 6rem auto 30px;
   display: flex;
   max-width: 1600px;
 
@@ -320,4 +316,23 @@ a[target="_blank"] {
 
 .text-underline {
   text-decoration: underline;
+}
+
+label.font-small {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.cursor-drag {
+  cursor: grab;
+}
+
+.react-draggable-dragging {
+  .cursor-drag {
+    cursor: grabbing;
+  }
+}
+
+.react-grid-item.react-grid-placeholder {
+  background-color: $primary;
 }

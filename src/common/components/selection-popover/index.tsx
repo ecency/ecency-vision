@@ -6,6 +6,7 @@ import { copyContent, quotes, twitterSvg } from "../../img/svg";
 import { success } from "../feedback";
 import { _t } from "../../i18n";
 import ClickAwayListener from "../clickaway-listener";
+import "./index.scss";
 
 let tooltipStyle = {
   background: "rgb(0 0 0 / 78%)",

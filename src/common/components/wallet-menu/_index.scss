@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .wallet-menu {
   display: flex;
   flex-shrink: 0;

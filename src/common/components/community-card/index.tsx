@@ -37,6 +37,7 @@ import {
   pencilOutlineSvg
 } from "../../img/svg";
 import { renderPostBody } from "@ecency/render-helper";
+import "./_index.scss";
 
 interface EditPicProps {
   activeUser: ActiveUser;
@@ -77,16 +78,10 @@ export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
     const { profile } = account;
 
     const newProfile = {
-      name: profile?.name || "",
-      about: profile?.about || "",
-      cover_image: profile?.cover_image || "",
-      profile_image: url,
-      website: profile?.website || "",
-      location: profile?.location || "",
-      pinned: profile?.pinned || ""
+      profile_image: url
     };
 
-    updateProfile(account, newProfile)
+    updateProfile(account, { ...profile, ...newProfile })
       .then((r) => {
         success(_t("community-card.profile-image-updated"));
         return getAccount(account.name);
@@ -233,7 +228,7 @@ export class CommunityCard extends Component<Props, State> {
               {ProfileLink({
                 ...this.props,
                 username: m[0],
-                children: <a className="username">{`@${m[0]}`}</a>
+                children: <span className="username">{`@${m[0]}`}</span>
               })}
               <span className="role">{m[1]}</span>
               {m[2] !== "" && <span className="extra">{m[2]}</span>}
@@ -258,12 +253,11 @@ export class CommunityCard extends Component<Props, State> {
               }}
             />
           )}
-          {UserAvatar({
-            ...this.props,
-            username: community.name,
-            size: "xLarge",
-            src: account.__loaded && useNewImage ? account.profile?.profile_image : undefined
-          })}
+          <UserAvatar
+            username={community.name}
+            size="xLarge"
+            src={account.__loaded && useNewImage ? account.profile?.profile_image : undefined}
+          />
         </div>
         <div className="community-info">
           <h1>

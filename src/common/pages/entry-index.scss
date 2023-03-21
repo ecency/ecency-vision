@@ -1,0 +1,129 @@
+@import "../../style/vars_mixins";
+
+.entry-index-page {
+  .tags-side {
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: none;
+
+    @media (min-width: $md-break) {
+      width: 170px;
+      margin-right: 20px;
+      display: block;
+    }
+
+    @media (min-width: $lg-break) {
+
+    }
+  }
+
+  .entry-page-content {
+    flex-grow: 1;
+    min-height: 100vh;
+
+    &.loading {
+      .page-tools {
+        border-bottom-color: transparent;
+      }
+    }
+
+    @media (min-width: $lg-break) {
+      .entry-list {
+        .entry-list-body.grid-view {
+          align-content: stretch;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+      }
+    }
+  }
+
+  .side-menu {
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: none;
+    margin-left: 20px;
+
+    .menu-nav {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+      flex-direction: column;
+
+      .downloads {
+        background: linear-gradient(270deg, #2d5aa0 4.68%, #357ce6 98.13%);
+        border-radius: 25px;
+        padding: 8px 16px;
+        color: $white;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-right: 10px;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 10px;
+
+        &:hover {
+          background: linear-gradient(120deg, #2d5aa0 4.68%, #357ce6 98.13%);
+          color: $white;
+        }
+
+        .label {
+          margin-right: 6px;
+        }
+
+        .icons {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          .img-apple {
+            margin-right: 11px;
+
+            svg {
+              height: 14px;
+              margin-top: -2px;
+            }
+          }
+
+          .img-google {
+            margin-right: 7px;
+
+            svg {
+              height: 12px;
+            }
+          }
+
+          .img-desktop {
+            svg {
+              height: 12px;
+            }
+          }
+        }
+      }
+
+      .text-menu {
+        font-size: 90%;
+        text-align: center;
+        width: 100%;
+
+        a {
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    @media (min-width: $xl-break) {
+      display: block;
+      width: 300px;
+    }
+  }
+}
+
+.pt-6 {
+  padding-top: 6rem !important;
+}

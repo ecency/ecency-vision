@@ -10,7 +10,8 @@ import {
   fullAccountInstance
 } from "../../helper/test-helper";
 
-import TestRenderer from "react-test-renderer";
+import TestRenderer, { ReactTestInstance } from "react-test-renderer";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("moment", () => () => ({
   fromNow: () => "in 5 days"
@@ -55,8 +56,8 @@ describe("(1) Transfer HIVE", () => {
     asset
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -88,8 +89,8 @@ describe("(2) Transfer HBD", () => {
     asset
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -118,8 +119,8 @@ describe("(3) Transfer POINT", () => {
     asset
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -146,8 +147,8 @@ describe("(4) Transfer to Savings - HBD", () => {
     asset
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -174,8 +175,8 @@ describe("(5) Withdraw Savings - HIVE", () => {
     asset
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -202,8 +203,8 @@ describe("(6) Convert", () => {
     asset
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -230,8 +231,8 @@ describe("(7) Power up", () => {
     asset
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -258,8 +259,8 @@ describe("(8) Delegate", () => {
     asset
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -286,8 +287,8 @@ describe("(9) Power down", () => {
     asset
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
+  const component = withStore(<Transfer {...props} />);
+  const instance: any = (component.root.children[0] as ReactTestInstance).instance;
   instance.setState({ amount: "2.000" });
 
   it("(1) Step 1", () => {
@@ -330,7 +331,7 @@ describe("(10) Powering down", () => {
     }
   };
 
-  const component = TestRenderer.create(<Transfer {...props} />);
+  const component = withStore(<Transfer {...props} />);
 
   it("(1) Step 1", () => {
     expect(component.toJSON()).toMatchSnapshot();

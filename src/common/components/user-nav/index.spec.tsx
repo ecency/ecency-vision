@@ -13,6 +13,7 @@ import {
   fullAccountInstance,
   dynamicPropsIntance1
 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 const defProps = {
   global: globalInstance,
@@ -46,7 +47,7 @@ const defProps = {
 } as any;
 
 it("(1) Default render", () => {
-  const component = renderer.create(
+  const component = withStore(
     <StaticRouter location="/@username" context={{}}>
       <UserNav {...defProps} />
     </StaticRouter>
@@ -75,7 +76,7 @@ it("(2) Has rewards ", () => {
     }
   };
 
-  const component = renderer.create(
+  const component = withStore(
     <StaticRouter location="/@username" context={{}}>
       <UserNav {...props} />
     </StaticRouter>
@@ -92,7 +93,7 @@ it("(3) usePrivate = false", () => {
     }
   };
 
-  const component = renderer.create(
+  const component = withStore(
     <StaticRouter location="/@username" context={{}}>
       <UserNav {...props} />
     </StaticRouter>

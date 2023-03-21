@@ -3,15 +3,17 @@ import { connect } from "react-redux";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../common";
 import { LimitMarketMode } from "./limit-mode";
 import { MARKET_MODE_LS_TOKEN, MarketMode } from "./market-mode";
-import { get, set } from "../../util/local-storage";
+import * as ls from "../../util/local-storage";
 import Feedback from "../../components/feedback";
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import NavBarElectron from "../../../desktop/app/components/navbar";
-import { NavBar } from "../../components/navbar";
+import NavBar from "../../components/navbar";
 import Meta from "../../components/meta";
 import { ModeSelector } from "./mode-selector";
 import { SwapMode } from "./swap-mode";
+import { AdvancedMode } from "./advanced-mode";
+import "./index.scss";
 
 const MarketPage = (props: PageProps) => {
   const [mode, setMode] = useState<MarketMode>(MarketMode.SWAP);
@@ -22,6 +24,7 @@ const MarketPage = (props: PageProps) => {
     const hash = props.location.hash;
     if (hash === "#swap") setMode(MarketMode.SWAP);
     if (hash === "#limit") setMode(MarketMode.LIMIT);
+    if (hash === "#advanced") setMode(MarketMode.ADVANCED);
   }, []);
 
   const navbar = props.global.isElectron ? (
@@ -39,23 +42,35 @@ const MarketPage = (props: PageProps) => {
       <Meta title={title} description={description} />
       <Feedback activeUser={props.activeUser} />
       <div className={"d-flex justify-content-center market-page " + mode}>
-        <div className="w-sm-75 p-3 p-sm-0">
+        <div className={mode !== MarketMode.ADVANCED ? "w-sm-75 p-3 p-sm-0" : "w-100"}>
           <div style={{ marginBottom: "6rem" }}>{navbar}</div>
-          <div className="mb-5 text-center">
-            <h2>{_t("market.title")}</h2>
-            <Tsx k="market.description">
-              <div className="header-description" />
-            </Tsx>
-          </div>
-          <ModeSelector
-            mode={mode}
-            onSelect={(mode) => {
-              setMode(mode);
-              set(MARKET_MODE_LS_TOKEN, mode);
-            }}
-          />
+          {mode !== MarketMode.ADVANCED ? (
+            <div className="mb-5 text-center">
+              <h2>{_t("market.title")}</h2>
+              <Tsx k="market.description">
+                <div className="header-description" />
+              </Tsx>
+            </div>
+          ) : (
+            <></>
+          )}
+          {mode !== MarketMode.ADVANCED ? (
+            <ModeSelector
+              className="mb-5 mx-auto equal-widths"
+              mode={mode}
+              onSelect={(mode) => {
+                setMode(mode);
+                ls.set(MARKET_MODE_LS_TOKEN, mode);
+              }}
+            />
+          ) : (
+            <></>
+          )}
           {mode === MarketMode.SWAP && <SwapMode {...props} />}
           {mode === MarketMode.LIMIT && <LimitMarketMode {...props} />}
+          {mode === MarketMode.ADVANCED && (
+            <AdvancedMode {...props} browserHistory={props.history} mode={mode} setMode={setMode} />
+          )}
         </div>
       </div>
     </>

@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .profile-card {
   position: relative;
 
@@ -62,7 +67,7 @@
     }
   }
 
-  .vpower-line {
+  .rc-line {
     background: $duck-egg-blue;
     height: 2px;
     width: 300px;
@@ -72,13 +77,13 @@
       width: auto;
     }
 
-    .vpower-line-inner {
+    .rc-line-inner {
       background: $dark-sky-blue;
       height: 2px;
     }
   }
 
-  .vpower-percentage {
+  .rc-percentage {
     color: $dark-sky-blue;
     cursor: default;
     flex-shrink: 0;
@@ -90,9 +95,14 @@
     @media (min-width: $md-break) {
       text-align: left;
     }
+  }
 
-    &:after {
-      content: "%";
+  .progress {
+    .progress-bar-success {
+      background-color: $dark-sky-blue;
+    }
+    .progress-bar-danger {
+      background-color: $red;
     }
   }
 

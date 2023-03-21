@@ -84,18 +84,21 @@ exports[`(1) Full render with active user 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@forykw"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -150,7 +153,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -215,23 +218,26 @@ exports[`(1) Full render with active user 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                0
               </span>
             </div>
             <a
@@ -262,18 +268,21 @@ exports[`(1) Full render with active user 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@brittandjosie"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -328,7 +337,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -393,23 +402,26 @@ exports[`(1) Full render with active user 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                0
               </span>
             </div>
             <a
@@ -442,18 +454,21 @@ exports[`(1) Full render with active user 1`] = `
               className="item-figure"
             >
               <a
-                className="d-sm-inline-block"
                 href="/@ardpien"
                 onClick={[Function]}
               >
                 <span
-                  className="user-avatar medium"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                  className="d-sm-inline-block"
+                >
+                  <span
+                    className="user-avatar medium"
+                    style={
+                      Object {
+                        "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                      }
                     }
-                  }
-                />
+                  />
+                </span>
               </a>
             </div>
             <div
@@ -508,7 +523,7 @@ exports[`(1) Full render with active user 1`] = `
                   </div>
                 </div>
                 <span
-                  className="separator"
+                  className="separator circle-separator"
                 />
                 <a
                   className="date"
@@ -573,23 +588,26 @@ exports[`(1) Full render with active user 1`] = `
                   className="entry-votes notranslate"
                 >
                   <span
-                    className="inner-btn"
-                    onClick={[Function]}
-                    title=" Votes"
+                    className="inner-btn no-data"
+                    title="No Votes"
                   >
-                    <svg
-                      fill="currentColor"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      className="heart-icon"
                     >
-                      <path
-                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                        fillRule="evenodd"
-                      />
-                    </svg>
-                     
+                      <svg
+                        fill="currentColor"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                          fillRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    0
                   </span>
                 </div>
                 <a
@@ -622,18 +640,21 @@ exports[`(1) Full render with active user 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@ardpien"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -688,7 +709,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -757,19 +778,22 @@ exports[`(1) Full render with active user 1`] = `
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -801,18 +825,21 @@ exports[`(1) Full render with active user 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@iliyan90"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -867,7 +894,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -933,23 +960,26 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                0
               </span>
             </div>
             <a
@@ -980,18 +1010,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@trincowski"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -1046,7 +1079,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1115,19 +1148,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -1159,18 +1195,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@foxkoit"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -1225,7 +1264,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1294,19 +1333,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -1338,18 +1380,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@irisworld"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -1404,7 +1449,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1473,19 +1518,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="2 Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon voted"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 2
               </span>
             </div>
@@ -1517,18 +1565,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@behiver"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -1583,7 +1634,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1652,19 +1703,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="2 Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 2
               </span>
             </div>
@@ -1802,18 +1856,21 @@ exports[`(3) With selected item 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@forykw"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -1868,7 +1925,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -1933,23 +1990,26 @@ exports[`(3) With selected item 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                0
               </span>
             </div>
             <a
@@ -1980,18 +2040,21 @@ exports[`(3) With selected item 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@brittandjosie"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -2046,7 +2109,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2111,23 +2174,26 @@ exports[`(3) With selected item 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                0
               </span>
             </div>
             <a
@@ -2160,18 +2226,21 @@ exports[`(3) With selected item 1`] = `
               className="item-figure"
             >
               <a
-                className="d-sm-inline-block"
                 href="/@ardpien"
                 onClick={[Function]}
               >
                 <span
-                  className="user-avatar medium"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                  className="d-sm-inline-block"
+                >
+                  <span
+                    className="user-avatar medium"
+                    style={
+                      Object {
+                        "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                      }
                     }
-                  }
-                />
+                  />
+                </span>
               </a>
             </div>
             <div
@@ -2226,7 +2295,7 @@ exports[`(3) With selected item 1`] = `
                   </div>
                 </div>
                 <span
-                  className="separator"
+                  className="separator circle-separator"
                 />
                 <a
                   className="date"
@@ -2291,23 +2360,26 @@ exports[`(3) With selected item 1`] = `
                   className="entry-votes notranslate"
                 >
                   <span
-                    className="inner-btn"
-                    onClick={[Function]}
-                    title=" Votes"
+                    className="inner-btn no-data"
+                    title="No Votes"
                   >
-                    <svg
-                      fill="currentColor"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      className="heart-icon"
                     >
-                      <path
-                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                        fillRule="evenodd"
-                      />
-                    </svg>
-                     
+                      <svg
+                        fill="currentColor"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                          fillRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    0
                   </span>
                 </div>
                 <a
@@ -2340,18 +2412,21 @@ exports[`(3) With selected item 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@ardpien"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -2406,7 +2481,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2475,19 +2550,22 @@ exports[`(3) With selected item 1`] = `
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -2519,18 +2597,21 @@ exports[`(3) With selected item 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@iliyan90"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -2585,7 +2666,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2651,23 +2732,26 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                0
               </span>
             </div>
             <a
@@ -2698,18 +2782,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@trincowski"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -2764,7 +2851,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -2833,19 +2920,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -2877,18 +2967,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@foxkoit"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -2943,7 +3036,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3012,19 +3105,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="1 Vote"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 1
               </span>
             </div>
@@ -3056,18 +3152,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@irisworld"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -3122,7 +3221,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3191,19 +3290,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="2 Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon voted"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 2
               </span>
             </div>
@@ -3235,18 +3337,21 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@behiver"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -3301,7 +3406,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3370,19 +3475,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onClick={[Function]}
                 title="2 Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 2
               </span>
             </div>
@@ -3484,18 +3592,21 @@ exports[`(4) Show mute button, muted comment 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@forykw"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -3550,7 +3661,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3628,23 +3739,26 @@ exports[`(4) Show mute button, muted comment 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                0
               </span>
             </div>
             <a
@@ -3682,18 +3796,21 @@ exports[`(4) Show mute button, muted comment 1`] = `
           className="item-figure"
         >
           <a
-            className="d-sm-inline-block"
             href="/@brittandjosie"
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+              className="d-sm-inline-block"
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </span>
           </a>
         </div>
         <div
@@ -3748,7 +3865,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
               </div>
             </div>
             <span
-              className="separator"
+              className="separator circle-separator"
             />
             <a
               className="date"
@@ -3813,23 +3930,26 @@ exports[`(4) Show mute button, muted comment 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn"
-                onClick={[Function]}
-                title=" Votes"
+                className="inner-btn no-data"
+                title="No Votes"
               >
-                <svg
-                  fill="currentColor"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="heart-icon"
                 >
-                  <path
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                 
+                  <svg
+                    fill="currentColor"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                0
               </span>
             </div>
             <a

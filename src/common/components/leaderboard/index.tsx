@@ -18,6 +18,7 @@ import LinearProgress from "../linear-progress";
 import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
+import "./_index.scss";
 
 interface Props {
   global: Global;
@@ -111,7 +112,9 @@ export class LeaderBoard extends BaseComponent<Props, State> {
                       ...this.props,
                       username: r._id,
                       children: (
-                        <a>{UserAvatar({ ...this.props, size: "medium", username: r._id })}</a>
+                        <span>
+                          <UserAvatar size="medium" username={r._id} />
+                        </span>
                       )
                     })}
                   </div>
@@ -119,7 +122,7 @@ export class LeaderBoard extends BaseComponent<Props, State> {
                     {ProfileLink({
                       ...this.props,
                       username: r._id,
-                      children: <a>{r._id}</a>
+                      children: <span>{r._id}</span>
                     })}
                   </div>
                   <div className="score">{r.count}</div>
