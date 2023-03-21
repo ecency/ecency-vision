@@ -41,7 +41,6 @@ export enum IntroductionType {
 interface States {
   isGlobal: boolean;
   isMounted: boolean;
-  innerWidth: number;
   introduction: IntroductionType;
 }
 
@@ -90,14 +89,12 @@ export class EntryIndexMenu extends Component<Props, States> {
     this.state = {
       isGlobal,
       introduction: showInitialIntroductionJourney,
-      isMounted: false,
-      innerWidth: window.innerWidth
+      isMounted: false
     };
     this.onChangeGlobal = this.onChangeGlobal.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener("resize", this.handleResize);
     const {
       global: { filter }
     } = this.props;
@@ -121,10 +118,6 @@ export class EntryIndexMenu extends Component<Props, States> {
     }
     this.setState({ isMounted: true });
   }
-
-  handleResize = () => {
-    this.setState({ innerWidth: window.innerWidth });
-  };
 
   onChangeGlobal(value: string) {
     const {
@@ -219,10 +212,6 @@ export class EntryIndexMenu extends Component<Props, States> {
     ) {
       this.setState({ introduction: IntroductionType.NONE });
     }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.handleResize);
   }
 
   onClosePopup = () => {
@@ -334,7 +323,7 @@ export class EntryIndexMenu extends Component<Props, States> {
 
   render() {
     const { activeUser, global, history } = this.props;
-    const { isGlobal, introduction, isMounted, innerWidth } = this.state;
+    const { isGlobal, introduction, isMounted } = this.state;
     const { filter, tag } = global;
     const isMy = isMyPage(global, activeUser);
     const isActive = isActiveUser(activeUser);
