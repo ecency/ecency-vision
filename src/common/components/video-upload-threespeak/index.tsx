@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { videoSvg } from '../../img/svg'
+import "./index.scss";
 
 export const VideoUpload = () => {
 
