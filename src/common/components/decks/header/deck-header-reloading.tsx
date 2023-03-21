@@ -11,14 +11,14 @@ interface Props {
 }
 
 export const DeckHeaderReloading = ({ isReloading, onReload, updateDataInterval }: Props) => {
-  useInterval(() => onReload(), updateDataInterval);
+  useInterval(onReload, updateDataInterval);
 
   return (
     <Button
       variant="link"
       size="sm"
       className="d-flex align-items-center"
-      onClick={() => onReload()}
+      onClick={onReload}
       disabled={isReloading}
     >
       {isReloading ? (

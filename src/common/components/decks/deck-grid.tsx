@@ -1,15 +1,16 @@
-import React, { CSSProperties } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { useMappedStore } from "../../store/use-mapped-store";
-import { _t } from "../../i18n";
+import React from "react";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DraggableProvidedDragHandleProps
+} from "react-beautiful-dnd";
 
 interface Props {
-  children: JSX.Element[];
+  children: ((draggable?: DraggableProvidedDragHandleProps) => JSX.Element)[];
 }
 
 export const DeckGrid = ({ children }: Props) => {
-  const { global } = useMappedStore();
-
   const onDragEnd = () => {};
 
   const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
@@ -23,7 +24,7 @@ export const DeckGrid = ({ children }: Props) => {
           {(provided, snapshot) => (
             <div ref={provided.innerRef} {...provided.droppableProps} id="draggable-container">
               {children.map((item, index) => (
-                <Draggable key={item.key + "" + index} draggableId={item.key + ""} index={index}>
+                <Draggable key={index + ""} draggableId={index + ""} index={index}>
                   {(provided, snapshot) => {
                     let transform = provided.draggableProps.style?.transform;
 
@@ -38,16 +39,16 @@ export const DeckGrid = ({ children }: Props) => {
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        {...provided.dragHandleProps}
                         style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
-                        id={item.key + ""}
+                        id={index + ""}
                       >
-                        {item}
+                        {item(provided.dragHandleProps)}
                       </div>
                     );
                   }}
                 </Draggable>
               ))}
+              {provided.placeholder}
             </div>
           )}
         </Droppable>

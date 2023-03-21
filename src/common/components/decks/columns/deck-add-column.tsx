@@ -16,9 +16,11 @@ import {
 import "./_deck-add-column.scss";
 import { DeckAddColumnTypeSettings } from "./deck-add-column-type-settings";
 import { Button } from "react-bootstrap";
+import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 
 interface Props {
   onRemove: () => void;
+  draggable?: DraggableProvidedDragHandleProps;
 }
 
 interface AvailableColumn {
@@ -28,7 +30,7 @@ interface AvailableColumn {
   description: string;
 }
 
-export const DeckAddColumn = ({ onRemove }: Props) => {
+export const DeckAddColumn = ({ onRemove, draggable }: Props) => {
   const { activeUser } = useMappedStore();
 
   const availableColumns: AvailableColumn[] = [
@@ -80,12 +82,14 @@ export const DeckAddColumn = ({ onRemove }: Props) => {
   const [selectedType, setSelectedType] = useState<DeckGridItem["type"] | null>(null);
 
   return (
-    <div className="deck deck-add-column">
+    <div className="deck deck-add-column native-scroll">
       <DeckHeader
+        draggable={draggable}
         primary={true}
         sticky={true}
         account={activeUser?.username ?? ""}
         onRemove={onRemove}
+        onReload={() => {}}
         title={
           availableColumns.find((col) => col.type === selectedType)?.title ?? _t("decks.add-column")
         }

@@ -5,7 +5,15 @@ export const DEFAULT_LAYOUT: DeckGrid = {
     {
       key: "1",
       type: "ac",
-      settings: {}
+      settings: null
+    },
+    {
+      key: "2",
+      type: "u",
+      settings: {
+        username: "ecency",
+        contentType: "posts"
+      }
     }
   ]
 };

@@ -4,9 +4,13 @@ import { SearchByUsername } from "../../search-by-username";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { blogSvg, commentSvg } from "../../../img/svg";
 import { Button } from "react-bootstrap";
+import { useDeckGrid } from "../use-deck-grid";
 
 const DeckAddColumnUserSettings = () => {
   const { activeUser } = useMappedStore();
+
+  const { add } = useDeckGrid();
+
   const [username, setUsername] = useState("");
   const [contentType, setContentType] = useState<string | null>(null);
 
@@ -45,6 +49,16 @@ const DeckAddColumnUserSettings = () => {
         disabled={!username || !contentType}
         className="w-100 mt-5 py-3 sticky-bottom"
         variant="primary"
+        onClick={() =>
+          add({
+            key: "",
+            type: "u",
+            settings: {
+              username,
+              contentType
+            }
+          })
+        }
       >
         Continue
       </Button>

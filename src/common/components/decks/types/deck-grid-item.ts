@@ -1,16 +1,15 @@
-/**
- * ac – Add a column
- * u – User
- * co – Community
- * w – Wallet
- * n – Notifications
- * tr – Trending
- * to – Topics
- * s – Search
- * cu – Custom
- */
-export interface DeckGridItem {
+interface BaseDeckGridItem {
   key: string;
-  type: "ac" | "u" | "co" | "w" | "n" | "tr" | "to" | "s" | "cu";
-  settings: any;
+  type: "u" | "ac" | "co" | "w" | "n" | "tr" | "to" | "s" | "cu";
+  settings: unknown;
 }
+
+export interface UserDeckGridItem extends BaseDeckGridItem {
+  type: "u";
+  settings: {
+    username: string;
+    contentType: string;
+  };
+}
+
+export type DeckGridItem = BaseDeckGridItem | UserDeckGridItem;

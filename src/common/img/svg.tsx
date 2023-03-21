@@ -1828,3 +1828,15 @@ export const sellStakeSvg = (
     />
   </svg>
 );
+
+export const dragSvg = (
+  <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M14 5V19M5 14L3 12L5 10M19 14L21 12L19 10M10 5L10 19"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

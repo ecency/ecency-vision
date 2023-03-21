@@ -6,18 +6,22 @@ import {
   chevronDownSvgForSlider,
   chevronUpSvgForSlider,
   deleteForeverSvg,
+  dragSvg,
   hot
 } from "../../../img/svg";
 import { DeckHeaderSettings } from "./deck-header-settings";
 import { DeckHeaderReloading } from "./deck-header-reloading";
+import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 
 export interface Props {
   title: string;
+  subtitle?: string;
   icon?: JSX.Element;
   account: string;
   sticky?: boolean;
   primary?: boolean;
   prefix?: JSX.Element;
+  draggable?: DraggableProvidedDragHandleProps;
 }
 
 export interface WithDeletionProps extends Props {
@@ -30,12 +34,11 @@ export interface WithIntervalProps extends Props {
   onReload: () => void;
 }
 
-export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps) => {
+export type AllProps = Props & WithDeletionProps & WithIntervalProps;
+
+export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps | AllProps) => {
   const [expanded, setExpanded] = useState(false);
 
-  let splittedTitle = props.title.split("@");
-  let onlyTitle = splittedTitle[0];
-  let username = splittedTitle[1];
   let tooltip = (
     <Tooltip id="profile-tooltip" style={{ zIndex: 10 }}>
       {_t("decks.header-info")}
@@ -50,15 +53,23 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps)
     >
       <Accordion className={expanded ? "border-bottom" : ""}>
         <div className="deck-header position-relative">
-          {props.prefix}
-          <div className="deck-index" />
+          <div className="empty"></div>
+          <div className="prefix">{props.prefix}</div>
+          <div className="deck-index" {...props.draggable}>
+            {props.draggable ? dragSvg : <></>}
+          </div>
           {props.icon ? <div className="icon mr-2">{props.icon}</div> : <></>}
-          <div className="header-title">{onlyTitle}</div>
-          {username && (
-            <div className="ml-1 username">
-              <small className="text-lowercase text-secondary">@{username.toLowerCase()}</small>
-            </div>
-          )}
+
+          <div className="header-title d-flex flex-column align-items-start">
+            {"subtitle" in props ? (
+              <div className="username">
+                <small className="text-secondary">{props.subtitle}</small>
+              </div>
+            ) : (
+              <></>
+            )}
+            <div className="title">{props.title}</div>
+          </div>
           <OverlayTrigger placement="bottom" overlay={tooltip}>
             <Accordion.Toggle
               as={Button}

@@ -23,6 +23,7 @@ import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } f
 import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
@@ -583,19 +584,31 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
   }
 }
 
-export default (p: Props) => {
+export default (p: Pick<Props, "entry" | "isPostSlider" | "afterVote">) => {
+  const {
+    global,
+    dynamicProps,
+    users,
+    activeUser,
+    ui,
+    setActiveUser,
+    updateActiveUser,
+    deleteUser,
+    toggleUIProp
+  } = useMappedStore();
+
   const props = {
-    global: p.global,
-    dynamicProps: p.dynamicProps,
+    global,
+    dynamicProps,
     entry: p.entry,
-    users: p.users,
-    activeUser: p.activeUser,
-    ui: p.ui,
+    users,
+    activeUser,
+    ui,
     isPostSlider: p.isPostSlider,
-    setActiveUser: p.setActiveUser,
-    updateActiveUser: p.updateActiveUser,
-    deleteUser: p.deleteUser,
-    toggleUIProp: p.toggleUIProp,
+    setActiveUser,
+    updateActiveUser,
+    deleteUser,
+    toggleUIProp,
     afterVote: p.afterVote
   };
 

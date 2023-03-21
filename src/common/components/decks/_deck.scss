@@ -7,10 +7,12 @@
   height: 100vh;
   background-color: $white;
   width: 400px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  position: relative;
   border-left: 4px solid $gray-300;
-  border-right: 4px solid $gray-300;
+
+  &.native-scroll {
+    overflow-y: auto;
+  }
 
   &::-webkit-scrollbar {
     display: none;
@@ -19,10 +21,30 @@
   .accordion .deck-header {
     padding: 0.69rem;
     display: grid;
+    grid-template-areas:
+      "prefix drag-icon title empty dropdown";
+    grid-template-columns: min-content min-content 1fr min-content min-content;
     border-bottom: 1px solid $gray-200;
 
     .deck-index {
       grid-area: drag-icon;
+      opacity: 0.35;
+      cursor: grab;
+
+      @include transition(.3s);
+      @include margin-right(1rem);
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    .empty {
+      grid-area: empty;
+    }
+
+    .prefix {
+      grid-area: prefix;
     }
 
     .header-title {
@@ -44,11 +66,15 @@
   }
 
   > .deck-header {
-    background-color: rgba($white, 0.5);
+    background-color: rgba($white, 0.75);
     backdrop-filter: blur(1rem);
 
-    &.header-sticky {
+    &.header-sticky.primary {
       position: sticky;
+    }
+
+    &.header-sticky {
+      position: absolute;
       top: 0;
       left: 0;
       right: 0;
@@ -57,10 +83,12 @@
 
     &.primary {
       .header-title {
-        font-weight: bold;
+        > .title {
+          font-weight: bold;
 
-        @include font-size(2rem);
-        @include margin-top(2rem);
+          @include font-size(2rem);
+          @include margin-top(2rem);
+        }
       }
 
       .accordion .deck-header {
@@ -71,6 +99,10 @@
         grid-template-columns: min-content min-content 1fr min-content;
       }
     }
+  }
+
+  .ReactVirtualized__List {
+    padding-top: 67px;
   }
 
   @include media-breakpoint-down(md) {
@@ -101,9 +133,11 @@
   }
 
   .header-title {
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: capitalize;
+    > .title {
+      font-weight: 600;
+
+      @include font-size(1.25rem);
+    }
   }
 
   .hot-item-index {
@@ -122,9 +156,8 @@
     font-weight: 400;
   }
 
-  .item-container {
-    max-height: calc(100vh - 176px);
-    overflow: auto;
+  .virtual-list-spacer {
+    height: 67px;
   }
 
   .search-item-avatar {
