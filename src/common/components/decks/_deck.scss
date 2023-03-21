@@ -12,6 +12,10 @@
   border-left: 4px solid $gray-300;
   border-right: 4px solid $gray-300;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .accordion .deck-header {
     padding: 0.69rem;
     display: grid;
@@ -27,6 +31,7 @@
 
     .accordion-toggle {
       grid-area: dropdown;
+      height: 24px;
     }
 
     .icon {
@@ -59,10 +64,11 @@
       }
 
       .accordion .deck-header {
+        align-items: center;
         grid-template-areas:
-          "drag-icon empty dropdown"
-          "title title title";
-        grid-template-columns: min-content 1fr min-content;
+          "prefix drag-icon empty dropdown"
+          "title title title title";
+        grid-template-columns: min-content min-content 1fr min-content;
       }
     }
   }

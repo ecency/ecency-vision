@@ -1,9 +1,10 @@
 import { DeckHeader } from "../header/deck-header";
-import React from "react";
+import React, { useState } from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { _t } from "../../../i18n";
 import { DeckGridItem } from "../types";
 import {
+  arrowLeftSvg,
   communities,
   globalTrending,
   hot,
@@ -13,6 +14,8 @@ import {
   wallet
 } from "../../../img/svg";
 import "./_deck-add-column.scss";
+import { DeckAddColumnTypeSettings } from "./deck-add-column-type-settings";
+import { Button } from "react-bootstrap";
 
 interface Props {
   onRemove: () => void;
@@ -27,6 +30,7 @@ interface AvailableColumn {
 
 export const DeckAddColumn = ({ onRemove }: Props) => {
   const { activeUser } = useMappedStore();
+
   const availableColumns: AvailableColumn[] = [
     {
       type: "u",
@@ -71,6 +75,10 @@ export const DeckAddColumn = ({ onRemove }: Props) => {
       description: "Explore specific posts based on your search query."
     }
   ];
+
+  const [step, setStep] = useState<"select" | "setup">("select");
+  const [selectedType, setSelectedType] = useState<DeckGridItem["type"] | null>(null);
+
   return (
     <div className="deck deck-add-column">
       <DeckHeader
@@ -78,17 +86,53 @@ export const DeckAddColumn = ({ onRemove }: Props) => {
         sticky={true}
         account={activeUser?.username ?? ""}
         onRemove={onRemove}
-        title={_t("decks.add-column")}
+        title={
+          availableColumns.find((col) => col.type === selectedType)?.title ?? _t("decks.add-column")
+        }
+        prefix={
+          selectedType ? (
+            <Button
+              variant="link"
+              className="p-0"
+              onClick={() => {
+                setStep("select");
+                setSelectedType(null);
+              }}
+            >
+              {arrowLeftSvg}
+            </Button>
+          ) : (
+            <></>
+          )
+        }
       />
       <div className="deck-content">
-        <div className="subtitle">Choose one</div>
-        {availableColumns.map(({ icon, title, type, description }) => (
-          <div key={type} className="item">
-            {icon}
-            <div className="title">{title}</div>
-            <div className="description">{description}</div>
-          </div>
-        ))}
+        {step === "select" ? (
+          <>
+            <div className="subtitle p-3">Choose one</div>
+            {availableColumns.map(({ icon, title, type, description }) => (
+              <div
+                key={type}
+                className="item"
+                onClick={() => {
+                  setSelectedType(type);
+                  setStep("setup");
+                }}
+              >
+                {icon}
+                <div className="title">{title}</div>
+                <div className="description">{description}</div>
+              </div>
+            ))}
+          </>
+        ) : (
+          <></>
+        )}
+        {step === "setup" && selectedType ? (
+          <DeckAddColumnTypeSettings type={selectedType} />
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

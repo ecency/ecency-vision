@@ -3,12 +3,17 @@
 .deck-add-column {
 
   .deck-content {
-
     .subtitle {
       font-weight: bold;
 
-      @include padding(1rem);
       @include font-size(1rem);
+    }
+
+    .helper-text {
+      opacity: 0.5;
+      line-height: 1.5;
+
+      @include font-size(0.87rem);
     }
 
     .item {
@@ -19,6 +24,7 @@
         "icon description";
       align-items: center;
       grid-gap: 0.25rem;
+      cursor: pointer;
 
       @include transition(0.3s);
       @include padding-left(1rem);
@@ -37,7 +43,7 @@
         @include margin-right(0.75rem);
 
         path {
-          fill: $pastel-blue;
+          fill: $primary;
         }
       }
 
@@ -51,6 +57,59 @@
         opacity: 0.75;
 
         @include font-size(0.875rem);
+      }
+    }
+
+    .content-type-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1px;
+      background-color: $duck-egg-blue;
+
+      .content-type-item {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: $white;
+        gap: 1rem;
+        position: relative;
+        transition: .3s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+          .title::after {
+            transform: translateX(0%);
+          }
+        }
+
+        .title {
+          font-weight: bold;
+          position: relative;
+          overflow: hidden;
+          padding-bottom: 0.5rem;
+
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            height: 2px;
+            width: 100%;
+            background-color: $black;
+            transition: .3s ease-in-out;
+            transform: translateX(-100%);
+          }
+        }
+
+        svg {
+          width: 2rem;
+
+          path {
+            fill: $primary;
+          }
+        }
       }
     }
   }

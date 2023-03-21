@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import Accordion from "react-bootstrap/Accordion";
@@ -17,6 +17,7 @@ export interface Props {
   account: string;
   sticky?: boolean;
   primary?: boolean;
+  prefix?: JSX.Element;
 }
 
 export interface WithDeletionProps extends Props {
@@ -49,6 +50,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps)
     >
       <Accordion className={expanded ? "border-bottom" : ""}>
         <div className="deck-header position-relative">
+          {props.prefix}
           <div className="deck-index" />
           {props.icon ? <div className="icon mr-2">{props.icon}</div> : <></>}
           <div className="header-title">{onlyTitle}</div>

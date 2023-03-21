@@ -336,3 +336,10 @@ label.font-small {
 .react-grid-item.react-grid-placeholder {
   background-color: $primary;
 }
+
+.sticky-bottom {
+  position: sticky;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+}
