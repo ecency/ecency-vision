@@ -13,12 +13,11 @@ import ListStyleToggle from "../list-style-toggle";
 import { _t } from "../../i18n";
 import * as ls from "../../util/local-storage";
 import _c from "../../util/fix-class-names";
-import { Form } from "react-bootstrap";
-import { informationVariantSvg } from "../../img/svg";
+import { informationVariantSvg, kebabMenuHorizontalSvg } from "../../img/svg";
 import { apiBase } from "../../api/helper";
 import { Introduction } from "../introduction";
 import { EntryIndexMenuDropdown } from "../entry-index-menu-dropdown";
-import { UI, ToggleType } from "../../store/ui/types";
+import { ToggleType } from "../../store/ui/types";
 import "./_index.scss";
 
 interface Props {
@@ -42,6 +41,7 @@ export enum IntroductionType {
 interface States {
   isGlobal: boolean;
   isMounted: boolean;
+  innerWidth: number;
   introduction: IntroductionType;
 }
 
@@ -87,11 +87,17 @@ export class EntryIndexMenu extends Component<Props, States> {
     } else {
       showInitialIntroductionJourney = IntroductionType.NONE;
     }
-    this.state = { isGlobal, introduction: showInitialIntroductionJourney, isMounted: false };
+    this.state = {
+      isGlobal,
+      introduction: showInitialIntroductionJourney,
+      isMounted: false,
+      innerWidth: window.innerWidth
+    };
     this.onChangeGlobal = this.onChangeGlobal.bind(this);
   }
 
   componentDidMount() {
+    window.addEventListener("resize", this.handleResize);
     const {
       global: { filter }
     } = this.props;
@@ -115,6 +121,10 @@ export class EntryIndexMenu extends Component<Props, States> {
     }
     this.setState({ isMounted: true });
   }
+
+  handleResize = () => {
+    this.setState({ innerWidth: window.innerWidth });
+  };
 
   onChangeGlobal(value: string) {
     const {
@@ -209,6 +219,10 @@ export class EntryIndexMenu extends Component<Props, States> {
     ) {
       this.setState({ introduction: IntroductionType.NONE });
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
   }
 
   onClosePopup = () => {
@@ -320,7 +334,7 @@ export class EntryIndexMenu extends Component<Props, States> {
 
   render() {
     const { activeUser, global, history } = this.props;
-    const { isGlobal, introduction, isMounted } = this.state;
+    const { isGlobal, introduction, isMounted, innerWidth } = this.state;
     const { filter, tag } = global;
     const isMy = isMyPage(global, activeUser);
     const isActive = isActiveUser(activeUser);
@@ -339,13 +353,7 @@ export class EntryIndexMenu extends Component<Props, States> {
           ? _t("entry-filter.filter-feed-friends")
           : _t(`entry-filter.filter-${filter}`),
       items: [
-        ...[
-          EntryFilter.trending,
-          EntryFilter.hot,
-          EntryFilter.created,
-          EntryFilter.rising,
-          EntryFilter.controversial
-        ].map((x) => {
+        ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
           return {
             label: _t(`entry-filter.filter-${x}`),
             href: isActive
@@ -364,15 +372,43 @@ export class EntryIndexMenu extends Component<Props, States> {
               (x === "hot" && introduction === IntroductionType.HOT) ||
               (x === "created" && introduction === IntroductionType.NEW)
           };
-        })
-        // ...[EntryFilter.controversial, EntryFilter.rising].map((x) => {
-        //     return {
-        //         label: _t(`entry-filter.filter-${x}`),
-        //         href: `/${x}`,
-        //         id: x,
-        //         active: history.location.pathname.includes('trending')
-        //     };
-        // })
+        }),
+        ...[
+          location.pathname.includes("rising")
+            ? {
+                label: _t(`entry-filter.filter-rising`),
+                href: `/rising/today`,
+                id: "rising",
+                selected: filter === "rising"
+              }
+            : {
+                label: _t(`entry-filter.filter-controversial`),
+                href: `/controversial/today`,
+                selected: filter === "controversial",
+                id: "controversial"
+              }
+        ]
+      ]
+    };
+
+    const kebabMenuConfig = {
+      history: this.props.history,
+      label: "",
+      icon: kebabMenuHorizontalSvg,
+      items: [
+        location.pathname.includes("rising")
+          ? {
+              label: _t(`entry-filter.filter-controversial`),
+              href: `/controversial/today`,
+              selected: filter === "controversial",
+              id: "controversial"
+            }
+          : {
+              label: _t(`entry-filter.filter-rising`),
+              href: `/rising/today`,
+              selected: filter === "rising",
+              id: "rising"
+            }
       ]
     };
 
@@ -387,7 +423,8 @@ export class EntryIndexMenu extends Component<Props, States> {
               selected: filter === "feed",
               id: "feed"
             },
-            ...menuConfig.items
+            ...menuConfig.items,
+            ...kebabMenuConfig.items
           ]
         };
 
@@ -526,7 +563,11 @@ export class EntryIndexMenu extends Component<Props, States> {
                     ) : null}
                   </ul>
                 </div>
+                <div className="kebab-icon">
+                  <DropDown {...kebabMenuConfig} float="left" />
+                </div>
               </div>
+
               <div className="main-menu d-flex d-lg-none">
                 <div className="sm-menu position-relative">
                   <DropDown {...mobileMenuConfig} float="left" />
