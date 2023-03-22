@@ -2,17 +2,30 @@
 
 .decks {
   display: grid;
-  grid-template-columns: 72px 1fr;
+  grid-template-columns: 72px 1fr min-content;
   color: $black;
+  align-items: center;
+  background-color: $gray-300;
+
+  .decks-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 
   .decks-container, *[data-rbd-droppable-id] {
     height: 100vh;
   }
 
   #draggable-container {
-    background-color: $gray-300;
     display: flex;
-    overflow: auto;
     scroll-behavior: smooth;
+  }
+
+  .add-new-column-button {
+    white-space: nowrap;
   }
 }

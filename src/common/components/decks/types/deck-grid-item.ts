@@ -1,5 +1,5 @@
 interface BaseDeckGridItem {
-  key: string;
+  key: number;
   type: "u" | "ac" | "co" | "w" | "n" | "tr" | "to" | "s" | "cu";
   settings: unknown;
 }

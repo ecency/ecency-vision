@@ -20,7 +20,7 @@ import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 
 interface Props {
   onRemove: () => void;
-  deckKey: string;
+  deckKey: number;
   draggable?: DraggableProvidedDragHandleProps;
 }
 

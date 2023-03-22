@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap";
 import { DeckGridContext } from "../deck-manager";
 
 interface SettingsProps {
-  deckKey: string;
+  deckKey: number;
 }
 
 const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
@@ -19,7 +19,7 @@ const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
   const [contentType, setContentType] = useState<string | null>(null);
 
   const contentTypes = [
-    { title: "Blogs", icon: blogSvg, type: "blogs" },
+    { title: "Blogs", icon: blogSvg, type: "blog" },
     { title: "Posts", icon: commentSvg, type: "posts" },
     {
       title: "Comments",

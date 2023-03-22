@@ -3,13 +3,18 @@ import React, { useState } from "react";
 import { DEFAULT_LAYOUT } from "./consts";
 import { DeckGrid, DeckGridItem } from "./types";
 
-export const DeckGridContext = React.createContext({
+interface Context {
+  layout: DeckGrid;
+  add: (column: DeckGridItem) => void;
+}
+
+export const DeckGridContext = React.createContext<Context>({
   layout: DEFAULT_LAYOUT,
   add: (column: DeckGridItem) => {}
 });
 
 interface Props {
-  children: (layout: DeckGrid) => JSX.Element;
+  children: (context: Context) => JSX.Element;
 }
 
 export const DeckManager = ({ children }: Props) => {
@@ -17,12 +22,15 @@ export const DeckManager = ({ children }: Props) => {
 
   const [layout, setLayout] = useState(DEFAULT_LAYOUT);
 
+  const getNextKey = () => Math.max(...layout.columns.map((c) => c.key)) + 1;
+
   const add = (column: DeckGridItem) => {
     const layoutSnapshot = { ...layout };
     const existingColumnIndex = layoutSnapshot.columns.findIndex((c) => c.key === column.key);
     if (existingColumnIndex > -1) {
       layoutSnapshot.columns[existingColumnIndex] = column;
     } else {
+      column.key = getNextKey();
       layoutSnapshot.columns.push(column);
     }
     setLayout(layoutSnapshot);
@@ -35,7 +43,7 @@ export const DeckManager = ({ children }: Props) => {
         add
       }}
     >
-      {children(layout)}
+      {children({ layout, add })}
     </DeckGridContext.Provider>
   );
 };
