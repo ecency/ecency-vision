@@ -39,13 +39,13 @@
     animation: feedback-anim 0.5s;
 
     @include themify(day) {
-      background: $dark-two;
-      color: $white-four;
+      background: $white-three;
+      color: $dark;
     }
 
     @include themify(night) {
-      background: $white-four;
-      color: $dark;
+      background: $dark-indigo;
+      color: $white-four;
     }
 
     svg {
@@ -77,12 +77,12 @@
       cursor: pointer;
       @include themify(day) {
         svg {
-          color: $white-three;
+          color: $charcoal-grey;
         }
       }
       @include themify(night) {
         svg {
-          color: $charcoal-grey;
+          color: $white-three;
         }
       }
     }
@@ -94,11 +94,11 @@
       border-radius: 0 0 6px 6px;
 
       @include themify(day) {
-        background: $dark-two;
+        background: $white-four;
       }
 
       @include themify(night) {
-        background: $white-four;
+        background: $dark-two;
       }
 
       .filler {
