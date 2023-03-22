@@ -1,5 +1,5 @@
 import { postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import _ from "lodash";
 import { dateToRelative } from "../../../helper/parse-date";
@@ -54,6 +54,7 @@ export interface SearchItemProps {
   index: number;
   json_metadata: any;
   entry: any;
+  onMounted: () => void;
 }
 
 export const SearchListItem = ({
@@ -70,9 +71,14 @@ export const SearchListItem = ({
   index,
   url,
   category,
-  entry
+  entry,
+  onMounted
 }: SearchItemProps) => {
   const { global } = useMappedStore();
+
+  useEffect(() => {
+    onMounted();
+  }, []);
 
   let isPinned = community && entry && entry.stats?.is_pinned;
 

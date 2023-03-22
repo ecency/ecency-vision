@@ -3,7 +3,7 @@ import { _t } from "../../../i18n";
 import { DeckHeader } from "../header/deck-header";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { AutoSizer, List } from "react-virtualized";
+import { AutoSizer, CellMeasurer, CellMeasurerCache, Grid, List } from "react-virtualized";
 import { ListItemSkeleton } from "./deck-items";
 
 export interface DeckProps {
@@ -27,6 +27,11 @@ export const GenericDeckColumn = ({
 }: DeckProps) => {
   const { activeUser } = useMappedStore();
 
+  const cache = new CellMeasurerCache({
+    defaultHeight: 431,
+    fixedWidth: true,
+    defaultWidth: Math.min(400, window.innerWidth)
+  });
   const notificationTranslated = _t("decks.notifications");
   const containerClass = header.title.includes(notificationTranslated) ? "list-body pb-0" : "";
 
@@ -54,16 +59,28 @@ export const GenericDeckColumn = ({
                 height={height}
                 width={width}
                 rowCount={data.length}
-                rowHeight={431}
-                rowRenderer={({ key, index, style }) => (
-                  <div className="virtual-list-item" style={style} key={key}>
-                    <ListItem
-                      index={index + 1}
-                      entry={{ ...data[index], toggleNotNeeded: true }}
-                      {...data[index]}
-                    />
-                  </div>
+                rowRenderer={({ key, index, style, parent }) => (
+                  <CellMeasurer
+                    cache={cache}
+                    columnIndex={0}
+                    key={key}
+                    parent={parent}
+                    rowIndex={index}
+                  >
+                    {({ measure, registerChild }) => (
+                      <div ref={registerChild as any} className="virtual-list-item" style={style}>
+                        <ListItem
+                          onMounted={() => measure()}
+                          index={index + 1}
+                          entry={{ ...data[index], toggleNotNeeded: true }}
+                          {...data[index]}
+                        />
+                      </div>
+                    )}
+                  </CellMeasurer>
                 )}
+                deferredMeasurementCache={cache}
+                rowHeight={cache.rowHeight}
               />
             )}
           </AutoSizer>
