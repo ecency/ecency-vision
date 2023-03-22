@@ -165,28 +165,26 @@ export default class Feedback extends BaseComponent<Props, State> {
             switch (x.type) {
               case "success":
                 return (
-                  <>
-                    <div key={x.id} className="feedback-success">
-                      <div className="feedback-body">
-                        <div
-                          className="feedback-close-btn"
-                          onClick={() =>
-                            this.setState({ display: false, progress: 100, intervalState: true })
-                          }
-                        >
-                          {closeSvg}
-                        </div>
-                        <div className="feedback-content">
-                          <div className="feedback-img success-img">{checkSvg}</div>
-                          {x.message}
-                        </div>
+                  <div key={x.id} className="feedback-success">
+                    <div className="feedback-body">
+                      <div
+                        className="feedback-close-btn"
+                        onClick={() =>
+                          this.setState({ display: false, progress: 100, intervalState: true })
+                        }
+                      >
+                        {closeSvg}
                       </div>
-
-                      <div className="toast-progress-bar">
-                        <div className="filler success" style={style} />
+                      <div className="feedback-content">
+                        <div className="feedback-img success-img">{checkSvg}</div>
+                        {x.message}
                       </div>
                     </div>
-                  </>
+
+                    <div className="toast-progress-bar">
+                      <div className="filler success" style={style} />
+                    </div>
+                  </div>
                 );
               case "error":
                 return (
