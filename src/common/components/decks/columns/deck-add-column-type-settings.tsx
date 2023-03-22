@@ -59,7 +59,8 @@ const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
             type: "u",
             settings: {
               username,
-              contentType
+              contentType,
+              updateIntervalMs: 60000
             }
           })
         }

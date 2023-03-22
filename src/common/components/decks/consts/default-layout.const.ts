@@ -12,7 +12,8 @@ export const DEFAULT_LAYOUT: DeckGrid = {
       type: "u",
       settings: {
         username: "ecency",
-        contentType: "posts"
+        contentType: "posts",
+        updateIntervalMs: 60000
       }
     }
   ]

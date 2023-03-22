@@ -53,7 +53,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
     >
       <Accordion className={expanded ? "border-bottom" : ""}>
         <div className="deck-header position-relative">
-          <div className="empty"></div>
+          <div className="empty" />
           <div className="prefix">{props.prefix}</div>
           <div className="deck-index" {...props.draggable}>
             {props.draggable ? dragSvg : <></>}

@@ -4,9 +4,15 @@ interface BaseDeckGridItem {
   settings: unknown;
 }
 
-export interface UserDeckGridItem extends BaseDeckGridItem {
-  type: "u";
+interface ReloadableDeckGridItem extends BaseDeckGridItem {
   settings: {
+    updateIntervalMs: number;
+  };
+}
+
+export interface UserDeckGridItem extends ReloadableDeckGridItem {
+  type: "u";
+  settings: ReloadableDeckGridItem["settings"] & {
     username: string;
     contentType: string;
   };

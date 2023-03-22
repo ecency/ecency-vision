@@ -45,7 +45,6 @@ export const GenericDeckColumn = ({
         onRemove={onRemove}
         onReload={onReload}
         isReloading={isReloading}
-        updateIntervalMs={10000}
       />
       <div
         className={`item-container h-100 ${

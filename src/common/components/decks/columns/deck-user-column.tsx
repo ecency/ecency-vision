@@ -14,10 +14,12 @@ interface Props {
 export const DeckUserColumn = ({ settings, draggable }: Props) => {
   const [data, setData] = useState<Entry[]>([]);
   const [isReloading, setIsReloading] = useState(false);
-  const [isFirstLoading, setIsFirstLoading] = useState(true);
 
   const titles = {
-    posts: "Posts"
+    posts: "Posts",
+    blog: "Blog",
+    comments: "Comments",
+    replies: "Replies"
   };
 
   useEffect(() => {
@@ -35,7 +37,6 @@ export const DeckUserColumn = ({ settings, draggable }: Props) => {
     } catch (e) {
     } finally {
       setIsReloading(false);
-      setIsFirstLoading(false);
     }
   };
 
@@ -46,7 +47,7 @@ export const DeckUserColumn = ({ settings, draggable }: Props) => {
         title: "@" + settings.username.toLowerCase(),
         subtitle: titles[settings.contentType] ?? "User",
         icon: null,
-        updateIntervalMs: 60000
+        updateIntervalMs: settings.updateIntervalMs
       }}
       listItemComponent={SearchListItem}
       data={data}
