@@ -1,17 +1,21 @@
-import React from "react";
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  DraggableProvidedDragHandleProps
-} from "react-beautiful-dnd";
+import React, { useContext } from "react";
+import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
+import { DeckGridContext } from "./deck-manager";
+import { DeckAddColumn, DeckUserColumn } from "./columns";
+import { UserDeckGridItem } from "./types";
+import { Button } from "react-bootstrap";
 
-interface Props {
-  children: ((draggable?: DraggableProvidedDragHandleProps) => JSX.Element)[];
-}
+export const DeckGrid = () => {
+  const deckContext = useContext(DeckGridContext);
 
-export const DeckGrid = ({ children }: Props) => {
-  const onDragEnd = () => {};
+  const onDragEnd = (result: DropResult) => {
+    const originalIndex = +result.draggableId ?? -1;
+    const newIndex = result.destination?.index ?? -1;
+
+    if (newIndex > -1 && originalIndex > -1) {
+      deckContext.reOrder(originalIndex, newIndex);
+    }
+  };
 
   const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
     ...draggableStyle
@@ -23,7 +27,7 @@ export const DeckGrid = ({ children }: Props) => {
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
             <div ref={provided.innerRef} {...provided.droppableProps} id="draggable-container">
-              {children.map((item, index) => (
+              {deckContext.layout.columns.map(({ type, id, settings, key }, index) => (
                 <Draggable key={index + ""} draggableId={index + ""} index={index}>
                   {(provided, snapshot) => {
                     let transform = provided.draggableProps.style?.transform;
@@ -42,7 +46,42 @@ export const DeckGrid = ({ children }: Props) => {
                         style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                         id={index + ""}
                       >
-                        {item(provided.dragHandleProps)}
+                        <div className="d-flex align-items-center" key={key}>
+                          {type === "ac" ? (
+                            <DeckAddColumn
+                              deckKey={key}
+                              draggable={provided.dragHandleProps}
+                              onRemove={() => {}}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {type === "u" ? (
+                            <DeckUserColumn
+                              draggable={provided.dragHandleProps}
+                              settings={settings as UserDeckGridItem["settings"]}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {deckContext.layout.columns.length === index + 1 ? (
+                            <Button
+                              className="mx-3 add-new-column-button"
+                              variant="primary"
+                              onClick={() =>
+                                deckContext.add({
+                                  key: Infinity,
+                                  type: "ac",
+                                  settings: {}
+                                })
+                              }
+                            >
+                              Add new column
+                            </Button>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
                       </div>
                     );
                   }}
