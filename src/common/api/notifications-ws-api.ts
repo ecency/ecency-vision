@@ -5,6 +5,7 @@ import { ActiveUser } from "../store/active-user/types";
 import defaults from "../constants/defaults.json";
 import { NotifyTypes } from "../enums";
 import { playNotificationSound } from "../util/play-notification-sound";
+import * as ls from "../util/local-storage";
 
 declare var window: Window & {
   nws?: WebSocket;
@@ -76,7 +77,10 @@ export class NotificationsWebSocket {
         return;
       }
 
-      await this.playSound();
+      if (ls.get("notifications")) {
+        console.log("IF true");
+        await this.playSound();
+      }
 
       new Notification(_t("notification.popup-title"), { body: msg, icon: logo }).onclick = () => {
         if (!this.hasUiNotifications) {
