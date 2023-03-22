@@ -20,6 +20,7 @@ import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 
 interface Props {
   onRemove: () => void;
+  deckKey: string;
   draggable?: DraggableProvidedDragHandleProps;
 }
 
@@ -30,7 +31,7 @@ interface AvailableColumn {
   description: string;
 }
 
-export const DeckAddColumn = ({ onRemove, draggable }: Props) => {
+export const DeckAddColumn = ({ onRemove, draggable, deckKey }: Props) => {
   const { activeUser } = useMappedStore();
 
   const availableColumns: AvailableColumn[] = [
@@ -133,7 +134,7 @@ export const DeckAddColumn = ({ onRemove, draggable }: Props) => {
           <></>
         )}
         {step === "setup" && selectedType ? (
-          <DeckAddColumnTypeSettings type={selectedType} />
+          <DeckAddColumnTypeSettings deckKey={deckKey} type={selectedType} />
         ) : (
           <></>
         )}

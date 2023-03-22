@@ -1,15 +1,19 @@
 import { DeckGridItem } from "../types";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { SearchByUsername } from "../../search-by-username";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { blogSvg, commentSvg } from "../../../img/svg";
 import { Button } from "react-bootstrap";
-import { useDeckGrid } from "../use-deck-grid";
+import { DeckGridContext } from "../deck-manager";
 
-const DeckAddColumnUserSettings = () => {
+interface SettingsProps {
+  deckKey: string;
+}
+
+const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
   const { activeUser } = useMappedStore();
 
-  const { add } = useDeckGrid();
+  const { add } = useContext(DeckGridContext);
 
   const [username, setUsername] = useState("");
   const [contentType, setContentType] = useState<string | null>(null);
@@ -51,7 +55,7 @@ const DeckAddColumnUserSettings = () => {
         variant="primary"
         onClick={() =>
           add({
-            key: "",
+            key: deckKey,
             type: "u",
             settings: {
               username,
@@ -82,14 +86,14 @@ const DeckAddColumnSearchSettings = () => {
   return <div className="deck-add-column-search-settings"></div>;
 };
 
-interface Props {
+interface Props extends SettingsProps {
   type: DeckGridItem["type"];
 }
 
-export const DeckAddColumnTypeSettings = ({ type }: Props) => {
+export const DeckAddColumnTypeSettings = ({ type, deckKey }: Props) => {
   return (
     <>
-      {type === "u" ? <DeckAddColumnUserSettings /> : <></>}
+      {type === "u" ? <DeckAddColumnUserSettings deckKey={deckKey} /> : <></>}
       {type === "co" ? <DeckAddColumnCommunitySettings /> : <></>}
       {type === "w" ? <DeckAddColumnWalletSettings /> : <></>}
       {type === "n" ? <DeckAddColumnNotificationsSettings /> : <></>}
