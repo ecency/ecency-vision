@@ -13,6 +13,9 @@ interface Props {
 
 export const DeckUserColumn = ({ settings, draggable }: Props) => {
   const [data, setData] = useState<Entry[]>([]);
+  const [isReloading, setIsReloading] = useState(false);
+  const [isFirstLoading, setIsFirstLoading] = useState(true);
+
   const titles = {
     posts: "Posts"
   };
@@ -22,10 +25,18 @@ export const DeckUserColumn = ({ settings, draggable }: Props) => {
   }, []);
 
   const fetchData = async () => {
+    if (data.length) {
+      setIsReloading(true);
+    }
+
     try {
       const response = await getAccountPosts(settings.contentType, settings.username);
       setData(response ?? []);
-    } catch (e) {}
+    } catch (e) {
+    } finally {
+      setIsReloading(false);
+      setIsFirstLoading(false);
+    }
   };
 
   return (
@@ -35,11 +46,12 @@ export const DeckUserColumn = ({ settings, draggable }: Props) => {
         title: "@" + settings.username.toLowerCase(),
         subtitle: titles[settings.contentType] ?? "User",
         icon: null,
-        updateIntervalMs: 100
+        updateIntervalMs: 60000
       }}
       listItemComponent={SearchListItem}
       data={data}
-      onReloadColumn={() => {}}
+      isReloading={isReloading}
+      onReload={() => fetchData()}
       onRemove={() => {}}
     />
   );

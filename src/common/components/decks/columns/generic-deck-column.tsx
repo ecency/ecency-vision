@@ -4,14 +4,16 @@ import { DeckHeader } from "../header/deck-header";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { AutoSizer, List } from "react-virtualized";
+import { ListItemSkeleton } from "./deck-items";
 
 export interface DeckProps {
   header: { title: string; subtitle: string; icon: any; updateIntervalMs: number };
   listItemComponent: any;
   data: any[];
   onRemove: () => void;
-  onReloadColumn: () => void;
+  onReload: () => void;
   draggable?: DraggableProvidedDragHandleProps;
+  isReloading: boolean;
 }
 
 export const GenericDeckColumn = ({
@@ -19,8 +21,9 @@ export const GenericDeckColumn = ({
   listItemComponent: ListItem,
   data,
   onRemove,
-  onReloadColumn,
-  draggable
+  onReload,
+  draggable,
+  isReloading
 }: DeckProps) => {
   const { activeUser } = useMappedStore();
 
@@ -35,8 +38,8 @@ export const GenericDeckColumn = ({
         account={activeUser ? activeUser.username : ""}
         {...header}
         onRemove={onRemove}
-        onReloadColumn={onReloadColumn}
-        isReloading={true}
+        onReload={onReload}
+        isReloading={isReloading}
         updateIntervalMs={10000}
       />
       <div
@@ -44,25 +47,33 @@ export const GenericDeckColumn = ({
           header.title.includes("Wallet") ? "transaction-list" : ""
         }`}
       >
-        <AutoSizer>
-          {({ height, width }) => (
-            <List
-              height={height}
-              width={width}
-              rowCount={data.length}
-              rowHeight={431}
-              rowRenderer={({ key, index, style }) => (
-                <div className="virtual-list-item" style={style} key={key}>
-                  <ListItem
-                    index={index + 1}
-                    entry={{ ...data[index], toggleNotNeeded: true }}
-                    {...data[index]}
-                  />
-                </div>
-              )}
-            />
-          )}
-        </AutoSizer>
+        {data.length ? (
+          <AutoSizer>
+            {({ height, width }) => (
+              <List
+                height={height}
+                width={width}
+                rowCount={data.length}
+                rowHeight={431}
+                rowRenderer={({ key, index, style }) => (
+                  <div className="virtual-list-item" style={style} key={key}>
+                    <ListItem
+                      index={index + 1}
+                      entry={{ ...data[index], toggleNotNeeded: true }}
+                      {...data[index]}
+                    />
+                  </div>
+                )}
+              />
+            )}
+          </AutoSizer>
+        ) : (
+          <div className="skeleton-list">
+            {Array.from(Array(20).keys()).map((i, key) => (
+              <ListItemSkeleton key={key} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

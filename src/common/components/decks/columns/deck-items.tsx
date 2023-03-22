@@ -262,3 +262,17 @@ export const SearchListItem = ({
     </div>
   );
 };
+
+export const ListItemSkeleton = () => {
+  return (
+    <div className="list-item-skeleton border-bottom p-3">
+      <div className="avatar" />
+      <div className="username" />
+      <div className="date" />
+      <div className="title" />
+      <div className="media-image" />
+      <div className="description" />
+      <div className="actions" />
+    </div>
+  );
+};
