@@ -112,5 +112,65 @@
         }
       }
     }
+
+    .users-list {
+      margin: 0 -1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      @include padding-top(1rem);
+
+      .users-list-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+
+        @include padding-top(0.5rem);
+        @include padding-bottom(0.5rem);
+        @include padding-left(1rem);
+        @include padding-right(1rem);
+        @include transition(0.3s);
+
+        &:hover {
+          background-color: $duck-egg-blue;
+        }
+      }
+    }
+
+    .selected-user {
+      display: grid;
+      grid-template-columns: min-content 1fr min-content;
+      align-items: center;
+      background-color: $gray-100;
+      cursor: pointer;
+      gap: 1rem;
+
+      @include transition(0.3s);
+      @include border-radius(1rem);
+      @include padding(1rem);
+
+      &:hover {
+        background-color: $duck-egg-blue;
+
+        .click-to-change {
+          color: $primary;
+        }
+      }
+
+      .username {
+        color: $primary
+      }
+
+      .click-to-change {
+        white-space: nowrap;
+        background-color: $duck-egg-blue;
+
+        @include font-size(0.875rem);
+        @include padding(1rem);
+        @include border-radius(1rem);
+      }
+    }
   }
 }
