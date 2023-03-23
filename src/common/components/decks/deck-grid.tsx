@@ -4,6 +4,7 @@ import { DeckGridContext } from "./deck-manager";
 import { DeckAddColumn, DeckUserColumn } from "./columns";
 import { UserDeckGridItem } from "./types";
 import { Button } from "react-bootstrap";
+import { DeckCommunityColumn } from "./columns/deck-community-column";
 
 export const DeckGrid = () => {
   const deckContext = useContext(DeckGridContext);
@@ -58,6 +59,14 @@ export const DeckGrid = () => {
                           )}
                           {type === "u" ? (
                             <DeckUserColumn
+                              draggable={provided.dragHandleProps}
+                              settings={settings as UserDeckGridItem["settings"]}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {type === "co" ? (
+                            <DeckCommunityColumn
                               draggable={provided.dragHandleProps}
                               settings={settings as UserDeckGridItem["settings"]}
                             />

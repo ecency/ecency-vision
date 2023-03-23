@@ -136,6 +136,14 @@
         &:hover {
           background-color: $duck-egg-blue;
         }
+
+        .description {
+          opacity: 0.5;
+          max-width: 300px;
+
+          @include margin-top(0.25rem);
+          @include font-size(0.75rem);
+        }
       }
     }
 

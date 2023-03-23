@@ -1,27 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { lookupAccounts } from "../../../api/hive";
-import { error } from "../../feedback";
-import { formatError } from "../../../api/operations";
-import { useMappedStore } from "../../../store/use-mapped-store";
+import { lookupAccounts } from "../../../../api/hive";
+import { error } from "../../../feedback";
+import { formatError } from "../../../../api/operations";
+import { useMappedStore } from "../../../../store/use-mapped-store";
 import useDebounce from "react-use/lib/useDebounce";
 import { Form, InputGroup } from "react-bootstrap";
-import { _t } from "../../../i18n";
-import { UserAvatar } from "../../user-avatar";
+import { _t } from "../../../../i18n";
+import { UserAvatar } from "../../../user-avatar";
+import { getCommunities } from "../../../../api/bridge";
+import { UsernameDataItem } from "./common";
 
 interface Props {
-  recentList: string[];
+  isCommunity?: boolean;
+  recentList: UsernameDataItem[];
   username: string;
   setUsername: (v: string) => void;
+  setItem?: (i: UsernameDataItem) => void;
 }
 
-export const DeckAddColumnSearchBox = ({ username, setUsername, recentList }: Props) => {
+export const DeckAddColumnSearchBox = ({
+  username,
+  setUsername,
+  recentList,
+  isCommunity,
+  setItem
+}: Props) => {
   const { activeUser, global } = useMappedStore();
 
   const [prefilledUsername, setPrefilledUsername] = useState(username || "");
   const [usernameInput, setUsernameInput] = useState(username || "");
-  const [usernameData, setUsernameData] = useState<string[]>([]);
+  const [usernameData, setUsernameData] = useState<UsernameDataItem[]>([]);
   const [isUsernameDataLoading, setIsUsernameDataLoading] = useState(false);
   const [triggerFetch, setTriggerFetch] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<UsernameDataItem | null>(null);
 
   useDebounce(
     async () => {
@@ -37,9 +48,22 @@ export const DeckAddColumnSearchBox = ({ username, setUsername, recentList }: Pr
       setIsUsernameDataLoading(true);
 
       try {
-        const resp = await lookupAccounts(usernameInput, 5);
-        if (resp) {
-          setUsernameData(resp);
+        let data: UsernameDataItem[];
+
+        if (isCommunity) {
+          const communitiesResponse = await getCommunities("", 4, usernameInput, "rank");
+          data =
+            communitiesResponse?.map(({ title, about }) => ({
+              name: title,
+              description: about
+            })) ?? [];
+        } else {
+          const usersResponse = await lookupAccounts(usernameInput, 5);
+          data = usersResponse.map((u) => ({ name: u }));
+        }
+
+        if (data) {
+          setUsernameData(data);
         }
       } catch (e) {
         error(...formatError(e));
@@ -91,18 +115,23 @@ export const DeckAddColumnSearchBox = ({ username, setUsername, recentList }: Pr
           onChange={(e) => {
             setUsernameInput(e.target.value);
           }}
-          onKeyUp={(e: any) => {
-            if (e.key === "Enter") {
-              setUsername(username);
-            }
-          }}
         />
       </InputGroup>
       <div className="users-list">
-        {usernameData.map((u) => (
-          <div className="users-list-item" key={u} onClick={() => setUsername(u)}>
-            <UserAvatar size="medium" global={global} username={u} />
-            <div>{u}</div>
+        {usernameData.map((i) => (
+          <div
+            className="users-list-item"
+            key={i.name}
+            onClick={() => {
+              setUsername(i.name);
+              setSelectedItem(i);
+            }}
+          >
+            <UserAvatar size="medium" global={global} username={i.name} />
+            <div className="d-flex flex-column">
+              <div className="username">{i.name}</div>
+              <div className="description text-truncate">{i.description}</div>
+            </div>
           </div>
         ))}
       </div>

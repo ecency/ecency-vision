@@ -1,8 +1,8 @@
-import { DeckHeader } from "../header/deck-header";
+import { DeckHeader } from "../../header/deck-header";
 import React, { useState } from "react";
-import { useMappedStore } from "../../../store/use-mapped-store";
-import { _t } from "../../../i18n";
-import { DeckGridItem } from "../types";
+import { useMappedStore } from "../../../../store/use-mapped-store";
+import { _t } from "../../../../i18n";
+import { DeckGridItem } from "../../types";
 import {
   arrowLeftSvg,
   communities,
@@ -12,7 +12,7 @@ import {
   notifications,
   person,
   wallet
-} from "../../../img/svg";
+} from "../../../../img/svg";
 import "./_deck-add-column.scss";
 import { DeckAddColumnTypeSettings } from "./deck-add-column-type-settings";
 import { Button } from "react-bootstrap";

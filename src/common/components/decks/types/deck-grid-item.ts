@@ -19,4 +19,11 @@ export interface UserDeckGridItem extends ReloadableDeckGridItem {
   };
 }
 
-export type DeckGridItem = BaseDeckGridItem | UserDeckGridItem;
+export interface CommunityDeckGridItem extends ReloadableDeckGridItem {
+  type: "co";
+  settings: UserDeckGridItem["settings"] & {
+    tag: string;
+  };
+}
+
+export type DeckGridItem = BaseDeckGridItem | UserDeckGridItem | CommunityDeckGridItem;
