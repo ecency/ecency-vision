@@ -191,9 +191,7 @@ export const Profile = (props: Props) => {
       if (nextSection !== prevMatchSection || `@${nextUsername}` !== prevMatchUsername) {
         if (nextSection === "trail") {
           let data = await getAccountVotesTrail(username.replace("@", ""), -1);
-          //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
           setDataTrail({ ...dataTrail, entries: data.reverse() });
-          //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
         } else {
           fetchEntries(global.filter, global.tag, false);
         }
