@@ -123,7 +123,7 @@ export class ProfileInfo extends BaseComponent<Props, State> {
   render() {
     const { account } = this.props;
     const { rcAccount } = this.state;
-    if (account.__loaded && rcAccount) {
+    if (account?.__loaded && rcAccount) {
       const tooltip = (
         <Tooltip id="profile-tooltip" style={{ zIndex: 10 }}>
           <InfoContent {...this.props} account={account} rcAccount={rcAccount} />
