@@ -368,65 +368,6 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
     let menuItems: MenuItem[] = [];
 
-    if (activeUser && !isComment && isCommunity(entry.category)) {
-      menuItems = [
-        {
-          label: _t("entry-menu.cross-post"),
-          onClick: this.toggleCross,
-          icon: shuffleVariantSvg
-        }
-      ];
-    }
-
-    if (!separatedSharing) {
-      menuItems = [
-        ...menuItems,
-        {
-          label: _t("entry-menu.share"),
-          onClick: this.toggleShare,
-          icon: shareVariantSvg
-        }
-      ];
-    }
-
-    if (global.usePrivate) {
-      menuItems = [
-        ...menuItems,
-        {
-          label: _t("entry-menu.edit-history"),
-          onClick: this.toggleEditHistory,
-          icon: historySvg
-        }
-      ];
-    }
-
-    if (editable) {
-      menuItems = [
-        ...menuItems,
-        ...[
-          {
-            label: _t("g.edit"),
-            // onClick: this.edit,
-            onClick: isComment && toggleEdit ? toggleEdit : this.edit,
-            icon: pencilOutlineSvg
-          }
-        ]
-      ];
-    }
-
-    if (deletable) {
-      menuItems = [
-        ...menuItems,
-        ...[
-          {
-            label: _t("g.delete"),
-            onClick: this.toggleDelete,
-            icon: deleteForeverSvg
-          }
-        ]
-      ];
-    }
-
     if (this.canPinBothOptions()) {
       if (
         entryPinTracker[`${entry.author}-${entry.permlink}`] &&
@@ -537,6 +478,65 @@ export class EntryMenu extends BaseComponent<Props, State> {
             label: isMuted ? _t("entry-menu.unmute") : _t("entry-menu.mute"),
             onClick: this.toggleMute,
             icon: volumeOffSvg
+          }
+        ]
+      ];
+    }
+
+    if (activeUser && !isComment && isCommunity(entry.category)) {
+      menuItems = [
+        {
+          label: _t("entry-menu.cross-post"),
+          onClick: this.toggleCross,
+          icon: shuffleVariantSvg
+        }
+      ];
+    }
+
+    if (!separatedSharing) {
+      menuItems = [
+        ...menuItems,
+        {
+          label: _t("entry-menu.share"),
+          onClick: this.toggleShare,
+          icon: shareVariantSvg
+        }
+      ];
+    }
+
+    if (global.usePrivate) {
+      menuItems = [
+        ...menuItems,
+        {
+          label: _t("entry-menu.edit-history"),
+          onClick: this.toggleEditHistory,
+          icon: historySvg
+        }
+      ];
+    }
+
+    if (editable) {
+      menuItems = [
+        ...menuItems,
+        ...[
+          {
+            label: _t("g.edit"),
+            // onClick: this.edit,
+            onClick: isComment && toggleEdit ? toggleEdit : this.edit,
+            icon: pencilOutlineSvg
+          }
+        ]
+      ];
+    }
+
+    if (deletable) {
+      menuItems = [
+        ...menuItems,
+        ...[
+          {
+            label: _t("g.delete"),
+            onClick: this.toggleDelete,
+            icon: deleteForeverSvg
           }
         ]
       ];
