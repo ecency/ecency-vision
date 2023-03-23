@@ -2,11 +2,17 @@ import React, { useContext } from "react";
 import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
 import { DeckGridContext } from "./deck-manager";
 import { DeckAddColumn, DeckUserColumn } from "./columns";
-import { UserDeckGridItem } from "./types";
+import { CommunityDeckGridItem, UserDeckGridItem } from "./types";
 import { Button } from "react-bootstrap";
 import { DeckCommunityColumn } from "./columns/deck-community-column";
+import { DeckWalletColumn } from "./columns/deck-wallet-column";
+import { History } from "history";
 
-export const DeckGrid = () => {
+interface Props {
+  history: History;
+}
+
+export const DeckGrid = ({ history }: Props) => {
   const deckContext = useContext(DeckGridContext);
 
   const onDragEnd = (result: DropResult) => {
@@ -68,7 +74,16 @@ export const DeckGrid = () => {
                           {type === "co" ? (
                             <DeckCommunityColumn
                               draggable={provided.dragHandleProps}
+                              settings={settings as CommunityDeckGridItem["settings"]}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {type === "w" ? (
+                            <DeckWalletColumn
                               settings={settings as UserDeckGridItem["settings"]}
+                              draggable={provided.dragHandleProps}
+                              history={history}
                             />
                           ) : (
                             <></>

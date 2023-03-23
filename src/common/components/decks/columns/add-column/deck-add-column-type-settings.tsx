@@ -2,14 +2,11 @@ import { DeckGridItem } from "../../types";
 import React from "react";
 import { DeckAddColumnUserSettings } from "./index";
 import { DeckAddColumnCommunitySettings } from "./deck-add-column-community-settings";
+import { DeckAddColumnWalletSettings } from "./deck-add-column-wallet-settings";
 
 interface SettingsProps {
   deckKey: number;
 }
-
-const DeckAddColumnWalletSettings = () => {
-  return <div className="deck-add-column-wallet-settings"></div>;
-};
 
 const DeckAddColumnNotificationsSettings = () => {
   return <div className="deck-add-column-notifications-settings"></div>;
@@ -28,7 +25,7 @@ export const DeckAddColumnTypeSettings = ({ type, deckKey }: Props) => {
     <>
       {type === "u" ? <DeckAddColumnUserSettings deckKey={deckKey} /> : <></>}
       {type === "co" ? <DeckAddColumnCommunitySettings deckKey={deckKey} /> : <></>}
-      {type === "w" ? <DeckAddColumnWalletSettings /> : <></>}
+      {type === "w" ? <DeckAddColumnWalletSettings deckKey={deckKey} /> : <></>}
       {type === "n" ? <DeckAddColumnNotificationsSettings /> : <></>}
       {type === "s" ? <DeckAddColumnSearchSettings /> : <></>}
     </>

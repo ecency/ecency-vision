@@ -66,8 +66,8 @@ const DeckHeaderSettingsComponent = ({
 
   return (
     <>
-      {getWalletSettings()}
-      {getNotificationsSettings()}
+      {/*{getWalletSettings()}*/}
+      {/*{getNotificationsSettings()}*/}
       {typeof updateInterval == "number" ? (
         <DeckHeaderUpdateIntervalSettings
           updateInterval={updateInterval}

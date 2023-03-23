@@ -4,8 +4,13 @@ import "./_deck.scss";
 import "./_index.scss";
 import { DeckGrid } from "./deck-grid";
 import { DeckManager } from "./deck-manager";
+import { History } from "history";
 
-export const Decks = () => {
+interface Props {
+  history: History;
+}
+
+export const Decks = ({ history }: Props) => {
   const { setNavShow } = useNav();
 
   useEffect(() => {
@@ -18,7 +23,7 @@ export const Decks = () => {
         <div className="decks w-100">
           <div className="toolbar">toolbar</div>
           <div className="decks-container w-100">
-            <DeckGrid />
+            <DeckGrid history={history} />
           </div>
         </div>
       )}

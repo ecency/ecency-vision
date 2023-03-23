@@ -50,11 +50,23 @@ export const DeckCommunityColumn = ({ settings, draggable }: Props) => {
         icon: null,
         updateIntervalMs: settings.updateIntervalMs
       }}
-      listItemComponent={SearchListItem}
       data={data}
       isReloading={isReloading}
       onReload={() => fetchData()}
       onRemove={() => {}}
-    />
+    >
+      {(item: any, measure: Function, index: number) => (
+        <SearchListItem
+          onMounted={() => measure()}
+          index={index + 1}
+          entry={{
+            ...item,
+            toggleNotNeeded: true
+          }}
+          {...item}
+          children=""
+        />
+      )}
+    </GenericDeckColumn>
   );
 };

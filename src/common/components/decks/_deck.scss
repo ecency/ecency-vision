@@ -327,4 +327,56 @@
       }
     }
   }
+
+  .transaction-list-item {
+    display: grid;
+    grid-template-columns: min-content min-content 1fr;
+    grid-gap: 1rem;
+    grid-template-areas:
+        "icon title numbers"
+        "details details details";
+    align-items: center;
+    border-bottom: 1px solid $border-color;
+
+    @include padding(1rem);
+
+    .transaction-icon {
+      grid-area: icon;
+      margin: 0 auto;
+      color: $dusky-blue-two;
+      min-width: 16px;
+      opacity: 0.75;
+    }
+
+    .transaction-title {
+      grid-area: title;
+      white-space: nowrap;
+
+      .transaction-name {
+        font-weight: bold;
+
+        @include font-size(0.875rem);
+      }
+
+      .transaction-date {
+        opacity: 0.5;
+
+        @include font-size(0.75rem);
+      }
+    }
+
+    .transaction-numbers {
+      grid-area: numbers;
+      font-weight: bold;
+      color: $primary;
+
+      @include margin-left(auto);
+    }
+
+    .transaction-details {
+      grid-area: details;
+
+      @include font-size(0.875rem);
+    }
+  }
 }

@@ -137,7 +137,7 @@ class EntryIndexPage extends Component<Props, State> {
       <>
         <div className={containerClasses}>
           {global.listStyle === ListStyle.deck ? (
-            <Decks />
+            <Decks history={this.props.history} />
           ) : (
             <>
               <div className="tags-side">

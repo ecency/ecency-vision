@@ -8,22 +8,22 @@ import { ListItemSkeleton } from "./deck-items";
 
 export interface DeckProps {
   header: { title: string; subtitle: string; icon: any; updateIntervalMs: number };
-  listItemComponent: any;
   data: any[];
   onRemove: () => void;
   onReload: () => void;
   draggable?: DraggableProvidedDragHandleProps;
   isReloading: boolean;
+  children: (item: any, measure: Function, index: number) => JSX.Element;
 }
 
 export const GenericDeckColumn = ({
   header,
-  listItemComponent: ListItem,
   data,
   onRemove,
   onReload,
   draggable,
-  isReloading
+  isReloading,
+  children
 }: DeckProps) => {
   const { activeUser } = useMappedStore();
 
@@ -68,12 +68,7 @@ export const GenericDeckColumn = ({
                   >
                     {({ measure, registerChild }) => (
                       <div ref={registerChild as any} className="virtual-list-item" style={style}>
-                        <ListItem
-                          onMounted={() => measure()}
-                          index={index + 1}
-                          entry={{ ...data[index], toggleNotNeeded: true }}
-                          {...data[index]}
-                        />
+                        {children(data[index], measure, index)}
                       </div>
                     )}
                   </CellMeasurer>
