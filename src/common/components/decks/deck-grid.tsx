@@ -2,7 +2,12 @@ import React, { useContext } from "react";
 import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
 import { DeckGridContext } from "./deck-manager";
 import { DeckAddColumn, DeckUserColumn } from "./columns";
-import { CommunityDeckGridItem, ReloadableDeckGridItem, UserDeckGridItem } from "./types";
+import {
+  CommunityDeckGridItem,
+  ReloadableDeckGridItem,
+  SearchDeckGridItem,
+  UserDeckGridItem
+} from "./types";
 import { Button } from "react-bootstrap";
 import { DeckCommunityColumn } from "./columns/deck-community-column";
 import { DeckWalletColumn } from "./columns/deck-wallet-column";
@@ -10,6 +15,7 @@ import { History } from "history";
 import { DeckNotificationsColumn } from "./columns/deck-notifications-column";
 import { DeckTrendingColumn } from "./columns/deck-trending-column";
 import { DeckTopicsColumn } from "./columns/deck-topics-column";
+import { DeckSearchColumn } from "./columns/deck-search-column";
 
 interface Props {
   history: History;
@@ -111,6 +117,14 @@ export const DeckGrid = ({ history }: Props) => {
                           {type === "to" ? (
                             <DeckTopicsColumn
                               settings={settings as ReloadableDeckGridItem["settings"]}
+                              draggable={provided.dragHandleProps}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {type === "s" ? (
+                            <DeckSearchColumn
+                              settings={settings as SearchDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                             />
                           ) : (

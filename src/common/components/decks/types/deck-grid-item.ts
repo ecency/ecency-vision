@@ -26,4 +26,15 @@ export interface CommunityDeckGridItem extends ReloadableDeckGridItem {
   };
 }
 
-export type DeckGridItem = BaseDeckGridItem | UserDeckGridItem | CommunityDeckGridItem;
+export interface SearchDeckGridItem extends ReloadableDeckGridItem {
+  type: "s";
+  settings: ReloadableDeckGridItem["settings"] & {
+    query: string;
+  };
+}
+
+export type DeckGridItem =
+  | BaseDeckGridItem
+  | UserDeckGridItem
+  | CommunityDeckGridItem
+  | SearchDeckGridItem;
