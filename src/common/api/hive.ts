@@ -190,14 +190,9 @@ export const getAllTrendingTags = (
   afterTag: string = "",
   limit: number = 250
 ): Promise<TrendingTag[] | any> =>
-  client.database
-    .call("get_trending_tags", [afterTag, limit])
-    .then((tags: TrendingTag[]) => {
-      return tags.filter((x) => x.name !== "").filter((x) => !isCommunity(x.name));
-    })
-    .catch((reason) => {
-      debugger;
-    });
+  client.database.call("get_trending_tags", [afterTag, limit]).then((tags: TrendingTag[]) => {
+    return tags.filter((x) => x.name !== "").filter((x) => !isCommunity(x.name));
+  });
 
 export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
   client.database.call("lookup_accounts", [q, limit]);

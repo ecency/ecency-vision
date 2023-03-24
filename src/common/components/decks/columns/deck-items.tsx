@@ -15,20 +15,23 @@ import entryLink from "../../entry-link";
 import profileLink from "../../profile-link";
 import { history } from "../../../store";
 import { useMappedStore } from "../../../store/use-mapped-store";
+import { TrendingTag } from "../../../store/trending-tags/types";
 
 export interface HotListItemProps {
   index: number;
-  entry: any;
+  entry: TrendingTag;
+  onMounted: () => void;
 }
 
-export const HotListItem = ({ index, entry }: HotListItemProps) => {
+export const HotListItem = ({ index, entry, onMounted }: HotListItemProps) => {
+  useEffect(() => {
+    onMounted();
+  }, []);
+
   return (
-    <div className="pb-5 d-flex align-items-center">
+    <div className="p-3 border-bottom d-flex align-items-center">
       <div className="hot-item-index">{index}</div>
-      <div
-        className="flex-grow-1 ml-3 hot-item-link"
-        // onClick={() => toggleListStyle && toggleListStyle(ListStyle.row)}
-      >
+      <div className="flex-grow-1 ml-3 hot-item-link">
         <Link to={`/trending/${entry.name}`}>#{entry.name}</Link>
       </div>
       <div className="hot-item-post-count">

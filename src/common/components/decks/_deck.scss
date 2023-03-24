@@ -147,19 +147,20 @@
   }
 
   .hot-item-index {
-    font-size: 16px;
-    font-weight: 500;
+    opacity: 0.5;
+
+    @include font-size(0.875rem);
   }
 
   .hot-item-link {
-    font-size: 14px;
     font-weight: 500;
     word-break: break-word;
+
+    @include font-size(1rem);
   }
 
   .hot-item-post-count {
-    font-size: 14px;
-    font-weight: 400;
+    @include font-size(0.875rem);
   }
 
   .virtual-list-spacer {

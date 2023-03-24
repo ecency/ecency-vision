@@ -9,6 +9,7 @@ import { DeckWalletColumn } from "./columns/deck-wallet-column";
 import { History } from "history";
 import { DeckNotificationsColumn } from "./columns/deck-notifications-column";
 import { DeckTrendingColumn } from "./columns/deck-trending-column";
+import { DeckTopicsColumn } from "./columns/deck-topics-column";
 
 interface Props {
   history: History;
@@ -103,6 +104,14 @@ export const DeckGrid = ({ history }: Props) => {
                             <DeckTrendingColumn
                               draggable={provided.dragHandleProps}
                               settings={settings as ReloadableDeckGridItem["settings"]}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {type === "to" ? (
+                            <DeckTopicsColumn
+                              settings={settings as ReloadableDeckGridItem["settings"]}
+                              draggable={provided.dragHandleProps}
                             />
                           ) : (
                             <></>
