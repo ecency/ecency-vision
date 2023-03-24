@@ -283,7 +283,7 @@ export const ListItemSkeleton = () => {
   );
 };
 
-export const WalletListItemSkeleton = () => {
+export const ShortListItemSkeleton = () => {
   return (
     <div className="list-item-skeleton wallet-list-item-skeleton border-bottom p-3">
       <div className="avatar" />

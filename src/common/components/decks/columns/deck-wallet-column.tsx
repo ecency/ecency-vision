@@ -7,7 +7,7 @@ import { TransactionRow } from "../../transactions";
 import { Transaction } from "../../../store/transactions/types";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { History } from "history";
-import { ListItemSkeleton, WalletListItemSkeleton } from "./deck-items";
+import { ListItemSkeleton, ShortListItemSkeleton } from "./deck-items";
 
 interface Props {
   history: History;
@@ -52,7 +52,7 @@ export const DeckWalletColumn = ({ settings, draggable, history }: Props) => {
       isReloading={isReloading}
       onReload={() => fetchData()}
       onRemove={() => {}}
-      skeletonItem={<WalletListItemSkeleton />}
+      skeletonItem={<ShortListItemSkeleton />}
     >
       {(item: Transaction, measure: any, index: number) => (
         <TransactionRow

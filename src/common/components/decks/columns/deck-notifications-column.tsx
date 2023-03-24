@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ListItemSkeleton } from "./deck-items";
+import { ShortListItemSkeleton } from "./deck-items";
 import { GenericDeckColumn } from "./generic-deck-column";
 import { UserDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
@@ -74,7 +74,7 @@ export const DeckNotificationsColumn = ({ settings, draggable, history }: Props)
       isReloading={isReloading}
       onReload={() => fetchData()}
       onRemove={() => {}}
-      skeletonItem={<ListItemSkeleton />}
+      skeletonItem={<ShortListItemSkeleton />}
     >
       {(item: ApiNotification, measure: Function, index: number) => (
         <NotificationListItem
