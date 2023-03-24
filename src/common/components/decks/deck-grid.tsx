@@ -2,12 +2,13 @@ import React, { useContext } from "react";
 import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
 import { DeckGridContext } from "./deck-manager";
 import { DeckAddColumn, DeckUserColumn } from "./columns";
-import { CommunityDeckGridItem, UserDeckGridItem } from "./types";
+import { CommunityDeckGridItem, ReloadableDeckGridItem, UserDeckGridItem } from "./types";
 import { Button } from "react-bootstrap";
 import { DeckCommunityColumn } from "./columns/deck-community-column";
 import { DeckWalletColumn } from "./columns/deck-wallet-column";
 import { History } from "history";
 import { DeckNotificationsColumn } from "./columns/deck-notifications-column";
+import { DeckTrendingColumn } from "./columns/deck-trending-column";
 
 interface Props {
   history: History;
@@ -94,6 +95,14 @@ export const DeckGrid = ({ history }: Props) => {
                               history={history}
                               settings={settings as UserDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {type === "tr" ? (
+                            <DeckTrendingColumn
+                              draggable={provided.dragHandleProps}
+                              settings={settings as ReloadableDeckGridItem["settings"]}
                             />
                           ) : (
                             <></>

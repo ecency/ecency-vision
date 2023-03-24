@@ -5,7 +5,7 @@ interface BaseDeckGridItem {
   settings: unknown;
 }
 
-interface ReloadableDeckGridItem extends BaseDeckGridItem {
+export interface ReloadableDeckGridItem extends BaseDeckGridItem {
   settings: {
     updateIntervalMs: number;
   };

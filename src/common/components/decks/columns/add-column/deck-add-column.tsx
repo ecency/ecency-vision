@@ -1,5 +1,5 @@
 import { DeckHeader } from "../../header/deck-header";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { _t } from "../../../../i18n";
 import { DeckGridItem } from "../../types";
@@ -17,6 +17,7 @@ import "./_deck-add-column.scss";
 import { DeckAddColumnTypeSettings } from "./deck-add-column-type-settings";
 import { Button } from "react-bootstrap";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
+import { DeckGridContext } from "../../deck-manager";
 
 interface Props {
   onRemove: () => void;
@@ -33,6 +34,7 @@ interface AvailableColumn {
 
 export const DeckAddColumn = ({ onRemove, draggable, deckKey }: Props) => {
   const { activeUser } = useMappedStore();
+  const { add } = useContext(DeckGridContext);
 
   const availableColumns: AvailableColumn[] = [
     {
@@ -78,6 +80,7 @@ export const DeckAddColumn = ({ onRemove, draggable, deckKey }: Props) => {
       description: "Explore specific posts based on your search query."
     }
   ];
+  const typesWithoutSettings = ["tr", "to"];
 
   const [step, setStep] = useState<"select" | "setup">("select");
   const [selectedType, setSelectedType] = useState<DeckGridItem["type"] | null>(null);
@@ -120,8 +123,18 @@ export const DeckAddColumn = ({ onRemove, draggable, deckKey }: Props) => {
                 key={type}
                 className="item"
                 onClick={() => {
+                  if (typesWithoutSettings.includes(type)) {
+                    add({
+                      key: deckKey,
+                      type,
+                      settings: {
+                        updateIntervalMs: 60000
+                      }
+                    });
+                  } else {
+                    setStep("setup");
+                  }
                   setSelectedType(type);
-                  setStep("setup");
                 }}
               >
                 {icon}
