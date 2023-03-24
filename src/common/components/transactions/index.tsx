@@ -53,7 +53,9 @@ interface RowProps {
 
 export class TransactionRow extends Component<RowProps> {
   componentDidMount() {
-    this.props.onMounted();
+    if (this.props.onMounted) {
+      this.props.onMounted();
+    }
   }
 
   render() {

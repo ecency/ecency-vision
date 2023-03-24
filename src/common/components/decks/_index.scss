@@ -6,6 +6,11 @@
   color: $black;
   align-items: center;
   background-color: $gray-300;
+  transition: 0.3s;
+
+  &.expanded {
+    grid-template-columns: 280px 1fr min-content;
+  }
 
   .decks-container {
     overflow-x: auto;

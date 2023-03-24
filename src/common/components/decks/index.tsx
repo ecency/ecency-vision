@@ -5,6 +5,9 @@ import "./_index.scss";
 import { DeckGrid } from "./deck-grid";
 import { DeckManager } from "./deck-manager";
 import { History } from "history";
+import { DeckToolbar } from "./deck-toolbar/deck-toolbar";
+import useLocalStorage from "react-use/lib/useLocalStorage";
+import { PREFIX } from "../../util/local-storage";
 
 interface Props {
   history: History;
@@ -13,6 +16,8 @@ interface Props {
 export const Decks = ({ history }: Props) => {
   const { setNavShow } = useNav();
 
+  const [isExpanded, setIsExpanded] = useLocalStorage(PREFIX + "_de", false);
+
   useEffect(() => {
     setNavShow(false);
   }, []);
@@ -20,8 +25,8 @@ export const Decks = ({ history }: Props) => {
   return (
     <DeckManager>
       {() => (
-        <div className="decks w-100">
-          <div className="toolbar">toolbar</div>
+        <div className={"decks w-100 " + (isExpanded ? "expanded" : "")}>
+          <DeckToolbar history={history} isExpanded={!!isExpanded} setIsExpanded={setIsExpanded} />
           <div className="decks-container w-100">
             <DeckGrid history={history} />
           </div>
