@@ -212,7 +212,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
       u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}`;
     }
     clipboard(u);
-    info(_t("entry.address-copied"));
+    success(_t("entry.address-copied"));
   };
 
   edit = () => {

@@ -110,9 +110,9 @@ export default class Feedback extends BaseComponent<Props, State> {
     };
 
     const interval = setInterval(
-      (function hello() {
+      (function handleWidthChange() {
         setWidth();
-        return hello;
+        return handleWidthChange;
       })(),
       125
     );
