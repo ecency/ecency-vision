@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import { DeckCommunityColumn } from "./columns/deck-community-column";
 import { DeckWalletColumn } from "./columns/deck-wallet-column";
 import { History } from "history";
+import { DeckNotificationsColumn } from "./columns/deck-notifications-column";
 
 interface Props {
   history: History;
@@ -84,6 +85,15 @@ export const DeckGrid = ({ history }: Props) => {
                               settings={settings as UserDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                               history={history}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {type === "n" ? (
+                            <DeckNotificationsColumn
+                              history={history}
+                              settings={settings as UserDeckGridItem["settings"]}
+                              draggable={provided.dragHandleProps}
                             />
                           ) : (
                             <></>

@@ -385,4 +385,45 @@
       @include font-size(0.875rem);
     }
   }
+
+  .notification-list-item {
+    border-bottom: 1px solid $border-color;
+
+    @include padding-top(1rem);
+    @include padding-bottom(1rem);
+    @include padding-right(1rem);
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    .item-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+
+      .first-line {
+        margin-bottom: 0.5rem;
+
+        @include font-size(0.875rem);
+
+        > span {
+          opacity: 0.5;
+
+          @include margin-left(0.25rem);
+        }
+      }
+
+      .second-line {
+        @include font-size(0.875rem);
+      }
+
+      .transfer-memo {
+        border-left: 4px solid $border-color;
+        line-height: 1.25;
+
+        @include padding-left(0.5rem);
+      }
+    }
+  }
 }

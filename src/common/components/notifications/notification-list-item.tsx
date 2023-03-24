@@ -24,7 +24,15 @@ export default class NotificationListItem extends Component<{
   markNotifications: (id: string | null) => void;
   addAccount: (data: Account) => void;
   toggleUIProp: (what: ToggleType) => void;
+  onMounted?: () => void;
+  className?: string;
 }> {
+  componentDidMount() {
+    if (this.props.onMounted) {
+      this.props.onMounted();
+    }
+  }
+
   markAsRead = () => {
     const { notification: primaryNotification, entry, markNotifications } = this.props;
     const notification = primaryNotification || entry;
@@ -67,13 +75,17 @@ export default class NotificationListItem extends Component<{
       <>
         <div
           title={notification.timestamp}
-          className={_c(
-            `list-item ${
-              notification.read === 0 && !(notification as ApiMentionNotification).deck
-                ? "not-read"
-                : " "
-            }`
-          )}
+          className={
+            _c(
+              `list-item ${
+                notification.read === 0 && !(notification as ApiMentionNotification).deck
+                  ? "not-read"
+                  : " "
+              }`
+            ) +
+            " " +
+            this.props.className
+          }
         >
           <div
             className={`item-inner ${
