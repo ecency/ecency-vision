@@ -15,17 +15,40 @@ import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import EntryLink from "../entry-link";
 
-export default class NotificationListItem extends Component<{
+interface State {
+  isChecked: boolean;
+  selectedNotifications: Array<any>;
+}
+
+interface Props {
   global: Global;
   history: History;
   notification: ApiNotification;
   entry?: ApiNotification;
   dynamicProps: DynamicProps;
+  isSelect: boolean;
+  currentStatus: string;
   markNotifications: (id: string | null) => void;
   addAccount: (data: Account) => void;
   toggleUIProp: (what: ToggleType) => void;
-}> {
+  setIsSelectIcon?: (d: boolean) => void;
+}
+export default class NotificationListItem extends Component<Props, State> {
+  state: State = {
+    isChecked: false,
+    selectedNotifications: []
+  };
+
+  componentDidUpdate(prevProps: Readonly<Props>) {
+    if (prevProps.isSelect !== this.props.isSelect) {
+      if (!this.props.isSelect) {
+        this.setState({ selectedNotifications: [] });
+      }
+    }
+  }
+
   markAsRead = () => {
+    console.log("Mark as read");
     const { notification: primaryNotification, entry, markNotifications } = this.props;
     const notification = primaryNotification || entry;
 
@@ -38,6 +61,56 @@ export default class NotificationListItem extends Component<{
     const { toggleUIProp, entry } = this.props;
     !(entry && (entry as any).toggleNotNeeded) && toggleUIProp("notifications");
     this.markAsRead();
+  };
+
+  handleChecked = (id: string) => {
+    if (this.props.isSelect) {
+      console.log("Clicked on list", id, this.state.selectedNotifications);
+      this.setState({ isChecked: !this.state.isChecked });
+      const { selectedNotifications } = this.state;
+      const index = selectedNotifications.indexOf(id);
+      if (index === -1) {
+        console.log("IF true");
+        var newSelected = [...selectedNotifications];
+        console.log("n", newSelected);
+        newSelected.push(id);
+        console.log("now", newSelected);
+        this.setState({ selectedNotifications: newSelected }, this.setSelectIcon);
+        // console.log(selectedNotifications , id)
+        // const newSelectedNotifications = selectedNotifications.push(id);
+        // console.log(newSelectedNotifications);
+        // this.setState({ selectedNotifications: newSelectedNotifications }, () =>
+        //   console.log(this.state.selectedNotifications)
+        // );
+      } else {
+        console.log("Else True");
+        const newSelectedNotifications = [...selectedNotifications];
+        newSelectedNotifications.splice(index, 1);
+        this.setState({ selectedNotifications: newSelectedNotifications }, this.setSelectIcon);
+      }
+
+      // const { selectedNotifications } = this.state;
+      // const index = selectedNotifications.indexOf(id);
+      // console.log(index);
+      // this.setState({ isChecked: !this.state.isChecked });
+      // if (index === -1) {
+      //   this.setState({ selectedNotifications: [...[...selectedNotifications, id]] });
+      // } else {
+      //   const newSelectedNotifications = [...selectedNotifications];
+      //   newSelectedNotifications.splice(index, 1);
+      //   this.setState({ selectedNotifications: newSelectedNotifications });
+      // }
+    }
+  };
+
+  setSelectIcon = () => {
+    if (this.props.setIsSelectIcon && this.state.selectedNotifications.length > 0) {
+      this.props.setIsSelectIcon(true);
+    } else {
+      if (this.props.setIsSelectIcon && this.state.selectedNotifications.length === 0) {
+        this.props.setIsSelectIcon(false);
+      }
+    }
   };
 
   render() {
@@ -74,23 +147,31 @@ export default class NotificationListItem extends Component<{
                 : " "
             }`
           )}
+          onClick={() => this.handleChecked(notification!.id)}
+          key={notification.id}
         >
           <div
             className={`item-inner ${
               (notification as ApiMentionNotification).deck ? "p-2 m-0" : ""
             }`}
           >
-            <div
-              className={`item-control ${
-                (notification as ApiMentionNotification).deck ? "item-control-deck" : ""
-              }`}
-            >
-              {!(notification as ApiMentionNotification).deck && notification.read === 0 && (
-                <Tooltip content={_t("notifications.mark-read")}>
-                  <span onClick={this.markAsRead} className="mark-read" />
-                </Tooltip>
-              )}
-            </div>
+            {this.props.isSelect ? (
+              <div className="checkbox">
+                <input type="checkbox" checked={this.state.isChecked} />
+              </div>
+            ) : (
+              <div
+                className={`item-control ${
+                  (notification as ApiMentionNotification).deck ? "item-control-deck" : ""
+                }`}
+              >
+                {!(notification as ApiMentionNotification).deck && notification.read === 0 && (
+                  <Tooltip content={_t("notifications.mark-read")}>
+                    <span onClick={this.markAsRead} className="mark-read" />
+                  </Tooltip>
+                )}
+              </div>
+            )}
 
             <div className="source">{sourceLinkMain}</div>
 
