@@ -282,3 +282,14 @@ export const ListItemSkeleton = () => {
     </div>
   );
 };
+
+export const WalletListItemSkeleton = () => {
+  return (
+    <div className="list-item-skeleton wallet-list-item-skeleton border-bottom p-3">
+      <div className="avatar" />
+      <div className="username" />
+      <div className="date" />
+      <div className="title" />
+    </div>
+  );
+};

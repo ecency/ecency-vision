@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SearchListItem } from "./deck-items";
+import { ListItemSkeleton, SearchListItem } from "./deck-items";
 import { GenericDeckColumn } from "./generic-deck-column";
 import { UserDeckGridItem } from "../types";
 import { getAccountPosts } from "../../../api/bridge";
@@ -53,6 +53,7 @@ export const DeckUserColumn = ({ settings, draggable }: Props) => {
       isReloading={isReloading}
       onReload={() => fetchData()}
       onRemove={() => {}}
+      skeletonItem={<ListItemSkeleton />}
     >
       {(item: any, measure: Function, index: number) => (
         <SearchListItem

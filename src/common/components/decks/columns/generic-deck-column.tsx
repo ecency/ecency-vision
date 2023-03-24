@@ -14,6 +14,7 @@ export interface DeckProps {
   draggable?: DraggableProvidedDragHandleProps;
   isReloading: boolean;
   children: (item: any, measure: Function, index: number) => JSX.Element;
+  skeletonItem: JSX.Element;
 }
 
 export const GenericDeckColumn = ({
@@ -23,7 +24,8 @@ export const GenericDeckColumn = ({
   onReload,
   draggable,
   isReloading,
-  children
+  children,
+  skeletonItem
 }: DeckProps) => {
   const { activeUser } = useMappedStore();
 
@@ -80,9 +82,7 @@ export const GenericDeckColumn = ({
           </AutoSizer>
         ) : (
           <div className="skeleton-list">
-            {Array.from(Array(20).keys()).map((i, key) => (
-              <ListItemSkeleton key={key} />
-            ))}
+            {Array.from(Array(20).keys()).map(() => skeletonItem)}
           </div>
         )}
       </div>

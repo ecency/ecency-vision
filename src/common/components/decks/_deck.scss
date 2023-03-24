@@ -274,6 +274,12 @@
         animation: skeleton-loader 1s infinite;
       }
 
+      &.wallet-list-item-skeleton {
+        grid-template-areas:
+          "avatar username date"
+          "title title title";
+      }
+
       .avatar {
         grid-area: avatar;
         width: 32px;
