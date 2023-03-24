@@ -194,7 +194,7 @@ export function HEToHCancelUnstake(t: HECancelUnstake): CancelUnstake {
   };
 }
 export function HEToHMarketPlaceOrder(t: HEMarketPlaceOrder): MarketPlaceOrder {
-  const { account, orderType, price, quantityLocked } = t;
+  const { account, orderType, price, quantityLocked, symbol } = t;
   validateOrderType(orderType);
   const ret: MarketPlaceOrder = {
     type: "market_placeOrder",
@@ -203,13 +203,15 @@ export function HEToHMarketPlaceOrder(t: HEMarketPlaceOrder): MarketPlaceOrder {
     orderType: orderType as "buy" | "sell",
     price: price
       ? FormattedNumber(price, {
-          fractionDigits: 8,
-          suffix: "POB/" + HIVE_HUMAN_NAME
+          maximumFractionDigits: 16,
+          minimumFractionDigits: 0,
+          suffix: symbol + "/" + HIVE_HUMAN_NAME
         })
       : price,
     quantityLocked: FormattedNumber(quantityLocked, {
-      fractionDigits: 8,
-      suffix: t.symbol
+      maximumFractionDigits: 16,
+      minimumFractionDigits: 0,
+      suffix: orderType === "buy" ? HIVE_HUMAN_NAME : symbol
     })
   };
   return ret;

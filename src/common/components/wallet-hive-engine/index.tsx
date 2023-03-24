@@ -358,8 +358,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     const hasMultipleUnclaimedRewards = rewards.length > 1;
     const isMyPage = activeUser && activeUser.username === account.name;
     let rewardsToShowInTooltip = [...rewards];
+    const fallBackImageURL = "../../img/noimage.svg";
     rewardsToShowInTooltip = rewardsToShowInTooltip.splice(0, 10);
-
     if (!account.__loaded) {
       return null;
     }
@@ -369,8 +369,9 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
         {tokens.map((b, i) => {
           const fallbackImage = require("../../img/noimage.svg");
           const imageSrc = proxifyImageSrc(b.icon, 0, 0, global?.canUseWebp ? "webp" : "match");
+          // The Link item that I would normally use here doesn't result in the transactions being reloaded when choosing another hive token.
           return (
-            <span key={i} onClick={this.setActiveToken.bind(this, b.symbol)}>
+            <a key={i} href={"/@" + account.name + "/" + b.symbol}>
               <img
                 alt={b.symbol}
                 src={imageSrc}
@@ -380,7 +381,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                   target.src = fallbackImage;
                 }}
               />
-            </span>
+            </a>
           );
         })}
       </>
@@ -392,7 +393,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       <div className="wallet-hive-engine">
         <div className="wallet-main">
           <div className="wallet-info">
-            {hasUnclaimedRewards && (
+            {tokenMenu}
+            {!transferAsset && hasUnclaimedRewards && (
               <div className="unclaimed-rewards">
                 <div className="title">{_t("wallet.unclaimed-rewards")}</div>
 
@@ -461,14 +463,18 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 )}
               </div>
             )}
-            <div className="balance-row alternative">
-              <div className="balance-info">
-                <div className="title">{_t("wallet-engine.title")}</div>
-                <div className="description">{_t("wallet-engine.description")}</div>
+            {!transferAsset && (
+              <div className="balance-row alternative">
+                <div className="balance-info">
+                  <div className="title">{_t("wallet-engine.title")}</div>
+                  <div className="description">{_t("wallet-engine.description")}</div>
+                </div>
               </div>
-            </div>
-            <EngineTokensEstimated tokens={utokens} dynamicProps={dynamicProps} />
-            {tokens.length >= 3 && (
+            )}
+            {!transferAsset && (
+              <EngineTokensEstimated tokens={utokens} dynamicProps={dynamicProps} />
+            )}
+            {!transferAsset && tokens.length >= 3 && (
               <div className="wallet-info">
                 <SortEngineTokens
                   sortTokensInAscending={this.sortTokensInAscending}
@@ -774,7 +780,13 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
               )}
             </div>
           </div>
-          <WalletMenu global={global} username={account.name} active="engine" />
+          <WalletMenu
+            global={global}
+            username={account.name}
+            active="engine"
+            tokenName={transferAsset || undefined}
+            tokens={utokens}
+          />
         </div>
         {this.state.transfer && (
           <Transfer

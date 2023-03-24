@@ -526,7 +526,8 @@ export const Profile = (props: Props) => {
                     transferAsset: null
                   });
                 }
-                if (tokenList.find((x) => section.toUpperCase() === x)) {
+                const sectionUppercase = section.toUpperCase();
+                if (tokenList.find((x) => sectionUppercase === x)) {
                   return WalletHiveEngine({
                     ...props,
                     account,

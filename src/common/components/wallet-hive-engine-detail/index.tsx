@@ -189,20 +189,26 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       });
     }
   }
-  fetchHETransactions = (symbol: string, name: string, group?: OperationGroup | "") => {
+  fetchHETransactions = (
+    symbol: string,
+    name: string,
+    group?: OperationGroup | "",
+    start?: number = 0,
+    limit?: number = 200
+  ) => {
     const { transactions } = this.state;
     const { list } = transactions;
     this.stateSet({
       transactions: { list: [], loading: true, group: group || "" }
     });
     if (group === "rewards")
-      getFineTransactions(symbol, name, group === "rewards" ? 200 : 10, 0)
+      getFineTransactions(symbol, name, group === "rewards" ? limit : limit, start)
         .then(this.handleFineTransactions.bind(this))
         .catch((e) => {
           console.log(e);
         });
     else
-      getCoarseTransactions(name, 400, symbol, 0)
+      getCoarseTransactions(name, limit, symbol, start)
         .then(this.handleCoarseTransactions.bind(this, group ? group : ""))
         .catch(console.log);
   };
@@ -507,6 +513,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
             {TransactionList({
               global,
               dynamicProps,
+              tokenName,
               fetchTransactions: this.fetchHETransactions.bind(this, tokenName),
               history: history,
               transactions: transactions,
@@ -554,20 +561,5 @@ export default (p: Props) => {
     delegationList: p.delegationList
   };
 
-  return (
-    <Modal
-      animation={false}
-      show={true}
-      centered={true}
-      onHide={p.clearToken}
-      keyboard={false}
-      className="transfer-dialog modal-thin-header"
-      size="lg"
-    >
-      <Modal.Header closeButton={true} />
-      <Modal.Body>
-        <WalletHiveEngine {...props} />
-      </Modal.Body>
-    </Modal>
-  );
+  return <WalletHiveEngine {...props} />;
 };

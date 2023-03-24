@@ -704,6 +704,7 @@ interface Props {
   dynamicProps: DynamicProps;
   transactions: Transactions;
   account: Account;
+  tokenName?: string;
   fetchTransactions: (
     username: string,
     group?: OperationGroup | "",
@@ -716,15 +717,13 @@ const List = (props: Props) => {
   const [loadingLoadMore, setLoadingLoadMore] = useState(false);
   const [transactionsList, setTransactionsList] = useState<Transaction[]>([]);
   const previousTransactions = usePrevious(props.transactions);
+  const previousTokenName = usePrevious(props.tokenName);
 
   useEffect(() => {
-    const { account, fetchTransactions } = props;
-    account && account.name && fetchTransactions(account.name);
-  }, []);
-
-  useEffect(() => {
-    const { transactions } = props;
-    if (previousTransactions && previousTransactions.list !== transactions.list) {
+    const { transactions, account } = props;
+    if (previousTokenName != props.tokenName && account && account.name) {
+      props.fetchTransactions(account.name);
+    } else if (previousTransactions && previousTransactions.list !== transactions.list) {
       const txs = [
         ...(previousTransactions.group === transactions.group ? transactionsList : []),
         ...transactions.list
@@ -732,7 +731,16 @@ const List = (props: Props) => {
       const uniqueTxs = [...new Map(txs.map((item) => [item["num"], item])).values()];
       setTransactionsList(uniqueTxs);
     }
-  }, [props.transactions]);
+  }, [props.transactions, props.tokenName]);
+
+  useEffect(() => {
+    const { transactions, fetchTransactions, account } = props;
+    setTransactionsList([]);
+    if (account?.name) {
+      setLoadingLoadMore(true);
+      fetchTransactions(account.name);
+    }
+  }, [, props.account]);
 
   const typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { account, fetchTransactions } = props;
