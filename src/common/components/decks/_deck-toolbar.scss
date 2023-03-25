@@ -8,6 +8,7 @@
   height: 100%;
   background-color: $white;
   position: relative;
+  border-right: 4px solid $gray-300;
 
   @include padding-top(1rem);
 
@@ -23,14 +24,17 @@
 
       @include margin-top(1rem);
 
-      > * {
+      > *:not(.dropdown), > .dropdown > .dropdown-toggle {
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
         border-bottom: 1px solid $border-color;
         width: 4.5rem;
+        outline: none;
+        box-shadow: none;
 
+        @include border-radius(0);
         @include padding(1rem);
 
         &:last-child {
@@ -118,45 +122,6 @@
       @include font-size(0.875rem);
     }
 
-    .dropdown {
-      position: relative;
-
-      .dropdown-menu {
-        background-color: $white;
-        z-index: $zindex-dropdown;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid $border-color;
-        min-width: 200px;
-
-        @include border-radius(0.25rem);
-
-        .dropdown-item {
-          width: 80%;
-          color: $gray-800;
-
-          @include margin-top(0.25rem);
-          @include margin-bottom(0.25rem);
-          @include padding-left(1rem);
-          @include padding-right(1rem);
-          @include padding-top(0.5rem);
-          @include padding-bottom(0.5rem);
-
-          &:hover {
-            color: $primary;
-            background-color: $duck-egg-blue;
-
-            @include border-top-right-radius(1rem);
-            @include border-bottom-right-radius(1rem);
-          }
-        }
-      }
-
-      .dropdown-toggle {
-        padding: 0;
-      }
-    }
-
     .switch-theme {
       cursor: pointer;
 
@@ -187,6 +152,47 @@
     }
   }
 
+  .dropdown {
+    position: relative;
+
+    .dropdown-menu {
+      background-color: $white;
+      z-index: $zindex-dropdown;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid $border-color;
+      min-width: 200px;
+
+      @include padding-top(0.5rem);
+      @include padding-bottom(0.5rem);
+      @include border-radius(0.25rem);
+
+      .dropdown-item {
+        width: 80%;
+        color: $gray-800;
+
+        @include margin-top(0.25rem);
+        @include margin-bottom(0.25rem);
+        @include padding-left(1rem);
+        @include padding-right(1rem);
+        @include padding-top(0.5rem);
+        @include padding-bottom(0.5rem);
+
+        &:hover {
+          color: $primary;
+          background-color: $duck-egg-blue;
+
+          @include border-top-right-radius(1rem);
+          @include border-bottom-right-radius(1rem);
+        }
+      }
+    }
+
+    .dropdown-toggle {
+      padding: 0;
+    }
+  }
+
   .deck-toolbar-manager {
     padding: 1rem;
 
@@ -200,8 +206,8 @@
   .deck-toolbar-create {
     @include padding-top(1rem);
     @include padding-bottom(1rem);
-    @include padding-left(0.75rem);
-    @include padding-right(0.75rem);
+    @include padding-left(0.6rem);
+    @include padding-right(0.6rem);
 
     > .btn {
       display: flex;
@@ -213,12 +219,16 @@
   }
 
   &.expanded {
-    .base-actions > * {
-      border-bottom: 0;
-      border-right: 1px solid $border-color;
+    .base-actions {
+      flex-wrap: nowrap;
 
-      &:last-child {
-        border-right: 0;
+      > * {
+        border-bottom: 0;
+        border-right: 1px solid $border-color;
+
+        &:last-child {
+          border-right: 0;
+        }
       }
     }
 

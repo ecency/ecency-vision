@@ -25,6 +25,10 @@
     height: 100vh;
   }
 
+  *[data-rbd-draggable-id]:first-child .deck {
+    border-left: 0;
+  }
+
   #draggable-container {
     display: flex;
     scroll-behavior: smooth;

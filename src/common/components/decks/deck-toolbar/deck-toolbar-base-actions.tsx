@@ -1,13 +1,16 @@
-import { bellOffSvg, bellSvg, rocketSvg } from "../../../img/svg";
+import { bellOffSvg, bellSvg, menuSvg, rocketSvg } from "../../../img/svg";
 import React from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { WalletBadge } from "../../user-nav";
+import { Dropdown } from "react-bootstrap";
+import DropdownToggle from "react-bootstrap/DropdownToggle";
 
 interface Props {
+  isExpanded: boolean;
   setShowPurchaseDialog: (v: boolean) => void;
 }
 
-export const DeckToolbarBaseActions = ({ setShowPurchaseDialog }: Props) => {
+export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Props) => {
   const { activeUser, global, toggleUIProp, notifications, dynamicProps } = useMappedStore();
 
   return activeUser ? (
@@ -24,6 +27,17 @@ export const DeckToolbarBaseActions = ({ setShowPurchaseDialog }: Props) => {
       )}
       {global.usePrivate && <div onClick={() => setShowPurchaseDialog(true)}>{rocketSvg}</div>}
       <WalletBadge activeUser={activeUser} dynamicProps={dynamicProps} />
+      {isExpanded ? (
+        <Dropdown>
+          <DropdownToggle variant="link">{menuSvg}</DropdownToggle>
+          <Dropdown.Menu alignRight={true}>
+            <Dropdown.Item>Back to Grid</Dropdown.Item>
+            <Dropdown.Item>Back to Classic view</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      ) : (
+        <></>
+      )}
     </div>
   ) : (
     <></>
