@@ -351,7 +351,8 @@ export class EditorToolbar extends Component<Props> {
   videoInputChanged = async (e: any | React.ChangeEvent<HTMLInputElement>): Promise<any> => {
     const { activeUser, global } = this.props;
     console.log(activeUser?.username)
-    // console.log(e.target.files);
+    const tempVideoTag = `![Uploading ${e.target.files[0].name} #${Math.floor(Math.random() * 99)}]()\n\n`;
+    this.insertText(tempVideoTag);
     console.log(e.target.files[0]);
     const upload = await uploadToThreeSpeak(
       activeUser?.username,

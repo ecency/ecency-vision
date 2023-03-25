@@ -4,6 +4,7 @@ const tus = require("tus-js-client");
 const axios = require("axios").default;
 const { CookieJar } = require("tough-cookie");
 const { wrapper } = require("axios-cookiejar-support"); 
+import { getPostingKey } from "../helper/user-token";
 
 const jar = new CookieJar();
 const client = wrapper(axios.create({ jar }));
@@ -12,12 +13,12 @@ const client = wrapper(axios.create({ jar }));
 const getMemo = async (username: string, studioEndPoint: string) => {
   try {
     let response = await client.get(`${studioEndPoint}/mobile/login?username=${username}`, {
-      withCredentials: true,
+      withCredentials: false, // true
       headers: {
         "Content-Type": "application/json"
       }
     });
-    return response.data.memo;
+   return response.data.memo;
   } catch (err) {
     console.log(err, "error");
     throw err;
@@ -30,7 +31,7 @@ const getCookies = async (username: string, studioEndPoint: string, jwt: string)
     let response = await client.get(
       `${studioEndPoint}/mobile/login?username=${username}&access_token=${jwt}`,
       {
-        withCredentials: true,
+        withCredentials: false, //true
         headers: {
           "Content-Type": "application/json"
         }
@@ -148,8 +149,8 @@ const getAllVideoStatuses = async (studioEndPoint: string) => {
 export const uploadToThreeSpeak = async (username: string | any, file: string, thumbnail: string) => {
   const studioEndPoint = "https://studio.3speak.tv";
   const tusEndPoint = "https://uploads.3speak.tv/files/";
-  const postingKey = "";
-
+  const postingKey = getPostingKey(username)
+  console.log(postingKey)
   // Step 1. Get JWT Encrypted Memo
   const memo = await getMemo(username, studioEndPoint);
   // Decoded Memo using dhive Memo.decode class
@@ -159,6 +160,7 @@ export const uploadToThreeSpeak = async (username: string | any, file: string, t
 
   // Step 2. Get Cookie using decrypted JWT
   const cookies = await getCookies(username, studioEndPoint, decrypted);
+
   // we are logging the cookies here just to make sure that we got those.
   console.log(`Cookies are ${cookies}\n\n`);
 
@@ -198,7 +200,6 @@ export const uploadToThreeSpeak = async (username: string | any, file: string, t
     false, // is NSFW
     "threespeak,mobile,ios,test" // comma separated tags - no spaces
   );
-        console.log("uploading...")
   console.log(`Video Info response: ${JSON.stringify(updatedVideoMetadata)}`);
 }
 
