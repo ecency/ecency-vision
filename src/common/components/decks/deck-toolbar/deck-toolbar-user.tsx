@@ -3,6 +3,8 @@ import { FullAccount } from "../../../store/accounts/types";
 import React from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { Dropdown } from "react-bootstrap";
+import { brightnessSvg } from "../../../img/svg";
+import { Theme } from "../../../store/global/types";
 
 interface Props {
   isExpanded: boolean;
@@ -13,7 +15,7 @@ interface Props {
 }
 
 export const DeckToolbarUser = ({ isExpanded, items }: Props) => {
-  const { activeUser, global } = useMappedStore();
+  const { activeUser, global, toggleTheme } = useMappedStore();
 
   return activeUser ? (
     <div
@@ -35,10 +37,18 @@ export const DeckToolbarUser = ({ isExpanded, items }: Props) => {
         </Dropdown.Menu>
       </Dropdown>
       {isExpanded ? (
-        <div className="content">
-          <div className="name">{(activeUser.data as FullAccount).name}</div>
-          <div className="username">@{activeUser.username}</div>
-        </div>
+        <>
+          <div className="content">
+            <div className="name">{(activeUser.data as FullAccount).name}</div>
+            <div className="username">@{activeUser.username}</div>
+          </div>
+          <div
+            className={"switch-theme " + (global.theme === Theme.night ? "switched" : "")}
+            onClick={() => toggleTheme()}
+          >
+            {brightnessSvg}
+          </div>
+        </>
       ) : (
         <></>
       )}

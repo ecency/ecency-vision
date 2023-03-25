@@ -15,6 +15,7 @@ import Fragments from "../../fragments";
 import { useLocation } from "react-router";
 import { DeckToolbarUser } from "./deck-toolbar-user";
 import { DeckToolbarBaseActions } from "./deck-toolbar-base-actions";
+import { DeckToolbarToggleArea } from "./deck-toolbar-toggle-area";
 
 interface Props {
   isExpanded: boolean;
@@ -82,9 +83,7 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
         <DeckToolbarUser items={dropDownItems} isExpanded={isExpanded} />
         <DeckToolbarBaseActions setShowPurchaseDialog={setShowPurchaseDialog} />
       </div>
-      <div className="deck-toolbar-toggle" onClick={() => setIsExpanded(!isExpanded)}>
-        {isExpanded ? arrowLeftSvg : arrowRightSvg}
-      </div>
+      <DeckToolbarToggleArea isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
       {gallery && <Gallery onHide={() => setGallery(false)} />}
       {drafts && <Drafts history={history} onHide={() => setDrafts(false)} />}
       {bookmarks && <Bookmarks history={history} onHide={() => setBookmarks(false)} />}

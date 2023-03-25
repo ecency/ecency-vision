@@ -157,6 +157,35 @@
         padding: 0;
       }
     }
+
+    .switch-theme {
+      cursor: pointer;
+
+      @include transition(0.3s);
+      @include padding(0.5rem);
+      @include border-radius(2rem);
+      @include margin-left(auto);
+
+      &.switched svg {
+        transform: rotate(180deg);
+      }
+
+      svg {
+        color: $gray-500;
+        width: 1.25rem;
+        height: 1.25rem;
+
+        @include transition(0.3s);
+      }
+
+      &:hover {
+        background-color: $duck-egg-blue;
+
+        svg {
+          color: $primary;
+        }
+      }
+    }
   }
 
   &.expanded {
