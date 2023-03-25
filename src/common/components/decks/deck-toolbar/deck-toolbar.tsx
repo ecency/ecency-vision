@@ -77,10 +77,10 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
   ];
 
   return (
-    <div className="deck-toolbar">
+    <div className={"deck-toolbar " + (isExpanded ? "expanded" : "")}>
       <div className="deck-toolbar-content">
         <DeckToolbarUser items={dropDownItems} isExpanded={isExpanded} />
-        <DeckToolbarBaseActions />
+        <DeckToolbarBaseActions setShowPurchaseDialog={setShowPurchaseDialog} />
       </div>
       <div className="deck-toolbar-toggle" onClick={() => setIsExpanded(!isExpanded)}>
         {isExpanded ? arrowLeftSvg : arrowRightSvg}

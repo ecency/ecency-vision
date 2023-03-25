@@ -43,7 +43,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
 
-class WalletBadge extends Component<{
+export class WalletBadge extends Component<{
   activeUser: ActiveUser;
   dynamicProps: DynamicProps;
 }> {
