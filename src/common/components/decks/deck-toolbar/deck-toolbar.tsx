@@ -16,6 +16,8 @@ import { useLocation } from "react-router";
 import { DeckToolbarUser } from "./deck-toolbar-user";
 import { DeckToolbarBaseActions } from "./deck-toolbar-base-actions";
 import { DeckToolbarToggleArea } from "./deck-toolbar-toggle-area";
+import { DeckToolbarManager } from "./deck-toolbar-manager";
+import { DeckToolbarCreate } from "./deck-toolbar-create";
 
 interface Props {
   isExpanded: boolean;
@@ -82,6 +84,8 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
       <div className="deck-toolbar-content">
         <DeckToolbarUser items={dropDownItems} isExpanded={isExpanded} />
         <DeckToolbarBaseActions setShowPurchaseDialog={setShowPurchaseDialog} />
+        <DeckToolbarCreate isExpanded={isExpanded} />
+        <DeckToolbarManager />
       </div>
       <DeckToolbarToggleArea isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
       {gallery && <Gallery onHide={() => setGallery(false)} />}
