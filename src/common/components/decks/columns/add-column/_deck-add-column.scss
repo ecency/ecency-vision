@@ -1,6 +1,9 @@
 @import "src/style/bootstrap_vars";
 
 .deck-add-column {
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .deck-content {
     .subtitle {
@@ -38,13 +41,10 @@
 
       svg {
         grid-area: icon;
-        width: 18px;
+        width: 1.5rem;
+        color: $primary;
 
         @include margin-right(0.75rem);
-
-        path {
-          fill: $primary;
-        }
       }
 
       .title {
@@ -62,53 +62,38 @@
 
     .content-type-list {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 1px;
-      background-color: $duck-egg-blue;
+      grid-template-columns: 1fr;
+      grid-gap: 1rem;
 
       .content-type-item {
-        aspect-ratio: 1;
         display: flex;
         align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: $white;
+        justify-content: flex-start;
+        background-color: $gray-100;
         gap: 1rem;
         position: relative;
-        transition: .3s ease-in-out;
         cursor: pointer;
 
+        @include transition(.3s);
+        @include padding(1rem);
+        @include border-radius(1rem);
+
+        &.selected {
+          background-color: $duck-egg-blue;
+        }
+
         &:hover {
-          .title::after {
-            transform: translateX(0%);
-          }
+          background-color: $gray-200;
         }
 
         .title {
           font-weight: bold;
           position: relative;
-          overflow: hidden;
-          padding-bottom: 0.5rem;
-
-          &::after {
-            content: '';
-            display: block;
-            position: absolute;
-            bottom: 0;
-            height: 2px;
-            width: 100%;
-            background-color: $black;
-            transition: .3s ease-in-out;
-            transform: translateX(-100%);
-          }
         }
 
         svg {
           width: 2rem;
-
-          path {
-            fill: $primary;
-          }
+          color: $primary;
         }
       }
     }

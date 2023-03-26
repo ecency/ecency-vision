@@ -3,21 +3,21 @@ import React, { useContext, useState } from "react";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { _t } from "../../../../i18n";
 import { DeckGridItem } from "../../types";
-import {
-  arrowLeftSvg,
-  communities,
-  globalTrending,
-  hot,
-  magnify,
-  notifications,
-  person,
-  wallet
-} from "../../../../img/svg";
+import { arrowLeftSvg } from "../../../../img/svg";
 import "./_deck-add-column.scss";
 import { DeckAddColumnTypeSettings } from "./deck-add-column-type-settings";
 import { Button } from "react-bootstrap";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../../deck-manager";
+import {
+  communityIconSvg,
+  notificationsIconSvg,
+  searchIconSvg,
+  topicsIconSvg,
+  trendingIconSvg,
+  userIconSvg,
+  walletIconSvg
+} from "../../icons";
 
 interface Props {
   onRemove: () => void;
@@ -40,43 +40,43 @@ export const DeckAddColumn = ({ onRemove, draggable, deckKey }: Props) => {
     {
       type: "u",
       title: "User",
-      icon: person,
+      icon: userIconSvg,
       description: "Find a profile and see what they're been up to."
     },
     {
       type: "co",
       title: "Community",
-      icon: communities,
+      icon: communityIconSvg,
       description: "Find a community and follow their activity."
     },
     {
       type: "w",
       title: "Wallet",
-      icon: wallet,
+      icon: walletIconSvg,
       description: "Track people's transactions and funds."
     },
     {
       type: "n",
       title: "Notifications",
-      icon: notifications,
+      icon: notificationsIconSvg,
       description: "Follow any people activity."
     },
     {
       type: "tr",
       title: "Trending",
-      icon: globalTrending,
+      icon: trendingIconSvg,
       description: "Explore trending posts at this moment."
     },
     {
       type: "to",
       title: "Topics",
-      icon: hot,
+      icon: topicsIconSvg,
       description: "See the most popular topics and explore content."
     },
     {
       type: "s",
       title: "Search",
-      icon: magnify,
+      icon: searchIconSvg,
       description: "Explore specific posts based on your search query."
     }
   ];

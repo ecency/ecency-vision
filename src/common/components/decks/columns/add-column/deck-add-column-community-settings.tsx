@@ -1,11 +1,11 @@
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import React, { useContext, useState } from "react";
 import { DeckGridContext } from "../../deck-manager";
-import { blogSvg, commentSvg } from "../../../../img/svg";
 import { UserAvatar } from "../../../user-avatar";
 import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
 import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
+import { ICONS } from "../../consts";
 
 export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -18,21 +18,18 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const [recent, setRecent] = useState<UsernameDataItem[]>([]);
 
   const contentTypes = [
-    { title: "Trending", icon: blogSvg, type: "trending" },
-    { title: "Hot", icon: commentSvg, type: "hot" },
+    { title: "Trending", type: "trending" },
+    { title: "Hot", type: "hot" },
     {
       title: "New",
-      icon: commentSvg,
       type: "created"
     },
     {
       title: "Payouts",
-      icon: commentSvg,
       type: "payout"
     },
     {
       title: "Muted",
-      icon: commentSvg,
       type: "muted"
     }
   ];
@@ -62,9 +59,13 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
         <>
           <div className="subtitle py-3 mt-3">Content type</div>
           <div className="content-type-list">
-            {contentTypes.map(({ icon, title, type }) => (
-              <div className="content-type-item" key={title} onClick={() => setContentType(type)}>
-                {icon}
+            {contentTypes.map(({ title, type }) => (
+              <div
+                className={"content-type-item " + (contentType === type ? "selected" : "")}
+                key={title}
+                onClick={() => setContentType(type)}
+              >
+                {ICONS.community[type]}
                 <div className="title">{title}</div>
               </div>
             ))}

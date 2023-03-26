@@ -1,11 +1,23 @@
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import React, { useContext, useState } from "react";
 import { DeckGridContext } from "../../deck-manager";
-import { blogSvg, commentSvg } from "../../../../img/svg";
 import { UserAvatar } from "../../../user-avatar";
 import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
 import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
+import {
+  bookmarksIconSvg,
+  delegationsIconSvg,
+  favouritesIconSvg,
+  followsIconSvg,
+  mentionsIconSvg,
+  reblogsIconSvg,
+  repliesIconSvg,
+  transfersIconSvg,
+  voteIconSvg,
+  walletAllIconSvg
+} from "../../icons";
+import { ICONS } from "../../consts";
 
 export const DeckAddColumnNotificationsSettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -18,46 +30,38 @@ export const DeckAddColumnNotificationsSettings = ({ deckKey }: SettingsProps) =
   const [recent, setRecent] = useState<UsernameDataItem[]>([]);
 
   const contentTypes = [
-    { title: "All", icon: blogSvg, type: "all" },
-    { title: "Votes", icon: commentSvg, type: "rvotes" },
+    { title: "All", type: "all" },
+    { title: "Votes", type: "rvotes" },
     {
       title: "Mentions",
-      icon: commentSvg,
       type: "mentions"
     },
     {
       title: "Favourites",
-      icon: commentSvg,
       type: "nfavorites"
     },
     {
       title: "Bookmarks",
-      icon: commentSvg,
       type: "nbookmarks"
     },
     {
       title: "Follows",
-      icon: commentSvg,
       type: "follows"
     },
     {
       title: "Replies",
-      icon: commentSvg,
       type: "replies"
     },
     {
       title: "Reblogs",
-      icon: commentSvg,
       type: "reblogs"
     },
     {
       title: "Transfers",
-      icon: commentSvg,
       type: "transfers"
     },
     {
       title: "Delegations",
-      icon: commentSvg,
       type: "delegations"
     }
   ];
@@ -86,9 +90,13 @@ export const DeckAddColumnNotificationsSettings = ({ deckKey }: SettingsProps) =
         <>
           <div className="subtitle py-3 mt-3">Content type</div>
           <div className="content-type-list">
-            {contentTypes.map(({ icon, title, type }) => (
-              <div className="content-type-item" key={title} onClick={() => setContentType(type)}>
-                {icon}
+            {contentTypes.map(({ title, type }) => (
+              <div
+                className={"content-type-item " + (contentType === type ? "selected" : "")}
+                key={title}
+                onClick={() => setContentType(type)}
+              >
+                {ICONS.notifications[type]}
                 <div className="title">{title}</div>
               </div>
             ))}

@@ -1,11 +1,11 @@
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import React, { useContext, useState } from "react";
 import { DeckGridContext } from "../../deck-manager";
-import { blogSvg, commentSvg } from "../../../../img/svg";
 import { UserAvatar } from "../../../user-avatar";
 import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
 import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
+import { ICONS } from "../../consts";
 
 export const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -17,16 +17,14 @@ export const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
   const [recent, setRecent] = useState<UsernameDataItem[]>([]);
 
   const contentTypes = [
-    { title: "Blogs", icon: blogSvg, type: "blog" },
-    { title: "Posts", icon: commentSvg, type: "posts" },
+    { title: "Blogs", type: "blog" },
+    { title: "Posts", type: "posts" },
     {
       title: "Comments",
-      icon: commentSvg,
       type: "comments"
     },
     {
       title: "Replies",
-      icon: commentSvg,
       type: "replies"
     }
   ];
@@ -50,9 +48,13 @@ export const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
         <>
           <div className="subtitle py-3 mt-3">Content type</div>
           <div className="content-type-list">
-            {contentTypes.map(({ icon, title, type }) => (
-              <div className="content-type-item" key={title} onClick={() => setContentType(type)}>
-                {icon}
+            {contentTypes.map(({ title, type }) => (
+              <div
+                className={"content-type-item " + (contentType === type ? "selected" : "")}
+                key={title}
+                onClick={() => setContentType(type)}
+              >
+                {ICONS.user[type]}
                 <div className="title">{title}</div>
               </div>
             ))}

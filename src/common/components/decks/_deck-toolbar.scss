@@ -9,6 +9,7 @@
   background-color: $white;
   position: relative;
   border-right: 4px solid $gray-300;
+  z-index: 9;
 
   @include padding-top(1rem);
 

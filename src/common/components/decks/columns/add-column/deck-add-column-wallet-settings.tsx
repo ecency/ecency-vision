@@ -6,6 +6,15 @@ import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
 import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
 import { blogSvg, commentSvg } from "../../../../img/svg";
+import {
+  interestsIconSvg,
+  marketOrdersIconSvg,
+  rewardIconSvg,
+  stakeOperationsIconSvg,
+  transfersIconSvg,
+  walletAllIconSvg
+} from "../../icons";
+import { ICONS } from "../../consts";
 
 export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -17,26 +26,22 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
   const [recent, setRecent] = useState<UsernameDataItem[]>([]);
 
   const contentTypes = [
-    { title: "All history", icon: blogSvg, type: "all" },
-    { title: "Transfers", icon: commentSvg, type: "transfers" },
+    { title: "All history", type: "all" },
+    { title: "Transfers", type: "transfers" },
     {
       title: "Market orders",
-      icon: commentSvg,
       type: "market-orders"
     },
     {
       title: "Interests",
-      icon: commentSvg,
       type: "interests"
     },
     {
       title: "Stake operations",
-      icon: commentSvg,
       type: "stake-operations"
     },
     {
       title: "Rewards",
-      icon: commentSvg,
       type: "rewards"
     }
   ];
@@ -60,9 +65,13 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
         <>
           <div className="subtitle py-3 mt-3">Content type</div>
           <div className="content-type-list">
-            {contentTypes.map(({ icon, title, type }) => (
-              <div className="content-type-item" key={title} onClick={() => setContentType(type)}>
-                {icon}
+            {contentTypes.map(({ title, type }) => (
+              <div
+                className={"content-type-item " + (contentType === type ? "selected" : "")}
+                key={title}
+                onClick={() => setContentType(type)}
+              >
+                {ICONS.wallet[type]}
                 <div className="title">{title}</div>
               </div>
             ))}
