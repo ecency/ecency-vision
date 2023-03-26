@@ -5,6 +5,7 @@ import { CommunityDeckGridItem } from "../types";
 import { getPostsRanked } from "../../../api/bridge";
 import { Entry } from "../../../store/entries/types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
+import { communityTitles } from "../consts";
 
 interface Props {
   settings: CommunityDeckGridItem["settings"];
@@ -14,14 +15,6 @@ interface Props {
 export const DeckCommunityColumn = ({ settings, draggable }: Props) => {
   const [data, setData] = useState<Entry[]>([]);
   const [isReloading, setIsReloading] = useState(false);
-
-  const titles = {
-    trending: "Trending",
-    created: "New",
-    hot: "Hot",
-    payout: "Payouts",
-    muted: "Muted"
-  };
 
   useEffect(() => {
     fetchData();
@@ -46,7 +39,7 @@ export const DeckCommunityColumn = ({ settings, draggable }: Props) => {
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
-        subtitle: titles[settings.contentType] ?? "User",
+        subtitle: communityTitles[settings.contentType] ?? "User",
         icon: null,
         updateIntervalMs: settings.updateIntervalMs
       }}

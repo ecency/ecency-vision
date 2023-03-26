@@ -2,7 +2,7 @@ interface BaseDeckGridItem {
   id: string;
   key: number;
   type: "u" | "ac" | "co" | "w" | "n" | "tr" | "to" | "s" | "cu";
-  settings: unknown;
+  settings: Record<string, any>;
 }
 
 export interface ReloadableDeckGridItem extends BaseDeckGridItem {

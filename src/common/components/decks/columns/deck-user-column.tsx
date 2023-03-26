@@ -5,6 +5,7 @@ import { UserDeckGridItem } from "../types";
 import { getAccountPosts } from "../../../api/bridge";
 import { Entry } from "../../../store/entries/types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
+import { userTitles } from "../consts";
 
 interface Props {
   settings: UserDeckGridItem["settings"];
@@ -14,13 +15,6 @@ interface Props {
 export const DeckUserColumn = ({ settings, draggable }: Props) => {
   const [data, setData] = useState<Entry[]>([]);
   const [isReloading, setIsReloading] = useState(false);
-
-  const titles = {
-    posts: "Posts",
-    blog: "Blog",
-    comments: "Comments",
-    replies: "Replies"
-  };
 
   useEffect(() => {
     fetchData();
@@ -45,7 +39,7 @@ export const DeckUserColumn = ({ settings, draggable }: Props) => {
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
-        subtitle: titles[settings.contentType] ?? "User",
+        subtitle: userTitles[settings.contentType] ?? "User",
         icon: null,
         updateIntervalMs: settings.updateIntervalMs
       }}

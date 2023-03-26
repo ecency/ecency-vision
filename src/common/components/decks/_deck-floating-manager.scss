@@ -1,0 +1,130 @@
+@import "src/style/bootstrap_vars";
+
+.deck-floating-manager {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.75;
+
+  @include margin-right(auto);
+  @include margin-left(auto);
+  @include transition(0.3s);
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 4rem;
+    //border-radius: 0;
+
+    //@include border-top-left-radius(1rem);
+    //@include border-top-right-radius(1rem);
+    @include margin-bottom(1rem);
+
+    svg {
+      @include transition(0.3s);
+
+      path {
+        stroke: $white;
+      }
+    }
+  }
+
+  .columns {
+    opacity: 0;
+    visibility: hidden;
+    background-color: $white;
+    box-shadow: 0 6px 20px rgba($black, 0.25);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    overflow: hidden;
+
+    @include transition(0.3s);
+    @include border-top-left-radius(1rem);
+    @include border-top-right-radius(1rem);
+  }
+
+  .columns-list {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-right: 1px solid $border-color;
+    height: 4rem;
+    min-width: 10rem;
+
+    @include transition(0.3s);
+    @include padding(1rem);
+
+    &:last-child {
+      border-right: 0;
+    }
+
+    &:hover {
+      background-color: $duck-egg-blue;
+    }
+
+    .title {
+      font-weight: 500;
+
+      @include font-size(0.75rem);
+
+      > *:not(.primary) {
+        opacity: 0.5;
+      }
+
+      > .primary {
+        font-weight: bold;
+
+        @include font-size(0.875rem);
+      }
+    }
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: $gray-500;
+
+      @include margin-right(1rem);
+    }
+  }
+
+  &.show {
+    .columns {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0%);
+    }
+
+    .dropdown-toggle {
+      svg {
+        transform: rotate3d(1, 0, 0, 180deg);
+      }
+    }
+  }
+}

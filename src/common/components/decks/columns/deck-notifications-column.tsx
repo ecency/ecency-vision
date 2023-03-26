@@ -8,6 +8,7 @@ import { ApiNotification, NotificationFilter } from "../../../store/notification
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { History } from "history";
 import { getNotifications } from "../../../api/private-api";
+import { notificationsTitles } from "../consts";
 
 interface Props {
   settings: UserDeckGridItem["settings"];
@@ -21,19 +22,6 @@ export const DeckNotificationsColumn = ({ settings, draggable, history }: Props)
 
   const [data, setData] = useState<ApiNotification[]>([]);
   const [isReloading, setIsReloading] = useState(false);
-
-  const titles = {
-    all: "",
-    rvotes: "Votes",
-    mentions: "Mentions",
-    nfavorites: "Favourites",
-    nbookmarks: "Bookmarks",
-    follows: "Follows",
-    replies: "Replies",
-    reblogs: "Reblogs",
-    transfers: "Transfers",
-    delegations: "Delegations"
-  };
 
   useEffect(() => {
     fetchData();
@@ -64,8 +52,8 @@ export const DeckNotificationsColumn = ({ settings, draggable, history }: Props)
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
-        subtitle: titles[settings.contentType]
-          ? `Notifications – ${titles[settings.contentType]}`
+        subtitle: notificationsTitles[settings.contentType]
+          ? `Notifications – ${notificationsTitles[settings.contentType]}`
           : "Notifications",
         icon: null,
         updateIntervalMs: settings.updateIntervalMs

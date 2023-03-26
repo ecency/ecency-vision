@@ -8,6 +8,7 @@ import { History } from "history";
 import { DeckToolbar } from "./deck-toolbar/deck-toolbar";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
+import { DeckFloatingManager } from "./deck-floating-manager";
 
 interface Props {
   history: History;
@@ -30,6 +31,7 @@ export const Decks = ({ history }: Props) => {
           <div className="decks-container w-100">
             <DeckGrid history={history} />
           </div>
+          <DeckFloatingManager />
         </div>
       )}
     </DeckManager>
