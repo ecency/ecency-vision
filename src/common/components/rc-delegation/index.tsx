@@ -14,8 +14,14 @@ import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 
 export const ResourceCreditsDelegation = (props: any) => {
-  const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList, delegateeData } =
-    props;
+  const { 
+    resourceCredit, 
+    activeUser, 
+    hideDelegation, 
+    toFromList, 
+    amountFromList, 
+    delegateeData 
+  } = props;
 
   const [to, setTo] = useState<string>(toFromList || "");
   const [amount, setAmount] = useState<any>(amountFromList || "");
@@ -38,12 +44,12 @@ export const ResourceCreditsDelegation = (props: any) => {
     setAmount(amount);
     if (
       amount === "" ||
-      (Number(amount) >= 5000000000 && Number(amount) < Number(resourceCredit[0]))
+      (Number(amount) >= 5000000000 && Number(amount) < Number(resourceCredit))
     ) {
       setAmountError("");
     } else if (Number(amount) < 5000000000) {
       setAmountError(_t("rc-info.minimum-rc-error"));
-    } else if (Number(amount) > Number(resourceCredit[0])) {
+    } else if (Number(amount) > Number(resourceCredit)) {
       setAmountError(_t("rc-info.insufficient-rc-error"));
       return;
     }
@@ -81,7 +87,7 @@ export const ResourceCreditsDelegation = (props: any) => {
     !amountError &&
     !!amount &&
     Number(amount) >= 5000000000 &&
-    Number(amount) < Number(resourceCredit[0]);
+    Number(amount) < Number(resourceCredit);
 
   const handleTo = async (value: string) => {
     setInProgress(true);
@@ -202,7 +208,7 @@ export const ResourceCreditsDelegation = (props: any) => {
                     value={amount}
                     onChange={amountChanged}
                     className={
-                      Number(amount) > Number(resourceCredit[0]) && amountError ? "is-invalid" : ""
+                      Number(amount) > Number(resourceCredit) && amountError ? "is-invalid" : ""
                     }
                   />
                 </InputGroup>
@@ -210,13 +216,13 @@ export const ResourceCreditsDelegation = (props: any) => {
             </Form.Group>
 
             {amount < 5000000000 && <FormText msg={amountError} type="danger" />}
-            {amount > Number(resourceCredit[0]) && <FormText msg={amountError} type="danger" />}
+            {amount > Number(resourceCredit) && <FormText msg={amountError} type="danger" />}
 
             <Row>
               <Col lg={{ span: 10, offset: 2 }}>
                 <div className="balance space-3">
                   <span className="balance-label">{_t("transfer.balance")}</span>
-                  <span>{`: ${resourceCredit[0]}`}</span>
+                  <span>{`: ${resourceCredit}`}</span>
                 </div>
               </Col>
             </Row>
