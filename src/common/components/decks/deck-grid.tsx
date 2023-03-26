@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
 import { DeckGridContext } from "./deck-manager";
 import { DeckAddColumn, DeckUserColumn } from "./columns";
@@ -16,6 +16,7 @@ import { DeckNotificationsColumn } from "./columns/deck-notifications-column";
 import { DeckTrendingColumn } from "./columns/deck-trending-column";
 import { DeckTopicsColumn } from "./columns/deck-topics-column";
 import { DeckSearchColumn } from "./columns/deck-search-column";
+import usePrevious from "react-use/lib/usePrevious";
 
 interface Props {
   history: History;
@@ -23,6 +24,7 @@ interface Props {
 
 export const DeckGrid = ({ history }: Props) => {
   const deckContext = useContext(DeckGridContext);
+  const previousLayout = usePrevious(deckContext.layout);
 
   const onDragEnd = (result: DropResult) => {
     const originalIndex = +result.draggableId ?? -1;
@@ -36,6 +38,13 @@ export const DeckGrid = ({ history }: Props) => {
   const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
     ...draggableStyle
   });
+
+  useEffect(() => {
+    if (deckContext.layout.columns.length > (previousLayout?.columns.length ?? 0)) {
+      const cols = deckContext.layout.columns;
+      deckContext.scrollTo(cols[cols.length - 1]?.key);
+    }
+  }, [deckContext.layout]);
 
   return (
     <div className="deck-grid">

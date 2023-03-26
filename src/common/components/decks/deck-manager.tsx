@@ -8,12 +8,14 @@ interface Context {
   layout: DeckGrid;
   add: (column: Omit<DeckGridItem, "id">) => void;
   reOrder: (originalIndex: number, nextIndex: number) => void;
+  scrollTo: (key: DeckGridItem["key"]) => void;
 }
 
 export const DeckGridContext = React.createContext<Context>({
   layout: DEFAULT_LAYOUT,
   add: () => {},
-  reOrder: () => {}
+  reOrder: () => {},
+  scrollTo: () => {}
 });
 
 interface Props {
@@ -62,15 +64,20 @@ export const DeckManager = ({ children }: Props) => {
     }
   };
 
+  const scrollTo = (key: number) => {
+    document.getElementById(`${key - 1}`)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <DeckGridContext.Provider
       value={{
         layout,
         add,
-        reOrder
+        reOrder,
+        scrollTo
       }}
     >
-      {children({ layout, add, reOrder })}
+      {children({ layout, add, reOrder, scrollTo })}
     </DeckGridContext.Provider>
   );
 };

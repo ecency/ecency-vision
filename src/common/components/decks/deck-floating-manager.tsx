@@ -5,12 +5,8 @@ import { pencilOutlineSvg, upArrowSvg } from "../../img/svg";
 import { getColumnTitle } from "./consts";
 
 export const DeckFloatingManager = () => {
-  const { layout, add } = useContext(DeckGridContext);
+  const { layout, add, scrollTo } = useContext(DeckGridContext);
   const [show, setShow] = useState(false);
-
-  const scrollToColumn = (key: number) => {
-    document.getElementById(`${key - 1}`)?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <div className={"deck-floating-manager " + (show ? "show" : "")}>
@@ -28,7 +24,7 @@ export const DeckFloatingManager = () => {
       >
         <div className="columns-list">
           {layout.columns.map(({ type, key, settings }) => (
-            <div className={"item " + type} onClick={() => scrollToColumn(key)} key={key + type}>
+            <div className={"item " + type} onClick={() => scrollTo(key)} key={key + type}>
               {pencilOutlineSvg}
               <div className="title">
                 <div>{getColumnTitle(type, settings)}</div>
