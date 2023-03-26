@@ -16,7 +16,9 @@ import {
   reblogsIconSvg,
   repliesIconSvg,
   rewardIconSvg,
+  searchIconSvg,
   stakeOperationsIconSvg,
+  topicsIconSvg,
   transfersIconSvg,
   trendingIconSvg,
   voteIconSvg,
@@ -24,14 +26,14 @@ import {
 } from "../icons";
 
 export const ICONS = {
-  community: {
+  co: {
     trending: trendingIconSvg,
     hot: hotIconSvg,
     new: newIconSvg,
-    payouts: payoutsIconSvg,
-    muted: mutedIconSvg
+    payout: payoutsIconSvg,
+    created: mutedIconSvg
   },
-  notifications: {
+  n: {
     all: walletAllIconSvg,
     rvotes: voteIconSvg,
     mentions: mentionsIconSvg,
@@ -43,18 +45,21 @@ export const ICONS = {
     transfers: transfersIconSvg,
     delegations: delegationsIconSvg
   },
-  user: {
+  u: {
     blog: blogIconSvg,
     posts: postsIconSvg,
     comments: commentsIconSvg,
     replies: repliesIconSvg
   },
-  wallet: {
+  w: {
     all: walletAllIconSvg,
     transfers: transfersIconSvg,
     "market-orders": marketOrdersIconSvg,
     interests: interestsIconSvg,
     "stake-operations": stakeOperationsIconSvg,
     rewards: rewardIconSvg
-  }
+  },
+  tr: trendingIconSvg,
+  to: topicsIconSvg,
+  s: searchIconSvg
 };

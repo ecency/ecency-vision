@@ -94,12 +94,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: $gray-400;
+    height: 68px;
 
     @include padding-top(1rem);
     @include padding-bottom(1rem);
 
     &:hover {
       background-color: $gray-100;
+      color: $gray-600;
     }
 
     svg {

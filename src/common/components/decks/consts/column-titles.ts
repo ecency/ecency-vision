@@ -33,6 +33,15 @@ export const userTitles = {
   replies: "Replies"
 };
 
+export const walletTitles = {
+  all: "All history",
+  transfers: "Transfers",
+  "market-orders": "Market orders",
+  interests: "Interests",
+  "stake-operations": "Stake operations",
+  rewards: "Rewards"
+};
+
 export function getColumnTitle(
   type: DeckGridItem["type"],
   settings: DeckGridItem["settings"]
@@ -61,7 +70,10 @@ export function getColumnTitle(
         userTitles
       )}`;
     case "w":
-      return "Wallet";
+      return `Wallet${getSubtype(
+        (settings as UserDeckGridItem["settings"]).contentType,
+        walletTitles
+      )}`;
     default:
       return "";
   }

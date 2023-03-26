@@ -6,6 +6,8 @@ import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
 import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
 import { ICONS } from "../../consts";
+import useLocalStorage from "react-use/lib/useLocalStorage";
+import { PREFIX } from "../../../../util/local-storage";
 
 export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -15,7 +17,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const [username, setUsername] = useState("");
   const [tag, setTag] = useState("");
   const [contentType, setContentType] = useState<string | null>(null);
-  const [recent, setRecent] = useState<UsernameDataItem[]>([]);
+  const [recent, setRecent] = useLocalStorage<UsernameDataItem[]>(PREFIX + "_dcr", []);
 
   const contentTypes = [
     { title: "Trending", type: "trending" },
@@ -34,6 +36,8 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
     }
   ];
 
+  const updateRecent = (name?: string, tag?: string) => {};
+
   return (
     <div className="deck-add-column-user-settings p-3">
       <div className="helper-text">
@@ -50,9 +54,13 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
         <DeckAddColumnSearchBox
           isCommunity={true}
           username={username}
-          setUsername={setUsername}
-          recentList={recent}
-          setItem={({ tag }) => setTag(tag ?? "")}
+          setUsername={(v) => {
+            setUsername(v);
+          }}
+          recentList={recent ?? []}
+          setItem={({ tag }) => {
+            setTag(tag ?? "");
+          }}
         />
       )}
       {username !== "" ? (
@@ -65,7 +73,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
                 key={title}
                 onClick={() => setContentType(type)}
               >
-                {ICONS.community[type]}
+                {ICONS.co[type]}
                 <div className="title">{title}</div>
               </div>
             ))}

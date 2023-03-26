@@ -71,7 +71,7 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
                 key={title}
                 onClick={() => setContentType(type)}
               >
-                {ICONS.wallet[type]}
+                {ICONS.w[type]}
                 <div className="title">{title}</div>
               </div>
             ))}

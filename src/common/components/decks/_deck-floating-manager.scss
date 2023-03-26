@@ -42,8 +42,9 @@
   .columns {
     opacity: 0;
     visibility: hidden;
-    background-color: $white;
-    box-shadow: 0 6px 20px rgba($black, 0.25);
+    background-color: rgba($white, 0.75);
+    backdrop-filter: blur(1rem);
+    border-top: 1px solid $border-color;
     position: absolute;
     left: 0;
     right: 0;
@@ -55,8 +56,6 @@
     overflow: hidden;
 
     @include transition(0.3s);
-    @include border-top-left-radius(1rem);
-    @include border-top-right-radius(1rem);
   }
 
   .columns-list {

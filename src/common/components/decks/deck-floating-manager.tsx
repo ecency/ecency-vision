@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "./_deck-floating-manager.scss";
 import { DeckGridContext } from "./deck-manager";
 import { pencilOutlineSvg, upArrowSvg } from "../../img/svg";
-import { getColumnTitle } from "./consts";
+import { getColumnTitle, ICONS } from "./consts";
 
 export const DeckFloatingManager = () => {
   const { layout, add, scrollTo } = useContext(DeckGridContext);
@@ -25,7 +25,9 @@ export const DeckFloatingManager = () => {
         <div className="columns-list">
           {layout.columns.map(({ type, key, settings }) => (
             <div className={"item " + type} onClick={() => scrollTo(key)} key={key + type}>
-              {pencilOutlineSvg}
+              {settings && "contentType" in settings
+                ? ICONS[type][settings.contentType]
+                : ICONS[type]}
               <div className="title">
                 <div>{getColumnTitle(type, settings)}</div>
                 <div className="primary">

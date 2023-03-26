@@ -7,7 +7,7 @@ import { TransactionRow } from "../../transactions";
 import { Transaction } from "../../../store/transactions/types";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { History } from "history";
-import { ListItemSkeleton, ShortListItemSkeleton } from "./deck-items";
+import { ShortListItemSkeleton } from "./deck-items";
 
 interface Props {
   history: History;
