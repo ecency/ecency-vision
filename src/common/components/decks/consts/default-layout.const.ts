@@ -7,7 +7,7 @@ export const DEFAULT_LAYOUT: DeckGrid = {
       id: uuid.v4(),
       key: 1,
       type: "ac",
-      settings: null
+      settings: {}
     },
     {
       id: uuid.v4(),

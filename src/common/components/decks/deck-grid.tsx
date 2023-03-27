@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
 import { DeckGridContext } from "./deck-manager";
 import { DeckAddColumn, DeckUserColumn } from "./columns";
@@ -17,6 +17,7 @@ import { DeckTrendingColumn } from "./columns/deck-trending-column";
 import { DeckTopicsColumn } from "./columns/deck-topics-column";
 import { DeckSearchColumn } from "./columns/deck-search-column";
 import usePrevious from "react-use/lib/usePrevious";
+import uuid from "uuid";
 
 interface Props {
   history: History;
@@ -26,13 +27,22 @@ export const DeckGrid = ({ history }: Props) => {
   const deckContext = useContext(DeckGridContext);
   const previousLayout = usePrevious(deckContext.layout);
 
+  const [addColumnButtonVisible, setAddColumnButtonVisible] = useState(true);
+  const [addColumnButtonKey, setAddColumnButtonKey] = useState(uuid.v4());
+
   const onDragEnd = (result: DropResult) => {
-    const originalIndex = +result.draggableId ?? -1;
+    const originalIndex = +result.source?.index ?? -1;
     const newIndex = result.destination?.index ?? -1;
 
     if (newIndex > -1 && originalIndex > -1) {
       deckContext.reOrder(originalIndex, newIndex);
     }
+
+    setAddColumnButtonVisible(true);
+  };
+
+  const onDragStart = () => {
+    setAddColumnButtonVisible(false);
   };
 
   const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
@@ -48,12 +58,12 @@ export const DeckGrid = ({ history }: Props) => {
 
   return (
     <div className="deck-grid">
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
             <div ref={provided.innerRef} {...provided.droppableProps} id="draggable-container">
               {deckContext.layout.columns.map(({ type, id, settings, key }, index) => (
-                <Draggable key={index + ""} draggableId={index + ""} index={index}>
+                <Draggable key={id} draggableId={id} index={index}>
                   {(provided, snapshot) => {
                     let transform = provided.draggableProps.style?.transform;
 
@@ -139,23 +149,6 @@ export const DeckGrid = ({ history }: Props) => {
                           ) : (
                             <></>
                           )}
-                          {deckContext.layout.columns.length === index + 1 ? (
-                            <Button
-                              className="mx-3 add-new-column-button"
-                              variant="primary"
-                              onClick={() =>
-                                deckContext.add({
-                                  key: deckContext.layout.columns.length + 1,
-                                  type: "ac",
-                                  settings: {}
-                                })
-                              }
-                            >
-                              Add new column
-                            </Button>
-                          ) : (
-                            <></>
-                          )}
                         </div>
                       </div>
                     );
@@ -163,6 +156,24 @@ export const DeckGrid = ({ history }: Props) => {
                 </Draggable>
               ))}
               {provided.placeholder}
+              <div className="d-flex align-items-center">
+                <Button
+                  key={addColumnButtonKey}
+                  className={
+                    "mx-3 add-new-column-button " + (addColumnButtonVisible ? "visible" : "")
+                  }
+                  variant="primary"
+                  onClick={() =>
+                    deckContext.add({
+                      key: deckContext.layout.columns.length + 1,
+                      type: "ac",
+                      settings: {}
+                    })
+                  }
+                >
+                  Add new column
+                </Button>
+              </div>
             </div>
           )}
         </Droppable>

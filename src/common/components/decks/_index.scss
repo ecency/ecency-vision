@@ -36,5 +36,17 @@
 
   .add-new-column-button {
     white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+    height: 3rem;
+
+    @include transition(0.3s);
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
   }
 }
