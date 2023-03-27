@@ -79,7 +79,6 @@
       border-bottom: solid 1px $dark-two;
     }
 
-
     .status-button {
       border: 1px solid $dark-sky-blue;
       margin-left: 10px;
@@ -93,6 +92,7 @@
       }
 
       @media (max-width: $sm-break) {
+        padding-top: 5px;
         font-size: 10px;
       }
 
@@ -120,6 +120,7 @@
         }
 
         @media (max-width: $sm-break) {
+          padding-top: 5px;
           font-size: 10px;
         }
       }

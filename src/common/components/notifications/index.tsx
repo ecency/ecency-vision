@@ -332,7 +332,7 @@ export class DialogContent extends Component<NotificationProps, any> {
     };
 
     const { notifications } = this.props;
-    const { inProgress } = this.state;
+    const { inProgress, select, currentStatus } = this.state;
     const { list, loading, filter, unread } = notifications;
 
     return (
@@ -482,7 +482,7 @@ export class DialogContent extends Component<NotificationProps, any> {
           </div>
         </div>
 
-        {loading || (inProgress && <LinearProgress />)}
+        {loading || inProgress ? <LinearProgress /> : <></>}
 
         {!loading && list.length === 0 && (
           <div className="list-body empty-list">
@@ -500,8 +500,8 @@ export class DialogContent extends Component<NotificationProps, any> {
                     <NotificationListItem
                       {...this.props}
                       notification={n}
-                      isSelect={this.state.select}
-                      currentStatus={this.state.currentStatus}
+                      isSelect={select}
+                      currentStatus={currentStatus}
                       setSelectedNotifications={this.setSelectedNotifications}
                     />
                   </>
@@ -512,8 +512,8 @@ export class DialogContent extends Component<NotificationProps, any> {
                     <NotificationListItem
                       {...this.props}
                       notification={n}
-                      isSelect={this.state.select}
-                      currentStatus={this.state.currentStatus}
+                      isSelect={select}
+                      currentStatus={currentStatus}
                       setSelectedNotifications={this.setSelectedNotifications}
                     />
                   </>
@@ -524,8 +524,8 @@ export class DialogContent extends Component<NotificationProps, any> {
                     <NotificationListItem
                       {...this.props}
                       notification={n}
-                      isSelect={this.state.select}
-                      currentStatus={this.state.currentStatus}
+                      isSelect={select}
+                      currentStatus={currentStatus}
                       setSelectedNotifications={this.setSelectedNotifications}
                     />
                   </>
