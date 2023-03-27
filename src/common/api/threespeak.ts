@@ -1,10 +1,9 @@
 const hive = require("@hiveio/dhive");
 const tus = require("tus-js-client");
-
+const Cookies = require("js-cookie");
 const axios = require("axios").default;
 const { CookieJar } = require("tough-cookie");
-const { wrapper } = require("axios-cookiejar-support"); 
-import { getPostingKey } from "../helper/user-token";
+const { wrapper } = require("axios-cookiejar-support");
 
 const jar = new CookieJar();
 const client = wrapper(axios.create({ jar }));
@@ -26,12 +25,13 @@ const getMemo = async (username: string, studioEndPoint: string) => {
 }
 
 // Get Cookie frow Memo (JWT)
-const getCookies = async (username: string, studioEndPoint: string, jwt: string) => {
+async function getCookies(username: string, studioEndPoint: string, jwt: string ) {
   try {
     let response = await client.get(
       `${studioEndPoint}/mobile/login?username=${username}&access_token=${jwt}`,
       {
-        withCredentials: false, //true
+        // withCredentials: true,
+        credentials: "include",
         headers: {
           "Content-Type": "application/json"
         }
@@ -72,7 +72,8 @@ const updateVideoInfo = async (
   oFilename: string,
   videoUrl: any,
   thumbnailUrl: any,
-  username: string
+  username: string, cookies: string,
+  size: number
 ) => {
   try {
     const { data } = await client.post(
@@ -80,19 +81,21 @@ const updateVideoInfo = async (
       {
         filename: videoUrl,
         oFilename: oFilename,
-        size: 2221284, // NOTE: please change this constant value. This is POC app. It has to be in bytes.
-        duration: 44, // NOTE: please change this constant value. This is POC app. it has to be in seconds.
+        size, // NOTE: please change this constant value. This is POC app. It has to be in bytes.
+        duration: 56, // NOTE: please change this constant value. This is POC app. it has to be in seconds.
         thumbnail: thumbnailUrl,
         owner: username,
         isReel: true // if video is a reel/short (Three Shorts) send this as true
       },
       {
-        withCredentials: true,
+        withCredentials: false,
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${cookies}`
         }
       }
     );
+    console.log({data})
     return data;
   } catch (e) {
     console.error(e);
@@ -106,7 +109,8 @@ const updateVideoMetadata = async(
   title: string,
   description: string,
   isNsfwContent: boolean,
-  tags: string
+  tags: string,
+  cookies: string
 ) => {
   try {
     const info = {
@@ -117,9 +121,10 @@ const updateVideoMetadata = async(
       tags: tags
     };
     const { data } = await client.post(`${studioEndPoint}/mobile/api/update_info`, info, {
-      withCredentials: true,
+      withCredentials: false,
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${cookies}`
       }
     });
     return data;
@@ -129,12 +134,13 @@ const updateVideoMetadata = async(
   }
 }
 
-const getAllVideoStatuses = async (studioEndPoint: string) => {
+const getAllVideoStatuses = async (studioEndPoint: string, cookies: string) => {
   try {
     let response = await client.get(`${studioEndPoint}/mobile/api/my-videos`, {
-      withCredentials: true,
+      withCredentials: false,
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${cookies}`
       }
     });
     return response.data;
@@ -146,61 +152,74 @@ const getAllVideoStatuses = async (studioEndPoint: string) => {
 
 
 // Main Function that calls every other one in the file
-export const uploadToThreeSpeak = async (username: string | any, file: string, thumbnail: string) => {
+export const uploadToThreeSpeak = async (username: string | any, file: any, thumbnail: any) => {
   const studioEndPoint = "https://studio.3speak.tv";
   const tusEndPoint = "https://uploads.3speak.tv/files/";
-  const postingKey = getPostingKey(username)
-  console.log(postingKey)
-  // Step 1. Get JWT Encrypted Memo
-  const memo = await getMemo(username, studioEndPoint);
-  // Decoded Memo using dhive Memo.decode class
-  let decrypted = hive.Memo.decode(postingKey, memo);
-  decrypted = decrypted.replace("#", "");
-  console.log(`Decrypted ${decrypted}\n\n`);
+  // const postingKey = getPostingKey(username)
 
-  // Step 2. Get Cookie using decrypted JWT
-  const cookies = await getCookies(username, studioEndPoint, decrypted);
+  try {
+    // Step 1. Get JWT Encrypted Memo
+    const memo = await getMemo(username, studioEndPoint);
 
-  // we are logging the cookies here just to make sure that we got those.
-  console.log(`Cookies are ${cookies}\n\n`);
+    // Decoded Memo using dhive Memo.decode class
+    let decrypted = await hive.Memo.decode(
+      'postingKey',
+      memo
+    );
+    decrypted = decrypted.replace("#", "");
+    console.log(`Decrypted Memo is ${decrypted}\n\n`);
 
-  // Step 3. Upload video
-  const videoUpload: any = await startUpload("test-demo-video.mp4", tusEndPoint, file);
-  const videoUploadFileUrl = videoUpload.replace(`${tusEndPoint}`, "");
-  console.log(`Video File Url ${videoUploadFileUrl}\n\n`);
 
-  // Step 4. Upload Thumb
-  const thumbUpload: any = await startUpload("test-demo-video.mp4", tusEndPoint, thumbnail);
-  const thumbUploadFileUrl: string = thumbUpload.replace(`${tusEndPoint}`, "");
-  console.log(`Thumb File ID ${thumbUploadFileUrl}\n\n`);
+    // Step 2. Get Cookie using decrypted JWT
+    const cookies = await getCookies(username, studioEndPoint, decrypted);
 
-  // Step 5. Update Video upload information
-  const data = await updateVideoInfo(
-    studioEndPoint,
-    "test-demo-video.mp4",
-    videoUploadFileUrl,
-    thumbUploadFileUrl,
-    username
-  );
-  console.log(`Video upload response: ${JSON.stringify(data)}`);
+    // we are logging the cookies here just to make sure that we got those.
+    console.log(`Cookies are ${cookies}\n\n`);
 
-  // Step 6. Get all Videos data
-  const myAllVideosWithStatusInfo = await getAllVideoStatuses(studioEndPoint);
-  console.log(`All Videos Info response: ${JSON.stringify(myAllVideosWithStatusInfo)}`);
+    // // Step 3. Upload video
+    const videoUpload: any = await startUpload("test-demo-video.mp4", tusEndPoint, file);
+    const videoUploadFileUrl = videoUpload.replace(`${tusEndPoint}`, "");
+    console.log(`Video File Url ${videoUploadFileUrl}\n\n`);
 
-  const videoID = myAllVideosWithStatusInfo[0]._id;
-  console.log(videoID);
+    // // Step 4. Upload Thumb
+    const thumbUpload: any = await startUpload("test-demo-video.png", tusEndPoint, thumbnail);
+    const thumbUploadFileUrl: string = thumbUpload.replace(`${tusEndPoint}`, "");
+    console.log(`Thumb File ID ${thumbUploadFileUrl}\n\n`);
 
-  // Step 7. Update MetaData of a specific video
-  const updatedVideoMetadata = await updateVideoMetadata(
-    studioEndPoint,
-    videoID,
-    "ActiFit & Ecency integrating #3Speak videos", // video title
-    "Lots of love for #Hive ♦️ and  #3Speak ▶️", // video description - post content
-    false, // is NSFW
-    "threespeak,mobile,ios,test" // comma separated tags - no spaces
-  );
-  console.log(`Video Info response: ${JSON.stringify(updatedVideoMetadata)}`);
+    // Step 5. Update Video upload information
+    const data = await updateVideoInfo(
+      studioEndPoint,
+      file.name,
+      videoUploadFileUrl,
+      thumbUploadFileUrl,
+      username,
+      cookies,
+      file.size
+    );
+    console.log(`Video upload response: ${JSON.stringify(data)}`);
+
+
+    // Step 6. Get all Videos data
+    const myAllVideosWithStatusInfo = await getAllVideoStatuses(studioEndPoint, cookies);
+    console.log(`All Videos Info response: ${JSON.stringify(myAllVideosWithStatusInfo)}`);
+
+    const videoID = myAllVideosWithStatusInfo[0]._id;
+    console.log(videoID);
+
+    // Step 7. Update MetaData of a specific video
+    const updatedVideoMetadata = await updateVideoMetadata(
+      studioEndPoint,
+      videoID,
+      "ActiFit & Ecency integrating #3Speak videos", // video title
+      "Lots of love for #Hive ♦️ and  #3Speak ▶️", // video description - post content
+      false, // is NSFW
+      "threespeak,mobile,ios,test", // comma separated tags - no spaces
+      cookies
+    );
+    console.log(`Video Info response: ${JSON.stringify(updatedVideoMetadata)}`);
+  } catch (err: any) {
+    console.error(err)
+  }
 }
 
 export default uploadToThreeSpeak;

@@ -260,11 +260,11 @@ export class EditorToolbar extends Component<Props> {
   };
 
   bold = () => {
-    this.insertText("**", "**");
+    this.insertText("*", "*");
   };
 
   italic = () => {
-    this.insertText("*", "*");
+    this.insertText("", "");
   };
 
   header = (w: number) => {
@@ -350,16 +350,17 @@ export class EditorToolbar extends Component<Props> {
   
   videoInputChanged = async (e: any | React.ChangeEvent<HTMLInputElement>): Promise<any> => {
     const { activeUser, global } = this.props;
-    console.log(activeUser?.username)
+    console.log(activeUser)
     const tempVideoTag = `![Uploading ${e.target.files[0].name} #${Math.floor(Math.random() * 99)}]()\n\n`;
     this.insertText(tempVideoTag);
-    console.log(e.target.files[0]);
+    console.log(e.target.files[0], e.target.files[1]);
+ 
     const upload = await uploadToThreeSpeak(
       activeUser?.username,
       e.target.files[0],
-      "https://1164326579-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2Fcryptowatch-guides%2F-MGtBBISJf5x2Uk-ldVl%2F-MGtLa7ILcJT6oJemFX3%2F0.gif?generation=1599763801987719&alt=media"
+      e.target.files[1],
     );
-    console.log( upload );
+    console.log(upload);
   };
 
   upload = async (file: File) => {
@@ -602,7 +603,7 @@ export class EditorToolbar extends Component<Props> {
           className="file-input"
           ref={this.videoInput}
           type="file"
-          accept="video/*"
+          accept="any"
           multiple={true}
           style={{ display: "none" }}
         />
