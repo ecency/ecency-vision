@@ -86,7 +86,9 @@ export class DialogContent extends Component<NotificationProps, any> {
       saveSettingsWithDebounce: null,
       currentStatus: "All",
       select: false,
-      isSelectIcon: false
+      isSelectIcon: false,
+      selectedNotifications: [],
+      inProgress: false
     };
   }
 
@@ -121,8 +123,28 @@ export class DialogContent extends Component<NotificationProps, any> {
     }
   }
 
-  setIsSelectIcon = (d: boolean) => {
-    this.setState({ isSelectIcon: d });
+  setIsSelectIcon = () => {
+    const { selectedNotifications } = this.state;
+    if (selectedNotifications.length > 0) {
+      this.setState({ isSelectIcon: true });
+    } else {
+      this.setState({ isSelectIcon: false });
+    }
+  };
+
+  setSelectedNotifications = (id: string) => {
+    const { selectedNotifications } = this.state;
+    const index = selectedNotifications.indexOf(id);
+    if (index === -1) {
+      this.setState(
+        { selectedNotifications: [...this.state.selectedNotifications, id] },
+        this.setIsSelectIcon
+      );
+    } else {
+      const newSelectedNotifications = [...selectedNotifications];
+      newSelectedNotifications.splice(index, 1);
+      this.setState({ selectedNotifications: newSelectedNotifications }, this.setIsSelectIcon);
+    }
   };
 
   prepareSettings = () => {
@@ -237,7 +259,23 @@ export class DialogContent extends Component<NotificationProps, any> {
   };
 
   selectClicked = () => {
-    this.setState({ select: !this.state.select });
+    this.setState({ select: !this.state.select }, this.handleSelectedNotifications);
+  };
+
+  handleSelectedNotifications = () => {
+    if (!this.state.select) {
+      this.setState({ selectedNotifications: [], isSelectIcon: false });
+    }
+  };
+
+  markNotifications = () => {
+    this.setState({ inProgress: true });
+    const { selectedNotifications } = this.state;
+    const { markNotifications } = this.props;
+    for (const id of selectedNotifications) {
+      markNotifications(id);
+    }
+    this.setState({ inProgress: false, isSelectIcon: false, select: false });
   };
 
   render() {
@@ -280,20 +318,21 @@ export class DialogContent extends Component<NotificationProps, any> {
       items: menuItems
     };
 
-    const kebabMenuConfig = {
+    const markAsreadMenuConfig = {
       history: this.props.history,
       label: "",
       icon: KebabMenu,
       items: [
         {
           label: "Mark as read",
-          href: `/controversial/today`,
-          id: "controversial"
+          onClick: this.markNotifications,
+          icon: checkSvg
         }
       ]
     };
 
     const { notifications } = this.props;
+    const { inProgress } = this.state;
     const { list, loading, filter, unread } = notifications;
 
     return (
@@ -373,7 +412,10 @@ export class DialogContent extends Component<NotificationProps, any> {
                 // getNotificationSettingsItem(_t(`notifications.type-all-short`), NotifyTypes.ALLOW_NOTIFY),
                 getNotificationSettingsItem(_t(`notifications.type-rvotes`), NotifyTypes.VOTE),
                 getNotificationSettingsItem(_t(`notifications.type-replies`), NotifyTypes.COMMENT),
-                getNotificationSettingsItem(_t(`notifications.type-mentions`), NotifyTypes.MENTION),
+                getNotificationSettingsItem(
+                  _t(`no5tifications.type-mentions`),
+                  NotifyTypes.MENTION
+                ),
                 getNotificationSettingsItem(
                   _t(`notifications.type-nfavorites`),
                   NotifyTypes.FAVORITES
@@ -432,7 +474,7 @@ export class DialogContent extends Component<NotificationProps, any> {
             </Button>
             {this.state.isSelectIcon ? (
               <div className="select-icon">
-                <DropDown {...kebabMenuConfig} float="right" />
+                <DropDown {...markAsreadMenuConfig} float="right" />
               </div>
             ) : (
               <></>
@@ -440,7 +482,7 @@ export class DialogContent extends Component<NotificationProps, any> {
           </div>
         </div>
 
-        {loading && <LinearProgress />}
+        {loading || (inProgress && <LinearProgress />)}
 
         {!loading && list.length === 0 && (
           <div className="list-body empty-list">
@@ -460,7 +502,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                       notification={n}
                       isSelect={this.state.select}
                       currentStatus={this.state.currentStatus}
-                      setIsSelectIcon={this.setIsSelectIcon}
+                      setSelectedNotifications={this.setSelectedNotifications}
                     />
                   </>
                 )}
@@ -472,7 +514,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                       notification={n}
                       isSelect={this.state.select}
                       currentStatus={this.state.currentStatus}
-                      setIsSelectIcon={this.setIsSelectIcon}
+                      setSelectedNotifications={this.setSelectedNotifications}
                     />
                   </>
                 )}
@@ -484,7 +526,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                       notification={n}
                       isSelect={this.state.select}
                       currentStatus={this.state.currentStatus}
-                      setIsSelectIcon={this.setIsSelectIcon}
+                      setSelectedNotifications={this.setSelectedNotifications}
                     />
                   </>
                 )}

@@ -69,7 +69,16 @@
     border-bottom: 1px solid #f5f5f5;
     display: flex;
     justify-content: space-between;
-    padding: 10px 1px;
+    padding: 10px 1px 20px 10px;
+
+    @include themify(day) {
+      border-bottom: 1px solid $white-three;
+    }
+
+    @include themify(night) {
+      border-bottom: solid 1px $dark-two;
+    }
+
 
     .status-button {
       border: 1px solid $dark-sky-blue;

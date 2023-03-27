@@ -17,7 +17,6 @@ import EntryLink from "../entry-link";
 
 interface State {
   isChecked: boolean;
-  selectedNotifications: Array<any>;
 }
 
 interface Props {
@@ -31,24 +30,22 @@ interface Props {
   markNotifications: (id: string | null) => void;
   addAccount: (data: Account) => void;
   toggleUIProp: (what: ToggleType) => void;
-  setIsSelectIcon?: (d: boolean) => void;
+  setSelectedNotifications?: (d: string) => void;
 }
 export default class NotificationListItem extends Component<Props, State> {
   state: State = {
-    isChecked: false,
-    selectedNotifications: []
+    isChecked: false
   };
 
   componentDidUpdate(prevProps: Readonly<Props>) {
     if (prevProps.isSelect !== this.props.isSelect) {
       if (!this.props.isSelect) {
-        this.setState({ selectedNotifications: [] });
+        this.setState({ isChecked: false });
       }
     }
   }
 
   markAsRead = () => {
-    console.log("Mark as read");
     const { notification: primaryNotification, entry, markNotifications } = this.props;
     const notification = primaryNotification || entry;
 
@@ -65,50 +62,9 @@ export default class NotificationListItem extends Component<Props, State> {
 
   handleChecked = (id: string) => {
     if (this.props.isSelect) {
-      console.log("Clicked on list", id, this.state.selectedNotifications);
       this.setState({ isChecked: !this.state.isChecked });
-      const { selectedNotifications } = this.state;
-      const index = selectedNotifications.indexOf(id);
-      if (index === -1) {
-        console.log("IF true");
-        var newSelected = [...selectedNotifications];
-        console.log("n", newSelected);
-        newSelected.push(id);
-        console.log("now", newSelected);
-        this.setState({ selectedNotifications: newSelected }, this.setSelectIcon);
-        // console.log(selectedNotifications , id)
-        // const newSelectedNotifications = selectedNotifications.push(id);
-        // console.log(newSelectedNotifications);
-        // this.setState({ selectedNotifications: newSelectedNotifications }, () =>
-        //   console.log(this.state.selectedNotifications)
-        // );
-      } else {
-        console.log("Else True");
-        const newSelectedNotifications = [...selectedNotifications];
-        newSelectedNotifications.splice(index, 1);
-        this.setState({ selectedNotifications: newSelectedNotifications }, this.setSelectIcon);
-      }
-
-      // const { selectedNotifications } = this.state;
-      // const index = selectedNotifications.indexOf(id);
-      // console.log(index);
-      // this.setState({ isChecked: !this.state.isChecked });
-      // if (index === -1) {
-      //   this.setState({ selectedNotifications: [...[...selectedNotifications, id]] });
-      // } else {
-      //   const newSelectedNotifications = [...selectedNotifications];
-      //   newSelectedNotifications.splice(index, 1);
-      //   this.setState({ selectedNotifications: newSelectedNotifications });
-      // }
-    }
-  };
-
-  setSelectIcon = () => {
-    if (this.props.setIsSelectIcon && this.state.selectedNotifications.length > 0) {
-      this.props.setIsSelectIcon(true);
-    } else {
-      if (this.props.setIsSelectIcon && this.state.selectedNotifications.length === 0) {
-        this.props.setIsSelectIcon(false);
+      if (this.props.setSelectedNotifications) {
+        this.props.setSelectedNotifications(id);
       }
     }
   };
