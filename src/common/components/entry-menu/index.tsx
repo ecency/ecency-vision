@@ -108,8 +108,12 @@ export class EntryMenu extends BaseComponent<Props, State> {
   componentDidMount() {
     const { entry, activeUser, addCommunity } = this.props;
 
+    if (!activeUser) {
+      return;
+    }
+
     if (isCommunity(entry.category)) {
-      bridgeApi.getCommunity(entry.category, activeUser!.username).then((r) => {
+      bridgeApi.getCommunity(entry.category, activeUser?.username).then((r) => {
         if (r) {
           addCommunity(r);
         }
