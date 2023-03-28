@@ -425,20 +425,9 @@ export const Item = (props: ItemProps) => {
                   <></>
                 ) : (
                   <div className="item-controls">
-                    {EntryVoteBtn({
-                      ...props,
-                      entry,
-                      afterVote: afterVote,
-                      isPostSlider: false
-                    })}
-                    {EntryPayout({
-                      ...props,
-                      entry
-                    })}
-                    {EntryVotes({
-                      ...props,
-                      entry
-                    })}
+                    <EntryVoteBtn entry={entry} afterVote={afterVote} isPostSlider={false} />
+                    <EntryPayout entry={entry} />
+                    <EntryVotes entry={entry} history={history} />
                     <a className={_c(`reply-btn ${edit ? "disabled" : ""}`)} onClick={toggleReply}>
                       {_t("g.reply")}
                     </a>

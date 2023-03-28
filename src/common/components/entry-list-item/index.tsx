@@ -516,19 +516,9 @@ export default class EntryListItem extends Component<Props, State> {
             );
           })()}
           <div className="item-controls">
-            {EntryVoteBtn({
-              ...this.props,
-              isPostSlider: true,
-              afterVote: this.afterVote
-            })}
-            {EntryPayout({
-              ...this.props,
-              entry
-            })}
-            {EntryVotes({
-              ...this.props,
-              entry
-            })}
+            <EntryVoteBtn isPostSlider={true} entry={entry} afterVote={this.afterVote} />
+            <EntryPayout entry={entry} />
+            <EntryVotes entry={entry} history={this.props.history} />
             {EntryLink({
               ...this.props,
               entry: crossPost ? theEntry : entry,
@@ -550,14 +540,8 @@ export default class EntryListItem extends Component<Props, State> {
                 </a>
               )
             })}
-            {EntryReblogBtn({
-              ...this.props
-            })}
-            {EntryMenu({
-              ...this.props,
-              alignBottom: order >= 1,
-              entry
-            })}
+            <EntryReblogBtn entry={entry} />
+            <EntryMenu history={history} alignBottom={order >= 1} entry={entry} />
           </div>
         </div>
       </div>
