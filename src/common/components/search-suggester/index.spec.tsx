@@ -3,12 +3,7 @@ import SearchSuggester from "./index";
 import renderer from "react-test-renderer";
 import { BrowserRouter } from "react-router-dom";
 import { createBrowserHistory, createLocation } from "history";
-import {
-  activeUserInstance,
-  globalInstance,
-  allOver,
-  TrendingTagsInstance
-} from "../../helper/test-helper";
+import { globalInstance, TrendingTagsInstance } from "../../helper/test-helper";
 
 it("(1) Default render", () => {
   const props = {
