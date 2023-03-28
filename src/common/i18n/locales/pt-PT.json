@@ -1481,11 +1481,11 @@
     "title": "Change Recovery Agent",
     "curr-recovery-acc": "Current Recovery Agent",
     "new-recovery-acc": "New Recovery Agent",
-    "confirm-title": "Confirm your transaction",
+    "confirm-title": "Confirme a sua transação",
     "confirm-sub-title": "Please, check if everything is correct",
     "req-error": "Sorry! Your request of recover agent change is already in progress",
     "to-not-found": "The user that you are tyring to set, does not exist!",
-    "sign-title": "Sign transaction",
+    "sign-title": "Assinar a transação",
     "sign-sub-title": "Sign your transaction",
     "success-message": "New recovery agent is effective after 30 days",
     "info-message": "Overwrite pending request? @{{n}}"
