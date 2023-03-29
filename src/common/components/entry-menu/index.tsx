@@ -106,14 +106,24 @@ export class EntryMenu extends BaseComponent<Props, State> {
   };
 
   componentDidMount() {
-    const { entry, activeUser, addCommunity } = this.props;
+    const { activeUser } = this.props;
 
     if (!activeUser) {
       return;
     }
 
+    const { trackEntryPin, entry } = this.props;
+    trackEntryPin(entry);
+    console.log(trackEntryPin(entry));
+
+    if (this.getCommunity()) {
+      return;
+    }
+
+    const { addCommunity } = this.props;
+
     if (isCommunity(entry.category)) {
-      bridgeApi.getCommunity(entry.category, activeUser?.username).then((r) => {
+      bridgeApi.getCommunity(entry.category, activeUser.username).then((r) => {
         if (r) {
           addCommunity(r);
         }
@@ -332,6 +342,26 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
   toggleLoginModal = () => {
     this.props.toggleUIProp("login");
+  };
+
+  onMenuShow = () => {
+    // const { activeUser } = this.props;
+    // if (!activeUser) {
+    //   return;
+    // }
+    // const { trackEntryPin, entry } = this.props;
+    // trackEntryPin(entry);
+    // if (this.getCommunity()) {
+    //   return;
+    // }
+    // const { addCommunity } = this.props;
+    // if (isCommunity(entry.category)) {
+    //   bridgeApi.getCommunity(entry.category, activeUser.username).then((r) => {
+    //     if (r) {
+    //       addCommunity(r);
+    //     }
+    //   });
+    // }
   };
 
   render() {
@@ -632,7 +662,12 @@ export class EntryMenu extends BaseComponent<Props, State> {
           </div>
         )}
 
-        <DropDown {...menuConfig} float="right" alignBottom={alignBottom} />
+        <DropDown
+          {...menuConfig}
+          float="right"
+          alignBottom={alignBottom}
+          onShow={this.onMenuShow}
+        />
         {activeUser && cross && (
           <CrossPost
             entry={entry}
