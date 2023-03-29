@@ -343,26 +343,6 @@ export class EntryMenu extends BaseComponent<Props, State> {
     this.props.toggleUIProp("login");
   };
 
-  onMenuShow = () => {
-    // const { activeUser } = this.props;
-    // if (!activeUser) {
-    //   return;
-    // }
-    // const { trackEntryPin, entry } = this.props;
-    // trackEntryPin(entry);
-    // if (this.getCommunity()) {
-    //   return;
-    // }
-    // const { addCommunity } = this.props;
-    // if (isCommunity(entry.category)) {
-    //   bridgeApi.getCommunity(entry.category, activeUser.username).then((r) => {
-    //     if (r) {
-    //       addCommunity(r);
-    //     }
-    //   });
-    // }
-  };
-
   render() {
     const {
       global,
@@ -663,12 +643,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
           </div>
         )}
 
-        <DropDown
-          {...menuConfig}
-          float="right"
-          alignBottom={alignBottom}
-          onShow={this.onMenuShow}
-        />
+        <DropDown {...menuConfig} float="right" alignBottom={alignBottom} />
         {activeUser && cross && (
           <CrossPost
             entry={entry}
