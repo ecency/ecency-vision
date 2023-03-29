@@ -106,10 +106,23 @@ export class EntryMenu extends BaseComponent<Props, State> {
   };
 
   componentDidMount() {
-    const { entry, activeUser, addCommunity } = this.props;
+    const { activeUser } = this.props;
+
+    if (!activeUser) {
+      return;
+    }
+
+    const { trackEntryPin, entry } = this.props;
+    trackEntryPin(entry);
+
+    if (this.getCommunity()) {
+      return;
+    }
+
+    const { addCommunity } = this.props;
 
     if (isCommunity(entry.category)) {
-      bridgeApi.getCommunity(entry.category, activeUser!.username).then((r) => {
+      bridgeApi.getCommunity(entry.category, activeUser.username).then((r) => {
         if (r) {
           addCommunity(r);
         }
@@ -504,14 +517,16 @@ export class EntryMenu extends BaseComponent<Props, State> {
           }
         ];
       } else {
-        menuItems = [
-          ...menuItems,
-          {
-            label: _t("entry-menu.pin-to-blog"),
-            onClick: () => this.togglePin("blog"),
-            icon: pinSvg
-          }
-        ];
+        if (entry.author === activeUser?.username) {
+          menuItems = [
+            ...menuItems,
+            {
+              label: _t("entry-menu.pin-to-blog"),
+              onClick: () => this.togglePin("blog"),
+              icon: pinSvg
+            }
+          ];
+        }
       }
     }
 
