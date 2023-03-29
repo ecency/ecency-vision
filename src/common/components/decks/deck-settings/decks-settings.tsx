@@ -7,6 +7,7 @@ import { emoticonHappyOutlineSvg } from "../../../img/svg";
 import ClickAwayListener from "../../clickaway-listener";
 import uuid from "uuid";
 import { DeckGridContext } from "../deck-manager";
+import { DEFAULT_COLUMNS } from "../consts";
 
 interface Props {
   deck?: DeckGrid;
@@ -41,7 +42,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
         icon,
         title: name,
         storageType: isLocalStorage ? "local" : "account",
-        columns: []
+        columns: DEFAULT_COLUMNS
       };
       pushOrUpdateDeck(newDeck);
     }
