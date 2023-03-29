@@ -70,7 +70,7 @@ export default function AccountRecovery(props: Props) {
     e.persist();
     setNewCurrRecoveryAccount(e.target.value);
 
-    if (e.target.value.length == 0) {
+    if (e.target.value.length === 0) {
       setDisabled(true);
       setToError("");
       return;
@@ -79,6 +79,11 @@ export default function AccountRecovery(props: Props) {
       if (resp) {
         setDisabled(false);
         setToError("");
+        if (resp && e.target.value === props.activeUser?.username) {
+          setDisabled(true);
+          setToError(_t("account-recovery.same-account-error"));
+          return;
+        }
       } else {
         if (e.target.value.length > 0) {
           setDisabled(true);
@@ -134,6 +139,7 @@ export default function AccountRecovery(props: Props) {
   const finish = () => {
     setKeyDialog(false);
     setNewCurrRecoveryAccount("");
+    setDisabled(true);
   };
 
   const handleConfirm = () => {
@@ -156,17 +162,13 @@ export default function AccountRecovery(props: Props) {
             <div className="confirmation">
               <div className="users">
                 <div className="from-user">
-                  {UserAvatar({
-                    ...props,
-                    username: props.activeUser!.username,
-                    size: "large"
-                  })}
+                  <UserAvatar username={props.activeUser!.username} size="large" />
                 </div>
 
                 <>
                   <div className="arrow">{arrowRightSvg}</div>
                   <div className="to-user">
-                    {UserAvatar({ ...props, username: newRecoveryAccount, size: "large" })}
+                    <UserAvatar username={newRecoveryAccount} size="large" />
                   </div>
                 </>
               </div>
