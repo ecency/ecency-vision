@@ -25,11 +25,12 @@
   .deck-list {
     .deck-list-item {
       width: 100%;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1.25rem 1fr min-content;
       align-items: center;
-      justify-content: center;
       cursor: pointer;
-      gap: 1rem;
+      grid-gap: 1rem;
+      position: relative;
 
       @include transition(0.3s);
       @include padding(1rem);
@@ -39,7 +40,31 @@
         color: $primary;
       }
 
+      &::before {
+        position: absolute;
+        content: '';
+        width: 4px;
+        height: 100%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background-color: $primary;
+        transform: translateX(-4px);
+
+        @include transition(0.3s);
+      }
+
       .icon {
+        width: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        line-height: 1;
+        font-weight: bold;
+        color: $gray-500;
+        text-transform: uppercase;
+
         @include font-size(1.25rem);
       }
 
@@ -50,12 +75,26 @@
         @include font-size(0.875rem);
       }
 
+      .btn {
+        color: $gray-400;
+        box-shadow: none;
+        outline: none;
+
+        @include padding(0);
+        @include padding-right(0.125rem);
+
+        &:hover {
+          color: $gray-600;
+        }
+      }
+
       &.selected {
         cursor: unset;
-        border-left: 4px solid $primary;
         background-color: $duck-egg-blue;
 
-        @include padding-left(calc(1rem - 4px));
+        &::before {
+          transform: translateX(0);
+        }
       }
     }
   }

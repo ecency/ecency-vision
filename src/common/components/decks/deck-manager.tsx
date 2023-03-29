@@ -126,6 +126,11 @@ export const DeckManager = ({ children }: Props) => {
     const existingDeckIndex = decksSnapshot.findIndex((d) => d.key === deck.key);
     if (existingDeckIndex > -1) {
       decksSnapshot[existingDeckIndex] = deck;
+      if (activeUser && deck.storageType === "account") {
+        await updateDeck(activeUser?.username, deck);
+      } else {
+        setLocalDecks({ decks: decksSnapshot.filter((d) => d.storageType === "local") });
+      }
     } else {
       decksSnapshot.push(deck);
       if (activeUser && deck.storageType === "account") {

@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { DeckGridContext } from "../deck-manager";
 import "./_deck-toolbar-manager.scss";
-import { addIconSvg } from "../icons";
+import { addIconSvg, settingsIconSvg } from "../icons";
 import { DecksSettings } from "../deck-settings/decks-settings";
+import { DeckGrid } from "../types";
+import { Button } from "react-bootstrap";
 
 interface Props {
   isExpanded: boolean;
@@ -10,7 +12,9 @@ interface Props {
 
 export const DeckToolbarManager = ({ isExpanded }: Props) => {
   const { setActiveDeck, decks, activeDeck } = useContext(DeckGridContext);
+
   const [showDecksSettings, setShowDecksSettings] = useState(false);
+  const [editingDeck, setEditingDeck] = useState<DeckGrid | undefined>(undefined);
 
   return (
     <div className="deck-toolbar-manager">
@@ -21,18 +25,32 @@ export const DeckToolbarManager = ({ isExpanded }: Props) => {
         </div>
       </div>
       <div className="deck-list">
-        {decks.decks.map(({ icon, key, title }) => (
+        {decks.decks.map((deck) => (
           <div
-            key={key}
-            className={"deck-list-item " + (key === activeDeck ? "selected" : "")}
-            onClick={() => setActiveDeck(key)}
+            key={deck.key}
+            className={"deck-list-item " + (deck.key === activeDeck ? "selected" : "")}
+            onClick={() => setActiveDeck(deck.key)}
           >
-            <div className="icon">{icon}</div>
-            {isExpanded ? <div className="title px-0">{title}</div> : <></>}
+            <div className="icon">{deck.icon ? deck.icon : deck.title[0]}</div>
+            {isExpanded ? <div className="title px-0">{deck.title}</div> : <></>}
+            {isExpanded ? (
+              <Button
+                variant="link"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setEditingDeck(deck);
+                  setShowDecksSettings(true);
+                }}
+              >
+                {settingsIconSvg}
+              </Button>
+            ) : (
+              <></>
+            )}
           </div>
         ))}
       </div>
-      <DecksSettings show={showDecksSettings} setShow={setShowDecksSettings} />
+      <DecksSettings deck={editingDeck} show={showDecksSettings} setShow={setShowDecksSettings} />
     </div>
   );
 };

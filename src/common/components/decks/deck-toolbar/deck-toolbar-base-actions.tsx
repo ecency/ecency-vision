@@ -1,10 +1,10 @@
-import { menuSvg, rocketSvg } from "../../../img/svg";
+import { rocketSvg } from "../../../img/svg";
 import React from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { WalletBadge } from "../../user-nav";
 import { Dropdown } from "react-bootstrap";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
-import { notificationsIconSvg, walletIconSvg } from "../icons";
+import { dotsMenuIconSvg, notificationsIconSvg, walletIconSvg } from "../icons";
 
 interface Props {
   isExpanded: boolean;
@@ -30,7 +30,7 @@ export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Pr
       <WalletBadge icon={walletIconSvg} activeUser={activeUser} dynamicProps={dynamicProps} />
       {isExpanded ? (
         <Dropdown>
-          <DropdownToggle variant="link">{menuSvg}</DropdownToggle>
+          <DropdownToggle variant="link">{dotsMenuIconSvg}</DropdownToggle>
           <Dropdown.Menu alignRight={true}>
             <Dropdown.Item>Back to Grid</Dropdown.Item>
             <Dropdown.Item>Back to Classic view</Dropdown.Item>

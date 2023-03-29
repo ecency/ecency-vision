@@ -1,5 +1,5 @@
 import { Alert, Button, Form, InputGroup, Modal } from "react-bootstrap";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./_decks-settings.scss";
 import { DeckGrid } from "../types";
 import EmojiPicker from "../../emoji-picker";
@@ -22,6 +22,12 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
   const [icon, setIcon] = useState("");
   const [isLocalStorage, setIsLocalStorage] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
+
+  useEffect(() => {
+    setName(deck?.title ?? name);
+    setIcon(deck?.icon ?? icon);
+    setIsLocalStorage(deck?.storageType === "local" ?? false);
+  }, [deck]);
 
   const submit = () => {
     if (!name) {
