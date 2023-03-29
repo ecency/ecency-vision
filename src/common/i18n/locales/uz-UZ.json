@@ -1488,7 +1488,8 @@
     "sign-title": "Sign transaction",
     "sign-sub-title": "Sign your transaction",
     "success-message": "New recovery agent is effective after 30 days",
-    "info-message": "Overwrite pending request? @{{n}}"
+    "info-message": "Overwrite pending request? @{{n}}",
+    "same-account-error": "You can't set yourself as recovery account!"
   },
   "add-image": {
     "title": "Suratlarni qo‘shish",
