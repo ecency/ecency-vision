@@ -114,7 +114,6 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
     const { trackEntryPin, entry } = this.props;
     trackEntryPin(entry);
-    console.log(trackEntryPin(entry));
 
     if (this.getCommunity()) {
       return;
@@ -538,14 +537,16 @@ export class EntryMenu extends BaseComponent<Props, State> {
           }
         ];
       } else {
-        menuItems = [
-          ...menuItems,
-          {
-            label: _t("entry-menu.pin-to-blog"),
-            onClick: () => this.togglePin("blog"),
-            icon: pinSvg
-          }
-        ];
+        if (entry.author === activeUser?.username) {
+          menuItems = [
+            ...menuItems,
+            {
+              label: _t("entry-menu.pin-to-blog"),
+              onClick: () => this.togglePin("blog"),
+              icon: pinSvg
+            }
+          ];
+        }
       }
     }
 
