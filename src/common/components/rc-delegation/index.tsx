@@ -14,14 +14,8 @@ import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 
 export const ResourceCreditsDelegation = (props: any) => {
-  const { 
-    resourceCredit, 
-    activeUser, 
-    hideDelegation, 
-    toFromList, 
-    amountFromList, 
-    delegateeData 
-  } = props;
+  const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList, delegateeData } =
+    props;
 
   const [to, setTo] = useState<string>(toFromList || "");
   const [amount, setAmount] = useState<any>(amountFromList || "");

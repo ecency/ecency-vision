@@ -105,6 +105,31 @@ export class EntryMenu extends BaseComponent<Props, State> {
     boost: false
   };
 
+  componentDidMount() {
+    const { activeUser } = this.props;
+
+    if (!activeUser) {
+      return;
+    }
+
+    const { trackEntryPin, entry } = this.props;
+    trackEntryPin(entry);
+
+    if (this.getCommunity()) {
+      return;
+    }
+
+    const { addCommunity } = this.props;
+
+    if (isCommunity(entry.category)) {
+      bridgeApi.getCommunity(entry.category, activeUser.username).then((r) => {
+        if (r) {
+          addCommunity(r);
+        }
+      });
+    }
+  }
+
   toggleCross = () => {
     const { cross } = this.state;
     this.stateSet({ cross: !cross });
@@ -314,31 +339,6 @@ export class EntryMenu extends BaseComponent<Props, State> {
     }
   };
 
-  onMenuShow = () => {
-    const { activeUser } = this.props;
-
-    if (!activeUser) {
-      return;
-    }
-
-    const { trackEntryPin, entry } = this.props;
-    trackEntryPin(entry);
-
-    if (this.getCommunity()) {
-      return;
-    }
-
-    const { addCommunity } = this.props;
-
-    if (isCommunity(entry.category)) {
-      bridgeApi.getCommunity(entry.category, activeUser.username).then((r) => {
-        if (r) {
-          addCommunity(r);
-        }
-      });
-    }
-  };
-
   toggleLoginModal = () => {
     this.props.toggleUIProp("login");
   };
@@ -367,6 +367,65 @@ export class EntryMenu extends BaseComponent<Props, State> {
       ownEntry && !(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout);
 
     let menuItems: MenuItem[] = [];
+
+    if (activeUser && !isComment && isCommunity(entry.category)) {
+      menuItems = [
+        {
+          label: _t("entry-menu.cross-post"),
+          onClick: this.toggleCross,
+          icon: shuffleVariantSvg
+        }
+      ];
+    }
+
+    if (!separatedSharing) {
+      menuItems = [
+        ...menuItems,
+        {
+          label: _t("entry-menu.share"),
+          onClick: this.toggleShare,
+          icon: shareVariantSvg
+        }
+      ];
+    }
+
+    if (global.usePrivate) {
+      menuItems = [
+        ...menuItems,
+        {
+          label: _t("entry-menu.edit-history"),
+          onClick: this.toggleEditHistory,
+          icon: historySvg
+        }
+      ];
+    }
+
+    if (editable) {
+      menuItems = [
+        ...menuItems,
+        ...[
+          {
+            label: _t("g.edit"),
+            // onClick: this.edit,
+            onClick: isComment && toggleEdit ? toggleEdit : this.edit,
+            icon: pencilOutlineSvg
+          }
+        ]
+      ];
+    }
+
+    if (deletable) {
+      menuItems = [
+        ...menuItems,
+        ...[
+          {
+            label: _t("g.delete"),
+            onClick: this.toggleDelete,
+            icon: deleteForeverSvg
+          }
+        ]
+      ];
+    }
 
     if (this.canPinBothOptions()) {
       if (
@@ -458,14 +517,16 @@ export class EntryMenu extends BaseComponent<Props, State> {
           }
         ];
       } else {
-        menuItems = [
-          ...menuItems,
-          {
-            label: _t("entry-menu.pin-to-blog"),
-            onClick: () => this.togglePin("blog"),
-            icon: pinSvg
-          }
-        ];
+        if (entry.author === activeUser?.username) {
+          menuItems = [
+            ...menuItems,
+            {
+              label: _t("entry-menu.pin-to-blog"),
+              onClick: () => this.togglePin("blog"),
+              icon: pinSvg
+            }
+          ];
+        }
       }
     }
 
@@ -478,65 +539,6 @@ export class EntryMenu extends BaseComponent<Props, State> {
             label: isMuted ? _t("entry-menu.unmute") : _t("entry-menu.mute"),
             onClick: this.toggleMute,
             icon: volumeOffSvg
-          }
-        ]
-      ];
-    }
-
-    if (activeUser && !isComment && isCommunity(entry.category)) {
-      menuItems = [
-        {
-          label: _t("entry-menu.cross-post"),
-          onClick: this.toggleCross,
-          icon: shuffleVariantSvg
-        }
-      ];
-    }
-
-    if (!separatedSharing) {
-      menuItems = [
-        ...menuItems,
-        {
-          label: _t("entry-menu.share"),
-          onClick: this.toggleShare,
-          icon: shareVariantSvg
-        }
-      ];
-    }
-
-    if (global.usePrivate) {
-      menuItems = [
-        ...menuItems,
-        {
-          label: _t("entry-menu.edit-history"),
-          onClick: this.toggleEditHistory,
-          icon: historySvg
-        }
-      ];
-    }
-
-    if (editable) {
-      menuItems = [
-        ...menuItems,
-        ...[
-          {
-            label: _t("g.edit"),
-            // onClick: this.edit,
-            onClick: isComment && toggleEdit ? toggleEdit : this.edit,
-            icon: pencilOutlineSvg
-          }
-        ]
-      ];
-    }
-
-    if (deletable) {
-      menuItems = [
-        ...menuItems,
-        ...[
-          {
-            label: _t("g.delete"),
-            onClick: this.toggleDelete,
-            icon: deleteForeverSvg
           }
         ]
       ];
@@ -641,12 +643,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
           </div>
         )}
 
-        <DropDown
-          {...menuConfig}
-          float="right"
-          alignBottom={alignBottom}
-          onShow={this.onMenuShow}
-        />
+        <DropDown {...menuConfig} float="right" alignBottom={alignBottom} />
         {activeUser && cross && (
           <CrossPost
             entry={entry}
