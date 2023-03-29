@@ -8,7 +8,7 @@ export const DeckFloatingManager = () => {
   const { layout, add, scrollTo } = useContext(DeckGridContext);
   const [show, setShow] = useState(false);
 
-  return (
+  return layout.columns.length > 0 ? (
     <div className={"deck-floating-manager " + (show ? "show" : "")}>
       <div
         className="btn btn-primary dropdown-toggle"
@@ -64,5 +64,7 @@ export const DeckFloatingManager = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <></>
   );
 };

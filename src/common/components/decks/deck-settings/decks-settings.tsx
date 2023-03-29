@@ -35,13 +35,14 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
     }
 
     if (deck) {
-      pushOrUpdateDeck({
+      const value: DeckGrid = {
         key: deck.key,
         icon,
         title: name,
         storageType: isLocalStorage ? "local" : "account",
         columns: deck.columns
-      });
+      };
+      pushOrUpdateDeck(value);
     } else {
       const newDeck: DeckGrid = {
         key: uuid.v4(),

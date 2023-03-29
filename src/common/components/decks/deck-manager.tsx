@@ -4,7 +4,7 @@ import { DeckGrid, DeckGridItem, DeckGrids } from "./types";
 import uuid from "uuid";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
-import { createDeck, getDecks, updateDeck } from "./deck-api";
+import { createDeck, deleteDeck, getDecks, updateDeck } from "./deck-api";
 import { useMappedStore } from "../../store/use-mapped-store";
 import usePrevious from "react-use/lib/usePrevious";
 
@@ -124,11 +124,30 @@ export const DeckManager = ({ children }: Props) => {
   const pushOrUpdateDeck = async (deck: DeckGrid) => {
     const decksSnapshot = decks.decks;
     const existingDeckIndex = decksSnapshot.findIndex((d) => d.key === deck.key);
+
     if (existingDeckIndex > -1) {
-      decksSnapshot[existingDeckIndex] = deck;
-      if (activeUser && deck.storageType === "account") {
+      const previousDeck = decksSnapshot[existingDeckIndex];
+
+      // If deck detached from account need to remove it
+      if (activeUser && deck.storageType === "local" && previousDeck.storageType === "account") {
+        await deleteDeck(activeUser?.username, deck);
+      }
+
+      // Save to account is storage is account
+      if (activeUser && deck.storageType === "account" && previousDeck.storageType === "account") {
         await updateDeck(activeUser?.username, deck);
-      } else {
+      }
+
+      // If deck was local and become account need to create it
+      if (activeUser && deck.storageType === "account" && previousDeck.storageType === "local") {
+        await createDeck(activeUser?.username, deck);
+      }
+
+      // Replacing updating deck
+      decksSnapshot[existingDeckIndex] = deck;
+
+      // Save locally if storage is local
+      if (deck.storageType === "local") {
         setLocalDecks({ decks: decksSnapshot.filter((d) => d.storageType === "local") });
       }
     } else {

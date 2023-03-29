@@ -32,7 +32,14 @@ export const DeckToolbarManager = ({ isExpanded }: Props) => {
             onClick={() => setActiveDeck(deck.key)}
           >
             <div className="icon">{deck.icon ? deck.icon : deck.title[0]}</div>
-            {isExpanded ? <div className="title px-0">{deck.title}</div> : <></>}
+            {isExpanded ? (
+              <div className="title px-0">
+                {deck.title}
+                {deck.storageType === "local" ? <div className="local">Local</div> : <></>}
+              </div>
+            ) : (
+              <></>
+            )}
             {isExpanded ? (
               <Button
                 variant="link"
