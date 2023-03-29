@@ -1488,7 +1488,8 @@
     "sign-title": "Allekirjoita tapahtuma",
     "sign-sub-title": "Allekirjoita tapahtuma",
     "success-message": "Uusi palautusedustaja on toiminnassa 30 päivän kuluttua",
-    "info-message": "Korvataanko odottava pyyntö? @{{n}}"
+    "info-message": "Korvataanko odottava pyyntö? @{{n}}",
+    "same-account-error": "You can't set yourself as recovery account!"
   },
   "add-image": {
     "title": "Lisää kuva",
