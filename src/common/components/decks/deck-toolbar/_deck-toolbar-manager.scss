@@ -17,6 +17,8 @@
 
     > .text {
       opacity: 0.5;
+
+      @include margin-bottom(1rem);
     }
   }
 
@@ -31,7 +33,6 @@
 
       @include transition(0.3s);
       @include padding(1rem);
-      @include padding-left(calc(1rem - 4px));
 
       &:hover {
         background-color: $gray-100;
@@ -53,6 +54,8 @@
         cursor: unset;
         border-left: 4px solid $primary;
         background-color: $duck-egg-blue;
+
+        @include padding-left(calc(1rem - 4px));
       }
     }
   }
@@ -87,5 +90,9 @@
 
     @include padding-left(1rem);
     @include padding-right(1rem);
+
+    > .text {
+      @include margin-bottom(0);
+    }
   }
 }

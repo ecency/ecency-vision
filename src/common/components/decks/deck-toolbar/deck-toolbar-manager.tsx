@@ -24,7 +24,7 @@ export const DeckToolbarManager = ({ isExpanded }: Props) => {
         {decks.decks.map(({ icon, key, title }) => (
           <div key={key} className={"deck-list-item " + (key === activeDeck ? "selected" : "")}>
             <div className="icon">{icon}</div>
-            {isExpanded ? <div className="title">{title}</div> : <></>}
+            {isExpanded ? <div className="title px-0">{title}</div> : <></>}
           </div>
         ))}
       </div>

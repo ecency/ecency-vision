@@ -7,7 +7,7 @@ export const DEFAULT_LAYOUT: DeckGrids = {
       key: uuid.v4(),
       title: "Default",
       icon: "⭐️",
-      storageType: "account",
+      storageType: "local",
       columns: [
         {
           id: uuid.v4(),
