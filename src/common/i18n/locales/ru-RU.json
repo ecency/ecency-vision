@@ -1488,7 +1488,8 @@
     "sign-title": "Подписать транзакцию",
     "sign-sub-title": "Подпишите транзакцию",
     "success-message": "Новый агент восстановления будет эффективен через 30 дней",
-    "info-message": "Перезаписать ожидающий запрос? @{{n}}"
+    "info-message": "Перезаписать ожидающий запрос? @{{n}}",
+    "same-account-error": "You can't set yourself as recovery account!"
   },
   "add-image": {
     "title": "Добавить изображение",
