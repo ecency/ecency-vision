@@ -46,6 +46,7 @@
     "trending": "feed",
     "created": "feed",
     "muted": "muted",
+    "trail": "trail",
     "controversial": "controversial",
     "rising": "rising",
     "found": "found",

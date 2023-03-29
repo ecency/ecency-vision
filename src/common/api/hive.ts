@@ -1,4 +1,4 @@
-import { Client, RCAPI } from "@hiveio/dhive";
+import { Client, RCAPI, utils } from "@hiveio/dhive";
 
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
@@ -606,8 +606,12 @@ export const getAccountVotesTrail = (
   start = -1,
   limit = 20
 ): Promise<BlogEntry[]> => {
-  let params = [username, start, limit, 1];
-  return client.call("condenser_api", "get_account_history", params).then((data) => {
+  return getAccountHistory(
+    username,
+    utils.makeBitMaskFilter([utils.operationOrders.vote]),
+    start,
+    limit
+  ).then((data) => {
     let result = data
       .map((obj: any) => {
         return { ...obj[1].op[1], num: obj[0] };
