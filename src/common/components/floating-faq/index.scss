@@ -5,7 +5,7 @@
 
 .help-btn {
   position: fixed;
-  z-index: 900;
+  z-index: 99;
   right: 2rem;
   bottom: 1rem;
   border-radius: 20px 2px 20px 20px !important;
@@ -14,13 +14,6 @@
 
   .help-button-content {
     margin-top: -3px;
-
-    .help {
-      display: inline-block;
-      margin-left: 0.4rem;
-      position: relative;
-      top: 1px;
-    }
   }
 }
 
