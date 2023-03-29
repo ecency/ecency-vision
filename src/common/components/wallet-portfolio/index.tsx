@@ -21,7 +21,7 @@ import { HiveEngineChart } from "../hive-engine-chart";
 import { History } from "history";
 import { vestsToHp } from "../../helper/vesting";
 import { marketInfo } from "../../api/misc";
-import { HiveWalletPortfolioChart, HbdWalletPortfolioChart } from "../wallet-portfolio-chart";
+import { HiveWalletPortfolioChart, HbdWalletPortfolioChart, DefaultPortfolioChart } from "../wallet-portfolio-chart";
 import { getCurrencyTokenRate } from "../../api/private-api";
 import EngineTokensList from "../engine-tokens-list";
 import { Button, FormControl, Modal } from "react-bootstrap";
@@ -254,7 +254,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
   };
 
   formatCurrency = (price: number | string) => {
-    const formatted = price.toLocaleString("en-US", {
+    const formatted = price?.toLocaleString("en-US", {
       style: "currency",
       currency: "USD"
     });
@@ -333,8 +333,10 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                     <span>{_t("wallet-portfolio.points")}</span>
                   </td>
                   <td className="align-middle">${estimatedPointsValue}</td>
-                  <td className="align-middle">---</td>
-                  {!global?.isMobile && showChart && <td className="align-middle">---</td>}
+                  <td className="align-middle text-success">{priceUpSvg}0.00%</td>
+                  {!global?.isMobile && showChart && <td className="align-middle">
+                      <DefaultPortfolioChart />
+                  </td>}
                   <td className="align-middle">{points.points}</td>
                   <td className="align-middle">
                     {this.formatCurrency(totalPointsValue)}
@@ -361,7 +363,9 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                     </span>
                     {coingeckoData[0]?.price_change_percentage_24h}
                   </td>
-                  {!global?.isMobile && showChart && <td className="align-middle">---</td>}
+                  {!global?.isMobile && showChart && <td className="align-middle">
+                      <DefaultPortfolioChart />
+                  </td>}
                   <td className="align-middle">{totalHP}</td>
                   <td className="align-middle">
                   {this.formatCurrency(totalHPValue)}
@@ -494,7 +498,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
             </Button>
           </div>
         )}
-        <Modal
+        {activeUser?.username === account.name && <Modal
           onHide={this.hideList}
           show={showTokenList}
           centered={true}
@@ -555,7 +559,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
               </div>
             </div>
           </Modal.Body>
-        </Modal>
+        </Modal>}
       </div>
     );
   }
