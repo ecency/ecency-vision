@@ -26,7 +26,7 @@
     .deck-list-item {
       width: 100%;
       display: grid;
-      grid-template-columns: 1.25rem 1fr min-content;
+      grid-template-columns: 1fr;
       align-items: center;
       cursor: pointer;
       grid-gap: 1rem;
@@ -82,6 +82,7 @@
         font-weight: bold;
         color: $gray-500;
         text-transform: uppercase;
+        justify-self: center;
 
         @include font-size(1.25rem);
       }
@@ -141,7 +142,16 @@
 
 .decks.expanded .deck-toolbar-manager {
   .deck-list-item {
+    grid-template-columns: 1.25rem 1fr min-content;
     justify-content: flex-start;
+
+    .title {
+      justify-content: flex-start;
+    }
+
+    .icon {
+      justify-self: start;
+    }
   }
 
   .title {
@@ -155,9 +165,5 @@
     > .text {
       @include margin-bottom(0);
     }
-  }
-
-  .deck-list-item .title {
-    justify-content: flex-start;
   }
 }
