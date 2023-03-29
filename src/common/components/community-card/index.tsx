@@ -37,6 +37,7 @@ import {
   pencilOutlineSvg
 } from "../../img/svg";
 import { renderPostBody } from "@ecency/render-helper";
+import "./_index.scss";
 
 interface EditPicProps {
   activeUser: ActiveUser;

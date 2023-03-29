@@ -21,6 +21,7 @@ import isCommunity from "../../helper/is-community";
 import { getCommunities, getCommunity, getSubscriptions } from "../../api/bridge";
 
 import { menuDownSvg } from "../../img/svg";
+import "./_index.scss";
 
 interface BrowserProps {
   global: Global;

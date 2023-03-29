@@ -19,7 +19,7 @@ import { _t } from "../../i18n";
 import { useMappedStore } from "../../store/use-mapped-store";
 
 import { giftOutlineSvg } from "../../img/svg";
-
+import "./_index.scss";
 interface Props {
   global: Global; //
   dynamicProps: DynamicProps; //

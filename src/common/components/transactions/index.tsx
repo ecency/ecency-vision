@@ -18,6 +18,7 @@ import { dateToFullRelative } from "../../helper/parse-date";
 import { vestsToHp } from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
+import "./_index.scss";
 
 import {
   ticketSvg,

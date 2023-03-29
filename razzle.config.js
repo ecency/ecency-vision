@@ -7,6 +7,11 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 
 module.exports = {
   plugins: ["typescript", "scss"],
+  resolve: {
+    alias: {
+      styles: path.join(__dirname, "src/style/")
+    }
+  },
   options: {
     buildType: "iso"
   },

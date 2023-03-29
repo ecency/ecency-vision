@@ -34,6 +34,7 @@ import { CommunityRoles } from "../components/community-roles";
 import { EntryListContent } from "../components/entry-list";
 import { connect } from "react-redux";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
+import "./community.scss";
 
 interface MatchParams {
   filter: string;
@@ -214,7 +215,12 @@ export const CommunityPage = (props: Props) => {
         }
       >
         <div className="profile-side">
-          <CommunityCard {...props} account={account} community={community} />
+          <CommunityCard
+            {...props}
+            account={account}
+            community={community}
+            addCommunity={setCommunity}
+          />
         </div>
         <span itemScope={true} itemType="http://schema.org/Organization">
           <meta itemProp="name" content={community.title.trim() || community.name} />

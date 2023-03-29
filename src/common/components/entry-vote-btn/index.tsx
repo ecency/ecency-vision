@@ -9,7 +9,6 @@ import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { UI, ToggleType } from "../../store/ui/types";
-
 import BaseComponent from "../base";
 import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
@@ -21,18 +20,14 @@ import EntryTipBtn from "../entry-tip-btn";
 
 import { votingPower } from "../../api/hive";
 import { vote, formatError } from "../../api/operations";
-
 import parseAsset from "../../helper/parse-asset";
-
 import * as ss from "../../util/session-storage";
-
 import * as ls from "../../util/local-storage";
-
 import _c from "../../util/fix-class-names";
-
 import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } from "../../img/svg";
 import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
+import "./_index.scss";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",

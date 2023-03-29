@@ -19,6 +19,7 @@ import { _t } from "../../i18n";
 import queryString from "query-string";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
+import "./_index.scss";
 
 interface Props {
   history: History;

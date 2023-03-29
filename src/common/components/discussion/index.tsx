@@ -62,6 +62,7 @@ import { getFollowing } from "../../api/hive";
 import { Tsx } from "../../i18n/helper";
 import MyDropDown from "../dropdown";
 import { ProfilePopover } from "../profile-popover";
+import "./_index.scss";
 
 interface ItemBodyProps {
   entry: Entry;
@@ -334,7 +335,7 @@ export const Item = (props: ItemProps) => {
             <div className="d-flex align-items-center" id={`${entry.author}-${entry.permlink}`}>
               <ProfilePopover {...props} />
             </div>
-            <span className="separator" />
+            <span className="separator circle-separator" />
             {EntryLink({
               ...props,
               entry,

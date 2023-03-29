@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Form, Modal } from "react-bootstrap";
 import moment from "moment";
 import { History } from "history";
 import { hiveNotifySetLastRead } from "../../api/operations";
@@ -24,6 +24,7 @@ import {
   updateNotificationsSettings
 } from "../../store/notifications";
 import { useMappedStore } from "../../store/use-mapped-store";
+import "./_index.scss";
 
 export const date2key = (s: string): string => {
   if (s === "Yesterday") {

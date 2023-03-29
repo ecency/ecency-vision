@@ -22,7 +22,7 @@ import {
 import { getRewardedCommunities } from "../../api/private-api";
 
 import { _t } from "../../i18n";
-
+import "./_index.scss";
 interface Props {
   global: Global;
   community: Community;

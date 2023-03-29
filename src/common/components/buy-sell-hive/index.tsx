@@ -30,6 +30,7 @@ import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "../../store";
 import { PrivateKey } from "@hiveio/dhive";
+import "./_index.scss";
 
 export enum TransactionType {
   None = 0,

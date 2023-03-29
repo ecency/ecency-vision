@@ -35,6 +35,7 @@ import { _t } from "../../i18n";
 import { linkSvg } from "../../img/svg";
 import isElectron from "../../util/is-electron";
 import { Skeleton } from "../skeleton";
+import "./_index.scss";
 
 interface Props {
   history: History;

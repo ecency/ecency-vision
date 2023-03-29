@@ -41,6 +41,7 @@ import {
 import { PurchaseQrDialog } from "../purchase-qr";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
+import "./_index.scss";
 
 class WalletBadge extends Component<{
   activeUser: ActiveUser;

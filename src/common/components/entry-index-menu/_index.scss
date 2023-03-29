@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .entry-index-menu {
   align-items: center;
   display: flex;
@@ -75,7 +80,7 @@
           white-space: nowrap;
         }
 
-        @media (max-width: $xl-break + 100) {
+        @media (max-width: ($xl-break + 100)) {
           .nav-pills {
             flex-wrap: nowrap;
             max-width: 350px;

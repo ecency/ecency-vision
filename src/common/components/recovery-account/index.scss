@@ -1,0 +1,92 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.account-recovery-form {
+  .error-info {
+    color: $red2;
+    font-size: 80%;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 8px;
+  }
+}
+
+.recovery-confirm-dialog {
+  .recovery-confirm-dialog-header {
+    border-bottom: 1px solid $white-four;
+    align-items: center;
+    display: flex;
+  }
+  .recovery-confirm-dialog-body {
+    padding: 24px 32px;
+    margin: 1px 0 0 0;
+
+    .confirmation {
+      margin-bottom: 30px;
+
+      .users {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+
+        .from-user,
+        .to-user,
+        .arrow {
+          height: 100px;
+          width: 100px;
+        }
+
+        .from-user,
+        .to-user {
+          cursor: pointer;
+
+          .user-avatar {
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        .arrow {
+          align-items: center;
+          color: $silver;
+          display: flex;
+          justify-content: center;
+          opacity: 0.4;
+
+          svg {
+            height: 60px;
+            width: 60px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.recovery-sign-dialog-header {
+  display: flex;
+  .recovery-sign-dialog-titles {
+    margin-top: 9px;
+  }
+}
+
+.recovery-main-title {
+  font-weight: bold;
+}
+
+.recovery-success-dialog-header {
+  display: flex;
+  .recovery-success-dialog-titles {
+    padding-top: 8px;
+  }
+}
+
+.recovery-success-dialog-body {
+  margin: 2rem 0 1.4rem 0;
+  .recovery-success-dialog-content {
+    text-align: center;
+    margin-bottom: 1.4rem;
+  }
+}

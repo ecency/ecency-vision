@@ -24,6 +24,7 @@ import clipboard from "../../util/clipboard";
 import defaults from "../../constants/defaults.json";
 import { Global } from "../../store/global/types";
 import { useMappedStore } from "../../store/use-mapped-store";
+import "./_index.scss";
 
 setProxyBase(defaults.imageServer);
 

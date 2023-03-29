@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import { Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
-
 import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../img/svg";
-
 import { _t } from "../../i18n";
+import "./index.scss";
 
 interface Props {
   categoryTitle: string;

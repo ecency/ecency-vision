@@ -15,6 +15,7 @@ import DropDown, { MenuItem } from "../dropdown";
 import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
+import "./_index.scss";
 
 interface MatchParams {
   filter: string;

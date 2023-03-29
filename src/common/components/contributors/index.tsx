@@ -11,6 +11,7 @@ import { Account } from "../../store/accounts/types";
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import _ from "lodash";
+import "./_index.scss";
 
 interface Props {
   history: History;

@@ -12,6 +12,7 @@ import currencies from "../../constants/currencies.json";
 import { ActiveUser } from "../../store/active-user/types";
 import { copyContent } from "../../img/svg";
 import * as ls from "../../util/local-storage";
+import "./_index.scss";
 
 interface Props {
   global: Global;

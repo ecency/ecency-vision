@@ -21,6 +21,7 @@ import parseAsset from "../../helper/parse-asset";
 import accountReputation from "../../helper/account-reputation";
 
 import { _t } from "../../i18n";
+import "./_index.scss";
 
 interface Voter {
   name: string;

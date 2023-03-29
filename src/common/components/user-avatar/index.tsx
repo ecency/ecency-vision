@@ -5,6 +5,7 @@ import { Global } from "../../store/global/types";
 import defaults from "../../constants/defaults.json";
 import { proxifyImageSrc } from "@ecency/render-helper";
 import { useMappedStore } from "../../store/use-mapped-store";
+import "./_index.scss";
 
 interface Props {
   global: Global;

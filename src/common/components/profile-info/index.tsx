@@ -24,6 +24,7 @@ import { _t } from "../../i18n";
 
 import { informationVariantSvg, hiveSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
+import "./_index.scss";
 
 interface ContentProps {
   account: FullAccount;
@@ -122,7 +123,7 @@ export class ProfileInfo extends BaseComponent<Props, State> {
   render() {
     const { account } = this.props;
     const { rcAccount } = this.state;
-    if (account.__loaded && rcAccount) {
+    if (account?.__loaded && rcAccount) {
       const tooltip = (
         <Tooltip id="profile-tooltip" style={{ zIndex: 10 }}>
           <InfoContent {...this.props} account={account} rcAccount={rcAccount} />

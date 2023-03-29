@@ -5,6 +5,7 @@ import Tooltip from "../tooltip";
 import { _t } from "../../i18n";
 
 import { chevronUpSvg } from "../../img/svg";
+import "./_index.scss";
 
 export default class ScrollToTop extends Component {
   timer: any = null;

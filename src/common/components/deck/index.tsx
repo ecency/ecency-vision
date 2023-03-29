@@ -2,6 +2,7 @@ import React from "react";
 import { _t } from "../../i18n";
 import { ListStyle } from "../../store/global/types";
 import { DeckHeader } from "./deck-header";
+import "./_index.scss";
 
 export interface DeckProps {
   header: { title: string; icon: any; updateIntervalMs: number };

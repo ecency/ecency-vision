@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { _t } from "../../i18n";
 import { Theme } from "../../store/global/types";
+import "./_index.scss";
 const ReactHighcharts = require("react-highcharts/dist/ReactHighstock");
 const power = 100;
 const precision = 1000;

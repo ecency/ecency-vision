@@ -12,6 +12,7 @@ import { getEmojiData } from "../../api/misc";
 import * as ls from "../../util/local-storage";
 
 import { insertOrReplace } from "../../util/input-util";
+import "./_index.scss";
 
 interface Emoji {
   a: string;
