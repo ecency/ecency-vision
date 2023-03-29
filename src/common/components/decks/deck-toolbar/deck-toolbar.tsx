@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { UserAvatar } from "../../user-avatar";
 import "../_deck-toolbar.scss";
-import { arrowLeftSvg, arrowRightSvg, bellOffSvg, bellSvg } from "../../../img/svg";
-import { FullAccount } from "../../../store/accounts/types";
 import { History } from "history";
 import { _t } from "../../../i18n";
 import { PurchaseQrDialog } from "../../purchase-qr";
@@ -88,7 +85,7 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
           setShowPurchaseDialog={setShowPurchaseDialog}
         />
         <DeckToolbarCreate isExpanded={isExpanded} />
-        <DeckToolbarManager />
+        <DeckToolbarManager isExpanded={isExpanded} />
       </div>
       <DeckToolbarToggleArea isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
       {gallery && <Gallery onHide={() => setGallery(false)} />}

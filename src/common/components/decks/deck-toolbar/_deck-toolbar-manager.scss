@@ -1,0 +1,91 @@
+@import "src/style/vars_mixins";
+
+.deck-toolbar-manager {
+  @include margin-top(1rem);
+
+  > .title {
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @include margin-bottom(1rem);
+    @include font-size(0.625rem);
+
+    > .text {
+      opacity: 0.5;
+    }
+  }
+
+  .deck-list {
+    .deck-list-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      gap: 1rem;
+
+      @include transition(0.3s);
+      @include padding(1rem);
+      @include padding-left(calc(1rem - 4px));
+
+      &:hover {
+        background-color: $gray-100;
+        color: $primary;
+      }
+
+      .icon {
+        @include font-size(1.25rem);
+      }
+
+      .title {
+        font-weight: bold;
+        opacity: 0.75;
+
+        @include font-size(0.875rem);
+      }
+
+      &.selected {
+        cursor: unset;
+        border-left: 4px solid $primary;
+        background-color: $duck-egg-blue;
+      }
+    }
+  }
+
+  .add-deck-btn {
+    outline: none;
+    box-shadow: none;
+    color: $gray-500;
+
+    @include padding(0);
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+.decks.expanded .deck-toolbar-manager {
+  .deck-list-item {
+    justify-content: flex-start;
+  }
+
+  .title {
+    text-align: left;
+    justify-content: space-between;
+    flex-direction: row;
+
+    @include padding-left(1rem);
+    @include padding-right(1rem);
+  }
+}

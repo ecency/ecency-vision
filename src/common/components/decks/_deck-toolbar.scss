@@ -1,17 +1,22 @@
-@import "src/style/bootstrap_vars";
+@import "src/style/vars_mixins";
 
 .deck-toolbar {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
+  height: 100vh;
   background-color: $white;
   position: relative;
   border-right: 4px solid $gray-300;
   z-index: 9;
+  overflow-y: auto;
 
   @include padding-top(1rem);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .deck-toolbar-content {
     height: 100%;
@@ -46,7 +51,7 @@
           background-color: $gray-100;
 
           svg {
-            fill: $primary;
+            //fill: $primary;
             color: $primary;
 
             @include transition(0.3s);
@@ -57,7 +62,7 @@
           width: 1.5rem;
           height: 1.5rem;
           color: $gray-500;
-          fill: $gray-500;
+          //fill: $gray-500;
         }
       }
 
@@ -96,6 +101,7 @@
     justify-content: center;
     color: $gray-400;
     height: 68px;
+    background-color: $white;
 
     @include padding-top(1rem);
     @include padding-bottom(1rem);
@@ -197,16 +203,6 @@
     }
   }
 
-  .deck-toolbar-manager {
-    padding: 1rem;
-
-    > .title {
-      font-weight: bold;
-
-      @include font-size(0.875rem);
-    }
-  }
-
   .deck-toolbar-create {
     @include padding-top(1rem);
     @include padding-bottom(1rem);
@@ -226,8 +222,8 @@
     .base-actions {
       flex-wrap: nowrap;
 
-      > * {
-        border-bottom: 0;
+      > *, .btn {
+        border-bottom: 0 !important;
         border-right: 1px solid $border-color;
 
         &:last-child {
