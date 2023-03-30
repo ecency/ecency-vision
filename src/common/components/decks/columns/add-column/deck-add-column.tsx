@@ -20,7 +20,7 @@ import {
 } from "../../icons";
 
 interface Props {
-  onRemove: () => void;
+  id: string;
   deckKey: number;
   draggable?: DraggableProvidedDragHandleProps;
 }
@@ -32,9 +32,9 @@ interface AvailableColumn {
   description: string;
 }
 
-export const DeckAddColumn = ({ onRemove, draggable, deckKey }: Props) => {
+export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
   const { activeUser } = useMappedStore();
-  const { add } = useContext(DeckGridContext);
+  const { add, deleteColumn } = useContext(DeckGridContext);
 
   const availableColumns: AvailableColumn[] = [
     {
@@ -92,7 +92,7 @@ export const DeckAddColumn = ({ onRemove, draggable, deckKey }: Props) => {
         primary={true}
         sticky={true}
         account={activeUser?.username ?? ""}
-        onRemove={onRemove}
+        onRemove={() => deleteColumn(id)}
         onReload={() => {}}
         title={
           availableColumns.find((col) => col.type === selectedType)?.title ?? _t("decks.add-column")

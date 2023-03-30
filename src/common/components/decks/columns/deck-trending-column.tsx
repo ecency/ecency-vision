@@ -7,11 +7,12 @@ import { Entry } from "../../../store/entries/types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 
 interface Props {
+  id: string;
   settings: ReloadableDeckGridItem["settings"];
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-export const DeckTrendingColumn = ({ settings, draggable }: Props) => {
+export const DeckTrendingColumn = ({ id, settings, draggable }: Props) => {
   const [data, setData] = useState<Entry[]>([]);
   const [isReloading, setIsReloading] = useState(false);
 
@@ -35,6 +36,7 @@ export const DeckTrendingColumn = ({ settings, draggable }: Props) => {
 
   return (
     <GenericDeckColumn
+      id={id}
       draggable={draggable}
       header={{
         title: "Trending",
@@ -45,7 +47,6 @@ export const DeckTrendingColumn = ({ settings, draggable }: Props) => {
       data={data}
       isReloading={isReloading}
       onReload={() => fetchData()}
-      onRemove={() => {}}
       skeletonItem={<ListItemSkeleton />}
     >
       {(item: any, measure: Function, index: number) => (

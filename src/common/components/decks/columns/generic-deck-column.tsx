@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { _t } from "../../../i18n";
 import { DeckHeader } from "../header/deck-header";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { AutoSizer, CellMeasurer, CellMeasurerCache, Grid, List } from "react-virtualized";
-import { ListItemSkeleton } from "./deck-items";
+import { DeckGridContext } from "../deck-manager";
 
 export interface DeckProps {
+  id: string;
   header: { title: string; subtitle: string; icon: any; updateIntervalMs: number };
   data: any[];
-  onRemove: () => void;
   onReload: () => void;
   draggable?: DraggableProvidedDragHandleProps;
   isReloading: boolean;
@@ -20,14 +20,16 @@ export interface DeckProps {
 export const GenericDeckColumn = ({
   header,
   data,
-  onRemove,
   onReload,
   draggable,
   isReloading,
   children,
-  skeletonItem
+  skeletonItem,
+  id
 }: DeckProps) => {
   const { activeUser } = useMappedStore();
+
+  const { deleteColumn } = useContext(DeckGridContext);
 
   const cache = new CellMeasurerCache({
     defaultHeight: 431,
@@ -44,7 +46,7 @@ export const GenericDeckColumn = ({
         sticky={true}
         account={activeUser ? activeUser.username : ""}
         {...header}
-        onRemove={onRemove}
+        onRemove={() => deleteColumn(id)}
         onReload={onReload}
         isReloading={isReloading}
       />

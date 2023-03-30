@@ -84,15 +84,16 @@ export const DeckGrid = ({ history }: Props) => {
                         <div className="d-flex align-items-center" key={key}>
                           {type === "ac" ? (
                             <DeckAddColumn
+                              id={id}
                               deckKey={key}
                               draggable={provided.dragHandleProps}
-                              onRemove={() => {}}
                             />
                           ) : (
                             <></>
                           )}
                           {type === "u" ? (
                             <DeckUserColumn
+                              id={id}
                               draggable={provided.dragHandleProps}
                               settings={settings as UserDeckGridItem["settings"]}
                             />
@@ -101,6 +102,7 @@ export const DeckGrid = ({ history }: Props) => {
                           )}
                           {type === "co" ? (
                             <DeckCommunityColumn
+                              id={id}
                               draggable={provided.dragHandleProps}
                               settings={settings as CommunityDeckGridItem["settings"]}
                             />
@@ -109,6 +111,7 @@ export const DeckGrid = ({ history }: Props) => {
                           )}
                           {type === "w" ? (
                             <DeckWalletColumn
+                              id={id}
                               settings={settings as UserDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                               history={history}
@@ -118,6 +121,7 @@ export const DeckGrid = ({ history }: Props) => {
                           )}
                           {type === "n" ? (
                             <DeckNotificationsColumn
+                              id={id}
                               history={history}
                               settings={settings as UserDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
@@ -127,6 +131,7 @@ export const DeckGrid = ({ history }: Props) => {
                           )}
                           {type === "tr" ? (
                             <DeckTrendingColumn
+                              id={id}
                               draggable={provided.dragHandleProps}
                               settings={settings as ReloadableDeckGridItem["settings"]}
                             />
@@ -135,6 +140,7 @@ export const DeckGrid = ({ history }: Props) => {
                           )}
                           {type === "to" ? (
                             <DeckTopicsColumn
+                              id={id}
                               settings={settings as ReloadableDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                             />
@@ -143,6 +149,7 @@ export const DeckGrid = ({ history }: Props) => {
                           )}
                           {type === "s" ? (
                             <DeckSearchColumn
+                              id={id}
                               settings={settings as SearchDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                             />

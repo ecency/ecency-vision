@@ -6,11 +6,12 @@ import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { search, SearchResult } from "../../../api/search-api";
 
 interface Props {
+  id: string;
   settings: SearchDeckGridItem["settings"];
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-export const DeckSearchColumn = ({ settings, draggable }: Props) => {
+export const DeckSearchColumn = ({ id, settings, draggable }: Props) => {
   const [data, setData] = useState<SearchResult[]>([]);
   const [isReloading, setIsReloading] = useState(false);
 
@@ -34,6 +35,7 @@ export const DeckSearchColumn = ({ settings, draggable }: Props) => {
 
   return (
     <GenericDeckColumn
+      id={id}
       draggable={draggable}
       header={{
         title: settings.query,
@@ -44,7 +46,6 @@ export const DeckSearchColumn = ({ settings, draggable }: Props) => {
       data={data}
       isReloading={isReloading}
       onReload={() => fetchData()}
-      onRemove={() => {}}
       skeletonItem={<ListItemSkeleton />}
     >
       {(item: any, measure: Function, index: number) => (

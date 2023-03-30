@@ -8,11 +8,12 @@ import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { communityTitles } from "../consts";
 
 interface Props {
+  id: string;
   settings: CommunityDeckGridItem["settings"];
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-export const DeckCommunityColumn = ({ settings, draggable }: Props) => {
+export const DeckCommunityColumn = ({ id, settings, draggable }: Props) => {
   const [data, setData] = useState<Entry[]>([]);
   const [isReloading, setIsReloading] = useState(false);
 
@@ -36,6 +37,7 @@ export const DeckCommunityColumn = ({ settings, draggable }: Props) => {
 
   return (
     <GenericDeckColumn
+      id={id}
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
@@ -46,7 +48,6 @@ export const DeckCommunityColumn = ({ settings, draggable }: Props) => {
       data={data}
       isReloading={isReloading}
       onReload={() => fetchData()}
-      onRemove={() => {}}
       skeletonItem={<ListItemSkeleton />}
     >
       {(item: any, measure: Function, index: number) => (

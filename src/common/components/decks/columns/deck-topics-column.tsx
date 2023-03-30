@@ -3,15 +3,16 @@ import { HotListItem, ShortListItemSkeleton } from "./deck-items";
 import { GenericDeckColumn } from "./generic-deck-column";
 import { ReloadableDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { getAllTrendingTags, getTrendingTags } from "../../../api/hive";
+import { getAllTrendingTags } from "../../../api/hive";
 import { TrendingTag } from "../../../store/trending-tags/types";
 
 interface Props {
+  id: string;
   settings: ReloadableDeckGridItem["settings"];
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-export const DeckTopicsColumn = ({ settings, draggable }: Props) => {
+export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
   const [data, setData] = useState<TrendingTag[]>([]);
   const [isReloading, setIsReloading] = useState(false);
 
@@ -35,6 +36,7 @@ export const DeckTopicsColumn = ({ settings, draggable }: Props) => {
 
   return (
     <GenericDeckColumn
+      id={id}
       draggable={draggable}
       header={{
         title: "Topics",
@@ -45,7 +47,6 @@ export const DeckTopicsColumn = ({ settings, draggable }: Props) => {
       data={data}
       isReloading={isReloading}
       onReload={() => fetchData()}
-      onRemove={() => {}}
       skeletonItem={<ShortListItemSkeleton />}
     >
       {(item: TrendingTag, measure: Function, index: number) => (

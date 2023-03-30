@@ -11,12 +11,13 @@ import { getNotifications } from "../../../api/private-api";
 import { notificationsTitles } from "../consts";
 
 interface Props {
+  id: string;
   settings: UserDeckGridItem["settings"];
   history: History;
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-export const DeckNotificationsColumn = ({ settings, draggable, history }: Props) => {
+export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Props) => {
   const { addAccount, dynamicProps, global, markNotifications, toggleUIProp, activeUser } =
     useMappedStore();
 
@@ -49,6 +50,7 @@ export const DeckNotificationsColumn = ({ settings, draggable, history }: Props)
 
   return (
     <GenericDeckColumn
+      id={id}
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
@@ -61,7 +63,6 @@ export const DeckNotificationsColumn = ({ settings, draggable, history }: Props)
       data={data}
       isReloading={isReloading}
       onReload={() => fetchData()}
-      onRemove={() => {}}
       skeletonItem={<ShortListItemSkeleton />}
     >
       {(item: ApiNotification, measure: Function, index: number) => (

@@ -19,6 +19,7 @@ interface Context {
   setActiveDeck: (key: string) => void;
   pushOrUpdateDeck: (deck: DeckGrid) => void;
   removeDeck: (deck: DeckGrid) => Promise<void>;
+  deleteColumn: (id: string) => void;
 }
 
 export const DeckGridContext = React.createContext<Context>({
@@ -30,7 +31,8 @@ export const DeckGridContext = React.createContext<Context>({
   scrollTo: () => {},
   setActiveDeck: () => {},
   pushOrUpdateDeck: () => {},
-  removeDeck: () => Promise.resolve()
+  removeDeck: () => Promise.resolve(),
+  deleteColumn: () => {}
 });
 
 interface Props {
@@ -221,6 +223,10 @@ export const DeckManager = ({ children }: Props) => {
     }
   };
 
+  const deleteColumn = (id: string) => {
+    setLayout({ ...layout, columns: layout.columns.filter((c) => c.id !== id) });
+  };
+
   return (
     <DeckGridContext.Provider
       value={{
@@ -232,7 +238,8 @@ export const DeckManager = ({ children }: Props) => {
         activeDeck,
         setActiveDeck,
         pushOrUpdateDeck,
-        removeDeck
+        removeDeck,
+        deleteColumn
       }}
     >
       {children({
@@ -244,7 +251,8 @@ export const DeckManager = ({ children }: Props) => {
         activeDeck,
         decks,
         pushOrUpdateDeck,
-        removeDeck
+        removeDeck,
+        deleteColumn
       })}
     </DeckGridContext.Provider>
   );

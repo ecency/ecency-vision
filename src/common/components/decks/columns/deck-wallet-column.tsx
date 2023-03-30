@@ -10,12 +10,13 @@ import { History } from "history";
 import { ShortListItemSkeleton } from "./deck-items";
 
 interface Props {
+  id: string;
   history: History;
   settings: UserDeckGridItem["settings"];
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-export const DeckWalletColumn = ({ settings, draggable, history }: Props) => {
+export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) => {
   const { dynamicProps, global } = useMappedStore();
 
   const [data, setData] = useState<Transaction[]>([]);
@@ -41,6 +42,7 @@ export const DeckWalletColumn = ({ settings, draggable, history }: Props) => {
 
   return (
     <GenericDeckColumn
+      id={id}
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
@@ -51,7 +53,6 @@ export const DeckWalletColumn = ({ settings, draggable, history }: Props) => {
       data={data}
       isReloading={isReloading}
       onReload={() => fetchData()}
-      onRemove={() => {}}
       skeletonItem={<ShortListItemSkeleton />}
     >
       {(item: Transaction, measure: any, index: number) => (
