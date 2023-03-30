@@ -9,6 +9,7 @@ import { DeckToolbar } from "./deck-toolbar/deck-toolbar";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
 import { DeckFloatingManager } from "./deck-floating-manager";
+import { DeckLoader } from "./deck-loader";
 
 interface Props {
   history: History;
@@ -25,13 +26,19 @@ export const Decks = ({ history }: Props) => {
 
   return (
     <DeckManager>
-      {() => (
+      {({ isDecksLoading }) => (
         <div className={"decks w-100 " + (isExpanded ? "expanded" : "")}>
           <DeckToolbar history={history} isExpanded={!!isExpanded} setIsExpanded={setIsExpanded} />
-          <div className="decks-container w-100">
-            <DeckGrid history={history} />
-          </div>
-          <DeckFloatingManager />
+          {isDecksLoading ? (
+            <DeckLoader />
+          ) : (
+            <>
+              <div className="decks-container w-100">
+                <DeckGrid history={history} />
+              </div>
+              <DeckFloatingManager />
+            </>
+          )}
         </div>
       )}
     </DeckManager>

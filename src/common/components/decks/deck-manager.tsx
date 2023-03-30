@@ -13,6 +13,7 @@ interface Context {
   layout: DeckGrid;
   decks: DeckGrids;
   activeDeck: string;
+  isDecksLoading: boolean;
   add: (column: Omit<DeckGridItem, "id">) => void;
   reOrder: (originalIndex: number, nextIndex: number) => void;
   scrollTo: (key: DeckGridItem["key"]) => void;
@@ -32,7 +33,8 @@ export const DeckGridContext = React.createContext<Context>({
   setActiveDeck: () => {},
   pushOrUpdateDeck: () => {},
   removeDeck: () => Promise.resolve(),
-  deleteColumn: () => {}
+  deleteColumn: () => {},
+  isDecksLoading: false
 });
 
 interface Props {
@@ -47,6 +49,8 @@ export const DeckManager = ({ children }: Props) => {
     localDecks && localDecks.decks.length > 0 ? localDecks : DEFAULT_LAYOUT
   );
   const [activeDeck, setActiveDeck] = useState(decks.decks[0].key);
+  const [isDecksLoading, setIsDecksLoading] = useState(true);
+
   const [layout, setLayout] = useState(decks.decks[0]);
   const previousLayout = usePrevious(layout);
 
@@ -78,6 +82,10 @@ export const DeckManager = ({ children }: Props) => {
         }
       } catch (e) {
         error("Account decks fetching failed. Please, refresh a page");
+      } finally {
+        setTimeout(() => {
+          setIsDecksLoading(false);
+        }, 300);
       }
     }
   };
@@ -239,7 +247,8 @@ export const DeckManager = ({ children }: Props) => {
         setActiveDeck,
         pushOrUpdateDeck,
         removeDeck,
-        deleteColumn
+        deleteColumn,
+        isDecksLoading
       }}
     >
       {children({
@@ -252,7 +261,8 @@ export const DeckManager = ({ children }: Props) => {
         decks,
         pushOrUpdateDeck,
         removeDeck,
-        deleteColumn
+        deleteColumn,
+        isDecksLoading
       })}
     </DeckGridContext.Provider>
   );
