@@ -3,10 +3,18 @@
 .decks {
   display: grid;
   grid-template-columns: 72px 1fr min-content;
-  color: $black;
   align-items: center;
-  background-color: $gray-300;
   transition: 0.3s;
+
+  @include themify(day) {
+    color: $black;
+    background-color: $gray-300;
+  }
+
+  @include themify(night) {
+    color: $white;
+    background-color: $gray-900;
+  }
 
   &.expanded {
     grid-template-columns: 280px 1fr min-content;
@@ -47,23 +55,6 @@
       opacity: 1;
       visibility: visible;
       transform: scale(1);
-    }
-  }
-
-  *[data-rbd-placeholder-context-id] {
-    position: relative;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      right: 1rem;
-      bottom: 1rem;
-      display: block;
-      border: 2px solid $border-color;
-
-      @include border-radius(1rem);
     }
   }
 

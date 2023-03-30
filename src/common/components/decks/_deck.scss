@@ -2,11 +2,18 @@
 
 .deck {
   height: 100vh;
-  background-color: $white;
   width: 400px;
   position: relative;
-  border-left: 2px solid $gray-300;
-  border-right: 2px solid $gray-300;
+  border-left: 2px solid $border-color;
+  border-right: 2px solid $border-color;
+
+  @include themify(day) {
+    background-color: $white;
+  }
+
+  @include themify(night) {
+    background-color: $dark-two;
+  }
 
   &.native-scroll {
     overflow-y: auto;
@@ -22,7 +29,7 @@
     grid-template-areas:
       "prefix drag-icon title empty dropdown";
     grid-template-columns: min-content min-content 1fr min-content min-content;
-    border-bottom: 1px solid $gray-200;
+    border-bottom: 1px solid $border-color;
     min-height: 67px;
 
     .deck-index {
@@ -69,8 +76,15 @@
   }
 
   > .deck-header {
-    background-color: rgba($white, 0.75);
     backdrop-filter: blur(1rem);
+
+    @include themify(day) {
+      background-color: rgba($white, 0.75);
+    }
+
+    @include themify(night) {
+      background-color: rgba($dark-two, 0.75);
+    }
 
     &.header-sticky.primary {
       position: sticky;
@@ -111,10 +125,6 @@
   @include media-breakpoint-down(md) {
     width: 100%;
     max-width: 100%;
-  }
-
-  @include themify(night) {
-    background-color: $dark-two;
   }
 
   .cog-icon {

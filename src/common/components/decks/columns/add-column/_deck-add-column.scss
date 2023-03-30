@@ -1,4 +1,4 @@
-@import "src/style/bootstrap_vars";
+@import "src/style/vars_mixins";
 
 .deck-add-column {
   &::-webkit-scrollbar {
@@ -36,7 +36,13 @@
       @include padding-bottom(0.75rem);
 
       &:hover {
-        background-color: lighten($faded-blue, 3);
+        @include themify(day) {
+          background-color: lighten($faded-blue, 3);
+        }
+
+        @include themify(night) {
+          background-color: $dark;
+        }
       }
 
       svg {
@@ -69,7 +75,6 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        background-color: $gray-100;
         gap: 1rem;
         position: relative;
         cursor: pointer;
@@ -78,12 +83,32 @@
         @include padding(1rem);
         @include border-radius(1rem);
 
+        @include themify(day) {
+          background-color: $gray-100;
+        }
+
+        @include themify(night) {
+          background-color: $dark;
+        }
+
         &.selected {
-          background-color: $duck-egg-blue;
+          @include themify(day) {
+            background-color: $duck-egg-blue;
+          }
+
+          @include themify(night) {
+            background-color: lighten($dark, 6);
+          }
         }
 
         &:hover {
-          background-color: $gray-200;
+          @include themify(day) {
+            background-color: $gray-200;
+          }
+
+          @include themify(night) {
+            background-color: lighten($dark, 3);
+          }
         }
 
         .title {
@@ -119,7 +144,13 @@
         @include transition(0.3s);
 
         &:hover {
-          background-color: $duck-egg-blue;
+          @include themify(day) {
+            background-color: $duck-egg-blue;
+          }
+
+          @include themify(night) {
+            background-color: lighten($dark, 3);
+          }
         }
 
         .description {
@@ -136,7 +167,6 @@
       display: grid;
       grid-template-columns: min-content 1fr min-content;
       align-items: center;
-      background-color: $gray-100;
       cursor: pointer;
       gap: 1rem;
 
@@ -144,25 +174,46 @@
       @include border-radius(1rem);
       @include padding(1rem);
 
-      &:hover {
-        background-color: $duck-egg-blue;
+      @include themify(day) {
+        background-color: $gray-100;
+      }
 
-        .click-to-change {
-          color: $primary;
+      @include themify(night) {
+        background-color: lighten($dark, 3);
+      }
+
+      &:hover {
+        @include themify(day) {
+          background-color: $duck-egg-blue;
+
+          .click-to-change {
+            color: $primary;
+          }
+        }
+
+        @include themify(night) {
+          background-color: lighten($dark, 6);
         }
       }
 
       .username {
-        color: $primary
+        color: $primary;
       }
 
       .click-to-change {
         white-space: nowrap;
-        background-color: $duck-egg-blue;
 
         @include font-size(0.875rem);
         @include padding(1rem);
         @include border-radius(1rem);
+
+        @include themify(day) {
+          background-color: $duck-egg-blue;
+        }
+
+        @include themify(night) {
+          background-color: lighten($dark, 6);
+        }
       }
     }
   }

@@ -36,8 +36,13 @@
       @include padding(1rem);
 
       &:hover {
-        background-color: $gray-100;
-        color: $primary;
+        @include themify(day) {
+          background-color: $gray-100;
+        }
+
+        @include themify(night) {
+          background-color: lighten($dark, 3);
+        }
       }
 
       &::before {
@@ -58,7 +63,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: $gray-200;
         color: $gray-600;
         text-transform: uppercase;
         font-weight: bold;
@@ -70,6 +74,14 @@
         @include padding-bottom(0.25rem);
         @include font-size(0.5rem);
         @include border-radius(1rem);
+
+        @include themify(day) {
+          background-color: $gray-200;
+        }
+
+        @include themify(night) {
+          background-color: lighten($dark, 3);
+        }
       }
 
       .icon {
@@ -85,6 +97,14 @@
         justify-self: center;
 
         @include font-size(1.25rem);
+
+        @include themify(day) {
+          color: $gray-500;
+        }
+
+        @include themify(night) {
+          color: lighten($dark, 12);
+        }
       }
 
       .title {
@@ -113,7 +133,14 @@
 
       &.selected {
         cursor: unset;
-        background-color: $duck-egg-blue;
+
+        @include themify(day) {
+          background-color: $duck-egg-blue;
+        }
+
+        @include themify(night) {
+          background-color: $dark;
+        }
 
         &::before {
           transform: translateX(0);

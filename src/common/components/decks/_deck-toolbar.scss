@@ -8,11 +8,21 @@
   height: 100vh;
   background-color: $white;
   position: relative;
-  border-right: 4px solid $gray-300;
+  border-right: 4px solid;
   z-index: 9;
   overflow-y: auto;
 
   @include padding-top(1rem);
+
+  @include themify(day) {
+    background-color: $white;
+    border-color: $gray-300;
+  }
+
+  @include themify(night) {
+    background-color: $dark-two;
+    border-color: $gray-800;
+  }
 
   &::-webkit-scrollbar {
     display: none;
@@ -47,10 +57,15 @@
         }
 
         &:hover {
-          background-color: $gray-100;
+          @include themify(day) {
+            background-color: $gray-100;
+          }
+
+          @include themify(night) {
+            background-color: $dark;
+          }
 
           svg {
-            //fill: $primary;
             color: $primary;
 
             @include transition(0.3s);
@@ -61,7 +76,6 @@
           width: 1.5rem;
           height: 1.5rem;
           color: $gray-500;
-          //fill: $gray-500;
         }
       }
 
@@ -100,14 +114,28 @@
     justify-content: center;
     color: $gray-400;
     height: 68px;
-    background-color: $white;
 
     @include padding-top(1rem);
     @include padding-bottom(1rem);
 
+    @include themify(day) {
+      background-color: $white;
+    }
+
+    @include themify(night) {
+      background-color: $dark-two;
+    }
+
     &:hover {
-      background-color: $gray-100;
-      color: $gray-600;
+      @include themify(day) {
+        background-color: $gray-100;
+        color: $gray-600;
+      }
+
+      @include themify(night) {
+        background-color: $dark;
+        color: $gray-500;
+      }
     }
 
     svg {
@@ -152,7 +180,14 @@
       }
 
       &:hover {
-        background-color: $duck-egg-blue;
+
+        @include themify(day) {
+          background-color: $duck-egg-blue;
+        }
+
+        @include themify(night) {
+          background-color: $dark;
+        }
 
         svg {
           color: $primary;
@@ -165,7 +200,6 @@
     position: relative;
 
     .dropdown-menu {
-      background-color: $white;
       z-index: $zindex-dropdown;
       display: flex;
       flex-direction: column;
@@ -176,9 +210,16 @@
       @include padding-bottom(0.5rem);
       @include border-radius(0.25rem);
 
+      @include themify(day) {
+        background-color: $white;
+      }
+
+      @include themify(night) {
+        background-color: $dark;
+      }
+
       .dropdown-item {
         width: 80%;
-        color: $gray-800;
 
         @include margin-top(0.25rem);
         @include margin-bottom(0.25rem);
@@ -187,12 +228,27 @@
         @include padding-top(0.5rem);
         @include padding-bottom(0.5rem);
 
+        @include themify(day) {
+          color: $gray-800;
+        }
+
+        @include themify(night) {
+          color: $gray-300;
+        }
+
         &:hover {
           color: $primary;
-          background-color: $duck-egg-blue;
 
           @include border-top-right-radius(1rem);
           @include border-bottom-right-radius(1rem);
+
+          @include themify(day) {
+            background-color: $duck-egg-blue;
+          }
+
+          @include themify(night) {
+            background-color: $gray-900;
+          }
         }
       }
     }
