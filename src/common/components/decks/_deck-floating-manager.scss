@@ -31,13 +31,7 @@
       @include transition(0.3s);
 
       path {
-        @include themify(day) {
-          stroke: $white;
-        }
-
-        @include themify(night) {
-          stroke: $dark;
-        }
+        stroke: $white;
       }
     }
   }
