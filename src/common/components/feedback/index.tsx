@@ -63,6 +63,7 @@ export default function Feedback(props: Props) {
   const [detailedObject, setDetailedObject] = useState<FeedbackObject | null>(null);
   const [display, setDisplay] = useState(true);
   const [progress, setProgress] = useState(100);
+  const [check, setCheck] = useState(false);
 
   useEffect(() => {
     console.log("Event Listener run");
@@ -80,7 +81,7 @@ export default function Feedback(props: Props) {
       console.log("IF true in progress useEffect");
       setDisplay(false);
       // setProgress(100);
-      setList([]);
+      // setList([]);
       stopTimer();
     }
 
@@ -114,17 +115,15 @@ export default function Feedback(props: Props) {
 
   const onFeedback = (e: Event) => {
     console.log("Feedback run", list);
-    setProgress(100);
+
     const detail = (e as CustomEvent).detail as FeedbackObject;
-    console.log(detail);
-    // const itemExists = list.find((x) => x.message === detail.message);
-    // console.log(itemExists);
-    // if (itemExists) {
-    //   console.log("Should return");
-    //   return;
-    // }
+    const itemExists = list.find((x) => x.message === detail.message);
+    if (itemExists) {
+      return;
+    }
     setDisplay(true);
     setList([...list, detail]);
+    setProgress(100);
     startTimer();
   };
 
@@ -389,14 +388,18 @@ export default function Feedback(props: Props) {
 //   };
 
 //   onFeedback = (e: Event) => {
-//     this.setState({ display: true });
-//     this.startTimer();
+//     console.log(this.state.progress);
+
 //     const detail: FeedbackObject = (e as CustomEvent).detail;
 
 //     const { list } = this.state;
+
 //     if (list.find((x) => x.message === detail.message) !== undefined) {
 //       return;
 //     }
+
+//     this.setState({ display: true , progress : 100});
+//     this.startTimer();
 
 //     const newList = [...list, detail];
 //     this.stateSet({ list: newList });
