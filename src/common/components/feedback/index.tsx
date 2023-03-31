@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import random from "../../util/rnd";
-import { alertCircleSvg, checkSvg, closeSvg, informationSvg } from "../../img/svg";
-import { Button } from "react-bootstrap";
-import { FeedbackModal } from "../feedback-modal";
+import FeedbackMessage from "../feedback-message";
 import { ErrorTypes } from "../../enums";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
 import "./_index.scss";
+import _ from "lodash";
 
 export const error = (message: string, errorType = ErrorTypes.COMMON) => {
   const detail: ErrorFeedbackObject = {
@@ -59,14 +58,11 @@ export default function Feedback(props: Props) {
   const intervalID = useRef<any>(null);
 
   const [list, setList] = useState<FeedbackObject[]>([]);
-  const [showDialog, setShowDialog] = useState(false);
-  const [detailedObject, setDetailedObject] = useState<FeedbackObject | null>(null);
-  const [display, setDisplay] = useState(true);
-  const [progress, setProgress] = useState(100);
-  const [check, setCheck] = useState(false);
+
+  const [feedback, setFeedBack] = useState<FeedbackObject | null>();
+  const [showChild, setShowChild] = useState(false);
 
   useEffect(() => {
-    console.log("Event Listener run");
     window.addEventListener("feedback", onFeedback);
 
     return () => {
@@ -75,179 +71,27 @@ export default function Feedback(props: Props) {
     };
   }, []);
 
-  useEffect(() => {
-    console.log("propgress state wala useEffect");
-    if (progress < 0) {
-      console.log("IF true in progress useEffect");
-      setDisplay(false);
-      // setProgress(100);
-      // setList([]);
-      stopTimer();
-    }
-
-    return () => {
-      // console.log("Return");
-    };
-  }, [progress]);
-
-  const startTimer = () => {
-    console.log("start timer", list);
-    const setWidth = () => {
-      setProgress((prevProgress) => prevProgress - 2.5);
-    };
-
-    const interval = setInterval(setWidth, 125);
-    intervalID.current = interval;
-  };
-
-  const stopTimer = () => {
-    console.log("Stop timer", intervalID.current);
-    clearInterval(intervalID.current);
-  };
-
-  const handleMouseEnter = () => {
-    stopTimer();
-  };
-
-  const handleMouseleave = () => {
-    startTimer();
+  const handleChild = (d: boolean) => {
+    setShowChild(d);
+    setFeedBack(null);
   };
 
   const onFeedback = (e: Event) => {
-    console.log("Feedback run", list);
-
     const detail = (e as CustomEvent).detail as FeedbackObject;
-    const itemExists = list.find((x) => x.message === detail.message);
-    if (itemExists) {
-      return;
-    }
-    setDisplay(true);
-    setList([...list, detail]);
-    setProgress(100);
-    startTimer();
+    console.log("Feedback run", detail);
+    setFeedBack(detail);
+    setShowChild(true);
   };
-
-  const handleCloseBtn = () => {
-    setDisplay(false);
-    setProgress(100);
-  };
-
-  const errorType = (x: any) => (x as ErrorFeedbackObject).errorType;
 
   return (
     <>
-      <div
-        className={"feedback-container" + (list.length > 0 ? " " + "visible" : "")}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseleave}
-      >
-        {display &&
-          list.map((x) => {
-            switch (x.type) {
-              case "success":
-                return (
-                  <div key={x.id} className="feedback-success">
-                    <div className="feedback-body">
-                      <div className="feedback-close-btn" onClick={handleCloseBtn}>
-                        {closeSvg}
-                      </div>
-                      <div className="feedback-content">
-                        <div className="feedback-img success-img">{checkSvg}</div>
-                        {x.message}
-                      </div>
-                    </div>
-
-                    <div className="toast-progress-bar">
-                      <div className="filler success" style={{ width: `${progress}%` }} />
-                    </div>
-                  </div>
-                );
-              case "error":
-                return (
-                  <div key={x.id} className="feedback-error align-items-start">
-                    <div className="feedback-body">
-                      <div className="feedback-close-btn" onClick={handleCloseBtn}>
-                        {closeSvg}
-                      </div>
-                      <div className="error-content">
-                        <div className="error-img">{alertCircleSvg}</div>
-
-                        <div className=" d-flex flex-column align-items-start">
-                          {x.message}
-                          <div className="d-flex">
-                            {errorType(x) !== ErrorTypes.COMMON &&
-                            errorType(x) !== ErrorTypes.INFO ? (
-                              <Button
-                                className="mt-2 details-button px-0 mr-3"
-                                variant="link"
-                                onClick={() => {
-                                  setShowDialog(true);
-                                  setDetailedObject(x);
-                                }}
-                              >
-                                {_t("feedback-modal.question")}
-                              </Button>
-                            ) : (
-                              <></>
-                            )}
-                            {!ErrorTypes.INFO && (
-                              <Button
-                                className="mt-2 details-button px-0"
-                                variant="link"
-                                onClick={() =>
-                                  window.open(
-                                    "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",
-                                    "_blank"
-                                  )
-                                }
-                              >
-                                {_t("feedback-modal.report")}
-                              </Button>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="toast-progress-bar">
-                      <div className="filler error" style={{ width: `${progress}%` }} />
-                    </div>
-                  </div>
-                );
-              case "info":
-                return (
-                  <div key={x.id} className="feedback-info">
-                    <div className="feedback-body">
-                      <div className="feedback-close-btn" onClick={handleCloseBtn}>
-                        {closeSvg}
-                      </div>
-                      <div className="feedback-content">
-                        <div className="feedback-img">{informationSvg}</div>
-                        {x.message}
-                      </div>
-                    </div>
-                    <div className="toast-progress-bar">
-                      <div className="filler info" style={{ width: `${progress}%` }} />
-                    </div>
-                  </div>
-                );
-              default:
-                return null;
-            }
-          })}
-
-        {detailedObject ? (
-          <FeedbackModal
+      <div className={"feedback-container" + (!_.isEmpty(feedback) ? " " + "visible" : "")}>
+        {showChild && feedback && (
+          <FeedbackMessage
             activeUser={props.activeUser}
-            instance={detailedObject as ErrorFeedbackObject}
-            show={showDialog}
-            setShow={(v) => {
-              setShowDialog(v);
-              setDetailedObject(null);
-            }}
+            feedback={feedback}
+            handleChild={handleChild}
           />
-        ) : (
-          <></>
         )}
       </div>
     </>
@@ -331,7 +175,7 @@ export default function Feedback(props: Props) {
 //     list: [],
 //     showDialog: false,
 //     detailedObject: null,
-//     display: true,
+//     display: false,
 //     progress: 100,
 //     intervalState: true
 //   };
@@ -388,7 +232,6 @@ export default function Feedback(props: Props) {
 //   };
 
 //   onFeedback = (e: Event) => {
-//     console.log(this.state.progress);
 
 //     const detail: FeedbackObject = (e as CustomEvent).detail;
 
@@ -398,7 +241,7 @@ export default function Feedback(props: Props) {
 //       return;
 //     }
 
-//     this.setState({ display: true , progress : 100});
+//     this.setState({ display: true , progress : 100})
 //     this.startTimer();
 
 //     const newList = [...list, detail];
@@ -430,7 +273,7 @@ export default function Feedback(props: Props) {
 //                       <div
 //                         className="feedback-close-btn"
 //                         onClick={() =>
-//                           this.setState({ display: false, progress: 100, intervalState: true })
+//                           this.setState({ display: false, progress: 100, intervalState: true },()=>console.log("Close clicked"))
 //                         }
 //                       >
 //                         {closeSvg}
