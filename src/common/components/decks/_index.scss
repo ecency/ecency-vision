@@ -21,8 +21,7 @@
   }
 
   .decks-container {
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: hidden;
 
     &::-webkit-scrollbar {
       display: none;
@@ -65,5 +64,9 @@
     align-items: center;
     gap: 1rem;
     color: $gray-500;
+  }
+
+  .deck-smooth-scroller {
+    @include transition(0.5s);
   }
 }

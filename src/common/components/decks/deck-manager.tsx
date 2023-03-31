@@ -147,7 +147,7 @@ export const DeckManager = ({ children }: Props) => {
   };
 
   const scrollTo = (key: number) => {
-    document.getElementById(`${key - 1}`)?.scrollIntoView({ behavior: "smooth" });
+    // document.getElementById(`${key - 1}`)?.scrollIntoView({ behavior: "smooth" });
   };
 
   // All actions should be transactional

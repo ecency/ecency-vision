@@ -10,6 +10,7 @@ import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
 import { DeckFloatingManager } from "./deck-floating-manager";
 import { DeckLoader } from "./deck-loader";
+import { DeckSmoothScroller } from "./deck-smooth-scroller";
 
 interface Props {
   history: History;
@@ -34,7 +35,9 @@ export const Decks = ({ history }: Props) => {
           ) : (
             <>
               <div className="decks-container w-100">
-                <DeckGrid history={history} />
+                <DeckSmoothScroller>
+                  <DeckGrid history={history} />
+                </DeckSmoothScroller>
               </div>
               <DeckFloatingManager />
             </>
