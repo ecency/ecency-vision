@@ -61,9 +61,9 @@ export const ProfileCard = (props: Props) => {
   useEffect(() => {
     if (activeUser && activeUser.username) {
       setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
-      getFollowsInfo(account.name);
+      getFollowsInfo(account?.name);
     }
-    getSubscriptions(account.name)
+    getSubscriptions(account?.name)
       .then((r) => {
         if (r) {
           const communities = r.filter((x) => x[2] === "mod" || x[2] === "admin");
@@ -73,7 +73,7 @@ export const ProfileCard = (props: Props) => {
       .catch((e) => {
         setSubs([]);
       });
-    findRcAccounts(account.name)
+    findRcAccounts(account?.name)
       .then((r: RCAccount[]) => {
         if (r && r[0]) {
           setRcPercent(rcPower(r[0]));
@@ -93,7 +93,7 @@ export const ProfileCard = (props: Props) => {
     setFollowersList(false);
     setFollowingList(false);
     setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
-    isMounted && getFollowsInfo(account.name);
+    isMounted && getFollowsInfo(account?.name);
   }, [account?.name]);
 
   const getFollowsInfo = (username: string) => {
@@ -124,11 +124,11 @@ export const ProfileCard = (props: Props) => {
     return (
       <div className="profile-card">
         <div className="profile-avatar">
-          <UserAvatar username={account.name} size="xLarge" />
+          <UserAvatar username={account?.name} size="xLarge" />
         </div>
 
         <h1>
-          <div className="username">{account.name}</div>
+          <div className="username">{account?.name}</div>
         </h1>
       </div>
     );
@@ -136,7 +136,7 @@ export const ProfileCard = (props: Props) => {
 
   const isMyProfile =
     activeUser &&
-    activeUser.username === account.name &&
+    activeUser.username === account?.name &&
     activeUser.data.__loaded &&
     activeUser.data.profile;
   const isSettings = section === "settings";
@@ -144,7 +144,7 @@ export const ProfileCard = (props: Props) => {
   return (
     <div className="profile-card">
       <div className="profile-avatar">
-        <UserAvatar username={account.name} size="xLarge" src={account.profile?.profile_image} />
+        <UserAvatar username={account?.name} size="xLarge" src={account.profile?.profile_image} />
         {isMyProfile && isSettings && (
           <EditPic
             {...props}
@@ -161,7 +161,7 @@ export const ProfileCard = (props: Props) => {
       </div>
 
       <h1>
-        <div className="username">{account.name}</div>
+        <div className="username">{account?.name}</div>
       </h1>
 
       {loggedIn && !isMyProfile && (
@@ -239,7 +239,7 @@ export const ProfileCard = (props: Props) => {
 
         <div className="prop">
           {rssSvg}
-          <a target="_external" href={`${defaults.base}/@${account.name}/rss.xml`}>
+          <a target="_external" href={`${defaults.base}/@${account?.name}/rss.xml`}>
             RSS feed
           </a>
         </div>
@@ -256,15 +256,15 @@ export const ProfileCard = (props: Props) => {
         </div>
       )}
       <div className="btn-controls">
-        {isCommunity(account.name) && (
-          <Link className="btn btn-sm btn-primary" to={`/created/${account.name}`}>
+        {isCommunity(account?.name) && (
+          <Link className="btn btn-sm btn-primary" to={`/created/${account?.name}`}>
             {_t("profile.go-community")}
           </Link>
         )}
         {isMyProfile && (
           <>
             {global.usePrivate && (
-              <Link className="btn btn-sm btn-primary" to={`/@${account.name}/referrals`}>
+              <Link className="btn btn-sm btn-primary" to={`/@${account?.name}/referrals`}>
                 {_t("profile.referrals")}
               </Link>
             )}

@@ -42,7 +42,7 @@ export class ProfileCover extends Component<Props> {
       : require("../../img/cover-fallback-night.png");
     let bgImage = "";
 
-    if (account.__loaded) {
+    if (account?.__loaded) {
       bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
       if (account.profile?.cover_image) {
         bgImage = proxifyImageSrc(
@@ -59,7 +59,7 @@ export class ProfileCover extends Component<Props> {
       style = { backgroundImage: `url('${bgImage}')` };
     }
 
-    const hideControls = activeUser && activeUser.username === account.name;
+    const hideControls = activeUser && activeUser.username === account?.name;
 
     return (
       <div className="profile-cover">
@@ -68,8 +68,8 @@ export class ProfileCover extends Component<Props> {
           {ProfileInfo(this.props)}
           {!hideControls && (
             <>
-              <FollowControls {...this.props} targetUsername={account.name} />
-              {global.usePrivate && <FavoriteBtn {...this.props} targetUsername={account.name} />}
+              <FollowControls {...this.props} targetUsername={account?.name} />
+              {global.usePrivate && <FavoriteBtn {...this.props} targetUsername={account?.name} />}
             </>
           )}
         </div>
