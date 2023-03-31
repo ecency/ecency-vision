@@ -42,6 +42,7 @@ interface States {
   isGlobal: boolean;
   isMounted: boolean;
   introduction: IntroductionType;
+  prevFilter: string;
 }
 
 export const isMyPage = (global: Global, activeUser: ActiveUser | null) => {
@@ -89,7 +90,8 @@ export class EntryIndexMenu extends Component<Props, States> {
     this.state = {
       isGlobal,
       introduction: showInitialIntroductionJourney,
-      isMounted: false
+      isMounted: false,
+      prevFilter: ""
     };
     this.onChangeGlobal = this.onChangeGlobal.bind(this);
   }
@@ -144,6 +146,12 @@ export class EntryIndexMenu extends Component<Props, States> {
       activeUser,
       global: { tag, filter }
     } = this.props;
+
+    if (
+      !history.location.pathname.includes(prevProps.global.filter) &&
+      ["rising", "controversial"].includes(prevProps.global.filter)
+    )
+      this.setState({ prevFilter: prevProps.global.filter });
 
     if (history.location.pathname.includes("/my") && !isActiveUser(activeUser)) {
       history.push(history.location.pathname.replace("/my", ""));
@@ -328,9 +336,34 @@ export class EntryIndexMenu extends Component<Props, States> {
     const isMy = isMyPage(global, activeUser);
     const isActive = isActiveUser(activeUser);
     const OurVision = apiBase(`/assets/our-vision.${global.canUseWebp ? "webp" : "png"}`);
+    let secondaryMenu = [
+      {
+        label: _t(`entry-filter.filter-controversial`),
+        href: `/controversial/today`,
+        selected: filter === "controversial",
+        id: "controversial"
+      },
+      {
+        label: _t(`entry-filter.filter-rising`),
+        href: `/rising/today`,
+        selected: filter === "rising",
+        id: "rising"
+      }
+    ];
+
+    let rising = secondaryMenu.filter((f) => f.id === "rising");
+    let controversial = secondaryMenu.filter((f) => f.id === "controversial");
+
+    if (
+      location.pathname.includes("rising") ||
+      (!location.pathname.includes("controversial") && this.state.prevFilter === "rising")
+    )
+      secondaryMenu = [...rising, ...controversial];
+    else secondaryMenu = [...controversial, ...rising];
 
     let menuTagValue = tag ? `/${tag}` : "";
 
+    // @ts-ignore
     const menuConfig: {
       history: History;
       label: string;
@@ -362,21 +395,7 @@ export class EntryIndexMenu extends Component<Props, States> {
               (x === "created" && introduction === IntroductionType.NEW)
           };
         }),
-        ...[
-          location.pathname.includes("rising")
-            ? {
-                label: _t(`entry-filter.filter-rising`),
-                href: `/rising/today`,
-                id: "rising",
-                selected: filter === "rising"
-              }
-            : {
-                label: _t(`entry-filter.filter-controversial`),
-                href: `/controversial/today`,
-                selected: filter === "controversial",
-                id: "controversial"
-              }
-        ]
+        { ...secondaryMenu[0] }
       ]
     };
 
@@ -384,21 +403,7 @@ export class EntryIndexMenu extends Component<Props, States> {
       history: this.props.history,
       label: "",
       icon: kebabMenuHorizontalSvg,
-      items: [
-        location.pathname.includes("rising")
-          ? {
-              label: _t(`entry-filter.filter-controversial`),
-              href: `/controversial/today`,
-              selected: filter === "controversial",
-              id: "controversial"
-            }
-          : {
-              label: _t(`entry-filter.filter-rising`),
-              href: `/rising/today`,
-              selected: filter === "rising",
-              id: "rising"
-            }
-      ]
+      items: [{ ...secondaryMenu[1] }]
     };
 
     const mobileMenuConfig = !isActive
