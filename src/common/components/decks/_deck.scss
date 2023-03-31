@@ -123,8 +123,7 @@
   }
 
   @include media-breakpoint-down(md) {
-    width: 100%;
-    max-width: 100%;
+    width: calc(100vw - 72px);
   }
 
   .cog-icon {

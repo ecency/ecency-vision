@@ -14,6 +14,7 @@ export const DeckFloatingManager = () => {
         className="btn btn-primary dropdown-toggle"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
+        onTouchEnd={() => setShow(true)}
       >
         {upArrowSvg}
       </div>
@@ -21,10 +22,18 @@ export const DeckFloatingManager = () => {
         className="columns"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
+        onTouchEnd={() => setShow(false)}
       >
         <div className="columns-list">
           {layout.columns.map(({ type, key, settings }) => (
-            <div className={"item " + type} onClick={() => scrollTo(key)} key={key + type}>
+            <div
+              className={"item " + type}
+              onClick={() => {
+                scrollTo(key);
+                setShow(false);
+              }}
+              key={key + type}
+            >
               {settings && "contentType" in settings
                 ? ICONS[type][settings.contentType]
                 : ICONS[type]}

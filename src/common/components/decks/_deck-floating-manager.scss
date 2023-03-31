@@ -61,6 +61,15 @@
     @include themify(night) {
       background-color: rgba($dark-two, 0.75);
     }
+
+    @include media-breakpoint-down(md) {
+      flex-direction: column;
+      align-items: flex-start;
+      height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      justify-content: space-between;
+    }
   }
 
   .columns-list {
@@ -70,6 +79,12 @@
 
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    @include media-breakpoint-down(md) {
+      flex-direction: column;
+      width: 100%;
+      align-items: flex-start;
     }
   }
 
@@ -120,6 +135,27 @@
       height: 1.5rem;
       color: $gray-500;
 
+      @include margin-right(1rem);
+    }
+
+    @include media-breakpoint-down(md) {
+      border-right: 0;
+      width: 100%;
+      border-bottom: 1px solid $border-color;
+      justify-content: flex-start;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  .btn:not(.dropdown-toggle) {
+    @include media-breakpoint-down(md) {
+      width: calc(100% - 2rem);
+
+      @include margin-bottom(1rem);
+      @include margin-left(1rem);
       @include margin-right(1rem);
     }
   }

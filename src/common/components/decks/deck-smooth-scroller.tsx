@@ -7,6 +7,7 @@ interface Props {
 
 export const DeckSmoothScroller = ({ children }: Props) => {
   const [offset, setOffset] = useState(0);
+  const [startTouchX, setStartTouchX] = useState<number | undefined>(undefined);
 
   const queue = useQueue<number | undefined>();
   let wheelTimeout: any;
@@ -51,8 +52,18 @@ export const DeckSmoothScroller = ({ children }: Props) => {
         }
         queue.add(offset + getColumnWidth() * Math.sign(-deltaX));
       }}
-      onTouchMove={(e) => {
-        console.log(e);
+      onTouchStart={({ touches }) => {
+        setStartTouchX(touches.item(0).pageX);
+      }}
+      onTouchMove={({ touches }) => {
+        if (typeof startTouchX === "number") {
+          if (queue.size > 0) {
+            return;
+          }
+
+          const deltaX = startTouchX - touches.item(0).pageX;
+          queue.add(offset + getColumnWidth() * Math.sign(-deltaX));
+        }
       }}
     >
       {children}
