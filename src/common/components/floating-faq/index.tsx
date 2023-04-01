@@ -31,6 +31,7 @@ const FloatingFAQ = () => {
   const [faqKeys, setFaqKeys] = useState<string[]>([]);
   const [defaultFaqKeys, setDefaultFaqKeys] = useState<string[]>([]);
   const [datatoShow, setDatatoShow] = useState<string[]>([]);
+  const [innerWidth, setInnerWidth] = useState(0);
 
   const tooltip = (
     <Tooltip id="floating-faq-tooltip" style={{ zIndex: 10000 }}>
@@ -63,6 +64,7 @@ const FloatingFAQ = () => {
   }, [searchText]);
 
   useEffect(() => {
+    setInnerWidth(window.innerWidth);
     const faqKeys = [...faqKeysGeneral];
     setFaqKeys(faqKeys);
     for (const p of data.faqPaths) {
@@ -82,6 +84,16 @@ const FloatingFAQ = () => {
     }
   }, [expandedHelp, expandedContact]);
 
+  useEffect(() => {
+    if (display) {
+      window.addEventListener("resize", handleResize);
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [display]);
+
   const handleRouterChange = () => {
     setShow(false);
     setDisplay(false);
@@ -95,6 +107,10 @@ const FloatingFAQ = () => {
     }
   };
 
+  const handleResize = () => {
+    setInnerWidth(window.innerWidth);
+  };
+
   const handleShow = () => {
     setShow(!show);
   };
@@ -105,7 +121,13 @@ const FloatingFAQ = () => {
           <ClickAwayListener onClickAway={() => show && setShow(false)}>
             {display && (
               <Button className="help-btn" variant="primary" onClick={handleShow}>
-                <div className="help-button-content">{helpIconSvg}</div>
+                {helpIconSvg}
+
+                {innerWidth >= 792 && <div className="help">{_t("floating-faq.help")}</div>}
+                {/* <div className="help">
+                  {helpIconSvg}
+                  <div className="help-button-content">{_t("floating-faq.help")}</div>
+                </div> */}
               </Button>
             )}
 
