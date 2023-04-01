@@ -23,7 +23,7 @@ exports[`(2) Show list 1`] = `
       className="suggestion-list-parent"
     >
       <div
-        className="suggestion-list"
+        className="search-suggestion-list"
       >
         <div
           className="list-header"
@@ -60,7 +60,7 @@ exports[`(2) Show list 1`] = `
         </div>
       </div>
       <div
-        className="suggestion-list mt-1"
+        className="search-suggestion-list more-result"
       >
         <div
           className="list-body"
