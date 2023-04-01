@@ -1,45 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(1) Default render 1`] = `
-Array [
-  <button
-    className="help-btn btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    <svg
-      fill="none"
-      height="24"
-      stroke="currentColor"
-      strokeLinecap="square"
-      strokeLinejoin="round"
-      strokeWidth="1"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle
-        cx="12"
-        cy="12"
-        r="10"
-      />
-      <path
-        d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"
-      />
-      <line
-        x1="12"
-        x2="12.01"
-        y1="17"
-        y2="17"
-      />
-    </svg>
-    <div
-      className="help"
-    >
-      Help
-    </div>
-  </button>,
-  "",
-]
+<div>
+  
+</div>
 `;
