@@ -79,6 +79,19 @@
     "next": "Sonraki",
     "later": "Daha Sonra"
   },
+  "floating-faq": {
+    "toggle-icon-info": "Click to expand",
+    "help": "Help",
+    "welcome": "Welcome to Ecency",
+    "need-help": "Need Help?",
+    "search-placeholder": "Search",
+    "suggestion": "Suggested articles",
+    "contact": "Contact us",
+    "submit": "Submit",
+    "username": "username",
+    "message": "message",
+    "no-results": "No results found"
+  },
   "entry-filter": {
     "filter-trending": "Popüler",
     "filter-hot": "Sıcak",
