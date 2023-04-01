@@ -23,6 +23,7 @@ import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
 import { connect } from "react-redux";
 import loadable from "@loadable/component";
 import Announcement from "./components/announcement";
+import FloatingFAQ from "./components/floating-faq";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -144,6 +145,7 @@ const App = (props: any) => {
       </Switch>
 
       <Announcement activeUser={props.activeUser} />
+      <FloatingFAQ />
     </>
   );
 };
