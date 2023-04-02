@@ -18,6 +18,7 @@ import { DeckTopicsColumn } from "./columns/deck-topics-column";
 import { DeckSearchColumn } from "./columns/deck-search-column";
 import usePrevious from "react-use/lib/usePrevious";
 import uuid from "uuid";
+import { useOldDeckMigration } from "./old-deck-migration";
 
 interface Props {
   history: History;
@@ -29,6 +30,8 @@ export const DeckGrid = ({ history }: Props) => {
 
   const [addColumnButtonVisible, setAddColumnButtonVisible] = useState(true);
   const [addColumnButtonKey, setAddColumnButtonKey] = useState(uuid.v4());
+
+  useOldDeckMigration();
 
   const onDragEnd = (result: DropResult) => {
     const originalIndex = +result.source?.index ?? -1;

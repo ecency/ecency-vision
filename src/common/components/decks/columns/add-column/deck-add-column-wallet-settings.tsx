@@ -5,15 +5,6 @@ import { UserAvatar } from "../../../user-avatar";
 import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
 import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
-import { blogSvg, commentSvg } from "../../../../img/svg";
-import {
-  interestsIconSvg,
-  marketOrdersIconSvg,
-  rewardIconSvg,
-  stakeOperationsIconSvg,
-  transfersIconSvg,
-  walletAllIconSvg
-} from "../../icons";
 import { ICONS } from "../../consts";
 
 export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
