@@ -151,6 +151,10 @@
   }
 
   .btn:not(.dropdown-toggle) {
+    white-space: nowrap;
+
+    @include margin-right(1rem);
+
     @include media-breakpoint-down(md) {
       width: calc(100% - 2rem);
 

@@ -21,6 +21,7 @@ interface Context {
   pushOrUpdateDeck: (deck: DeckGrid) => void;
   removeDeck: (deck: DeckGrid) => Promise<void>;
   deleteColumn: (id: string) => void;
+  setScrollHandler: (handle: { handle: (key: number) => void }) => void;
 }
 
 export const DeckGridContext = React.createContext<Context>({
@@ -34,7 +35,8 @@ export const DeckGridContext = React.createContext<Context>({
   pushOrUpdateDeck: () => {},
   removeDeck: () => Promise.resolve(),
   deleteColumn: () => {},
-  isDecksLoading: false
+  isDecksLoading: false,
+  setScrollHandler: () => {}
 });
 
 interface Props {
@@ -53,6 +55,8 @@ export const DeckManager = ({ children }: Props) => {
 
   const [layout, setLayout] = useState(decks.decks[0]);
   const previousLayout = usePrevious(layout);
+
+  const [scrollHandler, setScrollHandler] = useState({ handle: (key: number) => {} });
 
   useEffect(() => {
     fetchDecks();
@@ -147,7 +151,7 @@ export const DeckManager = ({ children }: Props) => {
   };
 
   const scrollTo = (key: number) => {
-    // document.getElementById(`${key - 1}`)?.scrollIntoView({ behavior: "smooth" });
+    scrollHandler.handle(key);
   };
 
   // All actions should be transactional
@@ -248,7 +252,8 @@ export const DeckManager = ({ children }: Props) => {
         pushOrUpdateDeck,
         removeDeck,
         deleteColumn,
-        isDecksLoading
+        isDecksLoading,
+        setScrollHandler
       }}
     >
       {children({
@@ -262,7 +267,8 @@ export const DeckManager = ({ children }: Props) => {
         pushOrUpdateDeck,
         removeDeck,
         deleteColumn,
-        isDecksLoading
+        isDecksLoading,
+        setScrollHandler
       })}
     </DeckGridContext.Provider>
   );

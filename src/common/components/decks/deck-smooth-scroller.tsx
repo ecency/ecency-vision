@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useQueue } from "react-use";
+import React, { useContext, useEffect, useState } from "react";
+import useQueue from "react-use/lib/useQueue";
+import { DeckGridContext } from "./deck-manager";
 
 interface Props {
   children: JSX.Element;
 }
 
 export const DeckSmoothScroller = ({ children }: Props) => {
+  const { setScrollHandler } = useContext(DeckGridContext);
+
   const [offset, setOffset] = useState(0);
   const [startTouchX, setStartTouchX] = useState<number | undefined>(undefined);
 
@@ -41,6 +44,21 @@ export const DeckSmoothScroller = ({ children }: Props) => {
     }
     return 0;
   };
+
+  const scrollToSpecificColumn = (key: number) => {
+    const deckList = document.querySelectorAll("[data-rbd-draggable-context-id]");
+    const index = Array.from(deckList.values()).findIndex(
+      (el) => Number(el.getAttribute("id") ?? -1) === key
+    );
+    if (index > -1) {
+      const nextOffset = index * getColumnWidth();
+      setOffset(-nextOffset);
+    }
+  };
+
+  useEffect(() => {
+    setScrollHandler({ handle: scrollToSpecificColumn });
+  }, []);
 
   return (
     <div
