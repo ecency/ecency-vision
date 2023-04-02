@@ -321,9 +321,7 @@ exports[`(1) Dialog (2) Down vote 1`] = `
 `;
 
 exports[`(2) Btn - No active user (1) Render 1`] = `
-<div
-  onClick={[Function]}
->
+<div>
   <div>
     <div
       className="entry-vote-btn"
@@ -363,7 +361,7 @@ exports[`(3) Btn - Up voted (1) Render 1`] = `
       onClick={[Function]}
     >
       <div
-        className="btn-vote btn-up-vote primary-btn-done voted"
+        className="btn-vote btn-up-vote"
       >
         <div
           className=""

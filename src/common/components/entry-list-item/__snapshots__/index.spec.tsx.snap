@@ -144,9 +144,7 @@ exports[`(1) Default render 1`] = `
     <div
       className="item-controls"
     >
-      <div
-        onClick={[Function]}
-      >
+      <div>
         <div>
           <div
             className="entry-vote-btn"
@@ -402,9 +400,7 @@ exports[`(2) Grid view 1`] = `
     <div
       className="item-controls"
     >
-      <div
-        onClick={[Function]}
-      >
+      <div>
         <div>
           <div
             className="entry-vote-btn"
@@ -690,9 +686,7 @@ exports[`(3) Nsfw 1`] = `
     <div
       className="item-controls"
     >
-      <div
-        onClick={[Function]}
-      >
+      <div>
         <div>
           <div
             className="entry-vote-btn"
@@ -1261,9 +1255,7 @@ exports[`(5) Nsfw but allowed 1`] = `
     <div
       className="item-controls"
     >
-      <div
-        onClick={[Function]}
-      >
+      <div>
         <div>
           <div
             className="entry-vote-btn"
@@ -1580,9 +1572,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
     <div
       className="item-controls"
     >
-      <div
-        onClick={[Function]}
-      >
+      <div>
         <div>
           <div
             className="entry-vote-btn"

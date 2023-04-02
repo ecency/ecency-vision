@@ -14,6 +14,7 @@ import {
 } from "../../helper/test-helper";
 
 import { Account } from "../../store/accounts/types";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../api/hive", () => ({
   votingPower: () => 5,
@@ -74,7 +75,7 @@ describe("(2) Btn - No active user", () => {
     toggleUIProp: () => {}
   };
 
-  const component = renderer.create(<EntryVoteBtn {...props} />);
+  const component = withStore(<EntryVoteBtn {...props} />);
 
   it("(1) Render", () => {
     expect(component.toJSON()).toMatchSnapshot();
@@ -100,7 +101,7 @@ describe("(3) Btn - Up voted", () => {
     toggleUIProp: () => {}
   };
 
-  const component = renderer.create(<EntryVoteBtn {...props} />);
+  const component = withStore(<EntryVoteBtn {...props} />);
   const instance: any = component.getInstance();
 
   it("(1) Render", () => {
