@@ -69,4 +69,8 @@
   .deck-smooth-scroller {
     @include transition(0.5s);
   }
+
+  .deck-grid {
+    overflow-x: auto;
+  }
 }

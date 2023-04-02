@@ -35,9 +35,9 @@ export const Decks = ({ history }: Props) => {
           ) : (
             <>
               <div className="decks-container w-100">
-                <DeckSmoothScroller>
-                  <DeckGrid history={history} />
-                </DeckSmoothScroller>
+                {/*<DeckSmoothScroller>*/}
+                <DeckGrid history={history} />
+                {/*</DeckSmoothScroller>*/}
               </div>
               <DeckFloatingManager />
             </>

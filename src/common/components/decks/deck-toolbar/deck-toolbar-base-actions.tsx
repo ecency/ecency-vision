@@ -34,8 +34,6 @@ export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Pr
           <Dropdown.Menu alignRight={true}>
             <Dropdown.Item>Back to Grid</Dropdown.Item>
             <Dropdown.Item>Back to Classic view</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item>Manage decks</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       ) : (
