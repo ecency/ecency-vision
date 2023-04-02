@@ -80,17 +80,17 @@
     "later": "Más tarde"
   },
   "floating-faq": {
-    "toggle-icon-info": "Click to expand",
-    "help": "Help",
-    "welcome": "Welcome to Ecency",
-    "need-help": "Need Help?",
-    "search-placeholder": "Search",
-    "suggestion": "Suggested articles",
-    "contact": "Contact us",
-    "submit": "Submit",
-    "username": "username",
-    "message": "message",
-    "no-results": "No results found"
+    "toggle-icon-info": "Haz clic para ampliar",
+    "help": "Ayuda",
+    "welcome": "Bienvenido a Ecency",
+    "need-help": "¿Necesitas ayuda?",
+    "search-placeholder": "Buscar",
+    "suggestion": "Artículos sugeridos",
+    "contact": "Contáctanos",
+    "submit": "Enviar",
+    "username": "nombre de usuario",
+    "message": "mensaje",
+    "no-results": "No se encontraron resultados"
   },
   "entry-filter": {
     "filter-trending": "Tendencias",
