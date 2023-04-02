@@ -25,6 +25,15 @@
     & ~ .announcement-container {
       bottom: 6rem;
     }
+    & ~ .help-btn {
+      bottom: 1.3rem;
+      right: 5rem;
+    }
+
+    & ~ .floating-container {
+      bottom: 4.4rem;
+      right: 5rem;
+    }
   }
 
   svg {

@@ -106,6 +106,31 @@ export class EntryMenu extends BaseComponent<Props, State> {
     boost: false
   };
 
+  componentDidMount() {
+    const { activeUser } = this.props;
+
+    if (!activeUser) {
+      return;
+    }
+
+    const { trackEntryPin, entry } = this.props;
+    trackEntryPin(entry);
+
+    if (this.getCommunity()) {
+      return;
+    }
+
+    const { addCommunity } = this.props;
+
+    if (isCommunity(entry.category)) {
+      bridgeApi.getCommunity(entry.category, activeUser.username).then((r) => {
+        if (r) {
+          addCommunity(r);
+        }
+      });
+    }
+  }
+
   toggleCross = () => {
     const { cross } = this.state;
     this.stateSet({ cross: !cross });
@@ -315,31 +340,6 @@ export class EntryMenu extends BaseComponent<Props, State> {
     }
   };
 
-  onMenuShow = () => {
-    const { activeUser } = this.props;
-
-    if (!activeUser) {
-      return;
-    }
-
-    const { trackEntryPin, entry } = this.props;
-    trackEntryPin(entry);
-
-    if (this.getCommunity()) {
-      return;
-    }
-
-    const { addCommunity } = this.props;
-
-    if (isCommunity(entry.category)) {
-      bridgeApi.getCommunity(entry.category, activeUser.username).then((r) => {
-        if (r) {
-          addCommunity(r);
-        }
-      });
-    }
-  };
-
   toggleLoginModal = () => {
     this.props.toggleUIProp("login");
   };
@@ -518,14 +518,16 @@ export class EntryMenu extends BaseComponent<Props, State> {
           }
         ];
       } else {
-        menuItems = [
-          ...menuItems,
-          {
-            label: _t("entry-menu.pin-to-blog"),
-            onClick: () => this.togglePin("blog"),
-            icon: pinSvg
-          }
-        ];
+        if (entry.author === activeUser?.username) {
+          menuItems = [
+            ...menuItems,
+            {
+              label: _t("entry-menu.pin-to-blog"),
+              onClick: () => this.togglePin("blog"),
+              icon: pinSvg
+            }
+          ];
+        }
       }
     }
 
@@ -642,12 +644,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
           </div>
         )}
 
-        <DropDown
-          {...menuConfig}
-          float="right"
-          alignBottom={alignBottom}
-          onShow={this.onMenuShow}
-        />
+        <DropDown {...menuConfig} float="right" alignBottom={alignBottom} />
         {activeUser && cross && (
           <CrossPost
             entry={entry}
