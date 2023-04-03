@@ -21,12 +21,12 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { giftOutlineSvg } from "../../img/svg";
 import "./_index.scss";
 interface Props {
-  global: Global; //
-  dynamicProps: DynamicProps; //
+  global: Global;
+  dynamicProps: DynamicProps;
   users: User[];
   ui: UI;
-  activeUser: ActiveUser | null; //
-  entry: Entry; //
+  activeUser: ActiveUser | null;
+  entry: Entry;
   signingKey: string;
   account: Account;
   fetchPoints: (username: string, type?: number) => void;
@@ -37,7 +37,7 @@ interface Props {
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
   setSigningKey: (key: string) => void;
-  setTipDialogMounted?: (d: boolean) => void; //
+  setTipDialogMounted?: (d: boolean) => void;
 }
 
 interface DialogProps extends Props {
@@ -46,15 +46,14 @@ interface DialogProps extends Props {
 
 export class TippingDialog extends Component<DialogProps> {
   componentDidMount(): void {
+    console.log("Props", this.props);
     if (this.props.setTipDialogMounted) {
-      console.log("Mount run");
       this.props.setTipDialogMounted(true);
     }
   }
 
   componentWillUnmount(): void {
     if (this.props.setTipDialogMounted) {
-      console.log("UnMount run");
       this.props.setTipDialogMounted(false);
     }
   }
@@ -141,38 +140,18 @@ export class EntryTipBtn extends Component<Props, State> {
   }
 }
 
-// export default (p: Props) => {
-//   const props = {
-//     global: p.global,
-//     dynamicProps: p.dynamicProps,
-//     users: p.users,
-//     ui: p.ui,
-//     account: p.account,
-//     fetchPoints: p.fetchPoints,
-//     updateWalletValues: p.updateWalletValues,
-//     activeUser: p.activeUser,
-//     entry: p.entry,
-//     signingKey: p.signingKey,
-//     addAccount: p.addAccount,
-//     setActiveUser: p.setActiveUser,
-//     updateActiveUser: p.updateActiveUser,
-//     deleteUser: p.deleteUser,
-//     toggleUIProp: p.toggleUIProp,
-//     setSigningKey: p.setSigningKey
-//   };
-
-//   return <EntryTipBtn {...props} />;
-// };
-
 export default ({
   entry,
-  dynamicProps,
-  activeUser,
-  global
-}: Pick<Props, "entry" | "dynamicProps" | "activeUser" | "global">) => {
+  account,
+  updateWalletValues,
+  setTipDialogMounted
+}: Pick<Props, "entry" | "account" | "updateWalletValues" | "setTipDialogMounted">) => {
   const {
     users,
     ui,
+    dynamicProps,
+    global,
+    activeUser,
     fetchPoints,
     signingKey,
     addAccount,
@@ -185,6 +164,7 @@ export default ({
 
   const props = {
     global: global,
+    setTipDialogMounted: setTipDialogMounted,
     dynamicProps: dynamicProps,
     users: users,
     ui: ui,

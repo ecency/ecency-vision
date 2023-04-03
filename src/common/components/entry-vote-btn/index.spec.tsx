@@ -4,6 +4,10 @@ import EntryVoteBtn, { VoteDialog } from "./index";
 
 import renderer from "react-test-renderer";
 
+import { withStore } from "../../tests/with-store";
+
+import { createBrowserHistory } from "history";
+
 import {
   globalInstance,
   dynamicPropsIntance1,
@@ -23,6 +27,28 @@ jest.mock("../../api/hive", () => ({
     })
 }));
 
+const account: Account = {
+  name: "user1"
+};
+
+const accountFull: Account = {
+  ...fullAccountInstance,
+  name: "user1",
+  reputation: "33082349040",
+  created: "2016-07-07T08:15:00",
+  vesting_shares: "0.000000 VESTS",
+  delegated_vesting_shares: "0.000000 VESTS",
+  received_vesting_shares: "77883823.534631 VESTS",
+  vesting_withdraw_rate: "0.000000 VESTS",
+  voting_manabar: { current_mana: "73562964033158", last_update_time: 1591275594 },
+  profile: {
+    name: "Foo Bar",
+    about: "Lorem ipsum dolor sit amet",
+    website: "https://esteem.app",
+    location: "Hive"
+  }
+};
+
 describe("(1) Dialog", () => {
   const data: Account = {
     ...fullAccountInstance,
@@ -39,9 +65,22 @@ describe("(1) Dialog", () => {
     entry: entryInstance1,
     downVoted: false,
     upVoted: false,
+    account: accountFull,
+    accounts: [account],
     isPostSlider: false,
+    match: {
+      path: "...",
+      url: "/trending/hive-125125",
+      isExact: true,
+      params: { username: "hive-125125" }
+    },
+    history: createBrowserHistory(),
     previousVotedValue: null,
-    onClick: () => {}
+    onClick: () => {},
+    setTipDialogMounted: () => {},
+    addAccount: () => {},
+    toggleUIProp: () => {},
+    afterVote: () => {}
   };
 
   const component = renderer.create(<VoteDialog {...props} />);
@@ -63,8 +102,17 @@ describe("(2) Btn - No active user", () => {
     dynamicProps: dynamicPropsIntance1,
     entry: entryInstance1,
     users: [],
+    account: accountFull,
+    accounts: [account],
     activeUser: null,
     isPostSlider: false,
+    history: createBrowserHistory(),
+    match: {
+      path: "...",
+      url: "/trending/hive-125125",
+      isExact: true,
+      params: { username: "hive-125125" }
+    },
     previousVotedValue: null,
     ui: UiInstance,
     setActiveUser: () => {},
@@ -74,10 +122,9 @@ describe("(2) Btn - No active user", () => {
     toggleUIProp: () => {}
   };
 
-  const component = renderer.create(<EntryVoteBtn {...props} />);
-
   it("(1) Render", () => {
-    expect(component.toJSON()).toMatchSnapshot();
+    const renderer = withStore(<EntryVoteBtn {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
   });
 });
 
@@ -86,6 +133,13 @@ describe("(3) Btn - Up voted", () => {
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     entry: entryInstance1,
+    history: createBrowserHistory(),
+    match: {
+      path: "...",
+      url: "/trending/hive-125125",
+      isExact: true,
+      params: { username: "hive-125125" }
+    },
     users: [
       { username: "user1", accessToken: "s", refreshToken: "b", expiresIn: 1, postingKey: null }
     ],
@@ -100,10 +154,8 @@ describe("(3) Btn - Up voted", () => {
     toggleUIProp: () => {}
   };
 
-  const component = renderer.create(<EntryVoteBtn {...props} />);
-  const instance: any = component.getInstance();
-
   it("(1) Render", () => {
-    expect(component.toJSON()).toMatchSnapshot();
+    const renderer = withStore(<EntryVoteBtn {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
   });
 });
