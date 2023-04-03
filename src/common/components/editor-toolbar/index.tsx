@@ -41,6 +41,11 @@ import {
 } from "../../img/svg";
 import { VideoUpload } from "../video-upload-threespeak";
 import uploadToThreeSpeak from "../../api/threespeak";
+// import axios from "axios";
+import * as tus from "tus-js-client";
+import hive from "@hiveio/dhive";
+import { Button, Form, Modal, ModalBody } from "react-bootstrap";
+import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
 interface Props {
   global: Global;
@@ -58,6 +63,15 @@ interface State {
   link: boolean;
   mobileImage: boolean;
   shGif: boolean;
+  // 3speak states
+  username: string;
+  postingKey: string;
+  accessToken: string;
+  videoUrl: string;
+  thumbUrl: string;
+  percent: string;
+  showUploadModal: boolean;
+  hideUploadModal: boolean;
 }
 
 export const detectEvent = (eventType: string) => {
@@ -77,12 +91,24 @@ export class EditorToolbar extends Component<Props> {
     image: false,
     link: false,
     mobileImage: false,
-    shGif: false
+    shGif: false,
+    // 3speak states
+    username: "",
+    postingKey: "5KkEJ5JMKvEvH3BUzYwCGEJb8WSTSBW1nehZAc1hdyS5Bj3jdUx",
+    accessToken: "",
+    videoUrl: "",
+    thumbUrl: "",
+    percent: "",
+    showUploadModal: false,
+    hideUploadModal: false
   };
 
   holder = React.createRef<HTMLDivElement>();
   fileInput = React.createRef<HTMLInputElement>();
   videoInput = React.createRef<HTMLInputElement>();
+  studioEndPoint = "https://studio.3speak.tv";
+  tusEndPoint = "https://uploads.3speak.tv/files/";
+  client = axios.create({});
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
     return (
@@ -348,20 +374,20 @@ export class EditorToolbar extends Component<Props> {
     e.target.value = "";
   };
   
-  videoInputChanged = async (e: any | React.ChangeEvent<HTMLInputElement>): Promise<any> => {
-    const { activeUser, global } = this.props;
-    console.log(activeUser)
-    const tempVideoTag = `![Uploading ${e.target.files[0].name} #${Math.floor(Math.random() * 99)}]()\n\n`;
-    this.insertText(tempVideoTag);
-    console.log(e.target.files[0], e.target.files[1]);
+  // videoInputChanged = async (e: any | React.ChangeEvent<HTMLInputElement>): Promise<any> => {
+  //   const { activeUser, global } = this.props;
+  //   console.log(activeUser)
+  //   const tempVideoTag = `![Uploading ${e.target.files[0].name} #${Math.floor(Math.random() * 99)}]()\n\n`;
+  //   this.insertText(tempVideoTag);
+  //   console.log(e.target.files[0], e.target.files[1]);
  
-    const upload = await uploadToThreeSpeak(
-      activeUser?.username,
-      e.target.files[0],
-      e.target.files[1],
-    );
-    console.log(upload);
-  };
+  //   const upload = await uploadToThreeSpeak(
+  //     activeUser?.username,
+  //     e.target.files[0],
+  //     e.target.files[1],
+  //   );
+  //   console.log(upload);
+  // };
 
   upload = async (file: File) => {
     const { activeUser, global } = this.props;
@@ -403,6 +429,219 @@ export class EditorToolbar extends Component<Props> {
     const filenameLow = filename.toLowerCase();
     return ["jpg", "jpeg", "gif", "png"].some((el) => filenameLow.endsWith(el));
   };
+
+   logMe = async () => {
+    try {
+      let response = await this.client.get(
+        `${this.studioEndPoint}/mobile/login?username=${this.state.username}`,
+        {
+          withCredentials: false,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(`Response: ${JSON.stringify(response)}`);
+      const memo = response.data.memo;
+      console.log(`Memo - ${response.data.memo}`);
+      let access_token = hive?.Memo.decode(this.state.postingKey, memo);
+      access_token = access_token.replace("#", "");
+      console.log(`Decrypted ${access_token}\n\n`);
+      const user = await this.getTokenValidated(access_token);
+      // setAccessToken(access_token);
+      this.setState({ accessToken: access_token })
+      console.log(`User is ${JSON.stringify(user)}`);
+      const allVideos = await this.getAllVideoStatuses(access_token);
+      console.log(`videos are is ${JSON.stringify(allVideos)})}`);
+
+      // Step 3. Upload video
+      // const videoUpload = await startUpload("test-demo-video.mp4", tusEndPoint);
+      // const videoUploadFileUrl = videoUpload.replace(`${tusEndPoint}`, "");
+      // console.log(`Video File Url ${videoUploadFileUrl}\n\n`);
+
+      // // Step 4. Upload Thumb
+      // const thumbUpload = await startUpload("test-demo-thumb.png", tusEndPoint);
+      // const thumbUploadFileUrl = thumbUpload.replace(`${tusEndPoint}`, "");
+      // console.log(`Thumb File ID ${thumbUploadFileUrl}\n\n`);
+
+      // Step 5. Update Video upload information
+      // const data = await updateVideoInfo(
+      //   "test-demo-video.mp4",
+      //   'bf7e91fc6ac176750a7e9ecd5e7d9413',
+      // );
+      // console.log(`Video upload response: ${JSON.stringify(data)}`);
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
+ uploadInfo = async () => {
+    const data = await this.updateVideoInfo("test-demo-video.mp4",this.state.videoUrl, this.state.thumbUrl);
+    console.log(`Video upload response: ${JSON.stringify(data)}`);
+  }
+
+  getAllVideoStatuses = async (access_token: string) => {
+    try {
+      let response = await this.client.get(
+        `${this.studioEndPoint}/mobile/api/my-videos`,
+        {
+          withCredentials: false,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
+  // function to get cookies
+  getTokenValidated = async (jwt: string) => {
+    try {
+      let response = await this.client.get(
+        `${this.studioEndPoint}/mobile/login?username=${this.state.username}&access_token=${jwt}`,
+        {
+          withCredentials: false,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response.headers);
+      // setAccessToken(jwt);
+      this.setState({ accessToken: jwt})
+      return response.data; //cookies
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
+  updateVideoInfo = async (
+    oFilename: string,
+    videoUrl: string,
+    thumbnailUrl: string,
+  ) => {
+    try {
+      const { data } = await axios.post(
+        `${this.studioEndPoint}/mobile/api/upload_info`,
+        {
+          filename: videoUrl,
+          oFilename: oFilename,
+          size: 9609313, // NOTE: please change this constant value. This is POC app. It has to be in bytes.
+          duration: 40, // NOTE: please change this constant value. This is POC app. it has to be in seconds.
+          thumbnail: thumbnailUrl, // NOTE: please change this constant value. This is POC app. It
+          owner: this.state.username,
+          isReel: false, // if video is a reel/short (Three Shorts) send this as true
+        },
+        {
+          withCredentials: false,
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${this.state.accessToken}`,
+          },
+        }
+      );
+      return data;
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  }
+
+  // onChange = (event: any) => {
+  //   var file = event.target.files[0];
+  //   console.log(file);
+
+  //   if (file.type === "image/png"){
+  //     this.setState({ thumbUrl: file.name})
+  //   } else if ( file.type === "video/mp4") {
+  //     this.setState({ videoUrl: file.name})
+  //   }
+  //   var upload = new tus.Upload(file, {
+  //     // Endpoint is the upload creation URL from your tus server
+  //     endpoint: this.tusEndPoint,
+  //     // Retry delays will enable tus-js-client to automatically retry on errors
+  //     retryDelays: [0, 3000, 5000, 10000, 20000],
+  //     // Attach additional meta data about the file for the server
+  //     metadata: {
+  //       filename: file.name,
+  //       filetype: file.type,
+  //     },
+  //     // Callback for errors which cannot be fixed using retries
+  //     onError: function (error) {
+  //       console.log("Failed because: " + error);
+  //     },
+  //     // Callback for reporting upload progress
+  //     onProgress: function (bytesUploaded, bytesTotal) {
+  //       var percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+  //       console.log(bytesUploaded, bytesTotal, percentage + "%");
+  //       // setPercent(percentage)
+  //     // this.setState({percentage})
+  //     },
+  //     // Callback for once the upload is completed
+  //     onSuccess: function () {
+  //       console.log("File %s", upload.file?.name);
+  //       console.log("URL %s", upload.url?.replace(this.tusEndPoint, ""));
+  //     },
+  //   });
+  //   upload.start();
+  // }
+   onChange = (event: { target: { files: any[]; }; }) => {
+    var file = event.target.files[0];
+    console.log(file);
+    var upload: any = new tus.Upload(file, {
+      // Endpoint is the upload creation URL from your tus server
+      endpoint: this.tusEndPoint,
+      // Retry delays will enable tus-js-client to automatically retry on errors
+      retryDelays: [0, 3000, 5000, 10000, 20000],
+      // Attach additional meta data about the file for the server
+      metadata: {
+        filename: file.name,
+        filetype: file.type,
+      },
+      // Callback for errors which cannot be fixed using retries
+      onError: function (error) {
+        console.log("Failed because: " + error);
+      },
+      // Callback for reporting upload progress
+      onProgress: function (bytesUploaded, bytesTotal) {
+        var percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+        console.log(bytesUploaded, bytesTotal, percentage + "%");
+        // setPercent(percentage)
+      },
+      // Callback for once the upload is completed
+      onSuccess: function () {
+        console.log("File %s", upload.file?.name);
+        console.log("URL %s", upload?.url.replace(this.tusEndPoint, ""));
+      },
+    });
+    upload.start();
+  }
+
+   handleVideoUrlChange = (event: { target: { value: any; }; }) => {
+    // setVideoUrl(event.target.value);
+    console.log(event.target.value)
+    this.setState({ videoUrl: event.target.value})
+  }
+
+   handleThumbUrlChange = (event: { target: { value: any; }; }) => {
+    // setThumbUrl(event.target.value);
+    console.log(event.target.value)
+    this.setState({ thumbUrl: event.target.value})
+  };
+
+  hideModal = () => {
+    this.setState({ showUploadModal: false })
+  }
+  showModal = () => {
+    this.setState({ showUploadModal: true })
+  }
 
   render() {
     const { gallery, fragments, image, link, mobileImage } = this.state;
@@ -580,13 +819,97 @@ export class EditorToolbar extends Component<Props> {
             <div className="editor-tool" role="none"  
             // Test
             onClick={(e: React.MouseEvent<HTMLElement>) => {
-                          e.stopPropagation();
-                          const el = this.videoInput.current;
-                          if (el) el.click();
+              this.showModal();
+                          // e.stopPropagation();
+                          // const el = this.videoInput.current;
+                          // if (el) el.click();
                         }}>
                 <VideoUpload/>
             </div>
           </Tooltip>
+
+          <Modal
+          animation={false}
+          show={this.state.showUploadModal}
+          centered={true}
+          onHide={this.hideModal}
+          keyboard={false}
+          className="add-image-modal"
+          // size="lg"
+          >
+            <Modal.Header closeButton={true}>
+              <Modal.Title>Add File</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <div className="dialog-content">
+        <Form
+        // onChange={this.onChange}
+          // ref={this.form}
+          // onSubmit={(e: React.FormEvent) => {
+          //   e.preventDefault();
+          //   e.stopPropagation();
+
+          //   if (!this.form.current?.checkValidity()) {
+          //     return;
+          //   }
+
+          //   const { text, link } = this.state;
+          //   const { onSubmit } = this.props;
+          //   onSubmit(text, link);
+          // }}
+        >
+          <Form.Group>
+            {/* <Button onClick={this.onChange}>Choose file</Button> */}
+            <input type="file" onChange={this.onChange} />
+            <Form.Control
+              // type="text"
+              // autoComplete="off"
+              value={this.state.videoUrl}
+              placeholder="Add video file"
+              onChange={this.handleVideoUrlChange}
+              // autoFocus={true}
+              required={true}
+              // onInvalid={(e: any) => handleInvalid(e, "add-image.", "validation-text")}
+              // onInput={handleOnInput}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
+              // type="text"
+              // autoComplete="off"
+              value={this.state.thumbUrl}
+              placeholder="Add image file"
+              onChange={this.handleThumbUrlChange}
+              required={true}
+              // onInvalid={(e: any) => handleInvalid(e, "add-image.", "validation-image")}
+              // onInput={handleOnInput}
+            />
+          </Form.Group>
+          <div className="d-flex justify-content-end">
+            <Button type="submit" onClick={(e) => {
+              e.preventDefault();
+              this.uploadInfo()
+            }}
+            >
+              {_t("g.add")}
+            </Button>
+          </div>
+        </Form>
+      </div>
+              {/* <div style={{display: "flex", gap: "10px", flexDirection: "column"}}>
+                <input type="file" onChange={this.onChange} />
+                <div style={{display: "flex", gap: "10px", flexDirection: "row"}}>
+                  <label>Video URL: </label>
+                  <input style={{backgroundColor: "inherit"}} type="text" onChange={this.handleVideoUrlChange} value={this.state.videoUrl} />
+                </div>
+                <div style={{display: "flex", gap: "10px", flexDirection: "row"}}>
+                  <label>Thumb URL: </label>
+                  <input style={{backgroundColor: "inherit"}} type="text" onChange={this.handleThumbUrlChange} value={this.state.thumbUrl} />
+                </div>
+                <Button>Upload</Button>
+              </div> */}
+            </Modal.Body>
+          </Modal>
 
         </div>
         <input
@@ -598,7 +921,7 @@ export class EditorToolbar extends Component<Props> {
           multiple={true}
           style={{ display: "none" }}
         />
-        <input
+        {/* <input
           onChange={this.videoInputChanged}
           className="file-input"
           ref={this.videoInput}
@@ -606,7 +929,7 @@ export class EditorToolbar extends Component<Props> {
           accept="any"
           multiple={true}
           style={{ display: "none" }}
-        />
+        /> */}
         {gallery && activeUser && (
           <Gallery
             onHide={this.toggleGallery}

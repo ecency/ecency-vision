@@ -8,11 +8,14 @@ const { wrapper } = require("axios-cookiejar-support");
 const jar = new CookieJar();
 const client = wrapper(axios.create({ jar }));
 
+const studioEndPoint = "https://studio.3speak.tv";
+const tusEndPoint = "https://uploads.3speak.tv/files/";
+
 // Generate Memo from Username
 const getMemo = async (username: string, studioEndPoint: string) => {
   try {
     let response = await client.get(`${studioEndPoint}/mobile/login?username=${username}`, {
-      withCredentials: false, // true
+      withCredentials: false, 
       headers: {
         "Content-Type": "application/json"
       }
@@ -30,14 +33,15 @@ async function getCookies(username: string, studioEndPoint: string, jwt: string 
     let response = await client.get(
       `${studioEndPoint}/mobile/login?username=${username}&access_token=${jwt}`,
       {
-        // withCredentials: true,
-        credentials: "include",
+        withCredentials: false,
+        // credentials: "include",
         headers: {
           "Content-Type": "application/json"
         }
       }
     );
-    return response.headers["set-cookie"];
+    console.log(response.data);
+    return response.data;
   } catch (err) {
     console.log(err);
     throw err;
@@ -56,6 +60,7 @@ const startUpload = (fileName: string, tusEndPoint: string | undefined, file: an
         return reject(error);
       },
       onProgress: function (bytesUploaded: number, bytesTotal: number) {
+        console.log(bytesUploaded)
         var percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
         console.log(bytesUploaded, bytesTotal, percentage + "%");
       },
@@ -68,12 +73,13 @@ const startUpload = (fileName: string, tusEndPoint: string | undefined, file: an
 }
 
 const updateVideoInfo = async (
-  studioEndPoint: string,
+  // studioEndPoint: string,
   oFilename: string,
   videoUrl: any,
   thumbnailUrl: any,
-  username: string, cookies: string,
-  size: number
+  username: string, 
+  cookies: string,
+  // size: number
 ) => {
   try {
     const { data } = await client.post(
@@ -81,7 +87,7 @@ const updateVideoInfo = async (
       {
         filename: videoUrl,
         oFilename: oFilename,
-        size, // NOTE: please change this constant value. This is POC app. It has to be in bytes.
+        size: 9609313, // NOTE: please change this constant value. This is POC app. It has to be in bytes.
         duration: 56, // NOTE: please change this constant value. This is POC app. it has to be in seconds.
         thumbnail: thumbnailUrl,
         owner: username,
@@ -153,8 +159,7 @@ const getAllVideoStatuses = async (studioEndPoint: string, cookies: string) => {
 
 // Main Function that calls every other one in the file
 export const uploadToThreeSpeak = async (username: string | any, file: any, thumbnail: any) => {
-  const studioEndPoint = "https://studio.3speak.tv";
-  const tusEndPoint = "https://uploads.3speak.tv/files/";
+ 
   // const postingKey = getPostingKey(username)
 
   try {
@@ -163,7 +168,7 @@ export const uploadToThreeSpeak = async (username: string | any, file: any, thum
 
     // Decoded Memo using dhive Memo.decode class
     let decrypted = await hive.Memo.decode(
-      'postingKey',
+      '5KkEJ5JMKvEvH3BUzYwCGEJb8WSTSBW1nehZAc1hdyS5Bj3jdUx',
       memo
     );
     decrypted = decrypted.replace("#", "");
@@ -188,13 +193,13 @@ export const uploadToThreeSpeak = async (username: string | any, file: any, thum
 
     // Step 5. Update Video upload information
     const data = await updateVideoInfo(
-      studioEndPoint,
+      // studioEndPoint,
       file.name,
       videoUploadFileUrl,
       thumbUploadFileUrl,
       username,
-      cookies,
-      file.size
+      decrypted,
+      // file.size
     );
     console.log(`Video upload response: ${JSON.stringify(data)}`);
 
