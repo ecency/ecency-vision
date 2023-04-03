@@ -80,17 +80,17 @@
     "later": "Myöhemmin"
   },
   "floating-faq": {
-    "toggle-icon-info": "Click to expand",
-    "help": "Help",
-    "welcome": "Welcome to Ecency",
-    "need-help": "Need Help?",
-    "search-placeholder": "Search",
-    "suggestion": "Suggested articles",
-    "contact": "Contact us",
-    "submit": "Submit",
-    "username": "username",
-    "message": "message",
-    "no-results": "No results found"
+    "toggle-icon-info": "Laajenna napsauttamalla",
+    "help": "Ohjeet",
+    "welcome": "Tervetuloa Ecencyyn",
+    "need-help": "Tarvitsetko apua?",
+    "search-placeholder": "Etsi",
+    "suggestion": "Ehdotetut artikkelit",
+    "contact": "Ota yhteyttä",
+    "submit": "Lähetä",
+    "username": "käyttäjänimi",
+    "message": "viesti",
+    "no-results": "Ei tuloksia"
   },
   "entry-filter": {
     "filter-trending": "Trendit",
@@ -1502,7 +1502,7 @@
     "sign-sub-title": "Allekirjoita tapahtuma",
     "success-message": "Uusi palautusedustaja on toiminnassa 30 päivän kuluttua",
     "info-message": "Korvataanko odottava pyyntö? @{{n}}",
-    "same-account-error": "You can't set yourself as recovery account!"
+    "same-account-error": "Et voi asettaa itseäsi palautustiliksi!"
   },
   "add-image": {
     "title": "Lisää kuva",
@@ -1683,11 +1683,11 @@
       "how-find-information-followers-body": "<p>Voit nähdä seuraamiesi henkilöiden määrän ja seuraajiesi määrän klikkaamalla Seuraajia ja Seurattuja kansikuvasi alapuolella.</p>",
       "how-to-search-header": "Miten etsiä jotain Ecencyssä?",
       "how-to-search-body": "<p>Click search icon in the top left on Ecency. Type who or what you want to search for, then click on the list of results. When typing something, you may see predictions for what you're looking for. If you see what you're looking for in these predictions, click it to save time searching.</p>",
-      "what-appears-search-header": "What appears in search reasults?",
-      "what-appears-search-body": "<p>Your search results are based on the posts, communities, accounts and topics that you searched for.</p>",
-      "what-are-referrals-header": "What are referrals?",
-      "what-are-referrals-body": "<p>Your referral is link that can be shared to invite friends to the platform. You can see a list of all the users you have referred to the Ecency, Copy your referral link and other informations by clicking Referrals under your cover photo. </p>",
-      "what-mean-promoted-header": "What does the Promoted icon in the Feed mean?",
+      "what-appears-search-header": "Mitä hakutuloksissa ilmenee?",
+      "what-appears-search-body": "<p>Hakutuloksesi perustuvat julkaisuihin, yhteisöihin, tileihin ja aiheisiin, joita etsit.</p>",
+      "what-are-referrals-header": "Mitä viittaukset ovat?",
+      "what-are-referrals-body": "<p>Viittauksesi on linkki, joka voidaan jakaa ystävien kutsumiseksi alustalle. Voit nähdä luettelon kaikista käyttäjistä, jotka olet viitannut Ecencyyn. Kopioi viittauslinkkisi ja muut tiedot klikkaamalla Viittaukset kansikuvasi alta. </p>",
+      "what-mean-promoted-header": "Mitä syötteen Korostettu-kuvake tarkoittaa?",
       "what-mean-promoted-body": "<p>When browsing the feed, we it can be seen a Promoted icon next to some posts. This icon indicates that the post author has used Ecency's Promote Post feature so that the post can be shared with more users. You can promote your post in the feed by clicking the three dots above the post and selecting the Promote function from there.</p>",
       "how-market-works-header": "How Market works on Ecency?",
       "how-market-works-body": "<p>Market is the place that is decentralized exchange to Buy and Sell tokens on Hive blockchain.In Ecency Market, you can also see complete information about Hive sales, purchase history, current price offers, and demands in chart form.u </p>",
