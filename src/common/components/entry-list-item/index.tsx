@@ -527,10 +527,8 @@ export default class EntryListItem extends Component<Props, State> {
             {
               <EntryVoteBtn
                 isPostSlider={true}
-                afterVote={this.afterVote}
                 account={account}
                 match={match}
-                addAccount={addAccount}
                 history={history}
                 global={global}
                 dynamicProps={dynamicProps}
@@ -538,6 +536,8 @@ export default class EntryListItem extends Component<Props, State> {
                 users={users}
                 activeUser={activeUser}
                 ui={ui}
+                addAccount={addAccount}
+                afterVote={this.afterVote}
                 setActiveUser={setActiveUser}
                 updateActiveUser={updateActiveUser}
                 toggleUIProp={toggleUIProp}

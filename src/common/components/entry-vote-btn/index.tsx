@@ -649,17 +649,17 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                           >
                             <VoteDialog
                               {...this.props}
+                              history={history!}
                               activeUser={activeUser as any}
                               isPostSlider={isPostSlider}
-                              onClick={this.vote}
                               upVoted={upVoted}
                               downVoted={downVoted}
-                              setTipDialogMounted={this.setTipDialogMounted}
                               previousVotedValue={previousVotedValue}
                               account={account!}
                               match={match!}
+                              setTipDialogMounted={this.setTipDialogMounted}
+                              onClick={this.vote}
                               addAccount={addAccount!}
-                              history={history!}
                             />
                           </span>
                         </div>

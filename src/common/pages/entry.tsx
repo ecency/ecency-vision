@@ -1225,13 +1225,13 @@ class EntryPage extends BaseComponent<Props, State> {
                         {
                           <EntryVoteBtn
                             isPostSlider={true}
-                            afterVote={this.afterVote}
                             global={global}
                             dynamicProps={dynamicProps}
                             entry={entry}
                             users={users}
                             activeUser={this.props.activeUser}
                             ui={ui}
+                            afterVote={this.afterVote}
                             setActiveUser={setActiveUser}
                             updateActiveUser={updateActiveUser}
                             toggleUIProp={toggleUIProp}

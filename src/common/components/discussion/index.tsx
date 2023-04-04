@@ -428,13 +428,13 @@ export const Item = (props: ItemProps) => {
                     {
                       <EntryVoteBtn
                         isPostSlider={false}
-                        afterVote={afterVote}
                         global={global}
                         dynamicProps={props.dynamicProps}
                         entry={entry}
                         users={props.users}
                         activeUser={props.activeUser}
                         ui={props.ui}
+                        afterVote={afterVote}
                         setActiveUser={props.setActiveUser}
                         updateActiveUser={props.updateActiveUser}
                         toggleUIProp={props.toggleUIProp}
