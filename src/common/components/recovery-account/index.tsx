@@ -70,7 +70,7 @@ export default function AccountRecovery(props: Props) {
       setToWarning(_t("account-recovery.same-recover-agent-suggestion"));
     }
 
-    if (ECENCY === ECENCY) {
+    if (recovery_account === ECENCY) {
       setIsEcency(true);
       let response = await getRecoveries(props.activeUser?.username!);
       setRecoveryEmails(response);
