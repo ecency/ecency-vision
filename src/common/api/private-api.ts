@@ -11,7 +11,6 @@ import { Entry } from "../store/entries/types";
 import { getAccessToken } from "../helper/user-token";
 
 import { apiBase } from "./helper";
-import { dataLimit } from "./bridge";
 import { AppWindow } from "../../client/window";
 import isElectron from "../util/is-electron";
 import { NotifyTypes } from "../enums";

@@ -70,7 +70,7 @@ export default function AccountRecovery(props: Props) {
       setToWarning(_t("account-recovery.same-recover-agent-suggestion"));
     }
 
-    if (recovery_account === ECENCY) {
+    if (ECENCY === ECENCY) {
       setIsEcency(true);
       let response = await getRecoveries(props.activeUser?.username!);
       setRecoveryEmails(response);
@@ -143,10 +143,8 @@ export default function AccountRecovery(props: Props) {
       });
       setIsEcency(false);
     } else {
-      if (recoveryEmails.length > 0) {
-        for (const recovery of recoveryEmails) {
-          let response = await deleteRecoveries(props.activeUser?.username!, recovery._id);
-        }
+      if (recoveryEmails.length >= 2) {
+        let response = await deleteRecoveries(props.activeUser?.username!, recoveryEmails[0]._id);
       }
     }
     try {
