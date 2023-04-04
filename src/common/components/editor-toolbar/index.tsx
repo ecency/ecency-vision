@@ -94,7 +94,7 @@ export class EditorToolbar extends Component<Props> {
     shGif: false,
     // 3speak states
     username: "",
-    postingKey: "5KkEJ5JMKvEvH3BUzYwCGEJb8WSTSBW1nehZAc1hdyS5Bj3jdUx",
+    postingKey: "",
     accessToken: "",
     videoUrl: "",
     thumbUrl: "",

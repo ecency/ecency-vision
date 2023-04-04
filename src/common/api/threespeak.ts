@@ -1,3 +1,5 @@
+import { getPostingKey } from "../helper/user-token";
+
 const hive = require("@hiveio/dhive");
 const tus = require("tus-js-client");
 const Cookies = require("js-cookie");
@@ -160,7 +162,7 @@ const getAllVideoStatuses = async (studioEndPoint: string, cookies: string) => {
 // Main Function that calls every other one in the file
 export const uploadToThreeSpeak = async (username: string | any, file: any, thumbnail: any) => {
  
-  // const postingKey = getPostingKey(username)
+  const postingKey = getPostingKey(username)
 
   try {
     // Step 1. Get JWT Encrypted Memo
@@ -168,7 +170,7 @@ export const uploadToThreeSpeak = async (username: string | any, file: any, thum
 
     // Decoded Memo using dhive Memo.decode class
     let decrypted = await hive.Memo.decode(
-      '5KkEJ5JMKvEvH3BUzYwCGEJb8WSTSBW1nehZAc1hdyS5Bj3jdUx',
+      postingKey,
       memo
     );
     decrypted = decrypted.replace("#", "");
