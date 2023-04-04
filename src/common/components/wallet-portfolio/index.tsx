@@ -29,6 +29,12 @@ import { updateProfile } from "../../api/operations";
 import { getSpkWallet, getMarketInfo, getLarynxData } from "../../api/spk-api";
 import { findIndex } from "lodash";
 import "./index.scss";
+// Needs to keep the styles in order, can later be simplified or added to a single directory
+import "../wallet-hive/_index.scss";
+import "../wallet-ecency/_index.scss";
+import "../wallet-hive-engine/_index.scss";
+import "../wallet-spk/wallet-spk-delegated-power-dialog.scss";
+import "../wallet-spk/wallet-spk-dialog.scss";
 
 const hbdIcom = require("./asset/hbd.png");
 const ecencyIcon = require("./asset/ecency.jpeg");
@@ -158,7 +164,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
   };
 
   handleLink(symbol: string) {
-    this.props.history.push(`portfolio/${symbol.toLowerCase()}`);
+    this.props.history.push(`wallet/${symbol.toLowerCase()}`);
   }
 
   hideList = () => {

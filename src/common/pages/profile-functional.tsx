@@ -495,22 +495,22 @@ export const Profile = (props: Props) => {
           ) : (
             <>
               {(() => {
-                if (section === "wallet") {
-                  return WalletHive({ ...props, account, updateWalletValues: ensureAccount });
-                }
-                if (section === "engine") {
-                  return WalletHiveEngine({ ...props, account, updateWalletValues: ensureAccount });
-                }
-                if (section === "spk") {
-                  return WalletSpk({
-                    ...props,
-                    account,
-                    isActiveUserWallet: account.name === props.activeUser?.username
-                  });
-                }
-                if (section === "points") {
-                  return WalletEcency({ ...props, account, updateWalletValues: ensureAccount });
-                }
+                // if (section === "wallet") {
+                //   return WalletHive({ ...props, account, updateWalletValues: ensureAccount });
+                // }
+                // if (section === "engine") {
+                //   return WalletHiveEngine({ ...props, account, updateWalletValues: ensureAccount });
+                // }
+                // if (section === "spk") {
+                //   return WalletSpk({
+                //     ...props,
+                //     account,
+                //     isActiveUserWallet: account.name === props.activeUser?.username
+                //   });
+                // }
+                // if (section === "points") {
+                //   return WalletEcency({ ...props, account, updateWalletValues: ensureAccount });
+                // }
                 if (section === "communities") {
                   return ProfileCommunities({ ...props, account });
                 }
@@ -520,8 +520,8 @@ export const Profile = (props: Props) => {
                 if (section === "referrals") {
                   return ProfileReferrals({ ...props, account, updateWalletValues: ensureAccount });
                 }
-                if (section === "portfolio") {
-                  if (symbol && section === "portfolio") {
+                if (section === "wallet") {
+                  if (symbol && section === "wallet") {
                     return TokenDetails({ ...props, account, updateWalletValues: ensureAccount });
                   }
                   return WalletPortfolio({ ...props, account, updateWalletValues: ensureAccount }); 
