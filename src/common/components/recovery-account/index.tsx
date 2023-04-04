@@ -58,12 +58,12 @@ export default function AccountRecovery(props: Props) {
     const account = await getAccount(props.activeUser!.username);
     setAccountData(account);
     const { recovery_account } = account;
-    setCurrRecoveryAccount(ECENCY);
+    setCurrRecoveryAccount(recovery_account);
     if (recovery_account === props.activeUser?.username) {
       setToWarning(_t("account-recovery.same-recover-agent-suggestion"));
     }
 
-    if (ECENCY === ECENCY) {
+    if (recovery_account === ECENCY) {
       setIsEcency(true);
       let response = await getRecoveries(props.activeUser?.username!);
       setRecoveryEmail(response[0].email);
@@ -133,7 +133,6 @@ export default function AccountRecovery(props: Props) {
       let response = await addRecoveries(props.activeUser?.username!, recoveryEmail, {
         publick_keys: accountData!.owner.key_auths[0]
       });
-      console.log(response);
       setIsEcency(false);
     }
     try {
@@ -186,11 +185,9 @@ export default function AccountRecovery(props: Props) {
     setRecoveryEmail(e.target.value);
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (emailRegex.test(e.target.value)) {
-      console.log("Valid email");
       setDisabled(false);
     } else {
       setDisabled(true);
-      console.log("Invalid email");
     }
   };
 
@@ -306,86 +303,90 @@ export default function AccountRecovery(props: Props) {
   };
 
   return (
-    <div className="account-recovery-form">
-      <Form
-        onSubmit={(e: React.FormEvent) => {
-          e.preventDefault();
-          e.stopPropagation();
-          update();
-        }}
-      >
-        <Form.Group controlId="account-name">
-          <Form.Label>{_t("account-recovery.curr-recovery-acc")}</Form.Label>
-          <Form.Control type="text" readOnly={true} value={currRecoveryAccount} />
-        </Form.Group>
-        {toWarning && <small className="suggestion-info">{toWarning}</small>}
-        <Form.Group controlId="cur-pass">
-          <Form.Label>{_t("account-recovery.new-recovery-acc")}</Form.Label>
-          <Form.Control
-            value={newRecoveryAccount}
-            onChange={newRecoveryAccountChange}
-            required={true}
-            type="text"
-            autoFocus={true}
-            autoComplete="off"
-            className={toError ? "is-invalid" : ""}
-          />
-        </Form.Group>
-        {toError && <small className="error-info">{toError}</small>}
-        {isEcency && (
-          <Form.Group controlId="recovery-email">
-            <Form.Label>{_t("account-recovery.new-recovery-email")}</Form.Label>
-            <Form.Control
-              value={recoveryEmail}
-              onChange={handleRecoveryEmail}
-              required={true}
-              type="text"
-              placeholder={_t("account-recovery.email-placeholder")}
-              autoComplete="off"
-            />
-          </Form.Group>
-        )}
+    <>
+      {accountData && (
+        <div className="account-recovery-form">
+          <Form
+            onSubmit={(e: React.FormEvent) => {
+              e.preventDefault();
+              e.stopPropagation();
+              update();
+            }}
+          >
+            <Form.Group controlId="account-name">
+              <Form.Label>{_t("account-recovery.curr-recovery-acc")}</Form.Label>
+              <Form.Control type="text" readOnly={true} value={currRecoveryAccount} />
+            </Form.Group>
+            {toWarning && <small className="suggestion-info">{toWarning}</small>}
+            <Form.Group controlId="cur-pass">
+              <Form.Label>{_t("account-recovery.new-recovery-acc")}</Form.Label>
+              <Form.Control
+                value={newRecoveryAccount}
+                onChange={newRecoveryAccountChange}
+                required={true}
+                type="text"
+                autoFocus={true}
+                autoComplete="off"
+                className={toError ? "is-invalid" : ""}
+              />
+            </Form.Group>
+            {toError && <small className="error-info">{toError}</small>}
+            {isEcency && (
+              <Form.Group controlId="recovery-email">
+                <Form.Label>{_t("account-recovery.new-recovery-email")}</Form.Label>
+                <Form.Control
+                  value={recoveryEmail}
+                  onChange={handleRecoveryEmail}
+                  required={true}
+                  type="text"
+                  placeholder={_t("account-recovery.email-placeholder")}
+                  autoComplete="off"
+                />
+              </Form.Group>
+            )}
 
-        {popOver ? (
-          <div className="main">
-            <PopoverConfirm
-              placement="top"
-              trigger="click"
-              onConfirm={() => handleConfirm()}
-              titleText={_t("account-recovery.info-message", { n: pendingRecoveryAccount })}
-            >
-              <div onClick={(e) => e.stopPropagation()}>
-                <Button disabled={disabled} variant="primary" type="submit">
-                  {_t("g.update")}
-                </Button>
+            {popOver ? (
+              <div className="main">
+                <PopoverConfirm
+                  placement="top"
+                  trigger="click"
+                  onConfirm={() => handleConfirm()}
+                  titleText={_t("account-recovery.info-message", { n: pendingRecoveryAccount })}
+                >
+                  <div onClick={(e) => e.stopPropagation()}>
+                    <Button disabled={disabled} variant="primary" type="submit">
+                      {_t("g.update")}
+                    </Button>
+                  </div>
+                </PopoverConfirm>
               </div>
-            </PopoverConfirm>
-          </div>
-        ) : (
-          <Button disabled={disabled} variant="primary" type="submit">
-            {_t("g.update")}
-          </Button>
-        )}
-      </Form>
+            ) : (
+              <Button disabled={disabled} variant="primary" type="submit">
+                {_t("g.update")}
+              </Button>
+            )}
+          </Form>
 
-      {keyDialog && (
-        <Modal
-          animation={false}
-          show={true}
-          centered={true}
-          onHide={toggleKeyDialog}
-          keyboard={false}
-          className="recovery-dialog modal-thin-header"
-          size="lg"
-        >
-          <Modal.Header closeButton={true} />
-          <Modal.Body>
-            {step === 1 && confirmationModal()}
-            {step === 2 && signkeyModal()}
-            {step === 3 && successModal()}
-          </Modal.Body>
-        </Modal>
+          {keyDialog && (
+            <Modal
+              animation={false}
+              show={true}
+              centered={true}
+              onHide={toggleKeyDialog}
+              keyboard={false}
+              className="recovery-dialog modal-thin-header"
+              size="lg"
+            >
+              <Modal.Header closeButton={true} />
+              <Modal.Body>
+                {step === 1 && confirmationModal()}
+                {step === 2 && signkeyModal()}
+                {step === 3 && successModal()}
+              </Modal.Body>
+            </Modal>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }
