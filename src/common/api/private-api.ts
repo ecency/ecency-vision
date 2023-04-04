@@ -596,7 +596,11 @@ export interface Recoveries {
   public_keys: Object;
 }
 
-export const getRecoveries = (username: string): Promise<Recoveries[]> => {
+export interface getRecoveriesEmail extends Recoveries {
+  _id: string;
+}
+
+export const getRecoveries = (username: string): Promise<getRecoveriesEmail[]> => {
   const data = { code: getAccessToken(username) };
   return axios.post(apiBase(`/private-api/recoveries`), data).then((resp) => resp.data);
 };
@@ -608,4 +612,9 @@ export const addRecoveries = (
 ): Promise<{ recoveries: Recoveries }> => {
   const data = { code: getAccessToken(username), email, public_keys };
   return axios.post(apiBase(`/private-api/recoveries-add`), data).then((resp) => resp.data);
+};
+
+export const deleteRecoveries = (username: string, recoveryId: string): Promise<any> => {
+  const data = { code: getAccessToken(username), id: recoveryId };
+  return axios.post(apiBase(`/private-api/recoveries-delete`), data).then((resp) => resp.data);
 };
