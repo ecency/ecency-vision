@@ -16,7 +16,6 @@ import { AppWindow } from "../../client/window";
 import isElectron from "../util/is-electron";
 import { NotifyTypes } from "../enums";
 import { BeneficiaryRoute, MetaData, RewardType } from "./operations";
-import announcement from "../components/announcement";
 
 declare var window: AppWindow;
 
@@ -590,4 +589,23 @@ export const getAnnouncementsData = async (): Promise<Announcement[]> => {
     console.warn(error);
     throw error;
   }
+};
+export interface Recoveries {
+  username: string;
+  email: string;
+  public_keys: Object;
+}
+
+export const getRecoveries = (username: string): Promise<Recoveries[]> => {
+  const data = { code: getAccessToken(username) };
+  return axios.post(apiBase(`/private-api/recoveries`), data).then((resp) => resp.data);
+};
+
+export const addRecoveries = (
+  username: string,
+  email: string,
+  public_keys: Object
+): Promise<{ recoveries: Recoveries }> => {
+  const data = { code: getAccessToken(username), email, public_keys };
+  return axios.post(apiBase(`/private-api/recoveries-add`), data).then((resp) => resp.data);
 };

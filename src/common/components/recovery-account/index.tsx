@@ -23,6 +23,8 @@ import {
 } from "../../api/operations";
 
 import "./index.scss";
+import { addRecoveries, getRecoveries } from "../../api/private-api";
+import { FullAccount } from "../../store/accounts/types";
 
 interface Props {
   global: Global;
@@ -34,12 +36,18 @@ export default function AccountRecovery(props: Props) {
   const [keyDialog, setKeyDialog] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [isEcency, setIsEcency] = useState(false);
   const [popOver, setPopOver] = useState(false);
   const [step, setStep] = useState(1);
   const [toError, setToError] = useState("");
+  const [accountData, setAccountData] = useState<FullAccount>();
+  const [recoveryEmail, setRecoveryEmail] = useState("");
+  const [toWarning, setToWarning] = useState("");
   const [currRecoveryAccount, setCurrRecoveryAccount] = useState("");
   const [newRecoveryAccount, setNewCurrRecoveryAccount] = useState("");
   const [pendingRecoveryAccount, setPendingRecoveryAccount] = useState("");
+
+  const ECENCY = "ecency";
 
   useEffect(() => {
     getCurrentAccount();
@@ -48,8 +56,18 @@ export default function AccountRecovery(props: Props) {
 
   const getCurrentAccount = async () => {
     const account = await getAccount(props.activeUser!.username);
+    setAccountData(account);
     const { recovery_account } = account;
-    setCurrRecoveryAccount(recovery_account);
+    setCurrRecoveryAccount(ECENCY);
+    if (recovery_account === props.activeUser?.username) {
+      setToWarning(_t("account-recovery.same-recover-agent-suggestion"));
+    }
+
+    if (ECENCY === ECENCY) {
+      setIsEcency(true);
+      let response = await getRecoveries(props.activeUser?.username!);
+      setRecoveryEmail(response[0].email);
+    }
   };
 
   const getRecoveryRequest = async () => {
@@ -75,10 +93,20 @@ export default function AccountRecovery(props: Props) {
       setToError("");
       return;
     } else {
+      if (e.target.value === ECENCY) {
+        setIsEcency(true);
+      } else {
+        setIsEcency(false);
+      }
+
       const resp = await getAccount(e.target.value);
       if (resp) {
-        setDisabled(false);
-        setToError("");
+        if (e.target.value === ECENCY) {
+          setDisabled(true);
+        } else {
+          setDisabled(false);
+          setToError("");
+        }
         if (resp && e.target.value === props.activeUser?.username) {
           setDisabled(true);
           setToError(_t("account-recovery.same-account-error"));
@@ -100,8 +128,15 @@ export default function AccountRecovery(props: Props) {
   };
 
   const onKey = async (key: PrivateKey) => {
+    setInProgress(true);
+    if (isEcency) {
+      let response = await addRecoveries(props.activeUser?.username!, recoveryEmail, {
+        publick_keys: accountData!.owner.key_auths[0]
+      });
+      console.log(response);
+      setIsEcency(false);
+    }
     try {
-      setInProgress(true);
       let result = await changeRecoveryAccount(
         props.activeUser!.username,
         newRecoveryAccount,
@@ -145,6 +180,18 @@ export default function AccountRecovery(props: Props) {
   const handleConfirm = () => {
     setKeyDialog(true);
     setStep(1);
+  };
+
+  const handleRecoveryEmail = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    setRecoveryEmail(e.target.value);
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (emailRegex.test(e.target.value)) {
+      console.log("Valid email");
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+      console.log("Invalid email");
+    }
   };
 
   const confirmationModal = () => {
@@ -271,6 +318,7 @@ export default function AccountRecovery(props: Props) {
           <Form.Label>{_t("account-recovery.curr-recovery-acc")}</Form.Label>
           <Form.Control type="text" readOnly={true} value={currRecoveryAccount} />
         </Form.Group>
+        {toWarning && <small className="suggestion-info">{toWarning}</small>}
         <Form.Group controlId="cur-pass">
           <Form.Label>{_t("account-recovery.new-recovery-acc")}</Form.Label>
           <Form.Control
@@ -284,6 +332,19 @@ export default function AccountRecovery(props: Props) {
           />
         </Form.Group>
         {toError && <small className="error-info">{toError}</small>}
+        {isEcency && (
+          <Form.Group controlId="recovery-email">
+            <Form.Label>{_t("account-recovery.new-recovery-email")}</Form.Label>
+            <Form.Control
+              value={recoveryEmail}
+              onChange={handleRecoveryEmail}
+              required={true}
+              type="text"
+              placeholder={_t("account-recovery.email-placeholder")}
+              autoComplete="off"
+            />
+          </Form.Group>
+        )}
 
         {popOver ? (
           <div className="main">
