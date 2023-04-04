@@ -7,6 +7,7 @@ import { Global } from "../../../../common/store/global/types";
 import { _t } from "../../../../common/i18n";
 
 import { getOperatingSystem } from "../../../../common/util/platform";
+import "./_index.scss";
 
 interface Props {
   global: Global;

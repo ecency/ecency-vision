@@ -210,6 +210,23 @@ export const closeSvg = (
   </svg>
 );
 
+export const articleSvg = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1"
+    strokeLinecap="square"
+    strokeLinejoin="round"
+  >
+    <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+    <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
+  </svg>
+);
+
 export const repeatSvg = (
   <svg viewBox="0 0 24 24">
     <path
@@ -1824,6 +1841,51 @@ export const sellStakeSvg = (
       fillRule="evenodd"
       clipRule="evenodd"
       d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export const helpIconSvg = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1"
+    strokeLinecap="square"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+    <line x1="12" y1="17" x2="12.01" y2="17" />
+  </svg>
+);
+
+export const kebabMenuHorizontalSvg = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="30"
+    height="30"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#357ce6"
+    strokeWidth="2"
+    strokeLinecap="square"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="1" />
+    <circle cx="19" cy="12" r="1" />
+    <circle cx="5" cy="12" r="1" />
+  </svg>
+);
+
+export const linkedinSvg = (
+  <svg viewBox="0 0 15 15">
+    <path
+      d="M 0 0 L 0 15 L 15 15 L 15 0 Z M 4.664062 12.460938 L 2.441406 12.460938 L 2.441406 5.765625 L 4.664062 5.765625 Z M 3.554688 4.851562 L 3.539062 4.851562 C 2.792969 4.851562 2.308594 4.339844 2.308594 3.695312 C 2.308594 3.039062 2.804688 2.539062 3.566406 2.539062 C 4.328125 2.539062 4.796875 3.039062 4.8125 3.695312 C 4.8125 4.339844 4.328125 4.851562 3.554688 4.851562 Z M 12.691406 12.460938 L 10.464844 12.460938 L 10.464844 8.878906 C 10.464844 7.980469 10.144531 7.367188 9.339844 7.367188 C 8.722656 7.367188 8.359375 7.777344 8.195312 8.179688 C 8.136719 8.324219 8.125 8.523438 8.125 8.722656 L 8.125 12.460938 L 5.898438 12.460938 C 5.898438 12.460938 5.925781 6.394531 5.898438 5.765625 L 8.125 5.765625 L 8.125 6.714844 C 8.417969 6.257812 8.945312 5.609375 10.128906 5.609375 C 11.59375 5.609375 12.691406 6.566406 12.691406 8.621094 Z M 12.691406 12.460938 "
       fill="currentColor"
     />
   </svg>
