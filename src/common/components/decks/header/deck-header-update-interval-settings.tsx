@@ -39,7 +39,7 @@ export const DeckHeaderUpdateIntervalSettings = ({
     if (isNaN(+value)) {
       setShowInput(true);
     } else if (+value >= 30000 && +value <= 86400000) {
-      setDeckUpdateInterval({ title, updateIntervalMs: +value }, username);
+      setDeckUpdateInterval(+value);
     } else {
       setErrorMessage(_t("decks.update-interval-value-error"));
     }

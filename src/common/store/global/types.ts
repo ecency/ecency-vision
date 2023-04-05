@@ -2,8 +2,7 @@ import { LocationChangeAction } from "../common";
 
 export enum ListStyle {
   row = "row",
-  grid = "grid",
-  deck = "deck"
+  grid = "grid"
 }
 
 export enum Theme {

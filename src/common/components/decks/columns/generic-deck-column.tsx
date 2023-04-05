@@ -8,7 +8,13 @@ import { DeckGridContext } from "../deck-manager";
 
 export interface DeckProps {
   id: string;
-  header: { title: string; subtitle: string; icon: any; updateIntervalMs: number };
+  header: {
+    title: string;
+    subtitle: string;
+    icon: any;
+    updateIntervalMs: number;
+    setUpdateIntervalMs: (v: number) => void;
+  };
   data: any[];
   onReload: () => void;
   draggable?: DraggableProvidedDragHandleProps;

@@ -129,54 +129,44 @@ class EntryIndexPage extends Component<Props, State> {
       containerClasses = "app-content overflow-hidden entry-index-page";
     }
 
-    if (global.listStyle === ListStyle.deck) {
-      containerClasses += " p-0 m-0 mw-100";
-    }
-
     return (
       <>
         <div className={containerClasses}>
-          {global.listStyle === ListStyle.deck ? (
-            <Decks history={this.props.history} />
-          ) : (
-            <>
-              <div className="tags-side">
-                {!global.isMobile && <>{TrendingTagsCard({ ...this.props })}</>}
+          <div className="tags-side">
+            {!global.isMobile && <>{TrendingTagsCard({ ...this.props })}</>}
+          </div>
+          <div className={_c(`entry-page-content ${this.props.loading ? "loading" : ""}`)}>
+            <div className="page-tools">
+              {EntryIndexMenu({
+                ...this.props,
+                handleFilterReblog: this.handleFilterReblog,
+                noReblog: this.state.noReblog
+              })}
+            </div>
+            {this.props.loading && entryList.length === 0 ? <LinearProgress /> : ""}
+            <div className={_c(`entry-list ${this.props.loading ? "loading" : ""}`)}>
+              <div
+                className={_c(
+                  `entry-list-body limited-area ${
+                    global.listStyle === ListStyle.grid ? "grid-view" : ""
+                  }`
+                )}
+              >
+                {this.props.loading && entryList.length === 0 && <EntryListLoadingItem />}
+                {EntryListContent({
+                  ...this.props,
+                  entries: entryList,
+                  promotedEntries: promoted,
+                  loading: this.props.loading
+                })}
               </div>
-              <div className={_c(`entry-page-content ${this.props.loading ? "loading" : ""}`)}>
-                <div className="page-tools">
-                  {EntryIndexMenu({
-                    ...this.props,
-                    handleFilterReblog: this.handleFilterReblog,
-                    noReblog: this.state.noReblog
-                  })}
-                </div>
-                {this.props.loading && entryList.length === 0 ? <LinearProgress /> : ""}
-                <div className={_c(`entry-list ${this.props.loading ? "loading" : ""}`)}>
-                  <div
-                    className={_c(
-                      `entry-list-body limited-area ${
-                        global.listStyle === ListStyle.grid ? "grid-view" : ""
-                      }`
-                    )}
-                  >
-                    {this.props.loading && entryList.length === 0 && <EntryListLoadingItem />}
-                    {EntryListContent({
-                      ...this.props,
-                      entries: entryList,
-                      promotedEntries: promoted,
-                      loading: this.props.loading
-                    })}
-                  </div>
-                </div>
-                {this.props.loading && entryList.length > 0 ? <LinearProgress /> : ""}
-              </div>
-              <div className="side-menu">
-                {!global.isMobile && <MarketData global={global} />}
-                {!global.isMobile && <TopCommunitiesWidget {...this.props} />}
-              </div>
-            </>
-          )}
+            </div>
+            {this.props.loading && entryList.length > 0 ? <LinearProgress /> : ""}
+          </div>
+          <div className="side-menu">
+            {!global.isMobile && <MarketData global={global} />}
+            {!global.isMobile && <TopCommunitiesWidget {...this.props} />}
+          </div>
         </div>
         <DetectBottom onBottom={this.bottomReached} />
       </>

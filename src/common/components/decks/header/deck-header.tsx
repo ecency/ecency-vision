@@ -30,6 +30,7 @@ export interface WithDeletionProps extends Props {
 
 export interface WithIntervalProps extends Props {
   updateIntervalMs: number;
+  setUpdateIntervalMs: (v: number) => void;
   isReloading: boolean;
   onReload: () => void;
 }
@@ -92,19 +93,22 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
           <Card.Body className="p-0">
             <DeckHeaderSettings
               updateInterval={"updateIntervalMs" in props ? props.updateIntervalMs : undefined}
+              setDeckUpdateInterval={
+                "setUpdateIntervalMs" in props ? props.setUpdateIntervalMs : () => {}
+              }
               title={props.title}
               username={props.account}
             />
             <div className="d-flex deck-actions justify-content-end p-2">
-              {"updateIntervalMs" in props ? (
-                <DeckHeaderReloading
-                  onReload={props.onReload}
-                  isReloading={props.isReloading}
-                  updateDataInterval={props.updateIntervalMs}
-                />
-              ) : (
-                <></>
-              )}
+              {/*{"updateIntervalMs" in props ? (*/}
+              {/*  <DeckHeaderReloading*/}
+              {/*    onReload={props.onReload}*/}
+              {/*    isReloading={props.isReloading}*/}
+              {/*    updateDataInterval={props.updateIntervalMs}*/}
+              {/*  />*/}
+              {/*) : (*/}
+              {/*  <></>*/}
+              {/*)}*/}
 
               {"onRemove" in props ? (
                 <Button

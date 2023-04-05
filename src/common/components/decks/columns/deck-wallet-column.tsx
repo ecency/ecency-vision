@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { GenericDeckColumn } from "./generic-deck-column";
@@ -8,6 +8,7 @@ import { Transaction } from "../../../store/transactions/types";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { History } from "history";
 import { ShortListItemSkeleton } from "./deck-items";
+import { DeckGridContext } from "../deck-manager";
 
 interface Props {
   id: string;
@@ -21,6 +22,8 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
 
   const [data, setData] = useState<Transaction[]>([]);
   const [isReloading, setIsReloading] = useState(false);
+
+  const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
   useEffect(() => {
     fetchData();
@@ -48,7 +51,8 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
         title: "@" + settings.username.toLowerCase(),
         subtitle: "Wallet",
         icon: null,
-        updateIntervalMs: settings.updateIntervalMs
+        updateIntervalMs: settings.updateIntervalMs,
+        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
       }}
       data={data}
       isReloading={isReloading}

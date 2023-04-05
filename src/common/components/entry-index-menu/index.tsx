@@ -644,7 +644,6 @@ export class EntryIndexMenu extends Component<Props, States> {
             <ListStyleToggle
               global={this.props.global}
               toggleListStyle={this.props.toggleListStyle}
-              deck={true}
             />
           </div>
         </div>

@@ -1,8 +1,7 @@
 import { _t } from "../../../i18n";
 import { refreshSvg } from "../../../img/svg";
 import { Button } from "react-bootstrap";
-import React from "react";
-import useInterval from "react-use/lib/useInterval";
+import React, { useEffect, useState } from "react";
 
 interface Props {
   onReload: () => void;
@@ -11,7 +10,14 @@ interface Props {
 }
 
 export const DeckHeaderReloading = ({ isReloading, onReload, updateDataInterval }: Props) => {
-  useInterval(onReload, updateDataInterval);
+  const [intervalLink, setIntervalLink] = useState<any>(null);
+
+  useEffect(() => {
+    if (intervalLink) {
+      clearInterval(intervalLink);
+    }
+    setIntervalLink(setInterval(onReload, updateDataInterval));
+  }, [updateDataInterval]);
 
   return (
     <Button

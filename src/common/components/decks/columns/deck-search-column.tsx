@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ListItemSkeleton, SearchListItem } from "./deck-items";
 import { GenericDeckColumn } from "./generic-deck-column";
 import { SearchDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { search, SearchResult } from "../../../api/search-api";
+import { DeckGridContext } from "../deck-manager";
 
 interface Props {
   id: string;
@@ -14,6 +15,8 @@ interface Props {
 export const DeckSearchColumn = ({ id, settings, draggable }: Props) => {
   const [data, setData] = useState<SearchResult[]>([]);
   const [isReloading, setIsReloading] = useState(false);
+
+  const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
   useEffect(() => {
     fetchData();
@@ -41,7 +44,8 @@ export const DeckSearchColumn = ({ id, settings, draggable }: Props) => {
         title: settings.query,
         subtitle: "Search query",
         icon: null,
-        updateIntervalMs: settings.updateIntervalMs
+        updateIntervalMs: settings.updateIntervalMs,
+        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
       }}
       data={data}
       isReloading={isReloading}

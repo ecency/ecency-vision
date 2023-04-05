@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ShortListItemSkeleton } from "./deck-items";
 import { GenericDeckColumn } from "./generic-deck-column";
 import { UserDeckGridItem } from "../types";
@@ -9,6 +9,7 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 import { History } from "history";
 import { getNotifications } from "../../../api/private-api";
 import { notificationsTitles } from "../consts";
+import { DeckGridContext } from "../deck-manager";
 
 interface Props {
   id: string;
@@ -23,6 +24,8 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
 
   const [data, setData] = useState<ApiNotification[]>([]);
   const [isReloading, setIsReloading] = useState(false);
+
+  const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
   useEffect(() => {
     fetchData();
@@ -58,7 +61,8 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
           ? `Notifications – ${notificationsTitles[settings.contentType]}`
           : "Notifications",
         icon: null,
-        updateIntervalMs: settings.updateIntervalMs
+        updateIntervalMs: settings.updateIntervalMs,
+        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
       }}
       data={data}
       isReloading={isReloading}

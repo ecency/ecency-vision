@@ -22,6 +22,7 @@ interface Context {
   removeDeck: (deck: DeckGrid) => Promise<void>;
   deleteColumn: (id: string) => void;
   setScrollHandler: (handle: { handle: (key: number) => void }) => void;
+  updateColumnIntervalMs: (id: string, value: number) => void;
 }
 
 export const DeckGridContext = React.createContext<Context>({
@@ -36,7 +37,8 @@ export const DeckGridContext = React.createContext<Context>({
   removeDeck: () => Promise.resolve(),
   deleteColumn: () => {},
   isDecksLoading: false,
-  setScrollHandler: () => {}
+  setScrollHandler: () => {},
+  updateColumnIntervalMs: () => {}
 });
 
 interface Props {
@@ -239,6 +241,21 @@ export const DeckManager = ({ children }: Props) => {
     setLayout({ ...layout, columns: layout.columns.filter((c) => c.id !== id) });
   };
 
+  const updateColumnIntervalMs = (id: string, value: number) => {
+    const layoutSnapshot = { ...layout, columns: [...layout.columns] };
+    const existingColumnIndex = layoutSnapshot.columns.findIndex((c) => c.id === id);
+    if (existingColumnIndex > -1) {
+      layoutSnapshot.columns[existingColumnIndex] = {
+        ...layoutSnapshot.columns[existingColumnIndex],
+        settings: {
+          ...layoutSnapshot.columns[existingColumnIndex].settings,
+          updateIntervalMs: value
+        }
+      };
+      setLayout(layoutSnapshot);
+    }
+  };
+
   return (
     <DeckGridContext.Provider
       value={{
@@ -253,7 +270,8 @@ export const DeckManager = ({ children }: Props) => {
         removeDeck,
         deleteColumn,
         isDecksLoading,
-        setScrollHandler
+        setScrollHandler,
+        updateColumnIntervalMs
       }}
     >
       {children({
@@ -268,7 +286,8 @@ export const DeckManager = ({ children }: Props) => {
         removeDeck,
         deleteColumn,
         isDecksLoading,
-        setScrollHandler
+        setScrollHandler,
+        updateColumnIntervalMs
       })}
     </DeckGridContext.Provider>
   );

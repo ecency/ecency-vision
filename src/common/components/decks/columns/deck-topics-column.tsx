@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { HotListItem, ShortListItemSkeleton } from "./deck-items";
 import { GenericDeckColumn } from "./generic-deck-column";
 import { ReloadableDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { getAllTrendingTags } from "../../../api/hive";
 import { TrendingTag } from "../../../store/trending-tags/types";
+import { DeckGridContext } from "../deck-manager";
 
 interface Props {
   id: string;
@@ -15,6 +16,8 @@ interface Props {
 export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
   const [data, setData] = useState<TrendingTag[]>([]);
   const [isReloading, setIsReloading] = useState(false);
+
+  const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
   useEffect(() => {
     fetchData();
@@ -42,7 +45,8 @@ export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
         title: "Topics",
         subtitle: "The most popular",
         icon: null,
-        updateIntervalMs: settings.updateIntervalMs
+        updateIntervalMs: settings.updateIntervalMs,
+        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
       }}
       data={data}
       isReloading={isReloading}
