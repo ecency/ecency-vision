@@ -8,6 +8,7 @@ import { SettingsProps, UsernameDataItem } from "./common";
 import { ICONS } from "../../consts";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../../util/local-storage";
+import { checkIconSvg } from "../../icons";
 
 export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -43,7 +44,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
       <div className="helper-text">
         Enter a username below and select which type of content You want to see
       </div>
-      <div className="subtitle py-3">Username</div>
+      <div className="subtitle py-3">Community</div>
       {username ? (
         <div className="selected-user" onClick={() => setUsername("")}>
           <UserAvatar size="medium" global={global} username={username} />

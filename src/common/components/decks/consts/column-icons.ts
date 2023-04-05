@@ -31,7 +31,8 @@ export const ICONS = {
     hot: hotIconSvg,
     new: newIconSvg,
     payout: payoutsIconSvg,
-    created: mutedIconSvg
+    created: mutedIconSvg,
+    muted: mutedIconSvg
   },
   n: {
     all: walletAllIconSvg,

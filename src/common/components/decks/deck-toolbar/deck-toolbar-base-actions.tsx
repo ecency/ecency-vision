@@ -32,8 +32,7 @@ export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Pr
         <Dropdown>
           <DropdownToggle variant="link">{dotsMenuIconSvg}</DropdownToggle>
           <Dropdown.Menu alignRight={true}>
-            <Dropdown.Item>Back to Grid</Dropdown.Item>
-            <Dropdown.Item>Back to Classic view</Dropdown.Item>
+            <Dropdown.Item href="/">Back to feed</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       ) : (

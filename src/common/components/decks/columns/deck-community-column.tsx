@@ -43,7 +43,7 @@ export const DeckCommunityColumn = ({ id, settings, draggable }: Props) => {
       id={id}
       draggable={draggable}
       header={{
-        title: "@" + settings.username.toLowerCase(),
+        title: settings.username.toLowerCase(),
         subtitle: communityTitles[settings.contentType] ?? "User",
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,

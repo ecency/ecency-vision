@@ -78,6 +78,7 @@
         gap: 1rem;
         position: relative;
         cursor: pointer;
+        border: 2px solid transparent;
 
         @include transition(.3s);
         @include padding(1rem);
@@ -92,6 +93,8 @@
         }
 
         &.selected {
+          border-color: $primary;
+
           @include themify(day) {
             background-color: $duck-egg-blue;
           }

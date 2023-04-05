@@ -54,7 +54,7 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
       )}
       {username !== "" ? (
         <>
-          <div className="subtitle py-3 mt-3">Content type</div>
+          <div className="subtitle py-3 mt-3">Filters</div>
           <div className="content-type-list">
             {contentTypes.map(({ title, type }) => (
               <div
