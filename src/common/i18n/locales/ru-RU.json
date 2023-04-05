@@ -80,17 +80,17 @@
     "later": "Позже"
   },
   "floating-faq": {
-    "toggle-icon-info": "Click to expand",
-    "help": "Help",
-    "welcome": "Welcome to Ecency",
-    "need-help": "Need Help?",
-    "search-placeholder": "Search",
-    "suggestion": "Suggested articles",
-    "contact": "Contact us",
-    "submit": "Submit",
-    "username": "username",
-    "message": "message",
-    "no-results": "No results found"
+    "toggle-icon-info": "Нажмите, чтобы раскрыть",
+    "help": "Помощь",
+    "welcome": "Добро пожаловать в Ecency",
+    "need-help": "Нужна помощь?",
+    "search-placeholder": "Поиск",
+    "suggestion": "Рекомендуемые статьи",
+    "contact": "Свяжитесь с нами",
+    "submit": "Отправить",
+    "username": "пользователь",
+    "message": "сообщение",
+    "no-results": "Ничего не найдено"
   },
   "entry-filter": {
     "filter-trending": "В тренде",
@@ -1502,7 +1502,7 @@
     "sign-sub-title": "Подпишите транзакцию",
     "success-message": "Новый агент восстановления будет эффективен через 30 дней",
     "info-message": "Перезаписать ожидающий запрос? @{{n}}",
-    "same-account-error": "You can't set yourself as recovery account!"
+    "same-account-error": "Вы не можете установить свой аккаунт в качестве учетной записи восстановления!"
   },
   "add-image": {
     "title": "Добавить изображение",
@@ -1704,9 +1704,9 @@
       "what-staking-header": "Что такое стейкинг?",
       "what-staking-body": "<p>Стейкинг — это размещение токена в вашем кошельке и получение вознаграждения за то, что вы не продаете его, пока он находится в стейкинге. Это процесс, который включает в себя передачу ваших токенов для поддержки сети блокчейн. Стейкинг — это простой способ заработать проценты на ваших запасах криптовалюты. Если токен, которым вы владеете, позволяет делать стейкинг, вы можете «стейкать» часть своих активов и получать вознаграждение. </p>",
       "how-to-stake-header": "Как застейкать токены?",
-      "how-to-stake-body": "Information about what tokens you have, how many you have, and what you can do with them can be found in your wallet. Not every token can be staked. If you are considering staking, ensure that the token you want  can be staked by clicking it in your wallet. There should be staking option. Click on it and enter the amount of tokens you want to stake in your wallet.",
+      "how-to-stake-body": "Информацию о том, какие токены у вас есть, сколько их и что вы можете с ними делать, можно найти в кошельке. Не каждый токен можно заморозить. Если вы рассматриваете возможность стейкинга, убедитесь, что нужный токен можно заморозить, щелкните на него. Должна появится запись в величиной ставки, нажмите на нее и введите количество токенов, которое вы хотите заморозить.",
       "what-is-reblogging-header": "Что такое реблогинг?",
-      "what-is-reblogging-body": "<p>A reblog is when you see a post you find usefull, and by clicking the reblog button, you make the post appear on your blog too. Now all of your followers can enjoy the post. You can fing Reblog icon under the post or you can choose from the options that appear when you click on the three dots at the top of the post .</p>",
+      "what-is-reblogging-body": "<p>Реблог — это когда вы видите пост, который считаете полезным, нажимая кнопку реблога, вы также размещаете поств своем блоге. Теперь все ваши подписчики могут наслаждаться публикацией. Вы можете найти значок Реблог под постом или выбрать один из вариантов, которые появляются, когда вы нажимаете на три точки в верхней части поста.</p>",
       "how-to-bookmark-header": "Как добавить контент в закладки?",
       "how-to-bookmark-body": "<p>If you want to engage and read content later, simply bookmark it and come back later to read and engage. You can learn all about it in following article <a href=\"/hive-125125/@ecency/how-to-bookmark-content-on\" class=\"push-link\">How to bookmark content</a></p>",
       "how-to-favorite-header": "How to favorite people on Ecency?",
