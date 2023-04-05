@@ -526,15 +526,6 @@ export const Profile = (props: Props) => {
                     transferAsset: null
                   });
                 }
-                const sectionUppercase = section.toUpperCase();
-                if (tokenList.find((x) => sectionUppercase === x)) {
-                  return WalletHiveEngine({
-                    ...props,
-                    account,
-                    updateWalletValues: ensureAccount,
-                    transferAsset: section.toUpperCase()
-                  });
-                }
 
                 if (section === "spk") {
                   return WalletSpk({
@@ -577,6 +568,15 @@ export const Profile = (props: Props) => {
                   }
                 }
 
+                const sectionUppercase = section.toUpperCase();
+                if (section !== "blog" && tokenList.find((x) => sectionUppercase === x)) {
+                  return WalletHiveEngine({
+                    ...props,
+                    account,
+                    updateWalletValues: ensureAccount,
+                    transferAsset: section.toUpperCase()
+                  });
+                }
                 if (data !== undefined) {
                   let entryList = data?.entries;
                   const { profile } = account as FullAccount;
