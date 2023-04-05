@@ -135,8 +135,7 @@ export default function AccountRecovery(props: Props) {
     }
   };
 
-  const onKey = async (key: PrivateKey) => {
-    setInProgress(true);
+  const handleIsEcency = async () => {
     if (isEcency) {
       let response = await addRecoveries(props.activeUser?.username!, recoveryEmail, {
         publick_keys: accountData!.owner.key_auths[0]
@@ -147,6 +146,11 @@ export default function AccountRecovery(props: Props) {
         let response = await deleteRecoveries(props.activeUser?.username!, recoveryEmails[0]._id);
       }
     }
+  };
+
+  const onKey = async (key: PrivateKey) => {
+    setInProgress(true);
+    handleIsEcency();
     try {
       let result = await changeRecoveryAccount(
         props.activeUser!.username,
@@ -166,11 +170,13 @@ export default function AccountRecovery(props: Props) {
   };
 
   const onHot = () => {
+    handleIsEcency();
     changeRecoveryAccountHot(props.activeUser!.username, newRecoveryAccount, []);
     setKeyDialog(false);
   };
 
   const onKc = () => {
+    handleIsEcency();
     changeRecoveryAccountKc(props.activeUser!.username, newRecoveryAccount, []);
   };
 
