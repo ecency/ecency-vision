@@ -80,6 +80,19 @@
     "next": "Next",
     "later": "Later"
   },
+  "floating-faq": {
+    "toggle-icon-info": "Click to expand",
+    "help": "Help",
+    "welcome": "Welcome to Ecency",
+    "need-help": "Need Help?",
+    "search-placeholder": "Search",
+    "suggestion": "Suggested articles",
+    "contact": "Contact us",
+    "submit": "Submit",
+    "username": "username",
+    "message": "message",
+    "no-results": "No results found"
+  },
   "entry-filter": {
     "filter-trending": "Trending",
     "filter-hot": "Hot",
@@ -1490,7 +1503,8 @@
     "sign-title": "Sign transaction",
     "sign-sub-title": "Sign your transaction",
     "success-message": "New recovery agent is effective after 30 days",
-    "info-message": "Overwrite pending request? @{{n}}"
+    "info-message": "Overwrite pending request? @{{n}}",
+    "same-account-error": "You can't set yourself as recovery account!"
   },
   "add-image": {
     "title": "Add Image",

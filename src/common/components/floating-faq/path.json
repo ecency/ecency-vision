@@ -1,0 +1,54 @@
+{
+  "faqPaths": [
+    {
+      "path": "/hot",
+      "suggestions": [
+        "what-is-ecency",
+        "what-is-difference",
+        "what-is-hive",
+        "why-choose-ecency",
+        "how-ecency-works"
+      ]
+    },
+    {
+      "path": "/created",
+      "suggestions": [
+        "why-score-going-down",
+        "what-can-post",
+        "what-are-tags",
+        "how-use-tags",
+        "add-images-videos",
+        "what-thumbnail-image"
+      ]
+    },
+    {
+      "path": "/discover",
+      "suggestions": [
+        "can-change-username",
+        "can-delete-account",
+        "how-to-signin",
+        "what-is-hivesigner"
+      ]
+    },
+    {
+      "path": "/rising",
+      "suggestions": [
+        "what-information-profile",
+        "what-is-points",
+        "where-tokens-come",
+        "value-hive-hbd",
+        "what-are-hive"
+      ]
+    },
+    {
+      "path": "/@.+/(blog|posts|wallet|points|engine|permissions|spk)",
+      "suggestions": [
+        "what-are-hd",
+        "what-delegated-hp",
+        "what-powering-up",
+        "what-powering-down",
+        "what-are-rc"
+      ]
+    }
+  ]
+}
