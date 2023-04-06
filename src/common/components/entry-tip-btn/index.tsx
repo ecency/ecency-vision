@@ -46,7 +46,6 @@ interface DialogProps extends Props {
 
 export class TippingDialog extends Component<DialogProps> {
   componentDidMount(): void {
-    console.log("Props", this.props);
     if (this.props.setTipDialogMounted) {
       this.props.setTipDialogMounted(true);
     }

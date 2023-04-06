@@ -1,0 +1,49 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.voting-controls-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+
+  .estimated,
+  .percentage {
+    white-space: nowrap;
+    width: 60px;
+
+    @media (max-width: ($sm-break - 1px)) {
+      font-size: 13px;
+    }
+  }
+
+  .btn-vote {
+    flex-shrink: 0;
+  }
+
+  .btn-up-vote,
+  .estimated,
+  .slider,
+  .percentage {
+    margin-right: 8px;
+  }
+
+  .estimated,
+  .slider,
+  .percentage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .slider {
+    flex-grow: 1;
+    margin-right: 0px !important;
+
+    input[type="range"] {
+      width: 100%;
+    }
+  }
+}
