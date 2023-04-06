@@ -66,34 +66,15 @@ describe("(1) Dialog", () => {
     downVoted: false,
     upVoted: false,
     account: accountFull,
-    accounts: [account],
     isPostSlider: false,
-    match: {
-      path: "...",
-      url: "/trending/hive-125125",
-      isExact: true,
-      params: { username: "hive-125125" }
-    },
-    history: createBrowserHistory(),
     previousVotedValue: null,
     onClick: () => {},
     setTipDialogMounted: () => {},
-    addAccount: () => {},
-    toggleUIProp: () => {},
-    afterVote: () => {}
+    updateWalletValues: () => {}
   };
 
-  const component = renderer.create(<VoteDialog {...props} />);
-  const instance: any = component.getInstance();
-
-  it("(1) Up vote", () => {
-    expect(component.toJSON()).toMatchSnapshot();
-  });
-
-  it("(2) Down vote", () => {
-    instance.changeMode("down");
-    expect(component.toJSON()).toMatchSnapshot();
-  });
+  const renderer = withStore(<VoteDialog {...props} />);
+  expect(renderer.toJSON()).toMatchSnapshot();
 });
 
 describe("(2) Btn - No active user", () => {
@@ -103,7 +84,6 @@ describe("(2) Btn - No active user", () => {
     entry: entryInstance1,
     users: [],
     account: accountFull,
-    accounts: [account],
     activeUser: null,
     isPostSlider: false,
     history: createBrowserHistory(),
@@ -133,6 +113,7 @@ describe("(3) Btn - Up voted", () => {
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     entry: entryInstance1,
+    account: accountFull,
     history: createBrowserHistory(),
     match: {
       path: "...",

@@ -78,7 +78,6 @@ interface VoteDialogProps {
   downVoted: boolean;
   upVoted: boolean;
   account: Account;
-  days: number;
   isPostSlider?: boolean;
   previousVotedValue: number | null;
   setTipDialogMounted: (d: boolean) => void;
@@ -297,6 +296,16 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     }
   };
 
+  getDays(): number {
+    const { entry } = this.props;
+    const createdDate = entry.created;
+    const past = moment(createdDate);
+    const now = moment(new Date());
+    const duration = moment.duration(now.diff(past));
+    const days = duration.asDays();
+    return days;
+  }
+
   render() {
     const {
       upSliderVal,
@@ -308,20 +317,14 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       showRemove
     } = this.state;
     const {
-      entry: { post_id, id },
-      activeUser,
-      dynamicProps
+      entry: { post_id, id }
     } = this.props;
-
+    const days = this.getDays();
     return (
       <>
         {mode === "up" && (
           <>
-            <div
-              className={`voting-controls voting-controls-up ${
-                this.props.days > 7 ? "disable" : ""
-              }`}
-            >
+            <div className={`voting-controls voting-controls-up ${days > 7.0 ? "disable" : ""}`}>
               <div
                 className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
                 onClick={this.upVoteClicked}
@@ -364,7 +367,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
         {mode === "down" && (
           <>
-            <div className="voting-controls voting-controls-down">
+            <div className={`voting-controls voting-controls-down ${days > 7.0 ? "disable" : ""}`}>
               <div
                 className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
                 onClick={() => {
@@ -410,7 +413,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
           </>
         )}
 
-        {this.props.days >= 7.0 && (
+        {days >= 7.0 && (
           <div className="vote-error error-message">
             <p>{_t("entry-list-item.old-post-error")}</p>
             <div className="vote-error-suggestion">
@@ -583,21 +586,9 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     }
   };
 
-  getDays(): number {
-    const { entry } = this.props;
-    const createdDate = entry.created;
-    const past = moment(createdDate);
-    const now = moment(new Date());
-    const duration = moment.duration(now.diff(past));
-    const days = duration.asDays();
-    return days;
-  }
-
   render() {
-    const { activeUser, isPostSlider, account, match, addAccount, history, entry, dynamicProps } =
-      this.props;
+    const { activeUser, isPostSlider, account } = this.props;
     const { active_votes: votes } = this.props.entry;
-    const days = this.getDays();
     const { dialog, inProgress, tipDialog, previousVotedValue } = this.state;
     const { upVoted, downVoted } = this.isVoted();
     let cls = _c(`btn-vote btn-up-vote ${inProgress ? "in-progress" : ""}`);
@@ -651,7 +642,6 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                           >
                             <VoteDialog
                               global={this.props.global}
-                              days={days}
                               dynamicProps={this.props.dynamicProps}
                               activeUser={activeUser as any}
                               isPostSlider={isPostSlider}
