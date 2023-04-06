@@ -495,11 +495,12 @@ datalist {
 }
 
 .vote-error-suggestion {
+  line-height: 2.5;
   display: flex;
   justify-content: center;
 
   .tipping-icon {
-    margin-left: 5px;
-    margin-top: 2px;
+    margin-left: 15px;
+    margin-top: 8px;
   }
 }
