@@ -14,13 +14,12 @@ import BaseComponent from "../base";
 import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
 import { error } from "../feedback";
-import { getAccountFull, getActiveVotes } from "../../api/hive";
+import { getAccountFull, getActiveVotes, votingPower } from "../../api/hive";
 import { prepareVotes } from "../entry-votes";
 import VotingSlider from "../entry-vote-slider";
 import EntryTipBtn from "../entry-tip-btn";
-import DisabledVotingSlider from "../disable-voting-slider";
 
-import { estimate } from "../../helper/estimate";
+import parseAsset from "../../helper/parse-asset";
 import { vote, formatError } from "../../api/operations";
 import * as ss from "../../util/session-storage";
 import * as ls from "../../util/local-storage";
@@ -79,13 +78,11 @@ interface VoteDialogProps {
   downVoted: boolean;
   upVoted: boolean;
   account: Account;
-  accounts: Account[];
-  match: match<MatchParams>;
+  days: number;
   isPostSlider?: boolean;
-  history: History;
   previousVotedValue: number | null;
   setTipDialogMounted: (d: boolean) => void;
-  addAccount: (data: Account) => void;
+  updateWalletValues: () => void;
   onClick: (percent: number, estimated: number) => void;
 }
 
@@ -177,6 +174,60 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     });
   };
 
+  estimate = (percent: number): number => {
+    const { entry, activeUser, dynamicProps } = this.props;
+    if (!activeUser) {
+      return 0;
+    }
+
+    const { fundRecentClaims, fundRewardBalance, base, quote } = dynamicProps;
+    const { data: account } = activeUser;
+
+    if (!account.__loaded) {
+      return 0;
+    }
+
+    const sign = percent < 0 ? -1 : 1;
+    const postRshares = entry.net_rshares;
+
+    const totalVests =
+      parseAsset(account.vesting_shares).amount +
+      parseAsset(account.received_vesting_shares).amount -
+      parseAsset(account.delegated_vesting_shares).amount;
+
+    const userVestingShares = totalVests * 1e6;
+
+    const userVotingPower = votingPower(account) * Math.abs(percent);
+    const voteEffectiveShares = userVestingShares * (userVotingPower / 10000) * 0.02;
+
+    // reward curve algorithm (no idea whats going on here)
+    const CURVE_CONSTANT = 2000000000000;
+    const CURVE_CONSTANT_X4 = 4 * CURVE_CONSTANT;
+    const SQUARED_CURVE_CONSTANT = CURVE_CONSTANT * CURVE_CONSTANT;
+
+    const postRsharesNormalized = postRshares + CURVE_CONSTANT;
+    const postRsharesAfterVoteNormalized = postRshares + voteEffectiveShares + CURVE_CONSTANT;
+    const postRsharesCurve =
+      (postRsharesNormalized * postRsharesNormalized - SQUARED_CURVE_CONSTANT) /
+      (postRshares + CURVE_CONSTANT_X4);
+    const postRsharesCurveAfterVote =
+      (postRsharesAfterVoteNormalized * postRsharesAfterVoteNormalized - SQUARED_CURVE_CONSTANT) /
+      (postRshares + voteEffectiveShares + CURVE_CONSTANT_X4);
+
+    const voteClaim = postRsharesCurveAfterVote - postRsharesCurve;
+
+    const proportion = voteClaim / fundRecentClaims;
+    const fullVote = proportion * fundRewardBalance;
+
+    const voteValue = fullVote * (base / quote);
+
+    if (sign > 0) {
+      return Math.max(voteValue * sign, 0);
+    }
+
+    return voteValue * sign;
+  };
+
   changeMode = (m: Mode) => {
     this.setState({ mode: m });
   };
@@ -207,9 +258,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const { upSliderVal, initialVoteValues } = this.state;
     const { upVoted } = this.isVoted();
     if (!upVoted || (upVoted && initialVoteValues.up !== upSliderVal)) {
-      const estimated = Number(
-        estimate(this.props.entry, activeUser, dynamicProps, upSliderVal).toFixed(3)
-      );
+      const estimated = Number(this.estimate(upSliderVal).toFixed(3));
       onClick(upSliderVal, estimated);
       setVoteValue("up", `${activeUser?.username!}-${post_id}`, upSliderVal);
       setVoteValue("upPrevious", `${activeUser?.username!}-${post_id}`, upSliderVal);
@@ -234,9 +283,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const { downVoted } = this.isVoted();
 
     if (!downVoted || (downVoted && initialVoteValues.down !== downSliderVal)) {
-      const estimated = Number(
-        estimate(this.props.entry, activeUser, dynamicProps, downSliderVal).toFixed(3)
-      );
+      const estimated = Number(this.estimate(downSliderVal).toFixed(3));
       onClick(downSliderVal, estimated);
       this.setState({ wrongValueDown: false, wrongValueUp: false });
       setVoteValue("down", `${activeUser?.username!}-${post_id}`, downSliderVal);
@@ -270,7 +317,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       <>
         {mode === "up" && (
           <>
-            <div className="voting-controls voting-controls-up" aria-disabled={true}>
+            <div
+              className={`voting-controls voting-controls-up ${
+                this.props.days > 7 ? "disable" : ""
+              }`}
+            >
               <div
                 className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
                 onClick={this.upVoteClicked}
@@ -278,11 +329,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 <span className="btn-inner">{chevronUpSvgForSlider}</span>
               </div>
               <div className="estimated">
-                <FormattedCurrency
-                  {...this.props}
-                  value={estimate(this.props.entry, activeUser, dynamicProps, upSliderVal)}
-                  fixAt={3}
-                />
+                <FormattedCurrency {...this.props} value={this.estimate(upSliderVal)} fixAt={3} />
               </div>
               <div className="slider slider-up">
                 <VotingSlider value={upSliderVal} setVoteValue={this.upSliderChanged} mode={mode} />
@@ -327,11 +374,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 <span className="btn-inner no-rotate">{chevronUpSvgForSlider}</span>
               </div>
               <div className="estimated">
-                <FormattedCurrency
-                  {...this.props}
-                  value={estimate(this.props.entry, activeUser, dynamicProps, downSliderVal)}
-                  fixAt={3}
-                />
+                <FormattedCurrency {...this.props} value={this.estimate(downSliderVal)} fixAt={3} />
               </div>
               <div className="slider slider-down">
                 <VotingSlider
@@ -365,6 +408,23 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               </div>
             )}
           </>
+        )}
+
+        {this.props.days >= 7.0 && (
+          <div className="vote-error error-message">
+            <p>{_t("entry-list-item.old-post-error")}</p>
+            <div className="vote-error-suggestion">
+              {_t("entry-list-item.old-post-error-suggestion")}
+              <div className="tipping-icon">
+                <EntryTipBtn
+                  entry={this.props.entry}
+                  account={this.props.account}
+                  updateWalletValues={this.props.updateWalletValues}
+                  setTipDialogMounted={this.props.setTipDialogMounted}
+                />
+              </div>
+            </div>
+          </div>
         )}
       </>
     );
@@ -589,61 +649,21 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                               e.stopPropagation();
                             }}
                           >
-                            {days >= 7.0 && this.props.isPostSlider ? (
-                              <>
-                                <DisabledVotingSlider
-                                  entry={entry}
-                                  activeUser={activeUser}
-                                  dynamicProps={dynamicProps}
-                                />
-                                {/* <VoteDialog
-                                  {...this.props}
-                                  history={history!}
-                                  activeUser={activeUser as any}
-                                  isPostSlider={isPostSlider}
-                                  upVoted={upVoted}
-                                  downVoted={downVoted}
-                                  previousVotedValue={previousVotedValue}
-                                  account={account!}
-                                  match={match!}
-                                  setTipDialogMounted={this.setTipDialogMounted}
-                                  onClick={this.vote}
-                                  addAccount={addAccount!}
-                                /> */}
-
-                                <div className="vote-error error-message">
-                                  <p>{_t("entry-list-item.old-post-error")}</p>
-                                  <div className="vote-error-suggestion">
-                                    {_t("entry-list-item.old-post-error-suggestion")}
-                                    <div className="tipping-icon">
-                                      {
-                                        <EntryTipBtn
-                                          entry={entry}
-                                          account={account!}
-                                          updateWalletValues={this.ensureAccount}
-                                          setTipDialogMounted={this.setTipDialogMounted}
-                                        />
-                                      }
-                                    </div>
-                                  </div>
-                                </div>
-                              </>
-                            ) : (
-                              <VoteDialog
-                                {...this.props}
-                                history={history!}
-                                activeUser={activeUser as any}
-                                isPostSlider={isPostSlider}
-                                upVoted={upVoted}
-                                downVoted={downVoted}
-                                previousVotedValue={previousVotedValue}
-                                account={account!}
-                                match={match!}
-                                setTipDialogMounted={this.setTipDialogMounted}
-                                onClick={this.vote}
-                                addAccount={addAccount!}
-                              />
-                            )}
+                            <VoteDialog
+                              global={this.props.global}
+                              days={days}
+                              dynamicProps={this.props.dynamicProps}
+                              activeUser={activeUser as any}
+                              isPostSlider={isPostSlider}
+                              upVoted={upVoted}
+                              downVoted={downVoted}
+                              previousVotedValue={previousVotedValue}
+                              account={account!}
+                              entry={this.props.entry}
+                              setTipDialogMounted={this.setTipDialogMounted}
+                              updateWalletValues={this.ensureAccount}
+                              onClick={this.vote}
+                            />
                           </span>
                         </div>
                       )}

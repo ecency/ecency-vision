@@ -70,6 +70,10 @@
 
 .voting-controls-up,
 .voting-controls-down {
+  &.disable {
+    pointer-events: none;
+    opacity: 0.5;
+  }
   .btn-vote {
     @include btn-vote;
   }
