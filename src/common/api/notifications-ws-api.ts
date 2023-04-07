@@ -77,10 +77,7 @@ export class NotificationsWebSocket {
         return;
       }
 
-      if (ls.get("notifications")) {
-        console.log("IF true");
-        await this.playSound();
-      }
+      await this.playSound();
 
       new Notification(_t("notification.popup-title"), { body: msg, icon: logo }).onclick = () => {
         if (!this.hasUiNotifications) {

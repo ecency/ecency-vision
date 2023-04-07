@@ -22,6 +22,8 @@ import Fragments from "../fragments";
 
 import { _t } from "../../i18n";
 
+import * as ls from "../../util/local-storage";
+
 import HiveWallet from "../../helper/hive-wallet";
 
 import {
@@ -277,7 +279,7 @@ class UserNav extends Component<Props, State> {
                     {unread.toString().length < 3 ? unread : "..."}
                   </span>
                 )}
-                {global.notifications ? bellSvg : bellOffSvg}
+                {ls.get("notifications") || global.notifications ? bellSvg : bellOffSvg}
               </span>
             </ToolTip>
           )}
