@@ -596,6 +596,7 @@ export interface BlogEntry {
   author: string;
   permlink: string;
   reblogged_on: string;
+  created?: string;
 }
 
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>

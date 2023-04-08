@@ -112,9 +112,25 @@ export const Profile = (props: Props) => {
       // fetch posts
       if (section === "trail") {
         let data = await getAccountVotesTrail(username.replace("@", ""), -1);
-        //store.dispatch(entriesFETCHEDAct("__trail__", data.reverse(), "", false));
+        const sevenDaysAgo = 7 * 24 * 60 * 60 * 1000;
+        let attempts = 0;
+        while (
+          attempts < 10 &&
+          data.length < 20 &&
+          (new Date().getTime() - new Date(data[0].created!).getTime(), sevenDaysAgo)
+        ) {
+          const moreData = await getAccountVotesTrail(
+            username.replace("@", ""),
+            data[data.length - 1].num! - 1
+          );
+          console.log("trail moreData");
+          console.log(moreData);
+          data = [...moreData, ...data];
+          console.log("trail moreData new Data");
+          console.log(data);
+          attempts += 1;
+        }
         setDataTrail({ ...dataTrail, entries: data.reverse() });
-        //setData({ entries: data.reverse(), error: null, hasMore: false, loading: false });
       } else {
         fetchEntries(global.filter, global.tag, false);
       }
