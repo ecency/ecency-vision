@@ -1,4 +1,4 @@
-import { rocketSvg } from "../../../img/svg";
+import { bellSvg, rocketSvg } from "../../../img/svg";
 import React from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { WalletBadge } from "../../user-nav";
@@ -23,7 +23,7 @@ export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Pr
               {notifications.unread.toString().length < 3 ? notifications.unread : "..."}
             </span>
           )}
-          {notificationsIconSvg}
+          {bellSvg}
         </div>
       )}
       {global.usePrivate && <div onClick={() => setShowPurchaseDialog(true)}>{rocketSvg}</div>}

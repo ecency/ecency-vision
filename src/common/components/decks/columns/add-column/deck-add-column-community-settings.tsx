@@ -8,7 +8,6 @@ import { SettingsProps, UsernameDataItem } from "./common";
 import { ICONS } from "../../consts";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../../util/local-storage";
-import { checkIconSvg } from "../../icons";
 
 export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();

@@ -48,6 +48,10 @@ interface Props {
 export const DeckManager = ({ children }: Props) => {
   const { activeUser } = useMappedStore();
   const [localDecks, setLocalDecks] = useLocalStorage(PREFIX + "_d", DEFAULT_LAYOUT);
+  const [persistedActiveDeck, setPersistedActiveDeck] = useLocalStorage<string>(
+    PREFIX + "_d_ad",
+    undefined
+  );
 
   const [decks, setDecks] = useState(
     localDecks && localDecks.decks.length > 0 ? localDecks : DEFAULT_LAYOUT
@@ -61,6 +65,9 @@ export const DeckManager = ({ children }: Props) => {
   const [scrollHandler, setScrollHandler] = useState({ handle: (key: number) => {} });
 
   useEffect(() => {
+    if (persistedActiveDeck && decks.decks.find((d) => d.key === persistedActiveDeck)) {
+      setActiveDeck(persistedActiveDeck);
+    }
     fetchDecks();
   }, []);
 
@@ -74,6 +81,7 @@ export const DeckManager = ({ children }: Props) => {
     if (deck) {
       setLayout(deck);
     }
+    setPersistedActiveDeck(activeDeck);
   }, [activeDeck]);
 
   const fetchDecks = async () => {
@@ -85,6 +93,13 @@ export const DeckManager = ({ children }: Props) => {
             decks: [...accountDecks, ...decks.decks]
           });
           setActiveDeck(accountDecks[0].key);
+
+          if (
+            persistedActiveDeck &&
+            [...accountDecks, ...decks.decks].find((d) => d.key === persistedActiveDeck)
+          ) {
+            setActiveDeck(persistedActiveDeck);
+          }
         }
       } catch (e) {
         error("Account decks fetching failed. Please, refresh a page");
@@ -153,7 +168,6 @@ export const DeckManager = ({ children }: Props) => {
   };
 
   const scrollTo = (key: number) => {
-    console.log("scroll", key);
     document.getElementById(`${key - 1}`)?.scrollIntoView({ behavior: "smooth" });
   };
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import "../_deck-toolbar.scss";
 import { History } from "history";
@@ -79,7 +79,11 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
   return (
     <div className={"deck-toolbar " + (isExpanded ? "expanded" : "")}>
       <div className="deck-toolbar-content">
-        <DeckToolbarUser items={dropDownItems} isExpanded={isExpanded} />
+        <DeckToolbarUser
+          items={dropDownItems}
+          isExpanded={isExpanded}
+          setIsExpanded={setIsExpanded}
+        />
         <DeckToolbarBaseActions
           isExpanded={isExpanded}
           setShowPurchaseDialog={setShowPurchaseDialog}

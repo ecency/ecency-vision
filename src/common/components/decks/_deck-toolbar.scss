@@ -12,7 +12,7 @@
   z-index: 9;
   overflow-y: auto;
 
-  @include padding-top(1rem);
+  @include padding-top(0.75rem);
 
   @include themify(day) {
     background-color: $white;
@@ -37,7 +37,7 @@
       border-top: 1px solid $border-color;
       border-bottom: 1px solid $border-color;
 
-      @include margin-top(1rem);
+      @include margin-top(0.75rem);
 
       > *:not(.dropdown), > .dropdown > .dropdown-toggle {
         display: flex;
@@ -113,10 +113,7 @@
     align-items: center;
     justify-content: center;
     color: $gray-400;
-    height: 68px;
-
-    @include padding-top(1rem);
-    @include padding-bottom(1rem);
+    min-height: 65px;
 
     @include themify(day) {
       background-color: $white;

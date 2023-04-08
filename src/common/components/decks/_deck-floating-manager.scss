@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   opacity: 0.75;
+  z-index: 200;
 
   @include margin-right(auto);
   @include margin-left(auto);

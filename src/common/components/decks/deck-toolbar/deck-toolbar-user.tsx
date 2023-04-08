@@ -8,13 +8,14 @@ import { Theme } from "../../../store/global/types";
 
 interface Props {
   isExpanded: boolean;
+  setIsExpanded: (v: boolean) => void;
   items: {
     label: string;
     onClick: () => void;
   }[];
 }
 
-export const DeckToolbarUser = ({ isExpanded, items }: Props) => {
+export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => {
   const { activeUser, global, toggleTheme } = useMappedStore();
 
   return activeUser ? (
@@ -24,7 +25,7 @@ export const DeckToolbarUser = ({ isExpanded, items }: Props) => {
         (isExpanded ? "justify-content-start" : "justify-content-center")
       }
     >
-      <Dropdown>
+      <Dropdown onClick={() => setIsExpanded(true)}>
         <Dropdown.Toggle variant="link">
           <UserAvatar size="medium" global={global} username={activeUser?.username} />
         </Dropdown.Toggle>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNav } from "../../util/use-nav";
 import "./_deck.scss";
 import "./_index.scss";
@@ -6,11 +6,8 @@ import { DeckGrid } from "./deck-grid";
 import { DeckManager } from "./deck-manager";
 import { History } from "history";
 import { DeckToolbar } from "./deck-toolbar/deck-toolbar";
-import useLocalStorage from "react-use/lib/useLocalStorage";
-import { PREFIX } from "../../util/local-storage";
 import { DeckFloatingManager } from "./deck-floating-manager";
 import { DeckLoader } from "./deck-loader";
-import { DeckSmoothScroller } from "./deck-smooth-scroller";
 
 interface Props {
   history: History;
@@ -19,7 +16,7 @@ interface Props {
 export const Decks = ({ history }: Props) => {
   const { setNavShow } = useNav();
 
-  const [isExpanded, setIsExpanded] = useLocalStorage(PREFIX + "_de", false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     setNavShow(false);
