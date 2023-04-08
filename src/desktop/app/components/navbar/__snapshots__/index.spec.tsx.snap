@@ -938,7 +938,7 @@ exports[`(4) With active user 1`] = `
         title="Notifications"
       >
         <svg
-          fill="#ffffff"
+          fill="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >

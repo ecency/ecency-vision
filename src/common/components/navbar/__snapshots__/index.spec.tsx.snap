@@ -52,6 +52,13 @@ exports[`(1) Default render 1`] = `
       >
         Communities
       </a>
+      <a
+        className="menu-item mt-0"
+        href="/decks"
+        onClick={[Function]}
+      >
+        Decks
+      </a>
     </div>
   </div>
   <div
@@ -90,6 +97,13 @@ exports[`(1) Default render 1`] = `
           onClick={[Function]}
         >
           Communities
+        </a>
+        <a
+          className="menu-item mt-0"
+          href="/decks"
+          onClick={[Function]}
+        >
+          Decks
         </a>
       </div>
       <div
@@ -242,7 +256,7 @@ exports[`(1) Default render 1`] = `
             title="Notifications"
           >
             <svg
-              fill="#ffffff"
+              fill="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -729,6 +743,13 @@ exports[`(2) Night Theme 1`] = `
       >
         Communities
       </a>
+      <a
+        className="menu-item mt-0"
+        href="/decks"
+        onClick={[Function]}
+      >
+        Decks
+      </a>
     </div>
   </div>
   <div
@@ -767,6 +788,13 @@ exports[`(2) Night Theme 1`] = `
           onClick={[Function]}
         >
           Communities
+        </a>
+        <a
+          className="menu-item mt-0"
+          href="/decks"
+          onClick={[Function]}
+        >
+          Decks
         </a>
       </div>
       <div
@@ -919,7 +947,7 @@ exports[`(2) Night Theme 1`] = `
             title="Notifications"
           >
             <svg
-              fill="#ffffff"
+              fill="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -1406,6 +1434,13 @@ exports[`(3) With active user 1`] = `
       >
         Communities
       </a>
+      <a
+        className="menu-item mt-0"
+        href="/decks"
+        onClick={[Function]}
+      >
+        Decks
+      </a>
     </div>
   </div>
   <div
@@ -1444,6 +1479,13 @@ exports[`(3) With active user 1`] = `
           onClick={[Function]}
         >
           Communities
+        </a>
+        <a
+          className="menu-item mt-0"
+          href="/decks"
+          onClick={[Function]}
+        >
+          Decks
         </a>
       </div>
       <div
@@ -1596,7 +1638,7 @@ exports[`(3) With active user 1`] = `
             title="Notifications"
           >
             <svg
-              fill="#ffffff"
+              fill="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -2083,6 +2125,13 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       >
         Communities
       </a>
+      <a
+        className="menu-item mt-0"
+        href="/decks"
+        onClick={[Function]}
+      >
+        Decks
+      </a>
     </div>
   </div>
   <div
@@ -2121,6 +2170,13 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           onClick={[Function]}
         >
           Communities
+        </a>
+        <a
+          className="menu-item mt-0"
+          href="/decks"
+          onClick={[Function]}
+        >
+          Decks
         </a>
       </div>
       <div
@@ -2273,7 +2329,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             title="Notifications"
           >
             <svg
-              fill="#ffffff"
+              fill="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
