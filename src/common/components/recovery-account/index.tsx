@@ -27,7 +27,7 @@ import {
   addRecoveries,
   deleteRecoveries,
   getRecoveries,
-  getRecoveriesEmail
+  GetRecoveriesEmailResponse
 } from "../../api/private-api";
 import { FullAccount } from "../../store/accounts/types";
 
@@ -38,6 +38,8 @@ interface Props {
   setSigningKey: (key: string) => void;
 }
 
+const ECENCY = "ecency";
+
 export default function AccountRecovery(props: Props) {
   const [keyDialog, setKeyDialog] = useState(false);
   const [inProgress, setInProgress] = useState(false);
@@ -46,15 +48,13 @@ export default function AccountRecovery(props: Props) {
   const [popOver, setPopOver] = useState(false);
   const [step, setStep] = useState(1);
   const [toError, setToError] = useState("");
-  const [accountData, setAccountData] = useState<FullAccount>();
+  const [accountData, setAccountData] = useState<FullAccount | undefined>();
   const [recoveryEmail, setRecoveryEmail] = useState("");
   const [toWarning, setToWarning] = useState("");
-  const [recoveryEmails, setRecoveryEmails] = useState<getRecoveriesEmail[]>([]);
+  const [recoveryEmails, setRecoveryEmails] = useState<GetRecoveriesEmailResponse[]>([]);
   const [currRecoveryAccount, setCurrRecoveryAccount] = useState("");
   const [newRecoveryAccount, setNewCurrRecoveryAccount] = useState("");
   const [pendingRecoveryAccount, setPendingRecoveryAccount] = useState("");
-
-  const ECENCY = "ecency";
 
   useEffect(() => {
     getCurrentAccount();
@@ -100,31 +100,25 @@ export default function AccountRecovery(props: Props) {
       setDisabled(true);
       setToError("");
       return;
-    } else {
-      if (e.target.value === ECENCY) {
-        setIsEcency(true);
-      } else {
-        setIsEcency(false);
-      }
+    }
 
-      const resp = await getAccount(e.target.value);
-      if (resp) {
-        if (e.target.value === ECENCY) {
-          setDisabled(true);
-        } else {
-          setDisabled(false);
-          setToError("");
-        }
-        if (resp && e.target.value === props.activeUser?.username) {
-          setDisabled(true);
-          setToError(_t("account-recovery.same-account-error"));
-          return;
-        }
-      } else {
-        if (e.target.value.length > 0) {
-          setDisabled(true);
-          setToError(_t("account-recovery.to-not-found"));
-        }
+    setIsEcency(e.target.value === ECENCY);
+
+    const resp = await getAccount(e.target.value);
+    if (resp) {
+      const isEcency = e.target.value === ECENCY;
+
+      setDisabled(isEcency);
+      setToError(isEcency ? "" : toError);
+      if (resp && e.target.value === props.activeUser?.username) {
+        setDisabled(true);
+        setToError(_t("account-recovery.same-account-error"));
+        return;
+      }
+    } else {
+      if (e.target.value.length > 0) {
+        setDisabled(true);
+        setToError(_t("account-recovery.to-not-found"));
       }
     }
   };
@@ -137,13 +131,13 @@ export default function AccountRecovery(props: Props) {
 
   const handleIsEcency = async () => {
     if (isEcency) {
-      let response = await addRecoveries(props.activeUser?.username!, recoveryEmail, {
+      await addRecoveries(props.activeUser?.username!, recoveryEmail, {
         publick_keys: accountData!.owner.key_auths[0]
       });
       setIsEcency(false);
     } else {
       if (recoveryEmails.length >= 2) {
-        let response = await deleteRecoveries(props.activeUser?.username!, recoveryEmails[0]._id);
+        await deleteRecoveries(props.activeUser?.username!, recoveryEmails[0]._id);
       }
     }
   };
@@ -202,11 +196,7 @@ export default function AccountRecovery(props: Props) {
   const handleRecoveryEmail = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     setRecoveryEmail(e.target.value);
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (emailRegex.test(e.target.value)) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
+    setDisabled(!emailRegex.test(e.target.value));
   };
 
   const confirmationModal = () => {

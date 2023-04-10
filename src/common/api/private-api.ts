@@ -592,14 +592,14 @@ export const getAnnouncementsData = async (): Promise<Announcement[]> => {
 export interface Recoveries {
   username: string;
   email: string;
-  public_keys: Object;
+  publicKeys: Record<string, number>;
 }
 
-export interface getRecoveriesEmail extends Recoveries {
+export interface GetRecoveriesEmailResponse extends Recoveries {
   _id: string;
 }
 
-export const getRecoveries = (username: string): Promise<getRecoveriesEmail[]> => {
+export const getRecoveries = (username: string): Promise<GetRecoveriesEmailResponse[]> => {
   const data = { code: getAccessToken(username) };
   return axios.post(apiBase(`/private-api/recoveries`), data).then((resp) => resp.data);
 };
@@ -607,9 +607,9 @@ export const getRecoveries = (username: string): Promise<getRecoveriesEmail[]> =
 export const addRecoveries = (
   username: string,
   email: string,
-  public_keys: Object
+  publicKeys: Object
 ): Promise<{ recoveries: Recoveries }> => {
-  const data = { code: getAccessToken(username), email, public_keys };
+  const data = { code: getAccessToken(username), email, publicKeys };
   return axios.post(apiBase(`/private-api/recoveries-add`), data).then((resp) => resp.data);
 };
 
