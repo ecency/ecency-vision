@@ -72,11 +72,11 @@
     padding: 10px 1px 20px 10px;
 
     @include themify(day) {
-      border-bottom: 1px solid $white-three;
+      border-color: $white-three;
     }
 
     @include themify(night) {
-      border-bottom: solid 1px $dark-two;
+      border-color: $dark-two;
     }
 
     .status-button {

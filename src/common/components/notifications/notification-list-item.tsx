@@ -38,10 +38,8 @@ export default class NotificationListItem extends Component<Props, State> {
   };
 
   componentDidUpdate(prevProps: Readonly<Props>) {
-    if (prevProps.isSelect !== this.props.isSelect) {
-      if (!this.props.isSelect) {
-        this.setState({ isChecked: false });
-      }
+    if (prevProps.isSelect !== this.props.isSelect && !this.props.isSelect) {
+      this.setState({ isChecked: false });
     }
   }
 

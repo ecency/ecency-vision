@@ -48,7 +48,7 @@ export const date2key = (s: string): string => {
   return s;
 };
 
-const buttonStatus: Array<string> = ["All", "Unread", "Read"];
+const buttonStatus: string[] = ["All", "Unread", "Read"];
 
 interface NotificationProps {
   global: Global;
@@ -125,11 +125,7 @@ export class DialogContent extends Component<NotificationProps, any> {
 
   setIsSelectIcon = () => {
     const { selectedNotifications } = this.state;
-    if (selectedNotifications.length > 0) {
-      this.setState({ isSelectIcon: true });
-    } else {
-      this.setState({ isSelectIcon: false });
-    }
+    this.setState({ isSelectIcon: selectedNotifications.length > 0 });
   };
 
   setSelectedNotifications = (id: string) => {
@@ -252,8 +248,8 @@ export class DialogContent extends Component<NotificationProps, any> {
     const { notifications } = this.props;
     const { hasMore } = notifications;
     var element = event.currentTarget;
-    let srollHeight: number = (element.scrollHeight / 100) * 75;
-    if (element.scrollTop >= srollHeight && hasMore) {
+    let scrollHeight: number = (element.scrollHeight / 100) * 75;
+    if (element.scrollTop >= scrollHeight && hasMore) {
       this.loadMore();
     }
   };
