@@ -113,9 +113,7 @@ export const Profile = (props: Props) => {
       if (section === "trail") {
         let data = await getAccountVotesTrail(username.replace("@", ""), -1);
         const sevenDaysAgo = 7 * 24 * 60 * 60 * 1000;
-        let attempts = 0;
         while (
-          attempts < 10 &&
           data.length < 20 &&
           (new Date().getTime() - new Date(data[0].created!).getTime(), sevenDaysAgo)
         ) {
