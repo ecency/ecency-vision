@@ -279,7 +279,7 @@ class UserNav extends Component<Props, State> {
                     {unread.toString().length < 3 ? unread : "..."}
                   </span>
                 )}
-                {ls.get("notifications") || global.notifications ? bellSvg : bellOffSvg}
+                {global.notifications ? bellSvg : bellOffSvg}
               </span>
             </ToolTip>
           )}

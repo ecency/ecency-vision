@@ -147,7 +147,7 @@ export class Preferences extends BaseComponent<Props, State> {
                 <Form.Label>{_t("preferences.notifications")}</Form.Label>
                 <Form.Control
                   type="text"
-                  value={ls.get("notifications") || global.notifications ? 1 : 0}
+                  value={global.notifications ? 1 : 0}
                   as="select"
                   onChange={this.notificationsChanged}
                 >

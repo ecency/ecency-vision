@@ -114,6 +114,10 @@ export class DialogContent extends Component<NotificationProps, any> {
     ) {
       fetchNotifications(null);
     }
+    if (prevProps.notifications.settings !== this.props.notifications.settings) {
+      const { notifications } = this.props;
+      notifications.settings?.allows_notify === 0 ? this.mute() : this.unMute();
+    }
   }
 
   prepareSettings = () => {
