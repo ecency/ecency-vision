@@ -123,11 +123,7 @@ export const Profile = (props: Props) => {
             username.replace("@", ""),
             data[data.length - 1].num! - 1
           );
-          console.log("trail moreData");
-          console.log(moreData);
           data = [...moreData, ...data];
-          console.log("trail moreData new Data");
-          console.log(data);
           attempts += 1;
         }
         setDataTrail({ ...dataTrail, entries: data.reverse() });
