@@ -22,8 +22,6 @@ import Fragments from "../fragments";
 
 import { _t } from "../../i18n";
 
-import * as ls from "../../util/local-storage";
-
 import HiveWallet from "../../helper/hive-wallet";
 
 import {

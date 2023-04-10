@@ -264,7 +264,6 @@ export const updateNotificationsSettings =
       getState().notifications.settings?.allows_notify === 1,
       token || ls.get("fb-notifications-token") || username + (isElectron() ? "-desktop" : "-web")
     );
-
     dispatch(setSettingsAct(settings));
   };
 

@@ -5,7 +5,6 @@ import { ActiveUser } from "../store/active-user/types";
 import defaults from "../constants/defaults.json";
 import { NotifyTypes } from "../enums";
 import { playNotificationSound } from "../util/play-notification-sound";
-import * as ls from "../util/local-storage";
 
 declare var window: Window & {
   nws?: WebSocket;
