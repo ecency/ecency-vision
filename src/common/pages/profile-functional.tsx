@@ -296,6 +296,17 @@ export const Profile = (props: Props) => {
           username.replace("@", ""),
           dataTrail.entries[dataTrail.entries.length - 1]!.num! - 1
         );
+        const sevenDaysAgo = 7 * 24 * 60 * 60 * 1000;
+        while (
+          data.length < 20 &&
+          (new Date().getTime() - new Date(data[0].created!).getTime(), sevenDaysAgo)
+        ) {
+          const moreData = await getAccountVotesTrail(
+            username.replace("@", ""),
+            data[data.length - 1].num! - 1
+          );
+          data = [...moreData, ...data];
+        }
         let newDataTrail = _.unionBy(dataTrail.entries, data.reverse(), (obj) => obj.post_id);
         setDataTrail({ ...dataTrail, entries: newDataTrail });
       }
