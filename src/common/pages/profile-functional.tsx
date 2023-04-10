@@ -122,7 +122,6 @@ export const Profile = (props: Props) => {
             data[data.length - 1].num! - 1
           );
           data = [...moreData, ...data];
-          attempts += 1;
         }
         setDataTrail({ ...dataTrail, entries: data.reverse() });
       } else {
