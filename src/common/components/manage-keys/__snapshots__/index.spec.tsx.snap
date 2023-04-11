@@ -41,7 +41,9 @@ Array [
     />
     <td
       className="col-weight-content"
-    />
+    >
+      1
+    </td>
   </tr>,
   <tr>
     <td
@@ -82,7 +84,9 @@ Array [
     />
     <td
       className="col-weight-content"
-    />
+    >
+      1
+    </td>
   </tr>,
   <tr>
     <td
@@ -123,7 +127,9 @@ Array [
     />
     <td
       className="col-weight-content"
-    />
+    >
+      1
+    </td>
   </tr>,
   <tr>
     <td
@@ -164,7 +170,9 @@ Array [
     />
     <td
       className="col-weight-content"
-    />
+    >
+      1
+    </td>
   </tr>,
 ]
 `;

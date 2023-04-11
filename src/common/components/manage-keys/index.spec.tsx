@@ -4,44 +4,36 @@ import renderer from "react-test-renderer";
 import { BrowserRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { activeUserInstance, fullAccountInstance } from "../../helper/test-helper";
+import { AccountDataType } from "../manage-authority/types";
 
 it("(1) Default render", () => {
+  const postingsAuthority: AccountDataType["postingsAuthority"] = [
+    ["ecency.app", 1],
+    ["esteem-app", 1],
+    ["esteem.app", 1],
+    ["esteemapp", 1],
+    ["peakd.app", 1]
+  ];
+  const posting: AccountDataType["posting"] = [
+    "STM6uvU7j624wCZNa2pcXvkqmbnNC1cgraDrVG3pFRhXvj9LYS7Xp",
+    1
+  ];
+  const owner: AccountDataType["owner"] = [
+    "STM7F7zfd6ieangxz6uxQkYifUS5H841x5E41SYZaVc9F9cGPJ9jN",
+    1
+  ];
+  const active: AccountDataType["active"] = [
+    "STM71z4rmzGHdp7pmePZyS1G2GrbuBqg9PPHRgiK6uYqjzUTRNCRR",
+    1
+  ];
   const props = {
-    // accountData: {
-    //   postingsAuthority: [[
-    //     ["ecency.app", 1],
-    //     ["esteem-app", 1],
-    //     ["esteem.app", 1],
-    //     ["esteemapp", 1],
-    //     ["peakd.app", 1]]
-    //   ],
-    //   posting: ["STM6uvU7j624wCZNa2pcXvkqmbnNC1cgraDrVG3pFRhXvj9LYS7Xp", 1],
-    //   owner: ["STM7F7zfd6ieangxz6uxQkYifUS5H841x5E41SYZaVc9F9cGPJ9jN", 1],
-    //   active: ["STM71z4rmzGHdp7pmePZyS1G2GrbuBqg9PPHRgiK6uYqjzUTRNCRR", 1],
-    //   weight: 1,
-    //   memokey: "STM7rioGL7NopT2Zo446hnzAiHLp5sJ1gS55xu3NikmxfQnEznsue",
-    //   account: {
-    //     ...fullAccountInstance
-    //   },
-    //   PublicKeys: {
-    //     publicOwnerKey: "STM7F7zfd6ieangxz6uxQkYifUS5H841x5E41SYZaVc9F9cGPJ9jN",
-    //     publicActiveKey: "STM71z4rmzGHdp7pmePZyS1G2GrbuBqg9PPHRgiK6uYqjzUTRNCRR",
-    //     publicPostingKey: "STM6uvU7j624wCZNa2pcXvkqmbnNC1cgraDrVG3pFRhXvj9LYS7Xp",
-    //     publicMemoKey: "STM7rioGL7NopT2Zo446hnzAiHLp5sJ1gS55xu3NikmxfQnEznsue"
-    //   }
-    // },
-
     accountData: {
-      postingsAuthority: [
-        ["user1", 1],
-        ["user2", 1],
-        ["user3", 0]
-      ],
-      posting: ["demo.com", 1],
-      owner: ["demo123", 1],
-      active: ["ecency.app", 1],
+      postingsAuthority: postingsAuthority,
+      posting: posting,
+      owner: owner,
+      active: active,
       weight: 100,
-      memokey: "memokey",
+      memokey: "STM7rioGL7NopT2Zo446hnzAiHLp5sJ1gS55xu3NikmxfQnEznsue",
       account: {
         ...fullAccountInstance
       },
