@@ -10,7 +10,6 @@ import { User, UserKeys } from "../../store/users/types";
 import { AccountDataType, actionType, Keytype, PublicKeys } from "../manage-authority/types";
 import ManageAuthIcon from "../manage-auth-icon";
 import { error, success } from "../feedback";
-import LinearProgress from "../linear-progress";
 import { generateKeys } from "../../helper/generate-private-keys";
 
 import * as ls from "../../util/local-storage";
@@ -52,6 +51,7 @@ export default function ManageKeys(props: Props) {
 
   useEffect(() => {
     getKeys();
+    console.log(props.accountData!.PublicKeys.publicOwnerKey);
   }, []);
 
   useEffect(() => {
@@ -145,15 +145,15 @@ export default function ManageKeys(props: Props) {
       thePrivateKey = PrivateKey.fromLogin(props.accountData!.account.name, key, "active");
       keys = generateKeys(activeUser!, key);
       const activePublicInput = thePrivateKey.createPublic().toString();
-      if (!props.accountData!.PublicKeys.publicActiveKey.includes(activePublicInput)) {
+      if (!props.accountData!.PublicKeys.publicActiveKey.toString().includes(activePublicInput)) {
         error(_t("login.error-authenticate")); // enter master or active key
         return;
       }
     } else {
       if (
-        props.accountData!.PublicKeys.publicOwnerKey.includes(
-          PrivateKey.fromString(key).createPublic().toString()
-        )
+        props
+          .accountData!.PublicKeys.publicOwnerKey.toString()
+          .includes(PrivateKey.fromString(key).createPublic().toString())
       ) {
         thePrivateKey = PrivateKey.fromString(key);
         const ownerKey = thePrivateKey.toString();
@@ -164,9 +164,9 @@ export default function ManageKeys(props: Props) {
           return;
         }
       } else if (
-        props.accountData!.PublicKeys.publicPostingKey.includes(
-          PrivateKey.fromString(key).createPublic().toString()
-        )
+        props
+          .accountData!.PublicKeys.publicPostingKey.toString()
+          .includes(PrivateKey.fromString(key).createPublic().toString())
       ) {
         thePrivateKey = PrivateKey.fromString(key);
         const postingKey = thePrivateKey.toString();
@@ -191,9 +191,9 @@ export default function ManageKeys(props: Props) {
         }
       } else {
         if (
-          props.accountData!.PublicKeys.publicActiveKey.includes(
-            PrivateKey.fromString(key).createPublic().toString()
-          )
+          props
+            .accountData!.PublicKeys.publicActiveKey.toString()
+            .includes(PrivateKey.fromString(key).createPublic().toString())
         ) {
           thePrivateKey = PrivateKey.fromString(key);
           const activeKey = thePrivateKey.toString();
@@ -293,8 +293,8 @@ export default function ManageKeys(props: Props) {
         <div className="sign-dialog-header border-bottom">
           <div className="step-no">2</div>
           <div className="sign-dialog-titles">
-            <div className="authority-main-title">{_t("trx-common.success-title")}</div>
-            <div className="authority-sub-title">{_t("trx-common.success-sub-title")}</div>
+            <div className="authority-main-title">{_t("manage-authorities.success-title")}</div>
+            <div className="authority-sub-title">{_t("manage-authorities.success-sub-title")}</div>
           </div>
         </div>
         <div className="success-dialog-body">
@@ -330,7 +330,7 @@ export default function ManageKeys(props: Props) {
               variant="outline-primary"
               onClick={() =>
                 ownerReveal
-                  ? copyToClipboard(props.accountData!.PublicKeys.publicOwnerKey)
+                  ? copyToClipboard(props.accountData!.PublicKeys.publicOwnerKey.toString())
                   : copyToClipboard(privateKeys?.owner!)
               }
             >
@@ -355,27 +355,33 @@ export default function ManageKeys(props: Props) {
         </td>
 
         <td className="d-sm-none">
-          {ManageAuthIcon({
-            history: props.history,
-            type: actionType.Keys,
-            action: privateKeys?.owner ? actionType.Reveal : actionType.Import,
-            keyType: Keytype.Owner,
-            Pkey: ownerReveal ? props.accountData!.PublicKeys.publicOwnerKey : privateKeys?.owner!,
-            label: privateKeys?.owner
-              ? ownerReveal
-                ? _t("manage-authorities.reveal-private-key")
-                : _t("manage-authorities.reveal-public-key")
-              : _t("manage-authorities.import"),
-            onCopy: (key) => {
-              copyToClipboard(key);
-            },
-            onImport: (type) => {
-              handleImportBtn(type);
-            },
-            onReveal: () => {
-              handleOwnerReveal();
-            }
-          })}
+          {
+            <ManageAuthIcon
+              history={props.history}
+              type={actionType.Keys}
+              action={privateKeys?.owner ? actionType.Reveal : actionType.Import}
+              keyType={Keytype.Owner}
+              Pkey={
+                ownerReveal ? props.accountData!.PublicKeys.publicOwnerKey : privateKeys?.owner!
+              }
+              label={
+                privateKeys?.owner
+                  ? ownerReveal
+                    ? _t("manage-authorities.reveal-private-key")
+                    : _t("manage-authorities.reveal-public-key")
+                  : _t("manage-authorities.import")
+              }
+              onCopy={(key) => {
+                copyToClipboard(key);
+              }}
+              onImport={(type) => {
+                handleImportBtn(type);
+              }}
+              onReveal={() => {
+                handleOwnerReveal();
+              }}
+            />
+          }
         </td>
         <td className="col-weight-content">{props.accountData!.owner[1]}</td>
       </tr>
@@ -398,7 +404,7 @@ export default function ManageKeys(props: Props) {
               variant="outline-primary"
               onClick={() => {
                 activeReveal
-                  ? copyToClipboard(props.accountData!.PublicKeys.publicActiveKey)
+                  ? copyToClipboard(props.accountData!.PublicKeys.publicActiveKey.toString())
                   : copyToClipboard(privateKeys?.active!);
               }}
             >
@@ -422,29 +428,33 @@ export default function ManageKeys(props: Props) {
           </p>
         </td>
         <td className="d-sm-none">
-          {ManageAuthIcon({
-            history: props.history,
-            type: actionType.Keys,
-            action: privateKeys?.active ? actionType.Reveal : actionType.Import,
-            keyType: Keytype.Active,
-            Pkey: activeReveal
-              ? props.accountData!.PublicKeys.publicActiveKey
-              : privateKeys?.active!,
-            label: privateKeys?.active
-              ? activeReveal
-                ? _t("manage-authorities.reveal-private-key")
-                : _t("manage-authorities.reveal-public-key")
-              : _t("manage-authorities.import"),
-            onCopy: (key) => {
-              copyToClipboard(key);
-            },
-            onImport: (type) => {
-              handleImportBtn(type);
-            },
-            onReveal: () => {
-              handleActiveReveal();
-            }
-          })}
+          {
+            <ManageAuthIcon
+              history={props.history}
+              type={actionType.Keys}
+              action={privateKeys?.active ? actionType.Reveal : actionType.Import}
+              keyType={Keytype.Active}
+              Pkey={
+                activeReveal ? props.accountData!.PublicKeys.publicActiveKey : privateKeys?.active!
+              }
+              label={
+                privateKeys?.active
+                  ? activeReveal
+                    ? _t("manage-authorities.reveal-private-key")
+                    : _t("manage-authorities.reveal-public-key")
+                  : _t("manage-authorities.import")
+              }
+              onCopy={(key) => {
+                copyToClipboard(key);
+              }}
+              onImport={(type) => {
+                handleImportBtn(type);
+              }}
+              onReveal={() => {
+                handleActiveReveal();
+              }}
+            />
+          }
         </td>
 
         <td className="col-weight-content">{props.accountData!.active[1]}</td>
@@ -467,7 +477,7 @@ export default function ManageKeys(props: Props) {
               variant="outline-primary"
               onClick={() =>
                 postingReveal
-                  ? copyToClipboard(props.accountData!.PublicKeys.publicPostingKey)
+                  ? copyToClipboard(props.accountData!.PublicKeys.publicPostingKey.toString())
                   : copyToClipboard(privateKeys?.posting!)
               }
             >
@@ -495,29 +505,35 @@ export default function ManageKeys(props: Props) {
           </p>
         </td>
         <td className="d-sm-none">
-          {ManageAuthIcon({
-            history: props.history,
-            type: actionType.Keys,
-            action: privateKeys?.posting ? actionType.Reveal : actionType.Import,
-            keyType: Keytype.Posting,
-            Pkey: postingReveal
-              ? props.accountData!.PublicKeys.publicPostingKey
-              : privateKeys?.posting!,
-            label: privateKeys?.posting
-              ? postingReveal
-                ? _t("manage-authorities.reveal-private-key")
-                : _t("manage-authorities.reveal-public-key")
-              : _t("manage-authorities.import"),
-            onCopy: (key) => {
-              copyToClipboard(key);
-            },
-            onImport: (type) => {
-              handleImportBtn(type);
-            },
-            onReveal: () => {
-              handlePostingReveal();
-            }
-          })}
+          {
+            <ManageAuthIcon
+              history={props.history}
+              type={actionType.Keys}
+              action={privateKeys?.posting ? actionType.Reveal : actionType.Import}
+              keyType={Keytype.Posting}
+              Pkey={
+                postingReveal
+                  ? props.accountData!.PublicKeys.publicPostingKey
+                  : privateKeys?.posting!
+              }
+              label={
+                privateKeys?.posting
+                  ? postingReveal
+                    ? _t("manage-authorities.reveal-private-key")
+                    : _t("manage-authorities.reveal-public-key")
+                  : _t("manage-authorities.import")
+              }
+              onCopy={(key) => {
+                copyToClipboard(key);
+              }}
+              onImport={(type) => {
+                handleImportBtn(type);
+              }}
+              onReveal={() => {
+                handlePostingReveal();
+              }}
+            />
+          }
         </td>
 
         <td className="col-weight-content">{props.accountData!.posting[1]}</td>
@@ -566,27 +582,31 @@ export default function ManageKeys(props: Props) {
         </td>
 
         <td className="d-sm-none">
-          {ManageAuthIcon({
-            history: props.history,
-            type: actionType.Keys,
-            action: privateKeys?.memo ? actionType.Reveal : actionType.Import,
-            keyType: Keytype.Memo,
-            Pkey: memoReveal ? props.accountData!.PublicKeys.publicMemoKey : privateKeys?.memo!,
-            label: privateKeys?.memo
-              ? memoReveal
-                ? _t("manage-authorities.reveal-private-key")
-                : _t("manage-authorities.reveal-public-key")
-              : _t("manage-authorities.import"),
-            onCopy: (key) => {
-              copyToClipboard(key);
-            },
-            onImport: (type) => {
-              handleImportBtn(type);
-            },
-            onReveal: () => {
-              handleMemoReveal();
-            }
-          })}
+          {
+            <ManageAuthIcon
+              history={props.history}
+              type={actionType.Keys}
+              action={privateKeys?.memo ? actionType.Reveal : actionType.Import}
+              keyType={Keytype.Memo}
+              Pkey={memoReveal ? props.accountData!.PublicKeys.publicMemoKey : privateKeys?.memo!}
+              label={
+                privateKeys?.memo
+                  ? memoReveal
+                    ? _t("manage-authorities.reveal-private-key")
+                    : _t("manage-authorities.reveal-public-key")
+                  : _t("manage-authorities.import")
+              }
+              onCopy={(key) => {
+                copyToClipboard(key);
+              }}
+              onImport={(type) => {
+                handleImportBtn(type);
+              }}
+              onReveal={() => {
+                handleMemoReveal();
+              }}
+            />
+          }
         </td>
         <td className="col-weight-content">{props.accountData!.owner[1]}</td>
       </tr>

@@ -1,19 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import { History } from "history";
-import { PrivateKey } from "@hiveio/dhive";
+import { PrivateKey, PublicKey } from "@hiveio/dhive";
 
 import { actionType } from "../manage-authority/types";
 import DropDown, { MenuItem } from "../dropdown";
 
 import { KebabMenu, revokeSvg, copyOutlinSvg, keyOutlineSvg } from "../../img/svg";
-import { _t } from "../../i18n";
 import "./index.scss";
 
 interface Props {
   type: string;
   account?: string;
   history: History | null;
-  Pkey?: PrivateKey | string;
+  Pkey?: PrivateKey | string | PublicKey;
   label?: string;
   action?: string;
   keyType?: string;
@@ -23,22 +22,23 @@ interface Props {
   onReveal?: () => void;
 }
 
-export class ManageAuthIcon extends Component<Props> {
-  revokeClicked = () => {
-    const { onRevoke, account } = this.props;
+const ManageAuthIcon = (props: Props) => {
+  const revokeClicked = () => {
+    const { onRevoke, account } = props;
     if (onRevoke) {
       onRevoke(account!);
     }
   };
 
-  copyClicked = () => {
-    const { onCopy, Pkey, label } = this.props;
+  const copyClicked = () => {
+    const { onCopy, Pkey, label } = props;
     if (onCopy) {
       onCopy(Pkey!.toString());
     }
   };
-  keysHandleClicked = () => {
-    const { onImport, action, keyType, onReveal } = this.props;
+
+  const keysHandleClicked = () => {
+    const { onImport, action, keyType, onReveal } = props;
     if (action === actionType.Import && onImport) {
       onImport(keyType!);
     } else {
@@ -48,59 +48,41 @@ export class ManageAuthIcon extends Component<Props> {
     }
   };
 
-  render() {
-    let menuItems: MenuItem[] = [];
-    switch (this.props.type) {
-      case actionType.Revoke:
-        menuItems = [
-          {
-            label: "Revoke",
-            onClick: this.revokeClicked,
-            icon: revokeSvg
-          }
-        ];
-        break;
-      case actionType.Keys:
-        menuItems = [
-          {
-            label: "Copy",
-            onClick: this.copyClicked,
-            icon: copyOutlinSvg
-          },
-          {
-            label: this.props.label!,
-            onClick: this.keysHandleClicked,
-            icon: keyOutlineSvg
-          }
-        ];
-        break;
-    }
-
-    const menuConfig = {
-      history: this.props.history,
-      label: "",
-      icon: KebabMenu,
-      items: menuItems
-    };
-
-    return <DropDown {...menuConfig} float="right" alignBottom={false} />;
+  let menuItems: MenuItem[] = [];
+  switch (props.type) {
+    case actionType.Revoke:
+      menuItems = [
+        {
+          label: "Revoke",
+          onClick: revokeClicked,
+          icon: revokeSvg
+        }
+      ];
+      break;
+    case actionType.Keys:
+      menuItems = [
+        {
+          label: "Copy",
+          onClick: copyClicked,
+          icon: copyOutlinSvg
+        },
+        {
+          label: props.label!,
+          onClick: keysHandleClicked,
+          icon: keyOutlineSvg
+        }
+      ];
+      break;
   }
-}
 
-export default (p: Props) => {
-  const props = {
-    type: p.type,
-    account: p.account,
-    history: p.history,
-    Pkey: p.Pkey,
-    label: p.label,
-    action: p.action,
-    keyType: p.keyType,
-    onRevoke: p.onRevoke,
-    onCopy: p.onCopy,
-    onImport: p.onImport,
-    onReveal: p.onReveal
+  const menuConfig = {
+    history: props.history,
+    label: "",
+    icon: KebabMenu,
+    items: menuItems
   };
 
-  return <ManageAuthIcon {...props} />;
+  return <DropDown {...menuConfig} float="right" alignBottom={false} />;
 };
+
+export default ManageAuthIcon;

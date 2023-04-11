@@ -31,7 +31,7 @@ interface Props {
 
 export default function ManageAuthorities(props: Props) {
   const [accountData, setAccountdata] = useState<AccountDataType>();
-  const [newPostingsAuthority, setNewPostingsAuthority] = useState<Array<any>>([]);
+  const [newPostingsAuthority, setNewPostingsAuthority] = useState<[string, number][]>([]);
   const [step, setStep] = useState(0);
   const [keyDialog, setKeyDialog] = useState(false);
   const [targetAccount, setTargetAccount] = useState("");
@@ -247,14 +247,16 @@ export default function ManageAuthorities(props: Props) {
                             </Button>
                           </td>
                           <td className="d-sm-none">
-                            {ManageAuthIcon({
-                              history: props.history,
-                              type: actionType.Revoke,
-                              account: account[0],
-                              onRevoke: (account) => {
-                                handleRevoke(account);
-                              }
-                            })}
+                            {
+                              <ManageAuthIcon
+                                history={props.history}
+                                type={actionType.Revoke}
+                                account={account[0]}
+                                onRevoke={(account) => {
+                                  handleRevoke(account);
+                                }}
+                              />
+                            }
                           </td>
                           <td className="col-weight-content">{account[1]}</td>
                         </>

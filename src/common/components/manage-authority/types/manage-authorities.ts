@@ -1,4 +1,5 @@
-import { Account } from "../../../store/accounts/types";
+import { Account, FullAccount } from "../../../store/accounts/types";
+import { PublicKey } from "@hiveio/dhive";
 
 export const Keytype = {
   Owner: "owner",
@@ -8,25 +9,25 @@ export const Keytype = {
 };
 
 export interface PublicKeys {
-  publicOwnerKey?: any;
-  publicActiveKey?: any;
-  publicPostingKey?: any;
-  publicMemoKey?: any;
+  publicOwnerKey?: string;
+  publicActiveKey?: string;
+  publicPostingKey?: string;
+  publicMemoKey?: string;
 }
 
 export interface AccountDataType {
-  postingsAuthority: Array<any>;
-  posting: Array<any>;
-  owner: Array<any>;
-  active: Array<any>;
+  postingsAuthority: [string, number][];
+  posting: [string | PublicKey, number];
+  owner: [string | PublicKey, number];
+  active: [string | PublicKey, number];
   weight: number;
   memokey: string;
   account: Account;
   PublicKeys: {
-    publicOwnerKey: any;
-    publicActiveKey: any;
-    publicPostingKey: any;
-    publicMemoKey: any;
+    publicOwnerKey: string | PublicKey;
+    publicActiveKey: string | PublicKey;
+    publicPostingKey: string | PublicKey;
+    publicMemoKey: string;
   };
 }
 

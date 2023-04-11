@@ -1503,7 +1503,9 @@
     "password-label": "Master password/Private key",
     "actions": "Actions",
     "memo": "memo",
-    "placeholder": "Enter Master pasword/private key"
+    "placeholder": "Enter Master pasword/private key",
+    "success-title": "Successful",
+    "success-sub-title": "Import successful"
   },
   "account-recovery": {
     "title": "Change Recovery Agent",

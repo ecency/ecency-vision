@@ -1830,7 +1830,7 @@ export const unstakeHiveEngineKey = async (
 export const Revoke = (
   account: string,
   weight_threshold: number,
-  account_auths: string[],
+  account_auths: [string, number][],
   key_auths: any[],
   memo_key: string,
   key: PrivateKey
@@ -1857,7 +1857,7 @@ export const Revoke = (
 export const RevokeHot = (
   account: string,
   weight_threshold: number,
-  account_auths: string[],
+  account_auths: [string, number][],
   key_auths: any[],
   memo_key: string
 ) => {
@@ -1885,7 +1885,7 @@ export const RevokeHot = (
 export const RevokeKc = (
   account: string,
   weight_threshold: number,
-  account_auths: string[],
+  account_auths: [string, number][],
   key_auths: any[],
   memo_key: string
 ) => {

@@ -8,7 +8,6 @@ import { success } from "../feedback";
 import { generateKeys } from "../../helper/generate-private-keys";
 import { _t } from "../../i18n";
 
-import _ from "lodash";
 import { copyContent } from "../../img/svg";
 import truncate from "../../util/truncate";
 import "./_index.scss";
@@ -41,9 +40,7 @@ export default class ViewKeys extends BaseComponent<Props, State> {
     const { activeUser } = this.props;
     const { curPass } = this.state;
     const privateKeys = generateKeys(activeUser, curPass);
-    if (!_.isEmpty(privateKeys)) {
-      this.setState({ keys: privateKeys });
-    }
+    this.setState({ keys: privateKeys });
   };
 
   copyToClipboard = (text: string) => {
