@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { getActiveVotes } from "../../api/hive";
 import { _t } from "../../i18n";
 import { informationVariantSvg } from "../../img/svg";
+import { prepareVotes } from "../entry-votes";
 
 export const ReadTime = (props: any) => {
   const { entry, global, isVisible, toolTip } = props;
 
   const [readTime, setReadTime] = useState(0);
   const [wordCount, setWordCount] = useState(0);
+  const [topCurator, setTopCurator] = useState("");
 
   useEffect(() => {
     calculateExtras();
@@ -18,6 +21,15 @@ export const ReadTime = (props: any) => {
     const wordPerMinuite: number = 225;
     setWordCount(entryCount);
     setReadTime(Math.ceil(entryCount / wordPerMinuite));
+
+    const retData = await getActiveVotes(entry.author, entry.permlink);
+    let votes = prepareVotes(entry, retData);
+
+    const highestRewardVoter = votes.reduce((prev, curr) => {
+      return prev.reward! > curr.reward! ? prev : curr;
+    });
+
+    setTopCurator(highestRewardVoter.voter);
   };
 
   const countWords = (entry: string) => {
@@ -57,13 +69,24 @@ export const ReadTime = (props: any) => {
     </div>
   ) : (
     <>
-      {!global.isMobile && isVisible && (
+      {!global.isMobile && isVisible && topCurator && (
         <div id="word-count" className="visible hide-xl">
           <p>
             {_t("entry.post-word-count")} {wordCount}
           </p>
           <p>
             {_t("entry.post-read-time")} {readTime} {_t("entry.post-read-minuites")}
+          </p>
+          <p>
+            {_t("entry.post-top-curator")}
+            <a
+              className="curator"
+              style={{ marginLeft: "5px" }}
+              target="_blank"
+              href={`https://ecency.com/@${topCurator}`}
+            >
+              {topCurator}
+            </a>
           </p>
         </div>
       )}
