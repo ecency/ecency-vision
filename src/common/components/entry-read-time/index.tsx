@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { getActiveVotes } from "../../api/hive";
+
+import { prepareVotes } from "../entry-votes";
+
 import { _t } from "../../i18n";
 import { informationVariantSvg } from "../../img/svg";
-import { prepareVotes } from "../entry-votes";
 
 export const ReadTime = (props: any) => {
   const { entry, global, isVisible, toolTip } = props;
@@ -22,8 +24,8 @@ export const ReadTime = (props: any) => {
     setWordCount(entryCount);
     setReadTime(Math.ceil(entryCount / wordPerMinuite));
 
-    const retData = await getActiveVotes(entry.author, entry.permlink);
-    let votes = prepareVotes(entry, retData);
+    const rawVotes = await getActiveVotes(entry.author, entry.permlink);
+    let votes = prepareVotes(entry, rawVotes);
 
     const highestRewardVoter = votes.reduce((prev, curr) => {
       return prev.reward! > curr.reward! ? prev : curr;
