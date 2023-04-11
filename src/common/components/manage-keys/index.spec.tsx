@@ -1,7 +1,6 @@
 import React from "react";
 import ManageKeys from "./index";
 import renderer from "react-test-renderer";
-import { BrowserRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { activeUserInstance, fullAccountInstance } from "../../helper/test-helper";
 import { AccountDataType } from "../manage-authority/types";
@@ -47,10 +46,6 @@ it("(1) Default render", () => {
     activeUser: { ...activeUserInstance },
     history: createBrowserHistory()
   };
-  const component = renderer.create(
-    <BrowserRouter>
-      <ManageKeys {...props} />
-    </BrowserRouter>
-  );
+  const component = renderer.create(<ManageKeys {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });

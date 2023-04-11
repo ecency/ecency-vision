@@ -1,7 +1,6 @@
 import React from "react";
 import ManageAuthorities from "./index";
 import renderer from "react-test-renderer";
-import { BrowserRouter } from "react-router-dom";
 import { globalInstance } from "../../helper/test-helper";
 import { createBrowserHistory } from "history";
 
@@ -13,10 +12,6 @@ it("(1) Default render", () => {
     history: createBrowserHistory(),
     setSigningKey: () => {}
   };
-  const component = renderer.create(
-    <BrowserRouter>
-      <ManageAuthorities {...props} />
-    </BrowserRouter>
-  );
+  const component = renderer.create(<ManageAuthorities {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
