@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { _t } from "../../../i18n";
 import { DeckHeader } from "../header/deck-header";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { AutoSizer, CellMeasurer, CellMeasurerCache, Grid, List } from "react-virtualized";
+import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from "react-virtualized";
 import { DeckGridContext } from "../deck-manager";
 
 export interface DeckProps {

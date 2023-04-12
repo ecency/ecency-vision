@@ -53,9 +53,10 @@ export const DeckAddColumnSearchBox = ({
         if (isCommunity) {
           const communitiesResponse = await getCommunities("", 4, usernameInput, "rank");
           data =
-            communitiesResponse?.map(({ title, about }) => ({
+            communitiesResponse?.map(({ title, about, name }) => ({
               name: title,
-              description: about
+              description: about,
+              tag: name
             })) ?? [];
         } else {
           const usersResponse = await lookupAccounts(usernameInput, 5);
@@ -125,6 +126,10 @@ export const DeckAddColumnSearchBox = ({
             onClick={() => {
               setUsername(i.name);
               setSelectedItem(i);
+
+              if (setItem) {
+                setItem(i);
+              }
             }}
           >
             <UserAvatar size="medium" global={global} username={i.name} />

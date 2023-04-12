@@ -30,7 +30,7 @@ export const DeckCommunityColumn = ({ id, settings, draggable }: Props) => {
     }
 
     try {
-      const response = await getPostsRanked(settings.contentType, "", settings.tag);
+      const response = await getPostsRanked(settings.contentType, "", "", 20, settings.tag);
       setData(response ?? []);
     } catch (e) {
     } finally {
