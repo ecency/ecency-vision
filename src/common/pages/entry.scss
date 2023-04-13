@@ -399,7 +399,6 @@
         flex-grow: 1;
         flex-shrink: 0;
 
-
         @media (min-width: $md-break) {
           flex-direction: row;
         }
@@ -413,7 +412,6 @@
         }
 
         .separator {
-
           &:first-of-type {
             display: none;
 
@@ -616,10 +614,19 @@
 
 @media screen and (min-width: 1210px) {
   div.post-info {
-    display: none
+    display: none;
   }
 }
 
 .post-info {
   margin-right: 10px;
+}
+
+.top-curator {
+  display: flex;
+
+  .curator {
+    margin-left: 9px;
+    margin-top: -3px;
+  }
 }

@@ -6,6 +6,8 @@ import { prepareVotes } from "../entry-votes";
 
 import { _t } from "../../i18n";
 import { informationVariantSvg } from "../../img/svg";
+import UserAvatar from "../user-avatar";
+import Mytooltip from "../tooltip";
 
 export const ReadTime = (props: any) => {
   const { entry, global, isVisible, toolTip } = props;
@@ -16,6 +18,7 @@ export const ReadTime = (props: any) => {
 
   useEffect(() => {
     calculateExtras();
+    console.log("Called");
   }, [entry]);
 
   const calculateExtras = async () => {
@@ -79,16 +82,13 @@ export const ReadTime = (props: any) => {
           <p>
             {_t("entry.post-read-time")} {readTime} {_t("entry.post-read-minuites")}
           </p>
-          <p>
+          <p className="top-curator">
             {_t("entry.post-top-curator")}
-            <a
-              className="curator"
-              style={{ marginLeft: "5px" }}
-              target="_blank"
-              href={`https://ecency.com/@${topCurator}`}
-            >
-              {topCurator}
-            </a>
+            <Mytooltip content={topCurator}>
+              <a className="curator" href={`https://ecency.com/@${topCurator}`}>
+                <UserAvatar username={topCurator} size="small" />
+              </a>
+            </Mytooltip>
           </p>
         </div>
       )}
