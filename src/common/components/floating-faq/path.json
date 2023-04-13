@@ -13,42 +13,102 @@
     {
       "path": "/created",
       "suggestions": [
+        "what-information-profile",
         "why-score-going-down",
         "what-can-post",
+        "what-are-tags"
+      ]
+    },
+    {
+      "path": "/trending",
+      "suggestions": [
+        "what-trending-feed",
+        "how-sort-trending",
         "what-are-tags",
         "how-use-tags",
-        "add-images-videos",
-        "what-thumbnail-image"
+        "how-search-tags"
       ]
     },
     {
       "path": "/discover",
+      "suggestions": ["find-friends", "accounts-included-leaderboard"]
+    },
+    {
+      "path": "/community",
       "suggestions": [
-        "can-change-username",
-        "can-delete-account",
-        "how-to-signin",
-        "what-is-hivesigner"
+        "find-communities",
+        "what-communities",
+        "how-post-community",
+        "leave-community",
+        "how-create-community"
       ]
     },
     {
-      "path": "/rising",
+      "path": "/submit",
       "suggestions": [
-        "what-information-profile",
-        "what-is-points",
-        "where-tokens-come",
-        "value-hive-hbd",
-        "what-are-hive"
+        "what-are-tags",
+        "how-use-tags",
+        "add-images-videos",
+        "what-thumbnail-image",
+        "how-set-beneficiaries"
       ]
     },
     {
-      "path": "/@.+/(blog|posts|wallet|points|engine|permissions|spk)",
+      "path": "/@.+/wallet",
       "suggestions": [
+        "what-are-hive",
         "what-are-hd",
-        "what-delegated-hp",
+        "what-are-hive-power",
         "what-powering-up",
         "what-powering-down",
-        "what-are-rc"
+        "what-delegated-hp"
       ]
+    },
+    {
+      "path": "/@.+/points",
+      "suggestions": [
+        "what-is-points",
+        "where-tokens-come",
+        "how-promotion-work",
+        "how-boosting-work",
+        "why-refund-points"
+      ]
+    },
+    {
+      "path": "/@.+/engine",
+      "suggestions": ["what-engine-tokens", "what-staking", "how-to-stake", "how-to-transfer"]
+    },
+    {
+      "path": "/@.+/posts",
+      "suggestions": [
+        "what-can-post",
+        "how-see-rewards",
+        "when-claim-rewards",
+        "what-curation",
+        "who-are-curators"
+      ]
+    },
+    {
+      "path": "/@.+/feed",
+      "suggestions": [
+        "what-friends-feed",
+        "what-is-reblog",
+        "how-to-reblog",
+        "how-sort-feed",
+        "what-dollar-amount"
+      ]
+    },
+    {
+      "path": "/@.+/settings",
+      "suggestions": ["can-change-username", "can-delete-account"]
+    },
+    {
+      "path": "/@.+/referrals",
+      "suggestions": ["what-are-referrals", "how-referrals-work"]
+    },
+    {
+      "path": "/.+/@.+/.+",
+      "suggestions": ["how-voting-works", "how-to-bookmark", "how-to-favorite"]
     }
   ]
 }
