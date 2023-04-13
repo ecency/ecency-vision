@@ -7,16 +7,20 @@ import { Entry } from "../../../store/entries/types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { communityTitles } from "../consts";
 import { DeckGridContext } from "../deck-manager";
+import { DeckPostViewer } from "./content-viewer";
+import { History } from "history";
 
 interface Props {
   id: string;
   settings: CommunityDeckGridItem["settings"];
+  history: History;
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-export const DeckCommunityColumn = ({ id, settings, draggable }: Props) => {
+export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props) => {
   const [data, setData] = useState<Entry[]>([]);
   const [isReloading, setIsReloading] = useState(false);
+  const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
@@ -51,12 +55,22 @@ export const DeckCommunityColumn = ({ id, settings, draggable }: Props) => {
       }}
       data={data}
       isReloading={isReloading}
+      isExpanded={!!currentViewingEntry}
       onReload={() => fetchData()}
       skeletonItem={<ListItemSkeleton />}
+      contentViewer={
+        currentViewingEntry ? (
+          <DeckPostViewer
+            entry={currentViewingEntry}
+            onClose={() => setCurrentViewingEntry(null)}
+            history={history}
+            backTitle={`${settings.username}(${communityTitles[settings.contentType]})`}
+          />
+        ) : undefined
+      }
     >
       {(item: any, measure: Function, index: number) => (
         <SearchListItem
-          onMounted={() => measure()}
           index={index + 1}
           entry={{
             ...item,
@@ -64,6 +78,8 @@ export const DeckCommunityColumn = ({ id, settings, draggable }: Props) => {
           }}
           {...item}
           children=""
+          onMounted={() => measure()}
+          onEntryView={() => setCurrentViewingEntry(item)}
         />
       )}
     </GenericDeckColumn>

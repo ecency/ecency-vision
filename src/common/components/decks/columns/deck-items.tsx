@@ -11,7 +11,6 @@ import EntryVotes from "../../entry-votes";
 import EntryReblogBtn from "../../entry-reblog-btn";
 import EntryMenu from "../../entry-menu";
 import Tooltip from "../../tooltip";
-import entryLink from "../../entry-link";
 import profileLink from "../../profile-link";
 import { history } from "../../../store";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -58,6 +57,7 @@ export interface SearchItemProps {
   json_metadata: any;
   entry: any;
   onMounted: () => void;
+  onEntryView: () => void;
 }
 
 export const SearchListItem = ({
@@ -75,7 +75,8 @@ export const SearchListItem = ({
   url,
   category,
   entry,
-  onMounted
+  onMounted,
+  onEntryView
 }: SearchItemProps) => {
   const { global } = useMappedStore();
 
@@ -101,18 +102,7 @@ export const SearchListItem = ({
             // post link
             if (part.includes("/")) {
               const s = part.split("/");
-              return (
-                <Fragment key={i}>
-                  {entryLink({
-                    entry: {
-                      category: "post",
-                      author: s[0].replace("@", ""),
-                      permlink: s[1]
-                    },
-                    children: <>{part}</>
-                  } as any)}
-                </Fragment>
-              );
+              return <Fragment key={i}>{part}</Fragment>;
             }
 
             // user link
@@ -219,7 +209,7 @@ export const SearchListItem = ({
               <small>{`${dateToRelative(created)}`}</small>
             </div>
           </div>
-          <div onClick={() => history && history.push(url)} className="pointer">
+          <div onClick={() => onEntryView()} className="pointer">
             {title && (
               <div className="d-flex">
                 <div className="hot-item-link font-weight-bold mt-3">{title}</div>

@@ -106,6 +106,7 @@ export const DeckGrid = ({ history }: Props) => {
                           {type === "co" ? (
                             <DeckCommunityColumn
                               id={id}
+                              history={history}
                               draggable={provided.dragHandleProps}
                               settings={settings as CommunityDeckGridItem["settings"]}
                             />

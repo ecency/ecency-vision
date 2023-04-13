@@ -63,7 +63,7 @@
       background-color: rgba($dark-two, 0.75);
     }
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(sm) {
       flex-direction: column;
       align-items: flex-start;
       height: 100vh;
@@ -82,7 +82,7 @@
       display: none;
     }
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(sm) {
       flex-direction: column;
       width: 100%;
       align-items: flex-start;
@@ -139,7 +139,7 @@
       @include margin-right(1rem);
     }
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(sm) {
       border-right: 0;
       width: 100%;
       border-bottom: 1px solid $border-color;
@@ -156,7 +156,7 @@
 
     @include margin-right(1rem);
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(sm) {
       width: calc(100% - 2rem);
 
       @include margin-bottom(1rem);

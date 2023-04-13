@@ -21,6 +21,8 @@ export interface DeckProps {
   isReloading: boolean;
   children: (item: any, measure: Function, index: number) => JSX.Element;
   skeletonItem: JSX.Element;
+  contentViewer?: JSX.Element;
+  isExpanded?: boolean;
 }
 
 export const GenericDeckColumn = ({
@@ -31,7 +33,9 @@ export const GenericDeckColumn = ({
   isReloading,
   children,
   skeletonItem,
-  id
+  id,
+  contentViewer,
+  isExpanded
 }: DeckProps) => {
   const { activeUser } = useMappedStore();
 
@@ -46,7 +50,7 @@ export const GenericDeckColumn = ({
   const containerClass = header.title.includes(notificationTranslated) ? "list-body pb-0" : "";
 
   return (
-    <div className={`deck ${containerClass}`}>
+    <div className={`deck ${containerClass} ${isExpanded ? "expanded" : ""}`}>
       <DeckHeader
         draggable={draggable}
         sticky={true}
@@ -94,6 +98,7 @@ export const GenericDeckColumn = ({
             {Array.from(Array(20).keys()).map(() => skeletonItem)}
           </div>
         )}
+        {contentViewer}
       </div>
     </div>
   );
