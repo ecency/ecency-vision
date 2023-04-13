@@ -5,16 +5,21 @@ import { SearchDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { search, SearchResult } from "../../../api/search-api";
 import { DeckGridContext } from "../deck-manager";
+import { DeckPostViewer } from "./content-viewer";
+import { Entry } from "../../../store/entries/types";
+import { History } from "history";
 
 interface Props {
   id: string;
   settings: SearchDeckGridItem["settings"];
+  history: History;
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-export const DeckSearchColumn = ({ id, settings, draggable }: Props) => {
+export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) => {
   const [data, setData] = useState<SearchResult[]>([]);
   const [isReloading, setIsReloading] = useState(false);
+  const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
@@ -48,9 +53,22 @@ export const DeckSearchColumn = ({ id, settings, draggable }: Props) => {
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
       }}
       data={data}
+      isExpanded={!!currentViewingEntry}
       isReloading={isReloading}
       onReload={() => fetchData()}
       skeletonItem={<ListItemSkeleton />}
+      contentViewer={
+        currentViewingEntry ? (
+          <DeckPostViewer
+            entry={currentViewingEntry}
+            history={history}
+            onClose={() => setCurrentViewingEntry(null)}
+            backTitle={`Query: ${settings.query}`}
+          />
+        ) : (
+          <></>
+        )
+      }
     >
       {(item: any, measure: Function, index: number) => (
         <SearchListItem
@@ -62,6 +80,7 @@ export const DeckSearchColumn = ({ id, settings, draggable }: Props) => {
           }}
           {...item}
           children=""
+          onEntryView={() => setCurrentViewingEntry(item)}
         />
       )}
     </GenericDeckColumn>

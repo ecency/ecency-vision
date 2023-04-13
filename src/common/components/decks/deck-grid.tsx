@@ -98,6 +98,7 @@ export const DeckGrid = ({ history }: Props) => {
                             <DeckUserColumn
                               id={id}
                               draggable={provided.dragHandleProps}
+                              history={history}
                               settings={settings as UserDeckGridItem["settings"]}
                             />
                           ) : (
@@ -136,6 +137,7 @@ export const DeckGrid = ({ history }: Props) => {
                           {type === "tr" ? (
                             <DeckTrendingColumn
                               id={id}
+                              history={history}
                               draggable={provided.dragHandleProps}
                               settings={settings as ReloadableDeckGridItem["settings"]}
                             />
@@ -156,6 +158,7 @@ export const DeckGrid = ({ history }: Props) => {
                               id={id}
                               settings={settings as SearchDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
+                              history={history}
                             />
                           ) : (
                             <></>

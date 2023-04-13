@@ -7,16 +7,20 @@ import { Entry } from "../../../store/entries/types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { userTitles } from "../consts";
 import { DeckGridContext } from "../deck-manager";
+import { DeckPostViewer } from "./content-viewer";
+import { History } from "history";
 
 interface Props {
   id: string;
   settings: UserDeckGridItem["settings"];
+  history: History;
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-export const DeckUserColumn = ({ id, settings, draggable }: Props) => {
+export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
   const [data, setData] = useState<Entry[]>([]);
   const [isReloading, setIsReloading] = useState(false);
+  const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
@@ -50,9 +54,22 @@ export const DeckUserColumn = ({ id, settings, draggable }: Props) => {
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
       }}
       data={data}
+      isExpanded={!!currentViewingEntry}
       isReloading={isReloading}
       onReload={() => fetchData()}
       skeletonItem={<ListItemSkeleton />}
+      contentViewer={
+        currentViewingEntry ? (
+          <DeckPostViewer
+            entry={currentViewingEntry}
+            history={history}
+            onClose={() => setCurrentViewingEntry(null)}
+            backTitle={`@${settings.username}(${userTitles[settings.contentType]})`}
+          />
+        ) : (
+          <></>
+        )
+      }
     >
       {(item: any, measure: Function, index: number) => (
         <SearchListItem
@@ -64,6 +81,7 @@ export const DeckUserColumn = ({ id, settings, draggable }: Props) => {
           }}
           {...item}
           children=""
+          onEntryView={() => setCurrentViewingEntry(item)}
         />
       )}
     </GenericDeckColumn>
