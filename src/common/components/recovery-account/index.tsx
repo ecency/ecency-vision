@@ -65,12 +65,12 @@ export default function AccountRecovery(props: Props) {
     const account = await getAccount(props.activeUser!.username);
     setAccountData(account);
     const { recovery_account } = account;
-    setCurrRecoveryAccount(ECENCY);
+    setCurrRecoveryAccount(recovery_account);
     if (recovery_account === props.activeUser?.username) {
       setToWarning(_t("account-recovery.same-recover-agent-suggestion"));
     }
 
-    if (ECENCY === ECENCY) {
+    if (recovery_account === ECENCY) {
       setIsEcency(true);
       let response = await getRecoveries(props.activeUser?.username!);
       setRecoveryEmails(response);
