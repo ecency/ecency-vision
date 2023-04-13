@@ -54,6 +54,10 @@
       ]
     },
     {
+      "path": "/search$",
+      "suggestions": ["how-to-search", "what-appears-search"]
+    },
+    {
       "path": "/@.+/wallet",
       "suggestions": [
         "what-are-hive",

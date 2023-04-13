@@ -69,6 +69,7 @@ export const faqKeysGeneral = [
   "how-to-follow",
   "how-find-information-followers",
   "how-to-search",
+  "how-to-search-advanced",
   "what-appears-search",
   "what-mean-promoted",
   "how-promotion-work",
