@@ -1505,7 +1505,9 @@
     "info-message": "Overwrite pending request? @{{n}}",
     "same-account-error": "You can't set yourself as recovery account!",
     "same-recover-agent-suggestion": "Please change your recovery account to Ecency or any other account",
-    "email-placeholder": "Enter email to verify recovery process"
+    "email-placeholder": "Enter email to verify recovery process",
+    "update-successful": "Update successful",
+    "update-success-message": "Your Recovery email has been updated successfully"
   },
   "add-image": {
     "title": "Add Image",

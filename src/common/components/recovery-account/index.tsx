@@ -65,12 +65,12 @@ export default function AccountRecovery(props: Props) {
     const account = await getAccount(props.activeUser!.username);
     setAccountData(account);
     const { recovery_account } = account;
-    setCurrRecoveryAccount(recovery_account);
+    setCurrRecoveryAccount(ECENCY);
     if (recovery_account === props.activeUser?.username) {
       setToWarning(_t("account-recovery.same-recover-agent-suggestion"));
     }
 
-    if (recovery_account === ECENCY) {
+    if (ECENCY === ECENCY) {
       setIsEcency(true);
       let response = await getRecoveries(props.activeUser?.username!);
       setRecoveryEmails(response);
@@ -110,11 +110,13 @@ export default function AccountRecovery(props: Props) {
 
       setDisabled(isEcency);
       setToError(isEcency ? "" : toError);
-      if (resp && e.target.value === props.activeUser?.username) {
+      if (e.target.value === props.activeUser?.username) {
         setDisabled(true);
         setToError(_t("account-recovery.same-account-error"));
         return;
       }
+      setDisabled(false);
+      setToError("");
     } else {
       if (e.target.value.length > 0) {
         setDisabled(true);
@@ -124,22 +126,29 @@ export default function AccountRecovery(props: Props) {
   };
 
   const update = () => {
-    if (!popOver) {
+    if (!popOver && !isEcency) {
       setKeyDialog(true);
+    } else {
+      handleIsEcency();
     }
   };
 
   const handleIsEcency = async () => {
+    setInProgress(true);
     if (isEcency) {
       await addRecoveries(props.activeUser?.username!, recoveryEmail, {
         publick_keys: accountData!.owner.key_auths[0]
       });
-      setIsEcency(false);
     } else {
       if (recoveryEmails.length >= 2) {
         await deleteRecoveries(props.activeUser?.username!, recoveryEmails[0]._id);
       }
     }
+
+    setKeyDialog(true);
+    setStep(4);
+    setDisabled(true);
+    setInProgress(false);
   };
 
   const onKey = async (key: PrivateKey) => {
@@ -310,91 +319,115 @@ export default function AccountRecovery(props: Props) {
     );
   };
 
+  const emailUpdateModal = () => {
+    return (
+      <>
+        <div className="recovery-success-dialog-header border-bottom">
+          <div className="step-no">1</div>
+          <div className="recovery-success-dialog-titles">
+            <div className="recovery-main-title">{_t("trx-common.success-title")}</div>
+            <div className="recovery-sub-title">{_t("account-recovery.update-successful")}</div>
+          </div>
+        </div>
+
+        <div className="recovery-success-dialog-body">
+          <div className="recovery-success-dialog-content">
+            <span> {_t("account-recovery.update-success-message")}</span>
+          </div>
+          <div className="d-flex justify-content-center">
+            <span className="hr-6px-btn-spacer" />
+            <Button onClick={finish}>{_t("g.finish")}</Button>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
-      {accountData && (
-        <div className="account-recovery-form">
-          <Form
-            onSubmit={(e: React.FormEvent) => {
-              e.preventDefault();
-              e.stopPropagation();
-              update();
-            }}
-          >
-            <Form.Group controlId="account-name">
-              <Form.Label>{_t("account-recovery.curr-recovery-acc")}</Form.Label>
-              <Form.Control type="text" readOnly={true} value={currRecoveryAccount} />
-            </Form.Group>
-            {toWarning && <small className="suggestion-info">{toWarning}</small>}
-            <Form.Group controlId="cur-pass">
-              <Form.Label>{_t("account-recovery.new-recovery-acc")}</Form.Label>
+      <div className="account-recovery-form">
+        <Form
+          onSubmit={(e: React.FormEvent) => {
+            e.preventDefault();
+            e.stopPropagation();
+            update();
+          }}
+        >
+          <Form.Group controlId="account-name">
+            <Form.Label>{_t("account-recovery.curr-recovery-acc")}</Form.Label>
+            <Form.Control type="text" readOnly={true} value={currRecoveryAccount} />
+          </Form.Group>
+          {toWarning && <small className="suggestion-info">{toWarning}</small>}
+          <Form.Group controlId="cur-pass">
+            <Form.Label>{_t("account-recovery.new-recovery-acc")}</Form.Label>
+            <Form.Control
+              value={newRecoveryAccount}
+              onChange={newRecoveryAccountChange}
+              required={!isEcency ? true : false}
+              type="text"
+              autoFocus={true}
+              autoComplete="off"
+              className={toError ? "is-invalid" : ""}
+            />
+          </Form.Group>
+          {toError && <small className="error-info">{toError}</small>}
+          {isEcency && (
+            <Form.Group controlId="recovery-email">
+              <Form.Label>{_t("account-recovery.new-recovery-email")}</Form.Label>
               <Form.Control
-                value={newRecoveryAccount}
-                onChange={newRecoveryAccountChange}
+                value={recoveryEmail}
+                onChange={handleRecoveryEmail}
                 required={true}
                 type="text"
-                autoFocus={true}
+                placeholder={_t("account-recovery.email-placeholder")}
                 autoComplete="off"
-                className={toError ? "is-invalid" : ""}
               />
             </Form.Group>
-            {toError && <small className="error-info">{toError}</small>}
-            {isEcency && (
-              <Form.Group controlId="recovery-email">
-                <Form.Label>{_t("account-recovery.new-recovery-email")}</Form.Label>
-                <Form.Control
-                  value={recoveryEmail}
-                  onChange={handleRecoveryEmail}
-                  required={true}
-                  type="text"
-                  placeholder={_t("account-recovery.email-placeholder")}
-                  autoComplete="off"
-                />
-              </Form.Group>
-            )}
-
-            {popOver ? (
-              <div className="main">
-                <PopoverConfirm
-                  placement="top"
-                  trigger="click"
-                  onConfirm={() => handleConfirm()}
-                  titleText={_t("account-recovery.info-message", { n: pendingRecoveryAccount })}
-                >
-                  <div onClick={(e) => e.stopPropagation()}>
-                    <Button disabled={disabled} variant="primary" type="submit">
-                      {_t("g.update")}
-                    </Button>
-                  </div>
-                </PopoverConfirm>
-              </div>
-            ) : (
-              <Button disabled={disabled} variant="primary" type="submit">
-                {_t("g.update")}
-              </Button>
-            )}
-          </Form>
-
-          {keyDialog && (
-            <Modal
-              animation={false}
-              show={true}
-              centered={true}
-              onHide={toggleKeyDialog}
-              keyboard={false}
-              className="recovery-dialog modal-thin-header"
-              size="lg"
-            >
-              <Modal.Header closeButton={true} />
-              <Modal.Body>
-                {step === 1 && confirmationModal()}
-                {step === 2 && signkeyModal()}
-                {step === 3 && successModal()}
-              </Modal.Body>
-            </Modal>
           )}
-        </div>
-      )}
+          {inProgress && <LinearProgress />}
+
+          {popOver ? (
+            <div className="main">
+              <PopoverConfirm
+                placement="top"
+                trigger="click"
+                onConfirm={() => handleConfirm()}
+                titleText={_t("account-recovery.info-message", { n: pendingRecoveryAccount })}
+              >
+                <div onClick={(e) => e.stopPropagation()}>
+                  <Button disabled={disabled} variant="primary" type="submit">
+                    {_t("g.update")}
+                  </Button>
+                </div>
+              </PopoverConfirm>
+            </div>
+          ) : (
+            <Button className="update-btn" disabled={disabled} variant="primary" type="submit">
+              {_t("g.update")}
+            </Button>
+          )}
+        </Form>
+
+        {keyDialog && (
+          <Modal
+            animation={false}
+            show={true}
+            centered={true}
+            onHide={toggleKeyDialog}
+            keyboard={false}
+            className="recovery-dialog modal-thin-header"
+            size="lg"
+          >
+            <Modal.Header closeButton={true} />
+            <Modal.Body>
+              {step === 1 && confirmationModal()}
+              {step === 2 && signkeyModal()}
+              {step === 3 && successModal()}
+              {step === 4 && emailUpdateModal()}
+            </Modal.Body>
+          </Modal>
+        )}
+      </div>
     </>
   );
 }
