@@ -80,21 +80,15 @@
     },
     {
       "path": "/@.+/posts",
-      "suggestions": [
-        "what-can-post",
-        "how-see-rewards",
-        "when-claim-rewards",
-        "what-curation",
-        "who-are-curators"
-      ]
+      "suggestions": ["what-can-post", "how-see-rewards", "when-claim-rewards", "who-are-curators"]
     },
     {
       "path": "/@.+/feed",
       "suggestions": [
-        "what-friends-feed",
-        "what-is-reblog",
-        "how-to-reblog",
-        "how-sort-feed",
+        "how-to-sort-feed",
+        "what-mean-promoted",
+        "what-is-reblogging",
+        "exclude-reblogs-feed",
         "what-dollar-amount"
       ]
     },
