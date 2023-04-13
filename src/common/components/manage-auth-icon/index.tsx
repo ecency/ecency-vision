@@ -82,7 +82,7 @@ const ManageAuthIcon = (props: Props) => {
     items: menuItems
   };
 
-  return <DropDown {...menuConfig} float="right" alignBottom={false} />;
+  return <DropDown {...menuConfig} float="right" alignBottom={false} noMarginTop={true} />;
 };
 
 export default ManageAuthIcon;

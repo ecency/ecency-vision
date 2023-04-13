@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { History } from "history";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 
 import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 import { decodeObj, encodeObj } from "../../util/encoder";
@@ -14,8 +14,8 @@ import { generateKeys } from "../../helper/generate-private-keys";
 
 import * as ls from "../../util/local-storage";
 import { _t } from "../../i18n";
+import { keySvg } from "../../img/svg";
 import "./index.scss";
-
 interface Props {
   accountData: AccountDataType;
   activeUser: ActiveUser;
@@ -51,7 +51,6 @@ export default function ManageKeys(props: Props) {
 
   useEffect(() => {
     getKeys();
-    console.log(props.accountData!.PublicKeys.publicOwnerKey);
   }, []);
 
   useEffect(() => {
@@ -263,24 +262,26 @@ export default function ManageKeys(props: Props) {
         </div>
         <div className="curr-password">
           <Form
-            className="keys-form"
             onSubmit={(e: React.FormEvent) => {
               e.preventDefault();
             }}
           >
-            <Form.Group>
-              <Form.Label>{_t("manage-authorities.password-label")}</Form.Label>
+            <InputGroup>
+              <InputGroup.Prepend>
+                <InputGroup.Text>{keySvg}</InputGroup.Text>
+              </InputGroup.Prepend>
               <Form.Control
                 value={key}
-                placeholder={_t("manage-authorities.placeholder")}
-                onChange={(e) => setKey(e.target.value)}
-                required={true}
                 type="password"
                 autoFocus={true}
                 autoComplete="off"
+                placeholder={_t("manage-authorities.placeholder")}
+                onChange={(e) => setKey(e.target.value)}
               />
-            </Form.Group>
-            <Button onClick={handleSubmit}>{_t("manage-authorities.submit")}</Button>
+              <InputGroup.Append>
+                <Button onClick={handleSubmit}>{_t("key-or-hot.sign")}</Button>
+              </InputGroup.Append>
+            </InputGroup>
           </Form>
         </div>
       </>
