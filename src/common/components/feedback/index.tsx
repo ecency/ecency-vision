@@ -5,7 +5,6 @@ import { ErrorTypes } from "../../enums";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
 import "./_index.scss";
-import _ from "lodash";
 
 export const error = (message: string, errorType = ErrorTypes.COMMON) => {
   const detail: ErrorFeedbackObject = {
@@ -74,6 +73,10 @@ export default function Feedback(props: Props) {
     setFeedBack(null);
   };
 
+  const isEmpty = (value: FeedbackObject | null | undefined) => {
+    return value == null || (typeof value === "object" && Object.keys(value).length === 0);
+  };
+
   const onFeedback = (e: Event) => {
     const detail = (e as CustomEvent).detail as FeedbackObject;
     setFeedBack(detail);
@@ -82,7 +85,7 @@ export default function Feedback(props: Props) {
 
   return (
     <>
-      <div className={"feedback-container" + (!_.isEmpty(feedback) ? " " + "visible" : "")}>
+      <div className={"feedback-container" + (!isEmpty(feedback) ? " " + "visible" : "")}>
         {showChild && feedback && (
           <FeedbackMessage
             activeUser={props.activeUser}
