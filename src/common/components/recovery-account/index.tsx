@@ -106,10 +106,12 @@ export default function AccountRecovery(props: Props) {
 
     const resp = await getAccount(e.target.value);
     if (resp) {
-      const isEcency = e.target.value === ECENCY;
+      const isECENCY = e.target.value === ECENCY;
+      if (isECENCY) {
+        setDisabled(isECENCY);
+        return;
+      }
 
-      setDisabled(isEcency);
-      setToError(isEcency ? "" : toError);
       if (e.target.value === props.activeUser?.username) {
         setDisabled(true);
         setToError(_t("account-recovery.same-account-error"));
@@ -144,16 +146,20 @@ export default function AccountRecovery(props: Props) {
         await deleteRecoveries(props.activeUser?.username!, recoveryEmails[0]._id);
       }
     }
-
-    setKeyDialog(true);
-    setStep(4);
+    if (isEcency && currRecoveryAccount === ECENCY) {
+      setKeyDialog(true);
+      setStep(4);
+    }
     setDisabled(true);
     setInProgress(false);
   };
 
   const onKey = async (key: PrivateKey) => {
     setInProgress(true);
-    handleIsEcency();
+    if (isEcency || currRecoveryAccount === ECENCY) {
+      handleIsEcency();
+    }
+
     try {
       let result = await changeRecoveryAccount(
         props.activeUser!.username,
@@ -386,7 +392,7 @@ export default function AccountRecovery(props: Props) {
           )}
           {inProgress && <LinearProgress />}
 
-          {popOver ? (
+          {(popOver && currRecoveryAccount !== ECENCY) || (popOver && !isEcency) ? (
             <div className="main">
               <PopoverConfirm
                 placement="top"
