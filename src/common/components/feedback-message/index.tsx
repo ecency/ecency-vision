@@ -42,10 +42,6 @@ export default function FeedbackMessage(props: Props) {
   }, []);
 
   useEffect(() => {
-    console.log(list);
-  }, [list]);
-
-  useEffect(() => {
     if (progress === 0) {
       setDisplay(false);
       props.handleChild(false);
