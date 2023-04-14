@@ -118,16 +118,15 @@ const FloatingFAQ = () => {
     <>
       {
         <>
-          <ClickAwayListener onClickAway={() => show && setShow(false)}>
+          <ClickAwayListener
+            className="floating-faq-button"
+            onClickAway={() => show && setShow(false)}
+          >
             {display && (
               <Button className="help-btn" variant="primary" onClick={handleShow}>
                 {helpIconSvg}
 
                 {innerWidth >= 792 && <div className="help">{_t("floating-faq.help")}</div>}
-                {/* <div className="help">
-                  {helpIconSvg}
-                  <div className="help-button-content">{_t("floating-faq.help")}</div>
-                </div> */}
               </Button>
             )}
 
