@@ -139,7 +139,12 @@ export default function AccountRecovery(props: Props) {
     setInProgress(true);
     if (isEcency) {
       await addRecoveries(props.activeUser?.username!, recoveryEmail, {
-        publick_keys: accountData!.owner.key_auths[0]
+        public_keys: [
+          ...accountData!.owner.key_auths,
+          ...accountData!.active.key_auths,
+          ...accountData!.posting.key_auths,
+          ...accountData!.memo_key
+        ]
       });
     } else {
       if (recoveryEmails.length >= 2) {
