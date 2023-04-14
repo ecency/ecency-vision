@@ -10,6 +10,7 @@ import { History } from "history";
 import Discussion from "../../../discussion";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useLocation } from "react-router";
+import { DeckPostViewerCommentBox } from "./deck-post-viewer-comment-box";
 
 interface Props {
   entry: Entry;
@@ -50,6 +51,9 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
         className="px-3 pb-4 markdown-view"
         dangerouslySetInnerHTML={{ __html: renderPostBody(entry) }}
       />
+      <div className="px-3">
+        <DeckPostViewerCommentBox entry={entry} onReplied={() => {}} />
+      </div>
       <div className="px-3">
         <Discussion
           {...store}
