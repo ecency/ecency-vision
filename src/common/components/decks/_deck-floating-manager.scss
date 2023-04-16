@@ -92,11 +92,10 @@
   .item {
     display: flex;
     align-items: center;
-    justify-content: center;
     cursor: pointer;
     border-right: 1px solid $border-color;
     height: 4rem;
-    min-width: 10rem;
+    white-space: nowrap;
 
     @include transition(0.3s);
     @include padding(1rem);
@@ -132,8 +131,10 @@
     }
 
     svg {
-      width: 1.5rem;
-      height: 1.5rem;
+      min-width: 1.5rem;
+      min-height: 1.5rem;
+      max-width: 1.5rem;
+      max-height: 1.5rem;
       color: $gray-500;
 
       @include margin-right(1rem);
