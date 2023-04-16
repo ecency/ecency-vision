@@ -19,14 +19,43 @@
     @include font-size(0.75rem);
   }
 
+  .form-control {
+    height: 3rem;
+    background: transparent;
+    border: 2px solid $border-color;
+
+    &:active, &:focus {
+      border-color: $primary;
+    }
+
+    @include themify(night) {
+      color: $white;
+      border-color: $gray-600;
+
+      &:active, &:focus {
+        border-color: $gray-400;
+      }
+    }
+  }
+
   .input-group-prepend {
-    background-color: $input-bg;
-    border: 1px solid $border-color;
-    height: calc(1.2em + 0.75rem + 2px);
+    background-color: transparent;
+    border: 2px solid $border-color;
+    border-right: 0;
+    height: 3rem;
     position: relative;
 
     @include border-top-left-radius($input-border-radius);
     @include border-bottom-left-radius($input-border-radius);
+
+    @include themify(night) {
+      color: $white;
+      border-color: $gray-600;
+
+      &:active, &:focus {
+        border-color: $gray-400;
+      }
+    }
 
     .btn {
       display: flex;

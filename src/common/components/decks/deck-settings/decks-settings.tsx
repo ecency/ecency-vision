@@ -106,7 +106,6 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
         {!isRemovingDeck && (
           <Form>
             <Form.Group className="mb-4">
-              <Form.Label className="font-weight-bold">Information</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
                   <Button
@@ -137,26 +136,20 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                 />
               </InputGroup>
             </Form.Group>
-            <Form.Label className="font-weight-bold">Deck storage</Form.Label>
-            <Alert variant="primary">
-              If its set local storage then this deck will be saved only on current device. Save on
-              account if you want to get access to the deck from any device.
-            </Alert>
+            <Form.Label className="font-weight-bold">Settings</Form.Label>
+            {isLocalStorage && (
+              <Alert variant="primary">
+                If its set local storage then this deck will be saved only on current device. Save
+                on account if you want to get access to the deck from any device.
+              </Alert>
+            )}
             <div className="form-section d-flex">
               <Form.Group>
                 <Form.Check
                   checked={isLocalStorage}
-                  type="radio"
-                  label="Use local storage"
-                  onChange={({ target }) => setIsLocalStorage(target.value === "on")}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Check
-                  checked={!isLocalStorage}
-                  type="radio"
-                  label="Use account storage"
-                  onChange={({ target }) => setIsLocalStorage(target.value === "off")}
+                  type="checkbox"
+                  label="Save locally"
+                  onChange={({ target }) => setIsLocalStorage(target.checked)}
                 />
               </Form.Group>
             </div>
