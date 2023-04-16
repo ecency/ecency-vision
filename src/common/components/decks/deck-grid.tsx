@@ -179,7 +179,7 @@ export const DeckGrid = ({ history }: Props) => {
                   variant="primary"
                   onClick={() =>
                     deckContext.add({
-                      key: deckContext.layout.columns.length + 1,
+                      key: deckContext.getNextKey(),
                       type: "ac",
                       settings: {}
                     })

@@ -23,6 +23,7 @@ interface Context {
   deleteColumn: (id: string) => void;
   setScrollHandler: (handle: { handle: (key: number) => void }) => void;
   updateColumnIntervalMs: (id: string, value: number) => void;
+  getNextKey: () => number;
 }
 
 export const DeckGridContext = React.createContext<Context>({
@@ -38,7 +39,8 @@ export const DeckGridContext = React.createContext<Context>({
   deleteColumn: () => {},
   isDecksLoading: false,
   setScrollHandler: () => {},
-  updateColumnIntervalMs: () => {}
+  updateColumnIntervalMs: () => {},
+  getNextKey: () => 0
 });
 
 interface Props {
@@ -112,21 +114,23 @@ export const DeckManager = ({ children }: Props) => {
   };
 
   const updateDeckOnLayoutChange = async () => {
-    try {
-      if (previousLayout?.key === activeDeck) {
-        if (activeUser && layout.storageType === "account") {
-          await updateDeck(activeUser.username, layout);
-        } else {
-          const localDecksSnapshot = { decks: [...localDecks?.decks] };
-          const existingDeckIndex = localDecksSnapshot.decks.findIndex((d) => d.key === activeDeck);
-          if (existingDeckIndex > -1) {
-            localDecksSnapshot.decks[existingDeckIndex] = layout;
-            setLocalDecks(localDecksSnapshot);
+    const decksSnapshot = { decks: [...localDecks?.decks] };
+    const existingDeckIndex = decksSnapshot.decks.findIndex((d) => d.key === activeDeck);
+    if (existingDeckIndex > -1) {
+      decksSnapshot.decks[existingDeckIndex] = layout;
+      try {
+        if (previousLayout?.key === activeDeck) {
+          if (activeUser && layout.storageType === "account") {
+            await updateDeck(activeUser.username, layout);
+          } else {
+            setLocalDecks(decksSnapshot);
           }
         }
+      } catch (e) {
+        error("Deck updating failed. Please, try again");
+      } finally {
+        setDecks(decksSnapshot);
       }
-    } catch (e) {
-      error("Deck updating failed. Please, try again");
     }
   };
 
@@ -286,7 +290,8 @@ export const DeckManager = ({ children }: Props) => {
         deleteColumn,
         isDecksLoading,
         setScrollHandler,
-        updateColumnIntervalMs
+        updateColumnIntervalMs,
+        getNextKey
       }}
     >
       {children({
@@ -302,7 +307,8 @@ export const DeckManager = ({ children }: Props) => {
         deleteColumn,
         isDecksLoading,
         setScrollHandler,
-        updateColumnIntervalMs
+        updateColumnIntervalMs,
+        getNextKey
       })}
     </DeckGridContext.Provider>
   );

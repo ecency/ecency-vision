@@ -291,8 +291,15 @@
       align-items: center;
 
       > * {
-        background-color: $gray-200;
         animation: skeleton-loader 1s infinite;
+
+        @include themify(day) {
+          background-color: $gray-200;
+        }
+
+        @include themify(night) {
+          background-image: $dark-two;
+        }
       }
 
       &.wallet-list-item-skeleton {
@@ -340,17 +347,35 @@
       }
     }
 
-    @keyframes skeleton-loader {
-      0% {
-        background-color: $gray-200;
-      }
+    @include themify(day) {
+      @keyframes skeleton-loader {
+        0% {
+          background-color: $gray-200;
+        }
 
-      50% {
-        background-color: $gray-300;
-      }
+        50% {
+          background-color: $gray-300;
+        }
 
-      100% {
-        background-color: $gray-200;
+        100% {
+          background-color: $gray-200;
+        }
+      }
+    }
+
+    @include themify(night) {
+      @keyframes skeleton-loader {
+        0% {
+          background-color: $gray-800;
+        }
+
+        50% {
+          background-color: $gray-900;
+        }
+
+        100% {
+          background-color: $gray-800;
+        }
       }
     }
   }
@@ -415,7 +440,8 @@
     @include padding-right(1rem);
 
     &:hover {
-      background-color: transparent;
+      background-image: none;
+      border-radius: 0;
     }
 
     .item-inner {
@@ -444,6 +470,14 @@
         line-height: 1.25;
 
         @include padding-left(0.5rem);
+      }
+    }
+
+    .post-link {
+      color: $secondary;
+
+      &:hover {
+        color: $primary;
       }
     }
   }

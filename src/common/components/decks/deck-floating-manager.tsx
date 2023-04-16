@@ -5,7 +5,7 @@ import { pencilOutlineSvg, upArrowSvg } from "../../img/svg";
 import { getColumnTitle, ICONS } from "./consts";
 
 export const DeckFloatingManager = () => {
-  const { layout, add, scrollTo } = useContext(DeckGridContext);
+  const { layout, add, scrollTo, getNextKey } = useContext(DeckGridContext);
   const [show, setShow] = useState(false);
 
   return layout.columns.length > 0 ? (
@@ -63,7 +63,7 @@ export const DeckFloatingManager = () => {
           className="btn btn-outline-primary"
           onClick={() =>
             add({
-              key: layout.columns.length + 1,
+              key: getNextKey(),
               type: "ac",
               settings: {}
             })

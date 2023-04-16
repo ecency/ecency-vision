@@ -15,6 +15,8 @@ import { DeckToolbarBaseActions } from "./deck-toolbar-base-actions";
 import { DeckToolbarToggleArea } from "./deck-toolbar-toggle-area";
 import { DeckToolbarManager } from "./deck-toolbar-manager";
 import { DeckToolbarCreate } from "./deck-toolbar-create";
+import UserNotifications from "../../notifications";
+import NotificationHandler from "../../notification-handler";
 
 interface Props {
   isExpanded: boolean;
@@ -23,7 +25,7 @@ interface Props {
 }
 
 export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
-  const { activeUser, global, toggleUIProp, setActiveUser } = useMappedStore();
+  const { activeUser, global, toggleUIProp, setActiveUser, ui } = useMappedStore();
   const location = useLocation();
 
   const [gallery, setGallery] = useState(false);
@@ -97,6 +99,8 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
       {bookmarks && <Bookmarks history={history} onHide={() => setBookmarks(false)} />}
       {schedules && <Schedules history={history} onHide={() => setSchedules(false)} />}
       {fragments && <Fragments onHide={() => setFragments(false)} />}
+      {global.usePrivate && <NotificationHandler />}
+      {ui.notifications && activeUser && <UserNotifications history={history} />}
       <PurchaseQrDialog
         show={showPurchaseDialog}
         setShow={(v) => setShowPurchaseDialog(v)}
