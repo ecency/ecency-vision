@@ -243,7 +243,9 @@
     "vote-error": "Vorige waarde is niet acceptabel. Stem met een andere waarde.",
     "vote-remove": "Stemmen met 0% maakt je stem ongedaan",
     "vote-warning": "Stem aanpassen...",
-    "no-replies": "Nog geen reacties. Klik om te antwoorden."
+    "no-replies": "Nog geen reacties. Klik om te antwoorden.",
+    "old-post-error": "Voting on Content after their payout does not generate any new rewards.",
+    "old-post-error-suggestion": "Try tipping the author. "
   },
   "nsfw": {
     "reveal": "Bekijk dit bericht",
@@ -1489,6 +1491,36 @@
     "view-keys": "Click to view keys",
     "copied": "Private key copied into clipboard",
     "error": "Password seem incorrect, please double check!"
+  },
+  "manage-authorities": {
+    "title": "Manage Authorities",
+    "type": "Type",
+    "key": "Key",
+    "weight": "Weight",
+    "posting": "posting",
+    "revoke": "Revoke",
+    "owner": "owner",
+    "active": "active",
+    "copy": "Copy",
+    "import": "Import private key",
+    "sign-title": "Sign transaction",
+    "sign-sub-title": "Sign your transaction",
+    "success-message": "You revoke the permission of posting from ",
+    "copied": "Key copied into clipboard",
+    "keys-success-message": "Authorities keys imported successfully",
+    "password-title": "Enter password or private key",
+    "password-sub-title": "Individual Private key or Master password to import all keys",
+    "reveal-public-key": "Reveal public key",
+    "reveal-private-key": "Reveal private key",
+    "submit": "Submit",
+    "error-fields-required": "Please enter private key",
+    "error-wrong-key": "Please enter correct private key",
+    "password-label": "Master password/Private key",
+    "actions": "Actions",
+    "memo": "memo",
+    "placeholder": "Master password or Private key",
+    "success-title": "Successful",
+    "success-sub-title": "Import successful"
   },
   "account-recovery": {
     "title": "Change Recovery Agent",
