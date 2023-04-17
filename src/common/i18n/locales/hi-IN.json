@@ -243,7 +243,9 @@
     "vote-error": "पिछला मूल्य स्वीकार्य नहीं है। एक अलग मूल्य के साथ वोट करें।",
     "vote-remove": "0% वोटिंग सामग्री को अस्वीकृत कर देता है।",
     "vote-warning": "वोट बदल रहा है...",
-    "no-replies": "अभी तक कोई प्रतिक्रिया नहीं। जवाब देने के लिए क्लिक करें।"
+    "no-replies": "अभी तक कोई प्रतिक्रिया नहीं। जवाब देने के लिए क्लिक करें।",
+    "old-post-error": "Voting on Content after their payout does not generate any new rewards.",
+    "old-post-error-suggestion": "Try tipping the author. "
   },
   "nsfw": {
     "reveal": "इस पोस्ट को प्रकट करें",
@@ -1489,6 +1491,36 @@
     "view-keys": "कुंजियाँ देखने के लिए क्लिक करें",
     "copied": "निजी कुंजी को क्लिपबोर्ड में कॉपी किया गया",
     "error": "पासवर्ड गलत लग रहा है, कृपया दोबारा जांचें!"
+  },
+  "manage-authorities": {
+    "title": "Manage Authorities",
+    "type": "Type",
+    "key": "Key",
+    "weight": "Weight",
+    "posting": "posting",
+    "revoke": "Revoke",
+    "owner": "owner",
+    "active": "active",
+    "copy": "Copy",
+    "import": "Import private key",
+    "sign-title": "Sign transaction",
+    "sign-sub-title": "Sign your transaction",
+    "success-message": "You revoke the permission of posting from ",
+    "copied": "Key copied into clipboard",
+    "keys-success-message": "Authorities keys imported successfully",
+    "password-title": "Enter password or private key",
+    "password-sub-title": "Individual Private key or Master password to import all keys",
+    "reveal-public-key": "Reveal public key",
+    "reveal-private-key": "Reveal private key",
+    "submit": "Submit",
+    "error-fields-required": "Please enter private key",
+    "error-wrong-key": "Please enter correct private key",
+    "password-label": "Master password/Private key",
+    "actions": "Actions",
+    "memo": "memo",
+    "placeholder": "Master password or Private key",
+    "success-title": "Successful",
+    "success-sub-title": "Import successful"
   },
   "account-recovery": {
     "title": "Change Recovery Agent",
