@@ -53,7 +53,7 @@ export default function ManageAuthorities(props: Props) {
         weight: resp.active.weight_threshold,
         memokey: resp.memo_key,
         account: response[0],
-        PublicKeys: {
+        publicKeys: {
           publicOwnerKey: resp.owner.key_auths[0][0],
           publicActiveKey: resp.active.key_auths[0][0],
           publicPostingKey: resp.posting.key_auths[0][0],

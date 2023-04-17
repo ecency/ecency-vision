@@ -23,7 +23,7 @@ export interface AccountDataType {
   weight: number;
   memokey: string;
   account: Account;
-  PublicKeys: {
+  publicKeys: {
     publicOwnerKey: string | PublicKey;
     publicActiveKey: string | PublicKey;
     publicPostingKey: string | PublicKey;

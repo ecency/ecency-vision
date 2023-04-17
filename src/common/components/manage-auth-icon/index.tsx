@@ -6,6 +6,7 @@ import { actionType } from "../manage-authority/types";
 import DropDown, { MenuItem } from "../dropdown";
 
 import { KebabMenu, revokeSvg, copyOutlinSvg, keyOutlineSvg } from "../../img/svg";
+import { _t } from "../../i18n";
 import "./index.scss";
 
 interface Props {
@@ -31,7 +32,7 @@ const ManageAuthIcon = (props: Props) => {
   };
 
   const copyClicked = () => {
-    const { onCopy, Pkey, label } = props;
+    const { onCopy, Pkey } = props;
     if (onCopy) {
       onCopy(Pkey!.toString());
     }
@@ -53,7 +54,7 @@ const ManageAuthIcon = (props: Props) => {
     case actionType.Revoke:
       menuItems = [
         {
-          label: "Revoke",
+          label: _t("manage-authorities.revoke"),
           onClick: revokeClicked,
           icon: revokeSvg
         }
@@ -62,7 +63,7 @@ const ManageAuthIcon = (props: Props) => {
     case actionType.Keys:
       menuItems = [
         {
-          label: "Copy",
+          label: _t("manage-authorities.copy"),
           onClick: copyClicked,
           icon: copyOutlinSvg
         },

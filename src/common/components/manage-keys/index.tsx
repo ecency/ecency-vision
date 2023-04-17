@@ -144,14 +144,14 @@ export default function ManageKeys(props: Props) {
       thePrivateKey = PrivateKey.fromLogin(props.accountData!.account.name, key, "active");
       keys = generateKeys(activeUser!, key);
       const activePublicInput = thePrivateKey.createPublic().toString();
-      if (!props.accountData!.PublicKeys.publicActiveKey.toString().includes(activePublicInput)) {
+      if (!props.accountData!.publicKeys.publicActiveKey.toString().includes(activePublicInput)) {
         error(_t("login.error-authenticate")); // enter master or active key
         return;
       }
     } else {
       if (
         props
-          .accountData!.PublicKeys.publicOwnerKey.toString()
+          .accountData!.publicKeys.publicOwnerKey.toString()
           .includes(PrivateKey.fromString(key).createPublic().toString())
       ) {
         thePrivateKey = PrivateKey.fromString(key);
@@ -164,7 +164,7 @@ export default function ManageKeys(props: Props) {
         }
       } else if (
         props
-          .accountData!.PublicKeys.publicPostingKey.toString()
+          .accountData!.publicKeys.publicPostingKey.toString()
           .includes(PrivateKey.fromString(key).createPublic().toString())
       ) {
         thePrivateKey = PrivateKey.fromString(key);
@@ -176,7 +176,7 @@ export default function ManageKeys(props: Props) {
           return;
         }
       } else if (
-        props.accountData!.PublicKeys.publicMemoKey.includes(
+        props.accountData!.publicKeys.publicMemoKey.includes(
           PrivateKey.fromString(key).createPublic().toString()
         )
       ) {
@@ -191,7 +191,7 @@ export default function ManageKeys(props: Props) {
       } else {
         if (
           props
-            .accountData!.PublicKeys.publicActiveKey.toString()
+            .accountData!.publicKeys.publicActiveKey.toString()
             .includes(PrivateKey.fromString(key).createPublic().toString())
         ) {
           thePrivateKey = PrivateKey.fromString(key);
@@ -235,7 +235,7 @@ export default function ManageKeys(props: Props) {
 
   const keysSetter = () => {
     const encryPrivatekeys = keysFormatter(privateKeys);
-    const encrypPublicKeys = keysFormatter(props.accountData?.PublicKeys);
+    const encrypPublicKeys = keysFormatter(props.accountData?.publicKeys);
     setFormattedPrivatekeys(encryPrivatekeys);
     setFormattedPublickeys(encrypPublicKeys);
   };
@@ -319,7 +319,7 @@ export default function ManageKeys(props: Props) {
           {ownerReveal
             ? isMobile
               ? formattedPublicKeys.publicOwnerKey
-              : props.accountData!.PublicKeys.publicOwnerKey
+              : props.accountData!.publicKeys.publicOwnerKey
             : isMobile
             ? formattedPrivateKeys.owner
             : privateKeys?.owner!}
@@ -331,7 +331,7 @@ export default function ManageKeys(props: Props) {
               variant="outline-primary"
               onClick={() =>
                 ownerReveal
-                  ? copyToClipboard(props.accountData!.PublicKeys.publicOwnerKey.toString())
+                  ? copyToClipboard(props.accountData!.publicKeys.publicOwnerKey.toString())
                   : copyToClipboard(privateKeys?.owner!)
               }
             >
@@ -363,7 +363,7 @@ export default function ManageKeys(props: Props) {
               action={privateKeys?.owner ? actionType.Reveal : actionType.Import}
               keyType={Keytype.Owner}
               Pkey={
-                ownerReveal ? props.accountData!.PublicKeys.publicOwnerKey : privateKeys?.owner!
+                ownerReveal ? props.accountData!.publicKeys.publicOwnerKey : privateKeys?.owner!
               }
               label={
                 privateKeys?.owner
@@ -393,7 +393,7 @@ export default function ManageKeys(props: Props) {
           {activeReveal
             ? isMobile
               ? formattedPublicKeys.publicActiveKey
-              : props.accountData!.PublicKeys.publicActiveKey
+              : props.accountData!.publicKeys.publicActiveKey
             : isMobile
             ? formattedPrivateKeys.active
             : privateKeys?.active!}
@@ -405,7 +405,7 @@ export default function ManageKeys(props: Props) {
               variant="outline-primary"
               onClick={() => {
                 activeReveal
-                  ? copyToClipboard(props.accountData!.PublicKeys.publicActiveKey.toString())
+                  ? copyToClipboard(props.accountData!.publicKeys.publicActiveKey.toString())
                   : copyToClipboard(privateKeys?.active!);
               }}
             >
@@ -436,7 +436,7 @@ export default function ManageKeys(props: Props) {
               action={privateKeys?.active ? actionType.Reveal : actionType.Import}
               keyType={Keytype.Active}
               Pkey={
-                activeReveal ? props.accountData!.PublicKeys.publicActiveKey : privateKeys?.active!
+                activeReveal ? props.accountData!.publicKeys.publicActiveKey : privateKeys?.active!
               }
               label={
                 privateKeys?.active
@@ -466,7 +466,7 @@ export default function ManageKeys(props: Props) {
           {postingReveal
             ? isMobile
               ? formattedPublicKeys.publicPostingKey
-              : props.accountData!.PublicKeys.publicPostingKey
+              : props.accountData!.publicKeys.publicPostingKey
             : isMobile
             ? formattedPrivateKeys.posting
             : privateKeys?.posting!}
@@ -478,7 +478,7 @@ export default function ManageKeys(props: Props) {
               variant="outline-primary"
               onClick={() =>
                 postingReveal
-                  ? copyToClipboard(props.accountData!.PublicKeys.publicPostingKey.toString())
+                  ? copyToClipboard(props.accountData!.publicKeys.publicPostingKey.toString())
                   : copyToClipboard(privateKeys?.posting!)
               }
             >
@@ -514,7 +514,7 @@ export default function ManageKeys(props: Props) {
               keyType={Keytype.Posting}
               Pkey={
                 postingReveal
-                  ? props.accountData!.PublicKeys.publicPostingKey
+                  ? props.accountData!.publicKeys.publicPostingKey
                   : privateKeys?.posting!
               }
               label={
@@ -546,7 +546,7 @@ export default function ManageKeys(props: Props) {
           {memoReveal
             ? isMobile
               ? formattedPublicKeys.publicMemoKey
-              : props.accountData!.PublicKeys.publicMemoKey
+              : props.accountData!.publicKeys.publicMemoKey
             : isMobile
             ? formattedPrivateKeys.memo
             : privateKeys?.memo!}
@@ -558,7 +558,7 @@ export default function ManageKeys(props: Props) {
               variant="outline-primary"
               onClick={() =>
                 memoReveal
-                  ? copyToClipboard(props.accountData!.PublicKeys.publicMemoKey)
+                  ? copyToClipboard(props.accountData!.publicKeys.publicMemoKey)
                   : copyToClipboard(privateKeys?.memo!)
               }
             >
@@ -589,7 +589,7 @@ export default function ManageKeys(props: Props) {
               type={actionType.Keys}
               action={privateKeys?.memo ? actionType.Reveal : actionType.Import}
               keyType={Keytype.Memo}
-              Pkey={memoReveal ? props.accountData!.PublicKeys.publicMemoKey : privateKeys?.memo!}
+              Pkey={memoReveal ? props.accountData!.publicKeys.publicMemoKey : privateKeys?.memo!}
               label={
                 privateKeys?.memo
                   ? memoReveal

@@ -36,7 +36,7 @@ it("(1) Default render", () => {
       account: {
         ...fullAccountInstance
       },
-      PublicKeys: {
+      publicKeys: {
         publicOwnerKey: "owner_key",
         publicActiveKey: "active_key",
         publicPostingKey: "posting_key",
