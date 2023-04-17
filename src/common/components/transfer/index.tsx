@@ -1015,6 +1015,7 @@ export class Transfer extends BaseComponent<Props, State> {
         {step === 3 && (
           <div className="transaction-form">
             {formHeader3}
+            {inProgress && <LinearProgress />}
             <div className="transaction-form">
               {KeyOrHot({
                 ...this.props,

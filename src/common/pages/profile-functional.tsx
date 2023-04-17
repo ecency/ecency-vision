@@ -32,8 +32,8 @@ import SearchListItem from "../components/search-list-item";
 import SearchBox from "../components/search-box";
 import * as bridgeApi from "../api/bridge";
 import { search as searchApi } from "../api/search-api";
-import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
+import ManageAuthorities from "../components/manage-authority";
 import AccountRecovery from "../components/recovery-account";
 
 import { BlogEntry, getAccountFull, getAccountVotesTrail } from "../api/hive";
@@ -582,7 +582,7 @@ export const Profile = (props: Props) => {
                               }
                               onClick={() => setTabState(1)}
                             >
-                              {_t("view-keys.header")}
+                              {_t("manage-authorities.title")}
                             </h6>
                           </div>
                           <div className="permission-menu-items">
@@ -592,7 +592,7 @@ export const Profile = (props: Props) => {
                               }
                               onClick={() => setTabState(2)}
                             >
-                              {_t("password-update.title")}
+                              {_t("account-recovery.title")}
                             </h6>
                           </div>
                           <div className="permission-menu-items">
@@ -602,20 +602,16 @@ export const Profile = (props: Props) => {
                               }
                               onClick={() => setTabState(3)}
                             >
-                              {_t("account-recovery.title")}
+                              {_t("password-update.title")}
                             </h6>
                           </div>
                         </div>
                         <div className="container-fluid">
+                          {tabState === 1 && <ManageAuthorities {...props} />}
                           <div className="row pb-4">
                             <div className="col-lg-6 col-md-6 col-sm-6">
-                              {tabState === 1 ? <ViewKeys activeUser={props.activeUser} /> : <></>}
-                              {tabState === 2 ? (
-                                <PasswordUpdate activeUser={props.activeUser} />
-                              ) : (
-                                <></>
-                              )}
-                              {tabState === 3 ? <AccountRecovery {...props} /> : <></>}
+                              {tabState === 2 && <AccountRecovery {...props} />}
+                              {tabState === 3 && <PasswordUpdate activeUser={props.activeUser} />}
                             </div>
                           </div>
                         </div>
