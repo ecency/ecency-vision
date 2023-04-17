@@ -111,6 +111,7 @@ export const Profile = (props: Props) => {
     if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
       // fetch posts
       if (section === "trail") {
+        setDataTrail({ ...dataTrail, loading: true });
         let data = await getAccountVotesTrail(username.replace("@", ""), -1);
         const sevenDaysAgo = 7 * 24 * 60 * 60 * 1000;
         while (
@@ -123,7 +124,7 @@ export const Profile = (props: Props) => {
           );
           data = [...moreData, ...data];
         }
-        setDataTrail({ ...dataTrail, entries: data.reverse() });
+        setDataTrail({ ...dataTrail, entries: data.reverse(), loading: false });
       } else {
         fetchEntries(global.filter, global.tag, false);
       }
@@ -292,6 +293,8 @@ export const Profile = (props: Props) => {
 
     if (section === "trail") {
       if (dataTrail.entries.length > 0) {
+        setDataTrail({ ...dataTrail, loading: true });
+
         let data = await getAccountVotesTrail(
           username.replace("@", ""),
           dataTrail.entries[dataTrail.entries.length - 1]!.num! - 1
@@ -308,7 +311,7 @@ export const Profile = (props: Props) => {
           data = [...moreData, ...data];
         }
         let newDataTrail = _.unionBy(dataTrail.entries, data.reverse(), (obj) => obj.post_id);
-        setDataTrail({ ...dataTrail, entries: newDataTrail });
+        setDataTrail({ ...dataTrail, entries: newDataTrail, loading: false });
       }
     } else {
       if (!loading && hasMore) {
@@ -643,7 +646,7 @@ export const Profile = (props: Props) => {
                   if (pinnedEntry) {
                     entryList.unshift(pinnedEntry);
                   }
-                  const isLoading = loading || data?.loading;
+                  const isLoading = loading || data?.loading || dataTrail?.loading;
                   return (
                     <>
                       <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>

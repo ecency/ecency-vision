@@ -68,7 +68,8 @@
     "close": "Close",
     "loading": "Loading",
     "stop": "Stop",
-    "settings": "Settings"
+    "settings": "Settings",
+    "in-past-seven-days": "in the past 7 days"
   },
   "confirm": {
     "title": "Are you sure?",
