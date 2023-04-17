@@ -1,0 +1,68 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.authority-table {
+  .table {
+    .table-head {
+      background: $white-six;
+    }
+    .col-type-content {
+      color: $warm-grey;
+    }
+    .col-action {
+      text-align: right;
+    }
+    .col-weight-content {
+      text-align: center;
+      @media (max-width: 1280px) {
+        display: none;
+      }
+    }
+
+    td {
+      padding: 1.75rem 12px !important;
+    }
+
+    .col-key-content {
+      display: inline-block;
+      .username {
+        display: flex;
+        .user-img {
+          margin: -2px 5px 0 0;
+        }
+      }
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.sign-dialog-header {
+  display: flex;
+  .sign-dialog-titles {
+    margin-top: 9px;
+  }
+}
+
+.success-dialog-header {
+  display: flex;
+  .success-dialog-titles {
+    padding-top: 8px;
+  }
+}
+
+.success-dialog-body {
+  margin: 2rem 0 1.4rem 0;
+  .success-dialog-content {
+    text-align: center;
+    margin-bottom: 1.4rem;
+  }
+}
+
+.authority-main-title {
+  font-weight: bold;
+}

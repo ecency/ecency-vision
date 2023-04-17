@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+Array [
+  <tr>
+    <td
+      className="col-type-content"
+    >
+       
+      owner
+    </td>
+    <td
+      className="key"
+    />
+    <td
+      className="d-none d-sm-block"
+    >
+      <p
+        className="action-btns"
+      >
+        <button
+          className="copy-btn btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Copy
+        </button>
+        <button
+          className="import-btn btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Import private key
+        </button>
+      </p>
+    </td>
+    <td
+      className="d-sm-none"
+    />
+    <td
+      className="col-weight-content"
+    >
+      1
+    </td>
+  </tr>,
+  <tr>
+    <td
+      className="col-type-content"
+    >
+       
+      active
+    </td>
+    <td
+      className="key"
+    />
+    <td
+      className="d-none d-sm-block"
+    >
+      <p
+        className="action-btns"
+      >
+        <button
+          className="copy-btn btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Copy
+        </button>
+        <button
+          className="import-btn btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Import private key
+        </button>
+      </p>
+    </td>
+    <td
+      className="d-sm-none"
+    />
+    <td
+      className="col-weight-content"
+    >
+      1
+    </td>
+  </tr>,
+  <tr>
+    <td
+      className="col-type-content"
+    >
+       
+      posting
+    </td>
+    <td
+      className="key"
+    />
+    <td
+      className="d-none d-sm-block"
+    >
+      <p
+        className="action-btns"
+      >
+        <button
+          className="copy-btn btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Copy
+        </button>
+        <button
+          className="import-btn btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Import private key
+        </button>
+      </p>
+    </td>
+    <td
+      className="d-sm-none"
+    />
+    <td
+      className="col-weight-content"
+    >
+      1
+    </td>
+  </tr>,
+  <tr>
+    <td
+      className="col-type-content"
+    >
+       
+      memo
+    </td>
+    <td
+      className="key"
+    />
+    <td
+      className="d-none d-sm-block"
+    >
+      <p
+        className="action-btns"
+      >
+        <button
+          className="copy-btn btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Copy
+        </button>
+        <button
+          className="import-btn btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Import private key
+        </button>
+      </p>
+    </td>
+    <td
+      className="d-sm-none"
+    />
+    <td
+      className="col-weight-content"
+    >
+      1
+    </td>
+  </tr>,
+]
+`;

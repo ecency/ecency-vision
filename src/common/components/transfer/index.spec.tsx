@@ -25,10 +25,10 @@ const defProps = {
     name: "user1"
   },
   activeUser: {
-    username: "foo",
+    username: "bar",
     data: {
       ...fullAccountInstance,
-      name: "foo"
+      name: "bar"
     },
     points: {
       points: "10.000",
