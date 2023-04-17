@@ -245,7 +245,12 @@ export class DialogContent extends Component<NotificationProps, any> {
   };
 
   statusClicked = (status: string) => {
-    this.setState({ currentStatus: status, select: false });
+    this.setState({
+      currentStatus: status,
+      select: false,
+      isSelectIcon: false,
+      selectedNotifications: []
+    });
   };
 
   handleScroll = (event: React.UIEvent<HTMLElement>) => {
@@ -445,13 +450,6 @@ export class DialogContent extends Component<NotificationProps, any> {
 
         <div className="status-button-container">
           <div className="status-btn">
-            <Tooltip content={_t("notifications.select")}>
-              <span className="select-svg" onClick={this.selectClicked}>
-                {" "}
-                {checkSvg}{" "}
-              </span>
-            </Tooltip>
-
             {buttonStatus.map((status: string, k: number) => {
               return (
                 <Button
@@ -470,15 +468,15 @@ export class DialogContent extends Component<NotificationProps, any> {
             })}
           </div>
 
-          <div className="select-btn">
-            {/* <Button
-              className={`select-button ${this.state.select ? "active" : ""} shadow-none`}
-              variant="outline-primary"
-              type="button"
-              onClick={this.selectClicked}
-            >
-              Select
-            </Button> */}
+          <div className="select-button">
+            <Tooltip content={_t("notifications.select")}>
+              <span
+                className={`select-svg ${this.state.select ? "active" : ""} shadow-none`}
+                onClick={this.selectClicked}
+              >
+                {checkSvg}
+              </span>
+            </Tooltip>
             {this.state.isSelectIcon ? (
               <div className="select-icon">
                 <DropDown {...markAsreadMenuConfig} float="right" />

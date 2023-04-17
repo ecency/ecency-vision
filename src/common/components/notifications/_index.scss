@@ -79,11 +79,23 @@
       border-color: $dark-two;
     }
 
-    .select-svg{
+    .select-svg {
       cursor: pointer;
+      border: 1px solid $dark-sky-blue;
+      padding: 1px;
+      padding-top: 0;
+
       svg {
-        height: 18px;
+        height: 14px;
         color: $primary;
+      }
+
+      &.active {
+        background-color: $dark-sky-blue;
+
+        svg {
+          color: $white;
+        }
       }
     }
 
@@ -113,9 +125,10 @@
       background-color: $dark-sky-blue;
     }
 
-    .select-btn {
+    .select-button {
       display: -webkit-inline-box;
-      margin-right: 4px;
+      margin-right: 6px;
+
       .select-button.active {
         background-color: $dark-sky-blue;
       }
@@ -134,7 +147,7 @@
       }
 
       .select-icon {
-        margin-top: -3px;
+        margin-top: -4px;
         margin-left: 4px;
       }
     }
