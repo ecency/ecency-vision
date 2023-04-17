@@ -107,6 +107,10 @@ export default function AccountRecovery(props: Props) {
         if (isECENCY) {
           setDisabled(true);
           return;
+        } else {
+          if (pendingRecoveryAccount) {
+            setPopOver(true);
+          }
         }
 
         if (e.target.value === props.activeUser?.username) {
@@ -116,7 +120,6 @@ export default function AccountRecovery(props: Props) {
         }
         setDisabled(false);
         setToError("");
-        setPopOver(true);
       } else {
         if (e.target.value.length > 0) {
           setDisabled(true);
