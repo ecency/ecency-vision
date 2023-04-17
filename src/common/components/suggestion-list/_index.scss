@@ -14,8 +14,7 @@
     z-index: 99;
   }
 
-  .suggestion-list {
-    position: absolute;
+  .search-suggestion-list {
     display: block;
     left: 0;
     top: 100%;
@@ -77,6 +76,29 @@
             color: $white;
           }
         }
+      }
+    }
+  }
+  .more-result {
+    .list-item {
+      @include themify(day) {
+        background: $white-four !important;
+
+        &:hover,
+        &:focus {
+          color: $dark !important;
+        }
+      }
+
+      @include themify(night) {
+        color: $white !important;
+        background: $dark-indigo !important;
+      }
+    }
+
+    .list-item {
+      &:last-child {
+        border-radius: 0 !important;
       }
     }
   }

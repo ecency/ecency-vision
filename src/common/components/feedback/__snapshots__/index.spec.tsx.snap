@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feedback component renders correctly 1`] = `
+<div
+  className="feedback-container"
+/>
+`;

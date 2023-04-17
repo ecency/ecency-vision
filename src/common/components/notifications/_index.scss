@@ -79,6 +79,14 @@
       border-color: $dark-two;
     }
 
+    .select-svg{
+      cursor: pointer;
+      svg {
+        height: 18px;
+        color: $primary;
+      }
+    }
+
     .status-button {
       border: 1px solid $dark-sky-blue;
       margin-left: 10px;

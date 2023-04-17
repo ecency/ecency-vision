@@ -159,18 +159,17 @@ export class SearchSuggester extends BaseComponent<Props, State> {
 
     // Search ALL
     if (!!value) {
-      const limit_result = 5;
       // tags
       const tags_suggestions = trendingTags.list
         .filter((x: string) => x.toLowerCase().indexOf(value.toLowerCase()) === 0)
         .filter((x: string) => x.indexOf("hive-") === -1)
         .map((x) => `#${x}`)
-        .slice(0, limit_result);
+        .slice(0, 2);
       // account
-      const lookup_accounts = await lookupAccounts(value, limit_result - 2);
+      const lookup_accounts = await lookupAccounts(value, 2);
       const accounts_suggestions = lookup_accounts.map((x) => `@${x}`);
       // Community
-      const get_communities = await getCommunities("", limit_result, value);
+      const get_communities = await getCommunities("", 2, value);
       const communities_suggestions = get_communities || [];
       const suggestionWithMode = [
         {

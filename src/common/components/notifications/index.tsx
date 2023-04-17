@@ -121,6 +121,10 @@ export class DialogContent extends Component<NotificationProps, any> {
     ) {
       fetchNotifications(null);
     }
+    if (prevProps.notifications.settings !== this.props.notifications.settings) {
+      const { notifications } = this.props;
+      notifications.settings?.allows_notify === 0 ? this.mute() : this.unMute();
+    }
   }
 
   setIsSelectIcon = () => {
@@ -441,6 +445,13 @@ export class DialogContent extends Component<NotificationProps, any> {
 
         <div className="status-button-container">
           <div className="status-btn">
+            <Tooltip content={_t("notifications.select")}>
+              <span className="select-svg" onClick={this.selectClicked}>
+                {" "}
+                {checkSvg}{" "}
+              </span>
+            </Tooltip>
+
             {buttonStatus.map((status: string, k: number) => {
               return (
                 <Button
@@ -460,14 +471,14 @@ export class DialogContent extends Component<NotificationProps, any> {
           </div>
 
           <div className="select-btn">
-            <Button
+            {/* <Button
               className={`select-button ${this.state.select ? "active" : ""} shadow-none`}
               variant="outline-primary"
               type="button"
               onClick={this.selectClicked}
             >
               Select
-            </Button>
+            </Button> */}
             {this.state.isSelectIcon ? (
               <div className="select-icon">
                 <DropDown {...markAsreadMenuConfig} float="right" />
