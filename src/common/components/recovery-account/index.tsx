@@ -59,6 +59,13 @@ export default function AccountRecovery(props: Props) {
   useEffect(() => {
     getCurrentAccount();
     getRecoveryRequest();
+
+    async function fetchEmail() {
+      let response = await getRecoveries(props.activeUser?.username!);
+      setRecoveryEmail(response[0].email);
+    }
+
+    fetchEmail();
   }, []);
 
   const getCurrentAccount = async () => {
@@ -72,9 +79,7 @@ export default function AccountRecovery(props: Props) {
 
     if (recovery_account === ECENCY) {
       setIsEcency(true);
-      let response = await getRecoveries(props.activeUser?.username!);
-      setRecoveryEmails(response);
-      setRecoveryEmail(response[0].email);
+      setPopOver(false);
     }
   };
 
@@ -88,9 +93,10 @@ export default function AccountRecovery(props: Props) {
 
   const toggleKeyDialog = () => {
     setKeyDialog(!keyDialog);
+    finish();
   };
 
-  const newRecoveryAccountChange = async (
+  const newRecoveryAccountChange = (
     e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
   ) => {
     e.persist();
@@ -102,29 +108,32 @@ export default function AccountRecovery(props: Props) {
       return;
     }
 
-    setIsEcency(e.target.value === ECENCY);
+    setTimeout(async () => {
+      setIsEcency(e.target.value === ECENCY);
 
-    const resp = await getAccount(e.target.value);
-    if (resp) {
-      const isECENCY = e.target.value === ECENCY;
-      if (isECENCY) {
-        setDisabled(isECENCY);
-        return;
-      }
+      const resp = await getAccount(e.target.value);
+      if (resp) {
+        const isECENCY = e.target.value === ECENCY;
+        if (isECENCY) {
+          setDisabled(true);
+          return;
+        }
 
-      if (e.target.value === props.activeUser?.username) {
-        setDisabled(true);
-        setToError(_t("account-recovery.same-account-error"));
-        return;
+        if (e.target.value === props.activeUser?.username) {
+          setDisabled(true);
+          setToError(_t("account-recovery.same-account-error"));
+          return;
+        }
+        setDisabled(false);
+        setToError("");
+        setPopOver(true);
+      } else {
+        if (e.target.value.length > 0) {
+          setDisabled(true);
+          setToError(_t("account-recovery.to-not-found"));
+        }
       }
-      setDisabled(false);
-      setToError("");
-    } else {
-      if (e.target.value.length > 0) {
-        setDisabled(true);
-        setToError(_t("account-recovery.to-not-found"));
-      }
-    }
+    }, 500);
   };
 
   const update = () => {
@@ -206,6 +215,7 @@ export default function AccountRecovery(props: Props) {
     setKeyDialog(false);
     setNewCurrRecoveryAccount("");
     setDisabled(true);
+    setIsEcency(false);
   };
 
   const handleConfirm = () => {
@@ -397,7 +407,7 @@ export default function AccountRecovery(props: Props) {
           )}
           {inProgress && <LinearProgress />}
 
-          {(popOver && currRecoveryAccount !== ECENCY) || (popOver && !isEcency) ? (
+          {popOver ? (
             <div className="main">
               <PopoverConfirm
                 placement="top"
