@@ -207,7 +207,7 @@ export default function ManageAuthorities(props: Props) {
           <tr>
             <th>{_t("manage-authorities.type")}</th>
             <th>{_t("manage-authorities.key")}</th>
-            <th className="d-none d-sm-block border-bottom-0"></th>
+            <th className="d-none d-sm-block border-bottom-0" />
             <th className="d-sm-none col-action">{_t("manage-authorities.actions")}</th>
             <th className="col-weight-content">{_t("manage-authorities.weight")}</th>
           </tr>
