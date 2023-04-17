@@ -23,12 +23,7 @@ import {
 } from "../../api/operations";
 
 import "./index.scss";
-import {
-  addRecoveries,
-  deleteRecoveries,
-  getRecoveries,
-  GetRecoveriesEmailResponse
-} from "../../api/private-api";
+import { addRecoveries, getRecoveries } from "../../api/private-api";
 import { FullAccount } from "../../store/accounts/types";
 
 interface Props {
@@ -51,7 +46,6 @@ export default function AccountRecovery(props: Props) {
   const [accountData, setAccountData] = useState<FullAccount | undefined>();
   const [recoveryEmail, setRecoveryEmail] = useState("");
   const [toWarning, setToWarning] = useState("");
-  const [recoveryEmails, setRecoveryEmails] = useState<GetRecoveriesEmailResponse[]>([]);
   const [currRecoveryAccount, setCurrRecoveryAccount] = useState("");
   const [newRecoveryAccount, setNewCurrRecoveryAccount] = useState("");
   const [pendingRecoveryAccount, setPendingRecoveryAccount] = useState("");
@@ -155,10 +149,6 @@ export default function AccountRecovery(props: Props) {
           ...accountData!.memo_key
         ]
       });
-    } else {
-      if (recoveryEmails.length >= 2) {
-        await deleteRecoveries(props.activeUser?.username!, recoveryEmails[0]._id);
-      }
     }
     if (isEcency && currRecoveryAccount === ECENCY) {
       setKeyDialog(true);
