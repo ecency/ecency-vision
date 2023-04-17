@@ -39,6 +39,12 @@
   #draggable-container {
     display: flex;
     scroll-behavior: smooth;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .add-new-column-button {
@@ -68,9 +74,5 @@
 
   .deck-smooth-scroller {
     @include transition(0.5s);
-  }
-
-  .deck-grid {
-    overflow-x: auto;
   }
 }

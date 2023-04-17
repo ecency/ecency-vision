@@ -8,6 +8,7 @@ import ClickAwayListener from "../../clickaway-listener";
 import uuid from "uuid";
 import { DeckGridContext } from "../deck-manager";
 import { DEFAULT_COLUMNS } from "../consts";
+import { _t } from "../../../i18n";
 
 interface Props {
   deck?: DeckGrid;
@@ -68,12 +69,12 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
       className="decks-settings"
     >
       <Modal.Header closeButton={true}>
-        <Modal.Title>{deck ? "Decks settings" : "Create a deck"}</Modal.Title>
+        <Modal.Title>{deck ? _t("decks.settings") : _t("decks.create-deck")}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {isRemovingDeck && deck && (
           <div>
-            <div className="text-center mb-4">Are you sure deleting deck?</div>
+            <div className="text-center mb-4">{_t("decks.delete-prompt")}</div>
             <div className="d-flex align-items-center justify-content-center">
               <Button
                 disabled={isLoading}
@@ -81,7 +82,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                 variant="primary"
                 onClick={() => setIsRemovingDeck(false)}
               >
-                Cancel
+                {_t("g.cancel")}
               </Button>
               <Button
                 disabled={isLoading}
@@ -98,7 +99,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                   }
                 }}
               >
-                Confirm
+                {_t("g.confirm")}
               </Button>
             </div>
           </div>
@@ -136,19 +137,14 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                 />
               </InputGroup>
             </Form.Group>
-            <Form.Label className="font-weight-bold">Settings</Form.Label>
-            {isLocalStorage && (
-              <Alert variant="primary">
-                If its set local storage then this deck will be saved only on current device. Save
-                on account if you want to get access to the deck from any device.
-              </Alert>
-            )}
+            <Form.Label className="font-weight-bold">{_t("g.settings")}</Form.Label>
+            {isLocalStorage && <Alert variant="primary">{_t("decks.use-local-text")}</Alert>}
             <div className="form-section d-flex">
               <Form.Group>
                 <Form.Check
                   checked={isLocalStorage}
                   type="checkbox"
-                  label="Save locally"
+                  label={_t("decks.save-locally")}
                   onChange={({ target }) => setIsLocalStorage(target.checked)}
                 />
               </Form.Group>
@@ -165,10 +161,10 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
               </div>
               <div>
                 <Button variant="link" onClick={() => setShow(false)}>
-                  Cancel
+                  {_t("g.cancel")}
                 </Button>
                 <Button disabled={!name} onClick={() => submit()}>
-                  {deck ? "Save" : "Create"}
+                  {deck ? _t("g.save") : _t("decks.create")}
                 </Button>
               </div>
             </div>

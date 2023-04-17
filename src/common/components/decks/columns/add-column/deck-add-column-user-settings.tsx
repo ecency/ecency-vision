@@ -6,6 +6,7 @@ import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
 import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
 import { ICONS } from "../../consts";
+import { _t } from "../../../../i18n";
 
 export const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -17,29 +18,27 @@ export const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
   const [recent, setRecent] = useState<UsernameDataItem[]>([]);
 
   const contentTypes = [
-    { title: "Blogs", type: "blog" },
-    { title: "Posts", type: "posts" },
+    { title: _t("decks.columns.blogs"), type: "blog" },
+    { title: _t("decks.columns.posts"), type: "posts" },
     {
-      title: "Comments",
+      title: _t("decks.columns.comments"),
       type: "comments"
     },
     {
-      title: "Replies",
+      title: _t("decks.columns.replies"),
       type: "replies"
     }
   ];
 
   return (
     <div className="deck-add-column-user-settings p-3">
-      <div className="helper-text">
-        Enter a username below and select which type of content You want to see
-      </div>
-      <div className="subtitle py-3">Username</div>
+      <div className="helper-text">{_t("decks.columns.add-username-text")}</div>
+      <div className="subtitle py-3">{_t("g.username")}</div>
       {username ? (
         <div className="selected-user" onClick={() => setUsername("")}>
           <UserAvatar size="medium" global={global} username={username} />
           <div className="username">@{username}</div>
-          <div className="click-to-change">Click to change</div>
+          <div className="click-to-change">{_t("decks.columns.click-to-change")}</div>
         </div>
       ) : (
         <DeckAddColumnSearchBox username={username} setUsername={setUsername} recentList={recent} />
@@ -80,7 +79,7 @@ export const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
             })
           }
         >
-          Continue
+          {_t("g.continue")}
         </Button>
       ) : (
         <></>

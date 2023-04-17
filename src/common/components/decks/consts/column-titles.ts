@@ -4,42 +4,43 @@ import {
   SearchDeckGridItem,
   UserDeckGridItem
 } from "../types";
+import { _t } from "../../../i18n";
 
 export const communityTitles = {
-  trending: "Trending",
-  created: "New",
-  hot: "Hot",
-  payout: "Payouts",
-  muted: "Muted"
+  trending: _t("decks.columns.trending"),
+  created: _t("decks.columns.new"),
+  hot: _t("decks.columns.hot"),
+  payout: _t("decks.columns.payouts"),
+  muted: _t("decks.columns.muted")
 };
 
 export const notificationsTitles = {
   all: "",
-  rvotes: "Votes",
-  mentions: "Mentions",
-  nfavorites: "Favourites",
-  nbookmarks: "Bookmarks",
-  follows: "Follows",
-  replies: "Replies",
-  reblogs: "Reblogs",
-  transfers: "Transfers",
-  delegations: "Delegations"
+  rvotes: _t("decks.columns.votes"),
+  mentions: _t("decks.columns.mentions"),
+  nfavorites: _t("decks.columns.favourites"),
+  nbookmarks: _t("decks.columns.bookmarks"),
+  follows: _t("decks.columns.follows"),
+  replies: _t("decks.columns.replies"),
+  reblogs: _t("decks.columns.reblogs"),
+  transfers: _t("decks.columns.transfers"),
+  delegations: _t("decks.columns.delegations")
 };
 
 export const userTitles = {
-  posts: "Posts",
-  blog: "Blog",
-  comments: "Comments",
-  replies: "Replies"
+  posts: _t("decks.columns.posts"),
+  blog: _t("decks.columns.blogs"),
+  comments: _t("decks.columns.comments"),
+  replies: _t("decks.columns.replies")
 };
 
 export const walletTitles = {
-  all: "All history",
-  transfers: "Transfers",
-  "market-orders": "Market orders",
-  interests: "Interests",
-  "stake-operations": "Stake operations",
-  rewards: "Rewards"
+  all: _t("decks.columns.all-history"),
+  transfers: _t("decks.columns.transfers"),
+  "market-orders": _t("decks.columns.market-orders"),
+  interests: _t("decks.columns.interests"),
+  "stake-operations": _t("decks.columns.stake-operations"),
+  rewards: _t("decks.columns.rewards")
 };
 
 export function getColumnTitle(

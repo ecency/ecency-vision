@@ -8,6 +8,7 @@ import { SettingsProps, UsernameDataItem } from "./common";
 import { ICONS } from "../../consts";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../../util/local-storage";
+import { _t } from "../../../../i18n";
 
 export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -20,18 +21,18 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const [recent, setRecent] = useLocalStorage<UsernameDataItem[]>(PREFIX + "_dcr", []);
 
   const contentTypes = [
-    { title: "Trending", type: "trending" },
-    { title: "Hot", type: "hot" },
+    { title: _t("decks.columns.trending"), type: "trending" },
+    { title: _t("decks.columns.hot"), type: "hot" },
     {
-      title: "New",
+      title: _t("decks.columns.new"),
       type: "created"
     },
     {
-      title: "Payouts",
+      title: _t("decks.columns.payouts"),
       type: "payout"
     },
     {
-      title: "Muted",
+      title: _t("decks.columns.muted"),
       type: "muted"
     }
   ];
@@ -40,15 +41,13 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
 
   return (
     <div className="deck-add-column-user-settings p-3">
-      <div className="helper-text">
-        Enter a username below and select which type of content You want to see
-      </div>
-      <div className="subtitle py-3">Community</div>
+      <div className="helper-text">{_t("decks.columns.add-username-text")}</div>
+      <div className="subtitle py-3">{_t("decks.columns.community")}</div>
       {username ? (
         <div className="selected-user" onClick={() => setUsername("")}>
           <UserAvatar size="medium" global={global} username={username} />
           <div className="username">{username}</div>
-          <div className="click-to-change">Click to change</div>
+          <div className="click-to-change">{_t("decks.columns.click-to-change")}</div>
         </div>
       ) : (
         <DeckAddColumnSearchBox
@@ -100,7 +99,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
             })
           }
         >
-          Continue
+          {_t("g.continue")}
         </Button>
       ) : (
         <></>

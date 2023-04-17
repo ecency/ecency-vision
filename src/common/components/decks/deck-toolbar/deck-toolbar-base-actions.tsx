@@ -5,6 +5,7 @@ import { WalletBadge } from "../../user-nav";
 import { Dropdown } from "react-bootstrap";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
 import { dotsMenuIconSvg, notificationsIconSvg, walletIconSvg } from "../icons";
+import { _t } from "../../../i18n";
 
 interface Props {
   isExpanded: boolean;
@@ -32,11 +33,11 @@ export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Pr
         <Dropdown>
           <DropdownToggle variant="link">{dotsMenuIconSvg}</DropdownToggle>
           <Dropdown.Menu alignRight={true}>
-            <Dropdown.Item href="/">Back to feed</Dropdown.Item>
+            <Dropdown.Item href="/">{_t("decks.back-to-feed")}</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item href="/faq">FAQ</Dropdown.Item>
-            <Dropdown.Item href="/terms-of-service">Terms Of Service</Dropdown.Item>
-            <Dropdown.Item href="/market">Market</Dropdown.Item>
+            <Dropdown.Item href="/faq">{_t("decks.faq")}</Dropdown.Item>
+            <Dropdown.Item href="/terms-of-service">{_t("decks.terms")}</Dropdown.Item>
+            <Dropdown.Item href="/market">{_t("decks.market")}</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       ) : (

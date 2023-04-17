@@ -100,15 +100,15 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
               username={props.account}
             />
             <div className="d-flex deck-actions justify-content-end p-2">
-              {/*{"updateIntervalMs" in props ? (*/}
-              {/*  <DeckHeaderReloading*/}
-              {/*    onReload={props.onReload}*/}
-              {/*    isReloading={props.isReloading}*/}
-              {/*    updateDataInterval={props.updateIntervalMs}*/}
-              {/*  />*/}
-              {/*) : (*/}
-              {/*  <></>*/}
-              {/*)}*/}
+              {"updateIntervalMs" in props ? (
+                <DeckHeaderReloading
+                  onReload={props.onReload}
+                  isReloading={props.isReloading}
+                  updateDataInterval={props.updateIntervalMs}
+                />
+              ) : (
+                <></>
+              )}
 
               {"onRemove" in props ? (
                 <Button

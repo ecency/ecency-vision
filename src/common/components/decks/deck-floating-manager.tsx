@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import "./_deck-floating-manager.scss";
 import { DeckGridContext } from "./deck-manager";
-import { pencilOutlineSvg, upArrowSvg } from "../../img/svg";
+import { upArrowSvg } from "../../img/svg";
 import { getColumnTitle, ICONS } from "./consts";
+import { _t } from "../../i18n";
 
 export const DeckFloatingManager = () => {
   const { layout, add, scrollTo, getNextKey } = useContext(DeckGridContext);
@@ -51,9 +52,9 @@ export const DeckFloatingManager = () => {
                   ) : (
                     <></>
                   )}
-                  {type === "ac" ? "New column" : ""}
-                  {type === "to" ? "Topics" : ""}
-                  {type === "tr" ? "Trending" : ""}
+                  {type === "ac" ? _t("decks.columns.new-column") : ""}
+                  {type === "to" ? _t("decks.columns.topics") : ""}
+                  {type === "tr" ? _t("decks.columns.trending") : ""}
                 </div>
               </div>
             </div>
@@ -69,7 +70,7 @@ export const DeckFloatingManager = () => {
             })
           }
         >
-          Add new column
+          {_t("decks.add-column")}
         </div>
       </div>
     </div>

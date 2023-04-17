@@ -8,6 +8,7 @@ import { createDeck, deleteDeck, getDecks, updateDeck } from "./deck-api";
 import { useMappedStore } from "../../store/use-mapped-store";
 import usePrevious from "react-use/lib/usePrevious";
 import { error } from "../feedback";
+import { _t } from "../../i18n";
 
 interface Context {
   layout: DeckGrid;
@@ -103,7 +104,7 @@ export const DeckManager = ({ children }: Props) => {
           }
         }
       } catch (e) {
-        error("Account decks fetching failed. Please, refresh a page");
+        error(_t("decks.columns.failed-fetch"));
       } finally {
         setTimeout(() => {
           setIsDecksLoading(false);
@@ -126,7 +127,7 @@ export const DeckManager = ({ children }: Props) => {
           }
         }
       } catch (e) {
-        error("Deck updating failed. Please, try again");
+        error(_t("decks.columns.failed-update"));
       } finally {
         setDecks(decksSnapshot);
       }

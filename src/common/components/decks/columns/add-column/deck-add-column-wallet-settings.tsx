@@ -6,6 +6,7 @@ import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
 import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
 import { ICONS } from "../../consts";
+import { _t } from "../../../../i18n";
 
 export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -17,37 +18,35 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
   const [recent, setRecent] = useState<UsernameDataItem[]>([]);
 
   const contentTypes = [
-    { title: "All history", type: "all" },
-    { title: "Transfers", type: "transfers" },
+    { title: _t("decks.columns.all-history"), type: "all" },
+    { title: _t("decks.columns.transfers"), type: "transfers" },
     {
-      title: "Market orders",
+      title: _t("decks.columns.market-orders"),
       type: "market-orders"
     },
     {
-      title: "Interests",
+      title: _t("decks.columns.interests"),
       type: "interests"
     },
     {
-      title: "Stake operations",
+      title: _t("decks.columns.stake-operations"),
       type: "stake-operations"
     },
     {
-      title: "Rewards",
+      title: _t("decks.columns.rewards"),
       type: "rewards"
     }
   ];
 
   return (
     <div className="deck-add-column-user-settings p-3">
-      <div className="helper-text">
-        Enter a username below and select which type of wallet transactions You want to see
-      </div>
-      <div className="subtitle py-3">Username</div>
+      <div className="helper-text">{_t("decks.columns.add-username-text")}</div>
+      <div className="subtitle py-3">{_t("g.username")}</div>
       {username ? (
         <div className="selected-user" onClick={() => setUsername("")}>
           <UserAvatar size="medium" global={global} username={username} />
           <div className="username">@{username}</div>
-          <div className="click-to-change">Click to change</div>
+          <div className="click-to-change">{_t("decks.columns.click-to-change")}</div>
         </div>
       ) : (
         <DeckAddColumnSearchBox username={username} setUsername={setUsername} recentList={recent} />
@@ -88,7 +87,7 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
             })
           }
         >
-          Continue
+          {_t("g.continue")}
         </Button>
       ) : (
         <></>

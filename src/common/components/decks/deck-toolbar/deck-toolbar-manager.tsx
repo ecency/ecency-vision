@@ -5,6 +5,7 @@ import { addIconSvg, settingsIconSvg } from "../icons";
 import { DecksSettings } from "../deck-settings/decks-settings";
 import { DeckGrid } from "../types";
 import { Button } from "react-bootstrap";
+import { _t } from "../../../i18n";
 
 interface Props {
   isExpanded: boolean;
@@ -19,7 +20,7 @@ export const DeckToolbarManager = ({ isExpanded }: Props) => {
   return (
     <div className="deck-toolbar-manager">
       <div className="title">
-        <div className="text">Decks</div>
+        <div className="text">{_t("decks.decks")}</div>
         <div className="add-deck-btn btn" onClick={() => setShowDecksSettings(true)}>
           {addIconSvg}
         </div>
@@ -35,7 +36,11 @@ export const DeckToolbarManager = ({ isExpanded }: Props) => {
             {isExpanded ? (
               <div className="title px-0">
                 {deck.title}
-                {deck.storageType === "local" ? <div className="local">Local</div> : <></>}
+                {deck.storageType === "local" ? (
+                  <div className="local">{_t("decks.local")}</div>
+                ) : (
+                  <></>
+                )}
               </div>
             ) : (
               <></>

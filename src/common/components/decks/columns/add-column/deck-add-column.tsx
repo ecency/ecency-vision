@@ -39,45 +39,45 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
   const availableColumns: AvailableColumn[] = [
     {
       type: "u",
-      title: "User",
+      title: _t("decks.columns.user"),
       icon: userIconSvg,
-      description: "Find a profile and see what they're been up to."
+      description: _t("decks.columns.user-description")
     },
     {
       type: "co",
-      title: "Community",
+      title: _t("decks.columns.community"),
       icon: communityIconSvg,
-      description: "Find a community and follow their activity."
+      description: _t("decks.columns.community-description")
     },
     {
       type: "w",
-      title: "Wallet",
+      title: _t("decks.columns.wallet"),
       icon: walletIconSvg,
-      description: "Track people's transactions and funds."
+      description: _t("decks.columns.wallet-description")
     },
     {
       type: "n",
-      title: "Notifications",
+      title: _t("decks.columns.notifications"),
       icon: notificationsIconSvg,
-      description: "Follow any people activity."
+      description: _t("decks.columns.notifications-description")
     },
     {
       type: "tr",
-      title: "Trending",
+      title: _t("decks.columns.trending"),
       icon: trendingIconSvg,
-      description: "Explore trending posts at this moment."
+      description: _t("decks.columns.trending-description")
     },
     {
       type: "to",
-      title: "Topics",
+      title: _t("decks.columns.topics"),
       icon: topicsIconSvg,
-      description: "See the most popular topics and explore content."
+      description: _t("decks.columns.topics-description")
     },
     {
       type: "s",
-      title: "Search",
+      title: _t("decks.columns.search"),
       icon: searchIconSvg,
-      description: "Explore specific posts based on your search query."
+      description: _t("decks.columns.search-description")
     }
   ];
   const typesWithoutSettings = ["tr", "to"];
