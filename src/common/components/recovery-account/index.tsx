@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Button, Form, FormControl, Modal } from "react-bootstrap";
+import useDebounce from "react-use/lib/useDebounce";
 
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
@@ -86,24 +87,11 @@ export default function AccountRecovery(props: Props) {
     finish();
   };
 
-  const newRecoveryAccountChange = (
-    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
-  ) => {
-    e.persist();
-    setNewCurrRecoveryAccount(e.target.value);
-
-    if (e.target.value.length === 0) {
-      setDisabled(true);
-      setToError("");
-      return;
-    }
-
-    setTimeout(async () => {
-      setIsEcency(e.target.value === ECENCY);
-
-      const resp = await getAccount(e.target.value);
+  useDebounce(
+    async () => {
+      const resp = await getAccount(newRecoveryAccount);
       if (resp) {
-        const isECENCY = e.target.value === ECENCY;
+        const isECENCY = newRecoveryAccount === ECENCY;
         if (isECENCY) {
           setDisabled(true);
           return;
@@ -113,7 +101,7 @@ export default function AccountRecovery(props: Props) {
           }
         }
 
-        if (e.target.value === props.activeUser?.username) {
+        if (newRecoveryAccount === props.activeUser?.username) {
           setDisabled(true);
           setToError(_t("account-recovery.same-account-error"));
           return;
@@ -121,12 +109,28 @@ export default function AccountRecovery(props: Props) {
         setDisabled(false);
         setToError("");
       } else {
-        if (e.target.value.length > 0) {
+        if (newRecoveryAccount.length > 0) {
           setDisabled(true);
           setToError(_t("account-recovery.to-not-found"));
         }
       }
-    }, 500);
+    },
+    1000,
+    [newRecoveryAccount]
+  );
+
+  const newRecoveryAccountChange = async (
+    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
+  ) => {
+    e.persist();
+
+    if (e.target.value.length === 0) {
+      setDisabled(true);
+      setToError("");
+      return;
+    }
+    setIsEcency(e.target.value === ECENCY);
+    setNewCurrRecoveryAccount(e.target.value);
   };
 
   const update = () => {
