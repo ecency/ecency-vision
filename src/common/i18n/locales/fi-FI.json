@@ -1537,9 +1537,9 @@
     "info-message": "Korvataanko odottava pyyntö? @{{n}}",
     "same-account-error": "Et voi asettaa itseäsi palautustiliksi!",
     "same-recover-agent-suggestion": "Ole hyvä ja vaihda palautustilisi Ecencyyn tai johonkin muuhun tiliin",
-    "email-placeholder": "Email, used for verifying recovery process",
-    "update-successful": "Update successful",
-    "update-success-message": "Your Recovery email has been updated successfully"
+    "email-placeholder": "Sähköpostiosoite, jota käytetään palautusprosessin tarkistamiseen",
+    "update-successful": "Päivitys onnistui",
+    "update-success-message": "Palautussähköpostiosoitteesi päivitys onnistui"
   },
   "add-image": {
     "title": "Lisää kuva",
