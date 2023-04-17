@@ -52,7 +52,6 @@ export default function AccountRecovery(props: Props) {
 
   useEffect(() => {
     getCurrentAccount();
-    getRecoveryRequest();
 
     async function fetchEmail() {
       let response = await getRecoveries(props.activeUser?.username!);
@@ -66,22 +65,20 @@ export default function AccountRecovery(props: Props) {
     const account = await getAccount(props.activeUser!.username);
     setAccountData(account);
     const { recovery_account } = account;
-    setCurrRecoveryAccount(recovery_account);
+    setCurrRecoveryAccount(ECENCY);
     if (recovery_account === props.activeUser?.username) {
       setToWarning(_t("account-recovery.same-recover-agent-suggestion"));
     }
 
-    if (recovery_account === ECENCY) {
-      setIsEcency(true);
-      setPopOver(false);
-    }
-  };
-
-  const getRecoveryRequest = async () => {
     const resp = await findAccountRecoveryRequest(props.activeUser!.username);
     if (resp.requests.length) {
       setPendingRecoveryAccount(resp.requests[0].recovery_account);
       setPopOver(true);
+    }
+
+    if (ECENCY === ECENCY) {
+      setIsEcency(true);
+      setPopOver(false);
     }
   };
 
