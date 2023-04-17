@@ -50,14 +50,13 @@ export default function AccountRecovery(props: Props) {
   const [newRecoveryAccount, setNewCurrRecoveryAccount] = useState("");
   const [pendingRecoveryAccount, setPendingRecoveryAccount] = useState("");
 
+  const fetchEmail = async () => {
+    let response = await getRecoveries(props.activeUser?.username!);
+    setRecoveryEmail(response[0].email);
+  };
+
   useEffect(() => {
     getCurrentAccount();
-
-    async function fetchEmail() {
-      let response = await getRecoveries(props.activeUser?.username!);
-      setRecoveryEmail(response[0].email);
-    }
-
     fetchEmail();
   }, []);
 
