@@ -86,16 +86,16 @@
           position: absolute;
           top: 0.75rem;
           right: 1rem;
-          width: 1rem;
-          height: 1rem;
           background-color: $danger;
           display: flex;
           align-items: center;
           justify-content: center;
           color: $white;
+          font-weight: bold;
 
+          @include padding(0.2rem);
           @include border-radius(1rem);
-          @include font-size(0.75rem);
+          @include font-size(0.6rem);
         }
       }
     }

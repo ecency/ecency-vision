@@ -171,8 +171,19 @@ export const DeckManager = ({ children }: Props) => {
     }
   };
 
-  const scrollTo = (key: number) => {
-    document.getElementById(`${key - 1}`)?.scrollIntoView({ behavior: "smooth" });
+  const scrollTo = (key: number | null) => {
+    const columnElement = document.getElementById(Number(key) + "");
+    const deckGridElement = document.querySelector(".deck-grid");
+    const deckToolbarElement = document.querySelector(".deck-toolbar");
+
+    if (columnElement && deckGridElement && deckToolbarElement) {
+      const { left } = columnElement.getBoundingClientRect();
+      const { width } = deckToolbarElement.getBoundingClientRect();
+      deckGridElement.scrollTo({
+        left: left - width,
+        behavior: "smooth"
+      });
+    }
   };
 
   // All actions should be transactional
