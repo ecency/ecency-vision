@@ -1494,6 +1494,7 @@
     "title": "Vaihda palautusedustaja",
     "curr-recovery-acc": "Nykyinen palautusedustaja",
     "new-recovery-acc": "Uusi palautusedustaja",
+    "new-recovery-email": "Email",
     "confirm-title": "Vahvista siirtotapahtuma",
     "confirm-sub-title": "Tarkista että kaikki on oikein",
     "req-error": "Anteeksi! Pyyntösi palautusedustajan muuttamiseksi on jo käynnissä",
@@ -1502,7 +1503,11 @@
     "sign-sub-title": "Allekirjoita tapahtuma",
     "success-message": "Uusi palautusedustaja on toiminnassa 30 päivän kuluttua",
     "info-message": "Korvataanko odottava pyyntö? @{{n}}",
-    "same-account-error": "Et voi asettaa itseäsi palautustiliksi!"
+    "same-account-error": "Et voi asettaa itseäsi palautustiliksi!",
+    "same-recover-agent-suggestion": "Please change your recovery account to Ecency or any other account",
+    "email-placeholder": "Email, used for verifying recovery process",
+    "update-successful": "Update successful",
+    "update-success-message": "Your Recovery email has been updated successfully"
   },
   "add-image": {
     "title": "Lisää kuva",
