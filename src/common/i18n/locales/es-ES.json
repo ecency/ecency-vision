@@ -1494,6 +1494,7 @@
     "title": "Cambiar agente de recuperación",
     "curr-recovery-acc": "Agente de recuperación actual",
     "new-recovery-acc": "Nuevo agente de recuperación",
+    "new-recovery-email": "Email",
     "confirm-title": "Confirma tu transacción",
     "confirm-sub-title": "Por favor, comprueba si todo es correcto",
     "req-error": "¡Lo sentimos! Su solicitud de cambio de agente de recuperación ya está en curso",
@@ -1502,7 +1503,11 @@
     "sign-sub-title": "Firmar tu transacción",
     "success-message": "El nuevo agente de recuperación es efectivo después de 30 días",
     "info-message": "¿Sobrescribir la solicitud pendiente? @{{n}}",
-    "same-account-error": "¡No puedes establecerte a ti mismo como cuenta de recuperación!"
+    "same-account-error": "¡No puedes establecerte a ti mismo como cuenta de recuperación!",
+    "same-recover-agent-suggestion": "Please change your recovery account to Ecency or any other account",
+    "email-placeholder": "Email, used for verifying recovery process",
+    "update-successful": "Update successful",
+    "update-success-message": "Your Recovery email has been updated successfully"
   },
   "add-image": {
     "title": "Añadir imagen",
