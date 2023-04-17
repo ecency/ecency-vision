@@ -425,12 +425,22 @@ export const Item = (props: ItemProps) => {
                   <></>
                 ) : (
                   <div className="item-controls">
-                    {EntryVoteBtn({
-                      ...props,
-                      entry,
-                      afterVote: afterVote,
-                      isPostSlider: false
-                    })}
+                    {
+                      <EntryVoteBtn
+                        isPostSlider={false}
+                        global={global}
+                        dynamicProps={props.dynamicProps}
+                        entry={entry}
+                        users={props.users}
+                        activeUser={props.activeUser}
+                        ui={props.ui}
+                        afterVote={afterVote}
+                        setActiveUser={props.setActiveUser}
+                        updateActiveUser={props.updateActiveUser}
+                        toggleUIProp={props.toggleUIProp}
+                        deleteUser={props.deleteUser}
+                      />
+                    }
                     {EntryPayout({
                       ...props,
                       entry

@@ -243,7 +243,9 @@
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
     "vote-remove": "Voting 0% unvotes the content.",
     "vote-warning": "Changing vote...",
-    "no-replies": "No responses yet. Click to respond."
+    "no-replies": "No responses yet. Click to respond.",
+    "old-post-error": "Voting on Content after their payout does not generate any new rewards.",
+    "old-post-error-suggestion": "Try tipping the author. "
   },
   "nsfw": {
     "reveal": "Reveal this post",
