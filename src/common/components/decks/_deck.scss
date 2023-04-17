@@ -425,6 +425,7 @@
 
     &:hover {
       background-image: none;
+      background-color: transparent;
       border-radius: 0;
     }
 
@@ -457,7 +458,7 @@
       }
     }
 
-    .post-link {
+    .post-link, .markdown-view {
       color: $secondary;
 
       &:hover {

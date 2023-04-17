@@ -94,7 +94,6 @@ export const DeckManager = ({ children }: Props) => {
           setDecks({
             decks: [...accountDecks, ...decks.decks]
           });
-          setActiveDeck(accountDecks[0].key);
 
           if (
             persistedActiveDeck &&
@@ -114,7 +113,7 @@ export const DeckManager = ({ children }: Props) => {
   };
 
   const updateDeckOnLayoutChange = async () => {
-    const decksSnapshot = { decks: [...localDecks?.decks] };
+    const decksSnapshot = { decks: [...decks?.decks] };
     const existingDeckIndex = decksSnapshot.decks.findIndex((d) => d.key === activeDeck);
     if (existingDeckIndex > -1) {
       decksSnapshot.decks[existingDeckIndex] = layout;
@@ -123,7 +122,7 @@ export const DeckManager = ({ children }: Props) => {
           if (activeUser && layout.storageType === "account") {
             await updateDeck(activeUser.username, layout);
           } else {
-            setLocalDecks(decksSnapshot);
+            setLocalDecks({ decks: decksSnapshot.decks.filter((d) => d.storageType === "local") });
           }
         }
       } catch (e) {
