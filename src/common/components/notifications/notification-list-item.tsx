@@ -26,6 +26,7 @@ export default class NotificationListItem extends Component<{
   toggleUIProp: (what: ToggleType) => void;
   onMounted?: () => void;
   className?: string;
+  onLinkClick?: () => Promise<void>;
 }> {
   componentDidMount() {
     if (this.props.onMounted) {
@@ -116,16 +117,22 @@ export default class NotificationListItem extends Component<{
                   </span>
                 </div>
                 <div className="second-line">
-                  {EntryLink({
-                    ...this.props,
-                    entry: {
-                      category: "category",
-                      author: notification.author,
-                      permlink: notification.permlink
-                    },
-                    afterClick: this.afterClick,
-                    children: <a className="post-link">{notification.permlink}</a>
-                  })}
+                  {"onLinkClick" in this.props ? (
+                    <a className="post-link" onClick={this.props.onLinkClick}>
+                      {notification.permlink}
+                    </a>
+                  ) : (
+                    EntryLink({
+                      ...this.props,
+                      entry: {
+                        category: "category",
+                        author: notification.author,
+                        permlink: notification.permlink
+                      },
+                      afterClick: this.afterClick,
+                      children: <a className="post-link">{notification.permlink}</a>
+                    })
+                  )}
                 </div>
               </div>
             )}
@@ -137,32 +144,47 @@ export default class NotificationListItem extends Component<{
                   {sourceLink}
                   <span className="item-action">{_t("notifications.reply-str")}</span>
                   <div className="vert-separator" />
-                  {EntryLink({
-                    ...this.props,
-                    entry: {
-                      category: "category",
-                      author: notification.parent_author,
-                      permlink: notification.parent_permlink
-                    },
-                    afterClick: this.afterClick,
-                    children: <a className="post-link">{notification.parent_permlink}</a>
-                  })}
+                  {"onLinkClick" in this.props ? (
+                    <a className="post-link" onClick={this.props.onLinkClick}>
+                      {notification.parent_permlink}
+                    </a>
+                  ) : (
+                    EntryLink({
+                      ...this.props,
+                      entry: {
+                        category: "category",
+                        author: notification.parent_author,
+                        permlink: notification.parent_permlink
+                      },
+                      afterClick: this.afterClick,
+                      children: <a className="post-link">{notification.parent_permlink}</a>
+                    })
+                  )}
                 </div>
                 <div className="second-line">
-                  {EntryLink({
-                    ...this.props,
-                    entry: {
-                      category: "category",
-                      author: notification.author,
-                      permlink: notification.permlink
-                    },
-                    afterClick: this.afterClick,
-                    children: (
-                      <div className="markdown-view mini-markdown reply-body">
-                        {postBodySummary(notification.body, 100)}
-                      </div>
-                    )
-                  })}
+                  {"onLinkClick" in this.props ? (
+                    <div
+                      className="markdown-view mini-markdown reply-body"
+                      onClick={this.props.onLinkClick}
+                    >
+                      {postBodySummary(notification.body, 100)}
+                    </div>
+                  ) : (
+                    EntryLink({
+                      ...this.props,
+                      entry: {
+                        category: "category",
+                        author: notification.author,
+                        permlink: notification.permlink
+                      },
+                      afterClick: this.afterClick,
+                      children: (
+                        <div className="markdown-view mini-markdown reply-body">
+                          {postBodySummary(notification.body, 100)}
+                        </div>
+                      )
+                    })
+                  )}
                 </div>
               </div>
             )}
@@ -175,16 +197,22 @@ export default class NotificationListItem extends Component<{
                   <span className="item-action">{_t("notifications.mention-str")}</span>
                 </div>
                 <div className="second-line">
-                  {EntryLink({
-                    ...this.props,
-                    entry: {
-                      category: "category",
-                      author: notification.author,
-                      permlink: notification.permlink
-                    },
-                    afterClick: this.afterClick,
-                    children: <a className="post-link">{notification.permlink}</a>
-                  })}
+                  {"onLinkClick" in this.props ? (
+                    <a className="post-link" onClick={this.props.onLinkClick}>
+                      {notification.permlink}
+                    </a>
+                  ) : (
+                    EntryLink({
+                      ...this.props,
+                      entry: {
+                        category: "category",
+                        author: notification.author,
+                        permlink: notification.permlink
+                      },
+                      afterClick: this.afterClick,
+                      children: <a className="post-link">{notification.permlink}</a>
+                    })
+                  )}
                 </div>
               </div>
             )}
@@ -197,16 +225,22 @@ export default class NotificationListItem extends Component<{
                   <span className="item-action">{_t("notifications.favorite-str")}</span>
                 </div>
                 <div className="second-line">
-                  {EntryLink({
-                    ...this.props,
-                    entry: {
-                      category: "category",
-                      author: notification.author,
-                      permlink: notification.permlink
-                    },
-                    afterClick: this.afterClick,
-                    children: <a className="post-link">{notification.permlink}</a>
-                  })}
+                  {"onLinkClick" in this.props ? (
+                    <a className="post-link" onClick={this.props.onLinkClick}>
+                      {notification.permlink}
+                    </a>
+                  ) : (
+                    EntryLink({
+                      ...this.props,
+                      entry: {
+                        category: "category",
+                        author: notification.author,
+                        permlink: notification.permlink
+                      },
+                      afterClick: this.afterClick,
+                      children: <a className="post-link">{notification.permlink}</a>
+                    })
+                  )}
                 </div>
               </div>
             )}
@@ -219,16 +253,22 @@ export default class NotificationListItem extends Component<{
                   <span className="item-action">{_t("notifications.bookmark-str")}</span>
                 </div>
                 <div className="second-line">
-                  {EntryLink({
-                    ...this.props,
-                    entry: {
-                      category: "category",
-                      author: notification.author,
-                      permlink: notification.permlink
-                    },
-                    afterClick: this.afterClick,
-                    children: <a className="post-link">{notification.permlink}</a>
-                  })}
+                  {"onLinkClick" in this.props ? (
+                    <a className="post-link" onClick={this.props.onLinkClick}>
+                      {notification.permlink}
+                    </a>
+                  ) : (
+                    EntryLink({
+                      ...this.props,
+                      entry: {
+                        category: "category",
+                        author: notification.author,
+                        permlink: notification.permlink
+                      },
+                      afterClick: this.afterClick,
+                      children: <a className="post-link">{notification.permlink}</a>
+                    })
+                  )}
                 </div>
               </div>
             )}
@@ -261,16 +301,20 @@ export default class NotificationListItem extends Component<{
                   <span className="item-action">{_t("notifications.reblog-str")}</span>
                 </div>
                 <div className="second-line">
-                  {EntryLink({
-                    ...this.props,
-                    entry: {
-                      category: "category",
-                      author: notification.author,
-                      permlink: notification.permlink
-                    },
-                    afterClick: this.afterClick,
-                    children: <a className="post-link">{notification.permlink}</a>
-                  })}
+                  {"onLinkClick" in this.props ? (
+                    <a className="post-link">{notification.permlink}</a>
+                  ) : (
+                    EntryLink({
+                      ...this.props,
+                      entry: {
+                        category: "category",
+                        author: notification.author,
+                        permlink: notification.permlink
+                      },
+                      afterClick: this.afterClick,
+                      children: <a className="post-link">{notification.permlink}</a>
+                    })
+                  )}
                 </div>
               </div>
             )}

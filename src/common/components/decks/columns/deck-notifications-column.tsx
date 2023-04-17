@@ -10,6 +10,9 @@ import { History } from "history";
 import { getNotifications } from "../../../api/private-api";
 import { notificationsTitles } from "../consts";
 import { DeckGridContext } from "../deck-manager";
+import { getPost } from "../../../api/bridge";
+import { Entry } from "../../../store/entries/types";
+import { DeckPostViewer } from "./content-viewer";
 
 interface Props {
   id: string;
@@ -24,6 +27,7 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
 
   const [data, setData] = useState<ApiNotification[]>([]);
   const [isReloading, setIsReloading] = useState(false);
+  const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry>();
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
@@ -68,6 +72,16 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
       isReloading={isReloading}
       onReload={() => fetchData()}
       skeletonItem={<ShortListItemSkeleton />}
+      isExpanded={!!currentViewingEntry}
+      contentViewer={
+        currentViewingEntry && (
+          <DeckPostViewer
+            entry={currentViewingEntry}
+            history={history}
+            onClose={() => setCurrentViewingEntry(undefined)}
+          />
+        )
+      }
     >
       {(item: ApiNotification, measure: Function, index: number) => (
         <NotificationListItem
@@ -80,6 +94,32 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
           markNotifications={markNotifications}
           toggleUIProp={toggleUIProp}
           className="notification-list-item"
+          onLinkClick={async () => {
+            switch (item.type) {
+              case "bookmarks":
+              case "mention":
+              case "reply":
+              case "unvote":
+              case "vote":
+              case "favorites":
+              case "reblog":
+                const entry = await getPost(item.author, item.permlink);
+                if (entry) {
+                  setCurrentViewingEntry(entry);
+                }
+                break;
+              case "delegations":
+              case "follow":
+              case "ignore":
+              case "inactive":
+              case "referral":
+              case "transfer":
+              case "unfollow":
+              case "spin":
+              default:
+                break;
+            }
+          }}
         />
       )}
     </GenericDeckColumn>

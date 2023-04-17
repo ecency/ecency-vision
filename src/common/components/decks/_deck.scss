@@ -460,6 +460,7 @@
 
     .post-link, .markdown-view {
       color: $secondary;
+      cursor: pointer;
 
       &:hover {
         color: $primary;
