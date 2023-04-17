@@ -1494,6 +1494,7 @@
     "title": "Изменить агента восстановления",
     "curr-recovery-acc": "Агент восстановления",
     "new-recovery-acc": "Новый агент восстановления",
+    "new-recovery-email": "Email",
     "confirm-title": "Подтвердить транзакцию",
     "confirm-sub-title": "Пожалуйста, убедитесь что всё верно",
     "req-error": "Извините! Ваш запрос на изменение агента восстановления уже находится в процессе",
@@ -1502,7 +1503,11 @@
     "sign-sub-title": "Подпишите транзакцию",
     "success-message": "Новый агент восстановления будет эффективен через 30 дней",
     "info-message": "Перезаписать ожидающий запрос? @{{n}}",
-    "same-account-error": "Вы не можете установить свой аккаунт в качестве учетной записи восстановления!"
+    "same-account-error": "Вы не можете установить свой аккаунт в качестве учетной записи восстановления!",
+    "same-recover-agent-suggestion": "Please change your recovery account to Ecency or any other account",
+    "email-placeholder": "Email, used for verifying recovery process",
+    "update-successful": "Update successful",
+    "update-success-message": "Your Recovery email has been updated successfully"
   },
   "add-image": {
     "title": "Добавить изображение",
