@@ -552,7 +552,21 @@ class EntryPage extends BaseComponent<Props, State> {
       showProfileBox,
       showWordCount
     } = this.state;
-    const { global, history, match, location } = this.props;
+    const {
+      global,
+      history,
+      match,
+      location,
+      dynamicProps,
+      users,
+      setActiveUser,
+      ui,
+      updateActiveUser,
+      toggleUIProp,
+      deleteUser,
+      account,
+      updateWalletValues
+    } = this.props;
     const { isRawContent } = this.state;
 
     let navBar = global.isElectron ? (
@@ -1208,12 +1222,22 @@ class EntryPage extends BaseComponent<Props, State> {
                         )}
                       </div>
                       <div className="entry-controls" ref={setRef}>
-                        {EntryVoteBtn({
-                          ...this.props,
-                          isPostSlider: true,
-                          entry,
-                          afterVote: this.afterVote
-                        })}
+                        {
+                          <EntryVoteBtn
+                            isPostSlider={true}
+                            global={global}
+                            dynamicProps={dynamicProps}
+                            entry={entry}
+                            users={users}
+                            activeUser={this.props.activeUser}
+                            ui={ui}
+                            afterVote={this.afterVote}
+                            setActiveUser={setActiveUser}
+                            updateActiveUser={updateActiveUser}
+                            toggleUIProp={toggleUIProp}
+                            deleteUser={deleteUser}
+                          />
+                        }
                         {EntryPayout({
                           ...this.props,
                           entry
@@ -1222,10 +1246,13 @@ class EntryPage extends BaseComponent<Props, State> {
                           ...this.props,
                           entry
                         })}
-                        {EntryTipBtn({
-                          ...this.props,
-                          entry
-                        })}
+                        {
+                          <EntryTipBtn
+                            entry={entry}
+                            account={account}
+                            updateWalletValues={updateWalletValues}
+                          />
+                        }
                         {!ownEntry && (
                           <>
                             {EntryReblogBtn({
