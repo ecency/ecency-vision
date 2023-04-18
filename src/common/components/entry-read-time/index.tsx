@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { getActiveVotes } from "../../api/hive";
 
@@ -8,7 +9,6 @@ import { _t } from "../../i18n";
 import { informationVariantSvg } from "../../img/svg";
 import UserAvatar from "../user-avatar";
 import Mytooltip from "../tooltip";
-import { Link } from "react-router-dom";
 
 export const ReadTime = (props: any) => {
   const { entry, global, isVisible, toolTip } = props;
