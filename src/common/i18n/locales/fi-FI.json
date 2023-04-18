@@ -499,7 +499,8 @@
     "post-word-count": "Sanoja:",
     "post-read-time": "Luettavaa:",
     "post-read-minuites": "min",
-    "raw": "Näytä RAW-muoto"
+    "raw": "Näytä RAW-muoto",
+    "post-top-curator": "Top Curator:"
   },
   "edit-history": {
     "title": "Muokkaushistoria",
