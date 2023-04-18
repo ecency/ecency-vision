@@ -499,7 +499,8 @@
     "post-word-count": "Palabras:",
     "post-read-time": "Leyendo:",
     "post-read-minuites": "min",
-    "raw": "Ver formato RAW"
+    "raw": "Ver formato RAW",
+    "post-top-curator": "Top Curator:"
   },
   "edit-history": {
     "title": "Editar historial",
