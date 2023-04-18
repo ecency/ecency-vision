@@ -10,6 +10,11 @@ import { informationVariantSvg } from "../../img/svg";
 import UserAvatar from "../user-avatar";
 import Mytooltip from "../tooltip";
 
+export interface ActiveVotes {
+  rshares: number;
+  voter: string;
+}
+
 export const ReadTime = (props: any) => {
   const { entry, global, isVisible, toolTip } = props;
 
@@ -19,21 +24,14 @@ export const ReadTime = (props: any) => {
 
   useEffect(() => {
     calculateExtras();
+    getTopCurator();
   }, [entry]);
 
-  useEffect(() => {
-    getTopCurator();
-  }, []);
-
   const getTopCurator = async () => {
-    const rawVotes = await getActiveVotes(entry.author, entry.permlink);
-    let votes = prepareVotes(entry, rawVotes);
-
-    const highestRewardVoter = votes.reduce((prev, curr) => {
-      return prev.reward! > curr.reward! ? prev : curr;
+    const curator = props.entry.active_votes.reduce((prev: ActiveVotes, curr: ActiveVotes) => {
+      return prev.rshares! > curr.rshares! ? prev : curr;
     });
-
-    setTopCurator(highestRewardVoter.voter);
+    setTopCurator(curator.voter);
   };
 
   const calculateExtras = async () => {
