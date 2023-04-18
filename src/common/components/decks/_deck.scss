@@ -185,6 +185,7 @@
   .search-item-avatar {
     width: 35px;
     height: 35px;
+    border: 1px solid $border-color;
   }
 
   .search-post-image {
@@ -464,6 +465,43 @@
 
       &:hover {
         color: $primary;
+      }
+    }
+  }
+
+  .new-coming-data {
+    position: absolute;
+    z-index: 1;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+
+    @include transition(0.3s);
+
+    &.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      @include font-size(0.75rem);
+
+      svg {
+        width: auto;
+
+        path {
+          stroke: $white;
+        }
       }
     }
   }

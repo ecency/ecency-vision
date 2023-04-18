@@ -7,7 +7,6 @@ import { Entry } from "../../../store/entries/types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../deck-manager";
 import { DeckPostViewer } from "./content-viewer";
-import { userTitles } from "../consts";
 import { History } from "history";
 
 interface Props {
@@ -17,8 +16,10 @@ interface Props {
   draggable?: DraggableProvidedDragHandleProps;
 }
 
+type IdentifiableEntry = Entry & Required<Pick<Entry, "id">>;
+
 export const DeckTrendingColumn = ({ id, settings, draggable, history }: Props) => {
-  const [data, setData] = useState<Entry[]>([]);
+  const [data, setData] = useState<IdentifiableEntry[]>([]);
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
 
@@ -35,7 +36,7 @@ export const DeckTrendingColumn = ({ id, settings, draggable, history }: Props) 
 
     try {
       const response = await getPostsRanked("trending");
-      setData(response ?? []);
+      setData((response as IdentifiableEntry[]) ?? []);
     } catch (e) {
     } finally {
       setIsReloading(false);

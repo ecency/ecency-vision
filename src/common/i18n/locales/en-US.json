@@ -435,7 +435,8 @@
       "rewards": "Rewards",
       "failed-fetch": "Account decks fetching failed. Please, refresh a page",
       "failed-update": "Deck updating failed. Please, try again",
-      "new-column": "New column"
+      "new-column": "New column",
+      "new-data-available": "New data available"
     }
   },
   "market-data": {

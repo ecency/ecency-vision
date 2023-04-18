@@ -17,10 +17,12 @@ interface Props {
   draggable?: DraggableProvidedDragHandleProps;
 }
 
+type IdentifiableTransaction = Transaction & { id: string };
+
 export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) => {
   const { dynamicProps, global } = useMappedStore();
 
-  const [data, setData] = useState<Transaction[]>([]);
+  const [data, setData] = useState<IdentifiableTransaction[]>([]);
   const [isReloading, setIsReloading] = useState(false);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
@@ -36,7 +38,7 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
 
     try {
       const response = await fetchTransactions(settings.username, settings.contentType as any);
-      setData(response ?? []);
+      setData(response.map((item) => ({ ...item, id: item.trx_id })) ?? []);
     } catch (e) {
     } finally {
       setIsReloading(false);

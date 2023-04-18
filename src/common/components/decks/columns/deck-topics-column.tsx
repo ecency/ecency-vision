@@ -13,8 +13,10 @@ interface Props {
   draggable?: DraggableProvidedDragHandleProps;
 }
 
+type IdentifiableTrendingTag = TrendingTag & Required<{ id: string }>;
+
 export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
-  const [data, setData] = useState<TrendingTag[]>([]);
+  const [data, setData] = useState<IdentifiableTrendingTag[]>([]);
   const [isReloading, setIsReloading] = useState(false);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
@@ -29,8 +31,8 @@ export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
     }
 
     try {
-      const response = await getAllTrendingTags();
-      setData(response ?? []);
+      const response: TrendingTag[] = await getAllTrendingTags();
+      setData(response.map((item) => ({ ...item, id: item.name })) ?? []);
     } catch (e) {
     } finally {
       setIsReloading(false);

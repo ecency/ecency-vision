@@ -17,8 +17,10 @@ interface Props {
   draggable?: DraggableProvidedDragHandleProps;
 }
 
+type IdentifiableEntry = Entry & Required<Pick<Entry, "id">>;
+
 export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props) => {
-  const [data, setData] = useState<Entry[]>([]);
+  const [data, setData] = useState<IdentifiableEntry[]>([]);
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
 
@@ -35,7 +37,7 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
 
     try {
       const response = await getPostsRanked(settings.contentType, "", "", 20, settings.tag);
-      setData(response ?? []);
+      setData((response as IdentifiableEntry[] | null) ?? []);
     } catch (e) {
     } finally {
       setIsReloading(false);
