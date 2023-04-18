@@ -15,7 +15,7 @@ import DropDown from "../dropdown";
 import Tooltip from "../tooltip";
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
-import { checkSvg, KebabMenu, settingsSvg, syncSvg, playListAddCheck } from "../../img/svg";
+import { checkSvg, settingsSvg, syncSvg, playListAddCheck } from "../../img/svg";
 import { NotifyTypes } from "../../enums";
 import NotificationListItem from "./notification-list-item";
 import {
@@ -347,18 +347,6 @@ export class DialogContent extends Component<NotificationProps, any> {
                     {checkSvg}
                   </span>
                 </Tooltip>
-
-                <Tooltip content={_t("notifications.mark-read")}>
-                  <span
-                    className={_c(
-                      `list-action mark-svg ${this.state.isSelectIcon ? "active" : "disabled"}`
-                    )}
-                    onClick={() => this.markNotifications()}
-                  >
-                    {playListAddCheck}
-                  </span>
-                </Tooltip>
-
                 <Tooltip content={_t("notifications.refresh")}>
                   <span
                     className={_c(`list-action ${loading ? "disabled" : ""}`)}
@@ -467,8 +455,20 @@ export class DialogContent extends Component<NotificationProps, any> {
             })}
           </div>
 
-          <div className="select-button">
-            <Tooltip content={_t("notifications.select")}>
+          <div className="select-buttons">
+            {this.state.isSelectIcon && (
+              <Tooltip content={_t("notifications.mark-selected-read")}>
+                <span className="mark-svg" onClick={() => this.markNotifications()}>
+                  {playListAddCheck}
+                </span>
+              </Tooltip>
+            )}
+
+            <Tooltip
+              content={
+                this.state.select ? _t("notifications.unselect") : _t("notifications.select")
+              }
+            >
               <span
                 className={`select-svg ${this.state.select ? "active" : ""} shadow-none`}
                 onClick={this.selectClicked}

@@ -63,11 +63,6 @@
         }
       }
 
-      .mark-svg {
-        svg {
-          height: 22px !important;
-        }
-      }
     }
   }
 
@@ -83,26 +78,6 @@
 
     @include themify(night) {
       border-color: $dark-two;
-    }
-
-    .select-svg {
-      cursor: pointer;
-      border: 1px solid $dark-sky-blue;
-      padding: 1px;
-      padding-top: 0;
-
-      svg {
-        height: 14px;
-        color: $primary;
-      }
-
-      &.active {
-        background-color: $dark-sky-blue;
-
-        svg {
-          color: $white;
-        }
-      }
     }
 
     .status-button {
@@ -131,30 +106,39 @@
       background-color: $dark-sky-blue;
     }
 
-    .select-button {
+    .select-buttons {
       display: -webkit-inline-box;
-      margin-right: 6px;
+      margin-right: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .select-svg {
+        cursor: pointer;
+        border: 1px solid $dark-sky-blue;
+        padding: 1px;
 
-      .select-button.active {
-        background-color: $dark-sky-blue;
-      }
-      .select-button {
-        padding: 2px 10px;
-        font-size: 14px;
-
-        @media (max-width: $md-break) and (min-width: $sm-break) {
-          font-size: 12px;
+        svg {
+          display: block;
+          height: 14px;
+          color: $primary;
         }
 
-        @media (max-width: $sm-break) {
-          padding-top: 5px;
-          font-size: 10px;
+        &.active {
+          background-color: $dark-sky-blue;
+
+          svg {
+            color: $white;
+          }
         }
       }
-
-      .select-icon {
-        margin-top: -4px;
-        margin-left: 4px;
+      .mark-svg {
+        cursor: pointer;
+        margin-right: 10px;
+        svg {
+          display: block;
+          height: 22px;
+          color: $primary;
+        }
       }
     }
   }
