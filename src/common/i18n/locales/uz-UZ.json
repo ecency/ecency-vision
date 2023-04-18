@@ -499,7 +499,8 @@
     "post-word-count": "So'zlar:",
     "post-read-time": "O'qish:",
     "post-read-minuites": "daq",
-    "raw": "View RAW format"
+    "raw": "View RAW format",
+    "post-top-curator": "Top Curator:"
   },
   "edit-history": {
     "title": "Tarixni Tahrirlash",
