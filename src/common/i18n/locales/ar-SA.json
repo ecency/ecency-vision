@@ -499,7 +499,8 @@
     "post-word-count": "Words:",
     "post-read-time": "Reading:",
     "post-read-minuites": "min",
-    "raw": "View RAW format"
+    "raw": "View RAW format",
+    "post-top-curator": "Top Curator:"
   },
   "edit-history": {
     "title": "تعديل التاريخ",
