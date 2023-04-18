@@ -62,6 +62,12 @@
           cursor: pointer;
         }
       }
+
+      .mark-svg {
+        svg {
+          height: 22px !important;
+        }
+      }
     }
   }
 

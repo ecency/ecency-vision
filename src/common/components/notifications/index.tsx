@@ -15,7 +15,7 @@ import DropDown from "../dropdown";
 import Tooltip from "../tooltip";
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
-import { checkSvg, KebabMenu, settingsSvg, syncSvg } from "../../img/svg";
+import { checkSvg, KebabMenu, settingsSvg, syncSvg, playListAddCheck } from "../../img/svg";
 import { NotifyTypes } from "../../enums";
 import NotificationListItem from "./notification-list-item";
 import {
@@ -323,19 +323,6 @@ export class DialogContent extends Component<NotificationProps, any> {
       items: menuItems
     };
 
-    const markAsreadMenuConfig = {
-      history: this.props.history,
-      label: "",
-      icon: KebabMenu,
-      items: [
-        {
-          label: "Mark as read",
-          onClick: this.markNotifications,
-          icon: checkSvg
-        }
-      ]
-    };
-
     const { notifications } = this.props;
     const { inProgress, select, currentStatus } = this.state;
     const { list, loading, filter, unread } = notifications;
@@ -360,6 +347,18 @@ export class DialogContent extends Component<NotificationProps, any> {
                     {checkSvg}
                   </span>
                 </Tooltip>
+
+                <Tooltip content={_t("notifications.mark-read")}>
+                  <span
+                    className={_c(
+                      `list-action mark-svg ${this.state.isSelectIcon ? "active" : "disabled"}`
+                    )}
+                    onClick={() => this.markNotifications()}
+                  >
+                    {playListAddCheck}
+                  </span>
+                </Tooltip>
+
                 <Tooltip content={_t("notifications.refresh")}>
                   <span
                     className={_c(`list-action ${loading ? "disabled" : ""}`)}
@@ -477,13 +476,6 @@ export class DialogContent extends Component<NotificationProps, any> {
                 {checkSvg}
               </span>
             </Tooltip>
-            {this.state.isSelectIcon ? (
-              <div className="select-icon">
-                <DropDown {...markAsreadMenuConfig} float="right" />
-              </div>
-            ) : (
-              <></>
-            )}
           </div>
         </div>
 
