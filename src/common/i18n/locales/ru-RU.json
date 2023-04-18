@@ -499,7 +499,8 @@
     "post-word-count": "Слова:",
     "post-read-time": "Чтение:",
     "post-read-minuites": "мин",
-    "raw": "Просмотр формата RAW"
+    "raw": "Просмотр формата RAW",
+    "post-top-curator": "Top Curator:"
   },
   "edit-history": {
     "title": "История изменений",
