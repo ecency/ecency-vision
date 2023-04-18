@@ -8,6 +8,7 @@ import { _t } from "../../i18n";
 import { informationVariantSvg } from "../../img/svg";
 import UserAvatar from "../user-avatar";
 import Mytooltip from "../tooltip";
+import { Link } from "react-router-dom";
 
 export const ReadTime = (props: any) => {
   const { entry, global, isVisible, toolTip } = props;
@@ -18,15 +19,13 @@ export const ReadTime = (props: any) => {
 
   useEffect(() => {
     calculateExtras();
-    console.log("Called");
   }, [entry]);
 
-  const calculateExtras = async () => {
-    const entryCount = countWords(entry.body);
-    const wordPerMinuite: number = 225;
-    setWordCount(entryCount);
-    setReadTime(Math.ceil(entryCount / wordPerMinuite));
+  useEffect(() => {
+    getTopCurator();
+  }, []);
 
+  const getTopCurator = async () => {
     const rawVotes = await getActiveVotes(entry.author, entry.permlink);
     let votes = prepareVotes(entry, rawVotes);
 
@@ -35,6 +34,13 @@ export const ReadTime = (props: any) => {
     });
 
     setTopCurator(highestRewardVoter.voter);
+  };
+
+  const calculateExtras = async () => {
+    const entryCount = countWords(entry.body);
+    const wordPerMinuite: number = 225;
+    setWordCount(entryCount);
+    setReadTime(Math.ceil(entryCount / wordPerMinuite));
   };
 
   const countWords = (entry: string) => {
@@ -74,7 +80,7 @@ export const ReadTime = (props: any) => {
     </div>
   ) : (
     <>
-      {!global.isMobile && isVisible && topCurator && (
+      {!global.isMobile && isVisible && (
         <div id="word-count" className="visible hide-xl">
           <p>
             {_t("entry.post-word-count")} {wordCount}
@@ -82,14 +88,18 @@ export const ReadTime = (props: any) => {
           <p>
             {_t("entry.post-read-time")} {readTime} {_t("entry.post-read-minuites")}
           </p>
-          <p className="top-curator">
-            {_t("entry.post-top-curator")}
-            <Mytooltip content={topCurator}>
-              <a className="curator" href={`https://ecency.com/@${topCurator}`}>
-                <UserAvatar username={topCurator} size="small" />
-              </a>
-            </Mytooltip>
-          </p>
+          {topCurator && (
+            <p className="top-curator">
+              {_t("entry.post-top-curator")}
+              <Mytooltip content={topCurator}>
+                <Link to={`/@${topCurator}`}>
+                  <div className="curator">
+                    <UserAvatar username={topCurator} size="small" />
+                  </div>
+                </Link>
+              </Mytooltip>
+            </p>
+          )}
         </div>
       )}
     </>
