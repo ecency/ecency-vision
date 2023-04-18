@@ -123,14 +123,14 @@ export default function AccountRecovery(props: Props) {
     e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
   ) => {
     e.persist();
+    setIsEcency(e.target.value === ECENCY);
+    setNewCurrRecoveryAccount(e.target.value);
 
     if (e.target.value.length === 0) {
       setDisabled(true);
       setToError("");
       return;
     }
-    setIsEcency(e.target.value === ECENCY);
-    setNewCurrRecoveryAccount(e.target.value);
   };
 
   const update = () => {
