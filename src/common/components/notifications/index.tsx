@@ -16,7 +16,7 @@ import Tooltip from "../tooltip";
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 import { checkSvg, settingsSvg, syncSvg, playListAddCheck } from "../../img/svg";
-import { NotifyTypes } from "../../enums";
+import { NotifyTypes, NotificationViewType } from "../../enums";
 import NotificationListItem from "./notification-list-item";
 import {
   fetchNotifications,
@@ -47,8 +47,6 @@ export const date2key = (s: string): string => {
 
   return s;
 };
-
-const buttonStatus: string[] = ["All", "Unread", "Read"];
 
 interface NotificationProps {
   global: Global;
@@ -437,7 +435,7 @@ export class DialogContent extends Component<NotificationProps, any> {
 
         <div className="status-button-container">
           <div className="status-btn">
-            {buttonStatus.map((status: string, k: number) => {
+            {Object.values(NotificationViewType).map((status: string, k: number) => {
               return (
                 <Button
                   className={`status-button ${
