@@ -50,6 +50,8 @@ interface Props {
 
 export const DeckManager = ({ children }: Props) => {
   const { activeUser } = useMappedStore();
+  const previousActiveUser = usePrevious(activeUser);
+
   const [localDecks, setLocalDecks] = useLocalStorage(PREFIX + "_d", DEFAULT_LAYOUT);
   const [persistedActiveDeck, setPersistedActiveDeck] = useLocalStorage<string>(
     PREFIX + "_d_ad",
@@ -74,6 +76,18 @@ export const DeckManager = ({ children }: Props) => {
     fetchDecks();
   }, []);
 
+  useEffect(() => {
+    if (activeUser?.username !== previousActiveUser?.username) {
+      fetchDecks();
+    }
+
+    if (!activeUser) {
+      const nextDeck = localDecks ?? DEFAULT_LAYOUT;
+      setDecks(nextDeck);
+      setActiveDeck(nextDeck.decks[0].key);
+    }
+  }, [activeUser]);
+
   // Save active deck after column re-arrange
   useEffect(() => {
     updateDeckOnLayoutChange();
@@ -88,8 +102,8 @@ export const DeckManager = ({ children }: Props) => {
   }, [activeDeck]);
 
   const fetchDecks = async () => {
-    if (activeUser) {
-      try {
+    try {
+      if (activeUser) {
         const accountDecks = await getDecks(activeUser?.username);
         if (accountDecks.length > 0) {
           setDecks({
@@ -103,13 +117,13 @@ export const DeckManager = ({ children }: Props) => {
             setActiveDeck(persistedActiveDeck);
           }
         }
-      } catch (e) {
-        error(_t("decks.columns.failed-fetch"));
-      } finally {
-        setTimeout(() => {
-          setIsDecksLoading(false);
-        }, 300);
       }
+    } catch (e) {
+      error(_t("decks.columns.failed-fetch"));
+    } finally {
+      setTimeout(() => {
+        setIsDecksLoading(false);
+      }, 300);
     }
   };
 

@@ -27,6 +27,7 @@ export interface DeckProps {
   skeletonItem: JSX.Element;
   contentViewer?: JSX.Element;
   isExpanded?: boolean;
+  overlay?: JSX.Element;
 }
 
 export const GenericDeckColumn = ({
@@ -39,7 +40,8 @@ export const GenericDeckColumn = ({
   skeletonItem,
   id,
   contentViewer,
-  isExpanded
+  isExpanded,
+  overlay
 }: DeckProps) => {
   const { activeUser } = useMappedStore();
 
@@ -129,6 +131,7 @@ export const GenericDeckColumn = ({
           </div>
         )}
         {contentViewer}
+        {overlay && <div className="deck-overlay">{overlay}</div>}
       </div>
     </div>
   );

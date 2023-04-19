@@ -13,6 +13,8 @@ import { DeckGridContext } from "../deck-manager";
 import { getPost } from "../../../api/bridge";
 import { Entry } from "../../../store/entries/types";
 import { DeckPostViewer } from "./content-viewer";
+import { DeckLoginOverlayPlaceholder } from "./deck-login-overlay-placeholder";
+import usePrevious from "react-use/lib/usePrevious";
 
 interface Props {
   id: string;
@@ -24,6 +26,7 @@ interface Props {
 export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Props) => {
   const { addAccount, dynamicProps, global, markNotifications, toggleUIProp, activeUser } =
     useMappedStore();
+  const previousActiveUser = usePrevious(activeUser);
 
   const [data, setData] = useState<ApiNotification[]>([]);
   const [isReloading, setIsReloading] = useState(false);
@@ -32,8 +35,14 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (activeUser?.username !== previousActiveUser?.username) {
+      fetchData();
+    }
+
+    if (!activeUser) {
+      setData([]);
+    }
+  }, [activeUser]);
 
   const fetchData = async () => {
     if (data.length) {
@@ -82,6 +91,7 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
           />
         )
       }
+      overlay={<DeckLoginOverlayPlaceholder />}
     >
       {(item: ApiNotification, measure: Function, index: number) => (
         <NotificationListItem

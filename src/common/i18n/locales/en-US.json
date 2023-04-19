@@ -392,6 +392,8 @@
     "local": "Local",
     "decks": "Decks",
     "save-locally": "Save locally",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You've to be authorized to see notifications",
     "columns": {
       "user": "User",
       "user-description": "Find a profile and see what they're been up to.",

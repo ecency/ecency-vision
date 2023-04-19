@@ -17,6 +17,7 @@ import { DeckToolbarManager } from "./deck-toolbar-manager";
 import { DeckToolbarCreate } from "./deck-toolbar-create";
 import UserNotifications from "../../notifications";
 import NotificationHandler from "../../notification-handler";
+import Login from "../../login";
 
 interface Props {
   isExpanded: boolean;
@@ -35,7 +36,7 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
   const [fragments, setFragments] = useState(false);
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
 
-  const dropDownItems = [
+  const authorizedItems = [
     {
       label: _t("user-nav.profile"),
       onClick: () => history.push(`/@${activeUser?.username}`)
@@ -82,7 +83,7 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
     <div className={"deck-toolbar " + (isExpanded ? "expanded" : "")}>
       <div className="deck-toolbar-content">
         <DeckToolbarUser
-          items={dropDownItems}
+          items={authorizedItems}
           isExpanded={isExpanded}
           setIsExpanded={setIsExpanded}
         />
@@ -101,6 +102,7 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
       {fragments && <Fragments onHide={() => setFragments(false)} />}
       {global.usePrivate && <NotificationHandler />}
       {ui.notifications && activeUser && <UserNotifications history={history} />}
+      {ui.login && <Login history={history} />}
       <PurchaseQrDialog
         show={showPurchaseDialog}
         setShow={(v) => setShowPurchaseDialog(v)}
