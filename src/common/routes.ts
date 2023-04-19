@@ -10,6 +10,7 @@ export default {
   CONTRIBUTE: `/contribute`,
   FAQ: `/faq`,
   SIGN_UP: `/signup`,
+  ONBOARD: `/onboard-friend`,
   WHITE_PAPER: `/whitepaper`,
   MARKET: `/market`,
   PRIVACY: `/privacy-policy`,
@@ -37,5 +38,7 @@ export default {
   WITNESSES: `/witnesses`,
   PROPOSALS: `/proposals`,
   PROPOSAL_DETAIL: `/proposals/:id(\\d+)`,
-  PURCHASE: "/purchase"
+  PURCHASE: "/purchase",
+  ONBOARD_ASKING: "/onboard-friend?type=asking",
+  ONBOARD_CREATING: "/onboard-friend?type=creating"
 };

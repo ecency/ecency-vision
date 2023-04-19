@@ -22,13 +22,17 @@ import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import { getAccount } from "../api/hive";
 import "./sign-up.scss";
+import { Link } from "react-router-dom";
+import { CreateFriendAccount } from "../components/create-friend-account";
+import Onboard from "./onboard";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
 enum Stage {
   FORM = "form",
   REGISTER_TYPE = "register-type",
-  BUY_ACCOUNT = "buy-account"
+  BUY_ACCOUNT = "buy-account",
+  ONBOARD = "onboard"
 }
 
 export const SignUp = (props: PageProps) => {
@@ -317,7 +321,7 @@ export const SignUp = (props: PageProps) => {
 
             {stage === Stage.REGISTER_TYPE ? (
               <div className="form-content">
-                <div className="card mb-3">
+                <div className="card mb-3 mt-5">
                   <div className="card-header">
                     <b>{_t("sign-up.free-account")}</b>
                   </div>
@@ -335,7 +339,7 @@ export const SignUp = (props: PageProps) => {
                     </div>
                   )}
                 </div>
-                <div className="card">
+                <div className="card mb-3">
                   <div className="card-header">
                     <b>{_t("sign-up.buy-account")}</b>
                   </div>
@@ -355,6 +359,38 @@ export const SignUp = (props: PageProps) => {
                     >
                       {_t("sign-up.buy-account")} – $2.99
                     </Button>
+                  </div>
+                </div>
+
+                <div className="card mb-3">
+                  <div className="card-header">
+                    <b>Onboard a friend</b>
+                  </div>
+                  <div className="card-body">
+                    <p>You can create account for a friend</p>
+                    <ul>
+                      <li>You can ask a friend to help you create an account</li>
+                      <li>You can create account for a friend (requires login)</li>
+                    </ul>
+                  </div>
+                  <div className="card-footer d-flex flex-row">
+                    <a href="/onboard-friend">
+                      <Button
+                        className="w-50"
+                        variant="primary"
+                        // onClick={() => setStage(Stage.ONBOARD)}
+                      >
+                        Ask from a friend
+                      </Button>
+                    </a>
+                    <Link to={`/onboard-friend?type=creating&username=souljay&email=adesojisouljay@gmail.com&referrer=souljay`}>
+                    <Button
+                      className="w-50 ml-3"
+                      variant="primary"
+                    >
+                      Create for a friend
+                    </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -388,6 +424,10 @@ export const SignUp = (props: PageProps) => {
             ) : (
               <></>
             )}
+            <div style={{display: "none"}}>              
+              {/* <Onboard username={username}/> */}
+            </div>
+            
           </div>
         </div>
       </div>

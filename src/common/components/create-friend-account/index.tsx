@@ -2,22 +2,22 @@ import React from 'react'
 import { Button, Form } from "react-bootstrap";
 
 export const CreateFriendAccount = (props: any) => {
-    const { activeUser } = props
+    // const { activeUser } = props
   return (
-    <div>
+    <div style={{display: "flex", marginTop: "100px", flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
          <div>
                 <div className="page-header mt-2 mb-2">                  
                   <h4>You can now create account for a friend</h4>
                 </div>
 
-              <div style={{width: "100%"}} >
+              <div  >
                 <Form>
                   <Form.Group className="form-group">
                   <Form.Label className="form-label">Creator</Form.Label>
                     <Form.Control
                       type="text"
                       autoComplete="off"
-                      value={`@${activeUser.username}`}
+                      value="{`@${activeUser.username}`}"
                       required={true}
                       readOnly
                     />

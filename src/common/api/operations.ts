@@ -1826,3 +1826,26 @@ export const unstakeHiveEngineKey = async (
   const result = await hiveClient.broadcast.json(op, key);
   return result;
 };
+
+const createFriendAccount = async (privateKey: any, fee: any, creator: any, username: any) => {
+  // const client = new dhive.Client('https://api.hive.blog');
+  // const privateKey = '<your-private-key>'; // replace with your Hive private key
+  // const creator = '<your-hive-username>'; // replace with your Hive username
+  const broadcast: any = hiveClient.broadcast;
+
+  try {
+    await broadcast.accountCreate(
+      privateKey,
+      '3 HIVE', // The account creation fee, currently set to 3 HIVE
+      creator,
+      username,
+      // { 'weight_threshold': 1, 'account_auths': [], 'key_auths': [[publicKey, 1]] }, // The public key for the new account
+      // { 'weight_threshold': 1, 'account_auths': [], 'key_auths': [[publicKey, 1]] }, // The public key for the new account
+      []
+    );
+    console.log('Account created successfully!');
+  } catch (error) {
+    console.error('Error creating account:', error);
+  }
+};
+

@@ -50,6 +50,9 @@ const MarketPage = (props: any) => <MarketContainer {...props} />;
 const SignUpContainer = loadable(() => import("./pages/sign-up"));
 const SignUpPage = (props: any) => <SignUpContainer {...props} />;
 
+const OnboardContainer = loadable(() => import("./pages/onboard"));
+const OnboardPage = (props: any) => <OnboardContainer {...props} />;
+
 const CommunitiesContainer = loadable(() => import("./pages/communities"));
 const CommunitiesPage = (props: any) => <CommunitiesContainer {...props} />;
 
@@ -119,6 +122,9 @@ const App = (props: any) => {
         <Route exact={true} strict={true} path={routes.MARKET} component={MarketPage} />
         <Route exact={true} strict={true} path={routes.EDIT} component={SubmitPage} />
         <Route exact={true} strict={true} path={routes.SIGN_UP} component={SignUpPage} />
+        <Route exact={true} strict={true} path={routes.ONBOARD} component={OnboardPage} />
+        <Route exact={true} strict={true} path={routes.ONBOARD_ASKING} component={OnboardPage} />
+        <Route exact={true} strict={true} path={routes.ONBOARD_CREATING} component={OnboardPage} />
         <Route exact={true} strict={true} path={routes.EDIT_DRAFT} component={SubmitPage} />
         <Route exact={true} strict={true} path={routes.WITNESSES} component={WitnessesPage} />
         <Route
