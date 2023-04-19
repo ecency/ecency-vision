@@ -188,7 +188,7 @@ export const SearchListItem = ({
               </div>
             )}
             {community && (
-              <div className="ml-1 flex-grow-1">
+              <div className="ml-1 flex-grow-1 text-truncate">
                 {" "}
                 {_t("entry.community-in")}{" "}
                 <Link to={`/created/${community}`}> {community_title} </Link>
@@ -250,7 +250,7 @@ export const SearchListItem = ({
           <Link to={`${url}#discussion`} className="text-secondary">
             <div className="d-flex align-items-center comments">
               <div style={{ paddingRight: 4 }}>{commentSvg}</div>
-              <div>{children}</div>
+              <div>{entry.children}</div>
             </div>
           </Link>
 
