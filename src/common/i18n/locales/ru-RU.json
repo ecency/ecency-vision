@@ -244,7 +244,7 @@
     "vote-remove": "Голосование 0%, отменяет предыдущее голосование.",
     "vote-warning": "Изменение голоса...",
     "no-replies": "Ответов пока нет. Нажмите чтобы ответить.",
-    "old-post-error": "Voting on Content after their payout does not generate any new rewards.",
+    "old-post-error": "Голосование за Контент после завершения выплаты не приносит новых вознаграждений.",
     "old-post-error-suggestion": "Try tipping the author. "
   },
   "nsfw": {
@@ -1542,8 +1542,8 @@
     "same-account-error": "Вы не можете установить свой аккаунт в качестве учетной записи восстановления!",
     "same-recover-agent-suggestion": "Please change your recovery account to Ecency or any other account",
     "email-placeholder": "Email, used for verifying recovery process",
-    "update-successful": "Update successful",
-    "update-success-message": "Your Recovery email has been updated successfully"
+    "update-successful": "Обновление выполнено",
+    "update-success-message": "Ваш резервный адрес электронной почты успешно обновлён"
   },
   "add-image": {
     "title": "Добавить изображение",
