@@ -1303,7 +1303,10 @@
     "mark-read": "पढ़ा हुआ मार्क करें",
     "mute": "अधिसूचना अलर्ट बंद करें",
     "unmute": "अधिसूचना अलर्ट चालू करें",
-    "settings": "सेटिंग्स"
+    "settings": "सेटिंग्स",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "सर्वाधिक क्रियाशील",
