@@ -1304,9 +1304,9 @@
     "mute": "Desactivar notificaciones",
     "unmute": "Activar notificaciones",
     "settings": "Configuraciones",
-    "select": "Select notification",
-    "unselect": "Unselect notification",
-    "mark-selected-read": "Mark selected as read"
+    "select": "Seleccionar notificación",
+    "unselect": "Deseleccionar notificación",
+    "mark-selected-read": "Marcar seleccionados como leídos"
   },
   "leaderboard": {
     "title-stars": "Más activo",
