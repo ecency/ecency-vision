@@ -33,6 +33,7 @@ interface Props {
   setSelectedNotifications?: (d: string) => void;
   onMounted?: () => void;
   className?: string;
+  onLinkClick?: () => void;
 }
 export default class NotificationListItem extends Component<Props, State> {
   state: State = {
