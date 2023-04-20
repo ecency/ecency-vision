@@ -1303,7 +1303,10 @@
     "mark-read": "Marcar como Lido",
     "mute": "Desativar alertas de notificação",
     "unmute": "Ativar alertas de notificação",
-    "settings": "Ajustes"
+    "settings": "Ajustes",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "Mais ativo",
