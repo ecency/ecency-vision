@@ -1303,7 +1303,10 @@
     "mark-read": "Als gelesen markieren",
     "mute": "Benachrichtigungen ausschalten",
     "unmute": "Benachrichtigungen aktivieren",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "Aktivste",
