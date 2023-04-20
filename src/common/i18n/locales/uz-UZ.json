@@ -1303,7 +1303,10 @@
     "mark-read": "O'qilgan deb belgilash",
     "mute": "Xabarnomalarni o'chirish",
     "unmute": "Xabarnomalarni yoqish",
-    "settings": "Sozlamalar"
+    "settings": "Sozlamalar",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "Eng aktivlar",
