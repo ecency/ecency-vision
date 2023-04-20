@@ -1303,7 +1303,10 @@
     "mark-read": "Marchează ca Citit",
     "mute": "Dezactivează alertele de notificare",
     "unmute": "Activati alertele de notificare",
-    "settings": "Settings"
+    "settings": "Settings",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "Most active",
