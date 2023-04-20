@@ -1303,7 +1303,10 @@
     "mark-read": "Tandai sebagai telah dibaca",
     "mute": "Matikan pemberitahun notifikasi",
     "unmute": "Hidupkan pemberitahuan notifikasi",
-    "settings": "Pengaturan"
+    "settings": "Pengaturan",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "Paling Aktif",
