@@ -1303,7 +1303,10 @@
     "mark-read": "Пометить как прочитанное",
     "mute": "Отключить уведомления",
     "unmute": "Включить уведомления",
-    "settings": "Настройки"
+    "settings": "Настройки",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "Наиболее активны",
