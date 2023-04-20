@@ -1304,9 +1304,9 @@
     "mute": "Poista ilmoitukset käytöstä",
     "unmute": "Ota ilmoitukset käyttöön",
     "settings": "Asetukset",
-    "select": "Select notification",
-    "unselect": "Unselect notification",
-    "mark-selected-read": "Mark selected as read"
+    "select": "Valitse ilmoitus",
+    "unselect": "Poista ilmoituksen valinta",
+    "mark-selected-read": "Merkitse valitut luetuiksi"
   },
   "leaderboard": {
     "title-stars": "Aktiivisin",
