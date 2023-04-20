@@ -1303,7 +1303,10 @@
     "mark-read": "Mark as Read",
     "mute": "Turn off notification alerts",
     "unmute": "Turn on notification alerts",
-    "settings": "Settings"
+    "settings": "Settings",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "Most active",
