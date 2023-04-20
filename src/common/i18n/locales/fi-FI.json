@@ -1303,7 +1303,10 @@
     "mark-read": "Merkitse luetuksi",
     "mute": "Poista ilmoitukset käytöstä",
     "unmute": "Ota ilmoitukset käyttöön",
-    "settings": "Asetukset"
+    "settings": "Asetukset",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "Aktiivisin",
