@@ -1303,7 +1303,10 @@
     "mark-read": "Oznacz jako przeczytane",
     "mute": "Wyłącz powiadomienia",
     "unmute": "Włącz powiadomienia",
-    "settings": "Settings"
+    "settings": "Settings",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "Najbardziej aktywne",
