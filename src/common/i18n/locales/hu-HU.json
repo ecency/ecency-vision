@@ -1303,7 +1303,10 @@
     "mark-read": "Olvasottnak jelölve",
     "mute": "Értesítések kikapcsolása",
     "unmute": "Értesítések bekapcsolása",
-    "settings": "Settings"
+    "settings": "Settings",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "Most active",
