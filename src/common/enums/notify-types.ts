@@ -9,3 +9,9 @@ export enum NotifyTypes {
   BOOKMARKS = 15,
   ALLOW_NOTIFY = "ALLOW_NOTIFY"
 }
+
+export enum NotificationViewType {
+  ALL = "All",
+  UNREAD = "Unread",
+  READ = "Read"
+}
