@@ -54,7 +54,6 @@
 
     input[type="range"] {
       width: 100%;
-
     }
   }
 }
@@ -71,6 +70,10 @@
 
 .voting-controls-up,
 .voting-controls-down {
+  &.disable {
+    pointer-events: none;
+    opacity: 0.5;
+  }
   .btn-vote {
     @include btn-vote;
   }
@@ -255,7 +258,7 @@
   border-radius: 6px;
   padding: 10px;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   left: -12px;
   top: -19px;
 
@@ -399,10 +402,10 @@
       color: $white !important;
       background-color: $red2 !important;
 
-    svg {
-      fill: $white !important;
+      svg {
+        fill: $white !important;
+      }
     }
-  }
   }
 }
 
@@ -412,9 +415,9 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
-p {
-  margin:0px;
-}
+  p {
+    margin: 0px;
+  }
 
   @media screen and (max-width: 480px) {
     p {
@@ -425,7 +428,7 @@ p {
   }
 }
 
-.no-rotate svg{
+.no-rotate svg {
   transform: rotate(0deg) !important;
 }
 
@@ -435,9 +438,9 @@ p {
   display: flex;
   justify-content: center;
   margin-top: 8px;
-p {
-  margin:0px;
-}
+  p {
+    margin: 0px;
+  }
 
   @media screen and (max-width: 480px) {
     p {
@@ -454,9 +457,9 @@ p {
   display: flex;
   justify-content: center;
   margin-top: 8px;
-p {
-  margin:0px;
-}
+  p {
+    margin: 0px;
+  }
 
   @media screen and (max-width: 480px) {
     p {
@@ -483,5 +486,21 @@ datalist {
   @media screen and (max-width: 421px) {
     display: none;
   }
+}
 
+.error-message {
+  cursor: default;
+  display: block;
+  line-height: 1.6;
+}
+
+.vote-error-suggestion {
+  line-height: 2.5;
+  display: flex;
+  justify-content: center;
+
+  .tipping-icon {
+    margin-left: 15px;
+    margin-top: 8px;
+  }
 }

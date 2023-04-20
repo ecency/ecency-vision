@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import moment from "moment";
 import { History } from "history";
 import { hiveNotifySetLastRead } from "../../api/operations";
@@ -15,8 +15,8 @@ import DropDown from "../dropdown";
 import Tooltip from "../tooltip";
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
-import { checkSvg, settingsSvg, syncSvg } from "../../img/svg";
-import { NotifyTypes } from "../../enums";
+import { checkSvg, settingsSvg, syncSvg, playListAddCheck } from "../../img/svg";
+import { NotifyTypes, NotificationViewType } from "../../enums";
 import NotificationListItem from "./notification-list-item";
 import {
   fetchNotifications,
@@ -83,7 +83,12 @@ export class DialogContent extends Component<NotificationProps, any> {
         [NotifyTypes.TRANSFERS]: false,
         [NotifyTypes.ALLOW_NOTIFY]: false
       },
-      saveSettingsWithDebounce: null
+      saveSettingsWithDebounce: null,
+      currentStatus: "All",
+      select: false,
+      isSelectIcon: false,
+      selectedNotifications: [],
+      inProgress: false
     };
   }
 
@@ -116,7 +121,31 @@ export class DialogContent extends Component<NotificationProps, any> {
     ) {
       fetchNotifications(null);
     }
+    if (prevProps.notifications.settings !== this.props.notifications.settings) {
+      const { notifications } = this.props;
+      notifications.settings?.allows_notify === 0 ? this.mute() : this.unMute();
+    }
   }
+
+  setIsSelectIcon = () => {
+    const { selectedNotifications } = this.state;
+    this.setState({ isSelectIcon: selectedNotifications.length > 0 });
+  };
+
+  setSelectedNotifications = (id: string) => {
+    const { selectedNotifications } = this.state;
+    const index = selectedNotifications.indexOf(id);
+    if (index === -1) {
+      this.setState(
+        { selectedNotifications: [...this.state.selectedNotifications, id] },
+        this.setIsSelectIcon
+      );
+    } else {
+      const newSelectedNotifications = [...selectedNotifications];
+      newSelectedNotifications.splice(index, 1);
+      this.setState({ selectedNotifications: newSelectedNotifications }, this.setIsSelectIcon);
+    }
+  };
 
   prepareSettings = () => {
     const { notifications } = this.props;
@@ -215,6 +244,45 @@ export class DialogContent extends Component<NotificationProps, any> {
     });
   };
 
+  statusClicked = (status: string) => {
+    this.setState({
+      currentStatus: status,
+      select: false,
+      isSelectIcon: false,
+      selectedNotifications: []
+    });
+  };
+
+  handleScroll = (event: React.UIEvent<HTMLElement>) => {
+    const { notifications } = this.props;
+    const { hasMore } = notifications;
+    var element = event.currentTarget;
+    let scrollHeight: number = (element.scrollHeight / 100) * 75;
+    if (element.scrollTop >= scrollHeight && hasMore) {
+      this.loadMore();
+    }
+  };
+
+  selectClicked = () => {
+    this.setState({ select: !this.state.select }, this.handleSelectedNotifications);
+  };
+
+  handleSelectedNotifications = () => {
+    if (!this.state.select) {
+      this.setState({ selectedNotifications: [], isSelectIcon: false });
+    }
+  };
+
+  markNotifications = () => {
+    this.setState({ inProgress: true });
+    const { selectedNotifications } = this.state;
+    const { markNotifications } = this.props;
+    for (const id of selectedNotifications) {
+      markNotifications(id);
+    }
+    this.setState({ inProgress: false, isSelectIcon: false, select: false });
+  };
+
   render() {
     const filters = Object.values(NotificationFilter);
     const menuItems = [
@@ -256,15 +324,8 @@ export class DialogContent extends Component<NotificationProps, any> {
     };
 
     const { notifications } = this.props;
-    const { list, loading, filter, hasMore, unread } = notifications;
-
-    const handleScroll = (event: React.UIEvent<HTMLElement>) => {
-      var element = event.currentTarget;
-      let srollHeight: number = (element.scrollHeight / 100) * 75;
-      if (element.scrollTop >= srollHeight && hasMore) {
-        this.loadMore();
-      }
-    };
+    const { inProgress, select, currentStatus } = this.state;
+    const { list, loading, filter, unread } = notifications;
 
     return (
       <div className="notification-list">
@@ -343,7 +404,10 @@ export class DialogContent extends Component<NotificationProps, any> {
                 // getNotificationSettingsItem(_t(`notifications.type-all-short`), NotifyTypes.ALLOW_NOTIFY),
                 getNotificationSettingsItem(_t(`notifications.type-rvotes`), NotifyTypes.VOTE),
                 getNotificationSettingsItem(_t(`notifications.type-replies`), NotifyTypes.COMMENT),
-                getNotificationSettingsItem(_t(`notifications.type-mentions`), NotifyTypes.MENTION),
+                getNotificationSettingsItem(
+                  _t(`no5tifications.type-mentions`),
+                  NotifyTypes.MENTION
+                ),
                 getNotificationSettingsItem(
                   _t(`notifications.type-nfavorites`),
                   NotifyTypes.FAVORITES
@@ -371,7 +435,51 @@ export class DialogContent extends Component<NotificationProps, any> {
           </div>
         </div>
 
-        {loading && <LinearProgress />}
+        <div className="status-button-container">
+          <div className="status-btn">
+            {Object.values(NotificationViewType).map((status: string, k: number) => {
+              return (
+                <Button
+                  className={`status-button ${
+                    this.state.currentStatus === status ? "active" : ""
+                  } shadow-none`}
+                  variant="outline-primary"
+                  key={k}
+                  type="button"
+                  tabIndex={-1}
+                  onClick={() => this.statusClicked(status)}
+                >
+                  {status}
+                </Button>
+              );
+            })}
+          </div>
+
+          <div className="select-buttons">
+            {this.state.isSelectIcon && (
+              <Tooltip content={_t("notifications.mark-selected-read")}>
+                <span className="mark-svg" onClick={() => this.markNotifications()}>
+                  {playListAddCheck}
+                </span>
+              </Tooltip>
+            )}
+
+            <Tooltip
+              content={
+                this.state.select ? _t("notifications.unselect") : _t("notifications.select")
+              }
+            >
+              <span
+                className={`select-svg ${this.state.select ? "active" : ""} shadow-none`}
+                onClick={this.selectClicked}
+              >
+                {checkSvg}
+              </span>
+            </Tooltip>
+          </div>
+        </div>
+
+        {loading || inProgress ? <LinearProgress /> : <></>}
 
         {!loading && list.length === 0 && (
           <div className="list-body empty-list">
@@ -380,11 +488,45 @@ export class DialogContent extends Component<NotificationProps, any> {
         )}
 
         {list.length > 0 && (
-          <div className="list-body" onScroll={handleScroll}>
+          <div className="list-body" onScroll={this.handleScroll}>
             {list.map((n) => (
               <Fragment key={n.id}>
-                {n.gkf && <div className="group-title">{date2key(n.gk)}</div>}
-                <NotificationListItem {...this.props} notification={n} />
+                {this.state.currentStatus === NotificationViewType.ALL && (
+                  <>
+                    {n.gkf && <div className="group-title">{date2key(n.gk)}</div>}
+                    <NotificationListItem
+                      {...this.props}
+                      notification={n}
+                      isSelect={select}
+                      currentStatus={currentStatus}
+                      setSelectedNotifications={this.setSelectedNotifications}
+                    />
+                  </>
+                )}
+                {this.state.currentStatus === NotificationViewType.READ && n.read === 1 && (
+                  <>
+                    {n.gkf && <div className="group-title">{date2key(n.gk)}</div>}
+                    <NotificationListItem
+                      {...this.props}
+                      notification={n}
+                      isSelect={select}
+                      currentStatus={currentStatus}
+                      setSelectedNotifications={this.setSelectedNotifications}
+                    />
+                  </>
+                )}
+                {this.state.currentStatus === NotificationViewType.UNREAD && n.read === 0 && (
+                  <>
+                    {n.gkf && <div className="group-title">{date2key(n.gk)}</div>}
+                    <NotificationListItem
+                      {...this.props}
+                      notification={n}
+                      isSelect={select}
+                      currentStatus={currentStatus}
+                      setSelectedNotifications={this.setSelectedNotifications}
+                    />
+                  </>
+                )}
               </Fragment>
             ))}
           </div>

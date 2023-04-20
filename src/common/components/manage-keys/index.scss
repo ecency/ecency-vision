@@ -1,0 +1,34 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.key {
+  color: $light-black;
+}
+
+.copy-btn {
+  margin-right: 1rem;
+}
+
+.import-btn {
+  width: 154px;
+}
+
+.action-btns {
+  width: 260px;
+}
+
+.curr-password {
+  margin: 2rem 0;
+}
+
+@include media-breakpoint-down(md) {
+  .copy-btn {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .reveal-btn {
+    display: block;
+  }
+}

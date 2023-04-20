@@ -553,7 +553,21 @@ class EntryPage extends BaseComponent<Props, State> {
       showProfileBox,
       showWordCount
     } = this.state;
-    const { global, history, match, location } = this.props;
+    const {
+      global,
+      history,
+      match,
+      location,
+      dynamicProps,
+      users,
+      setActiveUser,
+      ui,
+      updateActiveUser,
+      toggleUIProp,
+      deleteUser,
+      account,
+      updateWalletValues
+    } = this.props;
     const { isRawContent } = this.state;
 
     let navBar = global.isElectron ? (

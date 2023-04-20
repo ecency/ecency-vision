@@ -8,12 +8,13 @@ import { PrivateKey, PublicKey, cryptoUtils } from "@hiveio/dhive";
 
 import { History, Location } from "history";
 import * as ls from "../../util/local-storage";
+import { decodeObj } from "../../util/encoder";
 
 import { AppWindow } from "../../../client/window";
 
 import { Global } from "../../store/global/types";
 import { UI } from "../../store/ui/types";
-import { User } from "../../store/users/types";
+import { User, UserKeys } from "../../store/users/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { ToggleType } from "../../store/ui/types";
@@ -27,6 +28,7 @@ import { error } from "../feedback";
 
 import { getAuthUrl, makeHsCode } from "../../helper/hive-signer";
 import { hsLogin } from "../../../desktop/app/helper/hive-signer";
+import { generateKeys } from "../../helper/generate-private-keys";
 
 import { getAccount } from "../../api/hive";
 import { usrActivity } from "../../api/private-api";
@@ -40,7 +42,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
 
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 
 import { deleteForeverSvg } from "../../img/svg";
@@ -271,6 +272,7 @@ interface LoginProps {
   users: User[];
   activeUser: ActiveUser | null;
   setActiveUser: (username: string | null) => void;
+  addUser: (user: User) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
   doLogin: (
@@ -400,6 +402,7 @@ export class Login extends BaseComponent<LoginProps, State> {
   login = async () => {
     const { hsClientId } = this.props.global;
     const { username, key } = this.state;
+    const { addUser } = this.props;
 
     if (username === "" || key === "") {
       error(_t("login.error-fields-required"));
@@ -499,8 +502,42 @@ export class Login extends BaseComponent<LoginProps, State> {
 
     const { doLogin } = this.props;
 
+    const generateKeysAfterLogin = (activeUser: ActiveUser) => {
+      //decode user object.
+      var user = ls.getByPrefix("user_").map((x) => {
+        const u = decodeObj(x) as User;
+
+        return {
+          username: u.username,
+          refreshToken: u.refreshToken,
+          accessToken: u.accessToken,
+          expiresIn: u.expiresIn,
+          postingKey: u.postingKey
+        };
+      });
+
+      var currentUser = user.filter((x) => x.username === activeUser?.username);
+      //generate and store private keys in case of login with password.
+      var keys: UserKeys = {};
+
+      if (isPlainPassword) {
+        keys = generateKeys(activeUser!, key);
+      } else {
+        if (withPostingKey) {
+          keys = { posting: thePrivateKey.toString() };
+        } else {
+          keys = { active: thePrivateKey.toString() };
+        }
+      }
+
+      const updatedUser: User = { ...currentUser[0], ...{ privateKeys: keys } };
+      addUser(updatedUser);
+    };
+
     doLogin(code, withPostingKey ? key : null, account)
       .then(() => {
+        generateKeysAfterLogin(this.props.activeUser!);
+
         if (
           !ls.get(`${username}HadTutorial`) ||
           (ls.get(`${username}HadTutorial`) && ls.get(`${username}HadTutorial`) !== "true")

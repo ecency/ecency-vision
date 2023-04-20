@@ -200,7 +200,15 @@ export default class EntryListItem extends Component<Props, State> {
       global,
       activeUser,
       history,
-      order
+      order,
+      addAccount,
+      dynamicProps,
+      users,
+      ui,
+      setActiveUser,
+      updateActiveUser,
+      deleteUser,
+      toggleUIProp
     } = this.props;
     const { mounted } = this.state;
     // const accountUsername = match?.params.username.replace("@", "");
@@ -516,7 +524,14 @@ export default class EntryListItem extends Component<Props, State> {
             );
           })()}
           <div className="item-controls">
-            <EntryVoteBtn isPostSlider={true} entry={entry} afterVote={this.afterVote} />
+            <EntryVoteBtn
+              isPostSlider={true}
+              entry={entry}
+              afterVote={this.afterVote}
+              account={account}
+              history={history}
+              match={match}
+            />
             <EntryPayout entry={entry} />
             <EntryVotes entry={entry} history={this.props.history} />
             {EntryLink({

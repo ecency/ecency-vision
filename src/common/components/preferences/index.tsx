@@ -13,6 +13,8 @@ import { ActiveUser } from "../../store/active-user/types";
 import { copyContent } from "../../img/svg";
 import * as ls from "../../util/local-storage";
 import "./_index.scss";
+import { useMappedStore } from "../../store/use-mapped-store";
+import { NotifyTypes } from "../../enums/notify-types";
 
 interface Props {
   global: Global;
@@ -23,6 +25,8 @@ interface Props {
   setNsfw: (value: boolean) => void;
   activeUser: ActiveUser;
   toggleTheme: (theme_key?: Theme) => void;
+  updateNotificationsSettings: (username: string) => void;
+  setNotificationsSettingsItem: (type: NotifyTypes, value: boolean) => void;
 }
 
 interface State {
@@ -37,14 +41,24 @@ export class Preferences extends BaseComponent<Props, State> {
   };
 
   notificationsChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    const { muteNotifications, unMuteNotifications } = this.props;
+    const {
+      muteNotifications,
+      unMuteNotifications,
+      updateNotificationsSettings,
+      setNotificationsSettingsItem,
+      activeUser
+    } = this.props;
 
     if (e.target.value === "1") {
       unMuteNotifications();
+      setNotificationsSettingsItem(NotifyTypes.ALLOW_NOTIFY, true);
+      updateNotificationsSettings(activeUser.username);
     }
 
     if (e.target.value === "0") {
       muteNotifications();
+      setNotificationsSettingsItem(NotifyTypes.ALLOW_NOTIFY, false);
+      updateNotificationsSettings(activeUser.username);
     }
 
     success(_t("preferences.updated"));
@@ -254,8 +268,12 @@ export class Preferences extends BaseComponent<Props, State> {
   }
 }
 
-export default (p: Props) => {
-  const props: Props = {
+export default (p: Omit<Props, "updateNotificationsSettings" | "setNotificationsSettingsItem">) => {
+  const { updateNotificationsSettings, setNotificationsSettingsItem } = useMappedStore();
+
+  const props = {
+    setNotificationsSettingsItem,
+    updateNotificationsSettings,
     global: p.global,
     activeUser: p.activeUser,
     muteNotifications: p.muteNotifications,
