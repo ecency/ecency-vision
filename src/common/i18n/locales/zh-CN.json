@@ -1303,7 +1303,10 @@
     "mark-read": "标为已读",
     "mute": "关闭通知",
     "unmute": "开启通知",
-    "settings": "Settings"
+    "settings": "Settings",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "最活跃的",
