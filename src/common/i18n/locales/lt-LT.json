@@ -1303,7 +1303,10 @@
     "mark-read": "Pažymėti kaip skaitytą",
     "mute": "Išjungti pranešimus",
     "unmute": "Įjungti pranešimus",
-    "settings": "Settings"
+    "settings": "Settings",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "Pats aktyviausias",
