@@ -489,7 +489,7 @@ export class DialogContent extends Component<NotificationProps, any> {
           <div className="list-body" onScroll={this.handleScroll}>
             {list.map((n) => (
               <Fragment key={n.id}>
-                {this.state.currentStatus === "All" && (
+                {this.state.currentStatus === NotificationViewType.ALL && (
                   <>
                     {n.gkf && <div className="group-title">{date2key(n.gk)}</div>}
                     <NotificationListItem
@@ -501,7 +501,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                     />
                   </>
                 )}
-                {this.state.currentStatus === "Read" && n.read === 1 && (
+                {this.state.currentStatus === NotificationViewType.READ && n.read === 1 && (
                   <>
                     {n.gkf && <div className="group-title">{date2key(n.gk)}</div>}
                     <NotificationListItem
@@ -513,7 +513,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                     />
                   </>
                 )}
-                {this.state.currentStatus === "Unread" && n.read === 0 && (
+                {this.state.currentStatus === NotificationViewType.UNREAD && n.read === 0 && (
                   <>
                     {n.gkf && <div className="group-title">{date2key(n.gk)}</div>}
                     <NotificationListItem
