@@ -107,6 +107,98 @@
     {
       "path": "/.+/@.+/.+",
       "suggestions": ["how-voting-works", "how-to-bookmark", "how-to-favorite"]
-    }
+    },
+    {
+       "path": "/hot",
+       "suggestions": [
+          "what-hot-feed",
+          "what-information-feed",
+          "what-is-ecency",
+          "what-is-difference",
+          "what-is-hive",
+        ]
+      }, 
+    {
+        "path": "/created",
+        "suggestions": [
+          "what-new-feed",
+          "what-mean-promoted",
+          "how-change-design",
+          "what-is-deck",
+          "what-deck-types"
+        ]
+      },  
+    {
+        "path": "/rising",
+        "suggestions": [
+          "what-rising-feed",
+          "how-sort-rising",
+          "how-voting-works",
+          "what-voting-power",
+          "how-many-vote"
+        ]
+      },
+      {
+        "path": "/controversial",
+        "suggestions": [
+          "what-controversial-feed",
+          "how-sort-controversial",
+          "why-choose-ecency",
+          "how-ecency-works"
+        ]
+      }, 
+      {
+       "path": "/witnesses",
+       "suggestions": [
+          "what-hive-witnesses",
+          "how-vote-witnesses",
+          "how-many-witnesses",
+          "sort-witnesses-page"
+        ]
+      }, 
+      {
+        "path": "/proposals",
+        "suggestions": [
+          "how-dhf-work",
+          "how-vote-proposals"
+        ]
+      }, 
+      {
+        "path": "/@.+/",
+        "suggestions": [
+          "what-my-blog",
+          "what-information-profile",
+          "what-reputation",
+          "improve-reputation-score",
+          "why-score-going-down"  
+        ]
+      },
+      {
+        "path": "/@.+/(comments)",
+        "suggestions": [
+           "how-find-comments",
+           "how-often-comment",
+           "can-reward-comments",
+           "can-comment-boost" 
+        ]
+      },
+      {
+       "path": "/@.+/(replies)",
+        "suggestions": [
+          "what-information-available",
+          "how-to-search",
+          "what-appears",
+          "how-to-follow",
+          "how-find-information-followers" 
+
+        ]
+      },
+      {
+        "path": "/market",
+        "suggestions": [
+           "how-market-works",
+           "how-to-swap-header"
+        ]
+      }
   ]
 }
