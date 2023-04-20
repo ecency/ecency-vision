@@ -1303,7 +1303,10 @@
     "mark-read": "읽음으로 표시",
     "mute": "알림 기능 끄기",
     "unmute": "알림 기능 켜기",
-    "settings": "Settings"
+    "settings": "Settings",
+    "select": "Select notification",
+    "unselect": "Unselect notification",
+    "mark-selected-read": "Mark selected as read"
   },
   "leaderboard": {
     "title-stars": "가장 활동적인",
