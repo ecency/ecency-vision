@@ -32,6 +32,7 @@ exports[`(1) Default render 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -78,6 +79,7 @@ exports[`(1) Default render 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -124,6 +126,7 @@ exports[`(1) Default render 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",

@@ -48,6 +48,7 @@ exports[`(1) Default render 1`] = `
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -194,6 +195,7 @@ Integration examples to get started: Esteem/
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -347,6 +349,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -490,6 +493,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -638,6 +642,7 @@ We are 5 days away from official release of
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -786,6 +791,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -932,6 +938,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -1079,6 +1086,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -1268,6 +1276,7 @@ exports[`(2) With limit 1`] = `
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -1414,6 +1423,7 @@ Integration examples to get started: Esteem/
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -1567,6 +1577,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -1710,6 +1721,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -1858,6 +1870,7 @@ We are 5 days away from official release of
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -2006,6 +2019,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -2152,6 +2166,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -2299,6 +2314,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -2498,6 +2514,7 @@ exports[`(3) Hide show more button 1`] = `
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -2644,6 +2661,7 @@ Integration examples to get started: Esteem/
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -2797,6 +2815,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -2940,6 +2959,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -3088,6 +3108,7 @@ We are 5 days away from official release of
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -3236,6 +3257,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -3382,6 +3404,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
@@ -3529,6 +3552,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               >
                 <span
                   className="user-avatar small"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",

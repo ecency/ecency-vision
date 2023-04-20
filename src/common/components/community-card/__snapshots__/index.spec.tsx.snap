@@ -9,6 +9,7 @@ exports[`(1) Default render 1`] = `
   >
     <span
       className="user-avatar xLarge"
+      onClick={[Function]}
       style={
         Object {
           "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/large)",
@@ -156,6 +157,7 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
   >
     <span
       className="user-avatar xLarge"
+      onClick={[Function]}
       style={
         Object {
           "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/large)",
@@ -345,6 +347,7 @@ exports[`(3) usePrivate = false 1`] = `
   >
     <span
       className="user-avatar xLarge"
+      onClick={[Function]}
       style={
         Object {
           "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/large)",

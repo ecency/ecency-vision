@@ -1,11 +1,6 @@
 import React from "react";
 
 import EntryVoteBtn, { VoteDialog } from "./index";
-
-import renderer from "react-test-renderer";
-
-import { withStore } from "../../tests/with-store";
-
 import { createBrowserHistory } from "history";
 
 import {

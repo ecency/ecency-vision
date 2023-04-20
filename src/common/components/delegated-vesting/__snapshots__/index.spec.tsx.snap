@@ -22,6 +22,7 @@ exports[`(1) Default render 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
@@ -66,6 +67,7 @@ exports[`(1) Default render 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
@@ -110,6 +112,7 @@ exports[`(1) Default render 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/small)",
@@ -154,6 +157,7 @@ exports[`(1) Default render 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
@@ -198,6 +202,7 @@ exports[`(1) Default render 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/small)",
@@ -357,6 +362,7 @@ exports[`(2) With active user 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
@@ -401,6 +407,7 @@ exports[`(2) With active user 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
@@ -445,6 +452,7 @@ exports[`(2) With active user 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/small)",
@@ -489,6 +497,7 @@ exports[`(2) With active user 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
@@ -533,6 +542,7 @@ exports[`(2) With active user 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/small)",
@@ -692,6 +702,7 @@ exports[`(3) With delegator active user 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
@@ -751,6 +762,7 @@ exports[`(3) With delegator active user 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
@@ -810,6 +822,7 @@ exports[`(3) With delegator active user 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/small)",
@@ -869,6 +882,7 @@ exports[`(3) With delegator active user 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
@@ -928,6 +942,7 @@ exports[`(3) With delegator active user 1`] = `
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/small)",

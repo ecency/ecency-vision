@@ -3,6 +3,7 @@
 exports[`UserAvatar (1) Should render small size 1`] = `
 <span
   className="user-avatar small"
+  onClick={[Function]}
   style={
     Object {
       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -14,6 +15,7 @@ exports[`UserAvatar (1) Should render small size 1`] = `
 exports[`UserAvatar (2) Should render normal size 1`] = `
 <span
   className="user-avatar normal"
+  onClick={[Function]}
   style={
     Object {
       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -25,6 +27,7 @@ exports[`UserAvatar (2) Should render normal size 1`] = `
 exports[`UserAvatar (3) Should render medium size 1`] = `
 <span
   className="user-avatar medium"
+  onClick={[Function]}
   style={
     Object {
       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/medium)",
@@ -36,6 +39,7 @@ exports[`UserAvatar (3) Should render medium size 1`] = `
 exports[`UserAvatar (4) Should render large size 1`] = `
 <span
   className="user-avatar large"
+  onClick={[Function]}
   style={
     Object {
       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/medium)",
@@ -47,6 +51,7 @@ exports[`UserAvatar (4) Should render large size 1`] = `
 exports[`UserAvatar (5) Should render xlarge size 1`] = `
 <span
   className="user-avatar xLarge"
+  onClick={[Function]}
   style={
     Object {
       "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/large)",

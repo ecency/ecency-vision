@@ -277,6 +277,7 @@ exports[`(1) Default render 1`] = `
           >
             <span
               className="user-avatar medium"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -325,6 +326,7 @@ exports[`(1) Default render 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -968,6 +970,7 @@ exports[`(2) Night Theme 1`] = `
           >
             <span
               className="user-avatar medium"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -1016,6 +1019,7 @@ exports[`(2) Night Theme 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -1659,6 +1663,7 @@ exports[`(3) With active user 1`] = `
           >
             <span
               className="user-avatar medium"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -1707,6 +1712,7 @@ exports[`(3) With active user 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -2350,6 +2356,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           >
             <span
               className="user-avatar medium"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -2398,6 +2405,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",

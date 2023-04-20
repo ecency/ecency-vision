@@ -50,6 +50,7 @@ exports[`(2) With data 1`] = `
               >
                 <span
                   className="user-avatar medium"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/talhasch/avatar/medium)",
@@ -181,6 +182,7 @@ exports[`(2) With data 1`] = `
               >
                 <span
                   className="user-avatar medium"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/talhasch/avatar/medium)",
@@ -314,6 +316,7 @@ exports[`(2) With data 1`] = `
               >
                 <span
                   className="user-avatar medium"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/talhasch/avatar/medium)",
@@ -450,6 +453,7 @@ exports[`(2) With data 1`] = `
               >
                 <span
                   className="user-avatar medium"
+                  onClick={[Function]}
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/talhasch/avatar/medium)",

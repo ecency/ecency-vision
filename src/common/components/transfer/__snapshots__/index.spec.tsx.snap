@@ -291,6 +291,7 @@ exports[`(1) Transfer HIVE (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -315,6 +316,7 @@ exports[`(1) Transfer HIVE (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -841,6 +843,7 @@ exports[`(2) Transfer HBD (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -865,6 +868,7 @@ exports[`(2) Transfer HBD (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -1274,6 +1278,7 @@ exports[`(3) Transfer POINT (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -1298,6 +1303,7 @@ exports[`(3) Transfer POINT (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -1697,6 +1703,7 @@ exports[`(4) Transfer to Savings - HBD (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -1721,6 +1728,7 @@ exports[`(4) Transfer to Savings - HBD (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -2120,6 +2128,7 @@ exports[`(5) Withdraw Savings - HIVE (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -2144,6 +2153,7 @@ exports[`(5) Withdraw Savings - HIVE (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -2453,6 +2463,7 @@ exports[`(6) Convert (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -2803,6 +2814,7 @@ exports[`(7) Power up (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -2827,6 +2839,7 @@ exports[`(7) Power up (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -3182,6 +3195,7 @@ exports[`(8) Delegate (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -3206,6 +3220,7 @@ exports[`(8) Delegate (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -3530,6 +3545,7 @@ exports[`(9) Power down (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
