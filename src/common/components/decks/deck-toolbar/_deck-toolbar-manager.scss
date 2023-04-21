@@ -1,0 +1,196 @@
+@import "src/style/vars_mixins";
+
+.deck-toolbar-manager {
+  @include margin-top(1rem);
+
+  > .title {
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @include margin-bottom(1rem);
+    @include font-size(0.625rem);
+
+    > .text {
+      opacity: 0.5;
+
+      @include margin-bottom(1rem);
+    }
+  }
+
+  .deck-list {
+    .deck-list-item {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      cursor: pointer;
+      grid-gap: 1rem;
+      position: relative;
+
+      @include transition(0.3s);
+      @include padding(1rem);
+
+      &:hover {
+        @include themify(day) {
+          background-color: $gray-100;
+        }
+
+        @include themify(night) {
+          background-color: lighten($dark, 3);
+        }
+      }
+
+      &::before {
+        position: absolute;
+        content: '';
+        width: 4px;
+        height: 100%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background-color: $primary;
+        transform: translateX(-4px);
+
+        @include transition(0.3s);
+      }
+
+      .local {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $gray-600;
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 1;
+
+        @include padding-right(0.5rem);
+        @include padding-left(0.5rem);
+        @include padding-top(0.25rem);
+        @include padding-bottom(0.25rem);
+        @include font-size(0.5rem);
+        @include border-radius(1rem);
+
+        @include themify(day) {
+          background-color: $gray-200;
+        }
+
+        @include themify(night) {
+          background-color: lighten($dark, 3);
+        }
+      }
+
+      .icon {
+        width: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        line-height: 1;
+        font-weight: bold;
+        color: $gray-500;
+        text-transform: uppercase;
+        justify-self: center;
+
+        @include font-size(1.25rem);
+
+        @include themify(day) {
+          color: $gray-500;
+        }
+
+        @include themify(night) {
+          color: lighten($dark, 12);
+        }
+      }
+
+      .title {
+        font-weight: bold;
+        opacity: 0.75;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem;
+
+        @include font-size(0.875rem);
+      }
+
+      .btn {
+        color: $gray-400;
+        box-shadow: none;
+        outline: none;
+
+        @include padding(0);
+        @include padding-right(0.125rem);
+
+        &:hover {
+          color: $gray-600;
+        }
+      }
+
+      &.selected {
+        cursor: unset;
+
+        @include themify(day) {
+          background-color: $duck-egg-blue;
+        }
+
+        @include themify(night) {
+          background-color: $dark;
+        }
+
+        &::before {
+          transform: translateX(0);
+        }
+      }
+    }
+  }
+
+  .add-deck-btn {
+    outline: none;
+    box-shadow: none;
+    color: $gray-500;
+
+    @include padding(0);
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+.decks.expanded .deck-toolbar-manager {
+  .deck-list-item {
+    grid-template-columns: 1.25rem 1fr min-content;
+    justify-content: flex-start;
+
+    .title {
+      justify-content: flex-start;
+    }
+
+    .icon {
+      justify-self: start;
+    }
+  }
+
+  .title {
+    text-align: left;
+    justify-content: space-between;
+    flex-direction: row;
+
+    @include padding-left(1rem);
+    @include padding-right(1rem);
+
+    > .text {
+      @include margin-bottom(0);
+    }
+  }
+}

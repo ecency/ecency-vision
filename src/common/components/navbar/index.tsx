@@ -174,6 +174,9 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
       <Link className="menu-item mt-0" to="/communities">
         {_t("navbar.communities")}
       </Link>
+      <Link className="menu-item mt-0" to="/decks">
+        {_t("navbar.decks")}
+      </Link>
     </div>
   );
 

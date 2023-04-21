@@ -425,30 +425,9 @@ export const Item = (props: ItemProps) => {
                   <></>
                 ) : (
                   <div className="item-controls">
-                    {
-                      <EntryVoteBtn
-                        isPostSlider={false}
-                        global={global}
-                        dynamicProps={props.dynamicProps}
-                        entry={entry}
-                        users={props.users}
-                        activeUser={props.activeUser}
-                        ui={props.ui}
-                        afterVote={afterVote}
-                        setActiveUser={props.setActiveUser}
-                        updateActiveUser={props.updateActiveUser}
-                        toggleUIProp={props.toggleUIProp}
-                        deleteUser={props.deleteUser}
-                      />
-                    }
-                    {EntryPayout({
-                      ...props,
-                      entry
-                    })}
-                    {EntryVotes({
-                      ...props,
-                      entry
-                    })}
+                    <EntryVoteBtn entry={entry} afterVote={afterVote} isPostSlider={false} />
+                    <EntryPayout entry={entry} />
+                    <EntryVotes entry={entry} history={history} />
                     <a className={_c(`reply-btn ${edit ? "disabled" : ""}`)} onClick={toggleReply}>
                       {_t("g.reply")}
                     </a>

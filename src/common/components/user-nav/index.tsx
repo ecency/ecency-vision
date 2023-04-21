@@ -43,9 +43,10 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
 
-class WalletBadge extends Component<{
+export class WalletBadge extends Component<{
   activeUser: ActiveUser;
   dynamicProps: DynamicProps;
+  icon?: JSX.Element;
 }> {
   render() {
     const { activeUser, dynamicProps } = this.props;
@@ -66,7 +67,7 @@ class WalletBadge extends Component<{
         >
           <Link to={`/@${activeUser.username}/wallet`} className="user-wallet">
             {hasUnclaimedRewards && <span className="reward-badge" />}
-            {creditCardSvg}
+            {this.props.icon ?? creditCardSvg}
           </Link>
         </ToolTip>
       </>

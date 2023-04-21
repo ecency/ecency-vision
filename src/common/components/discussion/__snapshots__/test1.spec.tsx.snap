@@ -92,6 +92,7 @@ exports[`(1) Full render with active user 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
@@ -276,6 +277,7 @@ exports[`(1) Full render with active user 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
@@ -462,6 +464,7 @@ exports[`(1) Full render with active user 1`] = `
                 >
                   <span
                     className="user-avatar medium"
+                    onClick={[Function]}
                     style={
                       Object {
                         "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
@@ -648,6 +651,7 @@ exports[`(1) Full render with active user 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
@@ -833,6 +837,7 @@ exports[`(1) Full render with active user 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
@@ -1018,6 +1023,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
@@ -1203,6 +1209,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
@@ -1388,6 +1395,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
@@ -1573,6 +1581,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
@@ -1864,6 +1873,7 @@ exports[`(3) With selected item 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
@@ -2048,6 +2058,7 @@ exports[`(3) With selected item 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
@@ -2234,6 +2245,7 @@ exports[`(3) With selected item 1`] = `
                 >
                   <span
                     className="user-avatar medium"
+                    onClick={[Function]}
                     style={
                       Object {
                         "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
@@ -2420,6 +2432,7 @@ exports[`(3) With selected item 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
@@ -2605,6 +2618,7 @@ exports[`(3) With selected item 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
@@ -2790,6 +2804,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
@@ -2975,6 +2990,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
@@ -3160,6 +3176,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
@@ -3345,6 +3362,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
@@ -3600,6 +3618,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
@@ -3804,6 +3823,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",

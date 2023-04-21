@@ -1,0 +1,78 @@
+@import "src/style/vars_mixins";
+
+.decks {
+  display: grid;
+  grid-template-columns: 72px 1fr min-content;
+  align-items: center;
+  transition: 0.3s;
+
+  @include themify(day) {
+    color: $black;
+    background-color: $gray-300;
+  }
+
+  @include themify(night) {
+    color: $white;
+    background-color: $gray-900;
+  }
+
+  &.expanded {
+    grid-template-columns: 280px 1fr min-content;
+  }
+
+  .decks-container {
+    overflow: hidden;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .decks-container, *[data-rbd-droppable-id] {
+    height: 100vh;
+  }
+
+  *[data-rbd-draggable-id]:first-child .deck {
+    border-left: 0;
+  }
+
+  #draggable-container {
+    display: flex;
+    scroll-behavior: smooth;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .add-new-column-button {
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+    height: 3rem;
+
+    @include transition(0.3s);
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+  }
+
+  .deck-loader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: $gray-500;
+  }
+
+  .deck-smooth-scroller {
+    @include transition(0.5s);
+  }
+}

@@ -9,6 +9,7 @@ import {
   dynamicPropsIntance1,
   allOver
 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("moment", () => () => ({
   fromNow: () => "in 4 days",
@@ -31,7 +32,7 @@ it("(1) Default render", async () => {
     }
   };
 
-  const renderer = await TestRenderer.create(<EntryPayout {...props} />);
+  const renderer = await withStore(<EntryPayout {...props} />);
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -52,7 +53,7 @@ it("(2) Detail render", async () => {
     }
   };
 
-  const renderer = await TestRenderer.create(<EntryPayoutDetail {...props} />);
+  const renderer = await withStore(<EntryPayoutDetail {...props} />);
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -74,7 +75,7 @@ it("(3) Detail render with full power", async () => {
     }
   };
 
-  const renderer = await TestRenderer.create(<EntryPayoutDetail {...props} />);
+  const renderer = await withStore(<EntryPayoutDetail {...props} />);
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -97,7 +98,7 @@ it("(4) Detail render with max payout", async () => {
     }
   };
 
-  const renderer = await TestRenderer.create(<EntryPayoutDetail {...props} />);
+  const renderer = await withStore(<EntryPayoutDetail {...props} />);
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -119,7 +120,7 @@ it("(5) Default with max payout", async () => {
     }
   };
 
-  const renderer = await TestRenderer.create(<EntryPayout {...props} />);
+  const renderer = await withStore(<EntryPayout {...props} />);
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });

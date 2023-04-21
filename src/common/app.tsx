@@ -68,6 +68,8 @@ const EntryPage = (props: any) => {
 const PurchaseContainer = loadable(() => import("./pages/purchase"));
 const PurchasePage = (props: any) => <PurchaseContainer {...props} />;
 
+const DecksPage = loadable(() => import("./pages/decks"));
+
 const App = (props: any) => {
   useEffect(() => {
     let pathname = window.location.pathname;
@@ -141,6 +143,7 @@ const App = (props: any) => {
         <Route exact={true} strict={true} path={routes.TOS} component={TosPage} />
         <Route exact={true} strict={true} path={routes.FAQ} component={FaqPage} />
         <Route exact={true} strict={true} path={routes.CONTRIBUTORS} component={ContributorsPage} />
+        <Route exact={true} strict={true} path={routes.DECKS} component={DecksPage} />
         <Route component={NotFound} />
       </Switch>
 

@@ -938,7 +938,7 @@ exports[`(4) With active user 1`] = `
         title="Notifications"
       >
         <svg
-          fill="#ffffff"
+          fill="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -959,6 +959,7 @@ exports[`(4) With active user 1`] = `
       >
         <span
           className="user-avatar medium"
+          onClick={[Function]}
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -1195,6 +1196,7 @@ exports[`(5) With active user && usePrivate = false 1`] = `
       >
         <span
           className="user-avatar medium"
+          onClick={[Function]}
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",

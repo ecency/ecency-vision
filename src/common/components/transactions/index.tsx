@@ -48,9 +48,16 @@ interface RowProps {
   dynamicProps: DynamicProps;
   transaction: Transaction;
   entry?: Transaction;
+  onMounted?: () => void;
 }
 
 export class TransactionRow extends Component<RowProps> {
+  componentDidMount() {
+    if (this.props.onMounted) {
+      this.props.onMounted();
+    }
+  }
+
   render() {
     const { dynamicProps, transaction: item, entry, global } = this.props;
     const { hivePerMVests } = dynamicProps;
@@ -552,7 +559,7 @@ export class TransactionRow extends Component<RowProps> {
             <div className="transaction-date">{dateToFullRelative(tr.timestamp)}</div>
           </div>
           <div className="transaction-numbers">{numbers}</div>
-          <div className="transaction-details">{details}</div>
+          <div className="transaction-details text-truncate">{details}</div>
         </div>
       );
     }

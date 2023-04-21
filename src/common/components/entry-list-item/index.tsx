@@ -271,7 +271,7 @@ export default class EntryListItem extends Component<Props, State> {
         />
       );
     }
-    if (global.listStyle === "row" || global.listStyle === "deck") {
+    if (global.listStyle === "row") {
       thumb = (
         <picture>
           <source srcSet={imgRow} media="(min-width: 576px)" />
@@ -524,34 +524,16 @@ export default class EntryListItem extends Component<Props, State> {
             );
           })()}
           <div className="item-controls">
-            {
-              <EntryVoteBtn
-                isPostSlider={true}
-                account={account}
-                match={match}
-                history={history}
-                global={global}
-                dynamicProps={dynamicProps}
-                entry={entry}
-                users={users}
-                activeUser={activeUser}
-                ui={ui}
-                addAccount={addAccount}
-                afterVote={this.afterVote}
-                setActiveUser={setActiveUser}
-                updateActiveUser={updateActiveUser}
-                toggleUIProp={toggleUIProp}
-                deleteUser={deleteUser}
-              />
-            }
-            {EntryPayout({
-              ...this.props,
-              entry
-            })}
-            {EntryVotes({
-              ...this.props,
-              entry
-            })}
+            <EntryVoteBtn
+              isPostSlider={true}
+              entry={entry}
+              afterVote={this.afterVote}
+              account={account}
+              history={history}
+              match={match}
+            />
+            <EntryPayout entry={entry} />
+            <EntryVotes entry={entry} history={this.props.history} />
             {EntryLink({
               ...this.props,
               entry: crossPost ? theEntry : entry,
@@ -573,14 +555,8 @@ export default class EntryListItem extends Component<Props, State> {
                 </a>
               )
             })}
-            {EntryReblogBtn({
-              ...this.props
-            })}
-            {EntryMenu({
-              ...this.props,
-              alignBottom: order >= 1,
-              entry
-            })}
+            <EntryReblogBtn entry={entry} />
+            <EntryMenu history={history} alignBottom={order >= 1} entry={entry} />
           </div>
         </div>
       </div>

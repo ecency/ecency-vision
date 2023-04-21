@@ -1,11 +1,6 @@
 import React from "react";
 
 import EntryVoteBtn, { VoteDialog } from "./index";
-
-import renderer from "react-test-renderer";
-
-import { withStore } from "../../tests/with-store";
-
 import { createBrowserHistory } from "history";
 
 import {
@@ -18,6 +13,7 @@ import {
 } from "../../helper/test-helper";
 
 import { Account } from "../../store/accounts/types";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../api/hive", () => ({
   votingPower: () => 5,
@@ -102,6 +98,8 @@ describe("(2) Btn - No active user", () => {
     toggleUIProp: () => {}
   };
 
+  const component = withStore(<EntryVoteBtn {...props} />);
+
   it("(1) Render", () => {
     const renderer = withStore(<EntryVoteBtn {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
@@ -134,6 +132,9 @@ describe("(3) Btn - Up voted", () => {
     afterVote: () => {},
     toggleUIProp: () => {}
   };
+
+  const component = withStore(<EntryVoteBtn {...props} />);
+  const instance: any = component.getInstance();
 
   it("(1) Render", () => {
     const renderer = withStore(<EntryVoteBtn {...props} />);

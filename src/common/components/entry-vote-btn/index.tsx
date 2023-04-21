@@ -669,25 +669,39 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
   }
 }
 
-export default (p: Omit<Props, "accounts">) => {
-  const { accounts } = useMappedStore();
+export default (
+  p: Pick<Props, "entry" | "isPostSlider" | "afterVote" | "history" | "account" | "match">
+) => {
+  const {
+    accounts,
+    global,
+    dynamicProps,
+    users,
+    activeUser,
+    ui,
+    setActiveUser,
+    updateActiveUser,
+    deleteUser,
+    toggleUIProp,
+    addAccount
+  } = useMappedStore();
 
   const props = {
     accounts,
-    global: p.global,
-    dynamicProps: p.dynamicProps,
+    global,
+    dynamicProps,
     entry: p.entry,
-    users: p.users,
-    activeUser: p.activeUser,
-    ui: p.ui,
+    users,
+    activeUser,
+    ui,
     account: p.account,
     history: p.history,
     isPostSlider: p.isPostSlider,
-    setActiveUser: p.setActiveUser,
-    updateActiveUser: p.updateActiveUser,
-    addAccount: p.addAccount,
-    deleteUser: p.deleteUser,
-    toggleUIProp: p.toggleUIProp,
+    setActiveUser,
+    updateActiveUser,
+    addAccount,
+    deleteUser,
+    toggleUIProp,
     afterVote: p.afterVote
   };
 

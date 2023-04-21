@@ -25,6 +25,7 @@ import {
 } from "../../store/notifications";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
+import { useLocation } from "react-router";
 
 export const date2key = (s: string): string => {
   if (s === "Yesterday") {
@@ -64,6 +65,7 @@ interface NotificationProps {
   unMuteNotifications: () => void;
   updateNotificationsSettings: typeof updateNotificationsSettings;
   setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
+  className: string;
 }
 
 export class DialogContent extends Component<NotificationProps, any> {
@@ -543,7 +545,12 @@ class NotificationsDialog extends Component<NotificationProps> {
 
   render() {
     return (
-      <Modal show={true} centered={true} onHide={this.hide} className="notifications-modal drawer">
+      <Modal
+        show={true}
+        centered={true}
+        onHide={this.hide}
+        className={"notifications-modal drawer " + this.props.className}
+      >
         <Modal.Body>
           <DialogContent {...this.props} />
         </Modal.Body>
@@ -569,9 +576,11 @@ export default ({ history }: Pick<NotificationProps, "history">) => {
     updateNotificationsSettings,
     setNotificationsSettingsItem
   } = useMappedStore();
+  const location = useLocation();
 
   return (
     <NotificationsDialog
+      className={location.pathname === "/decks" ? "in-decks-page" : ""}
       global={global}
       history={history}
       activeUser={activeUser!!}

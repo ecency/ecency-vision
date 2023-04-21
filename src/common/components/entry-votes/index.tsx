@@ -31,6 +31,7 @@ import { _t } from "../../i18n";
 
 import { heartSvg } from "../../img/svg";
 import "./_index.scss";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   // const totalPayout =
@@ -352,13 +353,15 @@ export class EntryVotes extends Component<Props, State> {
   }
 }
 
-export default (p: Props) => {
+export default (p: Pick<Props, "entry" | "history">) => {
+  const { global, activeUser, addAccount } = useMappedStore();
+
   const props = {
     history: p.history,
-    global: p.global,
+    global,
     entry: p.entry,
-    activeUser: p.activeUser,
-    addAccount: p.addAccount
+    activeUser,
+    addAccount
   };
 
   return <EntryVotes {...props} />;

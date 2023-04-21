@@ -53,6 +53,7 @@ import {
   shuffleVariantSvg
 } from "../../img/svg";
 import "./_index.scss";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 interface Props {
   history: History;
@@ -733,27 +734,55 @@ export class EntryMenu extends BaseComponent<Props, State> {
   }
 }
 
-export default (p: Props) => {
+export default (
+  p: Pick<
+    Props,
+    | "entry"
+    | "history"
+    | "separatedSharing"
+    | "alignBottom"
+    | "extraMenuItems"
+    | "toggleEdit"
+    | "pinEntry"
+  >
+) => {
+  const {
+    global,
+    activeUser,
+    communities,
+    entryPinTracker,
+    dynamicProps,
+    signingKey,
+    setSigningKey,
+    addAccount,
+    updateActiveUser,
+    updateEntry,
+    addCommunity,
+    trackEntryPin,
+    setEntryPin,
+    toggleUIProp
+  } = useMappedStore();
+
   const props: Props = {
     history: p.history,
-    global: p.global,
-    dynamicProps: p.dynamicProps,
-    activeUser: p.activeUser,
+    global,
+    dynamicProps,
+    activeUser,
     entry: p.entry,
-    communities: p.communities,
-    entryPinTracker: p.entryPinTracker,
+    communities,
+    entryPinTracker,
     separatedSharing: p.separatedSharing,
     alignBottom: p.alignBottom,
-    signingKey: p.signingKey,
+    signingKey,
     extraMenuItems: p.extraMenuItems,
-    setSigningKey: p.setSigningKey,
-    addAccount: p.addAccount,
-    updateActiveUser: p.updateActiveUser,
-    updateEntry: p.updateEntry,
-    addCommunity: p.addCommunity,
-    trackEntryPin: p.trackEntryPin,
-    setEntryPin: p.setEntryPin,
-    toggleUIProp: p.toggleUIProp,
+    setSigningKey,
+    addAccount,
+    updateActiveUser,
+    updateEntry,
+    addCommunity,
+    trackEntryPin,
+    setEntryPin,
+    toggleUIProp,
     toggleEdit: p.toggleEdit,
     pinEntry: p.pinEntry
   };

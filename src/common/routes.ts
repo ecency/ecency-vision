@@ -37,5 +37,6 @@ export default {
   WITNESSES: `/witnesses`,
   PROPOSALS: `/proposals`,
   PROPOSAL_DETAIL: `/proposals/:id(\\d+)`,
-  PURCHASE: "/purchase"
+  PURCHASE: "/purchase",
+  DECKS: "/decks"
 };

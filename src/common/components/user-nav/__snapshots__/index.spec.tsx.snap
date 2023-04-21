@@ -45,7 +45,7 @@ exports[`(1) Default render 1`] = `
     title="Notifications"
   >
     <svg
-      fill="#ffffff"
+      fill="currentColor"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -66,6 +66,7 @@ exports[`(1) Default render 1`] = `
   >
     <span
       className="user-avatar medium"
+      onClick={[Function]}
       style={
         Object {
           "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -121,7 +122,7 @@ exports[`(2) Has rewards  1`] = `
     title="Notifications"
   >
     <svg
-      fill="#ffffff"
+      fill="currentColor"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -142,6 +143,7 @@ exports[`(2) Has rewards  1`] = `
   >
     <span
       className="user-avatar medium"
+      onClick={[Function]}
       style={
         Object {
           "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -197,7 +199,7 @@ exports[`(3) usePrivate = false 1`] = `
     title="Notifications"
   >
     <svg
-      fill="#ffffff"
+      fill="currentColor"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -218,6 +220,7 @@ exports[`(3) usePrivate = false 1`] = `
   >
     <span
       className="user-avatar medium"
+      onClick={[Function]}
       style={
         Object {
           "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",

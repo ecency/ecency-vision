@@ -47,6 +47,7 @@ exports[`(1) Default render 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
@@ -80,6 +81,7 @@ exports[`(1) Default render 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
@@ -154,6 +156,7 @@ exports[`(2) Should not show add user button 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
@@ -187,6 +190,7 @@ exports[`(2) Should not show add user button 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
@@ -261,6 +265,7 @@ exports[`(3) Should show add user button 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
@@ -294,6 +299,7 @@ exports[`(3) Should show add user button 1`] = `
             >
               <span
                 className="user-avatar medium"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
