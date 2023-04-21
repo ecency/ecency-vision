@@ -397,6 +397,7 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You've to be authorized to see notifications",
     "columns": {
+      "view-full-post": "View full post",
       "user": "User",
       "user-description": "Find a profile and see what they're been up to.",
       "community": "Community",

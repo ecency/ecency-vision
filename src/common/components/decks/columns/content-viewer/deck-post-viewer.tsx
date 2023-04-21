@@ -11,6 +11,7 @@ import Discussion from "../../../discussion";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import { DeckPostViewerCommentBox } from "./deck-post-viewer-comment-box";
+import { _t } from "../../../../i18n";
 
 interface Props {
   entry: Entry;
@@ -30,7 +31,7 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
   return (
     <div className={"deck-post-viewer " + (isMounted ? "visible" : "")}>
       <div className="deck-post-viewer-header">
-        <div className="d-flex pt-3">
+        <div className="actions d-flex pt-3 mr-3">
           <Button
             variant="link"
             onClick={() => {
@@ -41,8 +42,13 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
             {arrowLeftSvg}
             {backTitle}
           </Button>
+          <Button variant="outline-primary" href={entry.url} target="_blank" size="sm">
+            {_t("decks.columns.view-full-post")}
+          </Button>
         </div>
-        <div className="title p-3 pb-4 d-flex">{entry.title}</div>
+        <div className="title p-3 pb-4 d-flex">
+          <span>{entry.title}</span>
+        </div>
       </div>
       <div className="px-3">
         <EntryInfo entry={entry} history={history} />
