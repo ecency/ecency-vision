@@ -279,7 +279,7 @@
     height: 100%;
     padding-top: 67px;
 
-    > .list-item-skeleton {
+    .list-item-skeleton {
       display: grid;
       grid-template-columns: min-content 1fr min-content;
       grid-template-areas:

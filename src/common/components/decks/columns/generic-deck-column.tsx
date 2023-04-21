@@ -127,7 +127,9 @@ export const GenericDeckColumn = ({
           </AutoSizer>
         ) : (
           <div className="skeleton-list">
-            {Array.from(Array(20).keys()).map(() => skeletonItem)}
+            {Array.from(Array(20).keys()).map((i) => (
+              <div key={i}>{skeletonItem}</div>
+            ))}
           </div>
         )}
         {contentViewer}

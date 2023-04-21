@@ -25,8 +25,8 @@ interface Props {
   notification: ApiNotification;
   entry?: ApiNotification;
   dynamicProps: DynamicProps;
-  isSelect: boolean;
-  currentStatus: string;
+  isSelect?: boolean;
+  currentStatus?: string;
   markNotifications: (id: string | null) => void;
   addAccount: (data: Account) => void;
   toggleUIProp: (what: ToggleType) => void;

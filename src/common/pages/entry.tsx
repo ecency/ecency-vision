@@ -1231,10 +1231,11 @@ class EntryPage extends BaseComponent<Props, State> {
                         />
                         <EntryPayout entry={entry} />
                         <EntryVotes entry={entry} history={history} />
-                        {EntryTipBtn({
-                          ...this.props,
-                          entry
-                        })}
+                        <EntryTipBtn
+                          entry={entry}
+                          account={this.props.account}
+                          updateWalletValues={this.props.updateWalletValues}
+                        />
                         {!ownEntry && <EntryReblogBtn entry={entry} />}
                         <span className="flex-spacer" />
                         <Tooltip content={_t("entry.raw")}>
