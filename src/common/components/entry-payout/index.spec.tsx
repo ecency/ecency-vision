@@ -53,7 +53,7 @@ it("(2) Detail render", async () => {
     }
   };
 
-  const renderer = await withStore(<EntryPayoutDetail {...props} />);
+  const renderer = await TestRenderer.create(<EntryPayoutDetail {...props} />);
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
