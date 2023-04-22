@@ -68,8 +68,8 @@
     "loading": "Загрузка",
     "stop": "Остановить",
     "settings": "Настройки",
-    "confirm": "Confirm",
-    "username": "Username"
+    "confirm": "Подтвердить",
+    "username": "Имя пользователя"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -125,7 +125,7 @@
   "navbar": {
     "discover": "Подборка",
     "communities": "Сообщества",
-    "decks": "Decks",
+    "decks": "Площадки",
     "post": "Создать пост",
     "day-theme": "Дневная тема",
     "night-theme": "Ночная тема",
@@ -330,7 +330,7 @@
     "pp": "Политика конфиденциальности"
   },
   "decks": {
-    "title": "Decks",
+    "title": "Площадки",
     "users": "Пользователь",
     "header-info": "Нажмите, чтобы увидеть дополнительные параметры",
     "username": "Имя пользователя",
@@ -380,14 +380,14 @@
     "filters": "Фильтры",
     "history": "История",
     "type": "Тип",
-    "add-column": "Add new column",
-    "back-to-feed": "Back to feed",
+    "add-column": "Добавить новый столбец",
+    "back-to-feed": "Вернуться к ленте",
     "faq": "FAQ",
-    "terms": "Terms Of Service",
-    "market": "Market",
-    "create": "Create",
-    "deck-settings": "Deck settings",
-    "create-deck": "Create a deck",
+    "terms": "Условия использования",
+    "market": "Рынок",
+    "create": "Создать",
+    "deck-settings": "Настройки площадки",
+    "create-deck": "Создать площадку",
     "delete-prompt": "Are you sure deleting deck?",
     "use-local-text": "If its set local storage then this deck will be saved only on current device. Save on account if you want to get access to the deck from any device.",
     "loading": "Loading decks...",
