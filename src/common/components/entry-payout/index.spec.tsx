@@ -53,7 +53,7 @@ it("(2) Detail render", async () => {
     }
   };
 
-  const renderer = await withStore(<EntryPayoutDetail {...props} />);
+  const renderer = await TestRenderer.create(<EntryPayoutDetail {...props} />);
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -75,7 +75,7 @@ it("(3) Detail render with full power", async () => {
     }
   };
 
-  const renderer = await withStore(<EntryPayoutDetail {...props} />);
+  const renderer = await TestRenderer.create(<EntryPayoutDetail {...props} />);
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -98,7 +98,7 @@ it("(4) Detail render with max payout", async () => {
     }
   };
 
-  const renderer = await withStore(<EntryPayoutDetail {...props} />);
+  const renderer = await TestRenderer.create(<EntryPayoutDetail {...props} />);
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
