@@ -62,7 +62,8 @@ it("(1) Default render", async () => {
   const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...defProps} />
-    </StaticRouter>
+    </StaticRouter>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -79,7 +80,8 @@ it("(2) Grid view", async () => {
   const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...props} />
-    </StaticRouter>
+    </StaticRouter>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -99,7 +101,8 @@ it("(3) Nsfw", async () => {
   const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...props} />
-    </StaticRouter>
+    </StaticRouter>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -120,7 +123,8 @@ it("(4) Nsfw with active user", async () => {
   const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...props} />
-    </StaticRouter>
+    </StaticRouter>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -144,7 +148,8 @@ it("(5) Nsfw but allowed", async () => {
   const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...props} />
-    </StaticRouter>
+    </StaticRouter>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -160,7 +165,8 @@ it("(6) Cross post. Bottom menu", async () => {
   const renderer = await withStore(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...props} />
-    </StaticRouter>
+    </StaticRouter>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
