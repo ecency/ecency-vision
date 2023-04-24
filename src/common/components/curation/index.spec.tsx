@@ -29,6 +29,7 @@ it("(1) Render with data.", async () => {
   // render the component
   const root = await create(<Curation {...props} />);
   // make assertions on root
+  await allOver();
   expect(root.toJSON()).toMatchSnapshot();
   root.unmount();
 });

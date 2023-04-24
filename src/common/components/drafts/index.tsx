@@ -44,7 +44,7 @@ interface ItemProps {
   cloneFn: (item: Draft) => void;
 }
 
-export class ListItem extends Component<ItemProps> {
+export class DListItem extends Component<ItemProps> {
   render() {
     const { activeUser, draft, editFn, deleteFn, cloneFn, global } = this.props;
     if (!activeUser.data.__loaded) {
@@ -325,7 +325,7 @@ export class Drafts extends BaseComponent<Props, State> {
                 <div className="drafts-list">
                   <div className="drafts-list-body" ref={this.state.listRef}>
                     {items.map((item) => (
-                      <ListItem
+                      <DListItem
                         key={item._id}
                         {...this.props}
                         draft={item}

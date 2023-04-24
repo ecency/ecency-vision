@@ -49,7 +49,7 @@ interface ItemProps {
   moveFn: (item: Schedule) => void;
 }
 
-export class ListItem extends Component<ItemProps> {
+export class SListItem extends Component<ItemProps> {
   render() {
     const { activeUser, post, deleteFn, moveFn, global } = this.props;
 
@@ -326,7 +326,7 @@ export class Schedules extends BaseComponent<Props, State> {
                 <div className="schedules-list">
                   <div className="schedules-list-body">
                     {items.map((item) => (
-                      <ListItem
+                      <SListItem
                         key={item._id}
                         {...this.props}
                         post={item}
