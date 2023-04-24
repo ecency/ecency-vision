@@ -49,7 +49,7 @@ exports[`(1) curation_reward 1`] = `
     17.241 HP
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   >
     <a
       href="/history/@user2/hquwxmvg"
@@ -123,7 +123,7 @@ exports[`(2) author_reward 1`] = `
     </span>
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   >
     <a
       href="/history/@user1/lorem-ipsum-dolor"
@@ -192,7 +192,7 @@ exports[`(3) comment_benefactor_reward 1`] = `
     </span>
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   >
     <a
       href="/history/@xxxthorxxx/re-nonameslefttouse-2020530t135919321z"
@@ -247,7 +247,7 @@ exports[`(4) claim_reward_balance 1`] = `
     </span>
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   />
 </div>
 `;
@@ -304,7 +304,7 @@ exports[`(5) transfer 1`] = `
     </span>
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   >
     <span>
       lorem-ipsum-dolor
@@ -378,7 +378,7 @@ exports[`(6) transfer_to_vesting 1`] = `
     </span>
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   >
     <span>
       <strong>
@@ -443,7 +443,7 @@ exports[`(7) withdraw_vesting 1`] = `
     </span>
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   >
     <span>
       <strong>
@@ -497,7 +497,7 @@ exports[`(8) fill_order 1`] = `
     </span>
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   />
 </div>
 `;
@@ -538,7 +538,7 @@ exports[`(9) producer_reward 1`] = `
     0.240 HP
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   />
 </div>
 `;
@@ -583,7 +583,7 @@ exports[`(10) interest 1`] = `
     </span>
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   />
 </div>
 `;
@@ -640,7 +640,7 @@ exports[`(11) transfer_to_savings 1`] = `
     </span>
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   >
     <span>
       test memo
@@ -704,7 +704,7 @@ exports[`(12) fill_convert_request 1`] = `
     </span>
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   />
 </div>
 `;
@@ -743,7 +743,7 @@ exports[`(13) cancel_transfer_from_savings 1`] = `
     className="transaction-numbers"
   />
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   >
     <span
       dangerouslySetInnerHTML={
@@ -800,7 +800,7 @@ exports[`(14) return_vesting_delegation 1`] = `
     1.965 HP
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   />
 </div>
 `;
@@ -845,7 +845,7 @@ exports[`(15) proposal_pay 1`] = `
     </span>
   </div>
   <div
-    className="transaction-details text-truncate"
+    className="transaction-details"
   />
 </div>
 `;

@@ -34,14 +34,9 @@ export const Curation = (props: Props) => {
   const [data, setData] = useState([] as CurationItem[]);
   const [period, setPeriod] = useState("day" as CurationDuration);
   const [loading, setLoading] = useState(true);
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
     fetch(period);
-    return () => {
-      setIsMounted(false);
-    };
   }, []);
 
   const compare = (a: CurationItem, b: CurationItem) => {
@@ -128,22 +123,16 @@ export const Curation = (props: Props) => {
               <div className="list-item" key={i}>
                 <div className="index">{i + 1}</div>
                 <div className="avatar">
-                  {ProfileLink({
-                    ...props,
-                    username: r.account,
-                    children: (
-                      <span>
-                        <UserAvatar username={r.account} size="medium" />
-                      </span>
-                    )
-                  })}
+                  <ProfileLink {...props} username={r.account}>
+                    <span>
+                      <UserAvatar username={r.account} size="medium" />
+                    </span>
+                  </ProfileLink>
                 </div>
                 <div className="username">
-                  {ProfileLink({
-                    ...props,
-                    username: r.account,
-                    children: <span>{r.account}</span>
-                  })}
+                  <ProfileLink {...props} username={r.account}>
+                    <span>{r.account}</span>
+                  </ProfileLink>
                 </div>
                 <div className="score">{r.votes}</div>
                 <div className="points">
