@@ -112,8 +112,14 @@ export const Profile = (props: Props) => {
       // fetch posts
       if (section === "trail") {
         setDataTrail({ ...dataTrail, loading: true });
-        let data = await getAccountVotesTrail(username.replace("@", ""), -1);
+        let limit = 20;
+        let data = await getAccountVotesTrail(username.replace("@", ""), -1, limit);
         const sevenDaysAgo = 7 * 24 * 60 * 60 * 1000;
+        while (limit < 100 && data.length === 0) {
+          limit += 20;
+          data = await getAccountVotesTrail(username.replace("@", ""), -1, limit);
+        }
+
         while (
           data.length < 20 &&
           (new Date().getTime() - new Date(data[0].created!).getTime(), sevenDaysAgo)
@@ -200,8 +206,9 @@ export const Profile = (props: Props) => {
       // filter or username changed. fetch posts.
       if (nextSection !== prevMatchSection || `@${nextUsername}` !== prevMatchUsername) {
         if (nextSection === "trail") {
+          setDataTrail({ ...dataTrail, loading: true });
           let data = await getAccountVotesTrail(username.replace("@", ""), -1);
-          setDataTrail({ ...dataTrail, entries: data.reverse() });
+          setDataTrail({ ...dataTrail, entries: data.reverse(), loading: false });
         } else {
           fetchEntries(global.filter, global.tag, false);
         }
