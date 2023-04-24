@@ -15,7 +15,7 @@ import ListStyleToggle from "../list-style-toggle/index";
 import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
-import { menuDownSvg } from "../../img/svg";
+import { menuDownSvg, kebabMenuHorizontalSvg } from "../../img/svg";
 import "./_index.scss";
 
 interface Props {
@@ -30,8 +30,8 @@ interface Props {
 
 export class ProfileMenu extends Component<Props> {
   render() {
-    const { username, section, activeUser } = this.props;
-
+    const { username, section, activeUser, global } = this.props;
+    const { filter } = global;
     const menuConfig: {
       history: History;
       label: string;
@@ -43,7 +43,6 @@ export class ProfileMenu extends Component<Props> {
         ...[
           ProfileFilter.blog,
           ProfileFilter.posts,
-          ProfileFilter.trail,
           ProfileFilter.comments,
           ProfileFilter.replies
         ].map((x) => {
@@ -55,6 +54,20 @@ export class ProfileMenu extends Component<Props> {
           };
         })
       ]
+    };
+    let secondaryMenu = [
+      {
+        label: ProfileFilter.trail,
+        href: `/@${username}/trail`,
+        selected: filter === "trail",
+        id: "trail"
+      }
+    ];
+    const kebabMenuConfig = {
+      history: this.props.history,
+      label: "",
+      icon: kebabMenuHorizontalSvg,
+      items: [{ ...secondaryMenu[0] }]
     };
 
     let showDropdown = menuConfig.items.filter((item) => item.id === section).length > 0;
@@ -112,6 +125,7 @@ export class ProfileMenu extends Component<Props> {
           >
             {_t(`profile.section-wallet`)}
           </Link>
+
           {activeUser && activeUser.username === username && (
             <Link
               className={_c(`profile-menu-item ${section === "settings" ? "selected-item" : ""}`)}
@@ -120,6 +134,9 @@ export class ProfileMenu extends Component<Props> {
               {_t(`profile.section-settings`)}
             </Link>
           )}
+          <div className="kebab-icon entry-index-menu the-menu main-menu ">
+            <DropDown {...kebabMenuConfig} float="left" />
+          </div>
         </div>
 
         <div className="page-tools">
