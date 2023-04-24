@@ -631,17 +631,24 @@ export const Profile = (props: Props) => {
                   switch (section) {
                     case "trail":
                       entryList = dataTrail?.entries;
+                      entryList = entryList.filter(
+                        (item: any) => item.permlink !== (account as FullAccount)?.profile?.pinned
+                      );
+                      if (pinnedEntry) {
+                        entryList.unshift(pinnedEntry as any);
+                      }
                       break;
                     default:
                       entryList = data?.entries;
+                      entryList = entryList.filter(
+                        (item: Entry) => item.permlink !== (account as FullAccount)?.profile?.pinned
+                      );
+                      if (pinnedEntry) {
+                        entryList.unshift(pinnedEntry);
+                      }
                       break;
                   }
-                  entryList = entryList.filter(
-                    (item) => item.permlink !== (account as FullAccount)?.profile?.pinned
-                  );
-                  if (pinnedEntry) {
-                    entryList.unshift(pinnedEntry);
-                  }
+
                   const isLoading = loading || data?.loading || dataTrail?.loading;
                   return (
                     <>
@@ -657,7 +664,7 @@ export const Profile = (props: Props) => {
                           {EntryListContent({
                             ...props,
                             pinEntry,
-                            entries: entryList,
+                            entries: entryList as Entry[],
                             promotedEntries: [],
                             loading: isLoading,
                             account
