@@ -119,16 +119,17 @@ export const Profile = (props: Props) => {
           limit += 20;
           data = await getAccountVotesTrail(username.replace("@", ""), -1, limit);
         }
-
-        while (
-          data.length < 20 &&
-          (new Date().getTime() - new Date(data[0].created!).getTime(), sevenDaysAgo)
-        ) {
-          const moreData = await getAccountVotesTrail(
-            username.replace("@", ""),
-            data[data.length - 1].num! - 1
-          );
-          data = [...moreData, ...data];
+        if (data.length > 0) {
+          while (
+            data.length < 20 &&
+            (new Date().getTime() - new Date(data[0].created!).getTime(), sevenDaysAgo)
+          ) {
+            const moreData = await getAccountVotesTrail(
+              username.replace("@", ""),
+              data[data.length - 1].num! - 1
+            );
+            data = [...moreData, ...data];
+          }
         }
         setDataTrail({ ...dataTrail, entries: data.reverse(), loading: false });
       } else {
