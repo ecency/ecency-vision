@@ -2,158 +2,65 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="dialog-content"
+  className="linear-progress"
 >
-  <p>
-    Register your community to get Ecency POINTS
-  </p>
-  <button
-    className="btn btn-primary btn-sm"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    Register
-  </button>
+  <div
+    className="bar bar1"
+  />
+  <div
+    className="bar bar2"
+  />
 </div>
 `;
 
 exports[`(2) Min subscribers count doesn't match 1`] = `
 <div
-  className="dialog-content"
+  className="linear-progress"
 >
-  <p
-    className="text-danger"
-  >
-    Minimum 100 subscribers required to register.
-  </p>
-  <button
-    className="btn btn-primary btn-sm"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    Close
-  </button>
+  <div
+    className="bar bar1"
+  />
+  <div
+    className="bar bar2"
+  />
 </div>
 `;
 
 exports[`(3) Already registered 1`] = `
 <div
-  className="dialog-content"
+  className="linear-progress"
 >
-  <p
-    className="text-info"
-  >
-    This community is already registered.
-  </p>
-  <button
-    className="btn btn-primary btn-sm"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    Close
-  </button>
+  <div
+    className="bar bar1"
+  />
+  <div
+    className="bar bar2"
+  />
 </div>
 `;
 
 exports[`(4) Form screen 1`] = `
 <div
-  className="dialog-content"
+  className="linear-progress"
 >
   <div
-    className="key-or-hot"
-  >
-    <form
-      className=""
-      onSubmit={[Function]}
-    >
-      <div
-        className="input-group"
-      >
-        <div
-          className="input-group-prepend"
-        >
-          <span
-            className="input-group-text"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-        </div>
-        <input
-          autoComplete="off"
-          autoFocus={true}
-          className="form-control"
-          onChange={[Function]}
-          placeholder="Enter active/owner/master key"
-          type="password"
-          value=""
-        />
-        <div
-          className="input-group-append"
-        >
-          <button
-            className="btn btn-primary"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            Sign
-          </button>
-        </div>
-      </div>
-    </form>
-    <div
-      className="or-divider"
-    >
-      OR
-    </div>
-    <div
-      className="hs-sign"
-    >
-      <button
-        className="btn btn-outline-primary"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        <img
-          alt="hivesigner"
-          className="hs-logo"
-          src="hive-signer.svg"
-        />
-         
-        Sign with hivesigner
-      </button>
-    </div>
-  </div>
+    className="bar bar1"
+  />
+  <div
+    className="bar bar2"
+  />
 </div>
 `;
 
 exports[`(5) Success screen 1`] = `
 <div
-  className="dialog-content"
+  className="linear-progress"
 >
-  <p
-    className="text-info"
-  >
-    Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.
-  </p>
-  <button
-    className="btn btn-primary btn-sm"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    Close
-  </button>
+  <div
+    className="bar bar1"
+  />
+  <div
+    className="bar bar2"
+  />
 </div>
 `;
