@@ -15,6 +15,10 @@ jest.mock("../../api/private-api", () => ({
         { account: "baz", votes: 26, vests: "44.707" },
         { account: "zoo", votes: 22, vests: "55.040" }
       ]);
+    }),
+  getAccounts: (accounts: string[]) =>
+    new Promise((resolve) => {
+      resolve([]);
     })
 }));
 
@@ -31,5 +35,4 @@ it("(1) Render with data.", async () => {
   // make assertions on root
   await allOver();
   expect(root.toJSON()).toMatchSnapshot();
-  root.unmount();
 });

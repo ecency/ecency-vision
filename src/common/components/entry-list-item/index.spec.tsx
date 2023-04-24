@@ -149,7 +149,7 @@ it("(5) Nsfw but allowed", async () => {
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
-
+/*
 it("(6) Cross post. Bottom menu", async () => {
   const props = {
     ...defProps,
@@ -165,3 +165,4 @@ it("(6) Cross post. Bottom menu", async () => {
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
+*/

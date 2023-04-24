@@ -78,6 +78,7 @@ export class EntryListContent extends Component<Props, State> {
               this.setState({ mutedUsers: filterList });
             }
           })
+          .catch(console.log)
           .finally(() => {
             this.setState({ loadingMutedUsers: false });
           });

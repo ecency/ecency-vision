@@ -3,7 +3,6 @@ import React from "react";
 import Discussion from "./index";
 
 import { Discussion as DiscussionType, SortOrder } from "../../store/discussion/types";
-import { allOver, UiInstance } from "../../helper/test-helper";
 
 import { create, act } from "react-test-renderer";
 
@@ -13,7 +12,9 @@ import {
   globalInstance,
   discussionInstace1,
   dynamicPropsIntance1,
-  activeUserMaker
+  activeUserMaker,
+  allOver,
+  UiInstance
 } from "../../helper/test-helper";
 
 const [parent] = discussionInstace1;
@@ -54,7 +55,7 @@ const defProps = {
 it("(1) Empty list with no active user", async () => {
   // render the component
   let component = await create(<Discussion {...defProps} />);
-
+  await allOver();
   // make assertions on component
   expect(component.toJSON()).toMatchSnapshot();
 });
@@ -66,7 +67,7 @@ it("(2) Empty list with active user", async () => {
   };
   // render the component
   let component = await create(<Discussion {...props} />);
-
+  await allOver();
   // make assertions on component
   expect(component.toJSON()).toMatchSnapshot();
 });
