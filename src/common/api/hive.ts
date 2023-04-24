@@ -1,4 +1,4 @@
-import { Client, RCAPI } from "@hiveio/dhive";
+import { Client, RCAPI, utils } from "@hiveio/dhive";
 
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
@@ -11,7 +11,7 @@ import { vestsToRshares } from "../helper/vesting";
 import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
-import { dataLimit } from "./bridge";
+import { dataLimit, getPost as getPostNew } from "./bridge";
 import moment, { Moment } from "moment";
 
 export const client = new Client(SERVERS, {
@@ -586,13 +586,38 @@ export const getSavingsWithdrawFrom = (account: string): Promise<SavingsWithdraw
 export interface BlogEntry {
   blog: string;
   entry_id: number;
+  post_id?: number;
+  num?: number;
   author: string;
   permlink: string;
   reblogged_on: string;
+  created?: string;
 }
 
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
   client.call("condenser_api", "get_blog_entries", [username, 0, limit]);
+
+export const getAccountVotesTrail = (
+  username: string,
+  start = -1,
+  limit = 20
+): Promise<BlogEntry[]> => {
+  return getAccountHistory(
+    username,
+    utils.makeBitMaskFilter([utils.operationOrders.vote]),
+    start,
+    limit
+  ).then((data) => {
+    let result = data
+      .map((obj: any) => {
+        return { ...obj[1].op[1], num: obj[0] };
+      })
+      .filter((obj: any) => obj.voter === username);
+    return Promise.all(
+      result.map((obj: any) => getPostNew(obj.author, obj.permlink, username, obj.num))
+    );
+  });
+};
 
 export const findAccountRecoveryRequest = (account: string): Promise<any> =>
   client.call("database_api", "find_change_recovery_account_requests", { accounts: [account] });

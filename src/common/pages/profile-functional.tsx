@@ -8,7 +8,7 @@ import { ListStyle } from "../store/global/types";
 
 import { makeGroupKey } from "../store/entries";
 import { ProfileFilter } from "../store/global/types";
-import { Entry, EntryGroup } from "../store/entries/types";
+import { BlogEntryGroup, Entry, EntryGroup } from "../store/entries/types";
 import Meta from "../components/meta";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
@@ -36,7 +36,7 @@ import { PasswordUpdate } from "../components/password-update";
 import ManageAuthorities from "../components/manage-authority";
 import AccountRecovery from "../components/recovery-account";
 
-import { getAccountFull } from "../api/hive";
+import { BlogEntry, getAccountFull, getAccountVotesTrail } from "../api/hive";
 
 import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";
@@ -90,6 +90,13 @@ export const Profile = (props: Props) => {
     error: null,
     hasMore: false
   });
+  const [dataTrail, setDataTrail] = useState<BlogEntryGroup>({
+    entries: [],
+    sid: "",
+    loading: false,
+    error: null,
+    hasMore: false
+  });
 
   useAsyncEffect(async (_) => {
     const { accounts, match, global, fetchEntries, fetchPoints } = props;
@@ -103,7 +110,24 @@ export const Profile = (props: Props) => {
     const { username, section } = match.params;
     if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
       // fetch posts
-      fetchEntries(global.filter, global.tag, false);
+      if (section === "trail") {
+        setDataTrail({ ...dataTrail, loading: true });
+        let data = await getAccountVotesTrail(username.replace("@", ""), -1);
+        const sevenDaysAgo = 7 * 24 * 60 * 60 * 1000;
+        while (
+          data.length < 20 &&
+          (new Date().getTime() - new Date(data[0].created!).getTime(), sevenDaysAgo)
+        ) {
+          const moreData = await getAccountVotesTrail(
+            username.replace("@", ""),
+            data[data.length - 1].num! - 1
+          );
+          data = [...moreData, ...data];
+        }
+        setDataTrail({ ...dataTrail, entries: data.reverse(), loading: false });
+      } else {
+        fetchEntries(global.filter, global.tag, false);
+      }
     }
 
     // fetch points
@@ -141,6 +165,7 @@ export const Profile = (props: Props) => {
   useAsyncEffect(
     async (_) => {
       const { global, fetchEntries, history } = props;
+
       const nextUsername = props.match.params.username.replace("@", "");
       const nextSection = props.match.params.section;
       const nextAccount = props.accounts.find((x) => x.name === nextUsername);
@@ -174,7 +199,12 @@ export const Profile = (props: Props) => {
 
       // filter or username changed. fetch posts.
       if (nextSection !== prevMatchSection || `@${nextUsername}` !== prevMatchUsername) {
-        fetchEntries(global.filter, global.tag, false);
+        if (nextSection === "trail") {
+          let data = await getAccountVotesTrail(username.replace("@", ""), -1);
+          setDataTrail({ ...dataTrail, entries: data.reverse() });
+        } else {
+          fetchEntries(global.filter, global.tag, false);
+        }
       }
 
       if (entries) {
@@ -251,16 +281,42 @@ export const Profile = (props: Props) => {
     }
   };
 
-  const bottomReached = () => {
-    const { global, entries, fetchEntries } = props;
+  const bottomReached = async () => {
+    const { global, entries, fetchEntries, match } = props;
+    const { username, section } = match.params;
+
     const { filter, tag } = global;
     const groupKey = makeGroupKey(filter, tag);
 
     const data = entries[groupKey];
     const { loading, hasMore } = data;
 
-    if (!loading && hasMore) {
-      fetchEntries(filter, tag, true);
+    if (section === "trail") {
+      if (dataTrail.entries.length > 0) {
+        setDataTrail({ ...dataTrail, loading: true });
+
+        let data = await getAccountVotesTrail(
+          username.replace("@", ""),
+          dataTrail.entries[dataTrail.entries.length - 1]!.num! - 1
+        );
+        const sevenDaysAgo = 7 * 24 * 60 * 60 * 1000;
+        while (
+          data.length < 20 &&
+          (new Date().getTime() - new Date(data[0].created!).getTime(), sevenDaysAgo)
+        ) {
+          const moreData = await getAccountVotesTrail(
+            username.replace("@", ""),
+            data[data.length - 1].num! - 1
+          );
+          data = [...moreData, ...data];
+        }
+        let newDataTrail = _.unionBy(dataTrail.entries, data.reverse(), (obj) => obj.post_id);
+        setDataTrail({ ...dataTrail, entries: newDataTrail, loading: false });
+      }
+    } else {
+      if (!loading && hasMore) {
+        fetchEntries(filter, tag, true);
+      }
     }
   };
 
@@ -350,7 +406,6 @@ export const Profile = (props: Props) => {
       <NavBar history={props.history} />
     );
   };
-
   const getMetaProps = () => {
     const username = props.match.params.username.replace("@", "");
     const account = props.accounts.find((x) => x.name === username);
@@ -566,16 +621,28 @@ export const Profile = (props: Props) => {
                     return <Redirect to={`/@${account.name}`} />;
                   }
                 }
-
-                if (data !== undefined) {
-                  let entryList = data?.entries;
+                if (
+                  data !== undefined ||
+                  (section === "trail" &&
+                    dataTrail.entries !== undefined &&
+                    dataTrail.entries.length > 0)
+                ) {
+                  let entryList;
+                  switch (section) {
+                    case "trail":
+                      entryList = dataTrail?.entries;
+                      break;
+                    default:
+                      entryList = data?.entries;
+                      break;
+                  }
                   entryList = entryList.filter(
                     (item) => item.permlink !== (account as FullAccount)?.profile?.pinned
                   );
                   if (pinnedEntry) {
                     entryList.unshift(pinnedEntry);
                   }
-                  const isLoading = loading || data?.loading;
+                  const isLoading = loading || data?.loading || dataTrail?.loading;
                   return (
                     <>
                       <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>

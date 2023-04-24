@@ -10,7 +10,7 @@ import {
   updateAct as updateActiveUserAct
 } from "./active-user";
 
-import { getAccount, getDynamicProps } from "../api/hive";
+import { getAccount, getDynamicProps, getAccountVotesTrail } from "../api/hive";
 import { getPoints, usrActivity, getPromotedEntries } from "../api/private-api";
 import { reloadAct as reloadUsers } from "./users";
 import { fetchedAct as loadDynamicProps } from "./dynamic-props";
@@ -146,6 +146,7 @@ export const clientStoreTasks = (store: Store<AppState>) => {
       store.dispatch(entriesFetchedAct("__promoted__", r, "", false));
     });
   };
+
   promotedEntries();
   setInterval(promotedEntries, 1000 * 60 * 5);
 

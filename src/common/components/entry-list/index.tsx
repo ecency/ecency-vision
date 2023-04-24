@@ -211,7 +211,9 @@ export class EntryListContent extends Component<Props, State> {
           ) : (
             <MessageNoData
               title={_t("profile-info.no-posts-user")}
-              description={`${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}.`}
+              description={`${_t("g.nothing-found-in")} ${_t(`g.${filter}`)} ${
+                filter === "trail" && _t(`g.in-past-seven-days`)
+              }.`}
               buttonText={isMyProfile ? _t("profile-info.create-posts") : ""}
               buttonTo="/submit"
               global={global}
