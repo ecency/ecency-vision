@@ -32,7 +32,7 @@ import { SearchResponse, AccountSearchResult } from "../api/search-api";
 import { AssetSymbol } from "@hiveio/dhive";
 import { setImmediate as flushMicroTasks } from "timers";
 
-export const allOver = () => new Promise((resolve) => setImmediate(resolve));
+export const allOver = () => new Promise((resolve) => resolve(1));
 
 export const flushPending = () => new Promise(flushMicroTasks);
 

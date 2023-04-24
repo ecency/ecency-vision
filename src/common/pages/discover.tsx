@@ -47,7 +47,11 @@ class DiscoverPage extends Component<PageProps> {
         )}
         <div className={containerClasses}>
           {global.usePrivate && <div className="top-users">{LeaderBoard({ ...this.props })}</div>}
-          {global.usePrivate && <div className="curation-users">{Curation({ ...this.props })}</div>}
+          {global.usePrivate && (
+            <div className="curation-users">
+              <Curation {...this.props} />
+            </div>
+          )}
           <div className="popular-users">{PopularUsers({ ...this.props })}</div>
         </div>
       </>
