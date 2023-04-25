@@ -17,7 +17,7 @@ import { DeckTrendingColumn } from "./columns/deck-trending-column";
 import { DeckTopicsColumn } from "./columns/deck-topics-column";
 import { DeckSearchColumn } from "./columns/deck-search-column";
 import usePrevious from "react-use/lib/usePrevious";
-import uuid from "uuid";
+import * as uuid from "uuid";
 import { useOldDeckMigration } from "./old-deck-migration";
 import { _t } from "../../i18n";
 

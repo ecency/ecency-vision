@@ -43,7 +43,7 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => 
         <UserAvatar
           size="medium"
           global={global}
-          username=""
+          username="ecency"
           onClick={() => toggleUIProp("login")}
         />
       )}

@@ -5,7 +5,7 @@ import { DeckGrid } from "../types";
 import EmojiPicker from "../../emoji-picker";
 import { deleteForeverSvg, emoticonHappyOutlineSvg } from "../../../img/svg";
 import ClickAwayListener from "../../clickaway-listener";
-import uuid from "uuid";
+import * as uuid from "uuid";
 import { DeckGridContext } from "../deck-manager";
 import { DEFAULT_COLUMNS } from "../consts";
 import { _t } from "../../../i18n";
