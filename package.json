@@ -78,6 +78,7 @@
     "speakingurl": "^14.0.1",
     "use-async-effect": "^2.2.6",
     "use-indexeddb": "^2.0.2",
+    "uuid": "^9.0.0",
     "xss": "^1.0.8"
   },
   "devDependencies": {

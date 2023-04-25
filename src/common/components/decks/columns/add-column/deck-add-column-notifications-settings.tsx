@@ -63,7 +63,7 @@ export const DeckAddColumnNotificationsSettings = ({ deckKey }: SettingsProps) =
         <div className="selected-user" onClick={() => setUsername("")}>
           <UserAvatar size="medium" global={global} username={username} />
           <div className="username">{username}</div>
-          <div className="click-to-change">{_t("decks.click-to-change")}</div>
+          <div className="click-to-change">{_t("decks.columns.click-to-change")}</div>
         </div>
       ) : (
         <DeckAddColumnSearchBox
