@@ -45,7 +45,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
       <div className="subtitle py-3">{_t("decks.columns.community")}</div>
       {username ? (
         <div className="selected-user" onClick={() => setUsername("")}>
-          <UserAvatar size="medium" global={global} username={username} />
+          <UserAvatar size="medium" global={global} username={tag} />
           <div className="username">{username}</div>
           <div className="click-to-change">{_t("decks.columns.click-to-change")}</div>
         </div>

@@ -132,7 +132,7 @@ export const DeckAddColumnSearchBox = ({
               }
             }}
           >
-            <UserAvatar size="medium" global={global} username={i.name} />
+            <UserAvatar size="medium" global={global} username={i.tag || i.name} />
             <div className="d-flex flex-column">
               <div className="username">{i.name}</div>
               <div className="description text-truncate">{i.description}</div>
