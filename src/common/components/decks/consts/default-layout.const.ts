@@ -1,4 +1,4 @@
-import { DeckGrid, DeckGridItem, DeckGrids } from "../types";
+import { DeckGridItem, DeckGrids } from "../types";
 import uuid from "uuid";
 
 export const DEFAULT_COLUMNS: DeckGridItem[] = [
