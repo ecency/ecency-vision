@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   opacity: 0.75;
-  z-index: 200;
+  z-index: 199;
 
   @include margin-right(auto);
   @include margin-left(auto);
@@ -51,7 +51,6 @@
     align-items: center;
     gap: 1rem;
     overflow: hidden;
-    z-index: 9;
 
     @include transition(0.3s);
 
@@ -70,6 +69,8 @@
       overflow-x: hidden;
       overflow-y: auto;
       justify-content: space-between;
+
+      @include padding-top(1rem);
     }
   }
 
@@ -167,6 +168,8 @@
   }
 
   &.show {
+    z-index: 202;
+
     .columns {
       opacity: 1;
       visibility: visible;
