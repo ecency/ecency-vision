@@ -15,21 +15,25 @@ interface Props {
 export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Props) => {
   const { activeUser, global, toggleUIProp, notifications, dynamicProps } = useMappedStore();
 
-  return activeUser ? (
+  return (
     <div className="base-actions">
-      {global.usePrivate && (
-        <div className="notifications" onClick={() => toggleUIProp("notifications")}>
-          {notifications.unread > 0 && (
-            <span className="notifications-badge notranslate">
-              {notifications.unread.toString().length < 3 ? notifications.unread : "..."}
-            </span>
+      {activeUser && (
+        <>
+          {global.usePrivate && (
+            <div className="notifications" onClick={() => toggleUIProp("notifications")}>
+              {notifications.unread > 0 && (
+                <span className="notifications-badge notranslate">
+                  {notifications.unread.toString().length < 3 ? notifications.unread : "..."}
+                </span>
+              )}
+              {bellSvg}
+            </div>
           )}
-          {bellSvg}
-        </div>
+          {global.usePrivate && <div onClick={() => setShowPurchaseDialog(true)}>{rocketSvg}</div>}
+          <WalletBadge icon={walletIconSvg} activeUser={activeUser} dynamicProps={dynamicProps} />
+        </>
       )}
-      {global.usePrivate && <div onClick={() => setShowPurchaseDialog(true)}>{rocketSvg}</div>}
-      <WalletBadge icon={walletIconSvg} activeUser={activeUser} dynamicProps={dynamicProps} />
-      {isExpanded ? (
+      {isExpanded || !activeUser ? (
         <Dropdown>
           <DropdownToggle variant="link">{dotsMenuIconSvg}</DropdownToggle>
           <Dropdown.Menu alignRight={true}>
@@ -44,7 +48,5 @@ export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Pr
         <></>
       )}
     </div>
-  ) : (
-    <></>
   );
 };

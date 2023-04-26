@@ -6,6 +6,7 @@ import { Button, Dropdown } from "react-bootstrap";
 import { brightnessSvg } from "../../../img/svg";
 import { Theme } from "../../../store/global/types";
 import { _t } from "../../../i18n";
+import { Link } from "react-router-dom";
 
 interface Props {
   isExpanded: boolean;
@@ -18,6 +19,15 @@ interface Props {
 
 export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => {
   const { activeUser, global, toggleTheme, toggleUIProp } = useMappedStore();
+
+  const getThemeSwitcher = () => (
+    <div
+      className={"switch-theme " + (global.theme === Theme.night ? "switched" : "")}
+      onClick={() => toggleTheme()}
+    >
+      {brightnessSvg}
+    </div>
+  );
 
   return (
     <div
@@ -40,12 +50,14 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => 
           </Dropdown.Menu>
         </Dropdown>
       ) : (
-        <UserAvatar
-          size="medium"
-          global={global}
-          username="ecency"
-          onClick={() => toggleUIProp("login")}
-        />
+        <Link to="/">
+          <img
+            className="user-avatar medium"
+            src={
+              global.isElectron ? "./img/logo-circle.svg" : require("../../../img/logo-circle.svg")
+            }
+          />
+        </Link>
       )}
       {isExpanded ? (
         activeUser ? (
@@ -54,17 +66,19 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => 
               <div className="name">{(activeUser.data as FullAccount).name}</div>
               <div className="username">@{activeUser.username}</div>
             </div>
-            <div
-              className={"switch-theme " + (global.theme === Theme.night ? "switched" : "")}
-              onClick={() => toggleTheme()}
-            >
-              {brightnessSvg}
-            </div>
+            {getThemeSwitcher()}
           </>
         ) : (
-          <Button className="w-100" variant="outline-primary" onClick={() => toggleUIProp("login")}>
-            {_t("g.login")}
-          </Button>
+          <>
+            <Button
+              className="w-100"
+              variant="outline-primary"
+              onClick={() => toggleUIProp("login")}
+            >
+              {_t("g.login")}
+            </Button>
+            {getThemeSwitcher()}
+          </>
         )
       ) : (
         <></>
