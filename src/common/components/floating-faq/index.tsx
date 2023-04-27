@@ -32,6 +32,7 @@ const FloatingFAQ = () => {
   const [defaultFaqKeys, setDefaultFaqKeys] = useState<string[]>([]);
   const [datatoShow, setDatatoShow] = useState<string[]>([]);
   const [innerWidth, setInnerWidth] = useState(0);
+  const [isSubmitPage, setIsSubmitPage] = useState(false);
 
   const tooltip = (
     <Tooltip id="floating-faq-tooltip" style={{ zIndex: 10000 }}>
@@ -97,6 +98,7 @@ const FloatingFAQ = () => {
   const handleRouterChange = () => {
     setShow(false);
     setDisplay(false);
+    setIsSubmitPage(routerLocation.pathname.match("submit") ? true : false);
     for (const p of data.faqPaths) {
       if (routerLocation.pathname.match(p.path)) {
         setDisplay(true);
@@ -123,7 +125,11 @@ const FloatingFAQ = () => {
             onClickAway={() => show && setShow(false)}
           >
             {display && (
-              <Button className="help-btn" variant="primary" onClick={handleShow}>
+              <Button
+                className={`help-btn ${isSubmitPage ? "on-submit" : ""}`}
+                variant="primary"
+                onClick={handleShow}
+              >
                 {helpIconSvg}
 
                 {innerWidth >= 792 && <div className="help">{_t("floating-faq.help")}</div>}

@@ -21,6 +21,14 @@
   .help-button-content {
     margin-top: -3px;
   }
+
+  &.on-submit {
+    bottom: 1rem;
+
+    @media (max-width: 1847px) {
+      bottom: 4rem;
+    }
+  }
 }
 
 .floating-container {
@@ -32,6 +40,10 @@
   width: 435px;
   border-radius: 18px;
   overflow: hidden;
+
+  @media (max-width: 1847px) {
+    bottom: 7.1rem;
+  }
 
   @include themify(day) {
     background: $white-four;
