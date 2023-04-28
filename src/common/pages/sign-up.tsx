@@ -31,6 +31,8 @@ enum Stage {
   BUY_ACCOUNT = "buy-account"
 }
 
+declare var google: any;
+
 export const SignUp = (props: PageProps) => {
   const [lsReferral, setLsReferral] = useLocalStorage<string>(PREFIX + "_referral");
 
@@ -152,6 +154,31 @@ export const SignUp = (props: PageProps) => {
     if (value) {
       setIsVerified(true);
     }
+  };
+
+  const handleSignUpClick = () => {
+    const client = google.accounts.oauth2.initTokenClient({
+      client_id: "106495050489-tm2kep6d89h1m1o4ejvmqcnh3qeusf02.apps.googleusercontent.com",
+      scope: "https://www.googleapis.com/auth/userinfo.email",
+      ux_mode: "redirect",
+      prompt: "consent",
+      include_granted_scopes: true,
+      callback: (response: any) => {
+        const requestOptions = {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${response.access_token}`,
+            "Content-Type": "application/json"
+          }
+        };
+
+        fetch("https://www.googleapis.com/oauth2/v3/userinfo", requestOptions)
+          .then((response) => response.json())
+          .then((data) => setEmail(data.email))
+          .catch((error) => error(error));
+      }
+    });
+    client.requestAccessToken();
   };
 
   return (
@@ -300,6 +327,16 @@ export const SignUp = (props: PageProps) => {
                     <></>
                   )}
                 </Form>
+                <Button className="google-signup-btn" onClick={handleSignUpClick}>
+                  <span className="google-icon-wrapper">
+                    <img
+                      className="google-icon"
+                      src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                      alt="Google logo"
+                    />
+                  </span>
+                  <span className="btn-text">Sign up with Google</span>
+                </Button>
                 <div className="text-center">
                   {_t("sign-up.login-text-1")}
                   <a className="pl-1" href="#" onClick={(e) => props.toggleUIProp("login")}>

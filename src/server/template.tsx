@@ -100,6 +100,7 @@ export const render = (req: express.Request, state: AppState) => {
                     }]
                   }
                 </script>
+                <script src="https://accounts.google.com/gsi/client"></script>
                 <style>
                   body {
                     display: block !important;
