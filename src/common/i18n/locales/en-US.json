@@ -396,6 +396,7 @@
     "save-locally": "Save locally",
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You've to be authorized to see notifications",
+    "bite": "Bite",
     "columns": {
       "view-full-post": "View full post",
       "user": "User",
@@ -442,6 +443,11 @@
       "failed-update": "Deck updating failed. Please, try again",
       "new-column": "New column",
       "new-data-available": "New data available"
+    },
+    "threads-form": {
+      "bite-it": "Bite it!",
+      "create-regular-post": "Create regular post",
+      "input-placeholder": "What's happening?"
     }
   },
   "market-data": {
@@ -1238,7 +1244,8 @@
     "image-error": "Couldn't upload image.",
     "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Image size is too large, try smaller size image again.",
-    "fragments": "Snippets"
+    "fragments": "Snippets",
+    "link-image": "Link"
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",

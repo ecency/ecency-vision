@@ -1,0 +1,119 @@
+@import "src/style/vars_mixins";
+
+.deck-toolbar-threads-form {
+  box-shadow: 30px 0 20px -10px rgba(0, 0, 0, 0.15);
+  overflow: unset;
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease-in-out;
+  transform: translateX(-100%);
+  border-right: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 67px 1fr;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0%);
+  }
+
+  &-header, &-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 67px;
+    border-bottom: 1px solid var(--border-color);
+
+    @include padding-right(1rem);
+
+    .btn-primary {
+      font-weight: 500;
+
+      @include padding-top(0.5rem);
+      @include padding-bottom(0.5rem);
+      @include padding-left(1rem);
+      @include padding-right(1rem);
+      @include font-size(0.875rem);
+    }
+  }
+
+  &-footer {
+    border-top: 1px solid var(--border-color);
+    border-bottom: 0;
+    min-height: 65px;
+    gap: 1rem;
+
+    @include padding-right(1rem);
+    @include padding-left(1rem);
+
+    .available-credits {
+      padding-right: 0 !important;
+    }
+
+    .btn {
+      white-space: nowrap;
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &-body {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-gap: 1rem;
+
+    @include padding(1rem);
+
+    .editor-toolbar {
+      background-color: transparent;
+    }
+
+    .editor {
+      position: relative;
+      display: grid;
+
+      @include font-size(1.25rem);
+
+      .placeholder {
+        position: absolute;
+        opacity: 0.5;
+      }
+
+      .editor-control {
+        min-height: 8rem;
+        outline: none;
+        border: 0;
+        resize: none;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .deck-threads-form-toolbar {
+    border-top: 1px solid $border-color;
+
+    @include margin-top(1rem);
+    @include padding-top(0.5rem);
+    @include padding-bottom(0.5rem);
+
+    .btn.btn-link {
+      width: 2.5rem;
+      height: 2.5rem;
+      color: $gray-400;
+      box-shadow: none;
+
+      @include padding(0);
+
+      &:hover {
+        color: $primary;
+        background-color: rgba($primary, 0.15);
+      }
+    }
+  }
+}
