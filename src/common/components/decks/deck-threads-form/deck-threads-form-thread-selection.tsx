@@ -3,6 +3,7 @@ import { Dropdown } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import { UserAvatar } from "../../user-avatar";
 import { useMappedStore } from "../../../store/use-mapped-store";
+import { AVAILABLE_THREAD_HOSTS } from "../consts";
 
 interface Props {
   host: string | undefined;
@@ -10,11 +11,6 @@ interface Props {
 }
 
 export const DeckThreadsFormThreadSelection = ({ host, setHost }: Props) => {
-  const availableThreadHosts: string[] = [
-    ...(process.env.NODE_ENV === "development" ? ["testhreads"] : []),
-    "leothreads"
-  ];
-
   const { global } = useMappedStore();
 
   return (
@@ -25,7 +21,7 @@ export const DeckThreadsFormThreadSelection = ({ host, setHost }: Props) => {
           {host ? host : _t("decks.threads-form.select-thread-host")}
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          {availableThreadHosts.map((v) => (
+          {AVAILABLE_THREAD_HOSTS.map((v) => (
             <Dropdown.Item key={v} onClick={() => setHost(v)} className="thread-host-item">
               <UserAvatar size="small" global={global} username={v} />
               {v}

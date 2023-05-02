@@ -1,0 +1,48 @@
+@import "src/style/vars_mixins";
+
+.deck {
+
+  .thread-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+
+    &-header {
+      display: grid;
+      grid-template-areas:
+        "avatar username date"
+        "avatar host date";
+      grid-gap: 0 0.5rem;
+      grid-template-columns: 35px 1fr min-content;
+
+      .user-avatar {
+        grid-area: avatar;
+      }
+
+      .host {
+        grid-area: host;
+
+        > a {
+          color: $secondary;
+
+          @include font-size(0.75rem);
+        }
+      }
+
+      .username {
+        grid-area: username;
+        font-weight: 500;
+
+        @include font-size(0.875rem);
+      }
+
+      .date {
+        grid-area: date;
+        font-weight: bold;
+        opacity: 0.5;
+
+        @include font-size(0.75rem);
+      }
+    }
+  }
+}

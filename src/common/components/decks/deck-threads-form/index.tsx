@@ -24,7 +24,7 @@ export const DeckThreadsForm = ({ className }: Props) => {
   const { setShow, create } = useContext(DeckThreadsFormContext);
   const location = useLocation();
 
-  const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "dtf_th", "");
+  const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "_dtf_th", "");
   const [text, setText] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);

@@ -442,7 +442,12 @@
       "failed-fetch": "Account decks fetching failed. Please, refresh a page",
       "failed-update": "Deck updating failed. Please, try again",
       "new-column": "New column",
-      "new-data-available": "New data available"
+      "new-data-available": "New data available",
+      "bites": "Bites",
+      "bites-host": "Bites host",
+      "bites-description": "Follow people and write you thoughts very quickly.",
+      "add-thread-host-text": "Specify a Bites host or see all of them together",
+      "all-thread-hosts": "All Bites hosts"
     },
     "threads-form": {
       "bite-it": "Bite it!",

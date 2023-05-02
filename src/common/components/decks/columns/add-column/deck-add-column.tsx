@@ -78,6 +78,12 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       title: _t("decks.columns.search"),
       icon: searchIconSvg,
       description: _t("decks.columns.search-description")
+    },
+    {
+      type: "th",
+      title: _t("decks.columns.bites"),
+      icon: searchIconSvg,
+      description: _t("decks.columns.bites-description")
     }
   ];
   const typesWithoutSettings = ["tr", "to"];

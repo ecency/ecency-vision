@@ -32,4 +32,8 @@
   &.xLarge {
     @include generate_size(120px, 120px);
   }
+
+  &.deck-item {
+    @include generate_size(35px, 35px);
+  }
 }

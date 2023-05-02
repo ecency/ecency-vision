@@ -15,6 +15,9 @@ import profileLink from "../../profile-link";
 import { history } from "../../../store";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { TrendingTag } from "../../../store/trending-tags/types";
+import { Entry } from "../../../store/entries/types";
+import { UserAvatar } from "../../user-avatar";
+import "./_deck-items.scss";
 
 export interface HotListItemProps {
   index: number;
@@ -257,6 +260,57 @@ export const SearchListItem = ({
           <EntryReblogBtn entry={entry} />
           <EntryMenu history={history!!} alignBottom={false} entry={entry} />
         </div>
+      </div>
+    </div>
+  );
+};
+
+export interface ThreadItemProps {
+  entry: Entry;
+  onMounted: () => void;
+  onEntryView: () => void;
+}
+export const ThreadItem = ({ entry, onMounted, onEntryView }: ThreadItemProps) => {
+  const { global } = useMappedStore();
+
+  useEffect(() => {
+    onMounted();
+  }, []);
+
+  return (
+    <div className="thread-item d-flex flex-column border-bottom p-3">
+      <div className="thread-item-header">
+        <UserAvatar size="deck-item" global={global} username={entry.author} />
+        <Link className="username" to={`/@${entry.author}`}>
+          {entry.author}
+        </Link>
+        <div className="host">
+          <Link to={`/created/${entry.category}`}>#{entry.category}</Link>
+        </div>
+
+        <div className="date">{`${dateToRelative(entry.created)}`}</div>
+      </div>
+      <div onClick={() => onEntryView()} className="thread-item-body">
+        <div
+          className="hot-item-post-count deck-item-body text-secondary"
+          dangerouslySetInnerHTML={{ __html: postBodySummary(entry.body) }}
+        />
+        {entry.json_metadata &&
+          entry.json_metadata.image &&
+          _.isArray(entry.json_metadata.image) &&
+          entry.json_metadata.image.length > 0 && (
+            <div
+              className="search-post-image d-flex align-self-center mt-3"
+              style={{
+                backgroundImage: `url(${proxifyImageSrc(
+                  entry.json_metadata.image[0],
+                  undefined,
+                  undefined,
+                  global.canUseWebp ? "webp" : "match"
+                )})`
+              }}
+            />
+          )}
       </div>
     </div>
   );
