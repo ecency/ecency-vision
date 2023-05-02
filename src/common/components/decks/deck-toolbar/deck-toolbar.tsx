@@ -89,6 +89,7 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
         />
         <DeckToolbarBaseActions
           isExpanded={isExpanded}
+          setIsExpanded={setIsExpanded}
           setShowPurchaseDialog={setShowPurchaseDialog}
         />
         <DeckToolbarCreate isExpanded={isExpanded} />

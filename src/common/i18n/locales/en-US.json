@@ -447,7 +447,15 @@
     "threads-form": {
       "bite-it": "Bite it!",
       "create-regular-post": "Create regular post",
-      "input-placeholder": "What's happening?"
+      "input-placeholder": "What's happening?",
+      "select-thread-host": "Select a thread host",
+      "thread-host": "Will be bited in",
+      "no-threads-host": "This account is not a threads host",
+      "biting": "Biting...",
+      "successfully-created": "Bited successfully!",
+      "link-to-entry": "Click here to see",
+      "pending": "Waiting for transaction completing...",
+      "login-and-bite": "Sign in and bite"
     }
   },
   "market-data": {
