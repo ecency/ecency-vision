@@ -1,14 +1,14 @@
 import { Entry } from "../../../../store/entries/types";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useResizeDetector } from "react-resize-detector";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { UserAvatar } from "../../../user-avatar";
 import { Link } from "react-router-dom";
 import { dateToRelative } from "../../../../helper/parse-date";
 import { proxifyImageSrc, renderPostBody } from "@ecency/render-helper";
 import _ from "lodash";
-import { DeckThreadPostItem } from "./deck-thread-post-item";
+import { DeckThreadLinkItem } from "./deck-thread-link-item";
 
 export interface ThreadItemProps {
   entry: Entry;
@@ -20,6 +20,8 @@ export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadIt
   const { global } = useMappedStore();
   const { height, ref } = useResizeDetector();
 
+  const [renderInitiated, setRenderInitiated] = useState(false);
+
   const renderAreaRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -28,6 +30,13 @@ export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadIt
 
   useEffect(() => {
     onResize();
+    if (!renderInitiated) {
+      renderBody();
+    }
+  }, [height]);
+
+  const renderBody = () => {
+    setRenderInitiated(true);
 
     renderAreaRef.current
       ?.querySelectorAll<HTMLLinkElement>(".markdown-tag-link")
@@ -44,10 +53,21 @@ export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadIt
         if (author && permlink) {
           element.href = `/@${author}/${permlink}`;
           element.target = "_blank";
-          ReactDOM.hydrate(<DeckThreadPostItem author={author} permlink={permlink} />, element);
+          ReactDOM.hydrate(<DeckThreadLinkItem link={`/@${author}/${permlink}`} />, element);
         }
       });
-  }, [height]);
+
+    renderAreaRef.current
+      ?.querySelectorAll<HTMLLinkElement>(".markdown-external-link")
+      .forEach((element) => {
+        const { href } = element.dataset;
+
+        if (href) {
+          element.href = href;
+          element.target = "_blank";
+        }
+      });
+  };
 
   return (
     <div ref={ref} className="thread-item d-flex flex-column border-bottom p-3">
