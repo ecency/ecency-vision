@@ -2,7 +2,9 @@ import hs from "hivesigner";
 
 import {
   AccountUpdateOperation,
+  Authority,
   CustomJsonOperation,
+  KeyRole,
   Operation,
   PrivateKey,
   TransactionConfirmation
@@ -28,6 +30,7 @@ import { _t } from "../i18n";
 import { TransactionType } from "../components/buy-sell-hive";
 import { ErrorTypes } from "../enums";
 import { formatNumber } from "../helper/format-number";
+import crypto, { generateKeyPair, randomBytes } from "crypto";
 
 export interface MetaData {
   image?: string[];
@@ -1827,25 +1830,131 @@ export const unstakeHiveEngineKey = async (
   return result;
 };
 
-const createFriendAccount = async (privateKey: any, fee: any, creator: any, username: any) => {
-  // const client = new dhive.Client('https://api.hive.blog');
-  // const privateKey = '<your-private-key>'; // replace with your Hive private key
-  // const creator = '<your-hive-username>'; // replace with your Hive username
-  const broadcast: any = hiveClient.broadcast;
+export const getPrivateKeys = (username: any, password: any) => {
+  const roles: Array<KeyRole> = ["owner", "active", "posting", "memo"]
+  type keysType = {
+    ownerPubkey: string,
+    activePubkey: string,
+    postingPubkey: string,
+    memoPubkey: string,
+  }
+  const privKeys: keysType = {
+    ownerPubkey: '',
+    activePubkey: '',
+    postingPubkey: '',
+    memoPubkey: ''
+  };
+  roles.forEach((role) => {
+    privKeys[role] = PrivateKey.fromLogin(username, password, role).toString();
+    privKeys[`${role}Pubkey`] = PrivateKey.from(privKeys[role]).createPublic().toString();
+  });
 
+  return privKeys;
+};
+
+export const generatePassword = async (length: number) => {
+  const password = `P${PrivateKey.fromSeed(
+    randomBytes(length).toString('hex'),
+  ).toString()}`;
+  return password;
+};
+
+const accountCreate = async (account: any, creator_account: string, creator_key?: string) => {
+
+  // const posting_key = PrivateKey.fromString(creator_key);
+
+  let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+  tokens = tokens[0]?.pending_claimed_accounts;
+
+  let fee = null;
+  let op_name = 'create_claimed_account';
+
+  // If account creation tokens exist on creator account
+  if (tokens < 10) {
+      fee = '3.000 HIVE';
+
+      // Load account creation fee from Hive chain properties
+      const chain_props = await hiveClient.database.getChainProperties();
+      if (chain_props && chain_props.account_creation_fee) {
+        fee = chain_props.account_creation_fee;
+      }
+
+      op_name = 'account_create';
+    
+  }
+
+  const owner = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.owner_pub_key, 1]]
+  };
+  const active = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.active_pub_key, 1]]
+  };
+  const posting = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.posting_pub_key, 1]]
+  };
+  const ops: Array<any> = [];
+  const params: any = {
+    creator: creator_account,
+    new_account_name: account.name,
+    owner,
+    active,
+    posting,
+    memo_key: account.memo_pub_key,
+    json_metadata: '',
+    extensions: []
+  };
+  if (fee) params.fee = fee;
+  const operation = [op_name, params];
+  ops.push(operation);
   try {
-    await broadcast.accountCreate(
-      privateKey,
-      '3 HIVE', // The account creation fee, currently set to 3 HIVE
-      creator,
-      username,
-      // { 'weight_threshold': 1, 'account_auths': [], 'key_auths': [[publicKey, 1]] }, // The public key for the new account
-      // { 'weight_threshold': 1, 'account_auths': [], 'key_auths': [[publicKey, 1]] }, // The public key for the new account
-      []
+    const newAccount = await hiveClient.broadcast.sendOperations(
+      ops,
+      PrivateKey.from("config.ACTIVE_KEY")
     );
-    console.log('Account created successfully!');
-  } catch (error) {
-    console.error('Error creating account:', error);
+    console.log(`Account Created: activeUser`);
+    return newAccount;
+  } catch (err: any) {
+    console.log(`Error: response - ${JSON.stringify(err)}`);
+    console.log(
+      'Error:  failed thrice============= Account creation failed three times! ==============='
+    );
+    return err.jse_info.name;
   }
 };
 
+// Final Function call
+const createAccount = async (data: any, h: any) => {
+  const {
+    username, master_pass, creator_account, referred_by,
+  } = data;
+  // const existingName = await checkAccountName(username);
+
+  // if (existingName) return alert('Account already exist');
+
+  const keys = getPrivateKeys(username, master_pass);
+
+  const account = {
+    name: username,
+    owner_pub_key: keys?.ownerPubkey,
+    active_pub_key: keys?.activePubkey,
+    posting_pub_key: keys?.postingPubkey,
+    memo_pub_key: keys?.memoPubkey,
+    active: false,
+  };
+  // const referredBy = !referred_by || username === referred_by ? null : referred_by;
+
+  // Create hive account
+  const createdAccount = await accountCreate(account, creator_account);
+  if (typeof createdAccount === 'string') {
+    return console.log(createdAccount);
+  }
+  console.log(createAccount);
+
+  return createdAccount;
+};

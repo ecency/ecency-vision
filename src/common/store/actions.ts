@@ -8,7 +8,10 @@ import {
   setNsfw,
   toggleListStyle,
   toggleTheme,
-  unMuteNotifications
+  unMuteNotifications,
+  setAccountEmail,
+  setAccountName,
+  setReferral
 } from "./global";
 import { fetchTrendingTags } from "./trending-tags";
 import { updateSubscriptions } from "./subscriptions";
@@ -106,7 +109,10 @@ export const ACTIONS = {
   setDeckDataFilters,
   updateNotificationsSettings,
   fetchNotificationsSettings,
-  setNotificationsSettingsItem
+  setNotificationsSettingsItem,
+  setAccountEmail,
+  setAccountName,
+  setReferral
 };
 
 export const getActions = () => ({

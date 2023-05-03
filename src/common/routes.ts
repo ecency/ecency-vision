@@ -39,6 +39,4 @@ export default {
   PROPOSALS: `/proposals`,
   PROPOSAL_DETAIL: `/proposals/:id(\\d+)`,
   PURCHASE: "/purchase",
-  ONBOARD_ASKING: "/onboard-friend?type=asking",
-  ONBOARD_CREATING: "/onboard-friend?type=creating"
 };

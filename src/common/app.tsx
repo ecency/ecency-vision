@@ -123,8 +123,6 @@ const App = (props: any) => {
         <Route exact={true} strict={true} path={routes.EDIT} component={SubmitPage} />
         <Route exact={true} strict={true} path={routes.SIGN_UP} component={SignUpPage} />
         <Route exact={true} strict={true} path={routes.ONBOARD} component={OnboardPage} />
-        <Route exact={true} strict={true} path={routes.ONBOARD_ASKING} component={OnboardPage} />
-        <Route exact={true} strict={true} path={routes.ONBOARD_CREATING} component={OnboardPage} />
         <Route exact={true} strict={true} path={routes.EDIT_DRAFT} component={SubmitPage} />
         <Route exact={true} strict={true} path={routes.WITNESSES} component={WitnessesPage} />
         <Route

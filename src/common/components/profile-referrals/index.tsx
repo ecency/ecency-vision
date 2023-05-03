@@ -16,7 +16,6 @@ import Transfer, { TransferMode, TransferAsset } from "../transfer";
 import LinearProgress from "../linear-progress";
 import { shareVariantSvg } from "../../img/svg";
 import { getReferrals, ReferralItem, getReferralsStats, ReferralStat } from "../../api/private-api";
-import { CreateFriendAccount } from "../create-friend-account";
 
 import { _t } from "../../i18n";
 import { success } from "../feedback";
@@ -289,9 +288,6 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                     )}
                   </div>
                 </div>
-                <CreateFriendAccount
-                activeUser={activeUser}
-                />
               </div>
             </>
           );

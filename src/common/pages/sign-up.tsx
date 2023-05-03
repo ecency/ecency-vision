@@ -23,8 +23,6 @@ import { handleInvalid, handleOnInput } from "../util/input-util";
 import { getAccount } from "../api/hive";
 import "./sign-up.scss";
 import { Link } from "react-router-dom";
-import { CreateFriendAccount } from "../components/create-friend-account";
-import Onboard from "./onboard";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -32,7 +30,6 @@ enum Stage {
   FORM = "form",
   REGISTER_TYPE = "register-type",
   BUY_ACCOUNT = "buy-account",
-  ONBOARD = "onboard"
 }
 
 export const SignUp = (props: PageProps) => {
@@ -374,19 +371,28 @@ export const SignUp = (props: PageProps) => {
                     </ul>
                   </div>
                   <div className="card-footer d-flex flex-row">
-                    <a href="/onboard-friend">
+                    <Link to="/onboard-friend?type=asking">
                       <Button
                         className="w-50"
                         variant="primary"
-                        // onClick={() => setStage(Stage.ONBOARD)}
+                        onClick={() => {
+                          props.setAccountEmail(email);
+                          props.setAccountName(username);
+                          props.setReferral(referral || props.activeUser?.username || "ecency")
+                        }}
                       >
                         Ask from a friend
                       </Button>
-                    </a>
-                    <Link to={`/onboard-friend?type=creating&username=souljay&email=adesojisouljay@gmail.com&referrer=souljay`}>
+                    </Link>
+                    <Link to={`/onboard-friend?type=creating`}>
                     <Button
                       className="w-50 ml-3"
                       variant="primary"
+                      onClick={() => {
+                        props.setAccountEmail(email);
+                        props.setAccountName(username);
+                        props.setReferral(referral || props.activeUser?.username || "ecency")
+                      }}
                     >
                       Create for a friend
                     </Button>

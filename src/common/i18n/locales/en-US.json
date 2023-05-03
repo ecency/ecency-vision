@@ -221,6 +221,14 @@
     "username-contains-double-hyphens": "Should not contain double Hyphens",
     "username-exists": "This username already registered. Please, try another one"
   },
+  "onboard": {
+    "asking-description": "Confirm details",
+    "username": "Username:",
+    "email": "Email:",
+    "referral": "Referral:",
+    "copy-key": "Make sure you copy or download your keys.",
+    "download-keys": "Download Keys"
+  },
   "trending-tags": {
     "title": "Topics"
   },
