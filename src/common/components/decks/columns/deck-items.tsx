@@ -1,4 +1,4 @@
-import { postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
+import { postBodySummary, proxifyImageSrc, renderPostBody } from "@ecency/render-helper";
 import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import _ from "lodash";
@@ -18,6 +18,7 @@ import { TrendingTag } from "../../../store/trending-tags/types";
 import { Entry } from "../../../store/entries/types";
 import { UserAvatar } from "../../user-avatar";
 import "./_deck-items.scss";
+import { useResizeDetector } from "react-resize-detector";
 
 export interface HotListItemProps {
   index: number;
@@ -269,31 +270,37 @@ export interface ThreadItemProps {
   entry: Entry;
   onMounted: () => void;
   onEntryView: () => void;
+  onResize: () => void;
 }
-export const ThreadItem = ({ entry, onMounted, onEntryView }: ThreadItemProps) => {
+export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadItemProps) => {
   const { global } = useMappedStore();
+  const { height, ref } = useResizeDetector();
 
   useEffect(() => {
     onMounted();
   }, []);
 
+  useEffect(() => {
+    onResize();
+  }, [height]);
+
   return (
-    <div className="thread-item d-flex flex-column border-bottom p-3">
+    <div ref={ref} className="thread-item d-flex flex-column border-bottom p-3">
       <div className="thread-item-header">
         <UserAvatar size="deck-item" global={global} username={entry.author} />
         <Link className="username" to={`/@${entry.author}`}>
           {entry.author}
         </Link>
         <div className="host">
-          <Link to={`/created/${entry.category}`}>#{entry.category}</Link>
+          <Link to={`/created/${entry.category}`}>#{entry.parent_author}</Link>
         </div>
 
         <div className="date">{`${dateToRelative(entry.created)}`}</div>
       </div>
       <div onClick={() => onEntryView()} className="thread-item-body">
         <div
-          className="hot-item-post-count deck-item-body text-secondary"
-          dangerouslySetInnerHTML={{ __html: postBodySummary(entry.body) }}
+          className="thread-render"
+          dangerouslySetInnerHTML={{ __html: renderPostBody(entry) }}
         />
         {entry.json_metadata &&
           entry.json_metadata.image &&

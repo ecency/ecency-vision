@@ -113,11 +113,13 @@ export const GenericDeckColumn = ({
                     parent={parent}
                     rowIndex={index}
                   >
-                    {({ measure, registerChild }) => (
-                      <div ref={registerChild as any} className="virtual-list-item" style={style}>
-                        {children(visibleData[index], measure, index)}
-                      </div>
-                    )}
+                    {({ measure, registerChild }) => {
+                      return (
+                        <div ref={registerChild as any} className="virtual-list-item" style={style}>
+                          {children(visibleData[index], measure, index)}
+                        </div>
+                      );
+                    }}
                   </CellMeasurer>
                 )}
                 deferredMeasurementCache={cache}

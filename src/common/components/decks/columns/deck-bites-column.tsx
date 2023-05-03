@@ -80,6 +80,7 @@ export const DeckBitesColumn = ({ id, settings, history, draggable }: Props) => 
           }}
           onMounted={() => measure()}
           onEntryView={() => setCurrentViewingEntry(item)}
+          onResize={() => measure()}
         />
       )}
     </GenericDeckColumn>

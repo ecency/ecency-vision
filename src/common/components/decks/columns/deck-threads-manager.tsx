@@ -50,7 +50,7 @@ export const DeckThreadsManager = ({ children }: { children: JSX.Element }) => {
     }
 
     nextThreadItems = nextThreadItems.sort((a, b) => {
-      return moment(a.created).isAfter(b.created) ? 1 : -1;
+      return moment(a.created).isAfter(b.created) ? -1 : 1;
     });
 
     return nextThreadItems;
