@@ -1,0 +1,145 @@
+@import "src/style/vars_mixins";
+
+.deck {
+
+  .thread-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+
+    &-header {
+      display: grid;
+      grid-template-areas:
+        "avatar username date"
+        "avatar host date";
+      grid-gap: 0 1rem;
+      grid-template-columns: 35px 1fr min-content;
+
+      .user-avatar {
+        grid-area: avatar;
+      }
+
+      .host {
+        grid-area: host;
+
+        > a {
+          color: $secondary;
+
+          @include font-size(0.75rem);
+        }
+      }
+
+      .username {
+        grid-area: username;
+        font-weight: 500;
+
+        @include font-size(0.875rem);
+      }
+
+      .date {
+        grid-area: date;
+        font-weight: bold;
+        opacity: 0.5;
+
+        @include font-size(0.75rem);
+      }
+    }
+
+    .thread-render {
+      display: grid;
+
+      line-height: 1.5;
+      overflow-wrap: break-word;
+      word-break: break-word;
+
+      @include font-size(0.875rem);
+
+      .markdown-tag-link, .markdown-post-link, .markdown-external-link, .markdown-author-link {
+        color: $primary;
+        cursor: pointer;
+
+        &::after {
+          content: none;
+        }
+      }
+
+      p {
+        &:last-child {
+          @include margin-bottom(0);
+        }
+
+        img {
+          width: 100%;
+
+          @include margin-top(1rem);
+          @include margin-bottom(1rem);
+
+          &:last-child {
+            @include margin-bottom(0);
+          }
+
+          &:first-child {
+            @include margin-top(0);
+          }
+        }
+      }
+
+      .deck-thread-post-item {
+        background-color: rgba($primary, 0.1);
+
+        @include margin-top(0.25rem);
+        @include margin-bottom(0.25rem);
+        @include border-radius(1rem);
+        @include padding(1rem);
+
+        &:hover {
+          background-color: rgba($primary, 0.15);
+        }
+
+        .image {
+          height: 200px;
+          width: 100%;
+          background-size: cover;
+          background-color: $white;
+          background-image: url(../../../../img/noimage.png);
+
+          @include border-radius(0.5rem);
+        }
+
+        .title {
+          @include font-size(1.125rem);
+
+          @keyframes thread-post-item-skeleton-loader {
+            0% {
+              background-color: rgba($primary, 0.15);
+            }
+
+            50% {
+              background-color: rgba($primary, 0.2);
+            }
+
+            100% {
+              background-color: rgba($primary, 0.15);
+            }
+          }
+
+          &.loading {
+            height: 27px;
+            animation: thread-post-item-skeleton-loader 1s infinite;
+          }
+        }
+
+        .description {
+          color: $gray-600;
+
+          @include font-size(0.75rem);
+
+          &.loading {
+            height: 2rem;
+            animation: thread-post-item-skeleton-loader 1s infinite;
+          }
+        }
+      }
+    }
+  }
+}

@@ -447,7 +447,8 @@
       "bites-host": "Bites host",
       "bites-description": "Follow people and write you thoughts very quickly.",
       "add-thread-host-text": "Specify a Bites host or see all of them together",
-      "all-thread-hosts": "All"
+      "all-thread-hosts": "All",
+      "thread-post-link-invalid": "This post is not existing."
     },
     "threads-form": {
       "bite-it": "Bite it!",
