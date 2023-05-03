@@ -175,11 +175,13 @@ export const SignUp = (props: PageProps) => {
         fetch("https://www.googleapis.com/oauth2/v3/userinfo", requestOptions)
           .then((response) => response.json())
           .then((data) => {
-            const userName = data.name.toLowerCase().replace(/\s+/g, "");
             setEmail(data.email);
+            const userName = data.name
+              ? data.name.toLowerCase().replace(/\s+/g, "")
+              : data.email.split("@")[0];
             setUsername(userName);
           })
-          .catch((error) => error(error));
+          .catch((err) => error(err));
       }
     });
     client.requestAccessToken();
