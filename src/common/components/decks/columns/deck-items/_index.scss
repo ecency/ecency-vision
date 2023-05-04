@@ -63,6 +63,23 @@
         }
       }
 
+      .markdown-tag-link {
+        font-weight: 500;
+        background-color: rgba($primary, 0.1);
+        text-transform: uppercase;
+
+        @include padding-top(0.125rem);
+        @include padding-bottom(0.125rem);
+        @include padding-left(0.5rem);
+        @include padding-right(0.5rem);
+        @include border-radius(0.5rem);
+        @include font-size(0.75rem);
+
+        &:hover {
+          background-color: rgba($primary, 0.15);
+        }
+      }
+
       p {
         &:last-child {
           @include margin-bottom(0);
