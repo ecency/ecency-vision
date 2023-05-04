@@ -63,21 +63,31 @@
         }
       }
 
-      .markdown-tag-link {
+      .markdown-tag-link, .markdown-author-link {
         font-weight: 500;
         background-color: rgba($primary, 0.1);
         text-transform: uppercase;
 
         @include padding-top(0.125rem);
         @include padding-bottom(0.125rem);
-        @include padding-left(0.5rem);
-        @include padding-right(0.5rem);
+        @include padding-left(0.4rem);
+        @include padding-right(0.4rem);
         @include border-radius(0.5rem);
         @include font-size(0.75rem);
 
         &:hover {
           background-color: rgba($primary, 0.15);
         }
+      }
+
+      .markdown-author-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-weight: bold;
+
+        @include padding-left(0.25rem);
+        @include border-radius(1rem);
       }
 
       p {
@@ -102,6 +112,7 @@
       }
 
       .deck-thread-post-item {
+        width: 100%;
         background-color: rgba($primary, 0.1);
 
         @include margin-top(0.25rem);

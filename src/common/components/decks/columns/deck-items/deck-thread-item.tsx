@@ -46,6 +46,23 @@ export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadIt
       });
 
     renderAreaRef.current
+      ?.querySelectorAll<HTMLLinkElement>(".markdown-author-link")
+      .forEach((element) => {
+        const { author } = element.dataset;
+        if (author) {
+          element.href = `/@${author}`;
+          element.target = "_blank";
+          ReactDOM.hydrate(
+            <>
+              <UserAvatar size="xsmall" global={global} username={author} />
+              <span>{author}</span>
+            </>,
+            element
+          );
+        }
+      });
+
+    renderAreaRef.current
       ?.querySelectorAll<HTMLLinkElement>(".markdown-post-link")
       .forEach((element) => {
         const { author, permlink } = element.dataset;
