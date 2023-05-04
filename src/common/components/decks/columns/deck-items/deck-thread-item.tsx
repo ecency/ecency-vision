@@ -6,9 +6,11 @@ import ReactDOM from "react-dom";
 import { UserAvatar } from "../../../user-avatar";
 import { Link } from "react-router-dom";
 import { dateToRelative } from "../../../../helper/parse-date";
-import { proxifyImageSrc, renderPostBody } from "@ecency/render-helper";
-import _ from "lodash";
+import { renderPostBody } from "@ecency/render-helper";
 import { DeckThreadLinkItem } from "./deck-thread-link-item";
+import { renderToString } from "react-dom/server";
+import { getCGMarketApi } from "../../../market-swap-form/api/coingecko-api";
+import formattedNumber from "../../../../util/formatted-number";
 
 export interface ThreadItemProps {
   entry: Entry;
@@ -35,8 +37,14 @@ export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadIt
     }
   }, [height]);
 
-  const renderBody = () => {
+  const renderBody = async () => {
     setRenderInitiated(true);
+
+    if (renderAreaRef.current) {
+      renderAreaRef.current.innerHTML = await modifyCurrencyTokens(
+        renderAreaRef?.current?.innerHTML
+      );
+    }
 
     renderAreaRef.current
       ?.querySelectorAll<HTMLLinkElement>(".markdown-tag-link")
@@ -86,6 +94,48 @@ export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadIt
       });
   };
 
+  const modifyCurrencyTokens = async (raw: string): Promise<string> => {
+    const tokens = [
+      ...(raw.includes("$BTC") ? ["$BTC"] : []),
+      ...(raw.includes("$HIVE") ? ["$HIVE"] : [])
+    ];
+    if (tokens.length > 0) {
+      const coins = tokens
+        .map((token) => token.toLowerCase().replace("$", ""))
+        .map((token) => {
+          switch (token) {
+            case "btc":
+              return "binance-wrapped-btc";
+            default:
+              return token;
+          }
+        })
+        .join(",");
+      const values = await getCGMarketApi(coins, "usd");
+      Object.entries(values)
+        .map(([key, { usd }]) => {
+          switch (key) {
+            case "binance-wrapped-btc":
+              return ["BTC", usd];
+            default:
+              return [key.toUpperCase(), usd];
+          }
+        })
+        .forEach(([token, value]) => {
+          raw = raw.replaceAll(
+            `$${token}`,
+            renderToString(
+              <span className="markdown-currency">
+                <span>{token}</span>
+                <span className="value">{formattedNumber(value)}</span>
+              </span>
+            )
+          );
+        });
+    }
+    return raw;
+  };
+
   return (
     <div ref={ref} className="thread-item d-flex flex-column border-bottom p-3">
       <div className="thread-item-header">
@@ -105,22 +155,6 @@ export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadIt
           className="thread-render"
           dangerouslySetInnerHTML={{ __html: renderPostBody(entry) }}
         />
-        {entry.json_metadata &&
-          entry.json_metadata.image &&
-          _.isArray(entry.json_metadata.image) &&
-          entry.json_metadata.image.length > 0 && (
-            <div
-              className="search-post-image d-flex align-self-center mt-3"
-              style={{
-                backgroundImage: `url(${proxifyImageSrc(
-                  entry.json_metadata.image[0],
-                  undefined,
-                  undefined,
-                  global.canUseWebp ? "webp" : "match"
-                )})`
-              }}
-            />
-          )}
       </div>
     </div>
   );

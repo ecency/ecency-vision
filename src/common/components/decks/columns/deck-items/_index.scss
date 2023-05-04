@@ -63,7 +63,7 @@
         }
       }
 
-      .markdown-tag-link, .markdown-author-link {
+      .markdown-tag-link, .markdown-author-link, .markdown-currency {
         font-weight: 500;
         background-color: rgba($primary, 0.1);
         text-transform: uppercase;
@@ -77,6 +77,25 @@
 
         &:hover {
           background-color: rgba($primary, 0.15);
+        }
+      }
+
+      .markdown-currency {
+        background-color: rgba($secondary, 0.1);
+
+        span:not(.value) {
+          opacity: 0.5;
+        }
+
+        .value {
+          font-weight: bold;
+          color: $primary;
+
+          @include margin-left(0.25rem);
+        }
+
+        &:hover {
+          background-color: rgba($secondary, 0.1);
         }
       }
 

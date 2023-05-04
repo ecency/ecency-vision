@@ -64,6 +64,7 @@ export const DeckThreadLinkItem = ({ link }: Props) => {
       setImage(cached.image);
       setDescription(cached.description);
       setIsLoading(false);
+      setLoadedSuccess(true);
       return true;
     }
 
