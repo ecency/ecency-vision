@@ -12,7 +12,11 @@ import axios from "axios";
 import Gallery from "../../gallery";
 import { Button, Dropdown } from "react-bootstrap";
 
-export const DeckThreadsFormToolbarImagePicker = () => {
+interface Props {
+  onAddImage: (link: string, name: string) => void;
+}
+
+export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
   const { activeUser, global } = useMappedStore();
 
   const fileInputRef = useRef<any>();
@@ -21,7 +25,7 @@ export const DeckThreadsFormToolbarImagePicker = () => {
   const [galleryPickInitiated, setGalleryPickInitiated] = useState(false);
 
   const onImagePick = (text: string, url: string) => {
-    // this.insertText(`![${text}`, `](${url})`);
+    onAddImage(url, text);
   };
 
   const checkFile = (filename: string) => {
@@ -52,10 +56,6 @@ export const DeckThreadsFormToolbarImagePicker = () => {
 
   const upload = async (file: File) => {
     const username = activeUser?.username!;
-
-    const tempImgTag = `![Uploading ${file.name} #${Math.floor(Math.random() * 99)}]()\n\n`;
-    // this.insertText(tempImgTag);
-
     let imageUrl: string;
     try {
       let token = getAccessToken(username);
@@ -66,10 +66,6 @@ export const DeckThreadsFormToolbarImagePicker = () => {
         if (global.usePrivate && imageUrl.length > 0) {
           addImage(username, imageUrl).then();
         }
-
-        const imgTag = imageUrl.length > 0 && `![](${imageUrl})\n\n`;
-
-        // imgTag && this.replaceText(tempImgTag, imgTag);
       } else {
         error(_t("editor-toolbar.image-error-cache"));
       }
@@ -84,7 +80,7 @@ export const DeckThreadsFormToolbarImagePicker = () => {
   };
 
   return (
-    <>
+    <div className="deck-threads-form-toolbar-image-picker">
       <Tooltip content={_t("editor-toolbar.image")}>
         <Dropdown>
           <Dropdown.Toggle as="div">
@@ -151,6 +147,6 @@ export const DeckThreadsFormToolbarImagePicker = () => {
         multiple={true}
         style={{ display: "none" }}
       />
-    </>
+    </div>
   );
 };

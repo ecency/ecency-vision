@@ -117,6 +117,7 @@
         img {
           width: 100%;
 
+          @include border-radius(1rem);
           @include margin-top(1rem);
           @include margin-bottom(1rem);
 

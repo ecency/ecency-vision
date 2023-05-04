@@ -26,6 +26,8 @@ export const DeckThreadsForm = ({ className }: Props) => {
 
   const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "_dtf_th", "leothreads");
   const [text, setText] = useState("");
+  const [image, setImage] = useState<string | null>(null);
+  const [imageName, setImageName] = useState<string | null>(null);
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
 
@@ -43,7 +45,13 @@ export const DeckThreadsForm = ({ className }: Props) => {
 
     setLoading(true);
     try {
-      const threadItem = await create(threadHost!!, text);
+      let content = text;
+
+      if (image) {
+        content = `${content}<p>![${imageName ?? ""}](${image})</p>`;
+      }
+
+      const threadItem = await create(threadHost!!, content);
       setLastCreatedThreadItem(threadItem);
       setText("");
       _t("decks.threads-form.successfully-created");
@@ -76,7 +84,16 @@ export const DeckThreadsForm = ({ className }: Props) => {
           <UserAvatar global={global} username={activeUser?.username ?? ""} size="medium" />
           <div>
             <DeckThreadsFormThreadSelection host={threadHost} setHost={setThreadHost} />
-            <DeckThreadsFormControl text={text} setText={setText} />
+            <DeckThreadsFormControl
+              text={text}
+              setText={setText}
+              selectedImage={image}
+              onAddImage={(url, name) => {
+                setImage(url);
+                setImageName(name);
+              }}
+              setSelectedImage={setImage}
+            />
           </div>
         </div>
         <div>

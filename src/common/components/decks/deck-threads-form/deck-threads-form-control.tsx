@@ -2,13 +2,23 @@ import { _t } from "../../../i18n";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { DeckThreadsFormToolbar } from "./deck-threads-form-toolbar";
+import { closeSvg } from "../../../img/svg";
 
 interface Props {
   text: string;
   setText: (v: string) => void;
+  selectedImage: string | null;
+  setSelectedImage: (url: string | null) => void;
+  onAddImage: (url: string, name: string) => void;
 }
 
-export const DeckThreadsFormControl = ({ text, setText }: Props) => {
+export const DeckThreadsFormControl = ({
+  text,
+  setText,
+  onAddImage,
+  selectedImage,
+  setSelectedImage
+}: Props) => {
   return (
     <>
       <div className="comment-body">
@@ -20,7 +30,15 @@ export const DeckThreadsFormControl = ({ text, setText }: Props) => {
             onChange={(e) => setText(e.target.value)}
           />
         </div>
-        <DeckThreadsFormToolbar />
+        {selectedImage && (
+          <div className="deck-threads-form-selected-image">
+            <img src={selectedImage} alt="" />
+            <div className="remove" onClick={() => setSelectedImage(null)}>
+              {closeSvg}
+            </div>
+          </div>
+        )}
+        <DeckThreadsFormToolbar onAddImage={onAddImage} />
       </div>
     </>
   );
