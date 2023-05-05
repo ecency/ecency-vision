@@ -7,6 +7,7 @@ import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from "react-virtuali
 import { DeckGridContext } from "../deck-manager";
 import { Button } from "react-bootstrap";
 import { upArrowSvg } from "../../../img/svg";
+import { Data } from "node-cache";
 
 type DataItem = Omit<any, "id"> & Required<{ id: string | number }>;
 
@@ -28,6 +29,7 @@ export interface DeckProps {
   contentViewer?: JSX.Element;
   isExpanded?: boolean;
   overlay?: JSX.Element;
+  newDataComingCondition?: (data: DataItem[]) => boolean;
 }
 
 export const GenericDeckColumn = ({
@@ -41,7 +43,8 @@ export const GenericDeckColumn = ({
   id,
   contentViewer,
   isExpanded,
-  overlay
+  overlay,
+  newDataComingCondition
 }: DeckProps) => {
   const { activeUser } = useMappedStore();
 
@@ -57,7 +60,7 @@ export const GenericDeckColumn = ({
   });
 
   useEffect(() => {
-    if (visibleData.length === 0) {
+    if (newDataComingCondition ? newDataComingCondition(data) : visibleData.length === 0) {
       setVisibleData(data);
     } else {
       const newData = data.filter(({ id }) => !visibleData.some((vd) => vd.id === id));

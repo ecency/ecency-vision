@@ -62,5 +62,6 @@ export const ICONS = {
   },
   tr: trendingIconSvg,
   to: topicsIconSvg,
-  s: searchIconSvg
+  s: searchIconSvg,
+  th: trendingIconSvg
 };

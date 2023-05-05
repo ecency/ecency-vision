@@ -1,4 +1,4 @@
-import { communityTitles } from "../consts";
+import { AVAILABLE_THREAD_HOSTS, communityTitles } from "../consts";
 import { ListItemSkeleton, SearchListItem, ThreadItem } from "./deck-items";
 import { DeckPostViewer } from "./content-viewer";
 import { GenericDeckColumn } from "./generic-deck-column";
@@ -9,7 +9,9 @@ import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { Entry } from "../../../store/entries/types";
 import { DeckGridContext } from "../deck-manager";
 import { _t } from "../../../i18n";
-import { DeckThreadsContext } from "./deck-threads-manager";
+import { DeckThreadsContext, IdentifiableEntry } from "./deck-threads-manager";
+import moment from "moment/moment";
+import usePrevious from "react-use/lib/usePrevious";
 
 interface Props {
   id: string;
@@ -18,14 +20,23 @@ interface Props {
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-type IdentifiableEntry = Entry & Required<Pick<Entry, "id">>;
-
 export const DeckBitesColumn = ({ id, settings, history, draggable }: Props) => {
   const { fetch } = useContext(DeckThreadsContext);
 
   const [data, setData] = useState<IdentifiableEntry[]>([]);
+  const prevData = usePrevious<IdentifiableEntry[]>(data);
+
   const [isReloading, setIsReloading] = useState(false);
-  const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
+  const [currentViewingEntry, setCurrentViewingEntry] = useState<IdentifiableEntry | null>(null);
+  const [hasHostNextPage, setHasHostNextPage] = useState<Record<string, boolean>>(
+    AVAILABLE_THREAD_HOSTS.reduce(
+      (acc, host) => ({
+        ...acc,
+        [host]: true
+      }),
+      {}
+    )
+  );
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
@@ -33,14 +44,37 @@ export const DeckBitesColumn = ({ id, settings, history, draggable }: Props) => 
     fetchData();
   }, []);
 
-  const fetchData = async () => {
-    const items = await fetch(settings.host);
-    setData(
-      items.map((item) => {
-        item.id = item.post_id;
-        return item as IdentifiableEntry;
-      })
-    );
+  const fetchData = async (sinceEntries?: IdentifiableEntry[]) => {
+    try {
+      if (data.length) {
+        setIsReloading(true);
+      }
+
+      const usingHosts = AVAILABLE_THREAD_HOSTS.filter((h) =>
+        settings.host === "all" ? true : h === settings.host
+      );
+      const response = (await fetch(usingHosts, sinceEntries)) as IdentifiableEntry[];
+
+      let items = [...(sinceEntries ? data : []), ...response];
+
+      items.sort((a, b) => (moment(a.created).isAfter(b.created) ? -1 : 1));
+
+      setData(items);
+
+      setHasHostNextPage({
+        ...hasHostNextPage,
+        ...usingHosts.reduce(
+          (acc, host) => ({
+            ...acc,
+            [host]: response.length > 0
+          }),
+          {}
+        )
+      });
+    } catch (e) {
+    } finally {
+      setIsReloading(false);
+    }
   };
 
   return (
@@ -58,6 +92,9 @@ export const DeckBitesColumn = ({ id, settings, history, draggable }: Props) => 
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
       }}
       data={data}
+      newDataComingCondition={(newCameData) =>
+        newCameData[newCameData.length - 1]?.id === data[data.length - 1]?.id
+      }
       isReloading={isReloading}
       isExpanded={!!currentViewingEntry}
       onReload={() => fetchData()}
@@ -73,12 +110,19 @@ export const DeckBitesColumn = ({ id, settings, history, draggable }: Props) => 
         ) : undefined
       }
     >
-      {(item: any, measure: Function, index: number) => (
+      {(item: IdentifiableEntry, measure: Function, index: number) => (
         <ThreadItem
           entry={{
             ...item
           }}
-          onMounted={() => measure()}
+          onMounted={() => {
+            measure();
+
+            const isLast = data[data.length - 1]?.id === item.id;
+            if (isLast && hasHostNextPage[item.host]) {
+              fetchData([item.container]);
+            }
+          }}
           onEntryView={() => setCurrentViewingEntry(item)}
           onResize={() => measure()}
         />

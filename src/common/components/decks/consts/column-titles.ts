@@ -75,6 +75,8 @@ export function getColumnTitle(
         (settings as UserDeckGridItem["settings"]).contentType,
         walletTitles
       )}`;
+    case "th":
+      return `Bites`;
     default:
       return "";
   }
