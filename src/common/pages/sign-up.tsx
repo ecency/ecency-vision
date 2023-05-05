@@ -361,13 +361,13 @@ export const SignUp = (props: PageProps) => {
 
                 <div className="card mb-3">
                   <div className="card-header">
-                    <b>Onboard a friend</b>
+                    <b>{_t("onboard.title")}</b>
                   </div>
                   <div className="card-body">
-                    <p>You can create account for a friend</p>
+                    <p>{_t("onboard.description")}</p>
                     <ul>
-                      <li>You can ask a friend to help you create an account</li>
-                      <li>You can create account for a friend (requires login)</li>
+                      <li>{_t("onboard.asking-description")}</li>
+                      <li>{_t("onboard.creating-description")}</li>
                     </ul>
                   </div>
                   <div className="card-footer d-flex flex-row">
@@ -381,10 +381,10 @@ export const SignUp = (props: PageProps) => {
                           props.setReferral(referral || props.activeUser?.username || "ecency")
                         }}
                       >
-                        Ask from a friend
+                        {_t("onboard.asking")}
                       </Button>
                     </Link>
-                    <Link to={`/onboard-friend?type=creating`}>
+                    <Link to={`/onboard-friend/creating`}>
                     <Button
                       className="w-50 ml-3"
                       variant="primary"
@@ -394,7 +394,7 @@ export const SignUp = (props: PageProps) => {
                         props.setReferral(referral || props.activeUser?.username || "ecency")
                       }}
                     >
-                      Create for a friend
+                      {_t("onboard.creating")}
                     </Button>
                     </Link>
                   </div>
@@ -429,11 +429,7 @@ export const SignUp = (props: PageProps) => {
               </div>
             ) : (
               <></>
-            )}
-            <div style={{display: "none"}}>              
-              {/* <Onboard username={username}/> */}
-            </div>
-            
+            )}            
           </div>
         </div>
       </div>

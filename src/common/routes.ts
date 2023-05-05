@@ -10,7 +10,7 @@ export default {
   CONTRIBUTE: `/contribute`,
   FAQ: `/faq`,
   SIGN_UP: `/signup`,
-  ONBOARD: `/onboard-friend`,
+  ONBOARD: `/onboard-friend/:type/:hash?`,
   WHITE_PAPER: `/whitepaper`,
   MARKET: `/market`,
   PRIVACY: `/privacy-policy`,

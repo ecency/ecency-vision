@@ -32,4 +32,15 @@
       .onboard-svg{
         cursor: pointer;
       }
+
+      .creating{
+        display: flex;
+        flex-direction: column;
+        
+      }
+      .creating-confirm{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
 }

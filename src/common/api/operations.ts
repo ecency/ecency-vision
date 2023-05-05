@@ -5,7 +5,7 @@ import {
   Authority,
   CustomJsonOperation,
   KeyRole,
-  Operation,
+  Operation, OperationName, VirtualOperationName,
   PrivateKey,
   TransactionConfirmation
 } from "@hiveio/dhive";
@@ -1859,15 +1859,27 @@ export const generatePassword = async (length: number) => {
   return password;
 };
 
-const accountCreate = async (account: any, creator_account: string, creator_key?: string) => {
+// Final Function call
+export const createAccountKc = async (data: any, creator_account:string) => {
+  try {
+    const {
+      username, pub_keys,
+    } = data;
+  
+    const account = {
+      name: username,
+      ...pub_keys,
+      active: false,
+    };
 
-  // const posting_key = PrivateKey.fromString(creator_key);
 
   let tokens: any = await hiveClient.database.getAccounts([creator_account]);
   tokens = tokens[0]?.pending_claimed_accounts;
 
+  console.log(tokens)
+
   let fee = null;
-  let op_name = 'create_claimed_account';
+  let op_name: OperationName = 'create_claimed_account';
 
   // If account creation tokens exist on creator account
   if (tokens < 10) {
@@ -1886,17 +1898,17 @@ const accountCreate = async (account: any, creator_account: string, creator_key?
   const owner = {
     weight_threshold: 1,
     account_auths: [],
-    key_auths: [[account.owner_pub_key, 1]]
+    key_auths: [[account.owner_public_key, 1]]
   };
   const active = {
     weight_threshold: 1,
     account_auths: [],
-    key_auths: [[account.active_pub_key, 1]]
+    key_auths: [[account.active_public_key, 1]]
   };
   const posting = {
     weight_threshold: 1,
     account_auths: [],
-    key_auths: [[account.posting_pub_key, 1]]
+    key_auths: [[account.posting_public_key, 1]]
   };
   const ops: Array<any> = [];
   const params: any = {
@@ -1905,19 +1917,188 @@ const accountCreate = async (account: any, creator_account: string, creator_key?
     owner,
     active,
     posting,
-    memo_key: account.memo_pub_key,
+    memo_key: account.memo_public_key,
     json_metadata: '',
     extensions: []
   };
+
   if (fee) params.fee = fee;
-  const operation = [op_name, params];
+  const operation: Operation = [op_name, params];
   ops.push(operation);
   try {
+    // For Keychain
+    return keychain.broadcast(creator_account, [operation], "Active");
+
+  } catch (err: any) {
+    console.log(`Error: response - ${JSON.stringify(err)}`);
+    console.log(
+      'Error:  failed thrice============= Account creation failed three times! ==============='
+    );
+    return err.jse_info.name;
+  }
+  } catch (err) {
+    console.error(err)
+  }
+};
+
+export const createAccountHs = async (data: any, creator_account:string) => {
+  try {
+    const {
+      username, pub_keys,
+    } = data;
+  
+    const account = {
+      name: username,
+      ...pub_keys,
+      active: false,
+    };
+
+
+  let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+  tokens = tokens[0]?.pending_claimed_accounts;
+
+  console.log({account})
+
+  let fee = null;
+  let op_name: OperationName = 'create_claimed_account';
+
+  // If account creation tokens exist on creator account
+  if (tokens < 10) {
+      fee = '3.000 HIVE';
+
+      // Load account creation fee from Hive chain properties
+      const chain_props = await hiveClient.database.getChainProperties();
+      if (chain_props && chain_props.account_creation_fee) {
+        fee = chain_props.account_creation_fee;
+      }
+
+      op_name = 'account_create';
+    
+  }
+
+  const owner = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.owner_public_key, 1]]
+  };
+  const active = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.active_public_key, 1]]
+  };
+  const posting = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.posting_public_key, 1]]
+  };
+
+  const params: any = {
+    creator: creator_account,
+    new_account_name: account.name,
+    owner,
+    active,
+    posting,
+    memo_key: account.memo_public_key,
+    json_metadata: '',
+    extensions: []
+  };
+
+  if (fee) params.fee = fee;
+  const operation: Operation = [op_name, params];
+  
+  try {
+    // For Hive Signer
+    //  return keychain.broadcast(creator_account, [operation], "Active");
+     const params: Parameters = { callback: `https://ecency.com/` };
+    return hs.sendOperation(operation, params, () => {});
+
+  } catch (err: any) {
+    console.log(`Error: response - ${JSON.stringify(err)}`);
+    console.log(
+      'Error:  failed thrice============= Account creation failed three times! ==============='
+    );
+    return err.jse_info.name;
+  }
+  } catch (err) {
+    console.error(err)
+  }
+};
+
+export const createAccountKey = async (data: any, creator_account:string, creator_key:string) => {
+  try {
+    const {
+      username, pub_keys,
+    } = data;
+  
+    const account = {
+      name: username,
+      ...pub_keys,
+      active: false,
+    };
+
+
+  let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+  tokens = tokens[0]?.pending_claimed_accounts;
+
+  console.log(tokens)
+
+  let fee = null;
+  let op_name: OperationName = 'create_claimed_account';
+
+  // If account creation tokens exist on creator account
+  if (tokens < 10) {
+      fee = '3.000 HIVE';
+
+      // Load account creation fee from Hive chain properties
+      const chain_props = await hiveClient.database.getChainProperties();
+      if (chain_props && chain_props.account_creation_fee) {
+        fee = chain_props.account_creation_fee;
+      }
+
+      op_name = 'account_create';
+    
+  }
+
+  const owner = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.owner_public_key, 1]]
+  };
+  const active = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.active_public_key, 1]]
+  };
+  const posting = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.posting_public_key, 1]]
+  };
+  const ops: Array<any> = [];
+  const params: any = {
+    creator: creator_account,
+    new_account_name: account.name,
+    owner,
+    active,
+    posting,
+    memo_key: account.memo_public_key,
+    json_metadata: '',
+    extensions: []
+  };
+
+  if (fee) params.fee = fee;
+  const operation: Operation = [op_name, params];
+  ops.push(operation);
+  
+  try {
+
+    // With Private Key
     const newAccount = await hiveClient.broadcast.sendOperations(
       ops,
-      PrivateKey.from("config.ACTIVE_KEY")
+      PrivateKey.from(creator_key)
     );
-    console.log(`Account Created: activeUser`);
+
+    console.log(`Account Created: activeUser`, newAccount);
     return newAccount;
   } catch (err: any) {
     console.log(`Error: response - ${JSON.stringify(err)}`);
@@ -1926,35 +2107,84 @@ const accountCreate = async (account: any, creator_account: string, creator_key?
     );
     return err.jse_info.name;
   }
-};
-
-// Final Function call
-const createAccount = async (data: any, h: any) => {
-  const {
-    username, master_pass, creator_account, referred_by,
-  } = data;
-  // const existingName = await checkAccountName(username);
-
-  // if (existingName) return alert('Account already exist');
-
-  const keys = getPrivateKeys(username, master_pass);
-
-  const account = {
-    name: username,
-    owner_pub_key: keys?.ownerPubkey,
-    active_pub_key: keys?.activePubkey,
-    posting_pub_key: keys?.postingPubkey,
-    memo_pub_key: keys?.memoPubkey,
-    active: false,
-  };
-  // const referredBy = !referred_by || username === referred_by ? null : referred_by;
-
-  // Create hive account
-  const createdAccount = await accountCreate(account, creator_account);
-  if (typeof createdAccount === 'string') {
-    return console.log(createdAccount);
+  } catch (err) {
+    console.error(err)
   }
-  console.log(createAccount);
-
-  return createdAccount;
 };
+
+// Create Account operation Call
+// const accountCreate = async (account: any, creator_account: string, creator_key?: string) => {
+//   // const posting_key = PrivateKey.fromString(creator_key);
+
+//   let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+//   tokens = tokens[0]?.pending_claimed_accounts;
+
+//   console.log({account})
+
+//   let fee = null;
+//   let op_name: OperationName = 'create_claimed_account';
+
+//   // If account creation tokens exist on creator account
+//   if (tokens < 10) {
+//       fee = '3.000 HIVE';
+
+//       // Load account creation fee from Hive chain properties
+//       const chain_props = await hiveClient.database.getChainProperties();
+//       if (chain_props && chain_props.account_creation_fee) {
+//         fee = chain_props.account_creation_fee;
+//       }
+
+//       op_name = 'account_create';
+    
+//   }
+
+//   const owner = {
+//     weight_threshold: 1,
+//     account_auths: [],
+//     key_auths: [[account.owner_public_key, 1]]
+//   };
+//   const active = {
+//     weight_threshold: 1,
+//     account_auths: [],
+//     key_auths: [[account.active_public_key, 1]]
+//   };
+//   const posting = {
+//     weight_threshold: 1,
+//     account_auths: [],
+//     key_auths: [[account.posting_public_key, 1]]
+//   };
+//   const ops: Array<any> = [];
+//   const params: any = {
+//     creator: creator_account,
+//     new_account_name: account.name,
+//     owner,
+//     active,
+//     posting,
+//     memo_key: account.memo_public_key,
+//     json_metadata: '',
+//     extensions: []
+//   };
+//   console.log(ops);
+//   if (fee) params.fee = fee;
+//   const operation: Operation = [op_name, params];
+//   ops.push(operation);
+  
+//   try {
+//     // For Keychain
+//      return keychain.broadcast(creator_account, [operation], "Active");
+
+//     // With Private Key
+//     // const newAccount = await hiveClient.broadcast.sendOperations(
+//     //   ops,
+//     //   PrivateKey.from("5KSHjneXE7qa3mVFWJCJpyo1YEkkU5UXdc4wQk4LNE5dfh5GVhz")
+//     // );
+//     // console.log(`Account Created: activeUser`, newAccount);
+//     // return newAccount;
+//   } catch (err: any) {
+//     console.log(`Error: response - ${JSON.stringify(err)}`);
+//     console.log(
+//       'Error:  failed thrice============= Account creation failed three times! ==============='
+//     );
+//     return err.jse_info.name;
+//   }
+// };

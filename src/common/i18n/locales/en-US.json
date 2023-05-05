@@ -222,12 +222,24 @@
     "username-exists": "This username already registered. Please, try another one"
   },
   "onboard": {
-    "asking-description": "Confirm details",
+    "title": "Onboard a friend",
+    "onboard-description": "You can create account for a friend",
+    "creating": "Create for a friend",
+    "asking": " Ask from a friend",
+    "creating-description": "You can create account for a friend (requires login)",
+    "asking-description": "You can ask a friend to help you create an account",
+    "asking-confirm": "Confirm details",
     "username": "Username:",
     "email": "Email:",
     "referral": "Referral:",
     "copy-key": "Make sure you copy or download your keys.",
-    "download-keys": "Download Keys"
+    "download-keys": "Download Keys",
+    "create-account" : "Create Account",
+    "confirm-details": "Confirm details",
+    "share": "(You can send code to a freind) Copy code",
+    "copy-password": "Master password copied",
+    "copy-hash": "Account code copied",
+    "continue": "Continue"
   },
   "trending-tags": {
     "title": "Topics"
