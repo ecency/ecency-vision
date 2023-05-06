@@ -371,21 +371,23 @@ export const SignUp = (props: PageProps) => {
                     </ul>
                   </div>
                   <div className="card-footer d-flex flex-row">
-                    <Link to="/onboard-friend?type=asking">
-                      <Button
-                        className="w-50"
-                        variant="primary"
-                        onClick={() => {
-                          props.setAccountEmail(email);
-                          props.setAccountName(username);
-                          props.setReferral(referral || props.activeUser?.username || "ecency")
-                        }}
-                      >
-                        {_t("onboard.asking")}
-                      </Button>
-                    </Link>
-                    <Link to={`/onboard-friend/creating`}>
                     <Button
+                      as={Link}
+                      to="/onboard-friend/asking"
+                      className="w-50"
+                      variant="primary"
+                      onClick={() => {
+                        props.setAccountEmail(email);
+                        props.setAccountName(username);
+                        props.setReferral(referral || props.activeUser?.username || "ecency")
+                      }}
+                    >
+                      {_t("onboard.asking")}
+                    </Button>
+                
+                    <Button
+                      as={Link}
+                      to="/onboard-friend/creating"
                       className="w-50 ml-3"
                       variant="primary"
                       onClick={() => {
@@ -396,7 +398,6 @@ export const SignUp = (props: PageProps) => {
                     >
                       {_t("onboard.creating")}
                     </Button>
-                    </Link>
                   </div>
                 </div>
               </div>

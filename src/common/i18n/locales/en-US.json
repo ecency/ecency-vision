@@ -239,7 +239,11 @@
     "share": "(You can send code to a freind) Copy code",
     "copy-password": "Master password copied",
     "copy-hash": "Account code copied",
-    "continue": "Continue"
+    "continue": "Continue",
+    "public-active": "Public Active key:",
+    "public-memo": "Public Memo key:",
+    "public-ower": "Public Owner key:",
+    "public-posting": "Public Posting key:"
   },
   "trending-tags": {
     "title": "Topics"

@@ -179,10 +179,10 @@ const Onboard: React.FC = (props: PageProps | any) => {
               <h3 className="align-self-center">{_t("onboard.confirm-details")}</h3>
               <span>{_t("onboard.username")} {decodedInfo.username}</span>
               <span>{_t("onboard.email")} {decodedInfo.email}</span>
-              <span>Active key: {decodedInfo?.pub_keys?.active_public_key}</span>
-              <span>Posting key: {decodedInfo?.pub_keys?.posting_public_key}</span>
-              <span>memo Key: {decodedInfo?.pub_keys?.memo_public_key}</span>
-              <span>Owner Key: {decodedInfo?.pub_keys?.owner_public_key}</span>
+              <span>{_t("onboard.public-acive")} {decodedInfo?.pub_keys?.active_public_key}</span>
+              <span>{_t("onboard.public-memo")} {decodedInfo?.pub_keys?.memo_public_key}</span>
+              <span>{_t("onboard.public-owner")} {decodedInfo?.pub_keys?.owner_public_key}</span>
+              <span>{_t("onboard.public-posting")} {decodedInfo?.pub_keys?.posting_public_key}</span>
               <Button className="align-self-center"
               onClick={() => createAccountKc({
                 username: decodedInfo.username,
