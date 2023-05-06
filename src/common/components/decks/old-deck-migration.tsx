@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { get, set } from "../../util/local-storage";
 import { DeckGrid, OldDeck } from "./types";
 import { DeckGridContext } from "./deck-manager";
-import uuid from "uuid";
+import * as uuid from "uuid";
 import { _t } from "../../i18n";
 
 export function useOldDeckMigration() {

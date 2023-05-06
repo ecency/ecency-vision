@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DEFAULT_LAYOUT } from "./consts";
 import { DeckGrid, DeckGridItem, DeckGrids } from "./types";
-import uuid from "uuid";
+import * as uuid from "uuid";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
 import { createDeck, deleteDeck, getDecks, updateDeck } from "./deck-api";

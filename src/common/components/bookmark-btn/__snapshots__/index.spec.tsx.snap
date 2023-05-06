@@ -22,7 +22,7 @@ exports[`(1) No active user 1`] = `
 
 exports[`(2) Not bookmarked 1`] = `
 <div
-  className="bookmark-btn"
+  className="bookmark-btn in-progress"
   onClick={[Function]}
 >
   <span
@@ -42,7 +42,7 @@ exports[`(2) Not bookmarked 1`] = `
 
 exports[`(3) Bookmarked 1`] = `
 <div
-  className="bookmark-btn bookmarked"
+  className="bookmark-btn bookmarked in-progress"
   onClick={[Function]}
 >
   <span

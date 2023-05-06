@@ -5,148 +5,15 @@ exports[`(1) Default render 1`] = `
   className="conversion-content"
 >
   <div
-    className="list-body"
+    className="linear-progress"
   >
-    <table
-      className="table table-striped table-bordered table-hover"
-    >
-      <thead>
-        <tr>
-          <th>
-            Request id
-          </th>
-          <th>
-            Amount
-          </th>
-          <th>
-            Pending
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            3179660325
-          </td>
-          <td>
-            <span
-              title="1.000 HBD"
-            >
-              $ 1.000
-            </span>
-          </td>
-          <td>
-            <div
-              className="date"
-              title="Sunday, February 6, 2022 2:59 AM"
-            >
-              a year ago
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div
+      className="bar bar1"
+    />
+    <div
+      className="bar bar2"
+    />
   </div>
-  <ul
-    className="mt-4 pagination"
-  >
-    <li
-      className="page-item disabled"
-    >
-      <span
-        className="page-link"
-        disabled={true}
-        onClick={[Function]}
-      >
-        <span
-          aria-hidden="true"
-        >
-          «
-        </span>
-        <span
-          className="sr-only"
-        >
-          First
-        </span>
-      </span>
-    </li>
-    <li
-      className="page-item disabled"
-    >
-      <span
-        className="page-link"
-        disabled={true}
-        onClick={[Function]}
-      >
-        <span
-          aria-hidden="true"
-        >
-          ‹
-        </span>
-        <span
-          className="sr-only"
-        >
-          Previous
-        </span>
-      </span>
-    </li>
-    <li
-      className="page-item active"
-    >
-      <span
-        className="page-link"
-        disabled={false}
-        onClick={[Function]}
-      >
-        1
-        <span
-          className="sr-only"
-        >
-          (current)
-        </span>
-      </span>
-    </li>
-    <li
-      className="page-item disabled"
-    >
-      <span
-        className="page-link"
-        disabled={true}
-        onClick={[Function]}
-      >
-        <span
-          aria-hidden="true"
-        >
-          ›
-        </span>
-        <span
-          className="sr-only"
-        >
-          Next
-        </span>
-      </span>
-    </li>
-    <li
-      className="page-item disabled"
-    >
-      <span
-        className="page-link"
-        disabled={true}
-        onClick={[Function]}
-      >
-        <span
-          aria-hidden="true"
-        >
-          »
-        </span>
-        <span
-          className="sr-only"
-        >
-          Last
-        </span>
-      </span>
-    </li>
-  </ul>
 </div>
 `;
 
@@ -155,115 +22,14 @@ exports[`(2) Empty list 1`] = `
   className="conversion-content"
 >
   <div
-    className="list-body"
+    className="linear-progress"
   >
     <div
-      className="empty-list"
-    >
-      Nothing here
-    </div>
-    <table
-      className="table table-striped table-bordered table-hover"
-    >
-      <thead>
-        <tr>
-          <th>
-            Request id
-          </th>
-          <th>
-            Amount
-          </th>
-          <th>
-            Pending
-          </th>
-        </tr>
-      </thead>
-      <tbody />
-    </table>
+      className="bar bar1"
+    />
+    <div
+      className="bar bar2"
+    />
   </div>
-  <ul
-    className="mt-4 pagination"
-  >
-    <li
-      className="page-item disabled"
-    >
-      <span
-        className="page-link"
-        disabled={true}
-        onClick={[Function]}
-      >
-        <span
-          aria-hidden="true"
-        >
-          «
-        </span>
-        <span
-          className="sr-only"
-        >
-          First
-        </span>
-      </span>
-    </li>
-    <li
-      className="page-item disabled"
-    >
-      <span
-        className="page-link"
-        disabled={true}
-        onClick={[Function]}
-      >
-        <span
-          aria-hidden="true"
-        >
-          ‹
-        </span>
-        <span
-          className="sr-only"
-        >
-          Previous
-        </span>
-      </span>
-    </li>
-    <li
-      className="page-item disabled"
-    >
-      <span
-        className="page-link"
-        disabled={true}
-        onClick={[Function]}
-      >
-        <span
-          aria-hidden="true"
-        >
-          ›
-        </span>
-        <span
-          className="sr-only"
-        >
-          Next
-        </span>
-      </span>
-    </li>
-    <li
-      className="page-item disabled"
-    >
-      <span
-        className="page-link"
-        disabled={true}
-        onClick={[Function]}
-      >
-        <span
-          aria-hidden="true"
-        >
-          »
-        </span>
-        <span
-          className="sr-only"
-        >
-          Last
-        </span>
-      </span>
-    </li>
-  </ul>
 </div>
 `;

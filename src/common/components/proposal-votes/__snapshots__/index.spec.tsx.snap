@@ -1,51 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(1) Default render. 1`] = `
-Array [
+<div
+  className="linear-progress"
+>
   <div
-    className="voters-list"
-  >
-    <div
-      className="list-body"
-    >
-      <div
-        className="user-info"
-      >
-        No results found
-      </div>
-    </div>
-  </div>,
+    className="bar bar1"
+  />
   <div
-    className="list-tools"
-  >
-    <div
-      className="pages"
-    />
-    <div
-      className="sorter"
-    >
-      <span
-        className="label"
-      >
-        Sort
-      </span>
-      <select
-        className="form-control"
-        onChange={[Function]}
-        value="hp"
-      >
-        <option
-          value="reputation"
-        >
-          Reputation
-        </option>
-        <option
-          value="hp"
-        >
-          Hive Power
-        </option>
-      </select>
-    </div>
-  </div>,
-]
+    className="bar bar2"
+  />
+</div>
 `;

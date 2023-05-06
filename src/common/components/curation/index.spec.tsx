@@ -5,6 +5,7 @@ import { createBrowserHistory } from "history";
 import { globalInstance, allOver, dynamicPropsIntance1 } from "../../helper/test-helper";
 
 import { Curation } from "./index";
+import { withStore } from "../../tests/with-store";
 
 jest.mock("../../api/private-api", () => ({
   getCuration: (duration: string) =>
@@ -31,7 +32,7 @@ it("(1) Render with data.", async () => {
   };
 
   // render the component
-  const root = await create(<Curation {...props} />);
+  const root = await withStore(<Curation {...props} />);
   // make assertions on root
   await allOver();
   expect(root.toJSON()).toMatchSnapshot();

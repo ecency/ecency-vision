@@ -382,7 +382,7 @@ exports[`(3) With entry 1`] = `
               onChange={[Function]}
               placeholder="username/permlink"
               type="text"
-              value="good-karma/awesome-hive"
+              value=""
             />
             <div />
           </div>
@@ -450,7 +450,7 @@ exports[`(3) With entry 1`] = `
         >
           <button
             className="btn btn-primary"
-            disabled={false}
+            disabled={true}
             onClick={[Function]}
             type="button"
           >

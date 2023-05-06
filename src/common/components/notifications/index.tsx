@@ -404,10 +404,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                 // getNotificationSettingsItem(_t(`notifications.type-all-short`), NotifyTypes.ALLOW_NOTIFY),
                 getNotificationSettingsItem(_t(`notifications.type-rvotes`), NotifyTypes.VOTE),
                 getNotificationSettingsItem(_t(`notifications.type-replies`), NotifyTypes.COMMENT),
-                getNotificationSettingsItem(
-                  _t(`no5tifications.type-mentions`),
-                  NotifyTypes.MENTION
-                ),
+                getNotificationSettingsItem(_t(`notifications.type-mentions`), NotifyTypes.MENTION),
                 getNotificationSettingsItem(
                   _t(`notifications.type-nfavorites`),
                   NotifyTypes.FAVORITES

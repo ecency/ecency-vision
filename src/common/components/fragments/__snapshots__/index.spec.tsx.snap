@@ -5,19 +5,14 @@ exports[`(1) Default render. 1`] = `
   className="dialog-content"
 >
   <div
-    className="fragments-list"
+    className="linear-progress"
   >
-    <p>
-      Nothing here
-    </p>
-    <p>
-      <a
-        href="#"
-        onClick={[Function]}
-      >
-        Create your first snippet
-      </a>
-    </p>
+    <div
+      className="bar bar1"
+    />
+    <div
+      className="bar bar2"
+    />
   </div>
 </div>
 `;
@@ -27,79 +22,14 @@ exports[`(2) With data. 1`] = `
   className="dialog-content"
 >
   <div
-    className="dialog-controls"
+    className="linear-progress"
   >
-    <input
-      className="form-control"
-      onChange={[Function]}
-      placeholder="Search by title"
-      style={
-        Object {
-          "marginRight": "6px",
-        }
-      }
-      type="text"
-      value=""
+    <div
+      className="bar bar1"
     />
-    <div>
-      <button
-        className="btn btn-primary"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        Add
-      </button>
-    </div>
-  </div>
-  <div
-    className="fragments-list"
-  >
     <div
-      className="fragment-list-item"
-      onClick={[Function]}
-    >
-      <div
-        className="item-title"
-      >
-        baz
-      </div>
-      <div
-        className="item-summary"
-      >
-        lorem ipsum dolor sit amet
-      </div>
-    </div>
-    <div
-      className="fragment-list-item"
-      onClick={[Function]}
-    >
-      <div
-        className="item-title"
-      >
-        bar
-      </div>
-      <div
-        className="item-summary"
-      >
-        lorem ipsum dolor sit amet
-      </div>
-    </div>
-    <div
-      className="fragment-list-item"
-      onClick={[Function]}
-    >
-      <div
-        className="item-title"
-      >
-        foo
-      </div>
-      <div
-        className="item-summary"
-      >
-        lorem ipsum dolor sit amet
-      </div>
-    </div>
+      className="bar bar2"
+    />
   </div>
 </div>
 `;
