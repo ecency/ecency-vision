@@ -443,25 +443,30 @@
       "failed-update": "Deck updating failed. Please, try again",
       "new-column": "New column",
       "new-data-available": "New data available",
-      "bites": "Bites",
-      "bites-host": "Bites host",
-      "bites-description": "Follow people and write you thoughts very quickly.",
+      "threads": "Threads",
+      "threads-host": "Thread host",
+      "threads-description": "Follow people and write you thoughts very quickly.",
       "add-thread-host-text": "Specify a Bites host or see all of them together",
       "all-thread-hosts": "All",
-      "thread-post-link-invalid": "This post is not existing."
+      "thread-post-link-invalid": "This post is not existing.",
+      "show-replies": "Show {{n}} replies",
+      "show-reply": "Show 1 reply",
+      "show-all-replies": "Show all replies",
+      "see-full-thread": "See full thread",
+      "no-currency-data": "No data"
     },
     "threads-form": {
-      "bite-it": "Bite it!",
-      "create-regular-post": "Create regular post",
+      "publish": "Publish it!",
+      "create-regular-post": "Create long post",
       "input-placeholder": "What's happening?",
       "select-thread-host": "Select a thread host",
-      "thread-host": "Will be bited in",
+      "thread-host": "Will be published in",
       "no-threads-host": "This account is not a threads host",
-      "biting": "Biting...",
-      "successfully-created": "Bited successfully!",
+      "publishing": "Publishing...",
+      "successfully-created": "Published successfully!",
       "link-to-entry": "Click here to see",
       "pending": "Waiting for transaction completing...",
-      "login-and-bite": "Sign in and bite"
+      "login-and-publish": "Sign in and publish"
     }
   },
   "market-data": {

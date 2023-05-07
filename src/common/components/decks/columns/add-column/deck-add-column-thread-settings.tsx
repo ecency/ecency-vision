@@ -14,7 +14,7 @@ export const DeckAddColumnThreadSettings = ({ deckKey }: SettingsProps) => {
   const { add } = useContext(DeckGridContext);
 
   const [username, setUsername] = useState("");
-  const [host, setHost] = useLocalStorage(PREFIX + "_dtf_th", "all");
+  const [host, setHost] = useLocalStorage(PREFIX + "_dtf_ac", "all");
 
   return (
     <div className="deck-add-column-user-settings p-3">

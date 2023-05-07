@@ -12,6 +12,13 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 67px 1fr;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   &.show {
     opacity: 1;
@@ -26,6 +33,10 @@
     min-height: 67px;
     border-bottom: 1px solid var(--border-color);
 
+    @include themify(night) {
+      background-color: $dark-two;
+    }
+
     @include padding-right(1rem);
 
     .btn-primary {
@@ -39,11 +50,26 @@
     }
   }
 
+  &-header, &-bottom {
+    background-color: $white;
+    position: sticky;
+    z-index: 9;
+  }
+
+  &-header {
+    top: 0;
+  }
+
+  &-bottom {
+    bottom: 0;
+  }
+
   &-footer {
     border-top: 1px solid var(--border-color);
     border-bottom: 0;
     min-height: 65px;
     gap: 1rem;
+    bottom: 0;
 
     @include padding-right(1rem);
     @include padding-left(1rem);
@@ -91,6 +117,14 @@
         border: 0;
         resize: none;
         background-color: transparent;
+
+        @include themify(day) {
+          color: $dark-two;
+        }
+
+        @include themify(night) {
+          color: $white;
+        }
       }
     }
   }

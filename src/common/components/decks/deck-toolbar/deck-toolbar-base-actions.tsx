@@ -39,7 +39,7 @@ export const DeckToolbarBaseActions = ({
         </>
       )}
       {isExpanded || !activeUser ? (
-        <Dropdown onClick={() => setIsExpanded(true)}>
+        <Dropdown onToggle={() => setIsExpanded(true)}>
           <DropdownToggle variant="link">{dotsMenuIconSvg}</DropdownToggle>
           <Dropdown.Menu alignRight={true}>
             <Dropdown.Item href="/">{_t("decks.back-to-feed")}</Dropdown.Item>

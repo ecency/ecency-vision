@@ -112,7 +112,7 @@ export const GenericDeckColumn = ({
                   <CellMeasurer
                     cache={cache}
                     columnIndex={0}
-                    key={key}
+                    key={visibleData[index].id + key}
                     parent={parent}
                     rowIndex={index}
                   >

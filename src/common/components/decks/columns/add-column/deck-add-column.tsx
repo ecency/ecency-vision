@@ -50,6 +50,12 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       description: _t("decks.columns.community-description")
     },
     {
+      type: "th",
+      title: _t("decks.columns.threads"),
+      icon: searchIconSvg,
+      description: _t("decks.columns.threads-description")
+    },
+    {
       type: "w",
       title: _t("decks.columns.wallet"),
       icon: walletIconSvg,
@@ -78,12 +84,6 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       title: _t("decks.columns.search"),
       icon: searchIconSvg,
       description: _t("decks.columns.search-description")
-    },
-    {
-      type: "th",
-      title: _t("decks.columns.bites"),
-      icon: searchIconSvg,
-      description: _t("decks.columns.bites-description")
     }
   ];
   const typesWithoutSettings = ["tr", "to"];

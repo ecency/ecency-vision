@@ -5,15 +5,21 @@
   .thread-item {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 1rem;
+    cursor: pointer;
 
-    &-header {
+    &:hover:not(.pure) {
+      background-color: rgba($primary, 0.05);
+    }
+
+    &-header, &-parent {
       display: grid;
       grid-template-areas:
         "avatar username date"
         "avatar host date";
       grid-gap: 0 1rem;
       grid-template-columns: 35px 1fr min-content;
+
+      @include padding(1rem);
 
       .user-avatar {
         grid-area: avatar;
@@ -22,16 +28,23 @@
       .host {
         grid-area: host;
 
+        @include font-size(0.75rem);
+
         > a {
           color: $secondary;
-
-          @include font-size(0.75rem);
         }
       }
 
       .username {
         grid-area: username;
         font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        span {
+          color: $secondary;
+        }
 
         @include font-size(0.875rem);
       }
@@ -42,6 +55,69 @@
         opacity: 0.5;
 
         @include font-size(0.75rem);
+      }
+    }
+
+    &-parent {
+      grid-template-areas: "avatar host";
+      grid-template-columns: 35px 1fr;
+
+      .username {
+        color: $secondary;
+
+        @include font-size(0.75rem);
+      }
+
+      .host {
+        text-align: left;
+
+        @include padding(0);
+        @include font-size(0.875rem);
+      }
+
+      .user-avatar {
+        justify-self: center;
+      }
+    }
+
+    &-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+
+      @include padding-left(1rem);
+      @include padding-right(1rem);
+      @include padding-bottom(1rem);
+
+      .btn {
+        color: $secondary;
+
+        @include padding(0);
+        @include font-size(0.75rem);
+
+        &:hover, &:active {
+          color: $primary;
+        }
+      }
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    &-body {
+      @include padding(1rem);
+      @include padding-top(0);
+    }
+
+    &-show-replies {
+      .btn {
+        text-transform: uppercase;
+        font-weight: bold;
+
+        @include font-size(0.675rem);
       }
     }
 
@@ -187,6 +263,15 @@
             animation: thread-post-item-skeleton-loader 1s infinite;
           }
         }
+      }
+    }
+
+    &.has-parent {
+      .thread-item-body, .thread-item-actions {
+        border-left: 2px solid $border-color;
+
+        @include margin-left(2rem);
+        @include padding-left(2rem);
       }
     }
   }

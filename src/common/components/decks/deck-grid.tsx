@@ -21,7 +21,7 @@ import usePrevious from "react-use/lib/usePrevious";
 import * as uuid from "uuid";
 import { useOldDeckMigration } from "./old-deck-migration";
 import { _t } from "../../i18n";
-import { DeckBitesColumn } from "./columns/deck-bites-column";
+import { DeckThreadsColumn } from "./columns/deck-threads-column";
 
 interface Props {
   history: History;
@@ -167,7 +167,7 @@ export const DeckGrid = ({ history }: Props) => {
                             <></>
                           )}
                           {type === "th" ? (
-                            <DeckBitesColumn
+                            <DeckThreadsColumn
                               id={id}
                               settings={settings as BitesDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}

@@ -1,12 +1,11 @@
-import { AVAILABLE_THREAD_HOSTS, communityTitles } from "../consts";
-import { ListItemSkeleton, SearchListItem, ThreadItem } from "./deck-items";
-import { DeckPostViewer } from "./content-viewer";
+import { AVAILABLE_THREAD_HOSTS } from "../consts";
+import { ListItemSkeleton, ThreadItem } from "./deck-items";
+import { DeckThreadItemViewer } from "./content-viewer";
 import { GenericDeckColumn } from "./generic-deck-column";
 import React, { useContext, useEffect, useState } from "react";
 import { BitesDeckGridItem } from "../types";
 import { History } from "history";
-import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { Entry } from "../../../store/entries/types";
+import { DraggableProvidedDragHandleProps, Id } from "react-beautiful-dnd";
 import { DeckGridContext } from "../deck-manager";
 import { _t } from "../../../i18n";
 import { DeckThreadsContext, IdentifiableEntry } from "./deck-threads-manager";
@@ -20,10 +19,19 @@ interface Props {
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-export const DeckBitesColumn = ({ id, settings, history, draggable }: Props) => {
+export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) => {
   const { fetch } = useContext(DeckThreadsContext);
 
   const [data, setData] = useState<IdentifiableEntry[]>([]);
+  const [hostGroupedData, setHostGroupedData] = useState<Record<string, IdentifiableEntry[]>>(
+    AVAILABLE_THREAD_HOSTS.reduce(
+      (acc, host) => ({
+        ...acc,
+        [host]: []
+      }),
+      {}
+    )
+  );
   const prevData = usePrevious<IdentifiableEntry[]>(data);
 
   const [isReloading, setIsReloading] = useState(false);
@@ -59,6 +67,14 @@ export const DeckBitesColumn = ({ id, settings, history, draggable }: Props) => 
 
       items.sort((a, b) => (moment(a.created).isAfter(b.created) ? -1 : 1));
 
+      const nextHostGroupedData = AVAILABLE_THREAD_HOSTS.reduce(
+        (acc, host) => ({
+          ...acc,
+          [host]: items.filter((i) => i.host === host)
+        }),
+        {}
+      );
+      setHostGroupedData(nextHostGroupedData);
       setData(items);
 
       setHasHostNextPage({
@@ -66,7 +82,7 @@ export const DeckBitesColumn = ({ id, settings, history, draggable }: Props) => 
         ...usingHosts.reduce(
           (acc, host) => ({
             ...acc,
-            [host]: response.length > 0
+            [host]: nextHostGroupedData[host].length > 0
           }),
           {}
         )
@@ -86,7 +102,7 @@ export const DeckBitesColumn = ({ id, settings, history, draggable }: Props) => 
           settings.host === "all"
             ? _t("decks.columns.all-thread-hosts")
             : settings.host.toLowerCase(),
-        subtitle: _t("decks.columns.bites"),
+        subtitle: _t("decks.columns.threads"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
@@ -101,7 +117,7 @@ export const DeckBitesColumn = ({ id, settings, history, draggable }: Props) => 
       skeletonItem={<ListItemSkeleton />}
       contentViewer={
         currentViewingEntry ? (
-          <DeckPostViewer
+          <DeckThreadItemViewer
             entry={currentViewingEntry}
             onClose={() => setCurrentViewingEntry(null)}
             history={history}
@@ -118,13 +134,15 @@ export const DeckBitesColumn = ({ id, settings, history, draggable }: Props) => 
           onMounted={() => {
             measure();
 
-            const isLast = data[data.length - 1]?.id === item.id;
+            const hostOnlyThreadItems = hostGroupedData[item.host];
+            const isLast = hostOnlyThreadItems[hostOnlyThreadItems.length - 1]?.id === item.id;
             if (isLast && hasHostNextPage[item.host]) {
               fetchData([item.container]);
             }
           }}
           onEntryView={() => setCurrentViewingEntry(item)}
           onResize={() => measure()}
+          history={history}
         />
       )}
     </GenericDeckColumn>

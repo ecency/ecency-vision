@@ -11,24 +11,47 @@ import { DeckThreadLinkItem } from "./deck-thread-link-item";
 import { renderToString } from "react-dom/server";
 import { getCGMarketApi } from "../../../market-swap-form/api/coingecko-api";
 import formattedNumber from "../../../../util/formatted-number";
+import EntryVoteBtn from "../../../entry-vote-btn";
+import { History } from "history";
+import { Button } from "react-bootstrap";
+import { _t } from "../../../../i18n";
+import { IdentifiableEntry } from "../deck-threads-manager";
+import { commentSvg } from "../../icons";
 
 export interface ThreadItemProps {
-  entry: Entry;
+  entry: IdentifiableEntry;
+  history: History;
   onMounted: () => void;
   onEntryView: () => void;
   onResize: () => void;
+  pure?: boolean;
 }
-export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadItemProps) => {
+
+export const ThreadItem = ({
+  entry,
+  onMounted,
+  onEntryView,
+  onResize,
+  history,
+  pure
+}: ThreadItemProps) => {
   const { global } = useMappedStore();
   const { height, ref } = useResizeDetector();
 
   const [renderInitiated, setRenderInitiated] = useState(false);
+  const [hasParent, setHasParent] = useState(false);
 
   const renderAreaRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     onMounted();
   }, []);
+
+  useEffect(() => {
+    setHasParent(
+      !!entry.parent_author && !!entry.parent_permlink && entry.parent_author !== entry.host
+    );
+  }, [entry]);
 
   useEffect(() => {
     onResize();
@@ -96,12 +119,13 @@ export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadIt
 
   const modifyCurrencyTokens = async (raw: string): Promise<string> => {
     const tokens = [
-      ...(raw.includes("$BTC") ? ["$BTC"] : []),
-      ...(raw.includes("$HIVE") ? ["$HIVE"] : [])
+      ...(raw.toLowerCase().includes("$btc") ? ["$btc"] : []),
+      ...(raw.toLowerCase().includes("$leo") ? ["$leo"] : []),
+      ...(raw.toLowerCase().includes("$hive") ? ["$hive"] : [])
     ];
     if (tokens.length > 0) {
       const coins = tokens
-        .map((token) => token.toLowerCase().replace("$", ""))
+        .map((token) => token.replace("$", ""))
         .map((token) => {
           switch (token) {
             case "btc":
@@ -111,40 +135,73 @@ export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadIt
           }
         })
         .join(",");
-      const values = await getCGMarketApi(coins, "usd");
+
+      let values;
+      try {
+        values = await getCGMarketApi(coins, "usd");
+      } catch (e) {
+        values = tokens.reduce((acc, token) => ({ ...acc, [token]: { usd: "no-data" } }), {});
+      }
+
       Object.entries(values)
         .map(([key, { usd }]) => {
           switch (key) {
             case "binance-wrapped-btc":
-              return ["BTC", usd];
+              return [
+                ["BTC", usd],
+                ["btc", usd]
+              ];
             default:
-              return [key.toUpperCase(), usd];
+              return [
+                [key.toUpperCase(), usd],
+                [key.toLowerCase(), usd]
+              ];
           }
         })
-        .forEach(([token, value]) => {
-          raw = raw.replaceAll(
-            `$${token}`,
-            renderToString(
-              <span className="markdown-currency">
-                <span>{token}</span>
-                <span className="value">{formattedNumber(value)}</span>
-              </span>
-            )
-          );
-        });
+        .forEach((tokens) =>
+          tokens.forEach(([token, value]) => {
+            raw = raw.replaceAll(
+              `$${token}`,
+              renderToString(
+                <span className="markdown-currency">
+                  <span>{token}</span>
+                  <span className="value">
+                    {value === "no-data"
+                      ? _t("decks.columns.no-currency-data")
+                      : formattedNumber(value)}
+                  </span>
+                </span>
+              )
+            );
+          })
+        );
     }
     return raw;
   };
 
   return (
-    <div ref={ref} className="thread-item d-flex flex-column border-bottom p-3">
+    <div
+      ref={ref}
+      className={
+        "thread-item border-bottom" +
+        (hasParent && !pure ? " has-parent" : "") +
+        (pure ? " pure" : "")
+      }
+      onClick={() => onEntryView()}
+    >
       <div className="thread-item-header">
         <UserAvatar size="deck-item" global={global} username={entry.author} />
-        <Link className="username" to={`/@${entry.author}`}>
-          {entry.author}
-        </Link>
+        <div className="username text-truncate">
+          <Link to={`/@${entry.author}`}>{entry.author}</Link>
+          {hasParent && !pure && (
+            <>
+              <span>replied to</span>
+              <Link to={`/@${entry.parent_author}`}>{entry.parent_author}</Link>
+            </>
+          )}
+        </div>
         <div className="host">
-          <Link to={`/created/${entry.category}`}>#{entry.parent_author}</Link>
+          <Link to={`/created/${entry.category}`}>#{entry.host}</Link>
         </div>
 
         <div className="date">{`${dateToRelative(entry.created)}`}</div>
@@ -156,6 +213,23 @@ export const ThreadItem = ({ entry, onMounted, onEntryView, onResize }: ThreadIt
           dangerouslySetInnerHTML={{ __html: renderPostBody(entry) }}
         />
       </div>
+      <div className="thread-item-actions">
+        <EntryVoteBtn entry={entry} isPostSlider={false} history={history} afterVote={() => {}} />
+        <Button variant="link">
+          <div className="d-flex align-items-center comments">
+            <div style={{ paddingRight: 4 }}>{commentSvg}</div>
+            <div>{entry.children}</div>
+          </div>
+        </Button>
+      </div>
+      {hasParent && !pure && (
+        <div className="thread-item-parent">
+          <UserAvatar size="small" global={global} username={entry.parent_author!!} />
+          <Button variant="link" className="host">
+            {_t("decks.columns.see-full-thread")}
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,11 +1,8 @@
 import { Entry } from "../../../store/entries/types";
 import { createContext } from "react";
 import React from "react";
-import * as hive from "../../../api/hive";
 import * as bridgeApi from "../../../api/bridge";
 import { ProfileFilter } from "../../../store/global/types";
-import { error } from "../../feedback";
-import { _t } from "../../../i18n";
 import { getDiscussion } from "../../../api/bridge";
 
 interface Context {
@@ -15,6 +12,8 @@ interface Context {
 interface ThreadItemEntry extends Entry {
   host: string;
   container: IdentifiableEntry;
+  // Is this entry had been replied to another one
+  parent?: Entry;
 }
 
 export type IdentifiableEntry = ThreadItemEntry & Required<Pick<Entry, "id">>;
@@ -56,15 +55,22 @@ export const DeckThreadsManager = ({ children }: { children: JSX.Element }) => {
       }
 
       const threadItems = await getDiscussion(host, nextThreadContainers[0].permlink);
+      const flattenThreadItems = Object.values(threadItems ?? {});
 
       nextThreadItems = [
         ...nextThreadItems,
-        ...Object.values(threadItems ?? {})
-          .map((i) => ({
-            ...i,
-            id: i.post_id,
+        ...flattenThreadItems
+          .map((item) => ({
+            ...item,
+            id: item.post_id,
             host,
-            container: nextThreadContainers[0]
+            container: nextThreadContainers[0],
+            parent: flattenThreadItems.find(
+              (i) =>
+                i.author === item.parent_author &&
+                i.permlink === item.parent_permlink &&
+                i.author !== host
+            )
           }))
           .filter((i) => i.container.post_id !== i.post_id)
       ];

@@ -38,6 +38,7 @@
 
   .decks-container, *[data-rbd-droppable-id] {
     height: 100vh;
+    height: 100dvh;
   }
 
   *[data-rbd-draggable-id]:first-child .deck {

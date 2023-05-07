@@ -73,10 +73,10 @@ export const DeckThreadsForm = ({ className }: Props) => {
         </Button>
         <Button onClick={submit} disabled={disabled || loading}>
           {!activeUser
-            ? _t("decks.threads-form.login-and-bite")
+            ? _t("decks.threads-form.login-and-publish")
             : loading
-            ? _t("decks.threads-form.biting")
-            : _t("decks.threads-form.bite-it")}
+            ? _t("decks.threads-form.publishing")
+            : _t("decks.threads-form.publish")}
         </Button>
       </div>
       <div className="deck-toolbar-threads-form-content">
@@ -96,7 +96,7 @@ export const DeckThreadsForm = ({ className }: Props) => {
             />
           </div>
         </div>
-        <div>
+        <div className="deck-toolbar-threads-form-bottom">
           <DeckThreadsCreatedRecently
             lastEntry={lastCreatedThreadItem}
             setLastEntry={setLastCreatedThreadItem}
