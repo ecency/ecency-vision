@@ -134,9 +134,9 @@ export class ProfileMenu extends Component<Props> {
               {_t(`profile.section-settings`)}
             </Link>
           )}
-          {/* <div className="kebab-icon entry-index-menu the-menu main-menu ">
+          <div className="kebab-icon entry-index-menu the-menu main-menu ">
             <DropDown {...kebabMenuConfig} float="left" />
-          </div> */}
+          </div>
         </div>
 
         <div className="page-tools">
