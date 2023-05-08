@@ -1,4 +1,3 @@
-import { Entry } from "../../../../store/entries/types";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useResizeDetector } from "react-resize-detector";
 import React, { useEffect, useRef, useState } from "react";
@@ -16,7 +15,8 @@ import { History } from "history";
 import { Button } from "react-bootstrap";
 import { _t } from "../../../../i18n";
 import { IdentifiableEntry } from "../deck-threads-manager";
-import { commentSvg } from "../../icons";
+import { commentSvg, voteSvg } from "../../icons";
+import EntryVotes from "../../../entry-votes";
 
 export interface ThreadItemProps {
   entry: IdentifiableEntry;
@@ -215,6 +215,7 @@ export const ThreadItem = ({
       </div>
       <div className="thread-item-actions">
         <EntryVoteBtn entry={entry} isPostSlider={false} history={history} afterVote={() => {}} />
+        <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
         <Button variant="link">
           <div className="d-flex align-items-center comments">
             <div style={{ paddingRight: 4 }}>{commentSvg}</div>
