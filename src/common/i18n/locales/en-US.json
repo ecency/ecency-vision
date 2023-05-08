@@ -466,7 +466,8 @@
       "successfully-created": "Published successfully!",
       "link-to-entry": "Click here to see",
       "pending": "Waiting for transaction completing...",
-      "login-and-publish": "Sign in and publish"
+      "login-and-publish": "Sign in and publish",
+      "write-your-reply": "Write your reply here"
     }
   },
   "market-data": {

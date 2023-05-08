@@ -10,6 +10,7 @@ interface Props {
   selectedImage: string | null;
   setSelectedImage: (url: string | null) => void;
   onAddImage: (url: string, name: string) => void;
+  placeholder?: string;
 }
 
 export const DeckThreadsFormControl = ({
@@ -17,7 +18,8 @@ export const DeckThreadsFormControl = ({
   setText,
   onAddImage,
   selectedImage,
-  setSelectedImage
+  setSelectedImage,
+  placeholder
 }: Props) => {
   return (
     <>
@@ -25,7 +27,7 @@ export const DeckThreadsFormControl = ({
         <div className="editor">
           <TextareaAutosize
             className="editor-control"
-            placeholder={_t("decks.threads-form.input-placeholder")}
+            placeholder={placeholder ?? _t("decks.threads-form.input-placeholder")}
             value={text}
             onChange={(e) => setText(e.target.value)}
           />

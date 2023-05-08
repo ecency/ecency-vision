@@ -124,4 +124,8 @@
       @include margin-bottom(0.5rem);
     }
   }
+
+  .deck-toolbar-threads-form {
+    background-color: rgba($primary, 0.05);
+  }
 }

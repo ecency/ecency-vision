@@ -16,11 +16,31 @@
   height: 100dvh;
   overflow-y: auto;
 
+  &.inline {
+    height: auto;
+    min-height: 4.5rem;
+    box-shadow: none;
+    cursor: pointer;
+    overflow: hidden;
+    border-bottom: 1px solid $border-color;
+
+    .editor .editor-control {
+      min-height: 3rem;
+
+      @include font-size(1rem);
+    }
+
+    &.focus {
+      cursor: default;
+      min-height: 10rem;
+    }
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
 
-  &.show {
+  &.show, &.inline {
     opacity: 1;
     visibility: visible;
     transform: translateX(0%);

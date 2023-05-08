@@ -10,6 +10,7 @@ import useMount from "react-use/lib/useMount";
 import { ThreadItem } from "../deck-items";
 import { getDiscussion } from "../../../../api/bridge";
 import { IdentifiableEntry } from "../deck-threads-manager";
+import { DeckThreadsForm } from "../../deck-threads-form";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -18,12 +19,9 @@ interface Props {
   onClose: () => void;
 }
 
-type EntryWithReplies = Entry & { replies: IdentifiableEntry[] };
+type EntryWithReplies = IdentifiableEntry & { replies: IdentifiableEntry[] };
 
 export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Props) => {
-  const store = useMappedStore();
-  const location = useLocation();
-
   const [data, setData] = useState<EntryWithReplies[]>([]);
 
   const [isMounted, setIsMounted] = useState(false);
@@ -37,15 +35,16 @@ export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Pro
     const response = await getDiscussion(entry.author, entry.permlink);
 
     if (response) {
-      const tempResponse = { ...response };
+      const tempResponse = { ...response } as Record<string, IdentifiableEntry>;
       const builtDataTree = Object.values(tempResponse)
-        .filter((i) => i.replies.length > 0)
+        .filter((i) => i.post_id !== entry.id)
         .map((i) => {
           i.replies = i.replies.map((r) => {
             const replyInstance = tempResponse[r];
             delete tempResponse[r];
             return replyInstance;
           });
+          i.host = entry.host;
           return i;
         });
       setData(builtDataTree);
@@ -79,19 +78,24 @@ export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Pro
         onMounted={() => {}}
         onResize={() => {}}
       />
+      <DeckThreadsForm inline={true} placeholder={_t("decks.threads-form.write-your-reply")} />
       <div className="deck-thread-item-viewer-replies">
-        {data.map((item) => {
-          return (
-            <ThreadItem
-              entry={item}
-              history={history}
-              onMounted={() => {}}
-              onEntryView={() => {}}
-              onResize={() => {}}
-              key={item.id}
-            />
-          );
-        })}
+        {data.map((item) => (
+          <div key={item.id}>
+            {[item, ...item.replies].map((item) => (
+              <ThreadItem
+                entry={item}
+                history={history}
+                onMounted={() => {}}
+                onEntryView={() => {}}
+                onResize={() => {}}
+                key={item.id}
+                hideHost={true}
+                pure={true}
+              />
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );

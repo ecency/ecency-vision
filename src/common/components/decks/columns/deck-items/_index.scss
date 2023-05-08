@@ -113,6 +113,10 @@
         width: 1rem;
         height: 1rem;
       }
+
+      .tooltiptext {
+        max-width: 322px !important;
+      }
     }
 
     &-body {
