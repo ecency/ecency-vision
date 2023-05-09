@@ -73,6 +73,7 @@ export const Profile = (props: Props) => {
   const prevGlobal = usePrevious(props.global);
 
   const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [typing, setTyping] = useState(false);
   const [isDefaultPost, setIsDefaultPost] = useState(false);
   const [tabState, setTabState] = useState(1);
@@ -206,7 +207,7 @@ export const Profile = (props: Props) => {
 
       // filter or username changed. fetch posts.
       if (nextSection !== prevMatchSection || `@${nextUsername}` !== prevMatchUsername) {
-        if (nextSection === "trail") {
+        if (nextSection === "trail" && !isLoading) {
           setDataTrail({ ...dataTrail, loading: true });
           let data = await getAccountVotesTrail(username.replace("@", ""), -1);
           setDataTrail({ ...dataTrail, entries: data.reverse(), loading: false });
@@ -483,6 +484,10 @@ export const Profile = (props: Props) => {
     setPinnedEntry(entry);
   };
 
+  useEffect(() => {
+    setIsLoading(loading || data?.loading || dataTrail?.loading);
+  }, [loading, data?.loading, dataTrail?.loading]);
+
   return (
     <>
       <Meta {...getMetaProps()} />
@@ -657,7 +662,6 @@ export const Profile = (props: Props) => {
                       break;
                   }
 
-                  const isLoading = loading || data?.loading || dataTrail?.loading;
                   return (
                     <>
                       <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
