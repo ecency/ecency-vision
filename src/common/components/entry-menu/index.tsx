@@ -489,7 +489,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
           }
         ];
       }
-    } else if (this.canPin()) {
+    } else if (this.canPin() || activeUser) {
       if (entryPinTracker[`${entry.author}-${entry.permlink}`]) {
         menuItems = [
           ...menuItems,
@@ -508,7 +508,16 @@ export class EntryMenu extends BaseComponent<Props, State> {
             icon: pinSvg
           }
         ];
-      } else if (isCommunity(entry.category)) {
+      } else if (activeUser && entry.author === activeUser?.username) {
+        menuItems = [
+          ...menuItems,
+          {
+            label: _t("entry-menu.pin-to-blog"),
+            onClick: () => this.togglePin("blog"),
+            icon: pinSvg
+          }
+        ];
+      }else if (isCommunity(entry.category)) {
         menuItems = [
           ...menuItems,
           {
@@ -518,16 +527,17 @@ export class EntryMenu extends BaseComponent<Props, State> {
           }
         ];
       } else {
-        if (entry.author === activeUser?.username) {
-          menuItems = [
-            ...menuItems,
-            {
-              label: _t("entry-menu.pin-to-blog"),
-              onClick: () => this.togglePin("blog"),
-              icon: pinSvg
-            }
-          ];
-        }
+        null;
+        // if (activeUser && entry.author === activeUser?.username) {
+        //   menuItems = [
+        //     ...menuItems,
+        //     {
+        //       label: "Blog",
+        //       onClick: () => this.togglePin("blog"),
+        //       icon: pinSvg
+        //     }
+        //   ];
+        // }
       }
     }
 
