@@ -57,7 +57,7 @@ export class ProfileMenu extends Component<Props> {
     };
     let secondaryMenu = [
       {
-        label: ProfileFilter.trail,
+        label: _t(`profile.section-trail`),
         href: `/@${username}/trail`,
         selected: filter === "trail",
         id: "trail"
