@@ -41,6 +41,10 @@
 
 .deck-thread-item-viewer-reply {
 
+  &.highlighted > .thread-item {
+    background-color: rgba($warning, 0.125);
+  }
+
   .thread-item.sequence-item {
     overflow: hidden;
 

@@ -16,9 +16,16 @@ interface Props {
   history: History;
   backTitle?: string;
   onClose: () => void;
+  highlightedEntry?: string;
 }
 
-export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Props) => {
+export const DeckThreadItemViewer = ({
+  entry,
+  history,
+  backTitle,
+  onClose,
+  highlightedEntry
+}: Props) => {
   const [data, setData] = useState<IdentifiableEntry | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -100,7 +107,12 @@ export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Pro
       <div className="deck-thread-item-viewer-replies">
         {isLoaded &&
           data?.replies.map((reply) => (
-            <DeckThreadItemViewerReply key={reply.post_id} entry={reply} history={history} />
+            <DeckThreadItemViewerReply
+              isHighlighted={highlightedEntry === `${reply.author}/${reply.permlink}`}
+              key={reply.post_id}
+              entry={reply}
+              history={history}
+            />
           ))}
         <div className="skeleton-list">
           {!isLoaded && Array.from(new Array(20)).map((i) => <DeckThreadItemSkeleton key={i} />)}

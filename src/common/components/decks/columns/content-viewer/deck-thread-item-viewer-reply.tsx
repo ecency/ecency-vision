@@ -5,17 +5,24 @@ import React, { useState } from "react";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { History } from "history";
 import "./_deck-thread-item-viewer-reply.scss";
+import { classNameObject } from "../../../../helper/class-name-object";
 
 interface Props {
   entry: IdentifiableEntry;
   history: History;
+  isHighlighted?: boolean;
 }
 
-export const DeckThreadItemViewerReply = ({ entry, history }: Props) => {
+export const DeckThreadItemViewerReply = ({ entry, history, isHighlighted }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="deck-thread-item-viewer-reply">
+    <div
+      className={classNameObject({
+        "deck-thread-item-viewer-reply": true,
+        highlighted: isHighlighted
+      })}
+    >
       <ThreadItem
         pure={true}
         entry={entry}
@@ -33,6 +40,7 @@ export const DeckThreadItemViewerReply = ({ entry, history }: Props) => {
           replySource={entry}
           onSuccess={(reply) => {
             entry.replies = [reply, ...entry.replies];
+            entry.children += 1;
           }}
         />
       )}

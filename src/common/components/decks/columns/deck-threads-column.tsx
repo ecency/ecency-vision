@@ -37,6 +37,9 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
 
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<IdentifiableEntry | null>(null);
+  const [currentHighlightedEntry, setCurrentHighlightedEntry] = useState<string | undefined>(
+    undefined
+  );
   const [hasHostNextPage, setHasHostNextPage] = useState<Record<string, boolean>>(
     AVAILABLE_THREAD_HOSTS.reduce(
       (acc, host) => ({
@@ -123,6 +126,7 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
             onClose={() => setCurrentViewingEntry(null)}
             history={history}
             backTitle={`${settings.host}`}
+            highlightedEntry={currentHighlightedEntry}
           />
         ) : undefined
       }
@@ -154,6 +158,7 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
                 entry.id = entry.post_id;
                 entry.host = item.host;
                 setCurrentViewingEntry(entry);
+                setCurrentHighlightedEntry(`${item.author}/${item.permlink}`);
               }
             } catch (e) {}
           }}
