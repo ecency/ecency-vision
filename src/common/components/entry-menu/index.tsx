@@ -362,7 +362,8 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
     const ownEntry = activeUser && activeUser.username === entry.author;
     const community: any = this.getCommunity();
-    const cantPinToCommunity = community?.context?.role !== "guest" && community?.context?.role !== "member";
+    const canPinToCommunity =
+      community?.context?.role !== "guest" && community?.context?.role !== "member";
 
     // const editable = ownEntry && !isComment;
     const editable = ownEntry;
@@ -492,7 +493,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         ];
       }
     } else if (this.canPin() || activeUser) {
-      if (entryPinTracker[`${entry.author}-${entry.permlink}`] && cantPinToCommunity) {
+      if (entryPinTracker[`${entry.author}-${entry.permlink}`] && canPinToCommunity) {
         menuItems = [
           ...menuItems,
           {
@@ -519,7 +520,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
             icon: pinSvg
           }
         ];
-      }else if (isCommunity(entry.category) && cantPinToCommunity) {
+      } else if (isCommunity(entry.category) && canPinToCommunity) {
         menuItems = [
           ...menuItems,
           {
@@ -528,9 +529,6 @@ export class EntryMenu extends BaseComponent<Props, State> {
             icon: pinSvg
           }
         ];
-      } 
-      else {
-        return;
       }
     }
 
