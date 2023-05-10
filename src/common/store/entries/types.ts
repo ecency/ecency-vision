@@ -88,6 +88,7 @@ export interface BlogEntryGroup {
   sid: string; //scroll_id for controversial/rising results
   loading: boolean;
   hasMore: boolean;
+  fetchedOnce: boolean;
 }
 
 export interface Entries extends Record<string, EntryGroup> {}

@@ -96,7 +96,8 @@ export const Profile = (props: Props) => {
     sid: "",
     loading: false,
     error: null,
-    hasMore: false
+    hasMore: false,
+    fetchedOnce: false
   });
 
   useAsyncEffect(async (_) => {
@@ -112,7 +113,7 @@ export const Profile = (props: Props) => {
     if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
       // fetch posts
       if (section === "trail") {
-        setDataTrail({ ...dataTrail, loading: true });
+        setDataTrail({ ...dataTrail, loading: true, fetchedOnce: true });
         let limit = 20;
         let data = await getAccountVotesTrail(username.replace("@", ""), -1, limit);
         const sevenDaysAgo = 7 * 24 * 60 * 60 * 1000;
@@ -132,7 +133,7 @@ export const Profile = (props: Props) => {
             data = [...moreData, ...data];
           }
         }
-        setDataTrail({ ...dataTrail, entries: data.reverse(), loading: false });
+        setDataTrail({ ...dataTrail, entries: data.reverse(), loading: false, fetchedOnce: true });
       } else {
         fetchEntries(global.filter, global.tag, false);
       }
@@ -208,9 +209,14 @@ export const Profile = (props: Props) => {
       // filter or username changed. fetch posts.
       if (nextSection !== prevMatchSection || `@${nextUsername}` !== prevMatchUsername) {
         if (nextSection === "trail" && !isLoading) {
-          setDataTrail({ ...dataTrail, loading: true });
+          setDataTrail({ ...dataTrail, loading: true, fetchedOnce: true });
           let data = await getAccountVotesTrail(username.replace("@", ""), -1);
-          setDataTrail({ ...dataTrail, entries: data.reverse(), loading: false });
+          setDataTrail({
+            ...dataTrail,
+            entries: data.reverse(),
+            loading: false,
+            fetchedOnce: true
+          });
         } else {
           fetchEntries(global.filter, global.tag, false);
         }
@@ -302,7 +308,7 @@ export const Profile = (props: Props) => {
 
     if (section === "trail") {
       if (dataTrail.entries.length > 0) {
-        setDataTrail({ ...dataTrail, loading: true });
+        setDataTrail({ ...dataTrail, loading: true, fetchedOnce: true });
 
         let data = await getAccountVotesTrail(
           username.replace("@", ""),
@@ -320,7 +326,7 @@ export const Profile = (props: Props) => {
           data = [...moreData, ...data];
         }
         let newDataTrail = _.unionBy(dataTrail.entries, data.reverse(), (obj) => obj.post_id);
-        setDataTrail({ ...dataTrail, entries: newDataTrail, loading: false });
+        setDataTrail({ ...dataTrail, entries: newDataTrail, loading: false, fetchedOnce: true });
       }
     } else {
       if (!loading && hasMore) {
@@ -485,8 +491,13 @@ export const Profile = (props: Props) => {
   };
 
   useEffect(() => {
-    setIsLoading(loading || data?.loading || dataTrail?.loading);
-  }, [loading, data?.loading, dataTrail?.loading]);
+    setIsLoading(
+      loading ||
+        data?.loading ||
+        dataTrail?.loading ||
+        (props.match.params.section === "trail" && !dataTrail.fetchedOnce)
+    );
+  }, [loading, data?.loading, dataTrail?.loading, dataTrail?.fetchedOnce]);
 
   return (
     <>
