@@ -128,4 +128,11 @@
   .deck-toolbar-threads-form {
     background-color: rgba($primary, 0.05);
   }
+
+
+  .deck-thread-item-viewer-replies {
+    .skeleton-list {
+      @include padding-top(0);
+    }
+  }
 }

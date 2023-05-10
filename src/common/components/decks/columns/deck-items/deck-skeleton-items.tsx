@@ -24,3 +24,16 @@ export const ShortListItemSkeleton = () => {
     </div>
   );
 };
+
+export const DeckThreadItemSkeleton = () => {
+  return (
+    <div className="list-item-skeleton thread-item-skeleton border-bottom p-3">
+      <div className="avatar" />
+      <div className="username" />
+      <div className="date" />
+      <div className="title" />
+      <div className="description" />
+      <div className="actions" />
+    </div>
+  );
+};

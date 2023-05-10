@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
 import useMount from "react-use/lib/useMount";
-import { ThreadItem } from "../deck-items";
+import { DeckThreadItemSkeleton, ThreadItem } from "../deck-items";
 import { getDiscussion } from "../../../../api/bridge";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { DeckThreadsForm } from "../../deck-threads-form";
@@ -20,6 +20,7 @@ interface Props {
 
 export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Props) => {
   const [data, setData] = useState<IdentifiableEntry | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const [isMounted, setIsMounted] = useState(false);
   useMount(() => setIsMounted(true));
@@ -43,6 +44,7 @@ export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Pro
 
       const nextData = buildReplyNode(entry, tempResponse);
       setData(nextData);
+      setIsLoaded(true);
     }
   };
 
@@ -96,9 +98,13 @@ export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Pro
         }}
       />
       <div className="deck-thread-item-viewer-replies">
-        {data?.replies.map((reply) => (
-          <DeckThreadItemViewerReply key={reply.post_id} entry={reply} history={history} />
-        ))}
+        {isLoaded &&
+          data?.replies.map((reply) => (
+            <DeckThreadItemViewerReply key={reply.post_id} entry={reply} history={history} />
+          ))}
+        <div className="skeleton-list">
+          {!isLoaded && Array.from(new Array(20)).map((i) => <DeckThreadItemSkeleton key={i} />)}
+        </div>
       </div>
     </div>
   );

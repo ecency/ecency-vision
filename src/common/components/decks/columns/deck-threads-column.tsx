@@ -1,5 +1,5 @@
 import { AVAILABLE_THREAD_HOSTS } from "../consts";
-import { ListItemSkeleton, ThreadItem } from "./deck-items";
+import { DeckThreadItemSkeleton, ListItemSkeleton, ThreadItem } from "./deck-items";
 import { DeckThreadItemViewer } from "./content-viewer";
 import { GenericDeckColumn } from "./generic-deck-column";
 import React, { useContext, useEffect, useState } from "react";
@@ -115,7 +115,7 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
       isReloading={isReloading}
       isExpanded={!!currentViewingEntry}
       onReload={() => fetchData()}
-      skeletonItem={<ListItemSkeleton />}
+      skeletonItem={<DeckThreadItemSkeleton />}
       contentViewer={
         currentViewingEntry ? (
           <DeckThreadItemViewer
