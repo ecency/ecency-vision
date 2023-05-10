@@ -362,6 +362,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
     const ownEntry = activeUser && activeUser.username === entry.author;
     const community: any = this.getCommunity();
+    const cantPinToCommunity = community?.context?.role !== "guest" && community?.context?.role !== "member";
 
     // const editable = ownEntry && !isComment;
     const editable = ownEntry;
@@ -491,7 +492,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         ];
       }
     } else if (this.canPin() || activeUser) {
-      if (entryPinTracker[`${entry.author}-${entry.permlink}`] && community?.context?.role !== "guest") {
+      if (entryPinTracker[`${entry.author}-${entry.permlink}`] && cantPinToCommunity) {
         menuItems = [
           ...menuItems,
           {
@@ -518,7 +519,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
             icon: pinSvg
           }
         ];
-      }else if (isCommunity(entry.category) && community?.context?.role !== "guest") {
+      }else if (isCommunity(entry.category) && cantPinToCommunity) {
         menuItems = [
           ...menuItems,
           {
@@ -529,17 +530,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         ];
       } 
       else {
-        null;
-        // if (activeUser && entry.author === activeUser?.username) {
-        //   menuItems = [
-        //     ...menuItems,
-        //     {
-        //       label: "Blog",
-        //       onClick: () => this.togglePin("blog"),
-        //       icon: pinSvg
-        //     }
-        //   ];
-        // }
+        return;
       }
     }
 
