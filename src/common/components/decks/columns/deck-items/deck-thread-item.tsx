@@ -1,15 +1,9 @@
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useResizeDetector } from "react-resize-detector";
-import React, { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useEffect, useState } from "react";
 import { UserAvatar } from "../../../user-avatar";
 import { Link } from "react-router-dom";
 import { dateToRelative } from "../../../../helper/parse-date";
-import { renderPostBody } from "@ecency/render-helper";
-import { DeckThreadLinkItem } from "./deck-thread-link-item";
-import { renderToString } from "react-dom/server";
-import { getCGMarketApi } from "../../../market-swap-form/api/coingecko-api";
-import formattedNumber from "../../../../util/formatted-number";
 import EntryVoteBtn from "../../../entry-vote-btn";
 import { History } from "history";
 import { Button } from "react-bootstrap";
@@ -18,6 +12,7 @@ import { IdentifiableEntry } from "../deck-threads-manager";
 import { commentSvg, voteSvg } from "../../icons";
 import EntryVotes from "../../../entry-votes";
 import { DeckThreadItemBody } from "./deck-thread-item-body";
+import { classNameObject } from "../../../../helper/class-name-object";
 
 export interface ThreadItemProps {
   entry: IdentifiableEntry;
@@ -27,6 +22,8 @@ export interface ThreadItemProps {
   onResize: () => void;
   pure?: boolean;
   hideHost?: boolean;
+  sequenceItem?: boolean;
+  commentsSlot?: JSX.Element;
 }
 
 export const ThreadItem = ({
@@ -35,7 +32,9 @@ export const ThreadItem = ({
   onEntryView,
   onResize,
   history,
-  pure
+  pure,
+  sequenceItem,
+  commentsSlot
 }: ThreadItemProps) => {
   const { global } = useMappedStore();
   const { height, ref } = useResizeDetector();
@@ -56,11 +55,12 @@ export const ThreadItem = ({
   return (
     <div
       ref={ref}
-      className={
-        "thread-item border-bottom" +
-        (hasParent && !pure ? " has-parent" : "") +
-        (pure ? " pure" : "")
-      }
+      className={classNameObject({
+        "thread-item border-bottom": true,
+        "has-parent": hasParent && !pure,
+        pure,
+        "sequence-item": sequenceItem
+      })}
       onClick={(event) => {
         if (event.target === ref.current) {
           onEntryView();
@@ -97,7 +97,7 @@ export const ThreadItem = ({
         <Button variant="link" onClick={() => onEntryView()}>
           <div className="d-flex align-items-center comments">
             <div style={{ paddingRight: 4 }}>{commentSvg}</div>
-            <div>{entry.children}</div>
+            <div>{commentsSlot ?? entry.children}</div>
           </div>
         </Button>
       </div>

@@ -282,8 +282,8 @@
       .thread-item-body, .thread-item-actions {
         border-left: 2px solid $border-color;
 
-        @include margin-left(2rem);
-        @include padding-left(2rem);
+        margin-left: calc(1rem + 16.5px);
+        padding-left: 2.125rem;
       }
     }
   }

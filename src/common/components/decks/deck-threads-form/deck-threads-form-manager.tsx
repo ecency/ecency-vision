@@ -15,12 +15,14 @@ interface Context {
   show: boolean;
   setShow: (v: boolean) => void;
   create: (host: string, raw: string) => Promise<Entry>;
+  createReply: (parent: Entry, raw: string) => Promise<Entry>;
 }
 
 export const DeckThreadsFormContext = createContext<Context>({
   show: false,
   setShow: () => {},
-  create: async () => ({} as Entry)
+  create: async () => ({} as Entry),
+  createReply: async () => ({} as Entry)
 });
 
 interface Props {
@@ -32,11 +34,48 @@ export const DeckThreadsFormManager = ({ children }: Props) => {
 
   const [show, setShow] = useState(false);
 
-  const createThreadItem = async (host: string, raw: string) => {
+  const generalApiRequest = async (entry: Entry, raw: string) => {
     if (!activeUser || !activeUser.data.__loaded) {
       throw new Error("No user");
     }
 
+    const { author: parentAuthor, permlink: parentPermlink } = entry;
+    const author = activeUser.username;
+    const permlink = createReplyPermlink(entry.author);
+    const tags = entry.json_metadata.tags || ["ecency"];
+
+    const jsonMeta = makeJsonMetaDataReply(tags, version);
+
+    await comment(author, parentAuthor, parentPermlink, permlink, "", raw, jsonMeta, null, true);
+
+    const nReply = tempEntry({
+      author: activeUser.data as FullAccount,
+      permlink,
+      parentAuthor,
+      parentPermlink,
+      title: "",
+      body: raw,
+      tags,
+      description: null
+    });
+
+    // add new reply to store
+    addReply(nReply);
+
+    if (entry.children === 0) {
+      // Activate discussion section with first comment.
+      const nEntry: Entry = {
+        ...entry,
+        children: 1
+      };
+
+      updateEntry(nEntry);
+    }
+
+    return nReply;
+  };
+
+  const createThreadItem = async (host: string, raw: string) => {
     try {
       const hostEntries = await bridgeApi.getAccountPosts(ProfileFilter.posts, host);
 
@@ -45,41 +84,16 @@ export const DeckThreadsFormManager = ({ children }: Props) => {
       }
 
       const entry = hostEntries[0];
+      return await generalApiRequest(entry, raw);
+    } catch (e) {
+      error(...formatError(e));
+      throw e;
+    }
+  };
 
-      const { author: parentAuthor, permlink: parentPermlink } = entry;
-      const author = activeUser.username;
-      const permlink = createReplyPermlink(entry.author);
-      const tags = entry.json_metadata.tags || ["ecency"];
-
-      const jsonMeta = makeJsonMetaDataReply(tags, version);
-
-      await comment(author, parentAuthor, parentPermlink, permlink, "", raw, jsonMeta, null, true);
-
-      const nReply = tempEntry({
-        author: activeUser.data as FullAccount,
-        permlink,
-        parentAuthor,
-        parentPermlink,
-        title: "",
-        body: raw,
-        tags,
-        description: null
-      });
-
-      // add new reply to store
-      addReply(nReply);
-
-      if (entry.children === 0) {
-        // Activate discussion section with first comment.
-        const nEntry: Entry = {
-          ...entry,
-          children: 1
-        };
-
-        updateEntry(nEntry);
-      }
-
-      return nReply;
+  const replyToThreadItem = async (parent: Entry, raw: string) => {
+    try {
+      return await generalApiRequest(parent, raw);
     } catch (e) {
       error(...formatError(e));
       throw e;
@@ -87,8 +101,20 @@ export const DeckThreadsFormManager = ({ children }: Props) => {
   };
 
   return (
-    <DeckThreadsFormContext.Provider value={{ show, setShow, create: createThreadItem }}>
-      {children({ show, setShow, create: createThreadItem })}
+    <DeckThreadsFormContext.Provider
+      value={{
+        show,
+        setShow,
+        create: createThreadItem,
+        createReply: replyToThreadItem
+      }}
+    >
+      {children({
+        show,
+        setShow,
+        create: createThreadItem,
+        createReply: replyToThreadItem
+      })}
     </DeckThreadsFormContext.Provider>
   );
 };

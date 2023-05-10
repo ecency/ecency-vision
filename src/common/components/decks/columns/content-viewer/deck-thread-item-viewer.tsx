@@ -1,16 +1,15 @@
-import { Entry } from "../../../../store/entries/types";
 import { History } from "history";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
-import { useMappedStore } from "../../../../store/use-mapped-store";
-import { useLocation } from "react-router";
 import useMount from "react-use/lib/useMount";
 import { ThreadItem } from "../deck-items";
 import { getDiscussion } from "../../../../api/bridge";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { DeckThreadsForm } from "../../deck-threads-form";
+import moment from "moment";
+import { DeckThreadItemViewerReply } from "./deck-thread-item-viewer-reply";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -19,10 +18,8 @@ interface Props {
   onClose: () => void;
 }
 
-type EntryWithReplies = IdentifiableEntry & { replies: IdentifiableEntry[] };
-
 export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Props) => {
-  const [data, setData] = useState<EntryWithReplies[]>([]);
+  const [data, setData] = useState<IdentifiableEntry | null>(null);
 
   const [isMounted, setIsMounted] = useState(false);
   useMount(() => setIsMounted(true));
@@ -36,19 +33,23 @@ export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Pro
 
     if (response) {
       const tempResponse = { ...response } as Record<string, IdentifiableEntry>;
-      const builtDataTree = Object.values(tempResponse)
-        .filter((i) => i.post_id !== entry.id)
-        .map((i) => {
-          i.replies = i.replies.map((r) => {
-            const replyInstance = tempResponse[r];
-            delete tempResponse[r];
-            return replyInstance;
-          });
-          i.host = entry.host;
-          return i;
-        });
-      setData(builtDataTree);
+      Object.values(tempResponse).forEach((i) => {
+        i.host = entry.host;
+      });
+      const nextData = buildReplyNode(entry, tempResponse);
+      setData(nextData);
     }
+  };
+
+  const buildReplyNode = (root: IdentifiableEntry, dataset: Record<string, IdentifiableEntry>) => {
+    if (root.replies.length > 0) {
+      root.replies = root.replies
+        .filter((r) => r !== `${root.author}/${root.permlink}`)
+        .map((r) => buildReplyNode(dataset[r], dataset));
+      root.replies.sort((a, b) => (moment(a.created).isAfter(b.created) ? -1 : 1));
+    }
+
+    return root;
   };
 
   return (
@@ -78,23 +79,20 @@ export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Pro
         onMounted={() => {}}
         onResize={() => {}}
       />
-      <DeckThreadsForm inline={true} placeholder={_t("decks.threads-form.write-your-reply")} />
+      <DeckThreadsForm
+        inline={true}
+        placeholder={_t("decks.threads-form.write-your-reply")}
+        replySource={entry}
+        onSuccess={(reply) => {
+          reply.replies = [];
+          if (data) {
+            setData({ ...data, replies: [reply, ...data.replies] });
+          }
+        }}
+      />
       <div className="deck-thread-item-viewer-replies">
-        {data.map((item) => (
-          <div key={item.id}>
-            {[item, ...item.replies].map((item) => (
-              <ThreadItem
-                entry={item}
-                history={history}
-                onMounted={() => {}}
-                onEntryView={() => {}}
-                onResize={() => {}}
-                key={item.id}
-                hideHost={true}
-                pure={true}
-              />
-            ))}
-          </div>
+        {data?.replies.map((reply) => (
+          <DeckThreadItemViewerReply key={reply.post_id} entry={reply} history={history} />
         ))}
       </div>
     </div>

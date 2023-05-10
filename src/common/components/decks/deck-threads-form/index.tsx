@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./_index.scss";
 import { Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../img/svg";
@@ -14,16 +14,29 @@ import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
 import { Entry } from "../../../store/entries/types";
 import { DeckThreadsCreatedRecently } from "./deck-threads-created-recently";
+import { IdentifiableEntry } from "../columns/deck-threads-manager";
+import { useClickAway } from "react-use";
 
 interface Props {
   className?: string;
   inline?: boolean;
   placeholder?: string;
+  replySource?: Entry;
+  onSuccess?: (reply: Entry) => void;
 }
 
-export const DeckThreadsForm = ({ className, inline, placeholder }: Props) => {
+export const DeckThreadsForm = ({
+  className,
+  inline,
+  placeholder,
+  replySource,
+  onSuccess
+}: Props) => {
+  const rootRef = useRef(null);
+  useClickAway(rootRef, () => setFocused(false));
+
   const { global, activeUser, toggleUIProp } = useMappedStore();
-  const { setShow, create } = useContext(DeckThreadsFormContext);
+  const { setShow, create, createReply } = useContext(DeckThreadsFormContext);
   const location = useLocation();
 
   const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "_dtf_th", "leothreads");
@@ -54,8 +67,24 @@ export const DeckThreadsForm = ({ className, inline, placeholder }: Props) => {
         content = `${content}<p>![${imageName ?? ""}](${image})</p>`;
       }
 
-      const threadItem = await create(threadHost!!, content);
+      let threadItem: IdentifiableEntry;
+
+      if (replySource) {
+        threadItem = (await createReply(replySource, content)) as IdentifiableEntry;
+      } else {
+        threadItem = (await create(threadHost!!, content)) as IdentifiableEntry;
+      }
+
+      if (threadHost) {
+        threadItem.host = threadHost;
+      }
+      threadItem.id = threadItem.post_id;
+
       setLastCreatedThreadItem(threadItem);
+
+      if (onSuccess) {
+        onSuccess(threadItem);
+      }
       setText("");
       _t("decks.threads-form.successfully-created");
     } catch (e) {
@@ -68,8 +97,24 @@ export const DeckThreadsForm = ({ className, inline, placeholder }: Props) => {
     setDisabled(!text || !threadHost);
   }, [text, threadHost]);
 
+  const getSubmitButton = (size?: "sm") => (
+    <Button
+      onClick={submit}
+      disabled={disabled || loading}
+      className={"deck-toolbar-threads-form-submit "}
+      size={size}
+    >
+      {!activeUser
+        ? _t("decks.threads-form.login-and-publish")
+        : loading
+        ? _t("decks.threads-form.publishing")
+        : _t("decks.threads-form.publish")}
+    </Button>
+  );
+
   return (
     <div
+      ref={rootRef}
       className={
         "deck-toolbar-threads-form " +
         (inline ? " inline " : " deck ") +
@@ -83,13 +128,7 @@ export const DeckThreadsForm = ({ className, inline, placeholder }: Props) => {
           <Button variant="link" onClick={() => setShow(false)}>
             {arrowLeftSvg}
           </Button>
-          <Button onClick={submit} disabled={disabled || loading}>
-            {!activeUser
-              ? _t("decks.threads-form.login-and-publish")
-              : loading
-              ? _t("decks.threads-form.publishing")
-              : _t("decks.threads-form.publish")}
-          </Button>
+          {getSubmitButton()}
         </div>
       )}
       <div className="deck-toolbar-threads-form-content">
@@ -110,22 +149,27 @@ export const DeckThreadsForm = ({ className, inline, placeholder }: Props) => {
               setSelectedImage={setImage}
               placeholder={placeholder}
             />
-            {activeUser && inline && (
-              <AvailableCredits
-                username={activeUser.username}
-                operation="comment_operation"
-                activeUser={activeUser}
-                location={location}
-              />
+            {inline && (
+              <div className="d-flex align-items-center">
+                {activeUser && (
+                  <AvailableCredits
+                    username={activeUser.username}
+                    operation="comment_operation"
+                    activeUser={activeUser}
+                    location={location}
+                  />
+                )}
+                {getSubmitButton("sm")}
+              </div>
             )}
           </div>
         </div>
-        <div className="deck-toolbar-threads-form-bottom">
-          <DeckThreadsCreatedRecently
-            lastEntry={lastCreatedThreadItem}
-            setLastEntry={setLastCreatedThreadItem}
-          />
-          {!inline && (
+        {!inline && (
+          <div className="deck-toolbar-threads-form-bottom">
+            <DeckThreadsCreatedRecently
+              lastEntry={lastCreatedThreadItem}
+              setLastEntry={setLastCreatedThreadItem}
+            />
             <div className="deck-toolbar-threads-form-footer">
               {activeUser && (
                 <AvailableCredits
@@ -139,8 +183,8 @@ export const DeckThreadsForm = ({ className, inline, placeholder }: Props) => {
                 {_t("decks.threads-form.create-regular-post")}
               </Button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -31,8 +31,13 @@
     }
 
     &.focus {
+      display: flex;
       cursor: default;
-      min-height: 10rem;
+      min-height: 12rem;
+
+      .deck-toolbar-threads-form-content {
+        min-width: 100%;
+      }
     }
   }
 
@@ -282,5 +287,11 @@
     svg path {
       fill: $success;
     }
+  }
+
+  &-submit {
+      white-space: nowrap;
+
+    @include margin-left(1rem);
   }
 }
