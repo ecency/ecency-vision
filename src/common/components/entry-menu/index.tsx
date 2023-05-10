@@ -361,6 +361,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
     const isComment = !!entry.parent_author;
 
     const ownEntry = activeUser && activeUser.username === entry.author;
+    const community: any = this.getCommunity();
 
     // const editable = ownEntry && !isComment;
     const editable = ownEntry;
@@ -490,7 +491,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         ];
       }
     } else if (this.canPin() || activeUser) {
-      if (entryPinTracker[`${entry.author}-${entry.permlink}`]) {
+      if (entryPinTracker[`${entry.author}-${entry.permlink}`] && community?.context?.role !== "guest") {
         menuItems = [
           ...menuItems,
           {
@@ -508,7 +509,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
             icon: pinSvg
           }
         ];
-      } else if (activeUser && entry.author === activeUser?.username) {
+      } else if (ownEntry) {
         menuItems = [
           ...menuItems,
           {
@@ -517,7 +518,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
             icon: pinSvg
           }
         ];
-      }else if (isCommunity(entry.category)) {
+      }else if (isCommunity(entry.category) && community?.context?.role !== "guest") {
         menuItems = [
           ...menuItems,
           {
@@ -526,7 +527,8 @@ export class EntryMenu extends BaseComponent<Props, State> {
             icon: pinSvg
           }
         ];
-      } else {
+      } 
+      else {
         null;
         // if (activeUser && entry.author === activeUser?.username) {
         //   menuItems = [
@@ -616,7 +618,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
     };
 
     const { cross, share, editHistory, delete_, pin, unpin, mute, promote, boost } = this.state;
-    const community = this.getCommunity();
+    // const community = this.getCommunity();
 
     return (
       <div className="entry-menu">
