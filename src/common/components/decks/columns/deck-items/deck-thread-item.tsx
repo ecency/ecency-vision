@@ -24,6 +24,7 @@ export interface ThreadItemProps {
   hideHost?: boolean;
   sequenceItem?: boolean;
   commentsSlot?: JSX.Element;
+  onSeeFullThread?: () => void;
 }
 
 export const ThreadItem = ({
@@ -34,7 +35,8 @@ export const ThreadItem = ({
   history,
   pure,
   sequenceItem,
-  commentsSlot
+  commentsSlot,
+  onSeeFullThread
 }: ThreadItemProps) => {
   const { global } = useMappedStore();
   const { height, ref } = useResizeDetector();
@@ -104,7 +106,7 @@ export const ThreadItem = ({
       {hasParent && !pure && (
         <div className="thread-item-parent">
           <UserAvatar size="small" global={global} username={entry.parent_author!!} />
-          <Button variant="link" className="host">
+          <Button variant="link" className="host" onClick={onSeeFullThread}>
             {_t("decks.columns.see-full-thread")}
           </Button>
         </div>

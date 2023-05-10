@@ -36,6 +36,11 @@ export const DeckThreadItemViewer = ({ entry, history, backTitle, onClose }: Pro
       Object.values(tempResponse).forEach((i) => {
         i.host = entry.host;
       });
+
+      if (entry.replies.length === 0) {
+        entry.replies = tempResponse[`${entry.author}/${entry.permlink}`].replies;
+      }
+
       const nextData = buildReplyNode(entry, tempResponse);
       setData(nextData);
     }

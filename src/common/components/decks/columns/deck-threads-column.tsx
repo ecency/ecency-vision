@@ -11,6 +11,7 @@ import { _t } from "../../../i18n";
 import { DeckThreadsContext, IdentifiableEntry } from "./deck-threads-manager";
 import moment from "moment/moment";
 import usePrevious from "react-use/lib/usePrevious";
+import { getPost } from "../../../api/bridge";
 
 interface Props {
   id: string;
@@ -128,6 +129,7 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
     >
       {(item: IdentifiableEntry, measure: Function, index: number) => (
         <ThreadItem
+          history={history}
           entry={{
             ...item
           }}
@@ -142,7 +144,19 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
           }}
           onEntryView={() => setCurrentViewingEntry(item)}
           onResize={() => measure()}
-          history={history}
+          onSeeFullThread={async () => {
+            try {
+              const entry = (await getPost(
+                item.parent_author,
+                item.parent_permlink
+              )) as IdentifiableEntry;
+              if (entry) {
+                entry.id = entry.post_id;
+                entry.host = item.host;
+                setCurrentViewingEntry(entry);
+              }
+            } catch (e) {}
+          }}
         />
       )}
     </GenericDeckColumn>
