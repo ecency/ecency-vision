@@ -1612,6 +1612,17 @@
     "update-successful": "Update successful",
     "update-success-message": "Your Recovery email has been updated successfully"
   },
+  "chat": {
+    "messages": "Messages",
+    "new-message": "New Message",
+    "collapse": "Collapse",
+    "expand": "Expand",
+    "scroll-to-bottom": "scroll to Bottom",
+    "joined": "Joined",
+    "followers": "Followers",
+    "start-chat-placeholder": "Start a new message",
+    "search": "Search people"
+  },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",

@@ -1983,3 +1983,91 @@ export const dragSvg = (
     />
   </svg>
 );
+
+export const addMessageSVG = (
+  <svg
+    width="24px"
+    height="24px"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    mirror-in-rtl="true"
+  >
+    <path
+      fill="currentColor"
+      fillRule="evenodd"
+      d="M24 3v4a1 1 0 0 1 -2 0V3a1 1 0 0 0 -0.9 -0.99c-0.05 0 -0.08 -0.01 -0.11 -0.01H3a1.016 1.016 0 0 0 -1 1v10a1.016 1.016 0 0 0 1 1h2v2.81l2.69 -2.32 0.57 -0.49h6.74a1 1 0 0 1 0 2h-6l-4.35 3.76a0.969 0.969 0 0 1 -0.65 0.241 1.059 1.059 0 0 1 -0.42 -0.09 1 1 0 0 1 -0.58 -0.91v-3A3.009 3.009 0 0 1 0 13V3A3.009 3.009 0 0 1 3 0h18a2.832 2.832 0 0 1 0.3 0.02A3 3 0 0 1 24 3z"
+    />
+    <path
+      fill="currentColor"
+      fillRule="evenodd"
+      d="M24 11a1 1 0 0 1 -1 1h-3v3a1 1 0 0 1 -2 0V12h-3a1 1 0 0 1 0 -2h3V7a1 1 0 0 1 2 0v3h3A1 1 0 0 1 24 10.999z"
+    />
+  </svg>
+);
+
+export const expandArrow = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="30"
+    height="30"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="square"
+    strokeLinejoin="round"
+  >
+    <path d="M6 9l6 6 6-6" />
+  </svg>
+);
+
+export const collapseArrow = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="30"
+    height="30"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="square"
+    strokeLinejoin="round"
+  >
+    <path d="M18 15l-6-6-6 6" />
+  </svg>
+);
+
+export const arrowBackSvg = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="square"
+    strokeLinejoin="round"
+  >
+    <path d="M19 12H6M12 5l-7 7 7 7" />
+  </svg>
+);
+
+export const messageSendSvg = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="icon icon-tabler icon-tabler-send"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    strokeWidth="2"
+    stroke="#3c4449"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M10 14l11 -11" />
+    <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" />
+  </svg>
+);

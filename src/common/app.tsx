@@ -24,6 +24,7 @@ import { connect } from "react-redux";
 import loadable from "@loadable/component";
 import Announcement from "./components/announcement";
 import FloatingFAQ from "./components/floating-faq";
+import ChatBox from "./components/chat-box";
 import { useMappedStore } from "./store/use-mapped-store";
 
 // Define lazy pages
@@ -157,6 +158,7 @@ const App = (props: any) => {
 
       <Announcement activeUser={props.activeUser} />
       <FloatingFAQ />
+      <ChatBox activeUser={props.activeUser} />
     </>
   );
 };

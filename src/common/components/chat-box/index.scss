@@ -1,0 +1,354 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.chatbox-container {
+  position: fixed;
+  z-index: 99;
+  right: 15rem;
+  bottom: 0rem;
+  height: 53px;
+  width: 400px;
+
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+
+  transition: height 0.5s ease;
+
+  @include themify(day) {
+    box-shadow: rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px;
+    background: $white;
+  }
+
+  @include themify(night) {
+    background: $dark;
+    box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+  }
+
+  &.expanded {
+    height: 530px;
+  }
+
+  .chat-header {
+    border-bottom: 1px solid $white-four;
+    padding-left: 16px;
+    padding-right: 16px;
+    cursor: pointer;
+    height: 53px;
+    display: flex;
+    justify-content: space-between;
+    @include themify(day) {
+      border-bottom: 1px solid $white-four;
+    }
+
+    @include themify(night) {
+      border-bottom: 1px solid $dark-indigo;
+    }
+
+    .back-arrow-image {
+      margin: 1.1rem 1rem 0 0;
+      .back-arrow-svg {
+        border-radius: 50%;
+        padding: 8px 6px 10px 6px;
+      }
+    }
+
+    .back-arrow-svg:hover {
+      background: rgba(29, 155, 240, 0.1);
+    }
+    .message-title {
+      width: 288px;
+    }
+
+    .message-content {
+      margin-top: 1rem;
+      font-weight: 700;
+      line-height: 24px;
+      font-size: 20px;
+      font-family: $font-family-sans-serif;
+
+      @include themify(day) {
+        color: $charcoal-grey;
+      }
+
+      @include themify(night) {
+        color: $white-two;
+      }
+    }
+
+    .actionable-imgs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 13px;
+      .message-image {
+        margin: 0.4rem 0.3rem 0 0;
+
+        .message-svg {
+          width: 40px;
+          height: 40px;
+          justify-content: center;
+          text-align: center;
+          border-radius: 50%;
+          padding-top: 13px;
+          display: flex;
+
+          svg {
+            height: 20px;
+            width: 20px;
+          }
+        }
+        .message-svg:hover {
+          background: rgba(29, 155, 240, 0.1);
+        }
+      }
+      .arrow-image {
+        margin: 0.4rem 0.3rem 0 0;
+        .arrow-svg {
+          display: flex;
+          justify-content: center;
+          text-align: center;
+          padding-top: 7px;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+
+        .arrow-svg:hover {
+          background: rgba(29, 155, 240, 0.1);
+        }
+      }
+    }
+  }
+
+  .chat-body {
+    position: relative;
+    height: 470px;
+    overflow-y: auto;
+
+    &.current-user {
+      height: 412px;
+      margin-bottom: 8px;
+      @include themify(day) {
+        border-bottom: 1px solid $white-three;
+      }
+      @include themify(night) {
+        border-bottom: 1px solid #172b44;
+      }
+    }
+
+    .chat-content {
+      display: flex;
+
+      .user-img {
+        padding: 18px 16px;
+      }
+      .user-title {
+        padding-top: 18px;
+        width: -webkit-fill-available;
+        cursor: pointer;
+        .username {
+          @include themify(day) {
+            color: $charcoal-grey;
+          }
+
+          @include themify(night) {
+            color: $white-two;
+          }
+
+          font-size: 16px;
+
+          font-weight: 700;
+          margin-bottom: 0.2rem !important;
+        }
+        .last-message {
+          font-size: 15px;
+          margin-bottom: 0 !important;
+        }
+      }
+    }
+
+    .chat-content:hover {
+      @include themify(day) {
+        background: $light-powder-blue;
+      }
+      @include themify(night) {
+        background: $gunmetal;
+      }
+    }
+    .user-profile {
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      @include themify(day) {
+        background: $white-three;
+      }
+      @include themify(night) {
+        background: #172b44;
+      }
+
+      padding: 0 16px 16px 16px;
+      margin: 0 16px 16px 16px;
+
+      .user-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 16px;
+      }
+      .user-name {
+        font-size: 20px;
+        font-weight: 700;
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+        @include themify(night) {
+          color: $white;
+        }
+      }
+      .about {
+        text-align: center;
+        padding: 4px 0;
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+        @include themify(night) {
+          color: $white;
+        }
+      }
+      .joining-info {
+        justify-content: space-evenly;
+      }
+      .created-date {
+        padding-top: 8px;
+        font-size: 14px;
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+        @include themify(night) {
+          color: $white;
+        }
+      }
+      .followers {
+        font-size: 14px;
+        padding-top: 4px !important;
+        font-family: New Century Schoolbook;
+      }
+    }
+
+    .user-profile:hover {
+      @include themify(day) {
+        background: $white-four;
+      }
+      @include themify(night) {
+        background: #0f223a;
+      }
+    }
+
+    .scroller {
+      position: sticky;
+      margin-left: 83%;
+      width: 33px;
+      height: 33px;
+      box-shadow: $box-shadow;
+      background: $dark-sky-blue;
+      color: $white;
+      border-radius: 50%;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .chats {
+      .date-time-detail {
+        .date-time {
+          margin: 1rem 0;
+          text-align: center;
+          font-size: 13px;
+        }
+      }
+      .message {
+        display: flex;
+        .user-img {
+          padding: 18px 16px;
+        }
+        .user-info {
+          .receiver-message-content {
+            @include themify(day) {
+              background: #e4e6eb;
+            }
+            @include themify(night) {
+              background: #cee2ff;
+   
+            }
+            color: #050505;
+            max-width: 280px;
+            margin-top: 17px;
+            padding: 8px 12px 8px 12px;
+            border-radius: 18px 18px 18px 18px;
+          }
+        }
+      }
+      .sender {
+        display: flex;
+        margin-bottom: 0.17rem;
+        .sender-message {
+          border-radius: 18px 18px 18px 18px;
+          max-width: 280px;
+          margin-left: auto;
+          background-color: rgb(0, 132, 255);
+          display: flex;
+          justify-content: flex-end;
+          margin-right: 15px;
+          .sender-message-time {
+            color: $white;
+            margin-right: 30px;
+            font-size: 12px;
+            margin-top: 3px;
+          }
+          .sender-message-content {
+            margin-bottom: 0;
+            color: $white;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 8px 12px 8px 12px;
+          }
+        }
+      }
+    }
+  }
+  .chat {
+    margin: 4px 4px;
+    padding: 4px;
+
+    .chat-input-group {
+      width: 112%;
+      .chat-input {
+        height: 45px;
+        border-radius: 12px !important;
+      }
+      .msg-svg {
+        padding: 6px 8px 4px 5px;
+        position: inherit;
+        right: 41px;
+        border-radius: 50%;
+        margin: 4px 0;
+        margin-right: 11px;
+        z-index: 10;
+        &.active {
+          cursor: pointer;
+        }
+        &.active:hover {
+          background: rgba(29, 155, 240, 0.1);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
