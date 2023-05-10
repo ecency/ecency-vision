@@ -77,7 +77,7 @@
       cursor: pointer;
       @include themify(day) {
         svg {
-          color: $charcoal-grey;
+          color: $dark-three;
         }
       }
       @include themify(night) {

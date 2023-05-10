@@ -9,8 +9,6 @@
   right: 2rem;
   bottom: 1rem;
   border-radius: 20px 2px 20px 20px !important;
-  height: 40px;
-
   .help {
     display: inline-block;
     margin-left: 0.4rem;
@@ -20,6 +18,15 @@
 
   .help-button-content {
     margin-top: -3px;
+  }
+}
+
+@media (max-width: 791px) {
+  .help-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50% !important;
+    padding: 0 !important;
   }
 }
 
