@@ -19,6 +19,20 @@ import { _t } from "../../i18n";
 
 import "./index.scss";
 
+export interface FaqObject {
+  show: boolean;
+  className: string;
+}
+
+export const handleFloatingContainer = (show: boolean, className: string) => {
+  const detail: FaqObject = {
+    show: show,
+    className: className
+  };
+  const ev = new CustomEvent("handleShow", { detail });
+  window.dispatchEvent(ev);
+};
+
 const FloatingFAQ = () => {
   const routerLocation = useLocation();
   const [show, setShow] = useState(false);
@@ -33,12 +47,21 @@ const FloatingFAQ = () => {
   const [datatoShow, setDatatoShow] = useState<string[]>([]);
   const [innerWidth, setInnerWidth] = useState(0);
   const [isSubmitPage, setIsSubmitPage] = useState(false);
+  const [className, setClassName] = useState("");
 
   const tooltip = (
     <Tooltip id="floating-faq-tooltip" style={{ zIndex: 10000 }}>
       {_t("floating-faq.toggle-icon-info")}
     </Tooltip>
   );
+
+  useEffect(() => {
+    window.addEventListener("handleShow", onHandleShow);
+
+    return () => {
+      window.removeEventListener("handleShow", onHandleShow);
+    };
+  }, []);
 
   useEffect(() => {
     handleRouterChange();
@@ -95,6 +118,12 @@ const FloatingFAQ = () => {
     };
   }, [display]);
 
+  const onHandleShow = (e: Event) => {
+    const detail = (e as CustomEvent).detail as FaqObject;
+    setShow(detail.show);
+    setClassName(detail.className);
+  };
+
   const handleRouterChange = () => {
     setShow(false);
     setDisplay(false);
@@ -124,12 +153,8 @@ const FloatingFAQ = () => {
             className="floating-faq-button"
             onClickAway={() => show && setShow(false)}
           >
-            {display && (
-              <Button
-                className={`help-btn ${isSubmitPage ? "on-submit" : ""}`}
-                variant="primary"
-                onClick={handleShow}
-              >
+            {display && !isSubmitPage && (
+              <Button className="help-btn" variant="primary" onClick={handleShow}>
                 {helpIconSvg}
 
                 {innerWidth >= 792 && <div className="help">{_t("floating-faq.help")}</div>}
@@ -137,7 +162,7 @@ const FloatingFAQ = () => {
             )}
 
             {show && display ? (
-              <div className="floating-container">
+              <div className={`floating-container ${isSubmitPage ? className : ""}`}>
                 <div className="faq-welcome">
                   <h3 className="faq-welcome-message">{_t("floating-faq.welcome")}</h3>
                   <Button

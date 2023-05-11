@@ -21,14 +21,6 @@
   .help-button-content {
     margin-top: -3px;
   }
-
-  &.on-submit {
-    bottom: 1rem;
-
-    @media (max-width: 1847px) {
-      bottom: 4rem;
-    }
-  }
 }
 
 .floating-container {
@@ -41,8 +33,15 @@
   border-radius: 18px;
   overflow: hidden;
 
-  @media (max-width: 1847px) {
-    bottom: 7.1rem;
+
+  &.submit {
+    position: fixed;
+    right: 23.7rem !important;
+    bottom: 4.1rem !important;
+
+    @media (max-width: 1597px) {
+      right: 16rem !important;
+    }
   }
 
   @include themify(day) {
