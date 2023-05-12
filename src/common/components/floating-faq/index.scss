@@ -33,7 +33,6 @@
   border-radius: 18px;
   overflow: hidden;
 
-
   &.submit {
     position: fixed;
     right: 23.7rem !important;
@@ -41,6 +40,11 @@
 
     @media (max-width: 1597px) {
       right: 16rem !important;
+    }
+
+    @media (max-width: 590px) {
+      right: 2.1rem !important;
+      bottom: 4.1rem !important;
     }
   }
 

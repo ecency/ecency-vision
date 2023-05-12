@@ -233,6 +233,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     this.addToolbarEventListners();
+
+    window.addEventListener("resize", this.handleResize);
   };
 
   componentDidUpdate(prevProps: Readonly<Props>) {
@@ -258,6 +260,8 @@ class SubmitPage extends BaseComponent<Props, State> {
 
   componentWillUnmount(): void {
     this.removeToolbarEventListners();
+
+    window.removeEventListener("resize", this.handleResize);
   }
 
   addToolbarEventListners = () => {
@@ -281,6 +285,14 @@ class SubmitPage extends BaseComponent<Props, State> {
         el.removeEventListener("dragover", this.handleDragover);
         el.removeEventListener("drop", this.handleDrop);
       }
+    }
+  };
+
+  handleResize = () => {
+    console.log("Window Width", window.innerWidth);
+    if (window.innerWidth < 992) {
+      this.setState({ showHelp: false });
+      handleFloatingContainer(false, "submit");
     }
   };
 
