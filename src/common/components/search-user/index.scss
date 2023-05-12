@@ -10,4 +10,33 @@
   .modal-body {
     padding: 0 0 10px 0;
   }
+
+  .search-content {
+    padding: 0.7rem;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    margin-bottom: 1rem;
+
+    .search-user-img {
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      margin-left: 10px;
+    }
+
+    .search-user-title {
+      margin-left: 1rem;
+      .search-username {
+        margin-top: 7px;
+        margin-bottom: 0;
+        font-size: 20px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .search-content:hover {
+    background: #e7e7e7;
+  }
 }

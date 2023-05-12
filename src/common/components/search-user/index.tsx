@@ -1,26 +1,59 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Form, FormControl } from "react-bootstrap";
+import useDebounce from "react-use/lib/useDebounce";
+import { lookupAccounts } from "../../api/hive";
 
+import UserAvatar from "../user-avatar";
 import { _t } from "../../i18n";
 import "./index.scss";
 
 interface Props {
   setSearchUser: (d: boolean) => void;
+  setCurrentUserFromSearch: (username: string) => void;
 }
 
 export default function SeachUser(props: Props) {
   const [searchtext, setSearchText] = useState("");
+  const [userList, setUserList] = useState<string[]>([]);
+  const [showModal, setShowModal] = useState(true);
 
-  const setStep = () => {
+  // const setStep = () => {
+  //   const { setSearchUser } = props;
+  //   setSearchUser(false);
+  // };
+
+  useDebounce(
+    async () => {
+      const resp = await lookupAccounts(searchtext, 7);
+      setUserList(resp);
+    },
+    500,
+    [searchtext]
+  );
+
+  useEffect(() => {
+    setUserList(["good-karma", "good-akai", "good-ali", "good-angle", "good-bad"]);
+  }, []);
+
+  const searchUserClicked = (username: string) => {
+    const { setCurrentUserFromSearch, setSearchUser } = props;
+    setCurrentUserFromSearch(username);
+    setSearchUser(false);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    console.log("Close run");
     const { setSearchUser } = props;
     setSearchUser(false);
   };
+
   return (
     <Modal
       animation={false}
-      show={true}
+      show={showModal}
       centered={true}
-      onHide={setStep}
+      onHide={handleCloseModal}
       keyboard={false}
       className="search-user-dialog"
       size="lg"
@@ -39,12 +72,22 @@ export default function SeachUser(props: Props) {
         />
       </Form.Group>
       <Modal.Body>
-        {/* <ProposalVotesDetail
-          {...this.props}
-          searchText={searchText}
-          getVotesCount={this.getVotesCount}
-          checkIsMoreData={this.checkIsMoreData}
-        /> */}
+        {userList.map((user) => {
+          return (
+            <div key={user} className="search-content" onClick={() => searchUserClicked(user)}>
+              <div className="search-user-img">
+                <span>
+                  <UserAvatar username={user} size="medium" />
+                </span>
+              </div>
+
+              <div className="search-user-title">
+                <p className="search-username">{user}</p>
+                {/* <p className="searc-last-message">{user}</p> */}
+              </div>
+            </div>
+          );
+        })}
       </Modal.Body>
     </Modal>
   );

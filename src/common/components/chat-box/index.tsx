@@ -192,12 +192,17 @@ export default function ChatBox({ activeUser }: Props) {
       about: response.profile?.about,
       followers: response.follow_stats?.follower_count
     });
-    console.log(response);
   };
 
   const userClicked = (username: string) => {
     setIsCurrentUser(true);
     setCurrentUser(username);
+  };
+
+  const setCurrentUserFromSearch = (username: string) => {
+    setCurrentUser(username);
+    setExpanded(true);
+    setIsCurrentUser(true);
   };
 
   const handleMessage = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
@@ -254,7 +259,6 @@ export default function ChatBox({ activeUser }: Props) {
 
   const handleMessageSvgClick = () => {
     setShowSearchUser(true);
-    console.log("i am clicked");
   };
 
   const setSearchUser = (d: boolean) => {
@@ -432,7 +436,12 @@ export default function ChatBox({ activeUser }: Props) {
           </div>
         )}
       </div>
-      {showSearchUser && <SeachUser setSearchUser={setSearchUser} />}
+      {showSearchUser && (
+        <SeachUser
+          setSearchUser={setSearchUser}
+          setCurrentUserFromSearch={setCurrentUserFromSearch}
+        />
+      )}
     </>
   );
 }
