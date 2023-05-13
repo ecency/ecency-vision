@@ -4,10 +4,11 @@ import ProfileEdit from "./index";
 
 import renderer from "react-test-renderer";
 
-import { activeUserMaker, fullAccountInstance } from "../../helper/test-helper";
+import { activeUserMaker, fullAccountInstance, globalInstance } from "../../helper/test-helper";
 
 it("(1) Default render", () => {
   const props = {
+    global: globalInstance,
     activeUser: {
       ...activeUserMaker("foo"),
       ...{

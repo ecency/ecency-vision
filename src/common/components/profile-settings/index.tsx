@@ -44,7 +44,9 @@ export class ProfileSettings extends Component<Props> {
     if (activeUser) {
       return (
         <>
-          {activeUser.data.__loaded && <ProfileEdit {...this.props} activeUser={activeUser} />}
+          {activeUser.data.__loaded && (
+            <ProfileEdit {...this.props} global={this.props.global} activeUser={activeUser} />
+          )}
           <Preferences {...this.props} activeUser={activeUser} />
           {activeUser && activeUser.username && (
             <Link to={`/@${activeUser.username}/permissions`}>

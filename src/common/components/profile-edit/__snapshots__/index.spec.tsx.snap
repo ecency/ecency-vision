@@ -35,7 +35,7 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
     <div
-      className="col-xl-4 col-lg-6"
+      className="col-xl-12 col-lg-6"
     >
       <div
         className="form-group"
@@ -45,15 +45,6 @@ exports[`(1) Default render 1`] = `
         >
           About
         </label>
-        <input
-          className="form-control"
-          data-var="about"
-          disabled={false}
-          maxLength={160}
-          onChange={[Function]}
-          type="text"
-          value="Lorem ipsum dolor sit amet"
-        />
       </div>
     </div>
     <div
