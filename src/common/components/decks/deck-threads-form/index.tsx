@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "./_index.scss";
-import { Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../img/svg";
 import { DeckThreadsFormContext } from "./deck-threads-form-manager";
 import { _t } from "../../../i18n";
@@ -39,6 +39,10 @@ export const DeckThreadsForm = ({
   const { setShow, create, createReply } = useContext(DeckThreadsFormContext);
   const location = useLocation();
 
+  const [localDraft, setLocalDraft] = useLocalStorage<Record<string, any>>(
+    PREFIX + "_local_draft",
+    {}
+  );
   const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "_dtf_th", "leothreads");
   const [text, setText] = useState("");
   const [image, setImage] = useState<string | null>(null);
@@ -65,6 +69,16 @@ export const DeckThreadsForm = ({
 
       if (image) {
         content = `${content}<p>![${imageName ?? ""}](${image})</p>`;
+      }
+
+      // Push to draft built content with attachments
+      if (text.length > 255) {
+        setLocalDraft({
+          ...localDraft,
+          body: content
+        });
+        window.open("/submit", "_blank");
+        return;
       }
 
       let threadItem: IdentifiableEntry;
@@ -104,11 +118,10 @@ export const DeckThreadsForm = ({
       className={"deck-toolbar-threads-form-submit "}
       size={size}
     >
-      {!activeUser
-        ? _t("decks.threads-form.login-and-publish")
-        : loading
-        ? _t("decks.threads-form.publishing")
-        : _t("decks.threads-form.publish")}
+      {!activeUser && text.length <= 255 && _t("decks.threads-form.login-and-publish")}
+      {text.length <= 255 &&
+        (loading ? _t("decks.threads-form.publishing") : _t("decks.threads-form.publish"))}
+      {text.length > 255 && _t("decks.threads-form.create-regular-post")}
     </Button>
   );
 
@@ -164,8 +177,14 @@ export const DeckThreadsForm = ({
             )}
           </div>
         </div>
+        {inline && text.length > 255 && (
+          <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
+        )}
         {!inline && (
           <div className="deck-toolbar-threads-form-bottom">
+            {text.length > 255 && (
+              <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
+            )}
             <DeckThreadsCreatedRecently
               lastEntry={lastCreatedThreadItem}
               setLastEntry={setLastCreatedThreadItem}

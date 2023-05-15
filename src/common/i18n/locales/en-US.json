@@ -468,7 +468,8 @@
       "link-to-entry": "Click here to see",
       "pending": "Waiting for transaction completing...",
       "login-and-publish": "Sign in and publish",
-      "write-your-reply": "Write your reply here"
+      "write-your-reply": "Write your reply here",
+      "max-length": "Oops! Your message a quite long. We want to use micro-blogging for the direct purpose and would like to offer You to create a long post."
     }
   },
   "market-data": {
