@@ -1,12 +1,17 @@
 import { Entry } from "../../../store/entries/types";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import React from "react";
 import * as bridgeApi from "../../../api/bridge";
 import { ProfileFilter } from "../../../store/global/types";
 import { getDiscussion } from "../../../api/bridge";
+import useDebounce from "react-use/lib/useDebounce";
 
 interface Context {
   fetch: (hosts: string[], lastContainers?: ThreadItemEntry[]) => Promise<ThreadItemEntry[]>;
+  register: (id: string) => void;
+  detach: (id: string) => void;
+  reloadingInitiated: boolean;
+  reload: () => void;
 }
 
 interface ThreadItemEntry extends Entry {
@@ -19,10 +24,22 @@ interface ThreadItemEntry extends Entry {
 export type IdentifiableEntry = ThreadItemEntry & Required<Pick<Entry, "id">>;
 
 export const DeckThreadsContext = createContext<Context>({
-  fetch: async () => []
+  fetch: async () => [],
+  register: () => {},
+  detach: () => {},
+  reloadingInitiated: false,
+  reload: () => {}
 });
 
 export const DeckThreadsManager = ({ children }: { children: JSX.Element }) => {
+  // Thread columns identifiers
+  const [registeredColumns, setRegisteredColumns] = useState<string[]>([]);
+  const [reloadingInitiated, setReloadingInitiated] = useState(false);
+
+  useDebounce(() => {
+    setReloadingInitiated(false);
+  }, 100);
+
   /**
    *
    * @param hosts Thread hosts usernames
@@ -55,7 +72,6 @@ export const DeckThreadsManager = ({ children }: { children: JSX.Element }) => {
       }
 
       const threadItems = await getDiscussion(host, nextThreadContainers[0].permlink);
-      console.log(threadItems, nextThreadContainers[0]);
       const flattenThreadItems = Object.values(threadItems ?? {})
         // Filter only parent thread items
         .filter(
@@ -86,5 +102,21 @@ export const DeckThreadsManager = ({ children }: { children: JSX.Element }) => {
     return nextThreadItems;
   };
 
-  return <DeckThreadsContext.Provider value={{ fetch }}>{children}</DeckThreadsContext.Provider>;
+  const register = (id: string) => {
+    setRegisteredColumns(Array.from(new Set([...registeredColumns, id]).values()));
+  };
+
+  const detach = (id: string) => {
+    setRegisteredColumns(registeredColumns.filter((c) => c !== id));
+  };
+
+  const reload = () => {
+    setReloadingInitiated(true);
+  };
+
+  return (
+    <DeckThreadsContext.Provider value={{ fetch, register, detach, reloadingInitiated, reload }}>
+      {children}
+    </DeckThreadsContext.Provider>
+  );
 };

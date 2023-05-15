@@ -118,7 +118,12 @@ export const GenericDeckColumn = ({
                   >
                     {({ measure, registerChild }) => {
                       return (
-                        <div ref={registerChild as any} className="virtual-list-item" style={style}>
+                        <div
+                          key={visibleData[index].id + key}
+                          ref={registerChild as any}
+                          className="virtual-list-item"
+                          style={style}
+                        >
                           {children(visibleData[index], measure, index)}
                         </div>
                       );

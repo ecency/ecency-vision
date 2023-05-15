@@ -21,7 +21,7 @@ interface Props {
 }
 
 export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) => {
-  const { fetch } = useContext(DeckThreadsContext);
+  const { fetch, register, detach, reloadingInitiated } = useContext(DeckThreadsContext);
 
   const [data, setData] = useState<IdentifiableEntry[]>([]);
   const [hostGroupedData, setHostGroupedData] = useState<Record<string, IdentifiableEntry[]>>(
@@ -53,8 +53,19 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
   useEffect(() => {
+    register(id);
     fetchData();
+
+    return () => {
+      detach(id);
+    };
   }, []);
+
+  useEffect(() => {
+    if (reloadingInitiated) {
+      fetchData();
+    }
+  }, [reloadingInitiated]);
 
   const fetchData = async (sinceEntries?: IdentifiableEntry[]) => {
     try {

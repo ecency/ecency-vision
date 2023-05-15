@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Entry } from "../../../store/entries/types";
 import { Alert, Spinner } from "react-bootstrap";
 import { _t } from "../../../i18n";
@@ -7,6 +7,7 @@ import useInterval from "react-use/lib/useInterval";
 import * as bridgeApi from "../../../api/bridge";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { checkSvg } from "../../../img/svg";
+import { DeckThreadsContext } from "../columns/deck-threads-manager";
 
 interface Props {
   lastEntry?: Entry;
@@ -15,6 +16,7 @@ interface Props {
 
 export const DeckThreadsCreatedRecently = ({ lastEntry, setLastEntry }: Props) => {
   const { activeUser } = useMappedStore();
+  const { reload } = useContext(DeckThreadsContext);
 
   const [intervalStarted, setIntervalStarted] = useState(false);
 
@@ -33,6 +35,9 @@ export const DeckThreadsCreatedRecently = ({ lastEntry, setLastEntry }: Props) =
           const isAlreadyAdded = lastEntry.permlink === entry?.permlink && lastEntry.post_id !== 1;
           if (entry && !isAlreadyAdded) {
             setLastEntry(entry);
+
+            // Reload all columns after thread item creation
+            reload();
 
             setTimeout(() => {
               setLastEntry(undefined);
