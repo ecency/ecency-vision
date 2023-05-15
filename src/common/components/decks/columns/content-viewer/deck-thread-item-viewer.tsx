@@ -67,7 +67,7 @@ export const DeckThreadItemViewer = ({
   };
 
   return (
-    <div className={"deck-post-viewer " + (isMounted ? "visible" : "")}>
+    <div className={"deck-post-viewer deck-thread-item-viewer " + (isMounted ? "visible" : "")}>
       <div className="deck-post-viewer-header">
         <div className="actions d-flex pt-3 mr-3">
           <Button

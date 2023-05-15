@@ -13,6 +13,7 @@ import {
   communityIconSvg,
   notificationsIconSvg,
   searchIconSvg,
+  threadSvg,
   topicsIconSvg,
   trendingIconSvg,
   userIconSvg,
@@ -52,7 +53,7 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
     {
       type: "th",
       title: _t("decks.columns.threads"),
-      icon: searchIconSvg,
+      icon: threadSvg,
       description: _t("decks.columns.threads-description")
     },
     {

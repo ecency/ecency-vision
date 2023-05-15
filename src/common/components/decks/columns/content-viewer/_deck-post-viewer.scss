@@ -136,3 +136,9 @@
     }
   }
 }
+
+.deck-thread-item-viewer {
+  .deck-post-viewer-header {
+    @include padding-bottom(1rem);
+  }
+}

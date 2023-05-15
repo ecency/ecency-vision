@@ -103,6 +103,7 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
         )
       });
     } catch (e) {
+      console.error(e);
     } finally {
       setIsReloading(false);
     }
