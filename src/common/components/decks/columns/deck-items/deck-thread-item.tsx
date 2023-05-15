@@ -81,10 +81,16 @@ export const ThreadItem = ({
           )}
         </div>
         <div className="host">
-          <Link to={`/created/${entry.category}`}>#{entry.host}</Link>
+          <Link target="_blank" to={`/created/${entry.category}`}>
+            #{entry.host}
+          </Link>
         </div>
 
-        <div className="date">{`${dateToRelative(entry.created)}`}</div>
+        <div className="date">
+          <Link target="_blank" to={`/@${entry.author}/${entry.permlink}`}>
+            {`${dateToRelative(entry.created)}`}
+          </Link>
+        </div>
       </div>
       <DeckThreadItemBody
         entry={entry}

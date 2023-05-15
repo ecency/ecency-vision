@@ -55,6 +55,21 @@
 
         @include font-size(0.75rem);
       }
+
+      .date, .host {
+        a {
+          color: $secondary;
+          border-bottom: 1px solid transparent;
+
+          &::after {
+            content: none;
+          }
+
+          &:hover {
+            border-color: $secondary;
+          }
+        }
+      }
     }
 
     &-parent {
@@ -182,6 +197,7 @@
           font-weight: bold;
           color: $primary;
 
+          @include font-size(0.75rem);
           @include margin-left(0.25rem);
         }
 

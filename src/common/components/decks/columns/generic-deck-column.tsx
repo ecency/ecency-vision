@@ -104,7 +104,7 @@ export const GenericDeckColumn = ({
           <AutoSizer>
             {({ height, width }) => (
               <List
-                overscanRowCount={0}
+                overscanRowCount={16}
                 height={height}
                 width={width}
                 rowCount={visibleData.length}
