@@ -1,14 +1,15 @@
-import ReactDOM from "react-dom";
+import ReactDOM, { createPortal } from "react-dom";
 import { UserAvatar } from "../../../user-avatar";
 import { DeckThreadLinkItem } from "./deck-thread-link-item";
 import { getCGMarketApi } from "../../../market-swap-form/api/coingecko-api";
 import { renderToString } from "react-dom/server";
 import { _t } from "../../../../i18n";
 import formattedNumber from "../../../../util/formatted-number";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { renderPostBody } from "@ecency/render-helper";
 import { IdentifiableEntry } from "../deck-threads-manager";
+import { Modal } from "react-bootstrap";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -27,6 +28,8 @@ export const DeckThreadItemBody = ({
 }: Props) => {
   const { global } = useMappedStore();
   const renderAreaRef = useRef<HTMLDivElement | null>(null);
+
+  const [currentViewingImage, setCurrentViewingImage] = useState<string | null>(null);
 
   useEffect(() => {
     onResize();
@@ -88,6 +91,18 @@ export const DeckThreadItemBody = ({
         if (href) {
           element.href = href;
           element.target = "_blank";
+        }
+      });
+
+    renderAreaRef.current
+      ?.querySelectorAll<HTMLImageElement>("img, .markdown-img-link")
+      .forEach((element) => {
+        const src = element.getAttribute("src");
+
+        if (src) {
+          element.addEventListener("click", () => {
+            setCurrentViewingImage(src);
+          });
         }
       });
   };
@@ -161,6 +176,22 @@ export const DeckThreadItemBody = ({
         className="thread-render"
         dangerouslySetInnerHTML={{ __html: renderPostBody(entry) }}
       />
+      {currentViewingImage && (
+        <Modal
+          animation={true}
+          show={true}
+          centered={true}
+          onHide={() => setCurrentViewingImage(null)}
+          keyboard={false}
+          className="deck-thread-image-view-dialog"
+        >
+          <Modal.Header closeButton={true} />
+          <Modal.Body>
+            <img src={currentViewingImage} alt="" />
+            <div className="image" style={{ backgroundImage: `url(${currentViewingImage})` }} />
+          </Modal.Body>
+        </Modal>
+      )}
     </div>
   );
 };

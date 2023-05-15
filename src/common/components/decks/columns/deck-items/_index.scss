@@ -5,7 +5,6 @@
   .thread-item {
     display: grid;
     grid-template-columns: 1fr;
-    cursor: pointer;
 
     &:hover:not(.pure) {
       background-color: rgba($primary, 0.05);
@@ -223,6 +222,15 @@
         }
       }
 
+      img {
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          box-shadow: 0 6px 20px -10px rgba(0,0,0,.5);
+        }
+      }
+
       .deck-thread-post-item {
         width: 100%;
         background-color: rgba($primary, 0.1);
@@ -290,5 +298,30 @@
         padding-left: 2.125rem;
       }
     }
+  }
+}
+
+.deck-thread-image-view-dialog {
+  > .modal-dialog {
+    width: auto;
+    max-width: unset;
+    display: flex;
+    justify-content: center;
+  }
+
+  .modal-body {
+    padding: 0;
+  }
+
+  .modal-content {
+    width: auto;
+  }
+
+  .close {
+  }
+
+  img {
+    width: 100%;
+    height: min(calc(100vh - 3.5rem - 56px), 768px);
   }
 }
