@@ -142,6 +142,10 @@
 
       @include font-size(0.875rem);
 
+      * {
+        @include font-size(0.875rem);
+      }
+
       .markdown-tag-link, .markdown-post-link, .markdown-external-link, .markdown-author-link {
         color: $primary;
         cursor: pointer;

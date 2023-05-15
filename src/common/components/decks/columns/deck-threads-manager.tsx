@@ -55,7 +55,14 @@ export const DeckThreadsManager = ({ children }: { children: JSX.Element }) => {
       }
 
       const threadItems = await getDiscussion(host, nextThreadContainers[0].permlink);
-      const flattenThreadItems = Object.values(threadItems ?? {});
+      console.log(threadItems, nextThreadContainers[0]);
+      const flattenThreadItems = Object.values(threadItems ?? {})
+        // Filter only parent thread items
+        .filter(
+          ({ parent_author, parent_permlink }) =>
+            parent_author === nextThreadContainers[0].author &&
+            parent_permlink === nextThreadContainers[0].permlink
+        );
 
       nextThreadItems = [
         ...nextThreadItems,

@@ -15,7 +15,7 @@ import { PREFIX } from "../../../util/local-storage";
 import { Entry } from "../../../store/entries/types";
 import { DeckThreadsCreatedRecently } from "./deck-threads-created-recently";
 import { IdentifiableEntry } from "../columns/deck-threads-manager";
-import { useClickAway } from "react-use";
+import useClickAway from "react-use/lib/useClickAway";
 
 interface Props {
   className?: string;
