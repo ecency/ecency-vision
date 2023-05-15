@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Form, FormControl } from "react-bootstrap";
+import { Modal, Form } from "react-bootstrap";
 import useDebounce from "react-use/lib/useDebounce";
 import { lookupAccounts } from "../../api/hive";
 
@@ -16,11 +16,6 @@ export default function SeachUser(props: Props) {
   const [searchtext, setSearchText] = useState("");
   const [userList, setUserList] = useState<string[]>([]);
   const [showModal, setShowModal] = useState(true);
-
-  // const setStep = () => {
-  //   const { setSearchUser } = props;
-  //   setSearchUser(false);
-  // };
 
   useDebounce(
     async () => {
@@ -43,7 +38,6 @@ export default function SeachUser(props: Props) {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    console.log("Close run");
     const { setSearchUser } = props;
     setSearchUser(false);
   };
@@ -59,35 +53,38 @@ export default function SeachUser(props: Props) {
       size="lg"
     >
       <Modal.Header closeButton={true} className="search-header">
-        <Modal.Title>New message</Modal.Title>
+        <Modal.Title>{_t("chat.new-message")}</Modal.Title>
       </Modal.Header>
       <Form.Group className="w-100 mb-3">
         <Form.Control
           type="text"
           placeholder={_t("chat.search")}
           value={searchtext}
+          autoFocus={true}
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
         />
       </Form.Group>
       <Modal.Body>
-        {userList.map((user) => {
-          return (
-            <div key={user} className="search-content" onClick={() => searchUserClicked(user)}>
-              <div className="search-user-img">
-                <span>
-                  <UserAvatar username={user} size="medium" />
-                </span>
-              </div>
+        <div className="user-search-suggestion-list">
+          {userList.map((user, index) => {
+            return (
+              <div key={index} className="search-content" onClick={() => searchUserClicked(user)}>
+                <div className="search-user-img">
+                  <span>
+                    <UserAvatar username={user} size="medium" />
+                  </span>
+                </div>
 
-              <div className="search-user-title">
-                <p className="search-username">{user}</p>
-                {/* <p className="searc-last-message">{user}</p> */}
+                <div className="search-user-title">
+                  <p className="search-username">{user}</p>
+                  {/* <p className="searc-last-message">{user}</p> */}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </Modal.Body>
     </Modal>
   );

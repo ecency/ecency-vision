@@ -1,3 +1,8 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
 .search-user-dialog {
   .search-header {
     padding-left: 5px;
@@ -34,9 +39,13 @@
         font-weight: 700;
       }
     }
-  }
-
-  .search-content:hover {
-    background: #e7e7e7;
+    &:hover {
+      @include themify(day) {
+        background: $white-four;
+      }
+      @include themify(night) {
+        background: $charcoal-grey;
+      }
+    }
   }
 }

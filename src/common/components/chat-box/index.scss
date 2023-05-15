@@ -47,10 +47,13 @@
     }
 
     .back-arrow-image {
-      margin: 1.1rem 1rem 0 0;
+      justify-content: center;
+      display: flex;
+      align-items: center;
       .back-arrow-svg {
         border-radius: 50%;
-        padding: 8px 6px 10px 6px;
+        padding: 6px;
+        // padding: 8px 6px 10px 6px;
       }
     }
 
@@ -58,11 +61,16 @@
       background: rgba(29, 155, 240, 0.1);
     }
     .message-title {
+      display: flex;
       width: 288px;
+      margin-left: 0.8rem;
+      .user-icon {
+        margin: 14px 11px 0 0;
+      }
     }
 
     .message-content {
-      margin-top: 1rem;
+      margin-top: 0.8rem;
       font-weight: 700;
       line-height: 24px;
       font-size: 20px;
@@ -81,9 +89,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 13px;
+      margin-top: 1.1rem;
       .message-image {
-        margin: 0.4rem 0.3rem 0 0;
+        margin: 0.2rem 0.3rem 0 0;
 
         .message-svg {
           width: 40px;
@@ -91,7 +99,7 @@
           justify-content: center;
           text-align: center;
           border-radius: 50%;
-          padding-top: 13px;
+          padding-top: 11px;
           display: flex;
 
           svg {
@@ -104,12 +112,12 @@
         }
       }
       .arrow-image {
-        margin: 0.4rem 0.3rem 0 0;
+        margin: 1.5 0.3rem 0 0;
         .arrow-svg {
           display: flex;
           justify-content: center;
           text-align: center;
-          padding-top: 7px;
+          padding-top: 6px;
           width: 40px;
           height: 40px;
           border-radius: 50%;
@@ -136,6 +144,12 @@
       @include themify(night) {
         border-bottom: 1px solid #172b44;
       }
+    }
+
+    &.join-chat {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .chat-content {
@@ -195,6 +209,7 @@
         justify-content: center;
         align-items: center;
         padding-top: 16px;
+        cursor: pointer;
       }
       .user-name {
         font-size: 20px;
@@ -247,19 +262,31 @@
 
     .scroller {
       position: sticky;
-      margin-left: 83%;
+      margin-left: 89%;
       width: 33px;
       height: 33px;
-      box-shadow: $box-shadow;
-      background: $dark-sky-blue;
-      color: $white;
       border-radius: 50%;
       z-index: 10;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      @include themify(day) {
+        background: #e4e6eb;
+        border: 1px solid $white-five;
+      }
+      @include themify(night) {
+        background: #0f223a;
+      }
+
       svg {
+        @include themify(day) {
+          color: $dark-sky-blue;
+        }
+        @include themify(night) {
+          color: $white;
+        }
+
         width: 20px;
         height: 20px;
       }
@@ -276,7 +303,7 @@
       .message {
         display: flex;
         .user-img {
-          padding: 18px 16px;
+          padding: 18px 8px 18px 16px;
         }
         .user-info {
           .receiver-message-content {
@@ -285,11 +312,10 @@
             }
             @include themify(night) {
               background: #cee2ff;
-   
             }
             color: #050505;
             max-width: 280px;
-            margin-top: 17px;
+            margin-top: 19px;
             padding: 8px 12px 8px 12px;
             border-radius: 18px 18px 18px 18px;
           }
@@ -336,7 +362,7 @@
       .msg-svg {
         padding: 6px 8px 4px 5px;
         position: inherit;
-        right: 41px;
+        right: 44px;
         border-radius: 50%;
         margin: 4px 0;
         margin-right: 11px;

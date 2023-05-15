@@ -1621,7 +1621,8 @@
     "joined": "Joined",
     "followers": "Followers",
     "start-chat-placeholder": "Start a new message",
-    "search": "Search people"
+    "search": "Search people",
+    "join-chat": "Join chat"
   },
   "add-image": {
     "title": "Add Image",

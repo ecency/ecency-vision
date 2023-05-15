@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { Account } from "../../store/accounts/types";
@@ -23,6 +23,7 @@ import { _t } from "../../i18n";
 import { getAccountFull } from "../../api/hive";
 
 import "./index.scss";
+import { updateProfile } from "../../api/operations";
 
 export interface profileData {
   joiningData: string;
@@ -41,15 +42,27 @@ export default function ChatBox({ activeUser }: Props) {
   const [isCurrentUser, setIsCurrentUser] = useState(false);
   const [message, setMessage] = useState("");
   const [isMessageText, setIsMessageText] = useState(false);
-  const [currentUserAccount, setCurrentUserAccount] = useState<Account>();
+  const [accountData, setAccountData] = useState<Account>();
   const [profileData, setProfileData] = useState<profileData>();
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [showSearchUser, setShowSearchUser] = useState(false);
+  const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
+
+  useEffect(() => {
+    fetchProfileData();
+  }, []);
+
+  useEffect(() => {
+    fetchProfileData();
+    setCurrentUser("");
+    setIsCurrentUser(false);
+  }, [activeUser]);
 
   useEffect(() => {
     if (currentUser) {
-      fetchAccountData();
+      fetchCurrentUserData();
     }
   }, [currentUser]);
 
@@ -179,19 +192,34 @@ export default function ChatBox({ activeUser }: Props) {
     {
       username: "mtsaeed",
       time: "4.52 pm",
-      message: "Thanks",
+      message: "Thanks. I am very grateful to you.",
       date: "4/11/2022"
+    },
+    {
+      username: "mtsaeed",
+      time: "4.54 pm",
+      message: "Bundle of thanks.",
+      date: "5/11/2022"
     }
   ];
 
-  const fetchAccountData = async () => {
+  const fetchCurrentUserData = async () => {
     const response = await getAccountFull(currentUser);
-    setCurrentUserAccount(response);
     setProfileData({
       joiningData: response.created,
       about: response.profile?.about,
       followers: response.follow_stats?.follower_count
     });
+  };
+
+  const fetchProfileData = async () => {
+    const response = await getAccountFull(activeUser?.username!);
+    setAccountData(response);
+    const { posting_json_metadata } = response;
+    const profile = JSON.parse(posting_json_metadata!).profile;
+
+    const hasNoStrKey = !!profile.noStrKey && profile.noStrKey.trim() !== "";
+    setHasUserJoinedChat(hasNoStrKey);
   };
 
   const userClicked = (username: string) => {
@@ -235,19 +263,14 @@ export default function ChatBox({ activeUser }: Props) {
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     var element = event.currentTarget;
     let srollHeight: number = (element.scrollHeight / 100) * 25;
-    if (!isCurrentUser) {
-      if (element.scrollTop >= srollHeight) {
-        setIsScrollToTop(true);
-        return;
-      }
-      setIsScrollToTop(false);
-    } else {
-      if (element.scrollTop <= (element.scrollHeight / 100) * 40 && element.scrollHeight > 700) {
-        setIsScrollToBottom(true);
-        return;
-      }
-      setIsScrollToBottom(false);
-    }
+    const isScrollToTop = !isCurrentUser && element.scrollTop >= srollHeight;
+    const isScrollToBottom =
+      isCurrentUser &&
+      element.scrollTop <= (element.scrollHeight / 100) * 50 &&
+      element.scrollHeight > 700;
+
+    setIsScrollToTop(isScrollToTop);
+    setIsScrollToBottom(isScrollToBottom);
   };
 
   const ScrollerClicked = () => {
@@ -264,6 +287,27 @@ export default function ChatBox({ activeUser }: Props) {
   const setSearchUser = (d: boolean) => {
     setShowSearchUser(d);
   };
+
+  const handleJoinChat = () => {
+    setInProgress(true);
+    setTimeout(() => {
+      setInProgress(false);
+      setHasUserJoinedChat(true);
+    }, 4000);
+
+    // const { profile } = response;
+
+    // const newProfile = {
+    //   noStrKey: "nsec1mefplh7mwup68r84x6gxkqn4w0ymj5q8cr0frj0lgflx8vrwvw7sdxh3ew"
+    // };
+
+    // const updatedProfile = await updateProfile(response, { ...profile, ...newProfile });
+    // console.log(updatedProfile);
+  };
+
+  const chatButtonSpinner = (
+    <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
+  );
 
   return (
     <>
@@ -284,10 +328,16 @@ export default function ChatBox({ activeUser }: Props) {
             </div>
           )}
           <div className="message-title" onClick={() => setExpanded(!expanded)}>
+            {currentUser && (
+              <p className="user-icon">
+                <UserAvatar username={currentUser} size="small" />
+              </p>
+            )}
+
             <p className="message-content">{currentUser ? currentUser : _t("chat.messages")}</p>
           </div>
           <div className="actionable-imgs">
-            {!currentUser && (
+            {!currentUser && hasUserJoinedChat && (
               <div className="message-image" onClick={handleMessageSvgClick}>
                 <Tooltip content={_t("chat.new-message")}>
                   <p className="message-svg">{addMessageSVG}</p>
@@ -305,90 +355,105 @@ export default function ChatBox({ activeUser }: Props) {
         </div>
 
         <div
-          className={`chat-body ${currentUser ? "current-user" : ""}`}
+          className={`chat-body ${currentUser ? "current-user" : ""} ${
+            !hasUserJoinedChat ? "join-chat" : ""
+          }`}
           ref={chatBodyDivRef}
           onScroll={handleScroll}
         >
-          {currentUser.length !== 0 ? (
+          {hasUserJoinedChat ? (
             <>
-              <Link to={`/@${currentUser}`}>
-                {profileData?.joiningData && (
-                  <div className="user-profile">
-                    <span className="user-logo">
-                      <UserAvatar username={currentUser} size="large" />
-                    </span>
-                    <h4 className="user-name user-logo ">{currentUser}</h4>
-                    {profileData.about && <p className="about user-logo ">{profileData.about}</p>}
+              {currentUser.length !== 0 ? (
+                <>
+                  <Link to={`/@${currentUser}`}>
+                    {profileData?.joiningData && (
+                      <div className="user-profile">
+                        <span className="user-logo">
+                          <UserAvatar username={currentUser} size="large" />
+                        </span>
+                        <h4 className="user-name user-logo ">{currentUser}</h4>
+                        {profileData.about && (
+                          <p className="about user-logo ">{profileData.about}</p>
+                        )}
 
-                    <div className="created-date user-logo joining-info">
-                      <p>
-                        {" "}
-                        {_t("chat.joined")} {dateToFormatted(profileData!.joiningData, "LL")}
-                      </p>
-                      <p className="followers">
-                        {" "}
-                        {formatFollowers(profileData!.followers)} {_t("chat.followers")}
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </Link>
-              <div className="chats">
-                {messageList.map((msg) => {
-                  if (msg.username !== activeUser?.username) {
-                    return (
-                      <>
-                        <div key={msg.username} className="date-time-detail">
-                          <p className="date-time">
-                            {msg.date}, {msg.time}
+                        <div className="created-date user-logo joining-info">
+                          <p>
+                            {" "}
+                            {_t("chat.joined")} {dateToFormatted(profileData!.joiningData, "LL")}
+                          </p>
+                          <p className="followers">
+                            {" "}
+                            {formatFollowers(profileData!.followers)} {_t("chat.followers")}
                           </p>
                         </div>
-                        <div key={msg.time} className="message">
+                      </div>
+                    )}
+                  </Link>
+                  <div className="chats">
+                    {messageList.map((msg) => {
+                      if (msg.username !== activeUser?.username) {
+                        return (
+                          <>
+                            <div key={msg.username} className="date-time-detail">
+                              <p className="date-time">
+                                {msg.date}, {msg.time}
+                              </p>
+                            </div>
+                            <div key={msg.time} className="message">
+                              <div className="user-img">
+                                <Link to={`/@${msg.username}`}>
+                                  <span>
+                                    <UserAvatar username={msg.username} size="medium" />
+                                  </span>
+                                </Link>
+                              </div>
+                              <div className="user-info">
+                                <p className="receiver-message-content">{msg.message}</p>
+                              </div>
+                            </div>
+                          </>
+                        );
+                      } else {
+                        return (
+                          <div key={msg.message} className="sender">
+                            <div className="sender-message">
+                              {/* <span className="sender-message-time">{msg.time}</span> */}
+                              <p className="sender-message-content">{msg.message}</p>
+                            </div>
+                          </div>
+                        );
+                      }
+                    })}
+                  </div>
+                </>
+              ) : (
+                <>
+                  {contentList.map((user) => {
+                    return (
+                      <div key={user.username} className="chat-content">
+                        <Link to={`/@${user.username}`}>
                           <div className="user-img">
                             <span>
-                              <UserAvatar username={msg.username} size="medium" />
+                              <UserAvatar username={user.username} size="medium" />
                             </span>
                           </div>
-                          <div className="user-info">
-                            <p className="receiver-message-content">{msg.message}</p>
-                          </div>
-                        </div>
-                      </>
-                    );
-                  } else {
-                    return (
-                      <div className="sender">
-                        <div className="sender-message">
-                          {/* <span className="sender-message-time">{msg.time}</span> */}
-                          <p className="sender-message-content">{msg.message}</p>
+                        </Link>
+
+                        <div className="user-title" onClick={() => userClicked(user.username)}>
+                          <p className="username">{user.username}</p>
+                          <p className="last-message">{user.lastMessage}</p>
                         </div>
                       </div>
                     );
-                  }
-                })}
-              </div>
+                  })}
+                </>
+              )}
             </>
           ) : (
-            <>
-              {contentList.map((user) => {
-                return (
-                  <div key={user.username} className="chat-content">
-                    <Link to={`/@${user.username}`}>
-                      <div className="user-img">
-                        <span>
-                          <UserAvatar username={user.username} size="medium" />
-                        </span>
-                      </div>
-                    </Link>
-
-                    <div className="user-title" onClick={() => userClicked(user.username)}>
-                      <p className="username">{user.username}</p>
-                      <p className="last-message">{user.lastMessage}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </>
+            <Button className="join-chat-btn" onClick={handleJoinChat}>
+              {inProgress && chatButtonSpinner}
+              {_t("chat.join-chat")}
+            </Button>
           )}
 
           {((isScrollToTop && !isCurrentUser) || (isCurrentUser && isScrollToBottom)) && (
