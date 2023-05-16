@@ -14,12 +14,22 @@ export async function fetchThreadsFromCommunity(
     community
   )) as IdentifiableEntry[];
 
-  threadItems = threadItems.map((item) => ({
-    ...item,
-    id: item.post_id,
-    host,
-    body: `${item.title.slice(0, item.title.length - 4)}${item.body.slice(4, item.body.length)}`
-  }));
+  threadItems = threadItems.map((item) => {
+    const titleEnd = item.title.slice(item.title.length - 4, item.title.length);
+    const bodyStart = item.body.slice(0, 4);
+    if (titleEnd === " ..." && bodyStart === "... ") {
+      item.body = `${item.title.slice(0, item.title.length - 4)}${item.body.slice(
+        4,
+        item.body.length
+      )}`;
+    }
+
+    return {
+      ...item,
+      id: item.post_id,
+      host
+    };
+  });
 
   threadItems = threadItems.map((item) => ({
     ...item,

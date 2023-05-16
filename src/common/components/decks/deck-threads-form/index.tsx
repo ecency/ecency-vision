@@ -100,6 +100,8 @@ export const DeckThreadsForm = ({
         onSuccess(threadItem);
       }
       setText("");
+      setImage(null);
+      setImageName(null);
       _t("decks.threads-form.successfully-created");
     } catch (e) {
     } finally {

@@ -1,15 +1,11 @@
 import React, { createContext, useState } from "react";
 import * as bridgeApi from "../../../api/bridge";
-import { createReplyPermlink, makeJsonMetaDataReply } from "../../../helper/posting";
-import { comment, formatError } from "../../../api/operations";
-import tempEntry from "../../../helper/temp-entry";
-import { FullAccount } from "../../../store/accounts/types";
+import { formatError } from "../../../api/operations";
 import { Entry } from "../../../store/entries/types";
 import { error } from "../../feedback";
-import { useMappedStore } from "../../../store/use-mapped-store";
 import { ProfileFilter } from "../../../store/global/types";
 import { _t } from "../../../i18n";
-import { version } from "../../../../../package.json";
+import { useCommunityApi, useThreadsApi } from "./api";
 
 interface Context {
   show: boolean;
@@ -30,53 +26,17 @@ interface Props {
 }
 
 export const DeckThreadsFormManager = ({ children }: Props) => {
-  const { activeUser, addReply, updateEntry } = useMappedStore();
+  const { request: generalApiRequest } = useThreadsApi();
+  const { request: communityBasedApiRequest } = useCommunityApi();
 
   const [show, setShow] = useState(false);
 
-  const generalApiRequest = async (entry: Entry, raw: string) => {
-    if (!activeUser || !activeUser.data.__loaded) {
-      throw new Error("No user");
-    }
-
-    const { author: parentAuthor, permlink: parentPermlink } = entry;
-    const author = activeUser.username;
-    const permlink = createReplyPermlink(entry.author);
-    const tags = entry.json_metadata.tags || ["ecency"];
-
-    const jsonMeta = makeJsonMetaDataReply(tags, version);
-
-    await comment(author, parentAuthor, parentPermlink, permlink, "", raw, jsonMeta, null, true);
-
-    const nReply = tempEntry({
-      author: activeUser.data as FullAccount,
-      permlink,
-      parentAuthor,
-      parentPermlink,
-      title: "",
-      body: raw,
-      tags,
-      description: null
-    });
-
-    // add new reply to store
-    addReply(nReply);
-
-    if (entry.children === 0) {
-      // Activate discussion section with first comment.
-      const nEntry: Entry = {
-        ...entry,
-        children: 1
-      };
-
-      updateEntry(nEntry);
-    }
-
-    return nReply;
-  };
-
   const createThreadItem = async (host: string, raw: string) => {
     try {
+      if (host === "dbuzz") {
+        return await communityBasedApiRequest(host, raw);
+      }
+
       const hostEntries = await bridgeApi.getAccountPosts(ProfileFilter.posts, host);
 
       if (!hostEntries) {
