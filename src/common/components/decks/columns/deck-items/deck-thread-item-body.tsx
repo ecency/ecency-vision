@@ -9,7 +9,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { renderPostBody } from "@ecency/render-helper";
 import { IdentifiableEntry } from "../deck-threads-manager";
-import { Modal } from "react-bootstrap";
+import { classNameObject } from "../../../../helper/class-name-object";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -30,6 +30,16 @@ export const DeckThreadItemBody = ({
   const renderAreaRef = useRef<HTMLDivElement | null>(null);
 
   const [currentViewingImage, setCurrentViewingImage] = useState<string | null>(null);
+  const [currentViewingImageRect, setCurrentViewingImageRect] = useState<DOMRect | null>(null);
+  const [isCurrentViewingImageShowed, setIsCurrentViewingImageShowed] = useState(false);
+
+  useEffect(() => {
+    if (currentViewingImage) {
+      setTimeout(() => {
+        setIsCurrentViewingImageShowed(true);
+      }, 1);
+    }
+  }, [currentViewingImage]);
 
   useEffect(() => {
     onResize();
@@ -101,6 +111,7 @@ export const DeckThreadItemBody = ({
 
         if (src) {
           element.addEventListener("click", () => {
+            setCurrentViewingImageRect(element.getBoundingClientRect());
             setCurrentViewingImage(src);
           });
         }
@@ -176,22 +187,35 @@ export const DeckThreadItemBody = ({
         className="thread-render"
         dangerouslySetInnerHTML={{ __html: renderPostBody(entry) }}
       />
-      {currentViewingImage && (
-        <Modal
-          animation={true}
-          show={true}
-          centered={true}
-          onHide={() => setCurrentViewingImage(null)}
-          keyboard={false}
-          className="deck-thread-image-view-dialog"
-        >
-          <Modal.Header closeButton={true} />
-          <Modal.Body>
-            <img src={currentViewingImage} alt="" />
-            <div className="image" style={{ backgroundImage: `url(${currentViewingImage})` }} />
-          </Modal.Body>
-        </Modal>
-      )}
+      {currentViewingImage &&
+        createPortal(
+          <div
+            className={classNameObject({
+              "deck-full-image-view": true,
+              show: isCurrentViewingImageShowed
+            })}
+            onClick={(e) => {
+              e.stopPropagation();
+
+              setIsCurrentViewingImageShowed(false);
+              setTimeout(() => {
+                setCurrentViewingImageRect(null);
+                setCurrentViewingImage(null);
+              }, 400);
+            }}
+          >
+            <img
+              src={currentViewingImage}
+              alt=""
+              style={{
+                transform: `translate(${currentViewingImageRect?.left}px, ${currentViewingImageRect?.top}px)`,
+                width: currentViewingImageRect?.width,
+                height: currentViewingImageRect?.height
+              }}
+            />
+          </div>,
+          document.querySelector("#deck-media-view-container")!!
+        )}
     </div>
   );
 };

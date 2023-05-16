@@ -319,6 +319,36 @@
   }
 }
 
+.deck-full-image-view {
+  position: fixed;
+  transition: 0.4s;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: $zindex-modal;
+
+  &.show {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    > img {
+      display: block;
+      margin-top: 2rem;
+      width: 100% !important;
+      height: min(calc(100vh - 4rem), 768px) !important;
+      transform: translate(0, 0) !important;
+    }
+  }
+
+  > img {
+    object-fit: contain;
+    transition: 0.4s;
+    position: fixed;
+  }
+}
+
 .deck-thread-image-view-dialog {
   > .modal-dialog {
     width: auto;

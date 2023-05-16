@@ -22,6 +22,7 @@ const DecksPageComponent = ({ history }: Props) => {
       <Meta {...getMetaProps(store)} title={_t("decks.title")} />
       <Theme global={store.global} />
       <Feedback activeUser={store.activeUser} />
+      <div id="deck-media-view-container" />
       <Decks history={history} />
     </div>
   );
