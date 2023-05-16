@@ -50,10 +50,9 @@
 
     svg {
       height: 20px;
-      // margin-right: 6px;
     }
     .feedback-body {
-      padding: 24px 6px 0px 6px;
+      padding: 30px 6px 0px 6px;
     }
 
     .feedback-content {
@@ -72,9 +71,18 @@
     }
     .feedback-close-btn {
       position: absolute;
-      right: 6px;
-      margin-top: -19px;
+      right: 8px;
+      margin-top: -22px;
       cursor: pointer;
+
+      @media (max-width: $md-break) {
+        svg {
+          display: block;
+          width: 15px;
+          height: 15px;
+        }
+      }
+
       @include themify(day) {
         svg {
           color: $charcoal-grey;
