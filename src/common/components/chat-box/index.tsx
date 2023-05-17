@@ -49,15 +49,19 @@ export default function ChatBox({ activeUser }: Props) {
   const [showSearchUser, setShowSearchUser] = useState(false);
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [inProgress, setInProgress] = useState(false);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     fetchProfileData();
+    setShow(!!activeUser?.username);
   }, []);
 
   useEffect(() => {
     fetchProfileData();
     setCurrentUser("");
     setIsCurrentUser(false);
+    setShow(!!activeUser?.username);
+    setExpanded(false);
   }, [activeUser]);
 
   useEffect(() => {
@@ -311,196 +315,199 @@ export default function ChatBox({ activeUser }: Props) {
 
   return (
     <>
-      <div className={`chatbox-container ${expanded ? "expanded" : ""}`}>
-        <div className="chat-header">
-          {currentUser && expanded && (
-            <div className="back-arrow-image">
-              <span
-                className="back-arrow-svg"
-                onClick={() => {
-                  setCurrentUser("");
-                  setIsCurrentUser(false);
-                }}
-              >
-                {" "}
-                {arrowBackSvg}
-              </span>
-            </div>
-          )}
-          <div className="message-title" onClick={() => setExpanded(!expanded)}>
-            {currentUser && (
-              <p className="user-icon">
-                <UserAvatar username={currentUser} size="small" />
-              </p>
+      {show && (
+        <div className={`chatbox-container ${expanded ? "expanded" : ""}`}>
+          <div className="chat-header">
+            {currentUser && expanded && (
+              <div className="back-arrow-image">
+                <span
+                  className="back-arrow-svg"
+                  onClick={() => {
+                    setCurrentUser("");
+                    setIsCurrentUser(false);
+                  }}
+                >
+                  {" "}
+                  {arrowBackSvg}
+                </span>
+              </div>
             )}
+            <div className="message-title" onClick={() => setExpanded(!expanded)}>
+              {currentUser && (
+                <p className="user-icon">
+                  <UserAvatar username={currentUser} size="small" />
+                </p>
+              )}
 
-            <p className="message-content">{currentUser ? currentUser : _t("chat.messages")}</p>
-          </div>
-          <div className="actionable-imgs">
-            {!currentUser && hasUserJoinedChat && (
-              <div className="message-image" onClick={handleMessageSvgClick}>
-                <Tooltip content={_t("chat.new-message")}>
-                  <p className="message-svg">{addMessageSVG}</p>
+              <p className="message-content">{currentUser ? currentUser : _t("chat.messages")}</p>
+            </div>
+            <div className="actionable-imgs">
+              {!currentUser && hasUserJoinedChat && (
+                <div className="message-image" onClick={handleMessageSvgClick}>
+                  <Tooltip content={_t("chat.new-message")}>
+                    <p className="message-svg">{addMessageSVG}</p>
+                  </Tooltip>
+                </div>
+              )}
+              <div className="arrow-image">
+                <Tooltip content={expanded ? _t("chat.collapse") : _t("chat.expand")}>
+                  <p className="arrow-svg" onClick={() => setExpanded(!expanded)}>
+                    {expanded ? expandArrow : collapseArrow}
+                  </p>
                 </Tooltip>
               </div>
-            )}
-            <div className="arrow-image">
-              <Tooltip content={expanded ? _t("chat.collapse") : _t("chat.expand")}>
-                <p className="arrow-svg" onClick={() => setExpanded(!expanded)}>
-                  {expanded ? expandArrow : collapseArrow}
-                </p>
-              </Tooltip>
             </div>
           </div>
-        </div>
 
-        <div
-          className={`chat-body ${currentUser ? "current-user" : ""} ${
-            !hasUserJoinedChat ? "join-chat" : ""
-          }`}
-          ref={chatBodyDivRef}
-          onScroll={handleScroll}
-        >
-          {hasUserJoinedChat ? (
-            <>
-              {currentUser.length !== 0 ? (
-                <>
-                  <Link to={`/@${currentUser}`}>
-                    {profileData?.joiningData && (
-                      <div className="user-profile">
-                        <span className="user-logo">
-                          <UserAvatar username={currentUser} size="large" />
-                        </span>
-                        <h4 className="user-name user-logo ">{currentUser}</h4>
-                        {profileData.about && (
-                          <p className="about user-logo ">{profileData.about}</p>
-                        )}
+          <div
+            className={`chat-body ${currentUser ? "current-user" : ""} ${
+              !hasUserJoinedChat ? "join-chat" : ""
+            }`}
+            ref={chatBodyDivRef}
+            onScroll={handleScroll}
+          >
+            {hasUserJoinedChat ? (
+              <>
+                {currentUser.length !== 0 ? (
+                  <>
+                    <Link to={`/@${currentUser}`}>
+                      {profileData?.joiningData && (
+                        <div className="user-profile">
+                          <span className="user-logo">
+                            <UserAvatar username={currentUser} size="large" />
+                          </span>
+                          <h4 className="user-name user-logo ">{currentUser}</h4>
+                          {profileData.about && (
+                            <p className="about user-logo ">{profileData.about}</p>
+                          )}
 
-                        <div className="created-date user-logo joining-info">
-                          <p>
-                            {" "}
-                            {_t("chat.joined")} {dateToFormatted(profileData!.joiningData, "LL")}
-                          </p>
-                          <p className="followers">
-                            {" "}
-                            {formatFollowers(profileData!.followers)} {_t("chat.followers")}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  </Link>
-                  <div className="chats">
-                    {messageList.map((msg) => {
-                      if (msg.username !== activeUser?.username) {
-                        return (
-                          <>
-                            <div key={msg.username} className="date-time-detail">
-                              <p className="date-time">
-                                {msg.date}, {msg.time}
-                              </p>
-                            </div>
-                            <div key={msg.time} className="message">
-                              <div className="user-img">
-                                <Link to={`/@${msg.username}`}>
-                                  <span>
-                                    <UserAvatar username={msg.username} size="medium" />
-                                  </span>
-                                </Link>
-                              </div>
-                              <div className="user-info">
-                                <p className="receiver-message-content">{msg.message}</p>
-                              </div>
-                            </div>
-                          </>
-                        );
-                      } else {
-                        return (
-                          <div key={msg.message} className="sender">
-                            <div className="sender-message">
-                              {/* <span className="sender-message-time">{msg.time}</span> */}
-                              <p className="sender-message-content">{msg.message}</p>
-                            </div>
+                          <div className="created-date user-logo joining-info">
+                            <p>
+                              {" "}
+                              {_t("chat.joined")} {dateToFormatted(profileData!.joiningData, "LL")}
+                            </p>
+                            <p className="followers">
+                              {" "}
+                              {formatFollowers(profileData!.followers)} {_t("chat.followers")}
+                            </p>
                           </div>
-                        );
-                      }
+                        </div>
+                      )}
+                    </Link>
+                    <div className="chats">
+                      {messageList.map((msg) => {
+                        if (msg.username !== activeUser?.username) {
+                          return (
+                            <>
+                              <div key={msg.username} className="date-time-detail">
+                                <p className="date-time">
+                                  {msg.date}, {msg.time}
+                                </p>
+                              </div>
+                              <div key={msg.time} className="message">
+                                <div className="user-img">
+                                  <Link to={`/@${msg.username}`}>
+                                    <span>
+                                      <UserAvatar username={msg.username} size="medium" />
+                                    </span>
+                                  </Link>
+                                </div>
+                                <div className="user-info">
+                                  <p className="receiver-message-content">{msg.message}</p>
+                                </div>
+                              </div>
+                            </>
+                          );
+                        } else {
+                          return (
+                            <div key={msg.message} className="sender">
+                              <div className="sender-message">
+                                {/* <span className="sender-message-time">{msg.time}</span> */}
+                                <p className="sender-message-content">{msg.message}</p>
+                              </div>
+                            </div>
+                          );
+                        }
+                      })}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {contentList.map((user) => {
+                      return (
+                        <div key={user.username} className="chat-content">
+                          <Link to={`/@${user.username}`}>
+                            <div className="user-img">
+                              <span>
+                                <UserAvatar username={user.username} size="medium" />
+                              </span>
+                            </div>
+                          </Link>
+
+                          <div className="user-title" onClick={() => userClicked(user.username)}>
+                            <p className="username">{user.username}</p>
+                            <p className="last-message">{user.lastMessage}</p>
+                          </div>
+                        </div>
+                      );
                     })}
-                  </div>
-                </>
-              ) : (
-                <>
-                  {contentList.map((user) => {
-                    return (
-                      <div key={user.username} className="chat-content">
-                        <Link to={`/@${user.username}`}>
-                          <div className="user-img">
-                            <span>
-                              <UserAvatar username={user.username} size="medium" />
-                            </span>
-                          </div>
-                        </Link>
+                  </>
+                )}
+              </>
+            ) : (
+              <Button className="join-chat-btn" onClick={handleJoinChat}>
+                {inProgress && chatButtonSpinner}
+                {_t("chat.join-chat")}
+              </Button>
+            )}
 
-                        <div className="user-title" onClick={() => userClicked(user.username)}>
-                          <p className="username">{user.username}</p>
-                          <p className="last-message">{user.lastMessage}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </>
-              )}
-            </>
-          ) : (
-            <Button className="join-chat-btn" onClick={handleJoinChat}>
-              {inProgress && chatButtonSpinner}
-              {_t("chat.join-chat")}
-            </Button>
-          )}
-
-          {((isScrollToTop && !isCurrentUser) || (isCurrentUser && isScrollToBottom)) && (
-            <Tooltip
-              content={isScrollToTop ? _t("scroll-to-top.title") : _t("chat.scroll-to-bottom")}
-            >
-              <div
-                className="scroller"
-                style={{ bottom: isCurrentUser && isScrollToBottom ? "20px" : "55px" }}
-                onClick={ScrollerClicked}
+            {((isScrollToTop && !isCurrentUser) || (isCurrentUser && isScrollToBottom)) && (
+              <Tooltip
+                content={isScrollToTop ? _t("scroll-to-top.title") : _t("chat.scroll-to-bottom")}
               >
-                {isCurrentUser ? chevronDownSvgForSlider : chevronUpSvg}
-              </div>
-            </Tooltip>
+                <div
+                  className="scroller"
+                  style={{ bottom: isCurrentUser && isScrollToBottom ? "20px" : "55px" }}
+                  onClick={ScrollerClicked}
+                >
+                  {isCurrentUser ? chevronDownSvgForSlider : chevronUpSvg}
+                </div>
+              </Tooltip>
+            )}
+          </div>
+
+          {currentUser && (
+            <div className="chat">
+              <Form
+                onSubmit={(e: React.FormEvent) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  sendMessage();
+                }}
+              >
+                <InputGroup className="chat-input-group">
+                  <Form.Control
+                    value={message}
+                    onChange={handleMessage}
+                    required={true}
+                    type="text"
+                    placeholder={_t("chat.start-chat-placeholder")}
+                    autoComplete="off"
+                    className="chat-input"
+                  />
+                  <InputGroup.Append
+                    className={`msg-svg ${isMessageText ? "active" : ""}`}
+                    onClick={sendMessage}
+                  >
+                    {messageSendSvg}
+                  </InputGroup.Append>
+                </InputGroup>
+              </Form>
+            </div>
           )}
         </div>
+      )}
 
-        {currentUser && (
-          <div className="chat">
-            <Form
-              onSubmit={(e: React.FormEvent) => {
-                e.preventDefault();
-                e.stopPropagation();
-                sendMessage();
-              }}
-            >
-              <InputGroup className="chat-input-group">
-                <Form.Control
-                  value={message}
-                  onChange={handleMessage}
-                  required={true}
-                  type="text"
-                  placeholder={_t("chat.start-chat-placeholder")}
-                  autoComplete="off"
-                  className="chat-input"
-                />
-                <InputGroup.Append
-                  className={`msg-svg ${isMessageText ? "active" : ""}`}
-                  onClick={sendMessage}
-                >
-                  {messageSendSvg}
-                </InputGroup.Append>
-              </InputGroup>
-            </Form>
-          </div>
-        )}
-      </div>
       {showSearchUser && (
         <SeachUser
           setSearchUser={setSearchUser}
