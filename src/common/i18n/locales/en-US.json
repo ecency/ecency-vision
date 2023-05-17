@@ -242,8 +242,9 @@
     "continue": "Continue",
     "public-active": "Public Active key:",
     "public-memo": "Public Memo key:",
-    "public-ower": "Public Owner key:",
-    "public-posting": "Public Posting key:"
+    "public-owner": "Public Owner key:",
+    "public-posting": "Public Posting key:",
+    "login-warning": "Please Login to create friend's account"
   },
   "trending-tags": {
     "title": "Topics"

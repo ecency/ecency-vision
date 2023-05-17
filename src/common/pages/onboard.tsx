@@ -3,10 +3,10 @@ import Meta from "../components/meta";
 import { connect } from "react-redux";
 import Theme from "../components/theme";
 import NavBar from "../components/navbar";
-import Feedback, { error } from "../components/feedback";
+import Feedback from "../components/feedback";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
-import { Button, Form } from "react-bootstrap";
-import { copyContent, downloadSvg, regenerateSvg, shareVariantSvg } from "../img/svg";
+import { Button } from "react-bootstrap";
+import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
 import { success } from "../components/feedback";
 import "./onboard.scss";
 import { _t } from "../i18n";
@@ -14,16 +14,19 @@ import { generatePassword, getPrivateKeys, createAccountKc, createAccountHs } fr
 
 const Onboard: React.FC = (props: PageProps | any) => {
 
+  const onboardUrl = `localhost:3000/onboard-friend/creating/`
+
   const [masterPassword, setMasterPassword] = useState<string>("");
   const [hash, setHash] = useState<string>("");
   const [accountInfo, setAccountInfo] = useState<any>({});
-  const [hashInput, setHashInput] = useState<string>("");
-  const [step, setStep] = useState<string>("enter-hash");
   const [decodedInfo, setDecodedInfo] = useState<any>({});
   
   useEffect(() => {
     initAccountKey();
-    console.log(props.match)
+      if (props.match.params.hash) {
+        const decoded_hash = JSON.parse(decodeURIComponent(props.match.params.hash));
+        setDecodedInfo(decoded_hash)
+    }
   }, [props.global.accountName])
 
   const initAccountKey = async () => {
@@ -42,11 +45,11 @@ const Onboard: React.FC = (props: PageProps | any) => {
         username: props.global.accountName,
         email: props.global.accountEmail,
         pub_keys
-      }    
+      };
       // stringify object to encode
       const stringified_pub_keys = JSON.stringify(dataToEncode);
       // encode stringified object
-      const hashed_pub_keys = btoa(stringified_pub_keys);
+      const hashed_pub_keys = encodeURIComponent(stringified_pub_keys);
       setHash(hashed_pub_keys)
       const accInfo = {
         username: props.global.accountName,
@@ -61,13 +64,6 @@ const Onboard: React.FC = (props: PageProps | any) => {
       return null;
     }
   };
-
-  const decodeHash = (hash: string) => {
-    const decoded_hash = atob(hash);
-    const hashInfo = JSON.parse(decoded_hash)
-    console.log(hashInfo)
-    setDecodedInfo(hashInfo)
-  }
 
   const copyToClipboard = (text: string) => {
     const textField = document.createElement("textarea");
@@ -103,6 +99,10 @@ const Onboard: React.FC = (props: PageProps | any) => {
     URL.revokeObjectURL(downloadLink);
   };
 
+  const splitUrl = (url: string) => {
+      return url.slice(0,50)
+  }
+
   return (
     <>
       <Meta title="onborad" />
@@ -135,11 +135,12 @@ const Onboard: React.FC = (props: PageProps | any) => {
                           {_t("onboard.download-keys")} {downloadSvg}
                         </Button>
                 <div className="d-flex align-items-center mt-3">
-                  <span className="">{_t("onboard.share")}</span>
-                  <span style={{width: "5%"}} className="onboard-svg ml-3"
-                  onClick={() => copyToClipboard(hash)}
-                  >
-                    {/* {shareVariantSvg} */}
+                  <span className="">{splitUrl(onboardUrl + hash)}...</span>
+                  <span style={{width: "5%"}} className="onboard-svg"
+                  onClick={() => {
+                    copyToClipboard(onboardUrl + hash)
+                  }}
+                  >                    
                     {copyContent}
                   </span> 
                 </div>
@@ -147,49 +148,24 @@ const Onboard: React.FC = (props: PageProps | any) => {
                 </div>
             </div>
         </div>}
-        {props.match.params.type === "creating" && props.activeUser && step === "enter-hash" && <div className="onboard-container">          
-            <div className="creating">
-              <h3 className="align-self-center">{_t("onboard.create-account")}</h3>
-              <Form className="d-flex flex-column">
-                <Form.Group> 
-                <Form.Control
-                      type="text"
-                      placeholder="Enter hash"
-                      // value={hash}
-                      onChange={(e) => setHashInput(e.target.value)}
-                      autoFocus={true}
-                      required={true}
-                      // onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-username")}
-                      // isInvalid={usernameError !== ""}
-                      // onInput={handleOnInput}
-                      // onBlur={() => setUsernameTouched(true)}
-                    />                  
-                </Form.Group>
-                <Button className="align-self-center w-50"
-                onClick={() => {
-                  decodeHash(hashInput);
-                  setStep("confirm-creating")
-                }}
-                >{_t("onboard.continue")}</Button>
-              </Form>
-            </div>
-        </div>}
-        {props.match.params.type === "creating" && props.activeUser && step === "confirm-creating" && <div className="onboard-container">          
-            <div className="creating-confirm">
+
+        {props.match.params.type === "creating"  && props.match.params.hash && <div className="onboard-container">          
+            {props.activeUser ? <div className="creating-confirm">
               <h3 className="align-self-center">{_t("onboard.confirm-details")}</h3>
               <span>{_t("onboard.username")} {decodedInfo.username}</span>
-              <span>{_t("onboard.email")} {decodedInfo.email}</span>
-              <span>{_t("onboard.public-acive")} {decodedInfo?.pub_keys?.active_public_key}</span>
-              <span>{_t("onboard.public-memo")} {decodedInfo?.pub_keys?.memo_public_key}</span>
               <span>{_t("onboard.public-owner")} {decodedInfo?.pub_keys?.owner_public_key}</span>
+              <span>{_t("onboard.public-active")} {decodedInfo?.pub_keys?.active_public_key}</span>
               <span>{_t("onboard.public-posting")} {decodedInfo?.pub_keys?.posting_public_key}</span>
+              <span>{_t("onboard.public-memo")} {decodedInfo?.pub_keys?.memo_public_key}</span>
               <Button className="align-self-center"
               onClick={() => createAccountKc({
                 username: decodedInfo.username,
                  pub_keys: decodedInfo.pub_keys
                 }, props.activeUser.username)}
               >{_t("onboard.create-account")}</Button>
-            </div>
+            </div> :
+            <div>{_t("onboard.login-warning")}</div>
+            }
         </div>}
     </>
   )
