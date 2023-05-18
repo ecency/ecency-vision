@@ -10,6 +10,7 @@ import { IdentifiableEntry } from "../deck-threads-manager";
 import { classNameObject } from "../../../../helper/class-name-object";
 import {
   renderAuthors,
+  renderCurrencies,
   renderExternalLinks,
   renderImages,
   renderPostLinks,
@@ -58,9 +59,7 @@ export const DeckThreadItemBody = ({
     setRenderInitiated(true);
 
     if (renderAreaRef.current) {
-      renderAreaRef.current.innerHTML = await modifyCurrencyTokens(
-        renderAreaRef?.current?.innerHTML
-      );
+      renderAreaRef.current.innerHTML = await renderCurrencies(renderAreaRef?.current?.innerHTML);
     }
 
     renderTags(renderAreaRef);
@@ -72,68 +71,6 @@ export const DeckThreadItemBody = ({
       setCurrentViewingImage
     });
     renderVideos(renderAreaRef);
-  };
-
-  const modifyCurrencyTokens = async (raw: string): Promise<string> => {
-    const tokens = [
-      ...(raw.toLowerCase().includes("$btc") ? ["$btc"] : []),
-      ...(raw.toLowerCase().includes("$leo") ? ["$leo"] : []),
-      ...(raw.toLowerCase().includes("$hive") ? ["$hive"] : [])
-    ];
-    if (tokens.length > 0) {
-      const coins = tokens
-        .map((token) => token.replace("$", ""))
-        .map((token) => {
-          switch (token) {
-            case "btc":
-              return "binance-wrapped-btc";
-            default:
-              return token;
-          }
-        })
-        .join(",");
-
-      let values;
-      try {
-        values = await getCGMarketApi(coins, "usd");
-      } catch (e) {
-        values = tokens.reduce((acc, token) => ({ ...acc, [token]: { usd: "no-data" } }), {});
-      }
-
-      Object.entries(values)
-        .map(([key, { usd }]) => {
-          switch (key) {
-            case "binance-wrapped-btc":
-              return [
-                ["BTC", usd],
-                ["btc", usd]
-              ];
-            default:
-              return [
-                [key.toUpperCase(), usd],
-                [key.toLowerCase(), usd]
-              ];
-          }
-        })
-        .forEach((tokens) =>
-          tokens.forEach(([token, value]) => {
-            raw = raw.replaceAll(
-              `$${token}`,
-              renderToString(
-                <span className="markdown-currency">
-                  <span>{token}</span>
-                  <span className="value">
-                    {value === "no-data"
-                      ? _t("decks.columns.no-currency-data")
-                      : formattedNumber(value)}
-                  </span>
-                </span>
-              )
-            );
-          })
-        );
-    }
-    return raw;
   };
 
   return (

@@ -1,11 +1,11 @@
 import { AVAILABLE_THREAD_HOSTS } from "../consts";
-import { DeckThreadItemSkeleton, ListItemSkeleton, ThreadItem } from "./deck-items";
+import { DeckThreadItemSkeleton, ThreadItem } from "./deck-items";
 import { DeckThreadItemViewer } from "./content-viewer";
 import { GenericDeckColumn } from "./generic-deck-column";
 import React, { useContext, useEffect, useState } from "react";
 import { BitesDeckGridItem } from "../types";
 import { History } from "history";
-import { DraggableProvidedDragHandleProps, Id } from "react-beautiful-dnd";
+import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../deck-manager";
 import { _t } from "../../../i18n";
 import { DeckThreadsContext, IdentifiableEntry } from "./deck-threads-manager";
@@ -125,7 +125,8 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
       }}
       data={data}
       newDataComingCondition={(newCameData) =>
-        newCameData[newCameData.length - 1]?.id === data[data.length - 1]?.id
+        prevData?.length === 0 ||
+        moment(newCameData[0]?.created).isBefore(moment((prevData ?? [])[0]?.created))
       }
       isReloading={isReloading}
       isExpanded={!!currentViewingEntry}
