@@ -1,8 +1,4 @@
 import { createPortal } from "react-dom";
-import { getCGMarketApi } from "../../../market-swap-form/api/coingecko-api";
-import { renderToString } from "react-dom/server";
-import { _t } from "../../../../i18n";
-import formattedNumber from "../../../../util/formatted-number";
 import React, { useEffect, useRef, useState } from "react";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { renderPostBody } from "@ecency/render-helper";
@@ -15,6 +11,7 @@ import {
   renderImages,
   renderPostLinks,
   renderTags,
+  renderTweets,
   renderVideos
 } from "./deck-thread-item-body-render-helper";
 
@@ -71,6 +68,7 @@ export const DeckThreadItemBody = ({
       setCurrentViewingImage
     });
     renderVideos(renderAreaRef);
+    renderTweets(renderAreaRef);
   };
 
   return (

@@ -7,6 +7,7 @@ import { getCGMarketApi } from "../../../market-swap-form/api/coingecko-api";
 import { renderToString } from "react-dom/server";
 import { _t } from "../../../../i18n";
 import formattedNumber from "../../../../util/formatted-number";
+import { TwitterTweetEmbed } from "react-twitter-embed";
 
 export function renderTags(renderAreaRef: MutableRefObject<HTMLElement | null>) {
   return renderAreaRef.current
@@ -100,6 +101,20 @@ export function renderImages(
           opt.setCurrentViewingImageRect(element.getBoundingClientRect());
           opt.setCurrentViewingImage(src);
         });
+      }
+    });
+}
+
+export function renderTweets(renderAreaRef: MutableRefObject<HTMLElement | null>) {
+  return renderAreaRef.current
+    ?.querySelectorAll<HTMLDivElement>(".twitter-tweet")
+    .forEach((element) => {
+      const link = element.querySelector("p")?.innerText;
+
+      if (link) {
+        const parts = link.split("/");
+        const id = parts[parts.length - 1];
+        ReactDOM.hydrate(<TwitterTweetEmbed tweetId={id} />, element);
       }
     });
 }
