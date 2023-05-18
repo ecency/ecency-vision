@@ -42,5 +42,19 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
+
+        .creating-confirm-bottom{
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          align-items: center;
+
+          .onboard-btn-container{
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+          }
+        }
+
       }
 }

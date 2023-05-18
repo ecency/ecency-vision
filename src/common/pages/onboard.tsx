@@ -5,12 +5,13 @@ import Theme from "../components/theme";
 import NavBar from "../components/navbar";
 import Feedback from "../components/feedback";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
-import { Button } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
 import { success } from "../components/feedback";
 import "./onboard.scss";
 import { _t } from "../i18n";
-import { generatePassword, getPrivateKeys, createAccountKc, createAccountHs } from "../api/operations";
+import { generatePassword, getPrivateKeys, createAccountKc, createAccountWithCredit, getAcountCredit } from "../api/operations";
+import { Link } from "react-router-dom";
 
 const Onboard: React.FC = (props: PageProps | any) => {
 
@@ -20,12 +21,17 @@ const Onboard: React.FC = (props: PageProps | any) => {
   const [hash, setHash] = useState<string>("");
   const [accountInfo, setAccountInfo] = useState<any>({});
   const [decodedInfo, setDecodedInfo] = useState<any>({});
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [accountCredit, setAccountCredit] = useState<number>(0);
+  const [createOption, setCreateOption] = useState<string>("");
+  const [hashInput, setHashInput] = useState<string>("");
   
   useEffect(() => {
     initAccountKey();
       if (props.match.params.hash) {
         const decoded_hash = JSON.parse(decodeURIComponent(props.match.params.hash));
         setDecodedInfo(decoded_hash)
+        getCredit()
     }
   }, [props.global.accountName])
 
@@ -65,6 +71,21 @@ const Onboard: React.FC = (props: PageProps | any) => {
     }
   };
 
+  const getCredit = async () => {
+    const accountCredit = await getAcountCredit("ecency")
+    // const accountCredit = await getAcountCredit(props.activeUser.username)
+    console.log(accountCredit)
+    setAccountCredit(accountCredit)
+  }
+
+  const decodeHash = (hash: string) => {
+    // const decoded_hash = atob(hash);
+    const hashInfo = JSON.parse(decodeURIComponent(hash));
+    // console.log(hashInfo)
+    // setDecodedInfo(hashInfo)
+    return hashInfo;
+  }
+
   const copyToClipboard = (text: string) => {
     const textField = document.createElement("textarea");
     textField.innerText = text;
@@ -72,14 +93,7 @@ const Onboard: React.FC = (props: PageProps | any) => {
     textField.select();
     document.execCommand("copy");
     textField.remove();
-    switch(text) {
-      case masterPassword:
-        return success(_t("onboard.copy-password"));
-      case hash:
-        return success(_t("onboard.copy-hash"));
-      default:
-        return;
-    }
+    success(_t("onboard.copy-link"));
   };
 
   const handleTextFileDownload = (data: any) => {
@@ -101,6 +115,13 @@ const Onboard: React.FC = (props: PageProps | any) => {
 
   const splitUrl = (url: string) => {
       return url.slice(0,50)
+  }
+
+  const hideConfirmModal = () => {
+    setShowModal(false);
+  }
+  const showConfirmModal = () => {
+    setShowModal(true);
   }
 
   return (
@@ -149,6 +170,37 @@ const Onboard: React.FC = (props: PageProps | any) => {
             </div>
         </div>}
 
+        {props.match.params.type === "creating" && props.activeUser && !props.match.params.hash && <div className="onboard-container">          
+            <div className="creating-confirm">
+              <h3 className="align-self-center">{_t("onboard.create-account")}</h3>
+              <Form className="d-flex flex-column">
+                <Form.Group> 
+                <Form.Control
+                      type="text"
+                      placeholder="Enter link"
+                      // value={hash}
+                      onChange={(e: { target: { value: any; }; }) => setHashInput(e.target.value)}
+                      autoFocus={true}
+                      required={true}
+                      // onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-username")}
+                      // isInvalid={usernameError !== ""}
+                      // onInput={handleOnInput}
+                      // onBlur={() => setUsernameTouched(true)}
+                    />                  
+                </Form.Group>
+                <Button className="align-self-center w-50"
+                as={Link}
+                to={`/onboard-friend/creating/${hashInput.substring(39)}`}
+                onClick={() => {
+                  decodeHash(hashInput.substring(39));
+                  // console.log(decodeHash(hashInput.substring(39)))
+                  // setStep("confirm-creating")
+                }}
+                >{_t("onboard.continue")}</Button>
+              </Form>
+            </div>
+        </div>}
+
         {props.match.params.type === "creating"  && props.match.params.hash && <div className="onboard-container">          
             {props.activeUser ? <div className="creating-confirm">
               <h3 className="align-self-center">{_t("onboard.confirm-details")}</h3>
@@ -157,16 +209,71 @@ const Onboard: React.FC = (props: PageProps | any) => {
               <span>{_t("onboard.public-active")} {decodedInfo?.pub_keys?.active_public_key}</span>
               <span>{_t("onboard.public-posting")} {decodedInfo?.pub_keys?.posting_public_key}</span>
               <span>{_t("onboard.public-memo")} {decodedInfo?.pub_keys?.memo_public_key}</span>
-              <Button className="align-self-center"
-              onClick={() => createAccountKc({
-                username: decodedInfo.username,
-                 pub_keys: decodedInfo.pub_keys
-                }, props.activeUser.username)}
-              >{_t("onboard.create-account")}</Button>
+              <div className="creating-confirm-bottom">
+                <span>{_t("onboard.pay-fee")}</span>
+                <div className="onboard-btn-container">                
+                  <Button className="align-self-center"
+                  onClick={() =>{ 
+                    setCreateOption("hive")
+                    showConfirmModal()
+                  }}
+                  >{_t("onboard.create-account-hive")}</Button>
+                  <Button 
+                  className="align-self-center"
+                  disabled={accountCredit <= 0}
+                  onClick={() => {
+                    setCreateOption("credit")
+                    showConfirmModal()                    
+                  }}
+                  >{_t("onboard.create-account-credit")}</Button>
+                </div>
+              </div>
             </div> :
             <div>{_t("onboard.login-warning")}</div>
             }
         </div>}
+        <Modal
+          animation={false}
+          show={showModal}
+          centered={true}
+          onHide={hideConfirmModal}
+          keyboard={false}
+          className="transfer-dialog modal-thin-header"
+          // size="lg"
+        >
+          <Modal.Header closeButton={true}>
+            <Modal.Title />
+          </Modal.Header>
+          <Modal.Body>
+            <div  className="d-flex flex-column">
+              <h4>{_t("onboard.modal-title")}</h4>
+              {accountCredit <= 0 || createOption === "hive" && <Button 
+              className="w-50 align-self-center"
+              onClick={() => {
+                  createAccountKc({
+                    username: decodedInfo.username,
+                    pub_keys: decodedInfo.pub_keys
+                    }, props.activeUser.username);
+                    hideConfirmModal();
+              }}
+              >
+                {_t("onboard.modal-confirm")}
+              </Button>}
+              {accountCredit > 0 && createOption === "credit" && <Button 
+              className="w-50 align-self-center"
+              onClick={() => {
+                createAccountWithCredit({
+                  username: decodedInfo.username,
+                  pub_keys: decodedInfo.pub_keys
+                  }, props.activeUser.username);
+                  hideConfirmModal();
+              }}
+              >
+                {_t("onboard.modal-confirm")}
+              </Button>}
+            </div>
+          </Modal.Body>
+        </Modal>
     </>
   )
 }

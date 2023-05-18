@@ -1859,7 +1859,7 @@ export const generatePassword = async (length: number) => {
   return password;
 };
 
-// Final Function call
+// Create account with hive keychain
 export const createAccountKc = async (data: any, creator_account:string) => {
   try {
     const {
@@ -1872,21 +1872,20 @@ export const createAccountKc = async (data: any, creator_account:string) => {
       active: false,
     };
 
-
   let tokens: any = await hiveClient.database.getAccounts([creator_account]);
   tokens = tokens[0]?.pending_claimed_accounts;
-
   console.log(tokens)
+  console.log("tokens...")
 
   let fee = null;
   let op_name: OperationName = 'create_claimed_account';
-
   // If account creation tokens exist on creator account
   if (tokens < 10) {
       fee = '3.000 HIVE';
 
       // Load account creation fee from Hive chain properties
       const chain_props = await hiveClient.database.getChainProperties();
+      console.log(chain_props)
       if (chain_props && chain_props.account_creation_fee) {
         fee = chain_props.account_creation_fee;
       }
@@ -1895,6 +1894,73 @@ export const createAccountKc = async (data: any, creator_account:string) => {
     
   }
 
+  const owner = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.owner_public_key, 1]]
+  };
+  const active = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.active_public_key, 1]]
+  };
+  const posting = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[account.posting_public_key, 1]]
+  };
+  const ops: Array<any> = [];
+  const params: any = {
+    creator: creator_account,
+    new_account_name: account.name,
+    owner,
+    active,
+    posting,
+    memo_key: account.memo_public_key,
+    json_metadata: '',
+    extensions: []
+  };
+
+  if (fee) params.fee = fee;
+  const operation: Operation = [op_name, params];
+  ops.push(operation);
+  try {
+    // For Keychain
+    return keychain.broadcast(creator_account, [operation], "Active");
+
+  } catch (err: any) {
+    console.log(`Error: response - ${JSON.stringify(err)}`);
+    console.log(
+      'Error:  failed thrice============= Account creation failed three times! ==============='
+    );
+    return err.jse_info.name;
+  }
+  } catch (err) {
+    console.error(err)
+  }
+};
+
+// Create with account credit keychain
+export const createAccountWithCredit = async (data: any, creator_account:string) => {
+  try {
+    const {
+      username, pub_keys,
+    } = data;
+  
+    const account = {
+      name: username,
+      ...pub_keys,
+      active: false,
+    };
+
+  let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+  tokens = tokens[0]?.pending_claimed_accounts;
+  console.log(tokens)
+  console.log("tokens...")
+
+  let fee = null;
+  let op_name: OperationName = 'create_claimed_account';
+ 
   const owner = {
     weight_threshold: 1,
     account_auths: [],
@@ -2110,6 +2176,16 @@ export const createAccountKey = async (data: any, creator_account:string, creato
   } catch (err) {
     console.error(err)
   }
+};
+
+export const getAcountCredit = async (creator_account: any) => {
+  console.log("claiming account credits...")
+  const response: any = await hiveClient.database.getAccounts([creator_account]);
+  const accountData =await response[0]
+  const accountCreditBalance = accountData?.pending_claimed_accounts;
+
+  console.log(response);
+  return accountCreditBalance;
 };
 
 // Create Account operation Call
