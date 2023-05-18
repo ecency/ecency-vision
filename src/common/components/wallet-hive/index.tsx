@@ -740,13 +740,13 @@ export class WalletHive extends BaseComponent<Props, State> {
                 <div className="description font-weight-bold mt-2">
                   {_t("wallet.hive-dollars-apr-rate", { value: hbd })}
                 </div>
-                {estimatedUIn > 0 && (
+                {estimatedUIn >= 0.001 && (
                   <div className="description font-weight-bold mt-2">
                     {_t("wallet.hive-dollars-apr-claim", { value: lastIPaymentRelative })}{" "}
                     {estimatedInterest}
                   </div>
                 )}
-                {isMyPage && estimatedUIn > 0 && (
+                {isMyPage && estimatedUIn >= 0.001 && (
                   <div className="unclaimed-rewards" style={{ marginBottom: "0" }}>
                     <div className="rewards" style={{ height: "40px" }}>
                       <a
