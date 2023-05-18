@@ -81,16 +81,6 @@ export interface EntryGroup {
   hasMore: boolean;
 }
 
-export interface BlogEntryGroup {
-  // filter(arg0: (entry: any) => boolean): EntryGroup;
-  entries: BlogEntry[];
-  error: string | null;
-  sid: string; //scroll_id for controversial/rising results
-  loading: boolean;
-  hasMore: boolean;
-  fetchedOnce: boolean;
-}
-
 export interface Entries extends Record<string, EntryGroup> {}
 
 export enum ActionTypes {

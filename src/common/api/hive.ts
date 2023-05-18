@@ -5,6 +5,7 @@ import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 import { TrendingTag } from "../store/trending-tags/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { FullAccount, AccountProfile, AccountFollowStats } from "../store/accounts/types";
+import { Entry } from "../store/entries/types";
 
 import parseAsset from "../helper/parse-asset";
 import { vestsToRshares } from "../helper/vesting";
@@ -601,7 +602,7 @@ export const getAccountVotesTrail = (
   username: string,
   start = -1,
   limit = 20
-): Promise<BlogEntry[]> => {
+): Promise<Entry[]> => {
   return getAccountHistory(
     username,
     utils.makeBitMaskFilter([utils.operationOrders.vote]),
@@ -609,10 +610,10 @@ export const getAccountVotesTrail = (
     limit
   ).then((data) => {
     let result = data
-      .map((obj: any) => {
-        return { ...obj[1].op[1], num: obj[0] };
+      .map((historyObj: any) => {
+        return { ...historyObj[1].op[1], num: historyObj[0] };
       })
-      .filter((obj: any) => obj.voter === username);
+      .filter((filtered: any) => filtered.voter === username && filtered.weight > 0);
     return Promise.all(
       result.map((obj: any) => getPostNew(obj.author, obj.permlink, username, obj.num))
     );
