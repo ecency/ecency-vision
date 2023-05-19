@@ -68,8 +68,8 @@
     "loading": "Carregando",
     "stop": "Parar",
     "settings": "Ajustes",
-    "confirm": "Confirm",
-    "username": "Username"
+    "confirm": "Confirmar",
+    "username": "Usuário"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -82,16 +82,16 @@
     "later": "Depois"
   },
   "floating-faq": {
-    "toggle-icon-info": "Click to expand",
-    "help": "Help",
-    "welcome": "Welcome to Ecency",
-    "need-help": "Need Help?",
-    "search-placeholder": "Search",
-    "suggestion": "Suggested articles",
-    "contact": "Contact us",
-    "submit": "Submit",
-    "username": "username",
-    "message": "message",
+    "toggle-icon-info": "Clique para expandir",
+    "help": "Ajuda",
+    "welcome": "Bem-vindo à Ecency",
+    "need-help": "Precisa de ajuda?",
+    "search-placeholder": "Procurar",
+    "suggestion": "Artigos sugeridos",
+    "contact": "Contate-nos",
+    "submit": "Submeter",
+    "username": "usuário",
+    "message": "mensagem",
     "no-results": "No results found"
   },
   "entry-filter": {
@@ -398,9 +398,9 @@
     "auth-required-desc": "You've to be authorized to see notifications",
     "columns": {
       "view-full-post": "View full post",
-      "user": "User",
+      "user": "Usuário",
       "user-description": "Find a profile and see what they're been up to.",
-      "community": "Community",
+      "community": "Comunidade",
       "community-description": "Find a community and follow their activity.",
       "wallet": "Wallet",
       "wallet-description": "Track people's transactions and funds.",
