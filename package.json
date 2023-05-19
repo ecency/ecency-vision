@@ -45,6 +45,7 @@
     "moment": "^2.29.4",
     "node-cache": "^5.1.0",
     "node-html-parser": "^5.3.3",
+    "nostr-tools": "^1.11.1",
     "numeral": "^2.0.6",
     "path-to-regexp": "^6.1.0",
     "qrcode": "^1.5.1",
