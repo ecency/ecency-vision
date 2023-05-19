@@ -26,7 +26,7 @@ const CurationTrail = (props: Props) => {
   });
 
   const [loading, setLoading] = useState(true);
-  const [limit, setLimit] = useState(20);
+  const limit = 20;
 
   useAsyncEffect(async () => {
     fetchEntries();
@@ -46,7 +46,6 @@ const CurationTrail = (props: Props) => {
       ...trail,
       ...{ entries: trail.entries.concat(data.reverse()), loading: false }
     }));
-    setLoading(false);
 
     if (data.length < 20) {
       await fetchMoreEntries(false, data.slice(-1)[0].num);
