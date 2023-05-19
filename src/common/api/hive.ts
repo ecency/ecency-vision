@@ -613,7 +613,7 @@ export const getAccountVotesTrail = (
       .map((historyObj: any) => {
         return { ...historyObj[1].op[1], num: historyObj[0] };
       })
-      .filter((filtered: any) => filtered.voter === username && filtered.weight > 0);
+      .filter((filtered: any) => filtered.voter === username && filtered.weight != 0);
     return Promise.all(
       result.map((obj: any) => getPostNew(obj.author, obj.permlink, username, obj.num))
     );
