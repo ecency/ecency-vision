@@ -41,6 +41,13 @@ exports[`(1) Render 1`] = `
       >
         Replies
       </a>
+      <a
+        className="profile-menu-item"
+        href="/@username/trail"
+        onClick={[Function]}
+      >
+        Trail
+      </a>
     </div>
     <a
       className="profile-menu-item"
@@ -136,6 +143,13 @@ exports[`(2) With active user 1`] = `
         onClick={[Function]}
       >
         Replies
+      </a>
+      <a
+        className="profile-menu-item"
+        href="/@username/trail"
+        onClick={[Function]}
+      >
+        Trail
       </a>
     </div>
     <a
