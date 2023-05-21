@@ -396,6 +396,7 @@
     "save-locally": "Save locally",
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You've to be authorized to see notifications",
+    "bite": "Bite",
     "columns": {
       "view-full-post": "View full post",
       "user": "User",
@@ -441,7 +442,34 @@
       "failed-fetch": "Account decks fetching failed. Please, refresh a page",
       "failed-update": "Deck updating failed. Please, try again",
       "new-column": "New column",
-      "new-data-available": "New data available"
+      "new-data-available": "New data available",
+      "threads": "Waves",
+      "threads-host": "Wave host",
+      "threads-description": "Follow people and write you thoughts very quickly.",
+      "add-thread-host-text": "Specify a Waves host or see all of them together",
+      "all-thread-hosts": "All",
+      "thread-post-link-invalid": "This post is not existing.",
+      "show-replies": "Show {{n}} replies",
+      "show-reply": "Show 1 reply",
+      "show-all-replies": "Show all replies",
+      "see-full-thread": "See full thread",
+      "no-currency-data": "No data",
+      "hide-replies": "Hide replies"
+    },
+    "threads-form": {
+      "publish": "Publish it!",
+      "create-regular-post": "Create long post",
+      "input-placeholder": "What's happening?",
+      "select-thread-host": "Select a waves host",
+      "thread-host": "Will be published in",
+      "no-threads-host": "This account is not a waves host",
+      "publishing": "Waving 🌊...",
+      "successfully-created": "Published successfully!",
+      "link-to-entry": "Click here to see",
+      "pending": "Waiting for transaction completing...",
+      "login-and-publish": "Sign in and publish",
+      "write-your-reply": "Write your reply here",
+      "max-length": "Oops! Your message a quite long. We want to use micro-blogging for the direct purpose and would like to offer You to create a long post."
     }
   },
   "market-data": {
@@ -1238,7 +1266,8 @@
     "image-error": "تعذر رفع الصورة.",
     "image-error-cache": "تعذر رفع الصورة. يبدو أنك مسجل خارجاً. حاول تسجيل الدخول مرة أخرى.",
     "image-error-size": "حجم الصورة كبير جداً، حاول بحجم صورة أصغر مرة أخرى.",
-    "fragments": "قصاصات"
+    "fragments": "قصاصات",
+    "link-image": "Link"
   },
   "emoji-picker": {
     "filter-placeholder": "فلترة",
