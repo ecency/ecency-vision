@@ -396,6 +396,7 @@
     "save-locally": "Сохранить локально",
     "auth-required-title": "Требуется авторизация",
     "auth-required-desc": "Вы должны быть авторизованы для просмотра уведомлений",
+    "bite": "Bite",
     "columns": {
       "view-full-post": "Посмотреть полный пост",
       "user": "Пользователь",
@@ -441,7 +442,34 @@
       "failed-fetch": "Не удалось получить площадки аккаунта. Пожалуйста, обновите страницу",
       "failed-update": "Не удалось обновить площадку. Пожалуйста, попробуйте ещё раз",
       "new-column": "Новый столбец",
-      "new-data-available": "Доступны новые данные"
+      "new-data-available": "Доступны новые данные",
+      "threads": "Waves",
+      "threads-host": "Wave host",
+      "threads-description": "Follow people and write you thoughts very quickly.",
+      "add-thread-host-text": "Specify a Waves host or see all of them together",
+      "all-thread-hosts": "All",
+      "thread-post-link-invalid": "This post is not existing.",
+      "show-replies": "Show {{n}} replies",
+      "show-reply": "Show 1 reply",
+      "show-all-replies": "Show all replies",
+      "see-full-thread": "See full thread",
+      "no-currency-data": "No data",
+      "hide-replies": "Hide replies"
+    },
+    "threads-form": {
+      "publish": "Publish it!",
+      "create-regular-post": "Create long post",
+      "input-placeholder": "What's happening?",
+      "select-thread-host": "Select a waves host",
+      "thread-host": "Will be published in",
+      "no-threads-host": "This account is not a waves host",
+      "publishing": "Waving 🌊...",
+      "successfully-created": "Published successfully!",
+      "link-to-entry": "Click here to see",
+      "pending": "Waiting for transaction completing...",
+      "login-and-publish": "Sign in and publish",
+      "write-your-reply": "Write your reply here",
+      "max-length": "Oops! Your message a quite long. We want to use micro-blogging for the direct purpose and would like to offer You to create a long post."
     }
   },
   "market-data": {
@@ -1238,7 +1266,8 @@
     "image-error": "Не удалось загрузить изображение.",
     "image-error-cache": "Не удалось загрузить изображение. Похоже, что вы вышли из системы. Попробуйте авторизоваться заново.",
     "image-error-size": "Слишком большой размер изображения. Попробуйте уменьшить его.",
-    "fragments": "Фрагменты"
+    "fragments": "Фрагменты",
+    "link-image": "Link"
   },
   "emoji-picker": {
     "filter-placeholder": "Фильтр",
