@@ -396,6 +396,7 @@
     "save-locally": "Tallenna paikallisesti",
     "auth-required-title": "Valtuutus vaaditaan",
     "auth-required-desc": "Sinulla on oltava valtuus nähdä ilmoituksia",
+    "bite": "Bite",
     "columns": {
       "view-full-post": "Näytä koko julkaisu",
       "user": "Käyttäjä",
@@ -441,7 +442,34 @@
       "failed-fetch": "Tilin pakkojen haku epäonnistui. Ole hyvä ja päivitä sivu",
       "failed-update": "Pakkojen päivitys epäonnistui. Yritä uudelleen",
       "new-column": "Uusi sarake",
-      "new-data-available": "Uusia tietoja saatavilla"
+      "new-data-available": "Uusia tietoja saatavilla",
+      "threads": "Waves",
+      "threads-host": "Wave host",
+      "threads-description": "Follow people and write you thoughts very quickly.",
+      "add-thread-host-text": "Specify a Waves host or see all of them together",
+      "all-thread-hosts": "All",
+      "thread-post-link-invalid": "This post is not existing.",
+      "show-replies": "Show {{n}} replies",
+      "show-reply": "Show 1 reply",
+      "show-all-replies": "Show all replies",
+      "see-full-thread": "See full thread",
+      "no-currency-data": "No data",
+      "hide-replies": "Hide replies"
+    },
+    "threads-form": {
+      "publish": "Publish it!",
+      "create-regular-post": "Create long post",
+      "input-placeholder": "What's happening?",
+      "select-thread-host": "Select a waves host",
+      "thread-host": "Will be published in",
+      "no-threads-host": "This account is not a waves host",
+      "publishing": "Waving 🌊...",
+      "successfully-created": "Published successfully!",
+      "link-to-entry": "Click here to see",
+      "pending": "Waiting for transaction completing...",
+      "login-and-publish": "Sign in and publish",
+      "write-your-reply": "Write your reply here",
+      "max-length": "Oops! Your message a quite long. We want to use micro-blogging for the direct purpose and would like to offer You to create a long post."
     }
   },
   "market-data": {
@@ -1238,7 +1266,8 @@
     "image-error": "Kuvaa ei voitu ladata.",
     "image-error-cache": "Kuvaa ei voitu ladata. Näyttää siltä, että olet kirjautunut ulos. Yritä kirjautua sisään uudelleen.",
     "image-error-size": "Kuvan koko on liian suuri, kokeile pienempää kuvaa.",
-    "fragments": "Katkelmat"
+    "fragments": "Katkelmat",
+    "link-image": "Link"
   },
   "emoji-picker": {
     "filter-placeholder": "Suodata",
