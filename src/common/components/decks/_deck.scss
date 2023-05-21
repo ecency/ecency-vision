@@ -227,6 +227,15 @@
   .deck-body .item-controls {
     max-width: 80%;
 
+    .entry-vote-btn, .entry-payout, .entry-votes, .entry-menu {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+      max-width: 100%;
+    }
+
     .comments {
       path {
         fill: $light-grey !important;
