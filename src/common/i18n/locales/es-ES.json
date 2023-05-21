@@ -396,6 +396,7 @@
     "save-locally": "Guardar localmente",
     "auth-required-title": "Se requiere autorización",
     "auth-required-desc": "Tienes que estar autorizado para ver las notificaciones",
+    "bite": "Bite",
     "columns": {
       "view-full-post": "Ver post completo",
       "user": "Usuario",
@@ -441,7 +442,34 @@
       "failed-fetch": "La búsqueda de mazos de cuenta falló. Por favor, actualice una página",
       "failed-update": "Error al actualizar el mazo. Por favor, inténtalo de nuevo",
       "new-column": "Nueva columna",
-      "new-data-available": "Nuevos datos disponibles"
+      "new-data-available": "Nuevos datos disponibles",
+      "threads": "Waves",
+      "threads-host": "Wave host",
+      "threads-description": "Follow people and write you thoughts very quickly.",
+      "add-thread-host-text": "Specify a Waves host or see all of them together",
+      "all-thread-hosts": "All",
+      "thread-post-link-invalid": "This post is not existing.",
+      "show-replies": "Show {{n}} replies",
+      "show-reply": "Show 1 reply",
+      "show-all-replies": "Show all replies",
+      "see-full-thread": "See full thread",
+      "no-currency-data": "No data",
+      "hide-replies": "Hide replies"
+    },
+    "threads-form": {
+      "publish": "Publish it!",
+      "create-regular-post": "Create long post",
+      "input-placeholder": "What's happening?",
+      "select-thread-host": "Select a waves host",
+      "thread-host": "Will be published in",
+      "no-threads-host": "This account is not a waves host",
+      "publishing": "Waving 🌊...",
+      "successfully-created": "Published successfully!",
+      "link-to-entry": "Click here to see",
+      "pending": "Waiting for transaction completing...",
+      "login-and-publish": "Sign in and publish",
+      "write-your-reply": "Write your reply here",
+      "max-length": "Oops! Your message a quite long. We want to use micro-blogging for the direct purpose and would like to offer You to create a long post."
     }
   },
   "market-data": {
@@ -1238,7 +1266,8 @@
     "image-error": "No se pudo cargar la imagen.",
     "image-error-cache": "No se pudo subir la imagen. Parece que has cerrado la sesión. Intenta iniciar sesión de nuevo.",
     "image-error-size": "El tamaño de la imagen es demasiado grande, intente una imagen de tamaño más pequeño.",
-    "fragments": "Fragmentos de código"
+    "fragments": "Fragmentos de código",
+    "link-image": "Link"
   },
   "emoji-picker": {
     "filter-placeholder": "Filtro",
