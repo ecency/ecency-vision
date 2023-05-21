@@ -157,6 +157,7 @@ const App = (props: any) => {
 
       <Announcement activeUser={props.activeUser} />
       <FloatingFAQ />
+      <div id="popper-container" />
     </>
   );
 };

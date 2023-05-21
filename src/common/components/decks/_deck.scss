@@ -2,6 +2,7 @@
 
 .deck {
   height: 100vh;
+  height: 100dvh;
   width: 400px;
   position: relative;
   border-left: 2px solid $border-color;
@@ -226,6 +227,15 @@
   .deck-body .item-controls {
     max-width: 80%;
 
+    .entry-vote-btn, .entry-payout, .entry-votes, .entry-menu {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+      max-width: 100%;
+    }
+
     .comments {
       path {
         fill: $light-grey !important;
@@ -286,6 +296,14 @@
       "actions actions actions";
       grid-gap: 1rem;
       align-items: center;
+
+      &.thread-item-skeleton {
+        grid-template-areas:
+      "avatar username date"
+      "title title title"
+      "description description description"
+      "actions actions actions";
+      }
 
       > * {
         animation: skeleton-loader 1s infinite;

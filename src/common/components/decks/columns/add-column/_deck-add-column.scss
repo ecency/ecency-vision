@@ -224,4 +224,15 @@
   .sticky-bottom {
     z-index: 201;
   }
+
+  .dropdown .dropdown-menu {
+    min-width: 250px;
+  }
+
+  .thread-host-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 500;
+  }
 }

@@ -124,4 +124,21 @@
       @include margin-bottom(0.5rem);
     }
   }
+
+  .deck-toolbar-threads-form {
+    background-color: rgba($primary, 0.05);
+  }
+
+
+  .deck-thread-item-viewer-replies {
+    .skeleton-list {
+      @include padding-top(0);
+    }
+  }
+}
+
+.deck-thread-item-viewer {
+  .deck-post-viewer-header {
+    @include padding-bottom(1rem);
+  }
 }

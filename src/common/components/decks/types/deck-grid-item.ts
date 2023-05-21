@@ -1,7 +1,7 @@
 interface BaseDeckGridItem {
   id: string;
   key: number;
-  type: "u" | "ac" | "co" | "w" | "n" | "tr" | "to" | "s" | "cu";
+  type: "u" | "ac" | "co" | "w" | "n" | "tr" | "to" | "s" | "cu" | "th";
   settings: Record<string, any>;
 }
 
@@ -33,8 +33,16 @@ export interface SearchDeckGridItem extends ReloadableDeckGridItem {
   };
 }
 
+export interface BitesDeckGridItem extends ReloadableDeckGridItem {
+  type: "th";
+  settings: ReloadableDeckGridItem["settings"] & {
+    host: string;
+  };
+}
+
 export type DeckGridItem =
   | BaseDeckGridItem
   | UserDeckGridItem
   | CommunityDeckGridItem
-  | SearchDeckGridItem;
+  | SearchDeckGridItem
+  | BitesDeckGridItem;

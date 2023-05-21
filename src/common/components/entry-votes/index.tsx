@@ -232,6 +232,7 @@ interface Props {
   activeUser: ActiveUser | null;
   entry: Entry;
   addAccount: (data: Account) => void;
+  icon?: JSX.Element;
 }
 
 interface State {
@@ -289,7 +290,7 @@ export class EntryVotes extends Component<Props, State> {
 
     const child = (
       <>
-        <div className={cls}>{heartSvg}</div>
+        <div className={cls}>{this.props.icon ?? heartSvg}</div>
         {totalVotes}
       </>
     );
@@ -353,7 +354,7 @@ export class EntryVotes extends Component<Props, State> {
   }
 }
 
-export default (p: Pick<Props, "entry" | "history">) => {
+export default (p: Pick<Props, "entry" | "history" | "icon">) => {
   const { global, activeUser, addAccount } = useMappedStore();
 
   const props = {
@@ -361,7 +362,8 @@ export default (p: Pick<Props, "entry" | "history">) => {
     global,
     entry: p.entry,
     activeUser,
-    addAccount
+    addAccount,
+    icon: p.icon
   };
 
   return <EntryVotes {...props} />;

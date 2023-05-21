@@ -16,6 +16,7 @@ export async function getCGMarketApi(ids: string, vs: string): Promise<CoinGecko
       }
     })
     .catch((e) => {
+      console.log(e);
       throw new Error("api dead");
     });
   return resp.data;
