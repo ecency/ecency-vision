@@ -44,7 +44,7 @@ export class ProfileMenu extends Component<Props> {
           ProfileFilter.posts,
           ProfileFilter.comments,
           ProfileFilter.replies,
-          ProfileFilter.trail
+          "trail"
         ].map((x) => {
           return {
             label: _t(`profile.section-${x}`),

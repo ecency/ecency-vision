@@ -103,10 +103,16 @@ export const Profile = (props: Props) => {
     await ensureAccount();
 
     const { username, section } = match.params;
+
+    // console.log('SECTION 1',section)
+
     if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
+      // console.log('SECTION 1.1',section)
+
       // fetch posts
       fetchEntries(global.filter, global.tag, false);
     }
+    // console.log('SECTION 2',section)
 
     // fetch points
     fetchPoints(username);

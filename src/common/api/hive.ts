@@ -598,28 +598,6 @@ export interface BlogEntry {
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
   client.call("condenser_api", "get_blog_entries", [username, 0, limit]);
 
-export const getAccountVotesTrail = (
-  username: string,
-  start = -1,
-  limit = 20
-): Promise<Entry[]> => {
-  return getAccountHistory(
-    username,
-    utils.makeBitMaskFilter([utils.operationOrders.vote]),
-    start,
-    limit
-  ).then((data) => {
-    let result = data
-      .map((historyObj: any) => {
-        return { ...historyObj[1].op[1], num: historyObj[0] };
-      })
-      .filter((filtered: any) => filtered.voter === username && filtered.weight != 0);
-    return Promise.all(
-      result.map((obj: any) => getPostNew(obj.author, obj.permlink, username, obj.num))
-    );
-  });
-};
-
 export const findAccountRecoveryRequest = (account: string): Promise<any> =>
   client.call("database_api", "find_change_recovery_account_requests", { accounts: [account] });
 
