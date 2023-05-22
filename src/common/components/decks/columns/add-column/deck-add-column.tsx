@@ -54,7 +54,7 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       type: "th",
       title: _t("decks.columns.threads"),
       icon: threadSvg,
-      description: _t("decks.columns.threads-description")
+      description: _t(`decks.columns.threads-description${Math.floor(Math.random() * 3) + 1}`)
     },
     {
       type: "w",
