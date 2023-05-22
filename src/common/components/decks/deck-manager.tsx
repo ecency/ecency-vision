@@ -25,6 +25,7 @@ interface Context {
   setScrollHandler: (handle: { handle: (key: number) => void }) => void;
   updateColumnIntervalMs: (id: string, value: number) => void;
   getNextKey: () => number;
+  updateColumnSpecificSettings: (id: string, settings: Partial<DeckGridItem["settings"]>) => void;
 }
 
 export const DeckGridContext = React.createContext<Context>({
@@ -41,7 +42,8 @@ export const DeckGridContext = React.createContext<Context>({
   isDecksLoading: false,
   setScrollHandler: () => {},
   updateColumnIntervalMs: () => {},
-  getNextKey: () => 0
+  getNextKey: () => 0,
+  updateColumnSpecificSettings: () => {}
 });
 
 interface Props {
@@ -285,7 +287,10 @@ export const DeckManager = ({ children }: Props) => {
     setLayout({ ...layout, columns: layout.columns.filter((c) => c.id !== id) });
   };
 
-  const updateColumnIntervalMs = (id: string, value: number) => {
+  const updateColumnSpecificSettings = (
+    id: string,
+    settings: Partial<DeckGridItem["settings"]>
+  ) => {
     const layoutSnapshot = { ...layout, columns: [...layout.columns] };
     const existingColumnIndex = layoutSnapshot.columns.findIndex((c) => c.id === id);
     if (existingColumnIndex > -1) {
@@ -293,11 +298,17 @@ export const DeckManager = ({ children }: Props) => {
         ...layoutSnapshot.columns[existingColumnIndex],
         settings: {
           ...layoutSnapshot.columns[existingColumnIndex].settings,
-          updateIntervalMs: value
+          ...settings
         }
       };
       setLayout(layoutSnapshot);
     }
+  };
+
+  const updateColumnIntervalMs = (id: string, value: number) => {
+    updateColumnSpecificSettings(id, {
+      updateIntervalMs: value
+    });
   };
 
   return (
@@ -316,7 +327,8 @@ export const DeckManager = ({ children }: Props) => {
         isDecksLoading,
         setScrollHandler,
         updateColumnIntervalMs,
-        getNextKey
+        getNextKey,
+        updateColumnSpecificSettings
       }}
     >
       {children({
@@ -333,7 +345,8 @@ export const DeckManager = ({ children }: Props) => {
         isDecksLoading,
         setScrollHandler,
         updateColumnIntervalMs,
-        getNextKey
+        getNextKey,
+        updateColumnSpecificSettings
       })}
     </DeckGridContext.Provider>
   );

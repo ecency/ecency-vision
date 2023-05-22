@@ -19,6 +19,7 @@ export interface DeckProps {
     icon: any;
     updateIntervalMs: number;
     setUpdateIntervalMs: (v: number) => void;
+    additionalSettings?: JSX.Element;
   };
   data: DataItem[];
   onReload: () => void;
