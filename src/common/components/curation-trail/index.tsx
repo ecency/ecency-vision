@@ -86,10 +86,10 @@ const CurationTrail = (props: Props) => {
       let { lastDate, newData, lastItemFetched } = await fetchAccountVoteHistory(index);
       setLastHistoryItem(lastItemFetched);
       setLastHistoryItemDays(lastDate);
-      if (lastDate > days) {
+      if (lastDate > days || newData.length === 0) {
         break;
       }
-
+      console.log(newData);
       newData = newData.reverse();
       index = newData.slice(-1)[0].num! + 1;
       index = lastItemFetched;
