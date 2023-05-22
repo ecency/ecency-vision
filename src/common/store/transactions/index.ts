@@ -51,8 +51,7 @@ export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
     ops.producer_reward,
     ops.claim_reward_balance,
     ops.comment_benefactor_reward,
-    ops.liquidity_reward,
-    ops.comment_reward
+    ops.liquidity_reward
   ]
 };
 
