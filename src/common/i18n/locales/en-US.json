@@ -71,7 +71,7 @@
     "settings": "Settings",
     "confirm": "Confirm",
     "username": "Username",
-    "in-past-seven-days": "in the past 7 days"
+    "in-past-few-days": "in the past few days"
   },
   "confirm": {
     "title": "Are you sure?",
