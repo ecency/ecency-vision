@@ -25,6 +25,12 @@ export async function fetchThreads(
   }
 
   const threadItems = await getDiscussion(host, nextThreadContainers[0].permlink);
+
+  // If no discussion need to fetch next container
+  if (Object.values(threadItems || {}).length === 1) {
+    return fetchThreads(host, nextThreadContainers[0]);
+  }
+
   const flattenThreadItems = Object.values(threadItems ?? {})
     // Filter only parent thread items
     .filter(
