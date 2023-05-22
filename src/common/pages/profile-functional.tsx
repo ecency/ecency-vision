@@ -104,16 +104,10 @@ export const Profile = (props: Props) => {
 
     const { username, section } = match.params;
 
-    // console.log('SECTION 1',section)
-
     if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
-      // console.log('SECTION 1.1',section)
-
       // fetch posts
       fetchEntries(global.filter, global.tag, false);
     }
-    // console.log('SECTION 2',section)
-
     // fetch points
     fetchPoints(username);
 
@@ -427,7 +421,6 @@ export const Profile = (props: Props) => {
     setPinnedEntry(null);
     setPinnedEntry(entry);
   };
-
   return (
     <>
       <Meta {...getMetaProps()} />
@@ -575,9 +568,34 @@ export const Profile = (props: Props) => {
                   }
                 }
 
-                if (data !== undefined || section === "trail") {
-                  let entryList;
+                if (section === "trail") {
+                  return (
+                    <>
+                      <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
+                        <div
+                          className={_c(
+                            `entry-list-body ${
+                              props.global.listStyle === ListStyle.grid ? "grid-view" : ""
+                            }`
+                          )}
+                        >
+                          <CurationTrail
+                            {...{
+                              ...props,
+                              account,
+                              pinEntry,
+                              username,
+                              section
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </>
+                  );
+                }
 
+                if (data !== undefined && section) {
+                  let entryList;
                   entryList = data?.entries;
                   entryList = entryList.filter(
                     (item: Entry) => item.permlink !== (account as FullAccount)?.profile?.pinned
@@ -596,37 +614,19 @@ export const Profile = (props: Props) => {
                             }`
                           )}
                         >
-                          {section == "trail" ? (
-                            <CurationTrail
-                              {...{
-                                ...props,
-                                account,
-                                pinEntry,
-                                username,
-                                section
-                              }}
-                            />
-                          ) : (
-                            <>
-                              {loading && entryList.length === 0 && <EntryListLoadingItem />}
-                              {EntryListContent({
-                                ...props,
-                                pinEntry,
-                                entries: entryList,
-                                promotedEntries: [],
-                                loading: isLoading,
-                                account
-                              })}
-                            </>
-                          )}
+                          {loading && entryList.length === 0 && <EntryListLoadingItem />}
+                          {EntryListContent({
+                            ...props,
+                            pinEntry,
+                            entries: entryList,
+                            promotedEntries: [],
+                            loading: isLoading,
+                            account
+                          })}
                         </div>
                       </div>
-                      {section !== "trail" && (
-                        <>
-                          {loading && entryList.length > 0 ? <LinearProgress /> : ""}
-                          <DetectBottom onBottom={bottomReached} />
-                        </>
-                      )}
+                      {loading && entryList.length > 0 ? <LinearProgress /> : ""}
+                      <DetectBottom onBottom={bottomReached} />
                     </>
                   );
                 }

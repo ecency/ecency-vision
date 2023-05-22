@@ -34,23 +34,9 @@ exports[`(1) Render 1`] = `
       >
         Comments
       </a>
-      <a
-        className="profile-menu-item"
-        href="/@username/replies"
-        onClick={[Function]}
-      >
-        Replies
-      </a>
-      <a
-        className="profile-menu-item"
-        href="/@username/trail"
-        onClick={[Function]}
-      >
-        Trail
-      </a>
     </div>
     <a
-      className="profile-menu-item"
+      className="profile-menu-item d-lg-none"
       href="/@username/communities"
       onClick={[Function]}
     >
@@ -63,6 +49,9 @@ exports[`(1) Render 1`] = `
     >
       Wallet
     </a>
+    <div
+      className="kebab-icon entry-index-menu the-menu main-menu d-none d-lg-flex "
+    />
   </div>
   <div
     className="page-tools"
@@ -137,23 +126,9 @@ exports[`(2) With active user 1`] = `
       >
         Comments
       </a>
-      <a
-        className="profile-menu-item"
-        href="/@username/replies"
-        onClick={[Function]}
-      >
-        Replies
-      </a>
-      <a
-        className="profile-menu-item"
-        href="/@username/trail"
-        onClick={[Function]}
-      >
-        Trail
-      </a>
     </div>
     <a
-      className="profile-menu-item"
+      className="profile-menu-item d-lg-none"
       href="/@username/communities"
       onClick={[Function]}
     >
@@ -173,6 +148,53 @@ exports[`(2) With active user 1`] = `
     >
       Settings
     </a>
+    <div
+      className="kebab-icon entry-index-menu the-menu main-menu d-none d-lg-flex "
+    >
+      <div
+        className="custom-dropdown float-left"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn"
+        >
+          
+          <div
+            className="menu-down"
+          >
+            <svg
+              fill="none"
+              height="30"
+              stroke="#357ce6"
+              strokeLinecap="square"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="30"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="1"
+              />
+              <circle
+                cx="19"
+                cy="12"
+                r="1"
+              />
+              <circle
+                cx="5"
+                cy="12"
+                r="1"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div
     className="page-tools"

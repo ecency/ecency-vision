@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Entry, EntryGroup } from "../../store/entries/types";
-import { getAccountHistory, getAccountVotesTrail } from "../../api/hive";
+import { getAccountHistory } from "../../api/hive";
 import useAsyncEffect from "use-async-effect";
 import { PageProps } from "../../pages/common";
 import EntryListContent from "../entry-list";
