@@ -68,7 +68,6 @@ const CurationTrail = (props: Props) => {
         newData: entries
       };
     });
-
     return r;
   };
 
@@ -85,13 +84,19 @@ const CurationTrail = (props: Props) => {
       let { lastDate, newData, lastItemFetched } = await fetchAccountVoteHistory(index);
       setLastHistoryItem(lastItemFetched);
       setLastHistoryItemDays(lastDate);
-      if (lastDate > days || newData.length == 0) {
+
+      if (newData.length == 0) {
         break;
       }
+
       newData = newData.reverse();
       index = newData.slice(-1)[0].num! + 1;
       index = lastItemFetched;
       data = makeUnique(data.concat(newData));
+
+      if (lastDate > days) {
+        break;
+      }
     }
 
     setDataTrail((trail) => ({
