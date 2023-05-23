@@ -43,7 +43,7 @@ export const DeckThreadsForm = ({
     PREFIX + "_local_draft",
     {}
   );
-  const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "_dtf_th", "leothreads");
+  const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "_dtf_th", "ecency.waves");
   const [text, setText] = useState("");
   const [image, setImage] = useState<string | null>(null);
   const [imageName, setImageName] = useState<string | null>(null);
@@ -121,7 +121,8 @@ export const DeckThreadsForm = ({
       size={size}
     >
       {!activeUser && text.length <= 255 && _t("decks.threads-form.login-and-publish")}
-      {text.length <= 255 &&
+      {activeUser &&
+        text.length <= 255 &&
         (loading ? _t("decks.threads-form.publishing") : _t("decks.threads-form.publish"))}
       {text.length > 255 && _t("decks.threads-form.create-regular-post")}
     </Button>
