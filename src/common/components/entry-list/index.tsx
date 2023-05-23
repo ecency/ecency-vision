@@ -174,7 +174,7 @@ export class EntryListContent extends Component<Props, State> {
           </>
         ) : (
           !loading &&
-          (isMyProfile ? (
+          (isMyProfile && !location.pathname.includes("trail") ? (
             <MessageNoData
               title={
                 filter == "feed"
@@ -211,8 +211,10 @@ export class EntryListContent extends Component<Props, State> {
           ) : (
             <MessageNoData
               title={_t("profile-info.no-posts-user")}
-              description={`${_t("g.nothing-found-in")} ${_t(`g.${filter}`)} ${
-                location.pathname.includes("trail") && _t(`g.in-past-few-days`)
+              description={`${_t("g.nothing-found-in")} ${
+                !location.pathname.includes("trail")
+                  ? _t(`g.${filter}`)
+                  : location.pathname.includes("trail") && _t(`g.past-few-days`)
               }.`}
               buttonText={isMyProfile ? _t("profile-info.create-posts") : ""}
               buttonTo="/submit"
