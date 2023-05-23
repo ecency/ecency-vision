@@ -425,6 +425,8 @@
   .modal-content {
     top: 0 !important;
     height: 100vh !important;
+    height: 100dvh !important;
+    overflow-y: auto;
   }
 
   .modal-dialog {

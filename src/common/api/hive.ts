@@ -12,7 +12,7 @@ import { vestsToRshares } from "../helper/vesting";
 import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
-import { dataLimit, getPost as getPostNew } from "./bridge";
+import { dataLimit } from "./bridge";
 import moment, { Moment } from "moment";
 
 export const client = new Client(SERVERS, {
@@ -638,3 +638,6 @@ export interface RcOperationStats {
 }
 
 export const getRcOperationStats = (): Promise<any> => client.call("rc_api", "get_rc_stats", {});
+
+export const getContentReplies = (author: string, permlink: string): Promise<Entry[] | null> =>
+  client.call("condenser_api", "get_content_replies", { author, permlink });

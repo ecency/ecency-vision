@@ -829,3 +829,10 @@
     }
   }
 }
+
+@mixin strict_size($width, $height) {
+  min-width: $width;
+  min-height: $height;
+  max-width: $width;
+  max-height: $height;
+}

@@ -5,7 +5,7 @@ import { UserAvatar } from "../../../user-avatar";
 import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
 import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
-import { ICONS } from "../../consts";
+import { ICONS, NOTIFICATION_CONTENT_TYPES } from "../../consts";
 import { _t } from "../../../../i18n";
 
 export const DeckAddColumnNotificationsSettings = ({ deckKey }: SettingsProps) => {
@@ -17,43 +17,6 @@ export const DeckAddColumnNotificationsSettings = ({ deckKey }: SettingsProps) =
   const [tag, setTag] = useState("");
   const [contentType, setContentType] = useState<string | null>(null);
   const [recent, setRecent] = useState<UsernameDataItem[]>([]);
-
-  const contentTypes = [
-    { title: _t("decks.columns.all"), type: "all" },
-    { title: _t("decks.columns.votes"), type: "rvotes" },
-    {
-      title: _t("decks.columns.mentions"),
-      type: "mentions"
-    },
-    {
-      title: _t("decks.columns.favourites"),
-      type: "nfavorites"
-    },
-    {
-      title: _t("decks.columns.bookmarks"),
-      type: "nbookmarks"
-    },
-    {
-      title: _t("decks.columns.follows"),
-      type: "follows"
-    },
-    {
-      title: _t("decks.columns.replies"),
-      type: "replies"
-    },
-    {
-      title: _t("decks.columns.reblogs"),
-      type: "reblogs"
-    },
-    {
-      title: _t("decks.columns.transfers"),
-      type: "transfers"
-    },
-    {
-      title: _t("decks.columns.delegations"),
-      type: "delegations"
-    }
-  ];
 
   return (
     <div className="deck-add-column-user-settings p-3">
@@ -77,7 +40,7 @@ export const DeckAddColumnNotificationsSettings = ({ deckKey }: SettingsProps) =
         <>
           <div className="subtitle py-3 mt-3">Filters</div>
           <div className="content-type-list">
-            {contentTypes.map(({ title, type }) => (
+            {NOTIFICATION_CONTENT_TYPES.map(({ title, type }) => (
               <div
                 className={"content-type-item " + (contentType === type ? "selected" : "")}
                 key={title}

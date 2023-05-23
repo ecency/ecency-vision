@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautif
 import { DeckGridContext } from "./deck-manager";
 import { DeckAddColumn, DeckUserColumn } from "./columns";
 import {
+  BitesDeckGridItem,
   CommunityDeckGridItem,
   ReloadableDeckGridItem,
   SearchDeckGridItem,
@@ -20,6 +21,7 @@ import usePrevious from "react-use/lib/usePrevious";
 import * as uuid from "uuid";
 import { useOldDeckMigration } from "./old-deck-migration";
 import { _t } from "../../i18n";
+import { DeckThreadsColumn } from "./columns/deck-threads-column";
 
 interface Props {
   history: History;
@@ -158,6 +160,16 @@ export const DeckGrid = ({ history }: Props) => {
                             <DeckSearchColumn
                               id={id}
                               settings={settings as SearchDeckGridItem["settings"]}
+                              draggable={provided.dragHandleProps}
+                              history={history}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {type === "th" ? (
+                            <DeckThreadsColumn
+                              id={id}
+                              settings={settings as BitesDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                               history={history}
                             />

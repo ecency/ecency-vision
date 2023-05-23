@@ -52,6 +52,11 @@ export const DeckFloatingManager = () => {
                   ) : (
                     <></>
                   )}
+                  {settings && "host" in settings && ["th"].includes(type) ? (
+                    <div className="text-capitalize">{settings.host}</div>
+                  ) : (
+                    <></>
+                  )}
                   {type === "ac" ? _t("decks.columns.new-column") : ""}
                   {type === "to" ? _t("decks.columns.topics") : ""}
                   {type === "tr" ? _t("decks.columns.trending") : ""}

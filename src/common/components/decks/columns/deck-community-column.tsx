@@ -5,10 +5,12 @@ import { CommunityDeckGridItem } from "../types";
 import { getPostsRanked } from "../../../api/bridge";
 import { Entry } from "../../../store/entries/types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { communityTitles } from "../consts";
+import { COMMUNITY_CONTENT_TYPES, communityTitles } from "../consts";
 import { DeckGridContext } from "../deck-manager";
 import { DeckPostViewer } from "./content-viewer";
 import { History } from "history";
+import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
+import usePrevious from "react-use/lib/usePrevious";
 
 interface Props {
   id: string;
@@ -25,14 +27,26 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
+  const prevSettings = usePrevious(settings);
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (prevSettings && prevSettings?.contentType !== settings.contentType) {
+      setData([]);
+      fetchData();
+    }
+  }, [settings.contentType]);
+
   const fetchData = async () => {
     if (data.length) {
       setIsReloading(true);
+    }
+
+    if (isReloading) {
+      return;
     }
 
     try {
@@ -53,7 +67,14 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
         subtitle: communityTitles[settings.contentType] ?? "User",
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
-        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
+        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
+        additionalSettings: (
+          <DeckContentTypeColumnSettings
+            contentTypes={COMMUNITY_CONTENT_TYPES}
+            settings={settings}
+            id={id}
+          />
+        )
       }}
       data={data}
       isReloading={isReloading}

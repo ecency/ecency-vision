@@ -9,6 +9,10 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 import { History } from "history";
 import { ShortListItemSkeleton } from "./deck-items";
 import { DeckGridContext } from "../deck-manager";
+import usePrevious from "react-use/lib/usePrevious";
+import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
+import { WALLET_CONTENT_TYPES } from "../consts";
+import { _t } from "../../../i18n";
 
 interface Props {
   id: string;
@@ -26,10 +30,18 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
   const [isReloading, setIsReloading] = useState(false);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
+  const prevSettings = usePrevious(settings);
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (prevSettings && prevSettings?.contentType !== settings.contentType) {
+      setData([]);
+      fetchData();
+    }
+  }, [settings.contentType]);
 
   const fetchData = async () => {
     if (data.length) {
@@ -54,7 +66,15 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
         subtitle: "Wallet",
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
-        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
+        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
+        additionalSettings: (
+          <DeckContentTypeColumnSettings
+            title={_t("decks.columns.filters")}
+            contentTypes={WALLET_CONTENT_TYPES}
+            settings={settings}
+            id={id}
+          />
+        )
       }}
       data={data}
       isReloading={isReloading}

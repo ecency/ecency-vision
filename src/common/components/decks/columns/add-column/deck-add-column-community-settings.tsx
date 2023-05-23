@@ -9,6 +9,7 @@ import { ICONS } from "../../consts";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../../util/local-storage";
 import { _t } from "../../../../i18n";
+import { COMMUNITY_CONTENT_TYPES } from "../../consts";
 
 export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -19,23 +20,6 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const [tag, setTag] = useState("");
   const [contentType, setContentType] = useState<string | null>(null);
   const [recent, setRecent] = useLocalStorage<UsernameDataItem[]>(PREFIX + "_dcr", []);
-
-  const contentTypes = [
-    { title: _t("decks.columns.trending"), type: "trending" },
-    { title: _t("decks.columns.hot"), type: "hot" },
-    {
-      title: _t("decks.columns.new"),
-      type: "created"
-    },
-    {
-      title: _t("decks.columns.payouts"),
-      type: "payout"
-    },
-    {
-      title: _t("decks.columns.muted"),
-      type: "muted"
-    }
-  ];
 
   const updateRecent = (name?: string, tag?: string) => {};
 
@@ -66,7 +50,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
         <>
           <div className="subtitle py-3 mt-3">Content type</div>
           <div className="content-type-list">
-            {contentTypes.map(({ title, type }) => (
+            {COMMUNITY_CONTENT_TYPES.map(({ title, type }) => (
               <div
                 className={"content-type-item " + (contentType === type ? "selected" : "")}
                 key={title}

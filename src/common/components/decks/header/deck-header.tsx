@@ -22,6 +22,7 @@ export interface Props {
   primary?: boolean;
   prefix?: JSX.Element;
   draggable?: DraggableProvidedDragHandleProps;
+  additionalSettings?: JSX.Element;
 }
 
 export interface WithDeletionProps extends Props {
@@ -99,6 +100,8 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
               title={props.title}
               username={props.account}
             />
+            {"additionalSettings" in props && props.additionalSettings}
+
             <div className="d-flex deck-actions justify-content-end p-2">
               {"updateIntervalMs" in props ? (
                 <DeckHeaderReloading

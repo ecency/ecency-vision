@@ -13,6 +13,7 @@ import {
   communityIconSvg,
   notificationsIconSvg,
   searchIconSvg,
+  threadSvg,
   topicsIconSvg,
   trendingIconSvg,
   userIconSvg,
@@ -32,6 +33,8 @@ interface AvailableColumn {
   description: string;
 }
 
+const CurrentThreadsDescriptionIndex = Math.floor(Math.random() * 3) + 1;
+
 export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
   const { activeUser } = useMappedStore();
   const { add, deleteColumn } = useContext(DeckGridContext);
@@ -48,6 +51,12 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       title: _t("decks.columns.community"),
       icon: communityIconSvg,
       description: _t("decks.columns.community-description")
+    },
+    {
+      type: "th",
+      title: _t("decks.columns.threads"),
+      icon: threadSvg,
+      description: _t(`decks.columns.threads-description${CurrentThreadsDescriptionIndex}`)
     },
     {
       type: "w",

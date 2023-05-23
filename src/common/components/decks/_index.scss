@@ -2,7 +2,7 @@
 
 .decks {
   display: grid;
-  grid-template-columns: 72px 1fr min-content;
+  grid-template-columns: 72px 0 1fr;
   align-items: center;
   transition: 0.3s;
 
@@ -17,7 +17,15 @@
   }
 
   &.expanded {
-    grid-template-columns: 280px 1fr min-content;
+    grid-template-columns: 280px 0 1fr;
+  }
+
+  &.thread-form-showed {
+    grid-template-columns: 72px 400px 1fr;
+  }
+
+  &.expanded.thread-form-showed {
+    grid-template-columns: 280px 400px 1fr;
   }
 
   .decks-container {
@@ -30,6 +38,7 @@
 
   .decks-container, *[data-rbd-droppable-id] {
     height: 100vh;
+    height: 100dvh;
   }
 
   *[data-rbd-draggable-id]:first-child .deck {
@@ -74,5 +83,69 @@
 
   .deck-smooth-scroller {
     @include transition(0.5s);
+  }
+
+  .dropdown {
+    position: relative;
+
+    .dropdown-menu {
+      z-index: $zindex-dropdown;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid $border-color;
+      min-width: 200px;
+      //backdrop-filter: blur(1rem);
+      //box-shadow: 0 6px 20px -10px rgba(0, 0, 0, 0.25);
+
+      @include padding-top(0.5rem);
+      @include padding-bottom(0.5rem);
+      @include border-radius(0.25rem);
+
+      @include themify(day) {
+        background-color: $white;
+      }
+
+      @include themify(night) {
+        background-color: $dark;
+      }
+
+      .dropdown-item {
+        width: 80%;
+
+        @include margin-top(0.25rem);
+        @include margin-bottom(0.25rem);
+        @include padding-left(1rem);
+        @include padding-right(1rem);
+        @include padding-top(0.5rem);
+        @include padding-bottom(0.5rem);
+
+        @include themify(day) {
+          color: $gray-800;
+        }
+
+        @include themify(night) {
+          color: $gray-300;
+        }
+
+        &:hover {
+          color: $primary;
+
+          @include border-top-right-radius(1rem);
+          @include border-bottom-right-radius(1rem);
+
+          @include themify(day) {
+            background-color: $duck-egg-blue;
+          }
+
+          @include themify(night) {
+            background-color: $gray-900;
+          }
+        }
+      }
+    }
+
+    .dropdown-toggle {
+      padding: 0;
+    }
   }
 }

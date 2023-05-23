@@ -59,8 +59,6 @@ interface State {
   loadingMutedUsers: boolean;
 }
 
-const TRAIL = "trail";
-
 export class EntryListContent extends Component<Props, State> {
   state = {
     mutedUsers: [] as string[],
@@ -178,7 +176,7 @@ export class EntryListContent extends Component<Props, State> {
           </>
         ) : (
           !loading &&
-          (isMyProfile && section !== TRAIL ? (
+          (isMyProfile && section !== "trail" ? (
             <MessageNoData
               title={
                 filter == "feed"
@@ -216,7 +214,9 @@ export class EntryListContent extends Component<Props, State> {
             <MessageNoData
               title={_t("profile-info.no-posts-user")}
               description={`${_t("g.nothing-found-in")} ${
-                section === TRAIL ? _t(`g.trail`) + " " + _t(`g.past-few-days`) : _t(`g.${filter}`)
+                section === "trail"
+                  ? _t(`g.trail`) + " " + _t(`g.past-few-days`)
+                  : _t(`g.${filter}`)
               }.`}
               buttonText={isMyProfile ? _t("profile-info.create-posts") : ""}
               buttonTo="/submit"

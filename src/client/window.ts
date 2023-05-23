@@ -5,7 +5,7 @@ export interface AppWindow extends Window {
   nws?: WebSocket;
   comTag?: {};
   hive_keychain?: KeyChainImpl;
-  twttr?: {
+  twttr: {
     widgets?: {
       load: () => void;
     };
