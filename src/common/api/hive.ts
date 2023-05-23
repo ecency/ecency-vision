@@ -12,9 +12,8 @@ import { vestsToRshares } from "../helper/vesting";
 import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
-import { dataLimit, getPost as getPostNew } from "./bridge";
+import { dataLimit } from "./bridge";
 import moment, { Moment } from "moment";
-import { Entry } from "../store/entries/types";
 
 export const client = new Client(SERVERS, {
   timeout: 3000,
