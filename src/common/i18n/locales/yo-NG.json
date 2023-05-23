@@ -46,6 +46,7 @@
     "trending": "feed",
     "created": "feed",
     "muted": "muted",
+    "trail": "trail",
     "controversial": "controversial",
     "rising": "rising",
     "found": "found",
@@ -69,7 +70,8 @@
     "stop": "Dúró",
     "settings": "Settings",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -745,6 +747,7 @@
     "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Posts",
+    "section-trail": "Trail",
     "section-comments": "Comments",
     "section-replies": "Replies",
     "section-communities": "Communities",
