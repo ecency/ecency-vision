@@ -15,7 +15,7 @@ export const DeckToolbarCreate = ({ isExpanded }: Props) => {
     <div className="deck-toolbar-create">
       <Button onClick={() => setShow(!show)}>
         {pencilOutlineSvg}
-        {isExpanded ? _t("decks.bite") : ""}
+        {isExpanded ? _t("decks.wave") : ""}
       </Button>
     </div>
   );
