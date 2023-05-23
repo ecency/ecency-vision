@@ -456,7 +456,8 @@
       "show-all-replies": "Mostrar todas las respuestas",
       "see-full-thread": "Ver hilo completo",
       "no-currency-data": "Sin datos",
-      "hide-replies": "Ocultar respuestas"
+      "hide-replies": "Ocultar respuestas",
+      "filters": "Filters"
     },
     "threads-form": {
       "publish": "¡Publicarlo!",
