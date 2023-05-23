@@ -46,6 +46,7 @@
     "trending": "फ़ीड",
     "created": "फ़ीड",
     "muted": "म्यूट किए गए",
+    "trail": "trail",
     "controversial": "विवादास्पद",
     "rising": "उभरता हुवा",
     "found": "मिला",
@@ -69,7 +70,8 @@
     "stop": "रुको",
     "settings": "Settings",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "क्या आपको यकीन है?",
@@ -745,6 +747,7 @@
     "follows-you": "आपको फॉलो करता है",
     "section-blog": "ब्लॉग",
     "section-posts": "पोस्ट",
+    "section-trail": "Trail",
     "section-comments": "टिप्पणियाँ",
     "section-replies": "जवाब",
     "section-communities": "समुदाय",
