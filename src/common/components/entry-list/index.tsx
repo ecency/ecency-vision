@@ -215,7 +215,7 @@ export class EntryListContent extends Component<Props, State> {
               title={_t("profile-info.no-posts-user")}
               description={`${_t("g.nothing-found-in")} ${
                 section === "trail"
-                  ? _t(`g.trail`) + " " + _t(`g.in-past-few-days`)
+                  ? _t(`g.trail`) + " " + _t(`g.past-few-days`)
                   : _t(`g.${filter}`)
               }.`}
               buttonText={isMyProfile ? _t("profile-info.create-posts") : ""}
