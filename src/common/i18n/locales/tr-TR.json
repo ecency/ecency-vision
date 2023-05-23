@@ -46,6 +46,7 @@
     "trending": "akış",
     "created": "akış",
     "muted": "engellenen",
+    "trail": "trail",
     "controversial": "tartışmalı",
     "rising": "Yükselen",
     "found": "bulundu",
@@ -69,7 +70,8 @@
     "stop": "Durdur",
     "settings": "Ayarlar",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Emin misiniz?",
@@ -745,6 +747,7 @@
     "follows-you": "Sizi takip ediyor",
     "section-blog": "Blog",
     "section-posts": "Yazılar",
+    "section-trail": "Trail",
     "section-comments": "Yorumlar",
     "section-replies": "Yanıtlar",
     "section-communities": "Topluluklar",
