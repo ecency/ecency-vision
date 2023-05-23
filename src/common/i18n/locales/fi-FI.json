@@ -46,6 +46,7 @@
     "trending": "syöte",
     "created": "syöte",
     "muted": "mykistetty",
+    "trail": "trail",
     "controversial": "kiistanalaiset",
     "rising": "nousussa",
     "found": "löytynyt",
@@ -69,7 +70,8 @@
     "stop": "Lopeta",
     "settings": "Asetukset",
     "confirm": "Vahvista",
-    "username": "Käyttäjänimi"
+    "username": "Käyttäjänimi",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -745,6 +747,7 @@
     "follows-you": "Seuraa sinua",
     "section-blog": "Blogi",
     "section-posts": "Julkaisut",
+    "section-trail": "Trail",
     "section-comments": "Kommentit",
     "section-replies": "Vastaukset",
     "section-communities": "Yhteisöt",
