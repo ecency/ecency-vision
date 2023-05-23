@@ -456,7 +456,8 @@
       "show-all-replies": "Show all replies",
       "see-full-thread": "See full thread",
       "no-currency-data": "No data",
-      "hide-replies": "Hide replies"
+      "hide-replies": "Hide replies",
+      "filters": "Filters"
     },
     "threads-form": {
       "publish": "Publish it!",
