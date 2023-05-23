@@ -46,6 +46,7 @@
     "trending": "ροή",
     "created": "ροή",
     "muted": "σίγαση",
+    "trail": "trail",
     "controversial": "αμφιλεγόμενο",
     "rising": "άνοδος",
     "found": "βρέθηκε",
@@ -69,7 +70,8 @@
     "stop": "Stop",
     "settings": "Settings",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Είστε σίγουρος;",
@@ -745,6 +747,7 @@
     "follows-you": "Σας ακολουθεί",
     "section-blog": "Ιστολόγιο",
     "section-posts": "Δημοσιεύσεις",
+    "section-trail": "Trail",
     "section-comments": "Σχόλια",
     "section-replies": "Απαντήσεις",
     "section-communities": "Κοινότητες",
