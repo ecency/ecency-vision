@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Entry, EntryGroup } from "../../store/entries/types";
 import { getAccountHistory } from "../../api/hive";
 import useAsyncEffect from "use-async-effect";
@@ -11,7 +11,6 @@ import LinearProgress from "../linear-progress";
 import { utils } from "@hiveio/dhive";
 import { getPost } from "../../api/bridge";
 import moment from "moment";
-import { last } from "lodash";
 interface Props extends PageProps {
   username: string;
   section: string;
@@ -59,10 +58,10 @@ const CurationTrail = (props: Props) => {
             filtered.weight != 0 &&
             getDays(filtered.timestamp) <= days
         );
-      const p = Promise.all(
+      const p: Promise<Entry[]> = Promise.all(
         result.map((obj: any) => getPost(obj.author, obj.permlink, username, obj.num))
       );
-      var entries: Entry[] = await p;
+      const entries: Entry[] = await p;
       return {
         lastDate: getDays(data[0][1].timestamp),
         lastItemFetched: data[0][0],
@@ -86,10 +85,9 @@ const CurationTrail = (props: Props) => {
       let { lastDate, newData, lastItemFetched } = await fetchAccountVoteHistory(index);
       setLastHistoryItem(lastItemFetched);
       setLastHistoryItemDays(lastDate);
-      if (lastDate > days || newData.length === 0) {
+      if (lastDate > days || newData.length == 0) {
         break;
       }
-      console.log(newData);
       newData = newData.reverse();
       index = newData.slice(-1)[0].num! + 1;
       index = lastItemFetched;

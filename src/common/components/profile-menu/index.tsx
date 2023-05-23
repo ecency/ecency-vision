@@ -69,10 +69,7 @@ export class ProfileMenu extends Component<Props> {
       items: [...menuItems, ...kebabMenuItems.filter((item) => item.selected)]
     };
 
-    const dropDownMenuItems: MenuItem[] = [
-      ...menuItems,
-      ...kebabMenuItems.filter((item) => item.id != "communities")
-    ];
+    const dropDownMenuItems: MenuItem[] = [...menuItems, ...kebabMenuItems];
     const dropDownMenuConfig: {
       history: History;
       label: string;
@@ -125,14 +122,6 @@ export class ProfileMenu extends Component<Props> {
             </div>
           </>
 
-          <Link
-            className={_c(
-              `profile-menu-item d-lg-none ${section === "communities" ? "selected-item" : ""}`
-            )}
-            to={`/@${username}/communities`}
-          >
-            {_t(`profile.section-communities`)}
-          </Link>
           <Link
             className={_c(
               `profile-menu-item ${

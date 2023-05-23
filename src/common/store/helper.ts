@@ -10,7 +10,7 @@ import {
   updateAct as updateActiveUserAct
 } from "./active-user";
 
-import { getAccount, getDynamicProps, getAccountVotesTrail } from "../api/hive";
+import { getAccount, getDynamicProps } from "../api/hive";
 import { getPoints, usrActivity, getPromotedEntries } from "../api/private-api";
 import { reloadAct as reloadUsers } from "./users";
 import { fetchedAct as loadDynamicProps } from "./dynamic-props";
