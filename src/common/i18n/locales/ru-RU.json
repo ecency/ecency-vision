@@ -46,6 +46,7 @@
     "trending": "лента",
     "created": "лента",
     "muted": "заблокировано",
+    "trail": "trail",
     "controversial": "обсуждаемое",
     "rising": "популярное",
     "found": "найдено",
@@ -69,7 +70,8 @@
     "stop": "Остановить",
     "settings": "Настройки",
     "confirm": "Подтвердить",
-    "username": "Имя пользователя"
+    "username": "Имя пользователя",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -745,6 +747,7 @@
     "follows-you": "Подписан(а) на вас",
     "section-blog": "Блог",
     "section-posts": "Посты",
+    "section-trail": "Trail",
     "section-comments": "Комментарии",
     "section-replies": "Ответы",
     "section-communities": "Сообщества",
