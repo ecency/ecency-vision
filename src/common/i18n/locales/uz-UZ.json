@@ -46,6 +46,7 @@
     "trending": "ulashish",
     "created": "ulashish",
     "muted": "o'chirilgan",
+    "trail": "trail",
     "controversial": "bahsli",
     "rising": "ko'tarilayotgan",
     "found": "topildi",
@@ -69,7 +70,8 @@
     "stop": "To'xtash",
     "settings": "Settings",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Aminmisiz?",
@@ -745,6 +747,7 @@
     "follows-you": "Sizni kuzatayabdi",
     "section-blog": "Blog",
     "section-posts": "Postlar",
+    "section-trail": "Trail",
     "section-comments": "Izohlar",
     "section-replies": "Javoblar",
     "section-communities": "Guruhlar",
