@@ -46,6 +46,7 @@
     "trending": "feed",
     "created": "feed",
     "muted": "muted",
+    "trail": "trail",
     "controversial": "controversial",
     "rising": "rising",
     "found": "found",
@@ -69,7 +70,8 @@
     "stop": "Stop",
     "settings": "Settings",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Da li ste sigurni?",
@@ -745,6 +747,7 @@
     "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Objave",
+    "section-trail": "Trail",
     "section-comments": "Komentari",
     "section-replies": "Odgovori",
     "section-communities": "Zajednice",
