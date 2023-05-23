@@ -46,6 +46,7 @@
     "trending": "sklaidos kanalas",
     "created": "sklaidos kanalas",
     "muted": "užblokuotas",
+    "trail": "trail",
     "controversial": "prieštaringas",
     "rising": "kyla",
     "found": "rasta",
@@ -69,7 +70,8 @@
     "stop": "Stop",
     "settings": "Settings",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Ar esate įsitikinę?",
@@ -745,6 +747,7 @@
     "follows-you": "Follows you",
     "section-blog": "Blog'as",
     "section-posts": "Įrašai",
+    "section-trail": "Trail",
     "section-comments": "Komentarai",
     "section-replies": "Atsakymai",
     "section-communities": "Bendruomenės",
