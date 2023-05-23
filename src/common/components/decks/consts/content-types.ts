@@ -50,3 +50,40 @@ export const WALLET_CONTENT_TYPES = [
     type: "rewards"
   }
 ];
+
+export const NOTIFICATION_CONTENT_TYPES = [
+  { title: _t("decks.columns.all"), type: "all" },
+  { title: _t("decks.columns.votes"), type: "rvotes" },
+  {
+    title: _t("decks.columns.mentions"),
+    type: "mentions"
+  },
+  {
+    title: _t("decks.columns.favourites"),
+    type: "nfavorites"
+  },
+  {
+    title: _t("decks.columns.bookmarks"),
+    type: "nbookmarks"
+  },
+  {
+    title: _t("decks.columns.follows"),
+    type: "follows"
+  },
+  {
+    title: _t("decks.columns.replies"),
+    type: "replies"
+  },
+  {
+    title: _t("decks.columns.reblogs"),
+    type: "reblogs"
+  },
+  {
+    title: _t("decks.columns.transfers"),
+    type: "transfers"
+  },
+  {
+    title: _t("decks.columns.delegations"),
+    type: "delegations"
+  }
+];
