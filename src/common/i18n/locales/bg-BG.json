@@ -46,6 +46,7 @@
     "trending": "feed",
     "created": "feed",
     "muted": "заглушен",
+    "trail": "trail",
     "controversial": "controversial",
     "rising": "rising",
     "found": "намерено",
@@ -69,7 +70,8 @@
     "stop": "Stop",
     "settings": "Settings",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Сигурни ли сте?",
@@ -745,6 +747,7 @@
     "follows-you": "Follows you",
     "section-blog": "Блог",
     "section-posts": "Публикации",
+    "section-trail": "Trail",
     "section-comments": "Коментари",
     "section-replies": "Отговори",
     "section-communities": "Общности",
