@@ -62,7 +62,8 @@ const GLOBAL_FILTERS = [
   "feed",
   "referrals",
   "followers",
-  "following"
+  "following",
+  "trail"
 ];
 
 interface Props {

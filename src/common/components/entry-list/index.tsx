@@ -100,9 +100,10 @@ export class EntryListContent extends Component<Props, State> {
   }
 
   render() {
-    const { entries, promotedEntries, global, activeUser, loading, location } = this.props;
+    const { entries, promotedEntries, global, activeUser, loading, location, match } = this.props;
     const { filter, tag } = global;
     const { mutedUsers, loadingMutedUsers } = this.state;
+    const section = match?.params.section;
     let dataToRender = entries;
     if (location.pathname.includes("/promoted")) {
       dataToRender = promotedEntries;
@@ -114,6 +115,7 @@ export class EntryListContent extends Component<Props, State> {
     }
     const isMyProfile =
       activeUser && tag.includes("@") && activeUser.username === tag.replace("@", "");
+
     return (
       <>
         {loadingMutedUsers ? (
@@ -174,7 +176,7 @@ export class EntryListContent extends Component<Props, State> {
           </>
         ) : (
           !loading &&
-          (isMyProfile ? (
+          (isMyProfile && section !== "trail" ? (
             <MessageNoData
               title={
                 filter == "feed"
@@ -211,7 +213,11 @@ export class EntryListContent extends Component<Props, State> {
           ) : (
             <MessageNoData
               title={_t("profile-info.no-posts-user")}
-              description={`${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}.`}
+              description={`${_t("g.nothing-found-in")} ${
+                section === "trail"
+                  ? _t(`g.trail`) + " " + _t(`g.in-past-few-days`)
+                  : _t(`g.${filter}`)
+              }.`}
               buttonText={isMyProfile ? _t("profile-info.create-posts") : ""}
               buttonTo="/submit"
               global={global}

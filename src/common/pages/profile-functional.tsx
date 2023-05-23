@@ -36,6 +36,8 @@ import { PasswordUpdate } from "../components/password-update";
 import ManageAuthorities from "../components/manage-authority";
 import AccountRecovery from "../components/recovery-account";
 
+import CurationTrail from "../components/curation-trail";
+
 import { getAccountFull } from "../api/hive";
 
 import defaults from "../constants/defaults.json";
@@ -101,11 +103,11 @@ export const Profile = (props: Props) => {
     await ensureAccount();
 
     const { username, section } = match.params;
+
     if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
       // fetch posts
       fetchEntries(global.filter, global.tag, false);
     }
-
     // fetch points
     fetchPoints(username);
 
@@ -141,6 +143,7 @@ export const Profile = (props: Props) => {
   useAsyncEffect(
     async (_) => {
       const { global, fetchEntries, history } = props;
+
       const nextUsername = props.match.params.username.replace("@", "");
       const nextSection = props.match.params.section;
       const nextAccount = props.accounts.find((x) => x.name === nextUsername);
@@ -251,7 +254,7 @@ export const Profile = (props: Props) => {
     }
   };
 
-  const bottomReached = () => {
+  const bottomReached = async () => {
     const { global, entries, fetchEntries } = props;
     const { filter, tag } = global;
     const groupKey = makeGroupKey(filter, tag);
@@ -350,7 +353,6 @@ export const Profile = (props: Props) => {
       <NavBar history={props.history} />
     );
   };
-
   const getMetaProps = () => {
     const username = props.match.params.username.replace("@", "");
     const account = props.accounts.find((x) => x.name === username);
@@ -419,7 +421,6 @@ export const Profile = (props: Props) => {
     setPinnedEntry(null);
     setPinnedEntry(entry);
   };
-
   return (
     <>
       <Meta {...getMetaProps()} />
@@ -567,10 +568,37 @@ export const Profile = (props: Props) => {
                   }
                 }
 
-                if (data !== undefined) {
-                  let entryList = data?.entries;
+                if (section === "trail") {
+                  return (
+                    <>
+                      <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
+                        <div
+                          className={_c(
+                            `entry-list-body ${
+                              props.global.listStyle === ListStyle.grid ? "grid-view" : ""
+                            }`
+                          )}
+                        >
+                          <CurationTrail
+                            {...{
+                              ...props,
+                              account,
+                              pinEntry,
+                              username,
+                              section
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </>
+                  );
+                }
+
+                if (data !== undefined && section) {
+                  let entryList;
+                  entryList = data?.entries;
                   entryList = entryList.filter(
-                    (item) => item.permlink !== (account as FullAccount)?.profile?.pinned
+                    (item: Entry) => item.permlink !== (account as FullAccount)?.profile?.pinned
                   );
                   if (pinnedEntry) {
                     entryList.unshift(pinnedEntry);

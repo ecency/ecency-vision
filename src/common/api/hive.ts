@@ -1,17 +1,18 @@
-import { Client, RCAPI } from "@hiveio/dhive";
+import { Client, RCAPI, utils } from "@hiveio/dhive";
 
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
 import { TrendingTag } from "../store/trending-tags/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { FullAccount, AccountProfile, AccountFollowStats } from "../store/accounts/types";
+import { Entry } from "../store/entries/types";
 
 import parseAsset from "../helper/parse-asset";
 import { vestsToRshares } from "../helper/vesting";
 import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
-import { dataLimit } from "./bridge";
+import { dataLimit, getPost as getPostNew } from "./bridge";
 import moment, { Moment } from "moment";
 import { Entry } from "../store/entries/types";
 
@@ -587,9 +588,12 @@ export const getSavingsWithdrawFrom = (account: string): Promise<SavingsWithdraw
 export interface BlogEntry {
   blog: string;
   entry_id: number;
+  post_id?: number;
+  num?: number;
   author: string;
   permlink: string;
   reblogged_on: string;
+  created?: string;
 }
 
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
