@@ -46,6 +46,7 @@
     "trending": "novidades",
     "created": "novidades",
     "muted": "silenciado",
+    "trail": "trail",
     "controversial": "controverso",
     "rising": "subindo",
     "found": "encontrado",
@@ -69,7 +70,8 @@
     "stop": "Parar",
     "settings": "Ajustes",
     "confirm": "Confirmar",
-    "username": "Usuário"
+    "username": "Usuário",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -745,6 +747,7 @@
     "follows-you": "Segue você",
     "section-blog": "Blog",
     "section-posts": "Publicações",
+    "section-trail": "Trail",
     "section-comments": "Comentários",
     "section-replies": "Respostas",
     "section-communities": "Comunidades",
