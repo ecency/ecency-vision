@@ -46,6 +46,7 @@
     "trending": "kanaal",
     "created": "kanaal",
     "muted": "negeren",
+    "trail": "trail",
     "controversial": "Controversieel",
     "rising": "stijgend",
     "found": "gevonden",
@@ -69,7 +70,8 @@
     "stop": "Stop",
     "settings": "Settings",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Weet je het zeker?",
@@ -745,6 +747,7 @@
     "follows-you": "Volgt jou",
     "section-blog": "Blog",
     "section-posts": "Artikelen",
+    "section-trail": "Trail",
     "section-comments": "Reacties",
     "section-replies": "Antwoorden",
     "section-communities": "Gemeenschappen",
