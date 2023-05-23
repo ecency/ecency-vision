@@ -29,3 +29,24 @@ export const USER_CONTENT_TYPES = [
     type: "replies"
   }
 ];
+
+export const WALLET_CONTENT_TYPES = [
+  { title: _t("decks.columns.all-history"), type: "all" },
+  { title: _t("decks.columns.transfers"), type: "transfers" },
+  {
+    title: _t("decks.columns.market-orders"),
+    type: "market-orders"
+  },
+  {
+    title: _t("decks.columns.interests"),
+    type: "interests"
+  },
+  {
+    title: _t("decks.columns.stake-operations"),
+    type: "stake-operations"
+  },
+  {
+    title: _t("decks.columns.rewards"),
+    type: "rewards"
+  }
+];

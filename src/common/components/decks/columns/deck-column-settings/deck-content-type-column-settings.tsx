@@ -7,11 +7,17 @@ import { DeckGridContext } from "../../deck-manager";
 
 interface Props {
   id: string;
+  title?: string;
   settings: UserDeckGridItem["settings"];
   contentTypes: any[];
 }
 
-export const DeckContentTypeColumnSettings = ({ id, settings, contentTypes }: Props) => {
+export const DeckContentTypeColumnSettings = ({
+  id,
+  title = _t("decks.content-type"),
+  settings,
+  contentTypes
+}: Props) => {
   const { updateColumnSpecificSettings } = useContext(DeckGridContext);
 
   const onSelectChange = (event: ChangeEvent<any>) => {
@@ -20,14 +26,13 @@ export const DeckContentTypeColumnSettings = ({ id, settings, contentTypes }: Pr
   };
 
   return (
-    <DeckHeaderSettingsItem title={_t("decks.content-type")} hasBorderBottom={false}>
+    <DeckHeaderSettingsItem title={title} hasBorderBottom={false}>
       <div className="d-flex align-items-center w-100 pb-2">
-        <Form.Text className="label mr-3">{_t("decks.content-type")}</Form.Text>
+        <Form.Text className="label mr-3">{title}</Form.Text>
         <div className="w-100">
           <Form.Control
             as={"select"}
             size="sm"
-            placeholder={_t("decks.update-interval-placeholder")}
             value={settings.contentType}
             onChange={onSelectChange}
           >
