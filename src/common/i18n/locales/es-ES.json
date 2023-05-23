@@ -46,7 +46,7 @@
     "trending": "inicio",
     "created": "inicio",
     "muted": "silenciado",
-    "trail": "trail",
+    "trail": "sendero",
     "controversial": "polémico",
     "rising": "en ascenso",
     "found": "encontrado",
@@ -71,7 +71,7 @@
     "settings": "Configuraciones",
     "confirm": "Confirmar",
     "username": "Nombre de Usuario",
-    "past-few-days": "the past few days"
+    "past-few-days": "los últimos días"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -398,7 +398,7 @@
     "save-locally": "Guardar localmente",
     "auth-required-title": "Se requiere autorización",
     "auth-required-desc": "Tienes que estar autorizado para ver las notificaciones",
-    "wave": "Wave",
+    "wave": "Ola",
     "columns": {
       "view-full-post": "Ver post completo",
       "user": "Usuario",
@@ -459,7 +459,7 @@
       "see-full-thread": "Ver hilo completo",
       "no-currency-data": "Sin datos",
       "hide-replies": "Ocultar respuestas",
-      "filters": "Filters"
+      "filters": "Filtros"
     },
     "threads-form": {
       "publish": "¡Publicarlo!",
@@ -747,7 +747,7 @@
     "follows-you": "Te sigue",
     "section-blog": "Escribe",
     "section-posts": "Publicaciones",
-    "section-trail": "Trail",
+    "section-trail": "Sendero",
     "section-comments": "Comentarios",
     "section-replies": "Respuestas",
     "section-communities": "Comunidades",
