@@ -176,7 +176,7 @@ export class EntryListContent extends Component<Props, State> {
           </>
         ) : (
           !loading &&
-          (isMyProfile && !location.pathname.includes("trail") ? (
+          (isMyProfile && section !== "trail" ? (
             <MessageNoData
               title={
                 filter == "feed"
