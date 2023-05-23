@@ -13,7 +13,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@ecency/render-helper": "^2.2.23",
+    "@ecency/render-helper": "^2.2.24",
     "@ecency/render-helper-amp": "^1.1.0",
     "@firebase/analytics": "^0.8.0",
     "@firebase/app": "^0.7.28",
