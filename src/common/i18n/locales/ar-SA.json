@@ -46,6 +46,7 @@
     "trending": "المستجدات",
     "created": "المستجدات",
     "muted": "مكتوم",
+    "trail": "trail",
     "controversial": "controversial",
     "rising": "rising",
     "found": "موجود",
@@ -69,7 +70,8 @@
     "stop": "Stop",
     "settings": "Settings",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "هل أنت متأكد؟",
@@ -745,6 +747,7 @@
     "follows-you": "يُتابِعُك",
     "section-blog": "المدونة",
     "section-posts": "المنشورات",
+    "section-trail": "Trail",
     "section-comments": "التعليقات",
     "section-replies": "الردود",
     "section-communities": "المجتمعات",
