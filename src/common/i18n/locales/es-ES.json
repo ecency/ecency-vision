@@ -46,6 +46,7 @@
     "trending": "inicio",
     "created": "inicio",
     "muted": "silenciado",
+    "trail": "trail",
     "controversial": "polémico",
     "rising": "en ascenso",
     "found": "encontrado",
@@ -69,7 +70,8 @@
     "stop": "Detener",
     "settings": "Configuraciones",
     "confirm": "Confirmar",
-    "username": "Nombre de Usuario"
+    "username": "Nombre de Usuario",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -745,6 +747,7 @@
     "follows-you": "Te sigue",
     "section-blog": "Escribe",
     "section-posts": "Publicaciones",
+    "section-trail": "Trail",
     "section-comments": "Comentarios",
     "section-replies": "Respuestas",
     "section-communities": "Comunidades",
