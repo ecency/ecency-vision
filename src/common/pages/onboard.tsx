@@ -24,7 +24,7 @@ const Onboard: React.FC = (props: PageProps | any) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [accountCredit, setAccountCredit] = useState<number>(0);
   const [createOption, setCreateOption] = useState<string>("");
-  const [hashInput, setHashInput] = useState<string>("");
+  const [fileIsDownloaded, setFileIsDownloaded] = useState<boolean>(false)
   
   useEffect(() => {
     initAccountKey();
@@ -96,23 +96,6 @@ const Onboard: React.FC = (props: PageProps | any) => {
     success(_t("onboard.copy-link"));
   };
 
-  const handleTextFileDownload = (data: any) => {
-    const textContent = JSON.stringify(data);
-  
-    const file = new File([textContent], 'data.txt', {
-      type: 'text/plain',
-    });
-    const downloadLink = URL.createObjectURL(file);
-  
-    const aTag = document.createElement('a');
-    aTag.href = downloadLink;
-    aTag.download = 'data.txt';
-    document.body.appendChild(aTag);  
-    aTag.click();  
-    document.body.removeChild(aTag);
-    URL.revokeObjectURL(downloadLink);
-  };
-
   const splitUrl = (url: string) => {
       return url.slice(0,50)
   }
@@ -123,6 +106,59 @@ const Onboard: React.FC = (props: PageProps | any) => {
   const showConfirmModal = () => {
     setShowModal(true);
   }
+
+  const downloadKeys = async () => {
+    setFileIsDownloaded(false)
+   const {username, keys} = accountInfo;
+      const element = document.createElement('a');
+      const keysToFile = `
+        ${_t("onboard.file-warning")}
+
+        ${_t("onboard.recomend")}
+        1. ${_t("onboard.recomend-print")}
+        2. ${_t("onboard.recomend-use")}
+        3. ${_t("onboard.recomend-save")}
+        4. ${_t("onboard.recomend-third-party")}
+
+        ${_t("onboard.recomend-account-info")}
+
+        Username: ${username}
+
+        Password: ${masterPassword}
+
+        Owner: ${keys.owner}
+
+        Active: ${keys.active}
+
+        Posting: ${keys.posting}
+
+        Memo: ${keys.memo}
+
+        ${_t("onboard.public-owner")} ${keys.ownerPubkey},
+
+        ${_t("onboard.public-active")} ${keys.activePubkey},
+
+        ${_t("onboard.public-posting")} ${keys.postingPubkey},
+
+        ${_t("onboard.public-memo")} ${keys.memoPubkey},
+
+
+        ${_t("onboard.keys-use")}
+
+        ${_t("onboard.owner")} ${_t("onboard.owner-use")}   
+        ${_t("onboard.active")} ${_t("onboard.active-use")}  
+        ${_t("onboard.posting")} ${_t("onboard.posting-use")} 
+        ${_t("onboard.memo")} ${_t("onboard.memo-use")}`;
+
+      const file = new Blob([keysToFile.replace(/\n/g, '\r\n')], {
+        type: 'text/plain',
+      });
+      element.href = URL.createObjectURL(file);
+      element.download = `${username}_hive_keys.txt`;
+      document.body.appendChild(element);
+      element.click();
+      setFileIsDownloaded(true)
+  };
 
   return (
     <>
@@ -151,53 +187,29 @@ const Onboard: React.FC = (props: PageProps | any) => {
                         >{regenerateSvg}</span>
                       </div>
                         <Button className="d-flex align-self-center justify-content-center w-50"
-                        onClick={() => handleTextFileDownload(accountInfo)}
+                        onClick={() => {
+                          downloadKeys()
+                        }}
                         >
                           {_t("onboard.download-keys")} {downloadSvg}
                         </Button>
-                <div className="d-flex align-items-center mt-3">
-                  <span className="">{splitUrl(onboardUrl + hash)}...</span>
-                  <span style={{width: "5%"}} className="onboard-svg"
-                  onClick={() => {
-                    copyToClipboard(onboardUrl + hash)
-                  }}
-                  >                    
-                    {copyContent}
-                  </span> 
-                </div>
-                    </div>
-                </div>
-            </div>
-        </div>}
 
-        {props.match.params.type === "creating" && props.activeUser && !props.match.params.hash && <div className="onboard-container">          
-            <div className="creating-confirm">
-              <h3 className="align-self-center">{_t("onboard.create-account")}</h3>
-              <Form className="d-flex flex-column">
-                <Form.Group> 
-                <Form.Control
-                      type="text"
-                      placeholder="Enter link"
-                      // value={hash}
-                      onChange={(e: { target: { value: any; }; }) => setHashInput(e.target.value)}
-                      autoFocus={true}
-                      required={true}
-                      // onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-username")}
-                      // isInvalid={usernameError !== ""}
-                      // onInput={handleOnInput}
-                      // onBlur={() => setUsernameTouched(true)}
-                    />                  
-                </Form.Group>
-                <Button className="align-self-center w-50"
-                as={Link}
-                to={`/onboard-friend/creating/${hashInput.substring(39)}`}
-                onClick={() => {
-                  decodeHash(hashInput.substring(39));
-                  // console.log(decodeHash(hashInput.substring(39)))
-                  // setStep("confirm-creating")
-                }}
-                >{_t("onboard.continue")}</Button>
-              </Form>
+                {/* {   */}
+                {fileIsDownloaded && <div className="d-flex flex-column align-self-center justify-content-center mt-3">
+                  <h4>Copy account link and send to a friend</h4>
+                  <div className="d-flex align-items-center">
+                    <span className="">{splitUrl(onboardUrl + hash)}...</span>
+                    <span style={{width: "5%"}} className="onboard-svg"
+                    onClick={() => {
+                      copyToClipboard(onboardUrl + hash)
+                    }}
+                    >                    
+                      {copyContent}
+                    </span> 
+                  </div>
+                </div>}
+                </div>
+                </div>
             </div>
         </div>}
 
