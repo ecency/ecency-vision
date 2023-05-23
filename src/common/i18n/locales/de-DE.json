@@ -46,6 +46,7 @@
     "trending": "Feed",
     "created": "Feed",
     "muted": "stumm",
+    "trail": "trail",
     "controversial": "umstritten",
     "rising": "aufsteigend",
     "found": "gefunden",
@@ -69,7 +70,8 @@
     "stop": "Stop",
     "settings": "Einstellungen",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Bist du sicher?",
@@ -745,6 +747,7 @@
     "follows-you": "Folgt dir",
     "section-blog": "Blog",
     "section-posts": "Beiträge",
+    "section-trail": "Trail",
     "section-comments": "Kommentare",
     "section-replies": "Antworten",
     "section-communities": "Communities",
