@@ -33,6 +33,8 @@ interface AvailableColumn {
   description: string;
 }
 
+const CurrentThreadsDescriptionIndex = Math.floor(Math.random() * 3) + 1;
+
 export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
   const { activeUser } = useMappedStore();
   const { add, deleteColumn } = useContext(DeckGridContext);
@@ -54,7 +56,7 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       type: "th",
       title: _t("decks.columns.threads"),
       icon: threadSvg,
-      description: _t(`decks.columns.threads-description${Math.floor(Math.random() * 3) + 1}`)
+      description: _t(`decks.columns.threads-description${CurrentThreadsDescriptionIndex}`)
     },
     {
       type: "w",
