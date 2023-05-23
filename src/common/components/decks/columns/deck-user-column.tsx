@@ -5,10 +5,12 @@ import { UserDeckGridItem } from "../types";
 import { getAccountPosts } from "../../../api/bridge";
 import { Entry } from "../../../store/entries/types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { userTitles } from "../consts";
+import { USER_CONTENT_TYPES, userTitles } from "../consts";
 import { DeckGridContext } from "../deck-manager";
 import { DeckPostViewer } from "./content-viewer";
 import { History } from "history";
+import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
+import usePrevious from "react-use/lib/usePrevious";
 
 interface Props {
   id: string;
@@ -25,10 +27,18 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
+  const prevSettings = usePrevious(settings);
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (prevSettings && prevSettings?.contentType !== settings.contentType) {
+      setData([]);
+      fetchData();
+    }
+  }, [settings.contentType]);
 
   const fetchData = async () => {
     if (data.length) {
@@ -53,7 +63,14 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
         subtitle: userTitles[settings.contentType] ?? "User",
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
-        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
+        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
+        additionalSettings: (
+          <DeckContentTypeColumnSettings
+            contentTypes={USER_CONTENT_TYPES}
+            settings={settings}
+            id={id}
+          />
+        )
       }}
       data={data}
       isExpanded={!!currentViewingEntry}

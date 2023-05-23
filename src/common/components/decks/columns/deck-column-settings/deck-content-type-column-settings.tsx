@@ -2,16 +2,16 @@ import React, { ChangeEvent, useContext } from "react";
 import { _t } from "../../../../i18n";
 import { Form } from "react-bootstrap";
 import { DeckHeaderSettingsItem } from "../../header/deck-header-settings-item";
-import { COMMUNITY_CONTENT_TYPES } from "../../consts";
-import { CommunityDeckGridItem } from "../../types";
+import { UserDeckGridItem } from "../../types";
 import { DeckGridContext } from "../../deck-manager";
 
 interface Props {
   id: string;
-  settings: CommunityDeckGridItem["settings"];
+  settings: UserDeckGridItem["settings"];
+  contentTypes: any[];
 }
 
-export const DeckCommunityColumnSettings = ({ id, settings }: Props) => {
+export const DeckContentTypeColumnSettings = ({ id, settings, contentTypes }: Props) => {
   const { updateColumnSpecificSettings } = useContext(DeckGridContext);
 
   const onSelectChange = (event: ChangeEvent<any>) => {
@@ -31,7 +31,7 @@ export const DeckCommunityColumnSettings = ({ id, settings }: Props) => {
             value={settings.contentType}
             onChange={onSelectChange}
           >
-            {COMMUNITY_CONTENT_TYPES.map(({ title, type }) => (
+            {contentTypes.map(({ title, type }) => (
               <option key={type} value={type}>
                 {title}
               </option>

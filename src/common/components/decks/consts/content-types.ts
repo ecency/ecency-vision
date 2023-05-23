@@ -16,3 +16,16 @@ export const COMMUNITY_CONTENT_TYPES = [
     type: "muted"
   }
 ];
+
+export const USER_CONTENT_TYPES = [
+  { title: _t("decks.columns.blogs"), type: "blog" },
+  { title: _t("decks.columns.posts"), type: "posts" },
+  {
+    title: _t("decks.columns.comments"),
+    type: "comments"
+  },
+  {
+    title: _t("decks.columns.replies"),
+    type: "replies"
+  }
+];

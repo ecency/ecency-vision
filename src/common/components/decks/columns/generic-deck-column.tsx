@@ -61,7 +61,11 @@ export const GenericDeckColumn = ({
   });
 
   useEffect(() => {
-    if (newDataComingCondition ? newDataComingCondition(data) : visibleData.length === 0) {
+    if (
+      newDataComingCondition
+        ? newDataComingCondition(data)
+        : visibleData.length === 0 || data.length === 0
+    ) {
       setVisibleData(data);
     } else {
       const newData = data.filter(({ id }) => !visibleData.some((vd) => vd.id === id));
@@ -120,7 +124,7 @@ export const GenericDeckColumn = ({
                     {({ measure, registerChild }) => {
                       return (
                         <div
-                          key={visibleData[index].id + key}
+                          key={(visibleData[index].id ?? visibleData[index].post_id) + key}
                           ref={registerChild as any}
                           className="virtual-list-item"
                           style={style}

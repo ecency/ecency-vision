@@ -5,11 +5,11 @@ import { CommunityDeckGridItem } from "../types";
 import { getPostsRanked } from "../../../api/bridge";
 import { Entry } from "../../../store/entries/types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { communityTitles } from "../consts";
+import { COMMUNITY_CONTENT_TYPES, communityTitles } from "../consts";
 import { DeckGridContext } from "../deck-manager";
 import { DeckPostViewer } from "./content-viewer";
 import { History } from "history";
-import { DeckCommunityColumnSettings } from "./deck-column-settings/deck-community-column-settings";
+import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
 import usePrevious from "react-use/lib/usePrevious";
 
 interface Props {
@@ -68,7 +68,13 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
-        additionalSettings: <DeckCommunityColumnSettings settings={settings} id={id} />
+        additionalSettings: (
+          <DeckContentTypeColumnSettings
+            contentTypes={COMMUNITY_CONTENT_TYPES}
+            settings={settings}
+            id={id}
+          />
+        )
       }}
       data={data}
       isReloading={isReloading}
