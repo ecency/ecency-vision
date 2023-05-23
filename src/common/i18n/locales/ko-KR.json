@@ -46,6 +46,7 @@
     "trending": "피드",
     "created": "피드",
     "muted": "뮤트",
+    "trail": "trail",
     "controversial": "controversial",
     "rising": "rising",
     "found": "찾았습니다.",
@@ -69,7 +70,8 @@
     "stop": "Stop",
     "settings": "Settings",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "정말 진행하시겠습니까?",
@@ -745,6 +747,7 @@
     "follows-you": "당신을 팔로우합니다",
     "section-blog": "블로그",
     "section-posts": "게시물",
+    "section-trail": "Trail",
     "section-comments": "댓글",
     "section-replies": "답글",
     "section-communities": "커뮤니티",
