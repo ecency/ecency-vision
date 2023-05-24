@@ -198,13 +198,6 @@ exports[`(1) Default Render 1`] = `
           >
             APR interest rate for HBD($) is 10%
           </div>
-          <div
-            className="description font-weight-bold mt-2"
-          >
-            Estimated interest since last payment in 5 days:
-             
-            0.000 $
-          </div>
         </div>
         <div
           className="balance-values"
@@ -699,13 +692,6 @@ exports[`(2) Render with converting HBD 1`] = `
           >
             APR interest rate for HBD($) is 10%
           </div>
-          <div
-            className="description font-weight-bold mt-2"
-          >
-            Estimated interest since last payment in 5 days:
-             
-            0.000 $
-          </div>
         </div>
         <div
           className="balance-values"
@@ -1198,13 +1184,6 @@ exports[`(3) usePrivate = false 1`] = `
             className="description font-weight-bold mt-2"
           >
             APR interest rate for HBD($) is 10%
-          </div>
-          <div
-            className="description font-weight-bold mt-2"
-          >
-            Estimated interest since last payment in 5 days:
-             
-            0.000 $
           </div>
         </div>
         <div

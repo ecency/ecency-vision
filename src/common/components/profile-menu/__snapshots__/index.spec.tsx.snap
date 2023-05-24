@@ -128,13 +128,6 @@ exports[`(2) With active user 1`] = `
       </a>
     </div>
     <a
-      className="profile-menu-item d-lg-none"
-      href="/@username/communities"
-      onClick={[Function]}
-    >
-      Communities
-    </a>
-    <a
       className="profile-menu-item"
       href="/@username/wallet"
       onClick={[Function]}

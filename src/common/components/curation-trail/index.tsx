@@ -7,6 +7,7 @@ import EntryListContent from "../entry-list";
 import EntryListLoadingItem from "../entry-list-loading-item";
 import { Account } from "../../store/accounts/types";
 import DetectBottom from "../detect-bottom";
+import ProfileCover from "../profile-cover";
 import LinearProgress from "../linear-progress";
 import { utils } from "@hiveio/dhive";
 import { getPost } from "../../api/bridge";
@@ -123,6 +124,7 @@ const CurationTrail = (props: Props) => {
 
   return (
     <>
+      {ProfileCover({ ...props, account: props.account })}
       {EntryListContent({
         ...props,
         entries: dataTrail.entries as Entry[],
