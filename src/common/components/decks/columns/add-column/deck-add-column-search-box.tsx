@@ -114,7 +114,7 @@ export const DeckAddColumnSearchBox = ({
           placeholder=""
           value={usernameInput}
           onChange={(e) => {
-            setUsernameInput(e.target.value);
+            setUsernameInput(e.target.value.toLowerCase());
           }}
         />
       </InputGroup>
