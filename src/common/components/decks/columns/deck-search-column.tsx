@@ -8,6 +8,12 @@ import { DeckGridContext } from "../deck-manager";
 import { DeckPostViewer } from "./content-viewer";
 import { Entry } from "../../../store/entries/types";
 import { History } from "history";
+import { DeckSearchColumnSettings } from "./deck-column-settings/deck-search-column-settings";
+import moment, { Moment } from "moment/moment";
+import { DateOpt } from "../consts";
+import { useSearchParam } from "react-use";
+import queryString from "query-string";
+import usePrevious from "react-use/lib/usePrevious";
 
 interface Props {
   id: string;
@@ -22,10 +28,40 @@ export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) =>
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
+  const prevSettings = usePrevious(settings);
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (JSON.stringify(prevSettings) !== JSON.stringify(settings)) {
+      setData([]);
+      fetchData();
+    }
+  }, [settings]);
+
+  const buildQuery = () => {
+    let q = settings.query;
+
+    if (settings.author) {
+      q += ` author:${settings.author}`;
+    }
+
+    if (settings.type) {
+      q += ` type:${settings.type}`;
+    }
+
+    if (settings.category) {
+      q += ` category:${settings.category}`;
+    }
+
+    if (settings.tags) {
+      q += ` tag:${settings.tags}`;
+    }
+
+    return q;
+  };
 
   const fetchData = async () => {
     if (data.length) {
@@ -33,7 +69,32 @@ export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) =>
     }
 
     try {
-      const response = await search(settings.query, "popularity", "1");
+      let sinceDate: undefined | Moment;
+
+      if (settings.date) {
+        switch (settings.date) {
+          case DateOpt.W:
+            sinceDate = moment().subtract("1", "week");
+            break;
+          case DateOpt.M:
+            sinceDate = moment().subtract("1", "month");
+            break;
+          case DateOpt.Y:
+            sinceDate = moment().subtract("1", "year");
+            break;
+          default:
+            sinceDate = undefined;
+        }
+      }
+
+      const since = sinceDate ? sinceDate.format("YYYY-MM-DDTHH:mm:ss") : undefined;
+
+      const response = await search(
+        buildQuery(),
+        settings.sort ? settings.sort : "popularity",
+        settings.hideLow ? "1" : "0",
+        since
+      );
       setData(response.results ?? []);
     } catch (e) {
     } finally {
@@ -50,7 +111,8 @@ export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) =>
         subtitle: "Search query",
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
-        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
+        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
+        additionalSettings: <DeckSearchColumnSettings id={id} settings={settings} />
       }}
       data={data}
       isExpanded={!!currentViewingEntry}

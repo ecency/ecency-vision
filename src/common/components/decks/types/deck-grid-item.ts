@@ -30,6 +30,13 @@ export interface SearchDeckGridItem extends ReloadableDeckGridItem {
   type: "s";
   settings: ReloadableDeckGridItem["settings"] & {
     query: string;
+    author?: string;
+    type?: string;
+    category?: string;
+    tags?: string;
+    date?: string;
+    sort?: string;
+    hideLow?: boolean;
   };
 }
 
