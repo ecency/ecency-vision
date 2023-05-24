@@ -10,9 +10,14 @@ import { _t } from "../../../i18n";
 interface Props {
   isExpanded: boolean;
   setShowPurchaseDialog: (v: boolean) => void;
+  setIsExpanded: (v: boolean) => void;
 }
 
-export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Props) => {
+export const DeckToolbarBaseActions = ({
+  setShowPurchaseDialog,
+  isExpanded,
+  setIsExpanded
+}: Props) => {
   const { activeUser, global, toggleUIProp, notifications, dynamicProps } = useMappedStore();
 
   return (
@@ -34,7 +39,7 @@ export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Pr
         </>
       )}
       {isExpanded || !activeUser ? (
-        <Dropdown>
+        <Dropdown onToggle={() => setIsExpanded(true)}>
           <DropdownToggle variant="link">{dotsMenuIconSvg}</DropdownToggle>
           <Dropdown.Menu alignRight={true}>
             <Dropdown.Item href="/">{_t("decks.back-to-feed")}</Dropdown.Item>

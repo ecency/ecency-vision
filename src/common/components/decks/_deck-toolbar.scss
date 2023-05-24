@@ -6,10 +6,11 @@
   align-items: center;
   justify-content: space-between;
   height: 100vh;
+  height: 100dvh;
   background-color: $white;
   position: relative;
   border-right: 4px solid;
-  z-index: 9;
+  z-index: 201;
   overflow-y: auto;
 
   @include padding-top(0.75rem);
@@ -190,68 +191,6 @@
           color: $primary;
         }
       }
-    }
-  }
-
-  .dropdown {
-    position: relative;
-
-    .dropdown-menu {
-      z-index: $zindex-dropdown;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid $border-color;
-      min-width: 200px;
-
-      @include padding-top(0.5rem);
-      @include padding-bottom(0.5rem);
-      @include border-radius(0.25rem);
-
-      @include themify(day) {
-        background-color: $white;
-      }
-
-      @include themify(night) {
-        background-color: $dark;
-      }
-
-      .dropdown-item {
-        width: 80%;
-
-        @include margin-top(0.25rem);
-        @include margin-bottom(0.25rem);
-        @include padding-left(1rem);
-        @include padding-right(1rem);
-        @include padding-top(0.5rem);
-        @include padding-bottom(0.5rem);
-
-        @include themify(day) {
-          color: $gray-800;
-        }
-
-        @include themify(night) {
-          color: $gray-300;
-        }
-
-        &:hover {
-          color: $primary;
-
-          @include border-top-right-radius(1rem);
-          @include border-bottom-right-radius(1rem);
-
-          @include themify(day) {
-            background-color: $duck-egg-blue;
-          }
-
-          @include themify(night) {
-            background-color: $gray-900;
-          }
-        }
-      }
-    }
-
-    .dropdown-toggle {
-      padding: 0;
     }
   }
 

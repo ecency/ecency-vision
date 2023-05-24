@@ -7,6 +7,7 @@ import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from "react-virtuali
 import { DeckGridContext } from "../deck-manager";
 import { Button } from "react-bootstrap";
 import { upArrowSvg } from "../../../img/svg";
+import { Data } from "node-cache";
 
 type DataItem = Omit<any, "id"> & Required<{ id: string | number }>;
 
@@ -18,6 +19,7 @@ export interface DeckProps {
     icon: any;
     updateIntervalMs: number;
     setUpdateIntervalMs: (v: number) => void;
+    additionalSettings?: JSX.Element;
   };
   data: DataItem[];
   onReload: () => void;
@@ -28,6 +30,7 @@ export interface DeckProps {
   contentViewer?: JSX.Element;
   isExpanded?: boolean;
   overlay?: JSX.Element;
+  newDataComingCondition?: (data: DataItem[]) => boolean;
 }
 
 export const GenericDeckColumn = ({
@@ -41,7 +44,8 @@ export const GenericDeckColumn = ({
   id,
   contentViewer,
   isExpanded,
-  overlay
+  overlay,
+  newDataComingCondition
 }: DeckProps) => {
   const { activeUser } = useMappedStore();
 
@@ -57,7 +61,11 @@ export const GenericDeckColumn = ({
   });
 
   useEffect(() => {
-    if (visibleData.length === 0) {
+    if (
+      newDataComingCondition
+        ? newDataComingCondition(data)
+        : visibleData.length === 0 || data.length === 0
+    ) {
       setVisibleData(data);
     } else {
       const newData = data.filter(({ id }) => !visibleData.some((vd) => vd.id === id));
@@ -101,7 +109,7 @@ export const GenericDeckColumn = ({
           <AutoSizer>
             {({ height, width }) => (
               <List
-                overscanRowCount={0}
+                overscanRowCount={16}
                 height={height}
                 width={width}
                 rowCount={visibleData.length}
@@ -109,15 +117,22 @@ export const GenericDeckColumn = ({
                   <CellMeasurer
                     cache={cache}
                     columnIndex={0}
-                    key={key}
+                    key={visibleData[index].id + key}
                     parent={parent}
                     rowIndex={index}
                   >
-                    {({ measure, registerChild }) => (
-                      <div ref={registerChild as any} className="virtual-list-item" style={style}>
-                        {children(visibleData[index], measure, index)}
-                      </div>
-                    )}
+                    {({ measure, registerChild }) => {
+                      return (
+                        <div
+                          key={(visibleData[index].id ?? visibleData[index].post_id) + key}
+                          ref={registerChild as any}
+                          className="virtual-list-item"
+                          style={style}
+                        >
+                          {children(visibleData[index], measure, index)}
+                        </div>
+                      );
+                    }}
                   </CellMeasurer>
                 )}
                 deferredMeasurementCache={cache}

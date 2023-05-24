@@ -10,7 +10,6 @@
   bottom: 1rem;
   border-radius: 20px 2px 20px 20px !important;
   height: 40px;
-
   .help {
     display: inline-block;
     margin-left: 0.4rem;
@@ -23,6 +22,14 @@
   }
 }
 
+@media (max-width: 791px) {
+  .help-btn {
+    width: 40px;
+    border-radius: 50% !important;
+    padding: 0 !important;
+  }
+}
+
 .floating-container {
   position: fixed;
   z-index: 3;
@@ -32,6 +39,21 @@
   width: 435px;
   border-radius: 18px;
   overflow: hidden;
+
+  &.submit {
+    position: fixed;
+    right: 23.7rem !important;
+    bottom: 4.1rem !important;
+
+    @media (max-width: 1597px) {
+      right: 16rem !important;
+    }
+
+    @media (max-width: 590px) {
+      right: 2.1rem !important;
+      bottom: 4.1rem !important;
+    }
+  }
 
   @include themify(day) {
     background: $white-four;

@@ -46,6 +46,7 @@
     "trending": "feed",
     "created": "feed",
     "muted": "muted",
+    "trail": "trail",
     "controversial": "controversial",
     "rising": "rising",
     "found": "found",
@@ -69,7 +70,8 @@
     "stop": "Stop",
     "settings": "Settings",
     "confirm": "Confirm",
-    "username": "Username"
+    "username": "Username",
+    "past-few-days": "the past few days"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -396,16 +398,17 @@
     "save-locally": "Save locally",
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You've to be authorized to see notifications",
+    "wave": "Wave",
     "columns": {
       "view-full-post": "View full post",
       "user": "User",
-      "user-description": "Find a profile and see what they're been up to.",
+      "user-description": "Find a profile and see what they've been up to.",
       "community": "Community",
       "community-description": "Find a community and follow their activity.",
       "wallet": "Wallet",
       "wallet-description": "Track people's transactions and funds.",
       "notifications": "Notifications",
-      "notifications-description": "Follow any people activity.",
+      "notifications-description": "Follow notifications on any account.",
       "trending": "Trending",
       "trending-description": "Explore trending posts at this moment.",
       "topics": "Topics",
@@ -441,7 +444,37 @@
       "failed-fetch": "Account decks fetching failed. Please, refresh a page",
       "failed-update": "Deck updating failed. Please, try again",
       "new-column": "New column",
-      "new-data-available": "New data available"
+      "new-data-available": "New content available",
+      "threads": "Waves",
+      "threads-host": "Wave host",
+      "threads-description1": "Catch the wave: read it quick, grasp it easy.",
+      "threads-description2": "Ride the wave: Short, snappy content made easy.",
+      "threads-description3": "Waves of clarity: Effortlessly grasp short and sweet content!",
+      "add-thread-host-text": "Specify a Waves host or see all of them together",
+      "all-thread-hosts": "All",
+      "thread-post-link-invalid": "This post is not existing.",
+      "show-replies": "Show {{n}} replies",
+      "show-reply": "Show 1 reply",
+      "show-all-replies": "Show all replies",
+      "see-full-thread": "See full thread",
+      "no-currency-data": "No data",
+      "hide-replies": "Hide replies",
+      "filters": "Filters"
+    },
+    "threads-form": {
+      "publish": "Publish it!",
+      "create-regular-post": "Create long post",
+      "input-placeholder": "What's happening?",
+      "select-thread-host": "Select a waves host",
+      "thread-host": "Will be published in",
+      "no-threads-host": "This account is not a waves host",
+      "publishing": "Waving 🌊...",
+      "successfully-created": "Published successfully!",
+      "link-to-entry": "Click here to see",
+      "pending": "Waiting for transaction completing...",
+      "login-and-publish": "Sign in and publish",
+      "write-your-reply": "Write your reply here",
+      "max-length": "Oops! Your message a quite long. We want to use micro-blogging for the direct purpose and would like to offer You to create a long post."
     }
   },
   "market-data": {
@@ -714,6 +747,7 @@
     "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Posts",
+    "section-trail": "Trail",
     "section-comments": "Comments",
     "section-replies": "Replies",
     "section-communities": "Communities",
@@ -1238,7 +1272,8 @@
     "image-error": "Couldn't upload image.",
     "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Image size is too large, try smaller size image again.",
-    "fragments": "Snippets"
+    "fragments": "Snippets",
+    "link-image": "Link"
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",

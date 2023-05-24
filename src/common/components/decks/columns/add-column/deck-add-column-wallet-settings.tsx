@@ -5,7 +5,7 @@ import { UserAvatar } from "../../../user-avatar";
 import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
 import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
-import { ICONS } from "../../consts";
+import { ICONS, WALLET_CONTENT_TYPES } from "../../consts";
 import { _t } from "../../../../i18n";
 
 export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
@@ -16,27 +16,6 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
   const [username, setUsername] = useState("");
   const [contentType, setContentType] = useState<string | null>(null);
   const [recent, setRecent] = useState<UsernameDataItem[]>([]);
-
-  const contentTypes = [
-    { title: _t("decks.columns.all-history"), type: "all" },
-    { title: _t("decks.columns.transfers"), type: "transfers" },
-    {
-      title: _t("decks.columns.market-orders"),
-      type: "market-orders"
-    },
-    {
-      title: _t("decks.columns.interests"),
-      type: "interests"
-    },
-    {
-      title: _t("decks.columns.stake-operations"),
-      type: "stake-operations"
-    },
-    {
-      title: _t("decks.columns.rewards"),
-      type: "rewards"
-    }
-  ];
 
   return (
     <div className="deck-add-column-user-settings p-3">
@@ -53,9 +32,9 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
       )}
       {username !== "" ? (
         <>
-          <div className="subtitle py-3 mt-3">Filters</div>
+          <div className="subtitle py-3 mt-3">{_t("decks.columns.filters")}</div>
           <div className="content-type-list">
-            {contentTypes.map(({ title, type }) => (
+            {WALLET_CONTENT_TYPES.map(({ title, type }) => (
               <div
                 className={"content-type-item " + (contentType === type ? "selected" : "")}
                 key={title}

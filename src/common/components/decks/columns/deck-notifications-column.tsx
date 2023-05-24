@@ -8,13 +8,14 @@ import { ApiNotification, NotificationFilter } from "../../../store/notification
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { History } from "history";
 import { getNotifications } from "../../../api/private-api";
-import { notificationsTitles } from "../consts";
+import { NOTIFICATION_CONTENT_TYPES, notificationsTitles } from "../consts";
 import { DeckGridContext } from "../deck-manager";
 import { getPost } from "../../../api/bridge";
 import { Entry } from "../../../store/entries/types";
 import { DeckPostViewer } from "./content-viewer";
 import { DeckLoginOverlayPlaceholder } from "./deck-login-overlay-placeholder";
 import usePrevious from "react-use/lib/usePrevious";
+import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
 
 interface Props {
   id: string;
@@ -33,6 +34,14 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry>();
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
+  const prevSettings = usePrevious(settings);
+
+  useEffect(() => {
+    if (prevSettings && prevSettings?.contentType !== settings.contentType) {
+      setData([]);
+      fetchData();
+    }
+  }, [settings.contentType]);
 
   useEffect(() => {
     if (activeUser?.username !== previousActiveUser?.username) {
@@ -75,7 +84,14 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
           : "Notifications",
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
-        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
+        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
+        additionalSettings: (
+          <DeckContentTypeColumnSettings
+            contentTypes={NOTIFICATION_CONTENT_TYPES}
+            settings={settings}
+            id={id}
+          />
+        )
       }}
       data={data}
       isReloading={isReloading}

@@ -1,44 +1,19 @@
-import { postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
+import { useMappedStore } from "../../../../store/use-mapped-store";
 import React, { Fragment, useEffect } from "react";
+import profileLink from "../../../profile-link";
+import { history } from "../../../../store";
+import { dateToRelative } from "../../../../helper/parse-date";
 import { Link } from "react-router-dom";
+import { _t } from "../../../../i18n";
+import Tooltip from "../../../tooltip";
+import { commentSvg, pinSvg } from "../../../../img/svg";
 import _ from "lodash";
-import { dateToRelative } from "../../../helper/parse-date";
-import { _t } from "../../../i18n";
-import { commentSvg, pinSvg } from "../../../img/svg";
-import EntryPayout from "../../entry-payout";
-import EntryVoteBtn from "../../entry-vote-btn";
-import EntryVotes from "../../entry-votes";
-import EntryReblogBtn from "../../entry-reblog-btn";
-import EntryMenu from "../../entry-menu";
-import Tooltip from "../../tooltip";
-import profileLink from "../../profile-link";
-import { history } from "../../../store";
-import { useMappedStore } from "../../../store/use-mapped-store";
-import { TrendingTag } from "../../../store/trending-tags/types";
-
-export interface HotListItemProps {
-  index: number;
-  entry: TrendingTag;
-  onMounted: () => void;
-}
-
-export const HotListItem = ({ index, entry, onMounted }: HotListItemProps) => {
-  useEffect(() => {
-    onMounted();
-  }, []);
-
-  return (
-    <div className="p-3 border-bottom d-flex align-items-center">
-      <div className="hot-item-index">{index}</div>
-      <div className="flex-grow-1 ml-3 hot-item-link">
-        <Link to={`/trending/${entry.name}`}>#{entry.name}</Link>
-      </div>
-      <div className="hot-item-post-count">
-        {entry.top_posts + entry.comments || 0} {_t("communities.n-posts")}
-      </div>
-    </div>
-  );
-};
+import { postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
+import EntryVoteBtn from "../../../entry-vote-btn";
+import EntryPayout from "../../../entry-payout";
+import EntryVotes from "../../../entry-votes";
+import EntryReblogBtn from "../../../entry-reblog-btn";
+import EntryMenu from "../../../entry-menu";
 
 export interface SearchItemProps {
   avatar: string;
@@ -258,31 +233,6 @@ export const SearchListItem = ({
           <EntryMenu history={history!!} alignBottom={false} entry={entry} />
         </div>
       </div>
-    </div>
-  );
-};
-
-export const ListItemSkeleton = () => {
-  return (
-    <div className="list-item-skeleton border-bottom p-3">
-      <div className="avatar" />
-      <div className="username" />
-      <div className="date" />
-      <div className="title" />
-      <div className="media-image" />
-      <div className="description" />
-      <div className="actions" />
-    </div>
-  );
-};
-
-export const ShortListItemSkeleton = () => {
-  return (
-    <div className="list-item-skeleton wallet-list-item-skeleton border-bottom p-3">
-      <div className="avatar" />
-      <div className="username" />
-      <div className="date" />
-      <div className="title" />
     </div>
   );
 };

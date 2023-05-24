@@ -18,6 +18,7 @@ import {
   rewardIconSvg,
   searchIconSvg,
   stakeOperationsIconSvg,
+  threadSvg,
   topicsIconSvg,
   transfersIconSvg,
   trendingIconSvg,
@@ -62,5 +63,6 @@ export const ICONS = {
   },
   tr: trendingIconSvg,
   to: topicsIconSvg,
-  s: searchIconSvg
+  s: searchIconSvg,
+  th: threadSvg
 };

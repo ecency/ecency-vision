@@ -1,10 +1,11 @@
-import { Client, RCAPI } from "@hiveio/dhive";
+import { Client, RCAPI, utils } from "@hiveio/dhive";
 
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
 import { TrendingTag } from "../store/trending-tags/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { FullAccount, AccountProfile, AccountFollowStats } from "../store/accounts/types";
+import { Entry } from "../store/entries/types";
 
 import parseAsset from "../helper/parse-asset";
 import { vestsToRshares } from "../helper/vesting";
@@ -586,9 +587,12 @@ export const getSavingsWithdrawFrom = (account: string): Promise<SavingsWithdraw
 export interface BlogEntry {
   blog: string;
   entry_id: number;
+  post_id?: number;
+  num?: number;
   author: string;
   permlink: string;
   reblogged_on: string;
+  created?: string;
 }
 
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
@@ -634,3 +638,6 @@ export interface RcOperationStats {
 }
 
 export const getRcOperationStats = (): Promise<any> => client.call("rc_api", "get_rc_stats", {});
+
+export const getContentReplies = (author: string, permlink: string): Promise<Entry[] | null> =>
+  client.call("condenser_api", "get_content_replies", { author, permlink });

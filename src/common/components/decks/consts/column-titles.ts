@@ -52,29 +52,31 @@ export function getColumnTitle(
 
   switch (type) {
     case "co":
-      return `Community${getSubtype(
+      return `${_t("decks.columns.community")}${getSubtype(
         (settings as CommunityDeckGridItem["settings"]).contentType,
         communityTitles
       )}`;
     case "cu":
       return "Custom";
     case "n":
-      return `Notifications${getSubtype(
+      return `${_t("decks.columns.notifications")}${getSubtype(
         (settings as UserDeckGridItem["settings"]).contentType,
         notificationsTitles
       )}`;
     case "s":
       return "Search";
     case "u":
-      return `User${getSubtype(
+      return `${_t("decks.columns.user")}${getSubtype(
         (settings as UserDeckGridItem["settings"]).contentType,
         userTitles
       )}`;
     case "w":
-      return `Wallet${getSubtype(
+      return `${_t("decks.columns.wallet")}${getSubtype(
         (settings as UserDeckGridItem["settings"]).contentType,
         walletTitles
       )}`;
+    case "th":
+      return _t("decks.columns.threads");
     default:
       return "";
   }

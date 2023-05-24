@@ -1,3 +1,4 @@
+import { BlogEntry } from "../../api/hive";
 import { SearchResult } from "../../api/search-api";
 import { LocationChangeAction } from "../common";
 
@@ -60,6 +61,7 @@ export interface Entry {
   permlink: string;
   post_id: number;
   id?: number;
+  num?: number;
   promoted: string;
   reblogged_by?: string[] | any;
   replies: any[];
