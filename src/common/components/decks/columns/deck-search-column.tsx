@@ -135,6 +135,7 @@ export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) =>
       {(item: any, measure: Function, index: number) => (
         <SearchListItem
           onMounted={() => measure()}
+          marked={true}
           index={index + 1}
           entry={{
             ...item,

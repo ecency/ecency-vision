@@ -1,5 +1,5 @@
 import { useMappedStore } from "../../../../store/use-mapped-store";
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import profileLink from "../../../profile-link";
 import { history } from "../../../../store";
 import { dateToRelative } from "../../../../helper/parse-date";
@@ -8,12 +8,13 @@ import { _t } from "../../../../i18n";
 import Tooltip from "../../../tooltip";
 import { commentSvg, pinSvg } from "../../../../img/svg";
 import _ from "lodash";
-import { postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
+import { catchPostImage, postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
 import EntryVoteBtn from "../../../entry-vote-btn";
 import EntryPayout from "../../../entry-payout";
 import EntryVotes from "../../../entry-votes";
 import EntryReblogBtn from "../../../entry-reblog-btn";
 import EntryMenu from "../../../entry-menu";
+import { transformMarkedContent } from "../../../../util/transform-marked-content";
 
 export interface SearchItemProps {
   avatar: string;
@@ -33,27 +34,41 @@ export interface SearchItemProps {
   entry: any;
   onMounted: () => void;
   onEntryView: () => void;
+  marked?: boolean;
 }
 
 export const SearchListItem = ({
   author,
-  children,
   community,
   community_title,
-  body,
-  likes,
   json_metadata,
   created,
-  title,
-  votesPayment,
   index,
   url,
   category,
   entry,
   onMounted,
-  onEntryView
+  onEntryView,
+  marked
 }: SearchItemProps) => {
   const { global } = useMappedStore();
+
+  const [title, setTitle] = useState(entry.title);
+  const [body, setBody] = useState(entry.b);
+  const [image, setImage] = useState(
+    global.canUseWebp
+      ? catchPostImage(entry.body, 600, 500, "webp")
+      : catchPostImage(entry.body, 600, 500)
+  );
+
+  useEffect(() => {
+    setTitle(entry.title_marked ? transformMarkedContent(entry.title_marked) : entry.title);
+    setBody(
+      entry.body_marked
+        ? transformMarkedContent(entry.body_marked)
+        : postBodySummary(entry.body, 200)
+    );
+  }, [entry]);
 
   useEffect(() => {
     onMounted();
@@ -191,26 +206,15 @@ export const SearchListItem = ({
               </div>
             )}
 
-            {json_metadata &&
-              json_metadata.image &&
-              _.isArray(json_metadata.image) &&
-              json_metadata.image.length > 0 && (
-                <div
-                  className="search-post-image d-flex align-self-center mt-3"
-                  style={{
-                    backgroundImage: `url(${proxifyImageSrc(
-                      json_metadata.image[0],
-                      undefined,
-                      undefined,
-                      global.canUseWebp ? "webp" : "match"
-                    )})`
-                  }}
-                />
-              )}
-            <div
-              className="mt-3 hot-item-post-count deck-item-body text-secondary"
-              dangerouslySetInnerHTML={{ __html: postBodySummary(body) }}
-            />
+            {image && (
+              <div
+                className="search-post-image d-flex align-self-center mt-3"
+                style={{
+                  backgroundImage: `url(${proxifyImageSrc(image)})`
+                }}
+              />
+            )}
+            <div className="mt-3 hot-item-post-count deck-item-body text-secondary">{body}</div>
           </div>
         </div>
         <div className="item-controls mt-3 d-flex justify-content-between align-items-center">
