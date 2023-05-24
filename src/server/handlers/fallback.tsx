@@ -42,7 +42,6 @@ export const iosURI = async (req: express.Request, res: express.Response) => {
             "/trending/*",
             "/created/*",
             "/hot",
-            "/auth",
             "/trending",
             "/created"
           ]
