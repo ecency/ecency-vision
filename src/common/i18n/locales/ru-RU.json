@@ -46,7 +46,7 @@
     "trending": "лента",
     "created": "лента",
     "muted": "заблокировано",
-    "trail": "trail",
+    "trail": "тропа",
     "controversial": "обсуждаемое",
     "rising": "популярное",
     "found": "найдено",
@@ -71,7 +71,7 @@
     "settings": "Настройки",
     "confirm": "Подтвердить",
     "username": "Имя пользователя",
-    "past-few-days": "the past few days"
+    "past-few-days": "последние несколько дней"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -398,17 +398,17 @@
     "save-locally": "Сохранить локально",
     "auth-required-title": "Требуется авторизация",
     "auth-required-desc": "Вы должны быть авторизованы для просмотра уведомлений",
-    "wave": "Wave",
+    "wave": "Помахать рукой",
     "columns": {
       "view-full-post": "Посмотреть полный пост",
       "user": "Пользователь",
-      "user-description": "Find a profile and see what they've been up to.",
+      "user-description": "Найдите профиль и посмотрите, чем он занимался.",
       "community": "Сообщество",
       "community-description": "Найдите сообщество и следите за его активностью.",
       "wallet": "Кошелёк",
       "wallet-description": "Отслеживайте транзакции и средства людей.",
       "notifications": "Уведомления",
-      "notifications-description": "Follow notifications on any account.",
+      "notifications-description": "Следите за уведомлениями любой учетной записи.",
       "trending": "В тренде",
       "trending-description": "Исследуйте актуальные на данный момент посты.",
       "topics": "Темы",
@@ -471,10 +471,10 @@
       "publishing": "Waving 🌊...",
       "successfully-created": "Published successfully!",
       "link-to-entry": "Click here to see",
-      "pending": "Waiting for transaction completing...",
-      "login-and-publish": "Sign in and publish",
-      "write-your-reply": "Write your reply here",
-      "max-length": "Oops! Your message a quite long. We want to use micro-blogging for the direct purpose and would like to offer You to create a long post."
+      "pending": "Ожидание завершения транзакции...",
+      "login-and-publish": "Войти и опубликовать",
+      "write-your-reply": "Напишите свой ответ",
+      "max-length": "Ой! Ваше сообщение довольно длинное. Мы хотим использовать микро-блоги для прямой цели и предлагаем создать длинный пост."
     }
   },
   "market-data": {
@@ -747,7 +747,7 @@
     "follows-you": "Подписан(а) на вас",
     "section-blog": "Блог",
     "section-posts": "Посты",
-    "section-trail": "Trail",
+    "section-trail": "Тропа",
     "section-comments": "Комментарии",
     "section-replies": "Ответы",
     "section-communities": "Сообщества",
@@ -1273,7 +1273,7 @@
     "image-error-cache": "Не удалось загрузить изображение. Похоже, что вы вышли из системы. Попробуйте авторизоваться заново.",
     "image-error-size": "Слишком большой размер изображения. Попробуйте уменьшить его.",
     "fragments": "Фрагменты",
-    "link-image": "Link"
+    "link-image": "Ссылка"
   },
   "emoji-picker": {
     "filter-placeholder": "Фильтр",
