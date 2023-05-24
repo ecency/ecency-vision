@@ -12,6 +12,7 @@ import {
 import { DeckHeaderSettings } from "./deck-header-settings";
 import { DeckHeaderReloading } from "./deck-header-reloading";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
+import { classNameObject } from "../../../helper/class-name-object";
 
 export interface Props {
   title: string;
@@ -49,9 +50,12 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
 
   return (
     <div
-      className={
-        "deck-header" + (props.sticky ? " header-sticky" : "") + (props.primary ? " primary" : "")
-      }
+      className={classNameObject({
+        "deck-header": true,
+        "header-sticky": props.sticky,
+        primary: props.primary,
+        expanded
+      })}
     >
       <Accordion className={expanded ? "border-bottom" : ""}>
         <div className="deck-header position-relative">

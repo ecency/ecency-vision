@@ -86,6 +86,10 @@
   > .deck-header {
     backdrop-filter: blur(1rem);
 
+    &.expanded {
+      backdrop-filter: blur(3rem);
+    }
+
     @include themify(day) {
       background-color: rgba($white, 0.75);
     }
@@ -269,6 +273,10 @@
     .toggle {
       padding: .68rem;
       font-size: 14px;
+    }
+
+    button {
+      box-shadow: none;
     }
 
     .label {

@@ -7,6 +7,8 @@ import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
 import { ICONS, NOTIFICATION_CONTENT_TYPES } from "../../consts";
 import { _t } from "../../../../i18n";
+import useLocalStorage from "react-use/lib/useLocalStorage";
+import { PREFIX } from "../../../../util/local-storage";
 
 export const DeckAddColumnNotificationsSettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -16,7 +18,7 @@ export const DeckAddColumnNotificationsSettings = ({ deckKey }: SettingsProps) =
   const [username, setUsername] = useState("");
   const [tag, setTag] = useState("");
   const [contentType, setContentType] = useState<string | null>(null);
-  const [recent, setRecent] = useState<UsernameDataItem[]>([]);
+  const [recent, setRecent] = useLocalStorage<UsernameDataItem[]>(PREFIX + "_dnr", []);
 
   return (
     <div className="deck-add-column-user-settings p-3">
@@ -33,6 +35,7 @@ export const DeckAddColumnNotificationsSettings = ({ deckKey }: SettingsProps) =
           username={username}
           setUsername={setUsername}
           recentList={recent}
+          setRecentList={setRecent}
           setItem={({ tag }) => setTag(tag ?? "")}
         />
       )}

@@ -243,4 +243,14 @@
       opacity: 0.5;
     }
   }
+
+  .recent-label {
+    font-weight: bold;
+    color: $secondary;
+
+    @include padding-top(1rem);
+    @include padding-left(1rem);
+    @include padding-right(1rem);
+    @include font-size(0.875rem);
+  }
 }

@@ -41,6 +41,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
             setUsername(v);
           }}
           recentList={recent ?? []}
+          setRecentList={setRecent}
           setItem={({ tag }) => {
             setTag(tag ?? "");
           }}
