@@ -335,6 +335,28 @@
       }
     }
   }
+
+  .virtual-list-item {
+
+    a[target=_blank]:after {
+      content: none;
+    }
+
+    .date {
+      font-weight: bold;
+      opacity: 0.5;
+
+      a {
+        color: $secondary;
+
+        @include font-size(0.75rem);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }
 
 .deck-full-image-view {

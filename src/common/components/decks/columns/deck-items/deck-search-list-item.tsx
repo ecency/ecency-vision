@@ -15,6 +15,7 @@ import EntryVotes from "../../../entry-votes";
 import EntryReblogBtn from "../../../entry-reblog-btn";
 import EntryMenu from "../../../entry-menu";
 import { transformMarkedContent } from "../../../../util/transform-marked-content";
+import { EntryLink } from "../../../entry-link";
 
 export interface SearchItemProps {
   avatar: string;
@@ -174,14 +175,19 @@ export const SearchListItem = ({
             )}
             {author && (
               <div>
-                <Link to={`/@${author}`}>{author}</Link>
+                <Link target="_blank" to={`/@${author}`}>
+                  {author}
+                </Link>
               </div>
             )}
             {community && (
               <div className="ml-1 flex-grow-1 text-truncate">
                 {" "}
                 {_t("entry.community-in")}{" "}
-                <Link to={`/created/${community}`}> {community_title} </Link>
+                <Link target="_blank" to={`/created/${community}`}>
+                  {" "}
+                  {community_title}{" "}
+                </Link>
               </div>
             )}
             {!community && (
@@ -195,8 +201,10 @@ export const SearchListItem = ({
                 <span className="deck-pinned">{pinSvg}</span>
               </Tooltip>
             )}
-            <div className="mb-3">
-              <small>{`${dateToRelative(created)}`}</small>
+            <div className="date mb-3">
+              <EntryLink target="_blank" entry={entry}>
+                <small>{`${dateToRelative(created)}`}</small>
+              </EntryLink>
             </div>
           </div>
           <div onClick={() => onEntryView()} className="pointer">
