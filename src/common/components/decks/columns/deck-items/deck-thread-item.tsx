@@ -13,6 +13,7 @@ import { commentSvg, voteSvg } from "../../icons";
 import EntryVotes from "../../../entry-votes";
 import { DeckThreadItemBody } from "./deck-thread-item-body";
 import { classNameObject } from "../../../../helper/class-name-object";
+import { useInViewport } from "react-in-viewport";
 
 export interface ThreadItemProps {
   entry: IdentifiableEntry;
@@ -25,6 +26,7 @@ export interface ThreadItemProps {
   sequenceItem?: boolean;
   commentsSlot?: JSX.Element;
   onSeeFullThread?: () => void;
+  onAppear?: () => void;
 }
 
 export const ThreadItem = ({
@@ -36,7 +38,8 @@ export const ThreadItem = ({
   pure,
   sequenceItem,
   commentsSlot,
-  onSeeFullThread
+  onSeeFullThread,
+  onAppear
 }: ThreadItemProps) => {
   const { global } = useMappedStore();
   const { height, ref } = useResizeDetector();
@@ -44,9 +47,17 @@ export const ThreadItem = ({
   const [renderInitiated, setRenderInitiated] = useState(false);
   const [hasParent, setHasParent] = useState(false);
 
+  const { inViewport } = useInViewport(ref);
+
   useEffect(() => {
     onMounted();
   }, []);
+
+  useEffect(() => {
+    if (inViewport && onAppear) {
+      onAppear();
+    }
+  }, [inViewport]);
 
   useEffect(() => {
     setHasParent(

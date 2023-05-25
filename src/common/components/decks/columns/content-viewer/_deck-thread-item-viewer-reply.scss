@@ -86,4 +86,8 @@
       }
     }
   }
+
+  .markdown-author-link .user-avatar::before, .markdown-author-link .user-avatar::after {
+    content: none !important;
+  }
 }
