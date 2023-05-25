@@ -1,4 +1,4 @@
-@import "./src/style/vars_mixins";
+@import "src/style/vars_mixins";
 
 @mixin sequence_item() {
   $root: ".thread-item";
