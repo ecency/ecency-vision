@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ListItemSkeleton, SearchListItem } from "./deck-items";
-import { GenericDeckColumn } from "./generic-deck-column";
+import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { SearchDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { search, SearchResult } from "../../../api/search-api";
@@ -11,8 +11,6 @@ import { History } from "history";
 import { DeckSearchColumnSettings } from "./deck-column-settings/deck-search-column-settings";
 import moment, { Moment } from "moment/moment";
 import { DateOpt } from "../consts";
-import { useSearchParam } from "react-use";
-import queryString from "query-string";
 import usePrevious from "react-use/lib/usePrevious";
 
 interface Props {
@@ -103,7 +101,7 @@ export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) =>
   };
 
   return (
-    <GenericDeckColumn
+    <GenericDeckWithDataColumn
       id={id}
       draggable={draggable}
       header={{
@@ -146,6 +144,6 @@ export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) =>
           onEntryView={() => setCurrentViewingEntry(item)}
         />
       )}
-    </GenericDeckColumn>
+    </GenericDeckWithDataColumn>
   );
 };

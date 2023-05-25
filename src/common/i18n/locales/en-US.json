@@ -463,7 +463,11 @@
       "see-full-thread": "See full thread",
       "no-currency-data": "No data",
       "hide-replies": "Hide replies",
-      "filters": "Filters"
+      "filters": "Filters",
+      "market-swap-form": "Market swap form",
+      "market": "Market",
+      "swap-form": "Swapping form",
+      "msf-description": "Swap your funds quickie with zero latency."
     },
     "threads-form": {
       "publish": "Publish it!",

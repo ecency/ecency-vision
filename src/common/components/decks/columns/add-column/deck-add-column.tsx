@@ -87,9 +87,15 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       title: _t("decks.columns.search"),
       icon: searchIconSvg,
       description: _t("decks.columns.search-description")
+    },
+    {
+      type: "msf",
+      title: _t("decks.columns.market-swap-form"),
+      icon: searchIconSvg,
+      description: _t("decks.columns.msf-description")
     }
   ];
-  const typesWithoutSettings = ["tr", "to"];
+  const typesWithoutSettings = ["tr", "to", "msf"];
 
   const [step, setStep] = useState<"select" | "setup">("select");
   const [selectedType, setSelectedType] = useState<DeckGridItem["type"] | null>(null);

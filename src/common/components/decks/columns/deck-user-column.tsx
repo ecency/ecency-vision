@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ListItemSkeleton, SearchListItem } from "./deck-items";
-import { GenericDeckColumn } from "./generic-deck-column";
+import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { UserDeckGridItem } from "../types";
 import { getAccountPosts } from "../../../api/bridge";
 import { Entry } from "../../../store/entries/types";
@@ -55,7 +55,7 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
   };
 
   return (
-    <GenericDeckColumn
+    <GenericDeckWithDataColumn
       id={id}
       draggable={draggable}
       header={{
@@ -103,6 +103,6 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
           onEntryView={() => setCurrentViewingEntry(item)}
         />
       )}
-    </GenericDeckColumn>
+    </GenericDeckWithDataColumn>
   );
 };

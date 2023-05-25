@@ -1,9 +1,9 @@
 import { AVAILABLE_THREAD_HOSTS } from "../consts";
 import { DeckThreadItemSkeleton, ThreadItem } from "./deck-items";
 import { DeckThreadItemViewer } from "./content-viewer";
-import { GenericDeckColumn } from "./generic-deck-column";
+import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import React, { useContext, useEffect, useState } from "react";
-import { BitesDeckGridItem } from "../types";
+import { WavesDeckGridItem } from "../types";
 import { History } from "history";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../deck-manager";
@@ -15,7 +15,7 @@ import { getPost } from "../../../api/bridge";
 
 interface Props {
   id: string;
-  settings: BitesDeckGridItem["settings"];
+  settings: WavesDeckGridItem["settings"];
   history: History;
   draggable?: DraggableProvidedDragHandleProps;
 }
@@ -110,7 +110,7 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
   };
 
   return (
-    <GenericDeckColumn
+    <GenericDeckWithDataColumn
       id={id}
       draggable={draggable}
       header={{
@@ -177,6 +177,6 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
           }}
         />
       )}
-    </GenericDeckColumn>
+    </GenericDeckWithDataColumn>
   );
 };

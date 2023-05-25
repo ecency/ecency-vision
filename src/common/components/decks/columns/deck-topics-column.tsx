@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { HotListItem, ShortListItemSkeleton } from "./deck-items";
-import { GenericDeckColumn } from "./generic-deck-column";
+import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { ReloadableDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { getAllTrendingTags } from "../../../api/hive";
@@ -40,7 +40,7 @@ export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
   };
 
   return (
-    <GenericDeckColumn
+    <GenericDeckWithDataColumn
       id={id}
       draggable={draggable}
       header={{
@@ -58,6 +58,6 @@ export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
       {(item: TrendingTag, measure: Function, index: number) => (
         <HotListItem onMounted={() => measure()} index={index + 1} entry={item} />
       )}
-    </GenericDeckColumn>
+    </GenericDeckWithDataColumn>
   );
 };

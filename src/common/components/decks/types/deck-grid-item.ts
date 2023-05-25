@@ -1,7 +1,7 @@
 interface BaseDeckGridItem {
   id: string;
   key: number;
-  type: "u" | "ac" | "co" | "w" | "n" | "tr" | "to" | "s" | "cu" | "th";
+  type: "u" | "ac" | "co" | "w" | "n" | "tr" | "to" | "s" | "cu" | "th" | "msf";
   settings: Record<string, any>;
 }
 
@@ -40,7 +40,7 @@ export interface SearchDeckGridItem extends ReloadableDeckGridItem {
   };
 }
 
-export interface BitesDeckGridItem extends ReloadableDeckGridItem {
+export interface WavesDeckGridItem extends ReloadableDeckGridItem {
   type: "th";
   settings: ReloadableDeckGridItem["settings"] & {
     host: string;
@@ -52,4 +52,4 @@ export type DeckGridItem =
   | UserDeckGridItem
   | CommunityDeckGridItem
   | SearchDeckGridItem
-  | BitesDeckGridItem;
+  | WavesDeckGridItem;

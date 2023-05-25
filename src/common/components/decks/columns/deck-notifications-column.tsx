@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShortListItemSkeleton } from "./deck-items";
-import { GenericDeckColumn } from "./generic-deck-column";
+import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { UserDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import NotificationListItem from "../../notifications/notification-list-item";
@@ -74,7 +74,7 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
   };
 
   return (
-    <GenericDeckColumn
+    <GenericDeckWithDataColumn
       id={id}
       draggable={draggable}
       header={{
@@ -148,6 +148,6 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
           }}
         />
       )}
-    </GenericDeckColumn>
+    </GenericDeckWithDataColumn>
   );
 };

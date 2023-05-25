@@ -15,6 +15,7 @@ import { MarketSwapFormHeader } from "./market-swap-form-header";
 import { checkSvg, swapSvg } from "../../img/svg";
 import { MarketSwapFormSuccess } from "./market-swap-form-success";
 import "./index.scss";
+import { classNameObject } from "../../helper/class-name-object";
 
 export interface Props {
   activeUser: ActiveUser | null;
@@ -23,6 +24,7 @@ export interface Props {
   updateActiveUser: any;
   signingKey: string;
   setSigningKey: (key: string) => void;
+  padding?: string;
 }
 
 export const MarketSwapForm = ({
@@ -31,7 +33,8 @@ export const MarketSwapForm = ({
   addAccount,
   updateActiveUser,
   signingKey,
-  setSigningKey
+  setSigningKey,
+  padding = "p-4"
 }: Props) => {
   const [step, setStep] = useState(MarketSwapFormStep.FORM);
 
@@ -131,7 +134,12 @@ export const MarketSwapForm = ({
   };
 
   return (
-    <div className="market-swap-form p-4">
+    <div
+      className={classNameObject({
+        "market-swap-form": true,
+        [padding]: true
+      })}
+    >
       <HiveMarketRateListener
         amount={from}
         asset={fromAsset}

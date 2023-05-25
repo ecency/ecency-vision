@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { GenericDeckColumn } from "./generic-deck-column";
+import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { fetchTransactions } from "../../../store/transactions/fetchTransactions";
 import { TransactionRow } from "../../transactions";
 import { Transaction } from "../../../store/transactions/types";
@@ -58,7 +58,7 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
   };
 
   return (
-    <GenericDeckColumn
+    <GenericDeckWithDataColumn
       id={id}
       draggable={draggable}
       header={{
@@ -90,6 +90,6 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
           onMounted={measure}
         />
       )}
-    </GenericDeckColumn>
+    </GenericDeckWithDataColumn>
   );
 };
