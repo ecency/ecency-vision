@@ -6,11 +6,11 @@ import AddImage from "../../add-image";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { getAccessToken } from "../../../helper/user-token";
 import { uploadImage } from "../../../api/misc";
-import { addImage } from "../../../api/private-api";
 import { error } from "../../feedback";
 import axios from "axios";
 import Gallery from "../../gallery";
 import { Button, Dropdown } from "react-bootstrap";
+import { PopperDropdown } from "../../popper-dropdown";
 
 interface Props {
   onAddImage: (link: string, name: string) => void;
@@ -62,10 +62,7 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
       if (token) {
         const resp = await uploadImage(file, token);
         imageUrl = resp.url;
-
-        if (global.usePrivate && imageUrl.length > 0) {
-          addImage(username, imageUrl).then();
-        }
+        onAddImage(imageUrl, file.name);
       } else {
         error(_t("editor-toolbar.image-error-cache"));
       }
@@ -81,22 +78,20 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
 
   return (
     <div className="deck-threads-form-toolbar-image-picker">
-      <Tooltip content={_t("editor-toolbar.image")}>
-        <Dropdown>
-          <Dropdown.Toggle as="div">
-            <Button variant="link">{imageSvg}</Button>
-          </Dropdown.Toggle>
-
-          {activeUser && (
-            <Dropdown.Menu>
-              <Dropdown.Item
+      {activeUser && (
+        <Tooltip content={_t("editor-toolbar.image")}>
+          <PopperDropdown toggle={imageSvg}>
+            <div className="dropdown-menu">
+              <div
+                className="dropdown-item"
                 onClick={() => {
                   setImagePickInitiated(true);
                 }}
               >
                 {_t("editor-toolbar.link-image")}
-              </Dropdown.Item>
-              <Dropdown.Item
+              </div>
+              <div
+                className="dropdown-item"
                 onClick={(e: React.MouseEvent<HTMLElement>) => {
                   e.stopPropagation();
                   const el = fileInputRef.current;
@@ -104,21 +99,22 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
                 }}
               >
                 {_t("editor-toolbar.upload")}
-              </Dropdown.Item>
+              </div>
               {global.usePrivate && (
-                <Dropdown.Item
+                <div
+                  className="dropdown-item"
                   onClick={(e: React.MouseEvent<HTMLElement>) => {
                     e.stopPropagation();
                     setGalleryPickInitiated(true);
                   }}
                 >
                   {_t("editor-toolbar.gallery")}
-                </Dropdown.Item>
+                </div>
               )}
-            </Dropdown.Menu>
-          )}
-        </Dropdown>
-      </Tooltip>
+            </div>
+          </PopperDropdown>
+        </Tooltip>
+      )}
       {imagePickInitiated && (
         <AddImage
           onHide={() => setImagePickInitiated(false)}

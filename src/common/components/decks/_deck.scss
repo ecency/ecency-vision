@@ -130,6 +130,12 @@
     padding-top: 67px;
   }
 
+  .native-scroll-content {
+    overflow-y: auto;
+    height: 100%;
+    padding-top: 67px;
+  }
+
   @include media-breakpoint-down(sm) {
     &, &.expanded {
       width: calc(100vw - 72px);
