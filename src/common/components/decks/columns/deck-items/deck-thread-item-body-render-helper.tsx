@@ -160,6 +160,8 @@ export async function renderCurrencies(raw: string): Promise<string> {
             return "binance-wrapped-btc";
           case "eth":
             return "ethereum";
+          case "leo":
+            return "wleo";
           default:
             return token;
         }
@@ -185,6 +187,11 @@ export async function renderCurrencies(raw: string): Promise<string> {
             return [
               ["ETH", usd],
               ["eth", usd]
+            ];
+          case "leo":
+            return [
+              ["WLEO", usd],
+              ["wleo", usd]
             ];
           default:
             return [
