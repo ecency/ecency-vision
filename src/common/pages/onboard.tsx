@@ -17,22 +17,28 @@ const Onboard: React.FC = (props: PageProps | any) => {
 
   const onboardUrl = `localhost:3000/onboard-friend/creating/`
 
-  const [masterPassword, setMasterPassword] = useState<string>("");
-  const [hash, setHash] = useState<string>("");
+  const [masterPassword, setMasterPassword] = useState("");
+  const [hash, setHash] = useState("");
   const [accountInfo, setAccountInfo] = useState<any>({});
   const [decodedInfo, setDecodedInfo] = useState<any>({});
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const [accountCredit, setAccountCredit] = useState<number>(0);
-  const [createOption, setCreateOption] = useState<string>("");
-  const [fileIsDownloaded, setFileIsDownloaded] = useState<boolean>(false)
+  const [showModal, setShowModal] = useState(false);
+  const [accountCredit, setAccountCredit] = useState(0);
+  const [createOption, setCreateOption] = useState("");
+  const [fileIsDownloaded, setFileIsDownloaded] = useState(false)
   
   useEffect(() => {
     initAccountKey();
+
+    try{
       if (props.match.params.hash) {
         const decoded_hash = JSON.parse(decodeURIComponent(props.match.params.hash));
         setDecodedInfo(decoded_hash)
         getCredit()
     }
+    }catch(err){
+      console.log(err)
+    }
+    
   }, [props.global.accountName])
 
   const initAccountKey = async () => {
@@ -78,14 +84,6 @@ const Onboard: React.FC = (props: PageProps | any) => {
     setAccountCredit(accountCredit)
   }
 
-  const decodeHash = (hash: string) => {
-    // const decoded_hash = atob(hash);
-    const hashInfo = JSON.parse(decodeURIComponent(hash));
-    // console.log(hashInfo)
-    // setDecodedInfo(hashInfo)
-    return hashInfo;
-  }
-
   const copyToClipboard = (text: string) => {
     const textField = document.createElement("textarea");
     textField.innerText = text;
@@ -98,13 +96,6 @@ const Onboard: React.FC = (props: PageProps | any) => {
 
   const splitUrl = (url: string) => {
       return url.slice(0,50)
-  }
-
-  const hideConfirmModal = () => {
-    setShowModal(false);
-  }
-  const showConfirmModal = () => {
-    setShowModal(true);
   }
 
   const downloadKeys = async () => {
@@ -227,7 +218,8 @@ const Onboard: React.FC = (props: PageProps | any) => {
                   <Button className="align-self-center"
                   onClick={() =>{ 
                     setCreateOption("hive")
-                    showConfirmModal()
+                    setShowModal(true);                   
+                    // showConfirmModal()
                   }}
                   >{_t("onboard.create-account-hive")}</Button>
                   <Button 
@@ -235,7 +227,7 @@ const Onboard: React.FC = (props: PageProps | any) => {
                   disabled={accountCredit <= 0}
                   onClick={() => {
                     setCreateOption("credit")
-                    showConfirmModal()                    
+                    setShowModal(true);                   
                   }}
                   >{_t("onboard.create-account-credit")}</Button>
                 </div>
@@ -248,7 +240,7 @@ const Onboard: React.FC = (props: PageProps | any) => {
           animation={false}
           show={showModal}
           centered={true}
-          onHide={hideConfirmModal}
+          onHide={()=>setShowModal(false)}
           keyboard={false}
           className="transfer-dialog modal-thin-header"
           // size="lg"
@@ -266,7 +258,8 @@ const Onboard: React.FC = (props: PageProps | any) => {
                     username: decodedInfo.username,
                     pub_keys: decodedInfo.pub_keys
                     }, props.activeUser.username);
-                    hideConfirmModal();
+                    setShowModal(false);
+                    // hideConfirmModal();
               }}
               >
                 {_t("onboard.modal-confirm")}
@@ -278,7 +271,8 @@ const Onboard: React.FC = (props: PageProps | any) => {
                   username: decodedInfo.username,
                   pub_keys: decodedInfo.pub_keys
                   }, props.activeUser.username);
-                  hideConfirmModal();
+                  setShowModal(false);
+                  // hideConfirmModal();
               }}
               >
                 {_t("onboard.modal-confirm")}
