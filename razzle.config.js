@@ -8,6 +8,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 module.exports = {
   plugins: ["typescript", "scss"],
   resolve: {
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".mjs"],
     alias: {
       styles: path.join(__dirname, "src/style/")
     }
@@ -41,6 +42,29 @@ module.exports = {
           writeToDisk: { filename }
         })
       );
+
+      webpackConfig.module.rules.push({
+        test: /\.mjs$/,
+        exclude: /node_modules\/(?!(nostr-tools)\/).*/,
+        // test: /\.mjs$/,
+        // include: /node_modules\/nostr-tools\//,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              [
+                "@babel/preset-env",
+                {
+                  targets: {
+                    node: "current"
+                  }
+                }
+              ]
+            ]
+          }
+        }
+      });
+      console.log(webpackConfig.module.rules);
     }
 
     // Enable SSR lazy-loading

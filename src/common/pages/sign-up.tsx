@@ -22,6 +22,7 @@ import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import { getAccount } from "../api/hive";
 import "./sign-up.scss";
+import { createNoStrAccount } from "../helper/chat-utils";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -120,6 +121,8 @@ export const SignUp = (props: PageProps) => {
   }, [username, usernameTouched]);
 
   const regularRegister = async () => {
+    const key = createNoStrAccount();
+    console.log(key);
     setInProgress(true);
     try {
       const response = await signUp(username, email, referral);
