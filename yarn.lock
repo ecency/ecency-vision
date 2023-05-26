@@ -6973,7 +6973,7 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1, hoist-non-react-statics@^3.3.2:
+hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -10891,6 +10891,13 @@ react-img-webp@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/react-img-webp/-/react-img-webp-2.0.2.tgz#d8b0e2ac436978bdd5b8ea74f1f80a6bf5dd99ba"
   integrity sha512-mhqV89PuOr8bECEk5dx4ZSzuLH5z+1QnX76ytzBIpdDxhjKE1FPfu0V43mJIs4E2iYWp0hx4/Uk+DVB+5/vTRg==
+
+react-in-viewport@^1.0.0-alpha.30:
+  version "1.0.0-alpha.30"
+  resolved "https://registry.yarnpkg.com/react-in-viewport/-/react-in-viewport-1.0.0-alpha.30.tgz#9df657099fe5984af741f41429c3237b87adf723"
+  integrity sha512-fmjnsfWM+D739UKgQNY9E03Bjf+q9iTwMqwqXboThlfYZ7yLWXEGvTNsCPKwDYlrPinDX8/nZl4wAABsc5OH7w==
+  dependencies:
+    hoist-non-react-statics "^3.0.0"
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6:
   version "16.13.1"

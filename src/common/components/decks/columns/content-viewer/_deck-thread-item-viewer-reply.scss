@@ -1,4 +1,4 @@
-@import "./src/style/vars_mixins";
+@import "src/style/vars_mixins";
 
 @mixin sequence_item() {
   $root: ".thread-item";
@@ -85,5 +85,9 @@
         @include timeline(true, false);
       }
     }
+  }
+
+  .markdown-author-link .user-avatar::before, .markdown-author-link .user-avatar::after {
+    content: none !important;
   }
 }

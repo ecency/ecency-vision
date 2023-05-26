@@ -124,11 +124,15 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
       }}
       data={data}
-      newDataComingCondition={(newCameData) =>
-        prevData?.length === 0 ||
-        moment(newCameData[0]?.created).isBefore(moment((prevData ?? [])[0]?.created))
-      }
+      newDataComingCondition={(newCameData) => {
+        const newCame = newCameData.filter((i) => !prevData?.some((it) => i.id === it.id))[0];
+        const prevOne = (prevData ?? [])[0];
+        return (
+          prevData?.length === 0 || moment(newCame?.created).isBefore(moment(prevOne?.created))
+        );
+      }}
       isReloading={isReloading}
+      isVirtualScroll={false}
       isExpanded={!!currentViewingEntry}
       onReload={() => fetchData()}
       skeletonItem={<DeckThreadItemSkeleton />}
@@ -150,9 +154,8 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
           entry={{
             ...item
           }}
-          onMounted={() => {
-            measure();
-
+          onMounted={() => measure()}
+          onAppear={() => {
             const hostOnlyThreadItems = hostGroupedData[item.host];
             const isLast = hostOnlyThreadItems[hostOnlyThreadItems.length - 1]?.id === item.id;
             if (isLast && hasHostNextPage[item.host]) {

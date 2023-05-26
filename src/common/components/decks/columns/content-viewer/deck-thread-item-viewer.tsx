@@ -45,9 +45,7 @@ export const DeckThreadItemViewer = ({
         i.host = entry.host;
       });
 
-      if (entry.replies.length === 0) {
-        entry.replies = tempResponse[`${entry.author}/${entry.permlink}`].replies;
-      }
+      entry.replies = tempResponse[`${entry.author}/${entry.permlink}`].replies;
 
       const nextData = buildReplyNode(entry, tempResponse);
       setData(nextData);
@@ -115,7 +113,7 @@ export const DeckThreadItemViewer = ({
             />
           ))}
         <div className="skeleton-list">
-          {!isLoaded && Array.from(new Array(20)).map((i) => <DeckThreadItemSkeleton key={i} />)}
+          {!isLoaded && Array.from(new Array(20)).map((_, i) => <DeckThreadItemSkeleton key={i} />)}
         </div>
       </div>
     </div>
