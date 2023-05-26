@@ -66,6 +66,7 @@ interface NotificationProps {
   updateNotificationsSettings: typeof updateNotificationsSettings;
   setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
   className: string;
+  openLinksInNewTab?: boolean;
 }
 
 export class DialogContent extends Component<NotificationProps, any> {
@@ -497,6 +498,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                       isSelect={select}
                       currentStatus={currentStatus}
                       setSelectedNotifications={this.setSelectedNotifications}
+                      openLinksInNewTab={this.props.openLinksInNewTab}
                     />
                   </>
                 )}
@@ -509,6 +511,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                       isSelect={select}
                       currentStatus={currentStatus}
                       setSelectedNotifications={this.setSelectedNotifications}
+                      openLinksInNewTab={this.props.openLinksInNewTab}
                     />
                   </>
                 )}
@@ -521,6 +524,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                       isSelect={select}
                       currentStatus={currentStatus}
                       setSelectedNotifications={this.setSelectedNotifications}
+                      openLinksInNewTab={this.props.openLinksInNewTab}
                     />
                   </>
                 )}
@@ -556,7 +560,10 @@ class NotificationsDialog extends Component<NotificationProps> {
   }
 }
 
-export default ({ history }: Pick<NotificationProps, "history">) => {
+export default ({
+  history,
+  openLinksInNewTab
+}: Pick<NotificationProps, "history" | "openLinksInNewTab">) => {
   const {
     global,
     activeUser,
@@ -593,6 +600,7 @@ export default ({ history }: Pick<NotificationProps, "history">) => {
       unMuteNotifications={unMuteNotifications}
       updateNotificationsSettings={updateNotificationsSettings}
       setNotificationsSettingsItem={setNotificationsSettingsItem}
+      openLinksInNewTab={openLinksInNewTab}
     />
   );
 };

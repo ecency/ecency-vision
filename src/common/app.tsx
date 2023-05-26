@@ -25,6 +25,9 @@ import loadable from "@loadable/component";
 import Announcement from "./components/announcement";
 import FloatingFAQ from "./components/floating-faq";
 import { useMappedStore } from "./store/use-mapped-store";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./core";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -86,7 +89,9 @@ const App = (props: any) => {
   }, []);
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
+      {/*Excluded from production*/}
+      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
       <Tracker />
       <Switch>
         <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
@@ -158,7 +163,7 @@ const App = (props: any) => {
       <Announcement activeUser={props.activeUser} />
       <FloatingFAQ />
       <div id="popper-container" />
-    </>
+    </QueryClientProvider>
   );
 };
 

@@ -66,7 +66,11 @@ export class EntryLink extends Component<Props> {
     const props = Object.assign({}, children.props, { href, onClick: this.clicked });
 
     if (this.props.target) {
-      props.target = this.props.target;
+      props.onClick = (e: React.MouseEvent<HTMLElement>) => {
+        this.clicked(e);
+
+        window.open(props.href, "_blank");
+      };
     }
 
     return React.createElement("a", props);
@@ -78,7 +82,8 @@ export default (p: Props) => {
     history: p.history,
     children: p.children,
     entry: p.entry,
-    afterClick: p.afterClick
+    afterClick: p.afterClick,
+    target: p.target
   };
 
   return <EntryLink {...props} />;
