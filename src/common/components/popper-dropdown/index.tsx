@@ -33,7 +33,7 @@ export const PopperDropdown = ({ children, toggle }: Props) => {
   };
 
   return (
-    <div className="popper-dropdown dropdown" ref={hostRef}>
+    <div className="popper-dropdown dropdown">
       <Button ref={setHost} variant="link" onClick={() => (isShow ? hide() : show())}>
         {toggle}
       </Button>
@@ -46,7 +46,7 @@ export const PopperDropdown = ({ children, toggle }: Props) => {
               {...attributes.popper}
               ref={setPopperElement}
             >
-              {children}
+              <div ref={hostRef}>{children}</div>
             </div>
           ),
           document.querySelector("#popper-container")!!
