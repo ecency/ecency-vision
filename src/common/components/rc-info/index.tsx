@@ -33,6 +33,8 @@ export const ResourceCreditsInfo = (props: any) => {
   const [voteAmount, setVoteAmount] = useState(0);
   const [transferAmount, setTransferAmount] = useState(0);
   const [customJsonAmount, setCustomJsonAmount] = useState(0);
+  const [accountCreateAmount, setAccountCreateAmount] = useState(0);
+  const [claimAccountCreateAmount, setClaimAccountCreateAmount] = useState(0);
 
   useEffect(() => {
     findRcAccounts(account.name)
@@ -55,6 +57,10 @@ export const ResourceCreditsInfo = (props: any) => {
           const transferCost = operationCosts.transfer_operation.avg_cost;
           const voteCost = operationCosts.vote_operation.avg_cost;
           const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
+          const accountCreateCost = Number(operationCosts.account_create_operation.avg_cost);
+          const createClaimAccountCost = Number(operationCosts.create_claimed_account_operation.avg_cost);
+          console.log(accountCreateCost)
+          console.log(createClaimAccountCost)
 
           const commentCount: number = Math.ceil(Number(availableResourceCredit) / commentCost);
           const votetCount: number = Math.ceil(Number(availableResourceCredit) / voteCost);
@@ -62,10 +68,20 @@ export const ResourceCreditsInfo = (props: any) => {
           const customJsonCount: number = Math.ceil(
             Number(availableResourceCredit) / customJsonOperationsCosts
           );
+
+          const accountCreateCount: number = Math.ceil(
+            Number(availableResourceCredit) / accountCreateCost
+          );
+          const createClaimAccountCount: number = Math.ceil(
+            Number(availableResourceCredit) / createClaimAccountCost
+          );
+
           setCommentAmount(commentCount);
           setVoteAmount(votetCount);
           setTransferAmount(transferCount);
           setCustomJsonAmount(customJsonCount);
+          setAccountCreateAmount(accountCreateCount);
+          setClaimAccountCreateAmount(createClaimAccountCount)
         };
         rcOperationsCost();
       })
@@ -216,6 +232,8 @@ export const ResourceCreditsInfo = (props: any) => {
                     <li>{`${_t("rc-info.votes")} ${voteAmount}`}</li>
                     <li>{`${_t("rc-info.transfers")} ${transferAmount}`}</li>
                     <li>{`${_t("rc-info.reblogs-follows")} ${customJsonAmount}`}</li>
+                    <li>Account create: {accountCreateAmount}</li>
+                    <li>Claim account: {claimAccountCreateAmount}</li>
                   </ul>
                 </div>
               </div>

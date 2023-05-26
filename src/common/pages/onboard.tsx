@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 const Onboard: React.FC = (props: PageProps | any) => {
 
-  const onboardUrl = `localhost:3000/onboard-friend/creating/`
+  const onboardUrl = `${window.location.origin}/onboard-friend/creating/`
 
   const [masterPassword, setMasterPassword] = useState("");
   const [hash, setHash] = useState("");
@@ -24,11 +24,10 @@ const Onboard: React.FC = (props: PageProps | any) => {
   const [showModal, setShowModal] = useState(false);
   const [accountCredit, setAccountCredit] = useState(0);
   const [createOption, setCreateOption] = useState("");
-  const [fileIsDownloaded, setFileIsDownloaded] = useState(false)
+  const [fileIsDownloaded, setFileIsDownloaded] = useState(false);
   
   useEffect(() => {
-    initAccountKey();
-
+    initAccountKey();    
     try{
       if (props.match.params.hash) {
         const decoded_hash = JSON.parse(decodeURIComponent(props.match.params.hash));
@@ -60,7 +59,6 @@ const Onboard: React.FC = (props: PageProps | any) => {
       };
       // stringify object to encode
       const stringified_pub_keys = JSON.stringify(dataToEncode);
-      // encode stringified object
       const hashed_pub_keys = encodeURIComponent(stringified_pub_keys);
       setHash(hashed_pub_keys)
       const accInfo = {
@@ -78,9 +76,7 @@ const Onboard: React.FC = (props: PageProps | any) => {
   };
 
   const getCredit = async () => {
-    const accountCredit = await getAcountCredit("ecency")
-    // const accountCredit = await getAcountCredit(props.activeUser.username)
-    console.log(accountCredit)
+    const accountCredit = await getAcountCredit(props.activeUser.username)
     setAccountCredit(accountCredit)
   }
 
@@ -111,31 +107,22 @@ const Onboard: React.FC = (props: PageProps | any) => {
         3. ${_t("onboard.recomend-save")}
         4. ${_t("onboard.recomend-third-party")}
 
-        ${_t("onboard.recomend-account-info")}
 
+        ${_t("onboard.account-info")}
         Username: ${username}
 
         Password: ${masterPassword}
 
-        Owner: ${keys.owner}
+        ${_t("onboard.owner-private")} ${keys.owner}
 
-        Active: ${keys.active}
+        ${_t("onboard.active-private")} ${keys.active}
 
-        Posting: ${keys.posting}
+        ${_t("onboard.posting-private")} ${keys.posting}
 
-        Memo: ${keys.memo}
-
-        ${_t("onboard.public-owner")} ${keys.ownerPubkey},
-
-        ${_t("onboard.public-active")} ${keys.activePubkey},
-
-        ${_t("onboard.public-posting")} ${keys.postingPubkey},
-
-        ${_t("onboard.public-memo")} ${keys.memoPubkey},
+        ${_t("onboard.memo-private")} ${keys.memo}
 
 
         ${_t("onboard.keys-use")}
-
         ${_t("onboard.owner")} ${_t("onboard.owner-use")}   
         ${_t("onboard.active")} ${_t("onboard.active-use")}  
         ${_t("onboard.posting")} ${_t("onboard.posting-use")} 
@@ -204,7 +191,7 @@ const Onboard: React.FC = (props: PageProps | any) => {
             </div>
         </div>}
 
-        {props.match.params.type === "creating"  && props.match.params.hash && <div className="onboard-container">          
+        {props.match.params.type === "creating" && props.match.params.hash && <div className="onboard-container">          
             {props.activeUser ? <div className="creating-confirm">
               <h3 className="align-self-center">{_t("onboard.confirm-details")}</h3>
               <span>{_t("onboard.username")} {decodedInfo.username}</span>
@@ -219,7 +206,6 @@ const Onboard: React.FC = (props: PageProps | any) => {
                   onClick={() =>{ 
                     setCreateOption("hive")
                     setShowModal(true);                   
-                    // showConfirmModal()
                   }}
                   >{_t("onboard.create-account-hive")}</Button>
                   <Button 
@@ -259,7 +245,6 @@ const Onboard: React.FC = (props: PageProps | any) => {
                     pub_keys: decodedInfo.pub_keys
                     }, props.activeUser.username);
                     setShowModal(false);
-                    // hideConfirmModal();
               }}
               >
                 {_t("onboard.modal-confirm")}
@@ -272,7 +257,6 @@ const Onboard: React.FC = (props: PageProps | any) => {
                   pub_keys: decodedInfo.pub_keys
                   }, props.activeUser.username);
                   setShowModal(false);
-                  // hideConfirmModal();
               }}
               >
                 {_t("onboard.modal-confirm")}
