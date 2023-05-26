@@ -38,6 +38,7 @@ interface Props {
   toggleUIProp: (what: ToggleType) => void;
   setSigningKey: (key: string) => void;
   setTipDialogMounted?: (d: boolean) => void;
+  handleClickAway?: () => void;
 }
 
 interface DialogProps extends Props {
@@ -58,7 +59,7 @@ export class TippingDialog extends Component<DialogProps> {
   }
 
   render() {
-    const { global, entry, activeUser } = this.props;
+    const { global, entry, activeUser, handleClickAway } = this.props;
 
     if (!activeUser) {
       return null;
@@ -82,6 +83,7 @@ export class TippingDialog extends Component<DialogProps> {
         amount={global.usePrivate ? "100.000" : "1.000"}
         to={to}
         memo={memo}
+        handleClickAway={handleClickAway}
       />
     );
   }
@@ -143,8 +145,12 @@ export default ({
   entry,
   account,
   updateWalletValues,
-  setTipDialogMounted
-}: Pick<Props, "entry" | "account" | "updateWalletValues" | "setTipDialogMounted">) => {
+  setTipDialogMounted,
+  handleClickAway
+}: Pick<
+  Props,
+  "entry" | "account" | "updateWalletValues" | "setTipDialogMounted" | "handleClickAway"
+>) => {
   const {
     users,
     ui,
@@ -173,6 +179,7 @@ export default ({
     fetchPoints: fetchPoints,
     updateWalletValues: updateWalletValues,
     setTipDialogMounted: setTipDialogMounted,
+    handleClickAway: handleClickAway,
     addAccount: addAccount,
     setActiveUser: setActiveUser,
     updateActiveUser: updateActiveUser,
