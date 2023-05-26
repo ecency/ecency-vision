@@ -2,6 +2,7 @@ import * as bridgeApi from "../../../../api/bridge";
 import { ProfileFilter } from "../../../../store/global/types";
 import { getDiscussion } from "../../../../api/bridge";
 import { ThreadItemEntry, IdentifiableEntry } from "./identifiable-entry";
+import { FetchQueryOptions } from "@tanstack/query-core/src/types";
 
 export async function fetchThreads(
   host: string,
@@ -53,4 +54,11 @@ export async function fetchThreads(
       )
     }))
     .filter((i) => i.container.post_id !== i.post_id);
+}
+
+export function threadsQuery(...args: Parameters<typeof fetchThreads>): FetchQueryOptions {
+  return {
+    queryKey: ["threads-query", { ...args }],
+    queryFn: () => fetchThreads(...args)
+  };
 }

@@ -1,5 +1,6 @@
 import { IdentifiableEntry, ThreadItemEntry } from "./identifiable-entry";
 import * as bridgeApi from "../../../../api/bridge";
+import { FetchQueryOptions } from "@tanstack/query-core/src/types";
 
 export async function fetchThreadsFromCommunity(
   host: string,
@@ -37,4 +38,13 @@ export async function fetchThreadsFromCommunity(
   }));
 
   return threadItems;
+}
+
+export function communityThreadsQuery(
+  ...args: Parameters<typeof fetchThreadsFromCommunity>
+): FetchQueryOptions {
+  return {
+    queryKey: ["community-threads-query", { ...args }],
+    queryFn: () => fetchThreadsFromCommunity(...args)
+  };
 }
