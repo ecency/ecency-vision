@@ -66,7 +66,8 @@ describe("(1) Dialog", () => {
     previousVotedValue: null,
     onClick: () => {},
     setTipDialogMounted: () => {},
-    updateWalletValues: () => {}
+    updateWalletValues: () => {},
+    handleClickAway: () => {}
   };
 
   const renderer = withStore(<VoteDialog {...props} />);
