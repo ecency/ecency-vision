@@ -83,6 +83,7 @@ interface VoteDialogProps {
   setTipDialogMounted: (d: boolean) => void;
   updateWalletValues: () => void;
   onClick: (percent: number, estimated: number) => void;
+  handleClickAway: () => void;
 }
 
 interface VoteDialogState {
@@ -424,6 +425,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   account={this.props.account}
                   updateWalletValues={this.props.updateWalletValues}
                   setTipDialogMounted={this.props.setTipDialogMounted}
+                  handleClickAway={this.props.handleClickAway}
                 />
               </div>
             </div>
@@ -653,6 +655,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                               setTipDialogMounted={this.setTipDialogMounted}
                               updateWalletValues={this.ensureAccount}
                               onClick={this.vote}
+                              handleClickAway={this.handleClickAway}
                             />
                           </span>
                         </div>
