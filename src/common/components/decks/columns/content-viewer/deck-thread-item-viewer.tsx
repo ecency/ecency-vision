@@ -1,5 +1,5 @@
 import { History } from "history";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
@@ -10,6 +10,7 @@ import { IdentifiableEntry } from "../deck-threads-manager";
 import { DeckThreadsForm } from "../../deck-threads-form";
 import moment from "moment";
 import { DeckThreadItemViewerReply } from "./deck-thread-item-viewer-reply";
+import { EntriesCacheContext } from "../../../../core";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -26,10 +27,12 @@ export const DeckThreadItemViewer = ({
   onClose,
   highlightedEntry
 }: Props) => {
+  const { updateReplies } = useContext(EntriesCacheContext);
+
   const [data, setData] = useState<IdentifiableEntry | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-
   const [isMounted, setIsMounted] = useState(false);
+
   useMount(() => setIsMounted(true));
 
   useEffect(() => {
@@ -50,6 +53,9 @@ export const DeckThreadItemViewer = ({
       const nextData = buildReplyNode(entry, tempResponse);
       setData(nextData);
       setIsLoaded(true);
+
+      // Update entry in global cache
+      updateReplies(entry.post_id, [...entry.replies]);
     }
   };
 
@@ -85,7 +91,7 @@ export const DeckThreadItemViewer = ({
       </div>
       <ThreadItem
         pure={true}
-        entry={entry}
+        initialEntry={entry}
         onEntryView={() => {}}
         history={history}
         onMounted={() => {}}
@@ -99,6 +105,9 @@ export const DeckThreadItemViewer = ({
           reply.replies = [];
           if (data) {
             setData({ ...data, replies: [reply, ...data.replies] });
+
+            // Update entry in global cache
+            updateReplies(entry.post_id, [reply, ...data.replies]);
           }
         }}
       />

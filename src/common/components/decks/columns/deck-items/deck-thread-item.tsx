@@ -14,9 +14,10 @@ import EntryVotes from "../../../entry-votes";
 import { DeckThreadItemBody } from "./deck-thread-item-body";
 import { classNameObject } from "../../../../helper/class-name-object";
 import { useInViewport } from "react-in-viewport";
+import { useEntryCache } from "../../../../core";
 
 export interface ThreadItemProps {
-  entry: IdentifiableEntry;
+  initialEntry: IdentifiableEntry;
   history: History;
   onMounted: () => void;
   onEntryView: () => void;
@@ -30,7 +31,7 @@ export interface ThreadItemProps {
 }
 
 export const ThreadItem = ({
-  entry,
+  initialEntry,
   onMounted,
   onEntryView,
   onResize,
@@ -48,6 +49,8 @@ export const ThreadItem = ({
   const [hasParent, setHasParent] = useState(false);
 
   const { inViewport } = useInViewport(ref);
+
+  const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
 
   useEffect(() => {
     onMounted();

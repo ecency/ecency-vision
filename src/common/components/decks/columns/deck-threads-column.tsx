@@ -157,9 +157,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
       {(item: IdentifiableEntry, measure: Function, index: number) => (
         <ThreadItem
           history={history}
-          entry={{
-            ...item
-          }}
+          initialEntry={item}
           onMounted={() => measure()}
           onAppear={() => {
             const hostOnlyThreadItems = hostGroupedData[item.host];

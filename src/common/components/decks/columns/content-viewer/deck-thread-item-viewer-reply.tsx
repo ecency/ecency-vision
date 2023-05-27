@@ -1,11 +1,12 @@
 import { ThreadItem } from "../deck-items";
 import { DeckThreadsForm } from "../../deck-threads-form";
 import { _t } from "../../../../i18n";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { History } from "history";
 import "./_deck-thread-item-viewer-reply.scss";
 import { classNameObject } from "../../../../helper/class-name-object";
+import { EntriesCacheContext } from "../../../../core";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -14,6 +15,8 @@ interface Props {
 }
 
 export const DeckThreadItemViewerReply = ({ entry, history, isHighlighted }: Props) => {
+  const { updateReplies } = useContext(EntriesCacheContext);
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -25,7 +28,7 @@ export const DeckThreadItemViewerReply = ({ entry, history, isHighlighted }: Pro
     >
       <ThreadItem
         pure={true}
-        entry={entry}
+        initialEntry={entry}
         history={history}
         onMounted={() => {}}
         onResize={() => {}}
@@ -39,8 +42,8 @@ export const DeckThreadItemViewerReply = ({ entry, history, isHighlighted }: Pro
           placeholder={_t("decks.threads-form.write-your-reply")}
           replySource={entry}
           onSuccess={(reply) => {
-            entry.replies = [reply, ...entry.replies];
-            entry.children += 1;
+            // Update entry in global cache
+            updateReplies(entry.post_id, [reply, entry.replies]);
           }}
         />
       )}
