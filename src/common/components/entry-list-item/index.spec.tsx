@@ -6,23 +6,21 @@ import mockDate from "mockdate";
 
 import { StaticRouter } from "react-router-dom";
 
-import TestRenderer from "react-test-renderer";
-
 import {
   globalInstance,
   dynamicPropsIntance1,
   entryInstance1,
   UiInstance,
   emptyReblogs,
-  activeUserMaker,
-  crossEntryInstance,
-  allOver
+  allOver,
+  crossEntryInstance
 } from "../../helper/test-helper";
 
 import { ListStyle } from "../../store/global/types";
 
 import EntryListItem from "./index";
 import { withStore } from "../../tests/with-store";
+import { activeUserMaker } from "../../store/helper";
 
 mockDate.set(1591398131176);
 
@@ -86,7 +84,6 @@ it("(2) Grid view", async () => {
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
-/*
 it("(3) Nsfw", async () => {
   const props = {
     ...defProps,
@@ -94,7 +91,7 @@ it("(3) Nsfw", async () => {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
+        tags: [...(entryInstance1.json_metadata.tags ?? []), "nsfw"]
       }
     }
   };
@@ -115,7 +112,7 @@ it("(4) Nsfw with active user", async () => {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
+        tags: [...(entryInstance1.json_metadata.tags ?? []), "nsfw"]
       }
     },
     activeUser: activeUserMaker("foo")
@@ -137,7 +134,7 @@ it("(5) Nsfw but allowed", async () => {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
+        tags: [...(entryInstance1.json_metadata.tags ?? []), "nsfw"]
       }
     },
     global: {
@@ -171,4 +168,3 @@ it("(6) Cross post. Bottom menu", async () => {
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
-*/
