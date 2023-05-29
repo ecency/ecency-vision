@@ -575,7 +575,8 @@
     "sort-reward": "Mükafat",
     "sort-timestamp": "Vaxt",
     "sort-reputation": "Nüfuz",
-    "sort-percent": "Faiz"
+    "sort-percent": "Faiz",
+    "pending-message": "You have pending votes. Please, wait a minute and re-open this dialog to see your vote."
   },
   "entry": {
     "via-app": "<span class=\"app-name\">{{app}}</span> ilə",
