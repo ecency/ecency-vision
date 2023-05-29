@@ -575,7 +575,8 @@
     "sort-reward": "Tasu",
     "sort-timestamp": "Kellaaeg",
     "sort-reputation": "Maine",
-    "sort-percent": "Protsendid"
+    "sort-percent": "Protsendid",
+    "pending-message": "You have pending votes. Please, wait a minute and re-open this dialog to see your vote."
   },
   "entry": {
     "via-app": "<span class=\"app-name\">{{app}}</span> kaudu",
