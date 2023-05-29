@@ -170,6 +170,20 @@
     "vote-power": "Vote Power:",
     "boost": "Boost"
   },
+  "wallet-portfolio": {
+    "name": "Token Name",
+    "price": "Price",
+    "change": "% Change",
+    "trend": "Trend",
+    "balance": "Balance",
+    "value": "Value",
+    "show-trend": "Show trend",
+    "total-value": "Total Wallet Value:",
+    "hive": "Hive",
+    "hive-power": "Hive Power",
+    "points": "Points",
+    "hbd": "HBD"
+  },
   "intro": {
     "title": "Aspire to greatness",
     "sub-title": "rewarding communities",
@@ -1162,6 +1176,7 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
+    "group-delegate": "Delegate",
     "type-curation_reward": "Curation reward",
     "type-author_reward": "Author reward",
     "type-comment_benefactor_reward": "Comment benefactor reward",

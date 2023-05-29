@@ -8,6 +8,7 @@ export interface AccountProfile {
   profile_image?: string;
   website?: string;
   pinned?: string;
+  profileTokens?: string[];
 }
 
 export interface AccountFollowStats {

@@ -33,6 +33,7 @@ interface State {
   inProgress: boolean;
   uploading: boolean;
   changed: boolean;
+  profileTokens: string[]
 }
 
 const pureState = (props: Props): State => {
@@ -51,7 +52,8 @@ const pureState = (props: Props): State => {
     location: profile.location || "",
     coverImage: profile.cover_image || "",
     profileImage: profile.profile_image || "",
-    pinned: profile.pinned || ""
+    pinned: profile.pinned || "",
+    profileTokens: profile?.profileTokens || []
   };
 };
 
@@ -82,7 +84,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
   update = () => {
     const { activeUser, addAccount, updateActiveUser } = this.props;
 
-    const { name, about, location, website, coverImage, profileImage, pinned } = this.state;
+    const { name, about, location, website, coverImage, profileImage, pinned, profileTokens } = this.state;
 
     const newProfile = {
       name,
@@ -91,9 +93,9 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
       profile_image: profileImage,
       website,
       location,
-      pinned
+      pinned,
+      profileTokens
     };
-
     this.stateSet({ inProgress: true });
     updateProfile(activeUser.data, newProfile)
       .then((r) => {

@@ -1,0 +1,83 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.table-top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    .toggle{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        label{
+            position: relative;
+    
+            input{
+                position: absolute;
+                left: 0px;
+                right: 0px;
+                margin: auto;
+    
+                &:checked + span{
+                    background-color: #357ce6;
+    
+                    &::before{
+                        left: 30px;
+                
+                    }
+                }
+    
+            }
+    
+            span{
+                display: flex;
+                cursor: pointer;
+                width: 60px;
+                height: 35px;
+                border-radius: 100px;
+                background-color: #585151;
+                position: relative;
+                padding: 5px;
+                transition: background-color 0.5s;
+    
+                &::before{
+                    content: "";
+                    position: absolute;
+                    top: 2px;
+                    left: 2px;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50px;
+                    transition: 0.5s;
+                    background: white;
+    
+                }
+            }
+        }
+    }
+
+}
+
+.table-row {
+    height: 100px;
+    cursor: pointer;
+}
+
+.token-image{
+    position: relative;
+
+    .type-image{
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        top: 2px;
+        left: 30px;
+    }
+}

@@ -23,7 +23,7 @@ export default {
   USER_FEED: `/:username(@[\\w\\.\\d-]+)/:section(feed)`,
   USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(${profileFilters.join(
     "|"
-  )}|wallet|points|engine|communities|settings|permissions|referrals|followers|following|spk|trail)`,
+  )}|wallet|communities|settings|permissions|referrals|followers|following|spk|trail)`,
   COMMUNITIES: `/communities`,
   COMMUNITIES_CREATE: `/communities/create`,
   COMMUNITIES_CREATE_HS: `/communities/create-hs`,
@@ -38,5 +38,6 @@ export default {
   PROPOSALS: `/proposals`,
   PROPOSAL_DETAIL: `/proposals/:id(\\d+)`,
   PURCHASE: "/purchase",
+  TOKEN_DETAIL: `/:username(@[\\w\\.\\d-]+)/:section(wallet)/:symbol`,
   DECKS: "/decks"
 };

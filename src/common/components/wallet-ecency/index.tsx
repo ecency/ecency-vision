@@ -200,6 +200,7 @@ export const WalletEcency = (props: Props) => {
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
 
   const { global, activeUser, account, points, history, fetchPoints, updateActiveUser } = props;
+  console.log(points)
 
   useEffect(() => {
     setIsMounted(true);
@@ -235,6 +236,7 @@ export const WalletEcency = (props: Props) => {
   const initiateOnElectron = (username: string) => {
     if (!isMounted && global.isElectron) {
       let getPoints = new Promise((res) => fetchPoints(username));
+      console.log(getPoints)
       username &&
         getPoints
           .then((res) => {

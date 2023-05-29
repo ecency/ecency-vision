@@ -23,8 +23,6 @@ export const EngineTokensEstimated = (props: any) => {
       };
     });
 
-    //  const walletTokens = mappedBalanceMetrics.filter((w: any) => w.balance !== 0 || w.stakedBalance !== 0)
-
     const tokens_usd_prices = mappedBalanceMetrics.map((w: any) => {
       return w.symbol === "SWAP.HIVE"
         ? Number(pricePerHive * w.balance)

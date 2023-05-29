@@ -1,0 +1,33 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.portfolio-list-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .token-list{
+        padding: 10px;
+        gap: 5px;
+        // flex-wrap: wrap;
+    
+        img{        
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        span{
+            margin: 0 15px;
+        }
+    }
+
+    .add-btn{
+
+        input{
+            width: 20px;
+            height: 20px;
+        }
+    }
+}

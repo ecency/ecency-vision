@@ -165,12 +165,7 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
     },
     id: 1
   };
-
-  // const result = await axios
-  //     .post(HIVE_ENGINE_RPC_URL, data, {
-  //       headers: { "Content-type": "application/json" }
-  //     })
-  //     return result;
+  
   return axios
     .post(HIVE_ENGINE_RPC_URL, data, {
       headers: { "Content-type": "application/json" }
@@ -188,3 +183,35 @@ export const getMarketData = async (symbol: any) => {
   });
   return history;
 };
+
+export async function getTransactions(symbol: string, account: string, limit: number, offset?: number): Promise<any> {
+  const url: any = engine.mainTransactionUrl;
+  return axios({
+    url,
+    method: "GET",
+    params: {
+      account,
+      token: symbol,
+      limit,
+      offset
+    }
+  }).then((response) => {
+    return response.data;
+  });
+};
+
+export async function getOtherTransactions(account: string, limit: number, symbol: string, offset: number = 0) {
+  const url: any = engine.otherTransactionsUrl;
+  const response = await axios({
+    url,
+    method: "GET",
+    params: {
+      account,
+      limit,
+      offset,
+      type: "user",
+      symbol
+    }
+  });
+  return response.data;
+}

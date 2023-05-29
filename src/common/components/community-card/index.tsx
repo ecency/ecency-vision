@@ -76,7 +76,6 @@ export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
 
     const { addAccount, onUpdate } = this.props;
     const { profile } = account;
-
     const newProfile = {
       profile_image: url
     };

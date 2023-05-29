@@ -31,8 +31,8 @@ export const HiveEngineChart = (props: any) => {
       enabled: false
     },
     chart: {
-      height: "70",
-      width: "600",
+      height: "40",
+      width: "100",
       zoomType: "x",
       backgroundColor: "transparent",
       border: "none",
@@ -56,7 +56,7 @@ export const HiveEngineChart = (props: any) => {
       area: {
         fillColor: theme === Theme.night ? "#2e3d51" : "#f3f7fb",
         lineColor: "transparent",
-        lineWidth: 399
+        lineWidth: 150
       },
       series: {
         marker: {
@@ -120,14 +120,14 @@ export const HiveEngineChart = (props: any) => {
     series: [
       {
         name: "tokens",
-        data: prices.length === 0 ? [0, 0] : prices,
+        data: prices?.length === 0 ? [0, 0] : prices,
         type: "line",
         enableMouseTracking: true
       }
     ]
   };
   return (
-    <div className="market-graph d-flex justify-items-center ml-5">
+    <div className="market-graph d-flex justify-items-center">
       <div className="graph">
         <ReactHighcharts config={config} />
       </div>
