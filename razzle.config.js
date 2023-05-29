@@ -45,7 +45,7 @@ module.exports = {
 
       webpackConfig.module.rules.push({
         test: /\.mjs$/,
-        exclude: /node_modules\/(?!(nostr-tools)\/).*/,
+        include: /node_modules\/nostr-tools\//,
         // test: /\.mjs$/,
         // include: /node_modules\/nostr-tools\//,
         use: {

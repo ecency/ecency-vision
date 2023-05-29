@@ -52,12 +52,12 @@ export default function ChatBox({ activeUser }: Props) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    fetchProfileData();
+    // fetchProfileData();
     setShow(!!activeUser?.username);
   }, []);
 
   useEffect(() => {
-    fetchProfileData();
+    // fetchProfileData();
     setCurrentUser("");
     setIsCurrentUser(false);
     setShow(!!activeUser?.username);
@@ -208,6 +208,7 @@ export default function ChatBox({ activeUser }: Props) {
   ];
 
   const fetchCurrentUserData = async () => {
+    console.log("Fetch Current data called");
     const response = await getAccountFull(currentUser);
     setProfileData({
       joiningData: response.created,
@@ -216,15 +217,16 @@ export default function ChatBox({ activeUser }: Props) {
     });
   };
 
-  const fetchProfileData = async () => {
-    const response = await getAccountFull(activeUser?.username!);
-    setAccountData(response);
-    const { posting_json_metadata } = response;
-    const profile = JSON.parse(posting_json_metadata!).profile;
+  // const fetchProfileData = async () => {
+  //   console.log("Fetch profile data called");
+  //   const response = await getAccountFull(activeUser?.username!);
+  //   setAccountData(response);
+  //   const { posting_json_metadata } = response;
+  //   const profile = JSON.parse(posting_json_metadata!).profile;
 
-    const hasNoStrKey = !!profile.noStrKey && profile.noStrKey.trim() !== "";
-    setHasUserJoinedChat(hasNoStrKey);
-  };
+  //   const hasNoStrKey = !!profile.noStrKey && profile.noStrKey.trim() !== "";
+  //   setHasUserJoinedChat(hasNoStrKey);
+  // };
 
   const userClicked = (username: string) => {
     setIsCurrentUser(true);
