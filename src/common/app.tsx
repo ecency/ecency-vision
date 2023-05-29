@@ -27,7 +27,6 @@ import FloatingFAQ from "./components/floating-faq";
 import { useMappedStore } from "./store/use-mapped-store";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient, EntriesCacheManager } from "./core";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -92,7 +91,7 @@ const App = (props: any) => {
     <QueryClientProvider client={queryClient}>
       <EntriesCacheManager>
         {/*Excluded from production*/}
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/*<ReactQueryDevtools initialIsOpen={false} />*/}
         <Tracker />
         <Switch>
           <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
