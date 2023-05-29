@@ -68,7 +68,7 @@ export const DeckThreadsForm = ({
       let content = text;
 
       if (image) {
-        content = `${content}<p>![${imageName ?? ""}](${image})</p>`;
+        content = `${content}<br>![${imageName ?? ""}](${image})`;
       }
 
       // Push to draft built content with attachments
