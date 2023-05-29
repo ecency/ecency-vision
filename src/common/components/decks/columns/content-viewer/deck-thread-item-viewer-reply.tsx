@@ -1,21 +1,31 @@
 import { ThreadItem } from "../deck-items";
 import { DeckThreadsForm } from "../../deck-threads-form";
 import { _t } from "../../../../i18n";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { History } from "history";
 import "./_deck-thread-item-viewer-reply.scss";
 import { classNameObject } from "../../../../helper/class-name-object";
-import { EntriesCacheContext } from "../../../../core";
+import { EntriesCacheContext, useEntryCache } from "../../../../core";
 
 interface Props {
   entry: IdentifiableEntry;
   history: History;
   isHighlighted?: boolean;
+  parentEntry: IdentifiableEntry;
+  incrementParentEntryCount: () => void;
 }
 
-export const DeckThreadItemViewerReply = ({ entry, history, isHighlighted }: Props) => {
-  const { updateReplies } = useContext(EntriesCacheContext);
+export const DeckThreadItemViewerReply = ({
+  entry: initialEntry,
+  history,
+  isHighlighted,
+  parentEntry,
+  incrementParentEntryCount
+}: Props) => {
+  const { addReply, updateRepliesCount } = useContext(EntriesCacheContext);
+
+  const { data: entry } = useEntryCache(initialEntry);
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -43,14 +53,23 @@ export const DeckThreadItemViewerReply = ({ entry, history, isHighlighted }: Pro
           replySource={entry}
           onSuccess={(reply) => {
             // Update entry in global cache
-            updateReplies(entry.post_id, [reply, entry.replies]);
+            addReply(entry.post_id, reply);
+            incrementParentEntryCount();
           }}
         />
       )}
       {isExpanded && (
         <div className="deck-thread-item-viewer-reply-sequence">
           {entry.replies.map((reply) => (
-            <DeckThreadItemViewerReply key={reply.post_id} entry={reply} history={history} />
+            <DeckThreadItemViewerReply
+              key={reply.post_id}
+              entry={reply}
+              history={history}
+              parentEntry={entry}
+              incrementParentEntryCount={() =>
+                updateRepliesCount(parentEntry.post_id, parentEntry.children + 1)
+              }
+            />
           ))}
         </div>
       )}

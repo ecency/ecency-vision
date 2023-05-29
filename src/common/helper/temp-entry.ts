@@ -18,6 +18,7 @@ export interface TempEntryProps {
   body: string;
   description: string | null;
   tags: string[];
+  post_id?: string;
 }
 
 export const correctIsoDate = (d: string): string => d.split(".")[0];
@@ -55,7 +56,7 @@ export default (p: TempEntryProps): Entry => {
     pending_payout_value: "0.000 HBD",
     percent_hbd: 10000,
     permlink: p.permlink,
-    post_id: 1,
+    post_id: p.post_id ?? 1,
     promoted: "0.000 HBD",
     replies: [],
     stats: { flag_weight: 0, gray: false, hide: false, total_votes: 0 },

@@ -10,7 +10,7 @@ import { IdentifiableEntry } from "../deck-threads-manager";
 import { DeckThreadsForm } from "../../deck-threads-form";
 import moment from "moment";
 import { DeckThreadItemViewerReply } from "./deck-thread-item-viewer-reply";
-import { EntriesCacheContext } from "../../../../core";
+import { EntriesCacheContext, useEntryCache } from "../../../../core";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -21,13 +21,15 @@ interface Props {
 }
 
 export const DeckThreadItemViewer = ({
-  entry,
+  entry: initialEntry,
   history,
   backTitle,
   onClose,
   highlightedEntry
 }: Props) => {
-  const { updateReplies } = useContext(EntriesCacheContext);
+  const { addReply, updateCache, updateRepliesCount } = useContext(EntriesCacheContext);
+
+  const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
 
   const [data, setData] = useState<IdentifiableEntry | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -48,14 +50,9 @@ export const DeckThreadItemViewer = ({
         i.host = entry.host;
       });
 
-      entry.replies = tempResponse[`${entry.author}/${entry.permlink}`].replies;
-
       const nextData = buildReplyNode(entry, tempResponse);
       setData(nextData);
       setIsLoaded(true);
-
-      // Update entry in global cache
-      updateReplies(entry.post_id, [...entry.replies]);
     }
   };
 
@@ -63,9 +60,13 @@ export const DeckThreadItemViewer = ({
     if (root.replies.length > 0) {
       root.replies = root.replies
         .filter((r) => r !== `${root.author}/${root.permlink}`)
+        .map((r) => (r instanceof Object ? `${r.author}/${r.permlink}` : r))
         .map((r) => buildReplyNode(dataset[r], dataset));
       root.replies.sort((a, b) => (moment(a.created).isAfter(b.created) ? -1 : 1));
     }
+
+    // Update entry in global cache
+    updateCache([root]);
 
     return root;
   };
@@ -107,7 +108,7 @@ export const DeckThreadItemViewer = ({
             setData({ ...data, replies: [reply, ...data.replies] });
 
             // Update entry in global cache
-            updateReplies(entry.post_id, [reply, ...data.replies]);
+            addReply(entry.post_id, reply);
           }
         }}
       />
@@ -119,6 +120,10 @@ export const DeckThreadItemViewer = ({
               key={reply.post_id}
               entry={reply}
               history={history}
+              parentEntry={entry}
+              incrementParentEntryCount={() =>
+                updateRepliesCount(entry.post_id, entry.children + 1)
+              }
             />
           ))}
         <div className="skeleton-list">

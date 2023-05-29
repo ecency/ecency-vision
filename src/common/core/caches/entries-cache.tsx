@@ -6,60 +6,71 @@ import { QueryIdentifiers } from "../react-query";
 export const EntriesCacheContext = createContext<{
   getById: (id: Entry["post_id"]) => Entry | undefined;
   updateCache: (entries: Entry[], skipInvalidation?: boolean) => void;
-  updateReplies: (entryId: Entry["post_id"], replies: any[]) => void;
+  addReply: (entryId: Entry["post_id"], reply: Entry) => void;
+  updateRepliesCount: (entryId: Entry["post_id"], count: number) => void;
 }>({
   getById: () => ({} as Entry),
   updateCache: () => {},
-  updateReplies: () => {}
+  addReply: () => {},
+  updateRepliesCount: () => {}
 });
 
-export const EntriesCacheManager = ({ children }: { children: any }) => {
-  const [cache, setCache] = useState<Record<Entry["post_id"], Entry>>({});
+const cache = new Map<Entry["post_id"], Entry>();
 
+export const EntriesCacheManager = ({ children }: { children: any }) => {
   const queryClient = useQueryClient();
 
   const updateCache = (entries: Entry[], skipInvalidation = false) => {
-    setCache({
-      ...cache,
-      ...entries.reduce((acc, entry) => ({ ...acc, [entry.post_id]: entry }), {})
-    });
+    entries.forEach((e) => cache.set(e.post_id, e));
 
     if (!skipInvalidation) {
-      // Invalidate queries which fetches entry details
+      // Invalidate queries which fetches entry details(only after cache updating)
       entries.forEach((entry) =>
         queryClient.invalidateQueries([QueryIdentifiers.ENTRY, entry.post_id])
       );
     }
   };
 
-  const updateReplies = (entryId: Entry["post_id"], replies: any[]) => {
+  const addReply = (entryId: Entry["post_id"], reply: Entry) => {
+    const cached = cache.get(entryId)!!;
+
     updateCache([
       {
-        ...cache[entryId],
-        children: replies.length + 1,
-        replies
+        ...cached,
+        children: cached.children + 1,
+        replies: [reply, ...cached.replies]
       }
     ]);
   };
 
-  const getById = (id: Entry["post_id"]): Entry | undefined => cache[id];
+  const updateRepliesCount = (entryId: Entry["post_id"], count: number) => {
+    updateCache([
+      {
+        ...cache.get(entryId)!!,
+        children: count
+      }
+    ]);
+  };
+
+  const getById = (id: Entry["post_id"]): Entry | undefined => {
+    return cache.get(id);
+  };
 
   return (
-    <EntriesCacheContext.Provider value={{ updateCache, getById, updateReplies: updateReplies }}>
+    <EntriesCacheContext.Provider value={{ updateCache, getById, addReply, updateRepliesCount }}>
       {children}
     </EntriesCacheContext.Provider>
   );
 };
 
 export function useEntryCache<T extends Entry>(initialEntry: T) {
-  const { getById, updateCache } = useContext(EntriesCacheContext);
+  const { getById } = useContext(EntriesCacheContext);
 
   return useQuery([QueryIdentifiers.ENTRY, initialEntry.post_id], {
     initialData: initialEntry,
     queryFn: () => {
       const entry = getById(initialEntry.post_id) as T;
       if (!entry) {
-        updateCache([initialEntry], true);
         return initialEntry;
       }
 

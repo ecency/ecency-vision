@@ -59,7 +59,7 @@ export interface Entry {
   pending_payout_value: string;
   percent_hbd: number;
   permlink: string;
-  post_id: number;
+  post_id: any;
   id?: number;
   num?: number;
   promoted: string;

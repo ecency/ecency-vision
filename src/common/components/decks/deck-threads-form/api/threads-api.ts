@@ -5,6 +5,7 @@ import tempEntry from "../../../../helper/temp-entry";
 import { FullAccount } from "../../../../store/accounts/types";
 import { version } from "../../../../../../package.json";
 import { useMappedStore } from "../../../../store/use-mapped-store";
+import { v4 } from "uuid";
 
 export function useThreadsApi() {
   const { activeUser, addReply, updateEntry } = useMappedStore();
@@ -31,7 +32,8 @@ export function useThreadsApi() {
       title: "",
       body: raw,
       tags,
-      description: null
+      description: null,
+      post_id: v4()
     });
 
     // add new reply to store
