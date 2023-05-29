@@ -575,7 +575,8 @@
     "sort-reward": "Atlygis",
     "sort-timestamp": "Laikas",
     "sort-reputation": "Reputacija",
-    "sort-percent": "Procentai"
+    "sort-percent": "Procentai",
+    "pending-message": "You have pending votes. Please, wait a minute and re-open this dialog to see your vote."
   },
   "entry": {
     "via-app": "per <span class=\"app-name\">{{app}}</span>",

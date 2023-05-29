@@ -575,7 +575,8 @@
     "sort-reward": "Ανταμοιβή",
     "sort-timestamp": "Ώρα",
     "sort-reputation": "Φήμη",
-    "sort-percent": "Ποσοστό"
+    "sort-percent": "Ποσοστό",
+    "pending-message": "You have pending votes. Please, wait a minute and re-open this dialog to see your vote."
   },
   "entry": {
     "via-app": "μέσω<span class=\"app-name\">{{app}}</span>",

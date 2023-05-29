@@ -575,7 +575,8 @@
     "sort-reward": "Peunayah",
     "sort-timestamp": "Watee",
     "sort-reputation": "Reputasi",
-    "sort-percent": "Persentase"
+    "sort-percent": "Persentase",
+    "pending-message": "You have pending votes. Please, wait a minute and re-open this dialog to see your vote."
   },
   "entry": {
     "via-app": "root <span class=\"app-name\">{{app}}</span>",

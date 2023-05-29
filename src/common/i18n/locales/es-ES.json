@@ -575,7 +575,8 @@
     "sort-reward": "Recompensa",
     "sort-timestamp": "Hora",
     "sort-reputation": "Reputación",
-    "sort-percent": "Porcentaje"
+    "sort-percent": "Porcentaje",
+    "pending-message": "You have pending votes. Please, wait a minute and re-open this dialog to see your vote."
   },
   "entry": {
     "via-app": "a través de <span class=\"app-name\">{{app}}</span>",
