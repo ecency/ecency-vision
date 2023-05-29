@@ -332,6 +332,7 @@
           background-size: cover;
           background-color: $white;
           background-image: url(../../../../img/noimage.png);
+          background-position: center;
 
           @include border-radius(0.5rem);
         }

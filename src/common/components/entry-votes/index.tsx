@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Form, FormControl } from "react-bootstrap";
+import { Alert, Form, FormControl } from "react-bootstrap";
 
 import { History } from "history";
 
@@ -158,9 +158,16 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
         return 0;
       })
       .slice(start, end);
+    const totalVotes =
+      (this.props.entry.active_votes && this.props.entry.active_votes.length) ||
+      this.props.entry.total_votes ||
+      0;
 
     return (
       <>
+        {totalVotes !== votes.length && (
+          <Alert variant="warning">{_t("entry-votes.pending-message")}</Alert>
+        )}
         <div className="voters-list">
           <div className="list-body">
             {sliced && sliced.length > 0

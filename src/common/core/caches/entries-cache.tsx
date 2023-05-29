@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Entry } from "../../store/entries/types";
+import { Entry, EntryVote } from "../../store/entries/types";
 import { QueryIdentifiers } from "../react-query";
 
 export const EntriesCacheContext = createContext<{
@@ -8,11 +8,13 @@ export const EntriesCacheContext = createContext<{
   updateCache: (entries: Entry[], skipInvalidation?: boolean) => void;
   addReply: (entryId: Entry["post_id"], reply: Entry) => void;
   updateRepliesCount: (entryId: Entry["post_id"], count: number) => void;
+  updateVotes: (entryId: Entry["post_id"], votes: EntryVote[], estimated: number) => void;
 }>({
   getById: () => ({} as Entry),
   updateCache: () => {},
   addReply: () => {},
-  updateRepliesCount: () => {}
+  updateRepliesCount: () => {},
+  updateVotes: () => {}
 });
 
 const cache = new Map<Entry["post_id"], Entry>();
@@ -56,8 +58,20 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
     return cache.get(id);
   };
 
+  const updateVotes = (entryId: Entry["post_id"], votes: EntryVote[], estimated: number) => {
+    updateCache([
+      {
+        ...cache.get(entryId)!!,
+        active_votes: votes,
+        total_votes: votes.length
+      }
+    ]);
+  };
+
   return (
-    <EntriesCacheContext.Provider value={{ updateCache, getById, addReply, updateRepliesCount }}>
+    <EntriesCacheContext.Provider
+      value={{ updateCache, getById, addReply, updateRepliesCount, updateVotes }}
+    >
       {children}
     </EntriesCacheContext.Provider>
   );

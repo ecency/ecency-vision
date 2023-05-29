@@ -1,4 +1,3 @@
-import { BlogEntry } from "../../api/hive";
 import { SearchResult } from "../../api/search-api";
 import { LocationChangeAction } from "../common";
 
