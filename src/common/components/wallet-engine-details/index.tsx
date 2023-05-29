@@ -2,11 +2,10 @@ import React from "react";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-import { OperationGroup, Transactions } from "../../store/transactions/types";
+import { Transactions } from "../../store/transactions/types";
 import { ActiveUser } from "../../store/active-user/types";
 import BaseComponent from "../base";
 import HiveEngineToken from "../../helper/hive-engine-wallet";
-import LinearProgress from "../linear-progress";
 import Transfer, { TransferMode } from "../transfer-he";
 import { error, success } from "../feedback";
 import DropDown from "../dropdown";
@@ -181,7 +180,7 @@ export class EngineTokenDetails extends BaseComponent<Props, State> {
               <div className="unclaimed-rewards">
                 {rewards?.map((r, i) => {
                   const reward: any = r?.pending_token / Math.pow(10, r?.precision);                    
-                  return ( r?.symbol === params.toUpperCase() &&
+                  return ( r?.symbol === params?.toUpperCase() &&
                   <div key={i}>
                     <div className="title">{_t("wallet.unclaimed-rewards")}</div>
                     <div className="rewards">                        
@@ -209,7 +208,7 @@ export class EngineTokenDetails extends BaseComponent<Props, State> {
             )}
 
             {tokens.map((t, i) => {
-                return ( t?.symbol === params.toUpperCase() && 
+                return ( t?.symbol === params?.toUpperCase() && 
                 <div key={i}>
                 <div className="balance-row hive">
                       <div className="balance-info">
@@ -430,4 +429,3 @@ export default (p: Props) => {
   
     return <EngineTokenDetails {...props} />;
   };
-  

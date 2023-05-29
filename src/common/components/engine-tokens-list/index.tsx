@@ -3,7 +3,7 @@ import { _t } from '../../i18n';
 import "./index.scss";
 
 const EngineTokensList = (props: any) => {
-    const { token, handleChange, isChecked, favoriteToken } = props;
+    const { token, handleChange, i, favoriteToken } = props;
 
     const [checked, setChecked] = useState(favoriteToken)
     
@@ -13,16 +13,15 @@ const EngineTokensList = (props: any) => {
         <div className="token-list">
           <img src={token.icon} />
           <span className="item-name notransalte cursor-pointer">
-            {token.name}
+            {token?.name}
           </span>                      
         </div>
         <div className='add-btn'>
           <input
             type="checkbox"
             value={token?.name}
-            checked={checked ? true : false}
+            checked={(checked ? true : false)}
             onChange={(e) => {
-              console.log(e.target.checked, checked)
               handleChange(e.target.checked, token);
               setChecked(!checked)
             }}

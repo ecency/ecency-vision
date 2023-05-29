@@ -21,7 +21,11 @@ import { HiveEngineChart } from "../hive-engine-chart";
 import { History } from "history";
 import { vestsToHp } from "../../helper/vesting";
 import { marketInfo } from "../../api/misc";
-import { HiveWalletPortfolioChart, HbdWalletPortfolioChart, DefaultPortfolioChart } from "../wallet-portfolio-chart";
+import {
+  HiveWalletPortfolioChart,
+  HbdWalletPortfolioChart,
+  DefaultPortfolioChart
+} from "../wallet-portfolio-chart";
 import { getCurrencyTokenRate } from "../../api/private-api";
 import EngineTokensList from "../engine-tokens-list";
 import { Button, FormControl, Modal } from "react-bootstrap";
@@ -65,7 +69,6 @@ interface State {
   showTokenList: boolean;
   favoriteTokens: HiveEngineToken[] | any;
   selectedTokens: HiveEngineToken[] | any;
-  existingTokens: HiveEngineToken[] | any;
   isChecked: boolean;
   tokenBalance: number;
   larynxTokenBalance: number;
@@ -87,7 +90,6 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     showTokenList: false,
     favoriteTokens: [],
     selectedTokens: [],
-    existingTokens: [],
     isChecked: false,
     tokenBalance: 0,
     larynxTokenBalance: 0,
@@ -103,6 +105,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     this._isMounted && this.dataFromCoinGecko();
     this._isMounted && this.getEstimatedPointsValue();
     this._isMounted && this.getSpkTokens();
+    this._isMounted && this.setExistingProfileTokens();
   }
 
   componentWillUnmount() {
@@ -130,7 +133,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       };
     });
 
-    let tokensUsdValues: any = balanceMetrics?.map((w: any) => {
+    let engineTokens: any = balanceMetrics?.map((w: any) => {
       const usd_value =
         w?.symbol === "SWAP.HIVE"
           ? Number(this.pricePerHive * w.balance)
@@ -142,9 +145,16 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
         usd_value
       };
     });
-    this.setState({ allTokens: [...tokensUsdValues, ...spkTokens] });
-    return tokensUsdValues;
+    this.setState({ allTokens: [...engineTokens, ...spkTokens] });
+    // return engineTokens;
   };
+
+  setExistingProfileTokens = () => {
+    this._isMounted &&
+      this.setState({
+        selectedTokens: JSON.parse(this.props.account?.posting_json_metadata)?.profile?.profileTokens || []
+      });
+  }
 
   getEstimatedPointsValue = () => {
     const {
@@ -180,12 +190,13 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     const { selectedTokens, isChecked } = this.state;
     const json_data = JSON.parse(account.posting_json_metadata);
     let userProfile = json_data?.profile;
-    const { profileTokens } = userProfile;
+    let { profileTokens } = userProfile;
     const index = findIndex(profileTokens, (t: any) => t?.symbol === token?.symbol);
 
-    if (index > 0) {
-      profileTokens.splice(index, 1);
+    if (index > -1) {
+      profileTokens = profileTokens.filter((t: any) => t?.symbol !== token?.symbol);
     }
+
 
     this.setState((prevState) => {
       return {
@@ -193,29 +204,28 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
         selectedTokens: !e
           ? selectedTokens.filter((t: any) => t?.symbol !== token?.symbol)
           : [...prevState?.selectedTokens, token],
-        existingTokens: profileTokens
       };
     });
   };
 
   addToProfile = async () => {
     const { account } = this.props;
-    const { selectedTokens, existingTokens } = this.state;
+    const { selectedTokens } = this.state;
 
-    const spkTokens = await this.getSpkTokens();
+    // const spkTokens = await this.getSpkTokens();
     const json_data = JSON.parse(account.posting_json_metadata);
     let userProfile = json_data?.profile;
 
-    if (userProfile) {
-      userProfile = json_data?.profile;
-    } else {
-      userProfile = { profileTokens: [] };
+    if (!userProfile.profileTokens) {
+      userProfile.profileTokens = [];
     }
 
     const newPostMeta: any = {
       ...userProfile,
-      profileTokens: [...existingTokens, ...selectedTokens]
+      profileTokens: mergeAndRemoveDuplicates([], selectedTokens),
     };
+
+    //TODO: update UI state
 
     await updateProfile(account, newPostMeta);
   };
@@ -225,12 +235,13 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
     const marketData = await getMarketInfo();
     const larynxData = await getLarynxData();
     const spkTokens = [
-      { 
-        spk: wallet.spk / 1000, 
-        type: "Spk", 
-        name: "SPK", 
-        icon: spkIcon, 
-        symbol: "SPK" },
+      {
+        spk: wallet.spk / 1000,
+        type: "Spk",
+        name: "SPK",
+        icon: spkIcon,
+        symbol: "SPK"
+      },
       {
         larynx: wallet.balance / 1000,
         type: "Spk",
@@ -238,12 +249,12 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
         icon: spkIcon,
         symbol: "LARYNX"
       },
-      { 
-        lp: wallet.poweredUp / 1000, 
-        type: "Spk", 
-        name: "LP", 
-        icon: spkIcon, 
-        symbol: "LP" 
+      {
+        lp: wallet.poweredUp / 1000,
+        type: "Spk",
+        name: "LP",
+        icon: spkIcon,
+        symbol: "LP"
       }
     ];
 
@@ -264,8 +275,8 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       style: "currency",
       currency: "USD"
     });
-    return formatted
-  }
+    return formatted;
+  };
 
   render() {
     const { global, dynamicProps, account, points, activeUser } = this.props;
@@ -277,14 +288,13 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       search,
       showTokenList,
       isChecked,
-      showChart
+      showChart,
+      selectedTokens
     } = this.state;
     const { hivePerMVests } = dynamicProps;
 
-    const profileTokens: any = account?.profile?.profileTokens;
+    const profileTokens: any = [...selectedTokens] || [];
     const w = new HiveWallet(account, dynamicProps, converting);
-
-    console.log(w)
 
     const totalHP: any = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests));
 
@@ -301,16 +311,20 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
       return totalValue;
     }, 0);
 
-    const totalHPValue = Number(totalHP * this.pricePerHive)
-    const totalPointsValue = Number(estimatedPointsValue * Number(points.points))
-    const totalHiveValue = Number(w.balance * this.pricePerHive)
-    const totalHbdValue = Number(w.hbdBalance * coingeckoData[1]?.current_price)
-    const estimatedTotal = Number(totalHPValue + totalHiveValue + totalPointsValue + totalHbdValue + totalProfileTokensValue)
+    const totalHPValue = Number(totalHP * this.pricePerHive);
+    const totalPointsValue = Number(estimatedPointsValue * Number(points.points));
+    const totalHiveValue = Number(w.balance * this.pricePerHive);
+    const totalHbdValue = Number(w.hbdBalance * coingeckoData[1]?.current_price);
+    const estimatedTotal = Number(
+      totalHPValue + totalHiveValue + totalPointsValue + totalHbdValue + totalProfileTokensValue
+    );
 
     return (
       <div className="wallet-hive-engine">
         <div className="table-top d-flex">
-          <span>{_t("wallet-portfolio.total-value")} {this.formatCurrency(estimatedTotal)}</span>
+          <span>
+            {_t("wallet-portfolio.total-value")} {this.formatCurrency(estimatedTotal)}
+          </span>
           <div className="toggle">
             <span className=" text-primary">{_t("wallet-portfolio.show-trend")}</span>
             <label className="toggle-chart">
@@ -340,13 +354,13 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                   </td>
                   <td className="align-middle">${estimatedPointsValue}</td>
                   <td className="align-middle text-success">{priceUpSvg}0.00%</td>
-                  {!global?.isMobile && showChart && <td className="align-middle">
+                  {!global?.isMobile && showChart && (
+                    <td className="align-middle">
                       <DefaultPortfolioChart />
-                  </td>}
+                    </td>
+                  )}
                   <td className="align-middle">{points.points}</td>
-                  <td className="align-middle">
-                    {this.formatCurrency(totalPointsValue)}
-                  </td>
+                  <td className="align-middle">{this.formatCurrency(totalPointsValue)}</td>
                 </tr>
 
                 <tr className="table-row" onClick={() => this.handleLink("hive-power")}>
@@ -369,13 +383,13 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                     </span>
                     {coingeckoData[0]?.price_change_percentage_24h}
                   </td>
-                  {!global?.isMobile && showChart && <td className="align-middle">
+                  {!global?.isMobile && showChart && (
+                    <td className="align-middle">
                       <DefaultPortfolioChart />
-                  </td>}
+                    </td>
+                  )}
                   <td className="align-middle">{totalHP}</td>
-                  <td className="align-middle">
-                  {this.formatCurrency(totalHPValue)}
-                  </td>
+                  <td className="align-middle">{this.formatCurrency(totalHPValue)}</td>
                 </tr>
 
                 <tr className="table-row" onClick={() => this.handleLink("hive")}>
@@ -404,9 +418,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                     </td>
                   )}
                   <td className="align-middle">{w.balance}</td>
-                  <td className="align-middle">
-                  {this.formatCurrency(totalHiveValue)}
-                  </td>
+                  <td className="align-middle">{this.formatCurrency(totalHiveValue)}</td>
                 </tr>
 
                 <tr className="table-row" onClick={() => this.handleLink("hbd")}>
@@ -435,9 +447,7 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
                     </td>
                   )}
                   <td className="align-middle">{w.hbdBalance}</td>
-                  <td className="align-middle">
-                  {this.formatCurrency(totalHbdValue)}
-                  </td>
+                  <td className="align-middle">{this.formatCurrency(totalHbdValue)}</td>
                 </tr>
 
                 {!profileTokens ? (
@@ -504,68 +514,70 @@ export class WalletPortfolio extends BaseComponent<Props, State> {
             </Button>
           </div>
         )}
-        {activeUser?.username === account.name && <Modal
-          onHide={this.hideList}
-          show={showTokenList}
-          centered={true}
-          animation={false}
-          // size="lg"
-          scrollable
-          style={{ height: "100vh" }}
-        >
-          <Modal.Header closeButton={true}>
-            <Modal.Title>Tokens</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="d-flex flex-column">
-              <div className="list-search-box d-flex justify-content-center mb-3">
-                <FormControl
-                  value={search}
-                  placeholder="search token"
-                  onChange={(e) => this.setState({ search: e.target.value })}
-                  style={{ width: "50%" }}
-                />
+        {activeUser?.username === account.name && (
+          <Modal
+            onHide={this.hideList}
+            show={showTokenList}
+            centered={true}
+            animation={false}
+            // size="lg"
+            scrollable
+            style={{ height: "100vh" }}
+          >
+            <Modal.Header closeButton={true}>
+              <Modal.Title>Tokens</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="d-flex flex-column">
+                <div className="list-search-box d-flex justify-content-center mb-3">
+                  <FormControl
+                    value={search}
+                    placeholder="search token"
+                    onChange={(e) => this.setState({ search: e.target.value })}
+                    style={{ width: "50%" }}
+                  />
+                </div>
+                {allTokens
+                  ?.slice(0, 30)
+                  .filter(
+                    (list: any) =>
+                      list?.name.toLowerCase().startsWith(search) ||
+                      list?.name.toLowerCase().includes(search)
+                  )
+                  .map((token: any, i: any) => {
+                    const favoriteToken =
+                      this.state.selectedTokens?.length > 0
+                        ? [...this.state.selectedTokens, ...this.state.selectedTokens]?.find(
+                            (favorite: any) => favorite.symbol === token.symbol
+                          )
+                        : [...profileTokens, ...this.state.selectedTokens]?.find(
+                            (favorite: any) => favorite.symbol === token.symbol
+                          );
+                    return (
+                      <EngineTokensList
+                        token={token}
+                        showTokenList={showTokenList}
+                        handleChange={this.handleChange}
+                        isChecked={isChecked}
+                        key={i}
+                        favoriteToken={favoriteToken}
+                      />
+                    );
+                  })}
+                <div className="confirm-btn align-self-center">
+                  <Button
+                    onClick={() => {
+                      this.addToProfile();
+                      this.hideList();
+                    }}
+                  >
+                    Confirm
+                  </Button>
+                </div>
               </div>
-              {allTokens
-                ?.slice(0, 30)
-                .filter(
-                  (list: any) =>
-                    list?.name.toLowerCase().startsWith(search) ||
-                    list?.name.toLowerCase().includes(search)
-                )
-                .map((token: any, i: any) => {
-                  const favoriteToken =
-                    this.state.existingTokens.length > 0
-                      ? [...this.state.existingTokens, ...this.state.selectedTokens]?.find(
-                          (favorite: any) => favorite.symbol === token.symbol
-                        )
-                      : [...profileTokens, ...this.state.selectedTokens]?.find(
-                          (favorite: any) => favorite.symbol === token.symbol
-                        );
-                  return (
-                    <EngineTokensList
-                      token={token}
-                      showTokenList={showTokenList}
-                      handleChange={this.handleChange}
-                      isChecked={isChecked}
-                      key={i}
-                      favoriteToken={favoriteToken}
-                    />
-                  );
-                })}
-              <div className="confirm-btn align-self-center">
-                <Button
-                  onClick={() => {
-                    this.addToProfile();
-                    this.hideList();
-                  }}
-                >
-                  Confirm
-                </Button>
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>}
+            </Modal.Body>
+          </Modal>
+        )}
       </div>
     );
   }
@@ -585,3 +597,26 @@ export default (p: Props) => {
 
   return <WalletPortfolio {...props} />;
 };
+
+function mergeAndRemoveDuplicates(
+  arr1: HiveEngineToken[],
+  arr2: HiveEngineToken[]
+): HiveEngineToken[] {
+  const mergedArray: HiveEngineToken[] = arr1.concat(arr2);
+
+  const uniqueArray: HiveEngineToken[] = mergedArray.reduce(
+    (accumulator: HiveEngineToken[], current: HiveEngineToken) => {
+      const key = JSON.stringify(current); // Convert the object to a string for the key
+
+      const existingToken = accumulator.find((token) => JSON.stringify(token) === key);
+      if (!existingToken) {
+        accumulator.push(current);
+      }
+
+      return accumulator;
+    },
+    []
+  );
+
+  return uniqueArray;
+}

@@ -53,14 +53,11 @@ export const EngineTransactionList = (props: any) => {
         const otherTransactions = await getOtherTransactions(account.name, 200, params.toUpperCase());
         const mappedTransactions = [...transactions, ...otherTransactions]
         const test = mappedTransactions.sort((a: any, b:any) => a.timestamp - b.timestamp)
-        // console.log(transactions)
-        // console.log(otherTransactions) 
     };
 
     const otherTokenTransactions = async () => {
         setLoading(true)
         const otherTransactions = await getOtherTransactions(account.name, 200, params.toUpperCase());
-        console.log(otherTransactions)
         setOtherTransactions(otherTransactions);
         setLoading(false)
     }
@@ -99,8 +96,8 @@ export const EngineTransactionList = (props: any) => {
         <h2>{_t("transactions.title")} </h2>
         <FormControl as="select" value={props.transactions?.group} onChange={optionChanged} >
           <option value="">{_t("transactions.group-all")}</option>
-          {["transfers", "market-orders", "interests", "stake-operations", "rewards", "delegate"].map((x) => (
-            <option key={x} value={x}>
+          {["transfers", "market-orders", "interests", "stake-operations", "rewards", "delegate"].map((x, i) => (
+            <option key={i + x} value={x}>
               {_t(`transactions.group-${x}`)}
             </option>
           ))}

@@ -113,9 +113,6 @@ export class TokenDetails extends BaseComponent<Props, State> {
   };
 
   componentDidMount() {
-    // const params: any = useParams();
-    // console.log(params)
-    console.log(window.location.href.split('/')[5])
     this.fetchConvertingAmount();
     this.fetchCollateralizedConvertingAmount();
     this.fetchWithdrawFromSavings();
@@ -336,7 +333,6 @@ export class TokenDetails extends BaseComponent<Props, State> {
     const { hivePerMVests, hbdInterestRate } = dynamicProps;
     const isMyPage = activeUser && activeUser.username === account.name;
     const w = new HiveWallet(account, dynamicProps, converting);
-    // console.log(w)
     const params: string = window.location.href.split('/')[5]
 
     const lastIPaymentRelative =
@@ -474,7 +470,7 @@ export class TokenDetails extends BaseComponent<Props, State> {
                     </Tooltip>
                   </div>
                 )}
-                {openOrders && openOrders.hive > 0 && (
+                {openOrders && Number(openOrders.hive) > 0 && (
                   <div className="amount amount-passive converting-hbd">
                     <Tooltip content={_t("wallet.reserved-amount")}>
                       <span
@@ -486,7 +482,7 @@ export class TokenDetails extends BaseComponent<Props, State> {
                     </Tooltip>
                   </div>
                 )}
-                {withdrawSavings && withdrawSavings.hive > 0 && (
+                {withdrawSavings && Number(withdrawSavings.hive) > 0 && (
                   <div className="amount amount-passive converting-hbd">
                     <Tooltip content={_t("wallet.withdrawing-amount")}>
                       <span
@@ -715,7 +711,7 @@ export class TokenDetails extends BaseComponent<Props, State> {
                   </div>
                 )}
 
-                {withdrawSavings && withdrawSavings.hbd > 0 && (
+                {withdrawSavings && Number(withdrawSavings.hbd) > 0 && (
                   <div className="amount amount-passive converting-hbd">
                     <Tooltip content={_t("wallet.withdrawing-amount")}>
                       <span
@@ -728,7 +724,7 @@ export class TokenDetails extends BaseComponent<Props, State> {
                   </div>
                 )}
 
-                {openOrders && openOrders.hbd > 0 && (
+                {openOrders && Number(openOrders.hbd) > 0 && (
                   <div className="amount amount-passive converting-hbd">
                     <Tooltip content={_t("wallet.reserved-amount")}>
                       <span className="amount-btn" onClick={() => this.toggleOpenOrdersList("HBD")}>
