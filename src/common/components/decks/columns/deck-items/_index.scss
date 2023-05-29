@@ -129,7 +129,53 @@
       }
 
       .tooltiptext {
-        max-width: 322px !important;
+        max-width: 380px;
+        width: 100vw;
+
+        .voting-controls {
+          display: grid;
+          align-items: center;
+          grid-template-areas:
+            "slider slider slider slider slider"
+            "btn-up price space percentage btn-down";
+          grid-template-columns: min-content min-content 1fr min-content min-content;
+
+          .btn-up-vote {
+            grid-area: btn-up;
+            position: relative;
+            z-index: 9;
+          }
+
+          .btn-vote-down {
+            grid-area: btn-down;
+            justify-self: end;
+            position: relative;
+            z-index: 9;
+          }
+
+          .slider {
+            grid-area: slider;
+          }
+
+          .estimated {
+            grid-area: price;
+          }
+
+          .percentage {
+            grid-area: percentage;
+          }
+
+          .space {
+            grid-area: space;
+          }
+        }
+
+        @media screen and (max-width: 560px) {
+          width: calc(100vw - 67px - 24px);
+          left: -12px;
+          right: auto;
+          top: -23px;
+        }
       }
     }
 
@@ -286,6 +332,7 @@
           background-size: cover;
           background-color: $white;
           background-image: url(../../../../img/noimage.png);
+          background-position: center;
 
           @include border-radius(0.5rem);
         }

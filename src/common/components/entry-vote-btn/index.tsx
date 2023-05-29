@@ -335,6 +335,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               <div className="estimated">
                 <FormattedCurrency {...this.props} value={this.estimate(upSliderVal)} fixAt={3} />
               </div>
+              <div className="space" />
               <div className="slider slider-up">
                 <VotingSlider value={upSliderVal} setVoteValue={this.upSliderChanged} mode={mode} />
               </div>
@@ -387,6 +388,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   mode={mode}
                 />
               </div>
+              <div className="space" />
               <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
               <div
                 className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
