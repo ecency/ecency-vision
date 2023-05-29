@@ -24,6 +24,10 @@ import { connect } from "react-redux";
 import loadable from "@loadable/component";
 import Announcement from "./components/announcement";
 import FloatingFAQ from "./components/floating-faq";
+import { useMappedStore } from "./store/use-mapped-store";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./core";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -68,7 +72,11 @@ const EntryPage = (props: any) => {
 const PurchaseContainer = loadable(() => import("./pages/purchase"));
 const PurchasePage = (props: any) => <PurchaseContainer {...props} />;
 
+const DecksPage = loadable(() => import("./pages/decks"));
+
 const App = (props: any) => {
+  const { global } = useMappedStore();
+
   useEffect(() => {
     let pathname = window.location.pathname;
     if (pathname !== "/faq") {
@@ -81,7 +89,9 @@ const App = (props: any) => {
   }, []);
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
+      {/*Excluded from production*/}
+      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
       <Tracker />
       <Switch>
         <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
@@ -147,12 +157,19 @@ const App = (props: any) => {
         <Route exact={true} strict={true} path={routes.TOS} component={TosPage} />
         <Route exact={true} strict={true} path={routes.FAQ} component={FaqPage} />
         <Route exact={true} strict={true} path={routes.CONTRIBUTORS} component={ContributorsPage} />
+        <Route
+          exact={true}
+          strict={true}
+          path={routes.DECKS}
+          component={global.usePrivate ? DecksPage : NotFound}
+        />
         <Route component={NotFound} />
       </Switch>
 
       <Announcement activeUser={props.activeUser} />
       <FloatingFAQ />
-    </>
+      <div id="popper-container" />
+    </QueryClientProvider>
   );
 };
 

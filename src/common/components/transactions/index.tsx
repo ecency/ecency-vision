@@ -48,9 +48,16 @@ interface RowProps {
   dynamicProps: DynamicProps;
   transaction: Transaction;
   entry?: Transaction;
+  onMounted?: () => void;
 }
 
 export class TransactionRow extends Component<RowProps> {
+  componentDidMount() {
+    if (this.props.onMounted) {
+      this.props.onMounted();
+    }
+  }
+
   render() {
     const { dynamicProps, transaction: item, entry, global } = this.props;
     const { hivePerMVests } = dynamicProps;

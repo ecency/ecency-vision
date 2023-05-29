@@ -8,7 +8,7 @@ interface CoinGeckoApiResponse {
   };
 }
 
-const getCGMarketApi = async (ids: string, vs: string): Promise<CoinGeckoApiResponse> => {
+export const getCGMarketApi = async (ids: string, vs: string): Promise<CoinGeckoApiResponse> => {
   let resp;
   if (isElectron()) {
     resp = await axios.get<CoinGeckoApiResponse>("https://api.coingecko.com/api/v3/simple/price", {

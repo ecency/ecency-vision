@@ -42,6 +42,7 @@ import { makePath as makePathEntry } from "../components/entry-link";
 import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
+import ClickAwayListener from "../components/clickaway-listener";
 import { detectEvent, toolbarEventListener } from "../components/editor-toolbar";
 import "./submit.scss";
 
@@ -78,13 +79,14 @@ import * as ls from "../util/local-storage";
 
 import { version } from "../../../package.json";
 
-import { checkSvg, contentSaveSvg, contentLoadSvg } from "../img/svg";
+import { checkSvg, contentSaveSvg, contentLoadSvg, helpIconSvg } from "../img/svg";
 
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import ModalConfirm from "../components/modal-confirm";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
 import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
+import { handleFloatingContainer } from "../components/floating-faq";
 
 setProxyBase(defaults.imageServer);
 
@@ -173,6 +175,7 @@ interface State extends PostBase, Advanced {
   selectionTouched: boolean;
   isDraftEmpty: boolean;
   drafts: boolean;
+  showHelp: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -207,7 +210,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     },
     disabled: true,
     isDraftEmpty: true,
-    drafts: false
+    drafts: false,
+    showHelp: false
   };
 
   _updateTimer: any = null;
@@ -229,6 +233,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     this.addToolbarEventListners();
+
+    window.addEventListener("resize", this.handleResize);
   };
 
   componentDidUpdate(prevProps: Readonly<Props>) {
@@ -254,6 +260,8 @@ class SubmitPage extends BaseComponent<Props, State> {
 
   componentWillUnmount(): void {
     this.removeToolbarEventListners();
+
+    window.removeEventListener("resize", this.handleResize);
   }
 
   addToolbarEventListners = () => {
@@ -277,6 +285,14 @@ class SubmitPage extends BaseComponent<Props, State> {
         el.removeEventListener("dragover", this.handleDragover);
         el.removeEventListener("drop", this.handleDrop);
       }
+    }
+  };
+
+  handleResize = () => {
+    console.log("Window Width", window.innerWidth);
+    if (window.innerWidth < 992) {
+      this.setState({ showHelp: false });
+      handleFloatingContainer(false, "submit");
     }
   };
 
@@ -968,6 +984,13 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
   };
 
+  handleFloatingFaq = () => {
+    const { showHelp } = this.state;
+    this.setState({ showHelp: !showHelp }, () =>
+      handleFloatingContainer(this.state.showHelp, "submit")
+    );
+  };
+
   render() {
     const {
       title,
@@ -1143,7 +1166,16 @@ class SubmitPage extends BaseComponent<Props, State> {
                 {editingEntry === null && (
                   <>
                     <span />
-                    <div>
+                    <div className="action-buttons">
+                      <ClickAwayListener onClickAway={() => this.setState({ showHelp: false })}>
+                        <Button
+                          className="help-button"
+                          style={{ marginRight: "6px" }}
+                          onClick={this.handleFloatingFaq}
+                        >
+                          {helpIconSvg} {_t("floating-faq.help")}
+                        </Button>
+                      </ClickAwayListener>
                       {global.usePrivate && this.state.isDraftEmpty ? (
                         <>
                           {LoginRequired({

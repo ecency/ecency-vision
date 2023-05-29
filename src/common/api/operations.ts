@@ -1827,24 +1827,83 @@ export const unstakeHiveEngineKey = async (
   return result;
 };
 
-// export const updateFavoriteTokens = (
-//   account: string, 
-//   jsonM: string, 
-//   postingJsonM: any 
-//   ): Promise<TransactionConfirmation> => {
+export const Revoke = (
+  account: string,
+  weight_threshold: number,
+  account_auths: [string, number][],
+  key_auths: any[],
+  memo_key: string,
+  key: PrivateKey
+): Promise<TransactionConfirmation> => {
+  const newPosting = {
+    weight_threshold,
+    account_auths,
+    key_auths
+  };
 
-//   const json = JSON.stringify({
-//     account,
-//     json_metadata: jsonM,
-//     posting_json_metadata: postingJsonM
-//   });
+  const op: Operation = [
+    "account_update",
+    {
+      account,
+      posting: newPosting,
+      memo_key,
+      json_metadata: ""
+    }
+  ];
 
-//   const op: Operation[] = [
-//     [
-//       "account_update2",
-//       json
-//     ]
-//   ]
+  return hiveClient.broadcast.sendOperations([op], key);
+};
 
-//   return broadcastPostingOperations(account, op)
-// }
+export const RevokeHot = (
+  account: string,
+  weight_threshold: number,
+  account_auths: [string, number][],
+  key_auths: any[],
+  memo_key: string
+) => {
+  const newPosting = {
+    weight_threshold,
+    account_auths,
+    key_auths
+  };
+
+  const op: Operation = [
+    "account_update",
+    {
+      account,
+      posting: newPosting,
+      memo_key,
+      json_metadata: ""
+    }
+  ];
+
+  const params: Parameters = { callback: `https://ecency.com/@${account}/permissions` };
+
+  return hs.sendOperation(op, params, () => {});
+};
+
+export const RevokeKc = (
+  account: string,
+  weight_threshold: number,
+  account_auths: [string, number][],
+  key_auths: any[],
+  memo_key: string
+) => {
+  const newPosting = {
+    weight_threshold,
+    account_auths,
+    key_auths
+  };
+
+  const op: Operation = [
+    "account_update",
+    {
+      account,
+      posting: newPosting,
+      memo_key,
+      json_metadata: ""
+    }
+  ];
+
+  return keychain.broadcast(account, [op], "Active");
+};

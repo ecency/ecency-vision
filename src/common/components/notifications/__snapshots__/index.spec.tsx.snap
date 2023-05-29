@@ -2,7 +2,8 @@
 
 exports[`(1) NotificationListItem (1) Vote  1`] = `
 <div
-  className="list-item not-read"
+  className="list-item not-read undefined"
+  onClick={[Function]}
   title="2020-07-24T06:50:48+00:00"
 >
   <div
@@ -29,6 +30,7 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
         >
           <span
             className="user-avatar medium"
+            onClick={[Function]}
             style={
               Object {
                 "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
@@ -58,7 +60,7 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
         <span
           className="item-action"
         >
-          100% voted your post:
+          100% voted post
         </span>
       </div>
       <div
@@ -79,7 +81,8 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
 
 exports[`(1) NotificationListItem (2) Mention  1`] = `
 <div
-  className="list-item not-read"
+  className="list-item not-read undefined"
+  onClick={[Function]}
   title="2020-07-24T01:10:09+00:00"
 >
   <div
@@ -106,6 +109,7 @@ exports[`(1) NotificationListItem (2) Mention  1`] = `
         >
           <span
             className="user-avatar medium"
+            onClick={[Function]}
             style={
               Object {
                 "backgroundImage": "url(https://images.ecency.com/u/ecency.stats/avatar/medium)",
@@ -135,7 +139,7 @@ exports[`(1) NotificationListItem (2) Mention  1`] = `
         <span
           className="item-action"
         >
-          mentioned you in:
+          mentioned in
         </span>
       </div>
       <div
@@ -156,7 +160,8 @@ exports[`(1) NotificationListItem (2) Mention  1`] = `
 
 exports[`(1) NotificationListItem (3) Follow  1`] = `
 <div
-  className="list-item not-read"
+  className="list-item not-read undefined"
+  onClick={[Function]}
   title="2020-07-24T06:08:24+00:00"
 >
   <div
@@ -183,6 +188,7 @@ exports[`(1) NotificationListItem (3) Follow  1`] = `
         >
           <span
             className="user-avatar medium"
+            onClick={[Function]}
             style={
               Object {
                 "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
@@ -226,7 +232,8 @@ exports[`(1) NotificationListItem (3) Follow  1`] = `
 
 exports[`(1) NotificationListItem (4) Unfollow  1`] = `
 <div
-  className="list-item"
+  className="list-item undefined"
+  onClick={[Function]}
   title="2020-07-19T05:07:09+00:00"
 >
   <div
@@ -247,6 +254,7 @@ exports[`(1) NotificationListItem (4) Unfollow  1`] = `
         >
           <span
             className="user-avatar medium"
+            onClick={[Function]}
             style={
               Object {
                 "backgroundImage": "url(https://images.ecency.com/u/fooo102/avatar/medium)",
@@ -290,7 +298,8 @@ exports[`(1) NotificationListItem (4) Unfollow  1`] = `
 
 exports[`(1) NotificationListItem (5) Reply  1`] = `
 <div
-  className="list-item"
+  className="list-item undefined"
+  onClick={[Function]}
   title="2020-07-21T16:02:00+00:00"
 >
   <div
@@ -311,6 +320,7 @@ exports[`(1) NotificationListItem (5) Reply  1`] = `
         >
           <span
             className="user-avatar medium"
+            onClick={[Function]}
             style={
               Object {
                 "backgroundImage": "url(https://images.ecency.com/u/dunsky/avatar/medium)",
@@ -340,7 +350,7 @@ exports[`(1) NotificationListItem (5) Reply  1`] = `
         <span
           className="item-action"
         >
-          replied to your post:
+          replied to post
         </span>
         <div
           className="vert-separator"
@@ -371,7 +381,8 @@ exports[`(1) NotificationListItem (5) Reply  1`] = `
 
 exports[`(1) NotificationListItem (6) Reblog  1`] = `
 <div
-  className="list-item not-read"
+  className="list-item not-read undefined"
+  onClick={[Function]}
   title="2020-07-23T13:36:06+00:00"
 >
   <div
@@ -398,6 +409,7 @@ exports[`(1) NotificationListItem (6) Reblog  1`] = `
         >
           <span
             className="user-avatar medium"
+            onClick={[Function]}
             style={
               Object {
                 "backgroundImage": "url(https://images.ecency.com/u/foo220/avatar/medium)",
@@ -427,7 +439,7 @@ exports[`(1) NotificationListItem (6) Reblog  1`] = `
         <span
           className="item-action"
         >
-          reblogged your post:
+          reblogged post
         </span>
       </div>
       <div
@@ -448,7 +460,8 @@ exports[`(1) NotificationListItem (6) Reblog  1`] = `
 
 exports[`(1) NotificationListItem (7) Transfer  1`] = `
 <div
-  className="list-item"
+  className="list-item undefined"
+  onClick={[Function]}
   title="2020-07-20T09:30:21+00:00"
 >
   <div
@@ -469,6 +482,7 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
         >
           <span
             className="user-avatar medium"
+            onClick={[Function]}
             style={
               Object {
                 "backgroundImage": "url(https://images.ecency.com/u/bar212/avatar/medium)",
@@ -498,7 +512,7 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
         <span
           className="item-action"
         >
-          sent you
+          sent
            
           <span
             className="transfer-amount"

@@ -1,9 +1,6 @@
-import React from "react";
-import BaseComponent from "../base";
+import React, { useState, useEffect, useRef } from "react";
 import random from "../../util/rnd";
-import { alertCircleSvg, checkSvg, informationSvg } from "../../img/svg";
-import { Button } from "react-bootstrap";
-import { FeedbackModal } from "../feedback-modal";
+import FeedbackMessage from "../feedback-message";
 import { ErrorTypes } from "../../enums";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
@@ -56,119 +53,47 @@ interface Props {
   activeUser: ActiveUser | null;
 }
 
-interface State {
-  list: FeedbackObject[];
-  showDialog: boolean;
-  detailedObject: FeedbackObject | null;
-}
+export default function Feedback(props: Props) {
+  const intervalID = useRef<any>(null);
 
-export default class Feedback extends BaseComponent<Props, State> {
-  state: State = {
-    list: [],
-    showDialog: false,
-    detailedObject: null
+  const [feedback, setFeedBack] = useState<FeedbackObject | null>();
+  const [showChild, setShowChild] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("feedback", onFeedback);
+
+    return () => {
+      window.removeEventListener("feedback", onFeedback);
+      clearInterval(intervalID.current);
+    };
+  }, []);
+
+  const handleChild = (d: boolean) => {
+    setShowChild(d);
+    setFeedBack(null);
   };
 
-  componentDidMount() {
-    window.addEventListener("feedback", this.onFeedback);
-  }
-
-  componentWillUnmount() {
-    super.componentWillUnmount();
-    window.removeEventListener("feedback", this.onFeedback);
-  }
-
-  onFeedback = (e: Event) => {
-    // mountCheck(true);
-    const detail: FeedbackObject = (e as CustomEvent).detail;
-
-    const { list } = this.state;
-    if (list.find((x) => x.message === detail.message) !== undefined) {
-      return;
-    }
-
-    const newList = [...list, detail];
-    this.stateSet({ list: newList });
-
-    setTimeout(() => {
-      const { list } = this.state;
-      const newList = list.filter((x) => x.id !== detail.id);
-      this.stateSet({ list: newList });
-      // mountCheck(false);
-    }, 5000);
+  const isEmpty = (value: FeedbackObject | null | undefined) => {
+    return value == null || (typeof value === "object" && Object.keys(value).length === 0);
   };
 
-  render() {
-    const { list } = this.state;
-    const errorType = (x: FeedbackObject) => (x as ErrorFeedbackObject).errorType;
-    return (
-      <div className={"feedback-container" + (list.length > 0 ? " " + "visible" : "")}>
-        {list.map((x) => {
-          switch (x.type) {
-            case "success":
-              return (
-                <div key={x.id} className="feedback-success">
-                  {checkSvg} {x.message}
-                </div>
-              );
-            case "error":
-              return (
-                <div key={x.id} className="feedback-error d-flex align-items-start">
-                  {alertCircleSvg}
-                  <div className=" d-flex flex-column align-items-start">
-                    {x.message}
-                    <div className="d-flex">
-                      {errorType(x) !== ErrorTypes.COMMON && errorType(x) !== ErrorTypes.INFO ? (
-                        <Button
-                          className="mt-2 details-button px-0 mr-3"
-                          variant="link"
-                          onClick={() => this.setState({ showDialog: true, detailedObject: x })}
-                        >
-                          {_t("feedback-modal.question")}
-                        </Button>
-                      ) : (
-                        <></>
-                      )}
-                      {!ErrorTypes.INFO && (
-                        <Button
-                          className="mt-2 details-button px-0"
-                          variant="link"
-                          onClick={() =>
-                            window.open(
-                              "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",
-                              "_blank"
-                            )
-                          }
-                        >
-                          {_t("feedback-modal.report")}
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              );
-            case "info":
-              return (
-                <div key={x.id} className="feedback-info">
-                  {informationSvg} {x.message}
-                </div>
-              );
-            default:
-              return null;
-          }
-        })}
+  const onFeedback = (e: Event) => {
+    const detail = (e as CustomEvent).detail as FeedbackObject;
+    setFeedBack(detail);
+    setShowChild(true);
+  };
 
-        {this.state.detailedObject ? (
-          <FeedbackModal
-            activeUser={this.props.activeUser}
-            instance={this.state.detailedObject as ErrorFeedbackObject}
-            show={this.state.showDialog}
-            setShow={(v) => this.setState({ showDialog: v, detailedObject: null })}
+  return (
+    <>
+      <div className={"feedback-container" + (!isEmpty(feedback) ? " " + "visible" : "")}>
+        {showChild && feedback && (
+          <FeedbackMessage
+            activeUser={props.activeUser}
+            feedback={feedback}
+            handleChild={handleChild}
           />
-        ) : (
-          <></>
         )}
       </div>
-    );
-  }
+    </>
+  );
 }

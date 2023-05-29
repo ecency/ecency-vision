@@ -150,19 +150,9 @@ export const toggleListStyle =
     let newStyle: any = null;
 
     if (view) {
-      newStyle =
-        view === ListStyle.row
-          ? ListStyle.row
-          : view === ListStyle.grid
-          ? ListStyle.grid
-          : ListStyle.deck;
+      newStyle = view === ListStyle.row ? ListStyle.row : ListStyle.grid;
     } else {
-      newStyle =
-        listStyle === ListStyle.row
-          ? ListStyle.grid
-          : listStyle === ListStyle.grid
-          ? ListStyle.row
-          : ListStyle.deck;
+      newStyle = listStyle === ListStyle.row ? ListStyle.grid : ListStyle.row;
     }
 
     ls.set("list-style", newStyle);

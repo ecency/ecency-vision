@@ -167,6 +167,10 @@
         }
       }
 
+      &.no-margin {
+        margin-top: 0 !important;
+      }
+
       &:hover:not(.active, .static) {
         @include themify(day) {
           background: lighten($dark-sky-blue, 40);

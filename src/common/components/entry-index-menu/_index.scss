@@ -151,14 +151,23 @@
   justify-content: center;
   opacity: 0.8;
   border-radius: 50%;
-  border: 1px solid $warm-grey;
+  border-width: 1px;
+  border-style: solid;
   cursor: pointer;
   &:hover {
     opacity: 1;
   }
   @include themify(day) {
     svg {
-      color: $charcoal-grey;
+      color: $dark-six;
+      border-color: $dark-six;
+      height: 100%;
+    }
+  }
+  @include themify(night) {
+    svg {
+      color: $duck-egg-blue;
+      border-color: $duck-egg-blue;
       height: 100%;
     }
   }

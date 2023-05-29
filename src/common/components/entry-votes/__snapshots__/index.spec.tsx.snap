@@ -79,6 +79,7 @@ Array [
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
@@ -136,6 +137,7 @@ Array [
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",

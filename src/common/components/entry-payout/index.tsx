@@ -17,6 +17,7 @@ import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 import "./_index.scss";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 interface Props {
   global: Global;
@@ -228,10 +229,12 @@ export class EntryPayout extends Component<Props> {
   }
 }
 
-export default (p: Props) => {
+export default (p: Pick<Props, "entry">) => {
+  const { global, dynamicProps } = useMappedStore();
+
   const props = {
-    global: p.global,
-    dynamicProps: p.dynamicProps,
+    global,
+    dynamicProps,
     entry: p.entry
   };
 

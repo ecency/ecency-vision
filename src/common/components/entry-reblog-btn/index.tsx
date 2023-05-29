@@ -16,6 +16,7 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 import { repeatSvg } from "../../img/svg";
 import "./_index.scss";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 interface Props {
   entry: Entry;
@@ -148,20 +149,34 @@ export class EntryReblogBtn extends BaseComponent<Props> {
   }
 }
 
-export default (p: Props) => {
+export default (p: Pick<Props, "entry">) => {
+  const {
+    users,
+    activeUser,
+    reblogs,
+    ui,
+    setActiveUser,
+    updateActiveUser,
+    deleteUser,
+    fetchReblogs,
+    addReblog,
+    deleteReblog,
+    toggleUIProp
+  } = useMappedStore();
+
   const props: Props = {
     entry: p.entry,
-    users: p.users,
-    activeUser: p.activeUser,
-    reblogs: p.reblogs,
-    ui: p.ui,
-    setActiveUser: p.setActiveUser,
-    updateActiveUser: p.updateActiveUser,
-    deleteUser: p.deleteUser,
-    fetchReblogs: p.fetchReblogs,
-    addReblog: p.addReblog,
-    deleteReblog: p.deleteReblog,
-    toggleUIProp: p.toggleUIProp
+    users,
+    activeUser,
+    reblogs,
+    ui,
+    setActiveUser,
+    updateActiveUser,
+    deleteUser,
+    fetchReblogs,
+    addReblog,
+    deleteReblog,
+    toggleUIProp
   };
 
   return <EntryReblogBtn {...props} />;

@@ -1,0 +1,238 @@
+@import "src/style/vars_mixins";
+
+.deck-add-column {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .deck-content {
+    .subtitle {
+      font-weight: bold;
+
+      @include font-size(1rem);
+    }
+
+    .helper-text {
+      opacity: 0.5;
+      line-height: 1.5;
+
+      @include font-size(0.87rem);
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: min-content 1fr;
+      grid-template-areas:
+        "icon title"
+        "icon description";
+      align-items: center;
+      grid-gap: 0.25rem;
+      cursor: pointer;
+
+      @include transition(0.3s);
+      @include padding-left(1rem);
+      @include padding-right(1rem);
+      @include padding-top(0.75rem);
+      @include padding-bottom(0.75rem);
+
+      &:hover {
+        @include themify(day) {
+          background-color: lighten($faded-blue, 3);
+        }
+
+        @include themify(night) {
+          background-color: $dark;
+        }
+      }
+
+      svg {
+        grid-area: icon;
+        width: 1.5rem;
+        color: $primary;
+
+        @include margin-right(0.75rem);
+      }
+
+      .title {
+        grid-area: title;
+        font-weight: bold;
+      }
+
+      .description {
+        grid-area: description;
+        opacity: 0.75;
+
+        @include font-size(0.875rem);
+      }
+    }
+
+    .content-type-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 1rem;
+
+      .content-type-item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        position: relative;
+        cursor: pointer;
+        border: 2px solid transparent;
+
+        @include transition(.3s);
+        @include padding(1rem);
+        @include border-radius(1rem);
+
+        @include themify(day) {
+          background-color: $gray-100;
+        }
+
+        @include themify(night) {
+          background-color: $dark;
+        }
+
+        &.selected {
+          border-color: $primary;
+
+          @include themify(day) {
+            background-color: $duck-egg-blue;
+          }
+
+          @include themify(night) {
+            background-color: lighten($dark, 6);
+          }
+        }
+
+        &:hover {
+          @include themify(day) {
+            background-color: $gray-200;
+          }
+
+          @include themify(night) {
+            background-color: lighten($dark, 3);
+          }
+        }
+
+        .title {
+          font-weight: bold;
+          position: relative;
+        }
+
+        svg {
+          width: 2rem;
+          color: $primary;
+        }
+      }
+    }
+
+    .users-list {
+      margin: 0 -1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      @include padding-top(1rem);
+
+      .users-list-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+
+        @include padding-top(0.5rem);
+        @include padding-bottom(0.5rem);
+        @include padding-left(1rem);
+        @include padding-right(1rem);
+        @include transition(0.3s);
+
+        &:hover {
+          @include themify(day) {
+            background-color: $duck-egg-blue;
+          }
+
+          @include themify(night) {
+            background-color: lighten($dark, 3);
+          }
+        }
+
+        .description {
+          opacity: 0.5;
+          max-width: 300px;
+
+          @include margin-top(0.25rem);
+          @include font-size(0.75rem);
+        }
+      }
+    }
+
+    .selected-user {
+      display: grid;
+      grid-template-columns: min-content 1fr min-content;
+      align-items: center;
+      cursor: pointer;
+      gap: 1rem;
+
+      @include transition(0.3s);
+      @include border-radius(1rem);
+      @include padding(1rem);
+
+      @include themify(day) {
+        background-color: $gray-100;
+      }
+
+      @include themify(night) {
+        background-color: lighten($dark, 3);
+      }
+
+      &:hover {
+        @include themify(day) {
+          background-color: $duck-egg-blue;
+
+          .click-to-change {
+            color: $primary;
+          }
+        }
+
+        @include themify(night) {
+          background-color: lighten($dark, 6);
+        }
+      }
+
+      .username {
+        color: $primary;
+      }
+
+      .click-to-change {
+        white-space: nowrap;
+
+        @include font-size(0.875rem);
+        @include padding(1rem);
+        @include border-radius(1rem);
+
+        @include themify(day) {
+          background-color: $duck-egg-blue;
+        }
+
+        @include themify(night) {
+          background-color: lighten($dark, 6);
+        }
+      }
+    }
+  }
+
+  .sticky-bottom {
+    z-index: 201;
+  }
+
+  .dropdown .dropdown-menu {
+    min-width: 250px;
+  }
+
+  .thread-host-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 500;
+  }
+}

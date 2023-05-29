@@ -140,6 +140,7 @@ class EntryPage extends BaseComponent<Props, State> {
   };
 
   commentInput: Ref<HTMLInputElement>;
+
   constructor(props: Props) {
     super(props);
     this.commentInput = React.createRef();
@@ -552,7 +553,21 @@ class EntryPage extends BaseComponent<Props, State> {
       showProfileBox,
       showWordCount
     } = this.state;
-    const { global, history, match, location } = this.props;
+    const {
+      global,
+      history,
+      match,
+      location,
+      dynamicProps,
+      users,
+      setActiveUser,
+      ui,
+      updateActiveUser,
+      toggleUIProp,
+      deleteUser,
+      account,
+      updateWalletValues
+    } = this.props;
     const { isRawContent } = this.state;
 
     let navBar = global.isElectron ? (
@@ -871,11 +886,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                     ...this.props,
                                     entry: originalEntry
                                   })}
-                                {EntryMenu({
-                                  ...this.props,
-                                  entry,
-                                  separatedSharing: true
-                                })}
+                                <EntryMenu
+                                  history={history}
+                                  entry={entry}
+                                  separatedSharing={true}
+                                />
                               </div>
                             </div>
                             <div
@@ -1061,13 +1076,14 @@ class EntryPage extends BaseComponent<Props, State> {
                                   ...this.props,
                                   entry
                                 })}
-                              {!isComment &&
-                                EntryMenu({
-                                  ...this.props,
-                                  entry,
-                                  separatedSharing: true,
-                                  extraMenuItems: extraItems
-                                })}
+                              {!isComment && (
+                                <EntryMenu
+                                  history={history}
+                                  entry={entry}
+                                  separatedSharing={true}
+                                  extraMenuItems={extraItems}
+                                />
+                              )}
                             </div>
                           </div>
                           <meta itemProp="headline name" content={entry.title} />
@@ -1208,32 +1224,19 @@ class EntryPage extends BaseComponent<Props, State> {
                         )}
                       </div>
                       <div className="entry-controls" ref={setRef}>
-                        {EntryVoteBtn({
-                          ...this.props,
-                          isPostSlider: true,
-                          entry,
-                          afterVote: this.afterVote
-                        })}
-                        {EntryPayout({
-                          ...this.props,
-                          entry
-                        })}
-                        {EntryVotes({
-                          ...this.props,
-                          entry
-                        })}
-                        {EntryTipBtn({
-                          ...this.props,
-                          entry
-                        })}
-                        {!ownEntry && (
-                          <>
-                            {EntryReblogBtn({
-                              ...this.props,
-                              entry
-                            })}
-                          </>
-                        )}
+                        <EntryVoteBtn
+                          isPostSlider={true}
+                          afterVote={this.afterVote}
+                          entry={entry}
+                        />
+                        <EntryPayout entry={entry} />
+                        <EntryVotes entry={entry} history={history} />
+                        <EntryTipBtn
+                          entry={entry}
+                          account={this.props.account}
+                          updateWalletValues={this.props.updateWalletValues}
+                        />
+                        {!ownEntry && <EntryReblogBtn entry={entry} />}
                         <span className="flex-spacer" />
                         <Tooltip content={_t("entry.raw")}>
                           <span className="raw-content-icon" onClick={this.toggleRawContent}>
@@ -1244,13 +1247,13 @@ class EntryPage extends BaseComponent<Props, State> {
                           ...this.props,
                           entry
                         })}
-                        {EntryMenu({
-                          ...this.props,
-                          entry,
-                          alignBottom: true,
-                          separatedSharing: true,
-                          toggleEdit: this.toggleEdit
-                        })}
+                        <EntryMenu
+                          history={history}
+                          entry={entry}
+                          alignBottom={true}
+                          separatedSharing={true}
+                          toggleEdit={this.toggleEdit}
+                        />
                       </div>
                     </div>
 
@@ -1294,13 +1297,15 @@ class EntryPage extends BaseComponent<Props, State> {
 
                     {activeUser && entry.children === 0 && <CommentEngagement />}
 
-                    {Discussion({
-                      ...this.props,
-                      parent: entry,
-                      community,
-                      hideControls: false,
-                      isRawContent: this.state.isRawContent
-                    })}
+                    <Discussion
+                      {...{
+                        ...this.props,
+                        parent: entry,
+                        community,
+                        hideControls: false,
+                        isRawContent: this.state.isRawContent
+                      }}
+                    />
                   </>
                 );
               })()}

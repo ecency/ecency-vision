@@ -1,0 +1,191 @@
+@import "src/style/vars_mixins";
+
+.deck-floating-manager {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.75;
+  z-index: 199;
+  right: unset;
+  left: calc(50% - 32px + 36px);
+
+  @include margin-right(auto);
+  @include margin-left(auto);
+
+  &:hover {
+    left: 72px;
+    right: 0;
+    opacity: 1;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 4rem;
+
+    @include margin-bottom(1rem);
+
+    svg {
+      @include transition(0.3s);
+
+      path {
+        stroke: $white;
+      }
+    }
+  }
+
+  .columns {
+    opacity: 0;
+    visibility: hidden;
+    backdrop-filter: blur(1rem);
+    border-top: 1px solid $border-color;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    overflow: hidden;
+
+    @include transition(0.3s);
+
+    @include themify(day) {
+      background-color: rgba($white, 0.75);
+    }
+
+    @include themify(night) {
+      background-color: rgba($dark-two, 0.75);
+    }
+
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+      align-items: flex-start;
+      height: 100vh;
+      height: 100dvh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      justify-content: space-between;
+
+      @include padding-top(1rem);
+    }
+  }
+
+  .columns-list {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+      width: 100%;
+      align-items: flex-start;
+    }
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-right: 1px solid $border-color;
+    height: 4rem;
+    white-space: nowrap;
+
+    @include transition(0.3s);
+    @include padding(1rem);
+
+    &:last-child {
+      border-right: 0;
+    }
+
+    &:hover {
+      @include themify(day) {
+        background-color: $duck-egg-blue;
+      }
+
+      @include themify(night) {
+        background-color: $dark;
+      }
+    }
+
+    .title {
+      font-weight: 500;
+
+      @include font-size(0.75rem);
+
+      > *:not(.primary) {
+        opacity: 0.5;
+      }
+
+      > .primary {
+        font-weight: bold;
+
+        @include font-size(0.875rem);
+      }
+    }
+
+    svg {
+      min-width: 1.5rem;
+      min-height: 1.5rem;
+      max-width: 1.5rem;
+      max-height: 1.5rem;
+      color: $gray-500;
+
+      @include margin-right(1rem);
+    }
+
+    @include media-breakpoint-down(sm) {
+      border-right: 0;
+      width: 100%;
+      border-bottom: 1px solid $border-color;
+      justify-content: flex-start;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  .btn:not(.dropdown-toggle) {
+    white-space: nowrap;
+
+    @include margin-right(1rem);
+
+    @include media-breakpoint-down(sm) {
+      width: calc(100% - 2rem);
+
+      @include margin-bottom(1rem);
+      @include margin-left(1rem);
+      @include margin-right(1rem);
+    }
+  }
+
+  &.show {
+    z-index: 202;
+
+    .columns {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0%);
+    }
+
+    .dropdown-toggle {
+      svg {
+        transform: rotate3d(1, 0, 0, 180deg);
+      }
+    }
+  }
+}
+
+.decks.expanded .deck-floating-manager {
+  left: 280px;
+}
