@@ -58,9 +58,11 @@ export const ResourceCreditsInfo = (props: any) => {
           const voteCost = operationCosts.vote_operation.avg_cost;
           const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
           const accountCreateCost = Number(operationCosts.account_create_operation.avg_cost);
-          const createClaimAccountCost = Number(operationCosts.create_claimed_account_operation.avg_cost);
-          console.log(accountCreateCost)
-          console.log(createClaimAccountCost)
+          const createClaimAccountCost = Number(
+            operationCosts.create_claimed_account_operation.avg_cost
+          );
+          console.log(accountCreateCost);
+          console.log(createClaimAccountCost);
 
           const commentCount: number = Math.ceil(Number(availableResourceCredit) / commentCost);
           const votetCount: number = Math.ceil(Number(availableResourceCredit) / voteCost);
@@ -81,7 +83,7 @@ export const ResourceCreditsInfo = (props: any) => {
           setTransferAmount(transferCount);
           setCustomJsonAmount(customJsonCount);
           setAccountCreateAmount(accountCreateCount);
-          setClaimAccountCreateAmount(createClaimAccountCount)
+          setClaimAccountCreateAmount(createClaimAccountCount);
         };
         rcOperationsCost();
       })

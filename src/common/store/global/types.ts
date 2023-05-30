@@ -91,7 +91,7 @@ export enum ActionTypes {
   SET_LAST_INDEX_PATH = "@global/SET_LAST_INDEX_PATH",
   SET_ACCOUNT_EMAIL = "@global/SET_ACCOUNT_EMAIL",
   SET_ACCOUNT_NAME = "@global/SET_ACCOUNT_NAME",
-  SET_REFERRAL = "@global/SET_REFERRAL",
+  SET_REFERRAL = "@global/SET_REFERRAL"
 }
 
 export interface ThemeChangeAction {

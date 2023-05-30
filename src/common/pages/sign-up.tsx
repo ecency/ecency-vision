@@ -29,7 +29,7 @@ type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 enum Stage {
   FORM = "form",
   REGISTER_TYPE = "register-type",
-  BUY_ACCOUNT = "buy-account",
+  BUY_ACCOUNT = "buy-account"
 }
 
 export const SignUp = (props: PageProps) => {
@@ -379,7 +379,7 @@ export const SignUp = (props: PageProps) => {
                       onClick={() => {
                         props.setAccountEmail(email);
                         props.setAccountName(username);
-                        props.setReferral(referral || props.activeUser?.username || "ecency")
+                        props.setReferral(referral || props.activeUser?.username || "ecency");
                       }}
                     >
                       {_t("onboard.asking")}
@@ -416,7 +416,7 @@ export const SignUp = (props: PageProps) => {
               </div>
             ) : (
               <></>
-            )}            
+            )}
           </div>
         </div>
       </div>

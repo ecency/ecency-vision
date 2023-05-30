@@ -53,9 +53,9 @@ export const initialState: Global = {
   usePrivate: true,
   hsClientId: "ecency.app",
   lastIndexPath: null,
-  accountEmail: '',
-  accountName: '',
-  referral: '',
+  accountEmail: "",
+  accountName: "",
+  referral: ""
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

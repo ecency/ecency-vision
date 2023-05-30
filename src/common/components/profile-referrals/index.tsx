@@ -261,11 +261,9 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
           return (
             <>
-              <div className="d-flex flex-row" style={{justifyContent: "space-between"}}>  
+              <div className="d-flex flex-row" style={{ justifyContent: "space-between" }}>
                 <div>
-                  <div>
-                    {header}
-                  </div>
+                  <div>{header}</div>
                   <div className="table-responsive">
                     {table}
 
