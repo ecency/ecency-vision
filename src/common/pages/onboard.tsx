@@ -11,13 +11,8 @@ import { success, error } from "../components/feedback";
 import Tooltip from "../components/tooltip";
 import "./onboard.scss";
 import { _t } from "../i18n";
-import {
-  generatePassword,
-  getPrivateKeys,
-  createAccountKc,
-  createAccountWithCredit,
-  getAcountCredit
-} from "../api/operations";
+import { createAccountKc, createAccountWithCredit, getAcountCredit } from "../api/operations";
+import { generatePassword, getPrivateKeys } from "../helper/onBoard-helper";
 
 export interface AccountInfo {
   email: string;
