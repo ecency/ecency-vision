@@ -1859,6 +1859,82 @@ export const generatePassword = async (length: number) => {
   return password;
 };
 
+export const Revoke = (
+  account: string,
+  weight_threshold: number,
+  account_auths: [string, number][],
+  key_auths: any[],
+  memo_key: string,
+  key: PrivateKey
+): Promise<TransactionConfirmation> => {
+  const newPosting = {
+    weight_threshold,
+    account_auths,
+    key_auths
+  };
+
+  const op: Operation = [
+    "account_update",
+    {
+      account,
+      posting: newPosting,
+      memo_key,
+      json_metadata: ""
+    }
+  ];
+  return hiveClient.broadcast.sendOperations([op], key);
+};
+
+export const RevokeHot = (
+  account: string,
+  weight_threshold: number,
+  account_auths: [string, number][],
+  key_auths: any[],
+  memo_key: string
+) => {
+  const newPosting = {
+    weight_threshold,
+    account_auths,
+    key_auths
+  };
+  const op: Operation = [
+    "account_update",
+    {
+      account,
+      posting: newPosting,
+      memo_key,
+      json_metadata: ""
+    }
+  ];
+
+  const params: Parameters = { callback: `https://ecency.com/@${account}/permissions` };
+  return hs.sendOperation(op, params, () => {});
+};
+
+export const RevokeKc = (
+  account: string,
+  weight_threshold: number,
+  account_auths: [string, number][],
+  key_auths: any[],
+  memo_key: string
+) => {
+  const newPosting = {
+    weight_threshold,
+    account_auths,
+    key_auths
+  };
+  const op: Operation = [
+    "account_update",
+    {
+      account,
+      posting: newPosting,
+      memo_key,
+      json_metadata: ""
+    }
+  ];
+  return keychain.broadcast(account, [op], "Active");
+};
+
 // Create account with hive keychain
 export const createAccountKc = async (data: any, creator_account: string) => {
   try {
