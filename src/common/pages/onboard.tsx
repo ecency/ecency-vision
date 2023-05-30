@@ -37,7 +37,7 @@ export interface AccountInfo {
 export interface DecodeHash {
   email: string;
   username: string;
-  pub_keys: {
+  pubkeys: {
     active_public_key: string;
     memo_public_key: string;
     owner_public_key: string;
@@ -45,8 +45,13 @@ export interface DecodeHash {
   };
 }
 
+export interface ConfirmDetails {
+  label: string;
+  value: string | undefined;
+}
+
 const Onboard = (props: PageProps | any) => {
-  const onboardUrl = `${props.location.origin}/onboard-friend/creating/`;
+  const onboardUrl = `${window.location.origin}/onboard-friend/creating/`;
 
   const [masterPassword, setMasterPassword] = useState("");
   const [hash, setHash] = useState("");
@@ -58,6 +63,7 @@ const Onboard = (props: PageProps | any) => {
   const [fileIsDownloaded, setFileIsDownloaded] = useState(false);
   const [innerWidth, setInnerWidth] = useState(0);
   const [shortPassword, setShortPassword] = useState("");
+  const [confirmDetails, setConfirmDetails] = useState<ConfirmDetails[]>();
 
   useEffect(() => {
     initAccountKey();
@@ -73,8 +79,24 @@ const Onboard = (props: PageProps | any) => {
   }, [props.global.accountName]);
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    setInnerWidth(window.innerWidth);
 
+    setConfirmDetails([
+      { label: _t("onboard.username"), value: decodedInfo?.username },
+      { label: _t("onboard.public-owner"), value: decodedInfo?.pubkeys?.owner_public_key },
+      { label: _t("onboard.public-active"), value: decodedInfo?.pubkeys?.active_public_key },
+      { label: _t("onboard.public-posting"), value: decodedInfo?.pubkeys?.posting_public_key },
+      { label: _t("onboard.public-memo"), value: decodedInfo?.pubkeys?.memo_public_key }
+    ]);
+  }, [decodedInfo]);
+
+  useEffect(() => {
+    console.log(shortPassword);
+  }, [shortPassword]);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize();
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -86,6 +108,7 @@ const Onboard = (props: PageProps | any) => {
     if (window.innerWidth <= 768 && window.innerWidth > 577) {
       password = masterPassword.substring(0, 32);
     } else if (window.innerWidth <= 577) {
+      console.log("I am true");
       password = masterPassword.substring(0, 20);
     }
     setShortPassword(password);
@@ -96,17 +119,17 @@ const Onboard = (props: PageProps | any) => {
       const masterPassword: string = await generatePassword(32);
       const keys: any = getPrivateKeys(props.global.accountName, masterPassword);
       // prepare object to encode
-      const pubKeys = {
-        active_public_key: keys.activePubkey,
-        memo_public_key: keys.memoPubkey,
-        owner_public_key: keys.ownerPubkey,
-        posting_public_key: keys.postingPubkey
+      const pubkeys = {
+        activePublicKey: keys.activePubkey,
+        memoPublicKey: keys.memoPubkey,
+        ownerPublicKey: keys.ownerPubkey,
+        postingPublicKey: keys.postingPubkey
       };
 
       const dataToEncode = {
         username: props.global.accountName,
         email: props.global.accountEmail,
-        pubKeys
+        pubkeys
       };
       // stringify object to encode
       const stringifiedPubKeys = JSON.stringify(dataToEncode);
@@ -204,7 +227,7 @@ const Onboard = (props: PageProps | any) => {
                 innerWidth < 577 ? "p-3" : "p-5"
               }`}
             >
-              <h3 className="mb-3 align-self-center">{_t("onboard.asking-confirm")}</h3>
+              <h3 className="mb-3 align-self-center">{_t("onboard.confirm-details")}</h3>
               <div className="reg-details">
                 <span style={{ lineHeight: 2 }}>
                   {_t("onboard.username")} <strong>{props.global.accountName}</strong>
@@ -220,7 +243,7 @@ const Onboard = (props: PageProps | any) => {
               <div className="mt-3 d-flex flex-column align-center">
                 <div className="d-flex">
                   <span className="mr-3 mt-1">
-                    {innerWidth <= 768 ? shortPassword + "..." : masterPassword}
+                    {window.innerWidth <= 768 ? shortPassword + "..." : masterPassword}
                   </span>
                   <Tooltip content={_t("onboard.copy-tooltip")}>
                     <span
@@ -279,21 +302,17 @@ const Onboard = (props: PageProps | any) => {
           {props.activeUser ? (
             <div className="creating-confirm">
               <h3 className="align-self-center">{_t("onboard.confirm-details")}</h3>
-              <span>
-                {_t("onboard.username")} {decodedInfo?.username}
-              </span>
-              <span>
-                {_t("onboard.public-owner")} {decodedInfo?.pub_keys?.owner_public_key}
-              </span>
-              <span>
-                {_t("onboard.public-active")} {decodedInfo?.pub_keys?.active_public_key}
-              </span>
-              <span>
-                {_t("onboard.public-posting")} {decodedInfo?.pub_keys?.posting_public_key}
-              </span>
-              <span>
-                {_t("onboard.public-memo")} {decodedInfo?.pub_keys?.memo_public_key}
-              </span>
+              {confirmDetails && (
+                <>
+                  {confirmDetails.map((field, index) => (
+                    <span key={index}>
+                      {field.label}
+                      <strong style={{ wordBreak: "break-word" }}>{field.value}</strong>
+                    </span>
+                  ))}
+                </>
+              )}
+
               <div className="creating-confirm-bottom">
                 <span>{_t("onboard.pay-fee")}</span>
                 <div className="onboard-btn-container">
@@ -347,7 +366,7 @@ const Onboard = (props: PageProps | any) => {
                     createAccountKc(
                       {
                         username: decodedInfo?.username,
-                        pub_keys: decodedInfo?.pub_keys
+                        pub_keys: decodedInfo?.pubkeys
                       },
                       props.activeUser.username
                     );
@@ -364,7 +383,7 @@ const Onboard = (props: PageProps | any) => {
                   createAccountWithCredit(
                     {
                       username: decodedInfo?.username,
-                      pub_keys: decodedInfo?.pub_keys
+                      pub_keys: decodedInfo?.pubkeys
                     },
                     props.activeUser.username
                   );
