@@ -324,7 +324,7 @@ export class WalletHive extends BaseComponent<Props, State> {
       tokenType
     } = this.state;
 
-    if (!account.__loaded) {
+    if (!account?.__loaded) {
       return null;
     }
 
