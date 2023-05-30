@@ -16,6 +16,7 @@ import Transfer, { TransferMode, TransferAsset } from "../transfer";
 import LinearProgress from "../linear-progress";
 import { shareVariantSvg } from "../../img/svg";
 import { getReferrals, ReferralItem, getReferralsStats, ReferralStat } from "../../api/private-api";
+// import clipboard from '../../util/clipboard';
 
 import { _t } from "../../i18n";
 import { success } from "../feedback";
@@ -140,7 +141,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
   };
 
   render() {
-    const { global, account, activeUser } = this.props;
+    const { global, account } = this.props;
     const { referrals, loading, page } = this.state;
     const pageSize = 20;
     const start = (page - 1) * pageSize;
@@ -261,31 +262,27 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
           return (
             <>
-              <div className="d-flex flex-row" style={{ justifyContent: "space-between" }}>
-                <div>
-                  <div>{header}</div>
-                  <div className="table-responsive">
-                    {table}
+              {header}
+              <div className="table-responsive">
+                {table}
 
-                    {referrals.length >= pageSize && (
-                      <MyPagination
-                        className="mt-4"
-                        dataLength={this.state.totalPages}
-                        pageSize={pageSize}
-                        maxItems={4}
-                        page={page}
-                        onPageChange={(page: number) => {
-                          this.stateSet({
-                            page,
-                            lastReferralId: referrals[referrals.length - 1].id
-                          });
-                          this.getReferrals(referrals[referrals.length - 1].id);
-                        }}
-                        showLastNo={false}
-                      />
-                    )}
-                  </div>
-                </div>
+                {referrals.length >= pageSize && (
+                  <MyPagination
+                    className="mt-4"
+                    dataLength={this.state.totalPages}
+                    pageSize={pageSize}
+                    maxItems={4}
+                    page={page}
+                    onPageChange={(page: number) => {
+                      this.stateSet({
+                        page,
+                        lastReferralId: referrals[referrals.length - 1].id
+                      });
+                      this.getReferrals(referrals[referrals.length - 1].id);
+                    }}
+                    showLastNo={false}
+                  />
+                )}
               </div>
             </>
           );
