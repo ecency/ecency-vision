@@ -38,7 +38,6 @@ export const GenericDeckWithDataColumn = ({
 }: DeckWithDataProps) => {
   const { activeUser } = useMappedStore();
 
-  const { deleteColumn } = useContext(DeckGridContext);
   const scrollContentRef = useRef<HTMLDivElement | null>(null);
 
   const [visibleData, setVisibleData] = useState<DataItem[]>([]);

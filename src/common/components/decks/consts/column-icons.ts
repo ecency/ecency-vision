@@ -18,6 +18,7 @@ import {
   rewardIconSvg,
   searchIconSvg,
   stakeOperationsIconSvg,
+  swapFormSvg,
   threadSvg,
   topicsIconSvg,
   transfersIconSvg,
@@ -64,5 +65,6 @@ export const ICONS = {
   tr: trendingIconSvg,
   to: topicsIconSvg,
   s: searchIconSvg,
-  th: threadSvg
+  th: threadSvg,
+  msf: swapFormSvg
 };

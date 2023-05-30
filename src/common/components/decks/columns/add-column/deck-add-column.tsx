@@ -13,6 +13,7 @@ import {
   communityIconSvg,
   notificationsIconSvg,
   searchIconSvg,
+  swapFormSvg,
   threadSvg,
   topicsIconSvg,
   trendingIconSvg,
@@ -83,16 +84,16 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       description: _t("decks.columns.topics-description")
     },
     {
+      type: "msf",
+      title: _t("decks.columns.market-swap-form"),
+      icon: swapFormSvg,
+      description: _t("decks.columns.msf-description")
+    },
+    {
       type: "s",
       title: _t("decks.columns.search"),
       icon: searchIconSvg,
       description: _t("decks.columns.search-description")
-    },
-    {
-      type: "msf",
-      title: _t("decks.columns.market-swap-form"),
-      icon: searchIconSvg,
-      description: _t("decks.columns.msf-description")
     }
   ];
   const typesWithoutSettings = ["tr", "to", "msf"];

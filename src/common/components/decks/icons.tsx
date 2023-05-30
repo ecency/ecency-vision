@@ -1105,3 +1105,64 @@ export const threadSvg = (
     />
   </svg>
 );
+
+export const swapFormSvg = (
+  <svg viewBox="0 0 800 800">
+    <g id="Group" opacity="0.4">
+      <path
+        id="Path"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="50"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M 316.666656 458.339996 C 316.666656 490.673309 341.666656 516.67334 372.333344 516.67334 L 435 516.67334 C 461.666687 516.67334 483.333344 494.006653 483.333344 465.673309 C 483.333344 435.339996 470 424.339996 450.333344 417.339996 L 350 382.339996 C 330.333313 375.339996 317.000336 364.67334 317.000336 334.006653 C 317.000336 306.00766 338.666656 283.007629 365.333344 283.007629 L 428 283.007629 C 458.666687 283.007629 483.666687 309.00769 483.666687 341.339996"
+      />
+      <path
+        id="path1"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="50"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M 400 250 L 400 550"
+      />
+    </g>
+    <path
+      id="path2"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="50"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M 733.333313 400 C 733.333313 584 584 733.333313 400 733.333313 C 216 733.333313 66.666664 584 66.666664 400 C 66.666664 216 216 66.666687 400 66.666687"
+    />
+    <path
+      id="path3"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="50"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M 733.333313 200 L 733.333313 66.666687 L 600 66.666687"
+    />
+    <path
+      id="Path-copy"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="50"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M 529 138.666687 L 529 272 L 662.333313 272"
+    />
+    <path
+      id="path4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="50"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M 566.666687 233.333313 L 733.333313 66.666687"
+    />
+  </svg>
+);
