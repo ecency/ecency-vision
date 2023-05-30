@@ -2,6 +2,8 @@
 
 exports[`1- default state 1`] = `
 Object {
+  "accountEmail": "",
+  "accountName": "",
   "canUseWebp": false,
   "currency": "hbd",
   "currencyRate": 1,
@@ -18,6 +20,7 @@ Object {
   "newVersion": null,
   "notifications": true,
   "nsfw": false,
+  "referral": "",
   "searchIndexCount": 0,
   "tag": "",
   "theme": "day",
@@ -27,6 +30,8 @@ Object {
 
 exports[`2- location change. should change filter and tag 1`] = `
 Object {
+  "accountEmail": "",
+  "accountName": "",
   "canUseWebp": false,
   "currency": "hbd",
   "currencyRate": 1,
@@ -43,6 +48,7 @@ Object {
   "newVersion": null,
   "notifications": true,
   "nsfw": false,
+  "referral": "",
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "day",
@@ -52,6 +58,8 @@ Object {
 
 exports[`3- theme change 1`] = `
 Object {
+  "accountEmail": "",
+  "accountName": "",
   "canUseWebp": false,
   "currency": "hbd",
   "currencyRate": 1,
@@ -68,6 +76,7 @@ Object {
   "newVersion": null,
   "notifications": true,
   "nsfw": false,
+  "referral": "",
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
@@ -77,6 +86,8 @@ Object {
 
 exports[`4- hide intro 1`] = `
 Object {
+  "accountEmail": "",
+  "accountName": "",
   "canUseWebp": false,
   "currency": "hbd",
   "currencyRate": 1,
@@ -93,6 +104,7 @@ Object {
   "newVersion": null,
   "notifications": true,
   "nsfw": false,
+  "referral": "",
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
@@ -102,6 +114,8 @@ Object {
 
 exports[`5- list style change 1`] = `
 Object {
+  "accountEmail": "",
+  "accountName": "",
   "canUseWebp": false,
   "currency": "hbd",
   "currencyRate": 1,
@@ -118,6 +132,7 @@ Object {
   "newVersion": null,
   "notifications": true,
   "nsfw": false,
+  "referral": "",
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
@@ -127,6 +142,8 @@ Object {
 
 exports[`6- Has keychain act 1`] = `
 Object {
+  "accountEmail": "",
+  "accountName": "",
   "canUseWebp": false,
   "currency": "hbd",
   "currencyRate": 1,
@@ -143,6 +160,7 @@ Object {
   "newVersion": null,
   "notifications": true,
   "nsfw": false,
+  "referral": "",
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
@@ -152,6 +170,8 @@ Object {
 
 exports[`7- Mute notifications act 1`] = `
 Object {
+  "accountEmail": "",
+  "accountName": "",
   "canUseWebp": false,
   "currency": "hbd",
   "currencyRate": 1,
@@ -168,6 +188,7 @@ Object {
   "newVersion": null,
   "notifications": false,
   "nsfw": false,
+  "referral": "",
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
@@ -177,6 +198,8 @@ Object {
 
 exports[`8- Unmute notifications act 1`] = `
 Object {
+  "accountEmail": "",
+  "accountName": "",
   "canUseWebp": false,
   "currency": "hbd",
   "currencyRate": 1,
@@ -193,6 +216,7 @@ Object {
   "newVersion": null,
   "notifications": true,
   "nsfw": false,
+  "referral": "",
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
@@ -202,6 +226,8 @@ Object {
 
 exports[`9- Set lang act 1`] = `
 Object {
+  "accountEmail": "",
+  "accountName": "",
   "canUseWebp": false,
   "currency": "hbd",
   "currencyRate": 1,
@@ -218,6 +244,7 @@ Object {
   "newVersion": null,
   "notifications": true,
   "nsfw": false,
+  "referral": "",
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
@@ -227,6 +254,8 @@ Object {
 
 exports[`10- Set nsfw act 1`] = `
 Object {
+  "accountEmail": "",
+  "accountName": "",
   "canUseWebp": false,
   "currency": "hbd",
   "currencyRate": 1,
@@ -243,6 +272,7 @@ Object {
   "newVersion": null,
   "notifications": true,
   "nsfw": true,
+  "referral": "",
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
