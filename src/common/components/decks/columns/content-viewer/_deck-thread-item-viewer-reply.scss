@@ -1,0 +1,93 @@
+@import "src/style/vars_mixins";
+
+@mixin sequence_item() {
+  $root: ".thread-item";
+
+  #{$root}-body, #{$root}-actions {
+    border-left: 2px solid $border-color;
+
+    margin-left: calc(1rem + 16.5px);
+    padding-left: 2.25rem;
+  }
+}
+
+@mixin timeline($top: true, $bottom: true, $left: 1.04rem) {
+  position: relative;
+
+  &::before, &::after {
+    height: 150%;
+    width: 2px;
+    background-color: $border-color;
+    display: block;
+    position: absolute;
+    left: $left;
+    z-index: -1;
+  }
+
+  @if $top {
+    &::before {
+      content: '';
+      top: -100%;
+    }
+  }
+
+  @if $bottom {
+    &::after {
+      content: '';
+      bottom: -100%;
+    }
+  }
+}
+
+.deck-thread-item-viewer-reply {
+
+  &.highlighted > .thread-item {
+    background-color: rgba($warning, 0.125);
+  }
+
+  .thread-item.sequence-item {
+    overflow: hidden;
+
+    @include sequence_item();
+
+    .user-avatar {
+      @include timeline(false, true);
+    }
+  }
+
+  .deck-toolbar-threads-form {
+    overflow: hidden;
+
+    .user-avatar {
+      @include strict_size(35px, 35px);
+    }
+
+    &-body {
+      position: relative;
+
+      @include timeline(true, true, 2.04rem);
+      bottom: 0;
+    }
+  }
+
+  &-sequence {
+    .deck-thread-item-viewer-reply:not(:last-child) .thread-item {
+      overflow: hidden;
+      @include sequence_item();
+
+      .user-avatar {
+        @include timeline();
+      }
+    }
+
+    .deck-thread-item-viewer-reply:last-child .thread-item {
+      .user-avatar {
+        @include timeline(true, false);
+      }
+    }
+  }
+
+  .markdown-author-link .user-avatar::before, .markdown-author-link .user-avatar::after {
+    content: none !important;
+  }
+}

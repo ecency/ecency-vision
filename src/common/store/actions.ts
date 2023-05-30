@@ -43,15 +43,6 @@ import {
 import { fetchPoints, resetPoints } from "./points";
 import { setSigningKey } from "./signing-key";
 import { setEntryPin, trackEntryPin } from "./entry-pin-tracker";
-import {
-  createDeck,
-  deleteDeck,
-  fetchDeckData,
-  loadDeckFromStorage,
-  reorderDecks,
-  setDeckDataFilters,
-  setDeckUpdateInterval
-} from "./deck";
 import { savePageScroll } from "./persistent-page-scroll";
 
 // @note Do not use it directly
@@ -99,14 +90,6 @@ export const ACTIONS = {
   setSigningKey,
   trackEntryPin,
   setEntryPin,
-  createDeck,
-  fetchDeckData,
-  loadDeckFromStorage,
-  deleteDeck,
-  reorderDecks,
-  savePageScroll,
-  setDeckUpdateInterval,
-  setDeckDataFilters,
   updateNotificationsSettings,
   fetchNotificationsSettings,
   setNotificationsSettingsItem,

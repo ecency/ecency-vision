@@ -15,12 +15,12 @@
 }
 
 .feedback-container {
+  display: block;
   position: fixed;
-  z-index: 99;
+  z-index: 100;
   right: 20px;
   bottom: 60px;
   width: 260px;
-
   &.visible ~ .announcement-container {
     bottom: 10rem !important;
   }
@@ -29,36 +29,117 @@
     width: 500px;
   }
 
-  .feedback-success, .feedback-error, .feedback-info {
+  .feedback-success,
+  .feedback-error,
+  .feedback-info {
     box-shadow: $box-shadow;
     border-radius: 6px;
-    padding: 8px 6px;
-    display: flex;
     align-items: center;
     margin-bottom: 6px;
-    animation: feedback-anim .5s;
+    animation: feedback-anim 0.5s;
 
     @include themify(day) {
-      background: $dark-two;
-      border: 1px solid $dark;
-      color: $white-four;
+      background: $white-three;
+      color: $dark;
     }
 
     @include themify(night) {
-      background: $white-four;
-      border: 1px solid $warm-grey;
-      color: $dark;
+      background: $dark-indigo;
+      color: $white-four;
     }
 
     svg {
       height: 20px;
-      margin-right: 6px;
+    }
+    .feedback-body {
+      padding: 30px 6px 0px 6px;
+    }
+
+    .feedback-content {
+      display: flex;
+      .feedback-img {
+        @media (max-width: $md-break) {
+          margin-right: 0.8rem;
+        }
+        margin-right: 2.3rem;
+        margin-left: 0.5rem;
+        border-radius: 50%;
+        &.success-img {
+          background: $green1;
+        }
+      }
+    }
+    .feedback-close-btn {
+      position: absolute;
+      right: 8px;
+      margin-top: -22px;
+      cursor: pointer;
+
+      @media (max-width: $md-break) {
+        svg {
+          display: block;
+          width: 15px;
+          height: 15px;
+        }
+      }
+
+      @include themify(day) {
+        svg {
+          color: $charcoal-grey;
+        }
+      }
+      @include themify(night) {
+        svg {
+          color: $white-three;
+        }
+      }
+    }
+
+    .toast-progress-bar {
+      margin-top: 1rem;
+      width: 100%;
+      height: 5px;
+      border-radius: 0 0 6px 6px;
+
+      @include themify(day) {
+        background: $white-four;
+      }
+
+      @include themify(night) {
+        background: $dark-two;
+      }
+
+      .filler {
+        height: 100%;
+        transition: width 0.125s linear;
+        &.success {
+          background-color: $green1;
+        }
+        &.error {
+          background-color: $red2;
+        }
+        &.info {
+          background-color: $dark-sky-blue;
+        }
+      }
+    }
+  }
+
+  .error-content {
+    display: flex;
+
+    .error-img {
+      @media (max-width: $md-break) {
+        margin-right: 0.8rem !important;
+      }
+      margin-left: 0.5rem;
+      margin-right: 2.3rem;
     }
   }
 
   .feedback-success {
     svg {
-      color: $green1;
+      color: $white;
     }
   }
 
@@ -70,24 +151,24 @@
 
   .feedback-info {
     svg {
-      color: $duck-egg-blue;
+      color: $dark-sky-blue;
     }
   }
 }
 
 .theme-day .details-button {
   color: #fff;
-  opacity: .5;
+  opacity: 0.5;
 
   &:hover {
     color: #fff;
-    opacity: .75;
+    opacity: 0.75;
   }
 }
 
 .theme-night .details-button {
   color: $primary;
-  opacity: .75;
+  opacity: 0.75;
 
   &:hover {
     opacity: 1;

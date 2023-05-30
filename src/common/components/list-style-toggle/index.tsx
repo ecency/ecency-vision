@@ -11,7 +11,6 @@ interface Props {
   toggleListStyle: (view: string | null) => void;
   iconClass?: string;
   float?: "left" | "right";
-  deck?: boolean;
 }
 
 export default class ListStyleToggle extends Component<Props> {
@@ -25,7 +24,7 @@ export default class ListStyleToggle extends Component<Props> {
   };
 
   render() {
-    const { global, iconClass, float, deck } = this.props;
+    const { global, iconClass, float } = this.props;
     const { listStyle } = global;
     const dropDownItems: MenuItem[] = [
       {
@@ -45,27 +44,12 @@ export default class ListStyleToggle extends Component<Props> {
             {listView} {_t("layouts.classic")}
           </span>
         ),
-        selected: listStyle === "row" || (!deck && listStyle === "deck"),
+        selected: listStyle === "row",
         onClick: () => {
           this.changeStyle("row");
         }
       }
     ];
-
-    if (deck) {
-      dropDownItems.push({
-        label: (
-          <span className="gridMenu">
-            {viewStackedSvg} {_t("layouts.deck")}
-          </span>
-        ),
-        selected: listStyle === "deck",
-        onClick: () => {
-          this.changeStyle("deck");
-        }
-      });
-    }
-
     const dropDownConfig = {
       history: null,
       label: (

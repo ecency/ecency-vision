@@ -399,7 +399,6 @@
         flex-grow: 1;
         flex-shrink: 0;
 
-
         @media (min-width: $md-break) {
           flex-direction: row;
         }
@@ -413,7 +412,6 @@
         }
 
         .separator {
-
           &:first-of-type {
             display: none;
 
@@ -529,63 +527,81 @@
   }
 }
 
+@media (min-width: 1200px) {
+  div#word-count {
+    right: 1%;
+  }
+}
+
+@media (min-width: 1300px) {
+  div#word-count {
+    right: 5%;
+  }
+}
+
 @media (min-width: 1400px) {
   div#word-count {
-    right: 13.5%;
+    right: 8%;
+  }
+}
+
+@media (min-width: 1500px) {
+  div#word-count {
+    right: 10%;
   }
 }
 
 @media (min-width: 1600px) {
   div#word-count {
-    right: 15%;
+    right: 13%;
   }
 }
 
 @media (min-width: 1700px) {
   div#word-count {
-    right: 18%;
+    right: 14%;
   }
 }
 
 @media (min-width: 1800px) {
   div#word-count {
-    right: 20%;
+    right: 15%;
   }
 }
 
 @media (min-width: 2000px) {
   div#word-count {
-    right: 23%;
+    right: 20%;
   }
 }
 
 @media (min-width: 2200px) {
   div#word-count {
-    right: 25%;
+    right: 23%;
   }
 }
 
 @media (min-width: 2500px) {
   div#word-count {
-    right: 27%;
+    right: 25%;
   }
 }
 
 @media (min-width: 3000px) {
   div#word-count {
-    right: 31%;
+    right: 28%;
   }
 }
 
 @media (min-width: 3500px) {
   div#word-count {
-    right: 34%;
+    right: 31%;
   }
 }
 
 @media (min-width: 4000px) {
   div#word-count {
-    right: 36%;
+    right: 33%;
   }
 }
 
@@ -598,10 +614,19 @@
 
 @media screen and (min-width: 1210px) {
   div.post-info {
-    display: none
+    display: none;
   }
 }
 
 .post-info {
   margin-right: 10px;
+}
+
+.top-curator {
+  display: flex;
+
+  .curator {
+    margin-left: 9px;
+    margin-top: -3px;
+  }
 }

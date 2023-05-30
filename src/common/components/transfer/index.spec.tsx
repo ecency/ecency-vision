@@ -25,10 +25,10 @@ const defProps = {
     name: "user1"
   },
   activeUser: {
-    username: "foo",
+    username: "bar",
     data: {
       ...fullAccountInstance,
-      name: "foo"
+      name: "bar"
     },
     points: {
       points: "10.000",
@@ -43,7 +43,8 @@ const defProps = {
   setSigningKey: () => {},
   fetchPoints: () => {},
   updateWalletValues: () => {},
-  onHide: () => {}
+  onHide: () => {},
+  handleClickAway: () => {}
 };
 
 describe("(1) Transfer HIVE", () => {

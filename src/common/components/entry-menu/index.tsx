@@ -21,7 +21,7 @@ import MuteBtn from "../mute-btn";
 import Promote from "../promote";
 import Boost from "../boost";
 import ModalConfirm from "../modal-confirm";
-import { error, success } from "../feedback";
+import { error, info, success } from "../feedback";
 import DropDown, { MenuItem } from "../dropdown";
 import CrossPost from "../cross-post";
 
@@ -53,6 +53,7 @@ import {
   shuffleVariantSvg
 } from "../../img/svg";
 import "./_index.scss";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 interface Props {
   history: History;
@@ -360,6 +361,9 @@ export class EntryMenu extends BaseComponent<Props, State> {
     const isComment = !!entry.parent_author;
 
     const ownEntry = activeUser && activeUser.username === entry.author;
+    const community: any = this.getCommunity();
+    const canPinToCommunity =
+      community?.context?.role !== "guest" && community?.context?.role !== "member";
 
     // const editable = ownEntry && !isComment;
     const editable = ownEntry;
@@ -488,8 +492,8 @@ export class EntryMenu extends BaseComponent<Props, State> {
           }
         ];
       }
-    } else if (this.canPin()) {
-      if (entryPinTracker[`${entry.author}-${entry.permlink}`]) {
+    } else if (this.canPin() || activeUser) {
+      if (entryPinTracker[`${entry.author}-${entry.permlink}`] && canPinToCommunity) {
         menuItems = [
           ...menuItems,
           {
@@ -507,7 +511,16 @@ export class EntryMenu extends BaseComponent<Props, State> {
             icon: pinSvg
           }
         ];
-      } else if (isCommunity(entry.category)) {
+      } else if (ownEntry) {
+        menuItems = [
+          ...menuItems,
+          {
+            label: _t("entry-menu.pin-to-blog"),
+            onClick: () => this.togglePin("blog"),
+            icon: pinSvg
+          }
+        ];
+      } else if (isCommunity(entry.category) && canPinToCommunity) {
         menuItems = [
           ...menuItems,
           {
@@ -516,17 +529,6 @@ export class EntryMenu extends BaseComponent<Props, State> {
             icon: pinSvg
           }
         ];
-      } else {
-        if (entry.author === activeUser?.username) {
-          menuItems = [
-            ...menuItems,
-            {
-              label: _t("entry-menu.pin-to-blog"),
-              onClick: () => this.togglePin("blog"),
-              icon: pinSvg
-            }
-          ];
-        }
       }
     }
 
@@ -605,7 +607,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
     };
 
     const { cross, share, editHistory, delete_, pin, unpin, mute, promote, boost } = this.state;
-    const community = this.getCommunity();
+    // const community = this.getCommunity();
 
     return (
       <div className="entry-menu">
@@ -733,27 +735,55 @@ export class EntryMenu extends BaseComponent<Props, State> {
   }
 }
 
-export default (p: Props) => {
+export default (
+  p: Pick<
+    Props,
+    | "entry"
+    | "history"
+    | "separatedSharing"
+    | "alignBottom"
+    | "extraMenuItems"
+    | "toggleEdit"
+    | "pinEntry"
+  >
+) => {
+  const {
+    global,
+    activeUser,
+    communities,
+    entryPinTracker,
+    dynamicProps,
+    signingKey,
+    setSigningKey,
+    addAccount,
+    updateActiveUser,
+    updateEntry,
+    addCommunity,
+    trackEntryPin,
+    setEntryPin,
+    toggleUIProp
+  } = useMappedStore();
+
   const props: Props = {
     history: p.history,
-    global: p.global,
-    dynamicProps: p.dynamicProps,
-    activeUser: p.activeUser,
+    global,
+    dynamicProps,
+    activeUser,
     entry: p.entry,
-    communities: p.communities,
-    entryPinTracker: p.entryPinTracker,
+    communities,
+    entryPinTracker,
     separatedSharing: p.separatedSharing,
     alignBottom: p.alignBottom,
-    signingKey: p.signingKey,
+    signingKey,
     extraMenuItems: p.extraMenuItems,
-    setSigningKey: p.setSigningKey,
-    addAccount: p.addAccount,
-    updateActiveUser: p.updateActiveUser,
-    updateEntry: p.updateEntry,
-    addCommunity: p.addCommunity,
-    trackEntryPin: p.trackEntryPin,
-    setEntryPin: p.setEntryPin,
-    toggleUIProp: p.toggleUIProp,
+    setSigningKey,
+    addAccount,
+    updateActiveUser,
+    updateEntry,
+    addCommunity,
+    trackEntryPin,
+    setEntryPin,
+    toggleUIProp,
     toggleEdit: p.toggleEdit,
     pinEntry: p.pinEntry
   };

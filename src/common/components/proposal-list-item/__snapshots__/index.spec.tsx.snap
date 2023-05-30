@@ -15,6 +15,7 @@ exports[`(1) Default render. 1`] = `
       >
         <span
           className="user-avatar small"
+          onClick={[Function]}
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -150,7 +151,7 @@ exports[`(1) Default render. 1`] = `
           onClick={[Function]}
         >
           <div
-            className="btn-proposal-vote btn-up-vote vote-btn-lg"
+            className="btn-proposal-vote btn-up-vote vote-btn-lg in-progress"
           >
             <span
               className="btn-inner"

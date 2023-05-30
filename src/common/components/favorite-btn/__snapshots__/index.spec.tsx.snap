@@ -32,7 +32,7 @@ exports[`(2) Not Favorited 1`] = `
 >
   <button
     className="btn btn-primary"
-    disabled={false}
+    disabled={true}
     onClick={[Function]}
     title="Add to favorites"
     type="button"
@@ -57,7 +57,7 @@ exports[`(3) Favorited 1`] = `
 >
   <button
     className="btn btn-primary"
-    disabled={false}
+    disabled={true}
     onClick={[Function]}
     title="Remove from favorites"
     type="button"

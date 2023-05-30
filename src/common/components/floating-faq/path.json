@@ -1,7 +1,7 @@
 {
   "faqPaths": [
     {
-      "path": "/hot",
+      "path": "/hot$",
       "suggestions": [
         "what-is-ecency",
         "what-is-difference",
@@ -11,44 +11,102 @@
       ]
     },
     {
-      "path": "/created",
+      "path": "/created$",
       "suggestions": [
+        "what-information-profile",
         "why-score-going-down",
         "what-can-post",
+        "what-are-tags"
+      ]
+    },
+    {
+      "path": "/trending$",
+      "suggestions": [
+        "what-trending-feed",
+        "how-to-sort-feed",
+        "what-links-show",
+        "what-are-tags",
+        "how-use-tags"
+      ]
+    },
+    {
+      "path": "/discover$",
+      "suggestions": ["find-friends", "accounts-included-leaderboard"]
+    },
+    {
+      "path": "/communities$",
+      "suggestions": [
+        "find-communities",
+        "what-communities",
+        "how-create-community",
+        "how-post-community",
+        "leave-community"
+      ]
+    },
+    {
+      "path": "/submit",
+      "suggestions": [
         "what-are-tags",
         "how-use-tags",
         "add-images-videos",
-        "what-thumbnail-image"
+        "what-thumbnail-image",
+        "how-set-beneficiaries"
       ]
     },
     {
-      "path": "/discover",
-      "suggestions": [
-        "can-change-username",
-        "can-delete-account",
-        "how-to-signin",
-        "what-is-hivesigner"
-      ]
+      "path": "/search$",
+      "suggestions": ["how-to-search", "what-appears-search"]
     },
     {
-      "path": "/rising",
+      "path": "/@.+/wallet",
       "suggestions": [
-        "what-information-profile",
-        "what-is-points",
-        "where-tokens-come",
-        "value-hive-hbd",
-        "what-are-hive"
-      ]
-    },
-    {
-      "path": "/@.+/(blog|posts|wallet|points|engine|permissions|spk)",
-      "suggestions": [
+        "what-are-hive",
         "what-are-hd",
-        "what-delegated-hp",
+        "what-are-hive-power",
         "what-powering-up",
         "what-powering-down",
-        "what-are-rc"
+        "what-delegated-hp"
       ]
+    },
+    {
+      "path": "/@.+/points",
+      "suggestions": [
+        "what-is-points",
+        "where-tokens-come",
+        "how-promotion-work",
+        "how-boosting-work",
+        "why-refund-points"
+      ]
+    },
+    {
+      "path": "/@.+/engine",
+      "suggestions": ["what-engine-tokens", "what-staking", "how-to-stake", "how-to-transfer"]
+    },
+    {
+      "path": "/@.+/posts",
+      "suggestions": ["what-can-post", "how-see-rewards", "when-claim-rewards", "who-are-curators"]
+    },
+    {
+      "path": "/@.+/feed",
+      "suggestions": [
+        "how-to-sort-feed",
+        "what-mean-promoted",
+        "what-is-reblogging",
+        "exclude-reblogs-feed",
+        "what-dollar-amount"
+      ]
+    },
+    {
+      "path": "/@.+/settings",
+      "suggestions": ["can-change-username", "can-delete-account"]
+    },
+    {
+      "path": "/@.+/referrals",
+      "suggestions": ["what-are-referrals", "how-referrals-work"]
+    },
+    {
+      "path": "/.+/@.+/.+",
+      "suggestions": ["how-voting-works", "how-to-bookmark", "how-to-favorite"]
     }
   ]
 }

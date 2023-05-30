@@ -15,6 +15,7 @@ const defProps = {
   users: [],
   activeUser: null,
   setActiveUser: () => {},
+  addUser: () => {},
   deleteUser: () => {},
   toggleUIProp: () => {},
   doLogin: async () => {}

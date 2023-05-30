@@ -62,6 +62,12 @@ exports[`(2) No votes 1`] = `
 exports[`(3) Render of detail with votes 1`] = `
 Array [
   <div
+    className="fade alert alert-warning show"
+    role="alert"
+  >
+    You have pending votes. Please, wait a minute and re-open this dialog to see your vote.
+  </div>,
+  <div
     className="voters-list"
   >
     <div
@@ -79,6 +85,7 @@ Array [
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
@@ -136,6 +143,7 @@ Array [
           >
             <span
               className="user-avatar small"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",

@@ -66,9 +66,9 @@ export const SignUp = (props: PageProps) => {
     if (referral && typeof referral === "string") {
       setReferral(referral);
       setLockReferral(true);
-    } else if (lsReferral && typeof referral === "string") {
-      props.history.push(`/signup?referral=${referral}`);
-      setReferral(referral);
+    } else if (lsReferral && typeof lsReferral === "string") {
+      props.history.push(`/signup?referral=${lsReferral}`);
+      setReferral(lsReferral);
     } else {
       props.history.push("/signup");
     }
