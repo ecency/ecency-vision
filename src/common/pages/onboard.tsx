@@ -56,6 +56,8 @@ const Onboard = (props: PageProps | any) => {
   const [accountCredit, setAccountCredit] = useState(0);
   const [createOption, setCreateOption] = useState("");
   const [fileIsDownloaded, setFileIsDownloaded] = useState(false);
+  const [innerWidth, setInnerWidth] = useState(0);
+  const [shortPassword, setShortPassword] = useState("");
 
   useEffect(() => {
     initAccountKey();
@@ -70,11 +72,29 @@ const Onboard = (props: PageProps | any) => {
     }
   }, [props.global.accountName]);
 
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [masterPassword]);
+
+  const handleResize = () => {
+    setInnerWidth(window.innerWidth);
+    let password: string = "";
+    if (window.innerWidth <= 768 && window.innerWidth > 577) {
+      password = masterPassword.substring(0, 32);
+    } else if (window.innerWidth <= 577) {
+      password = masterPassword.substring(0, 20);
+    }
+    setShortPassword(password);
+  };
+
   const initAccountKey = async () => {
     try {
       const masterPassword: string = await generatePassword(32);
       const keys: any = getPrivateKeys(props.global.accountName, masterPassword);
-      console.log(keys);
       // prepare object to encode
       const pubKeys = {
         active_public_key: keys.activePubkey,
@@ -179,7 +199,11 @@ const Onboard = (props: PageProps | any) => {
       {props.match.params.type === "asking" && !props.activeUser && (
         <div className="onboard-container">
           <div className="asking">
-            <div className="d-flex mb-0 d-flex align-self-center flex-column p-5">
+            <div
+              className={`asking-body d-flex mb-0 d-flex align-self-center flex-column ${
+                innerWidth < 577 ? "p-3" : "p-5"
+              }`}
+            >
               <h3 className="mb-3 align-self-center">{_t("onboard.asking-confirm")}</h3>
               <div className="reg-details">
                 <span style={{ lineHeight: 2 }}>
@@ -193,9 +217,11 @@ const Onboard = (props: PageProps | any) => {
                 </span>
               </div>
               <span className="mt-3">{_t("onboard.copy-key")}</span>
-              <div className="mt-3 d-flex flex-column align-self-center">
+              <div className="mt-3 d-flex flex-column align-center">
                 <div className="d-flex">
-                  <span className="mr-3 mt-1">{masterPassword}</span>
+                  <span className="mr-3 mt-1">
+                    {innerWidth <= 768 ? shortPassword + "..." : masterPassword}
+                  </span>
                   <Tooltip content={_t("onboard.copy-tooltip")}>
                     <span
                       className="onboard-svg mr-3"
@@ -214,7 +240,7 @@ const Onboard = (props: PageProps | any) => {
                   </Tooltip>
                 </div>
                 <Button
-                  className="d-flex align-self-center justify-content-center w-50 mt-3"
+                  className="d-flex align-self-center justify-content-center mt-3"
                   disabled={!accountInfo?.username || !accountInfo.email}
                   onClick={() => {
                     downloadKeys();

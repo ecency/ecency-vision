@@ -1,60 +1,75 @@
 @import "../../style/vars_mixins";
 
-.onboard-container{
+.onboard-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px;
+  margin-top: 70px;
+  width: 690px;
+  border-radius: 15px;
+
+
+  @media (max-width: $md-break) {
+    width: 490px;
+  }
+
+  @media (max-width: $sm-break) {
+    width: 320px;
+  }
+
+
+  @include themify(day) {
+    background: lighten($steel-grey, 40);
+  }
+
+  @include themify(night) {
+    background: $dark-grey-blue;
+  }
+
+  .asking {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    padding: 20px;;
-    margin-top: 70px;
-    // height: 100vh;
-    width: max-content;
-    border-radius: 10px;
 
-    @include themify(day) {
-        background: lighten($steel-grey, 40);
+    .reg-details {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .asking-body {
+      @media (max-width: $md-break) {
+        width: 490px;
       }
-    
-      @include themify(night) {
-        background: $dark-grey-blue;
+      @media (max-width: $sm-break) {
+        width: 320px;
       }
+    }
+  }
 
-      .asking{
+  .onboard-svg {
+    cursor: pointer;
+  }
+
+  .creating {
+    display: flex;
+    flex-direction: column;
+  }
+  .creating-confirm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .creating-confirm-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+
+      .onboard-btn-container {
         display: flex;
-        flex-direction: column;;
-
-        .reg-details{
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-      }
-      
-      .onboard-svg{
-        cursor: pointer;
-      }
-
-      .creating{
-        display: flex;
-        flex-direction: column;
-        
-      }
-      .creating-confirm{
-        display: flex;
-        flex-direction: column;
+        justify-content: center;
         gap: 15px;
-
-        .creating-confirm-bottom{
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          align-items: center;
-
-          .onboard-btn-container{
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-          }
-        }
-
       }
+    }
+  }
 }
