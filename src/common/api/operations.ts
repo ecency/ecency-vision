@@ -1920,8 +1920,6 @@ export const createAccountKc = async (data: any, creator_account: string) => {
 
     let tokens: any = await hiveClient.database.getAccounts([creator_account]);
     tokens = tokens[0]?.pending_claimed_accounts;
-    console.log(tokens);
-    console.log("tokens...");
 
     let fee = null;
     let op_name: OperationName = "create_claimed_account";
@@ -1931,7 +1929,6 @@ export const createAccountKc = async (data: any, creator_account: string) => {
 
       // Load account creation fee from Hive chain properties
       const chain_props = await hiveClient.database.getChainProperties();
-      console.log(chain_props);
       if (chain_props && chain_props.account_creation_fee) {
         fee = chain_props.account_creation_fee;
       }
@@ -1973,14 +1970,10 @@ export const createAccountKc = async (data: any, creator_account: string) => {
       // For Keychain
       return keychain.broadcast(creator_account, [operation], "Active");
     } catch (err: any) {
-      console.log(`Error: response - ${JSON.stringify(err)}`);
-      console.log(
-        "Error:  failed thrice============= Account creation failed three times! ==============="
-      );
       return err.jse_info.name;
     }
   } catch (err) {
-    console.error(err);
+    return err;
   }
 };
 
@@ -1997,8 +1990,6 @@ export const createAccountWithCredit = async (data: any, creator_account: string
 
     let tokens: any = await hiveClient.database.getAccounts([creator_account]);
     tokens = tokens[0]?.pending_claimed_accounts;
-    console.log(tokens);
-    console.log("tokens...");
 
     let fee = null;
     let op_name: OperationName = "create_claimed_account";
@@ -2037,14 +2028,10 @@ export const createAccountWithCredit = async (data: any, creator_account: string
       // For Keychain
       return keychain.broadcast(creator_account, [operation], "Active");
     } catch (err: any) {
-      console.log(`Error: response - ${JSON.stringify(err)}`);
-      console.log(
-        "Error:  failed thrice============= Account creation failed three times! ==============="
-      );
       return err.jse_info.name;
     }
   } catch (err) {
-    console.error(err);
+    return err;
   }
 };
 
@@ -2060,8 +2047,6 @@ export const createAccountHs = async (data: any, creator_account: string) => {
 
     let tokens: any = await hiveClient.database.getAccounts([creator_account]);
     tokens = tokens[0]?.pending_claimed_accounts;
-
-    console.log({ account });
 
     let fee = null;
     let op_name: OperationName = "create_claimed_account";
@@ -2115,14 +2100,10 @@ export const createAccountHs = async (data: any, creator_account: string) => {
       const params: Parameters = { callback: `https://ecency.com/` };
       return hs.sendOperation(operation, params, () => {});
     } catch (err: any) {
-      console.log(`Error: response - ${JSON.stringify(err)}`);
-      console.log(
-        "Error:  failed thrice============= Account creation failed three times! ==============="
-      );
       return err.jse_info.name;
     }
   } catch (err) {
-    console.error(err);
+    return err;
   }
 };
 
@@ -2138,8 +2119,6 @@ export const createAccountKey = async (data: any, creator_account: string, creat
 
     let tokens: any = await hiveClient.database.getAccounts([creator_account]);
     tokens = tokens[0]?.pending_claimed_accounts;
-
-    console.log(tokens);
 
     let fee = null;
     let op_name: OperationName = "create_claimed_account";
@@ -2195,17 +2174,12 @@ export const createAccountKey = async (data: any, creator_account: string, creat
         PrivateKey.from(creator_key)
       );
 
-      console.log(`Account Created: activeUser`, newAccount);
       return newAccount;
     } catch (err: any) {
-      console.log(`Error: response - ${JSON.stringify(err)}`);
-      console.log(
-        "Error:  failed thrice============= Account creation failed three times! ==============="
-      );
       return err.jse_info.name;
     }
   } catch (err) {
-    console.error(err);
+    return err;
   }
 };
 
