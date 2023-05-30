@@ -7,7 +7,7 @@ import Feedback from "../components/feedback";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { Button, Modal } from "react-bootstrap";
 import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
-import { success } from "../components/feedback";
+import { success, error } from "../components/feedback";
 import Tooltip from "../components/tooltip";
 import "./onboard.scss";
 import { _t } from "../i18n";
@@ -38,21 +38,19 @@ export interface DecodeHash {
   email: string;
   username: string;
   pubkeys: {
-    active_public_key: string;
-    memo_public_key: string;
-    owner_public_key: string;
-    posting_public_key: string;
+    activepublickey: string;
+    memopublickey: string;
+    ownerpublickey: string;
+    postingpublickey: string;
   };
 }
 
 export interface ConfirmDetails {
   label: string;
-  value: string | undefined;
+  value: string;
 }
 
 const Onboard = (props: PageProps | any) => {
-  const onboardUrl = `${window.location.origin}/onboard-friend/creating/`;
-
   const [masterPassword, setMasterPassword] = useState("");
   const [hash, setHash] = useState("");
   const [accountInfo, setAccountInfo] = useState<AccountInfo>();
@@ -64,6 +62,12 @@ const Onboard = (props: PageProps | any) => {
   const [innerWidth, setInnerWidth] = useState(0);
   const [shortPassword, setShortPassword] = useState("");
   const [confirmDetails, setConfirmDetails] = useState<ConfirmDetails[]>();
+  const [onboardUrl, setOnboardUrl] = useState("");
+
+  useEffect(() => {
+    setOnboardUrl(`${window.location.origin}/onboard-friend/creating/`);
+    setInnerWidth(window.innerWidth);
+  }, []);
 
   useEffect(() => {
     initAccountKey();
@@ -79,20 +83,16 @@ const Onboard = (props: PageProps | any) => {
   }, [props.global.accountName]);
 
   useEffect(() => {
-    setInnerWidth(window.innerWidth);
-
-    setConfirmDetails([
-      { label: _t("onboard.username"), value: decodedInfo?.username },
-      { label: _t("onboard.public-owner"), value: decodedInfo?.pubkeys?.owner_public_key },
-      { label: _t("onboard.public-active"), value: decodedInfo?.pubkeys?.active_public_key },
-      { label: _t("onboard.public-posting"), value: decodedInfo?.pubkeys?.posting_public_key },
-      { label: _t("onboard.public-memo"), value: decodedInfo?.pubkeys?.memo_public_key }
-    ]);
+    if (decodedInfo) {
+      setConfirmDetails([
+        { label: _t("onboard.username"), value: decodedInfo?.username },
+        { label: _t("onboard.public-owner"), value: decodedInfo?.pubkeys?.ownerpublickey },
+        { label: _t("onboard.public-active"), value: decodedInfo?.pubkeys?.activepublickey },
+        { label: _t("onboard.public-posting"), value: decodedInfo?.pubkeys?.postingpublickey },
+        { label: _t("onboard.public-memo"), value: decodedInfo?.pubkeys?.memopublickey }
+      ]);
+    }
   }, [decodedInfo]);
-
-  useEffect(() => {
-    console.log(shortPassword);
-  }, [shortPassword]);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -108,7 +108,6 @@ const Onboard = (props: PageProps | any) => {
     if (window.innerWidth <= 768 && window.innerWidth > 577) {
       password = masterPassword.substring(0, 32);
     } else if (window.innerWidth <= 577) {
-      console.log("I am true");
       password = masterPassword.substring(0, 20);
     }
     setShortPassword(password);
@@ -144,7 +143,7 @@ const Onboard = (props: PageProps | any) => {
       setMasterPassword(masterPassword);
       return masterPassword;
     } catch (err: any) {
-      console.error(err?.message);
+      error(err?.message);
       return null;
     }
   };
@@ -243,7 +242,7 @@ const Onboard = (props: PageProps | any) => {
               <div className="mt-3 d-flex flex-column align-center">
                 <div className="d-flex">
                   <span className="mr-3 mt-1">
-                    {window.innerWidth <= 768 ? shortPassword + "..." : masterPassword}
+                    {innerWidth <= 768 ? shortPassword + "..." : masterPassword}
                   </span>
                   <Tooltip content={_t("onboard.copy-tooltip")}>
                     <span
