@@ -1,5 +1,5 @@
 import { History } from "history";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
@@ -10,6 +10,7 @@ import { IdentifiableEntry } from "../deck-threads-manager";
 import { DeckThreadsForm } from "../../deck-threads-form";
 import moment from "moment";
 import { DeckThreadItemViewerReply } from "./deck-thread-item-viewer-reply";
+import { EntriesCacheContext, useEntryCache } from "../../../../core";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -20,16 +21,20 @@ interface Props {
 }
 
 export const DeckThreadItemViewer = ({
-  entry,
+  entry: initialEntry,
   history,
   backTitle,
   onClose,
   highlightedEntry
 }: Props) => {
+  const { addReply, updateCache, updateRepliesCount } = useContext(EntriesCacheContext);
+
+  const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
+
   const [data, setData] = useState<IdentifiableEntry | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-
   const [isMounted, setIsMounted] = useState(false);
+
   useMount(() => setIsMounted(true));
 
   useEffect(() => {
@@ -45,10 +50,6 @@ export const DeckThreadItemViewer = ({
         i.host = entry.host;
       });
 
-      if (entry.replies.length === 0) {
-        entry.replies = tempResponse[`${entry.author}/${entry.permlink}`].replies;
-      }
-
       const nextData = buildReplyNode(entry, tempResponse);
       setData(nextData);
       setIsLoaded(true);
@@ -59,9 +60,13 @@ export const DeckThreadItemViewer = ({
     if (root.replies.length > 0) {
       root.replies = root.replies
         .filter((r) => r !== `${root.author}/${root.permlink}`)
+        .map((r) => (r instanceof Object ? `${r.author}/${r.permlink}` : r))
         .map((r) => buildReplyNode(dataset[r], dataset));
       root.replies.sort((a, b) => (moment(a.created).isAfter(b.created) ? -1 : 1));
     }
+
+    // Update entry in global cache
+    updateCache([root]);
 
     return root;
   };
@@ -87,7 +92,7 @@ export const DeckThreadItemViewer = ({
       </div>
       <ThreadItem
         pure={true}
-        entry={entry}
+        initialEntry={entry}
         onEntryView={() => {}}
         history={history}
         onMounted={() => {}}
@@ -101,6 +106,9 @@ export const DeckThreadItemViewer = ({
           reply.replies = [];
           if (data) {
             setData({ ...data, replies: [reply, ...data.replies] });
+
+            // Update entry in global cache
+            addReply(entry.post_id, reply);
           }
         }}
       />
@@ -112,10 +120,14 @@ export const DeckThreadItemViewer = ({
               key={reply.post_id}
               entry={reply}
               history={history}
+              parentEntry={entry}
+              incrementParentEntryCount={() =>
+                updateRepliesCount(entry.post_id, entry.children + 1)
+              }
             />
           ))}
         <div className="skeleton-list">
-          {!isLoaded && Array.from(new Array(20)).map((i) => <DeckThreadItemSkeleton key={i} />)}
+          {!isLoaded && Array.from(new Array(20)).map((_, i) => <DeckThreadItemSkeleton key={i} />)}
         </div>
       </div>
     </div>

@@ -83,6 +83,7 @@ interface VoteDialogProps {
   setTipDialogMounted: (d: boolean) => void;
   updateWalletValues: () => void;
   onClick: (percent: number, estimated: number) => void;
+  handleClickAway: () => void;
 }
 
 interface VoteDialogState {
@@ -334,6 +335,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               <div className="estimated">
                 <FormattedCurrency {...this.props} value={this.estimate(upSliderVal)} fixAt={3} />
               </div>
+              <div className="space" />
               <div className="slider slider-up">
                 <VotingSlider value={upSliderVal} setVoteValue={this.upSliderChanged} mode={mode} />
               </div>
@@ -386,6 +388,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   mode={mode}
                 />
               </div>
+              <div className="space" />
               <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
               <div
                 className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
@@ -424,6 +427,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   account={this.props.account}
                   updateWalletValues={this.props.updateWalletValues}
                   setTipDialogMounted={this.props.setTipDialogMounted}
+                  handleClickAway={this.props.handleClickAway}
                 />
               </div>
             </div>
@@ -653,6 +657,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                               setTipDialogMounted={this.setTipDialogMounted}
                               updateWalletValues={this.ensureAccount}
                               onClick={this.vote}
+                              handleClickAway={this.handleClickAway}
                             />
                           </span>
                         </div>

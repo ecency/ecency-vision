@@ -8,7 +8,12 @@ import { History } from "history";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../deck-manager";
 import { _t } from "../../../i18n";
-import { DeckThreadsContext, IdentifiableEntry } from "./deck-threads-manager";
+import {
+  DeckThreadsColumnManagerContext,
+  DeckThreadsContext,
+  IdentifiableEntry,
+  withDeckThreadsColumnManager
+} from "./deck-threads-manager";
 import moment from "moment/moment";
 import usePrevious from "react-use/lib/usePrevious";
 import { getPost } from "../../../api/bridge";
@@ -20,8 +25,9 @@ interface Props {
   draggable?: DraggableProvidedDragHandleProps;
 }
 
-export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) => {
-  const { fetch, register, detach, reloadingInitiated } = useContext(DeckThreadsContext);
+const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props) => {
+  const { register, detach, reloadingInitiated } = useContext(DeckThreadsContext);
+  const { fetch } = useContext(DeckThreadsColumnManagerContext);
 
   const [data, setData] = useState<IdentifiableEntry[]>([]);
   const [hostGroupedData, setHostGroupedData] = useState<Record<string, IdentifiableEntry[]>>(
@@ -124,11 +130,15 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
       }}
       data={data}
-      newDataComingCondition={(newCameData) =>
-        prevData?.length === 0 ||
-        moment(newCameData[0]?.created).isBefore(moment((prevData ?? [])[0]?.created))
-      }
+      newDataComingCondition={(newCameData) => {
+        const newCame = newCameData.filter((i) => !prevData?.some((it) => i.id === it.id))[0];
+        const prevOne = (prevData ?? [])[0];
+        return (
+          prevData?.length === 0 || moment(newCame?.created).isBefore(moment(prevOne?.created))
+        );
+      }}
       isReloading={isReloading}
+      isVirtualScroll={false}
       isExpanded={!!currentViewingEntry}
       onReload={() => fetchData()}
       skeletonItem={<DeckThreadItemSkeleton />}
@@ -147,12 +157,9 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
       {(item: IdentifiableEntry, measure: Function, index: number) => (
         <ThreadItem
           history={history}
-          entry={{
-            ...item
-          }}
-          onMounted={() => {
-            measure();
-
+          initialEntry={item}
+          onMounted={() => measure()}
+          onAppear={() => {
             const hostOnlyThreadItems = hostGroupedData[item.host];
             const isLast = hostOnlyThreadItems[hostOnlyThreadItems.length - 1]?.id === item.id;
             if (isLast && hasHostNextPage[item.host]) {
@@ -180,3 +187,5 @@ export const DeckThreadsColumn = ({ id, settings, history, draggable }: Props) =
     </GenericDeckWithDataColumn>
   );
 };
+
+export const DeckThreadsColumn = withDeckThreadsColumnManager(DeckThreadsColumnComponent);

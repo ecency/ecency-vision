@@ -43,7 +43,8 @@ const defProps = {
   setSigningKey: () => {},
   fetchPoints: () => {},
   updateWalletValues: () => {},
-  onHide: () => {}
+  onHide: () => {},
+  handleClickAway: () => {}
 };
 
 describe("(1) Transfer HIVE", () => {

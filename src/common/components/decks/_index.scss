@@ -1,5 +1,11 @@
 @import "src/style/vars_mixins";
 
+html, body {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .decks {
   display: grid;
   grid-template-columns: 72px 0 1fr;

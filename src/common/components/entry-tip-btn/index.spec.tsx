@@ -17,7 +17,8 @@ const defProps = {
   },
   entry: entryInstance1,
   updateWalletValues: () => {},
-  setTipDialogMounted: () => {}
+  setTipDialogMounted: () => {},
+  handleClickAway: () => {}
 };
 
 it("(1) Default render", async () => {

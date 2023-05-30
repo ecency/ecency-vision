@@ -6,9 +6,9 @@ import { fetchThreads } from "./threads-api";
 import { fetchThreadsFromCommunity } from "./community-api";
 
 export * from "./identifiable-entry";
+export * from "./deck-threads-column-manager";
 
 interface Context {
-  fetch: (hosts: string[], lastContainers?: ThreadItemEntry[]) => Promise<ThreadItemEntry[]>;
   register: (id: string) => void;
   detach: (id: string) => void;
   reloadingInitiated: boolean;
@@ -16,7 +16,6 @@ interface Context {
 }
 
 export const DeckThreadsContext = createContext<Context>({
-  fetch: async () => [],
   register: () => {},
   detach: () => {},
   reloadingInitiated: false,
@@ -32,33 +31,6 @@ export const DeckThreadsManager = ({ children }: { children: JSX.Element }) => {
     setReloadingInitiated(false);
   }, 100);
 
-  /**
-   *
-   * @param hosts Thread hosts usernames
-   * @param lastContainers Last thread containers post
-   */
-  const fetch = async (hosts: string[], lastContainers?: ThreadItemEntry[]) => {
-    let nextThreadItems: ThreadItemEntry[] = [];
-
-    let usingHosts = lastContainers
-      ? hosts.filter((h) => lastContainers.find((c) => c.host === h))
-      : hosts;
-
-    for (const host of usingHosts) {
-      const lastContainer = lastContainers?.find((c) => c.host === host);
-      let response;
-      if ("dbuzz" === host) {
-        response = await fetchThreadsFromCommunity(host, "hive-193084", lastContainer);
-      } else {
-        response = await fetchThreads(host, lastContainer);
-      }
-
-      nextThreadItems = [...nextThreadItems, ...response];
-    }
-
-    return nextThreadItems;
-  };
-
   const register = (id: string) => {
     setRegisteredColumns(Array.from(new Set([...registeredColumns, id]).values()));
   };
@@ -72,7 +44,7 @@ export const DeckThreadsManager = ({ children }: { children: JSX.Element }) => {
   };
 
   return (
-    <DeckThreadsContext.Provider value={{ fetch, register, detach, reloadingInitiated, reload }}>
+    <DeckThreadsContext.Provider value={{ register, detach, reloadingInitiated, reload }}>
       {children}
     </DeckThreadsContext.Provider>
   );

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { _t } from "../../../i18n";
 import { DeckHeader } from "../header/deck-header";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
@@ -7,7 +7,6 @@ import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from "react-virtuali
 import { DeckGridContext } from "../deck-manager";
 import { Button } from "react-bootstrap";
 import { upArrowSvg } from "../../../img/svg";
-import { Data } from "node-cache";
 import { DeckProps, GenericDeckColumn } from "./generic-deck-column";
 
 type DataItem = Omit<any, "id"> & Required<{ id: string | number }>;
@@ -19,6 +18,7 @@ export interface DeckWithDataProps
   contentViewer?: JSX.Element;
   overlay?: JSX.Element;
   newDataComingCondition?: (data: DataItem[]) => boolean;
+  isVirtualScroll?: boolean;
 }
 
 export const GenericDeckWithDataColumn = ({
@@ -33,11 +33,13 @@ export const GenericDeckWithDataColumn = ({
   contentViewer,
   isExpanded,
   overlay,
-  newDataComingCondition
+  newDataComingCondition,
+  isVirtualScroll = true
 }: DeckWithDataProps) => {
   const { activeUser } = useMappedStore();
 
   const { deleteColumn } = useContext(DeckGridContext);
+  const scrollContentRef = useRef<HTMLDivElement | null>(null);
 
   const [visibleData, setVisibleData] = useState<DataItem[]>([]);
   const [newComingData, setNewComingData] = useState<DataItem[]>([]);
@@ -61,6 +63,53 @@ export const GenericDeckWithDataColumn = ({
     }
   }, [data]);
 
+  const virtualScrollContent = (
+    <AutoSizer>
+      {({ height, width }) => (
+        <List
+          overscanRowCount={16}
+          height={height}
+          width={width}
+          rowCount={visibleData.length}
+          rowRenderer={({ key, index, style, parent }) => (
+            <CellMeasurer
+              cache={cache}
+              columnIndex={0}
+              key={visibleData[index].id + key}
+              parent={parent}
+              rowIndex={index}
+            >
+              {({ measure, registerChild }) => {
+                return (
+                  <div
+                    key={(visibleData[index].id ?? visibleData[index].post_id) + key}
+                    ref={registerChild as any}
+                    className="virtual-list-item"
+                    style={style}
+                  >
+                    {children(visibleData[index], measure, index)}
+                  </div>
+                );
+              }}
+            </CellMeasurer>
+          )}
+          deferredMeasurementCache={cache}
+          rowHeight={cache.rowHeight}
+        />
+      )}
+    </AutoSizer>
+  );
+
+  const nativeScrollContent = (
+    <div ref={scrollContentRef} className="native-scroll-content">
+      {visibleData.map((item, index) => (
+        <div key={visibleData[index].id ?? visibleData[index].post_id}>
+          {children(visibleData[index], () => {}, index)}
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <GenericDeckColumn
       id={id}
@@ -83,40 +132,11 @@ export const GenericDeckWithDataColumn = ({
         </Button>
       </div>
       {data.length ? (
-        <AutoSizer>
-          {({ height, width }) => (
-            <List
-              overscanRowCount={16}
-              height={height}
-              width={width}
-              rowCount={visibleData.length}
-              rowRenderer={({ key, index, style, parent }) => (
-                <CellMeasurer
-                  cache={cache}
-                  columnIndex={0}
-                  key={visibleData[index].id + key}
-                  parent={parent}
-                  rowIndex={index}
-                >
-                  {({ measure, registerChild }) => {
-                    return (
-                      <div
-                        key={(visibleData[index].id ?? visibleData[index].post_id) + key}
-                        ref={registerChild as any}
-                        className="virtual-list-item"
-                        style={style}
-                      >
-                        {children(visibleData[index], measure, index)}
-                      </div>
-                    );
-                  }}
-                </CellMeasurer>
-              )}
-              deferredMeasurementCache={cache}
-              rowHeight={cache.rowHeight}
-            />
-          )}
-        </AutoSizer>
+        isVirtualScroll ? (
+          virtualScrollContent
+        ) : (
+          nativeScrollContent
+        )
       ) : (
         <div className="skeleton-list">
           {Array.from(Array(20).keys()).map((i) => (

@@ -20,6 +20,8 @@ export const DeckThreadsCreatedRecently = ({ lastEntry, setLastEntry }: Props) =
 
   const [intervalStarted, setIntervalStarted] = useState(false);
 
+  const isLocal = ({ post_id }: Entry) => post_id === 1 || typeof post_id === "string";
+
   useEffect(() => {
     if (lastEntry) {
       setIntervalStarted(true);
@@ -29,10 +31,10 @@ export const DeckThreadsCreatedRecently = ({ lastEntry, setLastEntry }: Props) =
   useInterval(
     async () => {
       // Checking for transaction status
-      if (lastEntry && lastEntry.post_id === 1) {
+      if (lastEntry && isLocal(lastEntry)) {
         try {
           const entry = await bridgeApi.getPost(activeUser!.username, lastEntry.permlink);
-          const isAlreadyAdded = lastEntry.permlink === entry?.permlink && lastEntry.post_id !== 1;
+          const isAlreadyAdded = lastEntry.permlink === entry?.permlink && !isLocal(lastEntry);
           if (entry && !isAlreadyAdded) {
             setLastEntry(entry);
 
@@ -53,18 +55,18 @@ export const DeckThreadsCreatedRecently = ({ lastEntry, setLastEntry }: Props) =
   return (
     <div className="deck-threads-created-recently">
       {lastEntry && (
-        <Alert variant={lastEntry.post_id !== 1 ? "success" : "secondary"} key={lastEntry.post_id}>
+        <Alert variant={!isLocal(lastEntry) ? "success" : "secondary"} key={lastEntry.post_id}>
           <div className="d-flex align-items-center">
             <div className="icon">
-              {lastEntry.post_id !== 1 ? checkSvg : <Spinner animation="border" />}
+              {!isLocal(lastEntry) ? checkSvg : <Spinner animation="border" />}
             </div>
             <div className="pl-3">
-              {lastEntry.post_id !== 1
+              {!isLocal(lastEntry)
                 ? _t("decks.threads-form.successfully-created")
                 : _t("decks.threads-form.pending")}
             </div>
           </div>
-          {lastEntry.post_id !== 1 && (
+          {!isLocal(lastEntry) && (
             <EntryLink target="_blank" entry={lastEntry}>
               <span>{_t("decks.threads-form.link-to-entry")}</span>
             </EntryLink>

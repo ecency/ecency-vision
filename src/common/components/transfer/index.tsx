@@ -144,6 +144,7 @@ interface Props {
   fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
   onHide: () => void;
+  handleClickAway?: () => void;
 }
 
 interface State {
@@ -620,8 +621,16 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   finish = () => {
-    const { onHide, mode, asset, account, activeUser, fetchPoints, updateWalletValues } =
-      this.props;
+    const {
+      onHide,
+      mode,
+      asset,
+      account,
+      activeUser,
+      fetchPoints,
+      updateWalletValues,
+      handleClickAway
+    } = this.props;
     if (account && activeUser && account.name !== activeUser.username) {
       if (mode === "transfer" && asset === "POINT") {
         fetchPoints(account.name);
@@ -631,6 +640,7 @@ export class Transfer extends BaseComponent<Props, State> {
     }
     // const {onHide} = this.props;
     onHide();
+    handleClickAway && handleClickAway();
   };
 
   reset = () => {

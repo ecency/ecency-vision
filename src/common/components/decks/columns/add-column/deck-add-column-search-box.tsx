@@ -132,7 +132,7 @@ export const DeckAddColumnSearchBox = ({
             onClick={() => {
               setUsername(i.name);
               setRecentList([
-                ...recentList,
+                ...(recentList ?? []),
                 ...(recentList?.some((it) => it.name === i.name) ? [] : [i])
               ]);
 

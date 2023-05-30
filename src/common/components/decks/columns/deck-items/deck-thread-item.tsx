@@ -1,6 +1,6 @@
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useResizeDetector } from "react-resize-detector";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserAvatar } from "../../../user-avatar";
 import { Link } from "react-router-dom";
 import { dateToRelative } from "../../../../helper/parse-date";
@@ -13,9 +13,11 @@ import { commentSvg, voteSvg } from "../../icons";
 import EntryVotes from "../../../entry-votes";
 import { DeckThreadItemBody } from "./deck-thread-item-body";
 import { classNameObject } from "../../../../helper/class-name-object";
+import { useInViewport } from "react-in-viewport";
+import { EntriesCacheContext, useEntryCache } from "../../../../core";
 
 export interface ThreadItemProps {
-  entry: IdentifiableEntry;
+  initialEntry: IdentifiableEntry;
   history: History;
   onMounted: () => void;
   onEntryView: () => void;
@@ -25,10 +27,11 @@ export interface ThreadItemProps {
   sequenceItem?: boolean;
   commentsSlot?: JSX.Element;
   onSeeFullThread?: () => void;
+  onAppear?: () => void;
 }
 
 export const ThreadItem = ({
-  entry,
+  initialEntry,
   onMounted,
   onEntryView,
   onResize,
@@ -36,17 +39,30 @@ export const ThreadItem = ({
   pure,
   sequenceItem,
   commentsSlot,
-  onSeeFullThread
+  onSeeFullThread,
+  onAppear
 }: ThreadItemProps) => {
+  const { updateVotes } = useContext(EntriesCacheContext);
+
   const { global } = useMappedStore();
   const { height, ref } = useResizeDetector();
 
   const [renderInitiated, setRenderInitiated] = useState(false);
   const [hasParent, setHasParent] = useState(false);
 
+  const { inViewport } = useInViewport(ref);
+
+  const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
+
   useEffect(() => {
     onMounted();
   }, []);
+
+  useEffect(() => {
+    if (inViewport && onAppear) {
+      onAppear();
+    }
+  }, [inViewport]);
 
   useEffect(() => {
     setHasParent(
@@ -100,7 +116,14 @@ export const ThreadItem = ({
         onResize={onResize}
       />
       <div className="thread-item-actions">
-        <EntryVoteBtn entry={entry} isPostSlider={false} history={history} afterVote={() => {}} />
+        <EntryVoteBtn
+          entry={entry}
+          isPostSlider={false}
+          history={history}
+          afterVote={(votes, estimated) => {
+            updateVotes(entry.post_id, votes, estimated);
+          }}
+        />
         <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
         <Button variant="link" onClick={() => onEntryView()}>
           <div className="d-flex align-items-center comments">
