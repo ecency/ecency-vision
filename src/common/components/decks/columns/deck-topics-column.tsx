@@ -25,7 +25,7 @@ export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
   const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
   const [currentViewingTopic, setCurrentViewingTopic] = useLocalStorage<string | null>(
-    PREFIX + `_dtop_cvt`,
+    PREFIX + `_dtop_cvt_${id}`,
     null
   );
 
