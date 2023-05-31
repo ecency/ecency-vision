@@ -470,7 +470,9 @@
       "msf-description": "Swap your funds quickie with zero latency.",
       "faq": "Help center",
       "faq-subtitle": "FAQ",
-      "faq-description": "Find answer to all your questions about Ecency in our help center."
+      "faq-description": "Find answer to all your questions about Ecency in our help center.",
+      "no-replies": "No replies yet",
+      "add-new-reply": "Add new reply"
     },
     "threads-form": {
       "publish": "Publish it!",

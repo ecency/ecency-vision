@@ -164,6 +164,7 @@ export const DeckThreadsForm = ({
               }}
               setSelectedImage={setImage}
               placeholder={placeholder}
+              onTextareaFocus={() => setFocused(true)}
             />
             {inline && (
               <div className="d-flex align-items-center">

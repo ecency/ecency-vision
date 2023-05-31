@@ -141,4 +141,28 @@
   .deck-post-viewer-header {
     @include padding-bottom(1rem);
   }
+
+  .no-replies-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    @include padding(2rem);
+
+    svg {
+      width: 4rem;
+      height: 4rem;
+      color: $secondary;
+      opacity: 0.5;
+    }
+
+    p {
+      opacity: 0.5;
+      color: $secondary;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+  }
 }

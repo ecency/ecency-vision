@@ -1,5 +1,5 @@
 import { History } from "history";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
@@ -11,6 +11,7 @@ import { DeckThreadsForm } from "../../deck-threads-form";
 import moment from "moment";
 import { DeckThreadItemViewerReply } from "./deck-thread-item-viewer-reply";
 import { EntriesCacheContext, useEntryCache } from "../../../../core";
+import { repliesIconSvg } from "../../icons";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -28,6 +29,7 @@ export const DeckThreadItemViewer = ({
   highlightedEntry
 }: Props) => {
   const { addReply, updateCache, updateRepliesCount } = useContext(EntriesCacheContext);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
 
@@ -72,7 +74,10 @@ export const DeckThreadItemViewer = ({
   };
 
   return (
-    <div className={"deck-post-viewer deck-thread-item-viewer " + (isMounted ? "visible" : "")}>
+    <div
+      ref={rootRef}
+      className={"deck-post-viewer deck-thread-item-viewer " + (isMounted ? "visible" : "")}
+    >
       <div className="deck-post-viewer-header">
         <div className="actions d-flex pt-3 mr-3">
           <Button
@@ -113,19 +118,40 @@ export const DeckThreadItemViewer = ({
         }}
       />
       <div className="deck-thread-item-viewer-replies">
-        {isLoaded &&
-          data?.replies.map((reply) => (
-            <DeckThreadItemViewerReply
-              isHighlighted={highlightedEntry === `${reply.author}/${reply.permlink}`}
-              key={reply.post_id}
-              entry={reply}
-              history={history}
-              parentEntry={entry}
-              incrementParentEntryCount={() =>
-                updateRepliesCount(entry.post_id, entry.children + 1)
-              }
-            />
-          ))}
+        {isLoaded && (
+          <>
+            {data?.replies.map((reply) => (
+              <DeckThreadItemViewerReply
+                isHighlighted={highlightedEntry === `${reply.author}/${reply.permlink}`}
+                key={reply.post_id}
+                entry={reply}
+                history={history}
+                parentEntry={entry}
+                incrementParentEntryCount={() =>
+                  updateRepliesCount(entry.post_id, entry.children + 1)
+                }
+              />
+            ))}
+            {data?.replies.length === 0 && (
+              <div className="no-replies-placeholder">
+                {repliesIconSvg}
+                <p>{_t("decks.columns.no-replies")}</p>
+                <Button
+                  variant="outline-primary"
+                  size="sm"
+                  onClick={() =>
+                    (
+                      rootRef.current?.querySelector(".editor-control") as HTMLElement | null
+                    )?.focus()
+                  }
+                >
+                  {_t("decks.columns.add-new-reply")}
+                </Button>
+              </div>
+            )}
+          </>
+        )}
+
         <div className="skeleton-list">
           {!isLoaded && Array.from(new Array(20)).map((_, i) => <DeckThreadItemSkeleton key={i} />)}
         </div>
