@@ -61,8 +61,6 @@ export const ResourceCreditsInfo = (props: any) => {
           const createClaimAccountCost = Number(
             operationCosts.create_claimed_account_operation.avg_cost
           );
-          console.log(accountCreateCost);
-          console.log(createClaimAccountCost);
 
           const commentCount: number = Math.ceil(Number(availableResourceCredit) / commentCost);
           const votetCount: number = Math.ceil(Number(availableResourceCredit) / voteCost);

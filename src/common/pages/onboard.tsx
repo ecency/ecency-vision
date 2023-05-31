@@ -13,6 +13,7 @@ import "./onboard.scss";
 import { _t } from "../i18n";
 import { createAccountKc, createAccountWithCredit, getAcountCredit } from "../api/operations";
 import { generatePassword, getPrivateKeys } from "../helper/onBoard-helper";
+import LinearProgress from "../components/linear-progress";
 
 export interface AccountInfo {
   email: string;
@@ -45,6 +46,11 @@ export interface ConfirmDetails {
   value: string;
 }
 
+const createOptions = {
+  HIVE: "hive",
+  CREDIT: "credit"
+};
+
 const Onboard = (props: PageProps | any) => {
   const [masterPassword, setMasterPassword] = useState("");
   const [hash, setHash] = useState("");
@@ -58,6 +64,8 @@ const Onboard = (props: PageProps | any) => {
   const [shortPassword, setShortPassword] = useState("");
   const [confirmDetails, setConfirmDetails] = useState<ConfirmDetails[]>();
   const [onboardUrl, setOnboardUrl] = useState("");
+  const [step, setStep] = useState(0);
+  const [inProgress, setInprogress] = useState(false);
 
   useEffect(() => {
     setOnboardUrl(`${window.location.origin}/onboard-friend/creating/`);
@@ -207,6 +215,123 @@ const Onboard = (props: PageProps | any) => {
     }
   };
 
+  const createAccount = async (type: string) => {
+    try {
+      if (type === createOptions.HIVE) {
+        const response = await createAccountKc(
+          {
+            username: decodedInfo?.username,
+            pub_keys: decodedInfo?.pubkeys
+          },
+          props.activeUser.username
+        );
+        if (response) {
+          setInprogress(false);
+          setStep(2);
+        }
+      } else {
+        const resp = await createAccountWithCredit(
+          {
+            username: decodedInfo?.username,
+            pub_keys: decodedInfo?.pubkeys
+          },
+          props.activeUser.username
+        );
+        if (resp) {
+          setInprogress(false);
+          setStep(2);
+        }
+      }
+    } catch (err: any) {
+      error(err.message);
+    }
+  };
+
+  const modelHeader = () => {
+    return (
+      <>
+        <div className="create-account-dialog-header border-bottom">
+          <div className="step-no">1</div>
+          <div className="create-account-dialog-titles">
+            <div className="create-account-main-title">
+              {_t("onboard.sign-title")} {createOption}
+            </div>
+            <div className="create-account-sub-title">
+              {_t("manage-authorities.sign-sub-title")}
+            </div>
+          </div>
+        </div>
+        {inProgress && <LinearProgress />}
+      </>
+    );
+  };
+
+  const modelContent = (type: string) => {
+    return (
+      <div className="model-content p-5">
+        <div className="confirm-title">
+          <h4>{_t("onboard.modal-title")}</h4>
+        </div>
+
+        <div className="buttons">
+          <Button className="align-self-center" onClick={() => createAccount(type)}>
+            {_t("onboard.modal-confirm")}
+          </Button>
+
+          <Button
+            className="align-self-center cancel-btn"
+            onClick={() => {
+              setShowModal(false);
+              setStep(0);
+            }}
+          >
+            {_t("g.cancel")}
+          </Button>
+        </div>
+      </div>
+    );
+  };
+
+  const successModalBody = () => {
+    return (
+      <>
+        <div className="create-account-success-dialog-header border-bottom d-flex">
+          <div className="step-no">2</div>
+          <div className="create-account-success-dialog-titles">
+            <div className="create-account-main-title">{_t("trx-common.success-title")}</div>
+            <div className="create-account-sub-title">{_t("trx-common.success-sub-title")}</div>
+          </div>
+        </div>
+
+        <div className="success-dialog-body">
+          <div className="success-dialog-content">
+            <span>
+              {_t("onboard.success-message")} <strong>{decodedInfo?.username}</strong>
+            </span>
+          </div>
+          <div className="d-flex justify-content-center">
+            <span className="hr-6px-btn-spacer" />
+            <Button onClick={finish}>{_t("g.finish")}</Button>
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const finish = () => {
+    setShowModal(false);
+    setStep(0);
+  };
+
+  const modelBody = (type: string) => {
+    return (
+      <>
+        {modelHeader()}
+        {modelContent(type)}
+      </>
+    );
+  };
+
   return (
     <>
       <Meta title="onborad" />
@@ -301,7 +426,9 @@ const Onboard = (props: PageProps | any) => {
                   {confirmDetails.map((field, index) => (
                     <span key={index}>
                       {field.label}
-                      <strong style={{ wordBreak: "break-word" }}>{field.value}</strong>
+                      <strong style={{ wordBreak: "break-word", marginLeft: "10px" }}>
+                        {field.value}
+                      </strong>
                     </span>
                   ))}
                 </>
@@ -315,6 +442,7 @@ const Onboard = (props: PageProps | any) => {
                     onClick={() => {
                       setCreateOption("hive");
                       setShowModal(true);
+                      setStep(1);
                     }}
                   >
                     {_t("onboard.create-account-hive")}
@@ -325,6 +453,7 @@ const Onboard = (props: PageProps | any) => {
                     onClick={() => {
                       setCreateOption("credit");
                       setShowModal(true);
+                      setStep(1);
                     }}
                   >
                     {_t("onboard.create-account-credit")}
@@ -333,7 +462,7 @@ const Onboard = (props: PageProps | any) => {
               </div>
             </div>
           ) : (
-            <div>{_t("onboard.login-warning")}</div>
+            <div className="login-warning">{_t("onboard.login-warning")}</div>
           )}
         </div>
       )}
@@ -343,49 +472,25 @@ const Onboard = (props: PageProps | any) => {
         centered={true}
         onHide={() => setShowModal(false)}
         keyboard={false}
-        className="transfer-dialog modal-thin-header"
-        // size="lg"
+        className="create-account-dialog modal-thin-header"
+        size="lg"
       >
         <Modal.Header closeButton={true}>
           <Modal.Title />
         </Modal.Header>
         <Modal.Body>
           <div className="d-flex flex-column">
-            <h4>{_t("onboard.modal-title")}</h4>
-            {accountCredit <= 0 ||
-              (createOption === "hive" && (
-                <Button
-                  className="w-50 align-self-center"
-                  onClick={() => {
-                    createAccountKc(
-                      {
-                        username: decodedInfo?.username,
-                        pub_keys: decodedInfo?.pubkeys
-                      },
-                      props.activeUser.username
-                    );
-                    setShowModal(false);
-                  }}
-                >
-                  {_t("onboard.modal-confirm")}
-                </Button>
-              ))}
-            {accountCredit > 0 && createOption === "credit" && (
-              <Button
-                className="w-50 align-self-center"
-                onClick={() => {
-                  createAccountWithCredit(
-                    {
-                      username: decodedInfo?.username,
-                      pub_keys: decodedInfo?.pubkeys
-                    },
-                    props.activeUser.username
-                  );
-                  setShowModal(false);
-                }}
-              >
-                {_t("onboard.modal-confirm")}
-              </Button>
+            {accountCredit <= 0 && createOption === createOptions.HIVE && (
+              <React.Fragment>
+                {step === 1 && modelBody(createOptions.HIVE)}
+                {step === 2 && successModalBody()}
+              </React.Fragment>
+            )}
+            {accountCredit > 0 && createOption === createOptions.CREDIT && (
+              <React.Fragment>
+                {step === 1 && modelBody(createOptions.CREDIT)}
+                {step === 2 && successModalBody()}
+              </React.Fragment>
             )}
           </div>
         </Modal.Body>
