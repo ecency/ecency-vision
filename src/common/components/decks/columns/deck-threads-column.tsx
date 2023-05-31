@@ -42,6 +42,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
   const prevData = usePrevious<IdentifiableEntry[]>(data);
 
   const [isReloading, setIsReloading] = useState(false);
+  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<IdentifiableEntry | null>(null);
   const [currentHighlightedEntry, setCurrentHighlightedEntry] = useState<string | undefined>(
     undefined
@@ -112,6 +113,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
       console.error(e);
     } finally {
       setIsReloading(false);
+      setIsFirstLoaded(true);
     }
   };
 
@@ -140,6 +142,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
       isReloading={isReloading}
       isVirtualScroll={false}
       isExpanded={!!currentViewingEntry}
+      isFirstLoaded={isFirstLoaded}
       onReload={() => fetchData()}
       skeletonItem={<DeckThreadItemSkeleton />}
       contentViewer={

@@ -18,6 +18,7 @@ type IdentifiableTrendingTag = TrendingTag & Required<{ id: string }>;
 export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
   const [data, setData] = useState<IdentifiableTrendingTag[]>([]);
   const [isReloading, setIsReloading] = useState(false);
+  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
@@ -36,6 +37,7 @@ export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
     } catch (e) {
     } finally {
       setIsReloading(false);
+      setIsFirstLoaded(true);
     }
   };
 
@@ -52,6 +54,7 @@ export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
       }}
       data={data}
       isReloading={isReloading}
+      isFirstLoaded={isFirstLoaded}
       onReload={() => fetchData()}
       skeletonItem={<ShortListItemSkeleton />}
     >

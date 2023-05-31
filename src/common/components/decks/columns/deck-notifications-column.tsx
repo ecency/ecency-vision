@@ -32,6 +32,7 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
   const [data, setData] = useState<ApiNotification[]>([]);
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry>();
+  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
@@ -70,6 +71,7 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
     } catch (e) {
     } finally {
       setIsReloading(false);
+      setIsFirstLoaded(true);
     }
   };
 
@@ -98,6 +100,7 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
       onReload={() => fetchData()}
       skeletonItem={<ShortListItemSkeleton />}
       isExpanded={!!currentViewingEntry}
+      isFirstLoaded={isFirstLoaded}
       contentViewer={
         currentViewingEntry && (
           <DeckPostViewer

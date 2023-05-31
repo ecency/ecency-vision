@@ -8,6 +8,7 @@ import { DeckGridContext } from "../deck-manager";
 import { Button } from "react-bootstrap";
 import { upArrowSvg } from "../../../img/svg";
 import { DeckProps, GenericDeckColumn } from "./generic-deck-column";
+import { noContentSvg } from "../icons";
 
 type DataItem = Omit<any, "id"> & Required<{ id: string | number }>;
 
@@ -19,6 +20,7 @@ export interface DeckWithDataProps
   overlay?: JSX.Element;
   newDataComingCondition?: (data: DataItem[]) => boolean;
   isVirtualScroll?: boolean;
+  isFirstLoaded: boolean;
 }
 
 export const GenericDeckWithDataColumn = ({
@@ -34,7 +36,8 @@ export const GenericDeckWithDataColumn = ({
   isExpanded,
   overlay,
   newDataComingCondition,
-  isVirtualScroll = true
+  isVirtualScroll = true,
+  isFirstLoaded
 }: DeckWithDataProps) => {
   const { activeUser } = useMappedStore();
 
@@ -130,13 +133,16 @@ export const GenericDeckWithDataColumn = ({
           {_t("decks.columns.new-data-available")}
         </Button>
       </div>
-      {data.length ? (
-        isVirtualScroll ? (
-          virtualScrollContent
-        ) : (
-          nativeScrollContent
-        )
-      ) : (
+      {isFirstLoaded &&
+        data.length &&
+        (isVirtualScroll ? virtualScrollContent : nativeScrollContent)}
+      {isFirstLoaded && data.length === 0 && (
+        <div className="no-content">
+          {noContentSvg}
+          <p>{_t("decks.columns.no-content")}</p>
+        </div>
+      )}
+      {!isFirstLoaded && (
         <div className="skeleton-list">
           {Array.from(Array(20).keys()).map((i) => (
             <div key={i}>{skeletonItem}</div>

@@ -28,6 +28,7 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
 
   const [data, setData] = useState<IdentifiableTransaction[]>([]);
   const [isReloading, setIsReloading] = useState(false);
+  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
@@ -54,6 +55,7 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
     } catch (e) {
     } finally {
       setIsReloading(false);
+      setIsFirstLoaded(true);
     }
   };
 
@@ -78,6 +80,7 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
       }}
       data={data}
       isReloading={isReloading}
+      isFirstLoaded={isFirstLoaded}
       onReload={() => fetchData()}
       skeletonItem={<ShortListItemSkeleton />}
     >

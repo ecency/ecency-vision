@@ -22,6 +22,7 @@ export const DeckTrendingColumn = ({ id, settings, draggable, history }: Props) 
   const [data, setData] = useState<IdentifiableEntry[]>([]);
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
+  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
@@ -40,6 +41,7 @@ export const DeckTrendingColumn = ({ id, settings, draggable, history }: Props) 
     } catch (e) {
     } finally {
       setIsReloading(false);
+      setIsFirstLoaded(true);
     }
   };
 
@@ -57,6 +59,7 @@ export const DeckTrendingColumn = ({ id, settings, draggable, history }: Props) 
       data={data}
       isExpanded={!!currentViewingEntry}
       isReloading={isReloading}
+      isFirstLoaded={isFirstLoaded}
       onReload={() => fetchData()}
       skeletonItem={<ListItemSkeleton />}
       contentViewer={

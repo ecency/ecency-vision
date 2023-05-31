@@ -472,7 +472,8 @@
       "faq-subtitle": "FAQ",
       "faq-description": "Find answer to all your questions about Ecency in our help center.",
       "no-replies": "No replies yet",
-      "add-new-reply": "Add new reply"
+      "add-new-reply": "Add new reply",
+      "no-content": "No content"
     },
     "threads-form": {
       "publish": "Publish it!",
