@@ -473,7 +473,9 @@
       "faq-description": "Find answer to all your questions about Ecency in our help center.",
       "no-replies": "No replies yet",
       "add-new-reply": "Add new reply",
-      "no-content": "No content"
+      "no-content": "No content",
+      "infinite-loading": "Loading 🌊...",
+      "end-reached": "You've reached end of 🌊."
     },
     "threads-form": {
       "publish": "Publish it!",

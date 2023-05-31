@@ -47,6 +47,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
   const [currentHighlightedEntry, setCurrentHighlightedEntry] = useState<string | undefined>(
     undefined
   );
+  const [isEndReached, setIsEndReached] = useState(false);
   const [hasHostNextPage, setHasHostNextPage] = useState<Record<string, boolean>>(
     AVAILABLE_THREAD_HOSTS.reduce(
       (acc, host) => ({
@@ -109,6 +110,10 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
           {}
         )
       });
+
+      if (response.length === 0 && items.length > 0) {
+        setIsEndReached(true);
+      }
     } catch (e) {
       console.error(e);
     } finally {
@@ -155,6 +160,15 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
             highlightedEntry={currentHighlightedEntry}
           />
         ) : undefined
+      }
+      afterDataSlot={
+        data.length > 0 && settings.host !== "all" ? (
+          <div className="p-4 text-center text-secondary">
+            {isEndReached ? _t("decks.columns.end-reached") : _t("decks.columns.infinite-loading")}
+          </div>
+        ) : (
+          <></>
+        )
       }
     >
       {(item: IdentifiableEntry, measure: Function, index: number) => (

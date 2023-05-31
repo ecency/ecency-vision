@@ -21,6 +21,7 @@ export interface DeckWithDataProps
   newDataComingCondition?: (data: DataItem[]) => boolean;
   isVirtualScroll?: boolean;
   isFirstLoaded: boolean;
+  afterDataSlot?: JSX.Element;
 }
 
 export const GenericDeckWithDataColumn = ({
@@ -37,7 +38,8 @@ export const GenericDeckWithDataColumn = ({
   overlay,
   newDataComingCondition,
   isVirtualScroll = true,
-  isFirstLoaded
+  isFirstLoaded,
+  afterDataSlot
 }: DeckWithDataProps) => {
   const { activeUser } = useMappedStore();
 
@@ -109,6 +111,7 @@ export const GenericDeckWithDataColumn = ({
           {children(visibleData[index], () => {}, index)}
         </div>
       ))}
+      {afterDataSlot}
     </div>
   );
 
