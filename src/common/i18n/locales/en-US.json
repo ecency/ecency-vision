@@ -475,7 +475,8 @@
       "add-new-reply": "Add new reply",
       "no-content": "No content",
       "infinite-loading": "Loading 🌊...",
-      "end-reached": "You've reached end of 🌊."
+      "end-reached": "You've reached end of 🌊.",
+      "topics-subtitle": "The most popular"
     },
     "threads-form": {
       "publish": "Publish it!",
