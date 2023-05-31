@@ -1,7 +1,7 @@
 interface BaseDeckGridItem {
   id: string;
   key: number;
-  type: "u" | "ac" | "co" | "w" | "n" | "tr" | "to" | "s" | "cu" | "th" | "msf";
+  type: "u" | "ac" | "co" | "w" | "n" | "tr" | "to" | "s" | "cu" | "th" | "msf" | "faq";
   settings: Record<string, any>;
 }
 

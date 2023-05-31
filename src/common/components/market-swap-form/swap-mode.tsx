@@ -5,6 +5,7 @@ import { _t } from "../../i18n";
 import { Link } from "react-router-dom";
 import { MarketSwapActiveOrders } from "../../components/market-swap-active-orders";
 import { useMappedStore } from "../../store/use-mapped-store";
+import "./_swap-mode.scss";
 
 interface Props {
   inline?: boolean;
@@ -56,7 +57,7 @@ export const SwapMode = ({ inline = false }: Props) => {
   );
 
   return inline ? (
-    form
+    <div className={"swap-form-container " + (inline ? "inline" : "")}>{form}</div>
   ) : (
     <Row className="justify-content-center pb-5">
       <Col xs={12} md={10} lg={8} xl={6}>

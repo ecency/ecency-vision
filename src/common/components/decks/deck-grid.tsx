@@ -23,6 +23,7 @@ import { useOldDeckMigration } from "./old-deck-migration";
 import { _t } from "../../i18n";
 import { DeckThreadsColumn } from "./columns/deck-threads-column";
 import { DeckMsfColumn } from "./columns/deck-msf-column";
+import { DeckFaqColumn } from "./columns/deck-faq-column";
 
 interface Props {
   history: History;
@@ -161,6 +162,9 @@ export const DeckGrid = ({ history }: Props) => {
                           )}
                           {type === "msf" && (
                             <DeckMsfColumn id={id} draggable={provided.dragHandleProps} />
+                          )}
+                          {type === "faq" && (
+                            <DeckFaqColumn id={id} draggable={provided.dragHandleProps} />
                           )}
                         </div>
                       </div>

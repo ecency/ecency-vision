@@ -11,6 +11,7 @@ import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../../deck-manager";
 import {
   communityIconSvg,
+  faqIconSvg,
   notificationsIconSvg,
   searchIconSvg,
   swapFormSvg,
@@ -94,9 +95,15 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       title: _t("decks.columns.search"),
       icon: searchIconSvg,
       description: _t("decks.columns.search-description")
+    },
+    {
+      type: "faq",
+      title: _t("decks.columns.faq"),
+      icon: faqIconSvg,
+      description: _t("decks.columns.faq-description")
     }
   ];
-  const typesWithoutSettings = ["tr", "to", "msf"];
+  const typesWithoutSettings = ["tr", "to", "msf", "faq"];
 
   const [step, setStep] = useState<"select" | "setup">("select");
   const [selectedType, setSelectedType] = useState<DeckGridItem["type"] | null>(null);

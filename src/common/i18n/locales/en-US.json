@@ -467,7 +467,10 @@
       "market-swap-form": "Market swap form",
       "market": "Market",
       "swap-form": "Swapping form",
-      "msf-description": "Swap your funds quickie with zero latency."
+      "msf-description": "Swap your funds quickie with zero latency.",
+      "faq": "Help center",
+      "faq-subtitle": "FAQ",
+      "faq-description": "Find answer to all your questions about Ecency in our help center."
     },
     "threads-form": {
       "publish": "Publish it!",

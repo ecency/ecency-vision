@@ -533,4 +533,37 @@
       }
     }
   }
+
+  .msf-container {
+    .faq-content {
+      overflow-y: auto;
+      height: calc(100vh - 117px);
+      height: calc(100dvh - 117px);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .suggest-label {
+      opacity: 0.5;
+      font-weight: 500;
+
+      @include font-size(0.875rem);
+    }
+
+    .faq-article {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid $border-color;
+
+      @include font-size(0.875rem);
+      @include border-radius(1rem);
+      @include padding(0.75rem);
+
+      &::after {
+        content: none;
+      }
+    }
+  }
 }

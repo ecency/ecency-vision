@@ -3,6 +3,7 @@ import {
   bookmarksIconSvg,
   commentsIconSvg,
   delegationsIconSvg,
+  faqIconSvg,
   favouritesIconSvg,
   followsIconSvg,
   hotIconSvg,
@@ -66,5 +67,6 @@ export const ICONS = {
   to: topicsIconSvg,
   s: searchIconSvg,
   th: threadSvg,
-  msf: swapFormSvg
+  msf: swapFormSvg,
+  faq: faqIconSvg
 };
