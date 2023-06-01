@@ -21,8 +21,6 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const [contentType, setContentType] = useState<string | null>(null);
   const [recent, setRecent] = useLocalStorage<UsernameDataItem[]>(PREFIX + "_dcr", []);
 
-  const updateRecent = (name?: string, tag?: string) => {};
-
   return (
     <div className="deck-add-column-user-settings p-3">
       <div className="helper-text">{_t("decks.columns.add-username-text")}</div>

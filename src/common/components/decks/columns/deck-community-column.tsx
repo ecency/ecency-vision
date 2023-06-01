@@ -52,7 +52,11 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
 
     try {
       const response = await getPostsRanked(settings.contentType, "", "", 20, settings.tag);
-      setData((response as IdentifiableEntry[] | null) ?? []);
+      setData(
+        ((response as IdentifiableEntry[] | null) ?? []).filter((e) =>
+          settings.contentType === "created" ? !e.stats?.is_pinned : true
+        )
+      );
     } catch (e) {
     } finally {
       setIsReloading(false);
