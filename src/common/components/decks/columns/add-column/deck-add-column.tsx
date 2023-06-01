@@ -140,7 +140,7 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       <div className="deck-content">
         {step === "select" ? (
           <>
-            <div className="subtitle p-3">Choose one</div>
+            <div className="subtitle p-3">{_t("decks.choose-one")}</div>
             {availableColumns.map(({ icon, title, type, description }) => (
               <div
                 key={type}

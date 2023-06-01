@@ -16,6 +16,7 @@ import { DeckPostViewer } from "./content-viewer";
 import { DeckLoginOverlayPlaceholder } from "./deck-login-overlay-placeholder";
 import usePrevious from "react-use/lib/usePrevious";
 import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
+import { _t } from "../../../i18n";
 
 interface Props {
   id: string;
@@ -82,8 +83,8 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
       header={{
         title: "@" + settings.username.toLowerCase(),
         subtitle: notificationsTitles[settings.contentType]
-          ? `Notifications – ${notificationsTitles[settings.contentType]}`
-          : "Notifications",
+          ? `${_t("decks.notifications")} – ${notificationsTitles[settings.contentType]}`
+          : _t("decks.notifications"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),

@@ -8,6 +8,7 @@ import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../deck-manager";
 import { DeckPostViewer } from "./content-viewer";
 import { History } from "history";
+import { _t } from "../../../i18n";
 
 interface Props {
   id: string;
@@ -50,8 +51,8 @@ export const DeckTrendingColumn = ({ id, settings, draggable, history }: Props) 
       id={id}
       draggable={draggable}
       header={{
-        title: "Trending",
-        subtitle: "Posts",
+        title: _t("decks.trending"),
+        subtitle: _t("decks.posts"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)

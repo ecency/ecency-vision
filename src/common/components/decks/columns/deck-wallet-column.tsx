@@ -65,7 +65,7 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
-        subtitle: "Wallet",
+        subtitle: _t("decks.wallet"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),

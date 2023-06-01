@@ -11,6 +11,7 @@ import { DeckPostViewer } from "./content-viewer";
 import { History } from "history";
 import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
 import usePrevious from "react-use/lib/usePrevious";
+import { _t } from "../../../i18n";
 
 interface Props {
   id: string;
@@ -70,7 +71,7 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
       draggable={draggable}
       header={{
         title: settings.username.toLowerCase(),
-        subtitle: communityTitles[settings.contentType] ?? "User",
+        subtitle: communityTitles[settings.contentType] ?? _t("decks.user"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),

@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { _t } from "../../../../i18n";
 import Tooltip from "../../../tooltip";
 import { commentSvg, pinSvg } from "../../../../img/svg";
-import _ from "lodash";
 import { catchPostImage, postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
 import EntryVoteBtn from "../../../entry-vote-btn";
 import EntryPayout from "../../../entry-payout";

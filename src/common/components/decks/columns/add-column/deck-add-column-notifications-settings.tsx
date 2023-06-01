@@ -41,7 +41,7 @@ export const DeckAddColumnNotificationsSettings = ({ deckKey }: SettingsProps) =
       )}
       {username !== "" ? (
         <>
-          <div className="subtitle py-3 mt-3">Filters</div>
+          <div className="subtitle py-3 mt-3">{_t("decks.filters")}</div>
           <div className="content-type-list">
             {NOTIFICATION_CONTENT_TYPES.map(({ title, type }) => (
               <div

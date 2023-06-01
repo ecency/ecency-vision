@@ -12,6 +12,7 @@ import { DeckSearchColumnSettings } from "./deck-column-settings/deck-search-col
 import moment, { Moment } from "moment/moment";
 import { DateOpt } from "../consts";
 import usePrevious from "react-use/lib/usePrevious";
+import { _t } from "../../../i18n";
 
 interface Props {
   id: string;
@@ -108,7 +109,7 @@ export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) =>
       draggable={draggable}
       header={{
         title: settings.query,
-        subtitle: "Search query",
+        subtitle: _t("decks.search-query"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),

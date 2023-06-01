@@ -403,6 +403,9 @@
     "simple": "Simple",
     "advanced": "Advanced",
     "author": "Author",
+    "choose-one": "Choose one",
+    "user": "User",
+    "search-query": "Search query",
     "columns": {
       "view-full-post": "View full post",
       "user": "User",

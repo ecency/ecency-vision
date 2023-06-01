@@ -47,7 +47,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
       )}
       {username !== "" ? (
         <>
-          <div className="subtitle py-3 mt-3">Content type</div>
+          <div className="subtitle py-3 mt-3">{_t("decks.content-type")}</div>
           <div className="content-type-list">
             {COMMUNITY_CONTENT_TYPES.map(({ title, type }) => (
               <div
