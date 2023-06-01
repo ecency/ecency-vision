@@ -43,7 +43,7 @@ export const DeckAddColumnSearchBox = ({
         return;
       }
 
-      if (usernameInput === "" || activeUser?.username === usernameInput) {
+      if (usernameInput === "") {
         setIsUsernameDataLoading(false);
         return;
       }
