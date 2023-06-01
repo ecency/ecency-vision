@@ -540,11 +540,11 @@ export class EditorToolbar extends Component<Props> {
         filetype: file.type
       },
       // Callback for errors which cannot be fixed using retries
-      onError: function (error) {
-        console.log("Failed because: " + error);
-      },
+      // onError: function (error: string) {
+      //   return console.log("Failed because: " + error);
+      // },
       // Callback for reporting upload progress
-      onProgress: function (bytesUploaded, bytesTotal) {
+      onProgress: function (bytesUploaded: number, bytesTotal: number) {
         var percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
         console.log(bytesUploaded, bytesTotal, percentage + "%");
       },
@@ -575,13 +575,6 @@ export class EditorToolbar extends Component<Props> {
   handleThumbUrlChange = (event: { target: { value: any } }) => {
     console.log(event.target.value);
     this.setState({ thumbUrl: event.target.value });
-  };
-
-  hideModal = () => {
-    this.setState({ showUploadModal: false });
-  };
-  showModal = () => {
-    this.setState({ showUploadModal: true });
   };
 
   render() {
@@ -757,92 +750,20 @@ export class EditorToolbar extends Component<Props> {
           )}
 
           <Tooltip content="Upload Video">
-            <div
-              className="editor-tool"
-              role="none"
-              // Test
-              onClick={(e: React.MouseEvent<HTMLElement>) => {
-                this.showModal();
-                // e.stopPropagation();
-                // const el = this.videoInput.current;
-                // if (el) el.click();
-              }}
-            >
-              <VideoUpload />
+            <div className="editor-tool" role="none">
+              <VideoUpload 
+              postingKey={this.state.postingKey}
+              onChange={this.onChange}
+              handlePostingKey={this.handlePostingKey}
+              videoUrl={this.state.videoUrl}
+              handleVideoUrlChange={this.handleVideoUrlChange}
+              thumbUrl={this.state.thumbUrl}
+              handleThumbUrlChange={this.handleThumbUrlChange}
+              logMe={this.logMe}
+              uploadInfo={this.uploadInfo}
+              />
             </div>
           </Tooltip>
-
-          <Modal
-            animation={false}
-            show={this.state.showUploadModal}
-            centered={true}
-            onHide={this.hideModal}
-            keyboard={false}
-            className="add-image-modal"
-            // size="lg"
-          >
-            <Modal.Header closeButton={true}>
-              <Modal.Title>Add File</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <div className="dialog-content">
-                <Form>
-                  <Form.Group>
-                    <input
-                      type="file"
-                      accept="video/*"
-                      onChange={(e: ChangeEvent<HTMLInputElement>) => this.onChange(e, "video")}
-                    />
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e: ChangeEvent<HTMLInputElement>) => this.onChange(e, "thumbnail")}
-                    />
-                    <Form.Control
-                      type="password"
-                      autoComplete="off"
-                      value={this.state.postingKey}
-                      placeholder="Enter Posting Key"
-                      onChange={this.handlePostingKey}
-                      required={true}
-                    />
-                    <Button onClick={this.logMe}>Login to 3Speak</Button>
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Control
-                      // type="text"
-                      autoComplete="off"
-                      value={this.state.videoUrl}
-                      placeholder="Add video file"
-                      onChange={this.handleVideoUrlChange}
-                      required={true}
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Control
-                      // type="text"
-                      autoComplete="off"
-                      value={this.state.thumbUrl}
-                      placeholder="Add image file"
-                      onChange={this.handleThumbUrlChange}
-                      required={true}
-                    />
-                  </Form.Group>
-                  <div className="d-flex justify-content-end">
-                    <Button
-                      type="submit"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        this.uploadInfo();
-                      }}
-                    >
-                      {_t("g.add")}
-                    </Button>
-                  </div>
-                </Form>
-              </div>
-            </Modal.Body>
-          </Modal>
         </div>
         <input
           onChange={this.fileInputChanged}
