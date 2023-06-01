@@ -56,10 +56,6 @@ html, body {
     scroll-behavior: smooth;
     overflow-x: auto;
     overflow-y: hidden;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 
   .add-new-column-button {
