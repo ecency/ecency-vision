@@ -17,7 +17,6 @@ export const VideoUpload = (props: any) => {
     uploadInfo
   } = props;
 
-    const [selectedFile, setSelectedFile] = useState("");
     const [showModal, setShowModal] = useState(false)
 
     const hideModal = () => { 
@@ -28,27 +27,14 @@ export const VideoUpload = (props: any) => {
               <div className="dialog-content">
                 <Form>
                   <Form.Group>
+                  <label htmlFor="video-input">Choose video</label>
                     <input
                       type="file"
                       accept="video/*"
+                      id="video-input"
+                      style={{display: "none"}}
                       onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e, "video")}
                     />
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e, "thumbnail")}
-                    />
-                    <Form.Control
-                      type="password"
-                      autoComplete="off"
-                      value={postingKey}
-                      placeholder="Enter Posting Key"
-                      onChange={handlePostingKey}
-                      required={true}
-                    />
-                    <Button onClick={logMe}>Login to 3Speak</Button>
-                  </Form.Group>
-                  <Form.Group>
                     <Form.Control
                       // type="text"
                       autoComplete="off"
@@ -59,6 +45,14 @@ export const VideoUpload = (props: any) => {
                     />
                   </Form.Group>
                   <Form.Group>
+                  <label htmlFor="image-input">Chose image</label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      id="image-input"
+                      style={{display: "none"}}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e, "thumbnail")}
+                    />
                     <Form.Control
                       // type="text"
                       autoComplete="off"
@@ -67,6 +61,17 @@ export const VideoUpload = (props: any) => {
                       onChange={handleThumbUrlChange}
                       required={true}
                     />
+                  </Form.Group>
+                  <Form.Group>                  
+                    <Form.Control
+                      type="password"
+                      autoComplete="off"
+                      value={postingKey}
+                      placeholder="Enter Posting Key"
+                      onChange={handlePostingKey}
+                      required={true}
+                    />
+                    <Button onClick={logMe} className="mt-3">Login to 3Speak</Button>
                   </Form.Group>
                   <div className="d-flex justify-content-end">
                     <Button
