@@ -607,7 +607,8 @@ class SubmitPage extends BaseComponent<Props, State> {
       this._updateTimer = null;
     }
 
-    this._updateTimer = setTimeout(() => {
+    // Not sure why we are using setTimeOut(), but it causes some odd behavior and sets input value to preview.body when you try to delete/cancel text
+    // this._updateTimer = setTimeout(() => {
       const { title, tags, body, editingEntry, description } = this.state;
       const { thumbnails } = extractMetaData(body);
       this.stateSet({ preview: { title, tags, body, description }, thumbnails: thumbnails || [] });
@@ -619,7 +620,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       } else {
         this.stateSet({ isDraftEmpty: true });
       }
-    }, 500);
+    // }, 500);
   };
 
   focusInput = (parentSelector: string): void => {
