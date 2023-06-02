@@ -381,6 +381,21 @@
         padding-left: 2.125rem;
       }
     }
+
+    &.pending {
+      background-color: $gray-100;
+
+      @include themify(night) {
+        background-color: $gray-800;
+      }
+
+      .spinner-border {
+        width: 1rem;
+        height: 1rem;
+        border-width: 0.125rem;
+        opacity: 0.5;
+      }
+    }
   }
 
   .virtual-list-item {

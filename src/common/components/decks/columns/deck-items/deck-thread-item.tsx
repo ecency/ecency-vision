@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { dateToRelative } from "../../../../helper/parse-date";
 import EntryVoteBtn from "../../../entry-vote-btn";
 import { History } from "history";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { _t } from "../../../../i18n";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { commentSvg, voteSvg } from "../../icons";
@@ -49,6 +49,7 @@ export const ThreadItem = ({
 
   const [renderInitiated, setRenderInitiated] = useState(false);
   const [hasParent, setHasParent] = useState(false);
+  const [status, setStatus] = useState<"default" | "pending">("default");
 
   const { inViewport } = useInViewport(ref);
 
@@ -68,6 +69,12 @@ export const ThreadItem = ({
     setHasParent(
       !!entry.parent_author && !!entry.parent_permlink && entry.parent_author !== entry.host
     );
+
+    if (typeof entry.post_id === "string") {
+      setStatus("pending");
+    } else {
+      setStatus("default");
+    }
   }, [entry]);
 
   return (
@@ -77,7 +84,8 @@ export const ThreadItem = ({
         "thread-item border-bottom": true,
         "has-parent": hasParent && !pure,
         pure,
-        "sequence-item": sequenceItem
+        "sequence-item": sequenceItem,
+        pending: status === "pending"
       })}
       onClick={(event) => {
         if (event.target === ref.current) {
@@ -103,9 +111,12 @@ export const ThreadItem = ({
         </div>
 
         <div className="date">
-          <Link target="_blank" to={`/@${entry.author}/${entry.permlink}`}>
-            {`${dateToRelative(entry.created)}`}
-          </Link>
+          {status === "default" && (
+            <Link target="_blank" to={`/@${entry.author}/${entry.permlink}`}>
+              {`${dateToRelative(entry.created)}`}
+            </Link>
+          )}
+          {status === "pending" && <Spinner animation="border" />}
         </div>
       </div>
       <DeckThreadItemBody
@@ -115,23 +126,25 @@ export const ThreadItem = ({
         setRenderInitiated={setRenderInitiated}
         onResize={onResize}
       />
-      <div className="thread-item-actions">
-        <EntryVoteBtn
-          entry={entry}
-          isPostSlider={false}
-          history={history}
-          afterVote={(votes, estimated) => {
-            updateVotes(entry.post_id, votes, estimated);
-          }}
-        />
-        <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
-        <Button variant="link" onClick={() => onEntryView()}>
-          <div className="d-flex align-items-center comments">
-            <div style={{ paddingRight: 4 }}>{commentSvg}</div>
-            <div>{commentsSlot ?? entry.children}</div>
-          </div>
-        </Button>
-      </div>
+      {status === "default" && (
+        <div className="thread-item-actions">
+          <EntryVoteBtn
+            entry={entry}
+            isPostSlider={false}
+            history={history}
+            afterVote={(votes, estimated) => {
+              updateVotes(entry.post_id, votes, estimated);
+            }}
+          />
+          <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
+          <Button variant="link" onClick={() => onEntryView()}>
+            <div className="d-flex align-items-center comments">
+              <div style={{ paddingRight: 4 }}>{commentSvg}</div>
+              <div>{commentsSlot ?? entry.children}</div>
+            </div>
+          </Button>
+        </div>
+      )}
       {hasParent && !pure && (
         <div className="thread-item-parent">
           <UserAvatar size="small" global={global} username={entry.parent_author!!} />
