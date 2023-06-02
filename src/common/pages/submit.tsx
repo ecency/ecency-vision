@@ -1013,7 +1013,6 @@ class SubmitPage extends BaseComponent<Props, State> {
       disabled,
       drafts
     } = this.state;
-    debugger;
 
     //  Meta config
     const ncount =
