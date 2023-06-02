@@ -245,7 +245,7 @@ export class Comment extends Component<Props, State> {
           {EditorToolbar({ ...this.props, sm: true, showEmoji })}
           <div className="comment-body" onKeyDown={this.handleShortcuts} ref={this.commentBodyRef}>
             <TextareaAutocomplete
-              className={`the-editor accepts-emoji ${text.length > 20 ? "expanded" : ""}`}
+              className={`the-editor accepts-emoji ${text?.length > 20 ? "expanded" : ""}`}
               as="textarea"
               placeholder={_t("comment.body-placeholder")}
               containerStyle={{ height: !text ? "80px" : inputHeight }}
