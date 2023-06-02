@@ -439,7 +439,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     this.stateSet({ title, tags, body }, this.updatePreview);
 
     for (const key in localDraft) {
-      if (localDraft && localDraft[key]?.length > 0) {
+      if (localDraft && localDraft[key] && localDraft[key].length > 0) {
         this.stateSet({ isDraftEmpty: false });
       }
     }
@@ -856,7 +856,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         success(_t("submit.draft-saved"));
 
         const { drafts } = resp;
-        const draft = drafts[drafts.length - 1];
+        const draft = drafts[drafts?.length - 1];
 
         history.push(`/draft/${draft._id}`);
       });
@@ -1103,7 +1103,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 className="the-editor accepts-emoji form-control"
                 as="textarea"
                 placeholder={_t("submit.body-placeholder")}
-                value={body?.length > 0 ? body : preview.body}
+                value={(body && body.length) > 0 ? body : preview.body}
                 onChange={this.bodyChanged}
                 disableRows={true}
                 maxrows={100}
