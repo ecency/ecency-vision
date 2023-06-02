@@ -228,7 +228,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     this.detectDraft().then();
 
     let selectedThumbnail = ls.get("draft_selected_image");
-    if (selectedThumbnail && selectedThumbnail.length > 0) {
+    if (selectedThumbnail?.length > 0) {
       this.selectThumbnails(selectedThumbnail);
     }
 
@@ -376,7 +376,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       }
 
       drafts = drafts.filter((x) => x._id === params.draftId);
-      if (drafts.length === 1) {
+      if (drafts?.length === 1) {
         const [draft] = drafts;
         const { title, body } = draft;
 
@@ -439,7 +439,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     this.stateSet({ title, tags, body }, this.updatePreview);
 
     for (const key in localDraft) {
-      if (localDraft[key]?.length > 0) {
+      if (localDraft && localDraft[key]?.length > 0) {
         this.stateSet({ isDraftEmpty: false });
       }
     }
@@ -479,7 +479,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     return (
       reward !== "default" ||
-      beneficiaries.length > 0 ||
+      beneficiaries?.length > 0 ||
       schedule !== null ||
       reblogSwitch ||
       description !== ""
@@ -508,7 +508,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     // Toggle off reblog switch if it is true and the first tag is not community tag.
     const { reblogSwitch } = this.state;
     if (reblogSwitch) {
-      const isCommunityTag = tags.length > 0 && isCommunity(tags[0]);
+      const isCommunityTag = tags?.length > 0 && isCommunity(tags[0]);
 
       if (!isCommunityTag) {
         this.stateSet({ reblogSwitch: false }, this.saveAdvanced);
@@ -615,7 +615,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       if (editingEntry === null) {
         this.saveLocalDraft();
       }
-      if (title.length || tags.length || body.length) {
+      if (title?.length || tags?.length || body?.length) {
         this.stateSet({ isDraftEmpty: false });
       } else {
         this.stateSet({ isDraftEmpty: true });
@@ -639,7 +639,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       return false;
     }
 
-    if (tags.length === 0) {
+    if (tags?.length === 0) {
       this.focusInput(".tag-input");
       error(_t("submit.empty-tags-alert"));
       return false;
@@ -1103,7 +1103,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 className="the-editor accepts-emoji form-control"
                 as="textarea"
                 placeholder={_t("submit.body-placeholder")}
-                value={body.length > 0 ? body : preview.body}
+                value={body?.length > 0 ? body : preview.body}
                 onChange={this.bodyChanged}
                 disableRows={true}
                 maxrows={100}
@@ -1335,7 +1335,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                           )}
                         </>
                       )}
-                      {editingEntry === null && tags.length > 0 && isCommunity(tags[0]) && (
+                      {editingEntry === null && tags?.length > 0 && isCommunity(tags[0]) && (
                         <Form.Group as={Row}>
                           <Col sm="3" />
                           <Col sm="9">
@@ -1350,7 +1350,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                           </Col>
                         </Form.Group>
                       )}
-                      {thumbnails.length > 0 && (
+                      {thumbnails?.length > 0 && (
                         <Form.Group as={Row}>
                           <Form.Label column={true} sm="3">
                             {_t("submit.thumbnail")}
