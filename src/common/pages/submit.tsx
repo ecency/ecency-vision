@@ -233,8 +233,9 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     this.addToolbarEventListners();
-
-    window.addEventListener("resize", this.handleResize);
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", this.handleResize);
+    }
   };
 
   componentDidUpdate(prevProps: Readonly<Props>) {
@@ -260,8 +261,9 @@ class SubmitPage extends BaseComponent<Props, State> {
 
   componentWillUnmount(): void {
     this.removeToolbarEventListners();
-
-    window.removeEventListener("resize", this.handleResize);
+    if (typeof window !== "undefined") {
+      window.removeEventListener("resize", this.handleResize);
+    }
   }
 
   addToolbarEventListners = () => {
