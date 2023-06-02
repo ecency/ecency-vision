@@ -6,19 +6,20 @@ import { FullAccount } from "../../../../store/accounts/types";
 import { version } from "../../../../../../package.json";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { v4 } from "uuid";
+import { ThreadItemEntry } from "../../columns/deck-threads-manager";
 
 export function useThreadsApi() {
   const { activeUser, addReply, updateEntry } = useMappedStore();
 
-  const request = async (entry: Entry, raw: string) => {
+  const request = async (entry: Entry, raw: string, editingEntry?: ThreadItemEntry) => {
     if (!activeUser || !activeUser.data.__loaded) {
       throw new Error("No user");
     }
 
-    const { author: parentAuthor, permlink: parentPermlink } = entry;
+    const { author: parentAuthor, permlink: parentPermlink } = editingEntry?.container ?? entry;
     const author = activeUser.username;
-    const permlink = createReplyPermlink(entry.author);
-    const tags = entry.json_metadata.tags || ["ecency"];
+    const permlink = editingEntry?.permlink ?? createReplyPermlink(entry.author);
+    const tags = editingEntry?.json_metadata.tags || ["ecency"];
 
     const jsonMeta = makeJsonMetaDataReply(tags, version);
 

@@ -9,11 +9,12 @@ import {
 import { comment } from "../../../../api/operations";
 import { version } from "../../../../../../package.json";
 import tempEntry from "../../../../helper/temp-entry";
+import { Entry } from "../../../../store/entries/types";
 
 export function useCommunityApi() {
   const { activeUser, addEntry } = useMappedStore();
 
-  const request = async (host: string, raw: string) => {
+  const request = async (host: string, raw: string, editingEntry?: Entry) => {
     if (!activeUser || !activeUser.data.__loaded) {
       throw new Error("No user");
     }
@@ -28,7 +29,7 @@ export function useCommunityApi() {
     const cleanedRaw = raw.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, "");
     const author = activeUser.username;
     const authorData = activeUser.data as FullAccount;
-    const permlink = createPermlink("", true);
+    const permlink = editingEntry?.permlink ?? createPermlink("", true);
     const options = makeCommentOptions(author, permlink, "default");
 
     const { thumbnails, ...meta } = extractMetaData(raw);

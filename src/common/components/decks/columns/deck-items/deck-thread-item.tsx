@@ -2,11 +2,9 @@ import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useResizeDetector } from "react-resize-detector";
 import React, { useContext, useEffect, useState } from "react";
 import { UserAvatar } from "../../../user-avatar";
-import { Link } from "react-router-dom";
-import { dateToRelative } from "../../../../helper/parse-date";
 import EntryVoteBtn from "../../../entry-vote-btn";
 import { History } from "history";
-import { Button, Spinner } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { _t } from "../../../../i18n";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { commentSvg, voteSvg } from "../../icons";
@@ -17,6 +15,9 @@ import { useInViewport } from "react-in-viewport";
 import { EntriesCacheContext, useEntryCache } from "../../../../core";
 import { useEntryChecking } from "../../utils";
 import { Entry } from "../../../../store/entries/types";
+import { DeckThreadItemHeader } from "./deck-thread-item-header";
+import moment from "moment";
+import { dateToRelative } from "../../../../helper/parse-date";
 
 export interface ThreadItemProps {
   initialEntry: IdentifiableEntry;
@@ -30,6 +31,7 @@ export interface ThreadItemProps {
   commentsSlot?: JSX.Element;
   onSeeFullThread?: () => void;
   onAppear?: () => void;
+  onEdit?: () => void;
 }
 
 export const ThreadItem = ({
@@ -38,11 +40,12 @@ export const ThreadItem = ({
   onEntryView,
   onResize,
   history,
-  pure,
+  pure = false,
   sequenceItem,
   commentsSlot,
   onSeeFullThread,
-  onAppear
+  onAppear,
+  onEdit = () => {}
 }: ThreadItemProps) => {
   const { updateVotes, updateCache } = useContext(EntriesCacheContext);
   const { global, activeUser } = useMappedStore();
@@ -103,35 +106,7 @@ export const ThreadItem = ({
         }
       }}
     >
-      <div className="thread-item-header">
-        <UserAvatar size="deck-item" global={global} username={entry.author} />
-        <div className="username text-truncate">
-          <Link to={`/@${entry.author}`}>{entry.author}</Link>
-          {activeUser?.username === entry.author && (
-            <span className="you">{`(${_t("g.you")})`}</span>
-          )}
-          {hasParent && !pure && (
-            <>
-              <span>{_t("decks.columns.replied-to")}</span>
-              <Link to={`/@${entry.parent_author}`}>{entry.parent_author}</Link>
-            </>
-          )}
-        </div>
-        <div className="host">
-          <Link target="_blank" to={`/created/${entry.category}`}>
-            #{entry.host}
-          </Link>
-        </div>
-
-        <div className="date">
-          {status === "default" && (
-            <Link target="_blank" to={`/@${entry.author}/${entry.permlink}`}>
-              {`${dateToRelative(entry.created)}`}
-            </Link>
-          )}
-          {status === "pending" && <Spinner animation="border" />}
-        </div>
-      </div>
+      <DeckThreadItemHeader status={status} entry={entry} hasParent={hasParent} pure={pure} />
       <DeckThreadItemBody
         entry={entry}
         height={height}
@@ -139,23 +114,35 @@ export const ThreadItem = ({
         setRenderInitiated={setRenderInitiated}
         onResize={onResize}
       />
+      {entry.updated !== entry.created && (
+        <div className="px-3 pb-3 updated-label">
+          {_t("decks.columns.updated", { n: dateToRelative(entry.updated) })}
+        </div>
+      )}
       {status === "default" && (
         <div className="thread-item-actions">
-          <EntryVoteBtn
-            entry={entry}
-            isPostSlider={false}
-            history={history}
-            afterVote={(votes, estimated) => {
-              updateVotes(entry.post_id, votes, estimated);
-            }}
-          />
-          <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
-          <Button variant="link" onClick={() => onEntryView()}>
-            <div className="d-flex align-items-center comments">
-              <div style={{ paddingRight: 4 }}>{commentSvg}</div>
-              <div>{commentsSlot ?? entry.children}</div>
-            </div>
-          </Button>
+          <div>
+            <EntryVoteBtn
+              entry={entry}
+              isPostSlider={false}
+              history={history}
+              afterVote={(votes, estimated) => {
+                updateVotes(entry.post_id, votes, estimated);
+              }}
+            />
+            <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
+            <Button variant="link" onClick={() => onEntryView()}>
+              <div className="d-flex align-items-center comments">
+                <div style={{ paddingRight: 4 }}>{commentSvg}</div>
+                <div>{commentsSlot ?? entry.children}</div>
+              </div>
+            </Button>
+          </div>
+          {activeUser?.username === entry.author && (
+            <Button className="edit-btn" variant="link" onClick={() => onEdit()}>
+              {_t("decks.columns.edit-wave")}
+            </Button>
+          )}
         </div>
       )}
       {hasParent && !pure && (

@@ -41,6 +41,21 @@
     }
   }
 
+  &.hideAvatar {
+    z-index: 1;
+    display: flex;
+    cursor: default;
+    min-height: 12rem;
+
+    .deck-toolbar-threads-form-content {
+      min-width: 100%;
+    }
+
+    .deck-toolbar-threads-form-body {
+      grid-template-columns: 1fr;
+    }
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }

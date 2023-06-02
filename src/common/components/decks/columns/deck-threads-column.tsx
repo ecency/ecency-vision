@@ -1,5 +1,5 @@
 import { AVAILABLE_THREAD_HOSTS } from "../consts";
-import { DeckThreadItemSkeleton, ThreadItem } from "./deck-items";
+import { DeckThreadEditItem, DeckThreadItemSkeleton, ThreadItem } from "./deck-items";
 import { DeckThreadItemViewer } from "./content-viewer";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import React, { useContext, useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import {
   DeckThreadsColumnManagerContext,
   DeckThreadsContext,
   IdentifiableEntry,
+  ThreadItemEntry,
   withDeckThreadsColumnManager
 } from "./deck-threads-manager";
 import moment from "moment/moment";
@@ -47,6 +48,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
   const [currentHighlightedEntry, setCurrentHighlightedEntry] = useState<string | undefined>(
     undefined
   );
+  const [currentEditingEntry, setCurrentEditingEntry] = useState<ThreadItemEntry | null>(null);
   const [isEndReached, setIsEndReached] = useState(false);
   const [hasHostNextPage, setHasHostNextPage] = useState<Record<string, boolean>>(
     AVAILABLE_THREAD_HOSTS.reduce(
@@ -171,36 +173,41 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
         )
       }
     >
-      {(item: IdentifiableEntry, measure: Function, index: number) => (
-        <ThreadItem
-          history={history}
-          initialEntry={item}
-          onMounted={() => measure()}
-          onAppear={() => {
-            const hostOnlyThreadItems = hostGroupedData[item.host];
-            const isLast = hostOnlyThreadItems[hostOnlyThreadItems.length - 1]?.id === item.id;
-            if (isLast && hasHostNextPage[item.host]) {
-              fetchData([item.container]);
-            }
-          }}
-          onEntryView={() => setCurrentViewingEntry(item)}
-          onResize={() => measure()}
-          onSeeFullThread={async () => {
-            try {
-              const entry = (await getPost(
-                item.parent_author,
-                item.parent_permlink
-              )) as IdentifiableEntry;
-              if (entry) {
-                entry.id = entry.post_id;
-                entry.host = item.host;
-                setCurrentViewingEntry(entry);
-                setCurrentHighlightedEntry(`${item.author}/${item.permlink}`);
+      {(item: IdentifiableEntry, measure: Function, index: number) =>
+        currentEditingEntry?.post_id === item.post_id ? (
+          <DeckThreadEditItem entry={item} onSuccess={() => setCurrentEditingEntry(null)} />
+        ) : (
+          <ThreadItem
+            history={history}
+            initialEntry={item}
+            onMounted={() => measure()}
+            onAppear={() => {
+              const hostOnlyThreadItems = hostGroupedData[item.host];
+              const isLast = hostOnlyThreadItems[hostOnlyThreadItems.length - 1]?.id === item.id;
+              if (isLast && hasHostNextPage[item.host]) {
+                fetchData([item.container]);
               }
-            } catch (e) {}
-          }}
-        />
-      )}
+            }}
+            onEntryView={() => setCurrentViewingEntry(item)}
+            onResize={() => measure()}
+            onEdit={() => setCurrentEditingEntry(item)}
+            onSeeFullThread={async () => {
+              try {
+                const entry = (await getPost(
+                  item.parent_author,
+                  item.parent_permlink
+                )) as IdentifiableEntry;
+                if (entry) {
+                  entry.id = entry.post_id;
+                  entry.host = item.host;
+                  setCurrentViewingEntry(entry);
+                  setCurrentHighlightedEntry(`${item.author}/${item.permlink}`);
+                }
+              } catch (e) {}
+            }}
+          />
+        )
+      }
     </GenericDeckWithDataColumn>
   );
 };

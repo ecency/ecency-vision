@@ -14,8 +14,9 @@ import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
 import { Entry } from "../../../store/entries/types";
 import { DeckThreadsCreatedRecently } from "./deck-threads-created-recently";
-import { IdentifiableEntry } from "../columns/deck-threads-manager";
+import { IdentifiableEntry, ThreadItemEntry } from "../columns/deck-threads-manager";
 import useClickAway from "react-use/lib/useClickAway";
+import { classNameObject } from "../../../helper/class-name-object";
 
 interface Props {
   className?: string;
@@ -23,6 +24,8 @@ interface Props {
   placeholder?: string;
   replySource?: Entry;
   onSuccess?: (reply: Entry) => void;
+  hideAvatar?: boolean;
+  entry?: ThreadItemEntry;
 }
 
 export const DeckThreadsForm = ({
@@ -30,7 +33,9 @@ export const DeckThreadsForm = ({
   inline,
   placeholder,
   replySource,
-  onSuccess
+  onSuccess,
+  hideAvatar = false,
+  entry
 }: Props) => {
   const rootRef = useRef(null);
   useClickAway(rootRef, () => setFocused(false));
@@ -44,7 +49,7 @@ export const DeckThreadsForm = ({
     {}
   );
   const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "_dtf_th", "ecency.waves");
-  const [text, setText] = useState("");
+  const [text, setText] = useState(entry?.body ?? "");
   const [image, setImage] = useState<string | null>(null);
   const [imageName, setImageName] = useState<string | null>(null);
   const [disabled, setDisabled] = useState(true);
@@ -84,9 +89,9 @@ export const DeckThreadsForm = ({
       let threadItem: IdentifiableEntry;
 
       if (replySource) {
-        threadItem = (await createReply(replySource, content)) as IdentifiableEntry;
+        threadItem = (await createReply(replySource, content, entry)) as IdentifiableEntry;
       } else {
-        threadItem = (await create(threadHost!!, content)) as IdentifiableEntry;
+        threadItem = (await create(threadHost!!, content, entry)) as IdentifiableEntry;
       }
 
       if (threadHost) {
@@ -120,23 +125,27 @@ export const DeckThreadsForm = ({
       className={"deck-toolbar-threads-form-submit "}
       size={size}
     >
-      {!activeUser && text.length <= 255 && _t("decks.threads-form.login-and-publish")}
+      {!activeUser && !entry && text.length <= 255 && _t("decks.threads-form.login-and-publish")}
       {activeUser &&
+        !entry &&
         text.length <= 255 &&
         (loading ? _t("decks.threads-form.publishing") : _t("decks.threads-form.publish"))}
-      {text.length > 255 && _t("decks.threads-form.create-regular-post")}
+      {text.length > 255 && !entry && _t("decks.threads-form.create-regular-post")}
+      {entry && _t("decks.threads-form.save")}
     </Button>
   );
 
   return (
     <div
       ref={rootRef}
-      className={
-        "deck-toolbar-threads-form " +
-        (inline ? " inline " : " deck ") +
-        (focused ? " focus " : "") +
-        className
-      }
+      className={classNameObject({
+        "deck-toolbar-threads-form": true,
+        inline,
+        deck: !inline,
+        focus: focused,
+        className: !!className,
+        hideAvatar
+      })}
       onClick={() => setFocused(true)}
     >
       {!inline && (
@@ -149,7 +158,9 @@ export const DeckThreadsForm = ({
       )}
       <div className="deck-toolbar-threads-form-content">
         <div className="deck-toolbar-threads-form-body p-3">
-          <UserAvatar global={global} username={activeUser?.username ?? ""} size="medium" />
+          {!hideAvatar && (
+            <UserAvatar global={global} username={activeUser?.username ?? ""} size="medium" />
+          )}
           <div>
             {!inline && (
               <DeckThreadsFormThreadSelection host={threadHost} setHost={setThreadHost} />
