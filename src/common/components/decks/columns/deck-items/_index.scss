@@ -70,6 +70,12 @@
           }
         }
       }
+
+      .you {
+        color: $secondary;
+
+        @include font-size(0.75rem);
+      }
     }
 
     &-parent {

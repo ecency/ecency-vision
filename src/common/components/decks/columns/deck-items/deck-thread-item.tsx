@@ -45,7 +45,7 @@ export const ThreadItem = ({
   onAppear
 }: ThreadItemProps) => {
   const { updateVotes, updateCache } = useContext(EntriesCacheContext);
-  const { global } = useMappedStore();
+  const { global, activeUser } = useMappedStore();
   const { height, ref } = useResizeDetector();
   const { inViewport } = useInViewport(ref);
   const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
@@ -107,9 +107,12 @@ export const ThreadItem = ({
         <UserAvatar size="deck-item" global={global} username={entry.author} />
         <div className="username text-truncate">
           <Link to={`/@${entry.author}`}>{entry.author}</Link>
+          {activeUser?.username === entry.author && (
+            <span className="you">{`(${_t("g.you")})`}</span>
+          )}
           {hasParent && !pure && (
             <>
-              <span>replied to</span>
+              <span>{_t("decks.columns.replied-to")}</span>
               <Link to={`/@${entry.parent_author}`}>{entry.parent_author}</Link>
             </>
           )}

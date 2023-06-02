@@ -72,7 +72,8 @@
     "settings": "Settings",
     "confirm": "Confirm",
     "username": "Username",
-    "past-few-days": "the past few days"
+    "past-few-days": "the past few days",
+    "you": "You"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -479,7 +480,8 @@
       "no-content": "No content",
       "infinite-loading": "Loading 🌊...",
       "end-reached": "You've reached end of 🌊.",
-      "topics-subtitle": "The most popular"
+      "topics-subtitle": "The most popular",
+      "replied-to": "replied to"
     },
     "threads-form": {
       "publish": "Publish it!",

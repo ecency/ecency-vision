@@ -1,6 +1,9 @@
 @import "src/style/vars_mixins";
 
 .decks-settings {
+  .modal-header {
+    border-bottom: 1px solid $border-color;
+  }
 
   .form-section {
     gap: 1rem;
