@@ -289,8 +289,7 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   handleResize = () => {
-    console.log("Window Width", window.innerWidth);
-    if (window.innerWidth < 992) {
+    if (typeof window !== "undefined" && window.innerWidth < 992) {
       this.setState({ showHelp: false });
       handleFloatingContainer(false, "submit");
     }
