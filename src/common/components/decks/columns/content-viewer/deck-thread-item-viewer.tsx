@@ -113,7 +113,7 @@ export const DeckThreadItemViewer = ({
             setData({ ...data, replies: [reply, ...data.replies] });
 
             // Update entry in global cache
-            addReply(entry.post_id, reply);
+            addReply(entry, reply);
           }
         }}
       />
@@ -127,9 +127,7 @@ export const DeckThreadItemViewer = ({
                 entry={reply}
                 history={history}
                 parentEntry={entry}
-                incrementParentEntryCount={() =>
-                  updateRepliesCount(entry.post_id, entry.children + 1)
-                }
+                incrementParentEntryCount={() => updateRepliesCount(entry, entry.children + 1)}
               />
             ))}
             {data?.replies.length === 0 && (

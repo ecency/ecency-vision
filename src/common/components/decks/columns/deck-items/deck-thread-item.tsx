@@ -15,6 +15,8 @@ import { DeckThreadItemBody } from "./deck-thread-item-body";
 import { classNameObject } from "../../../../helper/class-name-object";
 import { useInViewport } from "react-in-viewport";
 import { EntriesCacheContext, useEntryCache } from "../../../../core";
+import { useEntryChecking } from "../../utils";
+import { Entry } from "../../../../store/entries/types";
 
 export interface ThreadItemProps {
   initialEntry: IdentifiableEntry;
@@ -42,22 +44,30 @@ export const ThreadItem = ({
   onSeeFullThread,
   onAppear
 }: ThreadItemProps) => {
-  const { updateVotes } = useContext(EntriesCacheContext);
-
+  const { updateVotes, updateCache } = useContext(EntriesCacheContext);
   const { global } = useMappedStore();
   const { height, ref } = useResizeDetector();
+  const { inViewport } = useInViewport(ref);
+  const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
 
   const [renderInitiated, setRenderInitiated] = useState(false);
   const [hasParent, setHasParent] = useState(false);
   const [status, setStatus] = useState<"default" | "pending">("default");
+  const [intervalStarted, setIntervalStarted] = useState(false);
 
-  const { inViewport } = useInViewport(ref);
-
-  const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
+  useEntryChecking(entry, intervalStarted, (nextEntry) => {
+    updateCache([
+      { ...nextEntry, host: initialEntry.host, container: initialEntry.container } as Entry
+    ]);
+  });
 
   useEffect(() => {
     onMounted();
   }, []);
+
+  useEffect(() => {
+    setIntervalStarted(status === "pending");
+  }, [status]);
 
   useEffect(() => {
     if (inViewport && onAppear) {

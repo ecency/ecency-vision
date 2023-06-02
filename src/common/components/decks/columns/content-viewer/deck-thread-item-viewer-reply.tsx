@@ -1,7 +1,7 @@
 import { ThreadItem } from "../deck-items";
 import { DeckThreadsForm } from "../../deck-threads-form";
 import { _t } from "../../../../i18n";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { History } from "history";
 import "./_deck-thread-item-viewer-reply.scss";
@@ -53,7 +53,7 @@ export const DeckThreadItemViewerReply = ({
           replySource={entry}
           onSuccess={(reply) => {
             // Update entry in global cache
-            addReply(entry.post_id, reply);
+            addReply(entry, reply);
             incrementParentEntryCount();
           }}
         />
@@ -67,7 +67,7 @@ export const DeckThreadItemViewerReply = ({
               history={history}
               parentEntry={entry}
               incrementParentEntryCount={() =>
-                updateRepliesCount(parentEntry.post_id, parentEntry.children + 1)
+                updateRepliesCount(parentEntry, parentEntry.children + 1)
               }
             />
           ))}
