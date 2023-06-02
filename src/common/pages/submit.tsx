@@ -1103,7 +1103,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 className="the-editor accepts-emoji form-control"
                 as="textarea"
                 placeholder={_t("submit.body-placeholder")}
-                value={(body && body.length) > 0 ? body : preview.body}
+                value={body && body.length > 0 ? body : preview.body}
                 onChange={this.bodyChanged}
                 disableRows={true}
                 maxrows={100}
