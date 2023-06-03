@@ -22,10 +22,11 @@ export interface PartialEntry {
 }
 
 interface Props {
-  history: History;
+  history?: History;
   children: JSX.Element;
   entry: Entry | PartialEntry;
   afterClick?: () => void;
+  target?: string;
 }
 
 export class EntryLink extends Component<Props> {
@@ -52,7 +53,9 @@ export class EntryLink extends Component<Props> {
 
     const { category, author, permlink } = _entry;
 
-    history!.push(makePath(category, author, permlink));
+    if (history) {
+      history.push(makePath(category, author, permlink));
+    }
   };
 
   render() {
@@ -61,6 +64,14 @@ export class EntryLink extends Component<Props> {
     const href = makePath(entry.category, entry.author, entry.permlink);
 
     const props = Object.assign({}, children.props, { href, onClick: this.clicked });
+
+    if (this.props.target) {
+      props.onClick = (e: React.MouseEvent<HTMLElement>) => {
+        this.clicked(e);
+
+        window.open(props.href, "_blank");
+      };
+    }
 
     return React.createElement("a", props);
   }
@@ -71,7 +82,8 @@ export default (p: Props) => {
     history: p.history,
     children: p.children,
     entry: p.entry,
-    afterClick: p.afterClick
+    afterClick: p.afterClick,
+    target: p.target
   };
 
   return <EntryLink {...props} />;

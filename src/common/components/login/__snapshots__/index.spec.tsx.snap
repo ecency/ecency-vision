@@ -127,6 +127,7 @@ Array [
       >
         <span
           className="user-avatar medium"
+          onClick={[Function]}
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/medium)",
@@ -166,6 +167,7 @@ Array [
       >
         <span
           className="user-avatar medium"
+          onClick={[Function]}
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/medium)",
@@ -320,6 +322,7 @@ Array [
       >
         <span
           className="user-avatar medium"
+          onClick={[Function]}
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/medium)",
@@ -359,6 +362,7 @@ Array [
       >
         <span
           className="user-avatar medium"
+          onClick={[Function]}
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/medium)",

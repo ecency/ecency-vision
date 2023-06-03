@@ -286,6 +286,7 @@ exports[`(1) Hive Engine - Transfer (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -310,6 +311,7 @@ exports[`(1) Hive Engine - Transfer (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -798,6 +800,7 @@ exports[`(2) Hive Engine - Delegate (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -822,6 +825,7 @@ exports[`(2) Hive Engine - Delegate (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -1162,6 +1166,7 @@ exports[`(3) Hive Engine - Undelegate (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -1186,6 +1191,7 @@ exports[`(3) Hive Engine - Undelegate (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -1553,6 +1559,7 @@ exports[`(4) Hive Engine - Stake (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -1577,6 +1584,7 @@ exports[`(4) Hive Engine - Stake (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -1903,6 +1911,7 @@ exports[`(5) Hive Engine - Unstake (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",

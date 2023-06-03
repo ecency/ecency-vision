@@ -25,8 +25,9 @@
     padding-bottom: 60px;
 
     .permission-menu {
+      margin-top: 1.6rem;
       display: flex;
-      justify-content: space-between;
+      align-items: flex-start;
 
       margin-bottom: 1rem;
 
@@ -47,6 +48,9 @@
         cursor: pointer;
         font-weight: 600;
         color: $dark-sky-blue;
+      }
+      .permission-menu-items {
+        margin-right: 2rem;
       }
     }
 

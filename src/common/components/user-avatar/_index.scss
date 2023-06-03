@@ -1,9 +1,4 @@
-@mixin generate_size($width, $height) {
-  min-width: $width;
-  min-height: $height;
-  max-width: $width;
-  max-height: $height;
-}
+@import "src/style/vars_mixins";
 
 .user-avatar {
   border-radius: 50%;
@@ -13,23 +8,31 @@
   background-size: cover;
   display: block;
 
+  &.xsmall {
+    @include strict_size(16px, 16px);
+  }
+
   &.small {
-    @include generate_size(24px, 24px);
+    @include strict_size(24px, 24px);
   }
 
   &.normal {
-    @include generate_size(30px, 30px);
+    @include strict_size(30px, 30px);
   }
 
   &.medium {
-    @include generate_size(40px, 40px);
+    @include strict_size(40px, 40px);
   }
 
   &.large {
-    @include generate_size(80px, 80px);
+    @include strict_size(80px, 80px);
   }
 
   &.xLarge {
-    @include generate_size(120px, 120px);
+    @include strict_size(120px, 120px);
+  }
+
+  &.deck-item {
+    @include strict_size(35px, 35px);
   }
 }

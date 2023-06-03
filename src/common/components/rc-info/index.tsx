@@ -34,45 +34,8 @@ export const ResourceCreditsInfo = (props: any) => {
   const [transferAmount, setTransferAmount] = useState(0);
   const [customJsonAmount, setCustomJsonAmount] = useState(0);
 
-  useEffect(() => {
-    findRcAccounts(account.name)
-      .then((r) => {
-        const outGoing = r.map((a: any) => a.delegated_rc);
-        const delegated = outGoing[0];
-        const formatOutGoing: any = rcFormatter(delegated);
-        setDelegated(formatOutGoing);
-        const availableResourceCredit: any = r.map((a: any) => Number(a.rc_manabar.current_mana));
-        const inComing: any = r.map((a: any) => Number(a.received_delegated_rc));
-        const formatIncoming = rcFormatter(inComing);
-        const totalRc = Number(availableResourceCredit) + Number(inComing);
-        setReceivedDelegation(formatIncoming);
-        setResourceCredit(totalRc);
-
-        const rcOperationsCost = async () => {
-          const rcStats: any = await getRcOperationStats();
-          const operationCosts = rcStats.rc_stats.ops;
-          const commentCost = operationCosts.comment_operation.avg_cost;
-          const transferCost = operationCosts.transfer_operation.avg_cost;
-          const voteCost = operationCosts.vote_operation.avg_cost;
-          const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
-
-          const commentCount: number = Math.ceil(Number(availableResourceCredit) / commentCost);
-          const votetCount: number = Math.ceil(Number(availableResourceCredit) / voteCost);
-          const transferCount: number = Math.ceil(Number(availableResourceCredit) / transferCost);
-          const customJsonCount: number = Math.ceil(
-            Number(availableResourceCredit) / customJsonOperationsCosts
-          );
-          setCommentAmount(commentCount);
-          setVoteAmount(votetCount);
-          setTransferAmount(transferCount);
-          setCustomJsonAmount(customJsonCount);
-        };
-        rcOperationsCost();
-      })
-      .catch(console.log);
-  }, []);
-
   const showModal = () => {
+    fetchRCData();
     setShowRcInfo(true);
   };
 
@@ -112,6 +75,44 @@ export const ResourceCreditsInfo = (props: any) => {
 
   const hideConfirmDelete = () => {
     setShowConfirmDelete(false);
+  };
+
+  const fetchRCData = () => {
+    findRcAccounts(account.name)
+      .then((r) => {
+        const outGoing = r.map((a: any) => a.delegated_rc);
+        const delegated = outGoing[0];
+        const formatOutGoing: any = rcFormatter(delegated);
+        setDelegated(formatOutGoing);
+        const availableResourceCredit: any = r.map((a: any) => Number(a.rc_manabar.current_mana));
+        const inComing: any = r.map((a: any) => Number(a.received_delegated_rc));
+        const formatIncoming = rcFormatter(inComing);
+        const totalRc = Number(availableResourceCredit) + Number(inComing);
+        setReceivedDelegation(formatIncoming);
+        setResourceCredit(totalRc);
+
+        const rcOperationsCost = async () => {
+          const rcStats: any = await getRcOperationStats();
+          const operationCosts = rcStats.rc_stats.ops;
+          const commentCost = operationCosts.comment_operation.avg_cost;
+          const transferCost = operationCosts.transfer_operation.avg_cost;
+          const voteCost = operationCosts.vote_operation.avg_cost;
+          const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
+
+          const commentCount: number = Math.ceil(Number(availableResourceCredit) / commentCost);
+          const votetCount: number = Math.ceil(Number(availableResourceCredit) / voteCost);
+          const transferCount: number = Math.ceil(Number(availableResourceCredit) / transferCost);
+          const customJsonCount: number = Math.ceil(
+            Number(availableResourceCredit) / customJsonOperationsCosts
+          );
+          setCommentAmount(commentCount);
+          setVoteAmount(votetCount);
+          setTransferAmount(transferCount);
+          setCustomJsonAmount(customJsonCount);
+        };
+        rcOperationsCost();
+      })
+      .catch(console.log);
   };
 
   return (

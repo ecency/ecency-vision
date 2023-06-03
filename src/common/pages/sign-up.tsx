@@ -47,6 +47,7 @@ export const SignUp = (props: PageProps) => {
   const [stage, setStage] = useState<Stage>(Stage.FORM);
   const [url, setUrl] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
+  const [registrationError, setRegistrationError] = useState("");
 
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
@@ -64,9 +65,9 @@ export const SignUp = (props: PageProps) => {
     if (referral && typeof referral === "string") {
       setReferral(referral);
       setLockReferral(true);
-    } else if (lsReferral && typeof referral === "string") {
-      props.history.push(`/signup?referral=${referral}`);
-      setReferral(referral);
+    } else if (lsReferral && typeof lsReferral === "string") {
+      props.history.push(`/signup?referral=${lsReferral}`);
+      setReferral(lsReferral);
     } else {
       props.history.push("/signup");
     }
@@ -122,19 +123,19 @@ export const SignUp = (props: PageProps) => {
     setInProgress(true);
     try {
       const response = await signUp(username, email, referral);
-      if (isVerified) {
+      if (!isVerified) {
         error(_t("login.captcha-check-required"));
         return;
       }
       if (response?.data?.code) {
-        error(response.data.code);
+        setRegistrationError(response.data.code);
       } else {
         setDone(true);
         setLsReferral(undefined);
       }
     } catch (e) {
       if (axios.isAxiosError(e) && e.response?.data?.message) {
-        error(e.response.data.message);
+        setRegistrationError(e.response.data.message);
       }
     } finally {
       setInProgress(false);
@@ -144,6 +145,12 @@ export const SignUp = (props: PageProps) => {
   const compileQR = async (url: string) => {
     if (qrCodeRef.current) {
       qrCodeRef.current.src = await qrcode.toDataURL(url, { width: 300 });
+    }
+  };
+
+  const captchaCheck = (value: string | null) => {
+    if (value) {
+      setIsVerified(true);
     }
   };
 
@@ -260,10 +267,10 @@ export const SignUp = (props: PageProps) => {
                     />
                   </Form.Group>
                   {!props.global.isElectron && (
-                    <div style={{ marginTop: "16px", marginBottom: "7px" }}>
+                    <div style={{ marginTop: "16px", marginBottom: "16px" }}>
                       <ReCAPTCHA
                         sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
-                        onChange={(value: string | null) => value && setIsVerified(true)}
+                        onChange={captchaCheck}
                         size="normal"
                       />
                     </div>
@@ -322,6 +329,11 @@ export const SignUp = (props: PageProps) => {
                       {_t("sign-up.register-free")}
                     </Button>
                   </div>
+                  {registrationError.length > 0 && (
+                    <div className="error">
+                      <small className="error-info">{registrationError}</small>
+                    </div>
+                  )}
                 </div>
                 <div className="card">
                   <div className="card-header">

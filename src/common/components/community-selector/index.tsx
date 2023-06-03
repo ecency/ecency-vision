@@ -107,7 +107,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
 
           <div className="browser-list">
             <div className="list-body">
-              {results.length > 0 && (
+              {results?.length > 0 && (
                 <>
                   {results.map((x) => (
                     <a
@@ -130,7 +130,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
                   ))}
                 </>
               )}
-              {results.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
+              {results?.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
             </div>
           </div>
         </div>
@@ -160,7 +160,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
               </div>
             </a>
 
-            {subscriptions.length > 0 && (
+            {subscriptions?.length > 0 && (
               <>
                 {subscriptions.map((x) => (
                   <a
@@ -216,7 +216,7 @@ export class CommunitySelector extends BaseComponent<Props, State> {
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>) {
     if (!isEqual(this.props.tags, prevProps.tags)) {
-      if (this.props.tags.length > 0) {
+      if (this.props.tags?.length > 0) {
         this.setState({ picked: false });
       }
       this.detectCommunity().then();
@@ -275,7 +275,7 @@ export class CommunitySelector extends BaseComponent<Props, State> {
         </>
       );
     } else {
-      if (tags.length > 0 || picked) {
+      if (tags?.length > 0 || picked) {
         content = (
           <>
             <UserAvatar username={activeUser.username} size="small" />

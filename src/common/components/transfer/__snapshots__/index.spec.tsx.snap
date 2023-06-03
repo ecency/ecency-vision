@@ -59,7 +59,7 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
             <input
               className="form-control"
               readOnly={true}
-              value="foo"
+              value="bar"
             />
           </div>
         </div>
@@ -291,9 +291,10 @@ exports[`(1) Transfer HIVE (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
                 }
               }
             />
@@ -315,6 +316,7 @@ exports[`(1) Transfer HIVE (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -518,7 +520,7 @@ exports[`(1) Transfer HIVE (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 HIVE</span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 HIVE</span> transferred from <span class=\\"from-user\\">bar</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />
@@ -609,7 +611,7 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
             <input
               className="form-control"
               readOnly={true}
-              value="foo"
+              value="bar"
             />
           </div>
         </div>
@@ -841,9 +843,10 @@ exports[`(2) Transfer HBD (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
                 }
               }
             />
@@ -865,6 +868,7 @@ exports[`(2) Transfer HBD (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -951,7 +955,7 @@ exports[`(2) Transfer HBD (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 HBD</span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 HBD</span> transferred from <span class=\\"from-user\\">bar</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />
@@ -1042,7 +1046,7 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
             <input
               className="form-control"
               readOnly={true}
-              value="foo"
+              value="bar"
             />
           </div>
         </div>
@@ -1274,9 +1278,10 @@ exports[`(3) Transfer POINT (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
                 }
               }
             />
@@ -1298,6 +1303,7 @@ exports[`(3) Transfer POINT (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -1380,7 +1386,7 @@ exports[`(3) Transfer POINT (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 POINT</span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 POINT</span> transferred from <span class=\\"from-user\\">bar</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />
@@ -1471,7 +1477,7 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
             <input
               className="form-control"
               readOnly={true}
-              value="foo"
+              value="bar"
             />
           </div>
         </div>
@@ -1508,7 +1514,7 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
-                value="foo"
+                value="bar"
               />
             </div>
             <div />
@@ -1697,9 +1703,10 @@ exports[`(4) Transfer to Savings - HBD (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
                 }
               }
             />
@@ -1721,6 +1728,7 @@ exports[`(4) Transfer to Savings - HBD (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -1803,7 +1811,7 @@ exports[`(4) Transfer to Savings - HBD (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 HBD</span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 HBD</span> transferred from <span class=\\"from-user\\">bar</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />
@@ -1894,7 +1902,7 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
             <input
               className="form-control"
               readOnly={true}
-              value="foo"
+              value="bar"
             />
           </div>
         </div>
@@ -1931,7 +1939,7 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
-                value="foo"
+                value="bar"
               />
             </div>
             <div />
@@ -2120,9 +2128,10 @@ exports[`(5) Withdraw Savings - HIVE (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
                 }
               }
             />
@@ -2144,6 +2153,7 @@ exports[`(5) Withdraw Savings - HIVE (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -2226,7 +2236,7 @@ exports[`(5) Withdraw Savings - HIVE (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 HIVE</span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 HIVE</span> transferred from <span class=\\"from-user\\">bar</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />
@@ -2317,7 +2327,7 @@ exports[`(6) Convert (1) Step 1 1`] = `
             <input
               className="form-control"
               readOnly={true}
-              value="foo"
+              value="bar"
             />
           </div>
         </div>
@@ -2453,9 +2463,10 @@ exports[`(6) Convert (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
                 }
               }
             />
@@ -2626,7 +2637,7 @@ exports[`(7) Power up (1) Step 1 1`] = `
             <input
               className="form-control"
               readOnly={true}
-              value="foo"
+              value="bar"
             />
           </div>
         </div>
@@ -2663,7 +2674,7 @@ exports[`(7) Power up (1) Step 1 1`] = `
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
-                value="foo"
+                value="bar"
               />
             </div>
             <div />
@@ -2803,9 +2814,10 @@ exports[`(7) Power up (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
                 }
               }
             />
@@ -2827,6 +2839,7 @@ exports[`(7) Power up (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -2909,7 +2922,7 @@ exports[`(7) Power up (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 HIVE</span> staked from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 HIVE</span> staked from <span class=\\"from-user\\">bar</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />
@@ -3000,7 +3013,7 @@ exports[`(8) Delegate (1) Step 1 1`] = `
             <input
               className="form-control"
               readOnly={true}
-              value="foo"
+              value="bar"
             />
           </div>
         </div>
@@ -3182,9 +3195,10 @@ exports[`(8) Delegate (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
                 }
               }
             />
@@ -3206,6 +3220,7 @@ exports[`(8) Delegate (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -3293,7 +3308,7 @@ exports[`(8) Delegate (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 HP</span> delegated from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+            "__html": "<span class=\\"amount\\">0.001 HP</span> delegated from <span class=\\"from-user\\">bar</span> to <span class=\\"to-user\\">bar</span>",
           }
         }
       />
@@ -3384,7 +3399,7 @@ exports[`(9) Power down (1) Step 1 1`] = `
             <input
               className="form-control"
               readOnly={true}
-              value="foo"
+              value="bar"
             />
           </div>
         </div>
@@ -3530,9 +3545,10 @@ exports[`(9) Power down (2) Step 2 1`] = `
           >
             <span
               className="user-avatar large"
+              onClick={[Function]}
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
                 }
               }
             />

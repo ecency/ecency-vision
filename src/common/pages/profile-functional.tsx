@@ -32,9 +32,11 @@ import SearchListItem from "../components/search-list-item";
 import SearchBox from "../components/search-box";
 import * as bridgeApi from "../api/bridge";
 import { search as searchApi } from "../api/search-api";
-import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
+import ManageAuthorities from "../components/manage-authority";
 import AccountRecovery from "../components/recovery-account";
+
+import CurationTrail from "../components/curation-trail";
 
 import { getAccountFull } from "../api/hive";
 
@@ -101,11 +103,11 @@ export const Profile = (props: Props) => {
     await ensureAccount();
 
     const { username, section } = match.params;
+
     if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
       // fetch posts
       fetchEntries(global.filter, global.tag, false);
     }
-
     // fetch points
     fetchPoints(username);
 
@@ -141,6 +143,7 @@ export const Profile = (props: Props) => {
   useAsyncEffect(
     async (_) => {
       const { global, fetchEntries, history } = props;
+
       const nextUsername = props.match.params.username.replace("@", "");
       const nextSection = props.match.params.section;
       const nextAccount = props.accounts.find((x) => x.name === nextUsername);
@@ -251,7 +254,7 @@ export const Profile = (props: Props) => {
     }
   };
 
-  const bottomReached = () => {
+  const bottomReached = async () => {
     const { global, entries, fetchEntries } = props;
     const { filter, tag } = global;
     const groupKey = makeGroupKey(filter, tag);
@@ -350,7 +353,6 @@ export const Profile = (props: Props) => {
       <NavBar history={props.history} />
     );
   };
-
   const getMetaProps = () => {
     const username = props.match.params.username.replace("@", "");
     const account = props.accounts.find((x) => x.name === username);
@@ -419,7 +421,6 @@ export const Profile = (props: Props) => {
     setPinnedEntry(null);
     setPinnedEntry(entry);
   };
-
   return (
     <>
       <Meta {...getMetaProps()} />
@@ -527,7 +528,7 @@ export const Profile = (props: Props) => {
                               }
                               onClick={() => setTabState(1)}
                             >
-                              {_t("view-keys.header")}
+                              {_t("manage-authorities.title")}
                             </h6>
                           </div>
                           <div className="permission-menu-items">
@@ -537,7 +538,7 @@ export const Profile = (props: Props) => {
                               }
                               onClick={() => setTabState(2)}
                             >
-                              {_t("password-update.title")}
+                              {_t("account-recovery.title")}
                             </h6>
                           </div>
                           <div className="permission-menu-items">
@@ -547,20 +548,16 @@ export const Profile = (props: Props) => {
                               }
                               onClick={() => setTabState(3)}
                             >
-                              {_t("account-recovery.title")}
+                              {_t("password-update.title")}
                             </h6>
                           </div>
                         </div>
                         <div className="container-fluid">
+                          {tabState === 1 && <ManageAuthorities {...props} />}
                           <div className="row pb-4">
                             <div className="col-lg-6 col-md-6 col-sm-6">
-                              {tabState === 1 ? <ViewKeys activeUser={props.activeUser} /> : <></>}
-                              {tabState === 2 ? (
-                                <PasswordUpdate activeUser={props.activeUser} />
-                              ) : (
-                                <></>
-                              )}
-                              {tabState === 3 ? <AccountRecovery {...props} /> : <></>}
+                              {tabState === 2 && <AccountRecovery {...props} />}
+                              {tabState === 3 && <PasswordUpdate activeUser={props.activeUser} />}
                             </div>
                           </div>
                         </div>
@@ -571,10 +568,38 @@ export const Profile = (props: Props) => {
                   }
                 }
 
-                if (data !== undefined) {
-                  let entryList = data?.entries;
-                  const { profile } = account as FullAccount;
-                  entryList = entryList.filter((item) => item.permlink !== profile?.pinned);
+                if (section === "trail") {
+                  return (
+                    <>
+                      <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
+                        <div
+                          className={_c(
+                            `entry-list-body ${
+                              props.global.listStyle === ListStyle.grid ? "grid-view" : ""
+                            }`
+                          )}
+                        >
+                          <CurationTrail
+                            {...{
+                              ...props,
+                              account,
+                              pinEntry,
+                              username,
+                              section
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </>
+                  );
+                }
+
+                if (data !== undefined && section) {
+                  let entryList;
+                  entryList = data?.entries;
+                  entryList = entryList.filter(
+                    (item: Entry) => item.permlink !== (account as FullAccount)?.profile?.pinned
+                  );
                   if (pinnedEntry) {
                     entryList.unshift(pinnedEntry);
                   }

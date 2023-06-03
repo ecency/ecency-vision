@@ -448,6 +448,11 @@ export class NavBar extends Component<Props, State> {
           label: _t("navbar.communities"),
           href: `/communities`,
           selected: location.pathname === "/communities"
+        },
+        {
+          label: _t("navbar.decks"),
+          href: `/decks`,
+          selected: location.pathname === "/decks"
         }
       ],
       postElem: <div className="drop-down-menu-version">Ecency Surfer {version}</div>

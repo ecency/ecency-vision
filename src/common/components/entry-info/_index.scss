@@ -1,0 +1,121 @@
+@import "src/style/vars_mixins";
+
+.entry-info {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 14px;
+  height: 40px;
+  line-height: 100%;
+  margin-bottom: 15px;
+  position: relative;
+
+  @media (min-width: $sm-break) {
+    font-size: 18px;
+  }
+
+  @include themify(day) {
+    color: $steel-grey;
+  }
+
+  @include themify(night) {
+    color: $pinkish-grey;
+  }
+
+  .author-avatar {
+    width: 40px;
+    margin-right: 6px;
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .entry-info-inner {
+    .info-line-1 {
+      margin-bottom: 4px;
+
+      .author {
+        align-items: center;
+        display: inline-flex;
+
+        .author-name {
+          font-weight: 700;
+          margin-right: 2px;
+          word-break: keep-all;
+        }
+
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(night) {
+          color: $pinkish-grey;
+        }
+
+        .author-reputation {
+          color: $steel-grey;
+          font-size: 14px;
+          font-weight: 500;
+
+          &::before {
+            content: "(";
+          }
+
+          &::after {
+            content: ")";
+          }
+        }
+      }
+    }
+
+    .info-line-2 {
+      display: flex;
+      font-size: 90%;
+      flex-direction: column;
+
+      .separator {
+        display: none;
+      }
+
+      @media (min-width: $sm-break) {
+        flex-direction: row;
+        align-items: center;
+
+        .separator {
+          display: block;
+        }
+      }
+
+      .entry-tag {
+        .in-tag {
+          margin-right: 4px;
+        }
+
+        .tag-name {
+          font-weight: 500;
+
+          @include themify(day) {
+            color: $steel-grey;
+          }
+
+          @include themify(night) {
+            color: $pinkish-grey;
+          }
+
+          &:hover {
+            color: $dark-sky-blue;
+          }
+        }
+      }
+
+      .date {
+        @media (max-width: $xs-break - 1px) {
+          font-size: 90%;
+        }
+      }
+    }
+  }
+}

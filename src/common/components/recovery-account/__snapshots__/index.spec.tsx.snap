@@ -25,6 +25,7 @@ exports[`(1) Default render 1`] = `
         value=""
       />
     </div>
+    
     <div
       className="form-group"
     >
@@ -47,7 +48,7 @@ exports[`(1) Default render 1`] = `
     </div>
     
     <button
-      className="btn btn-primary"
+      className="update-btn btn btn-primary"
       disabled={true}
       type="submit"
     >

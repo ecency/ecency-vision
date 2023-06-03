@@ -47,6 +47,12 @@ export default class SuggestionList extends Component<Props> {
     }
   }
 
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    if (prevProps.modeItems !== this.props.modeItems && this.props.modeItems!.length > 0) {
+      this.setState({ showList: true });
+    }
+  }
+
   componentWillUnmount() {
     document.removeEventListener("keydown", this.watchKb);
     document.removeEventListener("click", this.watchClick);
@@ -156,7 +162,7 @@ export default class SuggestionList extends Component<Props> {
           const _items = modeItem.items;
           return (
             _items.length > 0 && (
-              <div className="suggestion-list" key={modeKey}>
+              <div className="search-suggestion-list" key={modeKey}>
                 {modeItem.header && <div className="list-header">{modeItem.header}</div>}
                 <div className="list-body">
                   {_items.map((x: any, i: number) => {
@@ -181,7 +187,7 @@ export default class SuggestionList extends Component<Props> {
             )
           );
         })}
-        <div className="suggestion-list mt-1">
+        <div className="search-suggestion-list more-result">
           <div className="list-body">
             <a href="#" className="list-item" onClick={this.moreResultsClick}>
               {_t("g.more-results")}
@@ -201,7 +207,7 @@ export default class SuggestionList extends Component<Props> {
           <ClickAwayListener onClickAway={() => this.setState({ showList: false })}>
             {showList && modeItems && modeItems?.length > 0 ? modeItemsUI : <></>}
             {showList && !modeItems && items.length > 0 ? (
-              <div className="suggestion-list">
+              <div className="modal-suggestion-list">
                 {header && <div className="list-header">{header}</div>}
                 <div className="list-body">
                   {items.map((x, i) => {

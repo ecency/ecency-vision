@@ -29,7 +29,7 @@ interface ListItemProps {
   addAccount: (data: Account) => void;
 }
 
-class ListItem extends Component<ListItemProps> {
+class NListItem extends Component<ListItemProps> {
   shouldComponentUpdate(): boolean {
     return false;
   }
@@ -179,7 +179,7 @@ export class Activities extends BaseComponent<Props, State> {
         <div className="activity-list">
           <div className="activity-list-body">
             {items.length > 0 &&
-              items.map((item, i) => <ListItem key={i} {...this.props} notification={item} />)}
+              items.map((item, i) => <NListItem key={i} {...this.props} notification={item} />)}
           </div>
         </div>
         {hasMore && (

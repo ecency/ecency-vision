@@ -146,6 +146,7 @@ export const clientStoreTasks = (store: Store<AppState>) => {
       store.dispatch(entriesFetchedAct("__promoted__", r, "", false));
     });
   };
+
   promotedEntries();
   setInterval(promotedEntries, 1000 * 60 * 5);
 

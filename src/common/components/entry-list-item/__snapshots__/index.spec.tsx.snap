@@ -28,6 +28,7 @@ exports[`(1) Default render 1`] = `
             >
               <span
                 className="user-avatar small"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -287,6 +288,7 @@ exports[`(2) Grid view 1`] = `
             >
               <span
                 className="user-avatar small"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -511,32 +513,7 @@ exports[`(2) Grid view 1`] = `
       </div>
       <div
         className="entry-menu"
-      >
-        <div
-          className="custom-dropdown float-right"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="dropdown-btn"
-          >
-            
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
+      />
     </div>
   </div>
 </div>
@@ -570,6 +547,7 @@ exports[`(3) Nsfw 1`] = `
             >
               <span
                 className="user-avatar small"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -799,32 +777,7 @@ exports[`(3) Nsfw 1`] = `
       </div>
       <div
         className="entry-menu"
-      >
-        <div
-          className="custom-dropdown float-right"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="dropdown-btn"
-          >
-            
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
+      />
     </div>
   </div>
 </div>
@@ -858,6 +811,7 @@ exports[`(4) Nsfw with active user 1`] = `
             >
               <span
                 className="user-avatar small"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -979,7 +933,9 @@ exports[`(4) Nsfw with active user 1`] = `
     <div
       className="item-controls"
     >
-      <div>
+      <div
+        onClick={[Function]}
+      >
         <div>
           <div
             className="entry-vote-btn"
@@ -1086,32 +1042,7 @@ exports[`(4) Nsfw with active user 1`] = `
       </div>
       <div
         className="entry-menu"
-      >
-        <div
-          className="custom-dropdown float-right"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="dropdown-btn"
-          >
-            
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
+      />
     </div>
   </div>
 </div>
@@ -1145,6 +1076,7 @@ exports[`(5) Nsfw but allowed 1`] = `
             >
               <span
                 className="user-avatar small"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
@@ -1370,32 +1302,7 @@ exports[`(5) Nsfw but allowed 1`] = `
       </div>
       <div
         className="entry-menu"
-      >
-        <div
-          className="custom-dropdown float-right"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="dropdown-btn"
-          >
-            
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
+      />
     </div>
   </div>
 </div>
@@ -1464,6 +1371,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             >
               <span
                 className="user-avatar small"
+                onClick={[Function]}
                 style={
                   Object {
                     "backgroundImage": "url(https://images.ecency.com/u/regenerette/avatar/small)",
@@ -1689,32 +1597,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       </div>
       <div
         className="entry-menu"
-      >
-        <div
-          className="custom-dropdown float-right align-bottom"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="dropdown-btn"
-          >
-            
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
+      />
     </div>
   </div>
 </div>

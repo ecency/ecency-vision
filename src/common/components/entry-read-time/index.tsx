@@ -1,17 +1,38 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { getActiveVotes } from "../../api/hive";
+
+import { prepareVotes } from "../entry-votes";
+
 import { _t } from "../../i18n";
 import { informationVariantSvg } from "../../img/svg";
+import UserAvatar from "../user-avatar";
+import Mytooltip from "../tooltip";
+
+export interface ActiveVotes {
+  rshares: number;
+  voter: string;
+}
 
 export const ReadTime = (props: any) => {
   const { entry, global, isVisible, toolTip } = props;
 
   const [readTime, setReadTime] = useState(0);
   const [wordCount, setWordCount] = useState(0);
+  const [topCurator, setTopCurator] = useState("");
 
   useEffect(() => {
     calculateExtras();
+    getTopCurator();
   }, [entry]);
+
+  const getTopCurator = async () => {
+    const curator = props.entry.active_votes.reduce((prev: ActiveVotes, curr: ActiveVotes) => {
+      return prev.rshares! > curr.rshares! ? prev : curr;
+    });
+    setTopCurator(curator.voter);
+  };
 
   const calculateExtras = async () => {
     const entryCount = countWords(entry.body);
@@ -65,6 +86,18 @@ export const ReadTime = (props: any) => {
           <p>
             {_t("entry.post-read-time")} {readTime} {_t("entry.post-read-minuites")}
           </p>
+          {topCurator && (
+            <p className="top-curator">
+              {_t("entry.post-top-curator")}
+              <Mytooltip content={topCurator}>
+                <Link to={`/@${topCurator}`}>
+                  <div className="curator">
+                    <UserAvatar username={topCurator} size="small" />
+                  </div>
+                </Link>
+              </Mytooltip>
+            </p>
+          )}
         </div>
       )}
     </>

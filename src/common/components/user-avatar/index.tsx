@@ -12,6 +12,7 @@ interface Props {
   username: string;
   size?: string;
   src?: string;
+  onClick?: () => void;
 }
 
 export class UserAvatar extends Component<Props> {
@@ -24,7 +25,13 @@ export class UserAvatar extends Component<Props> {
       proxifyImageSrc(src, 0, 0, global?.canUseWebp ? "webp" : "match") ||
       `${defaults.imageServer}${global?.canUseWebp ? "/webp" : ""}/u/${username}/avatar/${imgSize}`;
 
-    return <span className={cls} style={{ backgroundImage: `url(${imageSrc})` }} />;
+    return (
+      <span
+        onClick={() => (this.props.onClick ? this.props.onClick() : (() => {})())}
+        className={cls}
+        style={{ backgroundImage: `url(${imageSrc})` }}
+      />
+    );
   }
 }
 

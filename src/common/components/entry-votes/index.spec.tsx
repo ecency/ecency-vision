@@ -32,7 +32,7 @@ it("(1) Default render", () => {
     addAccount: (data: any) => {}
   };
 
-  const component = renderer.create(<EntryVotes {...props} />);
+  const component = withStore(<EntryVotes {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
 
