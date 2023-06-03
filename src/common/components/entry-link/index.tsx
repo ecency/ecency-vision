@@ -53,7 +53,7 @@ export class EntryLink extends Component<Props> {
 
     const { category, author, permlink } = _entry;
 
-    if (history) {
+    if (history && this.props.target !== "_blank") {
       history.push(makePath(category, author, permlink));
     }
   };
@@ -65,11 +65,12 @@ export class EntryLink extends Component<Props> {
 
     const props = Object.assign({}, children.props, { href, onClick: this.clicked });
 
-    if (this.props.target) {
+    if (this.props.target === "_blank") {
+      props.href = "#";
       props.onClick = (e: React.MouseEvent<HTMLElement>) => {
         this.clicked(e);
 
-        window.open(props.href, "_blank");
+        window.open(href, "_blank");
       };
     }
 

@@ -166,7 +166,7 @@ export default class NotificationListItem extends Component<Props, State> {
                         permlink: notification.permlink
                       },
                       afterClick: this.afterClick,
-                      target: "_blank",
+                      ...(this.props.openLinksInNewTab ? { target: "_blank" } : {}),
                       children: <a className="post-link">{notification.permlink}</a>
                     })
                   )}
@@ -194,7 +194,7 @@ export default class NotificationListItem extends Component<Props, State> {
                         permlink: notification.parent_permlink
                       },
                       afterClick: this.afterClick,
-                      target: "_blank",
+                      ...(this.props.openLinksInNewTab ? { target: "_blank" } : {}),
                       children: <a className="post-link">{notification.parent_permlink}</a>
                     })
                   )}
@@ -216,7 +216,7 @@ export default class NotificationListItem extends Component<Props, State> {
                         permlink: notification.permlink
                       },
                       afterClick: this.afterClick,
-                      target: "_blank",
+                      ...(this.props.openLinksInNewTab ? { target: "_blank" } : {}),
                       children: (
                         <div className="markdown-view mini-markdown reply-body">
                           {postBodySummary(notification.body, 100)}
@@ -249,7 +249,7 @@ export default class NotificationListItem extends Component<Props, State> {
                         permlink: notification.permlink
                       },
                       afterClick: this.afterClick,
-                      target: "_blank",
+                      ...(this.props.openLinksInNewTab ? { target: "_blank" } : {}),
                       children: <a className="post-link">{notification.permlink}</a>
                     })
                   )}
@@ -277,7 +277,7 @@ export default class NotificationListItem extends Component<Props, State> {
                         author: notification.author,
                         permlink: notification.permlink
                       },
-                      target: "_blank",
+                      ...(this.props.openLinksInNewTab ? { target: "_blank" } : {}),
                       afterClick: this.afterClick,
                       children: <a className="post-link">{notification.permlink}</a>
                     })
@@ -307,7 +307,7 @@ export default class NotificationListItem extends Component<Props, State> {
                         permlink: notification.permlink
                       },
                       afterClick: this.afterClick,
-                      target: "_blank",
+                      ...(this.props.openLinksInNewTab ? { target: "_blank" } : {}),
                       children: <a className="post-link">{notification.permlink}</a>
                     })
                   )}
@@ -354,7 +354,7 @@ export default class NotificationListItem extends Component<Props, State> {
                         permlink: notification.permlink
                       },
                       afterClick: this.afterClick,
-                      target: "_blank",
+                      ...(this.props.openLinksInNewTab ? { target: "_blank" } : {}),
                       children: <a className="post-link">{notification.permlink}</a>
                     })
                   )}
