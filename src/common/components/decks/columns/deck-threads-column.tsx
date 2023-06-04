@@ -59,6 +59,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
       {}
     )
   );
+  const previousEditingEntry = usePrevious(currentEditingEntry);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
@@ -173,11 +174,13 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
         )
       }
     >
-      {(item: IdentifiableEntry, measure: Function, index: number) =>
-        currentEditingEntry?.post_id === item.post_id ? (
-          <DeckThreadEditItem entry={item} onSuccess={() => setCurrentEditingEntry(null)} />
-        ) : (
+      {(item: IdentifiableEntry, measure: Function, index: number) => (
+        <>
+          {currentEditingEntry?.post_id === item.post_id && (
+            <DeckThreadEditItem entry={item} onSuccess={() => setCurrentEditingEntry(null)} />
+          )}
           <ThreadItem
+            visible={item.post_id !== currentEditingEntry?.post_id}
             history={history}
             initialEntry={item}
             onMounted={() => measure()}
@@ -205,9 +208,12 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
                 }
               } catch (e) {}
             }}
+            triggerPendingStatus={
+              !currentEditingEntry && previousEditingEntry?.post_id === item.post_id
+            }
           />
-        )
-      }
+        </>
+      )}
     </GenericDeckWithDataColumn>
   );
 };

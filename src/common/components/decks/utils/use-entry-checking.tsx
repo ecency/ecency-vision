@@ -6,7 +6,8 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 export function useEntryChecking(
   initialEntry: Entry | undefined,
   intervalStarted: boolean,
-  onSuccessCheck: (entry: Entry) => void
+  onSuccessCheck: (entry: Entry) => void,
+  customCondition?: (e1: Entry, e2: Entry | null) => boolean
 ) {
   const { activeUser } = useMappedStore();
 
@@ -15,12 +16,13 @@ export function useEntryChecking(
   return useInterval(
     async () => {
       // Checking for transaction status
-      if (initialEntry && isLocal(initialEntry)) {
+      if (initialEntry) {
         try {
           const entry = await bridgeApi.getPost(activeUser!.username, initialEntry.permlink);
           const isAlreadyAdded =
             initialEntry.permlink === entry?.permlink && !isLocal(initialEntry);
-          if (entry && !isAlreadyAdded) {
+          const isCustomCondition = customCondition?.(initialEntry, entry) ?? true;
+          if (entry && (!isAlreadyAdded || isCustomCondition)) {
             onSuccessCheck(entry);
           }
         } catch (e) {}

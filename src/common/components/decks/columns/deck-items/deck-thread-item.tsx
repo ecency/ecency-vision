@@ -32,6 +32,8 @@ export interface ThreadItemProps {
   onSeeFullThread?: () => void;
   onAppear?: () => void;
   onEdit?: () => void;
+  visible?: boolean;
+  triggerPendingStatus?: boolean;
 }
 
 export const ThreadItem = ({
@@ -45,7 +47,9 @@ export const ThreadItem = ({
   commentsSlot,
   onSeeFullThread,
   onAppear,
-  onEdit = () => {}
+  onEdit = () => {},
+  visible = true,
+  triggerPendingStatus = false
 }: ThreadItemProps) => {
   const { updateVotes, updateCache } = useContext(EntriesCacheContext);
   const { global, activeUser } = useMappedStore();
@@ -58,15 +62,28 @@ export const ThreadItem = ({
   const [status, setStatus] = useState<"default" | "pending">("default");
   const [intervalStarted, setIntervalStarted] = useState(false);
 
-  useEntryChecking(entry, intervalStarted, (nextEntry) => {
-    updateCache([
-      { ...nextEntry, host: initialEntry.host, container: initialEntry.container } as Entry
-    ]);
-  });
+  useEntryChecking(
+    entry,
+    intervalStarted,
+    (nextEntry) => {
+      updateCache([
+        { ...nextEntry, host: initialEntry.host, container: initialEntry.container } as Entry
+      ]);
+      setIntervalStarted(false);
+    },
+    (initialEntry, updatedEntry) =>
+      typeof initialEntry.post_id === "number" ? initialEntry.body !== updatedEntry?.body : true
+  );
 
   useEffect(() => {
     onMounted();
   }, []);
+
+  useEffect(() => {
+    if (triggerPendingStatus) {
+      setStatus("pending");
+    }
+  }, [triggerPendingStatus]);
 
   useEffect(() => {
     setIntervalStarted(status === "pending");
@@ -98,7 +115,8 @@ export const ThreadItem = ({
         "has-parent": hasParent && !pure,
         pure,
         "sequence-item": sequenceItem,
-        pending: status === "pending"
+        pending: status === "pending",
+        "d-none": !visible
       })}
       onClick={(event) => {
         if (event.target === ref.current) {
