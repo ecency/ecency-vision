@@ -31,7 +31,7 @@ export interface ThreadItemProps {
   commentsSlot?: JSX.Element;
   onSeeFullThread?: () => void;
   onAppear?: () => void;
-  onEdit?: () => void;
+  onEdit?: (entry: IdentifiableEntry) => void;
   visible?: boolean;
   triggerPendingStatus?: boolean;
 }
@@ -157,7 +157,7 @@ export const ThreadItem = ({
             </Button>
           </div>
           {activeUser?.username === entry.author && (
-            <Button className="edit-btn" variant="link" onClick={() => onEdit()}>
+            <Button className="edit-btn" variant="link" onClick={() => onEdit(entry)}>
               {_t("decks.columns.edit-wave")}
             </Button>
           )}

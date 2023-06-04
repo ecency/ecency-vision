@@ -49,7 +49,7 @@ export const DeckThreadsForm = ({
     {}
   );
   const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "_dtf_th", "ecency.waves");
-  const [text, setText] = useState(entry?.body ?? "");
+  const [text, setText] = useState("");
   const [image, setImage] = useState<string | null>(null);
   const [imageName, setImageName] = useState<string | null>(null);
   const [disabled, setDisabled] = useState(true);
@@ -57,6 +57,27 @@ export const DeckThreadsForm = ({
   const [focused, setFocused] = useState(false);
 
   const [lastCreatedThreadItem, setLastCreatedThreadItem] = useState<Entry | undefined>(undefined);
+
+  useEffect(() => {
+    setDisabled(!text || !threadHost);
+  }, [text, threadHost]);
+
+  useEffect(() => {
+    if (entry) {
+      let nextText = entry.body.replace("<br>", "\n").replace("<p>", "").replace("</p>", "");
+      const nextImage = entry.body.match(/\!\[.*\]\(.+\)/g)?.[0];
+      if (nextImage) {
+        setImage(
+          nextImage
+            .replace(/\!\[.*\]/g, "")
+            .replace("(", "")
+            .replace(")", "")
+        );
+        nextText = nextText.replace(nextImage, "");
+      }
+      setText(nextText);
+    }
+  }, [entry]);
 
   const submit = async () => {
     if (!activeUser) {
@@ -113,10 +134,6 @@ export const DeckThreadsForm = ({
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    setDisabled(!text || !threadHost);
-  }, [text, threadHost]);
 
   const getSubmitButton = (size?: "sm") => (
     <Button

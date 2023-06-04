@@ -193,7 +193,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
             }}
             onEntryView={() => setCurrentViewingEntry(item)}
             onResize={() => measure()}
-            onEdit={() => setCurrentEditingEntry(item)}
+            onEdit={(entry) => setCurrentEditingEntry(entry)}
             onSeeFullThread={async () => {
               try {
                 const entry = (await getPost(
