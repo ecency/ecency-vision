@@ -430,7 +430,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     const localDraft = ls.get("local_draft") as PostBase;
-    if (!localDraft) {
+    if (!localDraft || JSON.stringify(localDraft) === "{}") {
       this.stateSet({ isDraftEmpty: true });
       return;
     }
