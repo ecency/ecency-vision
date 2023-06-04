@@ -19,7 +19,7 @@ export function useThreadsApi() {
     const { author: parentAuthor, permlink: parentPermlink } = editingEntry?.container ?? entry;
     const author = activeUser.username;
     const permlink = editingEntry?.permlink ?? createReplyPermlink(entry.author);
-    const tags = editingEntry?.json_metadata.tags || ["ecency"];
+    const tags = raw.match(/\#[a-zA-Z0-9]+/g)?.map((tag) => tag.replace("#", "")) ?? ["ecency"];
 
     const jsonMeta = makeJsonMetaDataReply(tags, version);
 

@@ -33,7 +33,8 @@ export function useCommunityApi() {
     const options = makeCommentOptions(author, permlink, "default");
 
     const { thumbnails, ...meta } = extractMetaData(raw);
-    const jsonMeta = makeJsonMetaData(meta, [hostTag], null, version);
+    const tags = raw.match(/\#[a-zA-Z0-9]+/g)?.map((tag) => tag.replace("#", "")) ?? ["ecency"];
+    const jsonMeta = makeJsonMetaData(meta, [hostTag, ...tags], null, version);
 
     await comment(author, "", hostTag, permlink, "", cleanedRaw, jsonMeta, options, true);
 
