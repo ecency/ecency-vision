@@ -86,6 +86,7 @@ export default class NotificationListItem extends Component<Props, State> {
       ...this.props,
       username: notification.source,
       afterClick: this.afterClick,
+      ...(this.props.openLinksInNewTab ? { target: "_blank" } : {}),
       children: (
         <span className="source-avatar">
           <UserAvatar username={notification?.source} size="medium" />
@@ -97,6 +98,7 @@ export default class NotificationListItem extends Component<Props, State> {
       ...this.props,
       username: notification.source,
       afterClick: this.afterClick,
+      ...(this.props.openLinksInNewTab ? { target: "_blank" } : {}),
       children: <span className="source-name"> {notification.source}</span>
     });
 
