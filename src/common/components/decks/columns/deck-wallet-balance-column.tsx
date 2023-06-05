@@ -1,5 +1,5 @@
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GenericDeckColumn } from "./generic-deck-column";
 import { _t } from "../../../i18n";
 import { History } from "history";
@@ -18,6 +18,7 @@ import { vestsToHp } from "../../../helper/vesting";
 import { getHiveEngineTokenBalances, getMetrics } from "../../../api/hive-engine";
 import { getSpkWallet } from "../../../api/spk-api";
 import { getEstimatedBalance } from "../../wallet-spk/util";
+import { DeckGridContext } from "../deck-manager";
 
 interface Props {
   id: string;
@@ -50,9 +51,10 @@ export const DeckWalletBalanceColumn = ({
   id,
   draggable,
   history,
-  settings: { username }
+  settings: { username, updateIntervalMs }
 }: Props) => {
   const { global, dynamicProps } = useMappedStore();
+  const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
   const [tab, setTab] = useState<Tab>("ecency");
   const [account, setAccount] = useState<FullAccount | null>(null);
@@ -87,6 +89,10 @@ export const DeckWalletBalanceColumn = ({
   }, []);
 
   useEffect(() => {
+    fetch();
+  }, [tab]);
+
+  const fetch = () => {
     if (tab === "ecency") {
       fetchEcencyPoints();
     }
@@ -101,7 +107,7 @@ export const DeckWalletBalanceColumn = ({
     if (tab === "spk") {
       fetchSpk();
     }
-  }, [tab]);
+  };
 
   const fetchAccount = async () => {
     try {
@@ -218,10 +224,12 @@ export const DeckWalletBalanceColumn = ({
       header={{
         title: `@${username}`,
         subtitle: _t("decks.columns.balance"),
-        icon: null
+        icon: null,
+        updateIntervalMs: updateIntervalMs,
+        setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
       }}
       isReloading={false}
-      onReload={() => {}}
+      onReload={() => fetch()}
     >
       <div className="wb-container">
         <div className="wb-tabs">
