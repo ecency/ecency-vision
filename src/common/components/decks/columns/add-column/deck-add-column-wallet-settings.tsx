@@ -64,10 +64,10 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
           onClick={() =>
             add({
               key: deckKey,
-              type: "w",
+              type: contentType === "balance" ? "wb" : "w",
               settings: {
                 username,
-                contentType,
+                ...(contentType !== "balance" ? { contentType } : {}),
                 updateIntervalMs: 60000
               }
             })

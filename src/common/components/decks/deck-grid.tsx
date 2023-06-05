@@ -24,6 +24,7 @@ import { _t } from "../../i18n";
 import { DeckThreadsColumn } from "./columns/deck-threads-column";
 import { DeckMsfColumn } from "./columns/deck-msf-column";
 import { DeckFaqColumn } from "./columns/deck-faq-column";
+import { DeckWalletBalanceColumn } from "./columns/deck-wallet-balance-column";
 
 interface Props {
   history: History;
@@ -165,6 +166,14 @@ export const DeckGrid = ({ history }: Props) => {
                           )}
                           {type === "faq" && (
                             <DeckFaqColumn id={id} draggable={provided.dragHandleProps} />
+                          )}
+                          {type === "wb" && (
+                            <DeckWalletBalanceColumn
+                              id={id}
+                              history={history}
+                              settings={settings as UserDeckGridItem["settings"]}
+                              draggable={provided.dragHandleProps}
+                            />
                           )}
                         </div>
                       </div>

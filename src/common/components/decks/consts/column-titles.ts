@@ -77,6 +77,8 @@ export function getColumnTitle(
       )}`;
     case "th":
       return _t("decks.columns.threads");
+    case "wb":
+      return `${_t("decks.columns.wallet")} – ${_t("decks.columns.balance")}`;
     default:
       return "";
   }

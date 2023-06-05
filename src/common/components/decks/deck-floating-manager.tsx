@@ -62,6 +62,7 @@ export const DeckFloatingManager = () => {
                   {type === "tr" ? _t("decks.columns.trending") : ""}
                   {type === "msf" ? _t("decks.columns.market-swap-form") : ""}
                   {type === "faq" ? _t("decks.columns.faq") : ""}
+                  {type === "wb" ? _t("decks.columns.balance") : ""}
                 </div>
               </div>
             </div>

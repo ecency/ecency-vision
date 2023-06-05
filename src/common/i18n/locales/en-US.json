@@ -483,7 +483,8 @@
       "topics-subtitle": "The most popular",
       "replied-to": "replied to",
       "edit-wave": "Edit",
-      "updated": "Edited {{n}} ago"
+      "updated": "Edited {{n}} ago",
+      "balance": "Balance"
     },
     "threads-form": {
       "save": "Save",

@@ -1,4 +1,5 @@
 import {
+  balanceIconSvg,
   blogIconSvg,
   bookmarksIconSvg,
   commentsIconSvg,
@@ -56,6 +57,7 @@ export const ICONS = {
     replies: repliesIconSvg
   },
   w: {
+    balance: balanceIconSvg,
     all: walletAllIconSvg,
     transfers: transfersIconSvg,
     "market-orders": marketOrdersIconSvg,
@@ -68,5 +70,6 @@ export const ICONS = {
   s: searchIconSvg,
   th: threadSvg,
   msf: swapFormSvg,
-  faq: faqIconSvg
+  faq: faqIconSvg,
+  wb: balanceIconSvg
 };

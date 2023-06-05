@@ -31,6 +31,7 @@ export const USER_CONTENT_TYPES = [
 ];
 
 export const WALLET_CONTENT_TYPES = [
+  { title: _t("decks.columns.balance"), type: "balance" },
   { title: _t("decks.columns.all-history"), type: "all" },
   { title: _t("decks.columns.transfers"), type: "transfers" },
   {
