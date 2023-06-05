@@ -109,6 +109,10 @@ export const DeckThreadsForm = ({
 
       let threadItem: IdentifiableEntry;
 
+      if (content === entry?.body) {
+        return;
+      }
+
       if (replySource) {
         threadItem = (await createReply(replySource, content, entry)) as IdentifiableEntry;
       } else {
