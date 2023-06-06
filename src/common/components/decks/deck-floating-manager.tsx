@@ -1,26 +1,56 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./_deck-floating-manager.scss";
 import { DeckGridContext } from "./deck-manager";
 import { upArrowSvg } from "../../img/svg";
 import { getColumnTitle, ICONS } from "./consts";
 import { _t } from "../../i18n";
+import { classNameObject } from "../../helper/class-name-object";
 
 export const DeckFloatingManager = () => {
+  const columnsRef = useRef<HTMLDivElement | null>(null);
+
   const { layout, add, scrollTo, getNextKey } = useContext(DeckGridContext);
   const [show, setShow] = useState(false);
+  const [mobileOffset, setMobileOffset] = useState(0);
 
   return layout.columns.length > 0 ? (
-    <div className={"deck-floating-manager " + (show ? "show" : "")}>
+    <div
+      className={classNameObject({
+        "deck-floating-manager": true,
+        show,
+        dragging: mobileOffset > 0
+      })}
+    >
       <div
+        draggable="true"
         className="btn btn-primary dropdown-toggle"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
-        onTouchEnd={() => setShow(true)}
+        onTouchEnd={() => {
+          setShow(mobileOffset <= 75);
+          setMobileOffset(0);
+        }}
+        onTouchMove={(e) => {
+          const touchY = e.touches.item(0).clientY;
+          const windowHeight = window.innerHeight;
+          const resultInPercentage = (touchY / windowHeight) * 100;
+
+          e.stopPropagation();
+
+          setMobileOffset(resultInPercentage);
+        }}
       >
         {upArrowSvg}
       </div>
       <div
-        className="columns"
+        ref={columnsRef}
+        className={classNameObject({
+          columns: true,
+          "columns-dragging": mobileOffset > 0
+        })}
+        style={{
+          ...(mobileOffset > 0 && { transform: `translateY(${mobileOffset}%)` })
+        }}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
         onTouchEnd={() => setShow(false)}
