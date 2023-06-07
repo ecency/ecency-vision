@@ -595,3 +595,11 @@
     }
   }
 }
+
+.decks.toolbar-collapsed .deck {
+  @include media-breakpoint-down(sm) {
+    &, &.expanded {
+      width: 100vw;
+    }
+  }
+}

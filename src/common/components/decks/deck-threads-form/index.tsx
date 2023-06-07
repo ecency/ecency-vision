@@ -164,7 +164,7 @@ export const DeckThreadsForm = ({
         inline,
         deck: !inline,
         focus: focused,
-        className: !!className,
+        ...(className && { [className]: !!className }),
         hideAvatar
       })}
       onClick={() => setFocused(true)}

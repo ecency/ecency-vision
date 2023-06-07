@@ -198,3 +198,15 @@
     }
   }
 }
+
+.decks.toolbar-collapsed {
+  .deck-floating-manager {
+    & {
+      left: calc(50% - 2.5rem);
+    }
+
+    &:hover, &.show, &.dragging {
+      left: 0;
+    }
+  }
+}

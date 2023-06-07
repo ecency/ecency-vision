@@ -22,6 +22,13 @@ html, body {
     background-color: $gray-900;
   }
 
+  &.toolbar-collapsed {
+    @include media-breakpoint-down(sm) {
+      transform: translateX(-72px);
+      width: calc(100% + 72px) !important;
+    }
+  }
+
   &.expanded {
     grid-template-columns: 280px 0 1fr;
   }
