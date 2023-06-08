@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "Programar",
-    "btn-label": "Programar"
+    "btn-label": "Programar",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "Tienes una nueva notificación",
