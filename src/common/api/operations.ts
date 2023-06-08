@@ -948,7 +948,7 @@ export const delegateRC = (
     "delegate_rc",
     {
       from: delegator,
-      delegatees: [delegatees],
+      delegatees: delegatees.includes(",") ? delegatees.split(",") : [delegatees],
       max_rc: max_rc
     }
   ];
