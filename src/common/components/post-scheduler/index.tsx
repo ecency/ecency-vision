@@ -26,6 +26,7 @@ export const DialogBody = (props: DialogBodyProps) => {
   const [date, setDate] = useState<Moment>(
     props.date || moment(moment().add(2, "hour").toISOString(true))
   );
+  const [error, setError] = useState(false);
   const todayTs = moment().hour(0).minute(0).second(0).milliseconds(0).format("x");
 
   const rend = () => {
@@ -41,13 +42,27 @@ export const DialogBody = (props: DialogBodyProps) => {
               return d.format("x") >= todayTs;
             }}
             onChange={(date) => {
-              setDate(date as Moment);
+              if ((date as Moment).format("x") <= moment().format("x")) {
+                setError(true);
+              } else {
+                setError(false);
+                setDate(date as Moment);
+              }
             }}
           />
         </div>
+        {error && (
+          <div className="error">
+            <small className="error-info">{_t("post-scheduler.error-message")}</small>
+          </div>
+        )}
         <div className="text-center">
           <Button
+            disabled={error}
             onClick={() => {
+              if (error) {
+                return;
+              }
               const { onChange, onHide } = props;
               onChange(date);
               onHide();
