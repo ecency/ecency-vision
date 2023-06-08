@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "Розклад",
-    "btn-label": "Розклад"
+    "btn-label": "Розклад",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "У вас є нове сповіщення",
