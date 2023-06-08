@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "Ajasta",
-    "btn-label": "Ajasta"
+    "btn-label": "Ajasta",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "Sinulle on uusi ilmoitus",
