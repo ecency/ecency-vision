@@ -1,154 +1,110 @@
+import { Memo } from "@hiveio/dhive";
+import * as tus from "tus-js-client";
+import axios from "axios";
 import { getPostingKey } from "../helper/user-token";
 
-const hive = require("@hiveio/dhive");
-const tus = require("tus-js-client");
-const Cookies = require("js-cookie");
-const axios = require("axios").default;
-const { CookieJar } = require("tough-cookie");
-const { wrapper } = require("axios-cookiejar-support");
-
-const jar = new CookieJar();
-const client = wrapper(axios.create({ jar }));
 
 const studioEndPoint = "https://studio.3speak.tv";
 const tusEndPoint = "https://uploads.3speak.tv/files/";
+const client = axios.create({});
 
-// Generate Memo from Username
-const getMemo = async (username: string, studioEndPoint: string) => {
+
+export const threespeakAuth = async (username: string) => {
   try {
-    let response = await client.get(`${studioEndPoint}/mobile/login?username=${username}`, {
-      withCredentials: false, 
-      headers: {
-        "Content-Type": "application/json"
+    const postingAuthKey = getPostingKey(username);
+    
+    let response = await client.get(
+      `${studioEndPoint}/mobile/login?username=${username}`,
+      {
+        withCredentials: false,
+        headers: {
+          "Content-Type": "application/json"
+        }
       }
-    });
-   return response.data.memo;
+      );
+      const memo_string = response.data.memo;
+      let access_token = Memo?.decode(postingAuthKey!, memo_string);
+      
+      access_token = access_token.replace("#", "");
+      console.log(access_token)
+    const user = await getTokenValidated(access_token, username);
+
+    console.log(`User is ${JSON.stringify(user)}`);
+      return access_token
   } catch (err) {
-    console.log(err, "error");
+    console.log(err);
     throw err;
   }
-}
+};
 
-// Get Cookie frow Memo (JWT)
-async function getCookies(username: string, studioEndPoint: string, jwt: string ) {
+export const  getTokenValidated = async (jwt: string, username: string) => {
   try {
     let response = await client.get(
       `${studioEndPoint}/mobile/login?username=${username}&access_token=${jwt}`,
       {
         withCredentials: false,
-        // credentials: "include",
         headers: {
           "Content-Type": "application/json"
         }
       }
     );
-    console.log(response.data);
-    return response.data;
+    return response.data; //cookies
   } catch (err) {
     console.log(err);
     throw err;
   }
-}
+};
 
-const startUpload = (fileName: string, tusEndPoint: string | undefined, file: any) => {
-  return new Promise(function (resolve, reject) {
-    var upload = new tus.Upload(file, {
-      endpoint: tusEndPoint,
-      metadata: {
-        filename: fileName
-      },
-      onError: function (error: string) {
-        console.log("Failed because: " + error);
-        return reject(error);
-      },
-      onProgress: function (bytesUploaded: number, bytesTotal: number) {
-        console.log(bytesUploaded)
-        var percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
-        console.log(bytesUploaded, bytesTotal, percentage + "%");
-      },
-      onSuccess: function () {
-        return resolve(upload.url);
-      }
-    });
-    upload.start();
-  });
-}
+export const uploadVideoInfo = async (username: string, videoUrl: string, thumbUrl: string, oFileName: string, fileSize: number) => {
+  const data = await updateVideoInfo(
+    oFileName,
+    fileSize,
+    videoUrl,
+    thumbUrl,
+    username
+  );
+  console.log(`Video upload response: ${JSON.stringify(data)}`);
+  return data
+};
 
-const updateVideoInfo = async (
-  // studioEndPoint: string,
-  oFilename: string,
-  videoUrl: any,
-  thumbnailUrl: any,
-  username: string, 
-  cookies: string,
-  // size: number
-) => {
+export const updateVideoInfo = async (oFilename: string, fileSize: number, videoUrl: string, thumbnailUrl: string, username: string) => {
+
+  const token = await threespeakAuth(username)
   try {
-    const { data } = await client.post(
-      `${studioEndPoint}/mobile/api/upload_info`,
+    // const { activeUser } = this.props;
+    const { data } = await axios.post(
+      `${studioEndPoint}/mobile/api/upload_info?app=ecency`,
       {
         filename: videoUrl,
         oFilename: oFilename,
-        size: 9609313, // NOTE: please change this constant value. This is POC app. It has to be in bytes.
-        duration: 56, // NOTE: please change this constant value. This is POC app. it has to be in seconds.
+        size: fileSize, 
+        duration: 40, 
         thumbnail: thumbnailUrl,
-        owner: username,
-        isReel: true // if video is a reel/short (Three Shorts) send this as true
+        isReel: false ,
+        owner: username
       },
       {
         withCredentials: false,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${cookies}`
+          Authorization: `Bearer ${token}`
         }
       }
     );
-    console.log({data})
     return data;
   } catch (e) {
     console.error(e);
     throw e;
   }
-}
+};
 
-const updateVideoMetadata = async(
-  studioEndPoint: string,
-  videoID: any,
-  title: string,
-  description: string,
-  isNsfwContent: boolean,
-  tags: string,
-  cookies: string
-) => {
-  try {
-    const info = {
-      videoId: videoID,
-      title: title,
-      description: description,
-      isNsfwContent: isNsfwContent,
-      tags: tags
-    };
-    const { data } = await client.post(`${studioEndPoint}/mobile/api/update_info`, info, {
-      withCredentials: false,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${cookies}`
-      }
-    });
-    return data;
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-const getAllVideoStatuses = async (studioEndPoint: string, cookies: string) => {
+export const getAllVideoStatuses = async (accessToken: string) => {
   try {
     let response = await client.get(`${studioEndPoint}/mobile/api/my-videos`, {
       withCredentials: false,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${cookies}`
+        Authorization: `Bearer ${accessToken}`
       }
     });
     return response.data;
@@ -156,77 +112,29 @@ const getAllVideoStatuses = async (studioEndPoint: string, cookies: string) => {
     console.log(err);
     throw err;
   }
+};
+
+export const updateInfo = async (accessToken: string, postBody: string, videoId: string, title: string, tags: string[], isNsfwC: boolean) => {
+  
+      const data = {
+        videoId: videoId,
+        title: title,
+        description: postBody,
+        isNsfwContent: isNsfwC,
+        tags_v2: tags,
+      }
+
+      const headers = { 
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`
+      }
+
+        axios.post(`${studioEndPoint}/mobile/api/update_info`, data, { headers })
+          .then(response => {
+            console.log("successfully updated")
+            console.log(response.data); // Do something with the response data
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
 }
-
-
-// Main Function that calls every other one in the file
-export const uploadToThreeSpeak = async (username: string | any, file: any, thumbnail: any) => {
- 
-  const postingKey = getPostingKey(username)
-
-  try {
-    // Step 1. Get JWT Encrypted Memo
-    const memo = await getMemo(username, studioEndPoint);
-
-    // Decoded Memo using dhive Memo.decode class
-    let decrypted = await hive.Memo.decode(
-      postingKey,
-      memo
-    );
-    decrypted = decrypted.replace("#", "");
-    console.log(`Decrypted Memo is ${decrypted}\n\n`);
-
-
-    // Step 2. Get Cookie using decrypted JWT
-    const cookies = await getCookies(username, studioEndPoint, decrypted);
-
-    // we are logging the cookies here just to make sure that we got those.
-    console.log(`Cookies are ${cookies}\n\n`);
-
-    // // Step 3. Upload video
-    const videoUpload: any = await startUpload("test-demo-video.mp4", tusEndPoint, file);
-    const videoUploadFileUrl = videoUpload.replace(`${tusEndPoint}`, "");
-    console.log(`Video File Url ${videoUploadFileUrl}\n\n`);
-
-    // // Step 4. Upload Thumb
-    const thumbUpload: any = await startUpload("test-demo-video.png", tusEndPoint, thumbnail);
-    const thumbUploadFileUrl: string = thumbUpload.replace(`${tusEndPoint}`, "");
-    console.log(`Thumb File ID ${thumbUploadFileUrl}\n\n`);
-
-    // Step 5. Update Video upload information
-    const data = await updateVideoInfo(
-      // studioEndPoint,
-      file.name,
-      videoUploadFileUrl,
-      thumbUploadFileUrl,
-      username,
-      decrypted,
-      // file.size
-    );
-    console.log(`Video upload response: ${JSON.stringify(data)}`);
-
-
-    // Step 6. Get all Videos data
-    const myAllVideosWithStatusInfo = await getAllVideoStatuses(studioEndPoint, cookies);
-    console.log(`All Videos Info response: ${JSON.stringify(myAllVideosWithStatusInfo)}`);
-
-    const videoID = myAllVideosWithStatusInfo[0]._id;
-    console.log(videoID);
-
-    // Step 7. Update MetaData of a specific video
-    const updatedVideoMetadata = await updateVideoMetadata(
-      studioEndPoint,
-      videoID,
-      "ActiFit & Ecency integrating #3Speak videos", // video title
-      "Lots of love for #Hive ♦️ and  #3Speak ▶️", // video description - post content
-      false, // is NSFW
-      "threespeak,mobile,ios,test", // comma separated tags - no spaces
-      cookies
-    );
-    console.log(`Video Info response: ${JSON.stringify(updatedVideoMetadata)}`);
-  } catch (err: any) {
-    console.error(err)
-  }
-}
-
-export default uploadToThreeSpeak;

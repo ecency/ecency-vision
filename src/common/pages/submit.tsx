@@ -1075,7 +1075,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 })}
               </div>
             )}
-            {EditorToolbar({ ...this.props })}
+            {EditorToolbar({ ...this.props, body: body, tags: tags, title: title })}
             <div className="title-input">
               <Form.Control
                 className="accepts-emoji"

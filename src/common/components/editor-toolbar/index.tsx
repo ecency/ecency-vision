@@ -37,15 +37,8 @@ import {
   emoticonHappyOutlineSvg,
   textShortSvg,
   gifIcon,
-  videoSvg
 } from "../../img/svg";
 import { VideoUpload } from "../video-upload-threespeak";
-import uploadToThreeSpeak from "../../api/threespeak";
-// import axios from "axios";
-import * as tus from "tus-js-client";
-import { Memo } from "@hiveio/dhive";
-import { Button, Form, Modal, ModalBody } from "react-bootstrap";
-import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
 interface Props {
   global: Global;
@@ -54,6 +47,9 @@ interface Props {
   sm?: boolean;
   showEmoji?: boolean;
   showGif?: boolean;
+  body: string;
+  title: string;
+  tags: string[]
 }
 
 interface State {
@@ -63,14 +59,6 @@ interface State {
   link: boolean;
   mobileImage: boolean;
   shGif: boolean;
-  // 3speak states
-  postingKey: string;
-  accessToken: string;
-  videoUrl: string;
-  thumbUrl: string;
-  percent: string;
-  showUploadModal: boolean;
-  hideUploadModal: boolean;
 }
 
 export const detectEvent = (eventType: string) => {
@@ -91,22 +79,12 @@ export class EditorToolbar extends Component<Props> {
     link: false,
     mobileImage: false,
     shGif: false,
-    // 3speak states
-    postingKey: "",
-    accessToken: "",
-    videoUrl: "",
-    thumbUrl: "",
-    percent: "",
-    showUploadModal: false,
-    hideUploadModal: false
   };
 
   holder = React.createRef<HTMLDivElement>();
   fileInput = React.createRef<HTMLInputElement>();
   videoInput = React.createRef<HTMLInputElement>();
-  studioEndPoint = "https://studio.3speak.tv";
-  tusEndPoint = "https://uploads.3speak.tv/files/";
-  client = axios.create({});
+  
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
     return (
@@ -412,171 +390,6 @@ export class EditorToolbar extends Component<Props> {
     return ["jpg", "jpeg", "gif", "png"].some((el) => filenameLow.endsWith(el));
   };
 
-  logMe = async () => {
-    try {
-      const { activeUser } = this.props;
-      let response = await this.client.get(
-        `${this.studioEndPoint}/mobile/login?username=${activeUser?.username}`,
-        {
-          withCredentials: false,
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-      );
-      console.log(`Response: ${JSON.stringify(response)}`);
-      const memo_string = response.data.memo;
-      console.log(`Memo - ${response.data.memo}`);
-      let access_token = Memo?.decode(this.state.postingKey, memo_string);
-      console.log({ access_token });
-      access_token = access_token.replace("#", "");
-      console.log(`Decrypted ${access_token}\n\n`);
-      const user = await this.getTokenValidated(access_token);
-
-      this.setState({ accessToken: access_token });
-      console.log(`User is ${JSON.stringify(user)}`);
-      const allVideos = await this.getAllVideoStatuses(access_token);
-      console.log(`videos are is ${JSON.stringify(allVideos)})}`);
-
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  };
-
-  handlePostingKey = (e: any) => {
-    this.setState({ postingKey: e.target.value });
-  };
-
-  uploadInfo = async () => {
-    const data = await this.updateVideoInfo(
-      "test-demo-video.mp4",
-      this.state.videoUrl,
-      this.state.thumbUrl
-    );
-    console.log(`Video upload response: ${JSON.stringify(data)}`);
-  };
-
-  getAllVideoStatuses = async (access_token: string) => {
-    try {
-      let response = await this.client.get(`${this.studioEndPoint}/mobile/api/my-videos`, {
-        withCredentials: false,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`
-        }
-      });
-      return response.data;
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  };
-
-  // function to get cookies
-  getTokenValidated = async (jwt: string) => {
-    try {
-      const { activeUser } = this.props;
-      let response = await this.client.get(
-        `${this.studioEndPoint}/mobile/login?username=${activeUser?.username}&access_token=${jwt}`,
-        {
-          withCredentials: false,
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-      );
-      console.log('Cookies', response.headers);
-      // setAccessToken(jwt);
-      this.setState({ accessToken: jwt });
-      return response.data; //cookies
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  };
-
-  updateVideoInfo = async (oFilename: string, videoUrl: string, thumbnailUrl: string) => {
-    try {
-      const { activeUser } = this.props;
-      const { data } = await axios.post(
-        `${this.studioEndPoint}/mobile/api/upload_info`,
-        {
-          filename: videoUrl,
-          oFilename: oFilename,
-          size: 9609313, 
-          duration: 40, 
-          thumbnail: thumbnailUrl,
-          isReel: false 
-        },
-        {
-          withCredentials: false,
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${this.state.accessToken}`
-          }
-        }
-      );
-      return data;
-    } catch (e) {
-      console.error(e);
-      throw e;
-    }
-  };
-
-  onChange: any = (event: { target: { files: any[] } }, type: string) => {
-    // Set global this to self
-    var self = this;
-    var file = event.target.files[0];
-
-    var upload: any = new tus.Upload(file, {
-      // Endpoint is the upload creation URL from your tus server
-      endpoint: this.tusEndPoint,
-      // Retry delays will enable tus-js-client to automatically retry on errors
-      retryDelays: [0, 3000, 5000, 10000, 20000],
-      // Attach additional meta data about the file for the server
-      metadata: {
-        filename: file.name,
-        filetype: file.type
-      },
-      // Callback for errors which cannot be fixed using retries
-      // onError: function (error: string) {
-      //   return console.log("Failed because: " + error);
-      // },
-      // Callback for reporting upload progress
-      onProgress: function (bytesUploaded: number, bytesTotal: number) {
-        var percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
-        console.log(bytesUploaded, bytesTotal, percentage + "%");
-      },
-      // Callback for once the upload is completed
-      onSuccess: function () {
-        console.log("File %s", upload.file?.name);
-        console.log("URL %s", upload?.url.replace("https://uploads.3speak.tv/files/", ""));
-        let file = upload?.url.replace(this.endpoint, "");
-        if (type === "video") {
-          self.setState({
-            videoUrl: file
-          });
-        } else {
-          self.setState({
-            thumbUrl: file
-          });
-        }
-      }
-    });
-    upload.start();
-  };
-
-  handleVideoUrlChange = (event: { target: { value: any } }) => {
-    console.log(event.target.value);
-    this.setState({ videoUrl: event.target.value });
-  };
-
-  handleThumbUrlChange = (event: { target: { value: any } }) => {
-    console.log(event.target.value);
-    this.setState({ thumbUrl: event.target.value });
-  };
-
   render() {
     const { gallery, fragments, image, link, mobileImage } = this.state;
     const { global, sm, activeUser, showEmoji = true, showGif } = this.props;
@@ -670,7 +483,9 @@ export class EditorToolbar extends Component<Props> {
                         onClick={(e: React.MouseEvent<HTMLElement>) => {
                           e.stopPropagation();
                           const el = this.fileInput.current;
-                          if (el) el.click();
+                          if (el) {
+                            console.log(el)
+                            el.click()};
                         }}
                       >
                         {_t("editor-toolbar.upload")}
@@ -752,15 +567,10 @@ export class EditorToolbar extends Component<Props> {
           <Tooltip content="Upload Video">
             <div className="editor-tool" role="none">
               <VideoUpload 
-              postingKey={this.state.postingKey}
-              onChange={this.onChange}
-              handlePostingKey={this.handlePostingKey}
-              videoUrl={this.state.videoUrl}
-              handleVideoUrlChange={this.handleVideoUrlChange}
-              thumbUrl={this.state.thumbUrl}
-              handleThumbUrlChange={this.handleThumbUrlChange}
-              logMe={this.logMe}
-              uploadInfo={this.uploadInfo}
+              title={this.props.title}
+              description={this.props.body}
+              activeUser={activeUser}
+              tags={this.props.tags}
               />
             </div>
           </Tooltip>
@@ -844,7 +654,10 @@ export default (props: Props) => {
     activeUser: props.activeUser,
     sm: props.sm,
     showEmoji: props.showEmoji,
-    showGif: props.showGif
+    showGif: props.showGif,
+    body: props.body,
+    title: props.title,
+    tags: props.tags
   };
   return <EditorToolbar {...p} />;
 };

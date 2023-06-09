@@ -29,4 +29,41 @@
   label{
     cursor: pointer;
   }
+
+  .dialog-content{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .file-input{
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .progresss{
+      align-self: center;
+      display: flex;
+      position: relative;
+      width: 80%;
+      height: 20px;
+      // gap: 10px;
+      border-radius: 5px;
+      text-align: center;
+      background-color: gray;
+
+      .progress-bar{
+        height: 20px;
+        color: aqua;
+        border-radius: 5px;
+        // width: 100%;
+      }
+      span{
+        position: absolute;
+        align-self: center;
+        left: 40%;
+        // right: 60%;
+      }
+    }
+  }
   
