@@ -701,7 +701,11 @@ class EntryPage extends BaseComponent<Props, State> {
 
     const metaProps = {
       title: `${ncount}${truncate(entry.title, 67)}`,
-      description: `${truncate(postBodySummary(entry.body, 210), 140)} by @${entry.author}`,
+      description: `${
+        entry.json_metadata?.description
+          ? entry.json_metadata?.description
+          : truncate(postBodySummary(entry.body, 210), 140)
+      } by @${entry.author}`,
       url: entry.url,
       canonical: url,
       image: catchPostImage(entry, 600, 500, global.canUseWebp ? "webp" : "match"),
