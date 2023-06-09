@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "Χρονοδιάγραμμα",
-    "btn-label": "Χρονοδιάγραμμα"
+    "btn-label": "Χρονοδιάγραμμα",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "Έχετε μία νέα ειδοποίηση",

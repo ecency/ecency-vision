@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "Jadwal",
-    "btn-label": "Jadwal"
+    "btn-label": "Jadwal",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "Anda memiliki pemberitahuan baru",

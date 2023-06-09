@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "अनुसूची",
-    "btn-label": "अनुसूची"
+    "btn-label": "अनुसूची",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "आपके पास एक नई सूचना है",

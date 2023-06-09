@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "时间表",
-    "btn-label": "时间表"
+    "btn-label": "时间表",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "您有一条新的通知",
