@@ -1360,7 +1360,7 @@
   "post-scheduler": {
     "title": "Programar",
     "btn-label": "Programar",
-    "error-message": "Please select a valid future date and time."
+    "error-message": "Por favor, selecciona una fecha y hora futura válida."
   },
   "notification": {
     "popup-title": "Tienes una nueva notificación",
