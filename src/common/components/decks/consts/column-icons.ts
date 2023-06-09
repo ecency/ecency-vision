@@ -26,7 +26,8 @@ import {
   transfersIconSvg,
   trendingIconSvg,
   voteIconSvg,
-  walletAllIconSvg
+  walletAllIconSvg,
+  whatsNewIconSvg
 } from "../icons";
 
 export const ICONS = {
@@ -71,5 +72,6 @@ export const ICONS = {
   th: threadSvg,
   msf: swapFormSvg,
   faq: faqIconSvg,
-  wb: balanceIconSvg
+  wb: balanceIconSvg,
+  wn: whatsNewIconSvg
 };

@@ -19,7 +19,8 @@ import {
   topicsIconSvg,
   trendingIconSvg,
   userIconSvg,
-  walletIconSvg
+  walletIconSvg,
+  whatsNewIconSvg
 } from "../../icons";
 
 interface Props {
@@ -101,9 +102,15 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       title: _t("decks.columns.faq"),
       icon: faqIconSvg,
       description: _t("decks.columns.faq-description")
+    },
+    {
+      type: "wn",
+      title: _t("decks.columns.whats-new"),
+      icon: whatsNewIconSvg,
+      description: _t("decks.columns.whats-new-description")
     }
   ];
-  const typesWithoutSettings = ["tr", "to", "msf", "faq"];
+  const typesWithoutSettings = ["tr", "to", "msf", "faq", "wn"];
 
   const [step, setStep] = useState<"select" | "setup">("select");
   const [selectedType, setSelectedType] = useState<DeckGridItem["type"] | null>(null);

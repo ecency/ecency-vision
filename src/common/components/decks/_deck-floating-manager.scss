@@ -199,14 +199,16 @@
   }
 }
 
-.decks.toolbar-collapsed {
-  .deck-floating-manager {
-    & {
-      left: calc(50% - 2.5rem);
-    }
+.decks {
+  .toolbar-collapsed {
+    .deck-floating-manager {
+      & {
+        left: calc(50% - 2.5rem);
+      }
 
-    &:hover, &.show, &.dragging {
-      left: 0;
+      &:hover, &.show, &.dragging {
+        left: 0;
+      }
     }
   }
 }

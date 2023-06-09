@@ -25,6 +25,7 @@ import { DeckThreadsColumn } from "./columns/deck-threads-column";
 import { DeckMsfColumn } from "./columns/deck-msf-column";
 import { DeckFaqColumn } from "./columns/deck-faq-column";
 import { DeckWalletBalanceColumn } from "./columns/deck-wallet-balance-column";
+import { DeckWhatsNewColumn } from "./columns/deck-whats-new-column";
 
 interface Props {
   history: History;
@@ -173,6 +174,13 @@ export const DeckGrid = ({ history }: Props) => {
                               history={history}
                               settings={settings as UserDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
+                            />
+                          )}
+                          {type === "wn" && (
+                            <DeckWhatsNewColumn
+                              id={id}
+                              draggable={provided.dragHandleProps}
+                              settings={settings as ReloadableDeckGridItem["settings"]}
                             />
                           )}
                         </div>

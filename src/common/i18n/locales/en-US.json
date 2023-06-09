@@ -484,7 +484,12 @@
       "replied-to": "replied to",
       "edit-wave": "Edit",
       "updated": "Edited {{n}} ago",
-      "balance": "Balance"
+      "balance": "Balance",
+      "whats-new": "What's new",
+      "whats-new-description": "Keep in track the Ecency updates",
+      "updates": "Updates",
+      "release-list": "Release versions",
+      "current": "Current"
     },
     "threads-form": {
       "save": "Save",
