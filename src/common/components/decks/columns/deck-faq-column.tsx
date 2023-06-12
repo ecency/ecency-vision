@@ -36,7 +36,7 @@ export const DeckFaqColumn = ({ id, draggable }: Props) => {
       isReloading={false}
       onReload={() => {}}
     >
-      <div className="msf-container">
+      <div className="deck-faq-container">
         <div
           className={expandedHelp ? "section d-flex flex-column border-bottom" : ""}
           onClick={() => setExpandedHelp(!expandedHelp)}

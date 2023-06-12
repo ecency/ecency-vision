@@ -130,8 +130,13 @@
     }
   }
 
-  .ReactVirtualized__List, .msf-container, .wb-container, .wn-container {
+  .ReactVirtualized__List, .msf-container, .wb-container, .wn-container, .deck-faq-container {
     padding-top: 67px;
+  }
+
+  .msf-container {
+    height: 100vh;
+    overflow-y: auto;
   }
 
   .native-scroll-content {
@@ -538,7 +543,9 @@
     }
   }
 
-  .msf-container {
+  .deck-faq-container {
+    overflow-y: auto;
+
     .faq-content {
       overflow-y: auto;
       height: calc(100vh - 117px);
