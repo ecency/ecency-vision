@@ -12,6 +12,8 @@ import { History } from "history";
 import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
 import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../i18n";
+import { newDataComingPaginatedCondition } from "../utils";
+import { InfiniteScrollLoader } from "./helpers";
 
 interface Props {
   id: string;
@@ -24,9 +26,11 @@ type IdentifiableEntry = Entry & Required<Pick<Entry, "id">>;
 
 export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props) => {
   const [data, setData] = useState<IdentifiableEntry[]>([]);
+  const prevData = usePrevious(data);
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
   const [isFirstLoaded, setIsFirstLoaded] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
@@ -42,7 +46,7 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
     }
   }, [settings.contentType]);
 
-  const fetchData = async () => {
+  const fetchData = async (since?: Entry) => {
     if (data.length) {
       setIsReloading(true);
     }
@@ -52,12 +56,26 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
     }
 
     try {
-      const response = await getPostsRanked(settings.contentType, "", "", 20, settings.tag);
-      setData(
-        ((response as IdentifiableEntry[] | null) ?? []).filter((e) =>
-          settings.contentType === "created" ? !e.stats?.is_pinned : true
-        )
+      const response = await getPostsRanked(
+        settings.contentType,
+        since?.author,
+        since?.permlink,
+        20,
+        settings.tag
       );
+      const items = ((response as IdentifiableEntry[] | null) ?? [])
+        .filter((e) => !e.stats?.is_pinned)
+        .map((i) => ({ ...i, id: i.post_id }));
+
+      if (items.length === 0) {
+        setHasNextPage(false);
+      }
+
+      if (since) {
+        setData([...data, ...items]);
+      } else {
+        setData(items);
+      }
     } catch (e) {
     } finally {
       setIsReloading(false);
@@ -84,11 +102,14 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
         )
       }}
       data={data}
+      isVirtualScroll={false}
       isReloading={isReloading}
       isExpanded={!!currentViewingEntry}
       isFirstLoaded={isFirstLoaded}
       onReload={() => fetchData()}
       skeletonItem={<ListItemSkeleton />}
+      newDataComingCondition={(nextData) => newDataComingPaginatedCondition(nextData, prevData)}
+      afterDataSlot={<InfiniteScrollLoader data={data} isEndReached={!hasNextPage} />}
       contentViewer={
         currentViewingEntry ? (
           <DeckPostViewer
@@ -110,7 +131,13 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
           {...item}
           children=""
           onMounted={() => measure()}
-          onEntryView={() => setCurrentViewingEntry(item)}
+          onAppear={() => {
+            const isLast = data[data.length - 1]?.id === item.id;
+            if (isLast && hasNextPage) {
+              fetchData(item);
+            }
+          }}
+          EntryView={() => setCurrentViewingEntry(item)}
         />
       )}
     </GenericDeckWithDataColumn>
