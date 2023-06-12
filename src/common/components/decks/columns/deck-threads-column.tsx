@@ -19,6 +19,7 @@ import moment from "moment/moment";
 import usePrevious from "react-use/lib/usePrevious";
 import { getPost } from "../../../api/bridge";
 import { newDataComingPaginatedCondition } from "../utils";
+import { InfiniteScrollLoader } from "./helpers";
 
 interface Props {
   id: string;
@@ -160,10 +161,12 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
         ) : undefined
       }
       afterDataSlot={
-        data.length > 0 && settings.host !== "all" ? (
-          <div className="p-4 text-center text-secondary">
-            {isEndReached ? _t("decks.columns.end-reached") : _t("decks.columns.infinite-loading")}
-          </div>
+        settings.host !== "all" ? (
+          <InfiniteScrollLoader
+            isEndReached={isEndReached}
+            data={data}
+            endReachedLabel={_t("decks.columns.end-reached")}
+          />
         ) : (
           <></>
         )

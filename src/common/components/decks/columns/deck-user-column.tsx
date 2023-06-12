@@ -14,6 +14,7 @@ import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../i18n";
 import moment from "moment";
 import { newDataComingPaginatedCondition } from "../utils";
+import { InfiniteScrollLoader } from "./helpers";
 
 interface Props {
   id: string;
@@ -47,7 +48,7 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
   }, [settings.contentType]);
 
   const fetchData = async (since?: Entry) => {
-    if (data.length || !since) {
+    if (data.length) {
       setIsReloading(true);
     }
 
@@ -59,6 +60,10 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
         since?.permlink
       );
       const items = response?.map((i) => ({ ...i, id: i.post_id })) ?? [];
+
+      if (items.length === 0) {
+        setHasNextPage(false);
+      }
 
       if (since) {
         setData([...data, ...items]);
@@ -110,6 +115,7 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
           <></>
         )
       }
+      afterDataSlot={<InfiniteScrollLoader data={data} isEndReached={!hasNextPage} />}
     >
       {(item: any, measure: Function, index: number) => (
         <SearchListItem

@@ -17,6 +17,8 @@ import { DeckLoginOverlayPlaceholder } from "./deck-login-overlay-placeholder";
 import usePrevious from "react-use/lib/usePrevious";
 import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
 import { _t } from "../../../i18n";
+import { InfiniteScrollLoader } from "./helpers";
+import { newDataComingPaginatedCondition } from "../utils";
 
 interface Props {
   id: string;
@@ -31,9 +33,11 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
   const previousActiveUser = usePrevious(activeUser);
 
   const [data, setData] = useState<ApiNotification[]>([]);
+  const prevData = usePrevious(data);
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry>();
   const [isFirstLoaded, setIsFirstLoaded] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
@@ -55,7 +59,7 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
     }
   }, [activeUser]);
 
-  const fetchData = async () => {
+  const fetchData = async (since?: ApiNotification) => {
     if (data.length) {
       setIsReloading(true);
     }
@@ -65,10 +69,19 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
       const response = await getNotifications(
         activeUser!.username,
         isAll ? null : (settings.contentType as NotificationFilter),
-        null,
+        since?.id,
         settings.username
       );
-      setData(response ?? []);
+
+      if (response.length === 0) {
+        setHasNextPage(false);
+      }
+
+      if (since) {
+        setData([...data, ...response]);
+      } else {
+        setData(response ?? []);
+      }
     } catch (e) {
     } finally {
       setIsReloading(false);
@@ -111,11 +124,22 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
           />
         )
       }
+      newDataComingCondition={(newData) =>
+        newDataComingPaginatedCondition(newData, prevData, "timestamp")
+      }
       overlay={<DeckLoginOverlayPlaceholder />}
+      afterDataSlot={<InfiniteScrollLoader data={data} isEndReached={!hasNextPage} />}
     >
       {(item: ApiNotification, measure: Function, index: number) => (
         <NotificationListItem
-          onMounted={() => measure()}
+          onMounted={() => {
+            measure();
+
+            const isLast = data[data.length - 1]?.id === item.id;
+            if (isLast && hasNextPage) {
+              fetchData(item);
+            }
+          }}
           notification={item}
           addAccount={addAccount}
           dynamicProps={dynamicProps}

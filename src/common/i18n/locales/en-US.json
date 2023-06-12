@@ -480,6 +480,7 @@
       "no-content": "No content",
       "infinite-loading": "Loading 🌊...",
       "end-reached": "You've reached end of 🌊.",
+      "feed-end-reached": "You've reached end of feed.",
       "topics-subtitle": "The most popular",
       "replied-to": "replied to",
       "edit-wave": "Edit",
