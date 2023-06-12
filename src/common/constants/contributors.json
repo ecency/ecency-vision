@@ -137,7 +137,7 @@
   },
   {
     "name": "irisworld",
-    "contributes": ["Translation (Russian, Korean), Thought leader"]
+    "contributes": ["Translation (Russian, Korean)", "Thought leader"]
   },
   {
     "name": "dakeshi",
@@ -325,7 +325,7 @@
   },
   {
     "name": "beeber",
-    "contributes": ["Guest Curator, Discord Moderator"]
+    "contributes": ["Guest Curator", "Discord Moderator"]
   },
   {
     "name": "unklebonehead",
@@ -349,7 +349,7 @@
   },
   {
     "name": "chaosmagic23",
-    "contributes": ["Guest Curator, Discord Moderator"]
+    "contributes": ["Guest Curator", "Discord Moderator"]
   },
   {
     "name": "missingnins",
@@ -369,7 +369,7 @@
   },
   {
     "name": "palomap3",
-    "contributes": ["Guest Curator, Discord Moderator"]
+    "contributes": ["Curator", "Discord Moderator"]
   },
   {
     "name": "solox",
@@ -381,7 +381,7 @@
   },
   {
     "name": "pravesh0 ",
-    "contributes": ["Guest Curator, Discord Live show host"]
+    "contributes": ["Guest Curator", "Discord Live show host"]
   },
   {
     "name": "reeta0119",
@@ -393,7 +393,7 @@
   },
   {
     "name": "incublus",
-    "contributes": ["Guest Curator, Discord Live show host"]
+    "contributes": ["Guest Curator", "Discord Live show host"]
   },
   {
     "name": "blessedkid-121",
