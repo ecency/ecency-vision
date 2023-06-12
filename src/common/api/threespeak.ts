@@ -26,10 +26,7 @@ export const threespeakAuth = async (username: string) => {
       let access_token = Memo?.decode(postingAuthKey!, memo_string);
       
       access_token = access_token.replace("#", "");
-      console.log(access_token)
     const user = await getTokenValidated(access_token, username);
-
-    console.log(`User is ${JSON.stringify(user)}`);
       return access_token
   } catch (err) {
     console.log(err);
@@ -63,7 +60,6 @@ export const uploadVideoInfo = async (username: string, videoUrl: string, thumbU
     thumbUrl,
     username
   );
-  console.log(`Video upload response: ${JSON.stringify(data)}`);
   return data
 };
 
@@ -131,7 +127,6 @@ export const updateInfo = async (accessToken: string, postBody: string, videoId:
 
         axios.post(`${studioEndPoint}/mobile/api/update_info`, data, { headers })
           .then(response => {
-            console.log("successfully updated")
             console.log(response.data); // Do something with the response data
           })
           .catch(error => {

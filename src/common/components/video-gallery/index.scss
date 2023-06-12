@@ -1,0 +1,105 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.video-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    font-size: 12px;
+
+    .video-list-body{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        // gap: 5px;
+        width: 220px;
+        // max-height: 200px;
+        // margin-right: 10px;
+
+        .list-image{
+            width: 100%;
+
+            img{
+                width: 230px;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+
+
+        .list-details-wrapper{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 5px;
+            width: 100%;
+
+            .list-title{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width:230px;
+                
+                .details-title{
+                    // flex: 1;
+                    font-size: 16px;
+                    // width:230px;
+                }
+                .details-svg{
+                    // width:230px;
+                    // flex: 1;
+                    font-size: 15px;
+                    cursor: pointer;
+                    color: $dark-sky-blue;
+                }
+            }
+
+            .list-date{
+                display: flex;
+                align-items: center;
+                width: 230px;
+                justify-content: space-between;
+
+                span{
+                    // flex: 1;
+                    font-size: 12px;
+                }
+
+                button{
+                    background-color: $dark-sky-blue;
+                    width: 30%;
+                    padding: 5px;
+                    border-radius: 5px;
+                    border: none;
+                    color: inherit;
+                    // flex: 1;
+                }
+
+                .published{
+                    color: rgb(107, 243, 107);
+                }
+                .encoding{
+                    color: rgb(238, 238, 128);
+                }
+                .encoding-failed{
+                    color: rgb(241, 80, 80);
+                }
+            }
+
+        }
+
+
+    }
+  }
+
+  .video-status-picker{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+  
+  

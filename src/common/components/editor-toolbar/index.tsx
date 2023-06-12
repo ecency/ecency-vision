@@ -484,7 +484,6 @@ export class EditorToolbar extends Component<Props> {
                           e.stopPropagation();
                           const el = this.fileInput.current;
                           if (el) {
-                            console.log(el)
                             el.click()};
                         }}
                       >
@@ -571,6 +570,7 @@ export class EditorToolbar extends Component<Props> {
               description={this.props.body}
               activeUser={activeUser}
               tags={this.props.tags}
+              global={global}
               />
             </div>
           </Tooltip>
