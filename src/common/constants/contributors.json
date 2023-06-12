@@ -8,6 +8,22 @@
     "contributes": ["Developer (Web)"]
   },
   {
+    "name": "talhasch",
+    "contributes": ["Developer (Web)"]
+  },
+   {
+    "name": "mtsaeed",
+    "contributes": ["Developer (Web)"]
+  },
+   {
+    "name": "igormuba",
+    "contributes": ["Developer (Web)"]
+  },
+   {
+    "name": "adesojisouljay",
+    "contributes": ["Developer (Web)"]
+  },
+  {
     "name": "zetrix",
     "contributes": ["Designer (Web/Mobile)"]
   },
@@ -17,6 +33,10 @@
   },
   {
     "name": "furkankilic",
+    "contributes": ["Developer (Mobile)"]
+  },
+  {
+    "name": "aliseyalvi",
     "contributes": ["Developer (Mobile)"]
   },
   {
@@ -117,7 +137,7 @@
   },
   {
     "name": "irisworld",
-    "contributes": ["Translation (Russian, Korean)"]
+    "contributes": ["Translation (Russian, Korean), Thought leader"]
   },
   {
     "name": "dakeshi",
@@ -305,7 +325,7 @@
   },
   {
     "name": "beeber",
-    "contributes": ["Guest Curator"]
+    "contributes": ["Guest Curator, Discord Moderator"]
   },
   {
     "name": "unklebonehead",
@@ -329,7 +349,7 @@
   },
   {
     "name": "chaosmagic23",
-    "contributes": ["Guest Curator"]
+    "contributes": ["Guest Curator, Discord Moderator"]
   },
   {
     "name": "missingnins",
@@ -349,7 +369,7 @@
   },
   {
     "name": "palomap3",
-    "contributes": ["Guest Curator"]
+    "contributes": ["Guest Curator, Discord Moderator"]
   },
   {
     "name": "solox",
@@ -361,7 +381,7 @@
   },
   {
     "name": "pravesh0 ",
-    "contributes": ["Guest Curator"]
+    "contributes": ["Guest Curator, Discord Live show host"]
   },
   {
     "name": "reeta0119",
@@ -373,7 +393,7 @@
   },
   {
     "name": "incublus",
-    "contributes": ["Guest Curator"]
+    "contributes": ["Guest Curator, Discord Live show host"]
   },
   {
     "name": "blessedkid-121",
@@ -396,7 +416,27 @@
     "contributes": ["Guest Curator"]
   },
   {
-    "name": "grindan",
+    "name": "mayifiestas",
     "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "atyh",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "tengolotodo",
+    "contributes": ["Discord Live show host"]
+  },
+   {
+    "name": "joalheal",
+    "contributes": ["Discord Live show host"]
+  },
+  {
+    "name": "stresskiller",
+    "contributes": ["Thought Leader"]
+  },
+  {
+    "name": "acgalarza",
+    "contributes": ["Discord Live show host"]
   }
 ]
