@@ -1,5 +1,5 @@
 import { useMappedStore } from "../../../../store/use-mapped-store";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import profileLink from "../../../profile-link";
 import { history } from "../../../../store";
 import { dateToRelative } from "../../../../helper/parse-date";
@@ -15,6 +15,7 @@ import EntryReblogBtn from "../../../entry-reblog-btn";
 import EntryMenu from "../../../entry-menu";
 import { transformMarkedContent } from "../../../../util/transform-marked-content";
 import { EntryLink } from "../../../entry-link";
+import { useInViewport } from "react-in-viewport";
 
 export interface SearchItemProps {
   avatar: string;
@@ -35,6 +36,7 @@ export interface SearchItemProps {
   onMounted: () => void;
   onEntryView: () => void;
   marked?: boolean;
+  onAppear?: () => void;
 }
 
 export const SearchListItem = ({
@@ -49,9 +51,12 @@ export const SearchListItem = ({
   entry,
   onMounted,
   onEntryView,
-  marked
+  marked,
+  onAppear
 }: SearchItemProps) => {
   const { global } = useMappedStore();
+  const ref = useRef<HTMLDivElement | null>(null);
+  const { inViewport } = useInViewport(ref);
 
   const [title, setTitle] = useState(entry.title);
   const [body, setBody] = useState(entry.b);
@@ -73,6 +78,12 @@ export const SearchListItem = ({
   useEffect(() => {
     onMounted();
   }, []);
+
+  useEffect(() => {
+    if (inViewport && onAppear) {
+      onAppear();
+    }
+  }, [inViewport]);
 
   let isPinned = community && entry && entry.stats?.is_pinned;
 
@@ -132,6 +143,7 @@ export const SearchListItem = ({
     const msg = formatMessage(formatPatterns);
     return (
       <div
+        ref={ref}
         className={`p${index === 1 ? "b" : "y"}-${
           json_metadata && json_metadata.image ? "5" : "4"
         } d-flex flex-column border-bottom`}
@@ -159,7 +171,7 @@ export const SearchListItem = ({
   }
 
   return (
-    <div className="d-flex flex-column border-bottom p-3">
+    <div ref={ref} className="d-flex flex-column border-bottom p-3">
       <div className="deck-body d-flex flex-column w-100">
         <div className="text-dark d-flex flex-column">
           <div className="d-flex align-items-center flex-grow-1 hot-item-link">

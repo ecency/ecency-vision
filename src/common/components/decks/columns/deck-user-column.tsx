@@ -12,6 +12,8 @@ import { History } from "history";
 import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
 import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../i18n";
+import moment from "moment";
+import { newDataComingPaginatedCondition } from "../utils";
 
 interface Props {
   id: string;
@@ -24,9 +26,11 @@ type IdentifiableEntry = Entry & Required<Pick<Entry, "id">>;
 
 export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
   const [data, setData] = useState<IdentifiableEntry[]>([]);
+  const prevData = usePrevious(data);
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
   const [isFirstLoaded, setIsFirstLoaded] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
@@ -42,14 +46,25 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
     }
   }, [settings.contentType]);
 
-  const fetchData = async () => {
-    if (data.length) {
+  const fetchData = async (since?: Entry) => {
+    if (data.length || !since) {
       setIsReloading(true);
     }
 
     try {
-      const response = await getAccountPosts(settings.contentType, settings.username);
-      setData((response as IdentifiableEntry[]) ?? []);
+      const response = await getAccountPosts(
+        settings.contentType,
+        settings.username,
+        since?.author,
+        since?.permlink
+      );
+      const items = response?.map((i) => ({ ...i, id: i.post_id })) ?? [];
+
+      if (since) {
+        setData([...data, ...items]);
+      } else {
+        setData(items ?? []);
+      }
     } catch (e) {
     } finally {
       setIsReloading(false);
@@ -76,11 +91,13 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
         )
       }}
       data={data}
+      isVirtualScroll={false}
       isExpanded={!!currentViewingEntry}
       isReloading={isReloading}
       isFirstLoaded={isFirstLoaded}
       onReload={() => fetchData()}
       skeletonItem={<ListItemSkeleton />}
+      newDataComingCondition={(newData) => newDataComingPaginatedCondition(newData, prevData)}
       contentViewer={
         currentViewingEntry ? (
           <DeckPostViewer
@@ -104,6 +121,12 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
           }}
           {...item}
           children=""
+          onAppear={() => {
+            const isLast = data[data.length - 1]?.post_id === item.post_id;
+            if (isLast && hasNextPage) {
+              fetchData(item);
+            }
+          }}
           onEntryView={() => setCurrentViewingEntry(item)}
         />
       )}

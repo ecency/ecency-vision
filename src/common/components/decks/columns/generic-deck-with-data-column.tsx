@@ -107,7 +107,10 @@ export const GenericDeckWithDataColumn = ({
   const nativeScrollContent = (
     <div ref={scrollContentRef} className="native-scroll-content">
       {visibleData.map((item, index) => (
-        <div key={visibleData[index].id ?? visibleData[index].post_id}>
+        <div
+          className="virtual-list-item"
+          key={visibleData[index].id ?? visibleData[index].post_id}
+        >
           {children(visibleData[index], () => {}, index)}
         </div>
       ))}

@@ -18,6 +18,7 @@ import {
 import moment from "moment/moment";
 import usePrevious from "react-use/lib/usePrevious";
 import { getPost } from "../../../api/bridge";
+import { newDataComingPaginatedCondition } from "../utils";
 
 interface Props {
   id: string;
@@ -140,13 +141,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
       }}
       data={data}
-      newDataComingCondition={(newCameData) => {
-        const newCame = newCameData.filter((i) => !prevData?.some((it) => i.id === it.id))[0];
-        const prevOne = (prevData ?? [])[0];
-        return (
-          prevData?.length === 0 || moment(newCame?.created).isBefore(moment(prevOne?.created))
-        );
-      }}
+      newDataComingCondition={(newData) => newDataComingPaginatedCondition(newData, prevData)}
       isReloading={isReloading}
       isVirtualScroll={false}
       isExpanded={!!currentViewingEntry}
