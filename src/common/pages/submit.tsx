@@ -680,7 +680,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     // permlink duplication check
     let c;
     try {
-      c = await bridgeApi.getPost(author, permlink);
+      c = await bridgeApi.getPostHeader(author, permlink);
     } catch (e) {
       /*error(_t("g.server-error"));
             this.stateSet({posting: false});
@@ -890,7 +890,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     // permlink duplication check
     let c;
     try {
-      c = await bridgeApi.getPost(author, permlink);
+      c = await bridgeApi.getPostHeader(author, permlink);
     } catch (e) {}
 
     if (c && c.author) {

@@ -10,7 +10,7 @@ import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { Entry } from "../../store/entries/types";
+import { EntryHeader, Entry } from "../../store/entries/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
@@ -18,7 +18,7 @@ import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import { error } from "../feedback";
 
-import { getPost } from "../../api/bridge";
+import { getPostHeader } from "../../api/bridge";
 import { getBoostOptions, getBoostedPost } from "../../api/private-api";
 import { searchPath } from "../../api/search-api";
 import { boost, boostHot, boostKc, formatError } from "../../api/operations";
@@ -165,9 +165,9 @@ export class Boost extends BaseComponent<Props, State> {
     this.stateSet({ inProgress: true });
 
     // Check if post is valid
-    let post: Entry | null;
+    let post: EntryHeader | null;
     try {
-      post = await getPost(author, permlink);
+      post = await getPostHeader(author, permlink);
     } catch (e) {
       post = null;
     }

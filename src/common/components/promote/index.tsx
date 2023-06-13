@@ -9,7 +9,7 @@ import { PrivateKey } from "@hiveio/dhive";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { Entry } from "../../store/entries/types";
+import { Entry, EntryHeader } from "../../store/entries/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
@@ -19,7 +19,7 @@ import { error } from "../feedback";
 
 import { getPromotePrice, PromotePrice, getPromotedPost } from "../../api/private-api";
 import { searchPath } from "../../api/search-api";
-import { getPost } from "../../api/bridge";
+import { getPostHeader } from "../../api/bridge";
 import { promote, promoteHot, promoteKc, formatError } from "../../api/operations";
 
 import { _t } from "../../i18n";
@@ -166,9 +166,9 @@ export class Promote extends BaseComponent<Props, State> {
     this.stateSet({ inProgress: true });
 
     // Check if post is valid
-    let post: Entry | null;
+    let post: EntryHeader | null;
     try {
-      post = await getPost(author, permlink);
+      post = await getPostHeader(author, permlink);
     } catch (e) {
       post = null;
     }
