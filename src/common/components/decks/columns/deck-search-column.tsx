@@ -121,6 +121,7 @@ export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) =>
       isFirstLoaded={isFirstLoaded}
       onReload={() => fetchData()}
       skeletonItem={<ListItemSkeleton />}
+      isVirtualScroll={false}
       contentViewer={
         currentViewingEntry ? (
           <DeckPostViewer
