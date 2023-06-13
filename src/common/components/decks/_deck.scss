@@ -241,31 +241,35 @@
 
   .deck-body .item-controls {
     max-width: 80%;
+    gap: 1rem;
 
-    .entry-vote-btn, .entry-payout, .entry-votes, .entry-menu {
-      margin-right: 0;
-      margin-left: 0;
+    > * {
+      padding: 0;
+      margin: 0;
     }
 
-    @include media-breakpoint-down(sm) {
-      max-width: 100%;
-    }
+    .btn, .entry-votes, .entry-vote-btn, .comments, .entry-payout {
+      color: $secondary;
 
-    .comments {
-      path {
-        fill: $light-grey !important;
+      @include padding(0);
+      @include font-size(0.75rem);
+      @include margin(0);
+
+      &:hover, &:active {
+        color: $primary;
       }
     }
 
-    font-size: 12px !important;
+    .entry-votes svg, .comments svg {
+      opacity: 1;
 
-    svg {
-      width: 16px !important;
+      @include margin(0);
+      @include margin-right(0.25rem);
     }
 
-    .menu-down {
-      height: auto !important;
-      width: auto !important;
+    svg {
+      width: 1rem;
+      height: 1rem;
     }
   }
 

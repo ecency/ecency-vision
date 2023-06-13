@@ -1,12 +1,12 @@
 import { useMappedStore } from "../../../../store/use-mapped-store";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useContext, useEffect, useRef, useState } from "react";
 import profileLink from "../../../profile-link";
 import { history } from "../../../../store";
 import { dateToRelative } from "../../../../helper/parse-date";
 import { Link } from "react-router-dom";
 import { _t } from "../../../../i18n";
 import Tooltip from "../../../tooltip";
-import { commentSvg, pinSvg } from "../../../../img/svg";
+import { pinSvg } from "../../../../img/svg";
 import { catchPostImage, postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
 import EntryVoteBtn from "../../../entry-vote-btn";
 import EntryPayout from "../../../entry-payout";
@@ -16,6 +16,8 @@ import EntryMenu from "../../../entry-menu";
 import { transformMarkedContent } from "../../../../util/transform-marked-content";
 import { EntryLink } from "../../../entry-link";
 import { useInViewport } from "react-in-viewport";
+import { commentSvg, voteSvg } from "../../icons";
+import { EntriesCacheContext } from "../../../../core";
 
 export interface SearchItemProps {
   avatar: string;
@@ -57,6 +59,7 @@ export const SearchListItem = ({
   const { global } = useMappedStore();
   const ref = useRef<HTMLDivElement | null>(null);
   const { inViewport } = useInViewport(ref);
+  const { updateVotes } = useContext(EntriesCacheContext);
 
   const [title, setTitle] = useState(entry.title);
   const [body, setBody] = useState(entry.b);
@@ -236,15 +239,17 @@ export const SearchListItem = ({
             <div className="mt-3 hot-item-post-count deck-item-body text-secondary">{body}</div>
           </div>
         </div>
-        <div className="item-controls mt-3 d-flex justify-content-between align-items-center">
-          <div className="d-flex align-items-center">
-            <EntryVoteBtn entry={entry} afterVote={() => {}} isPostSlider={false} />
-            <div className="pl-2">
-              <EntryPayout entry={entry} />
-            </div>
-          </div>
-
-          <EntryVotes history={history!!} entry={entry} />
+        <div className="item-controls mt-3 d-flex align-items-center">
+          <EntryVoteBtn
+            entry={entry}
+            isPostSlider={false}
+            history={history}
+            afterVote={(votes, estimated) => {
+              updateVotes(entry.post_id, votes, estimated);
+            }}
+          />
+          <EntryPayout entry={entry} />
+          <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
           <Link to={`${url}#discussion`} className="text-secondary">
             <div className="d-flex align-items-center comments">
               <div style={{ paddingRight: 4 }}>{commentSvg}</div>
