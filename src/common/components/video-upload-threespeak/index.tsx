@@ -9,8 +9,6 @@ import VideoGallery from "../video-gallery";
 
 export const VideoUpload = (props: any) => {
   const { 
-    insertText,
-    accessToken,
     description,
     title,
     tags,
@@ -43,10 +41,6 @@ export const VideoUpload = (props: any) => {
       threespeakAuth(activeUser!.username)
     },[]);
 
-    const hideModal = () => { 
-      setShowModal(false)
-    }
-
     const onChange: any = (event: { target: { files: any[] } }, type: string) => {
       let file = event.target.files[0];
   
@@ -78,8 +72,6 @@ export const VideoUpload = (props: any) => {
         },
         // Callback for once the upload is completed
         onSuccess: function () {
-          console.log("File %s", upload.file?.name);
-          console.log("URL %s", upload?.url.replace("https://uploads.3speak.tv/files/", ""));
           let file = upload?.url.replace(this.endpoint, "");
           if (type === "video") {
             setVideoUrl(file);
@@ -98,43 +90,36 @@ export const VideoUpload = (props: any) => {
     const handleThumbnailChange = (e: ChangeEvent<HTMLInputElement | any>) => {
       const file: any = e?.target?.files[0];
       onChange(e, "thumbnail")
-      console.log(file)
       setCoverImage(URL?.createObjectURL(file));
     };
 
     const handleVideoChange = (e: ChangeEvent<HTMLInputElement | any>) => {
       const file: any = e?.target?.files[0];
       onChange(e, "video")
-      console.log(file)
       setSelectedFile(URL?.createObjectURL(file));
     };
 
     const uploadInfo = async ()=> {
-      console.log("testing if it works...")
      const data = await uploadVideoInfo(activeUser!.username, videoUrl, thumbUrl, fileName, fileSize)
         setVideoId(data._id)
         setIsNsfwC(data.isNsfwContent)
-        console.log(data)
     }
 
     const checkStat = async () => {
       const token = await threespeakAuth(activeUser!.username)
       const allStatus = await getAllVideoStatuses(token)
-      console.log(allStatus)
       return allStatus;
     }    
 
     const updateSpeakVideo = async () => {
-      const token = await threespeakAuth(activeUser!.username)
-      console.log(videoId)
-      console.log(token, description, videoId, title, tags)
-      updateInfo(token, description, videoId, title, tags, isNsfwC)
+      const token = await threespeakAuth(activeUser!.username);
+      updateInfo(token, description, videoId, title, tags, isNsfwC);
     }
 
     const uploadVideoModal = (
         <div className="dialog-content">
           <div className="file-input">
-            <label htmlFor="video-input">Choose video {uploadSvgV}</label>
+            <label htmlFor="video-input">{_t("video-upload.choose-video")} {uploadSvgV}</label>
               <input
                 type="file"
                 ref={fileInput}
@@ -145,13 +130,13 @@ export const VideoUpload = (props: any) => {
               />
               <div className="progresss">
                 {Number(videoPercentage) > 0 && <>
-                  <div style={{width: Number(videoPercentage) + "%"}} className="progress-bar"/>
+                  <div style={{width: `${Number(videoPercentage)}%`}} className="progress-bar"/>
                   <span >{`${videoPercentage}%`}</span>
                 </>}
               </div>
           </div>
           <div className="file-input">
-            <label htmlFor="image-input">Chose thumbnail {uploadSvgV}</label>
+            <label htmlFor="image-input">{_t("video-upload.choose-thumbnail")} {uploadSvgV}</label>
             <input
               type="file"
               ref={fileInput}
@@ -172,9 +157,9 @@ export const VideoUpload = (props: any) => {
             onClick={()=> {
               uploadInfo();
               setStep("update")
-            }}>Upload Video</Button>
+            }}>{_t("video-upload.continue")}</Button>
         </div>
-    )
+    );
 
     const updateVideoModal = (
       <div className="dialog-content">
@@ -186,19 +171,26 @@ export const VideoUpload = (props: any) => {
         <div className="d-flex">
           <Button className="bg-dark" onClick={()=> {
             setStep("upload")
-            console.log(description, title, tags)
           }}
-          >Back</Button>
+          >{_t("g.back")}</Button>
             <Button 
             className="ml-5" 
             disabled={!canUpdate}
             onClick={() => {
               updateSpeakVideo()
-              }}>Update info
+              setStep("success")
+              }}>{_t("video-upload.encode")}
             </Button>
         </div>
       </div>
     );
+
+    const videoSuccessModal = (
+      <div className="video-successfull d-flex flex-column">
+        <h4>{_t("video-upload.success")}</h4>
+        <Button onClick={()=> setShowModal(false)}>{_t("video-upload.finished")}</Button>
+      </div>
+    )
     
   return (
     <div className="mt-2 cursor-pointer new-feature">
@@ -210,7 +202,7 @@ export const VideoUpload = (props: any) => {
                 className="sub-tool-menu-item"
                 onClick={() => setShowModal(true)}
               >
-                {_t("editor-toolbar.upload")} video
+                {_t("video-upload.upload-video")}
               </div>
               {global.usePrivate && (
                 <div
@@ -218,10 +210,9 @@ export const VideoUpload = (props: any) => {
                   onClick={(e: React.MouseEvent<HTMLElement>) => {
                     e.stopPropagation();
                     setShowGallery(true)
-                    // this.toggleGallery();
                   }}
                 >
-                  Video {_t("editor-toolbar.gallery")}
+                  {_t("video-upload.video-gallery")}
                 </div>
               )}
             </div>
@@ -238,20 +229,22 @@ export const VideoUpload = (props: any) => {
             animation={false}
             show={showModal}
             centered={true}
-            onHide={hideModal}
+            onHide={()=>setShowModal(false)}
             keyboard={false}
             className="add-image-modal"
             // size="lg"
         >
             <Modal.Header closeButton={true}>
               <Modal.Title>
-                {step === "upload" && <p>Upload Video</p>}
-                {step === "update" && <p>Preview</p>}
+                {step === "upload" && <p>{_t("video-upload.upload-video")}</p>}
+                {step === "update" && <p>{_t("video-upload.preview")}</p>}
+                {step === "success" && <p>{_t("video-upload.congrats")}</p>}
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
               {step === "upload" && uploadVideoModal}
               {step === "update" && updateVideoModal}
+              {step === "success" && videoSuccessModal}
             </Modal.Body>
           </Modal>
         </div>        

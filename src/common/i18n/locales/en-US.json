@@ -1321,6 +1321,29 @@
     "empty-body-alert": "Enter post body",
     "description": "Short description"
   },
+  "video-upload":{
+    "choose-video": "Choose video",
+    "choose-thumbnail": "Choose video",
+    "continue": "Continue",
+    "encode": "Enconde video",
+    "success":"Video has been uploaded successfully",
+    "finished": "Finished",
+    "upload-video": "Upload video",
+    "video-gallery": "Video gallery",
+    "preview": "Preview",
+    "congrats": "Congratulations"
+  },
+  "video-gallery":{
+    "all":"All",
+    "published":"Published",
+    "encoding":"Encoding",
+    "encoded":"Encoded",
+    "filed":"Failed",
+    "publish": "Publish",
+    "status-published": "Published✅",
+    "status-failed": "Encoding failed❌",
+    "status-encoding": "Encoding🟡"
+  },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
     "placeholder-focus": "Enter tag",

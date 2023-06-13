@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import LinearProgress from '../linear-progress';
-import PopoverConfirm from '../popover-confirm';
 import { deleteForeverSvg, informationVariantSvg } from '../../img/svg';
 import { Button, Modal, Tooltip } from 'react-bootstrap';
 import { _t } from '../../i18n';
@@ -8,7 +7,7 @@ import "./index.scss"
 
 const VideoGallery = (props: any) => {
 
-  const {showGaller, setShowGallery, checkStat, selectedFile} = props;
+  const {showGaller, setShowGallery, checkStat} = props;
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
@@ -24,10 +23,6 @@ const VideoGallery = (props: any) => {
       setItems(data)
       setLoading(false)
     }
-  }
-
-  const hideModal = () => {
-    setShowGallery(false)
   }
 
   const formatTime = (dateStr: string | number | Date) => {
@@ -97,23 +92,23 @@ const VideoGallery = (props: any) => {
     <div className="video-status-picker">
       <Button variant="outline-primary" onClick={ async () =>{
         setItems(await filterListByStatus())
-        }}>All</Button>
+        }}>{_t("video-gallery.all")}</Button>
 
       <Button variant="outline-primary" onClick={async () =>{
         setItems(await filterListByStatus("published"))
-        }}>Published</Button>
+        }}>{_t("video-gallery.published")}</Button>
 
       <Button variant="outline-primary" onClick={ async () =>{
         setItems(await filterListByStatus("encoding_ipfs"))
-        }}>Encoding</Button>
+        }}>{_t("video-gallery.encoding")}</Button>
 
       <Button variant="outline-primary" onClick={ async () =>{
         setItems(await filterListByStatus("publish_manual"))
-        }}>Encoded</Button>
+        }}>{_t("video-gallery.encoded")}</Button>
 
       <Button variant="outline-primary" onClick={ async () =>{
         setItems(await filterListByStatus("encoding_failed"))
-        }}>Failed</Button>
+        }}>{_t("video-gallery.failed")}</Button>
     </div>
   )
 
@@ -122,9 +117,9 @@ const VideoGallery = (props: any) => {
         {loading && <LinearProgress />}
         {items?.length > 0 && (
           <div className="video-list">
-           {items?.map((item: any) => {
+           {items?.map((item: any, i: any) => {
           return (
-          <div className="video-list-body">
+          <div className="video-list-body" key={i}>
             <div className="list-image">              
               <img src={item.thumbUrl} alt="" />
             </div>
@@ -134,17 +129,17 @@ const VideoGallery = (props: any) => {
                   {item.title.substring(0,15)}...
                 </span>
                 <span className="info-icon details-svg">
-                  more...
+                  more... 
                 </span>
               </div>
               <div className="list-date">                
                 <span>
                   {formatTime(item.created)}
                 </span>
-                {item.status === "publish_manual" ? <button>Publish</button> :
-                item.status === "encoding_failed" ? <span className="encoding-failed">Encoding failed❌</span> :
-                item.status === "published" ? <span className="published">Published✅</span> : 
-                <span className="encoding">Encoding🟡</span>}
+                {item.status === "publish_manual" ? <button>{_t("video-gallery.published")}</button> :
+                item.status === "encoding_failed" ? <span className="encoding-failed">{_t("video-gallery.failed")}</span> :
+                item.status === "published" ? <span className="published">{_t("video-gallery.publish")}</span> : 
+                <span className="encoding">{_t("video-gallery.encoding")}</span>}
               </div>
             </div>
           </div>
@@ -173,4 +168,4 @@ const VideoGallery = (props: any) => {
   )
 }
 
-export default VideoGallery
+export default VideoGallery;
