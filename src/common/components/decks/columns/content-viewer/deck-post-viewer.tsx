@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Entry } from "../../../../store/entries/types";
 import "./_deck-post-viewer.scss";
 import useMount from "react-use/lib/useMount";
@@ -12,6 +12,10 @@ import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import { DeckPostViewerCommentBox } from "./deck-post-viewer-comment-box";
 import { _t } from "../../../../i18n";
+import { commentSvg, voteSvg } from "../../icons";
+import EntryVoteBtn from "../../../entry-vote-btn";
+import { EntriesCacheContext } from "../../../../core";
+import EntryVotes from "../../../entry-votes";
 
 interface Props {
   entry: Entry;
@@ -25,6 +29,7 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
 
   const store = useMappedStore();
   const location = useLocation();
+  const { updateVotes } = useContext(EntriesCacheContext);
 
   useMount(() => setIsMounted(true));
 
@@ -59,6 +64,21 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
       />
       <div className="px-3">
         <DeckPostViewerCommentBox entry={entry} onReplied={() => {}} />
+      </div>
+      <div className="bottom-actions px-3">
+        <EntryVoteBtn
+          entry={entry}
+          isPostSlider={false}
+          history={history}
+          afterVote={(votes, estimated) => {
+            updateVotes(entry.post_id, votes, estimated);
+          }}
+        />
+        <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
+        <div className="d-flex align-items-center comments">
+          <div style={{ paddingRight: 4 }}>{commentSvg}</div>
+          {entry.children}
+        </div>
       </div>
       <div className="px-3">
         <Discussion

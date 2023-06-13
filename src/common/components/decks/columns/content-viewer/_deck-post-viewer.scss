@@ -101,6 +101,36 @@
     }
   }
 
+  .bottom-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .btn, .entry-votes, .entry-vote-btn, .comments {
+      color: $secondary;
+
+      @include padding(0);
+      @include font-size(0.75rem);
+      @include margin(0);
+
+      &:hover, &:active {
+        color: $primary;
+      }
+    }
+
+    .entry-votes svg, .comments svg {
+      opacity: 1;
+
+      @include margin(0);
+      @include margin-right(0.25rem);
+    }
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
   .discussion {
     .item-header, .author, .item-controls {
       @include font-size(0.875rem);
