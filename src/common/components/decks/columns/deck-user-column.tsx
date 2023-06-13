@@ -59,7 +59,8 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
         since?.author,
         since?.permlink
       );
-      const items = response?.map((i) => ({ ...i, id: i.post_id })) ?? [];
+      let items = response?.map((i) => ({ ...i, id: i.post_id })) ?? [];
+      items = items.sort((a, b) => (moment(a.created).isAfter(moment(b.created)) ? -1 : 1));
 
       if (items.length === 0) {
         setHasNextPage(false);

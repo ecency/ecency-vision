@@ -14,6 +14,7 @@ import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../i18n";
 import { newDataComingPaginatedCondition } from "../utils";
 import { InfiniteScrollLoader } from "./helpers";
+import moment from "moment";
 
 interface Props {
   id: string;
@@ -63,9 +64,11 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
         20,
         settings.tag
       );
-      const items = ((response as IdentifiableEntry[] | null) ?? [])
+      let items = ((response as IdentifiableEntry[] | null) ?? [])
         .filter((e) => !e.stats?.is_pinned)
         .map((i) => ({ ...i, id: i.post_id }));
+
+      items = items.sort((a, b) => (moment(a.created).isAfter(moment(b.created)) ? -1 : 1));
 
       if (items.length === 0) {
         setHasNextPage(false);
