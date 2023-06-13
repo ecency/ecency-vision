@@ -52,6 +52,7 @@ export const ICONS = {
     delegations: delegationsIconSvg
   },
   u: {
+    feed: mentionsIconSvg,
     blog: blogIconSvg,
     posts: postsIconSvg,
     comments: commentsIconSvg,
