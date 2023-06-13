@@ -137,7 +137,7 @@ export const DeckCommunityColumn = ({ id, settings, draggable, history }: Props)
               fetchData(item);
             }
           }}
-          EntryView={() => setCurrentViewingEntry(item)}
+          onEntryView={() => setCurrentViewingEntry(item)}
         />
       )}
     </GenericDeckWithDataColumn>
