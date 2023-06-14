@@ -54,7 +54,7 @@ export const Decks = ({ history }: Props) => {
                 >
                   <DeckFloatingToolbarActivator
                     open={!isCollapsed}
-                    setOpen={() => setIsCollapsed(!isCollapsed)}
+                    setOpen={(v) => setIsCollapsed(!v)}
                   />
                   <DeckToolbar
                     history={history}
