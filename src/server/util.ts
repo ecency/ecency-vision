@@ -40,7 +40,11 @@ export const cleanURL = (req: any, res: any, next: any) => {
   }
   if (req.url.includes("-hs?code")) {
     next();
-  } else if (req.url !== req.url.toLowerCase() && !req.url.includes("auth?code")) {
+  } else if (
+    req.url !== req.url.toLowerCase() &&
+    !req.url.includes("auth?code") &&
+    !req.url.includes("onboard-friend/")
+  ) {
     res.redirect(301, req.url.toLowerCase());
   } else {
     next();

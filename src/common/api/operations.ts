@@ -1924,7 +1924,7 @@ export const createAccountKc = async (data: any, creator_account: string) => {
     let fee = null;
     let op_name: OperationName = "create_claimed_account";
     // If account creation tokens exist on creator account
-    if (tokens < 10) {
+    if (tokens < 1) {
       fee = "3.000 HIVE";
 
       // Load account creation fee from Hive chain properties
@@ -1941,17 +1941,17 @@ export const createAccountKc = async (data: any, creator_account: string) => {
     const owner = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.ownerpublickey, 1]]
+      key_auths: [[account.owner_public_key, 1]]
     };
     const active = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.activepublickey, 1]]
+      key_auths: [[account.active_public_key, 1]]
     };
     const posting = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.postingpublickey, 1]]
+      key_auths: [[account.posting_public_key, 1]]
     };
     const ops: Array<any> = [];
     const params: any = {
@@ -2055,7 +2055,7 @@ export const createAccountHs = async (data: any, creator_account: string) => {
     let op_name: OperationName = "create_claimed_account";
 
     // If account creation tokens exist on creator account
-    if (tokens < 10) {
+    if (tokens < 1) {
       fee = "3.000 HIVE";
 
       // Load account creation fee from Hive chain properties
@@ -2127,7 +2127,7 @@ export const createAccountKey = async (data: any, creator_account: string, creat
     let op_name: OperationName = "create_claimed_account";
 
     // If account creation tokens exist on creator account
-    if (tokens < 10) {
+    if (tokens < 1) {
       fee = "3.000 HIVE";
 
       // Load account creation fee from Hive chain properties

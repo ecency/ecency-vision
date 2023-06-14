@@ -14,6 +14,7 @@ import { _t } from "../i18n";
 import { createAccountKc, createAccountWithCredit, getAcountCredit } from "../api/operations";
 import { generatePassword, getPrivateKeys } from "../helper/onBoard-helper";
 import LinearProgress from "../components/linear-progress";
+import { b64uDec, b64uEnc } from "../util/b64";
 
 export interface AccountInfo {
   email: string;
@@ -34,10 +35,10 @@ export interface DecodeHash {
   email: string;
   username: string;
   pubkeys: {
-    activepublickey: string;
-    memopublickey: string;
-    ownerpublickey: string;
-    postingpublickey: string;
+    ownerPublicKey: string;
+    activePublicKey: string;
+    postingPublicKey: string;
+    memoPublicKey: string;
   };
 }
 
@@ -53,7 +54,7 @@ const createOptions = {
 
 const Onboard = (props: PageProps | any) => {
   const [masterPassword, setMasterPassword] = useState("");
-  const [hash, setHash] = useState("");
+  const [secret, setSecret] = useState("");
   const [accountInfo, setAccountInfo] = useState<AccountInfo>();
   const [decodedInfo, setDecodedInfo] = useState<DecodeHash>();
   const [showModal, setShowModal] = useState(false);
@@ -75,8 +76,8 @@ const Onboard = (props: PageProps | any) => {
   useEffect(() => {
     initAccountKey();
     try {
-      if (props.match.params.hash) {
-        const decodedHash = JSON.parse(decodeURIComponent(props.match.params.hash));
+      if (props.match.params.secret) {
+        const decodedHash = JSON.parse(b64uDec(props.match.params.secret));
         setDecodedInfo(decodedHash);
         getCredit();
       }
@@ -89,10 +90,10 @@ const Onboard = (props: PageProps | any) => {
     if (decodedInfo) {
       setConfirmDetails([
         { label: _t("onboard.username"), value: decodedInfo?.username },
-        { label: _t("onboard.public-owner"), value: decodedInfo?.pubkeys?.ownerpublickey },
-        { label: _t("onboard.public-active"), value: decodedInfo?.pubkeys?.activepublickey },
-        { label: _t("onboard.public-posting"), value: decodedInfo?.pubkeys?.postingpublickey },
-        { label: _t("onboard.public-memo"), value: decodedInfo?.pubkeys?.memopublickey }
+        { label: _t("onboard.public-owner"), value: decodedInfo?.pubkeys?.ownerPublicKey },
+        { label: _t("onboard.public-active"), value: decodedInfo?.pubkeys?.activePublicKey },
+        { label: _t("onboard.public-posting"), value: decodedInfo?.pubkeys?.postingPublicKey },
+        { label: _t("onboard.public-memo"), value: decodedInfo?.pubkeys?.memoPublicKey }
       ]);
     }
   }, [decodedInfo]);
@@ -135,8 +136,8 @@ const Onboard = (props: PageProps | any) => {
       };
       // stringify object to encode
       const stringifiedPubKeys = JSON.stringify(dataToEncode);
-      const hashedPubKeys = encodeURIComponent(stringifiedPubKeys);
-      setHash(hashedPubKeys);
+      const hashedPubKeys = b64uEnc(stringifiedPubKeys);
+      setSecret(hashedPubKeys);
       const accInfo = {
         username: props.global.accountName,
         email: props.global.accountEmail,
@@ -396,12 +397,12 @@ const Onboard = (props: PageProps | any) => {
                   <div className="d-flex flex-column align-self-center justify-content-center mt-3">
                     <h4>{_t("onboard.copy-info-message")}</h4>
                     <div className="d-flex align-items-center">
-                      <span className="">{splitUrl(onboardUrl + hash)}...</span>
+                      <span className="">{splitUrl(onboardUrl + secret)}...</span>
                       <span
                         style={{ width: "5%" }}
                         className="onboard-svg"
                         onClick={() => {
-                          copyToClipboard(onboardUrl + hash);
+                          copyToClipboard(onboardUrl + secret);
                           success(_t("onboard.copy-link"));
                         }}
                       >
@@ -416,7 +417,7 @@ const Onboard = (props: PageProps | any) => {
         </div>
       )}
 
-      {props.match.params.type === "creating" && props.match.params.hash && (
+      {props.match.params.type === "creating" && props.match.params.secret && (
         <div className="onboard-container">
           {props.activeUser ? (
             <div className="creating-confirm">
