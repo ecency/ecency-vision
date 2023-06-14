@@ -96,10 +96,7 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
         className="px-3 pb-4 markdown-view"
         dangerouslySetInnerHTML={{ __html: renderPostBody(entry, true, store.global.canUseWebp) }}
       />
-      <div className="px-3">
-        <DeckPostViewerCommentBox entry={entry} onReplied={() => {}} />
-      </div>
-      <div className="bottom-actions px-3">
+      <div className="bottom-actions p-3">
         <EntryVoteBtn
           entry={entry}
           isPostSlider={false}
@@ -113,6 +110,9 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
           <div style={{ paddingRight: 4 }}>{commentSvg}</div>
           {entry.children}
         </div>
+      </div>
+      <div className="px-3">
+        <DeckPostViewerCommentBox entry={entry} onReplied={() => {}} />
       </div>
       <div className="px-3">
         <Discussion
