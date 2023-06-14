@@ -1338,11 +1338,20 @@
     "published":"Published",
     "encoding":"Encoding",
     "encoded":"Encoded",
-    "filed":"Failed",
-    "publish": "Publish",
+    "failed":"Failed",
+    "status-encoded": "Publish",
+    "status-encoding": "Encoding🟡",
     "status-published": "Published✅",
     "status-failed": "Encoding failed❌",
-    "status-encoding": "Encoding🟡"
+    "info-posted-from": "Posted from:",
+    "info-created": "Created:",
+    "info-status": "Status:",
+    "info-views": "Views:",
+    "info-title": "Title:",
+    "info-description": "Description:",
+    "info-duration":"Duration:",
+    "info-rewards":"Decline rewards:",
+    "info-size":"File size:"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",

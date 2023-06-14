@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import LinearProgress from '../linear-progress';
 import { deleteForeverSvg, informationVariantSvg } from '../../img/svg';
-import { Button, Modal, Tooltip } from 'react-bootstrap';
+import { Button, Modal, ModalBody, Tooltip } from 'react-bootstrap';
 import { _t } from '../../i18n';
 import "./index.scss"
 
@@ -11,6 +11,8 @@ const VideoGallery = (props: any) => {
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
+  const[showMoreInfo, setShowMoreInfo] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState<any>(null);
 
   useEffect(()=> {
     getAllStatus();
@@ -45,7 +47,7 @@ const VideoGallery = (props: any) => {
         }
       } else if (months > 0) {
         if (months === 1) {
-          return `${months} day ago`;
+          return `${months} month ago`;
         } else {          
           return` ${months} months ago`;
         }
@@ -57,13 +59,13 @@ const VideoGallery = (props: any) => {
         }
       } else if (hours > 0) {
         if (hours === 1) {
-          return `${hours} day ago`
+          return `${hours} hour ago`
         } else{
           return `${hours} hours ago`;
         }
       } else if (minutes > 0) {
         if (minutes === 1) {
-          return `${minutes} day ago`
+          return `${minutes} mintutes ago`
         } else {
           return `${minutes} minutes ago`;
         }
@@ -86,7 +88,11 @@ const VideoGallery = (props: any) => {
     if (!action) return data;
 
     setLoading(false);
-  }
+  };
+
+  const getHoveredItem = (item: any) => {
+    setHoveredItem(item)
+  };
 
   const modalBodyTop = (
     <div className="video-status-picker">
@@ -110,7 +116,7 @@ const VideoGallery = (props: any) => {
         setItems(await filterListByStatus("encoding_failed"))
         }}>{_t("video-gallery.failed")}</Button>
     </div>
-  )
+  );
 
   const modalBody = (
     <div className="dialog-content">
@@ -128,7 +134,14 @@ const VideoGallery = (props: any) => {
                 <span className='details-title'>                  
                   {item.title.substring(0,15)}...
                 </span>
-                <span className="info-icon details-svg">
+                <span 
+                onMouseOver={()=> {
+                  getHoveredItem(item)
+                  setShowMoreInfo(true)
+                }} 
+                onMouseOut={() => setShowMoreInfo(false)}
+                className="info-icon details-svg" 
+                >
                   more... 
                 </span>
               </div>
@@ -136,12 +149,74 @@ const VideoGallery = (props: any) => {
                 <span>
                   {formatTime(item.created)}
                 </span>
-                {item.status === "publish_manual" ? <button>{_t("video-gallery.published")}</button> :
-                item.status === "encoding_failed" ? <span className="encoding-failed">{_t("video-gallery.failed")}</span> :
-                item.status === "published" ? <span className="published">{_t("video-gallery.publish")}</span> : 
-                <span className="encoding">{_t("video-gallery.encoding")}</span>}
+                {item.status === "publish_manual" ? 
+                <button>
+                  {_t("video-gallery.status-encoded")}
+                </button> :
+                item.status === "encoding_failed" ? 
+                <span className="encoding-failed">
+                  {_t("video-gallery.status-failed")}
+                </span> :
+                item.status === "published" ? 
+                <div>
+                <span className="published">
+                  {_t("video-gallery.status-published")}
+                </span>
+                <button>view</button>
+                </div> :
+                <span className="encoding">
+                  {_t("video-gallery.status-encoding")}
+                </span>}
               </div>
             </div>
+            {showMoreInfo && hoveredItem._id === item._id && 
+            <div className="more-info">
+              <div className="each-info">
+                <span>
+                  {_t("video-gallery.info-posted-from")} {item.app}
+                </span>
+              </div>
+              <div className="each-info">
+                <span>
+                  {_t("video-gallery.info-created")} {formatTime(item.created)}
+                </span>
+              </div>
+              <div className="each-info">
+                <span>
+                  {_t("video-gallery.info-status")} {item.status}
+                </span>
+              </div>
+              <div className="each-info">
+                <span>
+                  {_t("video-gallery.info-views")} {item.views}
+                </span>
+              </div>
+              <div className="each-info">
+                <span>
+                  {_t("video-gallery.info-title")} {item.title.substring(0, 20)}...
+                </span>
+              </div>
+              <div className="each-info">
+                <span>
+                  {_t("video-gallery.info-description")} {item.description.substring(0, 20)}...
+                </span>
+              </div>
+              <div className="each-info">
+                <span>
+                  {_t("video-gallery.info-duration")} {item.duration}
+                </span>
+              </div>
+              <div className="each-info">
+                <span>
+                  {_t("video-gallery.info-rewards")} {`${item.declineRewards ? "Yes" : "No"}`}
+                </span>
+              </div>
+              <div className="each-info">
+                <span>
+                  {_t("video-gallery.info-size")} {`${(item.size / (1024 * 1024)).toFixed(2)}MB`}
+                </span>
+              </div>
+            </div>}
           </div>
           )
            })}
@@ -149,10 +224,10 @@ const VideoGallery = (props: any) => {
         )}
         {!loading && items?.length === 0 && <div className="gallery-list">{_t("g.empty-list")}</div>}
     </div>
-  )
+  );
   
   return (
-    <>
+    <div>
       <Modal show={showGaller} centered={true} 
       onHide={() => setShowGallery(false)} 
       size="lg" className="gallery-modal">
@@ -164,7 +239,7 @@ const VideoGallery = (props: any) => {
           {modalBody}
         </Modal.Body>
       </Modal>
-    </>
+    </div>
   )
 }
 
