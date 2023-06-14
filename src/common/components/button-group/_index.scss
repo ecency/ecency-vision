@@ -3,7 +3,6 @@
 .toggle-with-label {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background-color: $gray-100;
   grid-gap: 1rem;
 
   @include border-radius(1rem);
@@ -21,12 +20,20 @@
 
     &:not(.selected):hover {
       cursor: pointer;
-      box-shadow: 0  6px 20px -10px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 6px 20px -10px rgba(0, 0, 0, 0.25);
     }
 
     &.selected {
       background-color: $primary;
       color: $white;
     }
+  }
+
+  @include themify(day) {
+    background-color: $gray-100;
+  }
+
+  @include themify(night) {
+    background-color: $gray-800;
   }
 }
