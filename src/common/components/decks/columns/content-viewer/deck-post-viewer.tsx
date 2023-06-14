@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Entry } from "../../../../store/entries/types";
 import "./_deck-post-viewer.scss";
 import useMount from "react-use/lib/useMount";
@@ -16,6 +16,16 @@ import { commentSvg, voteSvg } from "../../icons";
 import EntryVoteBtn from "../../../entry-vote-btn";
 import { EntriesCacheContext } from "../../../../core";
 import EntryVotes from "../../../entry-votes";
+import { useResizeDetector } from "react-resize-detector";
+import {
+  renderAuthors,
+  renderCurrencies,
+  renderExternalLinks,
+  renderPostLinks,
+  renderTags,
+  renderTweets,
+  renderVideos
+} from "../deck-items/deck-thread-item-body-render-helper";
 
 interface Props {
   entry: Entry;
@@ -26,12 +36,35 @@ interface Props {
 
 export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) => {
   const [isMounted, setIsMounted] = useState(false);
+  const [renderInitiated, setRenderInitiated] = useState(false);
 
+  const { height, ref } = useResizeDetector();
   const store = useMappedStore();
   const location = useLocation();
   const { updateVotes } = useContext(EntriesCacheContext);
 
   useMount(() => setIsMounted(true));
+
+  useEffect(() => {
+    if (!renderInitiated) {
+      extendedRenderBody();
+    }
+  }, [height]);
+
+  const extendedRenderBody = async () => {
+    setRenderInitiated(true);
+
+    if (ref.current) {
+      ref.current.innerHTML = await renderCurrencies(ref?.current?.innerHTML);
+    }
+
+    renderTags(ref);
+    renderAuthors(ref, store.global);
+    renderPostLinks(ref);
+    renderExternalLinks(ref);
+    renderVideos(ref);
+    renderTweets(ref);
+  };
 
   return (
     <div className={"deck-post-viewer " + (isMounted ? "visible" : "")}>
@@ -59,8 +92,9 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
         <EntryInfo entry={entry} history={history} />
       </div>
       <div
+        ref={ref}
         className="px-3 pb-4 markdown-view"
-        dangerouslySetInnerHTML={{ __html: renderPostBody(entry) }}
+        dangerouslySetInnerHTML={{ __html: renderPostBody(entry, true, store.global.canUseWebp) }}
       />
       <div className="px-3">
         <DeckPostViewerCommentBox entry={entry} onReplied={() => {}} />
