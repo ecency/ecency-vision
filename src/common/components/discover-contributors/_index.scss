@@ -1,0 +1,123 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.discover-contributors-list {
+  height: 100%;
+
+  .list-header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include themify(day) {
+      border-bottom: 1px solid lighten($dark-sky-blue, 28);
+    }
+
+    @include themify(night) {
+      border-bottom: 1px solid lighten($dark, 10);
+    }
+
+    .list-title {
+      color: $dark-sky-blue;
+      font-weight: 500;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    .list-refresh {
+      color: $dark-sky-blue;
+      cursor: pointer;
+      padding: 2px;
+      border-radius: 4px;
+
+      &:hover {
+        background: lighten($dark-sky-blue, 38);
+      }
+
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.4;
+      }
+
+      svg {
+        height: 22px;
+      }
+    }
+  }
+
+  &.loading {
+    .list-header {
+      border-bottom-color: transparent;
+    }
+  }
+
+  .list-body {
+    height: calc(100% - 50px);
+    padding: 20px 0 14px 0;
+    overflow-x: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+
+    @media (min-width: $md-break) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg-break) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: $xl-break) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .list-item {
+      padding: 10px;
+      border-radius: 6px;
+      display: flex;
+
+      @include themify(day) {
+        background: $white-three;
+      }
+
+      @include themify(night) {
+        background: lighten($dark-six, 6);
+      }
+
+      .user-avatar {
+        width: 40px;
+        display: block;
+        margin-right: 10px;
+      }
+
+      .user-info {
+        flex-grow: 1;
+        display: grid;
+
+        .display-name {
+          font-size: 18px;
+
+          @include themify(day) {
+            color: lighten($charcoal-grey, 10)
+          }
+
+          @include themify(night) {
+            color: $silver;
+          }
+        }
+
+        .about {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+}
