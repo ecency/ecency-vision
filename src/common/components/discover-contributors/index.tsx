@@ -9,6 +9,7 @@ import _c from "../../util/fix-class-names";
 import { _t } from "../../i18n";
 import { syncSvg } from "../../img/svg";
 import contributors from "../../constants/contributors.json";
+import _ from "lodash";
 import "./_index.scss";
 
 interface Props {
@@ -23,21 +24,18 @@ export const DiscoverContributors = (props: Props)=> {
     const [loading, setLoading] = useState(true)
 
     useEffect(()=> {
-        shuffleContributors(contributors)
+        shuffleContributors(contributors);
     },[])
 
-  const shuffleContributors = (contributors: { name: string; contributes: string[]; }[]) => {
-    setLoading(true)
-    const shuffledArray = [...contributors];
+    const shuffleContributors = (contributors: { name: string; contributes: string[]; }[]) => {
+        setLoading(true);
+    
+        const shuffledArray = _.shuffle(contributors);
+        setList(shuffledArray);       
+        setLoading(false);
 
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-    };
-    setList(shuffledArray)
-    setLoading(false)
-    return shuffledArray;
-  };
+        return shuffledArray;
+      };
 
     return (
       <div className={_c(`discover-contributors-list ${loading ? "loading" : ""}`)}>
