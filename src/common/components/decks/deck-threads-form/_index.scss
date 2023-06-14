@@ -306,8 +306,13 @@
   }
 
   &-submit {
-      white-space: nowrap;
+    white-space: nowrap;
 
     @include margin-left(1rem);
+  }
+
+  .length-prompt {
+    @include font-size(0.675rem);
+    opacity: 0.5;
   }
 }

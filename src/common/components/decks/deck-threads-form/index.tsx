@@ -49,9 +49,9 @@ export const DeckThreadsForm = ({
     {}
   );
   const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "_dtf_th", "ecency.waves");
-  const [text, setText] = useState("");
-  const [image, setImage] = useState<string | null>(null);
-  const [imageName, setImageName] = useState<string | null>(null);
+  const [text, setText] = useLocalStorage(PREFIX + "_dtf_t", "");
+  const [image, setImage] = useLocalStorage<string | null>(PREFIX + "_dtf_i", null);
+  const [imageName, setImageName] = useLocalStorage<string | null>(PREFIX + "_dtf_in", null);
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -91,14 +91,14 @@ export const DeckThreadsForm = ({
 
     setLoading(true);
     try {
-      let content = text;
+      let content = text!!;
 
       if (image) {
         content = `${content}<br>![${imageName ?? ""}](${image})`;
       }
 
       // Push to draft built content with attachments
-      if (text.length > 255) {
+      if (text!!.length > 255) {
         setLocalDraft({
           ...localDraft,
           body: content
@@ -146,12 +146,12 @@ export const DeckThreadsForm = ({
       className={"deck-toolbar-threads-form-submit "}
       size={size}
     >
-      {!activeUser && !entry && text.length <= 255 && _t("decks.threads-form.login-and-publish")}
+      {!activeUser && !entry && text!!.length <= 255 && _t("decks.threads-form.login-and-publish")}
       {activeUser &&
         !entry &&
-        text.length <= 255 &&
+        text!!.length <= 255 &&
         (loading ? _t("decks.threads-form.publishing") : _t("decks.threads-form.publish"))}
-      {text.length > 255 && !entry && _t("decks.threads-form.create-regular-post")}
+      {text!!.length > 255 && !entry && _t("decks.threads-form.create-regular-post")}
       {entry && _t("decks.threads-form.save")}
     </Button>
   );
@@ -187,9 +187,9 @@ export const DeckThreadsForm = ({
               <DeckThreadsFormThreadSelection host={threadHost} setHost={setThreadHost} />
             )}
             <DeckThreadsFormControl
-              text={text}
+              text={text!!}
               setText={setText}
-              selectedImage={image}
+              selectedImage={image!!}
               onAddImage={(url, name) => {
                 setImage(url);
                 setImageName(name);
@@ -213,12 +213,12 @@ export const DeckThreadsForm = ({
             )}
           </div>
         </div>
-        {inline && text.length > 255 && (
+        {inline && text!!.length > 255 && (
           <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
         )}
         {!inline && (
           <div className="deck-toolbar-threads-form-bottom">
-            {text.length > 255 && (
+            {text!!.length > 255 && (
               <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
             )}
             <DeckThreadsCreatedRecently
