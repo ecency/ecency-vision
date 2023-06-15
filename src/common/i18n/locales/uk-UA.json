@@ -1072,7 +1072,8 @@
     "post-hint": "Автозаповнення",
     "post-placeholder": "ім'я користувача/постійне джерело",
     "post-error": "Недійсна поштова адреса",
-    "post-error-exists": "Допис вже просувають",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Ваш запит надіслано. Він активується через декілька хвилин."
   },
   "transfer": {
