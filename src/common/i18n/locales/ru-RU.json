@@ -1072,7 +1072,8 @@
     "post-hint": "Автозаполнение ввода",
     "post-placeholder": "имя/ссылка",
     "post-error": "Недействительный адрес",
-    "post-error-exists": "Этот пост уже рекламировался",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Ваш запрос отправлен. Он будет выполнен через пару минут."
   },
   "transfer": {
