@@ -1072,7 +1072,8 @@
     "post-hint": "Automatinė įvestis",
     "post-placeholder": "vartotojovardas/permlink",
     "post-error": "Neteisingas įrašo adresas",
-    "post-error-exists": "Šis įrašas jau paspartintas",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Jūsų prašymas priimtas. Aktyvuosis per kelias minutes."
   },
   "transfer": {
