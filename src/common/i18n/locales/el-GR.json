@@ -1072,7 +1072,8 @@
     "post-hint": "Αυτόματη συμπλήρωση εισαγωγής",
     "post-placeholder": "όνομα χρήστη/μόνιμος σύνδεσμος",
     "post-error": "Μη έγκυρη διεύθυνση",
-    "post-error-exists": "Αυτή η δημοσίευση έχει ήδη προωθηθεί",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Το αίτημα σας καταχωρήθηκε. Θα ενεργοποιηθεί σε μερικά λεπτά."
   },
   "transfer": {
