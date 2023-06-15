@@ -181,7 +181,7 @@ export class Promote extends BaseComponent<Props, State> {
     // Check if the post already promoted
     const promoted = await getPromotedPost(activeUser.username, author, permlink);
     if (promoted) {
-      this.stateSet({ postError: _t("redeem-common.post-error-exists"), inProgress: false });
+      this.stateSet({ postError: _t("redeem-common.post-promoted-exists"), inProgress: false });
       return;
     }
 
