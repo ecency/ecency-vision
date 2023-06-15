@@ -576,7 +576,7 @@
     "sort-timestamp": "时间",
     "sort-reputation": "信誉积分",
     "sort-percent": "百分比",
-    "pending-message": "You have pending votes. Please, wait a minute and re-open this dialog to see your vote."
+    "pending-message": "Content has pending votes. Please, wait a minute and refresh this dialog to see new votes."
   },
   "entry": {
     "via-app": "通过 <span class=\"app-name\">{{app}}</span>",
