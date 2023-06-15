@@ -1072,7 +1072,8 @@
     "post-hint": "Avtomatik kiritish",
     "post-placeholder": "foydalanuvchi/permlink",
     "post-error": "Pochta manzili noto‘g‘ri",
-    "post-error-exists": "The post is already promoted",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Sizning so'rovingiz yuborildi. U bir necha daqiqada faollashadi."
   },
   "transfer": {
