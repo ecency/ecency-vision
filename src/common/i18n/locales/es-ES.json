@@ -576,7 +576,7 @@
     "sort-timestamp": "Hora",
     "sort-reputation": "Reputación",
     "sort-percent": "Porcentaje",
-    "pending-message": "Tienes votos pendientes. Por favor, espera un minuto y vuelve a abrir este diálogo para ver tu voto."
+    "pending-message": "Content has pending votes. Please, wait a minute and refresh this dialog to see new votes."
   },
   "entry": {
     "via-app": "a través de <span class=\"app-name\">{{app}}</span>",
