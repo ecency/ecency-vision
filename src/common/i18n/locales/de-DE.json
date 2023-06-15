@@ -1072,7 +1072,8 @@
     "post-hint": "Autocomplete input",
     "post-placeholder": "benutzername/permlink",
     "post-error": "Keine gültige Post Adresse",
-    "post-error-exists": "Dieser Beitrag wurde bereits promotet",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Deine Anfrage wurde eingereicht. Diese wird in ein paar Minuten aktiviert."
   },
   "transfer": {
