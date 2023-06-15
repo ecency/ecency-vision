@@ -52,7 +52,9 @@ class DiscoverPage extends Component<PageProps> {
               <Curation {...this.props} />
             </div>
           )}
-          <div className="popular-users"><DiscoverContributors {...this.props}/></div>
+          <div className="popular-users">
+            <DiscoverContributors {...this.props} />
+          </div>
         </div>
       </>
     );

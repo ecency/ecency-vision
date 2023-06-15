@@ -18,78 +18,77 @@ interface Props {
   addAccount: (data: Account) => void;
 }
 
-export const DiscoverContributors = (props: Props)=> {
+export const DiscoverContributors = (props: Props) => {
+  const [list, setList] = useState<{ name: string; contributes: string[] }[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    const [list, setList] = useState<{name: string; contributes: string[]; }[]>([])
-    const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    shuffleContributors(contributors);
+  }, []);
 
-    useEffect(()=> {
-        shuffleContributors(contributors);
-    },[])
+  const shuffleContributors = (contributors: { name: string; contributes: string[] }[]) => {
+    setLoading(true);
 
-    const shuffleContributors = (contributors: { name: string; contributes: string[]; }[]) => {
-        setLoading(true);
-    
-        const shuffledArray = _.shuffle(contributors);
-        setList(shuffledArray);       
-        setLoading(false);
+    const shuffledArray = _.shuffle(contributors);
+    setList(shuffledArray);
+    setLoading(false);
 
-        return shuffledArray;
-      };
+    return shuffledArray;
+  };
 
-    return (
-      <div className={_c(`discover-contributors-list ${loading ? "loading" : ""}`)}>
-        <div className="list-header">
-          <h1>
-            <div className="list-title">{_t("contributors.title")}</div>
-          </h1>
-          <div 
-          className={_c(`list-refresh ${loading ? "disabled" : ""}`)} 
-          onClick={()=>shuffleContributors(list)}
-          >
-            {syncSvg}
-          </div>
+  return (
+    <div className={_c(`discover-contributors-list ${loading ? "loading" : ""}`)}>
+      <div className="list-header">
+        <h1>
+          <div className="list-title">{_t("contributors.title")}</div>
+        </h1>
+        <div
+          className={_c(`list-refresh ${loading ? "disabled" : ""}`)}
+          onClick={() => shuffleContributors(list)}
+        >
+          {syncSvg}
         </div>
-        {loading && <LinearProgress />}
+      </div>
+      {loading && <LinearProgress />}
 
-        {list.length > 0 && (
-          <div className="list-body">
-            {list?.map((c, i) => {
-              return (
-                <div className="list-item" key={i}>
+      {list.length > 0 && (
+        <div className="list-body">
+          {list?.map((c, i) => {
+            return (
+              <div className="list-item" key={i}>
+                {ProfileLink({
+                  ...props,
+                  username: c.name,
+                  children: (
+                    <span>
+                      <UserAvatar username={c.name} size="medium" />
+                    </span>
+                  )
+                })}
+                <div className="user-info">
+                  {ProfileLink({
+                    ...props,
+                    username: c.name,
+                    children: <span className="display-name">{c.name}</span>
+                  })}
                   {ProfileLink({
                     ...props,
                     username: c.name,
                     children: (
-                      <span>
-                        <UserAvatar username={c.name} size="medium" />
+                      <span className="name notranslate">
+                        {" "}
+                        {"@"}
+                        {c.name}
                       </span>
                     )
                   })}
-                  <div className="user-info">
-                    {ProfileLink({
-                      ...props,
-                      username: c.name,
-                      children: <span className="display-name">{c.name}</span>
-                    })}
-                    {ProfileLink({
-                      ...props,
-                      username: c.name,
-                      children: (
-                        <span className="name notranslate">
-                          {" "}
-                          {"@"}
-                          {c.name}
-                        </span>
-                      )
-                    })}
-                    <div className="about">{c.contributes.join(", ")}</div>
-                  </div>
+                  <div className="about">{c.contributes.join(", ")}</div>
                 </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-    );
-  };
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
