@@ -1,10 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { _t } from "../../../i18n";
-import { DeckHeader } from "../header/deck-header";
-import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { useMappedStore } from "../../../store/use-mapped-store";
 import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from "react-virtualized";
-import { DeckGridContext } from "../deck-manager";
 import { Button } from "react-bootstrap";
 import { upArrowSvg } from "../../../img/svg";
 import { DeckProps, GenericDeckColumn } from "./generic-deck-column";
@@ -41,8 +37,6 @@ export const GenericDeckWithDataColumn = ({
   isFirstLoaded,
   afterDataSlot
 }: DeckWithDataProps) => {
-  const { activeUser } = useMappedStore();
-
   const scrollContentRef = useRef<HTMLDivElement | null>(null);
 
   const [visibleData, setVisibleData] = useState<DataItem[]>([]);
@@ -133,6 +127,7 @@ export const GenericDeckWithDataColumn = ({
           onClick={() => {
             setVisibleData([...newComingData, ...visibleData]);
             setNewComingData([]);
+            scrollContentRef.current?.scrollTo(0, 0);
           }}
         >
           {upArrowSvg}
