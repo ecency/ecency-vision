@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
+import { DirectContactsType } from "../../store/chat/types";
+import { DirectMessage, Keys } from "../../../providers/message-provider-types";
 
 import Tooltip from "../tooltip";
 import UserAvatar from "../user-avatar";
 import SeachUser from "../search-user";
+import { setNostrkeys } from "../../../providers/message-provider";
 
 import {
   addMessageSVG,
@@ -19,11 +22,19 @@ import {
   chevronDownSvgForSlider
 } from "../../img/svg";
 import { dateToFormatted } from "../../helper/parse-date";
+import {
+  createNoStrAccount,
+  getDirectMessages,
+  getProfileMetaData,
+  setProfileMetaData
+} from "../../helper/chat-utils";
 import { _t } from "../../i18n";
 import { getAccountFull } from "../../api/hive";
 
 import "./index.scss";
-import { updateProfile } from "../../api/operations";
+import { RavenEvents } from "../../helper/message-helper";
+import { Chat } from "../../store/chat/types";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 export interface profileData {
   joiningData: string;
@@ -33,9 +44,10 @@ export interface profileData {
 
 interface Props {
   activeUser: ActiveUser | null;
+  chat: Chat;
 }
 
-export default function ChatBox({ activeUser }: Props) {
+export default function ChatBox(props: Props) {
   const chatBodyDivRef = React.createRef<HTMLDivElement>();
   const [expanded, setExpanded] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
@@ -50,183 +62,108 @@ export default function ChatBox({ activeUser }: Props) {
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [show, setShow] = useState(false);
+  const [senderPubKey, setSenderPubKey] = useState("");
+  const [receiverPubKey, setReceiverPubKey] = useState("");
+  const [messagesList, setMessagesList] = useState<DirectMessage[]>([]);
+
+  const { chat } = useMappedStore();
 
   useEffect(() => {
-    // fetchProfileData();
-    setShow(!!activeUser?.username);
+    fetchProfileData();
+    setShow(!!props.activeUser?.username);
   }, []);
 
   useEffect(() => {
-    // fetchProfileData();
-    setCurrentUser("");
-    setIsCurrentUser(false);
-    setShow(!!activeUser?.username);
-    setExpanded(false);
-  }, [activeUser]);
+    const msgsList = getDirectMessages(chat.directMessages, receiverPubKey!);
+    setMessagesList(msgsList);
+  }, [chat.directMessages]);
+
+  useEffect(() => {
+    chatBodyDivRef?.current?.scrollTo(0, isCurrentUser ? chatBodyDivRef.current.scrollHeight : 0);
+    console.log(chatBodyDivRef?.current?.scrollHeight, "ref");
+  }, [isCurrentUser]);
+
+  // useEffect(() => {
+  //   fetchProfileData();
+  //   setCurrentUser("");
+  //   // setIsCurrentUser(false);
+  //   setShow(!!props.activeUser?.username);
+  //   // setExpanded(false);
+  // }, [props.activeUser]);
+
+  // useEffect(() => {
+  //   currentUser ? fetchCurrentUserData() : setMessage("");
+  // }, [currentUser]);
 
   useEffect(() => {
     if (currentUser) {
       fetchCurrentUserData();
+      const peer = chat.directContacts.find((x) => x.name === currentUser)?.creator ?? null;
+      setReceiverPubKey(peer!);
+      const msgsList = getDirectMessages(chat.directMessages, peer!);
+      setMessagesList(msgsList);
+    } else {
+      setMessage("");
     }
   }, [currentUser]);
 
-  const contentList = [
-    {
-      username: "good-karma",
-      lastMessage: "Hy Hope so you are doing well"
-    },
-    {
-      username: "ecency",
-      lastMessage: "Hy"
-    },
-    {
-      username: "demo.com",
-      lastMessage: "Whats Up"
-    },
-    {
-      username: "hive-189310",
-      lastMessage: "Hello"
-    },
-    {
-      username: "hispapro",
-      lastMessage: "Hy Hope so you are doing well"
-    },
-    {
-      username: "galenkp",
-      lastMessage: "How are you?"
-    },
-    {
-      username: "deanliu",
-      lastMessage: "Bro"
-    },
-    {
-      username: "demo123",
-      lastMessage: "What are you doing"
-    },
-    {
-      username: "fastchrisuk",
-      lastMessage: "Hy Hope so you are doing well"
-    },
-    {
-      username: "incublus",
-      lastMessage: "Hy Hope so you are doing well"
-    },
-    {
-      username: "ipexito",
-      lastMessage: "Hello"
-    },
-    {
-      username: "belemo",
-      lastMessage: "Hy Hope so you are doing well"
-    },
-    {
-      username: "foodchunk",
-      lastMessage: "How are you?"
-    },
-    {
-      username: "macro1997",
-      lastMessage: "Bro"
-    },
-    {
-      username: "gelenkp",
-      lastMessage: "What are you doing"
-    },
-    {
-      username: "der-prophet",
-      lastMessage: "Hy Hope so you are doing well"
-    }
-  ];
+  useEffect(() => {
+    chatBodyDivRef?.current?.scrollTo(0, isCurrentUser ? chatBodyDivRef.current.scrollHeight : 0);
+  }, [isCurrentUser]);
 
-  const messageList = [
-    {
-      username: "demo.com",
-      time: "4.27 pm",
-      message: "Hy How are you.",
-      date: "4/9/2022"
-    },
-    {
-      username: "mtsaeed",
-      time: "4.44 pm",
-      message: "I am fine",
-      date: "6/9/2022"
-    },
-    {
-      username: "mtsaeed",
-      time: "4.44 pm",
-      message: "What's about you",
-      date: "6/9/2022"
-    },
-    {
-      username: "demo.com",
-      time: "4.45 pm",
-      message: "Looks good",
-      date: "12/9/2022"
-    },
-    {
-      username: "mtsaeed",
-      time: "4.46 pm",
-      message: "Thanks for asking",
-      date: "12/9/2022"
-    },
-    {
-      username: "demo.com",
-      time: "4.48 pm",
-      message: "What are you doing Nowadays",
-      date: "14/9/2022"
-    },
-    {
-      username: "mtsaeed",
-      time: "4.49 pm",
-      message:
-        "He was educated at the Aitchison College and Cathedral School in Lahore, and then the Royal Grammar School Worcester in England, where he excelled at cricket. In 1972, he enrolled in Keble College, Oxford where he studied Philosophy, Politics and Economics, graduating in 1975.",
-      date: "24/9/2022"
-    },
-    {
-      username: "demo.com",
-      time: "4.50 pm",
-      message: "Seems good",
-      date: "4/10/2022"
-    },
-    {
-      username: "mtsaeed",
-      time: "4.50 pm",
-      message: "Excellent",
-      date: "4/10/2022"
-    },
-    {
-      username: "mtsaeed",
-      time: "4.52 pm",
-      message: "Thanks. I am very grateful to you.",
-      date: "4/11/2022"
-    },
-    {
-      username: "mtsaeed",
-      time: "4.54 pm",
-      message: "Bundle of thanks.",
-      date: "5/11/2022"
+  const formatFollowers = (count: number | undefined) => {
+    if (count) {
+      return count >= 1e6
+        ? (count / 1e6).toLocaleString() + "M"
+        : count >= 1e3
+        ? (count / 1e3).toLocaleString() + "K"
+        : count.toLocaleString();
     }
-  ];
+    return count;
+  };
+
+  //Event listening
+
+  // const handleDirectMessage = (data: DirectMessage[]) => {
+  //   console.log("handleDirectMessage in chat compoenent", data);
+  //   // const append = data.filter((x) => directMessages.find((y) => y.id === x.id) === undefined);
+  //   // raven?.loadProfiles(append.map((x) => x.peer));
+  //   // setDirectMessages([...directMessages, ...append]);
+  // };
+
+  // useEffect(() => {
+  //   if (window.raven) {
+  //     window.raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
+  //     window.raven?.addListener(RavenEvents.DirectMessage, handleDirectMessage);
+  //   }
+
+  //   return () => {
+  //     if (window.raven) {
+  //       window.raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
+  //     }
+  //   };
+  // }, []);
 
   const fetchCurrentUserData = async () => {
-    console.log("Fetch Current data called");
     const response = await getAccountFull(currentUser);
     setProfileData({
       joiningData: response.created,
       about: response.profile?.about,
       followers: response.follow_stats?.follower_count
     });
+    const currentUserProfile = await getProfileMetaData(currentUser);
+    // console.log(currentUserProfile.noStrKey);
+    setReceiverPubKey(currentUserProfile.noStrKey.pub);
   };
 
-  // const fetchProfileData = async () => {
-  //   console.log("Fetch profile data called");
-  //   const response = await getAccountFull(activeUser?.username!);
-  //   setAccountData(response);
-  //   const { posting_json_metadata } = response;
-  //   const profile = JSON.parse(posting_json_metadata!).profile;
-
-  //   const hasNoStrKey = !!profile.noStrKey && profile.noStrKey.trim() !== "";
-  //   setHasUserJoinedChat(hasNoStrKey);
-  // };
+  const fetchProfileData = async () => {
+    const profileData = await getProfileMetaData(props.activeUser?.username!);
+    console.log(profileData, "keys");
+    setSenderPubKey(profileData?.noStrKey.pub);
+    const hasNoStrKey = "noStrKey" in profileData;
+    setHasUserJoinedChat(hasNoStrKey);
+    setShow(!!props.activeUser?.username);
+  };
 
   const userClicked = (username: string) => {
     setIsCurrentUser(true);
@@ -248,22 +185,8 @@ export default function ChatBox({ activeUser }: Props) {
     if (message.length !== 0) {
       setMessage("");
       setIsMessageText(false);
+      window.raven?.sendDirectMessage(receiverPubKey, message);
     }
-  };
-
-  useEffect(() => {
-    chatBodyDivRef?.current?.scrollTo(0, isCurrentUser ? chatBodyDivRef.current.scrollHeight : 0);
-  }, [isCurrentUser]);
-
-  const formatFollowers = (count: number | undefined) => {
-    if (count) {
-      return count >= 1e6
-        ? (count / 1e6).toLocaleString() + "M"
-        : count >= 1e3
-        ? (count / 1e3).toLocaleString() + "K"
-        : count.toLocaleString();
-    }
-    return count;
   };
 
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
@@ -286,6 +209,22 @@ export default function ChatBox({ activeUser }: Props) {
     });
   };
 
+  // const scrollToBottomClicked = () => {
+  //   console.log("Scroll to bottom clicked");
+  //   chatBodyDivRef?.current?.scrollTo({
+  //     top: chatBodyDivRef?.current?.scrollHeight+10,
+  //     behavior: "smooth"
+  //   });
+  // };
+
+  // const scrollToTopClicked = () => {
+  //   console.log("Scroll to top clicked");
+  //   chatBodyDivRef?.current?.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth"
+  //   });
+  // };
+
   const handleMessageSvgClick = () => {
     setShowSearchUser(true);
   };
@@ -296,19 +235,12 @@ export default function ChatBox({ activeUser }: Props) {
 
   const handleJoinChat = () => {
     setInProgress(true);
-    setTimeout(() => {
-      setInProgress(false);
-      setHasUserJoinedChat(true);
-    }, 4000);
-
-    // const { profile } = response;
-
-    // const newProfile = {
-    //   noStrKey: "nsec1mefplh7mwup68r84x6gxkqn4w0ymj5q8cr0frj0lgflx8vrwvw7sdxh3ew"
-    // };
-
-    // const updatedProfile = await updateProfile(response, { ...profile, ...newProfile });
-    // console.log(updatedProfile);
+    const keys = createNoStrAccount();
+    setProfileMetaData(props.activeUser, keys);
+    setInProgress(false);
+    setHasUserJoinedChat(true);
+    setNostrkeys(keys);
+    // window.raven?.updateProfile({ name: activeUser?.username!, about: "", picture: "" });
   };
 
   const chatButtonSpinner = (
@@ -397,35 +329,35 @@ export default function ChatBox({ activeUser }: Props) {
                       )}
                     </Link>
                     <div className="chats">
-                      {messageList.map((msg) => {
-                        if (msg.username !== activeUser?.username) {
+                      {messagesList.map((msg) => {
+                        if (msg.creator !== senderPubKey) {
                           return (
                             <>
-                              <div key={msg.username} className="date-time-detail">
+                              {/* <div key={msg.username} className="date-time-detail">
                                 <p className="date-time">
                                   {msg.date}, {msg.time}
                                 </p>
-                              </div>
-                              <div key={msg.time} className="message">
+                              </div> */}
+                              <div key={msg.id} className="message">
                                 <div className="user-img">
-                                  <Link to={`/@${msg.username}`}>
+                                  <Link to={`/@${currentUser}`}>
                                     <span>
-                                      <UserAvatar username={msg.username} size="medium" />
+                                      <UserAvatar username={currentUser} size="medium" />
                                     </span>
                                   </Link>
                                 </div>
                                 <div className="user-info">
-                                  <p className="receiver-message-content">{msg.message}</p>
+                                  <p className="receiver-message-content">{msg.content}</p>
                                 </div>
                               </div>
                             </>
                           );
                         } else {
                           return (
-                            <div key={msg.message} className="sender">
+                            <div key={msg.id} className="sender">
                               <div className="sender-message">
                                 {/* <span className="sender-message-time">{msg.time}</span> */}
-                                <p className="sender-message-content">{msg.message}</p>
+                                <p className="sender-message-content">{msg.content}</p>
                               </div>
                             </div>
                           );
@@ -435,20 +367,20 @@ export default function ChatBox({ activeUser }: Props) {
                   </>
                 ) : (
                   <>
-                    {contentList.map((user) => {
+                    {chat.directContacts.map((user: DirectContactsType) => {
                       return (
-                        <div key={user.username} className="chat-content">
-                          <Link to={`/@${user.username}`}>
+                        <div key={user.creator} className="chat-content">
+                          <Link to={`/@${user.name}`}>
                             <div className="user-img">
                               <span>
-                                <UserAvatar username={user.username} size="medium" />
+                                <UserAvatar username={user.name} size="medium" />
                               </span>
                             </div>
                           </Link>
 
-                          <div className="user-title" onClick={() => userClicked(user.username)}>
-                            <p className="username">{user.username}</p>
-                            <p className="last-message">{user.lastMessage}</p>
+                          <div className="user-title" onClick={() => userClicked(user.name)}>
+                            <p className="username">{user.name}</p>
+                            {/* <p className="last-message">{user.lastMessage}</p> */}
                           </div>
                         </div>
                       );
@@ -489,6 +421,7 @@ export default function ChatBox({ activeUser }: Props) {
               >
                 <InputGroup className="chat-input-group">
                   <Form.Control
+                    as="textarea"
                     value={message}
                     onChange={handleMessage}
                     required={true}

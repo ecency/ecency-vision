@@ -121,8 +121,6 @@ export const SignUp = (props: PageProps) => {
   }, [username, usernameTouched]);
 
   const regularRegister = async () => {
-    // const key = createNoStrAccount();
-    // console.log(key);
     setInProgress(true);
     try {
       const response = await signUp(username, email, referral);

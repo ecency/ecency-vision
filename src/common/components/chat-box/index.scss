@@ -154,6 +154,7 @@
 
     .chat-content {
       display: flex;
+      cursor: pointer;
 
       .user-img {
         padding: 18px 16px;
@@ -161,7 +162,7 @@
       .user-title {
         padding-top: 18px;
         width: -webkit-fill-available;
-        cursor: pointer;
+
         .username {
           @include themify(day) {
             color: $charcoal-grey;
@@ -339,6 +340,8 @@
             margin-top: 3px;
           }
           .sender-message-content {
+            max-width: 280px;
+            word-wrap: break-word;
             margin-bottom: 0;
             color: $white;
             font-size: 16px;

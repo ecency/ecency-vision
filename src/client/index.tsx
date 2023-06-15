@@ -11,6 +11,7 @@ import { AppWindow } from "./window";
 import "../style/style.scss";
 import "./base-handlers";
 import { loadableReady } from "@loadable/component";
+import MessageProvider from "../providers/message-provider";
 
 declare var window: AppWindow;
 
@@ -39,7 +40,9 @@ loadableReady().then(() => {
   hydrate(
     <Provider store={store}>
       <ConnectedRouter history={history!}>
+        {/* <MessageProvider> */}
         <App />
+        {/* </MessageProvider> */}
       </ConnectedRouter>
     </Provider>,
     document.getElementById("root")
@@ -64,7 +67,9 @@ if (module.hot) {
     hydrate(
       <Provider store={store}>
         <ConnectedRouter history={history!}>
+          {/* <MessageProvider> */}
           <App />
+          {/* </MessageProvider> */}
         </ConnectedRouter>
       </Provider>,
       document.getElementById("root")

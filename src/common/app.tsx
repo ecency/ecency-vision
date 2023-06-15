@@ -4,6 +4,7 @@ import EntryIndexContainer from "./pages/index";
 import EntryContainer from "./pages/entry";
 import { SearchPageContainer, SearchMorePageContainer } from "./pages/search";
 import { ProposalsIndexContainer, ProposalDetailContainer } from "./pages/proposals";
+import MessageProvider from "../providers/message-provider";
 import NotFound from "./components/404";
 import Tracker from "./tracker";
 import {
@@ -158,7 +159,8 @@ const App = (props: any) => {
 
       <Announcement activeUser={props.activeUser} />
       <FloatingFAQ />
-      <ChatBox activeUser={props.activeUser} />
+      <MessageProvider {...props} />
+      <ChatBox {...props} />
     </>
   );
 };

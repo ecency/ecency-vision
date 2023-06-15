@@ -24,6 +24,7 @@ import entryPinTracker from "./entry-pin-tracker";
 import persistentPageScroll from "./persistent-page-scroll";
 
 import filterTagExtract from "../helper/filter-tag-extract";
+import chat from "./chat";
 
 let reducers = {
   global,
@@ -43,7 +44,8 @@ let reducers = {
   points,
   signingKey,
   entryPinTracker,
-  persistentPageScroll
+  persistentPageScroll,
+  chat
 };
 
 export let history: History | undefined;
