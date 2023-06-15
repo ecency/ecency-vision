@@ -1072,7 +1072,8 @@
     "post-hint": "إكمال تلقائي للإدخال",
     "post-placeholder": "اسم المستخدم/الرابط",
     "post-error": "عنوان نشر غير صالح",
-    "post-error-exists": "المنشور معزز مسبقاً",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "تم إرسال طلبك. سيتم تفعيله في بضع دقائق."
   },
   "transfer": {
