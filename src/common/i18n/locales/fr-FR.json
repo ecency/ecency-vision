@@ -1072,7 +1072,8 @@
     "post-hint": "Saisie automatique",
     "post-placeholder": "nom d'utilisateur/permlink",
     "post-error": "N'est pas une adresse de post valide",
-    "post-error-exists": "Ce post est déjà promu",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Votre demande a été envoyée. Elle sera activée dans quelques minutes."
   },
   "transfer": {
