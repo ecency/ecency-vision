@@ -1072,7 +1072,8 @@
     "post-hint": "Autouzupełnianie wprowadzania",
     "post-placeholder": "nazwa użytkownika/permlink",
     "post-error": "Nie prawidłowy adres wpisu",
-    "post-error-exists": "Ten post jest już promowany",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Twoje zapytanie zostało złożone. Zostanie ono aktywowane za kilka minut."
   },
   "transfer": {
