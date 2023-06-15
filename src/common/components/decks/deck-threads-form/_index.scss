@@ -312,7 +312,9 @@
   }
 
   .length-prompt {
-    @include font-size(0.675rem);
     opacity: 0.5;
+
+    @include margin-top(0.5rem);
+    @include font-size(0.675rem);
   }
 }
