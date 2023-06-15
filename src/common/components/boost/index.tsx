@@ -180,7 +180,7 @@ export class Boost extends BaseComponent<Props, State> {
     // Check if the post already boosted
     const boosted = await getBoostedPost(activeUser.username, author, permlink);
     if (boosted) {
-      this.stateSet({ postError: _t("redeem-common.post-error-exists"), inProgress: false });
+      this.stateSet({ postError: _t("redeem-common.post-boosted-exists"), inProgress: false });
       return;
     }
 
