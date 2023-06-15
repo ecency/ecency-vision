@@ -1072,7 +1072,8 @@
     "post-hint": "Auto completar a entrada",
     "post-placeholder": "usuário/link permanente",
     "post-error": "Endereço do post não é valido",
-    "post-error-exists": "A publicação já foi promovida",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Seu pedido foi enviado. Ele será ativado em alguns minutos."
   },
   "transfer": {
