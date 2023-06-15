@@ -1072,7 +1072,8 @@
     "post-hint": "स्वतः पूर्ण इनपुट",
     "post-placeholder": "उपयोगकर्ता नाम / स्थायी लिंक",
     "post-error": "मान्य पोस्ट पता नहीं",
-    "post-error-exists": "पद पहले से पदोन्नत है",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "आपका अनुरोध सबमिट कर दिया गया है यह एक दो मिनट में सक्रिय हो जाएगा।"
   },
   "transfer": {
