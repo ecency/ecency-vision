@@ -44,7 +44,10 @@ export const DeckThreadsFormControl = ({
             </div>
           </div>
         )}
-        <DeckThreadsFormToolbar onAddImage={onAddImage} />
+        <DeckThreadsFormToolbar
+          onAddImage={onAddImage}
+          onEmojiPick={(v) => setText(`${text}${v}`)}
+        />
       </div>
     </>
   );
