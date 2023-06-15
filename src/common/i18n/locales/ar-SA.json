@@ -576,7 +576,7 @@
     "sort-timestamp": "الوقت",
     "sort-reputation": "السمعة",
     "sort-percent": "النسبة المئوية",
-    "pending-message": "You have pending votes. Please, wait a minute and re-open this dialog to see your vote."
+    "pending-message": "Content has pending votes. Please, wait a minute and refresh this dialog to see new votes."
   },
   "entry": {
     "via-app": "بواسطة <span class=\"app-name\">{{app}}</span>",
