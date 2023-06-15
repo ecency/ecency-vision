@@ -1072,7 +1072,8 @@
     "post-hint": "Autocomplete input",
     "post-placeholder": "username/permlink",
     "post-error": "Nu este o adresă de postare validă",
-    "post-error-exists": "Postarea a fost deja promovată",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Cererea a fost trimisă. Va fi activat în câteva minute."
   },
   "transfer": {
