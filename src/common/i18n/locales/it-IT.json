@@ -1072,7 +1072,8 @@
     "post-hint": "Input di completamento automatico",
     "post-placeholder": "nome utente/permalink",
     "post-error": "Non è un indirizzo valido di un post",
-    "post-error-exists": "Il post risulta già promosso",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "La tua richiesta è stata inviata. Sarà attivata in un paio di minuti."
   },
   "transfer": {
