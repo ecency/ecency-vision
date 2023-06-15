@@ -1072,7 +1072,8 @@
     "post-hint": "Автоматично дописване",
     "post-placeholder": "потребителско име/permlink",
     "post-error": "Няма такъв адрес на публикация",
-    "post-error-exists": "Поста вече е промотиран",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Вашата заявка беше изпратена. Ще бъде активирана след няколко минути."
   },
   "transfer": {
