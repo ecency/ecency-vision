@@ -1072,7 +1072,8 @@
     "post-hint": "Girdiyi otomatik olarak tamamla",
     "post-placeholder": "kullanıcı adı/kalıcı bağlantı",
     "post-error": "Gönderi adresi geçersizdir",
-    "post-error-exists": "Bu gönderi zaten tanıtıldı",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Talebiniz gönderildi. Birkaç dakika içinde etkinleştirilecektir."
   },
   "transfer": {
