@@ -1072,7 +1072,8 @@
     "post-hint": "自动完成输入",
     "post-placeholder": "用户名/许可链接",
     "post-error": "不是有效的帖子地址",
-    "post-error-exists": "帖子已被推广",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "您的请求已提交。它将在几分钟后激活。"
   },
   "transfer": {
