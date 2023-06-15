@@ -1072,7 +1072,8 @@
     "post-hint": "Autokompletirani ulaz",
     "post-placeholder": "korisničko ime/permanentna veza",
     "post-error": "Nevažeća adresa objave",
-    "post-error-exists": "Objava je već promovisana",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Vaš zahtev je podnet. Biće aktivirano za nekoliko minuta."
   },
   "transfer": {
