@@ -167,9 +167,13 @@ export const SignUp = (props: PageProps) => {
       email,
       referral
     }
-    const stringifiedInfo = JSON.stringify(accInfo);
-    const hashedInfo = b64uEnc(stringifiedInfo);
-    setUrlHash(hashedInfo);
+    try{
+      const stringifiedInfo = JSON.stringify(accInfo);
+      const hashedInfo = b64uEnc(stringifiedInfo);
+      setUrlHash(hashedInfo);
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   return (
