@@ -1072,7 +1072,8 @@
     "post-hint": "Sugerencia de autocompletado",
     "post-placeholder": "usuario/permlink",
     "post-error": "No es una dirección de una publicación válida",
-    "post-error-exists": "El post ya está promocionado",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Tu solicitud enviada. Será activada en un par de minutos."
   },
   "transfer": {
