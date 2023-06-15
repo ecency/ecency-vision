@@ -1072,7 +1072,8 @@
     "post-hint": "Automaattitäydennys",
     "post-placeholder": "käyttäjänimi/permlink",
     "post-error": "Osoite ei kelpaa",
-    "post-error-exists": "Julkaisu on jo korostettu",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Pyyntösi lähetetty. Se aktivoituu muutaman minuutin kuluttua."
   },
   "transfer": {
