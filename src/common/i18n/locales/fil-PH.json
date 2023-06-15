@@ -1072,7 +1072,8 @@
     "post-hint": "Awtomatikong paglagay",
     "post-placeholder": "bansag/permanenteng ugnayan",
     "post-error": "Hindi isang balidong address",
-    "post-error-exists": "Ang post ay tapos nang naisulong",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Naisumite na ang iyong hiling. Magiging aktibo ito sa ilang sandali."
   },
   "transfer": {
