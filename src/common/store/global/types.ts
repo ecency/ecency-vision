@@ -71,9 +71,6 @@ export interface Global {
   usePrivate: boolean;
   hsClientId: string;
   lastIndexPath: string | null;
-  accountName: string | null;
-  accountEmail: string | null;
-  referral: string | null;
 }
 
 export enum ActionTypes {
@@ -88,9 +85,6 @@ export enum ActionTypes {
   NEW_VERSION_CHANGE = "@global/NEW_VERSION_CHANGE",
   NSFW_SET = "@global/NSFW_SET",
   SET_LAST_INDEX_PATH = "@global/SET_LAST_INDEX_PATH",
-  SET_ACCOUNT_EMAIL = "@global/SET_ACCOUNT_EMAIL",
-  SET_ACCOUNT_NAME = "@global/SET_ACCOUNT_NAME",
-  SET_REFERRAL = "@global/SET_REFERRAL"
 }
 
 export interface ThemeChangeAction {
@@ -146,21 +140,6 @@ export interface SetLastIndexPathAction {
   path: string | null;
 }
 
-export interface SetAccountNameAction {
-  type: ActionTypes.SET_ACCOUNT_NAME;
-  name: string | null;
-}
-
-export interface SetAccountEmailAction {
-  type: ActionTypes.SET_ACCOUNT_EMAIL;
-  email: string | null;
-}
-
-export interface SetReferralAction {
-  type: ActionTypes.SET_REFERRAL;
-  referral: string | null;
-}
-
 export type Actions =
   | LocationChangeAction
   | ThemeChangeAction
@@ -174,6 +153,3 @@ export type Actions =
   | NsfwSetAction
   | HasKeyChainAction
   | SetLastIndexPathAction
-  | SetAccountNameAction
-  | SetAccountEmailAction
-  | SetReferralAction;

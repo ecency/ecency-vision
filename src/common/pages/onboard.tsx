@@ -19,6 +19,7 @@ import { b64uDec, b64uEnc } from "../util/b64";
 export interface AccountInfo {
   email: string;
   username: string;
+  referral: string;
   keys: {
     active: string;
     activePubkey: string;
@@ -84,7 +85,7 @@ const Onboard = (props: PageProps | any) => {
     } catch (err) {
       console.log(err);
     }
-  }, [props.global.accountName]);
+  }, [accountInfo?.username]);
 
   useEffect(() => {
     if (decodedInfo) {
@@ -118,9 +119,11 @@ const Onboard = (props: PageProps | any) => {
   };
 
   const initAccountKey = async () => {
+    const urlInfo = props.match.url.split("/")[3]
+    const info = JSON.parse(b64uDec(urlInfo))
     try {
       const masterPassword: string = await generatePassword(32);
-      const keys: any = getPrivateKeys(props.global.accountName, masterPassword);
+      const keys: any = getPrivateKeys(accountInfo?.username, masterPassword);
       // prepare object to encode
       const pubkeys = {
         activePublicKey: keys.activePubkey,
@@ -130,8 +133,8 @@ const Onboard = (props: PageProps | any) => {
       };
 
       const dataToEncode = {
-        username: props.global.accountName,
-        email: props.global.accountEmail,
+        username: info.username,
+        email: info.email,
         pubkeys
       };
       // stringify object to encode
@@ -139,8 +142,9 @@ const Onboard = (props: PageProps | any) => {
       const hashedPubKeys = b64uEnc(stringifiedPubKeys);
       setSecret(hashedPubKeys);
       const accInfo = {
-        username: props.global.accountName,
-        email: props.global.accountEmail,
+        username: info.username,
+        email: info.email,
+        referral: info.referral,
         keys
       };
       setAccountInfo(accInfo);
@@ -153,8 +157,11 @@ const Onboard = (props: PageProps | any) => {
   };
 
   const getCredit = async () => {
-    const accountCredit = await getAcountCredit(props.activeUser.username);
-    setAccountCredit(accountCredit);
+    const { activeUser } = props;
+    if (activeUser) {
+      const accountCredit = await getAcountCredit(activeUser.username);
+      setAccountCredit(accountCredit);
+    }
   };
 
   const copyToClipboard = (text: string) => {
@@ -350,13 +357,13 @@ const Onboard = (props: PageProps | any) => {
               <h3 className="mb-3 align-self-center">{_t("onboard.confirm-details")}</h3>
               <div className="reg-details">
                 <span style={{ lineHeight: 2 }}>
-                  {_t("onboard.username")} <strong>{props.global.accountName}</strong>
+                  {_t("onboard.username")} <strong>{accountInfo?.username}</strong>
                 </span>
                 <span style={{ lineHeight: 2 }}>
-                  {_t("onboard.email")} <strong>{props.global.accountEmail}</strong>
+                  {_t("onboard.email")} <strong>{accountInfo?.email}</strong>
                 </span>
                 <span style={{ lineHeight: 2 }}>
-                  {_t("onboard.referral")} <strong>{props.global.referral}</strong>
+                  {_t("onboard.referral")} <strong>{accountInfo?.referral}</strong>
                 </span>
               </div>
               <span className="mt-3">{_t("onboard.copy-key")}</span>

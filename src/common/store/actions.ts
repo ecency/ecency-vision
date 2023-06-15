@@ -9,9 +9,6 @@ import {
   toggleListStyle,
   toggleTheme,
   unMuteNotifications,
-  setAccountEmail,
-  setAccountName,
-  setReferral
 } from "./global";
 import { fetchTrendingTags } from "./trending-tags";
 import { updateSubscriptions } from "./subscriptions";
@@ -93,9 +90,6 @@ export const ACTIONS = {
   updateNotificationsSettings,
   fetchNotificationsSettings,
   setNotificationsSettingsItem,
-  setAccountEmail,
-  setAccountName,
-  setReferral
 };
 
 export const getActions = () => ({

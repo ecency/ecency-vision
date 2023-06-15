@@ -23,6 +23,7 @@ import { handleInvalid, handleOnInput } from "../util/input-util";
 import { getAccount } from "../api/hive";
 import "./sign-up.scss";
 import { Link } from "react-router-dom";
+import { b64uEnc } from "../util/b64";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -49,6 +50,7 @@ export const SignUp = (props: PageProps) => {
   const [url, setUrl] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [registrationError, setRegistrationError] = useState("");
+  const [urlHash, setUrlHash] = useState("");
 
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
@@ -119,6 +121,10 @@ export const SignUp = (props: PageProps) => {
       });
     }
   }, [username, usernameTouched]);
+  
+  useEffect(() => {
+      encodeUrlInfo(username, email, referral);
+  },[username, email, referral])
 
   const regularRegister = async () => {
     setInProgress(true);
@@ -154,6 +160,17 @@ export const SignUp = (props: PageProps) => {
       setIsVerified(true);
     }
   };
+
+  const encodeUrlInfo = (username: string, email: string, referral: string) => {
+    const accInfo = {
+      username,
+      email,
+      referral
+    }
+    const stringifiedInfo = JSON.stringify(accInfo);
+    const hashedInfo = b64uEnc(stringifiedInfo);
+    setUrlHash(hashedInfo);
+  }
 
   return (
     <>
@@ -373,13 +390,15 @@ export const SignUp = (props: PageProps) => {
                   <div className="card-footer">
                     <Button
                       as={Link}
-                      to="/onboard-friend/asking"
+                      to={`/onboard-friend/asking/${urlHash}`}
                       className="w-100"
                       variant="primary"
                       onClick={() => {
-                        props.setAccountEmail(email);
-                        props.setAccountName(username);
-                        props.setReferral(referral || props.activeUser?.username || "ecency");
+                        // encodeUrlInfo(username, email, referral);
+                        console.log(urlHash)
+                        // props.setAccountEmail(email);
+                        // props.setAccountName(username);
+                        // props.setReferral(referral || props.activeUser?.username || "ecency");
                       }}
                     >
                       {_t("onboard.asking")}

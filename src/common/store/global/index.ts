@@ -19,10 +19,7 @@ import {
   NotificationsMuteAction,
   NotificationsUnMuteAction,
   NsfwSetAction,
-  SetAccountEmailAction,
-  SetAccountNameAction,
   SetLastIndexPathAction,
-  SetReferralAction,
   Theme,
   ThemeChangeAction
 } from "./types";
@@ -53,9 +50,6 @@ export const initialState: Global = {
   usePrivate: true,
   hsClientId: "ecency.app",
   lastIndexPath: null,
-  accountEmail: "",
-  accountName: "",
-  referral: ""
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
@@ -110,17 +104,6 @@ export default (state: Global = initialState, action: Actions): Global => {
     }
     case ActionTypes.SET_LAST_INDEX_PATH: {
       return { ...state, lastIndexPath: action.path };
-    }
-
-    // GLOBAL REFERALL INFO HANDLER
-    case ActionTypes.SET_ACCOUNT_EMAIL: {
-      return { ...state, accountEmail: action.email };
-    }
-    case ActionTypes.SET_ACCOUNT_NAME: {
-      return { ...state, accountName: action.name };
-    }
-    case ActionTypes.SET_REFERRAL: {
-      return { ...state, referral: action.referral };
     }
     default:
       return state;
@@ -224,19 +207,6 @@ export const setLastIndexPath = (path: string | null) => (dispatch: Dispatch) =>
   dispatch(setLastIndexPathAct(path));
 };
 
-// Global Referral Info
-export const setAccountEmail = (email: string) => (dispatch: Dispatch) => {
-  dispatch(setAccountEmailAct(email));
-};
-
-export const setAccountName = (name: string) => (dispatch: Dispatch) => {
-  dispatch(setAccountNameAct(name));
-};
-
-export const setReferral = (referral: string) => (dispatch: Dispatch) => {
-  dispatch(setReferralAct(referral));
-};
-
 /* Action Creators */
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
   return {
@@ -313,20 +283,4 @@ export const hasKeyChainAct = (): HasKeyChainAction => {
 export const setLastIndexPathAct = (path: string | null): SetLastIndexPathAction => ({
   type: ActionTypes.SET_LAST_INDEX_PATH,
   path
-});
-
-// Global Referral Info
-export const setAccountEmailAct = (email: string): SetAccountEmailAction => ({
-  type: ActionTypes.SET_ACCOUNT_EMAIL,
-  email
-});
-
-export const setAccountNameAct = (name: string): SetAccountNameAction => ({
-  type: ActionTypes.SET_ACCOUNT_NAME,
-  name
-});
-
-export const setReferralAct = (referral: string): SetReferralAction => ({
-  type: ActionTypes.SET_REFERRAL,
-  referral
 });
