@@ -6106,10 +6106,10 @@ hive-uri@^0.2.4:
   resolved "https://registry.yarnpkg.com/hive-uri/-/hive-uri-0.2.4.tgz#6975cfa50790571084d31249e6e061ed3d4f7fde"
   integrity sha512-c61F16oVARU+eLvGy20JN7M9YK+DUexHPFGBlG39VHI9Ahxos8YNCY6Btmw9AL7Jlq5b4HtY0LvsOIqHQoOWhw==
 
-hivesigner@^3.2.8:
-  version "3.2.8"
-  resolved "https://registry.yarnpkg.com/hivesigner/-/hivesigner-3.2.8.tgz#868dd77dcc96a6c25018f4ed6aa32dfae595a864"
-  integrity sha512-lSpN2123GLdpuaQLMOW0/Ux8+pbnaXTEvu3JpMNT2TcT8Ey9vG/pT+gnwqJ/sTAUTmge8OQtbZ0zIzaR9QS4Wg==
+hivesigner@^3.3.4:
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/hivesigner/-/hivesigner-3.3.4.tgz#5ab19f25821eacb6683d86ee098e3868f028497e"
+  integrity sha512-n+fpsmc3FvkwXwhSTHJgChq97YeL2bEcJz/Awn9o+boFnIxqrxg4Y3i4sMMR8j+kJnwDV9c5JIMF4zQVxPSPJQ==
   dependencies:
     "@babel/runtime" "^7.13.9"
     cross-fetch "^3.0.6"
