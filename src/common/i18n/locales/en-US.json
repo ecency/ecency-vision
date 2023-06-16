@@ -1321,24 +1321,24 @@
     "empty-body-alert": "Enter post body",
     "description": "Short description"
   },
-  "video-upload":{
-    "choose-video": "Choose video",
-    "choose-thumbnail": "Choose video",
+  "video-upload": {
+    "choose-video": "Video",
+    "choose-thumbnail": "Thumbnail",
     "continue": "Continue",
-    "encode": "Enconde video",
-    "success":"Video has been uploaded successfully",
+    "encode": "Send for encoding",
+    "success": "Video has been uploaded and queued for encoding",
     "finished": "Finished",
     "upload-video": "Upload video",
     "video-gallery": "Video gallery",
     "preview": "Preview",
     "congrats": "Congratulations"
   },
-  "video-gallery":{
-    "all":"All",
-    "published":"Published",
-    "encoding":"Encoding",
-    "encoded":"Encoded",
-    "failed":"Failed",
+  "video-gallery": {
+    "all": "All",
+    "published": "Published",
+    "encoding": "Encoding",
+    "encoded": "Encoded",
+    "failed": "Failed",
     "status-encoded": "Publish",
     "status-encoding": "Encoding🟡",
     "status-published": "Published✅",
@@ -1349,9 +1349,9 @@
     "info-views": "Views:",
     "info-title": "Title:",
     "info-description": "Description:",
-    "info-duration":"Duration:",
-    "info-rewards":"Decline rewards:",
-    "info-size":"File size:"
+    "info-duration": "Duration:",
+    "info-rewards": "Decline rewards:",
+    "info-size": "File size:"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",

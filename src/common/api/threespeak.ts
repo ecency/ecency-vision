@@ -10,8 +10,6 @@ const client = axios.create({});
 
 export const threespeakAuth = async (username: string) => {
   try {
-    const postingAuthKey = getPostingKey(username);
-
     let response = await client.get(
       `${studioEndPoint}/mobile/login?username=${username}&hivesigner=true`,
       {

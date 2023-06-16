@@ -36,7 +36,7 @@ import {
   gridSvg,
   emoticonHappyOutlineSvg,
   textShortSvg,
-  gifIcon,
+  gifIcon
 } from "../../img/svg";
 import { VideoUpload } from "../video-upload-threespeak";
 
@@ -49,7 +49,7 @@ interface Props {
   showGif?: boolean;
   body: string;
   title: string;
-  tags: string[]
+  tags: string[];
 }
 
 interface State {
@@ -78,13 +78,12 @@ export class EditorToolbar extends Component<Props> {
     image: false,
     link: false,
     mobileImage: false,
-    shGif: false,
+    shGif: false
   };
 
   holder = React.createRef<HTMLDivElement>();
   fileInput = React.createRef<HTMLInputElement>();
   videoInput = React.createRef<HTMLInputElement>();
-  
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
     return (
@@ -484,7 +483,8 @@ export class EditorToolbar extends Component<Props> {
                           e.stopPropagation();
                           const el = this.fileInput.current;
                           if (el) {
-                            el.click()};
+                            el.click();
+                          }
                         }}
                       >
                         {_t("editor-toolbar.upload")}
@@ -565,12 +565,12 @@ export class EditorToolbar extends Component<Props> {
 
           <Tooltip content="Upload Video">
             <div className="editor-tool" role="none">
-              <VideoUpload 
-              title={this.props.title}
-              description={this.props.body}
-              activeUser={activeUser}
-              tags={this.props.tags}
-              global={global}
+              <VideoUpload
+                title={this.props.title}
+                description={this.props.body}
+                activeUser={activeUser}
+                tags={this.props.tags}
+                global={global}
               />
             </div>
           </Tooltip>
