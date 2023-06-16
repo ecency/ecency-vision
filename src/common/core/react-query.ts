@@ -11,5 +11,8 @@ export const queryClient = new QueryClient({
 export enum QueryIdentifiers {
   COMMUNITY_THREADS = "community-threads",
   THREADS = "threads",
-  ENTRY = "entry"
+  ENTRY = "entry",
+  COMMUNITY = "community",
+  DECK_USER = "deck-user",
+  DECK_COMMUNITY = "deck-community"
 }
