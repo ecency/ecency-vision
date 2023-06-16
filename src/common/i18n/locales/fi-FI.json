@@ -576,7 +576,7 @@
     "sort-timestamp": "Aika",
     "sort-reputation": "Maine",
     "sort-percent": "Prosenttiosuus",
-    "pending-message": "Content has pending votes. Please, wait a minute and refresh this dialog to see new votes."
+    "pending-message": "Sisältö odottaa ääniä. Odota hetki ja päivitä tämä ikkuna nähdäksesi uudet äänet."
   },
   "entry": {
     "via-app": "<span class=\"app-name\">{{app}}</span> kautta",
@@ -1361,7 +1361,7 @@
   "post-scheduler": {
     "title": "Ajasta",
     "btn-label": "Ajasta",
-    "error-message": "Please select a valid future date and time."
+    "error-message": "Syötä kelvollinen tuleva päivämäärä sekä aika."
   },
   "notification": {
     "popup-title": "Sinulle on uusi ilmoitus",
