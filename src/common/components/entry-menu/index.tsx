@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { History } from "history";
 import { Entry, EntryStat } from "../../store/entries/types";
-import { Community, ROLES } from "../../store/communities/types";
 import { FullAccount } from "../../store/accounts/types";
 import { clone } from "../../store/util";
 import EditHistory from "../edit-history";
@@ -11,33 +10,16 @@ import Promote from "../promote";
 import Boost from "../boost";
 import ModalConfirm from "../modal-confirm";
 import { error, success } from "../feedback";
-import DropDown, { MenuItem } from "../dropdown";
+import DropDown from "../dropdown";
 import CrossPost from "../cross-post";
-import isCommunity from "../../helper/is-community";
 import { _t } from "../../i18n";
-import clipboard from "../../util/clipboard";
 import { deleteComment, formatError, pinPost, updateProfile } from "../../api/operations";
 import { getAccount } from "../../api/hive";
-import * as bridgeApi from "../../api/bridge";
-import {
-  bullHornSvg,
-  deleteForeverSvg,
-  dotsHorizontal,
-  facebookSvg,
-  historySvg,
-  linkVariantSvg,
-  pencilOutlineSvg,
-  pinSvg,
-  redditSvg,
-  rocketLaunchSvg,
-  shareVariantSvg,
-  shuffleVariantSvg,
-  twitterSvg,
-  volumeOffSvg
-} from "../../img/svg";
+import { dotsHorizontal, facebookSvg, redditSvg, shareVariantSvg, twitterSvg } from "../../img/svg";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useMenuItemsGenerator } from "./menu-items-generator";
+import { useCommunityCache } from "../../core";
 
 interface Props {
   history: History;
@@ -73,7 +55,7 @@ const EntryMenu = ({
     setEntryPin
   } = useMappedStore();
 
-  const [community, setCommunity] = useState<Community | null>(null);
+  const { data: community } = useCommunityCache(entry.category);
 
   const {
     menuItems,
@@ -112,25 +94,7 @@ const EntryMenu = ({
     }
 
     trackEntryPin(entry);
-
-    if (getCommunity()) {
-      return;
-    }
-
-    if (isCommunity(entry.category)) {
-      bridgeApi.getCommunity(entry.category, activeUser.username).then((r) => {
-        if (r) {
-          addCommunity(r);
-        }
-      });
-    }
   }, []);
-
-  const getCommunity = () => {
-    const community = communities.find((x) => x.name === entry.category) || null;
-    setCommunity(community);
-    return community;
-  };
 
   const deleteAction = () =>
     deleteComment(activeUser!.username, entry.author, entry.permlink)
@@ -142,8 +106,6 @@ const EntryMenu = ({
       });
 
   const pinToCommunity = async (pin: boolean) => {
-    const community = getCommunity();
-
     try {
       await pinPost(activeUser!.username, community!.name, entry.author, entry.permlink, pin);
       setEntryPin(entry, pin);
