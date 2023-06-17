@@ -21,6 +21,7 @@ import { success } from "../feedback";
 import { FullAccount } from "../../store/accounts/types";
 import { History } from "history";
 import isCommunity from "../../helper/is-community";
+import { useCommunityPinCache } from "../../core";
 
 export function useMenuItemsGenerator(
   entry: Entry,
@@ -30,7 +31,8 @@ export function useMenuItemsGenerator(
   history: History,
   extraMenuItems?: MenuItem[]
 ) {
-  const { activeUser, global, toggleUIProp, entryPinTracker } = useMappedStore();
+  const { activeUser, global, toggleUIProp } = useMappedStore();
+  const { data: isPinned } = useCommunityPinCache(entry);
 
   const [cross, setCross] = useState(false);
   const [share, setShare] = useState(false);
@@ -51,7 +53,7 @@ export function useMenuItemsGenerator(
 
   useEffect(() => {
     generate();
-  }, [entryPinTracker, activeUser, global, community, canMute, separatedSharing, extraMenuItems]);
+  }, [isPinned, activeUser, global, community, canMute, separatedSharing, extraMenuItems]);
 
   useEffect(() => {
     setCanMute(
@@ -72,8 +74,7 @@ export function useMenuItemsGenerator(
     const isDeletable = isOwn && !(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout);
     const activeUserWithProfile = activeUser?.data as FullAccount;
     const profile = activeUserWithProfile && activeUserWithProfile.profile;
-    const canUnpinCommunity =
-      isTeamManager() && entryPinTracker[`${entry.author}-${entry.permlink}`];
+    const canUnpinCommunity = isTeamManager() && isPinned;
     const canUnpinBlog = isOwn && entry.permlink === profile?.pinned;
     const canPinCommunity = isTeamManager() && !canUnpinCommunity;
     const canPinBlog = isOwn && !canUnpinBlog;

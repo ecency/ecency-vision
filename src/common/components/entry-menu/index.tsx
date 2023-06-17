@@ -50,8 +50,6 @@ const EntryMenu = ({
     addAccount,
     updateActiveUser,
     updateEntry,
-    addCommunity,
-    trackEntryPin,
     setEntryPin
   } = useMappedStore();
 
@@ -92,8 +90,6 @@ const EntryMenu = ({
     if (!activeUser) {
       return;
     }
-
-    trackEntryPin(entry);
   }, []);
 
   const deleteAction = () =>
