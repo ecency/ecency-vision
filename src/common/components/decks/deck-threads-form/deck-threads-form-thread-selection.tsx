@@ -21,7 +21,7 @@ export const DeckThreadsFormThreadSelection = ({ host, setHost }: Props) => {
           {host ? host : _t("decks.threads-form.select-thread-host")}
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          {AVAILABLE_THREAD_HOSTS.map((v) => (
+          {AVAILABLE_THREAD_HOSTS.filter((v) => v !== "leothreads").map((v) => (
             <Dropdown.Item key={v} onClick={() => setHost(v)} className="thread-host-item">
               <UserAvatar size="small" global={global} username={v} />
               {v}

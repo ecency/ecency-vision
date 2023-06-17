@@ -113,7 +113,7 @@ export function renderTweets(renderAreaRef: MutableRefObject<HTMLElement | null>
 
       if (link) {
         const parts = link.split("/");
-        const id = parts[parts.length - 1];
+        const id = parts[parts.length - 1].replace(/\?.*/, "");
         ReactDOM.hydrate(<TwitterTweetEmbed tweetId={id} />, element);
       }
     });

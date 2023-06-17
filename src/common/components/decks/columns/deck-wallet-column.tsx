@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { GenericDeckColumn } from "./generic-deck-column";
+import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { fetchTransactions } from "../../../store/transactions/fetchTransactions";
 import { TransactionRow } from "../../transactions";
 import { Transaction } from "../../../store/transactions/types";
@@ -28,6 +28,7 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
 
   const [data, setData] = useState<IdentifiableTransaction[]>([]);
   const [isReloading, setIsReloading] = useState(false);
+  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
@@ -54,16 +55,17 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
     } catch (e) {
     } finally {
       setIsReloading(false);
+      setIsFirstLoaded(true);
     }
   };
 
   return (
-    <GenericDeckColumn
+    <GenericDeckWithDataColumn
       id={id}
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
-        subtitle: "Wallet",
+        subtitle: _t("decks.wallet"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
@@ -78,6 +80,7 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
       }}
       data={data}
       isReloading={isReloading}
+      isFirstLoaded={isFirstLoaded}
       onReload={() => fetchData()}
       skeletonItem={<ShortListItemSkeleton />}
     >
@@ -90,6 +93,6 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
           onMounted={measure}
         />
       )}
-    </GenericDeckColumn>
+    </GenericDeckWithDataColumn>
   );
 };

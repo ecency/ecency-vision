@@ -1,19 +1,23 @@
 import { useMappedStore } from "../../../../store/use-mapped-store";
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useContext, useEffect, useRef, useState } from "react";
 import profileLink from "../../../profile-link";
 import { history } from "../../../../store";
 import { dateToRelative } from "../../../../helper/parse-date";
 import { Link } from "react-router-dom";
 import { _t } from "../../../../i18n";
 import Tooltip from "../../../tooltip";
-import { commentSvg, pinSvg } from "../../../../img/svg";
-import _ from "lodash";
-import { postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
+import { pinSvg } from "../../../../img/svg";
+import { catchPostImage, postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
 import EntryVoteBtn from "../../../entry-vote-btn";
 import EntryPayout from "../../../entry-payout";
 import EntryVotes from "../../../entry-votes";
 import EntryReblogBtn from "../../../entry-reblog-btn";
 import EntryMenu from "../../../entry-menu";
+import { transformMarkedContent } from "../../../../util/transform-marked-content";
+import { EntryLink } from "../../../entry-link";
+import { useInViewport } from "react-in-viewport";
+import { commentSvg, voteSvg } from "../../icons";
+import { EntriesCacheContext } from "../../../../core";
 
 export interface SearchItemProps {
   avatar: string;
@@ -33,31 +37,56 @@ export interface SearchItemProps {
   entry: any;
   onMounted: () => void;
   onEntryView: () => void;
+  marked?: boolean;
+  onAppear?: () => void;
 }
 
 export const SearchListItem = ({
   author,
-  children,
   community,
   community_title,
-  body,
-  likes,
   json_metadata,
   created,
-  title,
-  votesPayment,
   index,
   url,
   category,
   entry,
   onMounted,
-  onEntryView
+  onEntryView,
+  marked,
+  onAppear
 }: SearchItemProps) => {
   const { global } = useMappedStore();
+  const ref = useRef<HTMLDivElement | null>(null);
+  const { inViewport } = useInViewport(ref);
+  const { updateVotes } = useContext(EntriesCacheContext);
+
+  const [title, setTitle] = useState(entry.title);
+  const [body, setBody] = useState(entry.b);
+  const [image, setImage] = useState(
+    global.canUseWebp
+      ? catchPostImage(entry.body, 600, 500, "webp")
+      : catchPostImage(entry.body, 600, 500)
+  );
+
+  useEffect(() => {
+    setTitle(entry.title_marked ? transformMarkedContent(entry.title_marked) : entry.title);
+    setBody(
+      entry.body_marked
+        ? transformMarkedContent(entry.body_marked)
+        : postBodySummary(entry.body, 200)
+    );
+  }, [entry]);
 
   useEffect(() => {
     onMounted();
   }, []);
+
+  useEffect(() => {
+    if (inViewport && onAppear) {
+      onAppear();
+    }
+  }, [inViewport]);
 
   let isPinned = community && entry && entry.stats?.is_pinned;
 
@@ -117,6 +146,7 @@ export const SearchListItem = ({
     const msg = formatMessage(formatPatterns);
     return (
       <div
+        ref={ref}
         className={`p${index === 1 ? "b" : "y"}-${
           json_metadata && json_metadata.image ? "5" : "4"
         } d-flex flex-column border-bottom`}
@@ -144,7 +174,7 @@ export const SearchListItem = ({
   }
 
   return (
-    <div className="d-flex flex-column border-bottom p-3">
+    <div ref={ref} className="d-flex flex-column border-bottom p-3">
       <div className="deck-body d-flex flex-column w-100">
         <div className="text-dark d-flex flex-column">
           <div className="d-flex align-items-center flex-grow-1 hot-item-link">
@@ -159,14 +189,19 @@ export const SearchListItem = ({
             )}
             {author && (
               <div>
-                <Link to={`/@${author}`}>{author}</Link>
+                <Link target="_blank" to={`/@${author}`}>
+                  {author}
+                </Link>
               </div>
             )}
             {community && (
               <div className="ml-1 flex-grow-1 text-truncate">
                 {" "}
                 {_t("entry.community-in")}{" "}
-                <Link to={`/created/${community}`}> {community_title} </Link>
+                <Link target="_blank" to={`/created/${community}`}>
+                  {" "}
+                  {community_title}{" "}
+                </Link>
               </div>
             )}
             {!community && (
@@ -180,8 +215,10 @@ export const SearchListItem = ({
                 <span className="deck-pinned">{pinSvg}</span>
               </Tooltip>
             )}
-            <div className="mb-3">
-              <small>{`${dateToRelative(created)}`}</small>
+            <div className="date mb-3">
+              <EntryLink target="_blank" entry={entry}>
+                <small>{`${dateToRelative(created)}`}</small>
+              </EntryLink>
             </div>
           </div>
           <div onClick={() => onEntryView()} className="pointer">
@@ -191,37 +228,28 @@ export const SearchListItem = ({
               </div>
             )}
 
-            {json_metadata &&
-              json_metadata.image &&
-              _.isArray(json_metadata.image) &&
-              json_metadata.image.length > 0 && (
-                <div
-                  className="search-post-image d-flex align-self-center mt-3"
-                  style={{
-                    backgroundImage: `url(${proxifyImageSrc(
-                      json_metadata.image[0],
-                      undefined,
-                      undefined,
-                      global.canUseWebp ? "webp" : "match"
-                    )})`
-                  }}
-                />
-              )}
-            <div
-              className="mt-3 hot-item-post-count deck-item-body text-secondary"
-              dangerouslySetInnerHTML={{ __html: postBodySummary(body) }}
-            />
+            {image && (
+              <div
+                className="search-post-image d-flex align-self-center mt-3"
+                style={{
+                  backgroundImage: `url(${proxifyImageSrc(image)})`
+                }}
+              />
+            )}
+            <div className="mt-3 hot-item-post-count deck-item-body text-secondary">{body}</div>
           </div>
         </div>
-        <div className="item-controls mt-3 d-flex justify-content-between align-items-center">
-          <div className="d-flex align-items-center">
-            <EntryVoteBtn entry={entry} afterVote={() => {}} isPostSlider={false} />
-            <div className="pl-2">
-              <EntryPayout entry={entry} />
-            </div>
-          </div>
-
-          <EntryVotes history={history!!} entry={entry} />
+        <div className="item-controls mt-3 d-flex align-items-center">
+          <EntryVoteBtn
+            entry={entry}
+            isPostSlider={false}
+            history={history}
+            afterVote={(votes, estimated) => {
+              updateVotes(entry.post_id, votes, estimated);
+            }}
+          />
+          <EntryPayout entry={entry} />
+          <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
           <Link to={`${url}#discussion`} className="text-secondary">
             <div className="d-flex align-items-center comments">
               <div style={{ paddingRight: 4 }}>{commentSvg}</div>

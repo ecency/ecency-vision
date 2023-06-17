@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShortListItemSkeleton } from "./deck-items";
-import { GenericDeckColumn } from "./generic-deck-column";
+import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { UserDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import NotificationListItem from "../../notifications/notification-list-item";
@@ -16,6 +16,9 @@ import { DeckPostViewer } from "./content-viewer";
 import { DeckLoginOverlayPlaceholder } from "./deck-login-overlay-placeholder";
 import usePrevious from "react-use/lib/usePrevious";
 import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
+import { _t } from "../../../i18n";
+import { InfiniteScrollLoader } from "./helpers";
+import { newDataComingPaginatedCondition } from "../utils";
 
 interface Props {
   id: string;
@@ -30,8 +33,11 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
   const previousActiveUser = usePrevious(activeUser);
 
   const [data, setData] = useState<ApiNotification[]>([]);
+  const prevData = usePrevious(data);
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry>();
+  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
@@ -53,7 +59,7 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
     }
   }, [activeUser]);
 
-  const fetchData = async () => {
+  const fetchData = async (since?: ApiNotification) => {
     if (data.length) {
       setIsReloading(true);
     }
@@ -63,25 +69,35 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
       const response = await getNotifications(
         activeUser!.username,
         isAll ? null : (settings.contentType as NotificationFilter),
-        null,
+        since?.id,
         settings.username
       );
-      setData(response ?? []);
+
+      if (response.length === 0) {
+        setHasNextPage(false);
+      }
+
+      if (since) {
+        setData([...data, ...response]);
+      } else {
+        setData(response ?? []);
+      }
     } catch (e) {
     } finally {
       setIsReloading(false);
+      setIsFirstLoaded(true);
     }
   };
 
   return (
-    <GenericDeckColumn
+    <GenericDeckWithDataColumn
       id={id}
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
         subtitle: notificationsTitles[settings.contentType]
-          ? `Notifications – ${notificationsTitles[settings.contentType]}`
-          : "Notifications",
+          ? `${_t("decks.notifications")} – ${notificationsTitles[settings.contentType]}`
+          : _t("decks.notifications"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
@@ -98,6 +114,7 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
       onReload={() => fetchData()}
       skeletonItem={<ShortListItemSkeleton />}
       isExpanded={!!currentViewingEntry}
+      isFirstLoaded={isFirstLoaded}
       contentViewer={
         currentViewingEntry && (
           <DeckPostViewer
@@ -107,11 +124,22 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
           />
         )
       }
+      newDataComingCondition={(newData) =>
+        newDataComingPaginatedCondition(newData, prevData, "timestamp")
+      }
       overlay={<DeckLoginOverlayPlaceholder />}
+      afterDataSlot={<InfiniteScrollLoader data={data} isEndReached={!hasNextPage} />}
     >
       {(item: ApiNotification, measure: Function, index: number) => (
         <NotificationListItem
-          onMounted={() => measure()}
+          onMounted={() => {
+            measure();
+
+            const isLast = data[data.length - 1]?.id === item.id;
+            if (isLast && hasNextPage) {
+              fetchData(item);
+            }
+          }}
           notification={item}
           addAccount={addAccount}
           dynamicProps={dynamicProps}
@@ -148,6 +176,6 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
           }}
         />
       )}
-    </GenericDeckColumn>
+    </GenericDeckWithDataColumn>
   );
 };
