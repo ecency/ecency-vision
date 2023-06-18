@@ -5,11 +5,15 @@ import { dataLimit, getPostsRanked } from "../../api/bridge";
 import { pinPost } from "../../api/operations";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { Community } from "../../store/communities/types";
+import isCommunity from "../../helper/is-community";
 
 export function useCommunityPinCache(entry: Entry) {
   const { data: rankedPosts } = useQuery(
     [QueryIdentifiers.COMMUNITY_RANKED_POSTS, entry.category],
-    () => getPostsRanked("created", "", "", dataLimit, entry.category),
+    () =>
+      isCommunity(entry.category)
+        ? getPostsRanked("created", "", "", dataLimit, entry.category)
+        : null,
     {
       initialData: null
     }
