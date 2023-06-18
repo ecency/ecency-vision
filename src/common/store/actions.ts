@@ -39,8 +39,6 @@ import {
 } from "./notifications";
 import { fetchPoints, resetPoints } from "./points";
 import { setSigningKey } from "./signing-key";
-import { setEntryPin, trackEntryPin } from "./entry-pin-tracker";
-import { savePageScroll } from "./persistent-page-scroll";
 
 // @note Do not use it directly
 export const ACTIONS = {
@@ -85,8 +83,6 @@ export const ACTIONS = {
   fetchPoints,
   resetPoints,
   setSigningKey,
-  trackEntryPin,
-  setEntryPin,
   updateNotificationsSettings,
   fetchNotificationsSettings,
   setNotificationsSettingsItem

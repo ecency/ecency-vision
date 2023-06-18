@@ -13,13 +13,13 @@ import { error, success } from "../feedback";
 import DropDown from "../dropdown";
 import CrossPost from "../cross-post";
 import { _t } from "../../i18n";
-import { deleteComment, formatError, pinPost, updateProfile } from "../../api/operations";
+import { deleteComment, formatError, updateProfile } from "../../api/operations";
 import { getAccount } from "../../api/hive";
 import { dotsHorizontal, facebookSvg, redditSvg, shareVariantSvg, twitterSvg } from "../../img/svg";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useMenuItemsGenerator } from "./menu-items-generator";
-import { useCommunityCache } from "../../core";
+import { useCommunityCache, useCommunityPin } from "../../core";
 
 interface Props {
   history: History;
@@ -43,17 +43,16 @@ const EntryMenu = ({
   const {
     global,
     activeUser,
-    communities,
     dynamicProps,
     signingKey,
     setSigningKey,
     addAccount,
     updateActiveUser,
-    updateEntry,
-    setEntryPin
+    updateEntry
   } = useMappedStore();
 
   const { data: community } = useCommunityCache(entry.category);
+  const { mutateAsync: pinPost } = useCommunityPin(entry, community);
 
   const {
     menuItems,
@@ -103,8 +102,7 @@ const EntryMenu = ({
 
   const pinToCommunity = async (pin: boolean) => {
     try {
-      await pinPost(activeUser!.username, community!.name, entry.author, entry.permlink, pin);
-      setEntryPin(entry, pin);
+      await pinPost(pin);
 
       // Update the entry in store
       const nStats: EntryStat = { ...clone(entry.stats), is_pinned: pin };

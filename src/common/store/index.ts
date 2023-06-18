@@ -20,7 +20,6 @@ import subscriptions from "./subscriptions";
 import notifications from "./notifications";
 import points from "./points";
 import signingKey from "./signing-key";
-import entryPinTracker from "./entry-pin-tracker";
 import persistentPageScroll from "./persistent-page-scroll";
 
 import filterTagExtract from "../helper/filter-tag-extract";
@@ -42,7 +41,6 @@ let reducers = {
   notifications,
   points,
   signingKey,
-  entryPinTracker,
   persistentPageScroll
 };
 

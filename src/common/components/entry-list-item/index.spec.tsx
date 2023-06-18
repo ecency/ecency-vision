@@ -36,7 +36,6 @@ const defProps = {
   reblogs: emptyReblogs,
   entry: entryInstance1,
   ui: UiInstance,
-  entryPinTracker: {},
   signingKey: "",
   asAuthor: "",
   promoted: false,
