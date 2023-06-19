@@ -5,8 +5,9 @@
 
 .video-list{
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    // flex-wrap: wrap;
+    gap: 15px;
     justify-content: center;
     font-size: 12px;
 
@@ -15,17 +16,18 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        width: 220px;
-        .list-image{
-            width: 100%;
-
+        align-items: center;
+        width: 100%;
+        // 
+        // .list-image{
+            // width: 100%;
             img{
-                width: 230px;
-                height: 150px;
+                width: 80%;
+                height: 300px;
                 object-fit: cover;
                 border-radius: 10px;
             }
-        }
+        // }
 
 
         .list-details-wrapper{
@@ -33,13 +35,13 @@
             flex-direction: column;
             gap: 5px;
             margin-top: 5px;
-            width: 100%;
+            width: 80%;
 
             .list-title{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                width:230px;
+                width:100%;
                 
                 .details-title{
                     font-size: 16px;
@@ -51,17 +53,17 @@
                 }
             }
 
-            .list-date{
+            .list-bottom-wrapper{
                 display: flex;
                 align-items: center;
-                width: 230px;
+                width: 100%;
                 justify-content: space-between;
 
-                span{
+                .video-date{
                     font-size: 12px;
                 }
 
-                button{
+                .post-video-btn{
                     background-color: $dark-sky-blue;
                     width: 30%;
                     padding: 5px;
@@ -97,7 +99,8 @@
     flex-direction: column;
     position: absolute;
     padding: 10px;
-    right: 30px;
+    right: 70px;
+    top: 100px;
     justify-content: space-around;
     width: 200px;
     height: 200px;

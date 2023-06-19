@@ -1331,6 +1331,7 @@
     "upload-video": "Upload video",
     "video-gallery": "Video gallery",
     "preview": "Preview",
+    "to-gallery": "Go to gallery:",
     "congrats": "Congratulations"
   },
   "video-gallery": {
@@ -1339,18 +1340,14 @@
     "encoding": "Encoding",
     "encoded": "Encoded",
     "failed": "Failed",
-    "status-encoded": "Publish",
+    "status-encoded": "Post",
     "status-encoding": "Encoding🟡",
     "status-published": "Published✅",
     "status-failed": "Encoding failed❌",
-    "info-posted-from": "Posted from:",
     "info-created": "Created:",
-    "info-status": "Status:",
+    "view-more": "More...:",
     "info-views": "Views:",
-    "info-title": "Title:",
-    "info-description": "Description:",
     "info-duration": "Duration:",
-    "info-rewards": "Decline rewards:",
     "info-size": "File size:"
   },
   "tag-selector": {

@@ -14,7 +14,7 @@ import VideoGallery from "../video-gallery";
 import useMount from "react-use/lib/useMount";
 
 export const VideoUpload = (props: any) => {
-  const { description, title, tags, activeUser, global } = props;
+  const { description, title, tags, activeUser, global, insertText } = props;
 
   const tusEndPoint = "https://uploads.3speak.tv/files/";
   const fileInput = useRef<HTMLInputElement>(null);
@@ -121,7 +121,7 @@ export const VideoUpload = (props: any) => {
     const allStatus = await getAllVideoStatuses(token);
     return allStatus;
   };
-
+  // Should be called when we are finally submitting post
   const updateSpeakVideo = async () => {
     const token = await threespeakAuth(activeUser!.username);
     updateInfo(token, description, videoId, title, tags, isNsfwC);
@@ -173,9 +173,8 @@ export const VideoUpload = (props: any) => {
       </div>
       <Button
         disabled={!canUpload}
-        onClick={() => {
-          uploadInfo();
-          setStep("update");
+        onClick={() => {          
+          setStep("to-gallery");
         }}
       >
         {_t("video-upload.continue")}
@@ -183,7 +182,7 @@ export const VideoUpload = (props: any) => {
     </div>
   );
 
-  const updateVideoModal = (
+  const previewVideo = (
     <div className="dialog-content">
       <div className="file-input">
         <video controls={true} poster={coverImage}>
@@ -201,22 +200,15 @@ export const VideoUpload = (props: any) => {
         </Button>
         <Button
           className="ml-5"
-          disabled={!canUpdate}
+          disabled={!canUpload}
           onClick={() => {
-            updateSpeakVideo();
-            setStep("success");
+            uploadInfo();
+            setShowGallery(true);
           }}
         >
-          {_t("video-upload.encode")}
+          {_t("video-upload.to-gallery")}
         </Button>
       </div>
-    </div>
-  );
-
-  const videoSuccessModal = (
-    <div className="video-successfull d-flex flex-column">
-      <h4>{_t("video-upload.success")}</h4>
-      <Button onClick={() => setShowModal(false)}>{_t("video-upload.finished")}</Button>
     </div>
   );
 
@@ -243,12 +235,15 @@ export const VideoUpload = (props: any) => {
           </div>
         )}
       </div>
-      <VideoGallery
-        showGaller={showGaller}
-        setShowGallery={setShowGallery}
-        checkStat={checkStat}
-        selectedFile={selectedFile}
-      />
+      <div>        
+        <VideoGallery
+          showGaller={showGaller}
+          setShowGallery={setShowGallery}
+          checkStat={checkStat}
+          selectedFile={selectedFile}
+          insertText={insertText}
+        />
+      </div>
       <div>
         <Modal
           animation={false}
@@ -262,14 +257,12 @@ export const VideoUpload = (props: any) => {
           <Modal.Header closeButton={true}>
             <Modal.Title>
               {step === "upload" && <p>{_t("video-upload.upload-video")}</p>}
-              {step === "update" && <p>{_t("video-upload.preview")}</p>}
-              {step === "success" && <p>{_t("video-upload.congrats")}</p>}
+              {step === "to-gallery" && <p>{_t("video-upload.preview")}</p>}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {step === "upload" && uploadVideoModal}
-            {step === "update" && updateVideoModal}
-            {step === "success" && videoSuccessModal}
+            {step === "to-gallery" && previewVideo}
           </Modal.Body>
         </Modal>
       </div>

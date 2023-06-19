@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import LinearProgress from "../linear-progress";
 import { deleteForeverSvg, informationVariantSvg } from "../../img/svg";
 import { Button, Modal, ModalBody, Tooltip } from "react-bootstrap";
@@ -6,10 +6,11 @@ import { _t } from "../../i18n";
 import "./index.scss";
 
 const VideoGallery = (props: any) => {
-  const { showGaller, setShowGallery, checkStat } = props;
+  const { showGaller, setShowGallery, checkStat, insertText } = props;
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
+  const [filterType, setFilterType] = useState('')
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<any>(null);
 
@@ -20,7 +21,7 @@ const VideoGallery = (props: any) => {
   const getAllStatus = async () => {
     setLoading(true);
     const data = await checkStat();
-    console.log(data);
+    console.log(JSON.parse(data[0].beneficiaries));
     if (data) {
       setItems(data);
       setLoading(false);
@@ -74,32 +75,25 @@ const VideoGallery = (props: any) => {
     }
   };
 
-  const filterListByStatus = async (action?: string) => {
-    setLoading(true);
-    const data = await checkStat();
-    let filtered;
-
-    if (action) {
-      filtered = data.filter((video: any) => video.status === action);
-      setLoading(false);
-      return filtered;
-    }
-
-    if (!action) return data;
-
-    setLoading(false);
-  };
+  const videosDrafts = useMemo(() => {
+    if (!filterType) return items
+    return items.filter((video: any) => video.status === filterType)
+  }, [filterType]);
 
   const getHoveredItem = (item: any) => {
     setHoveredItem(item);
   };
 
+  const embeddVideo = (videoUrl: string) => {
+    insertText(`<iframe src='${videoUrl}' width='200' height='200'>`,"</iframe>")
+  }
+
   const modalBodyTop = (
     <div className="video-status-picker">
       <Button
         variant="outline-primary"
-        onClick={async () => {
-          setItems(await filterListByStatus());
+        onClick={ () => {
+          setFilterType("");
         }}
       >
         {_t("video-gallery.all")}
@@ -107,8 +101,8 @@ const VideoGallery = (props: any) => {
 
       <Button
         variant="outline-primary"
-        onClick={async () => {
-          setItems(await filterListByStatus("published"));
+        onClick={ () => {
+          setFilterType("published");
         }}
       >
         {_t("video-gallery.published")}
@@ -116,8 +110,8 @@ const VideoGallery = (props: any) => {
 
       <Button
         variant="outline-primary"
-        onClick={async () => {
-          setItems(await filterListByStatus("encoding_ipfs"));
+        onClick={ () => {
+          setFilterType("encoding_ipfs");
         }}
       >
         {_t("video-gallery.encoding")}
@@ -125,8 +119,8 @@ const VideoGallery = (props: any) => {
 
       <Button
         variant="outline-primary"
-        onClick={async () => {
-          setItems(await filterListByStatus("publish_manual"));
+        onClick={ () => {
+          setFilterType("publish_manual");
         }}
       >
         {_t("video-gallery.encoded")}
@@ -134,8 +128,8 @@ const VideoGallery = (props: any) => {
 
       <Button
         variant="outline-primary"
-        onClick={async () => {
-          setItems(await filterListByStatus("encoding_failed"));
+        onClick={ () => {
+          setFilterType("encoding_failed");
         }}
       >
         {_t("video-gallery.failed")}
@@ -146,17 +140,17 @@ const VideoGallery = (props: any) => {
   const modalBody = (
     <div className="dialog-content">
       {loading && <LinearProgress />}
-      {items?.length > 0 && (
+      {videosDrafts?.length > 0 && filterType !== '' ? (
         <div className="video-list">
-          {items?.map((item: any, i: any) => {
+          {(videosDrafts || items)?.map((item: any, i: any) => {
             return (
               <div className="video-list-body" key={i}>
-                <div className="list-image">
+                {/* <div className="list-image"> */}
                   <img src={item.thumbUrl} alt="" />
-                </div>
+                {/* </div> */}
                 <div className="list-details-wrapper">
                   <div className="list-title">
-                    <span className="details-title">{item.title.substring(0, 15)}...</span>
+                    <span className="details-title">{item.title}</span>
                     <span
                       onMouseOver={() => {
                         getHoveredItem(item);
@@ -165,13 +159,14 @@ const VideoGallery = (props: any) => {
                       onMouseOut={() => setShowMoreInfo(false)}
                       className="info-icon details-svg"
                     >
-                      more...
-                    </span>
+                      {_t("video-gallery.more-info")}                    </span>
                   </div>
-                  <div className="list-date">
-                    <span>{formatTime(item.created)}</span>
+                  <div className="list-bottom-wrapper">
+                    <span className="video-date">{formatTime(item.created)}</span>
                     {item.status === "publish_manual" ? (
-                      <button>{_t("video-gallery.status-encoded")}</button>
+                      <button className="post-video-btn" onClick={() => embeddVideo(item.video_v2)}>
+                        {_t("video-gallery.status-encoded")}
+                      </button>
                     ) : item.status === "encoding_failed" ? (
                       <span className="encoding-failed">{_t("video-gallery.status-failed")}</span>
                     ) : item.status === "published" ? (
@@ -188,17 +183,7 @@ const VideoGallery = (props: any) => {
                   <div className="more-info">
                     <div className="each-info">
                       <span>
-                        {_t("video-gallery.info-posted-from")} {item.app}
-                      </span>
-                    </div>
-                    <div className="each-info">
-                      <span>
                         {_t("video-gallery.info-created")} {formatTime(item.created)}
-                      </span>
-                    </div>
-                    <div className="each-info">
-                      <span>
-                        {_t("video-gallery.info-status")} {item.status}
                       </span>
                     </div>
                     <div className="each-info">
@@ -208,23 +193,7 @@ const VideoGallery = (props: any) => {
                     </div>
                     <div className="each-info">
                       <span>
-                        {_t("video-gallery.info-title")} {item.title.substring(0, 20)}...
-                      </span>
-                    </div>
-                    <div className="each-info">
-                      <span>
-                        {_t("video-gallery.info-description")} {item.description.substring(0, 20)}
-                        ...
-                      </span>
-                    </div>
-                    <div className="each-info">
-                      <span>
                         {_t("video-gallery.info-duration")} {item.duration}
-                      </span>
-                    </div>
-                    <div className="each-info">
-                      <span>
-                        {_t("video-gallery.info-rewards")} {`${item.declineRewards ? "Yes" : "No"}`}
                       </span>
                     </div>
                     <div className="each-info">
@@ -239,7 +208,75 @@ const VideoGallery = (props: any) => {
             );
           })}
         </div>
-      )}
+      ) : (
+        <div className="video-list">
+          {items?.map((item: any, i: any) => {
+            return (
+              <div className="video-list-body" key={i}>
+                  <img src={item.thumbUrl} alt="" />
+                <div className="list-details-wrapper">
+                  <div className="list-title">
+                    <span className="details-title">{item.title}</span>
+                    <span
+                      onMouseOver={() => {
+                        getHoveredItem(item);
+                        setShowMoreInfo(true);
+                      }}
+                      onMouseOut={() => setShowMoreInfo(false)}
+                      className="info-icon details-svg"
+                    >
+                      more...
+                    </span>
+                  </div>
+                  <div className="list-date">
+                    <span>{formatTime(item.created)}</span>
+                    {item.status === "publish_manual" ? (
+                      <button onClick={() => embeddVideo(item.video_v2)}>
+                        {/* {_t("video-gallery.status-encoded")} */}
+                        Post
+                      </button>
+                    ) : item.status === "encoding_failed" ? (
+                      <span className="encoding-failed">{_t("video-gallery.status-failed")}</span>
+                    ) : item.status === "published" ? (
+                      <div>
+                        <span className="published">{_t("video-gallery.status-published")}</span>
+                        <button>view</button>
+                      </div>
+                    ) : (
+                      <span className="encoding">{_t("video-gallery.status-encoding")}</span>
+                    )}
+                  </div>
+                </div>
+                {showMoreInfo && hoveredItem._id === item._id && (
+                  <div className="more-info">
+                    <div className="each-info">
+                      <span>
+                        {_t("video-gallery.info-created")} {formatTime(item.created)}
+                      </span>
+                    </div>
+                    <div className="each-info">
+                      <span>
+                        {_t("video-gallery.info-views")} {item.views}
+                      </span>
+                    </div>
+                    <div className="each-info">
+                      <span>
+                        {_t("video-gallery.info-duration")} {item.duration}
+                      </span>
+                    </div>
+                    <div className="each-info">
+                      <span>
+                        {_t("video-gallery.info-size")}{" "}
+                        {`${(item.size / (1024 * 1024)).toFixed(2)}MB`}
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ) }
       {!loading && items?.length === 0 && <div className="gallery-list">{_t("g.empty-list")}</div>}
     </div>
   );

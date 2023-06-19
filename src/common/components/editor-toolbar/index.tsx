@@ -571,6 +571,7 @@ export class EditorToolbar extends Component<Props> {
                 activeUser={activeUser}
                 tags={this.props.tags}
                 global={global}
+                insertText={this.insertText}
               />
             </div>
           </Tooltip>
