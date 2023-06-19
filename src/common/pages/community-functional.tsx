@@ -35,6 +35,8 @@ import { EntryListContent } from "../components/entry-list";
 import { connect } from "react-redux";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
 import "./community.scss";
+import { QueryIdentifiers, useCommunityCache } from "../core";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface MatchParams {
   filter: string;
@@ -50,9 +52,12 @@ export const CommunityPage = (props: Props) => {
     return props.location.search.replace("?", "").replace("q", "").replace("=", "");
   };
 
-  const [community, setCommunity] = useState<Community | null>(null);
-  const [account, setAccount] = useState<Account | null>(null);
-  const [loading, setLoading] = useState(true);
+  const queryClient = useQueryClient();
+  const { data: community, isLoading } = useCommunityCache(props.match.params.name);
+
+  const [account, setAccount] = useState<Account | undefined>(
+    props.accounts.find(({ name }) => [props.match.params.name])
+  );
   const [typing, setTyping] = useState(false);
   const [search, setSearch] = useState(getSearchParam());
   const [searchDataLoading, setSearchDataLoading] = useState(getSearchParam().length > 0);
@@ -62,7 +67,6 @@ export const CommunityPage = (props: Props) => {
   const prevActiveUser = usePrevious(props.activeUser);
 
   useEffect(() => {
-    ensureData();
     if (search.length) handleInputChange(search);
 
     const { match, fetchEntries } = props;
@@ -72,6 +76,13 @@ export const CommunityPage = (props: Props) => {
 
     fetchSubscriptions();
   }, []);
+
+  useEffect(() => {
+    if (community?.name === props.match.params.name) {
+      props.addAccount(community);
+      setAccount({ ...account, ...community });
+    }
+  }, [community]);
 
   useEffect(() => {
     const { match, fetchEntries } = props;
@@ -84,7 +95,8 @@ export const CommunityPage = (props: Props) => {
     const { params: prevParams } = prevMatch;
 
     // community changed. fetch community and account data.
-    if (name !== prevParams.name) ensureData();
+    if (name !== prevParams.name)
+      queryClient.invalidateQueries([QueryIdentifiers.COMMUNITY, match.params.name]);
 
     //  community or filter changed
     if ((filter !== prevParams.filter || name !== prevParams.name) && EntryFilter[filter]) {
@@ -108,33 +120,8 @@ export const CommunityPage = (props: Props) => {
         setSearchData(
           data.results.sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
         );
-        setLoading(false);
         setSearchDataLoading(false);
       }
-    }
-  };
-
-  const ensureData = async (): Promise<void> => {
-    const { match, communities, addCommunity, accounts, addAccount, activeUser } = props;
-
-    const name = match.params.name;
-    const community = communities.find((x) => x.name === name);
-    const account = accounts.find((x) => x.name === name);
-
-    // Community or account data aren't in reducer. Show loading indicator.
-    if (!community || !account) setLoading(true);
-    try {
-      const data = await getCommunity(name, activeUser?.username);
-      if (data) {
-        addCommunity(data);
-        setCommunity(data);
-      }
-      if (data?.name === name) {
-        addAccount(data);
-        setAccount({ ...account, ...data });
-      }
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -158,8 +145,8 @@ export const CommunityPage = (props: Props) => {
   };
 
   const reload = async () => {
-    setLoading(true);
-    await ensureData();
+    queryClient.invalidateQueries([QueryIdentifiers.COMMUNITY, props.match.params.name]);
+
     const { match, fetchEntries, invalidateEntries } = props;
     const { filter, name } = match.params;
 
@@ -195,7 +182,7 @@ export const CommunityPage = (props: Props) => {
   };
 
   const navBar = props.global.isElectron ? (
-    <NavBarElectron {...props} reloading={loading} reloadFn={reload} />
+    <NavBarElectron {...props} reloading={isLoading} reloadFn={reload} />
   ) : (
     <NavBar {...props} />
   );
@@ -219,7 +206,12 @@ export const CommunityPage = (props: Props) => {
             {...props}
             account={account}
             community={community}
-            addCommunity={setCommunity}
+            addCommunity={(updatedCommunity) =>
+              queryClient.setQueryData(
+                [QueryIdentifiers.COMMUNITY, props.match.params.name],
+                updatedCommunity
+              )
+            }
           />
         </div>
         <span itemScope={true} itemType="http://schema.org/Organization">
@@ -318,7 +310,7 @@ export const CommunityPage = (props: Props) => {
         </div>
       </div>
     </>
-  ) : loading ? (
+  ) : isLoading ? (
     <>
       {navBar}
       <LinearProgress />
