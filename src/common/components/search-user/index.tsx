@@ -26,10 +26,6 @@ export default function SeachUser(props: Props) {
     [searchtext]
   );
 
-  useEffect(() => {
-    setUserList(["good-karma", "good-akai", "good-ali", "good-angle", "good-bad"]);
-  }, []);
-
   const searchUserClicked = (username: string) => {
     const { setCurrentUserFromSearch, setSearchUser } = props;
     setCurrentUserFromSearch(username);
@@ -79,7 +75,6 @@ export default function SeachUser(props: Props) {
 
                 <div className="search-user-title">
                   <p className="search-username">{user}</p>
-                  {/* <p className="searc-last-message">{user}</p> */}
                 </div>
               </div>
             );
