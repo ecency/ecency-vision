@@ -1,5 +1,4 @@
 import { DirectMessage } from "./../../../providers/message-provider-types";
-import { Account } from "../accounts/types";
 
 export interface DirectContactsType {
   name: string;
@@ -9,14 +8,12 @@ export interface DirectContactsType {
 export interface Chat {
   directContacts: DirectContactsType[];
   directMessages: DirectMessage[];
-  // points: UserPoints;
 }
 
 export enum ActionTypes {
   DIRECTCONTACTS = "@chat/DIRECTCONTACTS",
-  DIRECTMESSAGES = "@chat/DIRECTMESSAGES"
-  // LOGOUT = "@active-user/LOGOUT",
-  // UPDATE = "@active-user/UPDATE"
+  DIRECTMESSAGES = "@chat/DIRECTMESSAGES",
+  RESET = "@chat/RESET"
 }
 
 export interface DirectContactsAction {
@@ -24,18 +21,13 @@ export interface DirectContactsAction {
   data: DirectContactsType[];
 }
 
+export interface ResetChatAction {
+  type: ActionTypes.RESET;
+}
+
 export interface DirectMessagesAction {
   type: ActionTypes.DIRECTMESSAGES;
   data: DirectMessage[];
 }
-// export interface LogoutAction {
-//   type: ActionTypes.LOGOUT;
-// }
 
-// export interface UpdateAction {
-//   type: ActionTypes.UPDATE;
-//   data: Account;
-//   points: UserPoints;
-// }
-
-export type Actions = DirectContactsAction | DirectMessagesAction;
+export type Actions = DirectContactsAction | DirectMessagesAction | ResetChatAction;

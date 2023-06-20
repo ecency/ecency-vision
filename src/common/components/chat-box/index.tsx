@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Button, Form, FormControl, InputGroup, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { DirectContactsType } from "../../store/chat/types";
-import { DirectMessage, Keys } from "../../../providers/message-provider-types";
+import { DirectMessage } from "../../../providers/message-provider-types";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 import Tooltip from "../tooltip";
 import UserAvatar from "../user-avatar";
 import SeachUser from "../search-user";
+import LinearProgress from "../linear-progress";
 import { setNostrkeys } from "../../../providers/message-provider";
 
 import {
@@ -24,17 +25,17 @@ import {
 import { dateToFormatted } from "../../helper/parse-date";
 import {
   createNoStrAccount,
+  formatMessageDate,
+  formatMessageTime,
   getDirectMessages,
   getProfileMetaData,
+  NostrKeys,
   setProfileMetaData
 } from "../../helper/chat-utils";
 import { _t } from "../../i18n";
 import { getAccountFull } from "../../api/hive";
 
 import "./index.scss";
-import { RavenEvents } from "../../helper/message-helper";
-import { Chat } from "../../store/chat/types";
-import { useMappedStore } from "../../store/use-mapped-store";
 
 export interface profileData {
   joiningData: string;
@@ -44,7 +45,6 @@ export interface profileData {
 
 interface Props {
   activeUser: ActiveUser | null;
-  chat: Chat;
 }
 
 export default function ChatBox(props: Props) {
@@ -54,7 +54,6 @@ export default function ChatBox(props: Props) {
   const [isCurrentUser, setIsCurrentUser] = useState(false);
   const [message, setMessage] = useState("");
   const [isMessageText, setIsMessageText] = useState(false);
-  const [accountData, setAccountData] = useState<Account>();
   const [profileData, setProfileData] = useState<profileData>();
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
@@ -62,9 +61,11 @@ export default function ChatBox(props: Props) {
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [show, setShow] = useState(false);
-  const [senderPubKey, setSenderPubKey] = useState("");
+  const [activeUserKeys, setActiveUserKeys] = useState<NostrKeys>();
   const [receiverPubKey, setReceiverPubKey] = useState("");
+  const [showSpinner, setShowSpinner] = useState(false);
   const [messagesList, setMessagesList] = useState<DirectMessage[]>([]);
+  const [isUserFromSearch, setIsUserFromSearch] = useState(false);
 
   const { chat } = useMappedStore();
 
@@ -79,21 +80,21 @@ export default function ChatBox(props: Props) {
   }, [chat.directMessages]);
 
   useEffect(() => {
-    chatBodyDivRef?.current?.scrollTo(0, isCurrentUser ? chatBodyDivRef.current.scrollHeight : 0);
-    console.log(chatBodyDivRef?.current?.scrollHeight, "ref");
+    scrollToBottom();
+  }, [messagesList]);
+
+  useEffect(() => {
+    if (isCurrentUser) {
+      scrollToBottom();
+    }
   }, [isCurrentUser]);
 
-  // useEffect(() => {
-  //   fetchProfileData();
-  //   setCurrentUser("");
-  //   // setIsCurrentUser(false);
-  //   setShow(!!props.activeUser?.username);
-  //   // setExpanded(false);
-  // }, [props.activeUser]);
-
-  // useEffect(() => {
-  //   currentUser ? fetchCurrentUserData() : setMessage("");
-  // }, [currentUser]);
+  useEffect(() => {
+    fetchProfileData();
+    setShow(!!props.activeUser?.username);
+    const msgsList = getDirectMessages(chat.directMessages, receiverPubKey!);
+    setMessagesList(msgsList);
+  }, [props.activeUser]);
 
   useEffect(() => {
     if (currentUser) {
@@ -102,14 +103,14 @@ export default function ChatBox(props: Props) {
       setReceiverPubKey(peer!);
       const msgsList = getDirectMessages(chat.directMessages, peer!);
       setMessagesList(msgsList);
+      if (!window.raven) {
+        setNostrkeys(activeUserKeys!);
+      }
     } else {
       setMessage("");
+      setShowSpinner(false);
     }
   }, [currentUser]);
-
-  useEffect(() => {
-    chatBodyDivRef?.current?.scrollTo(0, isCurrentUser ? chatBodyDivRef.current.scrollHeight : 0);
-  }, [isCurrentUser]);
 
   const formatFollowers = (count: number | undefined) => {
     if (count) {
@@ -122,29 +123,8 @@ export default function ChatBox(props: Props) {
     return count;
   };
 
-  //Event listening
-
-  // const handleDirectMessage = (data: DirectMessage[]) => {
-  //   console.log("handleDirectMessage in chat compoenent", data);
-  //   // const append = data.filter((x) => directMessages.find((y) => y.id === x.id) === undefined);
-  //   // raven?.loadProfiles(append.map((x) => x.peer));
-  //   // setDirectMessages([...directMessages, ...append]);
-  // };
-
-  // useEffect(() => {
-  //   if (window.raven) {
-  //     window.raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
-  //     window.raven?.addListener(RavenEvents.DirectMessage, handleDirectMessage);
-  //   }
-
-  //   return () => {
-  //     if (window.raven) {
-  //       window.raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
-  //     }
-  //   };
-  // }, []);
-
   const fetchCurrentUserData = async () => {
+    setShowSpinner(true);
     const response = await getAccountFull(currentUser);
     setProfileData({
       joiningData: response.created,
@@ -152,14 +132,13 @@ export default function ChatBox(props: Props) {
       followers: response.follow_stats?.follower_count
     });
     const currentUserProfile = await getProfileMetaData(currentUser);
-    // console.log(currentUserProfile.noStrKey);
-    setReceiverPubKey(currentUserProfile.noStrKey.pub);
+    setReceiverPubKey(currentUserProfile.noStrKey?.pub);
+    setShowSpinner(false);
   };
 
   const fetchProfileData = async () => {
     const profileData = await getProfileMetaData(props.activeUser?.username!);
-    console.log(profileData, "keys");
-    setSenderPubKey(profileData?.noStrKey.pub);
+    setActiveUserKeys(profileData?.noStrKey);
     const hasNoStrKey = "noStrKey" in profileData;
     setHasUserJoinedChat(hasNoStrKey);
     setShow(!!props.activeUser?.username);
@@ -171,9 +150,12 @@ export default function ChatBox(props: Props) {
   };
 
   const setCurrentUserFromSearch = (username: string) => {
+    setShowSpinner(true);
     setCurrentUser(username);
     setExpanded(true);
     setIsCurrentUser(true);
+    fetchCurrentUserData();
+    setIsUserFromSearch(true);
   };
 
   const handleMessage = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
@@ -186,6 +168,10 @@ export default function ChatBox(props: Props) {
       setMessage("");
       setIsMessageText(false);
       window.raven?.sendDirectMessage(receiverPubKey, message);
+    }
+    if (isUserFromSearch && receiverPubKey) {
+      window.raven?.addDirectContact(receiverPubKey);
+      setIsUserFromSearch(false);
     }
   };
 
@@ -202,28 +188,18 @@ export default function ChatBox(props: Props) {
     setIsScrollToBottom(isScrollToBottom);
   };
 
-  const ScrollerClicked = () => {
+  const scrollerClicked = () => {
     chatBodyDivRef?.current?.scrollTo({
       top: isCurrentUser ? chatBodyDivRef?.current?.scrollHeight : 0,
       behavior: "smooth"
     });
   };
 
-  // const scrollToBottomClicked = () => {
-  //   console.log("Scroll to bottom clicked");
-  //   chatBodyDivRef?.current?.scrollTo({
-  //     top: chatBodyDivRef?.current?.scrollHeight+10,
-  //     behavior: "smooth"
-  //   });
-  // };
-
-  // const scrollToTopClicked = () => {
-  //   console.log("Scroll to top clicked");
-  //   chatBodyDivRef?.current?.scrollTo({
-  //     top: 0,
-  //     behavior: "smooth"
-  //   });
-  // };
+  const scrollToBottom = () => {
+    chatBodyDivRef?.current?.scrollTo({
+      top: chatBodyDivRef?.current?.scrollHeight
+    });
+  };
 
   const handleMessageSvgClick = () => {
     setShowSearchUser(true);
@@ -240,12 +216,28 @@ export default function ChatBox(props: Props) {
     setInProgress(false);
     setHasUserJoinedChat(true);
     setNostrkeys(keys);
-    // window.raven?.updateProfile({ name: activeUser?.username!, about: "", picture: "" });
+    window.raven?.updateProfile({ name: props.activeUser?.username!, about: "", picture: "" });
   };
 
   const chatButtonSpinner = (
     <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
   );
+
+  const getFormattedDateAndDay = (msg: DirectMessage, i: number) => {
+    const prevMsg = messagesList[i - 1];
+    const msgDate = formatMessageDate(msg.created);
+    const prevMsgDate = prevMsg ? formatMessageDate(prevMsg.created) : null;
+    if (msgDate !== prevMsgDate) {
+      return (
+        <div className="custom-divider">
+          <span className="line"></span>
+          <span className="custom-divider-text">{msgDate}</span>
+          <span className="line"></span>
+        </div>
+      );
+    }
+    return <></>;
+  };
 
   return (
     <>
@@ -253,18 +245,20 @@ export default function ChatBox(props: Props) {
         <div className={`chatbox-container ${expanded ? "expanded" : ""}`}>
           <div className="chat-header">
             {currentUser && expanded && (
-              <div className="back-arrow-image">
-                <span
-                  className="back-arrow-svg"
-                  onClick={() => {
-                    setCurrentUser("");
-                    setIsCurrentUser(false);
-                  }}
-                >
-                  {" "}
-                  {arrowBackSvg}
-                </span>
-              </div>
+              <Tooltip content={_t("chat.back")}>
+                <div className="back-arrow-image">
+                  <span
+                    className="back-arrow-svg"
+                    onClick={() => {
+                      setCurrentUser("");
+                      setIsCurrentUser(false);
+                    }}
+                  >
+                    {" "}
+                    {arrowBackSvg}
+                  </span>
+                </div>
+              </Tooltip>
             )}
             <div className="message-title" onClick={() => setExpanded(!expanded)}>
               {currentUser && (
@@ -305,86 +299,108 @@ export default function ChatBox(props: Props) {
                 {currentUser.length !== 0 ? (
                   <>
                     <Link to={`/@${currentUser}`}>
-                      {profileData?.joiningData && (
-                        <div className="user-profile">
-                          <span className="user-logo">
-                            <UserAvatar username={currentUser} size="large" />
-                          </span>
-                          <h4 className="user-name user-logo ">{currentUser}</h4>
-                          {profileData.about && (
-                            <p className="about user-logo ">{profileData.about}</p>
-                          )}
+                      <div className="user-profile">
+                        {profileData?.joiningData && (
+                          <div className="user-profile-data">
+                            <span className="user-logo">
+                              <UserAvatar username={currentUser} size="large" />
+                            </span>
+                            <h4 className="user-name user-logo ">{currentUser}</h4>
+                            {profileData.about && (
+                              <p className="about user-logo ">{profileData.about}</p>
+                            )}
 
-                          <div className="created-date user-logo joining-info">
-                            <p>
-                              {" "}
-                              {_t("chat.joined")} {dateToFormatted(profileData!.joiningData, "LL")}
-                            </p>
-                            <p className="followers">
-                              {" "}
-                              {formatFollowers(profileData!.followers)} {_t("chat.followers")}
-                            </p>
+                            <div className="created-date user-logo joining-info">
+                              <p>
+                                {" "}
+                                {_t("chat.joined")}{" "}
+                                {dateToFormatted(profileData!.joiningData, "LL")}
+                              </p>
+                              <p className="followers">
+                                {" "}
+                                {formatFollowers(profileData!.followers)} {_t("chat.followers")}
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </Link>
                     <div className="chats">
-                      {messagesList.map((msg) => {
-                        if (msg.creator !== senderPubKey) {
-                          return (
-                            <>
-                              {/* <div key={msg.username} className="date-time-detail">
-                                <p className="date-time">
-                                  {msg.date}, {msg.time}
-                                </p>
-                              </div> */}
-                              <div key={msg.id} className="message">
-                                <div className="user-img">
-                                  <Link to={`/@${currentUser}`}>
-                                    <span>
-                                      <UserAvatar username={currentUser} size="medium" />
-                                    </span>
-                                  </Link>
-                                </div>
-                                <div className="user-info">
-                                  <p className="receiver-message-content">{msg.content}</p>
-                                </div>
-                              </div>
-                            </>
-                          );
-                        } else {
-                          return (
-                            <div key={msg.id} className="sender">
-                              <div className="sender-message">
-                                {/* <span className="sender-message-time">{msg.time}</span> */}
-                                <p className="sender-message-content">{msg.content}</p>
-                              </div>
-                            </div>
-                          );
-                        }
-                      })}
+                      {receiverPubKey === null || receiverPubKey === undefined ? (
+                        <p className="not-joined">{_t("chat.not-joined")}</p>
+                      ) : (
+                        <>
+                          {messagesList.map((msg, i) => {
+                            const dayAndMonth = getFormattedDateAndDay(msg, i);
+
+                            return (
+                              <React.Fragment key={msg.id}>
+                                {dayAndMonth}
+                                {msg.creator !== activeUserKeys?.pub ? (
+                                  <div key={msg.id} className="message">
+                                    <div className="user-img">
+                                      <Link to={`/@${currentUser}`}>
+                                        <span>
+                                          <UserAvatar username={currentUser} size="medium" />
+                                        </span>
+                                      </Link>
+                                    </div>
+                                    <div className="user-info">
+                                      <p className="user-msg-time">
+                                        {formatMessageTime(msg.created)}
+                                      </p>
+                                      <p className="receiver-message-content">{msg.content}</p>
+                                    </div>
+                                  </div>
+                                ) : (
+                                  <div key={msg.id} className="sender">
+                                    <p className="sender-message-time">
+                                      {formatMessageTime(msg.created)}
+                                    </p>
+                                    <div className="sender-message">
+                                      <p className="sender-message-content">{msg.content}</p>
+                                    </div>
+                                  </div>
+                                )}
+                              </React.Fragment>
+                            );
+                          })}
+                        </>
+                      )}
                     </div>
                   </>
                 ) : (
                   <>
-                    {chat.directContacts.map((user: DirectContactsType) => {
-                      return (
-                        <div key={user.creator} className="chat-content">
-                          <Link to={`/@${user.name}`}>
-                            <div className="user-img">
-                              <span>
-                                <UserAvatar username={user.name} size="medium" />
-                              </span>
-                            </div>
-                          </Link>
+                    {chat.directContacts.length !== 0 ? (
+                      <React.Fragment>
+                        {chat.directContacts.map((user: DirectContactsType) => {
+                          return (
+                            <div key={user.creator} className="chat-content">
+                              <Link to={`/@${user.name}`}>
+                                <div className="user-img">
+                                  <span>
+                                    <UserAvatar username={user.name} size="medium" />
+                                  </span>
+                                </div>
+                              </Link>
 
-                          <div className="user-title" onClick={() => userClicked(user.name)}>
-                            <p className="username">{user.name}</p>
-                            {/* <p className="last-message">{user.lastMessage}</p> */}
-                          </div>
+                              <div className="user-title" onClick={() => userClicked(user.name)}>
+                                <p className="username">{user.name}</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </React.Fragment>
+                    ) : (
+                      <React.Fragment>
+                        <p className="no-chat">{_t("chat.no-chat")}</p>
+                        <div className="start-chat-btn">
+                          <Button variant="primary" onClick={() => setShowSearchUser(true)}>
+                            {_t("chat.start-chat")}
+                          </Button>
                         </div>
-                      );
-                    })}
+                      </React.Fragment>
+                    )}
                   </>
                 )}
               </>
@@ -402,14 +418,14 @@ export default function ChatBox(props: Props) {
                 <div
                   className="scroller"
                   style={{ bottom: isCurrentUser && isScrollToBottom ? "20px" : "55px" }}
-                  onClick={ScrollerClicked}
+                  onClick={scrollerClicked}
                 >
                   {isCurrentUser ? chevronDownSvgForSlider : chevronUpSvg}
                 </div>
               </Tooltip>
             )}
           </div>
-
+          {showSpinner && <LinearProgress />}
           {currentUser && (
             <div className="chat">
               <Form
@@ -421,7 +437,6 @@ export default function ChatBox(props: Props) {
               >
                 <InputGroup className="chat-input-group">
                   <Form.Control
-                    as="textarea"
                     value={message}
                     onChange={handleMessage}
                     required={true}
@@ -429,6 +444,10 @@ export default function ChatBox(props: Props) {
                     placeholder={_t("chat.start-chat-placeholder")}
                     autoComplete="off"
                     className="chat-input"
+                    style={{ maxWidth: "100%", overflowWrap: "break-word" }}
+                    disabled={
+                      showSpinner || receiverPubKey === null || receiverPubKey === undefined
+                    }
                   />
                   <InputGroup.Append
                     className={`msg-svg ${isMessageText ? "active" : ""}`}

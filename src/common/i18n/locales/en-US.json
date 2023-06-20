@@ -1657,7 +1657,11 @@
     "followers": "Followers",
     "start-chat-placeholder": "Start a new message",
     "search": "Search people",
-    "join-chat": "Join chat"
+    "join-chat": "Join chat",
+    "back": "Back",
+    "no-chat": "No conversation found",
+    "start-chat": "Start chat",
+    "not-joined": "This user hasn't joined the chat yet"
   },
   "add-image": {
     "title": "Add Image",

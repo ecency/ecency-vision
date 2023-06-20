@@ -36,10 +36,12 @@ import { hsTokenRenew } from "../../api/auth-api";
 import { formatError, grantPostingPermission, revokePostingPermission } from "../../api/operations";
 
 import { getRefreshToken } from "../../helper/user-token";
+import { getProfileMetaData } from "../../helper/chat-utils";
 
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
+import { setNostrkeys } from "../../../providers/message-provider";
 
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
@@ -731,6 +733,7 @@ interface Props {
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
+  resetChat: () => void;
 }
 
 class LoginDialog extends Component<Props> {
@@ -749,7 +752,9 @@ class LoginDialog extends Component<Props> {
   }
 
   doLogin = async (hsCode: string, postingKey: null | undefined | string, account: Account) => {
-    const { global, setActiveUser, updateActiveUser, addUser } = this.props;
+    const profile = await getProfileMetaData(account.name);
+
+    const { global, setActiveUser, updateActiveUser, addUser, resetChat } = this.props;
 
     // get access token from code
     return hsTokenRenew(hsCode).then((x) => {
@@ -764,6 +769,11 @@ class LoginDialog extends Component<Props> {
       // add / update user data
       addUser(user);
 
+      //reset the already stored chat
+      resetChat();
+
+      //create new raven instance for newly logged in user
+      setNostrkeys(profile.noStrKey);
       // activate user
       setActiveUser(user.username);
 
@@ -817,7 +827,8 @@ export default ({ history }: Pick<Props, "history">) => {
     setActiveUser,
     updateActiveUser,
     deleteUser,
-    toggleUIProp
+    toggleUIProp,
+    resetChat
   } = useMappedStore();
   const location = useLocation();
 
@@ -829,6 +840,7 @@ export default ({ history }: Pick<Props, "history">) => {
       ui={ui}
       users={users}
       activeUser={activeUser}
+      resetChat={resetChat}
       addUser={addUser}
       setActiveUser={setActiveUser}
       updateActiveUser={updateActiveUser}

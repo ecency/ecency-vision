@@ -7,7 +7,8 @@ import {
   ActionTypes,
   DirectContactsAction,
   DirectContactsType,
-  DirectMessagesAction
+  DirectMessagesAction,
+  ResetChatAction
 } from "./types";
 
 export const initialState: Chat = {
@@ -19,9 +20,12 @@ export default (state: Chat = initialState, action: Actions): Chat => {
   switch (action.type) {
     case ActionTypes.DIRECTCONTACTS: {
       const { data } = action;
+      const uniqueDirectContacts = data.filter(
+        (contact) => !state.directContacts.includes(contact)
+      );
       return {
         ...state,
-        directContacts: [...state.directContacts, ...data]
+        directContacts: [...state.directContacts, ...uniqueDirectContacts]
       };
     }
     case ActionTypes.DIRECTMESSAGES: {
@@ -31,6 +35,10 @@ export default (state: Chat = initialState, action: Actions): Chat => {
         directMessages: [...state.directMessages, ...data]
       };
     }
+
+    case ActionTypes.RESET:
+      return initialState;
+
     default:
       return state;
   }
@@ -42,10 +50,12 @@ export const addDirectContacts = (data: DirectContactsType[]) => (dispatch: Disp
 };
 
 export const addDirectMessages = (data: DirectMessage[]) => (dispatch: Dispatch) => {
-  console.log("data in store", data);
   dispatch(addDirectMessagesAct(data));
 };
 
+export const resetChat = () => (dispatch: Dispatch) => {
+  dispatch(resetChatAct());
+};
 /* Action Creators */
 
 export const addDirectContactsAct = (data: DirectContactsType[]): DirectContactsAction => {
@@ -59,5 +69,11 @@ export const addDirectMessagesAct = (data: DirectMessage[]): DirectMessagesActio
   return {
     type: ActionTypes.DIRECTMESSAGES,
     data
+  };
+};
+
+export const resetChatAct = (): ResetChatAction => {
+  return {
+    type: ActionTypes.RESET
   };
 };

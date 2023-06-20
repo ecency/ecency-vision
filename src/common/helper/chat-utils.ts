@@ -1,6 +1,6 @@
-import { useMemo } from "react";
+import moment from "moment";
 import { generatePrivateKey, getPublicKey } from "../../lib/nostr-tools/keys";
-import { Channel, DirectMessage } from "../../providers/message-provider-types";
+import { DirectMessage } from "../../providers/message-provider-types";
 import { getAccountFull } from "../api/hive";
 import { updateProfile } from "../api/operations";
 import { ActiveUser } from "../store/active-user/types";
@@ -43,15 +43,6 @@ export function notEmpty<TValue>(value: TValue | null | undefined): value is TVa
   return value !== null && value !== undefined;
 }
 
-export const GLOBAL_CHAT: Channel = {
-  id: "f412192fdc846952c75058e911d37a7392aa7fd2e727330f4344badc92fb8a22",
-  name: "Global Chat",
-  about: "Whatever you want it to be, just be nice",
-  picture: "",
-  creator: "aea59833635dd0868bc7cf923926e51df936405d8e6a753b78038981c75c4a74",
-  created: 1678198928
-};
-
 export const getDirectMessages = (messages: DirectMessage[], peer?: string) => {
   const clean = messages.filter((x) => x.peer === peer).sort((a, b) => a.created - b.created);
 
@@ -59,3 +50,7 @@ export const getDirectMessages = (messages: DirectMessage[], peer?: string) => {
     .map((c) => ({ ...c, children: clean.filter((x) => x.root === c.id) }))
     .filter((x) => !x.root);
 };
+
+export const formatMessageTime = (unixTs: number) => moment.unix(unixTs).format("h:mm a");
+
+export const formatMessageDate = (unixTs: number) => moment.unix(unixTs).format("dddd, MMMM Do");
