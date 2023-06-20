@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import LinearProgress from "../linear-progress";
 import { deleteForeverSvg, informationVariantSvg } from "../../img/svg";
-import { Button, Modal, ModalBody, Tooltip } from "react-bootstrap";
+import { Button, Modal, Tooltip } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./index.scss";
 
 const VideoGallery = (props: any) => {
-  const { showGaller, setShowGallery, checkStat, insertText } = props;
+  const { showGaller, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary} = props;
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
@@ -21,12 +21,16 @@ const VideoGallery = (props: any) => {
   const getAllStatus = async () => {
     setLoading(true);
     const data = await checkStat();
-    console.log(JSON.parse(data[0].beneficiaries));
     if (data) {
       setItems(data);
       setLoading(false);
     }
   };
+  
+  const setBeneficiary = (video: any) => {
+    const videoObj = JSON.parse(video.beneficiaries)
+    setVideoEncoderBeneficiary(videoObj)
+  }
 
   const formatTime = (dateStr: string | number | Date) => {
     const date: any = new Date(dateStr);
@@ -85,7 +89,7 @@ const VideoGallery = (props: any) => {
   };
 
   const embeddVideo = (videoUrl: string) => {
-    insertText(`<iframe src='${videoUrl}' width='200' height='200'>`,"</iframe>")
+    insertText(`<iframe src=${videoUrl} width='200' height='200'>`,"</iframe>")
   }
 
   const modalBodyTop = (
@@ -142,7 +146,7 @@ const VideoGallery = (props: any) => {
       {loading && <LinearProgress />}
       {videosDrafts?.length > 0 && filterType !== '' ? (
         <div className="video-list">
-          {(videosDrafts || items)?.map((item: any, i: any) => {
+          {(videosDrafts || items)?.map((item: any, i: number) => {
             return (
               <div className="video-list-body" key={i}>
                 {/* <div className="list-image"> */}
@@ -159,12 +163,16 @@ const VideoGallery = (props: any) => {
                       onMouseOut={() => setShowMoreInfo(false)}
                       className="info-icon details-svg"
                     >
-                      {_t("video-gallery.more-info")}                    </span>
+                      {_t("video-gallery.view-more")}
+                    </span>
                   </div>
                   <div className="list-bottom-wrapper">
                     <span className="video-date">{formatTime(item.created)}</span>
                     {item.status === "publish_manual" ? (
-                      <button className="post-video-btn" onClick={() => embeddVideo(item.video_v2)}>
+                      <button className="post-video-btn" onClick={() =>{ 
+                        embeddVideo(item.video_v2)
+                        setBeneficiary(item)
+                        }}>
                         {_t("video-gallery.status-encoded")}
                       </button>
                     ) : item.status === "encoding_failed" ? (
@@ -172,7 +180,7 @@ const VideoGallery = (props: any) => {
                     ) : item.status === "published" ? (
                       <div>
                         <span className="published">{_t("video-gallery.status-published")}</span>
-                        <button>view</button>
+                        <button className="post-video-btn">view</button>
                       </div>
                     ) : (
                       <span className="encoding">{_t("video-gallery.status-encoding")}</span>
@@ -210,7 +218,7 @@ const VideoGallery = (props: any) => {
         </div>
       ) : (
         <div className="video-list">
-          {items?.map((item: any, i: any) => {
+          {items?.map((item: any, i: number) => {
             return (
               <div className="video-list-body" key={i}>
                   <img src={item.thumbUrl} alt="" />
@@ -225,22 +233,24 @@ const VideoGallery = (props: any) => {
                       onMouseOut={() => setShowMoreInfo(false)}
                       className="info-icon details-svg"
                     >
-                      more...
+                      {_t("video-gallery.view-more")} 
                     </span>
                   </div>
-                  <div className="list-date">
-                    <span>{formatTime(item.created)}</span>
+                  <div className="list-bottom-wrapper">
+                    <span className="video-date">{formatTime(item.created)}</span>
                     {item.status === "publish_manual" ? (
-                      <button onClick={() => embeddVideo(item.video_v2)}>
-                        {/* {_t("video-gallery.status-encoded")} */}
-                        Post
+                      <button className="post-video-btn" onClick={() =>{ 
+                        embeddVideo(item.video_v2)
+                        setBeneficiary(item)
+                        }}>
+                        {_t("video-gallery.status-encoded")}
                       </button>
                     ) : item.status === "encoding_failed" ? (
                       <span className="encoding-failed">{_t("video-gallery.status-failed")}</span>
                     ) : item.status === "published" ? (
                       <div>
                         <span className="published">{_t("video-gallery.status-published")}</span>
-                        <button>view</button>
+                        <button className="post-video-btn">view</button>
                       </div>
                     ) : (
                       <span className="encoding">{_t("video-gallery.status-encoding")}</span>

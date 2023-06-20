@@ -14,7 +14,7 @@ import VideoGallery from "../video-gallery";
 import useMount from "react-use/lib/useMount";
 
 export const VideoUpload = (props: any) => {
-  const { description, title, tags, activeUser, global, insertText } = props;
+  const { description, title, tags, activeUser, global, insertText, setVideoEncoderBeneficiary } = props;
 
   const tusEndPoint = "https://uploads.3speak.tv/files/";
   const fileInput = useRef<HTMLInputElement>(null);
@@ -242,6 +242,7 @@ export const VideoUpload = (props: any) => {
           checkStat={checkStat}
           selectedFile={selectedFile}
           insertText={insertText}
+          setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
         />
       </div>
       <div>

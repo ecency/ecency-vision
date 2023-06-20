@@ -246,8 +246,8 @@ class SubmitPage extends BaseComponent<Props, State> {
       // delete active user from beneficiaries list
       if (activeUser) {
         const { beneficiaries } = this.state;
-        if (beneficiaries.find((x) => x.account === activeUser.username)) {
-          const b = [...beneficiaries.filter((x) => x.account !== activeUser.username)];
+        if (beneficiaries.find((x: { account: string; }) => x.account === activeUser.username)) {
+          const b = [...beneficiaries.filter((x: { account: string; }) => x.account !== activeUser.username)];
           this.stateSet({ beneficiaries: b });
         }
       }
@@ -541,7 +541,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
   beneficiaryDeleted = (username: string) => {
     const { beneficiaries } = this.state;
-    const b = [...beneficiaries.filter((x) => x.account !== username)];
+    const b = [...beneficiaries.filter((x: { account: string; }) => x.account !== username)];
     this.stateSet({ beneficiaries: b }, this.saveAdvanced);
   };
 
@@ -992,6 +992,10 @@ class SubmitPage extends BaseComponent<Props, State> {
     );
   };
 
+  setVideoEncoderBeneficiary = (beneficiary: BeneficiaryRoute[]) => {
+    this.stateSet({ beneficiaries: beneficiary })
+  }
+
   render() {
     const {
       title,
@@ -1075,7 +1079,13 @@ class SubmitPage extends BaseComponent<Props, State> {
                 })}
               </div>
             )}
-            {EditorToolbar({ ...this.props, body: body, tags: tags, title: title })}
+            {EditorToolbar({ 
+              ...this.props, 
+              body: body, 
+              tags: tags, 
+              title: title, 
+              setVideoEncoderBeneficiary: this.setVideoEncoderBeneficiary 
+              })}
             <div className="title-input">
               <Form.Control
                 className="accepts-emoji"

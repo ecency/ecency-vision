@@ -50,6 +50,7 @@ interface Props {
   body: string;
   title: string;
   tags: string[];
+  setVideoEncoderBeneficiary: any;
 }
 
 interface State {
@@ -572,6 +573,7 @@ export class EditorToolbar extends Component<Props> {
                 tags={this.props.tags}
                 global={global}
                 insertText={this.insertText}
+                setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
               />
             </div>
           </Tooltip>
@@ -658,7 +660,8 @@ export default (props: Props) => {
     showGif: props.showGif,
     body: props.body,
     title: props.title,
-    tags: props.tags
+    tags: props.tags,
+    setVideoEncoderBeneficiary: props.setVideoEncoderBeneficiary
   };
   return <EditorToolbar {...p} />;
 };
