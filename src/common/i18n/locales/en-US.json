@@ -1336,6 +1336,7 @@
   },
   "video-gallery": {
     "all": "All",
+    "title":"Video gallery",
     "published": "Published",
     "encoding": "Encoding",
     "encoded": "Encoded",

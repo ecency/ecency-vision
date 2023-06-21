@@ -13,6 +13,7 @@ const VideoGallery = (props: any) => {
   const [filterType, setFilterType] = useState('')
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<any>(null);
+  const [isEmbedded, setIsembedded] = useState(false);
 
   useEffect(() => {
     getAllStatus();
@@ -88,8 +89,25 @@ const VideoGallery = (props: any) => {
     setHoveredItem(item);
   };
 
-  const embeddVideo = (videoUrl: string) => {
-    insertText(`<iframe src=${videoUrl} width='200' height='200'>`,"</iframe>")
+  const embeddVideo = (video: any) => {
+    const speakUrl = "https://3speak.tv/watch?v="
+    const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})
+  
+    ▶️ [Watch on 3Speak](${speakUrl}${video.owner}/${video.permlink})`
+
+    const element = (
+   ` <center>${speakFile}</center>
+   ---
+
+   <center>this is the body</center>
+
+   ---
+
+   <center>▶️ [3Speak](${speakUrl}${video.owner}/${video.permlink})</center>
+   `
+    )
+    insertText(element)
+    setIsembedded(true)
   }
 
   const modalBodyTop = (
@@ -169,9 +187,12 @@ const VideoGallery = (props: any) => {
                   <div className="list-bottom-wrapper">
                     <span className="video-date">{formatTime(item.created)}</span>
                     {item.status === "publish_manual" ? (
-                      <button className="post-video-btn" onClick={() =>{ 
-                        embeddVideo(item.video_v2)
+                      <button
+                      disabled={isEmbedded}
+                      className="post-video-btn" onClick={() =>{ 
+                        embeddVideo(item)
                         setBeneficiary(item)
+                        setShowGallery(false)
                         }}>
                         {_t("video-gallery.status-encoded")}
                       </button>
@@ -239,9 +260,12 @@ const VideoGallery = (props: any) => {
                   <div className="list-bottom-wrapper">
                     <span className="video-date">{formatTime(item.created)}</span>
                     {item.status === "publish_manual" ? (
-                      <button className="post-video-btn" onClick={() =>{ 
-                        embeddVideo(item.video_v2)
+                      <button
+                      disabled={isEmbedded}
+                      className="post-video-btn" onClick={() =>{ 
+                        embeddVideo(item)
                         setBeneficiary(item)
+                        setShowGallery(false)
                         }}>
                         {_t("video-gallery.status-encoded")}
                       </button>
@@ -301,7 +325,7 @@ const VideoGallery = (props: any) => {
         className="gallery-modal"
       >
         <Modal.Header closeButton={true}>
-          <Modal.Title>Video {_t("gallery.title")}</Modal.Title>
+          <Modal.Title>{_t("video-gallery.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {modalBodyTop}
