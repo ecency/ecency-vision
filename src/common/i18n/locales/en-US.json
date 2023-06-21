@@ -277,7 +277,11 @@
     "copy-password": "Password copied successfully",
     "copy-info-message": "Copy account link and send to a friend",
     "success-message": "You successfully created the account of ",
-    "sign-title": "Sign transaction with "
+    "sign-title": "Sign transaction with ",
+    "failed-title":"Failed",
+    "failed-subtitle":"Transaction failed",
+    "failed-message":"Failed to create account",
+    "try-again":"Try again"
   },
   "trending-tags": {
     "title": "Topics"

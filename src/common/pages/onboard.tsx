@@ -12,7 +12,7 @@ import Tooltip from "../components/tooltip";
 import "./onboard.scss";
 import { _t } from "../i18n";
 import { createAccountKc, createAccountWithCredit, getAcountCredit } from "../api/operations";
-import { generatePassword, getPrivateKeys } from "../helper/onBoard-helper";
+import { generatePassword, getPrivateKeys, sendOnboardMail } from "../helper/onBoard-helper";
 import LinearProgress from "../components/linear-progress";
 import { b64uDec, b64uEnc } from "../util/b64";
 
@@ -66,7 +66,7 @@ const Onboard = (props: PageProps | any) => {
   const [shortPassword, setShortPassword] = useState("");
   const [confirmDetails, setConfirmDetails] = useState<ConfirmDetails[]>();
   const [onboardUrl, setOnboardUrl] = useState("");
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState<string | number>(0);
   const [inProgress, setInprogress] = useState(false);
 
   useEffect(() => {
@@ -164,6 +164,13 @@ const Onboard = (props: PageProps | any) => {
     }
   };
 
+  const sendMail = async () => {
+    await sendOnboardMail(
+      accountInfo!.username, 
+      accountInfo!.email.replace("=", "."),
+      props.activeUser.username)
+  };  
+
   const copyToClipboard = (text: string) => {
     const textField = document.createElement("textarea");
     textField.innerText = text;
@@ -232,10 +239,11 @@ const Onboard = (props: PageProps | any) => {
             pub_keys: decodedInfo?.pubkeys
           },
           props.activeUser.username
-        );
+          );
         if (response) {
           setInprogress(false);
           setStep(2);
+          sendMail()
         }
       } else {
         const resp = await createAccountWithCredit(
@@ -251,6 +259,9 @@ const Onboard = (props: PageProps | any) => {
         }
       }
     } catch (err: any) {
+      if (err) {
+        setStep("failed");
+      }
       error(err.message);
     }
   };
@@ -320,6 +331,31 @@ const Onboard = (props: PageProps | any) => {
           <div className="d-flex justify-content-center">
             <span className="hr-6px-btn-spacer" />
             <Button onClick={finish}>{_t("g.finish")}</Button>
+          </div>
+        </div>
+      </>
+    );
+  };
+  const failedModalBody = () => {
+    return (
+      <>
+        <div className="create-account-success-dialog-header border-bottom d-flex text-danger">
+          <div className="step-no">❌</div>
+          <div className="create-account-success-dialog-titles">
+            <div className="create-account-main-title">{_t("onboard.failed-title")}</div>
+            <div className="create-account-sub-title">{_t("onboard.failed-subtitle")}</div>
+          </div>
+        </div>
+
+        <div className="success-dialog-body">
+          <div className="success-dialog-content">
+            <span className="text-danger">
+            {_t("onboard.failed-message")}
+            </span>
+          </div>
+          <div className="d-flex justify-content-center">
+            <span className="hr-6px-btn-spacer" />
+            <Button onClick={finish}>{_t("onboard.try-again")}</Button>
           </div>
         </div>
       </>
@@ -485,6 +521,7 @@ const Onboard = (props: PageProps | any) => {
       >
         <Modal.Header closeButton={true}>
           <Modal.Title />
+          <Button onClick={()=>sendMail()}>send mail</Button>
         </Modal.Header>
         <Modal.Body>
           <div className="d-flex flex-column">
@@ -492,12 +529,14 @@ const Onboard = (props: PageProps | any) => {
               <React.Fragment>
                 {step === 1 && modelBody(createOptions.HIVE)}
                 {step === 2 && successModalBody()}
+                {step === "failed" && failedModalBody()}
               </React.Fragment>
             )}
-            {accountCredit > 0 && createOption === createOptions.CREDIT && (
+            {accountCredit < 0 && createOption === createOptions.CREDIT && (
               <React.Fragment>
                 {step === 1 && modelBody(createOptions.CREDIT)}
                 {step === 2 && successModalBody()}
+                {step === "failed" && failedModalBody()}
               </React.Fragment>
             )}
           </div>

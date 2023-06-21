@@ -1936,22 +1936,21 @@ export const createAccountKc = async (data: any, creator_account: string) => {
       op_name = "account_create";
     }
 
-    console.log(account);
 
     const owner = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.owner_public_key, 1]]
+      key_auths: [[account.ownerPublicKey, 1]]
     };
     const active = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.active_public_key, 1]]
+      key_auths: [[account.activePublicKey, 1]]
     };
     const posting = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.posting_public_key, 1]]
+      key_auths: [[account.postingPublicKey, 1]]
     };
     const ops: Array<any> = [];
     const params: any = {
@@ -1960,7 +1959,7 @@ export const createAccountKc = async (data: any, creator_account: string) => {
       owner,
       active,
       posting,
-      memo_key: account.memopublickey,
+      memo_key: account.memoPublicKey,
       json_metadata: "",
       extensions: []
     };
@@ -1970,7 +1969,6 @@ export const createAccountKc = async (data: any, creator_account: string) => {
     ops.push(operation);
     try {
       // For Keychain
-      console.log(creator_account, [operation]);
       return keychain.broadcast(creator_account, [operation], "Active");
     } catch (err: any) {
       return err.jse_info.name;
