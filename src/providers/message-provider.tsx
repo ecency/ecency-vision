@@ -100,7 +100,7 @@ const MessageProvider = (props: Props) => {
     const append = data.filter(
       (x) => props.chat.directMessages.find((y) => y.id === x.id) === undefined
     );
-
+    raven?.loadProfiles(append.map((x) => x.peer));
     const result = [...props.chat.directMessages, ...append];
 
     props.addDirectMessages(result);
@@ -116,7 +116,6 @@ const MessageProvider = (props: Props) => {
 
   const handleProfileUpdate = (data: Profile[]) => {
     const result = [...props.chat.directContacts];
-
     data.forEach(({ name, creator }) => {
       const isPresent = props.chat.directContacts.some(
         (obj) => obj.name === name && obj.creator === creator
@@ -135,6 +134,14 @@ const MessageProvider = (props: Props) => {
     raven?.addListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
     return () => {
       raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
+    };
+  }, [raven]);
+
+  useEffect(() => {
+    return () => {
+      raven?.removeListener(RavenEvents.Ready, handleReadyState);
+      raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
+      raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
     };
   }, [raven]);
 

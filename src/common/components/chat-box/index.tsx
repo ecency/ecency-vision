@@ -3,9 +3,9 @@ import { Button, Form, FormControl, InputGroup, Spinner } from "react-bootstrap"
 import { Link } from "react-router-dom";
 
 import { ActiveUser } from "../../store/active-user/types";
-import { DirectContactsType } from "../../store/chat/types";
+import { Chat, DirectContactsType } from "../../store/chat/types";
 import { DirectMessage } from "../../../providers/message-provider-types";
-import { useMappedStore } from "../../store/use-mapped-store";
+// import { useMappedStore } from "../../store/use-mapped-store";
 
 import Tooltip from "../tooltip";
 import UserAvatar from "../user-avatar";
@@ -30,7 +30,8 @@ import {
   getDirectMessages,
   getProfileMetaData,
   NostrKeys,
-  setProfileMetaData
+  setProfileMetaData,
+  correctProfile
 } from "../../helper/chat-utils";
 import { _t } from "../../i18n";
 import { getAccountFull } from "../../api/hive";
@@ -45,6 +46,8 @@ export interface profileData {
 
 interface Props {
   activeUser: ActiveUser | null;
+  chat: Chat;
+  resetChat: () => void;
 }
 
 export default function ChatBox(props: Props) {
@@ -67,17 +70,16 @@ export default function ChatBox(props: Props) {
   const [messagesList, setMessagesList] = useState<DirectMessage[]>([]);
   const [isUserFromSearch, setIsUserFromSearch] = useState(false);
 
-  const { chat } = useMappedStore();
-
   useEffect(() => {
+    // correctProfile(props.activeUser);
     fetchProfileData();
     setShow(!!props.activeUser?.username);
   }, []);
 
   useEffect(() => {
-    const msgsList = getDirectMessages(chat.directMessages, receiverPubKey!);
+    const msgsList = getDirectMessages(props.chat.directMessages, receiverPubKey!);
     setMessagesList(msgsList);
-  }, [chat.directMessages]);
+  }, [props.chat.directMessages]);
 
   useEffect(() => {
     scrollToBottom();
@@ -92,16 +94,16 @@ export default function ChatBox(props: Props) {
   useEffect(() => {
     fetchProfileData();
     setShow(!!props.activeUser?.username);
-    const msgsList = getDirectMessages(chat.directMessages, receiverPubKey!);
+    const msgsList = getDirectMessages(props.chat.directMessages, receiverPubKey!);
     setMessagesList(msgsList);
   }, [props.activeUser]);
 
   useEffect(() => {
     if (currentUser) {
       fetchCurrentUserData();
-      const peer = chat.directContacts.find((x) => x.name === currentUser)?.creator ?? null;
+      const peer = props.chat.directContacts.find((x) => x.name === currentUser)?.creator ?? null;
       setReceiverPubKey(peer!);
-      const msgsList = getDirectMessages(chat.directMessages, peer!);
+      const msgsList = getDirectMessages(props.chat.directMessages, peer!);
       setMessagesList(msgsList);
       if (!window.raven) {
         setNostrkeys(activeUserKeys!);
@@ -132,7 +134,7 @@ export default function ChatBox(props: Props) {
       followers: response.follow_stats?.follower_count
     });
     const currentUserProfile = await getProfileMetaData(currentUser);
-    setReceiverPubKey(currentUserProfile.noStrKey?.pub);
+    setReceiverPubKey(currentUserProfile?.noStrKey?.pub);
     setShowSpinner(false);
   };
 
@@ -154,7 +156,7 @@ export default function ChatBox(props: Props) {
     setCurrentUser(username);
     setExpanded(true);
     setIsCurrentUser(true);
-    fetchCurrentUserData();
+    // fetchCurrentUserData();
     setIsUserFromSearch(true);
   };
 
@@ -183,7 +185,6 @@ export default function ChatBox(props: Props) {
       isCurrentUser &&
       element.scrollTop <= (element.scrollHeight / 100) * 50 &&
       element.scrollHeight > 700;
-
     setIsScrollToTop(isScrollToTop);
     setIsScrollToBottom(isScrollToBottom);
   };
@@ -209,14 +210,18 @@ export default function ChatBox(props: Props) {
     setShowSearchUser(d);
   };
 
-  const handleJoinChat = () => {
+  const handleJoinChat = async () => {
+    const { resetChat } = props;
     setInProgress(true);
+    resetChat();
     const keys = createNoStrAccount();
-    setProfileMetaData(props.activeUser, keys);
-    setInProgress(false);
+    await setProfileMetaData(props.activeUser, keys);
     setHasUserJoinedChat(true);
     setNostrkeys(keys);
     window.raven?.updateProfile({ name: props.activeUser?.username!, about: "", picture: "" });
+    // fetchProfileData();
+    setActiveUserKeys(keys);
+    setInProgress(false);
   };
 
   const chatButtonSpinner = (
@@ -230,9 +235,7 @@ export default function ChatBox(props: Props) {
     if (msgDate !== prevMsgDate) {
       return (
         <div className="custom-divider">
-          <span className="line"></span>
           <span className="custom-divider-text">{msgDate}</span>
-          <span className="line"></span>
         </div>
       );
     }
@@ -371,9 +374,9 @@ export default function ChatBox(props: Props) {
                   </>
                 ) : (
                   <>
-                    {chat.directContacts.length !== 0 ? (
+                    {props.chat.directContacts.length !== 0 ? (
                       <React.Fragment>
-                        {chat.directContacts.map((user: DirectContactsType) => {
+                        {props.chat.directContacts.map((user: DirectContactsType) => {
                           return (
                             <div key={user.creator} className="chat-content">
                               <Link to={`/@${user.name}`}>

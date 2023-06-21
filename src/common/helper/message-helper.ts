@@ -69,6 +69,7 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
   private eventQueueFlag = true;
   private eventQueueBuffer: Event[] = [];
   public directContacts: string[] = [];
+  private isActiveUserPushed: boolean = false;
 
   private nameCache: Record<string, number> = {};
 
@@ -148,6 +149,39 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
     });
   }
 
+  public loadProfiles(pubs: string[]) {
+    pubs.forEach((p) => {
+      if (!this.directContacts.includes(p)) {
+        if (p !== this.pub) {
+          this.directContacts.push(p);
+        }
+        this.fetch([
+          {
+            kinds: [Kind.Metadata],
+            authors: [p]
+          }
+        ]);
+      }
+    });
+  }
+
+  public directContactForActiveUser(event: Event) {
+    if (!this.isActiveUserPushed && !this.directContacts.includes(event.pubkey)) {
+      const activeUserProfile = {
+        id: event.id,
+        creator: event.pubkey,
+        created: event.created_at,
+        name: JSON.parse(event.content).name,
+        about: JSON.parse(event.content).about || "",
+        picture: JSON.parse(event.content).picture || ""
+      };
+
+      this.emit(RavenEvents.ProfileUpdate, [activeUserProfile]);
+      this.isActiveUserPushed = true;
+      this.directContacts.push(event.pubkey);
+    }
+  }
+
   public addDirectContact(directContact: string) {
     const filters: Filter[] = [
       {
@@ -155,10 +189,11 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
         authors: [directContact]
       }
     ];
-    this.directContacts.push(directContact);
-    filters.forEach((c) => {
-      this.fetch([c]);
-    });
+
+    if (!this.directContacts.includes(directContact) && this.pub !== directContact) {
+      this.directContacts.push(directContact);
+    }
+    this.fetch(filters);
   }
 
   private fetch(filters: Filter[], unsub: boolean = true) {
@@ -166,6 +201,9 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
 
     sub.on("event", (event: Event) => {
       this.pushToEventBuffer(event);
+      if (event.kind === Kind.Metadata && event.pubkey === this.pub) {
+        this.directContactForActiveUser(event);
+      }
     });
 
     sub.on("eose", () => {

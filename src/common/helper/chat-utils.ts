@@ -20,6 +20,26 @@ export const getProfileMetaData = async (username: string) => {
   }
 };
 
+export const correctProfile = async (activeUser: ActiveUser | null) => {
+  const profile = await getProfileMetaData(activeUser?.username!);
+  delete profile.noStrKey;
+  delete profile.profile;
+  delete profile.version;
+  const response = await getAccountFull(activeUser?.username!);
+  const profileC = {
+    name: activeUser?.username,
+    about: "",
+    cover_image: "",
+    profile_image: "",
+    website: "",
+    location: "",
+    pinned: "",
+    version: 2
+  };
+  const updatedProfile = await updateProfile(response, { ...profileC });
+  console.log(updatedProfile);
+};
+
 export const setProfileMetaData = async (activeUser: ActiveUser | null, keys: NostrKeys) => {
   const response = await getAccountFull(activeUser?.username!);
 
