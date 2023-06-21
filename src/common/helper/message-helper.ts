@@ -31,27 +31,13 @@ const relays = {
 export enum RavenEvents {
   Ready = "ready",
   ProfileUpdate = "profile_update",
-  ChannelCreation = "channel_creation",
-  ChannelUpdate = "channel_update",
-  EventDeletion = "event_deletion",
-  PublicMessage = "public_message",
-  DirectMessage = "direct_message",
-  ChannelMessageHide = "channel_message_hide",
-  ChannelUserMute = "channel_user_mute",
-  MuteList = "mute_list"
+  DirectMessage = "direct_message"
 }
 
 type EventHandlerMap = {
   [RavenEvents.Ready]: () => void;
   [RavenEvents.ProfileUpdate]: (data: Profile[]) => void;
-  [RavenEvents.ChannelCreation]: (data: Channel[]) => void;
-  [RavenEvents.ChannelUpdate]: (data: ChannelUpdate[]) => void;
-  [RavenEvents.EventDeletion]: (data: EventDeletion[]) => void;
-  [RavenEvents.PublicMessage]: (data: PublicMessage[]) => void;
   [RavenEvents.DirectMessage]: (data: DirectMessage[]) => void;
-  [RavenEvents.ChannelMessageHide]: (data: ChannelMessageHide[]) => void;
-  [RavenEvents.ChannelUserMute]: (data: ChannelUserMute[]) => void;
-  [RavenEvents.MuteList]: (data: MuteList) => void;
 };
 
 class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
