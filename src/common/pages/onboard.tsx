@@ -521,7 +521,6 @@ const Onboard = (props: PageProps | any) => {
       >
         <Modal.Header closeButton={true}>
           <Modal.Title />
-          <Button onClick={()=>sendMail()}>send mail</Button>
         </Modal.Header>
         <Modal.Body>
           <div className="d-flex flex-column">
@@ -532,7 +531,7 @@ const Onboard = (props: PageProps | any) => {
                 {step === "failed" && failedModalBody()}
               </React.Fragment>
             )}
-            {accountCredit < 0 && createOption === createOptions.CREDIT && (
+            {accountCredit > 0 && createOption === createOptions.CREDIT && (
               <React.Fragment>
                 {step === 1 && modelBody(createOptions.CREDIT)}
                 {step === 2 && successModalBody()}
