@@ -1,7 +1,6 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { pageMapDispatchToProps, pageMapStateToProps } from "../common";
-import { useMounted } from "../../util/use-mounted";
 import { Props } from "./props.type";
 import { LoadingScreen } from "./loading-screen";
 import { DeletedPostScreen } from "./deleted-post-screen";
@@ -57,10 +56,9 @@ import EntryVotes from "../../components/entry-votes";
 import Discussion from "../../components/discussion";
 import EntryReblogBtn from "../../components/entry-reblog-btn/index";
 import EntryTipBtn from "../../components/entry-tip-btn";
-import { getPost } from "../../api/bridge";
 import { BaseAccount, FullAccount } from "../../store/accounts/types";
 import tempEntry from "../../helper/temp-entry";
-import { useCommunityCache, useEntryCache } from "../../core";
+import { EntriesCacheContext, useCommunityCache, useEntryCache, useEntryReFetch } from "../../core";
 import "./_index.scss";
 
 const EntryComponent = (props: Props) => {
@@ -102,15 +100,16 @@ const EntryComponent = (props: Props) => {
   const [app, setApp] = useState("");
   const [appShort, setAppShort] = useState("");
 
-  const isMounted = useMounted();
   const commentsInputRef = useRef(null);
   const entryControlsRef = useRef<HTMLDivElement | null>(null);
 
+  const { updateVotes } = useContext(EntriesCacheContext);
   const { data: entry } = useEntryCache(
     props.match.params.category,
     props.match.params.username.replace("@", ""),
     props.match.params.permlink
   );
+  const { mutateAsync: reFetch } = useEntryReFetch(entry);
   const { data: community } = useCommunityCache(props.match.params.category);
 
   useEffect(() => {
@@ -191,30 +190,10 @@ const EntryComponent = (props: Props) => {
   };
 
   const afterVote = async (votes: EntryVote[], estimated: number) => {
-    const _entry = entry!!;
-    const newPayout = _entry.payout + estimated;
-
-    if (_entry.active_votes) {
-      props.updateEntry({
-        ..._entry,
-        active_votes: votes,
-        payout: newPayout,
-        pending_payout_value: String(newPayout)
-      });
+    if (entry.active_votes) {
+      updateVotes(entry, votes, entry.payout + estimated);
     } else {
-      try {
-        const entry = await getPost(_entry.author, _entry.permlink);
-        if (entry) {
-          props.updateEntry({
-            ..._entry,
-            active_votes: [...entry.active_votes, ...votes],
-            payout: newPayout,
-            pending_payout_value: String(newPayout)
-          });
-        }
-      } catch (e) {
-        console.log(e);
-      }
+      await reFetch();
     }
   };
 

@@ -1,7 +1,12 @@
-import React, { createContext, useContext, useEffect } from "react";
-import { DefinedQueryObserverResult, useQuery, useQueryClient } from "@tanstack/react-query";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import {
+  DefinedQueryObserverResult,
+  useMutation,
+  useQuery,
+  useQueryClient
+} from "@tanstack/react-query";
 import { Entry, EntryVote } from "../../store/entries/types";
-import { QueryIdentifiers } from "../react-query";
+import { queryClient, QueryIdentifiers } from "../react-query";
 import { makePath } from "../../components/entry-link";
 import * as bridgeApi from "../../api/bridge";
 import { useMappedStore } from "../../store/use-mapped-store";
@@ -71,12 +76,14 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
     return cache.get(link);
   };
 
-  const updateVotes = (entry: Entry, votes: EntryVote[], estimated: number) => {
+  const updateVotes = (entry: Entry, votes: EntryVote[], payout: number) => {
     updateCache([
       {
         ...cache.get(makePath(entry.category, entry.author, entry.permlink))!!,
         active_votes: votes,
-        total_votes: votes.length
+        total_votes: votes.length,
+        payout,
+        pending_payout_value: String(payout)
       }
     ]);
   };
@@ -89,6 +96,24 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
     </EntriesCacheContext.Provider>
   );
 };
+
+export function useEntryReFetch(entry: Entry | null) {
+  const [key, setKey] = useState("");
+
+  useEffect(() => {
+    if (entry) {
+      setKey(makePath(entry.category, entry.author, entry.permlink));
+    }
+  }, [entry]);
+
+  return useMutation(
+    ["FETCH_ENTRY", key],
+    () => bridgeApi.getPost(entry?.author, entry?.permlink),
+    {
+      onSuccess: (response) => queryClient.setQueryData([QueryIdentifiers.ENTRY, key], response)
+    }
+  );
+}
 
 export function useEntryCache<T extends Entry>(initialEntry: T): DefinedQueryObserverResult<Entry>;
 export function useEntryCache<T extends Entry>(
