@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
-import EntryContainer from "./pages/entry";
+import { EntryScreen } from "./pages/entry/index";
 import { SearchPageContainer, SearchMorePageContainer } from "./pages/search";
 import { ProposalsIndexContainer, ProposalDetailContainer } from "./pages/proposals";
 import NotFound from "./components/404";
@@ -64,7 +64,7 @@ const CommunityCreateHSPage = (props: any) => <CommunityCreateHSContainer {...pr
 const EntryAMPContainer = loadable(() => import("./pages/amp/entry-amp-page"));
 const EntryPage = (props: any) => {
   const [isAmp, setIsAmp] = useState(props.location.search.includes("?amps"));
-  return isAmp ? <EntryAMPContainer {...props} /> : <EntryContainer {...props} />;
+  return isAmp ? <EntryAMPContainer {...props} /> : <EntryScreen {...props} />;
 };
 
 const PurchaseContainer = loadable(() => import("./pages/purchase"));

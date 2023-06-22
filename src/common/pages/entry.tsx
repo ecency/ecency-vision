@@ -76,17 +76,12 @@ import dmca from "../constants/dmca.json";
 
 import { getFollowing } from "../api/hive";
 import { history } from "../store";
-import {
-  deleteForeverSvg,
-  pencilOutlineSvg,
-  informationVariantSvg,
-  rawContentSvg
-} from "../img/svg";
+import { deleteForeverSvg, pencilOutlineSvg, rawContentSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
-import "./entry.scss";
+import "./entry/entry.scss";
 
 setProxyBase(defaults.imageServer);
 
