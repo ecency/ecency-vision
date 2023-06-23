@@ -108,7 +108,7 @@ const EntryComponent = (props: Props) => {
   const commentsInputRef = useRef(null);
   const entryControlsRef = useRef<HTMLDivElement | null>(null);
 
-  const { updateVotes } = useContext(EntriesCacheContext);
+  const { updateVotes, updateCache } = useContext(EntriesCacheContext);
   const { data: entry, error: entryError } = useEntryCache(
     props.match.params.category,
     props.match.params.username.replace("@", ""),
@@ -333,12 +333,12 @@ const EntryComponent = (props: Props) => {
 
       if (entry!.children === 0) {
         // Activate discussion section with first comment.
-        const nEntry: Entry = {
-          ...entry!!,
-          children: 1
-        };
-
-        updateEntry(nEntry);
+        updateCache([
+          {
+            ...entry!!,
+            children: 1
+          }
+        ]);
       }
     } catch (e) {
       error(...formatError(e));
