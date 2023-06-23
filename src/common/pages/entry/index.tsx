@@ -71,7 +71,7 @@ import { useDistanceDetector } from "./distance-detector";
 import usePrevious from "react-use/lib/usePrevious";
 
 const EntryComponent = (props: Props) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [replying, setReplying] = useState(false);
   const [edit, setEdit] = useState(false);
   const [showIfNsfw, setShowIfNsfw] = useState(false);
