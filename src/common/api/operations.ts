@@ -1978,7 +1978,7 @@ export const createAccountKc = async (data: any, creator_account: string) => {
 };
 
 // Create with account credit keychain
-export const createAccountWithCredit = async (data: any, creator_account: string) => {
+export const createAccountWithCreditKc = async (data: any, creator_account: string) => {
   try {
     const { username, pub_keys } = data;
 
@@ -1997,17 +1997,17 @@ export const createAccountWithCredit = async (data: any, creator_account: string
     const owner = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.owner_public_key, 1]]
+      key_auths: [[account.ownerPublicKey, 1]]
     };
     const active = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.active_public_key, 1]]
+      key_auths: [[account.activePublicKey, 1]]
     };
     const posting = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.posting_public_key, 1]]
+      key_auths: [[account.postingPublicKey, 1]]
     };
     const ops: Array<any> = [];
     const params: any = {
@@ -2016,7 +2016,7 @@ export const createAccountWithCredit = async (data: any, creator_account: string
       owner,
       active,
       posting,
-      memo_key: account.memo_public_key,
+      memo_key: account.memoPublicKey,
       json_metadata: "",
       extensions: []
     };
@@ -2027,6 +2027,64 @@ export const createAccountWithCredit = async (data: any, creator_account: string
     try {
       // For Keychain
       return keychain.broadcast(creator_account, [operation], "Active");
+    } catch (err: any) {
+      return err.jse_info.name;
+    }
+  } catch (err) {
+    return err;
+  }
+};
+
+export const createAccountWithCreditHs = async (data: any, creator_account: string) => {
+  try {
+    const { username, pub_keys } = data;
+
+    const account = {
+      name: username,
+      ...pub_keys,
+      active: false
+    };
+
+    let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+    tokens = tokens[0]?.pending_claimed_accounts;
+
+    let fee = null;
+    let op_name: OperationName = "create_claimed_account";
+
+    const owner = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.ownerPublicKey, 1]]
+    };
+    const active = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.activePublicKey, 1]]
+    };
+    const posting = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.postingPublicKey, 1]]
+    };
+
+    const params: any = {
+      creator: creator_account,
+      new_account_name: account.name,
+      owner,
+      active,
+      posting,
+      memo_key: account.memoPublicKey,
+      json_metadata: "",
+      extensions: []
+    };
+
+    if (fee) params.fee = fee;
+    const operation: Operation = [op_name, params];
+
+    try {
+      // For Hive Signer
+      const params: Parameters = { callback: `https://ecency.com/` };
+      return hs.sendOperation(operation, params, () => {});
     } catch (err: any) {
       return err.jse_info.name;
     }
@@ -2067,17 +2125,17 @@ export const createAccountHs = async (data: any, creator_account: string) => {
     const owner = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.owner_public_key, 1]]
+      key_auths: [[account.ownerPublicKey, 1]]
     };
     const active = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.active_public_key, 1]]
+      key_auths: [[account.activePublicKey, 1]]
     };
     const posting = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.posting_public_key, 1]]
+      key_auths: [[account.postingPublicKey, 1]]
     };
 
     const params: any = {
@@ -2086,7 +2144,7 @@ export const createAccountHs = async (data: any, creator_account: string) => {
       owner,
       active,
       posting,
-      memo_key: account.memo_public_key,
+      memo_key: account.memoPublicKey,
       json_metadata: "",
       extensions: []
     };
@@ -2096,7 +2154,6 @@ export const createAccountHs = async (data: any, creator_account: string) => {
 
     try {
       // For Hive Signer
-      //  return keychain.broadcast(creator_account, [operation], "Active");
       const params: Parameters = { callback: `https://ecency.com/` };
       return hs.sendOperation(operation, params, () => {});
     } catch (err: any) {
@@ -2107,7 +2164,7 @@ export const createAccountHs = async (data: any, creator_account: string) => {
   }
 };
 
-export const createAccountKey = async (data: any, creator_account: string, creator_key: string) => {
+export const createAccountKey = async (data: any, creator_account: string, creator_key: PrivateKey) => {
   try {
     const { username, pub_keys } = data;
 
@@ -2144,12 +2201,12 @@ export const createAccountKey = async (data: any, creator_account: string, creat
     const active = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.active_public_key, 1]]
+      key_auths: [[account.active_publicKey, 1]]
     };
     const posting = {
       weight_threshold: 1,
       account_auths: [],
-      key_auths: [[account.posting_public_key, 1]]
+      key_auths: [[account.postingPublicKey, 1]]
     };
     const ops: Array<any> = [];
     const params: any = {
@@ -2158,7 +2215,7 @@ export const createAccountKey = async (data: any, creator_account: string, creat
       owner,
       active,
       posting,
-      memo_key: account.memo_public_key,
+      memo_key: account.memoPublicKey,
       json_metadata: "",
       extensions: []
     };
@@ -2171,11 +2228,13 @@ export const createAccountKey = async (data: any, creator_account: string, creat
       // With Private Key
       const newAccount = await hiveClient.broadcast.sendOperations(
         ops,
+        // creator_key
         PrivateKey.from(creator_key)
       );
 
       return newAccount;
     } catch (err: any) {
+      console.log(err.message)
       return err.jse_info.name;
     }
   } catch (err) {

@@ -10,13 +10,15 @@ import Feedback from "../components/feedback";
 import { success, error } from "../components/feedback";
 import Tooltip from "../components/tooltip";
 import LinearProgress from "../components/linear-progress";
+import keyOrHot from "../components/key-or-hot";
 
 import { FullAccount } from "../store/accounts/types";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
-import { createAccountKc, createAccountWithCredit } from "../api/operations";
+import { createAccountKc, createAccountWithCreditKc, createAccountWithCreditHs, createAccountHs, createAccountKey } from "../api/operations";
 import { onboardEmail } from "../api/private-api";
 import { generatePassword, getPrivateKeys } from "../helper/onBoard-helper";
 import { b64uDec, b64uEnc } from "../util/b64";
+import { PrivateKey } from "@hiveio/dhive";
 
 import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
 import { _t } from "../i18n";
@@ -247,7 +249,7 @@ const Onboard = (props: Props) => {
     }
   };
 
-  const createAccount = async (type: string) => {
+  const accountKc = async (type: string) => {
     const { activeUser } = props;
     if (activeUser) {
       try {
@@ -265,7 +267,7 @@ const Onboard = (props: Props) => {
             sendMail();
           }
         } else {
-          const resp = await createAccountWithCredit(
+          const resp = await createAccountWithCreditKc(
             {
               username: decodedInfo?.username,
               pub_keys: decodedInfo?.pubkeys
@@ -285,6 +287,135 @@ const Onboard = (props: Props) => {
       }
     }
   };
+
+  const accountKey = async (type: string, key: PrivateKey) => {
+    console.log("with key")
+    const { activeUser } = props;
+    if (activeUser) {
+      try {
+        if (type === createOptions.HIVE) {
+          const resp = await createAccountKey(
+            {
+              username: decodedInfo?.username,
+              pub_keys: decodedInfo?.pubkeys
+            },
+            activeUser?.username,
+            key
+          );
+          console.log(resp)
+          if (resp) {
+            setInprogress(false);
+            setStep(2);
+            sendMail();
+          }
+        } else {
+          const resp = await createAccountWithCreditKc(
+            {
+              username: decodedInfo?.username,
+              pub_keys: decodedInfo?.pubkeys
+            },
+            activeUser?.username
+          );
+          if (resp) {
+            setInprogress(false);
+            setStep(2);
+          }
+        }
+      } catch (err: any) {
+        if (err) {
+          setStep("failed");
+        }
+        error(err.message);
+      }
+    }
+  }
+
+  const accountHot = async (type: string) => {
+    const { activeUser } = props;
+    if (activeUser) {
+      try {
+        if (type === createOptions.HIVE) {
+          const resp = await createAccountHs(
+            {
+              username: decodedInfo?.username,
+              pub_keys: decodedInfo?.pubkeys
+            },
+            activeUser?.username
+          );
+          if (resp) {
+            setInprogress(false);
+            setStep(2);
+            sendMail();
+          }
+        } else {
+          const resp = await createAccountWithCreditHs(
+            {
+              username: decodedInfo?.username,
+              pub_keys: decodedInfo?.pubkeys
+            },
+            activeUser?.username
+          );
+          if (resp) {
+            setInprogress(false);
+            setStep(2);
+          }
+        }
+      } catch (err: any) {
+        if (err) {
+          setStep("failed");
+        }
+        error(err.message);
+      }
+    }
+  }
+
+  const signTransactionModal = (type: string) => {
+    return (
+      <>
+      <div className="recovery-sign-dialog-header border-bottom">
+        <div className="step-no">2</div>
+        <div className="recovery-sign-dialog-titles">
+          <div className="recovery-main-title">{_t("account-recovery.sign-title")}</div>
+          <div className="recovery-sub-title">{_t("account-recovery.sign-sub-title")}</div>
+        </div>
+      </div>
+      {inProgress && <LinearProgress />}
+      {keyOrHot({
+        global: props.global,
+        activeUser: props.activeUser,
+        signingKey: props.signingKey,
+        setSigningKey: props.setSigningKey,
+        inProgress: inProgress,
+        onKey: (key) => {
+          accountKey(type, key);
+        },
+        onHot: () => {
+          // toggleKeyDialog();
+          if (accountHot) {
+            accountHot(type);
+          }
+        },
+        onKc: () => {
+          // toggleKeyDialog();
+          // if (onKc) {
+            accountKc(type);
+          // }
+        }
+      })}
+      <p className="text-center">
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setStep(1);
+          }}
+        >
+          {_t("g.back")}
+        </a>
+      </p>
+    </>
+    )
+  }
 
   const modelHeader = () => {
     return (
@@ -313,7 +444,9 @@ const Onboard = (props: Props) => {
         </div>
 
         <div className="buttons">
-          <Button className="align-self-center" onClick={() => createAccount(type)}>
+          <Button className="align-self-center" onClick={() => 
+            accountKc(type)
+            }>
             {_t("onboard.modal-confirm")}
           </Button>
 
@@ -504,7 +637,7 @@ const Onboard = (props: Props) => {
                     onClick={() => {
                       setCreateOption("hive");
                       setShowModal(true);
-                      setStep(1);
+                      setStep("sign");
                     }}
                   >
                     {_t("onboard.create-account-hive")}
@@ -515,7 +648,7 @@ const Onboard = (props: Props) => {
                     onClick={() => {
                       setCreateOption("credit");
                       setShowModal(true);
-                      setStep(1);
+                      setStep("sign");
                     }}
                   >
                     {_t("onboard.create-account-credit", { n: accountCredit })}
@@ -542,16 +675,19 @@ const Onboard = (props: Props) => {
         </Modal.Header>
         <Modal.Body>
           <div className="d-flex flex-column">
-            {accountCredit <= 0 && createOption === createOptions.HIVE && (
+            {createOption === createOptions.HIVE && (
               <React.Fragment>
-                {step === 1 && modelBody(createOptions.HIVE)}
+                {/* {step === 1 && modelBody(createOptions.HIVE)} */}
+                {step === "sign" && signTransactionModal(createOptions.HIVE)}
                 {step === 2 && successModalBody()}
                 {step === "failed" && failedModalBody()}
               </React.Fragment>
             )}
-            {accountCredit > 0 && createOption === createOptions.CREDIT && (
+
+            {createOption === createOptions.CREDIT && (
               <React.Fragment>
-                {step === 1 && modelBody(createOptions.CREDIT)}
+                {/* {step === 1 && modelBody(createOptions.CREDIT)} */}
+                {step === "sign" && signTransactionModal(createOptions.CREDIT)}
                 {step === 2 && successModalBody()}
                 {step === "failed" && failedModalBody()}
               </React.Fragment>
