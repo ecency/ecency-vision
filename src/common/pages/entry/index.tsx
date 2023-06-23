@@ -60,6 +60,8 @@ import { BaseAccount, FullAccount } from "../../store/accounts/types";
 import tempEntry from "../../helper/temp-entry";
 import { EntriesCacheContext, useCommunityCache, useEntryCache, useEntryReFetch } from "../../core";
 import "./_index.scss";
+import { getFollowing } from "../../api/hive";
+import { useDistanceDetector } from "./distance-detector";
 
 const EntryComponent = (props: Props) => {
   const [loading, setLoading] = useState(false);
@@ -112,6 +114,31 @@ const EntryComponent = (props: Props) => {
   const { mutateAsync: reFetch } = useEntryReFetch(entry);
   const { data: community } = useCommunityCache(props.match.params.category);
 
+  useDistanceDetector(
+    entryControlsRef,
+    showProfileBox,
+    showWordCount,
+    setShowProfileBox,
+    setShowWordCount
+  );
+
+  useEffect(() => {
+    if (props.history.location.search.includes("?referral")) {
+      const userName = props.history.location.search.split("=")[1];
+      ls.set("referral", userName);
+    }
+    fetchMutedUsers();
+
+    const queryParams = new URLSearchParams(location.search);
+    if (props.global.usePrivate && queryParams.has("history")) {
+      setEditHistory(!editHistory);
+    } else if (props.global.usePrivate && queryParams.has("raw")) {
+      setIsRawContent(true);
+    }
+
+    setSelection(ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`)?.trim() ?? "");
+  }, []);
+
   useEffect(() => {
     if (entry) {
       setPublished(moment(parseDate(entry.created)));
@@ -142,6 +169,15 @@ const EntryComponent = (props: Props) => {
   }, [entry]);
 
   const reload = () => {};
+
+  const fetchMutedUsers = async () => {
+    if (props.activeUser && entry) {
+      const r = await getFollowing(props.activeUser.username, "", "ignore", 100);
+      if (r && !entryIsMuted) {
+        setEntryIsMuted(r.map((user) => user.following).includes(entry.author));
+      }
+    }
+  };
 
   const deleted = async () => {
     const { deleteReply } = props;
