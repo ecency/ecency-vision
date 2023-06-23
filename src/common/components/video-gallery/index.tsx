@@ -29,8 +29,7 @@ const VideoGallery = (props: any) => {
   };
   
   const setBeneficiary = (video: any) => {
-    const videoObj = JSON.parse(video.beneficiaries)
-    setVideoEncoderBeneficiary(videoObj)
+    setVideoEncoderBeneficiary(video)
   }
 
   const formatTime = (dateStr: string | number | Date) => {
@@ -91,20 +90,10 @@ const VideoGallery = (props: any) => {
 
   const embeddVideo = (video: any) => {
     const speakUrl = "https://3speak.tv/watch?v="
-    const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})
-  
-    ▶️ [Watch on 3Speak](${speakUrl}${video.owner}/${video.permlink})`
+    const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`
 
     const element = (
-   ` <center>${speakFile}</center>
-   ---
-
-   <center>this is the body</center>
-
-   ---
-
-   <center>▶️ [3Speak](${speakUrl}${video.owner}/${video.permlink})</center>
-   `
+   ` <center>${speakFile}</center>`
     )
     insertText(element)
     setIsembedded(true)
@@ -188,7 +177,7 @@ const VideoGallery = (props: any) => {
                     <span className="video-date">{formatTime(item.created)}</span>
                     {item.status === "publish_manual" ? (
                       <button
-                      disabled={isEmbedded}
+                      // disabled={isEmbedded}
                       className="post-video-btn" onClick={() =>{ 
                         embeddVideo(item)
                         setBeneficiary(item)

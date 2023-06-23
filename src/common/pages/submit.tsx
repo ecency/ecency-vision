@@ -87,6 +87,7 @@ import TextareaAutocomplete from "../components/textarea-autocomplete";
 import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
+import { updateSpeakVideoInfo } from "../api/threespeak";
 
 setProxyBase(defaults.imageServer);
 
@@ -176,6 +177,10 @@ interface State extends PostBase, Advanced {
   isDraftEmpty: boolean;
   drafts: boolean;
   showHelp: boolean;
+  // Speak states
+  isThreespeak: boolean;
+  videoId: string;
+  speakPermlink: "";
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -211,7 +216,10 @@ class SubmitPage extends BaseComponent<Props, State> {
     disabled: true,
     isDraftEmpty: true,
     drafts: false,
-    showHelp: false
+    showHelp: false,
+    isThreespeak: false,
+    videoId: "",
+    speakPermlink: ""
   };
 
   _updateTimer: any = null;
@@ -660,7 +668,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     const { activeUser, history, addEntry } = this.props;
-    const { title, tags, body, description, reward, reblogSwitch, beneficiaries } = this.state;
+    const { title, tags, body, description, reward, reblogSwitch, beneficiaries, videoId, isThreespeak, speakPermlink } = this.state;
 
     // clean body
     const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, "");
@@ -687,9 +695,15 @@ class SubmitPage extends BaseComponent<Props, State> {
             return;*/
     }
 
-    if (c && c.author) {
+    if (c && c.author && !isThreespeak && speakPermlink === "") {
       // create permlink with random suffix
       permlink = createPermlink(title, true);
+    }
+
+     if (isThreespeak && speakPermlink !== "") {
+      permlink = speakPermlink;
+       // update speak video with title, body and tags
+       updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, false)
     }
 
     const [parentPermlink] = tags;
@@ -992,8 +1006,13 @@ class SubmitPage extends BaseComponent<Props, State> {
     );
   };
 
-  setVideoEncoderBeneficiary = (beneficiary: BeneficiaryRoute[]) => {
-    this.stateSet({ beneficiaries: beneficiary })
+  setVideoEncoderBeneficiary = async (video: any) => {
+    this.stateSet({ 
+      beneficiaries:  JSON.parse(video.beneficiaries), 
+      videoId: await video._id, 
+      isThreespeak: true,
+      speakPermlink: video.permlink
+    })
   }
 
   render() {
@@ -1081,9 +1100,6 @@ class SubmitPage extends BaseComponent<Props, State> {
             )}
             {EditorToolbar({ 
               ...this.props, 
-              body: body, 
-              tags: tags, 
-              title: title, 
               setVideoEncoderBeneficiary: this.setVideoEncoderBeneficiary 
               })}
             <div className="title-input">

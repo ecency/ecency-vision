@@ -47,9 +47,6 @@ interface Props {
   sm?: boolean;
   showEmoji?: boolean;
   showGif?: boolean;
-  body: string;
-  title: string;
-  tags: string[];
   setVideoEncoderBeneficiary: any;
 }
 
@@ -567,10 +564,7 @@ export class EditorToolbar extends Component<Props> {
           <Tooltip content="Upload Video">
             <div className="editor-tool" role="none">
               <VideoUpload
-                title={this.props.title}
-                description={this.props.body}
                 activeUser={activeUser}
-                tags={this.props.tags}
                 global={global}
                 insertText={this.insertText}
                 setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
@@ -658,9 +652,6 @@ export default (props: Props) => {
     sm: props.sm,
     showEmoji: props.showEmoji,
     showGif: props.showGif,
-    body: props.body,
-    title: props.title,
-    tags: props.tags,
     setVideoEncoderBeneficiary: props.setVideoEncoderBeneficiary
   };
   return <EditorToolbar {...p} />;

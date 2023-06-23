@@ -7,18 +7,18 @@ import {
   threespeakAuth,
   getAllVideoStatuses,
   uploadVideoInfo,
-  updateInfo
+  updateSpeakVideoInfo
 } from "../../api/threespeak";
 import * as tus from "tus-js-client";
 import VideoGallery from "../video-gallery";
 import useMount from "react-use/lib/useMount";
 
 export const VideoUpload = (props: any) => {
-  const { description, title, tags, activeUser, global, insertText, setVideoEncoderBeneficiary } = props;
+  const { activeUser, global, insertText, setVideoEncoderBeneficiary } = props;
 
   const tusEndPoint = "https://uploads.3speak.tv/files/";
   const fileInput = useRef<HTMLInputElement>(null);
-  const videoInput = useRef<HTMLInputElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const [showModal, setShowModal] = useState(false);
   const [selectedFile, setSelectedFile] = useState<any>(null);
@@ -36,14 +36,13 @@ export const VideoUpload = (props: any) => {
   const [isMounted, setIsMounted] = useState(false);
 
   const canUpload = thumbUrl && videoUrl;
-  const canUpdate = thumbUrl && videoUrl && title && tags && description;
 
   useMount(() => setIsMounted(true));
 
   useEffect(() => {
-    if (isMounted) {
-      threespeakAuth(activeUser!.username);
-    }
+    // if (isMounted) {
+    //   // threespeakAuth(activeUser!.username);
+    // }
   }, []);
 
   const onChange: any = (event: { target: { files: any[] } }, type: string) => {
@@ -117,15 +116,15 @@ export const VideoUpload = (props: any) => {
   };
 
   const checkStat = async () => {
-    const token = await threespeakAuth(activeUser!.username);
-    const allStatus = await getAllVideoStatuses(token);
+    // const token = await threespeakAuth(activeUser!.username);
+    const allStatus = await getAllVideoStatuses(activeUser!.username);
     return allStatus;
   };
   // Should be called when we are finally submitting post
-  const updateSpeakVideo = async () => {
-    const token = await threespeakAuth(activeUser!.username);
-    updateInfo(token, description, videoId, title, tags, isNsfwC);
-  };
+  // const updateSpeakVideo = async () => {
+  //   const token = await threespeakAuth(activeUser!.username);
+  //   updateSpeakVideoInfo(token, description, videoId, title, tags, isNsfwC);
+  // };
 
   const uploadVideoModal = (
     <div className="dialog-content">
@@ -185,7 +184,9 @@ export const VideoUpload = (props: any) => {
   const previewVideo = (
     <div className="dialog-content">
       <div className="file-input">
-        <video controls={true} poster={coverImage}>
+        <video 
+        controls={true} 
+        poster={coverImage}>
           <source src={selectedFile} type="video/mp4" />
         </video>
       </div>

@@ -50,6 +50,7 @@ export const getTokenValidated = async (jwt: string, username: string) => {
   }
 };
 
+// THIS SHOULD BE REMOVED updateVideoInfo CAN BE USED DIRECTLY
 export const uploadVideoInfo = async (
   username: string,
   videoUrl: string,
@@ -97,13 +98,14 @@ export const updateVideoInfo = async (
   }
 };
 
-export const getAllVideoStatuses = async (accessToken: string) => {
+export const getAllVideoStatuses = async (username: string) => {
+  const token = await threespeakAuth(username);
   try {
     let response = await client.get(`${studioEndPoint}/mobile/api/my-videos`, {
       withCredentials: false,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${token}`
       }
     });
     return response.data;
@@ -113,14 +115,17 @@ export const getAllVideoStatuses = async (accessToken: string) => {
   }
 };
 
-export const updateInfo = async (
-  accessToken: string,
+export const updateSpeakVideoInfo = async (
+  username: string,
   postBody: string,
   videoId: string,
   title: string,
   tags: string[],
   isNsfwC: boolean
 ) => {
+
+  const token = await threespeakAuth(username);
+
   const data = {
     videoId: videoId,
     title: title,
@@ -131,7 +136,7 @@ export const updateInfo = async (
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${accessToken}`
+    Authorization: `Bearer ${token}`
   };
 
   axios
