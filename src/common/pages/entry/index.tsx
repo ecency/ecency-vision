@@ -71,7 +71,7 @@ import { useDistanceDetector } from "./distance-detector";
 import usePrevious from "react-use/lib/usePrevious";
 
 const EntryComponent = (props: Props) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [replying, setReplying] = useState(false);
   const [edit, setEdit] = useState(false);
   const [showIfNsfw, setShowIfNsfw] = useState(false);
@@ -180,6 +180,12 @@ const EntryComponent = (props: Props) => {
   }, [entry]);
 
   useEffect(() => {
+    if (entry || deletedEntry) {
+      setLoading(false);
+    }
+  }, [entry, deletedEntry]);
+
+  useEffect(() => {
     if (entryError) {
       let errorMessage = (entryError as any).jse_info && (entryError as any).jse_info;
       let arr = [];
@@ -188,6 +194,8 @@ const EntryComponent = (props: Props) => {
       if (errorMessage && errorMessage.length > 0 && errorMessage.includes("was deleted")) {
         setPostIsDeleted(true);
         fetchDeletedEntry();
+      } else {
+        setLoading(false);
       }
     }
   }, [entryError]);
@@ -212,7 +220,7 @@ const EntryComponent = (props: Props) => {
     }
   }, [props.activeUser]);
 
-  const reload = () => {};
+  const reload = () => reFetch();
 
   const fetchMutedUsers = async () => {
     if (props.activeUser && entry) {
