@@ -58,10 +58,17 @@ import EntryReblogBtn from "../../components/entry-reblog-btn/index";
 import EntryTipBtn from "../../components/entry-tip-btn";
 import { BaseAccount, FullAccount } from "../../store/accounts/types";
 import tempEntry from "../../helper/temp-entry";
-import { EntriesCacheContext, useCommunityCache, useEntryCache, useEntryReFetch } from "../../core";
+import {
+  EntriesCacheContext,
+  useCommunityCache,
+  useDeletedEntryCache,
+  useEntryCache,
+  useEntryReFetch
+} from "../../core";
 import "./_index.scss";
 import { getFollowing } from "../../api/hive";
 import { useDistanceDetector } from "./distance-detector";
+import usePrevious from "react-use/lib/usePrevious";
 
 const EntryComponent = (props: Props) => {
   const [loading, setLoading] = useState(false);
@@ -77,11 +84,7 @@ const EntryComponent = (props: Props) => {
   const [entryIsMuted, setEntryIsMuted] = useState(false);
   const [selection, setSelection] = useState("");
   const [postIsDeleted, setPostIsDeleted] = useState(false);
-  const [deletedEntry, setDeletedEntry] = useState<{
-    title: string;
-    body: string;
-    tags: any;
-  } | null>(null);
+  const previousActiveUser = usePrevious(props.activeUser);
 
   // Entry state
   const [published, setPublished] = useState(moment());
@@ -106,13 +109,21 @@ const EntryComponent = (props: Props) => {
   const entryControlsRef = useRef<HTMLDivElement | null>(null);
 
   const { updateVotes } = useContext(EntriesCacheContext);
-  const { data: entry } = useEntryCache(
+  const { data: entry, error: entryError } = useEntryCache(
     props.match.params.category,
     props.match.params.username.replace("@", ""),
     props.match.params.permlink
   );
   const { mutateAsync: reFetch } = useEntryReFetch(entry);
   const { data: community } = useCommunityCache(props.match.params.category);
+  const {
+    data: deletedEntry,
+    refetch: fetchDeletedEntry,
+    isLoading: deleteEntryLoading
+  } = useDeletedEntryCache(
+    props.match.params.username.replace("@", ""),
+    props.match.params.permlink
+  );
 
   useDistanceDetector(
     entryControlsRef,
@@ -167,6 +178,25 @@ const EntryComponent = (props: Props) => {
       }
     }
   }, [entry]);
+
+  useEffect(() => {
+    if (entryError) {
+      let errorMessage = (entryError as any).jse_info && (entryError as any).jse_info;
+      let arr = [];
+      for (let p in errorMessage) arr.push(errorMessage[p]);
+      errorMessage = arr.toString().replace(/,/g, "");
+      if (errorMessage && errorMessage.length > 0 && errorMessage.includes("was deleted")) {
+        setPostIsDeleted(true);
+        fetchDeletedEntry();
+      }
+    }
+  }, [entryError]);
+
+  useEffect(() => {
+    if (props.activeUser !== previousActiveUser) {
+      setEdit(false);
+    }
+  }, [props.activeUser]);
 
   const reload = () => {};
 
@@ -299,7 +329,7 @@ const EntryComponent = (props: Props) => {
   const notificationsCount =
     props.notifications.unread > 0 ? `(${props.notifications.unread}) ` : "";
 
-  return loading ? (
+  return loading || deleteEntryLoading ? (
     <LoadingScreen {...props} reload={reload} loading={loading} />
   ) : postIsDeleted && deletedEntry ? (
     <DeletedPostScreen

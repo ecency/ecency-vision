@@ -10,6 +10,11 @@ export function useDistanceDetector<T extends Element | null>(
   useEffect(() => {
     window.addEventListener("scroll", detect);
     window.addEventListener("resize", detect);
+
+    return () => {
+      window.removeEventListener("scroll", detect);
+      window.removeEventListener("resize", detect);
+    };
   }, []);
 
   // detects distance between title and comments section sets visibility of profile card

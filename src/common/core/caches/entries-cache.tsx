@@ -11,6 +11,7 @@ import { makePath } from "../../components/entry-link";
 import * as bridgeApi from "../../api/bridge";
 import { useMappedStore } from "../../store/use-mapped-store";
 import dmca from "../../constants/dmca.json";
+import { commentHistory } from "../../api/private-api";
 
 export const EntriesCacheContext = createContext<{
   getByLink: (link: string) => Entry | undefined;
@@ -111,6 +112,25 @@ export function useEntryReFetch(entry: Entry | null) {
     () => bridgeApi.getPost(entry?.author, entry?.permlink),
     {
       onSuccess: (response) => queryClient.setQueryData([QueryIdentifiers.ENTRY, key], response)
+    }
+  );
+}
+
+export function useDeletedEntryCache(author: string, permlink: string) {
+  return useQuery(
+    [QueryIdentifiers.DELETED_ENTRY, makePath("", author, permlink)],
+    async () => {
+      const history = await commentHistory(author, permlink);
+      const { body, title, tags } = history.list[0];
+      return {
+        body,
+        title,
+        tags
+      };
+    },
+    {
+      initialData: null,
+      refetchOnMount: false
     }
   );
 }

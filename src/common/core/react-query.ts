@@ -12,6 +12,7 @@ export enum QueryIdentifiers {
   COMMUNITY_THREADS = "community-threads",
   THREADS = "threads",
   ENTRY = "entry",
+  DELETED_ENTRY = "deleted-entry",
   ENTRY_PIN_TRACK = "entry-pin-track",
   COMMUNITY = "community",
   COMMUNITY_RANKED_POSTS = "community-ranked-posts",
