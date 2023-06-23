@@ -1918,23 +1918,8 @@ export const createAccountKc = async (data: any, creator_account: string) => {
       active: false
     };
 
-    let tokens: any = await hiveClient.database.getAccounts([creator_account]);
-    tokens = tokens[0]?.pending_claimed_accounts;
-
-    let fee = null;
-    let op_name: OperationName = "create_claimed_account";
-    // If account creation tokens exist on creator account
-    if (tokens < 1) {
-      fee = "3.000 HIVE";
-
-      // Load account creation fee from Hive chain properties
-      const chain_props = await hiveClient.database.getChainProperties();
-      if (chain_props && chain_props.account_creation_fee) {
-        fee = chain_props.account_creation_fee;
-      }
-
-      op_name = "account_create";
-    }
+    const fee = "3.000 HIVE";
+    const op_name: OperationName = "account_create";
 
     const owner = {
       weight_threshold: 1,
@@ -1960,10 +1945,10 @@ export const createAccountKc = async (data: any, creator_account: string) => {
       posting,
       memo_key: account.memoPublicKey,
       json_metadata: "",
-      extensions: []
+      extensions: [],
+      fee
     };
 
-    if (fee) params.fee = fee;
     const operation: Operation = [op_name, params];
     ops.push(operation);
     try {
@@ -1988,24 +1973,8 @@ export const createAccountHs = async (data: any, creator_account: string) => {
       active: false
     };
 
-    let tokens: any = await hiveClient.database.getAccounts([creator_account]);
-    tokens = tokens[0]?.pending_claimed_accounts;
-
-    let fee = null;
-    let op_name: OperationName = "create_claimed_account";
-
-    // If account creation tokens exist on creator account
-    if (tokens < 1) {
-      fee = "3.000 HIVE";
-
-      // Load account creation fee from Hive chain properties
-      const chain_props = await hiveClient.database.getChainProperties();
-      if (chain_props && chain_props.account_creation_fee) {
-        fee = chain_props.account_creation_fee;
-      }
-
-      op_name = "account_create";
-    }
+    const fee = "3.000 HIVE";
+    const op_name: OperationName = "account_create";
 
     const owner = {
       weight_threshold: 1,
@@ -2031,10 +2000,10 @@ export const createAccountHs = async (data: any, creator_account: string) => {
       posting,
       memo_key: account.memoPublicKey,
       json_metadata: "",
-      extensions: []
+      extensions: [],
+      fee
     };
 
-    if (fee) params.fee = fee;
     const operation: Operation = [op_name, params];
 
     try {
@@ -2063,21 +2032,8 @@ export const createAccountKey = async (data: any, creator_account: string, creat
     let tokens: any = await hiveClient.database.getAccounts([creator_account]);
     tokens = tokens[0]?.pending_claimed_accounts;
 
-    let fee = null;
-    let op_name: OperationName = "create_claimed_account";
-
-    // If account creation tokens exist on creator account
-    if (tokens < 1) {
-      fee = "3.000 HIVE";
-
-      // Load account creation fee from Hive chain properties
-      const chain_props = await hiveClient.database.getChainProperties();
-      if (chain_props && chain_props.account_creation_fee) {
-        fee = chain_props.account_creation_fee;
-      }
-
-      op_name = "account_create";
-    }
+    let fee = "3.000 HIVE";
+    let op_name: OperationName = "account_create";
 
     const owner = {
       weight_threshold: 1,
@@ -2103,10 +2059,10 @@ export const createAccountKey = async (data: any, creator_account: string, creat
       posting,
       memo_key: account.memoPublicKey,
       json_metadata: "",
-      extensions: []
+      extensions: [],
+      fee
     };
 
-    if (fee) params.fee = fee;
     const operation: Operation = [op_name, params];
     ops.push(operation);
 
