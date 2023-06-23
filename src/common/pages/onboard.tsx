@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import { match } from "react-router";
+
 import Meta from "../components/meta";
 import { connect } from "react-redux";
 import Theme from "../components/theme";
 import NavBar from "../components/navbar";
 import Feedback from "../components/feedback";
-import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
-import { Button, Modal } from "react-bootstrap";
-import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
 import { success, error } from "../components/feedback";
 import Tooltip from "../components/tooltip";
-import "./onboard.scss";
-import { _t } from "../i18n";
-import { createAccountKc, createAccountWithCredit, getAcountCredit } from "../api/operations";
-import { generatePassword, getPrivateKeys, sendOnboardMail } from "../helper/onBoard-helper";
 import LinearProgress from "../components/linear-progress";
+
+import { FullAccount } from "../store/accounts/types";
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
+import { createAccountKc, createAccountWithCredit } from "../api/operations";
+import { onboardEmail } from "../api/private-api";
+import { generatePassword, getPrivateKeys } from "../helper/onBoard-helper";
 import { b64uDec, b64uEnc } from "../util/b64";
+
+import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
+import { _t } from "../i18n";
+import "./onboard.scss";
 
 export interface AccountInfo {
   email: string;
@@ -53,7 +59,16 @@ const createOptions = {
   CREDIT: "credit"
 };
 
-const Onboard = (props: PageProps | any) => {
+interface MatchParams {
+  secret?: string;
+  type: string;
+}
+
+interface Props extends PageProps {
+  match: match<MatchParams>;
+}
+
+const Onboard = (props: Props) => {
   const [masterPassword, setMasterPassword] = useState("");
   const [secret, setSecret] = useState("");
   const [accountInfo, setAccountInfo] = useState<AccountInfo>();
@@ -80,12 +95,18 @@ const Onboard = (props: PageProps | any) => {
       if (props.match.params.secret) {
         const decodedHash = JSON.parse(b64uDec(props.match.params.secret));
         setDecodedInfo(decodedHash);
-        getCredit();
       }
     } catch (err) {
       console.log(err);
     }
   }, [accountInfo?.username]);
+
+  useEffect(() => {
+    const { activeUser } = props;
+    (activeUser?.data as FullAccount) &&
+      (activeUser?.data as FullAccount).pending_claimed_accounts &&
+      setAccountCredit((activeUser?.data as FullAccount).pending_claimed_accounts);
+  }, [props.activeUser]);
 
   useEffect(() => {
     if (decodedInfo) {
@@ -119,8 +140,8 @@ const Onboard = (props: PageProps | any) => {
   };
 
   const initAccountKey = async () => {
-    const urlInfo = props.match.url.split("/")[3]
-    const info = JSON.parse(b64uDec(urlInfo))
+    const urlInfo = props.match.url.split("/")[3];
+    const info = JSON.parse(b64uDec(urlInfo));
     try {
       const masterPassword: string = await generatePassword(32);
       const keys: any = getPrivateKeys(accountInfo?.username, masterPassword);
@@ -156,20 +177,16 @@ const Onboard = (props: PageProps | any) => {
     }
   };
 
-  const getCredit = async () => {
+  const sendMail = async () => {
     const { activeUser } = props;
     if (activeUser) {
-      const accountCredit = await getAcountCredit(activeUser.username);
-      setAccountCredit(accountCredit);
+      await onboardEmail(
+        accountInfo!.username,
+        accountInfo!.email.replace("=", "."),
+        activeUser?.username
+      );
     }
   };
-
-  const sendMail = async () => {
-    await sendOnboardMail(
-      accountInfo!.username, 
-      accountInfo!.email.replace("=", "."),
-      props.activeUser.username)
-  };  
 
   const copyToClipboard = (text: string) => {
     const textField = document.createElement("textarea");
@@ -231,38 +248,41 @@ const Onboard = (props: PageProps | any) => {
   };
 
   const createAccount = async (type: string) => {
-    try {
-      if (type === createOptions.HIVE) {
-        const response = await createAccountKc(
-          {
-            username: decodedInfo?.username,
-            pub_keys: decodedInfo?.pubkeys
-          },
-          props.activeUser.username
+    const { activeUser } = props;
+    if (activeUser) {
+      try {
+        if (type === createOptions.HIVE) {
+          const response = await createAccountKc(
+            {
+              username: decodedInfo?.username,
+              pub_keys: decodedInfo?.pubkeys
+            },
+            activeUser?.username
           );
-        if (response) {
-          setInprogress(false);
-          setStep(2);
-          sendMail()
+          if (response) {
+            setInprogress(false);
+            setStep(2);
+            sendMail();
+          }
+        } else {
+          const resp = await createAccountWithCredit(
+            {
+              username: decodedInfo?.username,
+              pub_keys: decodedInfo?.pubkeys
+            },
+            activeUser?.username
+          );
+          if (resp) {
+            setInprogress(false);
+            setStep(2);
+          }
         }
-      } else {
-        const resp = await createAccountWithCredit(
-          {
-            username: decodedInfo?.username,
-            pub_keys: decodedInfo?.pubkeys
-          },
-          props.activeUser.username
-        );
-        if (resp) {
-          setInprogress(false);
-          setStep(2);
+      } catch (err: any) {
+        if (err) {
+          setStep("failed");
         }
+        error(err.message);
       }
-    } catch (err: any) {
-      if (err) {
-        setStep("failed");
-      }
-      error(err.message);
     }
   };
 
@@ -349,9 +369,7 @@ const Onboard = (props: PageProps | any) => {
 
         <div className="success-dialog-body">
           <div className="success-dialog-content">
-            <span className="text-danger">
-            {_t("onboard.failed-message")}
-            </span>
+            <span className="text-danger">{_t("onboard.failed-message")}</span>
           </div>
           <div className="d-flex justify-content-center">
             <span className="hr-6px-btn-spacer" />
@@ -378,7 +396,7 @@ const Onboard = (props: PageProps | any) => {
 
   return (
     <>
-      <Meta title="onborad" />
+      <Meta title="Onboarding a Friend" />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
       <NavBar history={props.history} />
@@ -500,7 +518,7 @@ const Onboard = (props: PageProps | any) => {
                       setStep(1);
                     }}
                   >
-                    {_t("onboard.create-account-credit")}
+                    {_t("onboard.create-account-credit", { n: accountCredit })}
                   </Button>
                 </div>
               </div>

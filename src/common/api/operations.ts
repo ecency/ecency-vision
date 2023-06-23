@@ -1936,7 +1936,6 @@ export const createAccountKc = async (data: any, creator_account: string) => {
       op_name = "account_create";
     }
 
-
     const owner = {
       weight_threshold: 1,
       account_auths: [],
@@ -2182,12 +2181,4 @@ export const createAccountKey = async (data: any, creator_account: string, creat
   } catch (err) {
     return err;
   }
-};
-
-export const getAcountCredit = async (creator_account: any) => {
-  const response: any = await hiveClient.database.getAccounts([creator_account]);
-  const accountData = await response[0];
-  const accountCreditBalance = accountData?.pending_claimed_accounts;
-
-  return accountCreditBalance;
 };

@@ -238,8 +238,8 @@
     "referral": "Referral:",
     "copy-key": "Make sure you copy or download your keys.",
     "download-keys": "Download Keys",
-    "create-account-hive": "With hive(3HIVE)",
-    "create-account-credit": "With account credit",
+    "create-account-hive": "Pay with HIVE",
+    "create-account-credit": "Pay with Account Credits ({{n}})",
     "confirm-details": "Confirm Details",
     "share": "(You can send code to a freind) Copy code",
     "copy-link": "Account link copied successfully",
@@ -248,7 +248,7 @@
     "public-memo": "Public Memo key:",
     "public-owner": "Public Owner key:",
     "public-posting": "Public Posting key:",
-    "login-warning": "Please Login to create friend's account",
+    "login-warning": "Login to create an account for Friend!",
     "pay-fee": "Pay Account Fee",
     "modal-title": "Are you sure?",
     "modal-confirm": "Confirm",
@@ -278,10 +278,10 @@
     "copy-info-message": "Copy account link and send to a friend",
     "success-message": "You successfully created the account of ",
     "sign-title": "Sign transaction with ",
-    "failed-title":"Failed",
-    "failed-subtitle":"Transaction failed",
-    "failed-message":"Failed to create account",
-    "try-again":"Try again"
+    "failed-title": "Failed",
+    "failed-subtitle": "Transaction failed",
+    "failed-message": "Failed to create account",
+    "try-again": "Try again"
   },
   "trending-tags": {
     "title": "Topics"

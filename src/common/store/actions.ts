@@ -8,7 +8,7 @@ import {
   setNsfw,
   toggleListStyle,
   toggleTheme,
-  unMuteNotifications,
+  unMuteNotifications
 } from "./global";
 import { fetchTrendingTags } from "./trending-tags";
 import { updateSubscriptions } from "./subscriptions";
@@ -89,7 +89,7 @@ export const ACTIONS = {
   setEntryPin,
   updateNotificationsSettings,
   fetchNotificationsSettings,
-  setNotificationsSettingsItem,
+  setNotificationsSettingsItem
 };
 
 export const getActions = () => ({

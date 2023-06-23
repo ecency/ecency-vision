@@ -94,6 +94,7 @@ export const fullAccountInstance: FullAccount = {
   savings_hbd_balance: "0.002 HBD",
   savings_hbd_seconds: "1235678",
   next_vesting_withdrawal: "1969-12-31T23:59:59",
+  pending_claimed_accounts: 0,
   vesting_shares: "151590.952150 VESTS",
   delegated_vesting_shares: "145395.758709 VESTS",
   savings_hbd_last_interest_payment: "2021-03-18T15:42:03",
@@ -158,10 +159,7 @@ export const globalInstance: Global = {
   newVersion: null,
   usePrivate: true,
   lastIndexPath: null,
-  hsClientId: "ecency.app",
-  accountName: "",
-  accountEmail: null,
-  referral: null
+  hsClientId: "ecency.app"
 };
 
 export const TrendingTagsInstance: TrendingTags = {

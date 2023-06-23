@@ -121,10 +121,10 @@ export const SignUp = (props: PageProps) => {
       });
     }
   }, [username, usernameTouched]);
-  
+
   useEffect(() => {
-      encodeUrlInfo(username, email, referral);
-  },[username, email, referral])
+    encodeUrlInfo(username, email, referral);
+  }, [username, email, referral]);
 
   const regularRegister = async () => {
     setInProgress(true);
@@ -166,15 +166,15 @@ export const SignUp = (props: PageProps) => {
       username,
       email,
       referral
-    }
-    try{
+    };
+    try {
       const stringifiedInfo = JSON.stringify(accInfo);
       const hashedInfo = b64uEnc(stringifiedInfo);
       setUrlHash(hashedInfo);
-    } catch(err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   return (
     <>
@@ -399,7 +399,7 @@ export const SignUp = (props: PageProps) => {
                       variant="primary"
                       onClick={() => {
                         // encodeUrlInfo(username, email, referral);
-                        console.log(urlHash)
+                        console.log(urlHash);
                         // props.setAccountEmail(email);
                         // props.setAccountName(username);
                         // props.setReferral(referral || props.activeUser?.username || "ecency");
