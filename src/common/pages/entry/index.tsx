@@ -193,6 +193,20 @@ const EntryComponent = (props: Props) => {
   }, [entryError]);
 
   useEffect(() => {
+    if (isRawContent) {
+      props.history.push(`${props.history.location.pathname}?raw`);
+    } else {
+      const queryParams = new URLSearchParams(location.search);
+      if (queryParams.has("raw")) {
+        queryParams.delete("raw");
+        props.history.replace({
+          search: queryParams.toString()
+        });
+      }
+    }
+  }, [isRawContent]);
+
+  useEffect(() => {
     if (props.activeUser !== previousActiveUser) {
       setEdit(false);
     }
@@ -777,15 +791,6 @@ const EntryComponent = (props: Props) => {
                             {entry.body}
                           </pre>
                         )}
-
-                        {/* <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
-                                                    <div
-                                                        itemProp="articleBody"
-                                                        className="entry-body markdown-view user-selectable"
-                                                        dangerouslySetInnerHTML={renderedBody}
-                                                    />
-                                                </SelectionPopover> */}
-
                         <meta itemProp="image" content={image} />
                       </>
                     );
