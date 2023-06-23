@@ -281,7 +281,9 @@
     "failed-title": "Failed",
     "failed-subtitle": "Transaction failed",
     "failed-message": "Failed to create account",
-    "try-again": "Try again"
+    "try-again": "Try again",
+    "sign-header-title":"Sign transaction",
+    "sign-sub-title":"Sign your transaction"
   },
   "trending-tags": {
     "title": "Topics"

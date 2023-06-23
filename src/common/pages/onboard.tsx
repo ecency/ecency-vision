@@ -14,7 +14,13 @@ import keyOrHot from "../components/key-or-hot";
 
 import { FullAccount } from "../store/accounts/types";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
-import { createAccountKc, createAccountWithCreditKc, createAccountWithCreditHs, createAccountHs, createAccountKey } from "../api/operations";
+import { 
+  createAccountKc, 
+  createAccountHs, 
+  createAccountKey, 
+  createAccountWithCreditKc, 
+  createAccountWithCreditHs,
+  createAccountWithCreditKey, } from "../api/operations";
 import { onboardEmail } from "../api/private-api";
 import { generatePassword, getPrivateKeys } from "../helper/onBoard-helper";
 import { b64uDec, b64uEnc } from "../util/b64";
@@ -309,16 +315,19 @@ const Onboard = (props: Props) => {
             sendMail();
           }
         } else {
-          const resp = await createAccountWithCreditKc(
+          const resp = await createAccountWithCreditKey(
             {
               username: decodedInfo?.username,
               pub_keys: decodedInfo?.pubkeys
             },
-            activeUser?.username
+            activeUser?.username,
+            key
           );
+          console.log(resp)
           if (resp) {
             setInprogress(false);
             setStep(2);
+            sendMail();
           }
         }
       } catch (err: any) {
@@ -372,11 +381,11 @@ const Onboard = (props: Props) => {
   const signTransactionModal = (type: string) => {
     return (
       <>
-      <div className="recovery-sign-dialog-header border-bottom">
+      <div className="border-bottom d-flex align-items-center">
         <div className="step-no">2</div>
-        <div className="recovery-sign-dialog-titles">
-          <div className="recovery-main-title">{_t("account-recovery.sign-title")}</div>
-          <div className="recovery-sub-title">{_t("account-recovery.sign-sub-title")}</div>
+        <div>
+          <div>{_t("onboard.sign-header-title")}</div>
+          <div>{_t("onboard.sign-sub-title")}</div>
         </div>
       </div>
       {inProgress && <LinearProgress />}
@@ -390,16 +399,10 @@ const Onboard = (props: Props) => {
           accountKey(type, key);
         },
         onHot: () => {
-          // toggleKeyDialog();
-          if (accountHot) {
             accountHot(type);
-          }
         },
         onKc: () => {
-          // toggleKeyDialog();
-          // if (onKc) {
             accountKc(type);
-          // }
         }
       })}
       <p className="text-center">
@@ -407,7 +410,7 @@ const Onboard = (props: Props) => {
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setStep(1);
+            setShowModal(false);
           }}
         >
           {_t("g.back")}
@@ -677,7 +680,6 @@ const Onboard = (props: Props) => {
           <div className="d-flex flex-column">
             {createOption === createOptions.HIVE && (
               <React.Fragment>
-                {/* {step === 1 && modelBody(createOptions.HIVE)} */}
                 {step === "sign" && signTransactionModal(createOptions.HIVE)}
                 {step === 2 && successModalBody()}
                 {step === "failed" && failedModalBody()}
@@ -686,7 +688,6 @@ const Onboard = (props: Props) => {
 
             {createOption === createOptions.CREDIT && (
               <React.Fragment>
-                {/* {step === 1 && modelBody(createOptions.CREDIT)} */}
                 {step === "sign" && signTransactionModal(createOptions.CREDIT)}
                 {step === 2 && successModalBody()}
                 {step === "failed" && failedModalBody()}
