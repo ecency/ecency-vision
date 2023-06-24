@@ -171,9 +171,9 @@ const Onboard = (props: Props) => {
       const hashedPubKeys = b64uEnc(stringifiedPubKeys);
       setSecret(hashedPubKeys);
       const accInfo = {
-        username: info.username,
-        email: info.email,
-        referral: info.referral,
+        username: info.username.replace(/[=+]/g, "."),
+        email: info.email.replace("=", "."),
+        referral: info.referral.replace(/[=+]/g, "."),
         keys
       };
       setAccountInfo(accInfo);
