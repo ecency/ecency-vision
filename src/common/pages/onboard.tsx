@@ -255,21 +255,21 @@ const Onboard = (props: Props) => {
     }
   };
 
-  const accountKc = async (type: string) => {
+  const onKc = async (type: string) => {
     const { activeUser } = props;
     if (activeUser) {
       try {
         if (type === createOptions.HIVE) {
-          const response = await createAccountKc(
+          const resp = await createAccountKc(
             {
               username: decodedInfo?.username,
               pub_keys: decodedInfo?.pubkeys
             },
             activeUser?.username
           );
-          if (response) {
+          if (resp.id) {
             setInprogress(false);
-            setStep(2);
+            setStep("success");
             sendMail();
           }
         } else {
@@ -279,10 +279,11 @@ const Onboard = (props: Props) => {
               pub_keys: decodedInfo?.pubkeys
             },
             activeUser?.username
-          );
-          if (resp) {
-            setInprogress(false);
-            setStep(2);
+            );
+            if (resp.id) {
+              setInprogress(false);
+              setStep("success");
+              sendMail();
           }
         }
       } catch (err: any) {
@@ -294,8 +295,7 @@ const Onboard = (props: Props) => {
     }
   };
 
-  const accountKey = async (type: string, key: PrivateKey) => {
-    console.log("with key")
+  const onKey = async (type: string, key: PrivateKey) => {
     const { activeUser } = props;
     if (activeUser) {
       try {
@@ -308,10 +308,9 @@ const Onboard = (props: Props) => {
             activeUser?.username,
             key
           );
-          console.log(resp)
-          if (resp) {
+          if (resp.id) {
             setInprogress(false);
-            setStep(2);
+            setStep("success");
             sendMail();
           }
         } else {
@@ -323,10 +322,9 @@ const Onboard = (props: Props) => {
             activeUser?.username,
             key
           );
-          console.log(resp)
-          if (resp) {
+          if (resp.id) {
             setInprogress(false);
-            setStep(2);
+            setStep("success");
             sendMail();
           }
         }
@@ -339,7 +337,7 @@ const Onboard = (props: Props) => {
     }
   }
 
-  const accountHot = async (type: string) => {
+  const onHot = async (type: string) => {
     const { activeUser } = props;
     if (activeUser) {
       try {
@@ -351,9 +349,9 @@ const Onboard = (props: Props) => {
             },
             activeUser?.username
           );
-          if (resp) {
+          if (resp.id) {
             setInprogress(false);
-            setStep(2);
+            setStep("success");
             sendMail();
           }
         } else {
@@ -364,9 +362,10 @@ const Onboard = (props: Props) => {
             },
             activeUser?.username
           );
-          if (resp) {
+          if (resp.id) {
             setInprogress(false);
-            setStep(2);
+            setStep("success");
+            sendMail();
           }
         }
       } catch (err: any) {
@@ -396,13 +395,13 @@ const Onboard = (props: Props) => {
         setSigningKey: props.setSigningKey,
         inProgress: inProgress,
         onKey: (key) => {
-          accountKey(type, key);
+          onKey(type, key);
         },
         onHot: () => {
-            accountHot(type);
+            onHot(type);
         },
         onKc: () => {
-            accountKc(type);
+            onKc(type);
         }
       })}
       <p className="text-center">
@@ -418,53 +417,6 @@ const Onboard = (props: Props) => {
       </p>
     </>
     )
-  }
-
-  const modelHeader = () => {
-    return (
-      <>
-        <div className="create-account-dialog-header border-bottom">
-          <div className="step-no">1</div>
-          <div className="create-account-dialog-titles">
-            <div className="create-account-main-title">
-              {_t("onboard.sign-title")} {createOption}
-            </div>
-            <div className="create-account-sub-title">
-              {_t("manage-authorities.sign-sub-title")}
-            </div>
-          </div>
-        </div>
-        {inProgress && <LinearProgress />}
-      </>
-    );
-  };
-
-  const modelContent = (type: string) => {
-    return (
-      <div className="model-content p-5">
-        <div className="confirm-title">
-          <h4>{_t("onboard.modal-title")}</h4>
-        </div>
-
-        <div className="buttons">
-          <Button className="align-self-center" onClick={() => 
-            accountKc(type)
-            }>
-            {_t("onboard.modal-confirm")}
-          </Button>
-
-          <Button
-            className="align-self-center cancel-btn"
-            onClick={() => {
-              setShowModal(false);
-              setStep(0);
-            }}
-          >
-            {_t("g.cancel")}
-          </Button>
-        </div>
-      </div>
-    );
   };
 
   const successModalBody = () => {
@@ -519,15 +471,6 @@ const Onboard = (props: Props) => {
   const finish = () => {
     setShowModal(false);
     setStep(0);
-  };
-
-  const modelBody = (type: string) => {
-    return (
-      <>
-        {modelHeader()}
-        {modelContent(type)}
-      </>
-    );
   };
 
   return (
@@ -681,7 +624,7 @@ const Onboard = (props: Props) => {
             {createOption === createOptions.HIVE && (
               <React.Fragment>
                 {step === "sign" && signTransactionModal(createOptions.HIVE)}
-                {step === 2 && successModalBody()}
+                {step === "success" && successModalBody()}
                 {step === "failed" && failedModalBody()}
               </React.Fragment>
             )}
@@ -689,7 +632,7 @@ const Onboard = (props: Props) => {
             {createOption === createOptions.CREDIT && (
               <React.Fragment>
                 {step === "sign" && signTransactionModal(createOptions.CREDIT)}
-                {step === 2 && successModalBody()}
+                {step === "success" && successModalBody()}
                 {step === "failed" && failedModalBody()}
               </React.Fragment>
             )}
