@@ -398,11 +398,7 @@ export const SignUp = (props: PageProps) => {
                       className="w-100"
                       variant="primary"
                       onClick={() => {
-                        // encodeUrlInfo(username, email, referral);
-                        console.log(urlHash);
-                        // props.setAccountEmail(email);
-                        // props.setAccountName(username);
-                        // props.setReferral(referral || props.activeUser?.username || "ecency");
+                        encodeUrlInfo(username, email, referral);
                       }}
                     >
                       {_t("onboard.asking")}

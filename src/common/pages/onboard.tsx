@@ -149,8 +149,8 @@ const Onboard = (props: Props) => {
 
   const initAccountKey = async () => {
     const urlInfo = props.match.url.split("/")[3];
-    const info = JSON.parse(b64uDec(urlInfo));
     try {
+      const info = JSON.parse(b64uDec(urlInfo));
       const masterPassword: string = await generatePassword(32);
       const keys: any = getPrivateKeys(accountInfo?.username, masterPassword);
       // prepare object to encode
