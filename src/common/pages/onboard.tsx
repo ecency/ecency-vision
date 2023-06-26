@@ -267,7 +267,7 @@ const Onboard = (props: Props) => {
             },
             activeUser?.username
           );
-          if (resp.id) {
+          if (resp) {
             setInprogress(false);
             setStep("success");
             sendMail();
@@ -280,7 +280,7 @@ const Onboard = (props: Props) => {
             },
             activeUser?.username
             );
-            if (resp.id) {
+            if (resp) {
               setInprogress(false);
               setStep("success");
               sendMail();
@@ -349,7 +349,7 @@ const Onboard = (props: Props) => {
             },
             activeUser?.username
           );
-          if (resp.id) {
+          if (resp) {
             setInprogress(false);
             setShowModal(false)
             sendMail();
@@ -362,7 +362,7 @@ const Onboard = (props: Props) => {
             },
             activeUser?.username
           );
-          if (resp.id) {
+          if (resp) {
             setInprogress(false);
             setShowModal(false)
             sendMail();
