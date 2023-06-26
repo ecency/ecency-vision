@@ -4,9 +4,10 @@ import { deleteForeverSvg, informationVariantSvg } from "../../img/svg";
 import { Button, Modal, Tooltip } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./index.scss";
+import { markAsPublished } from "../../api/threespeak";
 
 const VideoGallery = (props: any) => {
-  const { showGaller, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary} = props;
+  const { showGaller, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary, activeUser} = props;
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
@@ -88,6 +89,10 @@ const VideoGallery = (props: any) => {
     setHoveredItem(item);
   };
 
+  const markVideo = async (item: any) => {
+    await markAsPublished(activeUser!.username, item._id)
+  }
+
   const embeddVideo = (video: any) => {
     const speakUrl = "https://3speak.tv/watch?v="
     const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`
@@ -122,7 +127,8 @@ const VideoGallery = (props: any) => {
       <Button
         variant="outline-primary"
         onClick={ () => {
-          setFilterType("encoding_ipfs");
+          const encoding = "encoding_ipfs" || "encoding_preparing"
+          setFilterType(encoding);
         }}
       >
         {_t("video-gallery.encoding")}
@@ -144,6 +150,15 @@ const VideoGallery = (props: any) => {
         }}
       >
         {_t("video-gallery.failed")}
+      </Button>
+
+      <Button
+        variant="outline-primary"
+        onClick={ () => {
+          setFilterType("deleted");
+        }}
+      >
+       {_t("video-gallery.status-deleted")}
       </Button>
     </div>
   );
@@ -192,9 +207,17 @@ const VideoGallery = (props: any) => {
                         <span className="published">{_t("video-gallery.status-published")}</span>
                         <button className="post-video-btn">view</button>
                       </div>
+                    ) : item.status === "deleted" ? (
+                      <div className="deleted">
+                        <span className="text-danger">{_t("video-gallery.status-deleted")}</span>
+                        {/* <span className="text-danger">{deleteForeverSvg}</span> */}
+                      </div>
                     ) : (
                       <span className="encoding">{_t("video-gallery.status-encoding")}</span>
                     )}
+                    {item.status === "publish_manual" && 
+                    <button className="post-video-btn" onClick={()=> markVideo(item)}>Mark as published</button>
+                    }
                   </div>
                 </div>
                 {showMoreInfo && hoveredItem._id === item._id && (
@@ -251,7 +274,8 @@ const VideoGallery = (props: any) => {
                     {item.status === "publish_manual" ? (
                       <button
                       disabled={isEmbedded}
-                      className="post-video-btn" onClick={() =>{ 
+                      className="post-video-btn" 
+                      onClick={() =>{ 
                         embeddVideo(item)
                         setBeneficiary(item)
                         setShowGallery(false)

@@ -1379,6 +1379,7 @@
     "status-encoding": "Encoding🟡",
     "status-published": "Published✅",
     "status-failed": "Encoding failed❌",
+    "status-deleted": "Deleted",
     "info-created": "Created:",
     "view-more": "More...",
     "info-views": "Views:",

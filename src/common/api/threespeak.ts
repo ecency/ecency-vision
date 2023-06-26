@@ -148,3 +148,27 @@ export const updateSpeakVideoInfo = async (
       console.error("Error:", error);
     });
 };
+
+
+export const markAsPublished = async (username: string, videoId: string) => {
+  const token = await threespeakAuth(username);
+  console.log(token)
+
+    const data = {
+      videoId
+    };
+
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    };
+
+    axios
+    .post(`${studioEndPoint}/mobile/api/my-videos/iPublished`, data, { headers })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}

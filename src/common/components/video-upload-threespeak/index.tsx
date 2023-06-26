@@ -4,10 +4,8 @@ import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./index.scss";
 import {
-  threespeakAuth,
   getAllVideoStatuses,
   uploadVideoInfo,
-  updateSpeakVideoInfo
 } from "../../api/threespeak";
 import * as tus from "tus-js-client";
 import VideoGallery from "../video-gallery";
@@ -116,16 +114,10 @@ export const VideoUpload = (props: any) => {
   };
 
   const checkStat = async () => {
-    // const token = await threespeakAuth(activeUser!.username);
     const allStatus = await getAllVideoStatuses(activeUser!.username);
     return allStatus;
   };
-  // Should be called when we are finally submitting post
-  // const updateSpeakVideo = async () => {
-  //   const token = await threespeakAuth(activeUser!.username);
-  //   updateSpeakVideoInfo(token, description, videoId, title, tags, isNsfwC);
-  // };
-
+  
   const uploadVideoModal = (
     <div className="dialog-content">
       <div className="file-input">
@@ -244,6 +236,7 @@ export const VideoUpload = (props: any) => {
           selectedFile={selectedFile}
           insertText={insertText}
           setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
+          activeUser={activeUser}
         />
       </div>
       <div>
