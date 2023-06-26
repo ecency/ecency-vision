@@ -9,6 +9,7 @@ import NavBar from "../../components/navbar";
 import { Props } from "./props.type";
 import EditHistory from "../../components/edit-history";
 import SimilarEntries from "../../components/similar-entries";
+import { StaticNavbar } from "../../components/static";
 
 interface DeletedPostProps {
   reload: () => void;
@@ -21,20 +22,24 @@ interface DeletedPostProps {
   showProfileBox: boolean;
   editHistory: boolean;
   toggleEditHistory: () => void;
+  staticNav?: boolean;
 }
 
 export const DeletedPostScreen = (props: Props & DeletedPostProps) => {
+  const nav = props.global.isElectron ? (
+    NavBarElectron({
+      ...props,
+      reloadFn: props.reload,
+      reloading: props.loading
+    })
+  ) : (
+    <NavBar history={props.history} match={props.match} />
+  );
+  const staticNav = <StaticNavbar fullVersionUrl="" />;
+
   return (
     <div>
-      {props.global.isElectron ? (
-        NavBarElectron({
-          ...props,
-          reloadFn: props.reload,
-          reloading: props.loading
-        })
-      ) : (
-        <NavBar history={props.history} match={props.match} />
-      )}
+      {props.staticNav ? staticNav : nav}
       {props.deletedEntry && (
         <div className="container overflow-x-hidden">
           <ScrollToTop />
