@@ -247,7 +247,7 @@ class CommunityPage extends BaseComponent<Props, State> {
       this.state;
 
     const { filter } = match.params;
-    const name = global.hive_id;
+    const { hive_id: name, tags } = global;
 
     const community = communities.find((x) => x.name === name);
     const account = accounts.find((x) => x.name === name);
@@ -354,7 +354,11 @@ class CommunityPage extends BaseComponent<Props, State> {
               const data = entries[groupKey];
 
               if (data !== undefined) {
-                const entryList = data?.entries;
+                const entryList = data?.entries.filter((entry) =>
+                  entry.json_metadata?.tags?.some((tag) =>
+                    [name, ...tags].includes(tag)
+                  )
+                );
                 const loading = data?.loading;
 
                 return (
