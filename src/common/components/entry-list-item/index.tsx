@@ -52,7 +52,6 @@ interface Props {
   location: Location;
   global: Global;
   dynamicProps: DynamicProps;
-  communities: Communities;
   community?: Community | null;
   users: User[];
   activeUser: ActiveUser | null;
@@ -74,7 +73,6 @@ interface Props {
   addReblog: (author: string, permlink: string) => void;
   deleteReblog: (author: string, permlink: string) => void;
   toggleUIProp: (what: ToggleType | "login") => void;
-  addCommunity: (data: Community) => void;
   setSigningKey: (key: string) => void;
   muted?: boolean;
   pinEntry?: (entry: Entry | null) => void;
@@ -108,7 +106,6 @@ export default class EntryListItem extends Component<Props, State> {
       !isEqual(this.props.dynamicProps, nextProps.dynamicProps) ||
       !isEqual(this.props.activeUser, nextProps.activeUser) ||
       !isEqual(this.props.reblogs, nextProps.reblogs) ||
-      !isEqual(this.props.communities, nextProps.communities) ||
       !isEqual(this.state, nextState)
     );
   }

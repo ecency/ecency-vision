@@ -18,6 +18,7 @@ import { updateCommunity, formatError } from "../../api/operations";
 import { _t } from "../../i18n";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
+import { queryClient, QueryIdentifiers } from "../../core";
 
 const langOpts = [
   { id: "af", name: "Afrikaans" },
@@ -125,7 +126,6 @@ interface Props {
   global: Global;
   community: Community;
   activeUser: ActiveUser;
-  addCommunity: (data: Community) => void;
   onHide: () => void;
 }
 
@@ -168,7 +168,7 @@ export class CommunitySettings extends BaseComponent<Props, State> {
   };
 
   submit = () => {
-    const { activeUser, community, addCommunity, onHide } = this.props;
+    const { activeUser, community, onHide } = this.props;
     const { title, about, description, lang, flag_text, is_nsfw } = this.state;
     const newProps = {
       title: cleanString(title),
@@ -182,8 +182,10 @@ export class CommunitySettings extends BaseComponent<Props, State> {
     this.stateSet({ inProgress: true });
     return updateCommunity(activeUser.username, community.name, newProps)
       .then(() => {
-        const nCom: Community = { ...clone(community), ...newProps };
-        addCommunity(nCom);
+        queryClient.setQueryData([QueryIdentifiers.COMMUNITY, community.name], {
+          ...clone(community),
+          ...newProps
+        });
         onHide();
       })
       .catch((err) => error(...formatError(err)))

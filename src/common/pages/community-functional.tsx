@@ -202,17 +202,7 @@ export const CommunityPage = (props: Props) => {
         }
       >
         <div className="profile-side">
-          <CommunityCard
-            {...props}
-            account={account}
-            community={community}
-            addCommunity={(updatedCommunity) =>
-              queryClient.setQueryData(
-                [QueryIdentifiers.COMMUNITY, props.match.params.name],
-                updatedCommunity
-              )
-            }
-          />
+          <CommunityCard {...props} account={account} community={community} />
         </div>
         <span itemScope={true} itemType="http://schema.org/Organization">
           <meta itemProp="name" content={community.title.trim() || community.name} />

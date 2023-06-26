@@ -10,18 +10,6 @@ import App from "../common/app";
 import { AppState } from "../common/store";
 import configureStore from "../common/store/configure";
 
-let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || "");
-
-const cssLinksFromAssets = (assets: any, entrypoint: string) => {
-  return assets[entrypoint]
-    ? assets[entrypoint].css
-      ? assets[entrypoint].css
-          .map((asset: any) => `<link rel="stylesheet" href="${asset}">`)
-          .join("")
-      : ""
-    : "";
-};
-
 export const renderAmp = async (req: express.Request, state: AppState) => {
   const store = configureStore(state);
 

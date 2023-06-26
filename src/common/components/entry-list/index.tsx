@@ -26,7 +26,6 @@ interface Props {
   dynamicProps: DynamicProps;
   entries: Entry[];
   promotedEntries: Entry[];
-  communities: Communities;
   community?: Community | null;
   users: User[];
   activeUser: ActiveUser | null;
@@ -45,7 +44,6 @@ interface Props {
   addReblog: (author: string, permlink: string) => void;
   deleteReblog: (author: string, permlink: string) => void;
   toggleUIProp: (what: ToggleType) => void;
-  addCommunity: (data: Community) => void;
   setSigningKey: (key: string) => void;
   pinEntry?: (entry: Entry | null) => void;
 }
@@ -233,7 +231,6 @@ export default (p: Props) => {
     dynamicProps: p.dynamicProps,
     entries: p.entries,
     promotedEntries: p.promotedEntries,
-    communities: p.communities,
     community: p.community,
     users: p.users,
     activeUser: p.activeUser,
@@ -249,7 +246,6 @@ export default (p: Props) => {
     addReblog: p.addReblog,
     deleteReblog: p.deleteReblog,
     toggleUIProp: p.toggleUIProp,
-    addCommunity: p.addCommunity,
     setSigningKey: p.setSigningKey,
     loading: p.loading,
     account: p.account,

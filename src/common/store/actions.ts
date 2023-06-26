@@ -22,7 +22,6 @@ import {
   updateReply
 } from "./discussion";
 import { addAccount } from "./accounts";
-import { addCommunity } from "./communities";
 import { fetchTransactions, resetTransactions } from "./transactions";
 import { addUser, deleteUser } from "./users";
 import { setActiveUser, updateActiveUser } from "./active-user";
@@ -65,7 +64,6 @@ export const ACTIONS = {
   addReply,
   deleteReply,
   addAccount,
-  addCommunity,
   fetchTransactions,
   resetTransactions,
   addUser,
