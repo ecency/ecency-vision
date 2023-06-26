@@ -171,9 +171,9 @@ const Onboard = (props: Props) => {
       const hashedPubKeys = b64uEnc(stringifiedPubKeys);
       setSecret(hashedPubKeys);
       const accInfo = {
-        username: info.username.replace(/[=+]/g, "."),
-        email: info.email.replace("=", "."),
-        referral: info.referral.replace(/[=+]/g, "."),
+        username: info.username?.replace(/[=+]/g, "."),
+        email: info.email?.replace("=", "."),
+        referral: info.referral?.replace(/[=+]/g, "."),
         keys
       };
       setAccountInfo(accInfo);
@@ -351,7 +351,7 @@ const Onboard = (props: Props) => {
           );
           if (resp.id) {
             setInprogress(false);
-            setStep("success");
+            setShowModal(false)
             sendMail();
           }
         } else {
@@ -364,13 +364,13 @@ const Onboard = (props: Props) => {
           );
           if (resp.id) {
             setInprogress(false);
-            setStep("success");
+            setShowModal(false)
             sendMail();
           }
         }
       } catch (err: any) {
         if (err) {
-          setStep("failed");
+          setShowModal(false)
         }
         error(err.message);
       }
