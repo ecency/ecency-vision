@@ -134,6 +134,8 @@ const EntryComponent = (props: Props) => {
   );
 
   useEffect(() => {
+    setLoading(true);
+
     if (props.history.location.search.includes("?referral")) {
       const userName = props.history.location.search.split("=")[1];
       ls.set("referral", userName);
@@ -149,6 +151,10 @@ const EntryComponent = (props: Props) => {
 
     setSelection(ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`)?.trim() ?? "");
   }, []);
+
+  useEffect(() => {
+    setLoading(true);
+  }, [props.match.params.username, props.match.params.permlink, props.match.params.category]);
 
   useEffect(() => {
     if (entry) {
@@ -176,6 +182,8 @@ const EntryComponent = (props: Props) => {
         setTag(isCommunity(tags[0]) ? tags[1] : tags[0]);
         setKeywords(tags.join(", "));
       }
+
+      setLoading(false);
     }
   }, [entry]);
 
