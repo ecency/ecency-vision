@@ -354,10 +354,9 @@ class CommunityPage extends BaseComponent<Props, State> {
               const data = entries[groupKey];
 
               if (data !== undefined) {
-                const entryList = data?.entries.filter((entry) =>
-                  entry.json_metadata?.tags?.some((tag) =>
-                    [name, ...tags].includes(tag)
-                  )
+                const entryList = data?.entries.filter(
+                  ({ json_metadata: { tags } }) =>
+                    tags?.some((tag) => [name, ...tags].includes(tag))
                 );
                 const loading = data?.loading;
 
