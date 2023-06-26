@@ -6,12 +6,17 @@ interface Props {
   title: string;
   children: any;
   hasBorderBottom: boolean;
+  className?: string;
 }
 
-export const DeckHeaderSettingsItem = ({ title, children, hasBorderBottom }: Props) => {
+export const DeckHeaderSettingsItem = ({ title, children, hasBorderBottom, className }: Props) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <Accordion className={"deck-header-settings-item " + (hasBorderBottom ? "border-bottom" : "")}>
+    <Accordion
+      className={
+        "deck-header-settings-item " + (hasBorderBottom ? "border-bottom " : "") + className
+      }
+    >
       <Accordion.Toggle
         as={Button}
         variant="link"

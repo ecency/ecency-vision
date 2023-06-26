@@ -41,6 +41,21 @@
     }
   }
 
+  &.hideAvatar {
+    z-index: 1;
+    display: flex;
+    cursor: default;
+    min-height: 12rem;
+
+    .deck-toolbar-threads-form-content {
+      min-width: 100%;
+    }
+
+    .deck-toolbar-threads-form-body {
+      grid-template-columns: 1fr;
+    }
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -156,6 +171,8 @@
   }
 
   .deck-threads-form-toolbar {
+    display: flex;
+    align-items: center;
     border-top: 1px solid $border-color;
 
     @include margin-top(1rem);
@@ -291,8 +308,33 @@
   }
 
   &-submit {
-      white-space: nowrap;
+    white-space: nowrap;
 
     @include margin-left(1rem);
+  }
+
+  .length-prompt {
+    opacity: 0.5;
+
+    @include margin-top(0.5rem);
+    @include font-size(0.675rem);
+  }
+}
+
+.emoji-picker-container {
+  width: 200px;
+
+  .emoji-picker {
+    border: 1px solid $border-color;
+
+    @include border-radius(1rem);
+
+    @include themify(day) {
+      background-color: $white;
+    }
+
+    @include themify(night) {
+      background-color: $dark-two;
+    }
   }
 }

@@ -6,12 +6,13 @@ import { error } from "../../feedback";
 import { ProfileFilter } from "../../../store/global/types";
 import { _t } from "../../../i18n";
 import { useCommunityApi, useThreadsApi } from "./api";
+import { ThreadItemEntry } from "../columns/deck-threads-manager";
 
 interface Context {
   show: boolean;
   setShow: (v: boolean) => void;
-  create: (host: string, raw: string) => Promise<Entry>;
-  createReply: (parent: Entry, raw: string) => Promise<Entry>;
+  create: (host: string, raw: string, entry?: ThreadItemEntry) => Promise<Entry>;
+  createReply: (parent: Entry, raw: string, entry?: ThreadItemEntry) => Promise<Entry>;
 }
 
 export const DeckThreadsFormContext = createContext<Context>({
@@ -31,10 +32,10 @@ export const DeckThreadsFormManager = ({ children }: Props) => {
 
   const [show, setShow] = useState(false);
 
-  const createThreadItem = async (host: string, raw: string) => {
+  const createThreadItem = async (host: string, raw: string, editingEntry?: ThreadItemEntry) => {
     try {
       if (host === "dbuzz") {
-        return await communityBasedApiRequest(host, raw);
+        return await communityBasedApiRequest(host, raw, editingEntry);
       }
 
       const hostEntries = await bridgeApi.getAccountPosts(ProfileFilter.posts, host);
@@ -44,16 +45,16 @@ export const DeckThreadsFormManager = ({ children }: Props) => {
       }
 
       const entry = hostEntries[0];
-      return await generalApiRequest(entry, raw);
+      return await generalApiRequest(entry, raw, editingEntry);
     } catch (e) {
       error(...formatError(e));
       throw e;
     }
   };
 
-  const replyToThreadItem = async (parent: Entry, raw: string) => {
+  const replyToThreadItem = async (parent: Entry, raw: string, editingEntry?: ThreadItemEntry) => {
     try {
-      return await generalApiRequest(parent, raw);
+      return await generalApiRequest(parent, raw, editingEntry);
     } catch (e) {
       error(...formatError(e));
       throw e;

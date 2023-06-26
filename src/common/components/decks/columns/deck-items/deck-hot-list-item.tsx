@@ -7,9 +7,10 @@ export interface HotListItemProps {
   index: number;
   entry: TrendingTag;
   onMounted: () => void;
+  onClick: () => void;
 }
 
-export const HotListItem = ({ index, entry, onMounted }: HotListItemProps) => {
+export const HotListItem = ({ index, entry, onMounted, onClick }: HotListItemProps) => {
   useEffect(() => {
     onMounted();
   }, []);
@@ -18,7 +19,9 @@ export const HotListItem = ({ index, entry, onMounted }: HotListItemProps) => {
     <div className="p-3 border-bottom d-flex align-items-center">
       <div className="hot-item-index">{index}</div>
       <div className="flex-grow-1 ml-3 hot-item-link">
-        <Link to={`/trending/${entry.name}`}>#{entry.name}</Link>
+        <a role="button" href="#" onClick={onClick}>
+          #{entry.name}
+        </a>
       </div>
       <div className="hot-item-post-count">
         {entry.top_posts + entry.comments || 0} {_t("communities.n-posts")}

@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "الجدول الزمني",
-    "btn-label": "الجدول الزمني"
+    "btn-label": "الجدول الزمني",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "لديك إشعار جديد",

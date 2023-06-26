@@ -9,16 +9,17 @@ import { Button } from "react-bootstrap";
 interface Props {
   toggle: JSX.Element;
   children: JSX.Element;
+  options?: Parameters<typeof usePopper>[2];
 }
 
-export const PopperDropdown = ({ children, toggle }: Props) => {
+export const PopperDropdown = ({ children, toggle, options }: Props) => {
   const isMounted = useMounted();
 
   const [isShow, setIsShow] = useState(false);
   const hostRef = useRef<any>(null);
   const [host, setHost] = useState<any>();
   const [popperElement, setPopperElement] = useState<any>();
-  const { styles, attributes, update } = usePopper(host, popperElement);
+  const { styles, attributes, update } = usePopper(host, popperElement, options);
 
   useClickAway(hostRef, () => hide());
 

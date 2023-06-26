@@ -11,9 +11,9 @@ import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import Meta from "../../components/meta";
 import { ModeSelector } from "./mode-selector";
-import { SwapMode } from "./swap-mode";
 import { AdvancedMode } from "./advanced-mode";
 import "./index.scss";
+import { SwapMode } from "../../components/market-swap-form/swap-mode";
 
 const MarketPage = (props: PageProps) => {
   const [mode, setMode] = useState<MarketMode>(MarketMode.SWAP);
@@ -66,7 +66,7 @@ const MarketPage = (props: PageProps) => {
           ) : (
             <></>
           )}
-          {mode === MarketMode.SWAP && <SwapMode {...props} />}
+          {mode === MarketMode.SWAP && <SwapMode />}
           {mode === MarketMode.LIMIT && <LimitMarketMode {...props} />}
           {mode === MarketMode.ADVANCED && (
             <AdvancedMode {...props} browserHistory={props.history} mode={mode} setMode={setMode} />

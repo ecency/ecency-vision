@@ -86,6 +86,10 @@
   > .deck-header {
     backdrop-filter: blur(1rem);
 
+    &.expanded {
+      backdrop-filter: blur(3rem);
+    }
+
     @include themify(day) {
       background-color: rgba($white, 0.75);
     }
@@ -126,8 +130,13 @@
     }
   }
 
-  .ReactVirtualized__List {
+  .ReactVirtualized__List, .msf-container, .wb-container, .wn-container, .deck-faq-container {
     padding-top: 67px;
+  }
+
+  .msf-container {
+    height: 100vh;
+    overflow-y: auto;
   }
 
   .native-scroll-content {
@@ -232,31 +241,39 @@
 
   .deck-body .item-controls {
     max-width: 80%;
+    gap: 1rem;
 
-    .entry-vote-btn, .entry-payout, .entry-votes, .entry-menu {
-      margin-right: 0;
-      margin-left: 0;
+    > * {
+      padding: 0;
+      margin: 0;
     }
 
-    @include media-breakpoint-down(sm) {
-      max-width: 100%;
-    }
+    .btn, .entry-votes, .entry-vote-btn, .comments, .entry-payout {
+      color: $secondary;
 
-    .comments {
-      path {
-        fill: $light-grey !important;
+      @include padding(0);
+      @include font-size(0.75rem);
+      @include margin(0);
+
+      &:hover, &:active {
+        color: $primary;
       }
     }
 
-    font-size: 12px !important;
-
-    svg {
-      width: 16px !important;
+    .entry-payout {
+      white-space: nowrap;
     }
 
-    .menu-down {
-      height: auto !important;
-      width: auto !important;
+    .entry-votes svg, .comments svg {
+      opacity: 1;
+
+      @include margin(0);
+      @include margin-right(0.25rem);
+    }
+
+    svg {
+      width: 1rem;
+      height: 1rem;
     }
   }
 
@@ -275,6 +292,10 @@
     .toggle {
       padding: .68rem;
       font-size: 14px;
+    }
+
+    button {
+      box-shadow: none;
     }
 
     .label {
@@ -309,6 +330,10 @@
       "title title title"
       "description description description"
       "actions actions actions";
+      }
+
+      &.wn-item-skeleton {
+        grid-template-areas: "title title title";
       }
 
       > * {
@@ -523,6 +548,77 @@
           stroke: $white;
         }
       }
+    }
+  }
+
+  .deck-faq-container {
+    overflow-y: auto;
+
+    .faq-content {
+      overflow-y: auto;
+      height: calc(100vh - 117px);
+      height: calc(100dvh - 117px);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .suggest-label {
+      opacity: 0.5;
+      font-weight: 500;
+
+      @include font-size(0.875rem);
+    }
+
+    .faq-article {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid $border-color;
+
+      @include font-size(0.875rem);
+      @include border-radius(1rem);
+      @include padding(0.75rem);
+
+      &::after {
+        content: none;
+      }
+    }
+  }
+
+  .no-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+    gap: 1rem;
+
+    svg {
+      width: 4rem;
+      height: 4rem;
+      color: $secondary;
+      opacity: 0.5;
+    }
+
+    p {
+      opacity: 0.5;
+      color: $secondary;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.decks.toolbar-collapsed .deck {
+  @include media-breakpoint-down(sm) {
+    &, &.expanded {
+      width: 100vw;
     }
   }
 }

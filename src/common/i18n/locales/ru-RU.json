@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "Расписание",
-    "btn-label": "Расписание"
+    "btn-label": "Расписание",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "У вас есть новое уведомление",

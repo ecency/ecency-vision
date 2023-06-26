@@ -71,6 +71,13 @@ export interface Entry {
   original_entry?: Entry;
 }
 
+export interface EntryHeader {
+  author: string;
+  category: string;
+  permlink: string;
+  depth: number;
+}
+
 export interface EntryGroup {
   // filter(arg0: (entry: any) => boolean): EntryGroup;
   entries: Entry[];

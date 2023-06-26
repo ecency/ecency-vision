@@ -11,13 +11,16 @@ import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../../deck-manager";
 import {
   communityIconSvg,
+  faqIconSvg,
   notificationsIconSvg,
   searchIconSvg,
+  swapFormSvg,
   threadSvg,
   topicsIconSvg,
   trendingIconSvg,
   userIconSvg,
-  walletIconSvg
+  walletIconSvg,
+  whatsNewIconSvg
 } from "../../icons";
 
 interface Props {
@@ -83,13 +86,31 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       description: _t("decks.columns.topics-description")
     },
     {
+      type: "msf",
+      title: _t("decks.columns.market-swap-form"),
+      icon: swapFormSvg,
+      description: _t("decks.columns.msf-description")
+    },
+    {
       type: "s",
       title: _t("decks.columns.search"),
       icon: searchIconSvg,
       description: _t("decks.columns.search-description")
+    },
+    {
+      type: "faq",
+      title: _t("decks.columns.faq"),
+      icon: faqIconSvg,
+      description: _t("decks.columns.faq-description")
+    },
+    {
+      type: "wn",
+      title: _t("decks.columns.whats-new"),
+      icon: whatsNewIconSvg,
+      description: _t("decks.columns.whats-new-description")
     }
   ];
-  const typesWithoutSettings = ["tr", "to"];
+  const typesWithoutSettings = ["tr", "to", "msf", "faq", "wn"];
 
   const [step, setStep] = useState<"select" | "setup">("select");
   const [selectedType, setSelectedType] = useState<DeckGridItem["type"] | null>(null);
@@ -126,7 +147,7 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       <div className="deck-content">
         {step === "select" ? (
           <>
-            <div className="subtitle p-3">Choose one</div>
+            <div className="subtitle p-3">{_t("decks.choose-one")}</div>
             {availableColumns.map(({ icon, title, type, description }) => (
               <div
                 key={type}

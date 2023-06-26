@@ -7,6 +7,8 @@ import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
 import { ICONS, WALLET_CONTENT_TYPES } from "../../consts";
 import { _t } from "../../../../i18n";
+import useLocalStorage from "react-use/lib/useLocalStorage";
+import { PREFIX } from "../../../../util/local-storage";
 
 export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -15,7 +17,7 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
 
   const [username, setUsername] = useState("");
   const [contentType, setContentType] = useState<string | null>(null);
-  const [recent, setRecent] = useState<UsernameDataItem[]>([]);
+  const [recent, setRecent] = useLocalStorage<UsernameDataItem[]>(PREFIX + "_dwr", []);
 
   return (
     <div className="deck-add-column-user-settings p-3">
@@ -28,7 +30,12 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
           <div className="click-to-change">{_t("decks.columns.click-to-change")}</div>
         </div>
       ) : (
-        <DeckAddColumnSearchBox username={username} setUsername={setUsername} recentList={recent} />
+        <DeckAddColumnSearchBox
+          username={username}
+          setUsername={setUsername}
+          recentList={recent}
+          setRecentList={setRecent}
+        />
       )}
       {username !== "" ? (
         <>
@@ -57,10 +64,10 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
           onClick={() =>
             add({
               key: deckKey,
-              type: "w",
+              type: contentType === "balance" ? "wb" : "w",
               settings: {
                 username,
-                contentType,
+                ...(contentType !== "balance" ? { contentType } : {}),
                 updateIntervalMs: 60000
               }
             })

@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautif
 import { DeckGridContext } from "./deck-manager";
 import { DeckAddColumn, DeckUserColumn } from "./columns";
 import {
-  BitesDeckGridItem,
+  WavesDeckGridItem,
   CommunityDeckGridItem,
   ReloadableDeckGridItem,
   SearchDeckGridItem,
@@ -22,6 +22,10 @@ import * as uuid from "uuid";
 import { useOldDeckMigration } from "./old-deck-migration";
 import { _t } from "../../i18n";
 import { DeckThreadsColumn } from "./columns/deck-threads-column";
+import { DeckMsfColumn } from "./columns/deck-msf-column";
+import { DeckFaqColumn } from "./columns/deck-faq-column";
+import { DeckWalletBalanceColumn } from "./columns/deck-wallet-balance-column";
+import { DeckWhatsNewColumn } from "./columns/deck-whats-new-column";
 
 interface Props {
   history: History;
@@ -88,93 +92,96 @@ export const DeckGrid = ({ history }: Props) => {
                         id={index + ""}
                       >
                         <div className="d-flex align-items-center" key={key}>
-                          {type === "ac" ? (
+                          {type === "ac" && (
                             <DeckAddColumn
                               id={id}
                               deckKey={key}
                               draggable={provided.dragHandleProps}
                             />
-                          ) : (
-                            <></>
                           )}
-                          {type === "u" ? (
+                          {type === "u" && (
                             <DeckUserColumn
                               id={id}
                               draggable={provided.dragHandleProps}
                               history={history}
                               settings={settings as UserDeckGridItem["settings"]}
                             />
-                          ) : (
-                            <></>
                           )}
-                          {type === "co" ? (
+                          {type === "co" && (
                             <DeckCommunityColumn
                               id={id}
                               history={history}
                               draggable={provided.dragHandleProps}
                               settings={settings as CommunityDeckGridItem["settings"]}
                             />
-                          ) : (
-                            <></>
                           )}
-                          {type === "w" ? (
+                          {type === "w" && (
                             <DeckWalletColumn
                               id={id}
                               settings={settings as UserDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                               history={history}
                             />
-                          ) : (
-                            <></>
                           )}
-                          {type === "n" ? (
+                          {type === "n" && (
                             <DeckNotificationsColumn
                               id={id}
                               history={history}
                               settings={settings as UserDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                             />
-                          ) : (
-                            <></>
                           )}
-                          {type === "tr" ? (
+                          {type === "tr" && (
                             <DeckTrendingColumn
                               id={id}
                               history={history}
                               draggable={provided.dragHandleProps}
                               settings={settings as ReloadableDeckGridItem["settings"]}
                             />
-                          ) : (
-                            <></>
                           )}
-                          {type === "to" ? (
+                          {type === "to" && (
                             <DeckTopicsColumn
                               id={id}
                               settings={settings as ReloadableDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                             />
-                          ) : (
-                            <></>
                           )}
-                          {type === "s" ? (
+                          {type === "s" && (
                             <DeckSearchColumn
                               id={id}
                               settings={settings as SearchDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                               history={history}
                             />
-                          ) : (
-                            <></>
                           )}
-                          {type === "th" ? (
+                          {type === "th" && (
                             <DeckThreadsColumn
                               id={id}
-                              settings={settings as BitesDeckGridItem["settings"]}
+                              settings={settings as WavesDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                               history={history}
                             />
-                          ) : (
-                            <></>
+                          )}
+                          {type === "msf" && (
+                            <DeckMsfColumn id={id} draggable={provided.dragHandleProps} />
+                          )}
+                          {type === "faq" && (
+                            <DeckFaqColumn id={id} draggable={provided.dragHandleProps} />
+                          )}
+                          {type === "wb" && (
+                            <DeckWalletBalanceColumn
+                              id={id}
+                              history={history}
+                              settings={settings as UserDeckGridItem["settings"]}
+                              draggable={provided.dragHandleProps}
+                            />
+                          )}
+                          {type === "wn" && (
+                            <DeckWhatsNewColumn
+                              id={id}
+                              draggable={provided.dragHandleProps}
+                              settings={settings as ReloadableDeckGridItem["settings"]}
+                            />
                           )}
                         </div>
                       </div>
