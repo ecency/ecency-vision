@@ -29,6 +29,7 @@ import { PrivateKey } from "@hiveio/dhive";
 import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
 import { _t } from "../i18n";
 import "./onboard.scss";
+import { Link } from "react-router-dom";
 
 export interface AccountInfo {
   email: string;
@@ -70,6 +71,7 @@ const createOptions = {
 interface MatchParams {
   secret?: string;
   type: string;
+  id: string;
 }
 
 interface Props extends PageProps {
@@ -185,12 +187,12 @@ const Onboard = (props: Props) => {
     }
   };
 
-  const sendMail = async () => {
+  const sendMail = async (email: string =  accountInfo!.email.replace("=", ".")) => {
     const { activeUser } = props;
     if (activeUser) {
       await onboardEmail(
         accountInfo!.username,
-        accountInfo!.email.replace("=", "."),
+        email,
         activeUser?.username
       );
     }
@@ -347,6 +349,12 @@ const Onboard = (props: Props) => {
 
   const onHot = async (type: string) => {
     const { activeUser } = props;
+    const dataToEncode = {
+      username: accountInfo!.username,
+      email:  accountInfo!.email,
+    };
+    const stringifiedPubKeys = JSON.stringify(dataToEncode);
+    const hashedInfo = b64uEnc(stringifiedPubKeys);
     if (activeUser) {
       try {
         if (type === createOptions.HIVE) {
@@ -355,7 +363,8 @@ const Onboard = (props: Props) => {
               username: decodedInfo?.username,
               pub_keys: decodedInfo?.pubkeys
             },
-            activeUser?.username
+            activeUser?.username,
+            hashedInfo
           );
           if (resp) {
             setInprogress(false);
@@ -368,7 +377,8 @@ const Onboard = (props: Props) => {
               username: decodedInfo?.username,
               pub_keys: decodedInfo?.pubkeys
             },
-            activeUser?.username
+            activeUser?.username,
+            accountInfo!.email
           );
           if (resp) {
             setInprogress(false);
@@ -383,7 +393,7 @@ const Onboard = (props: Props) => {
         error(err.message);
       }
     }
-  }
+  };
 
   const signTransactionModal = (type: string) => {
     return (
@@ -615,6 +625,29 @@ const Onboard = (props: Props) => {
           )}
         </div>
       )}
+
+      {props.match.params.type === "confirming" && 
+      <div className="onboard-container">
+        <div className="login-warning">
+          <span>
+            {_t("onboard.success-message")} <strong>@{decodedInfo?.username}</strong>
+          </span>
+        </div>
+        <Button 
+        as={Link}
+        to={`/@${decodedInfo?.username}`}
+        className="mt-3 w-50 align-self-center"
+        onClick={()=> {
+          const queryId  = window.location.search
+          const searchParams = new URLSearchParams(queryId);
+          const tid = searchParams.get("id");
+          if (tid) {
+            sendMail();
+          }
+        }}
+        >Completed</Button>
+      </div>
+      }
       <Modal
         animation={false}
         show={showModal}

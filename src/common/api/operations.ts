@@ -1965,7 +1965,7 @@ export const createAccountKc = async (data: any, creator_account: string) => {
 };
 
 // Create account with hive Hs
-export const createAccountHs = async (data: any, creator_account: string) => {
+export const createAccountHs = async (data: any, creator_account: string, hash: string) => {
   try {
     const { username, pub_keys } = data;
 
@@ -2010,7 +2010,7 @@ export const createAccountHs = async (data: any, creator_account: string) => {
 
     try {
       // For Hive Signer
-      const params: Parameters = { callback: `https://ecency.com/` };
+      const params: Parameters = { callback: `http://localhost:3000/onboard-friend/confirming/${hash}?tid={{id}}` };
       const newAccount = hs.sendOperation(operation, params, () => {});
       return newAccount;
     } catch (err: any) {
@@ -2148,7 +2148,7 @@ export const createAccountWithCreditKc = async (data: any, creator_account: stri
 };
 
 // Create account with credit Hs
-export const createAccountWithCreditHs = async (data: any, creator_account: string) => {
+export const createAccountWithCreditHs = async (data: any, creator_account: string, hash: string) => {
   try {
     const { username, pub_keys } = data;
 
@@ -2196,7 +2196,8 @@ export const createAccountWithCreditHs = async (data: any, creator_account: stri
 
     try {
       // For Hive Signer
-      const params: Parameters = { callback: `https://ecency.com/` };
+      const params: Parameters = { callback: `http://localhost:3000/onboard-friend/confirming/${hash}?tid={{id}}` };
+      console.log(params);
       const newAccount = hs.sendOperation(operation, params, () => {})
       return newAccount;
     } catch (err: any) {
