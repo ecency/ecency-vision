@@ -122,10 +122,6 @@ export const SignUp = (props: PageProps) => {
     }
   }, [username, usernameTouched]);
 
-  useEffect(() => {
-    encodeUrlInfo(username, email, referral);
-  }, [username, email, referral]);
-
   const regularRegister = async () => {
     setInProgress(true);
     try {
@@ -251,6 +247,11 @@ export const SignUp = (props: PageProps) => {
                     if (stage === Stage.FORM) {
                       setStage(Stage.REGISTER_TYPE);
                     }
+
+                    if(username && email || referral) {
+                      encodeUrlInfo(username, email, referral);
+                    }
+
                   }}
                 >
                   <Form.Group>
@@ -397,9 +398,6 @@ export const SignUp = (props: PageProps) => {
                       to={`/onboard-friend/asking/${urlHash}`}
                       className="w-100"
                       variant="primary"
-                      onClick={() => {
-                        encodeUrlInfo(username, email, referral);
-                      }}
                     >
                       {_t("onboard.asking")}
                     </Button>
