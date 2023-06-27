@@ -267,10 +267,12 @@ const Onboard = (props: Props) => {
             },
             activeUser?.username
           );
-          if (resp) {
+          if (resp.success == true) {
             setInprogress(false);
             setStep("success");
             sendMail();
+          } else {
+            setStep("failed")
           }
         } else {
           const resp = await createAccountWithCreditKc(
@@ -280,10 +282,12 @@ const Onboard = (props: Props) => {
             },
             activeUser?.username
             );
-            if (resp) {
+            if (resp.success == true) {
               setInprogress(false);
               setStep("success");
               sendMail();
+          } else {
+            setStep("failed")
           }
         }
       } catch (err: any) {
@@ -312,6 +316,8 @@ const Onboard = (props: Props) => {
             setInprogress(false);
             setStep("success");
             sendMail();
+          } else {
+            setStep("failed")
           }
         } else {
           const resp = await createAccountWithCreditKey(
@@ -326,6 +332,8 @@ const Onboard = (props: Props) => {
             setInprogress(false);
             setStep("success");
             sendMail();
+          } else {
+            setStep("failed")
           }
         }
       } catch (err: any) {
@@ -352,7 +360,7 @@ const Onboard = (props: Props) => {
           if (resp) {
             setInprogress(false);
             setShowModal(false)
-            sendMail();
+            // sendMail();
           }
         } else {
           const resp = await createAccountWithCreditHs(
@@ -365,7 +373,7 @@ const Onboard = (props: Props) => {
           if (resp) {
             setInprogress(false);
             setShowModal(false)
-            sendMail();
+            // sendMail();
           }
         }
       } catch (err: any) {

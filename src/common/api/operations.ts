@@ -1954,8 +1954,6 @@ export const createAccountKc = async (data: any, creator_account: string) => {
     try {
       // For Keychain
       const newAccount = await keychain.broadcast(creator_account, [operation], "Active");
-      // return keychain.broadcast(creator_account, [operation], "Active");
-      console.log(newAccount)
       return newAccount;
     } catch (err: any) {
       console.log(err)
@@ -2013,9 +2011,7 @@ export const createAccountHs = async (data: any, creator_account: string) => {
     try {
       // For Hive Signer
       const params: Parameters = { callback: `https://ecency.com/` };
-      const newAccount = await hs.sendOperation(operation, params, () => {});
-      // return hs.sendOperation(operation, params, () => {});
-      console.log(newAccount)
+      const newAccount = hs.sendOperation(operation, params, () => {});
       return newAccount;
     } catch (err: any) {
       console.log(err)
@@ -2080,7 +2076,6 @@ export const createAccountKey = async (data: any, creator_account: string, creat
         ops,
         creator_key
       );
-        console.log(newAccount)
       return newAccount;
     } catch (err: any) {
       console.log(err.message)
@@ -2142,8 +2137,6 @@ export const createAccountWithCreditKc = async (data: any, creator_account: stri
     try {
       // For Keychain
       const newAccount = await keychain.broadcast(creator_account, [operation], "Active");
-      // return keychain.broadcast(creator_account, [operation], "Active");
-      console.log(newAccount)
       return newAccount;
     } catch (err: any) {
       return err.jse_info.name;
@@ -2204,9 +2197,7 @@ export const createAccountWithCreditHs = async (data: any, creator_account: stri
     try {
       // For Hive Signer
       const params: Parameters = { callback: `https://ecency.com/` };
-      const newAccount = await hs.sendOperation(operation, params, () => {})
-      // return hs.sendOperation(operation, params, () => {});
-      console.log(newAccount)
+      const newAccount = hs.sendOperation(operation, params, () => {})
       return newAccount;
     } catch (err: any) {
       console.log(err)
@@ -2267,11 +2258,10 @@ export const createAccountWithCreditKey = async (data: any, creator_account: str
 
     try {
       // With Private Key
-      const newAccount = await await hiveClient.broadcast.sendOperations(
+      const newAccount = await hiveClient.broadcast.sendOperations(
         ops,
         creator_key
       );
-        console.log(newAccount)
       return newAccount;
     } catch (err: any) {
       console.log(err.message)
