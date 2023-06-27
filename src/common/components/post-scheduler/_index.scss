@@ -38,3 +38,13 @@
     }
   }
 }
+.error {
+  display:flex;
+  padding: 12px 30px;
+  justify-content: center;
+  .error-info {
+    color: $red2;
+    font-size: 93%;
+    font-weight: 400;
+  }
+}

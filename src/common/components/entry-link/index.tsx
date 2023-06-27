@@ -4,7 +4,7 @@ import { History } from "history";
 
 import { Entry } from "../../store/entries/types";
 
-import { getPost } from "../../api/bridge";
+import { getPostHeader } from "../../api/bridge";
 
 import { history as historyFromStore } from "../../store";
 
@@ -42,7 +42,7 @@ export class EntryLink extends Component<Props> {
     if (!("title" in _entry)) {
       // Get full content if the "entry" passed is "PartialEntry"
       try {
-        const resp = await getPost(_entry.author, _entry.permlink);
+        const resp = await getPostHeader(_entry.author, _entry.permlink);
         if (resp) {
           _entry = resp;
         }

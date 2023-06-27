@@ -608,6 +608,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       this._updateTimer = null;
     }
 
+    // Not sure why we are using setTimeOut(), but it causes some odd behavior and sets input value to preview.body when you try to delete/cancel text
     this._updateTimer = setTimeout(() => {
       const { title, tags, body, editingEntry, description } = this.state;
       const { thumbnails } = extractMetaData(body);
@@ -620,7 +621,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       } else {
         this.stateSet({ isDraftEmpty: true });
       }
-    }, 500);
+    }, 50);
   };
 
   focusInput = (parentSelector: string): void => {
@@ -680,7 +681,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     // permlink duplication check
     let c;
     try {
-      c = await bridgeApi.getPost(author, permlink);
+      c = await bridgeApi.getPostHeader(author, permlink);
     } catch (e) {
       /*error(_t("g.server-error"));
             this.stateSet({posting: false});
@@ -890,7 +891,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     // permlink duplication check
     let c;
     try {
-      c = await bridgeApi.getPost(author, permlink);
+      c = await bridgeApi.getPostHeader(author, permlink);
     } catch (e) {}
 
     if (c && c.author) {
@@ -953,7 +954,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     new Promise((resolve) => {
       const img = new Image();
       img.onload = () => {
-        resolve(img.width / img.height);
+        resolve((img.width / img.height).toFixed(4));
       };
       img.onerror = function () {
         resolve(0);

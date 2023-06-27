@@ -122,7 +122,7 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
                         resolve([]);
                       }
                     } else {
-                      let suggestions = await lookupAccounts(token, 5);
+                      let suggestions = await lookupAccounts(token.toLowerCase(), 5);
                       resolve(suggestions);
                     }
                   }, 300);

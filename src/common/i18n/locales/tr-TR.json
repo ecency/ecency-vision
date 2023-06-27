@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "Zamanla",
-    "btn-label": "Zamanla"
+    "btn-label": "Zamanla",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "Yeni bir bildiriminiz var",

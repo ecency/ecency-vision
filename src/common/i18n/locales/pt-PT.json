@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "Agendar",
-    "btn-label": "Agendar"
+    "btn-label": "Agendar",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "Você tem uma nova notificação",

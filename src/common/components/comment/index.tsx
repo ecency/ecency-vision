@@ -156,7 +156,7 @@ export class Comment extends Component<Props, State> {
     this._updateTimer = setTimeout(() => {
       const { text } = this.state;
       this.setState({ preview: text || "" });
-    }, 500);
+    }, 50);
   };
 
   submit = () => {

@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "Zeitplan",
-    "btn-label": "Zeitplan"
+    "btn-label": "Zeitplan",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "Du hast eine neue Benachrichtigung",
