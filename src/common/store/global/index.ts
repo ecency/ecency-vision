@@ -49,7 +49,7 @@ export const initialState: Global = {
   isMobile: false,
   usePrivate: true,
   hsClientId: "ecency.app",
-  lastIndexPath: null,
+  lastIndexPath: null
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
