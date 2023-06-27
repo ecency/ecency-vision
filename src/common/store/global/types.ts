@@ -84,7 +84,7 @@ export enum ActionTypes {
   LANG_SET = "@global/LANG_SET",
   NEW_VERSION_CHANGE = "@global/NEW_VERSION_CHANGE",
   NSFW_SET = "@global/NSFW_SET",
-  SET_LAST_INDEX_PATH = "@global/SET_LAST_INDEX_PATH",
+  SET_LAST_INDEX_PATH = "@global/SET_LAST_INDEX_PATH"
 }
 
 export interface ThemeChangeAction {
@@ -152,4 +152,4 @@ export type Actions =
   | LangSetAction
   | NsfwSetAction
   | HasKeyChainAction
-  | SetLastIndexPathAction
+  | SetLastIndexPathAction;
