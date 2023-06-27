@@ -377,7 +377,11 @@ const EntryComponent = (props: Props) => {
     <>
       <Meta
         title={`${notificationsCount}${truncate(entry.title, 67)}`}
-        description={`${truncate(postBodySummary(entry.body, 210), 140)} by @${entry.author}`}
+        description={`${
+          entry.json_metadata?.description
+            ? entry.json_metadata?.description
+            : truncate(postBodySummary(entry.body, 210), 140)
+        } by @${entry.author}`}
         url={entry.url}
         canonical={entryCanonical(entry) ?? ""}
         image={image}
