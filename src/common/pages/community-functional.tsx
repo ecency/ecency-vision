@@ -53,7 +53,7 @@ export const CommunityPage = (props: Props) => {
   };
 
   const queryClient = useQueryClient();
-  const { data: community, isLoading } = useCommunityCache(props.match.params.name);
+  const { data: community } = useCommunityCache(props.match.params.name);
 
   const [account, setAccount] = useState<Account | undefined>(
     props.accounts.find(({ name }) => [props.match.params.name])
@@ -62,11 +62,14 @@ export const CommunityPage = (props: Props) => {
   const [search, setSearch] = useState(getSearchParam());
   const [searchDataLoading, setSearchDataLoading] = useState(getSearchParam().length > 0);
   const [searchData, setSearchData] = useState<SearchResult[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const prevMatch = usePrevious(props.match);
   const prevActiveUser = usePrevious(props.activeUser);
 
   useEffect(() => {
+    setIsLoading(true);
+
     if (search.length) handleInputChange(search);
 
     const { match, fetchEntries } = props;
@@ -79,6 +82,7 @@ export const CommunityPage = (props: Props) => {
 
   useEffect(() => {
     if (community?.name === props.match.params.name) {
+      setIsLoading(false);
       props.addAccount(community);
       setAccount({ ...account, ...community });
     }
