@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { match } from "react-router";
+import { PrivateKey } from "@hiveio/dhive";
+import { Link } from "react-router-dom";
 
 import Meta from "../components/meta";
 import { connect } from "react-redux";
@@ -14,22 +16,22 @@ import keyOrHot from "../components/key-or-hot";
 
 import { FullAccount } from "../store/accounts/types";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
-import { 
-  createAccountKc, 
-  createAccountHs, 
-  createAccountKey, 
-  createAccountWithCreditKc, 
+import {
+  createAccountKc,
+  createAccountHs,
+  createAccountKey,
+  createAccountWithCreditKc,
   createAccountWithCreditHs,
-  createAccountWithCreditKey, } from "../api/operations";
+  createAccountWithCreditKey
+} from "../api/operations";
 import { onboardEmail } from "../api/private-api";
 import { generatePassword, getPrivateKeys } from "../helper/onBoard-helper";
 import { b64uDec, b64uEnc } from "../util/b64";
-import { PrivateKey } from "@hiveio/dhive";
+import clipboard from "../util/clipboard";
 
 import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
 import { _t } from "../i18n";
 import "./onboard.scss";
-import { Link } from "react-router-dom";
 
 export interface AccountInfo {
   email: string;
@@ -187,24 +189,11 @@ const Onboard = (props: Props) => {
     }
   };
 
-  const sendMail = async (email: string =  accountInfo!.email.replace("=", ".")) => {
+  const sendMail = async (email: string = accountInfo!.email.replace("=", ".")) => {
     const { activeUser } = props;
     if (activeUser) {
-      await onboardEmail(
-        accountInfo!.username,
-        email,
-        activeUser?.username
-      );
+      await onboardEmail(accountInfo!.username, email, activeUser?.username);
     }
-  };
-
-  const copyToClipboard = (text: string) => {
-    const textField = document.createElement("textarea");
-    textField.innerText = text;
-    document.body.appendChild(textField);
-    textField.select();
-    document.execCommand("copy");
-    textField.remove();
   };
 
   const splitUrl = (url: string) => {
@@ -219,18 +208,18 @@ const Onboard = (props: Props) => {
       const keysToFile = `
           ${_t("onboard.file-warning")}
   
-          ${_t("onboard.recomend")}
-          1. ${_t("onboard.recomend-print")}
-          2. ${_t("onboard.recomend-use")}
-          3. ${_t("onboard.recomend-save")}
-          4. ${_t("onboard.recomend-third-party")}
-  
-  
+          ${_t("onboard.recommend")}
+          1. ${_t("onboard.recommend-print")}
+          2. ${_t("onboard.recommend-use")}
+          3. ${_t("onboard.recommend-save")}
+          4. ${_t("onboard.recommend-third-party")}
+
           ${_t("onboard.account-info")}
+
           Username: ${username}
-  
+
           Password: ${masterPassword}
-  
+
           ${_t("onboard.owner-private")} ${keys.owner}
   
           ${_t("onboard.active-private")} ${keys.active}
@@ -274,7 +263,7 @@ const Onboard = (props: Props) => {
             setStep("success");
             sendMail();
           } else {
-            setStep("failed")
+            setStep("failed");
           }
         } else {
           const resp = await createAccountWithCreditKc(
@@ -283,13 +272,13 @@ const Onboard = (props: Props) => {
               pub_keys: decodedInfo?.pubkeys
             },
             activeUser?.username
-            );
-            if (resp.success == true) {
-              setInprogress(false);
-              setStep("success");
-              sendMail();
+          );
+          if (resp.success == true) {
+            setInprogress(false);
+            setStep("success");
+            sendMail();
           } else {
-            setStep("failed")
+            setStep("failed");
           }
         }
       } catch (err: any) {
@@ -319,7 +308,7 @@ const Onboard = (props: Props) => {
             setStep("success");
             sendMail();
           } else {
-            setStep("failed")
+            setStep("failed");
           }
         } else {
           const resp = await createAccountWithCreditKey(
@@ -335,7 +324,7 @@ const Onboard = (props: Props) => {
             setStep("success");
             sendMail();
           } else {
-            setStep("failed")
+            setStep("failed");
           }
         }
       } catch (err: any) {
@@ -345,13 +334,13 @@ const Onboard = (props: Props) => {
         error(err.message);
       }
     }
-  }
+  };
 
   const onHot = async (type: string) => {
     const { activeUser } = props;
     const dataToEncode = {
       username: accountInfo!.username,
-      email:  accountInfo!.email,
+      email: accountInfo!.email
     };
     const stringifiedPubKeys = JSON.stringify(dataToEncode);
     const hashedInfo = b64uEnc(stringifiedPubKeys);
@@ -368,7 +357,7 @@ const Onboard = (props: Props) => {
           );
           if (resp) {
             setInprogress(false);
-            setShowModal(false)
+            setShowModal(false);
             // sendMail();
           }
         } else {
@@ -382,13 +371,13 @@ const Onboard = (props: Props) => {
           );
           if (resp) {
             setInprogress(false);
-            setShowModal(false)
+            setShowModal(false);
             // sendMail();
           }
         }
       } catch (err: any) {
         if (err) {
-          setShowModal(false)
+          setShowModal(false);
         }
         error(err.message);
       }
@@ -398,43 +387,43 @@ const Onboard = (props: Props) => {
   const signTransactionModal = (type: string) => {
     return (
       <>
-      <div className="border-bottom d-flex align-items-center">
-        <div className="step-no">2</div>
-        <div>
-          <div>{_t("onboard.sign-header-title")}</div>
-          <div>{_t("onboard.sign-sub-title")}</div>
+        <div className="border-bottom d-flex align-items-center">
+          <div className="step-no">2</div>
+          <div>
+            <div>{_t("onboard.sign-header-title")}</div>
+            <div>{_t("onboard.sign-sub-title")}</div>
+          </div>
         </div>
-      </div>
-      {inProgress && <LinearProgress />}
-      {keyOrHot({
-        global: props.global,
-        activeUser: props.activeUser,
-        signingKey: props.signingKey,
-        setSigningKey: props.setSigningKey,
-        inProgress: inProgress,
-        onKey: (key) => {
-          onKey(type, key);
-        },
-        onHot: () => {
+        {inProgress && <LinearProgress />}
+        {keyOrHot({
+          global: props.global,
+          activeUser: props.activeUser,
+          signingKey: props.signingKey,
+          setSigningKey: props.setSigningKey,
+          inProgress: inProgress,
+          onKey: (key) => {
+            onKey(type, key);
+          },
+          onHot: () => {
             onHot(type);
-        },
-        onKc: () => {
+          },
+          onKc: () => {
             onKc(type);
-        }
-      })}
-      <p className="text-center">
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            setShowModal(false);
-          }}
-        >
-          {_t("g.back")}
-        </a>
-      </p>
-    </>
-    )
+          }
+        })}
+        <p className="text-center">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setShowModal(false);
+            }}
+          >
+            {_t("g.back")}
+          </a>
+        </p>
+      </>
+    );
   };
 
   const successModalBody = () => {
@@ -527,7 +516,7 @@ const Onboard = (props: Props) => {
                     <span
                       className="onboard-svg mr-3"
                       onClick={() => {
-                        copyToClipboard(masterPassword);
+                        clipboard(masterPassword);
                         success(_t("onboard.copy-password"));
                       }}
                     >
@@ -560,7 +549,7 @@ const Onboard = (props: Props) => {
                         style={{ width: "5%" }}
                         className="onboard-svg"
                         onClick={() => {
-                          copyToClipboard(onboardUrl + secret);
+                          clipboard(onboardUrl + secret);
                           success(_t("onboard.copy-link"));
                         }}
                       >
@@ -626,28 +615,30 @@ const Onboard = (props: Props) => {
         </div>
       )}
 
-      {props.match.params.type === "confirming" && 
-      <div className="onboard-container">
-        <div className="login-warning">
-          <span>
-            {_t("onboard.success-message")} <strong>@{decodedInfo?.username}</strong>
-          </span>
+      {props.match.params.type === "confirming" && (
+        <div className="onboard-container">
+          <div className="login-warning">
+            <span>
+              {_t("onboard.success-message")} <strong>@{decodedInfo?.username}</strong>
+            </span>
+          </div>
+          <Button
+            as={Link}
+            to={`/@${decodedInfo?.username}`}
+            className="mt-3 w-50 align-self-center"
+            onClick={() => {
+              const queryId = window.location.search;
+              const searchParams = new URLSearchParams(queryId);
+              const tid = searchParams.get("id");
+              if (tid) {
+                sendMail();
+              }
+            }}
+          >
+            Completed
+          </Button>
         </div>
-        <Button 
-        as={Link}
-        to={`/@${decodedInfo?.username}`}
-        className="mt-3 w-50 align-self-center"
-        onClick={()=> {
-          const queryId  = window.location.search
-          const searchParams = new URLSearchParams(queryId);
-          const tid = searchParams.get("id");
-          if (tid) {
-            sendMail();
-          }
-        }}
-        >Completed</Button>
-      </div>
-      }
+      )}
       <Modal
         animation={false}
         show={showModal}
