@@ -191,10 +191,11 @@ const Onboard = (props: Props) => {
     }
   };
 
-  const sendMail = async (email: string = accountInfo!.email.replace("=", ".")) => {
+  const sendMail = async (email: string = accountInfo!.email) => {
     const { activeUser } = props;
+    const username = decodedInfo!.username || accountInfo!.username;
     if (activeUser) {
-      await onboardEmail(accountInfo!.username, email, activeUser?.username);
+      await onboardEmail(username, email.replace("=", "."), activeUser?.username);
     }
   };
 
