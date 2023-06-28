@@ -38,7 +38,9 @@ export const SignUp = (props: PageProps) => {
 
   const [username, setUsername] = useState("");
   const [usernameError, setUsernameError] = useState("");
+  const [referralError, setReferralError] = useState("");
   const [usernameTouched, setUsernameTouched] = useState(false);
+  const [referralTouched, setReferralTouched] = useState(false);
 
   const [email, setEmail] = useState("");
   const [referral, setReferral] = useState("");
@@ -121,6 +123,26 @@ export const SignUp = (props: PageProps) => {
       });
     }
   }, [username, usernameTouched]);
+
+  useEffect(() => {
+    setReferralError("");
+    setIsDisabled(false);
+
+    if (!referral) {
+      return;
+    }
+    if (referral.length > 16) {
+      setReferralError(_t("sign-up.referral-max-length-error"));
+      setIsDisabled(true);
+    } else {
+      referral.split(".").some((item) => {
+        if (item.length < 3) {
+          setReferralError(_t("sign-up.referral-min-length-error"));
+          setIsDisabled(true);
+        }
+      });
+    }
+  }, [referral, referralTouched]);
 
   const regularRegister = async () => {
     setInProgress(true);
@@ -234,13 +256,19 @@ export const SignUp = (props: PageProps) => {
                       return;
                     }
 
-                    if (usernameError) {
+                    if (usernameError || referralError) {
                       return;
                     }
 
                     const existingAccount = await getAccount(username);
                     if (existingAccount) {
                       setUsernameError(_t("sign-up.username-exists"));
+                      return;
+                    }
+                    
+                    const referralIsValid = await getAccount(referral);
+                    if (!referralIsValid && referral !== "") {
+                      setReferralError(_t("sign-up.referral-invalid"));
                       return;
                     }
 
@@ -286,8 +314,10 @@ export const SignUp = (props: PageProps) => {
                       value={referral}
                       onChange={(e: FormChangeEvent) => setReferral(e.target.value.toLowerCase())}
                       disabled={lockReferral}
+                      onBlur={() => setReferralTouched(true)}
                     />
                   </Form.Group>
+                    <Form.Text className="text-danger pl-3">{referralError}</Form.Text>
                   {!props.global.isElectron && (
                     <div style={{ marginTop: "16px", marginBottom: "16px" }}>
                       <ReCAPTCHA
