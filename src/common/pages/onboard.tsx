@@ -452,7 +452,14 @@ const Onboard = (props: Props) => {
           </div>
           <div className="d-flex justify-content-center">
             <span className="hr-6px-btn-spacer" />
-            <Button onClick={finish}>{_t("g.finish")}</Button>
+            <Button
+              as={Link}
+              to={`/@${decodedInfo?.username}`}
+              className="mt-3 w-50 align-self-center"
+              onClick={finish}
+            >
+              {_t("g.finish")}
+            </Button>
           </div>
         </div>
       </>
