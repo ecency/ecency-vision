@@ -285,8 +285,6 @@ exports[`(1) Default render 1`] = `
         disabled={false}
         global={
           Object {
-            "accountEmail": null,
-            "accountName": "",
             "canUseWebp": false,
             "currency": "usd",
             "currencyRate": 1,
@@ -303,7 +301,6 @@ exports[`(1) Default render 1`] = `
             "newVersion": null,
             "notifications": true,
             "nsfw": false,
-            "referral": null,
             "searchIndexCount": 10000000,
             "tag": "",
             "theme": "day",
@@ -629,8 +626,6 @@ exports[`(2) Cancellable, in progress 1`] = `
         disabled={false}
         global={
           Object {
-            "accountEmail": null,
-            "accountName": "",
             "canUseWebp": false,
             "currency": "usd",
             "currencyRate": 1,
@@ -647,7 +642,6 @@ exports[`(2) Cancellable, in progress 1`] = `
             "newVersion": null,
             "notifications": true,
             "nsfw": false,
-            "referral": null,
             "searchIndexCount": 10000000,
             "tag": "",
             "theme": "day",

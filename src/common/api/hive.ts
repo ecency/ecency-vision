@@ -49,6 +49,14 @@ export interface FeedHistory {
   };
 }
 
+export interface ChainProps {
+  account_creation_fee: string;
+  maximum_block_size: number;
+  hbd_interest_rate: number;
+  account_subsidy_budget: number;
+  account_subsidy_decay: number;
+}
+
 export interface RewardFund {
   recent_claims: string;
   reward_balance: string;
@@ -340,9 +348,13 @@ export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("
 export const getRewardFund = (): Promise<RewardFund> =>
   client.database.call("get_reward_fund", ["post"]);
 
+export const getChainProps = (): Promise<ChainProps> =>
+  client.database.call("get_chain_properties");
+
 export const getDynamicProps = async (): Promise<DynamicProps> => {
   const globalDynamic = await getDynamicGlobalProperties();
   const feedHistory = await getFeedHistory();
+  const chainProps = await getChainProps();
   const rewardFund = await getRewardFund();
 
   const hivePerMVests =
@@ -360,6 +372,7 @@ export const getDynamicProps = async (): Promise<DynamicProps> => {
   const totalVestingShares = parseAsset(globalDynamic.total_vesting_shares).amount;
   const virtualSupply = parseAsset(globalDynamic.virtual_supply).amount;
   const vestingRewardPercent = globalDynamic.vesting_reward_percent;
+  const accountCreationFee = chainProps.account_creation_fee;
 
   return {
     hivePerMVests,
@@ -373,7 +386,8 @@ export const getDynamicProps = async (): Promise<DynamicProps> => {
     totalVestingFund,
     totalVestingShares,
     virtualSupply,
-    vestingRewardPercent
+    vestingRewardPercent,
+    accountCreationFee
   };
 };
 

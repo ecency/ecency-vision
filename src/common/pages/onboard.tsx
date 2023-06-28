@@ -247,14 +247,15 @@ const Onboard = (props: Props) => {
   };
 
   const onKc = async (type: string) => {
-    const { activeUser } = props;
+    const { activeUser, dynamicProps } = props;
     if (activeUser) {
       try {
         if (type === createOptions.HIVE) {
           const resp = await createAccountKc(
             {
               username: decodedInfo?.username,
-              pub_keys: decodedInfo?.pubkeys
+              pub_keys: decodedInfo?.pubkeys,
+              fee: dynamicProps.accountCreationFee
             },
             activeUser?.username
           );
@@ -291,14 +292,15 @@ const Onboard = (props: Props) => {
   };
 
   const onKey = async (type: string, key: PrivateKey) => {
-    const { activeUser } = props;
+    const { activeUser, dynamicProps } = props;
     if (activeUser) {
       try {
         if (type === createOptions.HIVE) {
           const resp = await createAccountKey(
             {
               username: decodedInfo?.username,
-              pub_keys: decodedInfo?.pubkeys
+              pub_keys: decodedInfo?.pubkeys,
+              fee: dynamicProps.accountCreationFee
             },
             activeUser?.username,
             key
@@ -337,7 +339,7 @@ const Onboard = (props: Props) => {
   };
 
   const onHot = async (type: string) => {
-    const { activeUser } = props;
+    const { activeUser, dynamicProps } = props;
     const dataToEncode = {
       username: accountInfo!.username,
       email: accountInfo!.email
@@ -350,7 +352,8 @@ const Onboard = (props: Props) => {
           const resp = await createAccountHs(
             {
               username: decodedInfo?.username,
-              pub_keys: decodedInfo?.pubkeys
+              pub_keys: decodedInfo?.pubkeys,
+              fee: dynamicProps.accountCreationFee
             },
             activeUser?.username,
             hashedInfo

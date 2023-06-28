@@ -950,7 +950,8 @@ export const dynamicPropsIntance1: DynamicProps = {
   totalVestingFund: 147530899.832,
   totalVestingShares: 274146627336.063918,
   virtualSupply: 395012207.852,
-  vestingRewardPercent: 1500
+  vestingRewardPercent: 1500,
+  accountCreationFee: "3.000 HIVE"
 };
 
 export const notificationsInstance1: Notifications = {

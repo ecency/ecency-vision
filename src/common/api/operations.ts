@@ -1910,7 +1910,7 @@ export const RevokeKc = (
 // Create account with hive keychain
 export const createAccountKc = async (data: any, creator_account: string) => {
   try {
-    const { username, pub_keys } = data;
+    const { username, pub_keys, fee } = data;
 
     const account = {
       name: username,
@@ -1918,7 +1918,6 @@ export const createAccountKc = async (data: any, creator_account: string) => {
       active: false
     };
 
-    const fee = "3.000 HIVE";
     const op_name: OperationName = "account_create";
 
     const owner = {
@@ -1967,7 +1966,7 @@ export const createAccountKc = async (data: any, creator_account: string) => {
 // Create account with hive Hs
 export const createAccountHs = async (data: any, creator_account: string, hash: string) => {
   try {
-    const { username, pub_keys } = data;
+    const { username, pub_keys, fee } = data;
 
     const account = {
       name: username,
@@ -1975,7 +1974,6 @@ export const createAccountHs = async (data: any, creator_account: string, hash: 
       active: false
     };
 
-    const fee = "3.000 HIVE";
     const op_name: OperationName = "account_create";
 
     const owner = {
@@ -2031,7 +2029,7 @@ export const createAccountKey = async (
   creator_key: PrivateKey
 ) => {
   try {
-    const { username, pub_keys } = data;
+    const { username, pub_keys, fee } = data;
 
     const account = {
       name: username,
@@ -2042,7 +2040,6 @@ export const createAccountKey = async (
     let tokens: any = await hiveClient.database.getAccounts([creator_account]);
     tokens = tokens[0]?.pending_claimed_accounts;
 
-    let fee = "3.000 HIVE";
     let op_name: OperationName = "account_create";
 
     const owner = {
