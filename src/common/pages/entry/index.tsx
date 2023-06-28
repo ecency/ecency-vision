@@ -173,9 +173,9 @@ const EntryComponent = (props: Props) => {
       setReputation(accountReputation(entry.author_reputation));
       setImage(catchPostImage(entry, 600, 500, props.global.canUseWebp ? "webp" : "match"));
 
-      const app = appName(entry.json_metadata.app);
-      setApp(app);
-      setAppShort(app.split("/")[0].split(" ")[0]);
+      const _app = appName(entry.json_metadata.app);
+      setApp(_app);
+      setAppShort(_app.split("/")[0].split(" ")[0]);
 
       const tags = entry.json_metadata.tags && [...new Set(entry.json_metadata.tags)];
 
