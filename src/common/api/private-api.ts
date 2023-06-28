@@ -617,3 +617,14 @@ export const deleteRecoveries = (username: string, recoveryId: string): Promise<
   const data = { code: getAccessToken(username), id: recoveryId };
   return axios.post(apiBase(`/private-api/recoveries-delete`), data).then((resp) => resp.data);
 };
+
+export const onboardEmail = (username: string, email: string, friend: string): Promise<any> => {
+  const dataBody = {
+    username,
+    email,
+    friend
+  };
+  return axios
+    .post(apiBase(`/private-api/account-create-friend`), dataBody)
+    .then((resp) => resp.data);
+};

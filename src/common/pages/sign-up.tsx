@@ -22,6 +22,8 @@ import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import { getAccount } from "../api/hive";
 import "./sign-up.scss";
+import { Link } from "react-router-dom";
+import { b64uEnc } from "../util/b64";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -48,6 +50,7 @@ export const SignUp = (props: PageProps) => {
   const [url, setUrl] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [registrationError, setRegistrationError] = useState("");
+  const [urlHash, setUrlHash] = useState("");
 
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
@@ -154,6 +157,21 @@ export const SignUp = (props: PageProps) => {
     }
   };
 
+  const encodeUrlInfo = (username: string, email: string, referral: string) => {
+    const accInfo = {
+      username,
+      email,
+      referral
+    };
+    try {
+      const stringifiedInfo = JSON.stringify(accInfo);
+      const hashedInfo = b64uEnc(stringifiedInfo);
+      setUrlHash(hashedInfo);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <Meta title={_t("sign-up.header")} />
@@ -228,6 +246,10 @@ export const SignUp = (props: PageProps) => {
 
                     if (stage === Stage.FORM) {
                       setStage(Stage.REGISTER_TYPE);
+                    }
+
+                    if ((username && email) || referral) {
+                      encodeUrlInfo(username, email, referral);
                     }
                   }}
                 >
@@ -317,7 +339,7 @@ export const SignUp = (props: PageProps) => {
 
             {stage === Stage.REGISTER_TYPE ? (
               <div className="form-content">
-                <div className="card mb-3">
+                <div className="card mb-3 mt-5">
                   <div className="card-header">
                     <b>{_t("sign-up.free-account")}</b>
                   </div>
@@ -335,7 +357,7 @@ export const SignUp = (props: PageProps) => {
                     </div>
                   )}
                 </div>
-                <div className="card">
+                <div className="card mb-3">
                   <div className="card-header">
                     <b>{_t("sign-up.buy-account")}</b>
                   </div>
@@ -354,6 +376,29 @@ export const SignUp = (props: PageProps) => {
                       onClick={() => setStage(Stage.BUY_ACCOUNT)}
                     >
                       {_t("sign-up.buy-account")} – $2.99
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="card mb-3">
+                  <div className="card-header">
+                    <b>{_t("onboard.title")}</b>
+                  </div>
+                  <div className="card-body">
+                    <p>{_t("onboard.description")}</p>
+                    <ul>
+                      <li>{_t("onboard.asking-description")}</li>
+                      <li>{_t("onboard.creating-description")}</li>
+                    </ul>
+                  </div>
+                  <div className="card-footer">
+                    <Button
+                      as={Link}
+                      to={`/onboard-friend/asking/${urlHash}`}
+                      className="w-100"
+                      variant="primary"
+                    >
+                      {_t("onboard.asking")}
                     </Button>
                   </div>
                 </div>

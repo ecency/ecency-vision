@@ -16,7 +16,8 @@ export const initialState: State = {
   totalVestingFund: 1,
   totalVestingShares: 1,
   virtualSupply: 1,
-  vestingRewardPercent: 1
+  vestingRewardPercent: 1,
+  accountCreationFee: "3.000 HIVE"
 };
 
 export default (state: State = initialState, action: Actions): State => {

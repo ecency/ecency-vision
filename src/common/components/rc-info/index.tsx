@@ -33,6 +33,7 @@ export const ResourceCreditsInfo = (props: any) => {
   const [voteAmount, setVoteAmount] = useState(0);
   const [transferAmount, setTransferAmount] = useState(0);
   const [customJsonAmount, setCustomJsonAmount] = useState(0);
+  const [claimAccountAmount, setClaimAccountAmount] = useState(0);
 
   const showModal = () => {
     fetchRCData();
@@ -98,6 +99,7 @@ export const ResourceCreditsInfo = (props: any) => {
           const transferCost = operationCosts.transfer_operation.avg_cost;
           const voteCost = operationCosts.vote_operation.avg_cost;
           const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
+          const createClaimAccountCost = Number(operationCosts.claim_account_operation.avg_cost);
 
           const commentCount: number = Math.ceil(Number(availableResourceCredit) / commentCost);
           const votetCount: number = Math.ceil(Number(availableResourceCredit) / voteCost);
@@ -105,10 +107,14 @@ export const ResourceCreditsInfo = (props: any) => {
           const customJsonCount: number = Math.ceil(
             Number(availableResourceCredit) / customJsonOperationsCosts
           );
+          const createClaimAccountCount: number = Math.floor(
+            Number(availableResourceCredit) / createClaimAccountCost
+          );
           setCommentAmount(commentCount);
           setVoteAmount(votetCount);
           setTransferAmount(transferCount);
           setCustomJsonAmount(customJsonCount);
+          setClaimAccountAmount(createClaimAccountCount);
         };
         rcOperationsCost();
       })
@@ -217,6 +223,7 @@ export const ResourceCreditsInfo = (props: any) => {
                     <li>{`${_t("rc-info.votes")} ${voteAmount}`}</li>
                     <li>{`${_t("rc-info.transfers")} ${transferAmount}`}</li>
                     <li>{`${_t("rc-info.reblogs-follows")} ${customJsonAmount}`}</li>
+                    <li>{`${_t("rc-info.claim-accounts")} ${claimAccountAmount}`}</li>
                   </ul>
                 </div>
               </div>
