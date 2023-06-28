@@ -1933,7 +1933,7 @@ export const createAccountKc = async (data: any, creator_account: string) => {
     };
     const posting = {
       weight_threshold: 1,
-      account_auths: [],
+      account_auths: [["ecency.app", 1]],
       key_auths: [[account.postingPublicKey, 1]]
     };
     const ops: Array<any> = [];
@@ -1990,7 +1990,7 @@ export const createAccountHs = async (data: any, creator_account: string, hash: 
     };
     const posting = {
       weight_threshold: 1,
-      account_auths: [],
+      account_auths: [["ecency.app", 1]],
       key_auths: [[account.postingPublicKey, 1]]
     };
 
@@ -2011,7 +2011,7 @@ export const createAccountHs = async (data: any, creator_account: string, hash: 
     try {
       // For Hive Signer
       const params: Parameters = {
-        callback: `http://localhost:3000/onboard-friend/confirming/${hash}?tid={{id}}`
+        callback: `https://ecency.com/onboard-friend/confirming/${hash}?tid={{id}}`
       };
       const newAccount = hs.sendOperation(operation, params, () => {});
       return newAccount;
@@ -2057,7 +2057,7 @@ export const createAccountKey = async (
     };
     const posting = {
       weight_threshold: 1,
-      account_auths: [],
+      account_auths: [["ecency.app", 1]],
       key_auths: [[account.postingPublicKey, 1]]
     };
     const ops: Array<any> = [];
@@ -2119,7 +2119,7 @@ export const createAccountWithCreditKc = async (data: any, creator_account: stri
     };
     const posting = {
       weight_threshold: 1,
-      account_auths: [],
+      account_auths: [["ecency.app", 1]],
       key_auths: [[account.postingPublicKey, 1]]
     };
     const ops: Array<any> = [];
@@ -2183,7 +2183,7 @@ export const createAccountWithCreditHs = async (
     };
     const posting = {
       weight_threshold: 1,
-      account_auths: [],
+      account_auths: [["ecency.app", 1]],
       key_auths: [[account.postingPublicKey, 1]]
     };
 
@@ -2204,7 +2204,7 @@ export const createAccountWithCreditHs = async (
     try {
       // For Hive Signer
       const params: Parameters = {
-        callback: `http://localhost:3000/onboard-friend/confirming/${hash}?tid={{id}}`
+        callback: `https://ecency.com/onboard-friend/confirming/${hash}?tid={{id}}`
       };
       console.log(params);
       const newAccount = hs.sendOperation(operation, params, () => {});
@@ -2251,7 +2251,7 @@ export const createAccountWithCreditKey = async (
     };
     const posting = {
       weight_threshold: 1,
-      account_auths: [],
+      account_auths: [["ecency.app", 1]],
       key_auths: [[account.postingPublicKey, 1]]
     };
     const ops: Array<any> = [];
