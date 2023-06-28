@@ -28,6 +28,7 @@ import { SearchResult } from "../../api/search-api";
 import { peopleSvg, commentSvg } from "../../img/svg";
 import { dateToFormatted, dateToRelative } from "../../helper/parse-date";
 import "./_index.scss";
+import { transformMarkedContent } from "../../util/transform-marked-content";
 
 interface Props {
   history: History;
@@ -35,20 +36,6 @@ interface Props {
   addAccount: (data: Account) => void;
   res: SearchResult;
 }
-
-const transformMarkedContent = (content: string) => {
-  return htmlParse(content, {
-    replace: (domNode) => {
-      // Only text and <mark> elements
-      if (domNode.type === "text" || (domNode instanceof Element && domNode.name === "mark")) {
-        return domNode;
-      }
-
-      return <></>;
-    }
-  });
-};
-
 class SearchListItem extends Component<Props> {
   shouldComponentUpdate(): boolean {
     return false;

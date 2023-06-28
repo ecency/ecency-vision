@@ -46,8 +46,6 @@
   }
 
   .thread-item.sequence-item {
-    overflow: hidden;
-
     @include sequence_item();
 
     .user-avatar {

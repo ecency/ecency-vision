@@ -3,11 +3,9 @@ import { Entry } from "../../../store/entries/types";
 import { Alert, Spinner } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import { EntryLink } from "../../entry-link";
-import useInterval from "react-use/lib/useInterval";
-import * as bridgeApi from "../../../api/bridge";
-import { useMappedStore } from "../../../store/use-mapped-store";
 import { checkSvg } from "../../../img/svg";
 import { DeckThreadsContext } from "../columns/deck-threads-manager";
+import { useEntryChecking } from "../utils";
 
 interface Props {
   lastEntry?: Entry;
@@ -15,42 +13,29 @@ interface Props {
 }
 
 export const DeckThreadsCreatedRecently = ({ lastEntry, setLastEntry }: Props) => {
-  const { activeUser } = useMappedStore();
   const { reload } = useContext(DeckThreadsContext);
 
   const [intervalStarted, setIntervalStarted] = useState(false);
 
   const isLocal = ({ post_id }: Entry) => post_id === 1 || typeof post_id === "string";
 
+  useEntryChecking(lastEntry, intervalStarted, (entry) => {
+    setLastEntry(entry);
+
+    // Reload all columns after thread item creation
+    reload();
+
+    setTimeout(() => {
+      setLastEntry(undefined);
+      setIntervalStarted(false);
+    }, 5000);
+  });
+
   useEffect(() => {
     if (lastEntry) {
       setIntervalStarted(true);
     }
   }, [lastEntry]);
-
-  useInterval(
-    async () => {
-      // Checking for transaction status
-      if (lastEntry && isLocal(lastEntry)) {
-        try {
-          const entry = await bridgeApi.getPost(activeUser!.username, lastEntry.permlink);
-          const isAlreadyAdded = lastEntry.permlink === entry?.permlink && !isLocal(lastEntry);
-          if (entry && !isAlreadyAdded) {
-            setLastEntry(entry);
-
-            // Reload all columns after thread item creation
-            reload();
-
-            setTimeout(() => {
-              setLastEntry(undefined);
-              setIntervalStarted(false);
-            }, 5000);
-          }
-        } catch (e) {}
-      }
-    },
-    intervalStarted ? 3000 : null
-  );
 
   return (
     <div className="deck-threads-created-recently">

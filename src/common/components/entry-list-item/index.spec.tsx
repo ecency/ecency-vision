@@ -21,6 +21,8 @@ import { ListStyle } from "../../store/global/types";
 import EntryListItem from "./index";
 import { withStore } from "../../tests/with-store";
 import { activeUserMaker } from "../../store/helper";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "../../core";
 
 mockDate.set(1591398131176);
 
@@ -36,7 +38,6 @@ const defProps = {
   reblogs: emptyReblogs,
   entry: entryInstance1,
   ui: UiInstance,
-  entryPinTracker: {},
   signingKey: "",
   asAuthor: "",
   promoted: false,
@@ -58,9 +59,11 @@ const defProps = {
 
 it("(1) Default render", async () => {
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...defProps} />
-    </StaticRouter>,
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...defProps} />
+      </StaticRouter>
+    </QueryClientProvider>,
     defProps
   );
   await allOver();
@@ -76,9 +79,11 @@ it("(2) Grid view", async () => {
     }
   };
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...props} />
-    </StaticRouter>,
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...props} />
+      </StaticRouter>
+    </QueryClientProvider>,
     defProps
   );
   await allOver();
@@ -96,9 +101,11 @@ it("(3) Nsfw", async () => {
     }
   };
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...props} />
-    </StaticRouter>,
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...props} />
+      </StaticRouter>
+    </QueryClientProvider>,
     defProps
   );
   await allOver();
@@ -118,9 +125,11 @@ it("(4) Nsfw with active user", async () => {
     activeUser: activeUserMaker("foo")
   };
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...props} />
-    </StaticRouter>,
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...props} />
+      </StaticRouter>
+    </QueryClientProvider>,
     defProps
   );
   await allOver();
@@ -143,9 +152,11 @@ it("(5) Nsfw but allowed", async () => {
     }
   };
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...props} />
-    </StaticRouter>,
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...props} />
+      </StaticRouter>
+    </QueryClientProvider>,
     defProps
   );
   await allOver();
@@ -160,9 +171,11 @@ it("(6) Cross post. Bottom menu", async () => {
   };
 
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...props} />
-    </StaticRouter>,
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...props} />
+      </StaticRouter>
+    </QueryClientProvider>,
     defProps
   );
   await allOver();

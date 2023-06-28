@@ -2,11 +2,14 @@ import React from "react";
 
 import { createBrowserHistory } from "history";
 
-import { EntryMenu } from "./index";
+import EntryMenu from "./index";
 
 import TestRenderer from "react-test-renderer";
 
 import { entryInstance1, globalInstance, dynamicPropsIntance1 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
+import { queryClient } from "../../core";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 const defProps = {
   history: createBrowserHistory(),
@@ -15,7 +18,6 @@ const defProps = {
   activeUser: null,
   entry: entryInstance1,
   communities: [],
-  entryPinTracker: {},
   signingKey: "",
   setSigningKey: () => {},
   updateActiveUser: () => {},
@@ -29,7 +31,11 @@ const defProps = {
 
 it("(1) Default render", () => {
   const props = { ...defProps };
-  const renderer = TestRenderer.create(<EntryMenu {...props} />);
+  const renderer = withStore(
+    <QueryClientProvider client={queryClient}>
+      <EntryMenu {...props} />
+    </QueryClientProvider>
+  );
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
@@ -38,6 +44,10 @@ it("(2) Separated sharing buttons", () => {
     ...defProps,
     separatedSharing: true
   };
-  const renderer = TestRenderer.create(<EntryMenu {...props} />);
+  const renderer = withStore(
+    <QueryClientProvider client={queryClient}>
+      <EntryMenu {...props} />
+    </QueryClientProvider>
+  );
   expect(renderer.toJSON()).toMatchSnapshot();
 });

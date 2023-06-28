@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "예약",
-    "btn-label": "예약"
+    "btn-label": "예약",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "새로운 알림이 있습니다.",

@@ -9,18 +9,8 @@ import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server";
 import App from "../common/app";
 import { AppState } from "../common/store";
 import configureStore from "../common/store/configure";
-
-let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || "");
-
-const cssLinksFromAssets = (assets: any, entrypoint: string) => {
-  return assets[entrypoint]
-    ? assets[entrypoint].css
-      ? assets[entrypoint].css
-          .map((asset: any) => `<link rel="stylesheet" href="${asset}">`)
-          .join("")
-      : ""
-    : "";
-};
+import { queryClient } from "../common/core";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 export const renderAmp = async (req: express.Request, state: AppState) => {
   const store = configureStore(state);
@@ -34,9 +24,11 @@ export const renderAmp = async (req: express.Request, state: AppState) => {
   let markup = renderToString(
     <ChunkExtractorManager extractor={extractor}>
       <Provider store={store}>
-        <StaticRouter location={req.originalUrl} context={context}>
-          <App />
-        </StaticRouter>
+        <QueryClientProvider client={queryClient}>
+          <StaticRouter location={req.originalUrl} context={context}>
+            <App />
+          </StaticRouter>
+        </QueryClientProvider>
       </Provider>
     </ChunkExtractorManager>
   );

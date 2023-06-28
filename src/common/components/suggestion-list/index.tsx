@@ -207,7 +207,7 @@ export default class SuggestionList extends Component<Props> {
           <ClickAwayListener onClickAway={() => this.setState({ showList: false })}>
             {showList && modeItems && modeItems?.length > 0 ? modeItemsUI : <></>}
             {showList && !modeItems && items.length > 0 ? (
-              <div className="suggestion-list">
+              <div className="modal-suggestion-list">
                 {header && <div className="list-header">{header}</div>}
                 <div className="list-body">
                   {items.map((x, i) => {

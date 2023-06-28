@@ -7,6 +7,8 @@ import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
 import { ICONS, USER_CONTENT_TYPES } from "../../consts";
 import { _t } from "../../../../i18n";
+import useLocalStorage from "react-use/lib/useLocalStorage";
+import { PREFIX } from "../../../../util/local-storage";
 
 export const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -15,7 +17,7 @@ export const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
 
   const [username, setUsername] = useState("");
   const [contentType, setContentType] = useState<string | null>(null);
-  const [recent, setRecent] = useState<UsernameDataItem[]>([]);
+  const [recent, setRecent] = useLocalStorage<UsernameDataItem[]>(PREFIX + "_dur", []);
 
   return (
     <div className="deck-add-column-user-settings p-3">
@@ -28,11 +30,16 @@ export const DeckAddColumnUserSettings = ({ deckKey }: SettingsProps) => {
           <div className="click-to-change">{_t("decks.columns.click-to-change")}</div>
         </div>
       ) : (
-        <DeckAddColumnSearchBox username={username} setUsername={setUsername} recentList={recent} />
+        <DeckAddColumnSearchBox
+          username={username}
+          setUsername={setUsername}
+          recentList={recent}
+          setRecentList={setRecent}
+        />
       )}
       {username !== "" ? (
         <>
-          <div className="subtitle py-3 mt-3">Content type</div>
+          <div className="subtitle py-3 mt-3">{_t("decks.content-type")}</div>
           <div className="content-type-list">
             {USER_CONTENT_TYPES.map(({ title, type }) => (
               <div

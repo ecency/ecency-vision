@@ -1,43 +1,17 @@
 import express from "express";
-
 import React from "react";
 import { Provider } from "react-redux";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
-
 import { Helmet } from "react-helmet";
-
 import serialize from "serialize-javascript";
-
 import App from "../common/app";
-
 import { AppState } from "../common/store";
-
 import configureStore from "../common/store/configure";
 import path from "path";
 import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server";
-
-let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || "");
-
-const cssLinksFromAssets = (assets: any, entrypoint: string) => {
-  return assets[entrypoint]
-    ? assets[entrypoint].css
-      ? assets[entrypoint].css
-          .map((asset: any) => `<link rel="stylesheet" href="${asset}">`)
-          .join("")
-      : ""
-    : "";
-};
-
-const jsScriptTagsFromAssets = (assets: any, entrypoint: any, extra = "") => {
-  return assets[entrypoint]
-    ? assets[entrypoint].js
-      ? assets[entrypoint].js
-          .map((asset: any) => `<script src="${asset}"${extra}></script>`)
-          .join("")
-      : ""
-    : "";
-};
+import { dehydrate, QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "../common/core";
 
 export const render = (req: express.Request, state: AppState) => {
   const store = configureStore(state);
@@ -47,13 +21,16 @@ export const render = (req: express.Request, state: AppState) => {
   const statsFile = path.resolve("./build/loadable-stats.json");
   // We create an extractor from the statsFile
   const extractor = new ChunkExtractor({ statsFile, entrypoints: ["client"] });
+  const dehydratedState = dehydrate(queryClient);
 
   const markup = renderToString(
     <ChunkExtractorManager extractor={extractor}>
       <Provider store={store}>
-        <StaticRouter location={req.originalUrl} context={context}>
-          <App />
-        </StaticRouter>
+        <QueryClientProvider client={queryClient}>
+          <StaticRouter location={req.originalUrl} context={context}>
+            <App />
+          </StaticRouter>
+        </QueryClientProvider>
       </Provider>
     </ChunkExtractorManager>
   );
@@ -66,6 +43,7 @@ export const render = (req: express.Request, state: AppState) => {
   const linkTags = extractor.getLinkTags();
   const styleTags = extractor.getStyleTags();
 
+  queryClient.clear();
   return `<!DOCTYPE html>
             <html lang="en">
             <head>
@@ -83,6 +61,7 @@ export const render = (req: express.Request, state: AppState) => {
                 <div id="root">${markup}</div>
                 <script>
                   window.__PRELOADED_STATE__ = ${serialize(finalState)}
+                  window.__REACT_QUERY_STATE__ = ${serialize(dehydratedState)}
                 </script>
                 ${scriptTags}
                 <script type="application/ld+json">

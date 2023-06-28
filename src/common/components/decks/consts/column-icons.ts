@@ -1,8 +1,10 @@
 import {
+  balanceIconSvg,
   blogIconSvg,
   bookmarksIconSvg,
   commentsIconSvg,
   delegationsIconSvg,
+  faqIconSvg,
   favouritesIconSvg,
   followsIconSvg,
   hotIconSvg,
@@ -18,12 +20,14 @@ import {
   rewardIconSvg,
   searchIconSvg,
   stakeOperationsIconSvg,
+  swapFormSvg,
   threadSvg,
   topicsIconSvg,
   transfersIconSvg,
   trendingIconSvg,
   voteIconSvg,
-  walletAllIconSvg
+  walletAllIconSvg,
+  whatsNewIconSvg
 } from "../icons";
 
 export const ICONS = {
@@ -48,12 +52,14 @@ export const ICONS = {
     delegations: delegationsIconSvg
   },
   u: {
+    feed: mentionsIconSvg,
     blog: blogIconSvg,
     posts: postsIconSvg,
     comments: commentsIconSvg,
     replies: repliesIconSvg
   },
   w: {
+    balance: balanceIconSvg,
     all: walletAllIconSvg,
     transfers: transfersIconSvg,
     "market-orders": marketOrdersIconSvg,
@@ -64,5 +70,9 @@ export const ICONS = {
   tr: trendingIconSvg,
   to: topicsIconSvg,
   s: searchIconSvg,
-  th: threadSvg
+  th: threadSvg,
+  msf: swapFormSvg,
+  faq: faqIconSvg,
+  wb: balanceIconSvg,
+  wn: whatsNewIconSvg
 };

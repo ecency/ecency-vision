@@ -1359,7 +1359,8 @@
   },
   "post-scheduler": {
     "title": "Jadval",
-    "btn-label": "Jadval"
+    "btn-label": "Jadval",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "Sizga yangi xabarnoma bor",

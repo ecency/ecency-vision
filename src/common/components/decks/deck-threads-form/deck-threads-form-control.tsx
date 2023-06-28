@@ -11,6 +11,7 @@ interface Props {
   setSelectedImage: (url: string | null) => void;
   onAddImage: (url: string, name: string) => void;
   placeholder?: string;
+  onTextareaFocus: () => void;
 }
 
 export const DeckThreadsFormControl = ({
@@ -19,7 +20,8 @@ export const DeckThreadsFormControl = ({
   onAddImage,
   selectedImage,
   setSelectedImage,
-  placeholder
+  placeholder,
+  onTextareaFocus
 }: Props) => {
   return (
     <>
@@ -30,7 +32,9 @@ export const DeckThreadsFormControl = ({
             placeholder={placeholder ?? _t("decks.threads-form.input-placeholder")}
             value={text}
             onChange={(e) => setText(e.target.value)}
+            onFocus={onTextareaFocus}
           />
+          <div className="length-prompt">{text.length}/255</div>
         </div>
         {selectedImage && (
           <div className="deck-threads-form-selected-image">
@@ -40,7 +44,10 @@ export const DeckThreadsFormControl = ({
             </div>
           </div>
         )}
-        <DeckThreadsFormToolbar onAddImage={onAddImage} />
+        <DeckThreadsFormToolbar
+          onAddImage={onAddImage}
+          onEmojiPick={(v) => setText(`${text}${v}`)}
+        />
       </div>
     </>
   );

@@ -1,4 +1,5 @@
 @import "src/style/vars_mixins";
+@import "../helpers/helpers";
 
 .deck {
 
@@ -70,6 +71,12 @@
           }
         }
       }
+
+      .you {
+        color: $secondary;
+
+        @include font-size(0.75rem);
+      }
     }
 
     &-parent {
@@ -97,8 +104,16 @@
     &-actions {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 1rem;
       flex-wrap: wrap;
+
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
 
       @include padding-left(1rem);
       @include padding-right(1rem);
@@ -128,55 +143,7 @@
         height: 1rem;
       }
 
-      .tooltiptext {
-        max-width: 380px;
-        width: 100vw;
-
-        .voting-controls {
-          display: grid;
-          align-items: center;
-          grid-template-areas:
-            "slider slider slider slider slider"
-            "btn-up price space percentage btn-down";
-          grid-template-columns: min-content min-content 1fr min-content min-content;
-
-          .btn-up-vote {
-            grid-area: btn-up;
-            position: relative;
-            z-index: 9;
-          }
-
-          .btn-vote-down {
-            grid-area: btn-down;
-            justify-self: end;
-            position: relative;
-            z-index: 9;
-          }
-
-          .slider {
-            grid-area: slider;
-          }
-
-          .estimated {
-            grid-area: price;
-          }
-
-          .percentage {
-            grid-area: percentage;
-          }
-
-          .space {
-            grid-area: space;
-          }
-        }
-
-        @media screen and (max-width: 560px) {
-          width: calc(100vw - 67px - 24px);
-          left: -12px;
-          right: auto;
-          top: -23px;
-        }
-      }
+      @include compact_vote_slider();
     }
 
     &-body {
@@ -381,6 +348,55 @@
         padding-left: 2.125rem;
       }
     }
+
+    &.pending {
+      background-color: $gray-100;
+
+      @include themify(night) {
+        background-color: $gray-800;
+      }
+
+      .spinner-border {
+        width: 1rem;
+        height: 1rem;
+        border-width: 0.125rem;
+        opacity: 0.5;
+      }
+    }
+
+    .updated-label {
+      color: $secondary;
+      opacity: 0.75;
+
+      @include font-size(0.75rem);
+    }
+  }
+
+  .virtual-list-item {
+
+    a[target=_blank]:after {
+      content: none;
+    }
+
+    .date {
+      font-weight: bold;
+      opacity: 0.5;
+
+      a {
+        color: $secondary;
+
+        @include font-size(0.75rem);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .custom-dropdown .dropdown-btn .menu-down {
+    width: auto;
+    height: auto;
   }
 }
 
