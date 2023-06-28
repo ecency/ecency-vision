@@ -19,10 +19,18 @@ import { makePath } from "../../common/components/entry-link";
 export default async (req: Request, res: Response) => {
   const { category, author, permlink } = req.params;
   let entry: Entry | null = null;
-
-  await queryClient.fetchQuery([QueryIdentifiers.ENTRY, makePath(category, author, permlink)], () =>
-    bridgeApi.getPost(author, permlink)
-  );
+  try {
+    await queryClient.fetchQuery(
+      [QueryIdentifiers.ENTRY, makePath(category, author, permlink)],
+      () => bridgeApi.getPost(author, permlink)
+    );
+  } catch (error) {
+    console.error(
+      `${new Date().toISOString()} ${
+        bridgeApi.bridgeServer?.currentAddress
+      } ERROR fetching @${author}/${permlink}`
+    );
+  }
 
   if (permlink.indexOf(".") > -1) {
     console.error(`${new Date().toISOString()} ERROR permlink @${author}/${permlink}`);

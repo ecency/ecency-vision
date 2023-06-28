@@ -172,8 +172,10 @@ const EntryComponent = (props: Props) => {
       setMightContainMutedComments(!!props.activeUser && entryIsMuted && !isComment && !isOwnEntry);
       setReputation(accountReputation(entry.author_reputation));
       setImage(catchPostImage(entry, 600, 500, props.global.canUseWebp ? "webp" : "match"));
-      setApp(appName(entry.json_metadata.app));
-      setAppShort(app.split("/")[0].split(" ")[0]);
+
+      const _app = appName(entry.json_metadata.app);
+      setApp(_app);
+      setAppShort(_app.split("/")[0].split(" ")[0]);
 
       const tags = entry.json_metadata.tags && [...new Set(entry.json_metadata.tags)];
 
@@ -384,7 +386,7 @@ const EntryComponent = (props: Props) => {
         } by @${entry.author}`}
         url={entry.url}
         canonical={entryCanonical(entry) ?? ""}
-        image={image}
+        image={catchPostImage(entry, 600, 500, props.global.canUseWebp ? "webp" : "match")}
         published={published.toISOString()}
         modified={modified.toISOString()}
         tag={tag}

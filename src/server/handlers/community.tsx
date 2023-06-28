@@ -19,10 +19,17 @@ import isCommunity from "../../common/helper/is-community";
 
 export default async (req: express.Request, res: express.Response) => {
   const { filter, name, section } = req.params;
-
-  await queryClient.fetchQuery([QueryIdentifiers.COMMUNITY, name], () =>
-    isCommunity(name) ? bridgeApi.getCommunity(name) : null
-  );
+  try {
+    await queryClient.fetchQuery([QueryIdentifiers.COMMUNITY, name], () =>
+      isCommunity(name) ? bridgeApi.getCommunity(name) : null
+    );
+  } catch (error) {
+    console.error(
+      `${new Date().toISOString()} ${
+        bridgeApi.bridgeServer?.currentAddress
+      } ERROR fetching community ${name}`
+    );
+  }
 
   let accounts = [];
 
