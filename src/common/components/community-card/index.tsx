@@ -138,7 +138,6 @@ interface Props {
   signingKey: string;
   setSigningKey: (key: string) => void;
   addAccount: (data: Account) => void;
-  addCommunity: (data: Community) => void;
 }
 
 interface DialogInfo {
@@ -389,8 +388,7 @@ export default (p: Props) => {
     signingKey: p.signingKey,
     setSigningKey: p.setSigningKey,
     activeUser: p.activeUser,
-    addAccount: p.addAccount,
-    addCommunity: p.addCommunity
+    addAccount: p.addAccount
   };
 
   return <CommunityCard {...props} />;

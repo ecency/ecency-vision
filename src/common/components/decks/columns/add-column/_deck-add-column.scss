@@ -135,9 +135,10 @@
       @include padding-top(1rem);
 
       .users-list-item {
-        display: flex;
+        display: grid;
         align-items: center;
-        gap: 1rem;
+        grid-template-columns: min-content 1fr min-content;
+        grid-gap: 1rem;
         cursor: pointer;
 
         @include padding-top(0.5rem);

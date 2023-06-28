@@ -18,6 +18,7 @@ import { Entry } from "../../../../store/entries/types";
 import { DeckThreadItemHeader } from "./deck-thread-item-header";
 import moment from "moment";
 import { dateToRelative } from "../../../../helper/parse-date";
+import EntryMenu from "../../../entry-menu";
 
 export interface ThreadItemProps {
   initialEntry: IdentifiableEntry;
@@ -156,11 +157,14 @@ export const ThreadItem = ({
               </div>
             </Button>
           </div>
-          {activeUser?.username === entry.author && (
-            <Button className="edit-btn" variant="link" onClick={() => onEdit(entry)}>
-              {_t("decks.columns.edit-wave")}
-            </Button>
-          )}
+          <div>
+            <EntryMenu history={history} entry={entry} />
+            {activeUser?.username === entry.author && (
+              <Button className="edit-btn" variant="link" onClick={() => onEdit(entry)}>
+                {_t("decks.columns.edit-wave")}
+              </Button>
+            )}
+          </div>
         </div>
       )}
       {hasParent && !pure && (
