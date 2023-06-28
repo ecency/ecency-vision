@@ -99,17 +99,19 @@ const Onboard = (props: Props) => {
   useEffect(() => {
     setOnboardUrl(`${window.location.origin}/onboard-friend/creating/`);
     setInnerWidth(window.innerWidth);
-  }, []);
-
-  useEffect(() => {
-    initAccountKey();
     try {
-      if (props.match.params.secret) {
+      if (props.match.params.secret && props.match.params.type !== "asking") {
         const decodedHash = JSON.parse(b64uDec(props.match.params.secret));
         setDecodedInfo(decodedHash);
       }
     } catch (err) {
       console.log(err);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (props.match.params.type == "asking") {
+      initAccountKey();
     }
   }, [accountInfo?.username]);
 
@@ -156,7 +158,7 @@ const Onboard = (props: Props) => {
     try {
       const info = JSON.parse(b64uDec(urlInfo));
       const masterPassword: string = await generatePassword(32);
-      const keys: any = getPrivateKeys(accountInfo?.username, masterPassword);
+      const keys: any = getPrivateKeys(info?.username, masterPassword);
       // prepare object to encode
       const pubkeys = {
         activePublicKey: keys.activePubkey,
@@ -341,8 +343,8 @@ const Onboard = (props: Props) => {
   const onHot = async (type: string) => {
     const { activeUser, dynamicProps } = props;
     const dataToEncode = {
-      username: accountInfo!.username,
-      email: accountInfo!.email
+      username: decodedInfo!.username,
+      email: decodedInfo!.email
     };
     const stringifiedPubKeys = JSON.stringify(dataToEncode);
     const hashedInfo = b64uEnc(stringifiedPubKeys);
@@ -633,7 +635,7 @@ const Onboard = (props: Props) => {
               const { location } = props;
               const queryParams = new URLSearchParams(location.search);
               if (queryParams.has("tid")) {
-                sendMail();
+                sendMail(decodedInfo?.email);
               }
             }}
           >
