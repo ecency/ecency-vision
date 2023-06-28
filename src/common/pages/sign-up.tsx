@@ -248,10 +248,9 @@ export const SignUp = (props: PageProps) => {
                       setStage(Stage.REGISTER_TYPE);
                     }
 
-                    if(username && email || referral) {
+                    if ((username && email) || referral) {
                       encodeUrlInfo(username, email, referral);
                     }
-
                   }}
                 >
                   <Form.Group>

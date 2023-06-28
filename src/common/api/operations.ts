@@ -1956,7 +1956,7 @@ export const createAccountKc = async (data: any, creator_account: string) => {
       const newAccount = await keychain.broadcast(creator_account, [operation], "Active");
       return newAccount;
     } catch (err: any) {
-      console.log(err)
+      console.log(err);
       return err.jse_info.name;
     }
   } catch (err) {
@@ -2010,11 +2010,13 @@ export const createAccountHs = async (data: any, creator_account: string, hash: 
 
     try {
       // For Hive Signer
-      const params: Parameters = { callback: `http://localhost:3000/onboard-friend/confirming/${hash}?tid={{id}}` };
+      const params: Parameters = {
+        callback: `http://localhost:3000/onboard-friend/confirming/${hash}?tid={{id}}`
+      };
       const newAccount = hs.sendOperation(operation, params, () => {});
       return newAccount;
     } catch (err: any) {
-      console.log(err)
+      console.log(err);
       return err.jse_info.name;
     }
   } catch (err) {
@@ -2023,7 +2025,11 @@ export const createAccountHs = async (data: any, creator_account: string, hash: 
 };
 
 // Create account with hive key
-export const createAccountKey = async (data: any, creator_account: string, creator_key: PrivateKey) => {
+export const createAccountKey = async (
+  data: any,
+  creator_account: string,
+  creator_key: PrivateKey
+) => {
   try {
     const { username, pub_keys } = data;
 
@@ -2072,17 +2078,14 @@ export const createAccountKey = async (data: any, creator_account: string, creat
 
     try {
       // With Private Key
-      const newAccount = await hiveClient.broadcast.sendOperations(
-        ops,
-        creator_key
-      );
+      const newAccount = await hiveClient.broadcast.sendOperations(ops, creator_key);
       return newAccount;
     } catch (err: any) {
-      console.log(err.message)
+      console.log(err.message);
       return err.jse_info.name;
     }
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return err;
   }
 };
@@ -2142,13 +2145,17 @@ export const createAccountWithCreditKc = async (data: any, creator_account: stri
       return err.jse_info.name;
     }
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return err;
   }
 };
 
 // Create account with credit Hs
-export const createAccountWithCreditHs = async (data: any, creator_account: string, hash: string) => {
+export const createAccountWithCreditHs = async (
+  data: any,
+  creator_account: string,
+  hash: string
+) => {
   try {
     const { username, pub_keys } = data;
 
@@ -2196,12 +2203,14 @@ export const createAccountWithCreditHs = async (data: any, creator_account: stri
 
     try {
       // For Hive Signer
-      const params: Parameters = { callback: `http://localhost:3000/onboard-friend/confirming/${hash}?tid={{id}}` };
+      const params: Parameters = {
+        callback: `http://localhost:3000/onboard-friend/confirming/${hash}?tid={{id}}`
+      };
       console.log(params);
-      const newAccount = hs.sendOperation(operation, params, () => {})
+      const newAccount = hs.sendOperation(operation, params, () => {});
       return newAccount;
     } catch (err: any) {
-      console.log(err)
+      console.log(err);
       return err.jse_info.name;
     }
   } catch (err) {
@@ -2210,7 +2219,11 @@ export const createAccountWithCreditHs = async (data: any, creator_account: stri
 };
 
 // Create account with credit key
-export const createAccountWithCreditKey = async (data: any, creator_account: string, creator_key: PrivateKey) => {
+export const createAccountWithCreditKey = async (
+  data: any,
+  creator_account: string,
+  creator_key: PrivateKey
+) => {
   try {
     const { username, pub_keys } = data;
 
@@ -2259,13 +2272,10 @@ export const createAccountWithCreditKey = async (data: any, creator_account: str
 
     try {
       // With Private Key
-      const newAccount = await hiveClient.broadcast.sendOperations(
-        ops,
-        creator_key
-      );
+      const newAccount = await hiveClient.broadcast.sendOperations(ops, creator_key);
       return newAccount;
     } catch (err: any) {
-      console.log(err.message)
+      console.log(err.message);
       return err.jse_info.name;
     }
   } catch (err) {
