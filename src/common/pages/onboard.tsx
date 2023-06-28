@@ -370,7 +370,7 @@ const Onboard = (props: Props) => {
               pub_keys: decodedInfo?.pubkeys
             },
             activeUser?.username,
-            accountInfo!.email
+            hashedInfo
           );
           if (resp) {
             setInprogress(false);
@@ -630,15 +630,14 @@ const Onboard = (props: Props) => {
             to={`/@${decodedInfo?.username}`}
             className="mt-3 w-50 align-self-center"
             onClick={() => {
-              const queryId = window.location.search;
-              const searchParams = new URLSearchParams(queryId);
-              const tid = searchParams.get("id");
-              if (tid) {
+              const { location } = props;
+              const queryParams = new URLSearchParams(location.search);
+              if (queryParams.has("tid")) {
                 sendMail();
               }
             }}
           >
-            Completed
+            {_t("g.finish")}
           </Button>
         </div>
       )}
