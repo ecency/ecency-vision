@@ -191,9 +191,10 @@ const Onboard = (props: Props) => {
     }
   };
 
-  const sendMail = async (email: string = accountInfo!.email) => {
+  const sendMail = async () => {
     const { activeUser } = props;
     const username = decodedInfo!.username || accountInfo!.username;
+    const email = decodedInfo!.email || accountInfo!.email;
     if (activeUser) {
       await onboardEmail(username, email.replace("=", "."), activeUser?.username);
     }
@@ -636,7 +637,7 @@ const Onboard = (props: Props) => {
               const { location } = props;
               const queryParams = new URLSearchParams(location.search);
               if (queryParams.has("tid")) {
-                sendMail(decodedInfo?.email);
+                sendMail();
               }
             }}
           >
