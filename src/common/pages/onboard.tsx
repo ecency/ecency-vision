@@ -125,7 +125,7 @@ const Onboard = (props: Props) => {
   useEffect(() => {
     if (decodedInfo) {
       setConfirmDetails([
-        { label: _t("onboard.username"), value: decodedInfo?.username },
+        { label: _t("onboard.username"), value: formatUsername(decodedInfo?.username) },
         { label: _t("onboard.public-owner"), value: decodedInfo?.pubkeys?.ownerPublicKey },
         { label: _t("onboard.public-active"), value: decodedInfo?.pubkeys?.activePublicKey },
         { label: _t("onboard.public-posting"), value: decodedInfo?.pubkeys?.postingPublicKey },
@@ -177,9 +177,9 @@ const Onboard = (props: Props) => {
       const hashedPubKeys = b64uEnc(stringifiedPubKeys);
       setSecret(hashedPubKeys);
       const accInfo = {
-        username: info.username?.replace(/[=+]/g, "."),
-        email: info.email?.replace("=", "."),
-        referral: info.referral?.replace(/[=+]/g, "."),
+        username: formatUsername(info.username),
+        email: formatEmail(info.email),
+        referral: formatUsername(info.referral),
         keys
       };
       setAccountInfo(accInfo);
@@ -196,7 +196,7 @@ const Onboard = (props: Props) => {
     const username = decodedInfo!.username || accountInfo!.username;
     const email = decodedInfo!.email || accountInfo!.email;
     if (activeUser) {
-      await onboardEmail(username, email.replace("=", "."), activeUser?.username);
+      await onboardEmail(username, formatEmail(email), activeUser?.username);
     }
   };
 
@@ -250,6 +250,13 @@ const Onboard = (props: Props) => {
     }
   };
 
+  const formatUsername = (username: string) => {
+    return username?.replace(/\+/g, '-').replace(/=/g, '.')
+  }
+  const formatEmail = (username: string) => {
+    return username?.replace(/\+/g, '-').replace(/=/g, '.').replace(/\//g, '_');
+  }
+
   const onKc = async (type: string) => {
     const { activeUser, dynamicProps } = props;
     if (activeUser) {
@@ -257,7 +264,7 @@ const Onboard = (props: Props) => {
         if (type === createOptions.HIVE) {
           const resp = await createAccountKc(
             {
-              username: decodedInfo?.username,
+              username: formatUsername(decodedInfo!.username),
               pub_keys: decodedInfo?.pubkeys,
               fee: dynamicProps.accountCreationFee
             },
@@ -273,7 +280,7 @@ const Onboard = (props: Props) => {
         } else {
           const resp = await createAccountWithCreditKc(
             {
-              username: decodedInfo?.username,
+              username: formatUsername(decodedInfo!.username),
               pub_keys: decodedInfo?.pubkeys
             },
             activeUser?.username
@@ -302,7 +309,7 @@ const Onboard = (props: Props) => {
         if (type === createOptions.HIVE) {
           const resp = await createAccountKey(
             {
-              username: decodedInfo?.username,
+              username: formatUsername(decodedInfo!.username),
               pub_keys: decodedInfo?.pubkeys,
               fee: dynamicProps.accountCreationFee
             },
@@ -319,7 +326,7 @@ const Onboard = (props: Props) => {
         } else {
           const resp = await createAccountWithCreditKey(
             {
-              username: decodedInfo?.username,
+              username: formatUsername(decodedInfo!.username),
               pub_keys: decodedInfo?.pubkeys
             },
             activeUser?.username,
@@ -345,8 +352,8 @@ const Onboard = (props: Props) => {
   const onHot = async (type: string) => {
     const { activeUser, dynamicProps } = props;
     const dataToEncode = {
-      username: decodedInfo!.username,
-      email: decodedInfo!.email
+      username: formatUsername(decodedInfo!.username),
+      email: formatEmail(decodedInfo!.email)
     };
     const stringifiedPubKeys = JSON.stringify(dataToEncode);
     const hashedInfo = b64uEnc(stringifiedPubKeys);
@@ -355,7 +362,7 @@ const Onboard = (props: Props) => {
         if (type === createOptions.HIVE) {
           const resp = await createAccountHs(
             {
-              username: decodedInfo?.username,
+              username: formatUsername(decodedInfo!.username),
               pub_keys: decodedInfo?.pubkeys,
               fee: dynamicProps.accountCreationFee
             },
@@ -370,7 +377,7 @@ const Onboard = (props: Props) => {
         } else {
           const resp = await createAccountWithCreditHs(
             {
-              username: decodedInfo?.username,
+              username: formatUsername(decodedInfo!.username),
               pub_keys: decodedInfo?.pubkeys
             },
             activeUser?.username,
