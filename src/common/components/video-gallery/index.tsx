@@ -5,16 +5,18 @@ import { Button, Modal, Tooltip } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./index.scss";
 import { markAsPublished } from "../../api/threespeak";
+import DropDown, { MenuItem } from "../dropdown";
 
 const VideoGallery = (props: any) => {
   const { showGaller, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary, activeUser} = props;
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
-  const [filterType, setFilterType] = useState('')
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<any>(null);
   const [isEmbedded, setIsembedded] = useState(false);
+  const [label, setLabel] = useState("All");
+  const [filtered, setFiltered] = useState<any>([])
 
   useEffect(() => {
     getAllStatus();
@@ -31,7 +33,7 @@ const VideoGallery = (props: any) => {
   
   const setBeneficiary = (video: any) => {
     setVideoEncoderBeneficiary(video)
-  }
+  };
 
   const formatTime = (dateStr: string | number | Date) => {
     const date: any = new Date(dateStr);
@@ -80,10 +82,10 @@ const VideoGallery = (props: any) => {
     }
   };
 
-  const videosDrafts = useMemo(() => {
-    if (!filterType) return items
-    return items.filter((video: any) => video.status === filterType)
-  }, [filterType]);
+  const filterList = (type: any) => {
+   const itemsFiletred = items.filter((video: any) => (video.status === type));
+   setFiltered(itemsFiletred)
+  };
 
   const getHoveredItem = (item: any) => {
     setHoveredItem(item);
@@ -91,7 +93,7 @@ const VideoGallery = (props: any) => {
 
   const markVideo = async (item: any) => {
     await markAsPublished(activeUser!.username, item._id)
-  }
+  };
 
   const embeddVideo = (video: any) => {
     const speakUrl = "https://3speak.tv/watch?v="
@@ -102,78 +104,91 @@ const VideoGallery = (props: any) => {
     )
     insertText(element)
     setIsembedded(true)
-  }
+  };
 
-  const modalBodyTop = (
+  const dropDown = (
     <div className="video-status-picker">
-      <Button
-        variant="outline-primary"
-        onClick={ () => {
-          setFilterType("");
-        }}
-      >
-        {_t("video-gallery.all")}
-      </Button>
-
-      <Button
-        variant="outline-primary"
-        onClick={ () => {
-          setFilterType("published");
-        }}
-      >
-        {_t("video-gallery.published")}
-      </Button>
-
-      <Button
-        variant="outline-primary"
-        onClick={ () => {
-          const encoding = "encoding_ipfs" || "encoding_preparing"
-          setFilterType(encoding);
-        }}
-      >
-        {_t("video-gallery.encoding")}
-      </Button>
-
-      <Button
-        variant="outline-primary"
-        onClick={ () => {
-          setFilterType("publish_manual");
-        }}
-      >
-        {_t("video-gallery.encoded")}
-      </Button>
-
-      <Button
-        variant="outline-primary"
-        onClick={ () => {
-          setFilterType("encoding_failed");
-        }}
-      >
-        {_t("video-gallery.failed")}
-      </Button>
-
-      <Button
-        variant="outline-primary"
-        onClick={ () => {
-          setFilterType("deleted");
-        }}
-      >
-       {_t("video-gallery.status-deleted")}
-      </Button>
+      <div className="amount">
+        {(() => {
+          let dropDownConfig: any;
+          dropDownConfig = {
+            history: "",
+            label: label,
+            items: [
+              {
+                label: <span id="ascending">{_t("video-gallery.all")}</span>,
+                onClick: () => {
+                  setLabel(_t("video-gallery.all"));
+                  setFiltered(items)
+                }
+              },
+              {
+                label: <span id="descending">{_t("video-gallery.published")}</span>,
+                onClick: () => {
+                  setLabel(_t("video-gallery.published"));
+                  filterList("published")
+                }
+              },
+              {
+                label: <span id="by-value">{_t("video-gallery.encoding")}</span>,
+                onClick: () => {
+                  const encoding = "encoding_ipfs" || "encoding_preparing"
+                  setLabel(_t("video-gallery.encoding"));
+                  filterList(encoding)
+                }
+              },
+              {
+                label: <span id="by-balance">{_t("video-gallery.encoded")}</span>,
+                onClick: () => {
+                  setLabel(_t("video-gallery.encoded"));
+                  filterList("publish_manual")
+                }
+              },
+              {
+                label: <span id="by-stake">{_t("video-gallery.failed")}</span>,
+                onClick: () => {
+                  setLabel(_t("video-gallery.failed"));
+                  filterList("encoding_failed")
+                }
+              },
+              {
+                label: (
+                  <span id="delegations-in">{_t("video-gallery.status-deleted")}</span>
+                ),
+                onClick: () => {
+                  setLabel(_t("video-gallery.status-deleted"));
+                  filterList("deleted")
+                }
+              },
+            ]
+          };
+          return (
+            <div className="amount-actions">
+              <DropDown {...dropDownConfig} float="top" />
+            </div>
+          );
+        })()}
+      </div>
     </div>
-  );
+  )
 
   const modalBody = (
     <div className="dialog-content">
       {loading && <LinearProgress />}
-      {videosDrafts?.length > 0 && filterType !== '' ? (
-        <div className="video-list">
-          {(videosDrafts || items)?.map((item: any, i: number) => {
+        {filtered && <div className="video-list">
+          {(filtered)?.map((item: any, i: number) => {
             return (
               <div className="video-list-body" key={i}>
-                {/* <div className="list-image"> */}
-                  <img src={item.thumbUrl} alt="" />
-                {/* </div> */}
+                {/* Somehow video delays and make some unnecessary request, will test out later, could be due to network when i tested */}
+                 {/* {item.status === "published" ? 
+                 <iframe
+                  width="80%"
+                  height="315"
+                  src={`https://3speak.tv/embed?v=${activeUser.username}/${item.permlink}`}
+                  allowFullScreen
+                ></iframe> :  */}
+                <img src={item.thumbUrl} alt="" />
+                {/* // } */}
                 <div className="list-details-wrapper">
                   <div className="list-title">
                     <span className="details-title">{item.title}</span>
@@ -248,9 +263,9 @@ const VideoGallery = (props: any) => {
               </div>
             );
           })}
-        </div>
-      ) : (
-        <div className="video-list">
+        </div>}
+
+        {items && label === "All" && <div className="video-list">
           {items?.map((item: any, i: number) => {
             return (
               <div className="video-list-body" key={i}>
@@ -322,9 +337,9 @@ const VideoGallery = (props: any) => {
               </div>
             );
           })}
-        </div>
-      ) }
-      {!loading && items?.length === 0 && <div className="gallery-list">{_t("g.empty-list")}</div>}
+        </div>}
+        
+      {!loading && items?.length === 0 || filtered?.length === 0 && <div className="gallery-list">{_t("g.empty-list")}</div>}
     </div>
   );
 
@@ -341,7 +356,7 @@ const VideoGallery = (props: any) => {
           <Modal.Title>{_t("video-gallery.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {modalBodyTop}
+          {dropDown}
           {modalBody}
         </Modal.Body>
       </Modal>

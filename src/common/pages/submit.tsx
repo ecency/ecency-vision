@@ -1008,8 +1008,23 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   setVideoEncoderBeneficiary = async (video: any) => {
+    const videoBeneficiary = JSON.parse(video.beneficiaries)
+    const videoEncoders = [
+      {
+        account: "spk.beneficiary",
+        src: "ECONDER_PAY",
+        weight: 900
+      }, 
+      {
+        account: "spk.beneficiary",
+        src: "ECONDER_PAY",
+        weight: 100
+      }
+    ]
+    const joinedBeneficiary = [...videoBeneficiary, ...videoEncoders]
+    console.log([...videoBeneficiary, ...videoEncoders])
     this.stateSet({ 
-      beneficiaries:  JSON.parse(video.beneficiaries), 
+      beneficiaries: joinedBeneficiary, 
       videoId: await video._id, 
       isThreespeak: true,
       speakPermlink: video.permlink
