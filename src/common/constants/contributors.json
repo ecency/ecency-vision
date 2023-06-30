@@ -1,5 +1,13 @@
 [
   {
+    "name": "good-karma",
+    "contributes": ["Founder", "Developer"]
+  },
+  {
+    "name": "dkildar",
+    "contributes": ["Developer (Web)"]
+  },
+  {
     "name": "noumantahir",
     "contributes": ["Developer (Mobile)"]
   },
@@ -165,7 +173,7 @@
   },
   {
     "name": "dunsky",
-    "contributes": ["Translation (Russian)"]
+    "contributes": ["Illustrator", "Translation (Russian)"]
   },
   {
     "name": "lenancie",
@@ -201,11 +209,11 @@
   },
   {
     "name": "acidyo",
-    "contributes": ["Onboarding"]
+    "contributes": ["Onboarding partner"]
   },
   {
     "name": "bluemist",
-    "contributes": ["Onboarding"]
+    "contributes": ["Onboarding partner"]
   },
   {
     "name": "melinda010100",
