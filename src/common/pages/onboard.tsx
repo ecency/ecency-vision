@@ -251,11 +251,11 @@ const Onboard = (props: Props) => {
   };
 
   const formatUsername = (username: string) => {
-    return username?.replace(/\+/g, '-').replace(/=/g, '.')
-  }
+    return username?.replace(/\+/g, "-").replace(/=/g, ".");
+  };
   const formatEmail = (username: string) => {
-    return username?.replace(/\+/g, '-').replace(/=/g, '.').replace(/\//g, '_');
-  }
+    return username?.replace(/\+/g, "-").replace(/=/g, ".").replace(/\//g, "_");
+  };
 
   const onKc = async (type: string) => {
     const { activeUser, dynamicProps } = props;

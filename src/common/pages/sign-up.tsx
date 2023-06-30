@@ -265,7 +265,7 @@ export const SignUp = (props: PageProps) => {
                       setUsernameError(_t("sign-up.username-exists"));
                       return;
                     }
-                    
+
                     const referralIsValid = await getAccount(referral);
                     if (!referralIsValid && referral !== "") {
                       setReferralError(_t("sign-up.referral-invalid"));
@@ -317,7 +317,7 @@ export const SignUp = (props: PageProps) => {
                       onBlur={() => setReferralTouched(true)}
                     />
                   </Form.Group>
-                    <Form.Text className="text-danger pl-3">{referralError}</Form.Text>
+                  <Form.Text className="text-danger pl-3">{referralError}</Form.Text>
                   {!props.global.isElectron && (
                     <div style={{ marginTop: "16px", marginBottom: "16px" }}>
                       <ReCAPTCHA
