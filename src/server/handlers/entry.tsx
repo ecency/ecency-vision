@@ -20,9 +20,8 @@ export default async (req: Request, res: Response) => {
   const { category, author, permlink } = req.params;
   let entry: Entry | null = null;
   try {
-    await queryClient.fetchQuery(
-      [QueryIdentifiers.ENTRY, makePath(category, author, permlink)],
-      () => bridgeApi.getPost(author, permlink)
+    await queryClient.fetchQuery([QueryIdentifiers.ENTRY, makePath("", author, permlink)], () =>
+      bridgeApi.getPost(author, permlink)
     );
   } catch (error) {
     console.error(
