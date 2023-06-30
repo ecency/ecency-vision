@@ -173,16 +173,20 @@ const EntryComponent = (props: Props) => {
       setReputation(accountReputation(entry.author_reputation));
       setImage(catchPostImage(entry, 600, 500, props.global.canUseWebp ? "webp" : "match"));
 
-      const app = appName(entry.json_metadata.app);
-      setApp(app);
-      setAppShort(app.split("/")[0].split(" ")[0]);
+      const _app = appName(entry.json_metadata.app);
+      setApp(_app);
+      setAppShort(_app.split("/")[0].split(" ")[0]);
 
       const tags = entry.json_metadata.tags && [...new Set(entry.json_metadata.tags)];
 
-      if (tags) {
+      if (tags && tags.length > 0) {
         setTags(tags);
         setTag(isCommunity(tags[0]) ? tags[1] : tags[0]);
         setKeywords(tags.join(", "));
+      } else {
+        setTags([entry.category]);
+        setTag(entry.category);
+        setKeywords(entry.category);
       }
 
       setLoading(false);
