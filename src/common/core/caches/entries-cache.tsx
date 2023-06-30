@@ -151,8 +151,8 @@ export function useEntryCache<T extends Entry>(
 
   const queryKey =
     typeof initialOrPath === "string"
-      ? makePath(initialOrPath, author!!, permlink!!)
-      : makePath(initialOrPath.category, initialOrPath.author, initialOrPath.permlink);
+      ? makePath("", author!!, permlink!!)
+      : makePath("", initialOrPath.author, initialOrPath.permlink);
 
   const query = useQuery(
     [QueryIdentifiers.ENTRY, queryKey],
@@ -166,7 +166,7 @@ export function useEntryCache<T extends Entry>(
         if (response) {
           updateCache([response]);
         }
-        return entry;
+        return response;
       } else if (!entry) {
         return initialOrPath as T;
       }
