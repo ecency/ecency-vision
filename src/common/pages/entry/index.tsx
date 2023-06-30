@@ -179,10 +179,14 @@ const EntryComponent = (props: Props) => {
 
       const tags = entry.json_metadata.tags && [...new Set(entry.json_metadata.tags)];
 
-      if (tags) {
+      if (tags && tags.length > 0) {
         setTags(tags);
         setTag(isCommunity(tags[0]) ? tags[1] : tags[0]);
         setKeywords(tags.join(", "));
+      } else {
+        setTags([entry.category]);
+        setTag(entry.category);
+        setKeywords(entry.category);
       }
 
       setLoading(false);

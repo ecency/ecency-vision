@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { getActiveVotes } from "../../api/hive";
-
-import { prepareVotes } from "../entry-votes";
 
 import { _t } from "../../i18n";
 import { informationVariantSvg } from "../../img/svg";
@@ -28,10 +25,14 @@ export const ReadTime = (props: any) => {
   }, [entry]);
 
   const getTopCurator = async () => {
-    const curator = props.entry.active_votes.reduce((prev: ActiveVotes, curr: ActiveVotes) => {
-      return prev.rshares! > curr.rshares! ? prev : curr;
-    });
-    setTopCurator(curator.voter);
+    if (entry.active_votes?.length > 0) {
+      const curator =
+        entry.active_votes &&
+        entry.active_votes.reduce((prev: ActiveVotes, curr: ActiveVotes) => {
+          return prev.rshares! > curr.rshares! ? prev : curr;
+        });
+      setTopCurator(curator.voter);
+    }
   };
 
   const calculateExtras = async () => {
