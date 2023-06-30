@@ -226,7 +226,10 @@
     "username-no-ascii-first-letter-error": "Первый символ должен быть буквой",
     "username-contains-symbols-error": "Должно содержать только буквы, цифры и дефисы",
     "username-contains-double-hyphens": "Не должно содержать двойные дефисы",
-    "username-exists": "Это имя пользователя уже зарегистрировано. Пожалуйста, подберите другое"
+    "username-exists": "Это имя пользователя уже зарегистрировано. Пожалуйста, подберите другое",
+    "referral-invalid": "This referral is invalid. Please, try another one",
+    "referral-min-length-error": "Length of referral should be at least 3 characters",
+    "referral-max-length-error": "Length of referral should be no more than 16 characters"
   },
   "onboard": {
     "title": "Onboard a friend",
