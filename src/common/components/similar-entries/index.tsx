@@ -65,7 +65,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
     // 3 tags and decrease until there is enough relevant posts
     if (json_metadata && json_metadata.tags && Array.isArray(json_metadata.tags)) {
       tags = json_metadata.tags
-        .filter((x: string) => x !== "")
+        .filter((x: string) => x && x !== "")
         .filter((x: string) => !isCommunity(x))
         .filter((x: string, ind: number) => ind < retry)
         .join(",");

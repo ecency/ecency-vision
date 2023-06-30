@@ -177,11 +177,13 @@ const EntryComponent = (props: Props) => {
       setApp(_app);
       setAppShort(_app.split("/")[0].split(" ")[0]);
 
-      const tags = entry.json_metadata.tags && [...new Set(entry.json_metadata.tags)];
+      const tags = (entry.json_metadata.tags && [...new Set(entry.json_metadata.tags)])?.filter(
+        (t) => !!t
+      );
 
       if (tags && tags.length > 0) {
         setTags(tags);
-        setTag(isCommunity(tags[0]) ? tags[1] : tags[0]);
+        setTag(isCommunity(tags[0]) ? tags[1] : entry.category);
         setKeywords(tags.join(", "));
       } else {
         setTags([entry.category]);
