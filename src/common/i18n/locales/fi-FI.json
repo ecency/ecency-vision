@@ -226,7 +226,10 @@
     "username-no-ascii-first-letter-error": "Ensimmäisen merkin on oltava kirjain",
     "username-contains-symbols-error": "Pitäisi sisältää vain kirjaimia, numeroita ja tavuviivoja",
     "username-contains-double-hyphens": "Ei saa sisältää kaksinkertaisia tavuviivoja",
-    "username-exists": "Tämä nimimerkki on jo käytössä! Kokeile toista"
+    "username-exists": "Tämä nimimerkki on jo käytössä! Kokeile toista",
+    "referral-invalid": "This referral is invalid. Please, try another one",
+    "referral-min-length-error": "Length of referral should be at least 3 characters",
+    "referral-max-length-error": "Length of referral should be no more than 16 characters"
   },
   "onboard": {
     "title": "Onboard a friend",
