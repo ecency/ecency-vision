@@ -4,7 +4,6 @@ import { deleteForeverSvg, informationVariantSvg } from "../../img/svg";
 import { Button, Modal, Tooltip } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./index.scss";
-import { markAsPublished } from "../../api/threespeak";
 import DropDown, { MenuItem } from "../dropdown";
 
 const VideoGallery = (props: any) => {
@@ -20,7 +19,7 @@ const VideoGallery = (props: any) => {
 
   useEffect(() => {
     getAllStatus();
-  }, []);
+  }, [showGaller]);
 
   const getAllStatus = async () => {
     setLoading(true);
@@ -89,10 +88,6 @@ const VideoGallery = (props: any) => {
 
   const getHoveredItem = (item: any) => {
     setHoveredItem(item);
-  };
-
-  const markVideo = async (item: any) => {
-    await markAsPublished(activeUser!.username, item._id)
   };
 
   const embeddVideo = (video: any) => {
@@ -180,15 +175,15 @@ const VideoGallery = (props: any) => {
             return (
               <div className="video-list-body" key={i}>
                 {/* Somehow video delays and make some unnecessary request, will test out later, could be due to network when i tested */}
-                 {/* {item.status === "published" ? 
+                 {item.status === "published" ? 
                  <iframe
                   width="80%"
                   height="315"
                   src={`https://3speak.tv/embed?v=${activeUser.username}/${item.permlink}`}
                   allowFullScreen
-                ></iframe> :  */}
+                ></iframe> : 
                 <img src={item.thumbUrl} alt="" />
-                {/* // } */}
+                }
                 <div className="list-details-wrapper">
                   <div className="list-title">
                     <span className="details-title">{item.title}</span>
@@ -230,9 +225,6 @@ const VideoGallery = (props: any) => {
                     ) : (
                       <span className="encoding">{_t("video-gallery.status-encoding")}</span>
                     )}
-                    {item.status === "publish_manual" && 
-                    <button className="post-video-btn" onClick={()=> markVideo(item)}>Mark as published</button>
-                    }
                   </div>
                 </div>
                 {showMoreInfo && hoveredItem._id === item._id && (

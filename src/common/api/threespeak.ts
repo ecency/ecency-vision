@@ -152,8 +152,6 @@ export const updateSpeakVideoInfo = async (
 
 export const markAsPublished = async (username: string, videoId: string) => {
   const token = await threespeakAuth(username);
-  console.log(token)
-
     const data = {
       videoId
     };

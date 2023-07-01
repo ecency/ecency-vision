@@ -10,6 +10,7 @@ import {
 import * as tus from "tus-js-client";
 import VideoGallery from "../video-gallery";
 import useMount from "react-use/lib/useMount";
+import { success } from "../feedback";
 
 export const VideoUpload = (props: any) => {
   const { activeUser, global, insertText, setVideoEncoderBeneficiary } = props;
@@ -109,8 +110,11 @@ export const VideoUpload = (props: any) => {
       fileName,
       fileSize
     );
-    setVideoId(data._id);
-    setIsNsfwC(data.isNsfwContent);
+    if (data) {
+      setVideoId(data._id);
+      setIsNsfwC(data.isNsfwContent);
+      success("Video succesfully uploaded");
+    }
   };
 
   const checkStat = async () => {

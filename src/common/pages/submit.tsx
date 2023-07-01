@@ -87,7 +87,7 @@ import TextareaAutocomplete from "../components/textarea-autocomplete";
 import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
-import { updateSpeakVideoInfo } from "../api/threespeak";
+import { updateSpeakVideoInfo, markAsPublished } from "../api/threespeak";
 
 setProxyBase(defaults.imageServer);
 
@@ -104,6 +104,10 @@ interface Advanced {
   schedule: string | null;
   reblogSwitch: boolean;
   description: string | null;
+  isThreespeak: boolean;
+  videoId: string;
+  speakPermlink: string;
+  speakAuthor: string;
 }
 
 interface PreviewProps extends PostBase {
@@ -177,10 +181,6 @@ interface State extends PostBase, Advanced {
   isDraftEmpty: boolean;
   drafts: boolean;
   showHelp: boolean;
-  // Speak states
-  isThreespeak: boolean;
-  videoId: string;
-  speakPermlink: "";
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -217,9 +217,11 @@ class SubmitPage extends BaseComponent<Props, State> {
     isDraftEmpty: true,
     drafts: false,
     showHelp: false,
+    // Speakstates
     isThreespeak: false,
     videoId: "",
-    speakPermlink: ""
+    speakPermlink: "",
+    speakAuthor: ""
   };
 
   _updateTimer: any = null;
@@ -469,14 +471,19 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   saveAdvanced = (): void => {
-    const { reward, beneficiaries, schedule, reblogSwitch, description } = this.state;
+    const { reward, beneficiaries, schedule, reblogSwitch, description, isThreespeak, videoId, speakPermlink, speakAuthor } = this.state;
 
     const advanced: Advanced = {
       reward,
       beneficiaries,
       schedule,
       reblogSwitch,
-      description
+      description,
+      // Speak Advanced
+      isThreespeak,
+      videoId,
+      speakPermlink,
+      speakAuthor
     };
 
     ls.set("local_advanced", advanced);
@@ -597,7 +604,12 @@ class SubmitPage extends BaseComponent<Props, State> {
         beneficiaries: [],
         schedule: null,
         reblogSwitch: false,
-        description: ""
+        description: "",
+        // Speak Advenaced
+        isThreespeak: false,
+        videoId: "",
+        speakPermlink: "",
+        speakAuthor: ""
       },
       () => {
         this.saveAdvanced();
@@ -663,13 +675,18 @@ class SubmitPage extends BaseComponent<Props, State> {
     return true;
   };
 
+  markVideo = async (videoId: string) => {
+    const { activeUser } = this.props;
+    await markAsPublished(activeUser!.username, videoId)
+  }
+
   publish = async (): Promise<void> => {
     if (!this.validate()) {
       return;
     }
 
     const { activeUser, history, addEntry } = this.props;
-    const { title, tags, body, description, reward, reblogSwitch, beneficiaries, videoId, isThreespeak, speakPermlink } = this.state;
+    const { title, tags, body, description, reward, reblogSwitch, beneficiaries, videoId, isThreespeak, speakPermlink, speakAuthor } = this.state;
 
     // clean body
     const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, "");
@@ -685,6 +702,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     let authorData = activeUser.data as FullAccount;
 
     let permlink = createPermlink(title);
+    console.log(isThreespeak)
 
     // permlink duplication check
     let c;
@@ -722,7 +740,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     comment(author, "", parentPermlink, permlink, title, cbody, jsonMeta, options, true)
       .then(() => {
         this.clearAdvanced();
-
+        
         // Create entry object in store
         const entry = {
           ...tempEntry({
@@ -739,12 +757,21 @@ class SubmitPage extends BaseComponent<Props, State> {
           percent_hbd: options.percent_hbd
         };
         addEntry(entry);
-
+        
         success(_t("submit.published"));
         this.clear();
         const newLoc = makePathEntry(parentPermlink, author, permlink);
         history.push(newLoc);
-      })
+
+        //Mark speak video as published
+        if (isThreespeak && activeUser.username === speakAuthor ) {
+          success(`Video is processing, please wait for few seconds`)
+          setTimeout(() => {
+            this.markVideo(videoId)
+           }, 10000)
+        }
+        
+        })
       .then(() => {
         if (isCommunity(tags[0]) && reblogSwitch) {
           reblog(author, author, permlink);
@@ -1016,19 +1043,19 @@ class SubmitPage extends BaseComponent<Props, State> {
         weight: 900
       }, 
       {
-        account: "spk.beneficiary",
+        account: "threespeakleader",
         src: "ECONDER_PAY",
         weight: 100
       }
     ]
     const joinedBeneficiary = [...videoBeneficiary, ...videoEncoders]
-    console.log([...videoBeneficiary, ...videoEncoders])
     this.stateSet({ 
       beneficiaries: joinedBeneficiary, 
       videoId: await video._id, 
       isThreespeak: true,
-      speakPermlink: video.permlink
-    })
+      speakPermlink: video.permlink,
+      speakAuthor: video.owner
+    }, this.saveAdvanced)
   }
 
   render() {
