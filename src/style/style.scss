@@ -1,10 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "./colors";
 @import "./variables";
 @import "./mixins";
 
 @import "./bootstrap_vars";
-@import "./bootstrap_imports";
-@import "./bootstrap_ext";
+//@import "./bootstrap_imports";
+//@import "./bootstrap_ext";
 
 @import "./base";
 @import "./components";
