@@ -175,13 +175,14 @@ const VideoGallery = (props: any) => {
             return (
               <div className="video-list-body" key={i}>
                 {/* Somehow video delays and make some unnecessary request, will test out later, could be due to network when i tested */}
-                 {item.status === "published" ? 
-                 <iframe
-                  width="80%"
-                  height="315"
-                  src={`https://3speak.tv/embed?v=${activeUser.username}/${item.permlink}`}
-                  allowFullScreen
-                ></iframe> : 
+                 {item.status === "published" ?
+                 <div className="video-wrapper">
+                    <iframe
+                      src={`https://3speak.tv/embed?v=${activeUser.username}/${item.permlink}`}
+                      allowFullScreen
+                      className="iframe"
+                    ></iframe>
+                 </div> : 
                 <img src={item.thumbUrl} alt="" />
                 }
                 <div className="list-details-wrapper">
@@ -215,7 +216,7 @@ const VideoGallery = (props: any) => {
                     ) : item.status === "published" ? (
                       <div>
                         <span className="published">{_t("video-gallery.status-published")}</span>
-                        <button className="post-video-btn">view</button>
+                        {/* <button className="post-video-btn">view</button> */}
                       </div>
                     ) : item.status === "deleted" ? (
                       <div className="deleted">
@@ -261,7 +262,16 @@ const VideoGallery = (props: any) => {
           {items?.map((item: any, i: number) => {
             return (
               <div className="video-list-body" key={i}>
-                  <img src={item.thumbUrl} alt="" />
+                  {item.status === "published" ?
+                 <div className="video-wrapper">
+                    <iframe
+                      src={`https://3speak.tv/embed?v=${activeUser.username}/${item.permlink}`}
+                      allowFullScreen
+                      className="iframe"
+                    ></iframe>
+                 </div> : 
+                <img src={item.thumbUrl} alt="" />
+                }
                 <div className="list-details-wrapper">
                   <div className="list-title">
                     <span className="details-title">{item.title}</span>
@@ -294,7 +304,7 @@ const VideoGallery = (props: any) => {
                     ) : item.status === "published" ? (
                       <div>
                         <span className="published">{_t("video-gallery.status-published")}</span>
-                        <button className="post-video-btn">view</button>
+                        {/* <button className="post-video-btn">view</button> */}
                       </div>
                     ) : (
                       <span className="encoding">{_t("video-gallery.status-encoding")}</span>
