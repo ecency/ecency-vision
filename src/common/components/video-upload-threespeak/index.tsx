@@ -33,6 +33,7 @@ export const VideoUpload = (props: any) => {
   const [isNsfwC, setIsNsfwC] = useState(false);
   const [showGaller, setShowGallery] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [duration, setDuration] = useState("");
 
   const canUpload = thumbUrl && videoUrl;
 
@@ -43,6 +44,16 @@ export const VideoUpload = (props: any) => {
     //   // threespeakAuth(activeUser!.username);
     // }
   }, []);
+
+  const getVideoDuration = () => {
+    if (videoRef.current) {
+      const { duration } = videoRef.current;
+      const minutes = Math.floor(duration / 60);
+      const seconds = Math.floor(duration % 60);
+      const videoDuration = `${minutes}:${seconds}`
+      setDuration(videoDuration);
+    }
+  };
 
   const onChange: any = (event: { target: { files: any[] } }, type: string) => {
     let file = event.target.files[0];
@@ -104,11 +115,12 @@ export const VideoUpload = (props: any) => {
 
   const uploadInfo = async () => {
     const data = await uploadVideoInfo(
-      activeUser!.username,
+      fileName,
+      fileSize,
       videoUrl,
       thumbUrl,
-      fileName,
-      fileSize
+      activeUser!.username,
+      duration
     );
     if (data) {
       setVideoId(data._id);
@@ -169,7 +181,7 @@ export const VideoUpload = (props: any) => {
       <Button
         disabled={!canUpload}
         onClick={() => {          
-          setStep("to-gallery");
+          setStep("preview");
         }}
       >
         {_t("video-upload.continue")}
@@ -181,6 +193,8 @@ export const VideoUpload = (props: any) => {
     <div className="dialog-content">
       <div className="file-input">
         <video 
+        ref={videoRef}
+        onLoadedMetadata={getVideoDuration}
         controls={true} 
         poster={coverImage}>
           <source src={selectedFile} type="video/mp4" />
@@ -256,12 +270,12 @@ export const VideoUpload = (props: any) => {
           <Modal.Header closeButton={true}>
             <Modal.Title>
               {step === "upload" && <p>{_t("video-upload.upload-video")}</p>}
-              {step === "to-gallery" && <p>{_t("video-upload.preview")}</p>}
+              {step === "preview" && <p>{_t("video-upload.preview")}</p>}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {step === "upload" && uploadVideoModal}
-            {step === "to-gallery" && previewVideo}
+            {step === "preview" && previewVideo}
           </Modal.Body>
         </Modal>
       </div>

@@ -50,35 +50,23 @@ export const getTokenValidated = async (jwt: string, username: string) => {
   }
 };
 
-// THIS SHOULD BE REMOVED updateVideoInfo CAN BE USED DIRECTLY
 export const uploadVideoInfo = async (
-  username: string,
-  videoUrl: string,
-  thumbUrl: string,
-  oFileName: string,
-  fileSize: number
-) => {
-  const data = await updateVideoInfo(oFileName, fileSize, videoUrl, thumbUrl, username);
-  return data;
-};
-
-export const updateVideoInfo = async (
   oFilename: string,
   fileSize: number,
   videoUrl: string,
   thumbnailUrl: string,
-  username: string
+  username: string,
+  duration: string
 ) => {
   const token = await threespeakAuth(username);
   try {
-    // const { activeUser } = this.props;
     const { data } = await axios.post(
       `${studioEndPoint}/mobile/api/upload_info?app=ecency`,
       {
         filename: videoUrl,
         oFilename: oFilename,
         size: fileSize,
-        duration: 40,
+        duration,
         thumbnail: thumbnailUrl,
         isReel: false,
         owner: username

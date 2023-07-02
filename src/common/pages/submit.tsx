@@ -104,6 +104,7 @@ interface Advanced {
   schedule: string | null;
   reblogSwitch: boolean;
   description: string | null;
+  // Speak Advanced
   isThreespeak: boolean;
   videoId: string;
   speakPermlink: string;
@@ -1056,6 +1057,10 @@ class SubmitPage extends BaseComponent<Props, State> {
       speakPermlink: video.permlink,
       speakAuthor: video.owner
     }, this.saveAdvanced)
+  }
+
+  checkContentType = () => {
+
   }
 
   render() {
