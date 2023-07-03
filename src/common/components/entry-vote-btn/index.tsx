@@ -502,16 +502,16 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
   };
 
   isVoted = () => {
-    const { activeUser } = this.props;
+     const { activeUser } = this.props;
 
     if (!activeUser) {
       return { upVoted: false, downVoted: false };
     }
+
     const { active_votes: votes } = this.props.entry;
-
-    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares > 0);
-
+    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares >= 0);
     const downVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares < 0);
+
     return { upVoted, downVoted };
   };
 
@@ -602,7 +602,8 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
           upVoted ? "btn-up-vote primary-btn-done" : "btn-down-vote secondary-btn-done"
         } ${inProgress ? "in-progress" : ""} voted`
       );
-    }
+    };
+
     let tooltipClass = "";
     if (dialog) {
       if (!upVoted || !downVoted) {
