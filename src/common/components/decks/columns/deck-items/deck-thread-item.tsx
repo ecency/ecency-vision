@@ -63,18 +63,12 @@ export const ThreadItem = ({
   const [status, setStatus] = useState<"default" | "pending">("default");
   const [intervalStarted, setIntervalStarted] = useState(false);
 
-  useEntryChecking(
-    entry,
-    intervalStarted,
-    (nextEntry) => {
-      updateCache([
-        { ...nextEntry, host: initialEntry.host, container: initialEntry.container } as Entry
-      ]);
-      setIntervalStarted(false);
-    },
-    (initialEntry, updatedEntry) =>
-      typeof initialEntry.post_id === "number" ? initialEntry.body !== updatedEntry?.body : true
-  );
+  useEntryChecking(entry, intervalStarted, (nextEntry) => {
+    updateCache([
+      { ...nextEntry, host: initialEntry.host, container: initialEntry.container } as Entry
+    ]);
+    setIntervalStarted(false);
+  });
 
   useEffect(() => {
     onMounted();
