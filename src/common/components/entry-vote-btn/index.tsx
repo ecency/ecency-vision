@@ -84,6 +84,7 @@ interface VoteDialogProps {
   updateWalletValues: () => void;
   onClick: (percent: number, estimated: number) => void;
   handleClickAway: () => void;
+  isVoted: () => {upVoted: boolean, downVoted: boolean}
 }
 
 interface VoteDialogState {
@@ -232,21 +233,22 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     this.setState({ mode: m });
   };
 
-  isVoted = () => {
-    const { activeUser } = this.props;
+  // THIS CAN BE PASSED A PROP FROM PARENT
+  // isVoted = () => {
+  //   const { activeUser } = this.props;
 
-    if (!activeUser) {
-      return { upVoted: false, downVoted: false };
-    }
+  //   if (!activeUser) {
+  //     return { upVoted: false, downVoted: false };
+  //   }
 
-    const { active_votes: votes } = this.props.entry;
+  //   const { active_votes: votes } = this.props.entry;
 
-    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares >= 0);
+  //   const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares >= 0);
 
-    const downVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares < 0);
+  //   const downVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares < 0);
 
-    return { upVoted, downVoted };
-  };
+  //   return { upVoted, downVoted };
+  // };
 
   upVoteClicked = () => {
     const {
@@ -256,7 +258,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       entry: { post_id }
     } = this.props;
     const { upSliderVal, initialVoteValues } = this.state;
-    const { upVoted } = this.isVoted();
+    const { upVoted } = this.props.isVoted();
     if (!upVoted || (upVoted && initialVoteValues.up !== upSliderVal)) {
       const estimated = Number(this.estimate(upSliderVal).toFixed(3));
       onClick(upSliderVal, estimated);
@@ -280,7 +282,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       entry: { post_id }
     } = this.props;
     const { downSliderVal, initialVoteValues } = this.state;
-    const { downVoted } = this.isVoted();
+    const { downVoted } = this.props.isVoted();
 
     if (!downVoted || (downVoted && initialVoteValues.down !== downSliderVal)) {
       const estimated = Number(this.estimate(downSliderVal).toFixed(3));
@@ -659,6 +661,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                               updateWalletValues={this.ensureAccount}
                               onClick={this.vote}
                               handleClickAway={this.handleClickAway}
+                              isVoted={this.isVoted}
                             />
                           </span>
                         </div>
