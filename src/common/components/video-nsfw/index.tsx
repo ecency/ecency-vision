@@ -11,7 +11,7 @@ export const ConfirmNsfwContent = (props: any) => {
         <div className="confirm-nsfw">
           <div className="nsfw-check-wrapper" onClick={()=> togleNsfwC() }>        
             <input className="nsfw-checkbox" type="checkbox"/>
-            <label className="text-danger ml-3 align-middle">{_t("nsfw-content.warning")}</label>
+            <span className="nsfw-label text-danger ml-3 align-middle">{_t("nsfw-content.warning")}</span>
           </div>
           <Button className="w-50 align-self-center"
           onClick={() => hideConfirmNsfwModal()}

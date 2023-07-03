@@ -1075,11 +1075,7 @@ class SubmitPage extends BaseComponent<Props, State> {
   }
 
   togleNsfwC = () => {
-    this.setState(prevState => ({ isNsfw: !prevState.isNsfw }), () => {
-      console.log("opposite", !this.state.isNsfw);
-      console.log("state", this.state.isNsfw);
-    });
-    console.log("state out", this.state.isNsfw);
+    this.setState(prevState => ({ isNsfw: !prevState.isNsfw }), this.saveAdvanced);
   }
   
 
