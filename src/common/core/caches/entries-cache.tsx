@@ -38,7 +38,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
         e.body = "This post is not available due to a copyright/fraudulent claim.";
         e.title = "";
       }
-      cache.set(makePath(e.category, e.author, e.permlink), e);
+      cache.set(makePath("", e.author, e.permlink), e);
     });
 
     if (!skipInvalidation) {
@@ -46,14 +46,14 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
       entries.forEach((entry) =>
         queryClient.invalidateQueries([
           QueryIdentifiers.ENTRY,
-          makePath(entry.category, entry.author, entry.permlink)
+          makePath("", entry.author, entry.permlink)
         ])
       );
     }
   };
 
   const addReply = (entry: Entry, reply: Entry) => {
-    const cached = cache.get(makePath(entry.category, entry.author, entry.permlink))!!;
+    const cached = cache.get(makePath("", entry.author, entry.permlink))!!;
 
     updateCache([
       {
@@ -67,7 +67,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
   const updateRepliesCount = (entry: Entry, count: number) => {
     updateCache([
       {
-        ...cache.get(makePath(entry.category, entry.author, entry.permlink))!!,
+        ...cache.get(makePath("", entry.author, entry.permlink))!!,
         children: count
       }
     ]);
@@ -80,7 +80,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
   const updateVotes = (entry: Entry, votes: EntryVote[], payout: number) => {
     updateCache([
       {
-        ...cache.get(makePath(entry.category, entry.author, entry.permlink))!!,
+        ...cache.get(makePath("", entry.author, entry.permlink))!!,
         active_votes: votes,
         total_votes: votes.length,
         payout,
