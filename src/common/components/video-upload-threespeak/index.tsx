@@ -13,7 +13,7 @@ import useMount from "react-use/lib/useMount";
 import { success } from "../feedback";
 
 export const VideoUpload = (props: any) => {
-  const { activeUser, global, insertText, setVideoEncoderBeneficiary } = props;
+  const { activeUser, global, insertText, setVideoEncoderBeneficiary, showConfirmNsfwModal } = props;
 
   const tusEndPoint = "https://uploads.3speak.tv/files/";
   const fileInput = useRef<HTMLInputElement>(null);
@@ -255,6 +255,7 @@ export const VideoUpload = (props: any) => {
           insertText={insertText}
           setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
           activeUser={activeUser}
+          showConfirmNsfwModal={showConfirmNsfwModal}
         />
       </div>
       <div>

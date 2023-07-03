@@ -7,7 +7,7 @@ import "./index.scss";
 import DropDown, { MenuItem } from "../dropdown";
 
 const VideoGallery = (props: any) => {
-  const { showGaller, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary, activeUser} = props;
+  const { showGaller, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary, activeUser, showConfirmNsfwModal} = props;
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
@@ -15,7 +15,9 @@ const VideoGallery = (props: any) => {
   const [hoveredItem, setHoveredItem] = useState<any>(null);
   const [isEmbedded, setIsembedded] = useState(false);
   const [label, setLabel] = useState("All");
-  const [filtered, setFiltered] = useState<any>([])
+  const [filtered, setFiltered] = useState<any>([]);
+  // const [confirmIsNsfw, setConfirmIsNsfw] = useState(false);
+  // const [isNsfw, setIsNsfw] = useState(false)
 
   useEffect(() => {
     getAllStatus();
@@ -100,6 +102,15 @@ const VideoGallery = (props: any) => {
     insertText(element)
     setIsembedded(true)
   };
+
+  // const handleChange = () => {
+  //   setIsNsfw(prevIsNsfw => {
+  //     const updatedIsNsfw = !prevIsNsfw;
+  //     console.log("updated isNsfw", updatedIsNsfw);
+  //     console.log("isNsfw", isNsfw);
+  //     return updatedIsNsfw;
+  //   });
+  // }
 
   const dropDown = (
     <div className="video-status-picker">
@@ -205,9 +216,10 @@ const VideoGallery = (props: any) => {
                       <button
                       // disabled={isEmbedded}
                       className="post-video-btn" onClick={() =>{ 
-                        embeddVideo(item)
-                        setBeneficiary(item)
-                        setShowGallery(false)
+                        embeddVideo(item);
+                        setBeneficiary(item);
+                        setShowGallery(false);
+                        showConfirmNsfwModal();
                         }}>
                         {_t("video-gallery.status-encoded")}
                       </button>
@@ -344,6 +356,16 @@ const VideoGallery = (props: any) => {
       {!loading && items?.length === 0 || filtered?.length === 0 && <div className="gallery-list">{_t("g.empty-list")}</div>}
     </div>
   );
+
+  // const confirmNsfw = (
+  //   <div className="d-flex flex-column m-3">
+  //     <div>        
+  //       <input type="checkbox" checked={isNsfw} onChange={handleChange} ></input>
+  //       <label className="text-danger ml-3">Please check if your content is NSFW</label>
+  //     </div>
+  //     <Button className="w-50 align-self-center">Confirm</Button>
+  //   </div>
+  // )
 
   return (
     <div>

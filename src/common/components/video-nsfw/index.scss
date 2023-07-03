@@ -1,0 +1,16 @@
+.confirm-nsfw{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .nsfw-check-wrapper{
+        display: flex;
+        align-items: center;
+
+        .nsfw-checkbox{
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+}

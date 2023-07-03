@@ -1386,6 +1386,11 @@
     "info-duration": "Duration:",
     "info-size": "File size:"
   },
+  "nsfw-content": {
+    "title":"NSFW contents",
+    "warning": "Please check this if your content is NSFW",
+    "continue":"Continue"
+  },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
     "placeholder-focus": "Enter tag",

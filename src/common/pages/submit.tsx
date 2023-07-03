@@ -88,6 +88,7 @@ import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
 import { updateSpeakVideoInfo, markAsPublished } from "../api/threespeak";
+import { ConfirmNsfwContent } from "../components/video-nsfw";
 
 setProxyBase(defaults.imageServer);
 
@@ -109,6 +110,7 @@ interface Advanced {
   videoId: string;
   speakPermlink: string;
   speakAuthor: string;
+  isNsfw: boolean
 }
 
 interface PreviewProps extends PostBase {
@@ -182,6 +184,7 @@ interface State extends PostBase, Advanced {
   isDraftEmpty: boolean;
   drafts: boolean;
   showHelp: boolean;
+  showConfirmNsfw: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -222,7 +225,9 @@ class SubmitPage extends BaseComponent<Props, State> {
     isThreespeak: false,
     videoId: "",
     speakPermlink: "",
-    speakAuthor: ""
+    speakAuthor: "",
+    showConfirmNsfw: false,
+    isNsfw: false
   };
 
   _updateTimer: any = null;
@@ -472,7 +477,7 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   saveAdvanced = (): void => {
-    const { reward, beneficiaries, schedule, reblogSwitch, description, isThreespeak, videoId, speakPermlink, speakAuthor } = this.state;
+    const { reward, beneficiaries, schedule, reblogSwitch, description, isThreespeak, videoId, speakPermlink, speakAuthor, isNsfw } = this.state;
 
     const advanced: Advanced = {
       reward,
@@ -484,7 +489,8 @@ class SubmitPage extends BaseComponent<Props, State> {
       isThreespeak,
       videoId,
       speakPermlink,
-      speakAuthor
+      speakAuthor,
+      isNsfw
     };
 
     ls.set("local_advanced", advanced);
@@ -610,7 +616,8 @@ class SubmitPage extends BaseComponent<Props, State> {
         isThreespeak: false,
         videoId: "",
         speakPermlink: "",
-        speakAuthor: ""
+        speakAuthor: "",
+        isNsfw: false
       },
       () => {
         this.saveAdvanced();
@@ -687,7 +694,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     const { activeUser, history, addEntry } = this.props;
-    const { title, tags, body, description, reward, reblogSwitch, beneficiaries, videoId, isThreespeak, speakPermlink, speakAuthor } = this.state;
+    const { title, tags, body, description, reward, reblogSwitch, beneficiaries, videoId, isThreespeak, speakPermlink, speakAuthor, isNsfw } = this.state;
 
     // clean body
     const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, "");
@@ -723,7 +730,8 @@ class SubmitPage extends BaseComponent<Props, State> {
      if (isThreespeak && speakPermlink !== "") {
       permlink = speakPermlink;
        // update speak video with title, body and tags
-       updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, false)
+       updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw)
+       console.log(isNsfw)
     }
 
     const [parentPermlink] = tags;
@@ -1059,9 +1067,21 @@ class SubmitPage extends BaseComponent<Props, State> {
     }, this.saveAdvanced)
   }
 
-  checkContentType = () => {
-
+  showConfirmNsfwModal = () => {
+    this.setState({ showConfirmNsfw: true})
   }
+  hideConfirmNsfwModal = () => {
+    this.setState({ showConfirmNsfw: false})
+  }
+
+  togleNsfwC = () => {
+    this.setState(prevState => ({ isNsfw: !prevState.isNsfw }), () => {
+      console.log("opposite", !this.state.isNsfw);
+      console.log("state", this.state.isNsfw);
+    });
+    console.log("state out", this.state.isNsfw);
+  }
+  
 
   render() {
     const {
@@ -1148,7 +1168,8 @@ class SubmitPage extends BaseComponent<Props, State> {
             )}
             {EditorToolbar({ 
               ...this.props, 
-              setVideoEncoderBeneficiary: this.setVideoEncoderBeneficiary 
+              setVideoEncoderBeneficiary: this.setVideoEncoderBeneficiary,
+              showConfirmNsfwModal: this.showConfirmNsfwModal
               })}
             <div className="title-input">
               <Form.Control
@@ -1185,6 +1206,14 @@ class SubmitPage extends BaseComponent<Props, State> {
                 activeUser={(activeUser && activeUser.username) || ""}
               />
             </div>
+            { this.state.showConfirmNsfw &&
+              <ConfirmNsfwContent 
+              showConfirmNsfw={this.state.showConfirmNsfw}
+              hideConfirmNsfwModal={this.hideConfirmNsfwModal}
+              togleNsfwC={this.togleNsfwC}
+              isNsfw={this.state.isNsfw}
+              />
+            }
             {activeUser ? (
               <AvailableCredits
                 className="mr-2"
