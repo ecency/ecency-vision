@@ -37,6 +37,7 @@ import ManageAuthorities from "../components/manage-authority";
 import AccountRecovery from "../components/recovery-account";
 
 import CurationTrail from "../components/curation-trail";
+import ThreeSpeakFeed from "../components/threespeak-feed";
 
 import { getAccountFull } from "../api/hive";
 
@@ -592,6 +593,15 @@ export const Profile = (props: Props) => {
                       </div>
                     </>
                   );
+                }
+                  
+                // Just to be sure it works for now
+                if (section === "threespeak-feed") {
+                  return(
+                    <>
+                      <ThreeSpeakFeed />
+                    </>
+                  )
                 }
 
                 if (data !== undefined && section) {

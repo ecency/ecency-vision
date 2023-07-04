@@ -1,0 +1,74 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.threespeak-feed{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .threespeak-wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 5px;
+
+        .wrapper-top{
+            width: 300px;
+            
+            .video-frame {
+                width: 100%;
+                position: relative;
+                overflow: hidden;
+                padding-bottom: 56.25%; //Will probably reset this
+
+                iframe {
+                  width: 100%;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  height: 100%;
+                }
+            }
+              
+        }
+
+        .wrapper-bottom{
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+
+            .speak-video-title{
+                font-size: 20px;
+                font-weight: 500;
+            }
+
+            .image-title{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 5px;
+                width: 100%;
+
+                .speak-video-owner{
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    cursor: pointer;
+
+                    img{
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        color: azure;
+                    }
+                }
+
+            }
+        }
+
+    }
+}
