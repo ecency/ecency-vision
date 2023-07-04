@@ -18,7 +18,7 @@
   }
 
   @include themify(day) {
-    color: $light-periwinkle;
+    @apply text-light-periwinkle;
   }
 
   @include themify(night) {
@@ -28,7 +28,7 @@
   &.toggled {
     border-radius: 5px;
     @include themify(day) {
-      background: lighten($light-periwinkle, 10);
+      @apply bg-light-periwinkle-100;
     }
 
     @include themify(night) {
@@ -52,7 +52,7 @@
     padding: 0;
 
     @include themify(day) {
-      color: $light-periwinkle;
+      @apply text-light-periwinkle;
     }
 
     @include themify(night) {
@@ -69,7 +69,7 @@
     top: 10px !important;
 
     @include themify(day) {
-      background: lighten($light-periwinkle, 10);
+      @apply bg-light-periwinkle-100;
     }
 
     @include themify(night) {
@@ -92,7 +92,7 @@
   border-bottom: 1px solid #ddd;
 
   @include themify(day) {
-    border-color: $light-periwinkle;
+    @apply border-light-periwinkle;
   }
 
   @include themify(night) {

@@ -17,7 +17,7 @@
   z-index: 6000;
 
   @include themify(day) {
-    background-color: $light-periwinkle;
+    @apply bg-light-periwinkle;
   }
 
   @include themify(night) {

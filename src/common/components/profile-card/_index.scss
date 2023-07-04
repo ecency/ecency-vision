@@ -22,10 +22,11 @@
     }
 
     .user-avatar {
-      border: 3px solid $duck-egg-blue;
+      border: 3px solid;
       height: 128px;
       width: 128px;
       background-color: transparent;
+      @apply border-blue-duck-egg;
     }
 
     .reputation {
@@ -68,10 +69,10 @@
   }
 
   .rc-line {
-    background: $duck-egg-blue;
     height: 2px;
     width: 300px;
     margin: 0 auto 8px auto;
+    @apply bg-blue-duck-egg;
 
     @media (min-width: $md-break) {
       width: auto;

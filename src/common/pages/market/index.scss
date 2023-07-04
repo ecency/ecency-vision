@@ -49,7 +49,7 @@ thead, .pagination {
         position: relative;
 
         @include themify(day) {
-            background-color: $duck-egg-blue;
+            @apply bg-blue-duck-egg;
         }
 
         .list-group {
@@ -419,7 +419,7 @@ thead, .pagination {
     }
 
     .decks-container {
-        background-color: $duck-egg-blue;
+        @apply bg-blue-duck-egg;
         overflow-x: auto;
         max-width: 100vw;
         height: calc(100vh - 3rem);

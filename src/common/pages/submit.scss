@@ -218,13 +218,14 @@
 .selection-item {
   width: 100px;
   height: 100px;
-  background-color: $light-periwinkle;
-  border-radius: 10px;
   background-repeat: no-repeat;
   background-size: cover;
-  border: 5px solid $light-periwinkle;
+  border-width: 5px;
+  border-style: solid;
   border-radius: 1.25rem;
   cursor: pointer;
+  @apply bg-light-periwinkle;
+  @apply border-light-periwinkle;
 }
 
 .selected {

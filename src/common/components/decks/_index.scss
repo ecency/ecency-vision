@@ -120,7 +120,7 @@ html, body {
           @include border-bottom-right-radius(1rem);
 
           @include themify(day) {
-            background-color: $duck-egg-blue;
+            @apply bg-blue-duck-egg;
           }
 
           @include themify(night) {

@@ -189,7 +189,7 @@
               }
               &:hover {
                 @include themify(day) {
-                  background: $duck-egg-blue;
+                  @apply bg-blue-duck-egg;
                 }
                 @include themify(night) {
                   background: $metallic-blue;

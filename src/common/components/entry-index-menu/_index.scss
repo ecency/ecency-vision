@@ -159,16 +159,16 @@
   }
   @include themify(day) {
     svg {
-      color: $dark-six;
-      border-color: $dark-six;
+      @apply text-dark-600;
+      @apply border-dark-600;
       height: 100%;
     }
   }
   @include themify(night) {
     svg {
-      color: $duck-egg-blue;
-      border-color: $duck-egg-blue;
       height: 100%;
+      @apply text-blue-duck-egg;
+      @apply border-blue-duck-egg;
     }
   }
 }

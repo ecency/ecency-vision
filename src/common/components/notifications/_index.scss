@@ -185,9 +185,10 @@
 
       &.not-read {
         @include themify(day) {
-          background-color: $duck-egg-blue;
+          @apply bg-blue-duck-egg;
+
           &:hover {
-            background-color: $powder-blue;
+            @apply bg-blue-powder;
           }
         }
 

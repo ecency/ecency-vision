@@ -96,7 +96,7 @@
           border-color: $primary;
 
           @include themify(day) {
-            background-color: $duck-egg-blue;
+            @apply bg-blue-duck-egg;
           }
 
           @include themify(night) {
@@ -149,7 +149,7 @@
 
         &:hover {
           @include themify(day) {
-            background-color: $duck-egg-blue;
+            @apply bg-blue-duck-egg;
           }
 
           @include themify(night) {
@@ -188,7 +188,7 @@
 
       &:hover {
         @include themify(day) {
-          background-color: $duck-egg-blue;
+          @apply bg-blue-duck-egg;
 
           .click-to-change {
             color: $primary;
@@ -211,8 +211,7 @@
         @include padding(1rem);
         @include border-radius(1rem);
 
-        @include themify(day) {
-          background-color: $duck-egg-blue;
+        @apply bg-blue-duck-egg;
         }
 
         @include themify(night) {

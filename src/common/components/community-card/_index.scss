@@ -46,10 +46,10 @@
     }
 
     .user-avatar {
-      border: 3px solid $duck-egg-blue;
       height: 160px;
       width: 160px;
       background-color: transparent;
+      @apply border-blue-duck-egg;
     }
   }
 

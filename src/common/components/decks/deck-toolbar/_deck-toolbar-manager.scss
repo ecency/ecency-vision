@@ -135,7 +135,7 @@
         cursor: unset;
 
         @include themify(day) {
-          background-color: $duck-egg-blue;
+          @apply bg-blue-duck-egg;
         }
 
         @include themify(night) {

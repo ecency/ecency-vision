@@ -40,12 +40,12 @@
           }
 
           @include themify(night) {
-            color: $powder-blue;
+            @apply text-blue-powder;
           }
 
           &:hover {
             @include themify(day) {
-              background: $duck-egg-blue;
+              @apply bg-blue-duck-egg;
             }
 
             @include themify(night) {

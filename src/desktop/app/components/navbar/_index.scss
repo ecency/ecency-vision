@@ -212,7 +212,7 @@
       }
 
       @include themify(night) {
-        color: $duck-egg-blue;
+        @apply text-blue-duck-egg;
         opacity: 0.8;
       }
     }
@@ -257,7 +257,7 @@
       }
 
       @include themify(night) {
-        color: $duck-egg-blue;
+        @apply text-blue-duck-egg;
         opacity: 0.8;
       }
     }

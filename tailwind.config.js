@@ -141,7 +141,9 @@ module.exports = {
         200: "#fcfcfc",
         300: "#f5f5f5",
         305: "#e8e8e8",
-        400: "#e7e7e7"
+        400: "#e7e7e7",
+        periwinkle: "#c2d4f5",
+        "periwinkle-100": "#eef3fc"
       },
       dark: {
         200: "#161d26",
@@ -168,7 +170,9 @@ module.exports = {
       },
       blue: {
         powder: "#cee2ff",
-        dusk: "#2d5aa0"
+        dusk: "#2d5aa0",
+        "duck-egg": "#eaf2fc",
+        "duck-egg-200": "#91bbef"
       },
       silver: "#c1c5c7",
       "silver-112": "#a1a7aa",
