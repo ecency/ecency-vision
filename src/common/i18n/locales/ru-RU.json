@@ -553,7 +553,8 @@
       "whats-new-description": "Следите за обновлениями Ecency",
       "updates": "Обновления",
       "release-list": "Релиз версии",
-      "current": "Текущая"
+      "current": "Текущая",
+      "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
     },
     "threads-form": {
       "save": "Сохранить",
