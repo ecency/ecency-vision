@@ -81,8 +81,8 @@ export const ThreadItem = ({
   }, [triggerPendingStatus]);
 
   useEffect(() => {
-    setIntervalStarted(status === "pending");
-  }, [status]);
+    setIntervalStarted(typeof entry.post_id === "string" || !entry.post_id || entry.post_id === 1);
+  }, [entry]);
 
   useEffect(() => {
     if (inViewport && onAppear) {
@@ -95,11 +95,11 @@ export const ThreadItem = ({
       !!entry.parent_author && !!entry.parent_permlink && entry.parent_author !== entry.host
     );
 
-    if (typeof entry.post_id === "string") {
-      setStatus("pending");
-    } else {
-      setStatus("default");
-    }
+    // if (typeof entry.post_id === "string") {
+    //   setStatus("pending");
+    // } else {
+    //   setStatus("default");
+    // }
   }, [entry]);
 
   return (
