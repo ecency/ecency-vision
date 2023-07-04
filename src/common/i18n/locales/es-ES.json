@@ -227,9 +227,9 @@
     "username-contains-symbols-error": "Debe contener solamente letras, números, Signos de Puntuación",
     "username-contains-double-hyphens": "No debe contener Signos de Puntuación dobles",
     "username-exists": "Este nombre de usuario ya está registrado. Por favor, prueba otro",
-    "referral-invalid": "This referral is invalid. Please, try another one",
-    "referral-min-length-error": "Length of referral should be at least 3 characters",
-    "referral-max-length-error": "Length of referral should be no more than 16 characters"
+    "referral-invalid": "Esta referencia no es válida. Por favor, prueba con otra",
+    "referral-min-length-error": "La longitud de la referencia debe tener al menos 3 caracteres",
+    "referral-max-length-error": "La longitud de la referencia no debe tener más de 16 caracteres"
   },
   "onboard": {
     "title": "Incorporar a un amigo",
@@ -553,7 +553,8 @@
       "whats-new-description": "Mantente al tanto de las actualizaciones de Ecency",
       "updates": "Actualizaciones",
       "release-list": "Versiones de lanzamiento",
-      "current": "Actual"
+      "current": "Actual",
+      "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
     },
     "threads-form": {
       "save": "Guardar",
