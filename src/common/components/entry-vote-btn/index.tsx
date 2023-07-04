@@ -84,7 +84,7 @@ interface VoteDialogProps {
   updateWalletValues: () => void;
   onClick: (percent: number, estimated: number) => void;
   handleClickAway: () => void;
-  isVoted: () => {upVoted: boolean, downVoted: boolean}
+  isVoted: () => { upVoted: boolean; downVoted: boolean };
 }
 
 interface VoteDialogState {
@@ -487,7 +487,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
   };
 
   isVoted = () => {
-     const { activeUser } = this.props;
+    const { activeUser } = this.props;
 
     if (!activeUser) {
       return { upVoted: false, downVoted: false };
@@ -587,7 +587,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
           upVoted ? "btn-up-vote primary-btn-done" : "btn-down-vote secondary-btn-done"
         } ${inProgress ? "in-progress" : ""} voted`
       );
-    };
+    }
 
     let tooltipClass = "";
     if (dialog) {
