@@ -328,7 +328,7 @@
         }
 
         .description {
-          color: $gray-600;
+          @apply text-gray-600;
 
           @include font-size(0.75rem);
 
@@ -350,10 +350,10 @@
     }
 
     &.pending {
-      background-color: $gray-100;
+      @apply bg-gray-100;
 
       @include themify(night) {
-        background-color: $gray-800;
+        @apply bg-gray-800;
       }
 
       .spinner-border {

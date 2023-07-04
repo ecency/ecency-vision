@@ -157,7 +157,16 @@ module.exports = {
       purple: colors.purple,
       fuchsia: colors.fuchsia,
       pink: colors.pink,
-      rose: colors.rose
+      rose: colors.rose,
+      "gray-100": "#f8f9fa",
+      "gray-200": "#e9ecef",
+      "gray-300": "#dee2e6",
+      "gray-400": "#ced4da",
+      "gray-500": "#adb5bd",
+      "gray-600": "#6c757d",
+      "gray-700": "#495057",
+      "gray-800": "#343a40",
+      "gray-900": "#212529"
     }),
     columns: {
       auto: "auto",
@@ -486,7 +495,8 @@ module.exports = {
       9: "repeat(9, minmax(0, 1fr))",
       10: "repeat(10, minmax(0, 1fr))",
       11: "repeat(11, minmax(0, 1fr))",
-      12: "repeat(12, minmax(0, 1fr))"
+      12: "repeat(12, minmax(0, 1fr))",
+      deck: "72px 0 1fr"
     },
     gridTemplateRows: {
       none: "none",
@@ -985,6 +995,11 @@ module.exports = {
       30: "30",
       40: "40",
       50: "50"
+    },
+    extend: {
+      boxShadow: {
+        nav: `0 .5rem 1rem rgba(173, 181, 189, .15)`
+      }
     }
   },
   plugins: []

@@ -85,7 +85,7 @@
         @include border-radius(1rem);
 
         @include themify(day) {
-          background-color: $gray-100;
+          @apply bg-gray-100;
         }
 
         @include themify(night) {
@@ -106,7 +106,7 @@
 
         &:hover {
           @include themify(day) {
-            background-color: $gray-200;
+            @apply bg-gray-200;
           }
 
           @include themify(night) {
@@ -179,7 +179,7 @@
       @include padding(1rem);
 
       @include themify(day) {
-        background-color: $gray-100;
+        @apply bg-gray-100;
       }
 
       @include themify(night) {

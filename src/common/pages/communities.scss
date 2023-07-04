@@ -124,7 +124,7 @@
 .community-title {
   font-weight: 700;
   font-size: 59px;
-  color: $black;
+  @apply text-black;
   line-height: 68px;
 
   @include themify(night) {

@@ -71,7 +71,12 @@ export const DeckGrid = ({ history }: Props) => {
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
-            <div ref={provided.innerRef} {...provided.droppableProps} id="draggable-container">
+            <div
+              className="flex scroll-smooth overflow-x-auto overflow-y-hidden"
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              id="draggable-container"
+            >
               {deckContext.layout.columns.map(({ type, id, settings, key }, index) => (
                 <Draggable key={id} draggableId={id} index={index}>
                   {(provided, snapshot) => {

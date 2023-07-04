@@ -305,7 +305,7 @@
 
       @include themify(day) {
         background: $white-two;
-        box-shadow: 0 .5rem 1rem rgba($gray-500, .15)
+        @apply shadow-nav;
       }
 
       @include themify(night) {
@@ -495,7 +495,7 @@ body.medium-zoom--opened {
     margin-top: 19px;
   }
   .item-text {
-    color: $black;
+    @apply text-black;
     margin-left: 64px;
     @include themify(night) {
       color: $light-grey !important;

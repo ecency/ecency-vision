@@ -17,12 +17,12 @@
 
   @include themify(day) {
     background-color: $white;
-    border-color: $gray-300;
+    @apply border-gray-300;
   }
 
   @include themify(night) {
     background-color: $dark-two;
-    border-color: $gray-800;
+    @apply border-gray-800;
   }
 
   &::-webkit-scrollbar {
@@ -59,7 +59,7 @@
 
         &:hover {
           @include themify(day) {
-            background-color: $gray-100;
+            @apply bg-gray-100;
           }
 
           @include themify(night) {
@@ -76,7 +76,7 @@
         svg {
           width: 1.5rem;
           height: 1.5rem;
-          color: $gray-500;
+          @apply text-gray-500;
         }
       }
 
@@ -113,11 +113,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $gray-400;
+    @apply text-gray-400;
     min-height: 65px;
 
     @include themify(day) {
-      background-color: $white;
+      @apply bg-white;
     }
 
     @include themify(night) {
@@ -126,13 +126,13 @@
 
     &:hover {
       @include themify(day) {
-        background-color: $gray-100;
-        color: $gray-600;
+        @apply bg-gray-100;
+        @apply text-gray-600;
       }
 
       @include themify(night) {
         background-color: $dark;
-        color: $gray-500;
+        @apply text-gray-500;
       }
     }
 
@@ -170,7 +170,7 @@
       }
 
       svg {
-        color: $gray-500;
+        @apply text-gray-500;
         width: 1.25rem;
         height: 1.25rem;
 

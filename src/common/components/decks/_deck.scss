@@ -340,7 +340,7 @@
         animation: skeleton-loader 1s infinite;
 
         @include themify(day) {
-          background-color: $gray-200;
+          @apply bg-gray-200;
         }
 
         @include themify(night) {

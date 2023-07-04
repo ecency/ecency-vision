@@ -182,7 +182,7 @@
     .btn.btn-link {
       width: 2.5rem;
       height: 2.5rem;
-      color: $gray-400;
+      @apply text-gray-400;
       box-shadow: none;
 
       @include padding(0);
@@ -208,7 +208,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      background-color: $white;
+      @apply bg-white;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -270,13 +270,13 @@
 
     &.alert-secondary {
       @include themify(day) {
-        color: $gray-600;
-        background-color: $gray-200;
+        @apply text-gray-600;
+        @apply bg-gray-200;
       }
 
       @include themify(night) {
-        color: $gray-200;
-        background-color: $gray-800;
+        @apply text-gray-200;
+        @apply bg-gray-800;
       }
     }
 
@@ -330,7 +330,7 @@
     @include border-radius(1rem);
 
     @include themify(day) {
-      background-color: $white;
+      @apply bg-white;
     }
 
     @include themify(night) {

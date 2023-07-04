@@ -32,11 +32,11 @@
     }
 
     @include themify(night) {
-      color: $white;
-      border-color: $gray-600;
+      @apply text-white;
+      @apply border-gray-600;
 
       &:active, &:focus {
-        border-color: $gray-400;
+        @apply border-gray-400;
       }
     }
   }
@@ -52,11 +52,11 @@
     @include border-bottom-left-radius($input-border-radius);
 
     @include themify(night) {
-      color: $white;
-      border-color: $gray-600;
+      @apply text-white;
+      @apply border-gray-600;
 
       &:active, &:focus {
-        border-color: $gray-400;
+        @apply border-gray-400;
       }
     }
 

@@ -25,15 +25,15 @@
 
     &.selected {
       background-color: $primary;
-      color: $white;
+      @apply text-white;
     }
   }
 
   @include themify(day) {
-    background-color: $gray-100;
+    @apply bg-gray-100;
   }
 
   @include themify(night) {
-    background-color: $gray-800;
+    @apply bg-gray-800;
   }
 }
