@@ -554,7 +554,7 @@
       "updates": "Actualizaciones",
       "release-list": "Versiones de lanzamiento",
       "current": "Actual",
-      "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
+      "infinite-failed": "Vaya, la búsqueda falló. Siéntate, estamos reintentando..."
     },
     "threads-form": {
       "save": "Guardar",
