@@ -554,7 +554,7 @@
       "updates": "Updates",
       "release-list": "Release versions",
       "current": "Current",
-      "infinite-failed": "Loading failed. Will reload in a few seconds."
+      "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
     },
     "threads-form": {
       "save": "Save",
