@@ -140,7 +140,7 @@ export const ThreadItem = ({
               isPostSlider={false}
               history={history}
               afterVote={(votes, estimated) => {
-                updateVotes(entry.post_id, votes, estimated);
+                updateVotes(entry, votes, estimated);
               }}
             />
             <EntryVotes history={history!!} entry={entry} icon={voteSvg} />

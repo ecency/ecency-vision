@@ -28,6 +28,14 @@ interface Props {
   draggable?: DraggableProvidedDragHandleProps;
 }
 
+const MAX_ERROR_ATTEMPTS = 3;
+const ERROR_ATTEMPTS_INTERVALS = {
+  0: 3000,
+  1: 10000,
+  2: 20000,
+  3: 30000
+};
+
 const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props) => {
   const { register, detach, reloadingInitiated } = useContext(DeckThreadsContext);
   const { fetch } = useContext(DeckThreadsColumnManagerContext);
@@ -61,6 +69,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
       {}
     )
   );
+  const [nextPageError, setNextPageError] = useState(false);
   const previousEditingEntry = usePrevious(currentEditingEntry);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
@@ -80,7 +89,9 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
     }
   }, [reloadingInitiated]);
 
-  const fetchData = async (sinceEntries?: IdentifiableEntry[]) => {
+  const fetchData = async (sinceEntries?: IdentifiableEntry[], retries = 0) => {
+    setNextPageError(false);
+
     try {
       if (data.length) {
         setIsReloading(true);
@@ -120,6 +131,12 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
         setIsEndReached(true);
       }
     } catch (e) {
+      if (retries < MAX_ERROR_ATTEMPTS && sinceEntries) {
+        setNextPageError(true);
+        setTimeout(() => {
+          fetchData(sinceEntries, retries + 1);
+        }, ERROR_ATTEMPTS_INTERVALS[retries]);
+      }
       console.error(e);
     } finally {
       setIsReloading(false);
@@ -165,6 +182,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
           <InfiniteScrollLoader
             isEndReached={isEndReached}
             data={data}
+            failed={nextPageError}
             endReachedLabel={_t("decks.columns.end-reached")}
           />
         ) : (
