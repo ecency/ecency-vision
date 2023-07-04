@@ -553,7 +553,8 @@
       "whats-new-description": "Keep in track the Ecency updates",
       "updates": "Updates",
       "release-list": "Release versions",
-      "current": "Current"
+      "current": "Current",
+      "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
     },
     "threads-form": {
       "save": "Save",
