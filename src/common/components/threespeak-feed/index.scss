@@ -41,15 +41,27 @@
             width: 300px;
 
             .speak-video-title{
-                font-size: 20px;
-                font-weight: 500;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 5px;
+                
+                .feed-title{
+                    font-size: 20px;
+                    font-weight: 500;
+
+                }
+
+                .views{
+                    font-size: 12px;
+                }
             }
 
             .image-title{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                gap: 5px;
+                padding: 5px;
                 width: 100%;
 
                 .speak-video-owner{
@@ -65,6 +77,12 @@
                         object-fit: cover;
                         color: azure;
                     }
+                }
+
+                .icon{
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
                 }
 
             }
