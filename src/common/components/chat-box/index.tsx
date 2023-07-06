@@ -10,6 +10,8 @@ import Tooltip from "../tooltip";
 import UserAvatar from "../user-avatar";
 import SeachUser from "../search-user";
 import LinearProgress from "../linear-progress";
+import EmojiPicker from "../emoji-picker";
+import ClickAwayListener from "../clickaway-listener";
 import { setNostrkeys } from "../../../providers/message-provider";
 
 import {
@@ -19,7 +21,8 @@ import {
   arrowBackSvg,
   messageSendSvg,
   chevronUpSvg,
-  chevronDownSvgForSlider
+  chevronDownSvgForSlider,
+  emoticonHappyOutlineSvg
 } from "../../img/svg";
 import { dateToFormatted } from "../../helper/parse-date";
 import {
@@ -102,7 +105,16 @@ export default function ChatBox(props: Props) {
 
   useEffect(() => {
     if (currentUser) {
-      fetchCurrentUserData();
+      const isCurrentUserFound = props.chat.directContacts.some(
+        (contact) => contact.name === currentUser
+      );
+      if (isCurrentUserFound) {
+        fetchCurrentUserData();
+      } else {
+        setShowSpinner(true);
+        fetchCurrentUserData();
+      }
+
       const peer = props.chat.directContacts.find((x) => x.name === currentUser)?.pubkey ?? null;
       setReceiverPubKey(peer!);
       const msgsList = fetchMessages(peer!);
@@ -139,7 +151,6 @@ export default function ChatBox(props: Props) {
   };
 
   const fetchCurrentUserData = async () => {
-    setShowSpinner(true);
     const response = await getAccountFull(currentUser);
     setProfileData({
       joiningData: response.created,
@@ -168,7 +179,6 @@ export default function ChatBox(props: Props) {
   };
 
   const setCurrentUserFromSearch = (username: string) => {
-    setShowSpinner(true);
     setCurrentUser(username);
     setExpanded(true);
     setIsCurrentUser(true);
@@ -205,8 +215,7 @@ export default function ChatBox(props: Props) {
 
   const scrollerClicked = () => {
     chatBodyDivRef?.current?.scrollTo({
-      top: isCurrentUser ? chatBodyDivRef?.current?.scrollHeight : 0,
-      behavior: "smooth"
+      top: isCurrentUser ? chatBodyDivRef?.current?.scrollHeight : 0
     });
   };
 
@@ -253,6 +262,17 @@ export default function ChatBox(props: Props) {
       );
     }
     return <></>;
+  };
+
+  const handleEmojiSelection = (emoji: string) => {
+    setMessage((prevMessage) => prevMessage + emoji);
+  };
+
+  const getLastMessage = (pubkey: string) => {
+    const msgsList = fetchMessages(pubkey!);
+    const messages = msgsList.sort((a, b) => a.created - b.created);
+    const lastMessage = messages.slice(-1);
+    return lastMessage[0]?.content;
   };
 
   return (
@@ -402,6 +422,7 @@ export default function ChatBox(props: Props) {
 
                               <div className="user-title" onClick={() => userClicked(user.name)}>
                                 <p className="username">{user.name}</p>
+                                <p className="last-message">{getLastMessage(user.pubkey)}</p>
                               </div>
                             </div>
                           );
@@ -444,12 +465,34 @@ export default function ChatBox(props: Props) {
           {showSpinner && <LinearProgress />}
           {currentUser && (
             <div className="chat">
+              <div className="chatbox-emoji-picker">
+                <div className="chatbox-emoji">
+                  <Tooltip content={_t("editor-toolbar.emoji")}>
+                    <div className="emoji-icon">{emoticonHappyOutlineSvg}</div>
+                  </Tooltip>
+                  <EmojiPicker
+                    style={{
+                      top: "255px",
+                      left: "0px",
+                      marginLeft: "14px",
+                      borderTopLeftRadius: "8px",
+                      borderTopRightRadius: "8px",
+                      borderBottomLeftRadius: "0px"
+                    }}
+                    fallback={(e) => {
+                      handleEmojiSelection(e);
+                    }}
+                  />
+                </div>
+              </div>
+
               <Form
                 onSubmit={(e: React.FormEvent) => {
                   e.preventDefault();
                   e.stopPropagation();
                   sendMessage();
                 }}
+                style={{ width: "100%" }}
               >
                 <InputGroup className="chat-input-group">
                   <Form.Control

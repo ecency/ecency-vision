@@ -72,7 +72,7 @@
       margin-top: 0.8rem;
       font-weight: 700;
       line-height: 24px;
-      font-size: 20px;
+      font-size: 21px;
       font-family: $font-family-sans-serif;
 
       @include themify(day) {
@@ -172,7 +172,7 @@
         padding: 18px 16px;
       }
       .user-title {
-        padding-top: 26px;
+        padding-top: 19px;
         width: -webkit-fill-available;
 
         .username {
@@ -184,14 +184,17 @@
             color: $white-two;
           }
 
-          font-size: 16px;
-
+          font-size: 17px;
           font-weight: 700;
           margin-bottom: 0.2rem !important;
         }
         .last-message {
-          font-size: 15px;
-          margin-bottom: 0 !important;
+          max-width: 320px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-bottom: 0;
+          font-size: 14px;
         }
       }
     }
@@ -390,6 +393,7 @@
     }
   }
   .chat {
+    display: flex;
     margin: 4px 8px;
     padding: 4px;
     min-height: 45px;
@@ -401,9 +405,31 @@
       background: #cee2ff;
     }
 
+    .chatbox-emoji-picker {
+      .chatbox-emoji {
+        .emoji-picker {
+          display: none;
+        }
+        margin: 8px 0 0 7px;
+        cursor: pointer;
+
+        svg {
+          height: 22px;
+          fill: rgb(60, 68, 73);
+        }
+      }
+      &:hover {
+        .chatbox-emoji {
+          .emoji-picker {
+            display: block;
+          }
+        }
+      }
+    }
+
     .chat-input-group {
       .chat-input {
-        padding-top: 13px;
+        padding-top: 10px;
         border: none;
         @include themify(day) {
           background: #e4e6eb;
