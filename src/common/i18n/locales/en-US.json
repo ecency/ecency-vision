@@ -1214,6 +1214,7 @@
     "memo-placeholder": "enter your notes here",
     "memo-help": "This memo is public",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchannge account must include a memo.",
     "available-hp-hint": "* available hive power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
