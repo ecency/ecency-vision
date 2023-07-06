@@ -554,7 +554,7 @@
       "updates": "Обновления",
       "release-list": "Релиз версии",
       "current": "Текущая",
-      "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
+      "infinite-failed": "Упс, не удалось загрузить. Подождите, мы попытаемся снова..."
     },
     "threads-form": {
       "save": "Сохранить",
