@@ -9,8 +9,8 @@
   left: 0px;
   z-index: 2;
   @include themify(day) {
-    background: $white-two;
-    box-shadow: 0 0 2px 1px $white-six;
+    @apply bg-light-200;
+    box-shadow: 0 0 2px 1px #f8f8f8;
   }
 
   @include themify(night) {
@@ -61,11 +61,11 @@
         }
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
-          color: $white-five;
+          @apply text-light-500;
         }
 
         &:not(:last-child) {
@@ -76,7 +76,7 @@
           pointer-events: none;
 
           @include themify(day) {
-            color: $silver;
+            @apply text-silver;
           }
 
           @include themify(night) {
@@ -96,13 +96,13 @@
       position: relative;
 
       @include themify(day) {
-        background-color: $white-three;
-        color: $steel-grey;
+        @apply bg-light-300;
+        @apply text-gray-steel;
       }
 
       @include themify(night) {
         background-color: $dark-grey-blue;
-        color: $white-five;
+        @apply text-light-500;
       }
 
       .pre-add-on {
@@ -114,11 +114,11 @@
         width: 47px;
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
-          color: $white-five;
+          @apply text-light-500;
         }
 
         svg {
@@ -158,16 +158,16 @@
             }
 
             &::placeholder {
-              color: $silver;
+              @apply text-silver;
               padding-left: 10px;
             }
 
             @include themify(day) {
-              color: $steel-grey;
+              @apply text-gray-steel;
             }
 
             @include themify(night) {
-              color: $white-five;
+              @apply text-light-500;
             }
           }
         }
@@ -184,7 +184,7 @@
         font-size: 13px;
 
         @include themify(day) {
-          background: $white-three;
+          @apply bg-light-300;
         }
 
         @include themify(night) {
@@ -208,7 +208,7 @@
       cursor: pointer;
 
       @include themify(day) {
-        color: $warm-grey;
+        @apply text-gray-warm;
       }
 
       @include themify(night) {
@@ -239,7 +239,7 @@
       width: 100%;
 
       @include themify(day) {
-        background: $white-two;
+        @apply bg-light-200;
         box-shadow: 0 0.5rem 1rem rgba($gray-500, 0.15);
       }
 
@@ -253,7 +253,7 @@
   .custom-dropdown {
     .dropdown-btn {
       @include themify(day) {
-        color: $warm-grey;
+        @apply text-gray-warm;
       }
 
       @include themify(night) {

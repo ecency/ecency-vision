@@ -33,7 +33,7 @@
       @include transition(0.3s);
 
       path {
-        stroke: $white;
+        @apply stroke-white;
       }
     }
 

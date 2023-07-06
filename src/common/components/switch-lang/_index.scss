@@ -13,7 +13,7 @@
     text-align: center;
 
     @include themify(day) {
-      background: $white-three;
+      @apply bg-light-300;
     }
 
     @include themify(night) {

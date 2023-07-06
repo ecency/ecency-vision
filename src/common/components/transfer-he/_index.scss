@@ -10,7 +10,7 @@
   .transaction-form-body.powering-down {
     text-align: center;
     @include themify(day) {
-      color: $steel-grey;
+      @apply text-gray-steel;
     }
 
     @include themify(night) {
@@ -35,7 +35,7 @@
     }
 
     @include themify(day) {
-      color: $charcoal-grey;
+      @apply text-gray-charcoal;
     }
 
     @include themify(night) {
@@ -99,7 +99,7 @@
 
       .arrow {
         align-items: center;
-        color: $silver;
+        @apply text-silver;
         display: flex;
         justify-content: center;
         opacity: 0.4;
@@ -126,7 +126,7 @@
     }
 
     .memo {
-      color: $warm-grey;
+      @apply text-gray-warm;
       font-size: 16px;
       text-align: center;
       word-break: break-all;
@@ -139,7 +139,7 @@
     text-align: center;
 
     @include themify(day) {
-      color: $charcoal-grey;
+      @apply text-gray-charcoal;
     }
 
     @include themify(night) {
@@ -176,11 +176,11 @@
       }
 
       @include themify(day) {
-        color: $steel-grey;
+        @apply text-gray-steel;
       }
 
       @include themify(night) {
-        color: $silver;
+        @apply text-silver;
       }
 
       &:not(:last-child) {
@@ -192,10 +192,10 @@
       }
 
       &.selected {
-        background-color: $silver;
+        @apply bg-silver;
 
         @include themify(day) {
-          color: $white;
+          @apply text-white;
         }
 
         @include themify(night) {
@@ -215,7 +215,7 @@
   }
 
   .text-muted {
-    color: $steel-grey !important;
+    @apply text-gray-steel;
     @include themify(night) {
       color: $metallic-blue !important;
     }

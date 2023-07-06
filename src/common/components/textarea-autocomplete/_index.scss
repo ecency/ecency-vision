@@ -22,7 +22,7 @@
 
       overflow-x: auto;
       @include themify(day) {
-        background: $white-two;
+        @apply bg-light-200;
       }
       @include themify(night) {
         background: $dark;
@@ -43,15 +43,15 @@
           }
 
           @include themify(day) {
-            color: $warm-grey;
-            background: $white-two;
+            @apply text-gray-warm;
+            @apply bg-light-200;
 
             &.rta__item--selected,
             &.rta__entity--selected,
             &:hover,
             &:focus {
               background: lighten($dark-sky-blue, 10);
-              color: $white;
+              @apply text-white;
               border-radius: 0;
               border-top-right-radius: 25px;
               border-bottom-right-radius: 25px;
@@ -59,7 +59,7 @@
           }
 
           @include themify(night) {
-            color: $white-four;
+            @apply text-light-400;
             background: $dark;
 
             &.rta__item--selected,
@@ -67,7 +67,7 @@
             &:hover,
             &:focus {
               background: $metallic-blue;
-              color: $white;
+              @apply text-white;
               border-radius: 0;
               border-top-right-radius: 25px;
               border-bottom-right-radius: 25px;

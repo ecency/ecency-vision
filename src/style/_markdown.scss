@@ -65,8 +65,8 @@
     border-left-style: solid;
 
     @include themify(day) {
-      color: $warm-grey;
-      border-left-color: lighten($warm-grey, 25);
+      @apply text-gray-warm;
+      @apply border-l-gray-warm-025;
     }
 
     @include themify(night) {
@@ -125,7 +125,7 @@
       td,
       th {
         @include themify(day) {
-          background-color: darken($white-four, 5);
+          @apply bg-light-400;
         }
 
         @include themify(night) {
@@ -138,7 +138,7 @@
       td,
       th {
         @include themify(day) {
-          background-color: $white-four;
+          @apply bg-light-400;
         }
 
         @include themify(night) {
@@ -170,7 +170,8 @@
     padding: 15px;
 
     @include themify(day) {
-      border: 1px solid $white-five;
+      border: 1px solid;
+      @apply border-light-500;
     }
 
     @include themify(night) {
@@ -183,24 +184,42 @@
     font-family: $font-family-sans-serif;
 
     @include themify(day) {
-      background: $white-six;
-      color: $charcoal-grey;
+      @apply bg-light-600;
+      @apply text-gray-charcoal;
 
-      .ll-nam { color: $charcoal-grey; }
-      .ll-key { color: rgb(207, 34, 46); }
-      .ll-str { color: rgb(17, 99, 41); }
-      .ll-com { color: rgb(110, 119, 129); }
-      .ll-pct { color: rgb(5, 80, 174); }
-      .ll-num { color: rgb(149, 56, 0); }
-      .ll-rex { color: rgb(130, 80, 223); }
+      .ll-nam {
+        @apply text-gray-charcoal;
+      }
+      .ll-key {
+        color: rgb(207, 34, 46);
+      }
+      .ll-str {
+        color: rgb(17, 99, 41);
+      }
+      .ll-com {
+        color: rgb(110, 119, 129);
+      }
+      .ll-pct {
+        color: rgb(5, 80, 174);
+      }
+      .ll-num {
+        color: rgb(149, 56, 0);
+      }
+      .ll-rex {
+        color: rgb(130, 80, 223);
+      }
     }
 
     @include themify(night) {
       background: #283241;
-      color: $silver;
+      @apply text-silver;
 
-      .ll-nam { color: $silver; }
-      .ll-key { color: rgb(255, 123, 114); }
+      .ll-nam {
+        @apply text-silver;
+      }
+      .ll-key {
+        color: rgb(255, 123, 114);
+      }
       .ll-str { color: rgb(126, 231, 135); }
       .ll-com { color: rgb(139, 148, 158); }
       .ll-pct { color: rgb(121, 192, 255); }
@@ -211,7 +230,7 @@
 
   .phishy {
     display: inline;
-    color: $red2;
+    @apply text-red-020;
   }
 
   .text-justify {

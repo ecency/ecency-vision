@@ -18,12 +18,12 @@
 
   svg {
     height: 22px;
-    color: $silver;
+    @apply text-silver;
   }
 
   &:hover {
     svg {
-      color: $warm-grey;
+      @apply text-gray-warm;
     }
   }
 }
@@ -42,7 +42,7 @@
       align-items: center;
       justify-content: center;
       box-shadow: $box-shadow-alt;
-      color: $white;
+      @apply text-white;
       outline: none;
       border: none;
       opacity: 1;

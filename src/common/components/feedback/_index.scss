@@ -39,13 +39,13 @@
     animation: feedback-anim 0.5s;
 
     @include themify(day) {
-      background: $white-three;
+      @apply bg-light-300;
       color: $dark;
     }
 
     @include themify(night) {
       background: $dark-indigo;
-      color: $white-four;
+      @apply text-light-400;
     }
 
     svg {
@@ -85,12 +85,12 @@
 
       @include themify(day) {
         svg {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
       }
       @include themify(night) {
         svg {
-          color: $white-three;
+          @apply text-light-300;
         }
       }
     }
@@ -102,7 +102,7 @@
       border-radius: 0 0 6px 6px;
 
       @include themify(day) {
-        background: $white-four;
+        @apply bg-light-400;
       }
 
       @include themify(night) {
@@ -116,7 +116,7 @@
           background-color: $green1;
         }
         &.error {
-          background-color: $red2;
+          @apply bg-red-020;
         }
         &.info {
           background-color: $dark-sky-blue;
@@ -139,13 +139,13 @@
 
   .feedback-success {
     svg {
-      color: $white;
+      @apply text-white;
     }
   }
 
   .feedback-error {
     svg {
-      color: $red2;
+      @apply text-red-020;
     }
   }
 

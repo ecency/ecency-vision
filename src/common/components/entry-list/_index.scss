@@ -4,7 +4,7 @@
 @import "src/style/mixins";
 
 .info {
-  color: $tundora;
+  @apply text-tundora;
   font-size: 36px;
   margin-bottom: 3rem;
 }

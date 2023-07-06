@@ -91,7 +91,7 @@
   }
 
   &-header, &-bottom {
-    background-color: $white;
+    @apply bg-white;
     position: sticky;
     z-index: 9;
   }
@@ -164,7 +164,7 @@
         }
 
         @include themify(night) {
-          color: $white;
+          @apply text-white;
         }
       }
     }

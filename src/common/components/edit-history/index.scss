@@ -12,11 +12,13 @@
       overflow: auto;
 
       @include themify(day) {
-        border-top: 1px solid $white-three;
+        border-top: 1px solid;
+        @apply border-light-300;
       }
 
       @include themify(night) {
-        border-top: 1px solid $steel-grey;
+        border-top: 1px solid;
+        @apply border-gray-steel;
       }
 
       &.loading {
@@ -34,7 +36,7 @@
         padding: 10px;
 
         @include themify(day) {
-          background: $white-three;
+          @apply bg-light-300;
         }
 
         .diff-select {
@@ -54,7 +56,7 @@
         display: none;
 
         @include themify(day) {
-          background: $white-three;
+          @apply bg-light-300;
         }
 
         .diff-select {
@@ -97,7 +99,7 @@
             grid-row-start: 1;
             grid-row-end: 4;
             justify-content: center;
-            color: lighten($steel-grey, 10);
+            @apply text-gray-steel-010;
 
             svg {
               height: 20px;
@@ -131,7 +133,7 @@
           margin: 0 0 22px 0;
 
           @include themify(day) {
-            color: $charcoal-grey;
+            @apply text-gray-charcoal;
           }
 
           @include themify(night) {
@@ -141,7 +143,7 @@
 
         .entry-tags {
           margin-bottom: 22px;
-          color: $steel-grey;
+          @apply text-gray-steel;
           display: flex;
           align-items: center;
 

@@ -4,8 +4,8 @@
 @import "src/style/mixins";
 
 .flash {
-  -webkit-box-shadow: 0 2px 24px $white;
-  box-shadow: 0px 2px 24px $white;
+  -webkit-box-shadow: 0 2px 24px #fff;
+  box-shadow: 0 2px 24px #fff;
   z-index: 5;
   border-radius: 24px;
 }
@@ -14,7 +14,7 @@
   position: absolute;
   height: 55vh;
   width: 55vw;
-  background-color: $white;
+  @apply bg-white;
   @include themify(night){
     background-color: $dark;
   }
@@ -51,8 +51,9 @@
 .intro-popup:before {
   border-left: 0px solid $transparent;
   border-right: 43px solid $transparent;
-  border-bottom: 83px solid $white;
-  @include themify(night){
+  border-bottom: 83px solid;
+  @apply border-white;
+  @include themify(night) {
     border-bottom-color: $dark;
   }
   content: "";
@@ -64,8 +65,9 @@
   @media screen and (max-width: $sm-break) {
     border-left: 0px solid transparent;
     border-right: 30px solid transparent;
-    border-bottom: 40px solid $white;
-    @include themify(night){
+    border-bottom: 40px solid;
+    @apply border-white;
+    @include themify(night) {
       border-bottom-color: $dark;
     }
     content: "";

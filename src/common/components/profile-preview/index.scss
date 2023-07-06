@@ -26,7 +26,7 @@
     min-height: 90px;
     min-width: 90px;
     border: 5px solid #81acef;
-    background-color: $white;
+    @apply bg-white;
     @include themify(night) {
         background-color: $gunmetal;
     }
@@ -110,7 +110,7 @@
   @media (max-width: $sm-break) {
     width: 30px;
     padding: 5px;
-    background-color: $white;
+    @apply bg-white;
     color: $dark-two;
     position: absolute;
     left: 20px;

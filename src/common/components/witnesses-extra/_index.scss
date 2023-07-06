@@ -15,7 +15,7 @@
     margin-bottom: 6px;
 
     @include themify(day) {
-      color: $steel-grey;
+      @apply text-gray-steel;
     }
 
     @include themify(night) {
@@ -47,7 +47,7 @@
       border-radius: 8px;
 
       @include themify(day) {
-        background: $white-three;
+        @apply bg-light-300;
       }
 
       @include themify(night) {
@@ -60,7 +60,7 @@
         width: 220px;
 
         @include themify(day) {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
 
         @include themify(night) {

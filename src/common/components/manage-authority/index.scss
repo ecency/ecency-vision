@@ -6,10 +6,10 @@
 .authority-table {
   .table {
     .table-head {
-      background: $white-six;
+      @apply bg-light-600;
     }
     .col-type-content {
-      color: $warm-grey;
+      @apply text-gray-warm;
     }
     .col-action {
       text-align: right;

@@ -82,7 +82,7 @@
       display: flex;
 
       @include themify(day) {
-        background: $white-three;
+        @apply bg-light-300;
       }
 
       @include themify(night) {
@@ -103,11 +103,11 @@
           font-size: 18px;
 
           @include themify(day) {
-            color: lighten($charcoal-grey, 10)
+            @apply text-gray-charcoal-010;
           }
 
           @include themify(night) {
-            color: $silver;
+            @apply text-silver;
           }
         }
 

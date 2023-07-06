@@ -32,7 +32,7 @@
   position: relative;
 
   @include themify(day) {
-    background: $white;
+    @apply bg-white;
   }
 
   @include themify(night) {
@@ -44,14 +44,14 @@
   font-size: 1.5rem;
   font-weight: bold;
 
-  color: $charcoal-grey;
+  @apply text-gray-charcoal;
 
   @include themify(day) {
-    color: $charcoal-grey;
+    @apply text-gray-charcoal;
   }
 
   @include themify(night) {
-    color: darken($silver, 10);
+    @apply text-silver-010;
   }
 
   @media (max-width: 580px) {
@@ -68,11 +68,11 @@
 
   p {
     @include themify(day) {
-      color: darken($silver, 35);
+      @apply text-silver-035;
     }
 
     @include themify(night) {
-      color: darken($silver, 10);
+      @apply text-silver-010;
     }
 
   }

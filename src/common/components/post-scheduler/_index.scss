@@ -43,7 +43,7 @@
   padding: 12px 30px;
   justify-content: center;
   .error-info {
-    color: $red2;
+    @apply text-red-020;
     font-size: 93%;
     font-weight: 400;
   }

@@ -88,7 +88,7 @@ html, body {
       @include border-radius(0.25rem);
 
       @include themify(day) {
-        background-color: $white;
+        @apply bg-white;
       }
 
       @include themify(night) {

@@ -20,7 +20,7 @@
         font-size: 1.2em;
 
         @include themify(day) {
-          color: darken($silver, 10);
+          @apply text-silver-010;
         }
 
         @include themify(night) {

@@ -14,7 +14,8 @@
   opacity: 0.8;
   border-radius: 50%;
   margin-top: 2px;
-  border: 1px solid $warm-grey;
+  border: 1px solid;
+  @apply border-gray-warm;
 
   &:hover {
     opacity: 1;
@@ -22,7 +23,7 @@
 
   svg {
     height: 20px;
-    color: $white;
+    @apply text-white;
   }
 }
 
@@ -38,7 +39,7 @@
     svg {
       height: 12px;
       margin-left: 4px;
-      color: $white;
+      @apply text-white;
     }
 
     small {

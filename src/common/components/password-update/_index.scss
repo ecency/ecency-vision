@@ -7,7 +7,7 @@
   .pass-generated {
     font-size: 14px;
     font-weight: 500;
-    color: $red2;
+    @apply text-red-020;
     word-break: break-all;
   }
 }

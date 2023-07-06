@@ -21,7 +21,7 @@
     margin-bottom: 4px;
 
     @include themify(day) {
-      background: $white-two;
+      @apply bg-light-200;
     }
 
     @include themify(night) {
@@ -30,7 +30,7 @@
 
     textarea {
       @include themify(day) {
-        background: $white-two;
+        @apply bg-light-200;
       }
 
       @include themify(night) {
@@ -54,7 +54,7 @@
       transition: height .3s;
 
       @include themify(night) {
-        color: $silver;
+        @apply text-silver;
       }
     }
   }
@@ -81,11 +81,11 @@
 
 .the-editor {
   @include themify(night) {
-    color: $silver;
+    @apply text-silver;
     background: $dark-two;
   }
   @include themify(day) {
-    background: $white-two;
+    @apply bg-light-200;
   }
   border-width: 0px;
   resize: none;

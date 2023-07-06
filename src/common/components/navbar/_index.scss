@@ -16,7 +16,7 @@
     height: 30px;
 
     @include themify(day) {
-      color: $steel-grey;
+      @apply text-gray-steel;
     }
 
     @include themify(night) {
@@ -38,8 +38,8 @@
   height: 64px;
 
   @include themify(day) {
-    background: $white-two;
-    box-shadow: 0 0 2px 1px $white-six;
+    @apply bg-light-200;
+    box-shadow: 0 0 2px 1px #f8f8f8;
   }
 
   @include themify(night) {
@@ -105,8 +105,8 @@
   }
 
   @include themify(day) {
-    background: $white-two;
-    box-shadow: 0 0 2px 1px $white-six;
+    @apply bg-light-200;
+    box-shadow: 0 0 2px 1px #f8f8f8;
   }
 
   @include themify(night) {
@@ -140,8 +140,8 @@
     }
 
     @include themify(day) {
-      background: $white-two;
-      box-shadow: 0 0 2px 1px $white-six;
+      @apply bg-light-200;
+      box-shadow: 0 0 2px 1px #f8f8f8;
     }
   
     @include themify(night) {
@@ -243,7 +243,7 @@
       }
 
       @include themify(day) {
-        color: $warm-grey;
+        @apply text-gray-warm;
       }
 
       @include themify(night) {
@@ -304,7 +304,7 @@
       animation: anim-fadein .3s;
 
       @include themify(day) {
-        background: $white-two;
+        @apply bg-light-200;
         @apply shadow-nav;
       }
 
@@ -325,7 +325,7 @@
   .custom-dropdown {
     .dropdown-btn {
       @include themify(day) {
-        color: $warm-grey;
+        @apply text-gray-warm;
       }
 
       @include themify(night) {
@@ -358,7 +358,7 @@ body.medium-zoom--opened {
     height: 19px !important;
   }
   @include themify(day) {
-    color: $warm-grey;
+    @apply text-gray-warm;
   }
 
   @include themify(night) {
@@ -391,7 +391,7 @@ body.medium-zoom--opened {
 
 .text-dark {
   @include themify(night) {
-    color: $light-grey !important;
+    @apply text-gray-light;
   }
 }
 
@@ -400,7 +400,7 @@ body.medium-zoom--opened {
   height: 21px;
   svg, path, rect {
     @include themify(night) {
-      fill: $light-grey !important;
+      @apply fill-gray-light;
     }
   }
 }
@@ -410,7 +410,7 @@ body.medium-zoom--opened {
   height: 21px;
   svg, path, rect {
     @include themify(night) {
-      stroke: $light-grey !important;
+      @apply stroke-gray-light;
     }
   }
 }
@@ -435,7 +435,7 @@ body.medium-zoom--opened {
       font-size: 17px !important;
       font-weight: unset !important;
       @include themify(night) {
-        color: $light-grey !important;
+        @apply text-gray-light;
       }
       @include themify(day) {
         color: $dark !important;
@@ -470,7 +470,7 @@ body.medium-zoom--opened {
 .dot {
   width: 5px;
   height: 5px;
-  background-color: $pink;
+  @apply bg-pink;
   border-radius: 50%;
 }
 
@@ -486,7 +486,7 @@ body.medium-zoom--opened {
 
 .text-white {
   path {
-    stroke: $white;
+    @apply stroke-white;
   }
 }
 
@@ -498,7 +498,7 @@ body.medium-zoom--opened {
     @apply text-black;
     margin-left: 64px;
     @include themify(night) {
-      color: $light-grey !important;
+      @apply text-gray-light;
     }
   }
 }

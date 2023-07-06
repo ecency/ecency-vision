@@ -8,7 +8,8 @@
   padding-top: 15px;
 
   @include themify(day) {
-    border-top: 1px solid $white-three;
+    border-top: 1px solid;
+    @apply border-light-300;
   }
 
   @include themify(night) {
@@ -20,7 +21,7 @@
 
     .list-header-text {
       @include themify(day) {
-        color: $charcoal-grey;
+        @apply text-gray-charcoal;
       }
 
       @include themify(night) {
@@ -60,7 +61,7 @@
         width: 100%;
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
@@ -80,7 +81,7 @@
         border-radius: 8px;
 
         @include themify(day) {
-          background: $white-six;
+          @apply bg-light-600;
         }
 
         @include themify(night) {
@@ -97,12 +98,12 @@
         font-size: 13px;
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
           opacity: 0.7;
         }
 
         @include themify(night) {
-          color: lighten($steel-grey, 16);
+          @apply text-gray-steel-light-015;
         }
 
         .item-footer-date {

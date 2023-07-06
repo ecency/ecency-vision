@@ -16,7 +16,8 @@
 
    
   @include themify(day) {
-    border-bottom: 1px solid $white-three;
+    border-bottom: 1px solid;
+    @apply border-light-300;
   }
 
   @include themify(night) {
@@ -186,14 +187,14 @@
   }
   @include themify(day) {
     svg {
-      color: $charcoal-grey;
+      @apply text-gray-charcoal;
       height: 100%;
     }
   }
 
   @include themify(night) {
     svg {
-      color: $warm-grey;
+      @apply text-gray-warm;
       height: 100%;
     }
   }
@@ -235,14 +236,14 @@ $breakpoint-tablet: 768px;
     }
     @include themify(day) {
       svg {
-        color: $charcoal-grey;
+        @apply text-gray-charcoal;
         height: 100%;
       }
     }
   
     @include themify(night) {
       svg {
-        color: $warm-grey;
+        @apply text-gray-warm;
         height: 100%;
       }
     }

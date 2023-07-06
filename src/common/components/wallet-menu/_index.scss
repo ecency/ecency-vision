@@ -42,8 +42,9 @@
     }
 
     @include themify(day) {
-      background: darken($white-two, 1);
-      border: 2px solid $white-three;
+      @apply bg-light-200;
+      border: 2px solid;
+      @apply border-light-300;
     }
 
     @include themify(night) {

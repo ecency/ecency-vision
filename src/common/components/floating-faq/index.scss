@@ -56,7 +56,7 @@
   }
 
   @include themify(day) {
-    background: $white-four;
+    @apply bg-light-400;
   }
 
   @include themify(night) {
@@ -68,7 +68,7 @@
     height: 22%;
     border-radius: 18px 18px 0 0;
     z-index: 999;
-    color: $white;
+    @apply text-white;
 
     @include themify(day) {
       background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
@@ -118,7 +118,7 @@
     overflow-y: auto;
 
     @include themify(day) {
-      background: $white-two;
+      @apply bg-light-200;
     }
 
     @include themify(night) {
@@ -136,11 +136,11 @@
     padding: 1rem 0.7rem;
 
     @include themify(day) {
-      color: $light-black;
+      @apply text-gray-charcoal-010;
     }
 
     @include themify(night) {
-      color: $white-six;
+      @apply text-light-600;
     }
   }
   .section {
@@ -155,15 +155,15 @@
 
   .user-info {
     padding-left: 4px;
-    color: $steel-grey;
+    @apply text-gray-steel;
     font-size: 14px;
 
     @include themify(day) {
-      color: $steel-grey;
+      @apply text-gray-steel;
     }
 
     @include themify(night) {
-      color: $light-grey;
+      @apply text-gray-light;
     }
   }
 
@@ -182,12 +182,12 @@
     font-size: 14px;
 
     @include themify(day) {
-      background: $white-three;
+      @apply bg-light-300;
       color: $dark-six;
     }
 
     @include themify(night) {
-      color: $white-five;
+      @apply text-light-500;
       background: $dark-two;
     }
 

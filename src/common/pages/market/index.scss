@@ -273,7 +273,7 @@ thead, .pagination {
         }
 
         .market-advanced-mode-widget {
-            background: $white;
+            @apply bg-white;
             height: 100%;
             margin: -1px;
 
@@ -288,7 +288,7 @@ thead, .pagination {
         }
 
         .market-advanced-mode-widget-settings {
-            background-color: $white-three;
+            @apply bg-light-300;
 
             @include themify(night) {
                 background: $dark;
@@ -439,7 +439,7 @@ thead, .pagination {
     }
 
     .menu-icon path {
-        fill: $white;
+        @apply fill-white;
     }
 
     .deck-view {
@@ -465,7 +465,7 @@ thead, .pagination {
                 bottom: -10px;
                 border-radius: 50%;
                 border: 1px solid $dark-sky-blue;
-                background-color: $white;
+                @apply bg-white;
                 path {
                     fill: $dark-sky-blue !important;
                 }
@@ -528,7 +528,7 @@ thead, .pagination {
     }
 
     .deck {
-        background-color: $white;
+        @apply bg-white;
         min-width: 379px;
         max-width: 379px;
         height: 100% !important;
@@ -648,7 +648,7 @@ thead, .pagination {
         max-width: 80%;
         .comments {
             path {
-                fill: $light-grey !important;
+                @apply fill-gray-light;
             }
         }
 
@@ -669,7 +669,7 @@ thead, .pagination {
     }
 
     .deck-pinned {
-        color: $red4 !important;
+        @apply text-red-040;
         transform: rotate(45deg);
 
         svg {
@@ -701,7 +701,7 @@ thead, .pagination {
             background-color: #ebf2fc;
 
             @include themify(night) {
-                background-color: $steel-grey;
+                @apply bg-gray-steel;
             }
         }
     }

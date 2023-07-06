@@ -60,7 +60,7 @@
                   }
 
                   @include themify(day) {
-                    color: $silver;
+                    @apply text-silver;
                   }
 
                   @include themify(night) {
@@ -82,7 +82,7 @@
                 }
 
                 @include themify(day) {
-                  color: lighten($steel-grey, 6);
+                  @apply text-gray-steel-light-005;
                 }
 
                 @include themify(night) {
@@ -98,7 +98,7 @@
                 }
 
                 &.status-error {
-                  color: $red2 !important;
+                  @apply text-red-020;
                 }
               }
             }
@@ -108,7 +108,7 @@
             }
 
             .message-error {
-              color: $red2;
+              @apply text-red-020;
             }
 
             .message-warning {

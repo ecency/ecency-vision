@@ -13,7 +13,7 @@
   }
   .custom-dropdown {
     .dropdown-btn {
-      color: lighten($steel-grey, 4);
+    @apply text-gray-steel-light-005;
 
       &:hover {
         color: $dark-sky-blue;
@@ -23,7 +23,7 @@
 
   .separated-share {
     .share-button {
-      color: lighten($steel-grey, 4);
+      @apply text-gray-steel-light-005;
       cursor: pointer;
       margin-right: 14px;
 

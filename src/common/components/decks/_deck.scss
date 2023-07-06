@@ -12,7 +12,7 @@
   @include transition(0.4s);
 
   @include themify(day) {
-    background-color: $white;
+    @apply bg-white;
   }
 
   @include themify(night) {
@@ -278,7 +278,7 @@
   }
 
   .deck-pinned {
-    color: $red4 !important;
+    @apply text-red-040;
     transform: rotate(45deg);
 
     svg {
@@ -545,7 +545,7 @@
         width: auto;
 
         path {
-          stroke: $white;
+          @apply stroke-white;
         }
       }
     }

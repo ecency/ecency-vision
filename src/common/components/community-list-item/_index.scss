@@ -50,7 +50,7 @@
       flex-wrap: wrap;
       font-size: 80%;
       display: flex;
-      color: $steel-grey;
+      @apply text-gray-steel;
     }
 
     .item-stats {
@@ -78,7 +78,7 @@
 
         &:not(:last-child) {
           &:after {
-            color: $steel-grey;
+            @apply text-gray-steel;
             content: ",";
           }
         }

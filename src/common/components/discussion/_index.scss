@@ -9,7 +9,8 @@
   min-height: 200px;
 
   @include themify(day) {
-    border-top: 1px solid $white-three;
+    border-top: 1px solid;
+    @apply border-light-300;
   }
 
   @include themify(night) {
@@ -60,7 +61,7 @@
 
   .discussion-header {
     align-items: center;
-    color: $steel-grey;
+    @apply text-gray-steel;
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
@@ -168,7 +169,7 @@
               }
 
               @include themify(day) {
-                color: $charcoal-grey;
+                @apply text-gray-charcoal;
               }
 
               @include themify(night) {
@@ -176,7 +177,7 @@
               }
 
               .author-reputation {
-                color: $steel-grey;
+                @apply text-gray-steel;
                 font-weight: 500;
 
                 &::before {
@@ -217,7 +218,7 @@
             margin: 10px 0 14px 0;
 
             @include themify(day) {
-              color: $tundora;
+              @apply text-tundora;
             }
           }
 
@@ -227,11 +228,11 @@
             width: 100%;
 
             .reply-btn, .edit-btn, .delete-btn, .mute-btn {
-              color: lighten($steel-grey, 10);
+              @apply text-gray-steel-010;
               cursor: pointer;
 
               &:hover {
-                color: $steel-grey;
+                @apply text-gray-steel;
               }
 
               &.disabled {
@@ -242,7 +243,7 @@
 
             .edit-btn, .delete-btn, .mute-btn {
               margin-left: 10px;
-              color: lighten($steel-grey, 10);
+              @apply text-gray-steel-010;
 
               @media (min-width: $md-break) {
                 margin-left: 16px;
@@ -300,7 +301,7 @@
             }
 
             @include themify(day) {
-              border-color: lighten($white-four, 0);
+              @apply border-light-400;
             }
             @include themify(night) {
               border-color: lighten($dark-six, 12);

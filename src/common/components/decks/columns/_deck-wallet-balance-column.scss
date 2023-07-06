@@ -96,7 +96,7 @@
 
       &.loaded {
         background-color: $primary;
-        color: $white;
+        @apply text-white;
       }
 
       @include padding(0.5rem);

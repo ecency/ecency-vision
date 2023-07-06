@@ -5,7 +5,7 @@
 
 .witnesses-active-proxy {
   @include themify(day) {
-    color: $charcoal-grey;
+    @apply text-gray-charcoal;
   }
 
   @include themify(night) {

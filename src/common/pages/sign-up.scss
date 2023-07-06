@@ -117,7 +117,7 @@
           margin: 0 auto 20px auto;
           background: $dark-sky-blue;
           border-radius: 50%;
-          color: $white;
+          @apply text-white;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -163,7 +163,7 @@
     .error {
       padding: 12px 30px;
       .error-info {
-        color: $red2;
+        @apply text-red-020;
         font-size: 93%;
         font-weight: 400;
       }
@@ -176,7 +176,7 @@
 
   .app-btn {
     @include themify(day) {
-      color: $white;
+      @apply text-white;
     }
 
     @include themify(night) {
@@ -208,7 +208,7 @@
       margin-right: 8px;
 
       path {
-        fill: $white;
+        @apply fill-white;
       }
     }
 

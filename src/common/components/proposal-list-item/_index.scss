@@ -10,11 +10,11 @@
   box-shadow: $box-shadow-alt;
 
   @include themify(day) {
-    color: $steel-grey;
+    @apply text-gray-steel;
   }
 
   @include themify(day) {
-    background: lighten($white-three, 2);
+    @apply bg-light-300;
   }
 
   @include themify(night) {
@@ -27,7 +27,7 @@
     }
   
     @include themify(night) {
-      background-color: $tundora;
+      @apply bg-tundora;
     }
   }
 
@@ -65,11 +65,11 @@
 
         a {
           @include themify(day) {
-            color: $charcoal-grey;
+            @apply text-gray-charcoal;
           }
 
           @include themify(night) {
-            color: $silver;
+            @apply text-silver;
           }
         }
 
@@ -89,7 +89,7 @@
         }
 
         .proposal-status {
-          color: $white;
+          @apply text-white;
           border-radius: 12px;
           padding: 4px 6px 5px 6px;
           display: inline-flex;
@@ -100,7 +100,7 @@
           }
 
           &.expired {
-            background-color: lighten($red, 20);
+            @apply text-red-light-020;
           }
 
           &.inactive {

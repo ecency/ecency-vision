@@ -21,14 +21,15 @@
       }
 
       @include themify(day) {
-        background: $white;
-        color: darken($silver, 35);
-        border: solid 1px $white-four;
+        @apply bg-white;
+        @apply text-silver-035;
+        border: solid 1px;
+        @apply border-light-400;
       }
 
       @include themify(night) {
         background: $dark-grey-blue;
-        color: darken($silver, 10);
+        @apply text-silver-010;
         border: solid 1px $dark-two;
       }
 

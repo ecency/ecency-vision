@@ -212,11 +212,10 @@
         @include border-radius(1rem);
 
         @apply bg-blue-duck-egg;
-        }
+      }
 
-        @include themify(night) {
-          background-color: lighten($dark, 6);
-        }
+      @include themify(night) {
+        background-color: lighten($dark, 6);
       }
     }
   }

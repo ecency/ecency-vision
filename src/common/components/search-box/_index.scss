@@ -35,10 +35,10 @@
     align-items: center;
     justify-content: center;
     width: 44px;
-    color: $warm-grey;
+    @apply text-gray-warm;
 
     @include themify(day) {
-      color: $warm-grey;
+      @apply text-gray-warm;
     }
 
     @include themify(night) {

@@ -114,7 +114,8 @@ a[target="_blank"] {
     display: flex;
 
     @include themify(day) {
-      border-bottom: 1px solid $white-four;
+      border-bottom: 1px solid;
+      @apply border-light-400;
     }
 
     @include themify(night) {
@@ -122,7 +123,7 @@ a[target="_blank"] {
     }
 
     .step-no {
-      color: $silver;
+      @apply text-silver;
       flex-grow: 0;
       flex-shrink: 0;
       font-size: 48px;
@@ -139,7 +140,7 @@ a[target="_blank"] {
         margin-bottom: 4px;
 
         @include themify(day) {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
 
         @include themify(night) {
@@ -155,7 +156,7 @@ a[target="_blank"] {
         text-overflow: ellipsis;
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
@@ -214,7 +215,7 @@ a[target="_blank"] {
 
   .rdtPicker td.rdtOld,
   .rdtPicker td.rdtNew {
-    color: $silver;
+    @apply text-silver;
   }
 
   .rdtPicker td.rdtToday:before {
@@ -232,7 +233,7 @@ a[target="_blank"] {
 
   .rdtPicker td.rdtDisabled,
   .rdtPicker td.rdtDisabled:hover {
-    color: $steel-grey;
+    @apply text-gray-steel;
   }
 
   .rdtPicker th {

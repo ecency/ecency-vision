@@ -5,7 +5,7 @@
 
 .account-recovery-form {
   .error-info {
-    color: $red2;
+    @apply text-red-020;
     font-size: 80%;
     font-weight: 400;
     display: block;
@@ -25,7 +25,8 @@
 
 .recovery-confirm-dialog {
   .recovery-confirm-dialog-header {
-    border-bottom: 1px solid $white-four;
+    border-bottom: 1px solid;
+    @apply border-light-400;
     align-items: center;
     display: flex;
   }
@@ -60,7 +61,7 @@
 
         .arrow {
           align-items: center;
-          color: $silver;
+          @apply text-silver;
           display: flex;
           justify-content: center;
           opacity: 0.4;

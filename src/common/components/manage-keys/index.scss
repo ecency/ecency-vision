@@ -4,7 +4,7 @@
 @import "src/style/mixins";
 
 .key {
-  color: $light-black;
+  @apply text-gray-charcoal-010;
 }
 
 .copy-btn {

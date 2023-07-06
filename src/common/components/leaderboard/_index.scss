@@ -29,7 +29,7 @@
     }
 
     .list-title {
-      color: $steel-grey;
+      @apply text-gray-steel;
       font-weight: 500;
     }
   }
@@ -73,7 +73,7 @@
         svg {
           height: 15px;
           margin-right: 4px;
-          color: $silver
+          @apply text-silver;
         }
       }
 
@@ -94,18 +94,18 @@
 
 
       @include themify(day) {
-        color: $charcoal-grey;
+        @apply text-gray-charcoal;
 
         a {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
       }
 
       @include themify(night) {
-        color: $steel-grey;
+        @apply text-gray-steel;
 
         a {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
       }
 
@@ -169,21 +169,24 @@
   justify-content: center;
   opacity: 0.8;
   border-radius: 50%;
-  border: 1px solid $warm-grey;
+  border: 1px solid;
+  @apply border-gray-warm;
   cursor: pointer;
+
   &:hover {
     opacity: 1;
   }
+
   @include themify(day) {
     svg {
-      color: $charcoal-grey;
+      @apply text-gray-charcoal;
       height: 100%;
     }
   }
 
   @include themify(night) {
     svg {
-      color: $warm-grey;
+      @apply text-gray-warm;
       height: 100%;
     }
   }

@@ -21,10 +21,10 @@
 
     &:not(.selected-item) {
       @include themify(day) {
-        color: darken($silver, 35);
+        @apply text-silver-035;
       }
       @include themify(night) {
-        color: darken($silver, 10);
+        @apply text-silver-010;
       }
     }
   }

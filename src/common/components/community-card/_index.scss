@@ -28,7 +28,7 @@
       align-items: center;
       justify-content: center;
       background: $dark-sky-blue;
-      color: $white;
+      @apply text-white;
       position: absolute;
       z-index: 1;
       bottom: 10px;
@@ -76,8 +76,9 @@
     .nsfw {
       display: inline-flex;
       margin-top: 10px;
-      border: 1px solid $red2;
-      color: $red2;
+      border: 1px solid;
+      @apply border-red-020;
+      @apply text-red-020;
       border-radius: 6px;
       padding: 1px 4px;
       font-size: 90%;
@@ -110,13 +111,13 @@
         margin-bottom: 10px;
 
         @include themify(day) {
-          background: $white-three;
-          color: $steel-grey;
+          @apply bg-light-300;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
           background: $dark-two;
-          color: $silver;
+          @apply text-silver;
         }
 
         svg {
@@ -147,7 +148,7 @@
         }
 
         font-size: 90%;
-        color: $steel-grey;
+        @apply text-gray-steel;
         max-width: 95%;
         p {
           word-break: break-all;
@@ -164,7 +165,8 @@
       justify-content: flex-start;
       padding-top: 16px;
       @include themify(day) {
-        border-top: 1px solid $white-three;
+        border-top: 1px solid;
+        @apply border-light-300;
       }
 
       @include themify(night) {
@@ -194,7 +196,7 @@
     font-size: 14px;
     overflow: hidden;
     white-space: nowrap;
-    color: $steel-grey;
+    @apply text-gray-steel;
     margin-bottom: 6px;
     display: flex;
     flex-wrap: wrap;

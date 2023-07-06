@@ -42,7 +42,7 @@
       }
 
       @include themify(day) {
-        color: $steel-grey;
+        @apply text-gray-steel;
       }
 
       @include themify(night) {
@@ -57,7 +57,7 @@
     }
 
     @include themify(night) {
-      background-color: $tundora;
+      @apply bg-tundora;
     }
   }
 
@@ -93,7 +93,7 @@
         width: 22px;
 
         @include themify(day) {
-          color: $warm-grey;
+          @apply text-gray-warm;
         }
       }
     }
@@ -120,7 +120,7 @@
     .witness-version {
       .inner {
         border-radius: 25px;
-        color: $white;
+        @apply text-white;
         font-weight: 500;
         padding: 2px 10px;
       }

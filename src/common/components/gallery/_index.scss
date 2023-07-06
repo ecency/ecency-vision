@@ -28,7 +28,7 @@
 
         .gallery-list-item {
           align-items: center;
-          background-color: $white-four;
+          @apply bg-light-400;
           background-position: 50% 50%;
           background-repeat: no-repeat;
           background-size: cover;
@@ -56,9 +56,9 @@
 
             .btn-delete {
               align-items: center;
-              background: $red2;
+              @apply bg-red-020;
               border-radius: 8px;
-              color: $white;
+              @apply text-white;
               display: flex;
               height: 20px;
               justify-content: center;

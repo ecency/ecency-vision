@@ -176,7 +176,7 @@
       }
 
       .downloads-text {
-        color: $steel-grey;
+        @apply text-gray-steel;
         font-weight: 300;
         margin-bottom: 22px;
         text-align: center;
@@ -238,7 +238,7 @@
         text-align: center;
 
         .faq-link {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
           font-size: 20px;
         }
       }
@@ -271,7 +271,7 @@
 
         .contacts-link {
           align-items: center;
-          color: $steel-grey !important;
+          @apply text-gray-steel;
           display: flex;
           font-size: 20px;
           justify-content: center;
@@ -290,7 +290,7 @@
           svg {
             height: 12px;
             margin-right: 4px;
-            color: $steel-grey;
+            @apply text-gray-steel;
           }
 
           &:not(:last-child) {

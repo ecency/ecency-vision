@@ -63,7 +63,7 @@
                   }
 
                   @include themify(day) {
-                    color: $silver;
+                    @apply text-silver;
                   }
 
                   @include themify(night) {

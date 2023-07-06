@@ -49,7 +49,7 @@
       }
   
       @include themify(day) {
-        background: $white-two;
+        @apply bg-light-200;
       }
   
       @include themify(night) {

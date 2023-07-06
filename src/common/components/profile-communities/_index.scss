@@ -20,7 +20,7 @@
       .user-role {
         margin-left: 6px;
         text-transform: uppercase;
-        color: $silver;
+        @apply text-silver;
         font-size: 90%;
       }
     }

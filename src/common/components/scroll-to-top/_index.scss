@@ -10,7 +10,7 @@
   width: 40px;
   height: 40px;
   background: $dark-sky-blue;
-  color: $white;
+  @apply text-white;
   border-radius: 50%;
   box-shadow: $box-shadow;
   z-index: 10;

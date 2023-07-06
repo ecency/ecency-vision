@@ -33,7 +33,7 @@
       background: $dark-sky-blue;
       border-radius: 25px;
       bottom: 2px;
-      color: $white;
+      @apply text-white;
       font-weight: 700;
       left: 0;
       line-height: 1em;
@@ -56,7 +56,7 @@
     }
 
     @include themify(day) {
-      color: $charcoal-grey;
+      @apply text-gray-charcoal;
     }
 
     @include themify(night) {
@@ -103,7 +103,7 @@
       background-color: $dark-sky-blue;
     }
     .progress-bar-danger {
-      background-color: $red;
+      @apply bg-red;
     }
   }
 
@@ -115,7 +115,8 @@
     margin-bottom: 16px;
 
     @include themify(day) {
-      border-bottom: 1px solid $white-three;
+      border-bottom: 1px solid;
+      @apply border-light-300;
     }
 
     @include themify(night) {
@@ -151,14 +152,14 @@
 
   .stats,
   .extra-props {
-    color: $steel-grey;
+    @apply text-gray-steel;
 
     a {
-      color: $steel-grey;
+      @apply text-gray-steel;
     }
 
     svg {
-      color: $silver;
+      @apply text-silver;
       height: 16px;
       margin-right: 6px;
       flex-shrink: 0;
@@ -194,7 +195,7 @@
   }
 
   .extra-props {
-    color: $steel-grey;
+    @apply text-gray-steel;
     grid-gap: 20px;
     display: none;
 
@@ -266,7 +267,7 @@
   align-items: center;
   justify-content: center;
   background: $dark-sky-blue;
-  color: $white;
+  @apply text-white;
   position: absolute;
   z-index: 1;
   bottom: 10px;
@@ -290,9 +291,10 @@
 
 
 .follow-pill {
-  background: $white-six;
+  @apply bg-light-600;
   color: #656d70;
-  border: solid 1px $white-four;
+  border: solid 1px;
+  @apply border-light-400;
   border-radius: 25px;
   padding: 0.25rem;
   margin-top: -5px;
@@ -300,7 +302,7 @@
 
   @include themify(night) {
     background: $dark-grey-blue;
-    color: $light-grey;
+    @apply text-gray-light;
     border: solid 1px $dark-two;
   }
 }

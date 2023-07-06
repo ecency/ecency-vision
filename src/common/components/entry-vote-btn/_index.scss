@@ -97,7 +97,7 @@
     cursor: pointer;
 
     @include themify(day) {
-      background: $white-four;
+      @apply bg-light-400;
     }
 
     @include themify(night) {
@@ -114,17 +114,19 @@
     -webkit-appearance: none;
 
     @include themify(day) {
-      border: 2px solid $white;
+      border: 2px solid;
+      @apply border-white;
     }
 
     @include themify(night) {
-      border: 2px solid $silver;
+      border: 2px solid;
+      @apply border-silver;
     }
   }
 
   input[type="range"]:focus::-webkit-slider-runnable-track {
     @include themify(day) {
-      background: $white-four;
+      @apply bg-light-400;
     }
 
     @include themify(night) {
@@ -140,7 +142,7 @@
     cursor: pointer;
 
     @include themify(day) {
-      background: $white-four;
+      @apply bg-light-400;
     }
 
     @include themify(night) {
@@ -155,11 +157,13 @@
     cursor: pointer;
 
     @include themify(day) {
-      border: 2px solid $white;
+      border: 2px solid;
+      @apply border-white;
     }
 
     @include themify(night) {
-      border: 2px solid $silver;
+      border: 2px solid;
+      @apply border-silver;
     }
   }
 
@@ -178,7 +182,7 @@
     border-radius: 40px;
 
     @include themify(day) {
-      background: $white-four;
+      @apply bg-light-400;
     }
 
     @include themify(night) {
@@ -191,7 +195,7 @@
     border-radius: 40px;
 
     @include themify(day) {
-      background: $white-four;
+      @apply bg-light-400;
     }
 
     @include themify(night) {
@@ -207,11 +211,13 @@
     margin-top: 0px;
 
     @include themify(day) {
-      border: 2px solid $white;
+      border: 2px solid;
+      @apply border-white;
     }
 
     @include themify(night) {
-      border: 2px solid $silver;
+      border: 2px solid;
+      @apply border-silver;
     }
 
     /*Needed to keep the Edge thumb centred*/
@@ -234,15 +240,15 @@
 
 .voting-controls-down {
   input[type="range"]::-webkit-slider-thumb {
-    background: $red4;
+    @apply bg-red-040;
   }
 
   input[type="range"]::-moz-range-thumb {
-    background: $red4;
+    @apply bg-red-040;
   }
 
   input[type="range"]::-ms-thumb {
-    background: $red4;
+    @apply bg-red-040;
   }
 }
 
@@ -292,15 +298,15 @@
   }
 
   @include themify(day) {
-    box-shadow: 0px 1px 4px 1px $white-four;
-    background-color: $white;
+    box-shadow: 0px 1px 4px 1px #e7e7e7;
+    @apply bg-white;
     color: $dark-two;
   }
 
   @include themify(night) {
     box-shadow: 0px 1px 4px 1px $dark;
     background-color: $dark-two;
-    color: $white;
+    @apply text-white;
   }
 }
 
@@ -358,17 +364,17 @@
 .secondary-btn-done {
   @include themify(night) {
     color: $white !important;
-    background-color: $red2 !important;
+    @apply bg-red-020;
   }
 
   @include themify(day) {
     color: $white !important;
-    background-color: $red2 !important;
+    @apply bg-red-020;
   }
 }
 
 .secondary-btn-vote {
-  color: $red2 !important;
+  @apply text-red-020;
 
   @include themify(night) {
     background-color: $transparent !important;
@@ -379,12 +385,12 @@
   }
 
   svg {
-    fill: $red2 !important;
+    @apply fill-red-020;
     transform: none !important;
   }
 
   .btn-inner {
-    color: $red2 !important;
+    @apply text-red-020;
 
     @include themify(night) {
       background-color: $transparent !important;
@@ -395,12 +401,12 @@
   }
 
   &:hover {
-    background-color: $red2 !important;
+    @apply bg-red-020;
     color: $white !important;
 
     .btn-inner {
       color: $white !important;
-      background-color: $red2 !important;
+      @apply bg-red-020;
 
       svg {
         fill: $white !important;
@@ -411,7 +417,7 @@
 
 .vote-error {
   font-size: 12px;
-  color: $red;
+  @apply text-red;
   display: flex;
   justify-content: center;
   margin-top: 10px;

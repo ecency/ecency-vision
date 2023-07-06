@@ -276,7 +276,7 @@
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
-      color: $white;
+      @apply text-white;
       border-radius: 30px;
       border: none;
       outline: none;
@@ -1092,7 +1092,7 @@
           font-size: 59px;
           line-height: 78px;
           @include themify(night) {
-            color: $white;
+            @apply text-white;
           }
           @include themify(day) {
             color: $blue;
@@ -1918,7 +1918,7 @@
             color: $dark-grey;
           }
           @include themify(day) {
-            color: $white;
+            @apply text-white;
           }
           margin: 0;
           cursor: pointer;
@@ -1980,7 +1980,7 @@
                 color: $pinkish-grey;
               }
               @include themify(day) {
-                color: $white;
+                @apply text-white;
               }
             }
             h2 {
@@ -2016,21 +2016,21 @@
                 width: 70%;
                 max-width: 295px;
                 padding-left: 2rem;
-                color: $white;
+                @apply text-white;
                 &::-webkit-input-placeholder {
-                  color: $white;
+                  @apply text-white;
                 }
                 &::-moz-placeholder {
-                  color: $white;
+                  @apply text-white;
                 }
                 &:-ms-input-placeholder {
-                  color: $white;
+                  @apply text-white;
                 }
                 &::-ms-input-placeholder {
-                  color: $white;
+                  @apply text-white;
                 }
                 &::placeholder {
-                  color: $white;
+                  @apply text-white;
                 }
               }
               button {
@@ -2043,7 +2043,7 @@
                 border: none;
                 width: 30%;
                 max-width: 113px;
-                color: $white;
+                @apply text-white;
                 position: relative;
                 span {
                   width: 80%;
@@ -2212,7 +2212,7 @@
                 color: $pinkish-grey;
               }
               @include themify(day) {
-                color: $white;
+                @apply text-white;
               }
             }
             ul {

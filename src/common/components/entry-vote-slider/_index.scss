@@ -18,7 +18,7 @@
   top: 5.5px;
   cursor: pointer;
   @include themify(day) {
-    background-color: $white-three;
+    @apply bg-light-300;
   }
 
   @include themify(night) {

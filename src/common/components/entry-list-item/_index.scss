@@ -19,7 +19,7 @@
 
     @include themify(day) {
       background: lighten($dark-sky-blue, 42);
-      color: $charcoal-grey;
+      @apply text-gray-charcoal;
     }
 
     @include themify(night) {

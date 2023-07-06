@@ -10,7 +10,7 @@
   height: 50px;
   line-height: 50px;
   text-align: center;
-  color: $silver;
+  @apply text-silver;
 }
 
 .or-divider::before,
@@ -19,7 +19,7 @@
   width: 130px;
   height: 1px;
   top: 24px;
-  background-color: $white-four;
+  @apply bg-light-400;
 
   content: "";
 }

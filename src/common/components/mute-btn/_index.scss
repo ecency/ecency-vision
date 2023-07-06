@@ -4,7 +4,7 @@
 @import "src/style/mixins";
 
 .mute-btn {
-  color: $steel-grey;
+  @apply text-gray-steel;
   display: inline-flex;
   align-items: center;
 

@@ -25,7 +25,7 @@
     min-width: 200px;
 
     @include themify(day) {
-      background: $white;
+      @apply bg-white;
     }
 
     @include themify(night) {
@@ -36,7 +36,7 @@
       padding: 8px 20px;
       font-weight: 500;
       background: $dark-sky-blue;
-      color: $white;
+      @apply text-white;
       border-top-left-radius: $border-radius;
       border-top-right-radius: $border-radius;
     }
@@ -58,22 +58,22 @@
         }
 
         @include themify(day) {
-          color: $warm-grey;
+          @apply text-gray-warm;
 
           &:hover,
           &:focus {
             background: lighten($dark-sky-blue, 10);
-            color: $white;
+            @apply text-white;
           }
         }
 
         @include themify(night) {
-          color: $silver;
+          @apply text-silver;
 
           &:hover,
           &:focus {
             background: $metallic-blue;
-            color: $white;
+            @apply text-white;
           }
         }
       }
@@ -82,7 +82,7 @@
   .more-result {
     .list-item {
       @include themify(day) {
-        background: $white-four !important;
+        @apply bg-light-400;
 
         &:hover,
         &:focus {
@@ -114,7 +114,7 @@
     min-width: 200px;
 
     @include themify(day) {
-      background: $white;
+      @apply bg-white;
     }
 
     @include themify(night) {
@@ -125,7 +125,7 @@
       padding: 8px 20px;
       font-weight: 500;
       background: $dark-sky-blue;
-      color: $white;
+      @apply text-white;
       border-top-left-radius: $border-radius;
       border-top-right-radius: $border-radius;
     }
@@ -147,22 +147,22 @@
         }
 
         @include themify(day) {
-          color: $warm-grey;
+          @apply text-gray-warm;
 
           &:hover,
           &:focus {
             background: lighten($dark-sky-blue, 10);
-            color: $white;
+            @apply text-white;
           }
         }
 
         @include themify(night) {
-          color: $silver;
+          @apply text-silver;
 
           &:hover,
           &:focus {
             background: $metallic-blue;
-            color: $white;
+            @apply text-white;
           }
         }
       }

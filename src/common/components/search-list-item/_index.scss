@@ -16,7 +16,7 @@
     }
 
     .result-payout, .result-votes, .result-replies {
-      color: $steel-grey;
+      @apply text-gray-steel;
       display: flex;
       align-items: center;
     }

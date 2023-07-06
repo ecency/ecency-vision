@@ -32,7 +32,7 @@
 
         .recent-list-item {
           align-items: center;
-          background-color: $white-four;
+          @apply bg-light-400;
           background-position: 50% 50%;
           background-repeat: no-repeat;
           background-size: cover;

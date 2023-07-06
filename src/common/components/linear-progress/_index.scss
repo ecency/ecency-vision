@@ -12,7 +12,7 @@
   animation: start 0.3s ease-in;
 
   @include themify(day) {
-    background: $white-four;
+    @apply bg-light-400;
   }
 
   @include themify(night) {

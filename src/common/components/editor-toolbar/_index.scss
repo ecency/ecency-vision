@@ -13,7 +13,7 @@
   }
 
   @include themify(day) {
-    background: $white-three;
+    @apply bg-light-300;
   }
 
   @include themify(night) {
@@ -35,10 +35,10 @@
     }
 
     @include themify(day) {
-      color: $steel-grey;
+      @apply text-gray-steel;
 
       &:hover {
-        background: darken($white-three, 5);
+        @apply bg-light-305;
       }
     }
 
@@ -68,7 +68,7 @@
       overflow: hidden;
 
       @include themify(day) {
-        background: darken($white-three, 5);
+        @apply bg-light-305;
       }
 
       @include themify(night) {
@@ -80,7 +80,7 @@
 
         &:hover {
           @include themify(day) {
-            background: $white-three;
+            @apply bg-light-300;
           }
 
           @include themify(night) {
@@ -112,7 +112,7 @@
     width: 1px;
 
     @include themify(day) {
-      background: $white-four;
+      @apply bg-light-400;
     }
 
     @include themify(night) {

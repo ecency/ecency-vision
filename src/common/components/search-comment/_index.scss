@@ -11,7 +11,8 @@
     padding-bottom: 20px;
 
     @include themify(day) {
-      border-bottom: 1px solid $white-three;
+      border-bottom: 1px solid;
+      @apply border-light-300;
     }
   }
 

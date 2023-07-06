@@ -19,7 +19,8 @@
     justify-content: space-between;
 
     @include themify(day) {
-      border-bottom: 1px solid $white-three;
+      border-bottom: 1px solid;
+      @apply border-light-300;
     }
 
     @include themify(night) {
@@ -70,10 +71,10 @@
     border-bottom: 1px solid #f5f5f5;
     display: flex;
     justify-content: space-between;
-    padding: 10px 0px;
+    padding: 10px 0;
 
     @include themify(day) {
-      border-color: $white-three;
+      @apply border-light-300;
     }
 
     @include themify(night) {
@@ -127,7 +128,7 @@
           background-color: $dark-sky-blue;
 
           svg {
-            color: $white;
+            @apply text-white;
           }
         }
       }
@@ -162,9 +163,10 @@
       }
 
       @include themify(day) {
-        border-bottom: 1px solid $white-four;
-        border-top: 1px solid $white-four;
-        color: $steel-grey;
+        border-bottom: 1px solid;
+        border-top: 1px solid;
+        @apply border-light-400;
+        @apply text-gray-steel;
       }
 
       @include themify(night) {
@@ -248,10 +250,10 @@
           width: calc(100% - 94px);
 
           @include themify(day) {
-            color: $charcoal-grey;
+            @apply text-gray-charcoal;
 
             a {
-              color: $charcoal-grey;
+              @apply text-gray-charcoal;
             }
           }
 
@@ -303,8 +305,9 @@
           .second-line {
             .reply-body,
             .transfer-memo {
-              border-left: 5px solid lighten($steel-grey, 30);
-              color: $steel-grey;
+              border-left: 5px solid;
+              @apply border-gray-steel-light-030;
+              @apply text-gray-steel;
               cursor: pointer;
               font-size: 13px;
               padding-left: 10px;
@@ -314,7 +317,7 @@
             .unfollow-label,
             .ignore-label {
               border-radius: 25px;
-              color: $white;
+              @apply text-white;
               display: inline-block;
               font-size: 12px;
               padding: 2px 6px;
@@ -325,11 +328,11 @@
             }
 
             .unfollow-label {
-              background: $silver;
+              @apply bg-silver;
             }
 
             .ignore-label {
-              background: $red3;
+              @apply bg-red-030;
             }
           }
         }

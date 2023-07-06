@@ -14,7 +14,7 @@
     flex-direction: column;
 
     @include themify(day) {
-      background: darken($white-two, 1);
+      @apply bg-light-200;
     }
 
     @include themify(night) {
@@ -36,7 +36,7 @@
         }
 
         @include themify(day) {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
 
         @include themify(night) {
@@ -66,7 +66,7 @@
           height: 40px;
           justify-content: center;
           width: 40px;
-          color: $warm-grey;
+          @apply text-gray-warm;
           position: relative;
           display: inline-flex;
           margin-bottom: 20px;
@@ -88,8 +88,8 @@
           }
 
           @include themify(day) {
-            background: $white;
-            color: $steel-grey;
+            @apply bg-white;
+            @apply text-gray-steel;
           }
 
           @include themify(night) {
@@ -102,7 +102,7 @@
             position: absolute;
             right: -30%;
             bottom: 0;
-            color: $white;
+            @apply text-white;
             font-size: 10px;
             border-radius: 24px;
             width: 24px;
@@ -160,7 +160,7 @@
         }
 
         @include themify(day) {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
 
         @include themify(night) {
@@ -195,8 +195,8 @@
         }
 
         @include themify(day) {
-          background: $white;
-          color: $steel-grey;
+          @apply bg-white;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
@@ -213,7 +213,7 @@
 
         .transaction-name {
           @include themify(day) {
-            color: $steel-grey;
+            @apply text-gray-steel;
           }
 
           @include themify(night) {
@@ -225,11 +225,11 @@
           font-size: 12px;
 
           @include themify(day) {
-            color: $silver;
+            @apply text-silver;
           }
 
           @include themify(night) {
-            color: $warm-grey;
+            @apply text-gray-warm;
           }
         }
       }
@@ -248,14 +248,14 @@
       }
 
       .transaction-details {
-        color: $steel-grey;
+        @apply text-gray-steel;
         width: 30%;
         word-break: break-all;
       }
 
       &:nth-child(odd) {
         @include themify(day) {
-          background: $white-three;
+          @apply bg-light-300;
         }
 
         @include themify(night) {
@@ -266,7 +266,7 @@
       @include themify(day) {
         &:nth-child(even) {
           .transaction-icon {
-            background-color: $white-three;
+            @apply bg-light-300;
           }
         }
       }

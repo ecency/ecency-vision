@@ -26,7 +26,7 @@
       }
 
       @include themify(day) {
-        color: $charcoal-grey;
+        @apply text-gray-charcoal;
       }
 
       @include themify(night) {
@@ -72,7 +72,7 @@
       }
 
       @include themify(day) {
-        color: $steel-grey;
+        @apply text-gray-steel;
       }
 
       @include themify(night) {
@@ -88,7 +88,7 @@
 
       .transaction-name {
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
@@ -100,11 +100,11 @@
         font-size: 12px;
 
         @include themify(day) {
-          color: $silver;
+          @apply text-silver;
         }
 
         @include themify(night) {
-          color: $warm-grey;
+          @apply text-gray-warm;
         }
       }
     }
@@ -135,7 +135,7 @@
     }
 
     .transaction-details {
-      color: $steel-grey;
+      @apply text-gray-steel;
       width: 30%;
       word-break: break-all;
       display: none;
@@ -147,7 +147,7 @@
 
     &:nth-child(even) {
       @include themify(day) {
-        background: $white-three;
+        @apply bg-light-300;
       }
 
       @include themify(night) {
@@ -159,7 +159,7 @@
 
   .transaction-list-item-raw {
     .raw-code {
-      color: $warm-grey;
+      @apply text-gray-warm;
       word-break: break-all;
       line-height: 150%;
     }

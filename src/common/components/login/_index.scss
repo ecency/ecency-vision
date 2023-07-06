@@ -27,7 +27,7 @@
     }
 
     p {
-      color: $steel-grey;
+      @apply text-gray-steel;
       text-align: center;
     }
 
@@ -44,7 +44,7 @@
         text-align: center;
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
@@ -125,7 +125,7 @@
 
             &:hover {
               svg {
-                color: lighten($red2, 10);
+                @apply text-red-light-020;
               }
             }
 

@@ -297,7 +297,7 @@
           height: 200px;
           width: 100%;
           background-size: cover;
-          background-color: $white;
+          @apply bg-white;
           background-image: url(../../../../img/noimage.png);
           background-position: center;
 

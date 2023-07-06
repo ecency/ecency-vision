@@ -4,7 +4,7 @@
 @import "src/style/mixins";
 
 .entry-payout {
-  color: $steel-grey;
+  @apply text-gray-steel;
   margin-right: 15px;
   cursor: default;
 
@@ -20,12 +20,12 @@
   }
 
   &.payout-declined {
-    color: lighten($steel-grey, 15);
+    @apply text-gray-steel-light-015;
     text-decoration: line-through;
   }
 
   &.payout-limit-hit {
-    color: lighten($steel-grey, 15);
+    @apply text-gray-steel-light-015;
     opacity: .8;
   }
 }

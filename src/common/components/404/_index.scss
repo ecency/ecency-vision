@@ -32,7 +32,7 @@
         &:after {
           margin-left: 6px;
           content: "|";
-          color: $silver;
+          @apply text-silver;
         }
       }
     }

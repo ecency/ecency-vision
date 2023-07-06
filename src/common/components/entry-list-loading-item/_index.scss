@@ -15,7 +15,8 @@
   }
 
   @include themify(day) {
-    border-bottom: 1px solid lighten($white-four, 4);
+    border-bottom: 1px solid;
+    @apply border-light-
   }
 
   @include themify(night) {
@@ -29,7 +30,7 @@
     border-radius: 10px;
 
     @include themify(day) {
-      background: lighten($white-four, 4);
+      @apply bg-light-light-405;
     }
 
     @include themify(night) {

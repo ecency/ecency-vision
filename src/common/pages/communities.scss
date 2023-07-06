@@ -11,7 +11,7 @@
     border-radius: 12px;
 
     @include themify(day) {
-      background-color: $white-two;
+      @apply bg-light-200;
     }
 
     @include themify(night) {
@@ -91,7 +91,7 @@
     }
 
     .password {
-      color: $red3;
+      @apply text-red-030;
       padding: 0 10px;
       border-radius: 6px;
       font-size: 90%;
@@ -102,8 +102,9 @@
       }
 
       @include themify(day) {
-        border: 1px solid darken($white-three, 10);
-        background: $white-three;
+        border: 1px solid;
+        @apply border-light-310;
+        @apply bg-light-300;
       }
 
       @include themify(night) {
@@ -128,7 +129,7 @@
   line-height: 68px;
 
   @include themify(night) {
-    color: $white;
+    @apply text-white;
   }
 
   @media (max-width: $lg-break) {
@@ -161,7 +162,7 @@
   }
 
   @include themify(night) {
-    color: $warm-grey;
+    @apply text-gray-warm;
   }
 
   @media (max-width: $lg-break) {
@@ -181,7 +182,7 @@
   }
 
   @include themify(night) {
-    color: $warm-grey;
+    @apply text-gray-warm;
   }
 
   @media (max-width: $lg-break) {
@@ -204,7 +205,7 @@
 
     @include themify(night) {
       background-color: $transparent !important;
-      color: $warm-grey !important;
+      @apply text-gray-warm;
       border-color: $dark-three !important;
     }
 
@@ -217,7 +218,7 @@
   }
 
   input#copy-to-clipboard {
-    color: $red2 !important
+    @apply text-red-020;
   }
 
   button {

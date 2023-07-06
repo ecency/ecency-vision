@@ -95,7 +95,7 @@
     border-radius: $border-radius;
 
     @include themify(day) {
-      background: $white;
+      @apply bg-white;
     }
 
     @include themify(night) {
@@ -108,7 +108,7 @@
       padding: 8px 20px;
       font-weight: 500;
       background: $dark-sky-blue;
-      color: $white;
+      @apply text-white;
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
     }
@@ -124,11 +124,11 @@
       border-bottom-right-radius: 25px;
 
       @include themify(day) {
-        color: $warm-grey;
+        @apply text-gray-warm;
       }
 
       @include themify(night) {
-        color: $silver;
+        @apply text-silver;
       }
 
       &:not(:last-child) {
@@ -155,7 +155,7 @@
 
       &.active {
         .item-inner {
-          color: $white;
+          @apply text-white;
 
           @include themify(day) {
             background: $dark-sky-blue;

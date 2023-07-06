@@ -5,7 +5,7 @@
 
 .entry-reblog-btn {
   align-items: center;
-  color: $steel-grey;
+  @apply text-gray-steel;
   display: flex;
   cursor: pointer;
 
@@ -21,7 +21,7 @@
 
   .inner-btn {
     align-items: center;
-    color: $steel-grey;
+    @apply text-gray-steel;
     display: flex;
   }
 
@@ -36,7 +36,7 @@
 
     &:hover {
       .inner-btn {
-        color: $red2;
+        @apply text-red-020;
       }
     }
 

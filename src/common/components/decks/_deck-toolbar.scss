@@ -7,7 +7,7 @@
   justify-content: space-between;
   height: 100vh;
   height: 100dvh;
-  background-color: $white;
+  @apply bg-white;
   position: relative;
   border-right: 4px solid;
   z-index: 201;
@@ -16,7 +16,7 @@
   @include padding-top(0.75rem);
 
   @include themify(day) {
-    background-color: $white;
+    @apply bg-white;
     @apply border-gray-300;
   }
 
@@ -91,7 +91,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          color: $white;
+          @apply text-white;
           font-weight: bold;
 
           @include padding(0.2rem);

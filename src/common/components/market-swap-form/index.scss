@@ -11,7 +11,7 @@
   }
 
   @include themify(day) {
-    background-color: $white;
+    @apply bg-white;
   }
 
   @include themify(night) {
@@ -33,7 +33,7 @@
     }
 
     @include themify(night) {
-      color: $white;
+      @apply text-white;
     }
 
     @media (max-width: $md-break) {
@@ -55,7 +55,7 @@
       justify-content: center;
 
       @include themify(day) {
-        background-color: $white;
+        @apply bg-white;
       }
 
       @include themify(night) {
@@ -113,13 +113,13 @@
   }
 
   .hs-button {
-    color: $white;
+    @apply text-white;
 
     @include button-variant($hs-color, $hs-color);
   }
 
   .kc-button {
-    color: $white;
+    @apply text-white;
 
     @include button-variant($kc-color, $kc-color);
   }

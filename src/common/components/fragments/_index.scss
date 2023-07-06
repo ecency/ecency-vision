@@ -23,7 +23,8 @@
 
           &:not(:last-child) {
             @include themify(day) {
-              border-bottom: 1px solid $white-three;
+              border-bottom: 1px solid;
+              @apply border-light-300;
             }
 
             @include themify(night) {
@@ -39,21 +40,21 @@
             margin-bottom: 12px;
 
             @include themify(day) {
-              color: $charcoal-grey;
+              @apply text-gray-charcoal;
             }
 
             @include themify(night) {
-              color: $silver;
+              @apply text-silver;
             }
           }
 
           .item-summary {
             @include themify(day) {
-              color: $steel-grey;
+              @apply text-gray-steel;
             }
 
             @include themify(night) {
-              color: $silver;
+              @apply text-silver;
             }
           }
 

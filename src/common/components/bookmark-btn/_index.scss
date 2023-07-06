@@ -5,7 +5,7 @@
 
 .bookmark-btn {
   cursor: pointer;
-  color: lighten($steel-grey, 4);
+  @apply text-gray-steel-light-005;
   margin-right: 14px;
 
   @media (min-width: $sm-break) {

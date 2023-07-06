@@ -12,6 +12,6 @@
   }
 
   @include themify(day) {
-    background-color: lighten($white-four, 4);
+    @apply bg-light-light-405;
   }
 }

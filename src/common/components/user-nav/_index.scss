@@ -40,7 +40,7 @@
   .user-points,
   .notifications,
   .points {
-    color: $white;
+    @apply text-white;
     display: flex;
     align-items: center;
     margin-right: 12px;
@@ -55,7 +55,7 @@
     position: relative;
 
     .reward-badge {
-      background: $red4;
+      @apply bg-red-040;
       border-radius: 50%;
       height: 5px;
       position: absolute;
@@ -82,9 +82,9 @@
     }
 
     .notifications-badge {
-      background: $red4;
+      @apply bg-red-040;
       border-radius: 50%;
-      color: $white;
+      @apply text-white;
       font-size: 10px;
       height: 14px;
       position: absolute;
@@ -109,7 +109,7 @@
     font-weight: 300;
 
     @include themify(day) {
-      background: $white-three;
+      @apply bg-light-300;
     }
 
     @include themify(night) {
@@ -140,7 +140,7 @@
       }
 
       .downVoting {
-        color: $red2;
+        @apply text-red-020;
 
         svg {
           transform: rotate(180deg);

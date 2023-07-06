@@ -16,7 +16,7 @@
   @include transition(0.4s);
 
   @include themify(day) {
-    background-color: $white;
+    @apply bg-white;
   }
 
   @include themify(night){

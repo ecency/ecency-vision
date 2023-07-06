@@ -34,7 +34,8 @@
               font-size: 14px;
 
               @include themify(day) {
-                background: $silver;
+                @apply bg-silver;
+              ;
               }
 
               @include themify(night) {
@@ -75,7 +76,7 @@
 .entry-votes {
   margin-right: 15px;
   align-items: center;
-  color: $steel-grey;
+  @apply text-gray-steel;
   display: flex;
 
   @media (min-width: $sm-break) {

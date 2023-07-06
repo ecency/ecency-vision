@@ -97,7 +97,8 @@
       }
     }
     .second-line {
-      border-bottom: 1px solid $white-four;
+      border-bottom: 1px solid;
+      @apply border-light-400;
     }
     
    .social-wrapper{

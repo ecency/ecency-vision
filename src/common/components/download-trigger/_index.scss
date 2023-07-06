@@ -16,7 +16,7 @@
   }
 
   .downloads-text {
-    color: $steel-grey;
+    @apply text-gray-steel;
     font-weight: 300;
     margin-bottom: 22px;
     text-align: center;
