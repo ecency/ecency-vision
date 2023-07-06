@@ -17,6 +17,8 @@ export type Metadata = {
 
 export type Profile = { id: string; creator: string; created: number } & Metadata;
 
+export type DirectContact = { name: string; pubkey: string };
+
 export type Channel = { id: string; creator: string; created: number } & Metadata;
 
 export type ChannelUpdate = { channelId: string } & Channel;

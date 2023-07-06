@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { ActiveUser } from "../../store/active-user/types";
 import { Chat, DirectContactsType } from "../../store/chat/types";
 import { DirectMessage } from "../../../providers/message-provider-types";
-// import { useMappedStore } from "../../store/use-mapped-store";
 
 import Tooltip from "../tooltip";
 import UserAvatar from "../user-avatar";
@@ -31,7 +30,7 @@ import {
   getProfileMetaData,
   NostrKeys,
   setProfileMetaData,
-  correctProfile
+  resetProfile
 } from "../../helper/chat-utils";
 import { _t } from "../../i18n";
 import { getAccountFull } from "../../api/hive";
@@ -69,16 +68,18 @@ export default function ChatBox(props: Props) {
   const [showSpinner, setShowSpinner] = useState(false);
   const [messagesList, setMessagesList] = useState<DirectMessage[]>([]);
   const [isUserFromSearch, setIsUserFromSearch] = useState(false);
+  const [isCurrentUserJoined, setIsCurrentUserJoined] = useState(true);
 
   useEffect(() => {
-    // correctProfile(props.activeUser);
+    // resetProfile(props.activeUser);
     fetchProfileData();
     setShow(!!props.activeUser?.username);
   }, []);
 
   useEffect(() => {
-    const msgsList = getDirectMessages(props.chat.directMessages, receiverPubKey!);
-    setMessagesList(msgsList);
+    const msgsList = fetchMessages(receiverPubKey!);
+    const messages = msgsList.sort((a, b) => a.created - b.created);
+    setMessagesList(messages);
   }, [props.chat.directMessages]);
 
   useEffect(() => {
@@ -94,21 +95,24 @@ export default function ChatBox(props: Props) {
   useEffect(() => {
     fetchProfileData();
     setShow(!!props.activeUser?.username);
-    const msgsList = getDirectMessages(props.chat.directMessages, receiverPubKey!);
-    setMessagesList(msgsList);
+    const msgsList = fetchMessages(receiverPubKey!);
+    const messages = msgsList.sort((a, b) => a.created - b.created);
+    setMessagesList(messages);
   }, [props.activeUser]);
 
   useEffect(() => {
     if (currentUser) {
       fetchCurrentUserData();
-      const peer = props.chat.directContacts.find((x) => x.name === currentUser)?.creator ?? null;
+      const peer = props.chat.directContacts.find((x) => x.name === currentUser)?.pubkey ?? null;
       setReceiverPubKey(peer!);
-      const msgsList = getDirectMessages(props.chat.directMessages, peer!);
-      setMessagesList(msgsList);
+      const msgsList = fetchMessages(peer!);
+      const messages = msgsList.sort((a, b) => a.created - b.created);
+      setMessagesList(messages);
       if (!window.raven) {
         setNostrkeys(activeUserKeys!);
       }
     } else {
+      setIsCurrentUserJoined(true);
       setMessage("");
       setShowSpinner(false);
     }
@@ -125,6 +129,15 @@ export default function ChatBox(props: Props) {
     return count;
   };
 
+  const fetchMessages = (peer: string) => {
+    for (const item of props.chat.directMessages) {
+      if (item.peer === peer) {
+        return item.chat;
+      }
+    }
+    return [];
+  };
+
   const fetchCurrentUserData = async () => {
     setShowSpinner(true);
     const response = await getAccountFull(currentUser);
@@ -133,8 +146,11 @@ export default function ChatBox(props: Props) {
       about: response.profile?.about,
       followers: response.follow_stats?.follower_count
     });
-    const currentUserProfile = await getProfileMetaData(currentUser);
-    setReceiverPubKey(currentUserProfile?.noStrKey?.pub);
+    const { posting_json_metadata } = response;
+    const profile = JSON.parse(posting_json_metadata!).profile;
+    const { noStrKey } = profile || {};
+    setReceiverPubKey(noStrKey?.pub);
+    setIsCurrentUserJoined(!!noStrKey?.pub);
     setShowSpinner(false);
   };
 
@@ -156,7 +172,6 @@ export default function ChatBox(props: Props) {
     setCurrentUser(username);
     setExpanded(true);
     setIsCurrentUser(true);
-    // fetchCurrentUserData();
     setIsUserFromSearch(true);
   };
 
@@ -172,7 +187,7 @@ export default function ChatBox(props: Props) {
       window.raven?.sendDirectMessage(receiverPubKey, message);
     }
     if (isUserFromSearch && receiverPubKey) {
-      window.raven?.addDirectContact(receiverPubKey);
+      window.raven?.publishContacts(currentUser, receiverPubKey);
       setIsUserFromSearch(false);
     }
   };
@@ -183,8 +198,7 @@ export default function ChatBox(props: Props) {
     const isScrollToTop = !isCurrentUser && element.scrollTop >= srollHeight;
     const isScrollToBottom =
       isCurrentUser &&
-      element.scrollTop <= (element.scrollHeight / 100) * 50 &&
-      element.scrollHeight > 700;
+      element.scrollTop + chatBodyDivRef?.current?.clientHeight! < element.scrollHeight;
     setIsScrollToTop(isScrollToTop);
     setIsScrollToBottom(isScrollToBottom);
   };
@@ -219,7 +233,6 @@ export default function ChatBox(props: Props) {
     setHasUserJoinedChat(true);
     setNostrkeys(keys);
     window.raven?.updateProfile({ name: props.activeUser?.username!, about: "", picture: "" });
-    // fetchProfileData();
     setActiveUserKeys(keys);
     setInProgress(false);
   };
@@ -329,7 +342,7 @@ export default function ChatBox(props: Props) {
                       </div>
                     </Link>
                     <div className="chats">
-                      {receiverPubKey === null || receiverPubKey === undefined ? (
+                      {!isCurrentUserJoined ? (
                         <p className="not-joined">{_t("chat.not-joined")}</p>
                       ) : (
                         <>
@@ -378,7 +391,7 @@ export default function ChatBox(props: Props) {
                       <React.Fragment>
                         {props.chat.directContacts.map((user: DirectContactsType) => {
                           return (
-                            <div key={user.creator} className="chat-content">
+                            <div key={user.pubkey} className="chat-content">
                               <Link to={`/@${user.name}`}>
                                 <div className="user-img">
                                   <span>

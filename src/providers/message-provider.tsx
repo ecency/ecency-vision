@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { ActiveUser } from "../common/store/active-user/types";
 import { Chat, DirectContactsType } from "../common/store/chat/types";
-import { DirectMessage, Profile, Keys } from "./message-provider-types";
+import { DirectMessage, Profile, Keys, DirectContact } from "./message-provider-types";
 
 import { initRaven, RavenEvents } from "../common/helper/message-helper";
 import { getProfileMetaData, NostrKeys } from "../common/helper/chat-utils";
@@ -19,18 +19,17 @@ export const setNostrkeys = (keys: NostrKeys) => {
 };
 
 interface Props {
-  activeUser: ActiveUser;
-  chat: Chat;
   addDirectContacts: (data?: DirectContactsType[]) => void;
-  addDirectMessages: (data?: DirectMessage[]) => void;
+  addDirectMessages: (peer: string, data?: DirectMessage[]) => void;
 }
 
 const MessageProvider = (props: Props) => {
-  const { activeUser } = useMappedStore();
+  const { activeUser, chat } = useMappedStore();
   const [ravenReady, setRavenReady] = useState(false);
   const [since, setSince] = useState<number>(0);
   const [keys, setKeys] = useState<Keys>();
   const [raven, setRaven] = useState<any>();
+  const [messageBuffer, setMessageBuffer] = useState<DirectMessage[]>([]);
 
   useEffect(() => {
     window.addEventListener("createRavenInstance", createRavenInstance);
@@ -95,16 +94,69 @@ const MessageProvider = (props: Props) => {
     };
   }, [ravenReady, raven]);
 
+  const handleProfileUpdate = (data: DirectContact[]) => {
+    const result = [...chat.directContacts];
+    data.forEach(({ name, pubkey }) => {
+      const isPresent = chat.directContacts.some(
+        (obj) => obj.name === name && obj.pubkey === pubkey
+      );
+      if (!isPresent) {
+        //Add the object to the result array if it's not already present in store state.
+        result.push({ name, pubkey });
+      }
+    });
+    if (result.length !== 0) {
+      props.addDirectContacts(result);
+    }
+  };
+
+  useEffect(() => {
+    raven?.removeListener(RavenEvents.DirectContact, handleProfileUpdate);
+    raven?.addListener(RavenEvents.DirectContact, handleProfileUpdate);
+    return () => {
+      raven?.removeListener(RavenEvents.DirectContact, handleProfileUpdate);
+    };
+  }, [raven]);
+
   // // Direct message handler
   const handleDirectMessage = (data: DirectMessage[]) => {
-    const append = data.filter(
-      (x) => props.chat.directMessages.find((y) => y.id === x.id) === undefined
-    );
-    raven?.loadProfiles(append.map((x) => x.peer));
-    const result = [...props.chat.directMessages, ...append];
-
-    props.addDirectMessages(result);
+    setMessageBuffer((messageBuffer) => [...messageBuffer!, ...data]);
+    raven?.checkProfiles(data.map((x) => x.peer));
   };
+
+  const setMessages = () => {
+    messageBuffer.forEach((obj) => {
+      const { peer } = obj;
+      const matchingStateItem = chat.directMessages.find((stateItem) => stateItem.peer === peer);
+      if (matchingStateItem) {
+        if (matchingStateItem.chat.length === 0) {
+          props.addDirectMessages(peer, [obj]);
+          setMessageBuffer((prevMessageBuffer) =>
+            prevMessageBuffer.filter((message) => message.id !== obj.id)
+          );
+        } else {
+          let itemExists = false;
+          matchingStateItem.chat.forEach((item) => {
+            if (item.id === obj.id) {
+              itemExists = true;
+            }
+          });
+          if (!itemExists) {
+            props.addDirectMessages(peer, [obj]);
+            setMessageBuffer((prevMessageBuffer) =>
+              prevMessageBuffer.filter((message) => message.id !== obj.id)
+            );
+          }
+        }
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (chat.directContacts.length !== 0) {
+      setMessages();
+    }
+  }, [chat.directContacts, messageBuffer]);
 
   useEffect(() => {
     raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
@@ -114,33 +166,10 @@ const MessageProvider = (props: Props) => {
     };
   }, [raven]);
 
-  const handleProfileUpdate = (data: Profile[]) => {
-    const result = [...props.chat.directContacts];
-    data.forEach(({ name, creator }) => {
-      const isPresent = props.chat.directContacts.some(
-        (obj) => obj.name === name && obj.creator === creator
-      );
-      if (!isPresent) {
-        //Add the object to the result array if it's not already present in store state.
-        result.push({ name, creator });
-      }
-    });
-
-    props.addDirectContacts(result);
-  };
-
-  useEffect(() => {
-    raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
-    raven?.addListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
-    return () => {
-      raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
-    };
-  }, [raven]);
-
   useEffect(() => {
     return () => {
       raven?.removeListener(RavenEvents.Ready, handleReadyState);
-      raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
+      raven?.removeListener(RavenEvents.DirectContact, handleProfileUpdate);
       raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
     };
   }, [raven]);

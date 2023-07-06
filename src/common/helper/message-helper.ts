@@ -3,17 +3,10 @@ import { Kind } from "../../lib/nostr-tools/event";
 import { Filter } from "../../lib/nostr-tools/filter";
 import { TypedEventEmitter } from "./message-event-emitter";
 import {
-  Channel,
-  ChannelMessageHide,
-  ChannelUpdate,
-  ChannelUserMute,
+  DirectContact,
   DirectMessage,
-  EventDeletion,
   Keys,
-  Metadata,
-  MuteList,
-  Profile,
-  PublicMessage
+  Metadata
 } from "../../providers/message-provider-types";
 import { encrypt, decrypt } from "../../lib/nostr-tools/nip04";
 import SimplePool from "../../lib/nostr-tools/pool";
@@ -30,14 +23,14 @@ const relays = {
 
 export enum RavenEvents {
   Ready = "ready",
-  ProfileUpdate = "profile_update",
-  DirectMessage = "direct_message"
+  DirectMessage = "direct_message",
+  DirectContact = "direct_contact"
 }
 
 type EventHandlerMap = {
   [RavenEvents.Ready]: () => void;
-  [RavenEvents.ProfileUpdate]: (data: Profile[]) => void;
   [RavenEvents.DirectMessage]: (data: DirectMessage[]) => void;
+  [RavenEvents.DirectContact]: (data: DirectContact[]) => void;
 };
 
 class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
@@ -54,8 +47,7 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
   private eventQueueTimer: any;
   private eventQueueFlag = true;
   private eventQueueBuffer: Event[] = [];
-  public directContacts: string[] = [];
-  private isActiveUserPushed: boolean = false;
+  public directContacts: any = [];
 
   private nameCache: Record<string, number> = {};
 
@@ -81,66 +73,86 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
 
     const filters: Filter[] = [
       {
-        kinds: [Kind.Metadata],
+        kinds: [Kind.Contacts],
         authors: [this.pub]
-      },
-      {
-        kinds: [Kind.EncryptedDirectMessage],
-        authors: [this.pub]
-      },
-      {
-        kinds: [Kind.EncryptedDirectMessage],
-        "#p": [this.pub]
       }
     ];
     this.fetchP(filters).then((resp) => {
       const events = resp.sort((a, b) => b.created_at - a.created_at);
-      const profile = events.find((x) => x.kind === Kind.Metadata);
-      if (profile) this.pushToEventBuffer(profile);
-      const directContacts = Array.from(
-        new Set(
-          events.map((x) => {
-            if (x.kind === Kind.EncryptedDirectMessage) {
-              const receiver = Raven.findTagValue(x, "p");
-              if (!receiver) return undefined;
-              return receiver === this.pub ? x.pubkey : receiver;
-            }
-            return undefined;
-          })
-        )
-      ).filter(notEmpty);
-
-      this.directContacts.push(...directContacts);
-
-      const filters: Filter[] = [
-        {
-          kinds: [Kind.Metadata],
-          authors: directContacts
-        },
-        ...directContacts.map((x) => ({
-          kinds: [Kind.EncryptedDirectMessage],
-          "#p": [this.pub],
-          authors: [x]
-        })),
-        ...directContacts.map((x) => ({
-          kinds: [Kind.EncryptedDirectMessage],
-          "#p": [x],
-          authors: [this.pub]
-        }))
-      ];
-      filters.forEach((c) => {
-        this.fetch([c]);
-      });
+      const profile = events.find((x) => x.kind === Kind.Contacts);
+      if (profile && profile?.tags.length !== 0) {
+        this.directContacts = profile?.tags;
+        this.pushToEventBuffer(profile!);
+      }
+      this.fetchMessages();
       this.emit(RavenEvents.Ready);
     });
   }
 
-  public loadProfiles(pubs: string[]) {
-    pubs.forEach((p) => {
-      if (!this.directContacts.includes(p)) {
-        if (p !== this.pub) {
-          this.directContacts.push(p);
+  public fetchMessages() {
+    this.directContacts.map((contact: any) => {
+      const filters: Filter[] = [
+        {
+          kinds: [Kind.EncryptedDirectMessage],
+          "#p": [contact[0]],
+          authors: [this.pub]
+        },
+        {
+          kinds: [Kind.EncryptedDirectMessage],
+          "#p": [this.pub],
+          authors: [contact[0]]
         }
+      ];
+      this.fetch(filters);
+    });
+  }
+
+  public publishContacts(username: string, pubkey: string) {
+    const newUser = [pubkey, username];
+    newUser.forEach((element) => {
+      let nameExist = false;
+
+      // Check if the name exists in the first array
+      this.directContacts.forEach((existingElement: string[]) => {
+        if (existingElement[0] === element || existingElement[1] === element) {
+          nameExist = true;
+          return;
+        }
+      });
+
+      // If the name doesn't exist, add the element to the direct contacts array
+      if (!nameExist) {
+        this.directContacts.push(newUser);
+        this.publish(Kind.Contacts, this.directContacts, "");
+        return;
+      }
+    });
+  }
+
+  public getContacts() {
+    const filters: Filter[] = [
+      {
+        kinds: [Kind.Contacts],
+        authors: [this.pub]
+      }
+    ];
+    this.fetch(filters);
+  }
+
+  public checkProfiles(pubs: string[]) {
+    pubs.forEach((p) => {
+      if (this.directContacts.length !== 0) {
+        this.directContacts.forEach((c: any) => {
+          if (p !== c[0]) {
+            this.fetch([
+              {
+                kinds: [Kind.Metadata],
+                authors: [p]
+              }
+            ]);
+          }
+        });
+      } else {
         this.fetch([
           {
             kinds: [Kind.Metadata],
@@ -151,45 +163,31 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
     });
   }
 
-  public directContactForActiveUser(event: Event) {
-    if (!this.isActiveUserPushed && !this.directContacts.includes(event.pubkey)) {
-      const activeUserProfile = {
-        id: event.id,
-        creator: event.pubkey,
-        created: event.created_at,
-        name: JSON.parse(event.content).name,
-        about: JSON.parse(event.content).about || "",
-        picture: JSON.parse(event.content).picture || ""
-      };
-
-      this.emit(RavenEvents.ProfileUpdate, [activeUserProfile]);
-      this.isActiveUserPushed = true;
-      this.directContacts.push(event.pubkey);
+  private addDirectContact(event: Event) {
+    let isAdded = false;
+    const user = {
+      id: event.id,
+      creator: event.pubkey,
+      created: event.created_at,
+      name: JSON.parse(event.content).name,
+      about: JSON.parse(event.content).about || "",
+      picture: JSON.parse(event.content).picture || ""
+    };
+    const { creator, name } = user;
+    if (!isAdded) {
+      this.publishContacts(name, creator);
+      isAdded = true;
     }
-  }
-
-  public addDirectContact(directContact: string) {
-    const filters: Filter[] = [
-      {
-        kinds: [Kind.Metadata],
-        authors: [directContact]
-      }
-    ];
-
-    if (!this.directContacts.includes(directContact) && this.pub !== directContact) {
-      this.directContacts.push(directContact);
-    }
-    this.fetch(filters);
   }
 
   private fetch(filters: Filter[], unsub: boolean = true) {
     const sub = this.pool.sub(this.readRelays, filters);
 
     sub.on("event", (event: Event) => {
-      this.pushToEventBuffer(event);
-      if (event.kind === Kind.Metadata && event.pubkey === this.pub) {
-        this.directContactForActiveUser(event);
+      if (event.kind === Kind.Metadata) {
+        this.addDirectContact(event);
       }
+      this.pushToEventBuffer(event);
     });
 
     sub.on("eose", () => {
@@ -284,6 +282,9 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
           const pub = this.pool.publish(this.writeRelays, event);
           pub.on("ok", () => {
             resolve(event);
+            if (event.kind === Kind.Contacts) {
+              this.getContacts();
+            }
           });
 
           pub.on("failed", () => {
@@ -331,28 +332,20 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
 
   async processEventQueue() {
     this.eventQueueFlag = false;
-
-    const profileUpdates: Profile[] = this.eventQueue
-      .filter((x) => x.kind === Kind.Metadata)
-      .map((ev) => {
-        const content = Raven.parseJson(ev.content);
-        return content
-          ? {
-              id: ev.id,
-              creator: ev.pubkey,
-              created: ev.created_at,
-              ...Raven.normalizeMetadata(content)
-            }
-          : null;
+    const data = this.eventQueue
+      .filter((x) => x.kind === Kind.Contacts)
+      .map((e: any) => {
+        const profiles: Array<[string, string]> = e.tags;
+        return profiles.map(([pubkey, name]) => ({ pubkey, name }));
       })
       .filter(notEmpty);
 
-    const directContacts = profileUpdates.filter((obj) =>
-      this.directContacts.includes(obj.creator)
-    );
+    if (data.length > 0) {
+      const directContactsProfile: Array<{ pubkey: string; name: string }> = data[0];
 
-    if (profileUpdates.length > 0) {
-      this.emit(RavenEvents.ProfileUpdate, directContacts);
+      if (directContactsProfile.length > 0) {
+        this.emit(RavenEvents.DirectContact, directContactsProfile);
+      }
     }
 
     Promise.all(

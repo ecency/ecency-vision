@@ -773,7 +773,9 @@ class LoginDialog extends Component<Props> {
       resetChat();
 
       //create new raven instance for newly logged in user
-      setNostrkeys(profile.noStrKey);
+      if (profile && profile.noStrKey) {
+        setNostrkeys(profile.noStrKey);
+      }
       // activate user
       setActiveUser(user.username);
 

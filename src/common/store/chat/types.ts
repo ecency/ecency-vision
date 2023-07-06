@@ -2,12 +2,17 @@ import { DirectMessage } from "./../../../providers/message-provider-types";
 
 export interface DirectContactsType {
   name: string;
-  creator: string;
+  pubkey: string;
+}
+
+export interface directMessagesList {
+  peer: string;
+  chat: DirectMessage[];
 }
 
 export interface Chat {
   directContacts: DirectContactsType[];
-  directMessages: DirectMessage[];
+  directMessages: directMessagesList[];
 }
 
 export enum ActionTypes {
@@ -28,6 +33,7 @@ export interface ResetChatAction {
 export interface DirectMessagesAction {
   type: ActionTypes.DIRECTMESSAGES;
   data: DirectMessage[];
+  peer: string;
 }
 
 export type Actions = DirectContactsAction | DirectMessagesAction | ResetChatAction;

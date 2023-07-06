@@ -8,7 +8,8 @@ import {
   DirectContactsAction,
   DirectContactsType,
   DirectMessagesAction,
-  ResetChatAction
+  ResetChatAction,
+  directMessagesList
 } from "./types";
 
 export const initialState: Chat = {
@@ -20,19 +21,30 @@ export default (state: Chat = initialState, action: Actions): Chat => {
   switch (action.type) {
     case ActionTypes.DIRECTCONTACTS: {
       const { data } = action;
-      const uniqueDirectContacts = data.filter(
-        (contact) => !state.directContacts.includes(contact)
-      );
+      const uniqueDirectContacts = data.filter((contact) => {
+        return !state.directContacts.some((existingContact) => {
+          return existingContact.name === contact.name && existingContact.pubkey === contact.pubkey;
+        });
+      });
+      // console.log(uniqueDirectContacts, "uniqueDirectContacts");
       return {
         ...state,
-        directContacts: [...state.directContacts, ...uniqueDirectContacts]
+        directContacts: [...state.directContacts, ...uniqueDirectContacts],
+        directMessages: [
+          ...state.directMessages,
+          ...uniqueDirectContacts.map((contact) => ({ chat: [], peer: contact.pubkey }))
+        ]
       };
     }
     case ActionTypes.DIRECTMESSAGES: {
-      const { data } = action;
+      const { peer, data } = action;
       return {
         ...state,
-        directMessages: [...state.directMessages, ...data]
+        directMessages: [
+          ...state.directMessages.map((contact) =>
+            contact.peer === peer ? { peer: peer, chat: [...contact.chat, ...data] } : contact
+          )
+        ]
       };
     }
 
@@ -49,13 +61,14 @@ export const addDirectContacts = (data: DirectContactsType[]) => (dispatch: Disp
   dispatch(addDirectContactsAct(data));
 };
 
-export const addDirectMessages = (data: DirectMessage[]) => (dispatch: Dispatch) => {
-  dispatch(addDirectMessagesAct(data));
+export const addDirectMessages = (peer: string, data: DirectMessage[]) => (dispatch: Dispatch) => {
+  dispatch(addDirectMessagesAct(peer, data));
 };
 
 export const resetChat = () => (dispatch: Dispatch) => {
   dispatch(resetChatAct());
 };
+
 /* Action Creators */
 
 export const addDirectContactsAct = (data: DirectContactsType[]): DirectContactsAction => {
@@ -65,9 +78,10 @@ export const addDirectContactsAct = (data: DirectContactsType[]): DirectContacts
   };
 };
 
-export const addDirectMessagesAct = (data: DirectMessage[]): DirectMessagesAction => {
+export const addDirectMessagesAct = (peer: string, data: DirectMessage[]): DirectMessagesAction => {
   return {
     type: ActionTypes.DIRECTMESSAGES,
+    peer,
     data
   };
 };
