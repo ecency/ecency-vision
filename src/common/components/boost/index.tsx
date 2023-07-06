@@ -272,7 +272,11 @@ export class Boost extends BaseComponent<Props, State> {
               </div>
             </div>
             {inProgress && <LinearProgress />}
-            <div className="transaction-form-body">
+            <div className="transaction-form-body d-flex flex-column">
+            <div className="justify-self-center">
+              <span className="mr-1">{_t("boost.learn-more")}</span>
+              <a href={_t("boost.faq-link")}>{_t("boost.faq")}</a>
+            </div>
               <Form.Group as={Row}>
                 <Form.Label column={true} sm="2">
                   {_t("redeem-common.balance")}

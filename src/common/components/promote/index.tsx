@@ -140,7 +140,7 @@ export class Promote extends BaseComponent<Props, State> {
     const { duration } = this.state;
 
     const { prices } = this.state;
-    const { price } = prices.find((x) => x.duration === duration)!;
+    const { price } = prices?.find((x) => x.duration === duration)!;
 
     const balanceError =
       parseFloat(activeUser.points.points) < price ? _t("trx-common.insufficient-funds") : "";
@@ -256,7 +256,11 @@ export class Promote extends BaseComponent<Props, State> {
               </div>
             </div>
             {inProgress && <LinearProgress />}
-            <div className="transaction-form-body">
+            <div className="transaction-form-body d-flex flex-column">
+              <div className="justify-self-center d-flex">
+                <span className="mr-1">{_t("promote.learn-more")}</span>
+                <a href={_t("promote.faq-link")}>{_t("promote.faq")}</a>
+              </div>
               <Form.Group as={Row}>
                 <Form.Label column={true} sm="2">
                   {_t("redeem-common.balance")}
