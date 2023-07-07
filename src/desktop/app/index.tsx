@@ -32,6 +32,8 @@ import "../../style/style.scss";
 import "../../client/base-handlers";
 
 import "./context-menu";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "../../common/core";
 
 declare var window: DesktopWindow;
 
@@ -64,11 +66,13 @@ const store = configureStore(preloadedState);
 
 document.addEventListener("DOMContentLoaded", () => {
   render(
-    <Provider store={store}>
-      <ConnectedRouter history={history!}>
-        <App />
-      </ConnectedRouter>
-    </Provider>,
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <ConnectedRouter history={history!}>
+          <App />
+        </ConnectedRouter>
+      </Provider>
+    </QueryClientProvider>,
     document.getElementById("root")
   );
 
