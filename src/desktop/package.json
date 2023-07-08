@@ -151,10 +151,10 @@
     "@babel/plugin-syntax-import-meta": "^7.10.4",
     "electron-debug": "^3.1.0",
     "electron-log": "^4.2.4",
-    "electron-updater": "^4.3.4",
+    "electron-updater": "4.6.5",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "react-hot-loader": "^4.12.21",
-    "source-map-support": "^0.5.19",
-    "sass-loader": "10.1.1"
+    "sass-loader": "10.1.1",
+    "source-map-support": "^0.5.19"
   }
 }
