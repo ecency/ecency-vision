@@ -1,0 +1,168 @@
+@import "src/style/vars_mixins";
+
+html, body {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.decks {
+  display: grid;
+  grid-template-columns: 72px 0 1fr;
+  align-items: center;
+  transition: 0.3s;
+
+  @include themify(day) {
+    color: $black;
+    background-color: $gray-300;
+  }
+
+  @include themify(night) {
+    color: $white;
+    background-color: $gray-900;
+  }
+
+  &.toolbar-collapsed {
+    @include media-breakpoint-down(sm) {
+      transform: translateX(-72px);
+      width: calc(100% + 72px) !important;
+    }
+  }
+
+  &.expanded {
+    grid-template-columns: 280px 0 1fr;
+  }
+
+  &.thread-form-showed {
+    grid-template-columns: 72px 400px 1fr;
+  }
+
+  &.expanded.thread-form-showed {
+    grid-template-columns: 280px 400px 1fr;
+  }
+
+  .decks-container {
+    overflow: hidden;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .decks-container, *[data-rbd-droppable-id] {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  *[data-rbd-draggable-id]:first-child .deck {
+    border-left: 0;
+  }
+
+  #draggable-container {
+    display: flex;
+    scroll-behavior: smooth;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .add-new-column-button {
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+    height: 3rem;
+
+    @include transition(0.3s);
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+  }
+
+  .deck-loader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: $gray-500;
+  }
+
+  .deck-smooth-scroller {
+    @include transition(0.5s);
+  }
+
+  .dropdown {
+    position: relative;
+
+    .dropdown-menu {
+      z-index: $zindex-dropdown;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid $border-color;
+      min-width: 200px;
+      //backdrop-filter: blur(1rem);
+      //box-shadow: 0 6px 20px -10px rgba(0, 0, 0, 0.25);
+
+      @include padding-top(0.5rem);
+      @include padding-bottom(0.5rem);
+      @include border-radius(0.25rem);
+
+      @include themify(day) {
+        background-color: $white;
+      }
+
+      @include themify(night) {
+        background-color: $dark;
+      }
+
+      .dropdown-item {
+        width: 80%;
+
+        @include margin-top(0.25rem);
+        @include margin-bottom(0.25rem);
+        @include padding-left(1rem);
+        @include padding-right(1rem);
+        @include padding-top(0.5rem);
+        @include padding-bottom(0.5rem);
+
+        @include themify(day) {
+          color: $gray-800;
+        }
+
+        @include themify(night) {
+          color: $gray-300;
+        }
+
+        &:hover {
+          color: $primary;
+
+          @include border-top-right-radius(1rem);
+          @include border-bottom-right-radius(1rem);
+
+          @include themify(day) {
+            background-color: $duck-egg-blue;
+          }
+
+          @include themify(night) {
+            background-color: $gray-900;
+          }
+        }
+      }
+    }
+
+    .dropdown-toggle {
+      padding: 0;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    overflow-y: hidden;
+
+    *::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

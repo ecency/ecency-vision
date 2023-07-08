@@ -17,5 +17,6 @@ exports[`(1) Default render 1`] = `
      
     min
   </p>
+  
 </div>
 `;

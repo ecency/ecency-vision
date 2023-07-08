@@ -68,20 +68,8 @@ exports[`(1) No active user. Default filter 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
-                  id="rising"
-                  onClick={[Function]}
-                >
-                  Rising
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-controversial"
-                  href="/controversial"
+                  href="/controversial/today"
                   id="controversial"
                   onClick={[Function]}
                 >
@@ -90,6 +78,9 @@ exports[`(1) No active user. Default filter 1`] = `
               </li>
             </ul>
           </div>
+          <div
+            className="kebab-icon"
+          />
         </div>
         <div
           className="main-menu d-flex d-lg-none"
@@ -140,19 +131,8 @@ exports[`(1) No active user. Default filter 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
-                  onClick={[Function]}
-                >
-                  Rising
-                </a>
-              </li>
-              <li
-                className="nav-item"
-              >
-                <a
                   className="nav-link link-controversial"
-                  href="/controversial"
+                  href="/controversial/today"
                   onClick={[Function]}
                 >
                   Controversial
@@ -262,20 +242,8 @@ exports[`(2) No active user. Trending filter 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
-                  id="rising"
-                  onClick={[Function]}
-                >
-                  Rising
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-controversial"
-                  href="/controversial"
+                  href="/controversial/today"
                   id="controversial"
                   onClick={[Function]}
                 >
@@ -284,6 +252,9 @@ exports[`(2) No active user. Trending filter 1`] = `
               </li>
             </ul>
           </div>
+          <div
+            className="kebab-icon"
+          />
         </div>
         <div
           className="main-menu d-flex d-lg-none"
@@ -334,19 +305,8 @@ exports[`(2) No active user. Trending filter 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
-                  onClick={[Function]}
-                >
-                  Rising
-                </a>
-              </li>
-              <li
-                className="nav-item"
-              >
-                <a
                   className="nav-link link-controversial"
-                  href="/controversial"
+                  href="/controversial/today"
                   onClick={[Function]}
                 >
                   Controversial
@@ -564,20 +524,8 @@ exports[`(3) Active user. Trending filter 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
-                  id="rising"
-                  onClick={[Function]}
-                >
-                  Rising
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-controversial"
-                  href="/controversial"
+                  href="/controversial/today"
                   id="controversial"
                   onClick={[Function]}
                 >
@@ -586,6 +534,9 @@ exports[`(3) Active user. Trending filter 1`] = `
               </li>
             </ul>
           </div>
+          <div
+            className="kebab-icon"
+          />
         </div>
         <div
           className="main-menu d-flex d-lg-none"
@@ -736,22 +687,22 @@ exports[`(3) Active user. Trending filter 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
+                  className="nav-link link-controversial"
+                  href="/controversial/today"
                   onClick={[Function]}
                 >
-                  Rising
+                  Controversial
                 </a>
               </li>
               <li
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial"
+                  className="nav-link link-rising"
+                  href="/rising/today"
                   onClick={[Function]}
                 >
-                  Controversial
+                  Rising
                 </a>
               </li>
             </ul>
@@ -878,20 +829,8 @@ exports[`(4) Active user. Friends 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
-                  id="rising"
-                  onClick={[Function]}
-                >
-                  Rising
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-controversial"
-                  href="/controversial"
+                  href="/controversial/today"
                   id="controversial"
                   onClick={[Function]}
                 >
@@ -900,6 +839,9 @@ exports[`(4) Active user. Friends 1`] = `
               </li>
             </ul>
           </div>
+          <div
+            className="kebab-icon"
+          />
         </div>
         <div
           className="main-menu d-flex d-lg-none"
@@ -961,22 +903,22 @@ exports[`(4) Active user. Friends 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
+                  className="nav-link link-controversial"
+                  href="/controversial/today"
                   onClick={[Function]}
                 >
-                  Rising
+                  Controversial
                 </a>
               </li>
               <li
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial"
+                  className="nav-link link-rising"
+                  href="/rising/today"
                   onClick={[Function]}
                 >
-                  Controversial
+                  Rising
                 </a>
               </li>
             </ul>
@@ -1103,20 +1045,8 @@ exports[`(5) Active user. Communities 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising/my"
-                  id="rising"
-                  onClick={[Function]}
-                >
-                  Rising
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-controversial"
-                  href="/controversial/my"
+                  href="/controversial/today"
                   id="controversial"
                   onClick={[Function]}
                 >
@@ -1125,6 +1055,9 @@ exports[`(5) Active user. Communities 1`] = `
               </li>
             </ul>
           </div>
+          <div
+            className="kebab-icon"
+          />
         </div>
         <div
           className="main-menu d-flex d-lg-none"
@@ -1186,22 +1119,22 @@ exports[`(5) Active user. Communities 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising/my"
+                  className="nav-link link-controversial"
+                  href="/controversial/today"
                   onClick={[Function]}
                 >
-                  Rising
+                  Controversial
                 </a>
               </li>
               <li
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial/my"
+                  className="nav-link link-rising"
+                  href="/rising/today"
                   onClick={[Function]}
                 >
-                  Controversial
+                  Rising
                 </a>
               </li>
             </ul>
@@ -1308,20 +1241,8 @@ exports[`(6) No active user. Communities 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising/my"
-                  id="rising"
-                  onClick={[Function]}
-                >
-                  Rising
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-controversial"
-                  href="/controversial/my"
+                  href="/controversial/today"
                   id="controversial"
                   onClick={[Function]}
                 >
@@ -1330,6 +1251,9 @@ exports[`(6) No active user. Communities 1`] = `
               </li>
             </ul>
           </div>
+          <div
+            className="kebab-icon"
+          />
         </div>
         <div
           className="main-menu d-flex d-lg-none"
@@ -1380,19 +1304,8 @@ exports[`(6) No active user. Communities 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising/my"
-                  onClick={[Function]}
-                >
-                  Rising
-                </a>
-              </li>
-              <li
-                className="nav-item"
-              >
-                <a
                   className="nav-link link-controversial"
-                  href="/controversial/my"
+                  href="/controversial/today"
                   onClick={[Function]}
                 >
                   Controversial

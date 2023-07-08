@@ -56,8 +56,7 @@ it("(1) Default render - With data.", async () => {
     history: createBrowserHistory(),
     global: globalInstance,
     community: { ...communityInstance1 },
-    addAccount: () => {},
-    onHide: () => {}
+    addAccount: () => {}
   };
 
   const component = await renderer.create(<Activities {...props} />);

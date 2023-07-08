@@ -32,7 +32,7 @@ import { SearchResponse, AccountSearchResult } from "../api/search-api";
 import { AssetSymbol } from "@hiveio/dhive";
 import { setImmediate as flushMicroTasks } from "timers";
 
-export const allOver = () => new Promise((resolve) => setImmediate(resolve));
+export const allOver = () => new Promise((resolve) => resolve(1));
 
 export const flushPending = () => new Promise(flushMicroTasks);
 
@@ -94,6 +94,7 @@ export const fullAccountInstance: FullAccount = {
   savings_hbd_balance: "0.002 HBD",
   savings_hbd_seconds: "1235678",
   next_vesting_withdrawal: "1969-12-31T23:59:59",
+  pending_claimed_accounts: 0,
   vesting_shares: "151590.952150 VESTS",
   delegated_vesting_shares: "145395.758709 VESTS",
   savings_hbd_last_interest_payment: "2021-03-18T15:42:03",
@@ -949,7 +950,8 @@ export const dynamicPropsIntance1: DynamicProps = {
   totalVestingFund: 147530899.832,
   totalVestingShares: 274146627336.063918,
   virtualSupply: 395012207.852,
-  vestingRewardPercent: 1500
+  vestingRewardPercent: 1500,
+  accountCreationFee: "3.000 HIVE"
 };
 
 export const notificationsInstance1: Notifications = {

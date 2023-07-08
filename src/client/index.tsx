@@ -11,6 +11,8 @@ import { AppWindow } from "./window";
 import "../style/style.scss";
 import "./base-handlers";
 import { loadableReady } from "@loadable/component";
+import { queryClient } from "../common/core";
+import { Hydrate, QueryClientProvider } from "@tanstack/react-query";
 
 declare var window: AppWindow;
 
@@ -37,11 +39,16 @@ if (process.env.NODE_ENV === "production") {
 
 loadableReady().then(() => {
   hydrate(
-    <Provider store={store}>
-      <ConnectedRouter history={history!}>
-        <App />
-      </ConnectedRouter>
-    </Provider>,
+    <QueryClientProvider client={queryClient}>
+      {/*@ts-ignore*/}
+      <Hydrate state={window.__REACT_QUERY_STATE__}>
+        <Provider store={store}>
+          <ConnectedRouter history={history!}>
+            <App />
+          </ConnectedRouter>
+        </Provider>
+      </Hydrate>
+    </QueryClientProvider>,
     document.getElementById("root")
   );
 
@@ -62,11 +69,16 @@ loadableReady().then(() => {
 if (module.hot) {
   module.hot.accept("../common/app", () => {
     hydrate(
-      <Provider store={store}>
-        <ConnectedRouter history={history!}>
-          <App />
-        </ConnectedRouter>
-      </Provider>,
+      <QueryClientProvider client={queryClient}>
+        {/*@ts-ignore*/}
+        <Hydrate state={window.__REACT_QUERY_STATE__}>
+          <Provider store={store}>
+            <ConnectedRouter history={history!}>
+              <App />
+            </ConnectedRouter>
+          </Provider>
+        </Hydrate>
+      </QueryClientProvider>,
       document.getElementById("root")
     );
   });

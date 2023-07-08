@@ -16,14 +16,15 @@
       display: none;
 
       @media (max-width: $xl-break) {
-        &.register-type, &.buy-account {
+        &.register-type,
+        &.buy-account {
           display: block;
           width: 100%;
           max-width: 500px;
           margin: 0 auto;
 
           img {
-            width: 100%
+            width: 100%;
           }
         }
       }
@@ -35,7 +36,7 @@
         justify-content: flex-end;
 
         img {
-          width: 100%
+          width: 100%;
         }
       }
     }
@@ -74,7 +75,8 @@
           margin: 56px 0;
         }
 
-        img, svg {
+        img,
+        svg {
           height: 44px;
         }
 
@@ -83,7 +85,7 @@
         }
 
         svg {
-          color: #D2323E;
+          color: #d2323e;
         }
       }
 
@@ -138,7 +140,9 @@
           margin-bottom: 26px;
         }
 
-        .form-do-login, .form-bottom-description, .form-faq {
+        .form-do-login,
+        .form-bottom-description,
+        .form-faq {
           opacity: 0.7;
           text-align: center;
           margin-bottom: 22px;
@@ -156,6 +160,15 @@
   .card {
     line-height: 1.5;
 
+    .error {
+      padding: 12px 30px;
+      .error-info {
+        color: $red2;
+        font-size: 93%;
+        font-weight: 400;
+      }
+    }
+
     ul {
       margin-bottom: 0;
     }
@@ -165,17 +178,17 @@
     @include themify(day) {
       color: $white;
     }
-  
+
     @include themify(night) {
       background: lighten($dark-sky-blue, 6);
       color: $dark-two;
     }
-    
+
     border-radius: 8px;
     display: grid;
     grid-template-areas:
-            "icon text"
-            "icon headline";
+      "icon text"
+      "icon headline";
     align-items: center;
     text-align: left;
 

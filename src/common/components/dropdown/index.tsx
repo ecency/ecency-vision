@@ -33,10 +33,11 @@ interface Props {
   className?: string;
   withPadding?: boolean;
   menuHide?: boolean;
+  noMarginTop?: boolean;
 }
 
 const MyDropDown = (props: Props) => {
-  const { menuHide = true } = props;
+  const { menuHide = true, noMarginTop = false } = props;
   const [menu, setMenu] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -159,7 +160,7 @@ const MyDropDown = (props: Props) => {
                     key={k}
                     className={`menu-item ${i.isStatic ? "static" : ""} ${
                       i?.selected ? "active" : ""
-                    }`}
+                    } ${noMarginTop ? "no-margin" : ""}`}
                     onClick={() => {
                       itemClicked(i);
                     }}
@@ -201,7 +202,8 @@ export default (p: Props) => {
     onHide: p?.onHide,
     className: p?.className,
     withPadding: p?.withPadding,
-    menuHide: p?.menuHide
+    menuHide: p?.menuHide,
+    noMarginTop: p?.noMarginTop
   };
 
   return <MyDropDown {...props} />;

@@ -2,152 +2,16 @@
 
 exports[`(1) Render with data 1`] = `
 <div
-  className="edit-history-dialog-content"
+  className="edit-history-dialog-content loading"
 >
   <div
-    className="version-list-sm"
+    className="linear-progress"
   >
     <div
-      className="diff-select"
-    >
-      <label>
-        <input
-          checked={true}
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Show Difference
-      </label>
-    </div>
-    <select
-      className="form-control"
-      onChange={[Function]}
-      value={1}
-    >
-      <option
-        value={1}
-      >
-         
-        Version 1
-      </option>
-      <option
-        value={2}
-      >
-         
-        Version 2
-      </option>
-    </select>
-  </div>
-  <div
-    className="version-list-lg"
-  >
-    <div
-      className="diff-select"
-    >
-      <label>
-        <input
-          checked={true}
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Show Difference
-      </label>
-    </div>
-    <div
-      className="version-list-item selected"
-      onClick={[Function]}
-    >
-      <div
-        className="item-icon"
-      >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M13.5,8H12V13L16.28,15.54L17,14.33L13.5,12.25V8M13,3A9,9 0 0,0 4,12H1L4.96,16.03L9,12H6A7,7 0 0,1 13,5A7,7 0 0,1 20,12A7,7 0 0,1 13,19C11.07,19 9.32,18.21 8.06,16.94L6.64,18.36C8.27,20 10.5,21 13,21A9,9 0 0,0 22,12A9,9 0 0,0 13,3"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-      <div
-        className="item-title"
-      >
-        Version 1
-      </div>
-      <div
-        className="item-date"
-      >
-        August 22, 2020 2:20 PM
-      </div>
-    </div>
-    <div
-      className="version-list-item"
-      onClick={[Function]}
-    >
-      <div
-        className="item-icon"
-      >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M13.5,8H12V13L16.28,15.54L17,14.33L13.5,12.25V8M13,3A9,9 0 0,0 4,12H1L4.96,16.03L9,12H6A7,7 0 0,1 13,5A7,7 0 0,1 20,12A7,7 0 0,1 13,19C11.07,19 9.32,18.21 8.06,16.94L6.64,18.36C8.27,20 10.5,21 13,21A9,9 0 0,0 22,12A9,9 0 0,0 13,3"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-      <div
-        className="item-title"
-      >
-        Version 2
-      </div>
-      <div
-        className="item-date"
-      >
-        August 26, 2020 11:50 AM
-      </div>
-    </div>
-  </div>
-  <div
-    className="version-detail"
-  >
-    <h1
-      className="entry-title"
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "<span>a test post</span>",
-        }
-      }
+      className="bar bar1"
     />
     <div
-      className="entry-tags"
-    >
-      <svg
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M5.5,7A1.5,1.5 0 0,1 4,5.5A1.5,1.5 0 0,1 5.5,4A1.5,1.5 0 0,1 7,5.5A1.5,1.5 0 0,1 5.5,7M21.41,11.58L12.41,2.58C12.05,2.22 11.55,2 11,2H4C2.89,2 2,2.89 2,4V11C2,11.55 2.22,12.05 2.59,12.41L11.58,21.41C11.95,21.77 12.45,22 13,22C13.55,22 14.05,21.77 14.41,21.41L21.41,14.41C21.78,14.05 22,13.55 22,13C22,12.44 21.77,11.94 21.41,11.58Z"
-          fill="currentColor"
-        />
-      </svg>
-       
-      <span
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "<span>ecency</span>",
-          }
-        }
-      />
-    </div>
-    <div
-      className="entry-body markdown-view"
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "<span>111XXX Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum eros eu sapien cursus ullamcorper ac eu justo. Fusce euismod semper tellus, et ornare libero pretium sed. Donec id bibendum orci. Quisque in interdum lectus. &nbsp;<br>&nbsp;<br>Fusce tortor lectus, maximus vitae mollis sit amet, vehicula in lectus. Sed viverra tincidunt pulvinar. Morbi ut odio turpis. Pellentesque feugiat id urna pretium elementum. Fusce mauris nisi, tincidunt non arcu ac, laoreet sollicitudin nisl. Quisque sed mattis felis, ut facilisis quam. Sed dictum eleifend bibendum. Pellentesque mattis turpis mauris, vel interdum mi egestas vel. Phasellus ultricies tristique interdum.&nbsp;<br>&nbsp;<br></span>",
-        }
-      }
+      className="bar bar2"
     />
   </div>
 </div>

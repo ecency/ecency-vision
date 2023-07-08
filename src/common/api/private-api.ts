@@ -11,12 +11,10 @@ import { Entry } from "../store/entries/types";
 import { getAccessToken } from "../helper/user-token";
 
 import { apiBase } from "./helper";
-import { dataLimit } from "./bridge";
 import { AppWindow } from "../../client/window";
 import isElectron from "../util/is-electron";
 import { NotifyTypes } from "../enums";
 import { BeneficiaryRoute, MetaData, RewardType } from "./operations";
-import announcement from "../components/announcement";
 
 declare var window: AppWindow;
 
@@ -590,4 +588,43 @@ export const getAnnouncementsData = async (): Promise<Announcement[]> => {
     console.warn(error);
     throw error;
   }
+};
+export interface Recoveries {
+  username: string;
+  email: string;
+  publicKeys: Record<string, number>;
+}
+
+export interface GetRecoveriesEmailResponse extends Recoveries {
+  _id: string;
+}
+
+export const getRecoveries = (username: string): Promise<GetRecoveriesEmailResponse[]> => {
+  const data = { code: getAccessToken(username) };
+  return axios.post(apiBase(`/private-api/recoveries`), data).then((resp) => resp.data);
+};
+
+export const addRecoveries = (
+  username: string,
+  email: string,
+  publicKeys: Object
+): Promise<{ recoveries: Recoveries }> => {
+  const data = { code: getAccessToken(username), email, publicKeys };
+  return axios.post(apiBase(`/private-api/recoveries-add`), data).then((resp) => resp.data);
+};
+
+export const deleteRecoveries = (username: string, recoveryId: string): Promise<any> => {
+  const data = { code: getAccessToken(username), id: recoveryId };
+  return axios.post(apiBase(`/private-api/recoveries-delete`), data).then((resp) => resp.data);
+};
+
+export const onboardEmail = (username: string, email: string, friend: string): Promise<any> => {
+  const dataBody = {
+    username,
+    email,
+    friend
+  };
+  return axios
+    .post(apiBase(`/private-api/account-create-friend`), dataBody)
+    .then((resp) => resp.data);
 };

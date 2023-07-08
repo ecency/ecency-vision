@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
-import EntryContainer from "./pages/entry";
+import { EntryScreen } from "./pages/entry";
 import { SearchPageContainer, SearchMorePageContainer } from "./pages/search";
 import { ProposalsIndexContainer, ProposalDetailContainer } from "./pages/proposals";
 import NotFound from "./components/404";
@@ -23,6 +23,9 @@ import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
 import { connect } from "react-redux";
 import loadable from "@loadable/component";
 import Announcement from "./components/announcement";
+import FloatingFAQ from "./components/floating-faq";
+import { useMappedStore } from "./store/use-mapped-store";
+import { EntriesCacheManager } from "./core";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -43,6 +46,9 @@ const AuthPage = (props: any) => <AuthContainer {...props} />;
 const SubmitContainer = loadable(() => import("./pages/submit"));
 const SubmitPage = (props: any) => <SubmitContainer {...props} />;
 
+const OnboardContainer = loadable(() => import("./pages/onboard"));
+const OnboardPage = (props: any) => <OnboardContainer {...props} />;
+
 const MarketContainer = loadable(() => import("./pages/market"));
 const MarketPage = (props: any) => <MarketContainer {...props} />;
 
@@ -58,16 +64,20 @@ const CommunityCreatePage = (props: any) => <CommunityCreateContainer {...props}
 const CommunityCreateHSContainer = loadable(() => import("./pages/community-create-hs"));
 const CommunityCreateHSPage = (props: any) => <CommunityCreateHSContainer {...props} />;
 
-const EntryAMPContainer = loadable(() => import("./pages/amp/entry-amp-page"));
+const EntryAMPContainer = loadable(() => import("./pages/entry/index-amp"));
 const EntryPage = (props: any) => {
   const [isAmp, setIsAmp] = useState(props.location.search.includes("?amps"));
-  return isAmp ? <EntryAMPContainer {...props} /> : <EntryContainer {...props} />;
+  return isAmp ? <EntryAMPContainer {...props} /> : <EntryScreen {...props} />;
 };
 
 const PurchaseContainer = loadable(() => import("./pages/purchase"));
 const PurchasePage = (props: any) => <PurchaseContainer {...props} />;
 
+const DecksPage = loadable(() => import("./pages/decks"));
+
 const App = (props: any) => {
+  const { global } = useMappedStore();
+
   useEffect(() => {
     let pathname = window.location.pathname;
     if (pathname !== "/faq") {
@@ -80,7 +90,9 @@ const App = (props: any) => {
   }, []);
 
   return (
-    <>
+    <EntriesCacheManager>
+      {/*Excluded from production*/}
+      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
       <Tracker />
       <Switch>
         <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
@@ -118,6 +130,7 @@ const App = (props: any) => {
         <Route exact={true} strict={true} path={routes.MARKET} component={MarketPage} />
         <Route exact={true} strict={true} path={routes.EDIT} component={SubmitPage} />
         <Route exact={true} strict={true} path={routes.SIGN_UP} component={SignUpPage} />
+        <Route exact={true} strict={true} path={routes.ONBOARD} component={OnboardPage} />
         <Route exact={true} strict={true} path={routes.EDIT_DRAFT} component={SubmitPage} />
         <Route exact={true} strict={true} path={routes.WITNESSES} component={WitnessesPage} />
         <Route
@@ -140,11 +153,19 @@ const App = (props: any) => {
         <Route exact={true} strict={true} path={routes.TOS} component={TosPage} />
         <Route exact={true} strict={true} path={routes.FAQ} component={FaqPage} />
         <Route exact={true} strict={true} path={routes.CONTRIBUTORS} component={ContributorsPage} />
+        <Route
+          exact={true}
+          strict={true}
+          path={routes.DECKS}
+          component={global.usePrivate ? DecksPage : NotFound}
+        />
         <Route component={NotFound} />
       </Switch>
 
       <Announcement activeUser={props.activeUser} />
-    </>
+      <FloatingFAQ />
+      <div id="popper-container" />
+    </EntriesCacheManager>
   );
 };
 

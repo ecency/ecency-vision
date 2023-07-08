@@ -1,0 +1,326 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.help-btn {
+  position: fixed;
+  z-index: 99;
+  right: 2rem;
+  bottom: 1rem;
+  border-radius: 20px 2px 20px 20px !important;
+  height: 40px;
+  .help {
+    display: inline-block;
+    margin-left: 0.4rem;
+    position: relative;
+    top: 1px;
+  }
+
+  .help-button-content {
+    margin-top: -3px;
+  }
+}
+
+@media (max-width: 791px) {
+  .help-btn {
+    width: 40px;
+    border-radius: 50% !important;
+    padding: 0 !important;
+  }
+}
+
+.floating-container {
+  position: fixed;
+  z-index: 3;
+  right: 2.1rem;
+  bottom: 4.1rem;
+  height: 75vh;
+  width: 435px;
+  border-radius: 18px;
+  overflow: hidden;
+
+  &.submit {
+    position: fixed;
+    right: 23.7rem !important;
+    bottom: 4.1rem !important;
+
+    @media (max-width: 1597px) {
+      right: 16rem !important;
+    }
+
+    @media (max-width: 590px) {
+      right: 2.1rem !important;
+      bottom: 4.1rem !important;
+    }
+  }
+
+  @include themify(day) {
+    background: $white-four;
+  }
+
+  @include themify(night) {
+    background: $dark-two;
+  }
+
+  .faq-welcome {
+    display: flex;
+    height: 22%;
+    border-radius: 18px 18px 0 0;
+    z-index: 999;
+    color: $white;
+
+    @include themify(day) {
+      background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
+    }
+
+    @include themify(night) {
+      background-image: linear-gradient(to left, $dark-indigo, $dusk-blue);
+    }
+
+    .faq-welcome-message {
+      padding: 11% 0 0 2.5rem;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+
+      @include themify(day) {
+        background: $dusk-blue;
+        border: none;
+      }
+
+      @include themify(night) {
+        background: $dark-indigo;
+        border: none;
+      }
+    }
+  }
+  .faq-content-list {
+    height: 59vh;
+    margin-top: -2.4rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: absolute;
+    z-index: 999;
+    border-radius: 14px;
+    width: 435px;
+  }
+
+  .faq-content-list-item {
+    z-index: 999;
+    height: auto;
+    width: 405px;
+    margin-left: 1rem;
+    border-radius: 14px;
+    overflow-y: auto;
+
+    @include themify(day) {
+      background: $white-two;
+    }
+
+    @include themify(night) {
+      background: $dark;
+    }
+  }
+
+  .contact-us {
+    margin-top: 0.5rem;
+  }
+
+  .section-title {
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 1rem 0.7rem;
+
+    @include themify(day) {
+      color: $light-black;
+    }
+
+    @include themify(night) {
+      color: $white-six;
+    }
+  }
+  .section {
+    padding: 12px;
+    cursor: pointer;
+    padding-right: 1rem;
+  }
+
+  .search-bar {
+    margin: 1rem 0;
+  }
+
+  .user-info {
+    padding-left: 4px;
+    color: $steel-grey;
+    font-size: 14px;
+
+    @include themify(day) {
+      color: $steel-grey;
+    }
+
+    @include themify(night) {
+      color: $light-grey;
+    }
+  }
+
+  .username,
+  .message {
+    padding: 0 2.5rem;
+    margin-top: 1rem;
+  }
+
+  .faq-article {
+    display: flex;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    line-height: 1.5;
+    font-size: 14px;
+
+    @include themify(day) {
+      background: $white-three;
+      color: $dark-six;
+    }
+
+    @include themify(night) {
+      color: $white-five;
+      background: $dark-two;
+    }
+
+    .faq-image {
+      margin-right: 0.5rem;
+      position: relative;
+      top: -2px;
+    }
+  }
+
+  .submit-btn {
+    float: right;
+    margin: 0 2.4rem 1rem 0;
+  }
+
+  .help-content {
+    width: 405px;
+    padding: 0 2rem;
+  }
+
+  .card-body {
+    padding: 0 0 4rem !important;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .floating-container {
+    height: 62vh;
+    width: 300px;
+
+    .faq-welcome-message {
+      padding: 10% 0 0 1.5rem !important;
+      font-size: 1.2rem;
+    }
+
+    .faq-content-list {
+      margin-top: -1.9rem;
+      height: 49vh;
+      width: 300px;
+
+      .faq-content-list-item {
+        width: 268px;
+
+        .section-title {
+          padding: 0.7rem 0.4rem;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .help-content {
+      width: 268px;
+      padding: 0 3px;
+
+      .search-bar {
+        padding: 0 1rem;
+      }
+
+      .user-info {
+        padding: 0 1.3rem;
+        font-size: 12px;
+      }
+
+      .faq-article {
+        margin: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    .username,
+    .message {
+      padding: 0 0.7rem;
+    }
+
+    .submit-btn {
+      margin: 0 10px 16px 0;
+    }
+  }
+}
+
+@media (max-width: 285px) {
+  .floating-container {
+    height: 72vh;
+    width: 84vw;
+
+    .faq-welcome-message {
+      font-size: 19px;
+      padding: 20% 0 0 0.8rem !important;
+    }
+
+    .faq-content-list {
+      height: 57.5vh;
+      width: 82vw;
+
+      .faq-content-list-item {
+        width: 73vw;
+        overflow-x: hidden;
+      }
+
+      .section-title {
+        font-size: 16px;
+      }
+    }
+
+    .faq-welcome {
+      .close-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.3rem;
+      }
+    }
+
+    .help-content {
+      width: 79vw;
+      padding: 0 2rem 0 1rem;
+
+      .user-info {
+        font-size: 12px;
+      }
+
+      .faq-article {
+        margin: 0.5rem 0;
+        font-size: 12px;
+      }
+    }
+
+    .username,
+    .message {
+      padding: 0 0.7rem;
+    }
+
+    .submit-btn {
+      margin: 0 0 1rem 0;
+    }
+  }
+}

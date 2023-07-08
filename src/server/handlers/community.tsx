@@ -1,7 +1,6 @@
 import express from "express";
 
 import { AppState } from "../../common/store";
-import { Community } from "../../common/store/communities/types";
 import { Entry } from "../../common/store/entries/types";
 
 import { makeGroupKey } from "../../common/store/entries";
@@ -15,17 +14,22 @@ import { optimizeEntries } from "../helper";
 
 import { render } from "../template";
 import { EntryFilter } from "../../common/store/global/types";
+import { queryClient, QueryIdentifiers } from "../../common/core";
+import isCommunity from "../../common/helper/is-community";
 
 export default async (req: express.Request, res: express.Response) => {
   const { filter, name, section } = req.params;
-
-  let communities: Community[] = [];
   try {
-    const community = await bridgeApi.getCommunity(name);
-    if (community) {
-      communities = [community];
-    }
-  } catch (e) {}
+    await queryClient.fetchQuery([QueryIdentifiers.COMMUNITY, name], () =>
+      isCommunity(name) ? bridgeApi.getCommunity(name) : null
+    );
+  } catch (error) {
+    console.error(
+      `${new Date().toISOString()} ${
+        bridgeApi.bridgeServer?.currentAddress
+      } ERROR fetching community ${name}`
+    );
+  }
 
   let accounts = [];
 
@@ -64,7 +68,6 @@ export default async (req: express.Request, res: express.Response) => {
         hasMore: true
       }
     },
-    communities,
     accounts
   };
 

@@ -13,12 +13,11 @@ import ListStyleToggle from "../list-style-toggle";
 import { _t } from "../../i18n";
 import * as ls from "../../util/local-storage";
 import _c from "../../util/fix-class-names";
-import { Form } from "react-bootstrap";
-import { informationVariantSvg } from "../../img/svg";
+import { informationVariantSvg, kebabMenuHorizontalSvg } from "../../img/svg";
 import { apiBase } from "../../api/helper";
 import { Introduction } from "../introduction";
 import { EntryIndexMenuDropdown } from "../entry-index-menu-dropdown";
-import { UI, ToggleType } from "../../store/ui/types";
+import { ToggleType } from "../../store/ui/types";
 import "./_index.scss";
 
 interface Props {
@@ -43,6 +42,7 @@ interface States {
   isGlobal: boolean;
   isMounted: boolean;
   introduction: IntroductionType;
+  prevFilter: string;
 }
 
 export const isMyPage = (global: Global, activeUser: ActiveUser | null) => {
@@ -87,7 +87,12 @@ export class EntryIndexMenu extends Component<Props, States> {
     } else {
       showInitialIntroductionJourney = IntroductionType.NONE;
     }
-    this.state = { isGlobal, introduction: showInitialIntroductionJourney, isMounted: false };
+    this.state = {
+      isGlobal,
+      introduction: showInitialIntroductionJourney,
+      isMounted: false,
+      prevFilter: ""
+    };
     this.onChangeGlobal = this.onChangeGlobal.bind(this);
   }
 
@@ -141,6 +146,12 @@ export class EntryIndexMenu extends Component<Props, States> {
       activeUser,
       global: { tag, filter }
     } = this.props;
+
+    if (
+      !history.location.pathname.includes(prevProps.global.filter) &&
+      ["rising", "controversial"].includes(prevProps.global.filter)
+    )
+      this.setState({ prevFilter: prevProps.global.filter });
 
     if (history.location.pathname.includes("/my") && !isActiveUser(activeUser)) {
       history.push(history.location.pathname.replace("/my", ""));
@@ -325,9 +336,34 @@ export class EntryIndexMenu extends Component<Props, States> {
     const isMy = isMyPage(global, activeUser);
     const isActive = isActiveUser(activeUser);
     const OurVision = apiBase(`/assets/our-vision.${global.canUseWebp ? "webp" : "png"}`);
+    let secondaryMenu = [
+      {
+        label: _t(`entry-filter.filter-controversial`),
+        href: `/controversial/today`,
+        selected: filter === "controversial",
+        id: "controversial"
+      },
+      {
+        label: _t(`entry-filter.filter-rising`),
+        href: `/rising/today`,
+        selected: filter === "rising",
+        id: "rising"
+      }
+    ];
+
+    let rising = secondaryMenu.filter((f) => f.id === "rising");
+    let controversial = secondaryMenu.filter((f) => f.id === "controversial");
+
+    if (
+      location.pathname.includes("rising") ||
+      (!location.pathname.includes("controversial") && this.state.prevFilter === "rising")
+    )
+      secondaryMenu = [...rising, ...controversial];
+    else secondaryMenu = [...controversial, ...rising];
 
     let menuTagValue = tag ? `/${tag}` : "";
 
+    // @ts-ignore
     const menuConfig: {
       history: History;
       label: string;
@@ -339,13 +375,7 @@ export class EntryIndexMenu extends Component<Props, States> {
           ? _t("entry-filter.filter-feed-friends")
           : _t(`entry-filter.filter-${filter}`),
       items: [
-        ...[
-          EntryFilter.trending,
-          EntryFilter.hot,
-          EntryFilter.created,
-          EntryFilter.rising,
-          EntryFilter.controversial
-        ].map((x) => {
+        ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
           return {
             label: _t(`entry-filter.filter-${x}`),
             href: isActive
@@ -364,16 +394,16 @@ export class EntryIndexMenu extends Component<Props, States> {
               (x === "hot" && introduction === IntroductionType.HOT) ||
               (x === "created" && introduction === IntroductionType.NEW)
           };
-        })
-        // ...[EntryFilter.controversial, EntryFilter.rising].map((x) => {
-        //     return {
-        //         label: _t(`entry-filter.filter-${x}`),
-        //         href: `/${x}`,
-        //         id: x,
-        //         active: history.location.pathname.includes('trending')
-        //     };
-        // })
+        }),
+        { ...secondaryMenu[0] }
       ]
+    };
+
+    const kebabMenuConfig = {
+      history: this.props.history,
+      label: "",
+      icon: kebabMenuHorizontalSvg,
+      items: [{ ...secondaryMenu[1] }]
     };
 
     const mobileMenuConfig = !isActive
@@ -387,7 +417,8 @@ export class EntryIndexMenu extends Component<Props, States> {
               selected: filter === "feed",
               id: "feed"
             },
-            ...menuConfig.items
+            ...menuConfig.items,
+            ...kebabMenuConfig.items
           ]
         };
 
@@ -526,7 +557,11 @@ export class EntryIndexMenu extends Component<Props, States> {
                     ) : null}
                   </ul>
                 </div>
+                <div className="kebab-icon">
+                  <DropDown {...kebabMenuConfig} float="left" />
+                </div>
               </div>
+
               <div className="main-menu d-flex d-lg-none">
                 <div className="sm-menu position-relative">
                   <DropDown {...mobileMenuConfig} float="left" />
@@ -609,7 +644,6 @@ export class EntryIndexMenu extends Component<Props, States> {
             <ListStyleToggle
               global={this.props.global}
               toggleListStyle={this.props.toggleListStyle}
-              deck={true}
             />
           </div>
         </div>

@@ -116,6 +116,7 @@
       &.voted {
         svg {
           fill: $dark-sky-blue;
+          color: $dark-sky-blue;
         }
       }
 
@@ -123,6 +124,7 @@
         animation: heartbeat 1s ease-in-out forwards;
         svg {
           fill: $dark-sky-blue;
+          color: $dark-sky-blue;
         }
       }
     }

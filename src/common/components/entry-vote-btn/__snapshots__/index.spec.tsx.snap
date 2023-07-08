@@ -1,329 +1,206 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(1) Dialog (1) Up vote 1`] = `
-<div
-  className="voting-controls voting-controls-up"
->
+exports[` 1`] = `
+Array [
   <div
-    className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
-    onClick={[Function]}
-  >
-    <span
-      className="btn-inner"
-    >
-      <svg
-        className="slider-svg-up"
-        viewBox="6 8 12 7.41"
-      >
-        <path
-          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </div>
-  <div
-    className="estimated"
-  >
-    $ 0.040
-  </div>
-  <div
-    className="slider slider-up"
+    className="voting-controls voting-controls-up disable"
   >
     <div
-      style={
-        Object {
-          "height": "40px",
-          "paddingRight": "13px",
-        }
-      }
+      className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
+      onClick={[Function]}
+    >
+      <span
+        className="btn-inner"
+      >
+        <svg
+          className="slider-svg-up"
+          viewBox="6 8 12 7.41"
+        >
+          <path
+            d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </div>
+    <div
+      className="estimated"
+    >
+      $ 0.040
+    </div>
+    <div
+      className="space"
+    />
+    <div
+      className="slider slider-up"
     >
       <div
-        className="slide"
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
+        style={
+          Object {
+            "height": "40px",
+            "paddingRight": "13px",
+          }
+        }
       >
         <div
-          className="slide-background-line"
+          className="slide"
+          onMouseDown={[Function]}
+          onMouseUp={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
         >
           <div
-            className="slider-line"
-            style={
-              Object {
-                "background": "#357ce6",
-                "width": "100%",
-                "zIndex": 100,
-              }
-            }
-          />
-          <span
-            className="slider-dot pointer-dot"
-            style={
-              Object {
-                "background": "#357ce6",
-                "left": "100%",
-              }
-            }
-          />
-          <div
-            className="dots-container"
+            className="slide-background-line"
           >
             <div
+              className="slider-line"
               style={
                 Object {
-                  "width": "25%",
+                  "background": "#357ce6",
+                  "width": "100%",
+                  "zIndex": 100,
+                }
+              }
+            />
+            <span
+              className="slider-dot pointer-dot"
+              style={
+                Object {
+                  "background": "#357ce6",
+                  "left": "100%",
                 }
               }
             />
             <div
-              style={
-                Object {
-                  "width": "25%",
-                }
-              }
+              className="dots-container"
             >
-              <span
-                className="slider-dot"
+              <div
                 style={
                   Object {
-                    "background": "#357ce6",
+                    "width": "25%",
                   }
                 }
               />
-            </div>
-            <div
-              style={
-                Object {
-                  "width": "25%",
-                }
-              }
-            >
-              <span
-                className="slider-dot"
+              <div
                 style={
                   Object {
-                    "background": "#357ce6",
+                    "width": "25%",
                   }
                 }
-              />
-            </div>
-            <div
-              style={
-                Object {
-                  "width": "25%",
-                }
-              }
-            >
-              <span
-                className="slider-dot"
+              >
+                <span
+                  className="slider-dot"
+                  style={
+                    Object {
+                      "background": "#357ce6",
+                    }
+                  }
+                />
+              </div>
+              <div
                 style={
                   Object {
-                    "background": "#357ce6",
+                    "width": "25%",
                   }
                 }
-              />
+              >
+                <span
+                  className="slider-dot"
+                  style={
+                    Object {
+                      "background": "#357ce6",
+                    }
+                  }
+                />
+              </div>
+              <div
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }
+              >
+                <span
+                  className="slider-dot"
+                  style={
+                    Object {
+                      "background": "#357ce6",
+                    }
+                  }
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div
-    className="percentage"
-  >
-    100.0%
-  </div>
-  <div
-    className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
-    onClick={[Function]}
-  >
-    <span
-      className="btn-inner"
-    >
-      <svg
-        className="slider-svg-down"
-        viewBox="6 8.59 12 7.41"
-      >
-        <path
-          d="M0 0h24v24H0V0z"
-          fill="none"
-        />
-        <path
-          d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </div>
-</div>
-`;
-
-exports[`(1) Dialog (2) Down vote 1`] = `
-<div
-  className="voting-controls voting-controls-down"
->
-  <div
-    className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
-    onClick={[Function]}
-  >
-    <span
-      className="btn-inner no-rotate"
-    >
-      <svg
-        className="slider-svg-up"
-        viewBox="6 8 12 7.41"
-      >
-        <path
-          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </div>
-  <div
-    className="estimated"
-  >
-    $ 0.000
-  </div>
-  <div
-    className="slider slider-down"
-  >
     <div
-      style={
-        Object {
-          "height": "40px",
-          "paddingRight": "13px",
-        }
-      }
+      className="percentage"
     >
+      100.0%
+    </div>
+    <div
+      className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
+      onClick={[Function]}
+    >
+      <span
+        className="btn-inner"
+      >
+        <svg
+          className="slider-svg-down"
+          viewBox="6 8.59 12 7.41"
+        >
+          <path
+            d="M0 0h24v24H0V0z"
+            fill="none"
+          />
+          <path
+            d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </div>
+  </div>,
+  <div
+    className="vote-error error-message"
+  >
+    <p>
+      Voting on Content after their payout does not generate any new rewards.
+    </p>
+    <div
+      className="vote-error-suggestion"
+    >
+      Try tipping the author. 
       <div
-        className="slide"
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
+        className="tipping-icon"
       >
         <div
-          className="slide-background-line"
+          className="entry-tip-btn"
+          onClick={[Function]}
         >
-          <div
-            className="slider-line"
-            style={
-              Object {
-                "background": "rgba(191, 48, 48)",
-                "width": "1%",
-                "zIndex": 100,
-              }
-            }
-          />
           <span
-            className="slider-dot pointer-dot"
-            style={
-              Object {
-                "background": "rgba(191, 48, 48)",
-                "left": "1%",
-              }
-            }
-          />
-          <div
-            className="dots-container"
+            className="inner-btn"
+            title="Tip"
           >
-            <div
-              style={
-                Object {
-                  "width": "25%",
-                }
-              }
-            />
-            <div
-              style={
-                Object {
-                  "width": "25%",
-                }
-              }
+            <svg
+              viewBox="0 0 24 24"
             >
-              <span
-                className="slider-dot"
-                style={
-                  Object {
-                    "background": "#d4cfcf",
-                  }
-                }
+              <path
+                d="M22,12V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V12A1,1 0 0,1 1,11V8A2,2 0 0,1 3,6H6.17C6.06,5.69 6,5.35 6,5A3,3 0 0,1 9,2C10,2 10.88,2.5 11.43,3.24V3.23L12,4L12.57,3.23V3.24C13.12,2.5 14,2 15,2A3,3 0 0,1 18,5C18,5.35 17.94,5.69 17.83,6H21A2,2 0 0,1 23,8V11A1,1 0 0,1 22,12M4,20H11V12H4V20M20,20V12H13V20H20M9,4A1,1 0 0,0 8,5A1,1 0 0,0 9,6A1,1 0 0,0 10,5A1,1 0 0,0 9,4M15,4A1,1 0 0,0 14,5A1,1 0 0,0 15,6A1,1 0 0,0 16,5A1,1 0 0,0 15,4M3,8V10H11V8H3M13,8V10H21V8H13Z"
+                fill="currentColor"
               />
-            </div>
-            <div
-              style={
-                Object {
-                  "width": "25%",
-                }
-              }
-            >
-              <span
-                className="slider-dot"
-                style={
-                  Object {
-                    "background": "#d4cfcf",
-                  }
-                }
-              />
-            </div>
-            <div
-              style={
-                Object {
-                  "width": "25%",
-                }
-              }
-            >
-              <span
-                className="slider-dot"
-                style={
-                  Object {
-                    "background": "#d4cfcf",
-                  }
-                }
-              />
-            </div>
-          </div>
+            </svg>
+          </span>
         </div>
       </div>
     </div>
-  </div>
-  <div
-    className="percentage"
-  >
-    -1.0%
-  </div>
-  <div
-    className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
-    onClick={[Function]}
-  >
-    <span
-      className="btn-inner"
-    >
-      <svg
-        className="slider-svg-down"
-        viewBox="6 8.59 12 7.41"
-      >
-        <path
-          d="M0 0h24v24H0V0z"
-          fill="none"
-        />
-        <path
-          d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </div>
-</div>
+  </div>,
+]
 `;
 
 exports[`(2) Btn - No active user (1) Render 1`] = `
-<div
-  onClick={[Function]}
->
+<div>
   <div>
     <div
       className="entry-vote-btn"
@@ -363,7 +240,7 @@ exports[`(3) Btn - Up voted (1) Render 1`] = `
       onClick={[Function]}
     >
       <div
-        className="btn-vote btn-up-vote primary-btn-done voted"
+        className="btn-vote btn-up-vote"
       >
         <div
           className=""

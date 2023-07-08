@@ -16,6 +16,7 @@ import { Transfer } from "../transfer";
 import Tooltip from "../tooltip";
 
 import { _t } from "../../i18n";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 import { giftOutlineSvg } from "../../img/svg";
 import "./_index.scss";
@@ -36,6 +37,8 @@ interface Props {
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
   setSigningKey: (key: string) => void;
+  setTipDialogMounted?: (d: boolean) => void;
+  handleClickAway?: () => void;
 }
 
 interface DialogProps extends Props {
@@ -43,8 +46,20 @@ interface DialogProps extends Props {
 }
 
 export class TippingDialog extends Component<DialogProps> {
+  componentDidMount(): void {
+    if (this.props.setTipDialogMounted) {
+      this.props.setTipDialogMounted(true);
+    }
+  }
+
+  componentWillUnmount(): void {
+    if (this.props.setTipDialogMounted) {
+      this.props.setTipDialogMounted(false);
+    }
+  }
+
   render() {
-    const { global, entry, activeUser } = this.props;
+    const { global, entry, activeUser, handleClickAway } = this.props;
 
     if (!activeUser) {
       return null;
@@ -68,6 +83,7 @@ export class TippingDialog extends Component<DialogProps> {
         amount={global.usePrivate ? "100.000" : "1.000"}
         to={to}
         memo={memo}
+        handleClickAway={handleClickAway}
       />
     );
   }
@@ -125,25 +141,51 @@ export class EntryTipBtn extends Component<Props, State> {
   }
 }
 
-export default (p: Props) => {
-  const props = {
-    global: p.global,
-    dynamicProps: p.dynamicProps,
-    users: p.users,
-    ui: p.ui,
-    account: p.account,
-    fetchPoints: p.fetchPoints,
-    updateWalletValues: p.updateWalletValues,
-    activeUser: p.activeUser,
-    entry: p.entry,
-    signingKey: p.signingKey,
-    addAccount: p.addAccount,
-    setActiveUser: p.setActiveUser,
-    updateActiveUser: p.updateActiveUser,
-    deleteUser: p.deleteUser,
-    toggleUIProp: p.toggleUIProp,
-    setSigningKey: p.setSigningKey
-  };
+export default ({
+  entry,
+  account,
+  updateWalletValues,
+  setTipDialogMounted,
+  handleClickAway
+}: Pick<
+  Props,
+  "entry" | "account" | "updateWalletValues" | "setTipDialogMounted" | "handleClickAway"
+>) => {
+  const {
+    users,
+    ui,
+    dynamicProps,
+    global,
+    activeUser,
+    signingKey,
+    fetchPoints,
+    addAccount,
+    setActiveUser,
+    updateActiveUser,
+    deleteUser,
+    toggleUIProp,
+    setSigningKey
+  } = useMappedStore();
 
+  const props = {
+    global: global,
+    dynamicProps: dynamicProps,
+    users: users,
+    ui: ui,
+    account: account,
+    activeUser: activeUser,
+    entry: entry,
+    signingKey: signingKey,
+    fetchPoints: fetchPoints,
+    updateWalletValues: updateWalletValues,
+    setTipDialogMounted: setTipDialogMounted,
+    handleClickAway: handleClickAway,
+    addAccount: addAccount,
+    setActiveUser: setActiveUser,
+    updateActiveUser: updateActiveUser,
+    deleteUser: deleteUser,
+    toggleUIProp: toggleUIProp,
+    setSigningKey: setSigningKey
+  };
   return <EntryTipBtn {...props} />;
 };

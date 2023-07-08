@@ -6,12 +6,13 @@ import BaseComponent from "../base";
 
 import { Entry } from "../../store/entries/types";
 
-import { redditSvg, twitterSvg, facebookSvg } from "../../img/svg";
+import { redditSvg, twitterSvg, facebookSvg, linkedinSvg } from "../../img/svg";
 
 import {
   makeShareUrlFacebook,
   makeShareUrlReddit,
-  makeShareUrlTwitter
+  makeShareUrlTwitter,
+  makeShareUrlLinkedin
 } from "../../helper/url-share";
 
 import { _t } from "../../i18n";
@@ -37,6 +38,11 @@ export const shareFacebook = (entry: Entry) => {
   window.open(u, "_blank");
 };
 
+export const shareLinkedin = (entry: Entry) => {
+  const u = makeShareUrlLinkedin(entry.category, entry.author, entry.permlink);
+  window.open(u, "_blank");
+};
+
 export default class EntryShare extends BaseComponent<Props> {
   reddit = () => {
     shareReddit(this.props.entry);
@@ -48,6 +54,10 @@ export default class EntryShare extends BaseComponent<Props> {
 
   facebook = () => {
     shareFacebook(this.props.entry);
+  };
+
+  linkedin = () => {
+    shareLinkedin(this.props.entry);
   };
 
   render() {
@@ -63,7 +73,7 @@ export default class EntryShare extends BaseComponent<Props> {
         <Modal.Header closeButton={true}>
           <Modal.Title>{_t("entry-share.title")}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="entry-share-modal-body">
           <div className="share-buttons">
             <div className="share-button" onClick={this.reddit}>
               {redditSvg}
@@ -73,6 +83,9 @@ export default class EntryShare extends BaseComponent<Props> {
             </div>
             <div className="share-button" onClick={this.facebook}>
               {facebookSvg}
+            </div>
+            <div className="share-button" onClick={this.linkedin}>
+              {linkedinSvg}
             </div>
           </div>
         </Modal.Body>

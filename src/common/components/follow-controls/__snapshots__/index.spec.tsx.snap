@@ -30,8 +30,7 @@ exports[`FollowControls (2) Default Render with active account. 1`] = `
 Array [
   <button
     className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
+    disabled={true}
     style={
       Object {
         "marginRight": "5px",
@@ -43,8 +42,7 @@ Array [
   </button>,
   <button
     className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
+    disabled={true}
     type="button"
   >
     Mute
@@ -56,34 +54,7 @@ exports[`FollowControls (3) Following. 1`] = `
 Array [
   <button
     className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
-    style={
-      Object {
-        "marginRight": "5px",
-      }
-    }
-    type="button"
-  >
-    Unfollow
-  </button>,
-  <button
-    className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    Mute
-  </button>,
-]
-`;
-
-exports[`FollowControls (4) Muted. 1`] = `
-Array [
-  <button
-    className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
+    disabled={true}
     style={
       Object {
         "marginRight": "5px",
@@ -95,11 +66,34 @@ Array [
   </button>,
   <button
     className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
+    disabled={true}
     type="button"
   >
-    Unmute
+    Mute
+  </button>,
+]
+`;
+
+exports[`FollowControls (4) Muted. 1`] = `
+Array [
+  <button
+    className="btn btn-primary"
+    disabled={true}
+    style={
+      Object {
+        "marginRight": "5px",
+      }
+    }
+    type="button"
+  >
+    Follow
+  </button>,
+  <button
+    className="btn btn-primary"
+    disabled={true}
+    type="button"
+  >
+    Mute
   </button>,
 ]
 `;

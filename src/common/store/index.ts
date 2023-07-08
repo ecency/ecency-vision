@@ -9,7 +9,6 @@ import dynamicProps from "./dynamic-props";
 import trendingTags from "./trending-tags";
 import entries from "./entries";
 import accounts from "./accounts";
-import communities from "./communities";
 import transactions from "./transactions";
 import users from "./users";
 import activeUser from "./active-user";
@@ -20,9 +19,7 @@ import subscriptions from "./subscriptions";
 import notifications from "./notifications";
 import points from "./points";
 import signingKey from "./signing-key";
-import entryPinTracker from "./entry-pin-tracker";
 import persistentPageScroll from "./persistent-page-scroll";
-import deck from "./deck";
 
 import filterTagExtract from "../helper/filter-tag-extract";
 
@@ -32,7 +29,6 @@ let reducers = {
   trendingTags,
   entries,
   accounts,
-  communities,
   transactions,
   users,
   activeUser,
@@ -43,8 +39,6 @@ let reducers = {
   notifications,
   points,
   signingKey,
-  entryPinTracker,
-  deck,
   persistentPageScroll
 };
 

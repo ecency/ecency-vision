@@ -4,7 +4,6 @@ import { initialState as globalInitialState } from "./global";
 import { initialState as dynamicPropsInitialState } from "./dynamic-props";
 import { initialState as trendingTagsInitialState } from "./trending-tags";
 import { initialState as accountsInitialState } from "./accounts";
-import { initialState as communitiesInitialState } from "./communities";
 import { initialState as transactionsInitialState } from "./transactions";
 import { initialState as usersInitialState } from "./users";
 import { initialState as activeUserInitialState } from "./active-user";
@@ -16,16 +15,13 @@ import { initialState as notificationsInitialState } from "./notifications";
 import { initialState as entriesInitialState } from "./entries";
 import { initialState as pointsInitialState } from "./points";
 import { initialState as signingKeyInitialState } from "./signing-key";
-import { initialState as entryPinTrackerInitialState } from "./entry-pin-tracker";
 import { initialState as persistentPageScrollInitialState } from "./persistent-page-scroll";
-import { initialState as deckInitialState } from "./deck";
 
 const initialState: AppState = {
   global: globalInitialState,
   dynamicProps: dynamicPropsInitialState,
   trendingTags: trendingTagsInitialState,
   accounts: accountsInitialState,
-  communities: communitiesInitialState,
   transactions: transactionsInitialState,
   users: usersInitialState,
   activeUser: activeUserInitialState,
@@ -37,9 +33,7 @@ const initialState: AppState = {
   entries: entriesInitialState,
   points: pointsInitialState,
   signingKey: signingKeyInitialState,
-  entryPinTracker: entryPinTrackerInitialState,
-  persistentPageScroll: persistentPageScrollInitialState,
-  deck: deckInitialState
+  persistentPageScroll: persistentPageScrollInitialState
 };
 
 export default initialState;

@@ -15,7 +15,6 @@ import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Reblogs } from "../../store/reblogs/types";
 import { UI, ToggleType } from "../../store/ui/types";
-import { EntryPinTracker } from "../../store/entry-pin-tracker/types";
 
 import ProfileLink from "../profile-link/index";
 import Tag from "../tag";
@@ -34,16 +33,7 @@ import { Tsx } from "../../i18n/helper";
 import _c from "../../util/fix-class-names";
 import truncate from "../../util/truncate";
 
-import {
-  repeatSvg,
-  pinSvg,
-  commentSvg,
-  muteSvg,
-  volumeOffSvg,
-  closeSvg,
-  downArrowSvg,
-  menuDownSvg
-} from "../../img/svg";
+import { repeatSvg, pinSvg, commentSvg, volumeOffSvg } from "../../img/svg";
 
 import defaults from "../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
@@ -62,14 +52,12 @@ interface Props {
   location: Location;
   global: Global;
   dynamicProps: DynamicProps;
-  communities: Communities;
   community?: Community | null;
   users: User[];
   activeUser: ActiveUser | null;
   reblogs: Reblogs;
   entry: Entry;
   ui: UI;
-  entryPinTracker: EntryPinTracker;
   signingKey: string;
   asAuthor: string;
   promoted: boolean;
@@ -85,10 +73,7 @@ interface Props {
   addReblog: (author: string, permlink: string) => void;
   deleteReblog: (author: string, permlink: string) => void;
   toggleUIProp: (what: ToggleType | "login") => void;
-  addCommunity: (data: Community) => void;
-  trackEntryPin: (entry: Entry) => void;
   setSigningKey: (key: string) => void;
-  setEntryPin: (entry: Entry, pin: boolean) => void;
   muted?: boolean;
   pinEntry?: (entry: Entry | null) => void;
 }
@@ -121,8 +106,6 @@ export default class EntryListItem extends Component<Props, State> {
       !isEqual(this.props.dynamicProps, nextProps.dynamicProps) ||
       !isEqual(this.props.activeUser, nextProps.activeUser) ||
       !isEqual(this.props.reblogs, nextProps.reblogs) ||
-      !isEqual(this.props.communities, nextProps.communities) ||
-      !isEqual(this.props.entryPinTracker, nextProps.entryPinTracker) ||
       !isEqual(this.state, nextState)
     );
   }
@@ -200,7 +183,15 @@ export default class EntryListItem extends Component<Props, State> {
       global,
       activeUser,
       history,
-      order
+      order,
+      addAccount,
+      dynamicProps,
+      users,
+      ui,
+      setActiveUser,
+      updateActiveUser,
+      deleteUser,
+      toggleUIProp
     } = this.props;
     const { mounted } = this.state;
     // const accountUsername = match?.params.username.replace("@", "");
@@ -263,7 +254,7 @@ export default class EntryListItem extends Component<Props, State> {
         />
       );
     }
-    if (global.listStyle === "row" || global.listStyle === "deck") {
+    if (global.listStyle === "row") {
       thumb = (
         <picture>
           <source srcSet={imgRow} media="(min-width: 576px)" />
@@ -516,19 +507,16 @@ export default class EntryListItem extends Component<Props, State> {
             );
           })()}
           <div className="item-controls">
-            {EntryVoteBtn({
-              ...this.props,
-              isPostSlider: true,
-              afterVote: this.afterVote
-            })}
-            {EntryPayout({
-              ...this.props,
-              entry
-            })}
-            {EntryVotes({
-              ...this.props,
-              entry
-            })}
+            <EntryVoteBtn
+              isPostSlider={true}
+              entry={entry}
+              afterVote={this.afterVote}
+              account={account}
+              history={history}
+              match={match}
+            />
+            <EntryPayout entry={entry} />
+            <EntryVotes entry={entry} history={this.props.history} />
             {EntryLink({
               ...this.props,
               entry: crossPost ? theEntry : entry,
@@ -550,14 +538,8 @@ export default class EntryListItem extends Component<Props, State> {
                 </a>
               )
             })}
-            {EntryReblogBtn({
-              ...this.props
-            })}
-            {EntryMenu({
-              ...this.props,
-              alignBottom: order >= 1,
-              entry
-            })}
+            <EntryReblogBtn entry={entry} />
+            <EntryMenu history={history} alignBottom={order >= 1} entry={entry} />
           </div>
         </div>
       </div>

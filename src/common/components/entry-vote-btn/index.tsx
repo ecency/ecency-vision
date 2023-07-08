@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import moment from "moment";
+import { match } from "react-router-dom";
+import { History } from "history";
+
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { Entry, EntryVote } from "../../store/entries/types";
@@ -10,12 +14,13 @@ import BaseComponent from "../base";
 import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
 import { error } from "../feedback";
-import { getActiveVotes } from "../../api/hive";
+import { getAccountFull, getActiveVotes, votingPower } from "../../api/hive";
 import { prepareVotes } from "../entry-votes";
 import VotingSlider from "../entry-vote-slider";
-import { votingPower } from "../../api/hive";
-import { vote, formatError } from "../../api/operations";
+import EntryTipBtn from "../entry-tip-btn";
+
 import parseAsset from "../../helper/parse-asset";
+import { vote, formatError } from "../../api/operations";
 import * as ss from "../../util/session-storage";
 import * as ls from "../../util/local-storage";
 import _c from "../../util/fix-class-names";
@@ -23,6 +28,7 @@ import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } f
 import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
@@ -60,6 +66,10 @@ const getVoteValue = (
 
 type Mode = "up" | "down";
 
+interface MatchParams {
+  username: string;
+}
+
 interface VoteDialogProps {
   global: Global;
   activeUser: ActiveUser;
@@ -67,9 +77,14 @@ interface VoteDialogProps {
   entry: Entry;
   downVoted: boolean;
   upVoted: boolean;
+  account: Account;
   isPostSlider?: boolean;
   previousVotedValue: number | null;
+  setTipDialogMounted: (d: boolean) => void;
+  updateWalletValues: () => void;
   onClick: (percent: number, estimated: number) => void;
+  handleClickAway: () => void;
+  isVoted: () => { upVoted: boolean; downVoted: boolean };
 }
 
 interface VoteDialogState {
@@ -130,6 +145,36 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     );
   }
 
+  upSliderChanged = (value: number) => {
+    const upSliderVal = Number(value);
+    const { initialVoteValues } = this.state;
+    const { upVoted } = this.props;
+    this.setState({
+      upSliderVal,
+      wrongValueUp: upSliderVal === initialVoteValues.up && upVoted,
+      showRemove: upSliderVal === 0 && upVoted,
+      showWarning:
+        (upSliderVal < initialVoteValues.up || upSliderVal > initialVoteValues.up) &&
+        upSliderVal > 0 &&
+        upVoted
+    });
+  };
+
+  downSliderChanged = (value: number) => {
+    const downSliderVal = Number(value);
+    const { initialVoteValues } = this.state;
+    const { upVoted, downVoted } = this.props;
+    this.setState({
+      downSliderVal,
+      wrongValueDown: downSliderVal === initialVoteValues.down && downVoted,
+      showRemove: downSliderVal === 0 && downVoted,
+      showWarning:
+        (downSliderVal > initialVoteValues.down || downSliderVal < initialVoteValues.down) &&
+        downSliderVal < 0 &&
+        downVoted
+    });
+  };
+
   estimate = (percent: number): number => {
     const { entry, activeUser, dynamicProps } = this.props;
     if (!activeUser) {
@@ -184,64 +229,19 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     return voteValue * sign;
   };
 
-  upSliderChanged = (value: number) => {
-    const upSliderVal = Number(value);
-    const { initialVoteValues } = this.state;
-    const { upVoted } = this.props;
-    this.setState({
-      upSliderVal,
-      wrongValueUp: upSliderVal === initialVoteValues.up && upVoted,
-      showRemove: upSliderVal === 0 && upVoted,
-      showWarning:
-        (upSliderVal < initialVoteValues.up || upSliderVal > initialVoteValues.up) &&
-        upSliderVal > 0 &&
-        upVoted
-    });
-  };
-
-  downSliderChanged = (value: number) => {
-    const downSliderVal = Number(value);
-    const { initialVoteValues } = this.state;
-    const { upVoted, downVoted } = this.props;
-    this.setState({
-      downSliderVal,
-      wrongValueDown: downSliderVal === initialVoteValues.down && downVoted,
-      showRemove: downSliderVal === 0 && downVoted,
-      showWarning:
-        (downSliderVal > initialVoteValues.down || downSliderVal < initialVoteValues.down) &&
-        downSliderVal < 0 &&
-        downVoted
-    });
-  };
-
   changeMode = (m: Mode) => {
     this.setState({ mode: m });
-  };
-
-  isVoted = () => {
-    const { activeUser } = this.props;
-
-    if (!activeUser) {
-      return { upVoted: false, downVoted: false };
-    }
-
-    const { active_votes: votes } = this.props.entry;
-
-    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares >= 0);
-
-    const downVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares < 0);
-
-    return { upVoted, downVoted };
   };
 
   upVoteClicked = () => {
     const {
       onClick,
       activeUser,
+      dynamicProps,
       entry: { post_id }
     } = this.props;
     const { upSliderVal, initialVoteValues } = this.state;
-    const { upVoted } = this.isVoted();
+    const { upVoted } = this.props.isVoted();
     if (!upVoted || (upVoted && initialVoteValues.up !== upSliderVal)) {
       const estimated = Number(this.estimate(upSliderVal).toFixed(3));
       onClick(upSliderVal, estimated);
@@ -261,10 +261,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const {
       onClick,
       activeUser,
+      dynamicProps,
       entry: { post_id }
     } = this.props;
     const { downSliderVal, initialVoteValues } = this.state;
-    const { downVoted } = this.isVoted();
+    const { downVoted } = this.props.isVoted();
 
     if (!downVoted || (downVoted && initialVoteValues.down !== downSliderVal)) {
       const estimated = Number(this.estimate(downSliderVal).toFixed(3));
@@ -281,6 +282,16 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     }
   };
 
+  getDays(): number {
+    const { entry } = this.props;
+    const createdDate = entry.created;
+    const past = moment(createdDate);
+    const now = moment(new Date());
+    const duration = moment.duration(now.diff(past));
+    const days = duration.asDays();
+    return days;
+  }
+
   render() {
     const {
       upSliderVal,
@@ -294,12 +305,12 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const {
       entry: { post_id, id }
     } = this.props;
-
+    const days = this.getDays();
     return (
       <>
         {mode === "up" && (
           <>
-            <div className="voting-controls voting-controls-up">
+            <div className={`voting-controls voting-controls-up ${days > 7.0 ? "disable" : ""}`}>
               <div
                 className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
                 onClick={this.upVoteClicked}
@@ -309,6 +320,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               <div className="estimated">
                 <FormattedCurrency {...this.props} value={this.estimate(upSliderVal)} fixAt={3} />
               </div>
+              <div className="space" />
               <div className="slider slider-up">
                 <VotingSlider value={upSliderVal} setVoteValue={this.upSliderChanged} mode={mode} />
               </div>
@@ -342,7 +354,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
         {mode === "down" && (
           <>
-            <div className="voting-controls voting-controls-down">
+            <div className={`voting-controls voting-controls-down ${days > 7.0 ? "disable" : ""}`}>
               <div
                 className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
                 onClick={() => {
@@ -361,6 +373,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   mode={mode}
                 />
               </div>
+              <div className="space" />
               <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
               <div
                 className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
@@ -387,6 +400,24 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             )}
           </>
         )}
+
+        {days >= 7.0 && (
+          <div className="vote-error error-message">
+            <p>{_t("entry-list-item.old-post-error")}</p>
+            <div className="vote-error-suggestion">
+              {_t("entry-list-item.old-post-error-suggestion")}
+              <div className="tipping-icon">
+                <EntryTipBtn
+                  entry={this.props.entry}
+                  account={this.props.account}
+                  updateWalletValues={this.props.updateWalletValues}
+                  setTipDialogMounted={this.props.setTipDialogMounted}
+                  handleClickAway={this.props.handleClickAway}
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </>
     );
   }
@@ -397,9 +428,14 @@ interface Props {
   dynamicProps: DynamicProps;
   entry: Entry;
   users: User[];
+  account?: Account;
   activeUser: ActiveUser | null;
   ui: UI;
+  accounts: Account[];
+  match?: match<MatchParams>;
   isPostSlider: boolean;
+  history?: History;
+  addAccount?: (data: Account) => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
@@ -410,6 +446,7 @@ interface Props {
 interface State {
   dialog: boolean;
   inProgress: boolean;
+  tipDialog: boolean;
   previousVotedValue: number | null;
 }
 
@@ -417,6 +454,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
   state: State = {
     dialog: false,
     inProgress: false,
+    tipDialog: false,
     previousVotedValue: 0
   };
 
@@ -454,11 +492,11 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     if (!activeUser) {
       return { upVoted: false, downVoted: false };
     }
+
     const { active_votes: votes } = this.props.entry;
-
-    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares > 0);
-
+    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares >= 0);
     const downVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares < 0);
+
     return { upVoted, downVoted };
   };
 
@@ -476,6 +514,10 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
 
   handleClickAway = () => {
     this.stateSet({ dialog: false });
+  };
+
+  setTipDialogMounted = (d: boolean) => {
+    this.setState({ tipDialog: d });
   };
 
   getPreviousVote = async () => {
@@ -504,12 +546,40 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     }
   };
 
-  render() {
-    const { activeUser, isPostSlider } = this.props;
-    const { active_votes: votes } = this.props.entry;
-    const { dialog, inProgress } = this.state;
-    const { upVoted, downVoted } = this.isVoted();
+  ensureAccount = async () => {
+    const { match, accounts, addAccount } = this.props;
+    const username = match!.params.username.replace("@", "");
 
+    const account = accounts.find((x) => x.name === username);
+
+    if (!account) {
+      try {
+        const data = await getAccountFull(username);
+        if (data.name === username) {
+          addAccount!(data);
+        } else {
+          this.props.history?.push("/404");
+        }
+      } finally {
+      }
+    } else {
+      try {
+        const data = await getAccountFull(username);
+        if (data.name === username) {
+          addAccount!(data);
+        } else {
+          this.props.history?.push("/404");
+        }
+      } finally {
+      }
+    }
+  };
+
+  render() {
+    const { activeUser, isPostSlider, account } = this.props;
+    const { active_votes: votes } = this.props.entry;
+    const { dialog, inProgress, tipDialog, previousVotedValue } = this.state;
+    const { upVoted, downVoted } = this.isVoted();
     let cls = _c(`btn-vote btn-up-vote ${inProgress ? "in-progress" : ""}`);
     if (upVoted || downVoted) {
       cls = _c(
@@ -518,6 +588,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
         } ${inProgress ? "in-progress" : ""} voted`
       );
     }
+
     let tooltipClass = "";
     if (dialog) {
       if (!upVoted || !downVoted) {
@@ -544,7 +615,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
             <div>
               <ClickAwayListener
                 onClickAway={() => {
-                  dialog && this.setState({ dialog: false });
+                  !tipDialog && dialog && this.setState({ dialog: false });
                 }}
               >
                 <div className="entry-vote-btn" onClick={async () => await this.toggleDialog()}>
@@ -560,13 +631,20 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                             }}
                           >
                             <VoteDialog
-                              {...this.props}
+                              global={this.props.global}
+                              dynamicProps={this.props.dynamicProps}
                               activeUser={activeUser as any}
                               isPostSlider={isPostSlider}
-                              onClick={this.vote}
                               upVoted={upVoted}
                               downVoted={downVoted}
-                              previousVotedValue={this.state.previousVotedValue}
+                              previousVotedValue={previousVotedValue}
+                              account={account!}
+                              entry={this.props.entry}
+                              setTipDialogMounted={this.setTipDialogMounted}
+                              updateWalletValues={this.ensureAccount}
+                              onClick={this.vote}
+                              handleClickAway={this.handleClickAway}
+                              isVoted={this.isVoted}
                             />
                           </span>
                         </div>
@@ -583,19 +661,39 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
   }
 }
 
-export default (p: Props) => {
+export default (
+  p: Pick<Props, "entry" | "isPostSlider" | "afterVote" | "history" | "account" | "match">
+) => {
+  const {
+    accounts,
+    global,
+    dynamicProps,
+    users,
+    activeUser,
+    ui,
+    setActiveUser,
+    updateActiveUser,
+    deleteUser,
+    toggleUIProp,
+    addAccount
+  } = useMappedStore();
+
   const props = {
-    global: p.global,
-    dynamicProps: p.dynamicProps,
+    accounts,
+    global,
+    dynamicProps,
     entry: p.entry,
-    users: p.users,
-    activeUser: p.activeUser,
-    ui: p.ui,
+    users,
+    activeUser,
+    ui,
+    account: p.account,
+    history: p.history,
     isPostSlider: p.isPostSlider,
-    setActiveUser: p.setActiveUser,
-    updateActiveUser: p.updateActiveUser,
-    deleteUser: p.deleteUser,
-    toggleUIProp: p.toggleUIProp,
+    setActiveUser,
+    updateActiveUser,
+    addAccount,
+    deleteUser,
+    toggleUIProp,
     afterVote: p.afterVote
   };
 

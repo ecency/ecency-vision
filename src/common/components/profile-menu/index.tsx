@@ -15,7 +15,7 @@ import ListStyleToggle from "../list-style-toggle/index";
 import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
-import { menuDownSvg } from "../../img/svg";
+import { kebabMenuHorizontalSvg, menuDownSvg } from "../../img/svg";
 import "./_index.scss";
 
 interface Props {
@@ -32,6 +32,33 @@ export class ProfileMenu extends Component<Props> {
   render() {
     const { username, section, activeUser } = this.props;
 
+    const kebabMenuItems: MenuItem[] = ["trail", "replies", "communities"].map((x) => {
+      return {
+        label: _t(`profile.section-${x}`),
+        href: `/@${username}/${x}`,
+        selected: section === x,
+        id: x
+      };
+    });
+
+    const kebabMenuConfig = {
+      history: this.props.history,
+      label: "",
+      icon: kebabMenuHorizontalSvg,
+      items: kebabMenuItems.filter((item) => !item.selected)
+    };
+
+    const menuItems: MenuItem[] = [
+      ...[ProfileFilter.blog, ProfileFilter.posts, ProfileFilter.comments].map((x) => {
+        return {
+          label: _t(`profile.section-${x}`),
+          href: `/@${username}/${x}`,
+          selected: section === x,
+          id: x
+        };
+      })
+    ];
+
     const menuConfig: {
       history: History;
       label: string;
@@ -39,24 +66,29 @@ export class ProfileMenu extends Component<Props> {
     } = {
       history: this.props.history,
       label: ProfileFilter[section] ? _t(`profile.section-${section}`) : "",
-      items: [
-        ...[
-          ProfileFilter.blog,
-          ProfileFilter.posts,
-          ProfileFilter.comments,
-          ProfileFilter.replies
-        ].map((x) => {
-          return {
-            label: _t(`profile.section-${x}`),
-            href: `/@${username}/${x}`,
-            selected: section === x,
-            id: x
-          };
-        })
-      ]
+      items: [...menuItems, ...kebabMenuItems.filter((item) => item.selected)]
     };
 
-    let showDropdown = menuConfig.items.filter((item) => item.id === section).length > 0;
+    const dropDownMenuItems: MenuItem[] = [
+      ...menuItems,
+      ...(username === activeUser?.username
+        ? kebabMenuItems
+        : kebabMenuItems.filter((item) => item.id != "communities"))
+    ];
+    const dropDownMenuConfig: {
+      history: History;
+      label: string;
+      items: MenuItem[];
+    } = {
+      history: this.props.history,
+      label:
+        dropDownMenuItems.filter((item) => item.id === section).length > 0
+          ? _t(`profile.section-${section}`)
+          : "",
+      items: dropDownMenuItems
+    };
+
+    let showDropdown = dropDownMenuConfig.items.filter((item) => item.id === section).length > 0;
 
     return (
       <div className="profile-menu">
@@ -68,7 +100,7 @@ export class ProfileMenu extends Component<Props> {
               }`}
             >
               {showDropdown ? (
-                <DropDown {...menuConfig} float="left" />
+                <DropDown {...dropDownMenuConfig} float="left" />
               ) : (
                 <Link
                   className={_c(
@@ -95,12 +127,17 @@ export class ProfileMenu extends Component<Props> {
             </div>
           </>
 
-          <Link
-            className={_c(`profile-menu-item ${section === "communities" ? "selected-item" : ""}`)}
-            to={`/@${username}/communities`}
-          >
-            {_t(`profile.section-communities`)}
-          </Link>
+          {username !== activeUser?.username && (
+            <Link
+              className={_c(
+                `profile-menu-item d-lg-none ${section === "communities" ? "selected-item" : ""}`
+              )}
+              to={`/@${username}/communities`}
+            >
+              {_t(`profile.section-communities`)}
+            </Link>
+          )}
+
           <Link
             className={_c(
               `profile-menu-item ${
@@ -111,6 +148,7 @@ export class ProfileMenu extends Component<Props> {
           >
             {_t(`profile.section-wallet`)}
           </Link>
+
           {activeUser && activeUser.username === username && (
             <Link
               className={_c(`profile-menu-item ${section === "settings" ? "selected-item" : ""}`)}
@@ -119,6 +157,9 @@ export class ProfileMenu extends Component<Props> {
               {_t(`profile.section-settings`)}
             </Link>
           )}
+          <div className="kebab-icon entry-index-menu the-menu main-menu d-none d-lg-flex ">
+            <DropDown {...kebabMenuConfig} float="left" />
+          </div>
         </div>
 
         <div className="page-tools">

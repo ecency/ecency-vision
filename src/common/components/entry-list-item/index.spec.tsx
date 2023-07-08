@@ -6,23 +6,23 @@ import mockDate from "mockdate";
 
 import { StaticRouter } from "react-router-dom";
 
-import TestRenderer from "react-test-renderer";
-
 import {
   globalInstance,
   dynamicPropsIntance1,
   entryInstance1,
   UiInstance,
   emptyReblogs,
-  activeUserMaker,
-  crossEntryInstance,
-  allOver
+  allOver,
+  crossEntryInstance
 } from "../../helper/test-helper";
 
 import { ListStyle } from "../../store/global/types";
 
 import EntryListItem from "./index";
 import { withStore } from "../../tests/with-store";
+import { activeUserMaker } from "../../store/helper";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "../../core";
 
 mockDate.set(1591398131176);
 
@@ -38,7 +38,6 @@ const defProps = {
   reblogs: emptyReblogs,
   entry: entryInstance1,
   ui: UiInstance,
-  entryPinTracker: {},
   signingKey: "",
   asAuthor: "",
   promoted: false,
@@ -60,9 +59,12 @@ const defProps = {
 
 it("(1) Default render", async () => {
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...defProps} />
-    </StaticRouter>
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...defProps} />
+      </StaticRouter>
+    </QueryClientProvider>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -77,14 +79,16 @@ it("(2) Grid view", async () => {
     }
   };
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...props} />
-    </StaticRouter>
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...props} />
+      </StaticRouter>
+    </QueryClientProvider>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
-
 it("(3) Nsfw", async () => {
   const props = {
     ...defProps,
@@ -92,14 +96,17 @@ it("(3) Nsfw", async () => {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
+        tags: [...(entryInstance1.json_metadata.tags ?? []), "nsfw"]
       }
     }
   };
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...props} />
-    </StaticRouter>
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...props} />
+      </StaticRouter>
+    </QueryClientProvider>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -112,15 +119,18 @@ it("(4) Nsfw with active user", async () => {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
+        tags: [...(entryInstance1.json_metadata.tags ?? []), "nsfw"]
       }
     },
     activeUser: activeUserMaker("foo")
   };
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...props} />
-    </StaticRouter>
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...props} />
+      </StaticRouter>
+    </QueryClientProvider>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -133,7 +143,7 @@ it("(5) Nsfw but allowed", async () => {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
+        tags: [...(entryInstance1.json_metadata.tags ?? []), "nsfw"]
       }
     },
     global: {
@@ -142,9 +152,12 @@ it("(5) Nsfw but allowed", async () => {
     }
   };
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...props} />
-    </StaticRouter>
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...props} />
+      </StaticRouter>
+    </QueryClientProvider>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -158,9 +171,12 @@ it("(6) Cross post. Bottom menu", async () => {
   };
 
   const renderer = await withStore(
-    <StaticRouter location="/" context={{}}>
-      <EntryListItem {...props} />
-    </StaticRouter>
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <EntryListItem {...props} />
+      </StaticRouter>
+    </QueryClientProvider>,
+    defProps
   );
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();

@@ -38,12 +38,13 @@ export const ResourceCreditsDelegation = (props: any) => {
     setAmount(amount);
     if (
       amount === "" ||
-      (Number(amount) >= 5000000000 && Number(amount) < Number(resourceCredit[0]))
+      (Number(amount) >= 5000000000 && Number(amount) < Number(resourceCredit)) ||
+      amount === "0"
     ) {
       setAmountError("");
     } else if (Number(amount) < 5000000000) {
       setAmountError(_t("rc-info.minimum-rc-error"));
-    } else if (Number(amount) > Number(resourceCredit[0])) {
+    } else if (Number(amount) > Number(resourceCredit)) {
       setAmountError(_t("rc-info.insufficient-rc-error"));
       return;
     }
@@ -80,8 +81,8 @@ export const ResourceCreditsDelegation = (props: any) => {
     !inProgress &&
     !amountError &&
     !!amount &&
-    Number(amount) >= 5000000000 &&
-    Number(amount) < Number(resourceCredit[0]);
+    (Number(amount) === 0 || Number(amount) >= 5000000000) &&
+    Number(amount) < Number(resourceCredit);
 
   const handleTo = async (value: string) => {
     setInProgress(true);
@@ -98,23 +99,29 @@ export const ResourceCreditsDelegation = (props: any) => {
       setToWarning("");
     }
     setToData(null);
-
-    return getAccount(value)
-      .then((resp) => {
-        if (resp) {
-          setToError("");
-          setToData(resp);
-        } else {
-          setToError(_t("transfer.to-not-found"));
-        }
-        return resp;
-      })
-      .catch((err) => {
-        error(...formatError(err));
-      })
-      .finally(() => {
-        setInProgress(false);
-      });
+    if (value.includes(",")) {
+      setToData(value);
+      setToError("");
+      setInProgress(false);
+      return true;
+    } else {
+      return getAccount(value)
+        .then((resp) => {
+          if (resp) {
+            setToError("");
+            setToData(resp);
+          } else {
+            setToError(_t("transfer.to-not-found"));
+          }
+          return resp;
+        })
+        .catch((err) => {
+          error(...formatError(err));
+        })
+        .finally(() => {
+          setInProgress(false);
+        });
+    }
   };
 
   const delayedSearch = useCallback(_.debounce(handleTo, 3000, { leading: true }), []);
@@ -202,7 +209,7 @@ export const ResourceCreditsDelegation = (props: any) => {
                     value={amount}
                     onChange={amountChanged}
                     className={
-                      Number(amount) > Number(resourceCredit[0]) && amountError ? "is-invalid" : ""
+                      Number(amount) > Number(resourceCredit) && amountError ? "is-invalid" : ""
                     }
                   />
                 </InputGroup>
@@ -210,13 +217,13 @@ export const ResourceCreditsDelegation = (props: any) => {
             </Form.Group>
 
             {amount < 5000000000 && <FormText msg={amountError} type="danger" />}
-            {amount > Number(resourceCredit[0]) && <FormText msg={amountError} type="danger" />}
+            {amount > Number(resourceCredit) && <FormText msg={amountError} type="danger" />}
 
             <Row>
               <Col lg={{ span: 10, offset: 2 }}>
                 <div className="balance space-3">
                   <span className="balance-label">{_t("transfer.balance")}</span>
-                  <span>{`: ${resourceCredit[0]}`}</span>
+                  <span>{`: ${resourceCredit}`}</span>
                 </div>
               </Col>
             </Row>

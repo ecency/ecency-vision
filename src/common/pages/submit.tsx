@@ -42,6 +42,7 @@ import { makePath as makePathEntry } from "../components/entry-link";
 import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
+import ClickAwayListener from "../components/clickaway-listener";
 import { detectEvent, toolbarEventListener } from "../components/editor-toolbar";
 import "./submit.scss";
 
@@ -78,13 +79,14 @@ import * as ls from "../util/local-storage";
 
 import { version } from "../../../package.json";
 
-import { checkSvg, contentSaveSvg, contentLoadSvg } from "../img/svg";
+import { checkSvg, contentSaveSvg, contentLoadSvg, helpIconSvg } from "../img/svg";
 
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import ModalConfirm from "../components/modal-confirm";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
 import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
+import { handleFloatingContainer } from "../components/floating-faq";
 
 setProxyBase(defaults.imageServer);
 
@@ -173,6 +175,7 @@ interface State extends PostBase, Advanced {
   selectionTouched: boolean;
   isDraftEmpty: boolean;
   drafts: boolean;
+  showHelp: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -207,7 +210,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     },
     disabled: true,
     isDraftEmpty: true,
-    drafts: false
+    drafts: false,
+    showHelp: false
   };
 
   _updateTimer: any = null;
@@ -224,11 +228,14 @@ class SubmitPage extends BaseComponent<Props, State> {
     this.detectDraft().then();
 
     let selectedThumbnail = ls.get("draft_selected_image");
-    if (selectedThumbnail && selectedThumbnail.length > 0) {
+    if (selectedThumbnail?.length > 0) {
       this.selectThumbnails(selectedThumbnail);
     }
 
     this.addToolbarEventListners();
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", this.handleResize);
+    }
   };
 
   componentDidUpdate(prevProps: Readonly<Props>) {
@@ -254,6 +261,9 @@ class SubmitPage extends BaseComponent<Props, State> {
 
   componentWillUnmount(): void {
     this.removeToolbarEventListners();
+    if (typeof window !== "undefined") {
+      window.removeEventListener("resize", this.handleResize);
+    }
   }
 
   addToolbarEventListners = () => {
@@ -277,6 +287,13 @@ class SubmitPage extends BaseComponent<Props, State> {
         el.removeEventListener("dragover", this.handleDragover);
         el.removeEventListener("drop", this.handleDrop);
       }
+    }
+  };
+
+  handleResize = () => {
+    if (typeof window !== "undefined" && window.innerWidth < 992) {
+      this.setState({ showHelp: false });
+      handleFloatingContainer(false, "submit");
     }
   };
 
@@ -359,7 +376,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       }
 
       drafts = drafts.filter((x) => x._id === params.draftId);
-      if (drafts.length === 1) {
+      if (drafts?.length === 1) {
         const [draft] = drafts;
         const { title, body } = draft;
 
@@ -413,7 +430,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     const localDraft = ls.get("local_draft") as PostBase;
-    if (!localDraft) {
+    if (!localDraft || JSON.stringify(localDraft) === "{}") {
       this.stateSet({ isDraftEmpty: true });
       return;
     }
@@ -422,7 +439,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     this.stateSet({ title, tags, body }, this.updatePreview);
 
     for (const key in localDraft) {
-      if (localDraft[key]?.length > 0) {
+      if (localDraft && localDraft[key] && localDraft[key].length > 0) {
         this.stateSet({ isDraftEmpty: false });
       }
     }
@@ -462,7 +479,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     return (
       reward !== "default" ||
-      beneficiaries.length > 0 ||
+      beneficiaries?.length > 0 ||
       schedule !== null ||
       reblogSwitch ||
       description !== ""
@@ -491,7 +508,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     // Toggle off reblog switch if it is true and the first tag is not community tag.
     const { reblogSwitch } = this.state;
     if (reblogSwitch) {
-      const isCommunityTag = tags.length > 0 && isCommunity(tags[0]);
+      const isCommunityTag = tags?.length > 0 && isCommunity(tags[0]);
 
       if (!isCommunityTag) {
         this.stateSet({ reblogSwitch: false }, this.saveAdvanced);
@@ -591,6 +608,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       this._updateTimer = null;
     }
 
+    // Not sure why we are using setTimeOut(), but it causes some odd behavior and sets input value to preview.body when you try to delete/cancel text
     this._updateTimer = setTimeout(() => {
       const { title, tags, body, editingEntry, description } = this.state;
       const { thumbnails } = extractMetaData(body);
@@ -598,12 +616,12 @@ class SubmitPage extends BaseComponent<Props, State> {
       if (editingEntry === null) {
         this.saveLocalDraft();
       }
-      if (title.length || tags.length || body.length) {
+      if (title?.length || tags?.length || body?.length) {
         this.stateSet({ isDraftEmpty: false });
       } else {
         this.stateSet({ isDraftEmpty: true });
       }
-    }, 500);
+    }, 50);
   };
 
   focusInput = (parentSelector: string): void => {
@@ -622,7 +640,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       return false;
     }
 
-    if (tags.length === 0) {
+    if (tags?.length === 0) {
       this.focusInput(".tag-input");
       error(_t("submit.empty-tags-alert"));
       return false;
@@ -663,7 +681,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     // permlink duplication check
     let c;
     try {
-      c = await bridgeApi.getPost(author, permlink);
+      c = await bridgeApi.getPostHeader(author, permlink);
     } catch (e) {
       /*error(_t("g.server-error"));
             this.stateSet({posting: false});
@@ -839,7 +857,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         success(_t("submit.draft-saved"));
 
         const { drafts } = resp;
-        const draft = drafts[drafts.length - 1];
+        const draft = drafts[drafts?.length - 1];
 
         history.push(`/draft/${draft._id}`);
       });
@@ -873,7 +891,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     // permlink duplication check
     let c;
     try {
-      c = await bridgeApi.getPost(author, permlink);
+      c = await bridgeApi.getPostHeader(author, permlink);
     } catch (e) {}
 
     if (c && c.author) {
@@ -936,7 +954,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     new Promise((resolve) => {
       const img = new Image();
       img.onload = () => {
-        resolve(img.width / img.height);
+        resolve((img.width / img.height).toFixed(4));
       };
       img.onerror = function () {
         resolve(0);
@@ -966,6 +984,13 @@ class SubmitPage extends BaseComponent<Props, State> {
     if (e.altKey && e.key === "m") {
       detectEvent("blockquote");
     }
+  };
+
+  handleFloatingFaq = () => {
+    const { showHelp } = this.state;
+    this.setState({ showHelp: !showHelp }, () =>
+      handleFloatingContainer(this.state.showHelp, "submit")
+    );
   };
 
   render() {
@@ -1079,7 +1104,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 className="the-editor accepts-emoji form-control"
                 as="textarea"
                 placeholder={_t("submit.body-placeholder")}
-                value={body.length > 0 ? body : preview.body}
+                value={body && body.length > 0 ? body : preview.body}
                 onChange={this.bodyChanged}
                 disableRows={true}
                 maxrows={100}
@@ -1143,7 +1168,16 @@ class SubmitPage extends BaseComponent<Props, State> {
                 {editingEntry === null && (
                   <>
                     <span />
-                    <div>
+                    <div className="action-buttons">
+                      <ClickAwayListener onClickAway={() => this.setState({ showHelp: false })}>
+                        <Button
+                          className="help-button"
+                          style={{ marginRight: "6px" }}
+                          onClick={this.handleFloatingFaq}
+                        >
+                          {helpIconSvg} {_t("floating-faq.help")}
+                        </Button>
+                      </ClickAwayListener>
                       {global.usePrivate && this.state.isDraftEmpty ? (
                         <>
                           {LoginRequired({
@@ -1302,7 +1336,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                           )}
                         </>
                       )}
-                      {editingEntry === null && tags.length > 0 && isCommunity(tags[0]) && (
+                      {editingEntry === null && tags?.length > 0 && isCommunity(tags[0]) && (
                         <Form.Group as={Row}>
                           <Col sm="3" />
                           <Col sm="9">
@@ -1317,7 +1351,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                           </Col>
                         </Form.Group>
                       )}
-                      {thumbnails.length > 0 && (
+                      {thumbnails?.length > 0 && (
                         <Form.Group as={Row}>
                           <Form.Label column={true} sm="3">
                             {_t("submit.thumbnail")}

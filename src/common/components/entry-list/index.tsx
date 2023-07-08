@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { History, Location } from "history";
-import { Global, ProfileFilter } from "../../store/global/types";
-import { Account, FullAccount } from "../../store/accounts/types";
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { Entry } from "../../store/entries/types";
 import { Community, Communities } from "../../store/communities/types";
@@ -11,7 +11,6 @@ import { Reblogs } from "../../store/reblogs/types";
 import { UI, ToggleType } from "../../store/ui/types";
 
 import EntryListItem from "../entry-list-item/index";
-import { EntryPinTracker } from "../../store/entry-pin-tracker/types";
 import MessageNoData from "../message-no-data";
 import { _t } from "../../i18n";
 import LinearProgress from "../linear-progress";
@@ -27,14 +26,12 @@ interface Props {
   dynamicProps: DynamicProps;
   entries: Entry[];
   promotedEntries: Entry[];
-  communities: Communities;
   community?: Community | null;
   users: User[];
   activeUser: ActiveUser | null;
   reblogs: Reblogs;
   loading: boolean;
   ui: UI;
-  entryPinTracker: EntryPinTracker;
   signingKey: string;
   account?: Account;
   match?: match<any>;
@@ -47,10 +44,7 @@ interface Props {
   addReblog: (author: string, permlink: string) => void;
   deleteReblog: (author: string, permlink: string) => void;
   toggleUIProp: (what: ToggleType) => void;
-  addCommunity: (data: Community) => void;
-  trackEntryPin: (entry: Entry) => void;
   setSigningKey: (key: string) => void;
-  setEntryPin: (entry: Entry, pin: boolean) => void;
   pinEntry?: (entry: Entry | null) => void;
 }
 
@@ -78,6 +72,7 @@ export class EntryListContent extends Component<Props, State> {
               this.setState({ mutedUsers: filterList });
             }
           })
+          .catch(console.log)
           .finally(() => {
             this.setState({ loadingMutedUsers: false });
           });
@@ -99,9 +94,10 @@ export class EntryListContent extends Component<Props, State> {
   }
 
   render() {
-    const { entries, promotedEntries, global, activeUser, loading, location } = this.props;
+    const { entries, promotedEntries, global, activeUser, loading, location, match } = this.props;
     const { filter, tag } = global;
     const { mutedUsers, loadingMutedUsers } = this.state;
+    const section = match?.params.section;
     let dataToRender = entries;
     if (location.pathname.includes("/promoted")) {
       dataToRender = promotedEntries;
@@ -113,6 +109,7 @@ export class EntryListContent extends Component<Props, State> {
     }
     const isMyProfile =
       activeUser && tag.includes("@") && activeUser.username === tag.replace("@", "");
+
     return (
       <>
         {loadingMutedUsers ? (
@@ -173,7 +170,7 @@ export class EntryListContent extends Component<Props, State> {
           </>
         ) : (
           !loading &&
-          (isMyProfile ? (
+          (isMyProfile && section !== "trail" ? (
             <MessageNoData
               title={
                 filter == "feed"
@@ -210,7 +207,11 @@ export class EntryListContent extends Component<Props, State> {
           ) : (
             <MessageNoData
               title={_t("profile-info.no-posts-user")}
-              description={`${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}.`}
+              description={`${_t("g.nothing-found-in")} ${
+                section === "trail"
+                  ? _t(`g.trail`) + " " + _t(`g.past-few-days`)
+                  : _t(`g.${filter}`)
+              }.`}
               buttonText={isMyProfile ? _t("profile-info.create-posts") : ""}
               buttonTo="/submit"
               global={global}
@@ -230,13 +231,11 @@ export default (p: Props) => {
     dynamicProps: p.dynamicProps,
     entries: p.entries,
     promotedEntries: p.promotedEntries,
-    communities: p.communities,
     community: p.community,
     users: p.users,
     activeUser: p.activeUser,
     reblogs: p.reblogs,
     ui: p.ui,
-    entryPinTracker: p.entryPinTracker,
     signingKey: p.signingKey,
     addAccount: p.addAccount,
     updateEntry: p.updateEntry,
@@ -247,10 +246,7 @@ export default (p: Props) => {
     addReblog: p.addReblog,
     deleteReblog: p.deleteReblog,
     toggleUIProp: p.toggleUIProp,
-    addCommunity: p.addCommunity,
-    trackEntryPin: p.trackEntryPin,
     setSigningKey: p.setSigningKey,
-    setEntryPin: p.setEntryPin,
     loading: p.loading,
     account: p.account,
     match: p.match,

@@ -1,6 +1,6 @@
 {
   "name": "ecency-vision",
-  "version": "3.0.31",
+  "version": "3.0.34",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -13,7 +13,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@ecency/render-helper": "^2.2.22",
+    "@ecency/render-helper": "^2.2.24",
     "@ecency/render-helper-amp": "^1.1.0",
     "@firebase/analytics": "^0.8.0",
     "@firebase/app": "^0.7.28",
@@ -22,6 +22,8 @@
     "@hiveio/hivescript": "^1.2.7",
     "@loadable/component": "^5.15.2",
     "@loadable/server": "^5.15.2",
+    "@tanstack/react-query": "^4.29.7",
+    "@tanstack/react-query-devtools": "^4.29.7",
     "@webscopeio/react-textarea-autocomplete": "^4.8.1",
     "axios": "^0.21.2",
     "bs58": "^4.0.1",
@@ -38,6 +40,7 @@
     "i18next": "^19.4.4",
     "i18next-browser-languagedetector": "^4.2.0",
     "immutability-helper": "^3.0.2",
+    "js-base64": "^3.7.5",
     "js-cookie": "^2.2.1",
     "lightweight-charts": "^3.8.0",
     "loadable-ts-transformer": "^1.0.0-alpha.3",
@@ -61,11 +64,14 @@
     "react-helmet": "^6.0.0",
     "react-highcharts": "^16.1.0",
     "react-img-webp": "^2.0.2",
+    "react-in-viewport": "^1.0.0-alpha.30",
     "react-popper": "^2.2.5",
     "react-redux": "^7.2.0",
     "react-resize-detector": "^7.1.2",
     "react-router-dom": "^5.0.1",
     "react-sortablejs": "^2.0.11",
+    "react-textarea-autosize": "^8.4.1",
+    "react-twitter-embed": "^4.0.4",
     "react-use": "^17.4.0",
     "react-virtualized": "^9.22.3",
     "redis": "^3.1.2",
@@ -78,6 +84,7 @@
     "speakingurl": "^14.0.1",
     "use-async-effect": "^2.2.6",
     "use-indexeddb": "^2.0.2",
+    "uuid": "^9.0.0",
     "xss": "^1.0.8"
   },
   "devDependencies": {
@@ -134,7 +141,7 @@
     "ts-jest": "^26.4.2",
     "tslint": "^5.18.0",
     "tslint-react": "^4.0.0",
-    "typescript": "^3.5.3",
+    "typescript": "4.1.6",
     "url-loader": "^4.1.1",
     "webpack": "4.46.0",
     "webpack-bundle-analyzer": "^4.8.0",

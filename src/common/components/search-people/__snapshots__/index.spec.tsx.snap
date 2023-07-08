@@ -15,150 +15,14 @@ exports[`(1) Default render 1`] = `
     className="card-body"
   >
     <div
-      className="people-list"
+      className="linear-progress"
     >
       <div
-        className="list-body"
-      >
-        <div
-          className="list-item"
-        >
-          <div
-            className="item-header"
-          >
-            <a
-              href="/@foo"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-            <div
-              className="item-title"
-            >
-              <a
-                href="/@foo"
-                onClick={[Function]}
-              >
-                <span
-                  className="item-name notranslate"
-                >
-                  Foo
-                </span>
-              </a>
-              <span
-                className="item-sub-title"
-              >
-                @
-                foo
-              </span>
-            </div>
-          </div>
-          <div
-            className="item-about"
-          >
-            Lorem ipsum dolor sit amet
-          </div>
-        </div>
-        <div
-          className="list-item"
-        >
-          <div
-            className="item-header"
-          >
-            <a
-              href="/@bar"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-            <div
-              className="item-title"
-            >
-              <a
-                href="/@bar"
-                onClick={[Function]}
-              >
-                <span
-                  className="item-name notranslate"
-                >
-                  Bar
-                </span>
-              </a>
-              <span
-                className="item-sub-title"
-              >
-                @
-                bar
-              </span>
-            </div>
-          </div>
-          <div
-            className="item-about"
-          >
-            Lorem ipsum dolor sit amet
-          </div>
-        </div>
-        <div
-          className="list-item"
-        >
-          <div
-            className="item-header"
-          >
-            <a
-              href="/@baz"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-            <div
-              className="item-title"
-            >
-              <a
-                href="/@baz"
-                onClick={[Function]}
-              >
-                <span
-                  className="item-name notranslate"
-                >
-                  Baz
-                </span>
-              </a>
-              <span
-                className="item-sub-title"
-              >
-                @
-                baz
-              </span>
-            </div>
-          </div>
-          <div
-            className="item-about"
-          >
-            Lorem ipsum dolor sit amet
-          </div>
-        </div>
-      </div>
+        className="bar bar1"
+      />
+      <div
+        className="bar bar2"
+      />
     </div>
   </div>
 </div>
@@ -178,11 +42,16 @@ exports[`(2) No matches 1`] = `
   <div
     className="card-body"
   >
-    <span
-      className="text-muted"
+    <div
+      className="linear-progress"
     >
-      Nothing found
-    </span>
+      <div
+        className="bar bar1"
+      />
+      <div
+        className="bar bar2"
+      />
+    </div>
   </div>
 </div>
 `;

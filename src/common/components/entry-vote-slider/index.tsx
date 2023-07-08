@@ -34,7 +34,6 @@ const VotingSlider = (props: Props) => {
 
   const checkKeyPress = useCallback(
     (e: KeyboardEvent): void => {
-      e.preventDefault();
       const { key } = e;
       if (key == "ArrowUp" || key == "ArrowRight") {
         setSliderValue(sliderVal + 0.1);

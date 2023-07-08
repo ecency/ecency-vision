@@ -1,0 +1,213 @@
+@import "src/style/vars_mixins";
+@import "../helpers/helpers";
+
+.deck-post-viewer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateX(100%);
+  z-index: 9;
+  overflow-y: auto;
+  width: 600px;
+
+  @include transition(0.4s);
+
+  @include themify(day) {
+    background-color: $white;
+  }
+
+  @include themify(night){
+    background-color: $dark-two;
+  }
+
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+
+  &.visible {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .actions {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+
+    > .btn-outline-primary {
+      @include font-size(0.75rem);
+
+      &:hover::after {
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFFFF' d='M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z' /%3E%3C/svg%3E")
+      }
+    }
+  }
+
+  .title {
+    font-weight: bold;
+    @include font-size(1.125rem);
+  }
+
+  .entry-info {
+    @include font-size(0.875rem);
+  }
+
+  .markdown-view {
+    @include font-size(0.875rem);
+
+    h3 {
+      @include font-size(1.125rem);
+    }
+
+    h2 {
+      @include font-size(1.125rem);
+    }
+
+    h1 {
+      @include font-size(1.25rem);
+    }
+
+    .markdown-video-link {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+    }
+  }
+
+  .deck-post-viewer-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    backdrop-filter: blur(1rem);
+
+    @include themify(day) {
+      background-color: rgba($white, 0.75);
+    }
+
+    @include themify(night) {
+      background-color: rgba($dark-two, 0.75);
+    }
+
+    .btn-link {
+      display: flex;
+      align-items: center;
+      color: $secondary;
+      gap: 0.5rem;
+
+      @include font-size(0.875rem);
+    }
+  }
+
+  .bottom-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    background-color: rgba($primary, 0.05);
+
+    .btn, .entry-votes, .entry-vote-btn, .comments {
+      color: $secondary;
+
+      @include padding(0);
+      @include font-size(0.75rem);
+      @include margin(0);
+
+      &:hover, &:active {
+        color: $primary;
+      }
+    }
+
+    .entry-votes svg, .comments svg {
+      opacity: 1;
+
+      @include margin(0);
+      @include margin-right(0.25rem);
+    }
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    @include compact_vote_slider();
+  }
+
+  .discussion {
+    .item-header, .author, .item-controls {
+      @include font-size(0.875rem);
+    }
+
+    .entry-payout, .entry-votes {
+      @include margin-right(0.5rem);
+    }
+
+    .heart-icon {
+      display: flex;
+    }
+
+    .separator {
+      @include margin-left(0.25rem);
+      @include margin-right(0.35rem);
+    }
+
+    .discussion-list .discussion-item .item-inner .item-content .item-body {
+      @include margin-top(0.25rem);
+      @include margin-bottom(0.5rem);
+    }
+  }
+
+  .deck-toolbar-threads-form {
+    background-color: rgba($primary, 0.05);
+  }
+
+
+  .deck-thread-item-viewer-replies {
+    .skeleton-list {
+      @include padding-top(0);
+    }
+  }
+}
+
+.deck-thread-item-viewer {
+  .deck-post-viewer-header {
+    @include padding-bottom(1rem);
+  }
+
+  .no-replies-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    @include padding(2rem);
+
+    svg {
+      width: 4rem;
+      height: 4rem;
+      color: $secondary;
+      opacity: 0.5;
+    }
+
+    p {
+      opacity: 0.5;
+      color: $secondary;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.deck-topic-content-viewer {
+
+  .deck-post-viewer-header {
+    border-bottom: 1px solid $border-color;
+  }
+}

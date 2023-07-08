@@ -23,9 +23,12 @@ describe("(1) NotificationListItem", () => {
     global: globalInstance,
     history: createBrowserHistory(),
     dynamicProps: dynamicPropsIntance1,
+    isSelect: false,
+    currentStatus: "",
     markNotifications: () => {},
     addAccount: () => {},
-    toggleUIProp: () => {}
+    toggleUIProp: () => {},
+    setSelectedNotifications: () => {}
   };
 
   it("(1) Vote ", () => {

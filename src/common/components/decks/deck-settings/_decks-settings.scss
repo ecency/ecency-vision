@@ -1,0 +1,82 @@
+@import "src/style/vars_mixins";
+
+.decks-settings {
+  .modal-header {
+    border-bottom: 1px solid $border-color;
+  }
+
+  .form-section {
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .form-check {
+    line-height: 1;
+  }
+
+  .form-check-label {
+    @include font-size(0.75rem);
+  }
+
+  .alert {
+    @include font-size(0.75rem);
+  }
+
+  .form-control {
+    height: 3rem;
+    background: transparent;
+    border: 2px solid $border-color;
+
+    &:active, &:focus {
+      border-color: $primary;
+    }
+
+    @include themify(night) {
+      color: $white;
+      border-color: $gray-600;
+
+      &:active, &:focus {
+        border-color: $gray-400;
+      }
+    }
+  }
+
+  .input-group-prepend {
+    background-color: transparent;
+    border: 2px solid $border-color;
+    border-right: 0;
+    height: 3rem;
+    position: relative;
+
+    @include border-top-left-radius($input-border-radius);
+    @include border-bottom-left-radius($input-border-radius);
+
+    @include themify(night) {
+      color: $white;
+      border-color: $gray-600;
+
+      &:active, &:focus {
+        border-color: $gray-400;
+      }
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 0;
+      padding-bottom: 0;
+      outline: none;
+      box-shadow: none;
+    }
+
+    .emoji-picker {
+      top: calc(1.2em + 0.75rem);
+      left: $input-padding-x;
+    }
+
+    svg {
+      width: 1rem;
+    }
+  }
+}
