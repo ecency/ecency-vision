@@ -32,6 +32,8 @@ import "../../style/style.scss";
 import "../../client/base-handlers";
 
 import "./context-menu";
+import log from "electron-log";
+import path from "path";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "../../common/core";
 
@@ -121,3 +123,5 @@ window.addEventListener("deep-link", (e) => {
 window["ipcRenderer"].on("update-available", (event: any, version: string) => {
   store.dispatch(newVersionChangeAct(version));
 });
+
+log.transports.file.resolvePath = () => path.join(__dirname, "logs/main.log");
