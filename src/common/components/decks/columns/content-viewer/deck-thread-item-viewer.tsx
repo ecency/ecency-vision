@@ -12,6 +12,7 @@ import moment from "moment";
 import { DeckThreadItemViewerReply } from "./deck-thread-item-viewer-reply";
 import { EntriesCacheContext, useEntryCache } from "../../../../core";
 import { repliesIconSvg } from "../../icons";
+import { Entry } from "../../../../store/entries/types";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -33,7 +34,7 @@ export const DeckThreadItemViewer = ({
 
   const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
 
-  const [data, setData] = useState<IdentifiableEntry | null>(null);
+  const [data, setData] = useState<Entry[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -52,25 +53,42 @@ export const DeckThreadItemViewer = ({
         i.host = entry.host;
       });
 
-      const nextData = buildReplyNode(entry, tempResponse);
+      const nextData = build(tempResponse);
       setData(nextData);
       setIsLoaded(true);
     }
   };
 
-  const buildReplyNode = (root: IdentifiableEntry, dataset: Record<string, IdentifiableEntry>) => {
-    if (root.replies.length > 0) {
-      root.replies = root.replies
-        .filter((r) => r !== `${root.author}/${root.permlink}`)
-        .map((r) => (r instanceof Object ? `${r.author}/${r.permlink}` : r))
-        .map((r) => buildReplyNode(dataset[r], dataset));
-      root.replies.sort((a, b) => (moment(a.created).isAfter(b.created) ? -1 : 1));
-    }
-
-    // Update entry in global cache
-    updateCache([root]);
-
-    return root;
+  const build = (dataset: Record<string, IdentifiableEntry>) => {
+    const result: IdentifiableEntry[] = [];
+    const values = [
+      ...Object.values(dataset).filter(
+        (v) => v.author !== entry.author && v.permlink !== entry.permlink
+      )
+    ];
+    Object.entries(dataset)
+      .filter(([_, v]) => v.author !== entry.author && v.permlink !== entry.permlink)
+      .forEach(([key, value]) => {
+        const parent = values.find((v) => v.replies.includes(key));
+        if (parent) {
+          const existingTempIndex = result.findIndex(
+            (v) => v.author === parent.author && v.permlink === parent.permlink
+          );
+          if (existingTempIndex > -1) {
+            result[existingTempIndex].replies.push(value);
+            result[existingTempIndex].replies = result[existingTempIndex].replies.filter(
+              (r) => r !== key
+            );
+          } else {
+            parent.replies.push(value);
+            parent.replies = parent.replies.filter((r) => r !== key);
+            result.push(parent);
+          }
+        } else {
+          result.push(value);
+        }
+      });
+    return result;
   };
 
   return (
@@ -110,7 +128,7 @@ export const DeckThreadItemViewer = ({
         onSuccess={(reply) => {
           reply.replies = [];
           if (data) {
-            setData({ ...data, replies: [reply, ...data.replies] });
+            setData([reply, ...data]);
 
             // Update entry in global cache
             addReply(entry, reply);
@@ -120,17 +138,17 @@ export const DeckThreadItemViewer = ({
       <div className="deck-thread-item-viewer-replies">
         {isLoaded && (
           <>
-            {data?.replies.map((reply) => (
+            {data.map((reply) => (
               <DeckThreadItemViewerReply
                 isHighlighted={highlightedEntry === `${reply.author}/${reply.permlink}`}
                 key={reply.post_id}
-                entry={reply}
+                entry={reply as IdentifiableEntry}
                 history={history}
                 parentEntry={entry}
                 incrementParentEntryCount={() => updateRepliesCount(entry, entry.children + 1)}
               />
             ))}
-            {data?.replies.length === 0 && (
+            {data.length === 0 && (
               <div className="no-replies-placeholder">
                 {repliesIconSvg}
                 <p>{_t("decks.columns.no-replies")}</p>
