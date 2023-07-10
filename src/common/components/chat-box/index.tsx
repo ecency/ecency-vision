@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Form, FormControl, InputGroup, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import mediumZoom, { Zoom } from "medium-zoom";
 
 import { ActiveUser } from "../../store/active-user/types";
 import { Chat, DirectContactsType } from "../../store/chat/types";
+import { Global, Theme } from "../../store/global/types";
 import { DirectMessage } from "../../../providers/message-provider-types";
 
 import Tooltip from "../tooltip";
@@ -11,7 +14,8 @@ import UserAvatar from "../user-avatar";
 import SeachUser from "../search-user";
 import LinearProgress from "../linear-progress";
 import EmojiPicker from "../emoji-picker";
-import ClickAwayListener from "../clickaway-listener";
+import GifPicker from "../gif-picker";
+import { error } from "../feedback";
 import { setNostrkeys } from "../../../providers/message-provider";
 
 import {
@@ -22,8 +26,11 @@ import {
   messageSendSvg,
   chevronUpSvg,
   chevronDownSvgForSlider,
-  emoticonHappyOutlineSvg
+  emoticonHappyOutlineSvg,
+  gifIcon,
+  chatBoxImageSvg
 } from "../../img/svg";
+
 import { dateToFormatted } from "../../helper/parse-date";
 import {
   createNoStrAccount,
@@ -35,8 +42,13 @@ import {
   setProfileMetaData,
   resetProfile
 } from "../../helper/chat-utils";
+import { renderPostBody } from "@ecency/render-helper";
+import { getAccessToken } from "../../helper/user-token";
 import { _t } from "../../i18n";
+
 import { getAccountFull } from "../../api/hive";
+import { uploadImage } from "../../api/misc";
+import { addImage } from "../../api/private-api";
 
 import "./index.scss";
 
@@ -48,12 +60,17 @@ export interface profileData {
 
 interface Props {
   activeUser: ActiveUser | null;
+  global: Global;
   chat: Chat;
   resetChat: () => void;
 }
 
+let zoom: Zoom | null = null;
+
 export default function ChatBox(props: Props) {
+  const prevPropsRef = useRef(props);
   const chatBodyDivRef = React.createRef<HTMLDivElement>();
+  const fileInput = React.createRef<HTMLInputElement>();
   const [expanded, setExpanded] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
   const [isCurrentUser, setIsCurrentUser] = useState(false);
@@ -72,6 +89,7 @@ export default function ChatBox(props: Props) {
   const [messagesList, setMessagesList] = useState<DirectMessage[]>([]);
   const [isUserFromSearch, setIsUserFromSearch] = useState(false);
   const [isCurrentUserJoined, setIsCurrentUserJoined] = useState(true);
+  const [shGif, setShGif] = useState(false);
 
   useEffect(() => {
     // resetProfile(props.activeUser);
@@ -86,11 +104,24 @@ export default function ChatBox(props: Props) {
   }, [props.chat.directMessages]);
 
   useEffect(() => {
+    const prevProps = prevPropsRef.current;
+    if (prevProps.global.theme !== props.global.theme) {
+      setBackground();
+    }
+    prevPropsRef.current = props;
+  }, [props.global.theme]);
+
+  useEffect(() => {
     scrollToBottom();
+    if (messagesList.length !== 0) {
+      //Initialize the zooming effect
+      zoomInitializer();
+    }
   }, [messagesList]);
 
   useEffect(() => {
     if (isCurrentUser) {
+      zoomInitializer();
       scrollToBottom();
     }
   }, [isCurrentUser]);
@@ -139,6 +170,22 @@ export default function ChatBox(props: Props) {
         : count.toLocaleString();
     }
     return count;
+  };
+
+  const zoomInitializer = () => {
+    const elements: HTMLElement[] = [
+      ...document.querySelectorAll<HTMLElement>(".chat-image img")
+    ].filter((x) => x.parentNode?.nodeName !== "A");
+    zoom = mediumZoom(elements);
+    setBackground();
+  };
+
+  const setBackground = () => {
+    if (props.global.theme === Theme.day) {
+      zoom?.update({ background: "#ffffff" });
+    } else {
+      zoom?.update({ background: "#131111" });
+    }
   };
 
   const fetchMessages = (peer: string) => {
@@ -275,6 +322,91 @@ export default function ChatBox(props: Props) {
     return lastMessage[0]?.content;
   };
 
+  const handleGifSelection = (gif: string) => {
+    window.raven?.sendDirectMessage(receiverPubKey, gif);
+  };
+
+  const toggleGif = (e?: React.MouseEvent<HTMLElement>) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    setShGif(!shGif);
+  };
+
+  const isMessageGif = (content: string) => {
+    return content.includes("giphy");
+  };
+
+  const checkFile = (filename: string) => {
+    const filenameLow = filename.toLowerCase();
+    return ["jpg", "jpeg", "gif", "png"].some((el) => filenameLow.endsWith(el));
+  };
+
+  const fileInputChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    let files = [...(e.target.files as FileList)].filter((i) => checkFile(i.name)).filter((i) => i);
+
+    const {
+      global: { isElectron }
+    } = props;
+
+    if (files.length > 0) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+
+    if (files.length > 1 && isElectron) {
+      let isWindows = process.platform === "win32";
+      if (isWindows) {
+        files = files.reverse();
+      }
+    }
+
+    files.forEach((file) => upload(file));
+
+    // reset input
+    e.target.value = "";
+  };
+
+  const upload = async (file: File) => {
+    const { activeUser, global } = props;
+
+    const username = activeUser?.username!;
+
+    const tempImgTag = `![Uploading ${file.name} #${Math.floor(Math.random() * 99)}]()\n\n`;
+
+    setMessage(tempImgTag);
+
+    let imageUrl: string;
+    try {
+      let token = getAccessToken(username);
+      if (token) {
+        const resp = await uploadImage(file, token);
+        imageUrl = resp.url;
+
+        if (global.usePrivate && imageUrl.length > 0) {
+          addImage(username, imageUrl).then();
+        }
+
+        const imgTag = imageUrl.length > 0 && `![](${imageUrl})\n\n`;
+
+        imgTag && setMessage(imgTag);
+      } else {
+        error(_t("editor-toolbar.image-error-cache"));
+      }
+    } catch (e) {
+      if (axios.isAxiosError(e) && e.response?.status === 413) {
+        error(_t("editor-toolbar.image-error-size"));
+      } else {
+        error(_t("editor-toolbar.image-error"));
+      }
+      return;
+    }
+  };
+
+  const isMessageImage = (content: string) => {
+    return content.includes("https://images.ecency.com");
+  };
+
   return (
     <>
       {show && (
@@ -368,6 +500,18 @@ export default function ChatBox(props: Props) {
                         <>
                           {messagesList.map((msg, i) => {
                             const dayAndMonth = getFormattedDateAndDay(msg, i);
+                            let renderedPreview = renderPostBody(
+                              msg.content,
+                              false,
+                              props.global.canUseWebp
+                            );
+
+                            renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
+                            renderedPreview = renderedPreview.replace(/<\/p>/g, "");
+
+                            const isGif = isMessageGif(msg.content);
+
+                            const isImage = isMessageImage(msg.content);
 
                             return (
                               <React.Fragment key={msg.id}>
@@ -385,7 +529,12 @@ export default function ChatBox(props: Props) {
                                       <p className="user-msg-time">
                                         {formatMessageTime(msg.created)}
                                       </p>
-                                      <p className="receiver-message-content">{msg.content}</p>
+                                      <div
+                                        className={`receiver-message-content ${
+                                          isGif ? "gif" : ""
+                                        } ${isImage ? "chat-image" : ""}`}
+                                        dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                                      />
                                     </div>
                                   </div>
                                 ) : (
@@ -394,7 +543,12 @@ export default function ChatBox(props: Props) {
                                       {formatMessageTime(msg.created)}
                                     </p>
                                     <div className="sender-message">
-                                      <p className="sender-message-content">{msg.content}</p>
+                                      <div
+                                        className={`sender-message-content ${isGif ? "gif" : ""} ${
+                                          isImage ? "chat-image" : ""
+                                        }`}
+                                        dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                                      />
                                     </div>
                                   </div>
                                 )}
@@ -472,6 +626,7 @@ export default function ChatBox(props: Props) {
                   </Tooltip>
                   <EmojiPicker
                     style={{
+                      width: "94%",
                       top: "255px",
                       left: "0px",
                       marginLeft: "14px",
@@ -485,6 +640,66 @@ export default function ChatBox(props: Props) {
                   />
                 </div>
               </div>
+
+              {message.length === 0 && (
+                <React.Fragment>
+                  <div className="chatbox-emoji-picker">
+                    <div className="chatbox-emoji">
+                      <Tooltip content={_t("Gif")}>
+                        <div className="emoji-icon" onClick={toggleGif}>
+                          {" "}
+                          {gifIcon}
+                        </div>
+                      </Tooltip>
+                      {shGif && (
+                        <GifPicker
+                          style={{
+                            width: "94%",
+                            top: "76px",
+                            left: 0,
+                            marginLeft: "14px",
+                            borderTopLeftRadius: "8px",
+                            borderTopRightRadius: "8px",
+                            borderBottomLeftRadius: "0px"
+                          }}
+                          gifImagesStyle={{
+                            width: "170px"
+                          }}
+                          shGif={true}
+                          changeState={(gifState) => {
+                            setShGif(gifState!);
+                          }}
+                          fallback={(e) => {
+                            handleGifSelection(e);
+                          }}
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <Tooltip content={"Image"}>
+                    <div
+                      className="chatbox-image"
+                      onClick={(e: React.MouseEvent<HTMLElement>) => {
+                        e.stopPropagation();
+                        const el = fileInput.current;
+                        if (el) el.click();
+                      }}
+                    >
+                      <div className="chatbox-image-icon">{chatBoxImageSvg}</div>
+                    </div>
+                  </Tooltip>
+
+                  <input
+                    onChange={fileInputChanged}
+                    className="file-input"
+                    ref={fileInput}
+                    type="file"
+                    accept="image/*"
+                    multiple={true}
+                    style={{ display: "none" }}
+                  />
+                </React.Fragment>
+              )}
 
               <Form
                 onSubmit={(e: React.FormEvent) => {

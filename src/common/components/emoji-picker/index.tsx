@@ -40,6 +40,7 @@ interface EmojiCacheItem {
 interface Props {
   fallback?: (e: string) => void;
   style?: {
+    width: string;
     top: string;
     left: string | number;
     marginLeft: string;

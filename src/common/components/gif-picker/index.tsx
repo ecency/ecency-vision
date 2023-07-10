@@ -11,6 +11,18 @@ interface Props {
   fallback?: (e: string) => void;
   shGif: boolean;
   changeState: (gifState?: boolean) => void;
+  style?: {
+    width: string;
+    top: string;
+    left: string | number;
+    marginLeft: string;
+    borderTopLeftRadius: string;
+    borderTopRightRadius: string;
+    borderBottomLeftRadius: string;
+  };
+  gifImagesStyle?: {
+    width: string;
+  };
 }
 
 interface State {
@@ -20,6 +32,20 @@ interface State {
   limit: string;
   offset: string;
   total_count: number;
+}
+
+interface GifPickerStyle {
+  width: string;
+  position?: "absolute" | "relative" | "fixed" | "static";
+  right: string | number;
+  zIndex: number;
+  borderBottomRightRadius: string;
+  borderBottomLeftRadius: string;
+  padding: string;
+}
+
+interface GifImageStyle {
+  width: string;
 }
 
 export default class GifPicker extends BaseComponent<Props> {
@@ -172,10 +198,15 @@ export default class GifPicker extends BaseComponent<Props> {
   };
 
   renderEmoji = (gifData: any[] | null) => {
+    const gifImageStyle: GifImageStyle = {
+      width: "200px",
+      ...(this.props.gifImagesStyle && this.props.gifImagesStyle)
+    };
     return gifData?.map((_gif, i) => {
       return (
         <div className="emoji gifs" key={_gif?.id || i}>
           <img
+            style={gifImageStyle}
             loading="lazy"
             src={_gif?.images?.fixed_height?.url}
             alt="can't fetch :("
@@ -194,8 +225,19 @@ export default class GifPicker extends BaseComponent<Props> {
       return null;
     }
 
+    const gifPickerStyle: GifPickerStyle = {
+      width: "430px",
+      position: "absolute",
+      right: "0",
+      zIndex: 12,
+      borderBottomRightRadius: "8px",
+      borderBottomLeftRadius: "8px",
+      padding: "14px 6px",
+      ...(this.props.style && this.props.style)
+    };
+
     return (
-      <div className="emoji-picker gif" onScroll={this.handleScroll}>
+      <div className="emoji-picker gif" style={gifPickerStyle} onScroll={this.handleScroll}>
         <SearchBox
           autoComplete="off"
           autoCorrect="off"
