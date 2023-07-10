@@ -12,7 +12,7 @@ import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 
-import { getFollowing, getFollowers, getAccounts } from "../../api/hive";
+import { getFollowing, getFollowers, getAccounts, getAccount } from "../../api/hive";
 import { searchFollowing, searchFollower, FriendSearchResult } from "../../api/search-api";
 
 import { _t } from "../../i18n";
@@ -20,6 +20,8 @@ import { _t } from "../../i18n";
 import accountReputation from "../../helper/account-reputation";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
+import { FilterFriends, FriendsActiveStats } from "../friends-filter";
+import moment, { Moment } from "moment";
 
 interface Friend {
   name: string;
@@ -38,7 +40,9 @@ interface ListState {
   loading: boolean;
   data: Friend[];
   results: Friend[];
+  filtered: Friend[];
   hasMore: boolean;
+  isFiltered: boolean;
   search: string;
 }
 
@@ -49,7 +53,9 @@ export class List extends BaseComponent<ListProps, ListState> {
     loading: false,
     data: [],
     results: [],
+    filtered: [],
     hasMore: false,
+    isFiltered: false,
     search: ""
   };
 
@@ -173,6 +179,58 @@ export class List extends BaseComponent<ListProps, ListState> {
     }
   };
 
+  filterList = async (type: string) => {
+      // filter data or results
+    const { results, data } = this.state;
+    console.log(type);
+    // const allData = await this.fetch();
+    const currentTime = moment();
+  
+    const filtered = [];
+  
+    for (const item of data) {
+      const followerAccount = await getAccount(item.name);
+      const lastActive = moment.max(
+        moment(followerAccount?.last_vote_time),
+        moment(followerAccount?.last_post),
+        moment(followerAccount?.created)
+      );
+        // This should be properly constructed
+      const diffInYears = currentTime.diff(lastActive, "years");
+      const diffInMonths = currentTime.diff(lastActive, "months");
+      const diffInWeeks = currentTime.diff(lastActive, "weeks");
+      const diffInDays = currentTime.diff(lastActive, "days");
+      console.log(diffInYears);
+  
+      const filter =
+        type === "Over 2 years"
+          ? diffInYears >= 2
+          : type === "1 year ago"
+          ? diffInYears >= 1 && diffInYears < 2
+          : type === "6 months ago"
+          ? lastActive.isAfter(moment().subtract(6, "months")) &&
+            lastActive.isBefore(moment().subtract(6, "months").endOf("month"))
+          : type === "Last month"
+          ? lastActive.isAfter(moment().subtract(1, "month")) &&
+            lastActive.isBefore(moment().subtract(1, "month").endOf("month"))
+          : type === "Last week"
+          ? lastActive.isAfter(moment().subtract(1, "week")) &&
+            lastActive.isBefore(moment().subtract(1, "week").endOf("week"))
+          : null;
+  
+      if (filter) {
+        filtered.push(item);
+      }
+    }
+  
+    console.log("allData:", data);
+    console.log("filtered:", filtered);
+  
+    this.stateSet({ filtered, isFiltered: true });
+    console.log("this.state.filtered:", this.state.filtered);
+  };
+  
+
   renderList = (loading: boolean, list: Friend[]) => {
     return (
       <>
@@ -197,6 +255,9 @@ export class List extends BaseComponent<ListProps, ListState> {
                 )}
               </div>
             </div>
+            <div className="last-seen mt-1">
+              <FriendsActiveStats item={item}/>
+            </div>
           </div>
         ))}
       </>
@@ -204,7 +265,7 @@ export class List extends BaseComponent<ListProps, ListState> {
   };
 
   render() {
-    const { loading, data, results, hasMore, search } = this.state;
+    const { loading, data, results, hasMore, search, filtered, isFiltered } = this.state;
 
     const inSearch = search.length >= 3;
 
@@ -216,6 +277,10 @@ export class List extends BaseComponent<ListProps, ListState> {
               <LinearProgress />
             </div>
           )}
+
+          <div>
+            <FilterFriends data={data} filter={this.filterList}/>
+          </div>
 
           <div className="friends-list">
             <div className="friend-search-box">
@@ -229,7 +294,8 @@ export class List extends BaseComponent<ListProps, ListState> {
 
             <div className="list-body">
               {inSearch && this.renderList(loading, results)}
-              {!inSearch && this.renderList(loading, data)}
+              {!inSearch && !isFiltered && this.renderList(loading, data)}
+              {isFiltered && this.renderList(loading, filtered)}
             </div>
           </div>
 
