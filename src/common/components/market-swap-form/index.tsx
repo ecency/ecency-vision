@@ -16,6 +16,7 @@ import { checkSvg, swapSvg } from "../../img/svg";
 import { MarketSwapFormSuccess } from "./market-swap-form-success";
 import "./index.scss";
 import { classNameObject } from "../../helper/class-name-object";
+import { getCurrencyTokenRate } from "../../api/private-api";
 
 export interface Props {
   activeUser: ActiveUser | null;
@@ -99,7 +100,8 @@ export const MarketSwapForm = ({
     setMarketRate(await getHiveMarketRate(fromAsset));
     setDisabled(false);
 
-    const [fromUsdRate, toUsdRate] = await getCGMarket(fromAsset, toAsset);
+    const fromUsdRate = await getCurrencyTokenRate("usd", fromAsset);
+    const toUsdRate = await getCurrencyTokenRate("usd", toAsset);
     setUsdFromMarketRate(fromUsdRate);
     setUsdToMarketRate(toUsdRate);
   };
