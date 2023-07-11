@@ -64,6 +64,10 @@ export const MarketSwapForm = ({
   }, []);
 
   useEffect(() => {
+    fetchMarket();
+  }, [global.currency]);
+
+  useEffect(() => {
     if (activeUser) setBalance(getBalance(fromAsset, activeUser));
   }, [activeUser]);
 
@@ -100,10 +104,10 @@ export const MarketSwapForm = ({
     setMarketRate(await getHiveMarketRate(fromAsset));
     setDisabled(false);
 
-    const { [fromAsset.toLowerCase()]: fromUsdRate, [toAsset.toLowerCase()]: toUsdRate } =
-      await getCurrencyRates();
-    setUsdFromMarketRate(fromUsdRate.quotes.usd.price);
-    setUsdToMarketRate(toUsdRate.quotes.usd.price);
+    const fromUsdRate = await getCurrencyTokenRate(global.currency, fromAsset);
+    const toUsdRate = await getCurrencyTokenRate(global.currency, toAsset);
+    setUsdFromMarketRate(fromUsdRate);
+    setUsdToMarketRate(toUsdRate);
   };
 
   const submit = () => {
