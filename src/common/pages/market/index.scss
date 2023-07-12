@@ -291,7 +291,7 @@ thead, .pagination {
             @apply bg-light-300;
 
             @include themify(night) {
-                background: $dark;
+                @apply bg-dark-default;
             }
         }
 

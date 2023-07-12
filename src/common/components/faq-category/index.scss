@@ -5,7 +5,7 @@
 
 .faq-container.section-container {
   @include themify(night) {
-    background: $dark;
+    @apply bg-dark-default;
   }
 }
 

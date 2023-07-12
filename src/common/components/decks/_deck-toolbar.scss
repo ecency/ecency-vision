@@ -63,7 +63,7 @@
           }
 
           @include themify(night) {
-            background-color: $dark;
+            @apply bg-dark-default;
           }
 
           svg {
@@ -131,7 +131,7 @@
       }
 
       @include themify(night) {
-        background-color: $dark;
+        @apply bg-dark-default;
         @apply text-gray-500;
       }
     }
@@ -184,7 +184,7 @@
         }
 
         @include themify(night) {
-          background-color: $dark;
+          @apply bg-dark-default;
         }
 
         svg {

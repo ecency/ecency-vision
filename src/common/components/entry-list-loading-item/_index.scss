@@ -20,7 +20,8 @@
   }
 
   @include themify(night) {
-    border-bottom: 1px solid $dark;
+    border-bottom: 1px solid;
+    @apply border-dark-default;
   }
 
   .item-header,
@@ -34,7 +35,7 @@
     }
 
     @include themify(night) {
-      background: $dark;
+      @apply bg-dark-default;
     }
   }
 

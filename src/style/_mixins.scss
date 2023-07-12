@@ -440,7 +440,7 @@
       }
 
       @include themify(night) {
-        background: lighten($dark-six, 1);
+        @apply bg-dark-600;
       }
 
       .item-main {

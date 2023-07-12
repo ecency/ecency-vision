@@ -23,7 +23,7 @@
     }
 
     @include themify(night) {
-      background-color: $dark;
+      @apply bg-dark-default;
     }
   }
 

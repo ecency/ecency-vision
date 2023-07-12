@@ -156,7 +156,7 @@
         }
 
         @include themify(night) {
-          background: lighten($dark-six, 2);
+          @apply bg-dark-600;
         }
       }
     }

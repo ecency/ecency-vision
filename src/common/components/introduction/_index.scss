@@ -16,7 +16,7 @@
   width: 55vw;
   @apply bg-white;
   @include themify(night){
-    background-color: $dark;
+    @apply bg-dark-default;
   }
   left: 50%;
   top: 100px;
@@ -54,7 +54,7 @@
   border-bottom: 83px solid;
   @apply border-white;
   @include themify(night) {
-    border-bottom-color: $dark;
+    @apply border-b-dark-default;
   }
   content: "";
   position: absolute;
@@ -68,7 +68,7 @@
     border-bottom: 40px solid;
     @apply border-white;
     @include themify(night) {
-      border-bottom-color: $dark;
+      @apply border-b-dark-default;
     }
     content: "";
     position: absolute;

@@ -203,7 +203,8 @@ a[target="_blank"] {
 .theme-night {
   .rdtPicker {
     @apply bg-blue-metallic;
-    border: 1px solid $dark;
+    border: 1px solid;
+    @apply border-dark-default;
   }
 
   .rdtPicker td.rdtDay:hover,
@@ -238,7 +239,8 @@ a[target="_blank"] {
   }
 
   .rdtPicker th {
-    border-bottom: 1px solid $dark;
+    border-bottom: 1px solid;
+    @apply border-dark-default;
   }
 
   .rdtPicker thead tr:first-of-type th:hover {
@@ -246,7 +248,8 @@ a[target="_blank"] {
   }
 
   .rdtPicker tfoot {
-    border-top: 1px solid $dark;
+    border-top: 1px solid;
+    @apply border-dark-default;
   }
 
   .rdtPicker button:hover {

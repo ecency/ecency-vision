@@ -22,7 +22,7 @@
   }
 
   @include themify(night) {
-    background-color: lighten($dark-six, 10);
+    @apply bg-dark-600-010-light;
   }
 
   .btn-update {

@@ -40,7 +40,7 @@
 
     @include themify(day) {
       @apply bg-light-300;
-      color: $dark;
+      @apply text-dark-default;
     }
 
     @include themify(night) {

@@ -41,7 +41,7 @@
         }
 
         @include themify(night) {
-          background-color: $dark;
+          @apply bg-dark-default;
         }
       }
 
@@ -89,7 +89,7 @@
         }
 
         @include themify(night) {
-          background-color: $dark;
+          @apply bg-dark-default;
         }
 
         &.selected {

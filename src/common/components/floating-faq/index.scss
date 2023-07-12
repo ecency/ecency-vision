@@ -121,7 +121,7 @@
     }
 
     @include themify(night) {
-      background: $dark;
+      @apply bg-dark-default;
     }
   }
 
@@ -182,7 +182,7 @@
 
     @include themify(day) {
       @apply bg-light-300;
-      color: $dark-six;
+      @apply text-dark-600;
     }
 
     @include themify(night) {

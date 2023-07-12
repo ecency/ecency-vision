@@ -32,7 +32,7 @@
     }
 
     @include themify(night) {
-      background: lighten($dark-six, 4);
+      @apply bg-dark-600;
     }
 
     .bottom-toolbar {
@@ -78,7 +78,7 @@
           }
 
           @include themify(night) {
-            background: lighten($dark-six, 10);
+            @apply bg-dark-600-010-light;
           }
         }
 

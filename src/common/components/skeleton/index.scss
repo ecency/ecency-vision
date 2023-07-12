@@ -8,7 +8,7 @@
   border-radius: 0.25rem;
 
   @include themify(night) {
-    background-color: $dark;
+    @apply bg-dark-default;
   }
 
   @include themify(day) {

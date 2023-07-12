@@ -42,7 +42,7 @@
     }
 
     @include themify(night) {
-      color: $dark-six;
+      @apply text-dark-600;
     }
 
     svg {

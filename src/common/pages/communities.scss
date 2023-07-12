@@ -15,7 +15,7 @@
     }
 
     @include themify(night) {
-      background-color: lighten($dark-six, 4);
+      @apply bg-dark-600;
     }
 
     @media (min-width: $md-break) {
@@ -108,8 +108,8 @@
       }
 
       @include themify(night) {
-        border: 1px solid darken($dark-six, 10);
-        background: darken($dark-six, 2);
+        @apply border-dark-600-010;
+        @apply bg-dark-600;
       }
     }
   }

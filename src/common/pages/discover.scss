@@ -33,7 +33,7 @@
     }
 
     @include themify(night) {
-      background: $dark;
+      @apply bg-dark-default;
     }
   }
 
@@ -46,7 +46,7 @@
     }
 
     @include themify(night) {
-      background: $dark;
+      @apply bg-dark-default;
     }
     @media (min-width: $lg-break) {
       margin-left: 10px;

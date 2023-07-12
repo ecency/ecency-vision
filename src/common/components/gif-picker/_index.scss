@@ -71,7 +71,8 @@
             }
 
             @include themify(night) {
-              border-bottom: 2px solid lighten($dark-six, 14);
+              border-bottom: 2px solid;
+              @apply border-dark-600-010-light;
             }
           }
         }

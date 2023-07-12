@@ -49,7 +49,8 @@
 
     @include themify(night) {
       @apply bg-dark-200;
-      border: 2px solid lighten($dark-six, 4);
+      border: 2px solid;
+      @apply border-dark-600;
     }
 
     .title {

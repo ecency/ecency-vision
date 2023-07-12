@@ -465,7 +465,7 @@
   }
 
   @include themify(night) {
-    border: 1px solid $dark;
-
- }
+    border: 1px solid;
+    @apply border-dark-default;
+  }
 }

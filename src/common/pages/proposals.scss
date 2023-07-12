@@ -106,7 +106,7 @@
     margin-bottom: 30px;
 
     @include themify(night) {
-      background: $dark-six;
+      @apply bg-dark-600;
     }
 
     .proposal-list-header {

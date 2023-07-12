@@ -307,7 +307,7 @@
               @apply border-light-400;
             }
             @include themify(night) {
-              border-color: lighten($dark-six, 12);
+              @apply border-dark-600-010-light;
             }
           }
         }

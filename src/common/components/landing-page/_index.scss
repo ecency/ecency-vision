@@ -425,7 +425,7 @@
     -ms-flex-align: center;
     align-items: center;
     @include themify(night) {
-      background-color: $dark-six;
+      @apply bg-dark-600;
     }
     @include themify(day) {
       @apply bg-blue-faded;
