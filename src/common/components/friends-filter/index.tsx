@@ -1,41 +1,6 @@
-import moment, { Moment } from 'moment'
-import React, { useEffect, useState } from 'react'
-import { getAccount } from '../../api/hive'
-import DropDown, { MenuItem } from "../dropdown";
+import React, { useState } from 'react'
+import DropDown from "../dropdown";
 import { _t } from '../../i18n';
-
-export const FriendsActiveStats = (props: any) => {
-    const { item } = props
-
-    const [lastActive, setLAstActive] = useState("");
-    const [type, setType] = useState("")
-
-    useEffect(()=> {
-        getFollowerLastActive();
-    },[])
-
-    const getFollowerLastActive = async () => {
-        let lastActive: Moment;
-            const followerAccount = await getAccount(item.name)
-            .then((data: any)=>  data)
-            .catch((err: any) => console.log(err))
-          
-            const lastVoteTime: Moment = moment(followerAccount?.last_vote_time);
-            const lastPost: Moment = moment(followerAccount?.last_post);
-            const created: Moment = moment(followerAccount?.created);
-          
-             lastActive = moment.max(lastVoteTime, lastPost, created);
-          
-            console.log(lastActive.fromNow());
-        
-            setLAstActive(lastActive.fromNow());
-    }
-  return (
-    <div onClick={() => getFollowerLastActive()}>
-        <a  href="#">Last active: {lastActive}</a>
-    </div>
-  )
-}
 
 export const FilterFriends = (props: any) => {
 
@@ -60,43 +25,40 @@ export const FilterFriends = (props: any) => {
                     }
                 },
                 {
-                    label: <span>Last week</span>,
+                    label: <span>Recently</span>,
                     onClick: () => {
-                    setLabel("Last week");
-                    filter("Last week");
+                    setLabel("Recently");
+                    filter("Recently");
                     }
                 },
                 {
-                    label: <span>Last month</span>,
+                    label: <span>This month</span>,
                     onClick: () => {
-                    const encoding = "encoding_ipfs" || "encoding_preparing"
-                    setLabel("Last month");
-                    filter("Last month");
+                    setLabel("This month");
+                    filter("This month");
                     }
                 },
                 {
-                    label: <span>6 months ago</span>,
+                    label: <span>This year</span>,
                     onClick: () => {
-                    setLabel("6 months ago");
-                    filter("6 months ago");
+                    setLabel("This year");
+                    filter("This year");
                     }
                 },
                 {
-                    label: <span>Last year</span>,
+                    label: <span>One year</span>,
                     onClick: () => {
-                    setLabel("1 year ago");
-                    filter("1 year ago");
+                    setLabel("One year");
+                    filter("One year");
                     }
                 },
                 {
-                    label: (
-                    <span>Over 2 years</span>
-                    ),
+                    label: <span>More than 1 year</span>,
                     onClick: () => {
-                    setLabel("Over 2 years");
-                    filter("Over 2 years");
+                    setLabel("More than 1 year");
+                    filter("More than 1 year");
                     }
-                },
+                }
                 ]
             };
             return (

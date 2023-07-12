@@ -20,12 +20,13 @@ import { _t } from "../../i18n";
 import accountReputation from "../../helper/account-reputation";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
-import { FilterFriends, FriendsActiveStats } from "../friends-filter";
-import moment, { Moment } from "moment";
+import { FilterFriends } from "../friends-filter";
+import moment from "moment";
 
 interface Friend {
   name: string;
   reputation: string | number;
+  lastSeen: string;
 }
 
 interface ListProps {
@@ -82,10 +83,18 @@ export class List extends BaseComponent<ListProps, ListState> {
         return getAccounts(accountNames).then((resp2) => resp2);
       })
       .then((accounts) =>
-        accounts.map((a) => ({
+        accounts.map((a) => {
+          const lastActive = moment.max(
+            moment(a?.last_vote_time),
+            moment(a?.last_post),
+            moment(a?.created)
+          );
+         return ({
           name: a.name,
-          reputation: a.reputation!
-        }))
+          reputation: a.reputation!,
+          lastSeen: lastActive.fromNow()
+        })
+      })
       );
   };
 
@@ -180,54 +189,65 @@ export class List extends BaseComponent<ListProps, ListState> {
   };
 
   filterList = async (type: string) => {
-      // filter data or results
-    const { results, data } = this.state;
-    console.log(type);
-    // const allData = await this.fetch();
-    const currentTime = moment();
-  
-    const filtered = [];
-  
-    for (const item of data) {
-      const followerAccount = await getAccount(item.name);
-      const lastActive = moment.max(
-        moment(followerAccount?.last_vote_time),
-        moment(followerAccount?.last_post),
-        moment(followerAccount?.created)
-      );
-        // This should be properly constructed
-      const diffInYears = currentTime.diff(lastActive, "years");
-      const diffInMonths = currentTime.diff(lastActive, "months");
-      const diffInWeeks = currentTime.diff(lastActive, "weeks");
-      const diffInDays = currentTime.diff(lastActive, "days");
-      console.log(diffInYears);
-  
-      const filter =
-        type === "Over 2 years"
-          ? diffInYears >= 2
-          : type === "1 year ago"
-          ? diffInYears >= 1 && diffInYears < 2
-          : type === "6 months ago"
-          ? lastActive.isAfter(moment().subtract(6, "months")) &&
-            lastActive.isBefore(moment().subtract(6, "months").endOf("month"))
-          : type === "Last month"
-          ? lastActive.isAfter(moment().subtract(1, "month")) &&
-            lastActive.isBefore(moment().subtract(1, "month").endOf("month"))
-          : type === "Last week"
-          ? lastActive.isAfter(moment().subtract(1, "week")) &&
-            lastActive.isBefore(moment().subtract(1, "week").endOf("week"))
-          : null;
-  
-      if (filter) {
-        filtered.push(item);
-      }
+    this.stateSet({ loading: true, data: [], hasMore: false });
+    let data: Friend[];
+
+    try {
+      data = await this.fetch();
+    } catch (e) {
+      data = [];
     }
+    const currentTime = new Date();
+
+    const filteredData = data.filter(item => {
+    const lastSeenTime = new Date(this.formatTimeDIfference(item.lastSeen));
+
+    const timeDifference = currentTime.getTime() - lastSeenTime.getTime();
+
+    const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+    const monthsDifference = Math.ceil(daysDifference / 30);
+    const yearsDifference = Math.ceil(daysDifference / 365);
+
+    console.log(currentTime.getTime())
+    console.log(lastSeenTime.getTime())
+    console.log(item.name, daysDifference)
+
+    return (
+      (type === "Recently" && daysDifference < 7) ||
+      (type === "This month" && daysDifference > 7 && daysDifference < 30) || 
+      (type === "This year" && daysDifference >= 30 && daysDifference < 360) ||
+      (type === "One year" && (daysDifference === 360 || yearsDifference === 1)) ||
+      (type === "More than 1 year" && daysDifference > 360)
+    );
+  });
+
+  this.stateSet({filtered: filteredData, isFiltered: true, loading: false})
+  };
+
+  formatTimeDIfference = (timeString: string): number => {
+    const currentTime = new Date();
+    const [value, unit] = timeString.split(" ");
+    let milliseconds = 0;
   
-    console.log("allData:", data);
-    console.log("filtered:", filtered);
+    if (unit.includes("second")) {
+      milliseconds = parseInt(value) * 1000;
+    } else if (unit.includes("minute")) {
+      milliseconds = parseInt(value) * 60 * 1000;
+    } else if (unit.includes("hour")) {
+      milliseconds = parseInt(value) * 60 * 60 * 1000;
+    } else if (unit.includes("day")) {
+      milliseconds = parseInt(value) * 24 * 60 * 60 * 1000;
+    } else if (unit.includes("week")) {
+      milliseconds = parseInt(value) * 7 * 24 * 60 * 60 * 1000;
+    } else if (unit.includes("month")) {
+      milliseconds = parseInt(value) * 30 * 24 * 60 * 60 * 1000;
+    } else if (unit.includes("year")) {
+      milliseconds = parseInt(value) * 365 * 24 * 60 * 60 * 1000;
+    }
+
+    const difference = currentTime.getTime() - milliseconds;
   
-    this.stateSet({ filtered, isFiltered: true });
-    console.log("this.state.filtered:", this.state.filtered);
+    return difference;
   };
   
 
@@ -256,7 +276,7 @@ export class List extends BaseComponent<ListProps, ListState> {
               </div>
             </div>
             <div className="last-seen mt-1">
-              <FriendsActiveStats item={item}/>
+              <a href="#">{item.lastSeen}</a>
             </div>
           </div>
         ))}
