@@ -20,7 +20,7 @@
   }
 
   @include themify(night) {
-    color: $pinkish-grey;
+    @apply text-gray-pinkish;
   }
 
   .author-avatar {
@@ -52,7 +52,7 @@
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
 
         .author-reputation {
@@ -102,11 +102,11 @@
           }
 
           @include themify(night) {
-            color: $pinkish-grey;
+            @apply text-gray-pinkish;
           }
 
           &:hover {
-            color: $dark-sky-blue;
+            @apply text-blue-dark-sky;
           }
         }
       }

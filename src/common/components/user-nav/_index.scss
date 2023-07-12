@@ -29,11 +29,11 @@
   }
 
   @include themify(day) {
-    background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
+    @apply bg-gradient-primary-day;
   }
 
   @include themify(night) {
-    background-image: linear-gradient(to left, $dark-indigo, $dusky-blue);
+    @apply bg-gradient-primary-night;
   }
 
   .user-wallet,
@@ -113,7 +113,7 @@
     }
 
     @include themify(night) {
-      background: $dark-two;
+      @apply bg-dark-200;
     }
 
     .label {
@@ -136,7 +136,7 @@
 
       .voting {
         margin-right: 6px;
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
       }
 
       .downVoting {

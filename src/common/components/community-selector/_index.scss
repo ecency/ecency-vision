@@ -37,7 +37,7 @@
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      background: $metallic-blue;
+      @apply bg-blue-metallic;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -87,7 +87,7 @@
         @include user-grid-list(1, 1, 2);
 
         .list-body .list-item:hover .item-main .item-info .item-name {
-          color: $dark-sky-blue !important;
+          @apply text-blue-dark-sky;
           height: fit-content;
         }
         .list-body {

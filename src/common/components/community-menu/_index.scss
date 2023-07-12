@@ -14,7 +14,8 @@
   }
 
   @include themify(night) {
-    border-bottom: 1px solid $dark-two;
+    border-bottom: 1px solid;
+    @apply border-dark-200;
   }
 
   .menu-items {
@@ -40,7 +41,7 @@
       }
 
       &:hover {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
       }
 
       @media (min-width: $sm-break) {
@@ -60,8 +61,9 @@
       }
 
       &.selected-item {
-        border-bottom: 2px solid $dark-sky-blue;
-        color: $dark-sky-blue;
+        border-bottom: 2px solid;
+        @apply border-blue-dark-sky;
+        @apply text-blue-dark-sky;
         font-weight: 700;
 
         .dropdown-btn {

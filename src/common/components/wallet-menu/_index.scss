@@ -48,7 +48,7 @@
     }
 
     @include themify(night) {
-      background: $dark-two;
+      @apply bg-dark-200;
       border: 2px solid lighten($dark-six, 4);
     }
 
@@ -65,7 +65,7 @@
       display: flex;
       align-items: center;
       opacity: 0.4;
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
 
       img, svg {
         width: 32px;
@@ -73,19 +73,19 @@
     }
 
     &.hive {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     &.ecency {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     &.spk {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     &.active, &:hover {
-      border-color: $dark-sky-blue;
+      @apply border-blue-dark-sky;
 
       .platform-logo {
         opacity: 1;

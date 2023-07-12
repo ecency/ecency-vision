@@ -27,7 +27,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
       @apply text-white;
       position: absolute;
       z-index: 1;
@@ -65,12 +65,12 @@
       font-size: 22px;
       font-weight: 600;
       margin-bottom: 18px;
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     .about {
       font-weight: 300;
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     .nsfw {
@@ -116,7 +116,7 @@
         }
 
         @include themify(night) {
-          background: $dark-two;
+          @apply bg-dark-200;
           @apply text-silver;
         }
 
@@ -170,7 +170,8 @@
       }
 
       @include themify(night) {
-        border-top: 1px solid $dark-two;
+        border-top: 1px solid;
+        @apply border-dark-200;
       }
     }
 

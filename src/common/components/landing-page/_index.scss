@@ -156,11 +156,11 @@
       line-height: 37px;
     }
     @include themify(day) {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     @include themify(night) {
-      color: $pinkish-grey;
+      @apply text-gray-pinkish;
     }
   }
   h2 {
@@ -173,10 +173,10 @@
       line-height: 37px;
     }
     @include themify(day) {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
     @include themify(night) {
-      color: $pinkish-grey;
+      @apply text-gray-pinkish;
     }
   }
   p {
@@ -185,7 +185,7 @@
     line-height: 135%;
     margin-bottom: 8px;
     @include themify(night) {
-      color: $dark-grey;
+      @apply text-gray-light;
     }
     @media (max-width: $md-break) {
       font-weight: 300;
@@ -233,12 +233,12 @@
     background-size: cover;
     background-position: top;
     @include themify(day) {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       background-image: url('https://ecency.com/assets/illustration-hero-day.webp');
     }
     @include themify(night) {
       background-image: url('https://ecency.com/assets/illustration-hero.webp');
-      color: $pinkish-grey;
+      @apply text-gray-pinkish;
     }
     @media (max-width: $lg-break) {
       background-image: none !important;
@@ -428,7 +428,7 @@
       background-color: $dark-six;
     }
     @include themify(day) {
-      background-color: $faded-blue;
+      @apply bg-blue-faded;
     }
     @media (max-width: $lg-break) {
       height: 700px !important;
@@ -497,12 +497,12 @@
         margin-top: -7rem;
       }
       @include themify(night) {
-        color: $pinkish-grey;
+        @apply text-gray-pinkish;
       }
     }
     p {
       @include themify(night) {
-        color: $dark-grey;
+        @apply text-gray-light;
       }
     }
     height: auto;
@@ -1355,7 +1355,7 @@
           z-index: 2;
           h2 {
             @include themify(night) {
-              color: $pinkish-grey;
+              @apply text-gray-pinkish;
             }
             @include themify(day) {
               color: $blue;
@@ -1370,7 +1370,7 @@
             align-items: center;
             line-height: 2;
             @include themify(night) {
-              color: $dark-grey;
+              @apply text-gray-light;
             }
             @include themify(day) {
               color: $blue;
@@ -1393,7 +1393,7 @@
             align-items: center;
             line-height: 2;
             @include themify(night) {
-              color: $dark-grey;
+              @apply text-gray-light;
             }
             @include themify(day) {
               color: $blue;
@@ -1557,12 +1557,12 @@
                 align-items: center;
         h2 {
           @include themify(night) {
-            color: $pinkish-grey;
+            @apply text-gray-pinkish;
           }
         }
         p {
           @include themify(night) {
-            color: $dark-grey;
+            @apply text-gray-light;
           }
           b {
             font-weight: 700;
@@ -1734,7 +1734,7 @@
       background-color: #171e26;
     }
     @include themify(day) {
-      background-color: $white
+      @apply bg-white;
     }
     .part-top {
       height: 750px;
@@ -1915,7 +1915,7 @@
           font-size: 18px;
           line-height: 27px;
           @include themify(night) {
-            color: $dark-grey;
+            @apply text-gray-light;
           }
           @include themify(day) {
             @apply text-white;
@@ -1977,7 +1977,7 @@
             flex-direction: column;
             p{
               @include themify(night) {
-                color: $pinkish-grey;
+                @apply text-gray-pinkish;
               }
               @include themify(day) {
                 @apply text-white;
@@ -1988,7 +1988,7 @@
               font-size: 43px;
               line-height: 51px;
               @include themify(night) {
-                color: $pinkish-grey;
+                @apply text-gray-pinkish;
               }
               @include themify(day) {
                 color: $blue;
@@ -2004,7 +2004,7 @@
               -ms-flex-align: center;
               align-items: center;
               input {
-                background: $dark-sky-blue;
+                @apply bg-blue-dark-sky;
                 -webkit-backdrop-filter: blur(500px);
                 backdrop-filter: blur(500px);
                 border-radius: 50px 0 0 50px;
@@ -2034,10 +2034,9 @@
                 }
               }
               button {
-                background: $dusk-blue;
+                @apply bg-blue-dusk;
                 border-radius: 0 50px 50px 0;
                 height: 50px;
-                -webkit-box-sizing: border-box;
                 box-sizing: border-box;
                 outline: none;
                 border: none;
@@ -2209,7 +2208,7 @@
             h2 {
               text-align: start;
               @include themify(night) {
-                color: $pinkish-grey;
+                @apply text-gray-pinkish;
               }
               @include themify(day) {
                 @apply text-white;
@@ -2378,7 +2377,7 @@
           font-size: 31px;
           line-height: 37px;
           @include themify(night) {
-            color: $pinkish-grey;
+            @apply text-gray-pinkish;
           }
         }
 

@@ -15,7 +15,7 @@
   }
 
   @include themify(night) {
-    background: $dark-grey-blue;
+    @apply bg-blue-dark-grey;
   }
 }
 
@@ -34,7 +34,7 @@
   }
 
   &:hover {
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
   }
 }
 
@@ -67,11 +67,11 @@
       border-radius: 6px;
 
       @include themify(day) {
-        background: lighten($dark-sky-blue, 42);
+        @apply bg-blue-dark-sky-040;
       }
 
       @include themify(night) {
-        background: $dark-grey-blue;
+        @apply bg-blue-dark-grey;
       }
 
       .cross-post-info {
@@ -122,7 +122,7 @@
       }
 
       @include themify(night) {
-        background-color: $dark-grey-blue;
+        @apply bg-blue-dark-grey;
         @apply text-light-500;
       }
     }
@@ -158,7 +158,7 @@
       }
 
       @include themify(night) {
-        background-color: $dark-grey-blue;
+        @apply bg-blue-dark-grey;
         @apply text-light-500;
       }
 
@@ -202,7 +202,8 @@
       }
 
       @include themify(night) {
-        border-bottom: 1px solid $dark-two;
+        border-bottom: 1px solid;
+        @apply border-dark-200;
       }
 
       h1.entry-title {
@@ -219,7 +220,7 @@
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
       }
 
@@ -243,7 +244,7 @@
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
 
         .author-avatar {
@@ -275,7 +276,7 @@
               }
 
               @include themify(night) {
-                color: $pinkish-grey;
+                @apply text-gray-pinkish;
               }
 
               .author-reputation {
@@ -325,11 +326,11 @@
                 }
 
                 @include themify(night) {
-                  color: $pinkish-grey;
+                  @apply text-gray-pinkish;
                 }
 
                 &:hover {
-                  color: $dark-sky-blue;
+                  @apply text-blue-dark-sky;
                 }
               }
             }
@@ -410,7 +411,7 @@
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
 
         .separator {
@@ -442,7 +443,7 @@
           }
 
           @include themify(night) {
-            color: $pinkish-grey;
+            @apply text-gray-pinkish;
           }
 
           .author-reputation {

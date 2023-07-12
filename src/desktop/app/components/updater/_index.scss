@@ -1,7 +1,8 @@
 @import "src/style/vars_mixins";
 
 .updater {
-  border-top: 3px solid $dark-sky-blue;
+  border-top: 3px solid;
+  @apply border-blue-dark-sky;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   bottom: 0;

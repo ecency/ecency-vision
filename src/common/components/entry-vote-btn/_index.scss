@@ -101,7 +101,7 @@
     }
 
     @include themify(night) {
-      background: $gunmetal;
+      @apply bg-gunmetal;
     }
   }
 
@@ -130,7 +130,7 @@
     }
 
     @include themify(night) {
-      background: $gunmetal;
+      @apply bg-gunmetal;
     }
   }
 
@@ -146,7 +146,7 @@
     }
 
     @include themify(night) {
-      background: $gunmetal;
+      @apply bg-gunmetal;
     }
   }
 
@@ -186,7 +186,7 @@
     }
 
     @include themify(night) {
-      background: $gunmetal;
+      @apply bg-gunmetal;
     }
   }
 
@@ -199,7 +199,7 @@
     }
 
     @include themify(night) {
-      background: $gunmetal;
+      @apply bg-gunmetal;
     }
   }
 
@@ -226,15 +226,15 @@
 
 .voting-controls-up {
   input[type="range"]::-webkit-slider-thumb {
-    background: $dark-sky-blue;
+    @apply bg-blue-dark-sky;
   }
 
   input[type="range"]::-moz-range-thumb {
-    background: $dark-sky-blue;
+    @apply bg-blue-dark-sky;
   }
 
   input[type="range"]::-ms-thumb {
-    background: $dark-sky-blue;
+    @apply bg-blue-dark-sky;
   }
 }
 
@@ -259,7 +259,7 @@
 
 .tooltip-vote .tooltiptext {
   width: 32vw;
-  color: $dark-two;
+  @apply text-dark-200;
   text-align: center;
   border-radius: 6px;
   padding: 10px;
@@ -300,75 +300,75 @@
   @include themify(day) {
     box-shadow: 0px 1px 4px 1px #e7e7e7;
     @apply bg-white;
-    color: $dark-two;
+    @apply text-dark-200;
   }
 
   @include themify(night) {
     box-shadow: 0px 1px 4px 1px $dark;
-    background-color: $dark-two;
+    @apply bg-dark-200;
     @apply text-white;
   }
 }
 
 .primary-btn {
-  color: $dark-sky-blue !important;
+  @apply text-blue-dark-sky;
   background-color: $transparent !important;
 }
 
 .primary-btn-vote {
   @include themify(night) {
-    color: $dark-sky-blue !important;
+    @apply text-blue-dark-sky;
     background-color: $transparent !important;
   }
 
   @include themify(day) {
-    color: $dark-sky-blue !important;
-    background-color: $white !important;
+    @apply text-blue-dark-sky;
+    @apply bg-white;
   }
 
   .btn-inner {
     @include themify(night) {
-      color: $dark-sky-blue !important;
+      @apply text-blue-dark-sky;
       background-color: $transparent !important;
     }
 
     @include themify(day) {
-      color: $dark-sky-blue !important;
-      background-color: $white !important;
+      @apply text-blue-dark-sky;
+      @apply bg-white;
     }
   }
 
   &:hover {
-    background-color: $dark-sky-blue !important;
-    color: $white !important;
+    @apply bg-blue-dark-sky;
+    @apply text-white;
 
     .btn-inner {
-      color: $white !important;
-      background-color: $dark-sky-blue !important;
+      @apply text-white;
+      @apply bg-blue-dark-sky;
     }
   }
 }
 
 .primary-btn-done {
   @include themify(night) {
-    color: $white !important;
-    background-color: $dark-sky-blue !important;
+    @apply text-white;
+    @apply bg-blue-dark-sky;
   }
 
   @include themify(day) {
-    color: $white !important;
-    background-color: $dark-sky-blue !important;
+    @apply text-white;
+    @apply bg-blue-dark-sky;
   }
 }
 
 .secondary-btn-done {
   @include themify(night) {
-    color: $white !important;
+    @apply text-white;
     @apply bg-red-020;
   }
 
   @include themify(day) {
-    color: $white !important;
+    @apply text-white;
     @apply bg-red-020;
   }
 }
@@ -381,7 +381,7 @@
   }
 
   @include themify(day) {
-    background-color: $white !important;
+    @apply bg-white;
   }
 
   svg {
@@ -396,20 +396,20 @@
       background-color: $transparent !important;
     }
     @include themify(day) {
-      background-color: $white !important;
+      @apply bg-white;
     }
   }
 
   &:hover {
     @apply bg-red-020;
-    color: $white !important;
+    @apply text-white;
 
     .btn-inner {
-      color: $white !important;
+      @apply text-white;
       @apply bg-red-020;
 
       svg {
-        fill: $white !important;
+        @apply fill-white;
       }
     }
   }

@@ -24,12 +24,13 @@
     }
 
     @include themify(night) {
-      border-bottom: solid 1px $dark-two;
+      border-bottom: solid 1px;
+      @apply border-dark-200;
     }
 
     .list-filter {
       padding-left: 16px;
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -78,11 +79,12 @@
     }
 
     @include themify(night) {
-      border-color: $dark-two;
+      @apply border-dark-200;
     }
 
     .status-button {
-      border: 1px solid $dark-sky-blue;
+      border: 1px solid;
+      @apply border-blue-dark-sky;
       margin-left: 10px;
       padding: 3px 10px;
       border-radius: 20px;
@@ -104,7 +106,7 @@
     }
 
     .status-button.active {
-      background-color: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
     }
 
     .select-buttons {
@@ -115,7 +117,8 @@
       align-items: center;
       .select-svg {
         cursor: pointer;
-        border: 1px solid $dark-sky-blue;
+        border: 1px solid;
+        @apply border-blue-dark-sky;
         padding: 1px;
 
         svg {
@@ -125,7 +128,7 @@
         }
 
         &.active {
-          background-color: $dark-sky-blue;
+          @apply bg-blue-dark-sky;
 
           svg {
             @apply text-white;
@@ -170,9 +173,10 @@
       }
 
       @include themify(night) {
-        border-bottom: 1px solid $metallic-blue;
-        border-top: 1px solid $metallic-blue;
-        color: $powder-blue;
+        border-bottom: 1px solid;
+        border-top: 1px solid;
+        @apply border-blue-metallic;
+        @apply text-blue-powder;
       }
 
       &:first-child {
@@ -195,7 +199,7 @@
         }
 
         @include themify(night) {
-          background-color: darken($metallic-blue, 16);
+          @apply bg-blue-metallic-20;
         }
       }
 
@@ -225,7 +229,7 @@
           }
 
           .mark-read {
-            background: $dark-sky-blue;
+            @apply bg-blue-dark-sky;
             border-radius: 50%;
             cursor: pointer;
             height: 8px;
@@ -258,10 +262,10 @@
           }
 
           @include themify(night) {
-            color: $pinkish-grey;
+            @apply text-gray-pinkish;
 
             a {
-              color: $pinkish-grey;
+              @apply text-gray-pinkish;
             }
           }
 
@@ -324,7 +328,7 @@
             }
 
             .follow-label {
-              background: $dark-sky-blue;
+              @apply bg-blue-dark-sky;
             }
 
             .unfollow-label {

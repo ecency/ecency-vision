@@ -44,8 +44,8 @@
     }
 
     @include themify(night) {
-      background: $dark-indigo;
       @apply text-light-400;
+      @apply bg-indigo-dark;
     }
 
     svg {
@@ -106,7 +106,7 @@
       }
 
       @include themify(night) {
-        background: $dark-two;
+        @apply bg-dark-200;
       }
 
       .filler {
@@ -119,7 +119,7 @@
           @apply bg-red-020;
         }
         &.info {
-          background-color: $dark-sky-blue;
+          @apply bg-blue-dark-sky;
         }
       }
     }
@@ -151,7 +151,7 @@
 
   .feedback-info {
     svg {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
   }
 }

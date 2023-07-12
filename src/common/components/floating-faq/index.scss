@@ -60,7 +60,7 @@
   }
 
   @include themify(night) {
-    background: $dark-two;
+    @apply bg-dark-200;
   }
 
   .faq-welcome {
@@ -71,11 +71,11 @@
     @apply text-white;
 
     @include themify(day) {
-      background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
+      @apply bg-gradient-primary-day;
     }
 
     @include themify(night) {
-      background-image: linear-gradient(to left, $dark-indigo, $dusk-blue);
+      @apply bg-gradient-primary-night;
     }
 
     .faq-welcome-message {
@@ -88,12 +88,11 @@
       right: 1rem;
 
       @include themify(day) {
-        background: $dusk-blue;
+        @apply bg-blue-dusk;
         border: none;
       }
 
       @include themify(night) {
-        background: $dark-indigo;
         border: none;
       }
     }
@@ -188,7 +187,7 @@
 
     @include themify(night) {
       @apply text-light-500;
-      background: $dark-two;
+      @apply bg-dark-200;
     }
 
     .faq-image {

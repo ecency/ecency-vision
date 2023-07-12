@@ -25,7 +25,7 @@
     }
 
     @include themify(night) {
-      background: lighten($dark-two, 6);
+      @apply bg-dark-200-010-light;
     }
 
     textarea {
@@ -34,7 +34,7 @@
       }
 
       @include themify(night) {
-        background: lighten($dark-two, 6);
+        @apply bg-dark-200-010-light;
       }
     }
 
@@ -82,7 +82,7 @@
 .the-editor {
   @include themify(night) {
     @apply text-silver;
-    background: $dark-two;
+    @apply bg-dark-200;
   }
   @include themify(day) {
     @apply bg-light-200;

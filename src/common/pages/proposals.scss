@@ -15,7 +15,7 @@
     margin-bottom: 30px;
 
     .header-title {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-size: 26px;
       font-weight: 500;
       text-align: center;
@@ -61,7 +61,7 @@
         }
 
         .value {
-          background: $dark-sky-blue;
+          @apply bg-blue-dark-sky;
           @apply text-white;
           padding: 6px;
           border-radius: 12px;
@@ -90,8 +90,9 @@
         }
 
         &.active-item {
-          color: $dark-sky-blue;
-          border-bottom: 2px solid $dark-sky-blue;
+          @apply text-blue-dark-sky;
+          border-bottom: 2px solid;
+          @apply border-blue-dark-sky;
         }
 
         &:not(:last-child) {
@@ -150,7 +151,7 @@
         width: 26px;
         height: 26px;
         border-radius: 50%;
-        background: $metallic-blue;
+        @apply bg-blue-metallic;
         display: flex;
         align-items: center;
         justify-content: center;

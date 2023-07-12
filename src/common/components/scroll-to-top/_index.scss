@@ -9,7 +9,7 @@
   bottom: 20px;
   width: 40px;
   height: 40px;
-  background: $dark-sky-blue;
+  @apply bg-blue-dark-sky;
   @apply text-white;
   border-radius: 50%;
   box-shadow: $box-shadow;

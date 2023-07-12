@@ -28,7 +28,7 @@
   &:hover,
   &.reblogged {
     .inner-btn {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
   }
 

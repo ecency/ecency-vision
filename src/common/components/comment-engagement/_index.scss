@@ -13,11 +13,12 @@
       padding: 14px;
       border-radius: 50%;
       margin-bottom: 20px;
-      color: $dark-sky-blue;
-      border: 2px solid $dark-sky-blue;
+      @apply text-blue-dark-sky;
+      border: 2px solid;
+      @apply border-blue-dark-sky;
       width: 54px;
       height: 54px;
-  
+
       svg {
         height: 24px;
         margin-bottom: -2px;

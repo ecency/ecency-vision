@@ -17,7 +17,7 @@
     }
 
     @include themify(night) {
-      color: $powder-blue;
+     @apply text-blue-powder;
     }
   }
 

@@ -22,7 +22,7 @@
   }
 
   @include themify(night) {
-    background-color: $gunmetal;
+    @apply bg-gunmetal;
   }
 }
 

@@ -50,7 +50,7 @@
   }
 
   @include themify(night) {
-    background-color: $dark-grey-blue;
+    @apply bg-blue-dark-grey;
     @apply text-silver;
   }
   height: 200px;

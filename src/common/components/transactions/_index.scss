@@ -30,7 +30,7 @@
       }
 
       @include themify(night) {
-        color: $powder-blue;
+       @apply text-blue-powder;
       }
     }
 
@@ -76,7 +76,7 @@
       }
 
       @include themify(night) {
-        color: lighten($metallic-blue, 40);
+        @apply text-blue-metallic-40-light;
       }
     }
 
@@ -92,7 +92,7 @@
         }
 
         @include themify(night) {
-          color: $metallic-blue;
+          @apply text-blue-metallic;
         }
       }
 
@@ -110,7 +110,7 @@
     }
 
     .transaction-numbers {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       flex-grow: 1;
       font-weight: 500;
       text-align: right;

@@ -28,7 +28,8 @@
             }
 
             @include themify(night) {
-              border-bottom: solid 1px $dark-two;
+              border-bottom: solid 1px;
+              @apply border-dark-200;
             }
 
             padding-bottom: 16px;

@@ -48,7 +48,7 @@
         }
 
         @include themify(night) {
-          color: $metallic-blue;
+          @apply text-blue-metallic;
         }
       }
 
@@ -68,22 +68,22 @@
           }
 
           @include themify(day) {
-            color: $dark-sky-blue;
+            @apply text-blue-dark-sky;
             @apply bg-blue-duck-egg;
           }
 
           @include themify(night) {
-            background: $metallic-blue;
+            @apply bg-blue-metallic;
             @apply text-blue-powder;
           }
 
           &:hover {
             @include themify(day) {
-              background: lighten($dark-sky-blue, 30);
+              @apply bg-blue-dark-sky-030;
             }
 
             @include themify(night) {
-              background: darken($metallic-blue, 16);
+              @apply bg-blue-metallic-20;
             }
           }
 
@@ -100,7 +100,7 @@
           }
 
           .check-mark {
-            background: $dark-sky-blue;
+            @apply bg-blue-dark-sky;
             border-radius: 50%;
             height: 5px;
             left: -14px;
@@ -138,10 +138,10 @@
             }
 
             @include themify(night) {
-              background: darken($metallic-blue, 3);
+              @apply bg-blue-metallic-10;
 
               &:hover {
-                background: $metallic-blue;
+                @apply bg-blue-metallic;
               }
             }
           }

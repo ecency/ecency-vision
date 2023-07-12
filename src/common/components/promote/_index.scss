@@ -6,7 +6,7 @@
 .promote-dialog {
   .promote-dialog-content {
     .balance-input {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-weight: 500;
       cursor: default;
 

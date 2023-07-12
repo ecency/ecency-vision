@@ -8,7 +8,7 @@
 
 
   .downloads-title {
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
     font-size: 42px;
     font-weight: 400;
     margin-bottom: 16px;
@@ -49,7 +49,7 @@
       }
 
       &.btn-desktop {
-        background: $dark-sky-blue;
+        @apply bg-blue-dark-sky;
       }
 
       &.btn-ios {

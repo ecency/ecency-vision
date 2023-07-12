@@ -15,11 +15,11 @@
   }
   .section :hover {
     @include themify(day) {
-      background: $light-powder-blue;
+      @apply bg-blue-light-powder;
     }
 
     @include themify(night) {
-      background: $gunmetal;
+      @apply bg-gunmetal;
     }
   }
   .section-body {

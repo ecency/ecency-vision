@@ -49,7 +49,10 @@ module.exports = {
       "gradient-to-b": "linear-gradient(to bottom, var(--tw-gradient-stops))",
       "gradient-to-bl": "linear-gradient(to bottom left, var(--tw-gradient-stops))",
       "gradient-to-l": "linear-gradient(to left, var(--tw-gradient-stops))",
-      "gradient-to-tl": "linear-gradient(to top left, var(--tw-gradient-stops))"
+      "gradient-to-tl": "linear-gradient(to top left, var(--tw-gradient-stops))",
+      "gradient-primary-day": "linear-gradient(to left, #2d5aa0, #357ce6)",
+      "gradient-primary-night": "linear-gradient(to left, #081c36, #357ce6)",
+      "gradient-primary-night-270": "linear-gradient(270deg, #081c36, #357ce6)"
     },
     backgroundOpacity: ({ theme }) => theme("opacity"),
     backgroundPosition: {
@@ -137,6 +140,8 @@ module.exports = {
       black: colors.black,
       "black-weak": "rgba(0, 0, 0, 0.125)",
       white: colors.white,
+      "white-075": "rgba(255, 255, 255, 0.75)",
+      "white-500": "#f2f2f2",
       light: {
         200: "#fcfcfc",
         300: "#f5f5f5",
@@ -152,9 +157,15 @@ module.exports = {
       },
       dark: {
         200: "#161d26",
+        "200-075": "rgba(22, 29, 38, 0.75)",
+        "200-010-light": "#161d26",
+        "200-010": "#030406",
+        300: "#202020",
         400: "#404f66",
         500: "#364357",
         600: "#2c3747",
+        "600-005-light": "#364357",
+        "600-010-light": "#404f66",
         700: "#131111"
       },
       "input-bg-light": "#f5f5f5",
@@ -180,14 +191,34 @@ module.exports = {
         "steel-light-005": "#868e93",
         "steel-light-015": "#a1a7ab",
         "steel-light-030": "#c9cdcf",
-        "steel-light-040": "#e4e6e7"
+        "steel-light-040": "#e4e6e7",
+        pinkish: "#cecece"
       },
       tundora: "#414141",
       blue: {
         powder: "#cee2ff",
+        "light-powder": "#E5EFFC",
         dusk: "#2d5aa0",
+        dusky: "#43638e",
+        "dusky-2": "#375175",
+        "dusky-2-007": "",
+        "dark-grey": "#2e3d51",
+        "dark-sky": "#357ce6",
+        "dark-sky-010": "#6299ec",
+        "dark-sky-020": "#90b7f1",
+        "dark-sky-030": "#bdd4f7",
+        "dark-sky-040": "#ebf2fc",
+        "dark-sky-075": "rgba(53, 124, 230, 0.75)",
         "duck-egg": "#eaf2fc",
-        "duck-egg-200": "#91bbef"
+        "duck-egg-200": "#91bbef",
+        faded: "#e8f0fb",
+        metallic: "#526d91",
+        "metallic-10-light": "#6b86ab",
+        "metallic-10": "#405470",
+        "metallic-20": "#2d3c50",
+        "metallic-40-light": "#cdd6e2",
+        "metallic-40": "#080b0f",
+        pastel: "#96c0ff"
       },
       silver: "#c1c5c7",
       "silver-112": "#a1a7aa",
@@ -201,7 +232,10 @@ module.exports = {
       "red-020-50": "rgba(191, 48, 48, 0.8)",
       "red-030": "#e63535",
       "red-040": "#ec3323",
-      pink: "#FF6E87"
+      pink: "#FF6E87",
+      indigo: {
+        dark: "#081c36"
+      }
     }),
     columns: {
       auto: "auto",

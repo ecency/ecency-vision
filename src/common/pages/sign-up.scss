@@ -106,7 +106,7 @@
       .form-done {
         margin: 20px auto;
         text-align: center;
-        background: lighten($dark-sky-blue, 36);
+        @apply bg-blue-dark-sky-040;
         border-radius: 25px;
         padding: 12px;
         max-width: 420px;
@@ -115,7 +115,7 @@
           width: 40px;
           height: 40px;
           margin: 0 auto 20px auto;
-          background: $dark-sky-blue;
+          @apply bg-blue-dark-sky;
           border-radius: 50%;
           @apply text-white;
           display: flex;
@@ -128,7 +128,7 @@
         }
 
         .done-text {
-          color: $dark-sky-blue;
+          @apply text-blue-dark-sky;
         }
       }
 
@@ -180,8 +180,8 @@
     }
 
     @include themify(night) {
-      background: lighten($dark-sky-blue, 6);
-      color: $dark-two;
+      @apply bg-blue-dark-sky-010;
+      @apply text-dark-200;
     }
 
     border-radius: 8px;
@@ -221,6 +221,6 @@
       height: 32px;
     }
 
-    @include button-variant($dark-two, $dark-two);
+    @include button-variant(#161d26, #161d26);
   }
 }

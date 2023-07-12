@@ -22,7 +22,7 @@
   }
 
   @include themify(night) {
-    background: $dark-grey-blue;
+    @apply bg-blue-dark-grey;
   }
 
   .asking {

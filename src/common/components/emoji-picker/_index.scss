@@ -21,7 +21,7 @@
   }
 
   @include themify(night) {
-    background: $dark-two;
+    @apply bg-dark-200;
   }
 
   .emoji-cat-list {
@@ -39,7 +39,7 @@
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
       }
 

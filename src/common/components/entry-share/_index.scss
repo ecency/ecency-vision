@@ -23,7 +23,7 @@
     .share-button {
       width: 60px;
       height: 60px;
-      background: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -31,7 +31,7 @@
       cursor: pointer;
 
       &:hover {
-        background: lighten($dark-sky-blue, 10);
+        @apply bg-blue-dark-sky-010;
       }
 
       svg {

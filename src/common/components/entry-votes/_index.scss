@@ -39,7 +39,7 @@
               }
 
               @include themify(night) {
-                background: $metallic-blue;
+                @apply bg-blue-metallic;
               }
             }
           }
@@ -88,7 +88,7 @@
   }
 
   &:hover {
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
   }
 
   svg {
@@ -116,16 +116,16 @@
     .heart-icon {
       &.voted {
         svg {
-          fill: $dark-sky-blue;
-          color: $dark-sky-blue;
+          @apply fill-blue-dark-sky;
+          @apply text-blue-dark-sky;
         }
       }
 
       &.vote-done {
         animation: heartbeat 1s ease-in-out forwards;
         svg {
-          fill: $dark-sky-blue;
-          color: $dark-sky-blue;
+          @apply fill-blue-dark-sky;
+          @apply text-blue-dark-sky;
         }
       }
     }

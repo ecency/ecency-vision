@@ -21,7 +21,8 @@
   }
 
   @include themify(night) {
-    border-bottom: 1px solid $dark-two;
+    border-bottom: 1px solid;
+    @apply border-dark-200;
   }
 
   @media (min-width: $md-break) {

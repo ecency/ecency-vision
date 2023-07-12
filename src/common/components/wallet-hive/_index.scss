@@ -24,7 +24,7 @@
     }
 
     @include themify(night) {
-      color: $metallic-blue;
+      @apply text-blue-metallic;
     }
   }
 }

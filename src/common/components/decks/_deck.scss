@@ -16,7 +16,7 @@
   }
 
   @include themify(night) {
-    background-color: $dark-two;
+    @apply bg-dark-200;
   }
 
   &.native-scroll {
@@ -91,11 +91,11 @@
     }
 
     @include themify(day) {
-      background-color: rgba($white, 0.75);
+      @apply bg-white-075;
     }
 
     @include themify(night) {
-      background-color: rgba($dark-two, 0.75);
+      @apply bg-dark-200-075;
     }
 
     &.header-sticky.primary {
@@ -166,7 +166,7 @@
   }
 
   .icon path {
-    fill: $dark-sky-blue;
+    @apply fill-blue-dark-sky;
   }
 
   .header-title {
@@ -344,7 +344,7 @@
         }
 
         @include themify(night) {
-          background-image: $dark-two;
+          @apply bg-dark-200;
         }
       }
 
@@ -425,7 +425,7 @@
     .transaction-icon {
       grid-area: icon;
       margin: 0 auto;
-      color: $dusky-blue-two;
+      @apply text-blue-dusky-2;
       min-width: 16px;
       opacity: 0.75;
     }

@@ -279,7 +279,7 @@ thead, .pagination {
 
             @include themify(night) {
 
-                background-color: $dark-two;
+                @apply bg-dark-200;
             }
 
             .custom-dropdown .label {
@@ -406,15 +406,15 @@ thead, .pagination {
         margin-left: -4px;
         height: 100%;
         min-height: 100vh;
-        background: linear-gradient($dark-sky-blue, $dusk-blue);
+      @apply bg-gradient-primary-day;
         display: flex;
 
         @include themify(night) {
-            background: linear-gradient($metallic-blue, $dark-grey-blue);
+          @apply bg-gradient-primary-night;
         }
 
         path {
-            fill: $white !important;
+          @apply fill-white;
         }
     }
 
@@ -455,30 +455,31 @@ thead, .pagination {
                 }
             }
             .menu-down-icon {
-                width: 15px !important;
-                height: 15px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-                left: -10px;
-                bottom: -10px;
-                border-radius: 50%;
-                border: 1px solid $dark-sky-blue;
-                @apply bg-white;
-                path {
-                    fill: $dark-sky-blue !important;
-                }
+              width: 15px !important;
+              height: 15px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+              left: -10px;
+              bottom: -10px;
+              border-radius: 50%;
+              border: 1px solid;
+              @apply border-blue-dark-sky;
+              @apply bg-white;
+              path {
+                @apply fill-blue-dark-sky;
+              }
             }
         }
     }
 
     .the-menu path {
-        fill: $dark-sky-blue !important;
+      @apply fill-blue-dark-sky;
     }
 
     .the-menu .active path {
-        fill: $white !important;
+      @apply fill-white;
     }
 
     .avatar-xs {
@@ -535,7 +536,7 @@ thead, .pagination {
         overflow: hidden !important;
 
         @include themify(night) {
-            background-color: $dark-two;
+          @apply bg-dark-200;
         }
     }
 
@@ -558,7 +559,7 @@ thead, .pagination {
     }
 
     .icon path {
-        fill: $dark-sky-blue;
+      @apply fill-blue-dark-sky;
     }
 
     .header-title {

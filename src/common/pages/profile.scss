@@ -47,7 +47,7 @@
       .current-tab {
         cursor: pointer;
         font-weight: 600;
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
       }
       .permission-menu-items {
         margin-right: 2rem;

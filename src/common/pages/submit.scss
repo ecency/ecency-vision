@@ -126,7 +126,7 @@
       flex-shrink: 0;
 
       .panel-header-title {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 18px;
         font-weight: 500;
         margin: 0;
@@ -169,7 +169,7 @@
       }
 
       @include themify(night) {
-        color: $pinkish-grey;
+        @apply text-gray-pinkish;
       }
     }
 
@@ -229,8 +229,9 @@
 }
 
 .selected {
-  border: 5px solid $dark-sky-blue;
-  background-color: $dark-sky-blue;
+  border: 5px solid;
+  @apply border-blue-dark-sky;
+  @apply bg-blue-dark-sky;
 }
 
 .selection-container {

@@ -19,7 +19,7 @@
     }
 
     @include themify(night) {
-      color: $powder-blue;
+     @apply text-blue-powder;
     }
   }
 
@@ -51,7 +51,7 @@
       }
 
       @include themify(night) {
-        background: $dark-two;
+        @apply bg-dark-200;
       }
 
       .username {
@@ -64,7 +64,7 @@
         }
 
         @include themify(night) {
-          color: $powder-blue;
+          @apply text-blue-powder;
         }
       }
     }

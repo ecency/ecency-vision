@@ -14,7 +14,7 @@
   }
 
   @include themify(night) {
-    background: $dark-two;
+    @apply bg-dark-200;
   }
 
   .nav-bar-inner {
@@ -101,7 +101,7 @@
       }
 
       @include themify(night) {
-        background-color: $dark-grey-blue;
+        @apply bg-blue-dark-grey;
         @apply text-light-500;
       }
 
@@ -188,7 +188,7 @@
         }
 
         @include themify(night) {
-          background: $dark-two;
+          @apply bg-dark-200;
         }
       }
     }
@@ -244,7 +244,7 @@
       }
 
       @include themify(night) {
-        background: $dark-two;
+        @apply bg-dark-200;
       }
     }
   }

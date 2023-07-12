@@ -15,7 +15,7 @@
       margin-right: 20px;
       cursor: pointer;
       &:not(.active) {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         text-decoration: underline;
       }
     }
@@ -36,7 +36,7 @@
           padding: 3px;
 
           @include themify(day) {
-            color: $dark-sky-blue;
+            @apply text-blue-dark-sky;
           }
 
           @include themify(night) {
@@ -49,7 +49,7 @@
             }
 
             @include themify(night) {
-              background: $metallic-blue;
+              @apply bg-blue-metallic;
             }
           }
 

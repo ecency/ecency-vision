@@ -33,7 +33,7 @@
             font-weight: 400;
 
             span {
-              color: $dusk-blue;
+              @apply text-blue-dusk;
               font-weight: 600;
             }
 
@@ -168,7 +168,7 @@
       max-width: 600px;
 
       .downloads-title {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 42px;
         font-weight: 400;
         margin-bottom: 16px;
@@ -209,7 +209,7 @@
           }
 
           &.btn-desktop {
-            background: $dark-sky-blue;
+            @apply bg-blue-dark-sky;
           }
 
           &.btn-ios {
@@ -227,7 +227,7 @@
       margin: 90px auto 40px auto;
 
       .faq-title {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 42px;
         font-weight: 400;
         margin-bottom: 24px;
@@ -252,7 +252,7 @@
       }
 
       .contacts-title {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 42px;
         font-weight: 400;
         margin-bottom: 26px;
@@ -356,7 +356,7 @@
 
   
     .page-title {
-      color: $dark-sky-blue !important;
+      @apply text-blue-dark-sky;
     }
 
     .static-last-updated {

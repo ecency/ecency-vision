@@ -15,7 +15,7 @@
   }
 
   @include themify(night) {
-    background-color: $dark-two;
+    @apply bg-dark-200;
   }
 
   .form-group {
@@ -59,7 +59,7 @@
       }
 
       @include themify(night) {
-        background-color: $dark-two;
+        @apply bg-dark-200;
       }
     }
   }

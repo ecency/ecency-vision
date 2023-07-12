@@ -13,7 +13,8 @@
       margin-bottom: 20px;
 
       @include themify(day) {
-        border-bottom: 1px solid lighten($dark-sky-blue, 28);
+        border-bottom: 1px solid;
+        @apply border-blue-dark-sky-030;
       }
 
       @include themify(night) {
@@ -21,7 +22,7 @@
       }
 
       .list-title {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 3rem;
         font-weight: 800;
         line-height: 4rem;

@@ -64,7 +64,7 @@
                   }
 
                   @include themify(night) {
-                    color: $gunmetal;
+                    @apply text-gunmetal;
                   }
 
                   &:hover {
@@ -86,7 +86,7 @@
                 }
 
                 @include themify(night) {
-                  color: $metallic-blue;
+                  @apply text-blue-metallic;
                 }
 
                 &.status-postponed {

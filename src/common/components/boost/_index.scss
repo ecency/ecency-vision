@@ -6,7 +6,7 @@
 .boost-dialog {
   .boost-dialog-content {
     .balance-input {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-weight: 500;
       cursor: default;
 
@@ -21,7 +21,7 @@
 
     .slider-area {
       .slider-price {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 1.4em;
         margin: 6px 0 20px 0;
 

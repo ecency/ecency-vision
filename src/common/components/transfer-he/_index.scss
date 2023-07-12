@@ -14,7 +14,7 @@
     }
 
     @include themify(night) {
-      color: $metallic-blue;
+      @apply text-blue-metallic;
     }
   }
 
@@ -39,11 +39,11 @@
     }
 
     @include themify(night) {
-      color: $pinkish-grey;
+      @apply text-gray-pinkish;
     }
 
     .balance-num {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       cursor: pointer;
       margin-left: 2px;
     }
@@ -68,7 +68,7 @@
     margin-bottom: 30px;
 
     .confirm-title {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-size: 20px;
       font-weight: 500;
       margin: 10px 0;
@@ -112,7 +112,7 @@
     }
 
     .amount {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-size: 22px;
       font-weight: 500;
       margin-bottom: 20px;
@@ -120,7 +120,7 @@
     }
 
     .amount-vests {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       text-align: center;
       margin-bottom: 20px;
     }
@@ -143,11 +143,11 @@
     }
 
     @include themify(night) {
-      color: $pinkish-grey;
+      @apply text-gray-pinkish;
     }
 
     .amount {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     .from-user,
@@ -217,7 +217,7 @@
   .text-muted {
     @apply text-gray-steel;
     @include themify(night) {
-      color: $metallic-blue !important;
+      @apply text-blue-metallic;
     }
   }
 }

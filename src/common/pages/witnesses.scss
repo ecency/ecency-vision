@@ -15,7 +15,7 @@
     margin-bottom: 30px;
 
     .header-title {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-size: 26px;
       font-weight: 500;
       text-align: center;
@@ -33,7 +33,7 @@
       text-align: center;
 
       span {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-weight: 500;
       }
 
@@ -46,14 +46,14 @@
       }
 
       @include themify(night) {
-        color: $powder-blue;
+        @apply text-blue-powder;
       }
     }
   }
 
   .voted-by-voter {
     @include themify(day) {
-      background-color: $faded-blue;
+      @apply bg-blue-faded;
     }
 
     @include themify(night) {
@@ -134,7 +134,7 @@
 
     .witness-version {
       .inner {
-        background: $dark-sky-blue;
+        @apply bg-blue-dark-sky;
       }
     }
 

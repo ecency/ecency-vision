@@ -82,7 +82,7 @@
             }
 
             @include themify(night) {
-              background: $dusky-blue-two;
+              @apply bg-blue-dusky-2;
             }
           }
 
@@ -137,7 +137,7 @@
           }
 
           @include themify(night) {
-            color: $pinkish-grey;
+            @apply text-gray-pinkish;
           }
         }
 

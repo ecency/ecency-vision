@@ -119,7 +119,8 @@ a[target="_blank"] {
     }
 
     @include themify(night) {
-      border-bottom: 1px solid $dusky-blue-two;
+      border-bottom: 1px solid;
+      @apply border-blue-dusky-2;
     }
 
     .step-no {
@@ -144,7 +145,7 @@ a[target="_blank"] {
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
       }
 
@@ -160,7 +161,7 @@ a[target="_blank"] {
         }
 
         @include themify(night) {
-          color: $metallic-blue;
+          @apply text-blue-metallic;
         }
       }
     }
@@ -201,7 +202,7 @@ a[target="_blank"] {
 // dark theme
 .theme-night {
   .rdtPicker {
-    background: $metallic-blue;
+    @apply bg-blue-metallic;
     border: 1px solid $dark;
   }
 
@@ -210,7 +211,7 @@ a[target="_blank"] {
   .rdtPicker td.rdtMinute:hover,
   .rdtPicker td.rdtSecond:hover,
   .rdtPicker .rdtTimeToggle:hover {
-    background: $dusky-blue;
+    @apply bg-blue-dusky;
   }
 
   .rdtPicker td.rdtOld,
@@ -224,11 +225,11 @@ a[target="_blank"] {
 
   .rdtPicker td.rdtActive,
   .rdtPicker td.rdtActive:hover {
-    color: $metallic-blue;
+    @apply text-blue-metallic;
   }
 
   .rdtPicker td.rdtActive.rdtToday:before {
-    border-bottom-color: $metallic-blue;
+    @apply border-b-blue-metallic;
   }
 
   .rdtPicker td.rdtDisabled,
@@ -241,7 +242,7 @@ a[target="_blank"] {
   }
 
   .rdtPicker thead tr:first-of-type th:hover {
-    background: $dusky-blue;
+    @apply bg-blue-dusky;
   }
 
   .rdtPicker tfoot {
@@ -249,16 +250,16 @@ a[target="_blank"] {
   }
 
   .rdtPicker button:hover {
-    background-color: $dusky-blue;
+    @apply bg-blue-dusky;
   }
 
   td.rdtMonth:hover,
   td.rdtYear:hover {
-    background: $dusky-blue;
+    @apply bg-blue-dusky;
   }
 
   .rdtCounter .rdtBtn:hover {
-    background: $dusky-blue;
+    @apply bg-blue-dusky;
   }
 }
 
@@ -270,8 +271,8 @@ a[target="_blank"] {
     cursor: auto;
 
     @include themify(night) {
-      background-color: $dusky-blue;
-      border-color: $dusky-blue;
+      @apply bg-blue-dusky;
+      @apply border-blue-dusky;
 
     }
     border-color: $pagination-disabled-border-color;
@@ -292,13 +293,13 @@ a[target="_blank"] {
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background-color: $dark-sky-blue;
+  @apply bg-blue-dark-sky;
   @include themify(day) {
-    background-color: $dark-sky-blue;
+    @apply bg-blue-dark-sky;
   }
 
   @include themify(night) {
-    background-color: $dark-sky-blue;
+    @apply bg-blue-dark-sky;
   }
   border-radius: 10px;
 }
@@ -307,11 +308,11 @@ a[target="_blank"] {
 ::-webkit-scrollbar-thumb:hover {
 
   @include themify(day) {
-    background-color: $dusk-blue;
+    @apply bg-blue-dusk;
   }
 
   @include themify(night) {
-    background-color: $dusk-blue;
+    @apply bg-blue-dusk;
   }
 }
 

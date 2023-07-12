@@ -28,18 +28,19 @@
       }
 
       @include themify(night) {
-        background: $dark-grey-blue;
+        @apply bg-blue-dark-grey;
         @apply text-silver-010;
-        border: solid 1px $dark-two;
+        border: solid 1px;
+        @apply border-dark-200;
       }
 
       &:hover {
         @include themify(day) {
-          background: darken($white, 4);
+          @apply bg-white-500;
         }
 
         @include themify(night) {
-          background: darken($dark-grey-blue, 4);
+          @apply bg-blue-dark-grey;
         }
       }
     }

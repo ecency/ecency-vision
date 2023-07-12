@@ -16,7 +16,7 @@
 
   @include themify(day) {
     border-bottom: 1px solid;
-    @apply border-light-
+    @apply border-light-300;
   }
 
   @include themify(night) {

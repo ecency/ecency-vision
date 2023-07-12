@@ -36,11 +36,11 @@
     }
 
     @include themify(day) {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     @include themify(night) {
-      color: $pastel-blue;
+      @apply text-blue-pastel;
     }
 
     &.hover,
@@ -51,7 +51,7 @@
         }
 
         @include themify(night) {
-          background: $dark-grey-blue;
+          @apply bg-blue-dark-grey;
         }
       }
     }
@@ -107,7 +107,7 @@
     .menu-header {
       padding: 8px 20px;
       font-weight: 500;
-      background: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
       @apply text-white;
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
@@ -158,11 +158,11 @@
           @apply text-white;
 
           @include themify(day) {
-            background: $dark-sky-blue;
+            @apply bg-blue-dark-sky;
           }
 
           @include themify(night) {
-            background: $metallic-blue;
+            @apply bg-blue-metallic;
           }
         }
       }
@@ -173,8 +173,8 @@
 
       &:hover:not(.active, .static) {
         @include themify(day) {
-          background: lighten($dark-sky-blue, 40);
-          color: $dark-sky-blue;
+          @apply bg-blue-dark-sky-040;
+          @apply text-blue-dark-sky;
         }
 
         @include themify(night) {

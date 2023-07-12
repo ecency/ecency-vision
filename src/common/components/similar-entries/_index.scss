@@ -13,7 +13,8 @@
   }
 
   @include themify(night) {
-    border-top: 1px solid $dark-two;
+    border-top: 1px solid;
+    @apply border-dark-200;
   }
 
   .similar-entries-list-header {
@@ -25,7 +26,7 @@
       }
 
       @include themify(night) {
-        color: $pinkish-grey;
+        @apply text-gray-pinkish;
       }
 
       font-weight: 500;
@@ -65,7 +66,7 @@
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
       }
 

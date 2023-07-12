@@ -28,7 +28,7 @@
     border: 5px solid #81acef;
     @apply bg-white;
     @include themify(night) {
-        background-color: $gunmetal;
+      @apply bg-gunmetal;
     }
 
     @media (max-width: $sm-break) {
@@ -73,7 +73,7 @@
 
 .bg-white {
     @include themify(night) {
-        background-color: $dark-two !important;
+      @apply bg-dark-200;
       }
 }
 
@@ -111,7 +111,7 @@
     width: 30px;
     padding: 5px;
     @apply bg-white;
-    color: $dark-two;
+    @apply text-dark-200;
     position: absolute;
     left: 20px;
     top: 13px;

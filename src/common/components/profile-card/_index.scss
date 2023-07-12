@@ -30,7 +30,7 @@
     }
 
     .reputation {
-      background: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
       border-radius: 25px;
       bottom: 2px;
       @apply text-white;
@@ -60,7 +60,7 @@
     }
 
     @include themify(night) {
-      color: $pinkish-grey;
+      @apply text-gray-pinkish;
     }
 
     &:before {
@@ -79,13 +79,13 @@
     }
 
     .rc-line-inner {
-      background: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
       height: 2px;
     }
   }
 
   .rc-percentage {
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
     cursor: default;
     flex-shrink: 0;
     font-size: 12px;
@@ -100,7 +100,7 @@
 
   .progress {
     .progress-bar-success {
-      background-color: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
     }
     .progress-bar-danger {
       @apply bg-red;
@@ -120,13 +120,14 @@
     }
 
     @include themify(night) {
-      border-bottom: 1px solid $dark-two;
+      border-bottom: 1px solid;
+      @apply border-dark-200;
     }
   }
 
   .basic-info {
     .full-name {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-size: 20px;
       font-weight: 600;
       margin-bottom: 12px;
@@ -139,7 +140,7 @@
     }
 
     .about {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       opacity: 0.5;
       text-align: center;
       word-wrap: break-word;
@@ -266,7 +267,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: $dark-sky-blue;
+  @apply bg-blue-dark-sky;
   @apply text-white;
   position: absolute;
   z-index: 1;
@@ -301,8 +302,9 @@
   font-size: 12px;
 
   @include themify(night) {
-    background: $dark-grey-blue;
+    @apply bg-blue-dark-grey;
     @apply text-gray-light;
-    border: solid 1px $dark-two;
+    border: solid 1px;
+    @apply border-dark-200;
   }
 }

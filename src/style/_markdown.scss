@@ -70,8 +70,8 @@
     }
 
     @include themify(night) {
-      color: $dusky-blue-two;
-      border-left-color: darken($dusky-blue-two, 7);
+      @apply text-blue-dusky-2;
+      @apply border-blue-dusky-2-007;
     }
 
     p {
@@ -96,7 +96,7 @@
   }
 
   a {
-    color: $dark-sky-blue !important;
+    @apply text-blue-dark-sky;
   }
 
   hr {
@@ -129,7 +129,7 @@
         }
 
         @include themify(night) {
-          background-color: $metallic-blue;
+          @apply bg-blue-metallic;
         }
       }
     }
@@ -142,7 +142,7 @@
         }
 
         @include themify(night) {
-          background-color: lighten($metallic-blue, 10);
+          @apply bg-blue-metallic-10-light;
         }
 
         // background-color: $boxBg;
@@ -155,7 +155,7 @@
       td,
       th {
         a {
-          color: darken($metallic-blue, 20) !important;
+          @apply text-blue-metallic-20;
         }
       }
     }

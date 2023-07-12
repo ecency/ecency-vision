@@ -98,7 +98,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $dark-sky-blue;
+    @apply bg-blue-dark-sky;
     @apply text-white;
     position: absolute;
     z-index: 3;

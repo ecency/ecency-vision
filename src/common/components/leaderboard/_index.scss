@@ -13,7 +13,8 @@
     justify-content: space-between;
 
     @include themify(day) {
-      border-bottom: 1px solid lighten($dark-sky-blue, 28);
+      border-bottom: 1px solid;
+      @apply border-blue-dark-sky-030;
     }
 
     @include themify(night) {
@@ -21,7 +22,7 @@
     }
 
     .list-filter {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-weight: 500;
       font-size: 18px;
       display: flex;
@@ -79,7 +80,7 @@
 
       .points {
         text-align: right;
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
       }
     }
 
@@ -144,14 +145,14 @@
       }
 
       .points {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         text-align: right;
 
       }
 
       &:nth-child(even) {
         @include themify(day) {
-          background: lighten($dark-sky-blue, 42);
+          @apply bg-blue-dark-sky-040;
         }
 
         @include themify(night) {

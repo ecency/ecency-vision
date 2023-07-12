@@ -21,7 +21,7 @@
   }
 
   @include themify(night) {
-    background-color: $dark-two;
+    @apply bg-dark-200;
     @apply border-gray-800;
   }
 
@@ -121,7 +121,7 @@
     }
 
     @include themify(night) {
-      background-color: $dark-two;
+      @apply bg-dark-200;
     }
 
     &:hover {

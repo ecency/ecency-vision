@@ -16,7 +16,7 @@
   }
 
   @include themify(night) {
-    background: $dark-two;
+    @apply bg-dark-200;
   }
 
   .bar {
@@ -28,11 +28,11 @@
     width: 100%;
 
     @include themify(day) {
-      background: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
     }
 
     @include themify(night) {
-      background: $pastel-blue;
+      @apply bg-blue-pastel;
     }
   }
 

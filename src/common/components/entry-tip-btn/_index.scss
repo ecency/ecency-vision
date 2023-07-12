@@ -14,7 +14,7 @@
   .inner-btn {
     cursor: pointer;
     align-items: center;
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
     display: flex;
 
     svg {

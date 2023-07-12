@@ -17,7 +17,7 @@
   }
 
   @include themify(night) {
-    background: $dark-two;
+    @apply bg-dark-200;
   }
 
   .editor-tool {
@@ -43,10 +43,10 @@
     }
 
     @include themify(night) {
-      color: $pinkish-grey;
+      @apply text-gray-pinkish;
 
       &:hover {
-        background: darken($dark-two, 8);
+        @apply bg-dark-200-010-light;
       }
     }
 
@@ -72,7 +72,7 @@
       }
 
       @include themify(night) {
-        background: $dark-two;
+        @apply bg-dark-200;
       }
 
       .sub-tool-menu-item {
@@ -84,7 +84,7 @@
           }
 
           @include themify(night) {
-            background: darken($dark-two, 8);
+            @apply bg-dark-200-010-light;
           }
         }
       }
@@ -116,7 +116,7 @@
     }
 
     @include themify(night) {
-      background: lighten($dark-two, 6);
+      @apply bg-dark-200-010-light;
     }
   }
 

@@ -24,7 +24,7 @@
         }
 
         @include themify(night) {
-          color: $metallic-blue;
+          @apply text-blue-metallic;
         }
       }
     }
@@ -34,7 +34,7 @@
       margin-bottom: 20px;
 
       .asset-amount {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 1.4em;
         margin-bottom: 6px;
       }
@@ -50,7 +50,7 @@
     }
 
     .point-amount {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       text-align: center;
       font-size: 1.6em;
       margin-bottom: 30px;

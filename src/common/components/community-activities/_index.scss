@@ -20,7 +20,7 @@
           }
 
           @include themify(night) {
-            background: $dark-two;
+            @apply bg-dark-200;
           }
         }
 

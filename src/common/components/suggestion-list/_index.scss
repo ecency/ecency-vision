@@ -35,7 +35,7 @@
     .list-header {
       padding: 8px 20px;
       font-weight: 500;
-      background: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
       @apply text-white;
       border-top-left-radius: $border-radius;
       border-top-right-radius: $border-radius;
@@ -62,7 +62,7 @@
 
           &:hover,
           &:focus {
-            background: lighten($dark-sky-blue, 10);
+            @apply bg-blue-dark-sky-010;
             @apply text-white;
           }
         }
@@ -72,7 +72,7 @@
 
           &:hover,
           &:focus {
-            background: $metallic-blue;
+            @apply bg-blue-metallic;
             @apply text-white;
           }
         }
@@ -91,8 +91,8 @@
       }
 
       @include themify(night) {
-        color: $white !important;
-        background: $dark-indigo !important;
+        @apply text-white;
+        @apply bg-indigo-dark;
       }
     }
 
@@ -124,7 +124,7 @@
     .list-header {
       padding: 8px 20px;
       font-weight: 500;
-      background: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
       @apply text-white;
       border-top-left-radius: $border-radius;
       border-top-right-radius: $border-radius;
@@ -151,7 +151,7 @@
 
           &:hover,
           &:focus {
-            background: lighten($dark-sky-blue, 10);
+            @apply bg-blue-dark-sky-010;
             @apply text-white;
           }
         }
@@ -161,7 +161,7 @@
 
           &:hover,
           &:focus {
-            background: $metallic-blue;
+            @apply bg-blue-metallic;
             @apply text-white;
           }
         }

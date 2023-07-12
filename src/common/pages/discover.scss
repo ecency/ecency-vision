@@ -29,7 +29,7 @@
     flex-shrink: 0;
 
     @include themify(day) {
-      background: lighten($dark-sky-blue, 40);
+      @apply bg-blue-dark-sky-040;
     }
 
     @include themify(night) {
@@ -42,7 +42,7 @@
     flex-shrink: 0;
 
     @include themify(day) {
-      background: lighten($dark-sky-blue, 40);
+      @apply bg-blue-dark-sky-040;
     }
 
     @include themify(night) {

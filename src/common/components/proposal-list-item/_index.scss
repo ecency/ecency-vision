@@ -23,7 +23,7 @@
 
   &.voted-by-voter {
     @include themify(day) {
-      background-color: $faded-blue;
+      @apply bg-blue-faded;
     }
   
     @include themify(night) {
@@ -118,7 +118,7 @@
 
         .proposal-payment {
           .all-pay {
-            color: $dark-sky-blue;
+            @apply text-blue-dark-sky;
             font-weight: 500;
             margin-right: 4px;
           }

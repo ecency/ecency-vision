@@ -74,7 +74,7 @@
     border-bottom: 1px solid var(--border-color);
 
     @include themify(night) {
-      background-color: $dark-two;
+      @apply bg-dark-200;
     }
 
     @include padding-right(1rem);
@@ -160,7 +160,7 @@
         background-color: transparent;
 
         @include themify(day) {
-          color: $dark-two;
+          @apply text-dark-200;
         }
 
         @include themify(night) {
@@ -334,7 +334,7 @@
     }
 
     @include themify(night) {
-      background-color: $dark-two;
+      @apply bg-dark-200;
     }
   }
 }

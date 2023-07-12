@@ -29,7 +29,7 @@
       align-items: center;
 
       .list-title {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 26px;
         margin: 0;
         flex-grow: 1;
@@ -87,7 +87,7 @@
 
     .fee, .creator {
       font-weight: 500;
-      color: $dark-sky-blue !important;
+      @apply text-blue-dark-sky;
     }
 
     .password {
@@ -144,7 +144,7 @@
 }
 
 .descriptive-list {
-  color: $dark-sky-blue;
+  @apply text-blue-dark-sky;
   font-weight: 300;
   font-size: 24px;
 
@@ -178,7 +178,7 @@
   line-height: 27px;
 
   a {
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
   }
 
   @include themify(night) {
@@ -201,18 +201,18 @@
   input {
     padding: 1.675rem 0.75rem !important;
     font-size: 18px !important;
-    background-color: $light-powder-blue !important;
+    @apply bg-blue-light-powder;
 
     @include themify(night) {
-      background-color: $transparent !important;
+      @apply bg-transparent;
       @apply text-gray-warm;
-      border-color: $dark-three !important;
+      @apply border-dark-300;
     }
 
     &:hover, &:focus {
       @include themify(night) {
-        background-color: $dark-two !important;
-        border-color: $dark-sky-blue !important;
+        @apply bg-dark-200;
+        @apply border-blue-dark-sky;
       }
     }
   }
@@ -224,30 +224,30 @@
   button {
     font-size: 18px !important;
     :disabled {
-      background-color: $pastel-blue !important;
+      @apply bg-blue-pastel;
     }
 
     @include themify(night) {
-      background-color: $dark-grey-blue !important;
-      border-color: $dark-grey-blue !important;
+      @apply bg-blue-dark-grey;
+      @apply border-blue-dark-grey;
       :disabled {
-        background-color: $dusky-blue !important;
+        @apply bg-blue-dusky;
       }
     }
   }
 
   button#black-on-night {
     @include themify(night) {
-      background-color: $dark-two !important;
-      border-color: $dark-two !important;
-      color: $white !important;
+      @apply bg-dark-200;
+      @apply border-dark-200;
+      @apply text-white;
     }
   }
 
   button.btn-primary {
     @include themify(night) {
-      background-color: $dark-sky-blue !important;
-      border-color: $dark-sky-blue !important;
+      @apply bg-blue-dark-sky;
+      @apply border-blue-dark-sky;
     }
   }
 
@@ -266,8 +266,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $gunmetal;
-  border: 1.17px solid $gunmetal;
+  @apply text-gunmetal;
+  border: 1.17px solid;
+  @apply border-gunmetal;
   font-size: 10px;
 }
 

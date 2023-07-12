@@ -14,7 +14,8 @@
   }
 
   @include themify(night) {
-    border-top: 1px solid $dark-two;
+    border-top: 1px solid;
+    @apply border-dark-200;
   }
 
   &.empty {
@@ -42,8 +43,9 @@
       padding: 14px;
       border-radius: 50%;
       margin-bottom: 20px;
-      color: $dark-sky-blue;
-      border: 2px solid $dark-sky-blue;
+      @apply text-blue-dark-sky;
+      border: 2px solid;
+      @apply border-blue-dark-sky;
       width: 54px;
       height: 54px;
 
@@ -102,12 +104,13 @@
     .discussion-item {
 
       &.selected-item > .item-inner {
-        background: lighten($dark-sky-blue, 42);
-        border: 1px solid $dark-sky-blue;
+        @apply bg-blue-dark-sky-040;
+        border: 1px solid;
+        @apply border-blue-dark-sky;
         padding-left: 4px;
         @include themify(night) {
-          background: lighten($dark-two, 10);
-      }
+          @apply bg-dark-200-010-light;
+        }
       }
 
       .item-anchor {
@@ -173,7 +176,7 @@
               }
 
               @include themify(night) {
-                color: $pinkish-grey;
+                @apply text-gray-pinkish;
               }
 
               .author-reputation {
@@ -193,7 +196,7 @@
                   @apply bg-blue-duck-egg;
                 }
                 @include themify(night) {
-                  background: $metallic-blue;
+                  @apply bg-blue-metallic;
                 }
               }
             }

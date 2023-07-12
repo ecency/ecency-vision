@@ -27,7 +27,8 @@
   }
 
   @include themify(night) {
-    border-bottom: solid 1px $dark-two;
+    border-bottom: solid 1px;
+    @apply border-dark-200;
   }
 
   &:last-of-type {
@@ -74,7 +75,7 @@
           }
 
           @include themify(night) {
-            color: $pinkish-grey;
+            @apply text-gray-pinkish;
           }
 
           .author-reputation {
@@ -97,7 +98,7 @@
             }
 
             @include themify(night) {
-              background: $metallic-blue;
+              @apply bg-blue-metallic;
             }
           }
         }
@@ -122,7 +123,7 @@
       }
 
       .read-mark {
-        background-color: $dark-sky-blue;
+        @apply bg-blue-dark-sky;
         border-radius: 50%;
         flex-shrink: 0;
         height: 4px;
@@ -190,7 +191,7 @@
 
       .promoted a {
         font-size: 90%;
-        background: $dark-sky-blue;
+        @apply bg-blue-dark-sky;
         @apply text-white;
         padding: 1px 6px;
         border-radius: 12px;
@@ -367,15 +368,15 @@
   }
 
   &.btn-up-vote {
-    border: 1px solid rgba($dark-sky-blue, 0.8);
+    @apply border-blue-dark-sky-075;
 
     .btn-inner {
-      color: rgba($dark-sky-blue, 0.8);
+      @apply text-blue-dark-sky-075;
     }
 
     &:hover,
     &.voted {
-      background-color: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
 
       .btn-inner {
         @apply text-white;
@@ -456,7 +457,7 @@
             }
 
             @include themify(night) {
-              color: $pinkish-grey;
+              @apply text-gray-pinkish;
             }
           }
 
@@ -474,8 +475,8 @@
             }
 
             @include themify(night) {
-              background: $dark-grey-blue;
-              box-shadow: 0 0 0 1px $dark-grey-blue inset;
+              @apply bg-blue-dark-grey;
+              box-shadow: 0 0 0 1px #2e3d51 inset;
             }
           }
         }
@@ -491,7 +492,7 @@
 
     .empty-list {
       @include themify(day) {
-        color: $gunmetal;
+        @apply text-gunmetal;
       }
 
       @include themify(night) {
@@ -510,24 +511,25 @@
   }
 
   @include themify(night) {
-    background: $dark-grey-blue;
+    @apply bg-blue-dark-grey;
     @apply text-silver-010;
-    border: solid 1px $dark-two;
+    border: solid 1px;
+    @apply border-dark-200;
   }
 
   &.selected-item {
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
     cursor: default;
     pointer-events: none;
   }
 
   &:hover {
     @include themify(day) {
-      background: darken($white, 4);
+      @apply bg-white-500;
     }
 
     @include themify(night) {
-      background: darken($dark-grey-blue, 4);
+      @apply bg-blue-dark-grey;
     }
   }
 }
@@ -603,13 +605,13 @@
           }
 
           @include themify(night) {
-            color: $metallic-blue;
+            @apply text-blue-metallic;
           }
         }
 
         .rewards {
           align-items: center;
-          background-color: $dark-sky-blue;
+          @apply bg-blue-dark-sky;
           border-radius: 25px;
           @apply text-white;
           display: flex;
@@ -638,7 +640,7 @@
             }
 
             &:hover {
-              color: lighten($dark-sky-blue, 30);
+              @apply text-blue-dark-sky-030;
             }
 
             &.in-progress {
@@ -686,7 +688,7 @@
             }
 
             @include themify(night) {
-              color: $powder-blue;
+              @apply text-blue-powder;
             }
           }
 
@@ -699,7 +701,7 @@
         }
 
         .balance-values {
-          color: $dark-sky-blue;
+          @apply text-blue-dark-sky;
           font-weight: 500;
           display: flex;
           flex-direction: column;
@@ -731,7 +733,7 @@
             }
 
             &.amount-bold {
-              background-color: $dark-sky-blue;
+              @apply bg-blue-dark-sky;
               @apply text-white;
               padding: 2px 4px;
               border-radius: 6px;
@@ -760,7 +762,7 @@
           }
 
           @include themify(night) {
-            background: $dark-two;
+            @apply bg-dark-200;
           }
         }
       }
@@ -776,7 +778,7 @@
 
   > .menu-item {
     @include themify(day) {
-      color: $gunmetal;
+      @apply text-gunmetal;
 
       &:hover {
         @apply text-gray-warm;

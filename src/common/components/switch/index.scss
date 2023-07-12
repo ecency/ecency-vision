@@ -35,11 +35,11 @@
     transition: .2s ease-in-out;
 
     @include themify(day) {
-      background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
+      @apply bg-gradient-primary-day;
     }
 
     @include themify(night) {
-      background-image: linear-gradient(to left, $dark-indigo, $dusky-blue);
+      @apply bg-gradient-primary-night;
     }
   }
 
@@ -83,7 +83,7 @@
       transform: translateX($height + 4px);
 
       @include themify(night) {
-        background-color: $faded-blue;
+        @apply bg-blue-faded;
       }
     }
   }
