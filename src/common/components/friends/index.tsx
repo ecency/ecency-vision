@@ -208,20 +208,21 @@ export class List extends BaseComponent<ListProps, ListState> {
     const monthsDifference = Math.ceil(daysDifference / 30);
     const yearsDifference = Math.ceil(daysDifference / 365);
 
-    console.log(currentTime.getTime())
-    console.log(lastSeenTime.getTime())
-    console.log(item.name, daysDifference)
-
     return (
       (type === "Recently" && daysDifference < 7) ||
       (type === "This month" && daysDifference > 7 && daysDifference < 30) || 
       (type === "This year" && daysDifference >= 30 && daysDifference < 360) ||
-      (type === "One year" && (daysDifference === 360 || yearsDifference === 1)) ||
-      (type === "More than 1 year" && daysDifference > 360)
+      (type === "One year" && (daysDifference === 365)) ||
+      (type === "More than 1 year" && yearsDifference > 1)
     );
   });
 
-  this.stateSet({filtered: filteredData, isFiltered: true, loading: false})
+  if(type === "All"){
+    this.stateSet({filtered: data, isFiltered: true, loading: false})
+  } else{
+    this.stateSet({filtered: filteredData, isFiltered: true, loading: false})
+  }
+
   };
 
   formatTimeDIfference = (timeString: string): number => {
@@ -230,19 +231,35 @@ export class List extends BaseComponent<ListProps, ListState> {
     let milliseconds = 0;
   
     if (unit.includes("second")) {
-      milliseconds = parseInt(value) * 1000;
+      milliseconds = Number(value) * 1000;
     } else if (unit.includes("minute")) {
-      milliseconds = parseInt(value) * 60 * 1000;
+      milliseconds = Number(value) * 60 * 1000;
     } else if (unit.includes("hour")) {
-      milliseconds = parseInt(value) * 60 * 60 * 1000;
+      if(value.includes("an")){
+        milliseconds = 60 * 60 * 1000;
+      } else{
+        milliseconds = Number(value) * 60 * 60 * 1000;
+      }
     } else if (unit.includes("day")) {
-      milliseconds = parseInt(value) * 24 * 60 * 60 * 1000;
+      if(value.includes("a")){
+        milliseconds = 24 * 60 * 60 * 1000;
+      } else {
+        milliseconds = Number(value) * 24 * 60 * 60 * 1000;
+      }
     } else if (unit.includes("week")) {
-      milliseconds = parseInt(value) * 7 * 24 * 60 * 60 * 1000;
+      milliseconds = Number(value) * 7 * 24 * 60 * 60 * 1000;
     } else if (unit.includes("month")) {
-      milliseconds = parseInt(value) * 30 * 24 * 60 * 60 * 1000;
+      if(value.includes("a")) {
+        milliseconds = 30 * 24 * 60 * 60 * 1000;
+      } else{
+        milliseconds = Number(value) * 30 * 24 * 60 * 60 * 1000;
+      }
     } else if (unit.includes("year")) {
-      milliseconds = parseInt(value) * 365 * 24 * 60 * 60 * 1000;
+      if(value.includes("a")){
+        milliseconds = 365 * 24 * 60 * 60 * 1000;
+      } else{        
+        milliseconds = Number(value) * 365 * 24 * 60 * 60 * 1000;
+      }
     }
 
     const difference = currentTime.getTime() - milliseconds;
