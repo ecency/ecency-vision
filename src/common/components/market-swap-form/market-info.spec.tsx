@@ -1,7 +1,7 @@
 import { MarketInfo, Props } from "./market-info";
 import { MarketAsset } from "./market-pair";
-import renderer from "react-test-renderer";
 import React from "react";
+import { withStore } from "../../tests/with-store";
 
 it("should render market rate", function () {
   const props: Props = {
@@ -11,6 +11,6 @@ it("should render market rate", function () {
     toAsset: MarketAsset.HIVE,
     usdFromMarketRate: 12
   };
-  const component = renderer.create(<MarketInfo {...props} />);
+  const component = withStore(<MarketInfo {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
