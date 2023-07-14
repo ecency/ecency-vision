@@ -32,7 +32,7 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
             <div className="brand">
               <a href="/">
                 <img
-                  src="https://ecency.com/logo192.png"
+                  src={require("../../img/logo-circle.svg")}
                   className="logo"
                   style={{ width: "40px", height: "40px" }}
                   alt="Logo"

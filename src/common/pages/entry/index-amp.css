@@ -1869,3 +1869,7 @@ a[target="_blank"]:hover:after {
 .view-full-version {
   bottom: 24px;
 }
+
+.theme-night p {
+  color: #fff;
+}
