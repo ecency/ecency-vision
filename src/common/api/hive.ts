@@ -656,3 +656,6 @@ export const getRcOperationStats = (): Promise<any> => client.call("rc_api", "ge
 
 export const getContentReplies = (author: string, permlink: string): Promise<Entry[] | null> =>
   client.call("condenser_api", "get_content_replies", { author, permlink });
+
+  export const getRebloggedUsers = async (author: string, permlink: string) => 
+  client.call("condenser_api", "get_reblogged_by", { author, permlink });
