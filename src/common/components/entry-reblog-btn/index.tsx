@@ -102,10 +102,9 @@ export class EntryReblogBtn extends BaseComponent<Props> {
 
   getReblogs = async () => {
     const { entry } = this.props
+    this.stateSet({inProgress: true})
     const rebloggedBy = await getRebloggedUsers(entry.author, entry.permlink)
-    this.stateSet({rebloggedBy})
-    console.log(rebloggedBy)
-    console.log(this.state.rebloggedBy)
+    this.stateSet({rebloggedBy, inProgress: false})
   }
 
   showReblogs = () => {
@@ -146,10 +145,10 @@ export class EntryReblogBtn extends BaseComponent<Props> {
         <span className="ml-1 inner-btn">{rebloggedBy.length}</span>
         </div>
           <EntryRebloStats 
-          showReblogs={this.showReblogs} 
           hideReblogs={this.hideReblogs}
           showReblogStats={showReblogStats}
           rebloggedBy={rebloggedBy}
+          inProgress={inProgress}
           />
         </>
       </>

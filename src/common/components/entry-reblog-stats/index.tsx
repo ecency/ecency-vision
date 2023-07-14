@@ -1,37 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Modal } from 'react-bootstrap';
 import { _t } from '../../i18n';
 import ProfileLink from '../profile-link';
 import UserAvatar from '../user-avatar';
+import LinearProgress from '../linear-progress';
 
 const EntryRebloStats = (props: any) => {
-    const { hideReblogs, showReblogStats, rebloggedBy} = props;
+    const { hideReblogs, showReblogStats, rebloggedBy, inProgress} = props;
+    const [searchText, setSearchText] = useState("")
 
     const reblogLists = (
+      <>
+        {inProgress && <LinearProgress/>}
         <div className="voters-list">
-          {rebloggedBy.map((username: string)=> {
-            return (              
-                    <div className="list-body">
-                        <div className="list-item" >
-                          <div className="item-main">
-                              <ProfileLink {...props} username={username}>
-                              <UserAvatar username={username} size="small" />
-                              </ProfileLink>
+          <div className="list-body">
+            {rebloggedBy && rebloggedBy.length > 0
+              ? rebloggedBy.map((username: string) => {
+                  return (
+                    <div className="list-item" key={username}>
+                      <div className="item-main">
+                        <ProfileLink {...props} username={username}>
+                          <UserAvatar username={username} size="small" />
+                        </ProfileLink>
 
-                              <div className="item-info">
-                              {ProfileLink({
-                                  ...props,
-                                  username: {username},
-                                  children: <span className="item-name notranslate">{username}</span>
-                              })}
-                              </div>
-                          </div>
+                        <div className="item-info">
+                          {ProfileLink({
+                            ...props,
+                            username,
+                            children: <span className="item-name notranslate">{username}</span>
+                          })}
                         </div>
+                      </div>
                     </div>
-            )
-          })     
-          }
+                  );
+                })
+              : _t("communities.no-results")}
+          </div>
         </div>
+      </>
     )
   return (
     <div>
@@ -50,9 +56,9 @@ const EntryRebloStats = (props: any) => {
               <Form.Control
                 type="text"
                 placeholder={_t("friends.search-placeholder")}
-                // value={searchText}
+                value={searchText}
                 onChange={(e) => {
-                //   this.setState({ searchText: e.target.value });
+                  setSearchText(e.target.value);
                 }}
                 // disabled={searchTextDisabled}
               />
