@@ -1870,6 +1870,6 @@ a[target="_blank"]:hover:after {
   bottom: 24px;
 }
 
-.theme-night p {
+.theme-night .entry-body * {
   color: #fff;
 }
