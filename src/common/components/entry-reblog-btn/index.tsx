@@ -124,18 +124,8 @@ export class EntryReblogBtn extends BaseComponent<Props> {
       reblogs.list.find((x) => x.author === entry.author && x.permlink === entry.permlink) !==
         undefined;
 
-    const content = (
+    const reblogStats = (
       <>
-        <div
-          className={_c(
-            `entry-reblog-btn d-flex align-items-center ${reblogged ? "reblogged" : ""} ${inProgress ? "in-progress" : ""} `
-          )}
-        >
-          <Tooltip content={reblogged ? _t("entry-reblog.delete-reblog") : _t("entry-reblog.reblog")}>
-            <a className="inner-btn">{repeatSvg}</a>
-          </Tooltip>
-        </div>
-        <>
         <div onClick={this.showReblogs} className="entry-reblog-btn">
           <Tooltip content={`${rebloggedBy.length} reblogs`}>
             <a className="inner-btn">
@@ -150,8 +140,19 @@ export class EntryReblogBtn extends BaseComponent<Props> {
           rebloggedBy={rebloggedBy}
           inProgress={inProgress}
           />
-        </>
       </>
+    );
+
+    const content = (
+        <div
+          className={_c(
+            `entry-reblog-btn d-flex align-items-center ${reblogged ? "reblogged" : ""} ${inProgress ? "in-progress" : ""} `
+          )}
+        >
+          <Tooltip content={reblogged ? _t("entry-reblog.delete-reblog") : _t("entry-reblog.reblog")}>
+            <a className="inner-btn">{repeatSvg}</a>
+          </Tooltip>
+        </div>
     );
 
     if (!activeUser) {
@@ -164,14 +165,19 @@ export class EntryReblogBtn extends BaseComponent<Props> {
     // Delete reblog
     if (reblogged) {
       return (
-        <PopoverConfirm
-          onConfirm={this.deleteReblog}
-          okVariant="danger"
-          titleText={_t("entry-reblog.delete-confirm-title")}
-          okText={_t("entry-reblog.delete-confirm-ok")}
-        >
-          {content}
-        </PopoverConfirm>
+        <div className="d-flex">
+          <PopoverConfirm
+            onConfirm={this.deleteReblog}
+            okVariant="danger"
+            titleText={_t("entry-reblog.delete-confirm-title")}
+            okText={_t("entry-reblog.delete-confirm-ok")}
+          >
+            {content}
+          </PopoverConfirm>
+          <>
+            {reblogStats}
+          </>
+        </div>
       );
     }
 
