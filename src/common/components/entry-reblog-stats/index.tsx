@@ -7,15 +7,19 @@ import LinearProgress from '../linear-progress';
 
 const EntryRebloStats = (props: any) => {
     const { hideReblogs, showReblogStats, rebloggedBy, inProgress} = props;
-    const [searchText, setSearchText] = useState("")
+    const [searchedText, setSearchedText] = useState("")
 
     const reblogLists = (
       <>
         {inProgress && <LinearProgress/>}
         <div className="voters-list">
           <div className="list-body">
-            {rebloggedBy && rebloggedBy.length > 0
-              ? rebloggedBy.map((username: string) => {
+            {rebloggedBy.length > 0
+              ? rebloggedBy?.filter(
+                (name: any) =>
+                  name.toLowerCase().startsWith(searchedText) ||
+                  name.toLowerCase().includes(searchedText)
+              ).map((username: string) => {
                   return (
                     <div className="list-item" key={username}>
                       <div className="item-main">
@@ -50,17 +54,16 @@ const EntryRebloStats = (props: any) => {
             className="entry-votes-modal px-3"
           >
             <Modal.Header closeButton={true} className="align-items-center px-0">
-              <Modal.Title>All Reblogs</Modal.Title>
+              <Modal.Title>{_t("entry-list-item.reblogs-list-title")}</Modal.Title>
             </Modal.Header>
             <Form.Group className="w-100 mb-3">
               <Form.Control
                 type="text"
                 placeholder={_t("friends.search-placeholder")}
-                value={searchText}
+                value={searchedText}
                 onChange={(e) => {
-                  setSearchText(e.target.value);
+                  setSearchedText(e.target.value);
                 }}
-                // disabled={searchTextDisabled}
               />
             </Form.Group>
             <Modal.Body className="px-0">
