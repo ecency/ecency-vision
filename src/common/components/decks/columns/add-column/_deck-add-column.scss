@@ -100,7 +100,7 @@
           }
 
           @include themify(night) {
-            background-color: lighten($dark, 6);
+            @apply bg-dark-default-010-light;
           }
         }
 
@@ -110,7 +110,7 @@
           }
 
           @include themify(night) {
-            background-color: lighten($dark, 3);
+            @apply bg-dark-default;
           }
         }
 
@@ -153,7 +153,7 @@
           }
 
           @include themify(night) {
-            background-color: lighten($dark, 3);
+            @apply bg-dark-default;
           }
         }
 
@@ -183,7 +183,7 @@
       }
 
       @include themify(night) {
-        background-color: lighten($dark, 3);
+        @apply bg-dark-default;
       }
 
       &:hover {
@@ -196,7 +196,7 @@
         }
 
         @include themify(night) {
-          background-color: lighten($dark, 6);
+          @apply bg-dark-default-010-light;
         }
       }
 
@@ -215,7 +215,7 @@
       }
 
       @include themify(night) {
-        background-color: lighten($dark, 6);
+        @apply bg-dark-default-010-light;
       }
     }
   }

@@ -18,7 +18,7 @@
     }
 
     @include themify(night) {
-      border-bottom: 1px solid lighten($dark, 10);
+      @apply border-dark-default-010-light;
     }
 
     .list-filter {

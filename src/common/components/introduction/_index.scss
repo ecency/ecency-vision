@@ -49,10 +49,12 @@
 }
 
 .intro-popup:before {
-  border-left: 0px solid $transparent;
-  border-right: 43px solid $transparent;
+  border-left: 0px solid;
+  border-right: 43px solid;
   border-bottom: 83px solid;
-  @apply border-white;
+  @apply border-l-transparent;
+  @apply border-r-transparent;
+  @apply border-b-white;
   @include themify(night) {
     @apply border-b-dark-default;
   }

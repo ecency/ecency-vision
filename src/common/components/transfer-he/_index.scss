@@ -61,7 +61,7 @@
   }
 
   .power-down-estimation {
-    color: $green1;
+    @apply text-green;
   }
 
   .confirmation {

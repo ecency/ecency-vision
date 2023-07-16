@@ -168,7 +168,8 @@ module.exports = {
         "600-010-light": "#404f66",
         "600-010": "#181f27",
         700: "#131111",
-        default: "#273445"
+        default: "#273445",
+        "default-010-light": "#394d66"
       },
       "input-bg-light": "#f5f5f5",
       gray: {
@@ -237,7 +238,8 @@ module.exports = {
       pink: "#FF6E87",
       indigo: {
         dark: "#081c36"
-      }
+      },
+      green: "#69bb85"
     }),
     columns: {
       auto: "auto",

@@ -86,7 +86,7 @@
 
         &:hover,
         &:focus {
-          color: $dark !important;
+          @apply text-dark-default;
         }
       }
 

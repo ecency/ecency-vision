@@ -115,13 +115,13 @@
   .hs-button {
     @apply text-white;
 
-    @include button-variant($hs-color, $hs-color);
+    @include button-variant(#E31337, #E31337);
   }
 
   .kc-button {
     @apply text-white;
 
-    @include button-variant($kc-color, $kc-color);
+    @include button-variant(#202020, #202020);
   }
 
   .success-message {

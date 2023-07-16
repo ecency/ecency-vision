@@ -41,7 +41,7 @@
         }
 
         @include themify(night) {
-          background-color: lighten($dark, 3);
+          @apply bg-dark-default;
         }
       }
 
@@ -80,7 +80,7 @@
         }
 
         @include themify(night) {
-          background-color: lighten($dark, 3);
+          @apply bg-dark-default;
         }
       }
 
@@ -103,7 +103,7 @@
         }
 
         @include themify(night) {
-          color: lighten($dark, 12);
+          @apply text-dark-default-010-light;
         }
       }
 

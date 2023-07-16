@@ -18,7 +18,8 @@
     }
 
     @include themify(night) {
-      border-bottom: 1px solid lighten($dark, 10);
+      border-bottom: 1px solid;
+      @apply border-dark-default-010-light;
     }
 
     .list-title {

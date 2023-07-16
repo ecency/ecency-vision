@@ -51,7 +51,7 @@
         @apply text-blue-dark-sky;
 
         .item-conversion {
-          color: $green1;
+          @apply text-green;
         }
       }
 

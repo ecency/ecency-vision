@@ -65,7 +65,7 @@
         margin-left: 0.5rem;
         border-radius: 50%;
         &.success-img {
-          background: $green1;
+          @apply bg-green;
         }
       }
     }
@@ -113,7 +113,7 @@
         height: 100%;
         transition: width 0.125s linear;
         &.success {
-          background-color: $green1;
+          @apply bg-green;
         }
         &.error {
           @apply bg-red-020;

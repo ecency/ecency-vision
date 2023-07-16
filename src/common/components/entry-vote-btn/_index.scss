@@ -81,7 +81,7 @@
   input[type="range"] {
     width: 100%;
     margin: 5.5px 0;
-    background-color: $transparent;
+    @apply bg-transparent;
     -webkit-appearance: none;
   }
 
@@ -168,10 +168,10 @@
   }
 
   input[type="range"]::-ms-track {
-    background: $transparent;
-    border-color: $transparent;
+    @apply bg-transparent;
+    @apply border-transparent;
+    @apply text-transparent;
     border-width: 6.4px 0;
-    color: $transparent;
     width: 100%;
     height: 9px;
     cursor: pointer;
@@ -312,13 +312,13 @@
 
 .primary-btn {
   @apply text-blue-dark-sky;
-  background-color: $transparent !important;
+  @apply bg-transparent;
 }
 
 .primary-btn-vote {
   @include themify(night) {
     @apply text-blue-dark-sky;
-    background-color: $transparent !important;
+    @apply bg-transparent;
   }
 
   @include themify(day) {
@@ -329,7 +329,7 @@
   .btn-inner {
     @include themify(night) {
       @apply text-blue-dark-sky;
-      background-color: $transparent !important;
+      @apply bg-transparent;
     }
 
     @include themify(day) {
@@ -377,7 +377,7 @@
   @apply text-red-020;
 
   @include themify(night) {
-    background-color: $transparent !important;
+    @apply bg-transparent;
   }
 
   @include themify(day) {
@@ -393,7 +393,7 @@
     @apply text-red-020;
 
     @include themify(night) {
-      background-color: $transparent !important;
+      @apply bg-transparent;
     }
     @include themify(day) {
       @apply bg-white;

@@ -94,7 +94,7 @@
                 }
 
                 &.status-published {
-                  color: $green1 !important;
+                  @apply text-green;
                 }
 
                 &.status-error {

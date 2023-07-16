@@ -438,7 +438,7 @@ body.medium-zoom--opened {
         @apply text-gray-light;
       }
       @include themify(day) {
-        color: $dark !important;
+        @apply text-dark-default;
       }
     }
 

@@ -96,7 +96,7 @@
           font-weight: 300;
 
           &.active {
-            background-color: $green1;
+            @apply bg-green;
           }
 
           &.expired {
