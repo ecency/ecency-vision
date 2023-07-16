@@ -125,7 +125,7 @@ export default function ManageAuthorities(props: Props) {
   const signkeyModal = () => {
     return (
       <>
-        <div className="sign-dialog-header border-bottom">
+        <div className="sign-dialog-header border-b border-[--border-color]">
           <div className="step-no">1</div>
           <div className="sign-dialog-titles">
             <div className="authority-main-title">{_t("manage-authorities.sign-title")}</div>
@@ -173,7 +173,7 @@ export default function ManageAuthorities(props: Props) {
   const successModal = () => {
     return (
       <>
-        <div className="success-dialog-header border-bottom">
+        <div className="success-dialog-header border-b border-[--border-color]">
           <div className="step-no">2</div>
           <div className="success-dialog-titles">
             <div className="authority-main-title">{_t("trx-common.success-title")}</div>
@@ -207,7 +207,7 @@ export default function ManageAuthorities(props: Props) {
           <tr>
             <th>{_t("manage-authorities.type")}</th>
             <th>{_t("manage-authorities.key")}</th>
-            <th className="d-none d-sm-block border-bottom-0" />
+            <th className="d-none d-sm-block border-b border-[--border-color]-0" />
             <th className="d-sm-none col-action">{_t("manage-authorities.actions")}</th>
             <th className="col-weight-content">{_t("manage-authorities.weight")}</th>
           </tr>

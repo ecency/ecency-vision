@@ -1,8 +1,6 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
-@import "./colors";
 @import "./variables";
 @import "./mixins";
 
@@ -17,3 +15,5 @@
 
 @import "./theme-day";
 @import "./theme-night";
+
+@tailwind utilities;

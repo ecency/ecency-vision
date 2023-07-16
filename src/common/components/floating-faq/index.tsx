@@ -101,10 +101,10 @@ const FloatingFAQ = () => {
 
   useEffect(() => {
     if (expandedHelp) {
-      setHelpClass("section d-flex flex-column border-bottom");
+      setHelpClass("section d-flex flex-column border-b border-[--border-color]");
     }
     if (expandedContact) {
-      setContactClass("section d-flex flex-column border-bottom");
+      setContactClass("section d-flex flex-column border-b border-[--border-color]");
     }
   }, [expandedHelp, expandedContact]);
 

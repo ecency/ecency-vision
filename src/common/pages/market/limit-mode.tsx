@@ -153,7 +153,7 @@ export const LimitMarketMode = (props: PageProps) => {
                   <h3>{_t("market.barter")}</h3>
                   <ButtonGroup size="lg" className="my-3">
                     <Button
-                      className="rounded-right"
+                      className="rounded-r"
                       variant={exchangeType === 1 ? "primary" : "secondary"}
                       onClick={() => setExchangeType(1)}
                       style={{
@@ -165,7 +165,7 @@ export const LimitMarketMode = (props: PageProps) => {
                     </Button>
                     <Button
                       variant={exchangeType === 2 ? "primary" : "secondary"}
-                      className="rounded-left"
+                      className="rounded-l"
                       onClick={() => setExchangeType(2)}
                       style={{
                         borderTopLeftRadius: "0px !important",

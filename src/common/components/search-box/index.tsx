@@ -29,13 +29,13 @@ export default class SearchBox extends Component<Props> {
             <FormControl
               type="text"
               {...{ ...other, value, username, filter }}
-              className={"input-with-copy rounded-right"}
+              className={"input-with-copy rounded-r"}
             />
             <InputGroup.Append>
               <Button
                 variant="primary"
                 size="sm"
-                className="copy-to-clipboard rounded-left"
+                className="copy-to-clipboard rounded-l"
                 disabled={value.length === 0}
                 onClick={() => {
                   this.copyToClipboard(`https://ecency.com/${username}/${filter}?q=${value}`);

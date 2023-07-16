@@ -253,7 +253,7 @@ export default function ManageKeys(props: Props) {
   const passwordModal = () => {
     return (
       <>
-        <div className="sign-dialog-header border-bottom">
+        <div className="sign-dialog-header border-b border-[--border-color]">
           <div className="step-no">1</div>
           <div className="sign-dialog-titles">
             <div className="authority-main-title">{_t("manage-authorities.password-title")}</div>
@@ -291,7 +291,7 @@ export default function ManageKeys(props: Props) {
   const keySuccessModal = () => {
     return (
       <>
-        <div className="sign-dialog-header border-bottom">
+        <div className="sign-dialog-header border-b border-[--border-color]">
           <div className="step-no">2</div>
           <div className="sign-dialog-titles">
             <div className="authority-main-title">{_t("manage-authorities.success-title")}</div>

@@ -8,7 +8,7 @@ import "./_index.scss";
 
 export const WitnessCard = ({ voted, row, witness, onSuccess, ...other }: any) => {
   return (
-    <div className="witnesses-card p-3 mb-3 border rounded">
+    <div className="witnesses-card p-3 mb-3 border border-[--border-color] rounded">
       <div className="d-flex align-items-center justify-content-between">
         <div>
           <h3>
@@ -28,7 +28,7 @@ export const WitnessCard = ({ voted, row, witness, onSuccess, ...other }: any) =
               row.name
             }/avatar/medium`}
             alt=""
-            className="rounded-circle avatar mr-3"
+            className="rounded-[50%] avatar mr-3"
           />
         </div>
       </div>

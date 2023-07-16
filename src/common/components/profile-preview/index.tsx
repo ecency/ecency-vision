@@ -98,12 +98,12 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
   return isMounted ? (
     <div className="profile-parent">
       <div className="shadow bg-white profile-container rounded">
-        <div className="close-icon rounded-circle" onClick={onClose}>
+        <div className="close-icon rounded-[50%]" onClick={onClose}>
           {closeSvg}
         </div>
         <>
           {loading ? (
-            <Skeleton className="cover-img-placeholder rounded-top" />
+            <Skeleton className="cover-img-placeholder rounded-t" />
           ) : (
             profile && (
               <img
@@ -116,7 +116,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                     ? coverFallbackDay
                     : coverFallbackNight
                 }
-                className="w-100 cover-img rounded-top"
+                className="w-100 cover-img rounded-t"
                 loading="lazy"
               />
             )
@@ -124,12 +124,12 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
           <div className="p-3 upper-container">
             <div className="d-flex align-items-center info-container flex-column text-center">
               <div
-                className={`rounded-circle mb-3 profile-img-container ${
+                className={`rounded-[50%] mb-3 profile-img-container ${
                   profile && profile.profile.profile_image ? "" : "no-image"
                 }`}
               >
                 {loading ? (
-                  <Skeleton className="profile-img rounded-circle" />
+                  <Skeleton className="profile-img rounded-[50%]" />
                 ) : (
                   profile && (
                     <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>
@@ -138,7 +138,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                           global.canUseWebp ? "webp/" : ""
                         }u/${username}/avatar/medium`}
                         alt="img"
-                        className="profile-img rounded-circle bg-primary"
+                        className="profile-img rounded-[50%] bg-primary"
                         loading="lazy"
                       />
                     </Link>
@@ -186,7 +186,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
               </div>
             </div>
             <div className="d-flex justify-content-between flex-wrap">
-              <div className="flex-grow-1 d-flex border-bottom">
+              <div className="flex-grow-1 d-flex border-b border-[--border-color]">
                 <div className="p-3 flex-grow-1">
                   <b>{_t("profile-info.joined")}</b>
                   <div className="text-break-wrap">
@@ -214,7 +214,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                 </div>
               </div>
 
-              <div className="flex-grow-1 d-flex border-bottom">
+              <div className="flex-grow-1 d-flex border-b border-[--border-color]">
                 <div className="p-3 flex-grow-1">
                   <b>{_t("profile.section-posts")}</b>
                   <div className="text-break-wrap">
@@ -242,7 +242,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                 </div>
               </div>
 
-              <div className="flex-grow-1 d-flex border-bottom">
+              <div className="flex-grow-1 d-flex border-b border-[--border-color]">
                 <div className="p-3 flex-grow-1">
                   <b>{_t("profile.followers")}</b>
                   <div className="text-break-wrap">

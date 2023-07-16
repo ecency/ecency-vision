@@ -14,7 +14,9 @@ export const DeckHeaderSettingsItem = ({ title, children, hasBorderBottom, class
   return (
     <Accordion
       className={
-        "deck-header-settings-item " + (hasBorderBottom ? "border-bottom " : "") + className
+        "deck-header-settings-item " +
+        (hasBorderBottom ? "border-b border-[--border-color] " : "") +
+        className
       }
     >
       <Accordion.Toggle

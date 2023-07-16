@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, ButtonGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { MarketMode } from "./market-mode";
 import { _t } from "../../i18n";
 
@@ -17,8 +17,9 @@ export const ModeSelector = ({ mode, onSelect, className }: Props) => {
   }, [mode]);
 
   return (
-    <ButtonGroup className={"d-flex mode-selector " + className ?? ""}>
+    <div className={"d-flex mode-selector " + className ?? ""}>
       <Button
+        className="rounded-r-none"
         active={rawMode === MarketMode.SWAP}
         onClick={() => {
           onSelect(MarketMode.SWAP);
@@ -28,6 +29,7 @@ export const ModeSelector = ({ mode, onSelect, className }: Props) => {
         {_t("market.mode-swap")}
       </Button>
       <Button
+        className="rounded-none"
         active={rawMode === MarketMode.LIMIT}
         onClick={() => {
           onSelect(MarketMode.LIMIT);
@@ -37,6 +39,7 @@ export const ModeSelector = ({ mode, onSelect, className }: Props) => {
         {_t("market.mode-limit")}
       </Button>
       <Button
+        className="rounded-l-none"
         active={rawMode === MarketMode.ADVANCED}
         onClick={() => {
           onSelect(MarketMode.ADVANCED);
@@ -45,6 +48,6 @@ export const ModeSelector = ({ mode, onSelect, className }: Props) => {
       >
         {_t("market.mode-advanced")}
       </Button>
-    </ButtonGroup>
+    </div>
   );
 };

@@ -264,7 +264,7 @@ export default function AccountRecovery(props: Props) {
   const signkeyModal = () => {
     return (
       <>
-        <div className="recovery-sign-dialog-header border-bottom">
+        <div className="recovery-sign-dialog-header border-b border-[--border-color]">
           <div className="step-no">2</div>
           <div className="recovery-sign-dialog-titles">
             <div className="recovery-main-title">{_t("account-recovery.sign-title")}</div>
@@ -312,7 +312,7 @@ export default function AccountRecovery(props: Props) {
   const successModal = () => {
     return (
       <>
-        <div className="recovery-success-dialog-header border-bottom">
+        <div className="recovery-success-dialog-header border-b border-[--border-color]">
           <div className="step-no">3</div>
           <div className="recovery-success-dialog-titles">
             <div className="recovery-main-title">{_t("trx-common.success-title")}</div>
@@ -336,7 +336,7 @@ export default function AccountRecovery(props: Props) {
   const emailUpdateModal = () => {
     return (
       <>
-        <div className="recovery-success-dialog-header border-bottom">
+        <div className="recovery-success-dialog-header border-b border-[--border-color]">
           <div className="step-no">1</div>
           <div className="recovery-success-dialog-titles">
             <div className="recovery-main-title">{_t("trx-common.success-title")}</div>

@@ -59,7 +59,7 @@ const AuthorInfoCard = (props: Props) => {
   return loading ? (
     <div className="avatar-fixed">
       <div className="d-flex align-items-center mb-3">
-        <Skeleton className="avatar-skeleton rounded-circle" />
+        <Skeleton className="avatar-skeleton rounded-[50%]" />
         <Skeleton className=" ml-2 text-skeleton" />
       </div>
       <Skeleton className="text-skeleton mb-2" />

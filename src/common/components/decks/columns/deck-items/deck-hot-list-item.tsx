@@ -16,7 +16,7 @@ export const HotListItem = ({ index, entry, onMounted, onClick }: HotListItemPro
   }, []);
 
   return (
-    <div className="p-3 border-bottom d-flex align-items-center">
+    <div className="p-3 border-b border-[--border-color] d-flex align-items-center">
       <div className="hot-item-index">{index}</div>
       <div className="flex-grow-1 ml-3 hot-item-link">
         <a role="button" href="#" onClick={onClick}>

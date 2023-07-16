@@ -36,7 +36,7 @@ export const MarketSwapActiveOrders = ({ activeUser, global }: Props) => {
         </FormLabel>
         <ListGroup className="market-swap-active-orders">
           {orders.map((order) => (
-            <ListGroupItem key={order.id} className="border-bottom">
+            <ListGroupItem key={order.id} className="border-b border-[--border-color]">
               <GenericOrderItem
                 from={order.sell_price.base}
                 to={order.sell_price.quote}

@@ -41,8 +41,8 @@ export const AdvancedModeToolbar = ({
   };
 
   return (
-    <div className="advanced-mode-toolbar d-flex border-bottom border-top px-3">
-      <div className="trading-pair py-3 pl-2 pr-3 border-right">
+    <div className="advanced-mode-toolbar flex border-b border-t border-[--border-color] px-3">
+      <div className="trading-pair py-3 pl-2 pr-4 border-r border-[--border-color]">
         <b>
           {fromAsset}/{toAsset}
         </b>

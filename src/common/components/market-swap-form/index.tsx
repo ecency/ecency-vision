@@ -193,7 +193,7 @@ export const MarketSwapForm = ({
                 <Button
                   disabled={disabled || loading}
                   variant=""
-                  className="swap-button border"
+                  className="swap-button border-[--border-color]"
                   onClick={swap}
                 >
                   {swapSvg}
@@ -202,7 +202,7 @@ export const MarketSwapForm = ({
                 <></>
               )}
               {step === MarketSwapFormStep.SUCCESS ? (
-                <Button variant="" className="swap-button border text-success">
+                <Button variant="" className="swap-button --border-color text-success">
                   {checkSvg}
                 </Button>
               ) : (

@@ -57,7 +57,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
         expanded
       })}
     >
-      <Accordion className={expanded ? "border-bottom" : ""}>
+      <Accordion className={expanded ? "border-b border-[--border-color]" : ""}>
         <div className="deck-header position-relative">
           <div className="empty" />
           <div className="prefix">{props.prefix}</div>

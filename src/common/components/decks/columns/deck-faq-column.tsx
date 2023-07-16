@@ -38,7 +38,9 @@ export const DeckFaqColumn = ({ id, draggable }: Props) => {
     >
       <div className="deck-faq-container">
         <div
-          className={expandedHelp ? "section d-flex flex-column border-bottom" : ""}
+          className={
+            expandedHelp ? "section d-flex flex-column border-b border-[--border-color]" : ""
+          }
           onClick={() => setExpandedHelp(!expandedHelp)}
         >
           <div className="help-content p-3">

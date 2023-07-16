@@ -46,7 +46,7 @@ export const Decks = ({ history }: Props) => {
                 <div
                   className={classNameObject({
                     "decks grid grid-cols-deck items-center duration-300": true,
-                    "w-full": true,
+                    "w-full": !isCollapsed,
                     expanded: isExpanded,
                     "toolbar-collapsed translate-x-[-72px] w-[calc(100%+72px)] sm:translate-x-0 sm:w-auto":
                       isCollapsed,

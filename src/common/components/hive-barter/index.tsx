@@ -153,7 +153,7 @@ export const HiveBarter = ({
               placeholder="0.0"
               onChange={(e) => setPriceValue(e.target.value)}
             />
-            <InputGroup.Text className="rounded-left">HBD/HIVE</InputGroup.Text>
+            <InputGroup.Text className="rounded-l">HBD/HIVE</InputGroup.Text>
           </InputGroup>
         </Form.Group>
 
@@ -165,7 +165,7 @@ export const HiveBarter = ({
               value={isNaN(amount) ? 0 : amount}
               onChange={(e) => setAmountValue(e.target.value)}
             />
-            <InputGroup.Text className="rounded-left">HIVE</InputGroup.Text>
+            <InputGroup.Text className="rounded-l">HIVE</InputGroup.Text>
           </InputGroup>
         </Form.Group>
 
@@ -177,7 +177,7 @@ export const HiveBarter = ({
               value={isNaN(total) ? 0 : total}
               onChange={(e) => setTotalValue(e.target.value)}
             />
-            <InputGroup.Text className="rounded-left">HBD</InputGroup.Text>
+            <InputGroup.Text className="rounded-l">HBD</InputGroup.Text>
           </InputGroup>
         </Form.Group>
         <Button block={true} type="submit" disabled={disabled}>

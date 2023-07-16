@@ -524,7 +524,9 @@ export const Profile = (props: Props) => {
                           <div className="permission-menu-items">
                             <h6
                               className={
-                                tabState === 1 ? "border-bottom pb-3 tab current-tab" : "tab"
+                                tabState === 1
+                                  ? "border-b border-[--border-color] pb-3 tab current-tab"
+                                  : "tab"
                               }
                               onClick={() => setTabState(1)}
                             >
@@ -534,7 +536,9 @@ export const Profile = (props: Props) => {
                           <div className="permission-menu-items">
                             <h6
                               className={
-                                tabState === 2 ? "border-bottom pb-3 tab current-tab" : "tab"
+                                tabState === 2
+                                  ? "border-b border-[--border-color] pb-3 tab current-tab"
+                                  : "tab"
                               }
                               onClick={() => setTabState(2)}
                             >
@@ -544,7 +548,9 @@ export const Profile = (props: Props) => {
                           <div className="permission-menu-items">
                             <h6
                               className={
-                                tabState === 3 ? "border-bottom pb-3 tab current-tab" : "tab"
+                                tabState === 3
+                                  ? "border-b border-[--border-color] pb-3 tab current-tab"
+                                  : "tab"
                               }
                               onClick={() => setTabState(3)}
                             >

@@ -596,7 +596,7 @@ export class EntryIndexMenu extends Component<Props, States> {
               </div>
               {filter !== "feed" ? (
                 <>
-                  <div className="border-left ml-3 dropDown-left-border-height" />
+                  <div className="border-l border-[--border-color] ml-3 dropDown-left-border-height" />
                   <span id="check-isGlobal" className="d-flex align-items-center pl-3">
                     <EntryIndexMenuDropdown
                       {...this.props}
@@ -608,7 +608,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                 </>
               ) : (
                 <>
-                  <div className="border-left ml-3 dropDown-left-border-height" />
+                  <div className="border-l border-[--border-color] ml-3 dropDown-left-border-height" />
                   <span id="check-isGlobal" className="d-flex align-items-center pl-3">
                     <EntryIndexMenuDropdown
                       {...this.props}

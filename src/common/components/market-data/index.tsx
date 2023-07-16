@@ -116,7 +116,7 @@ export default class MarketData extends Component<MarketDataProps, MarketDataSta
             </div>
           </SSRSuspense>
         ) : (
-          <div className="p-3 border-left">
+          <div className="p-3 border-l border-[--border-color]">
             <div>
               <Link to="/faq">FAQ</Link>
             </div>

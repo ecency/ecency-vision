@@ -21,8 +21,8 @@ export const MarketAdvancedModeWidgetHeader = ({
   setExpandedHeader
 }: Props) => {
   return (
-    <Accordion className={expandedHeader ? "border-bottom" : ""}>
-      <div className="d-flex flex-column border-bottom">
+    <Accordion className={expandedHeader ? "border-b border-[--border-color]" : ""}>
+      <div className="d-flex flex-column border-b border-[--border-color]">
         <div className="d-flex justify-content-between align-items-center deck-header position-relative">
           <div className="d-flex align-items-center w-100">
             <div className="cursor-drag deck-index" />

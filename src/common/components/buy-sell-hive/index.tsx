@@ -154,7 +154,7 @@ export class BuySellHive extends BaseComponent<any, State> {
     } = this.props;
 
     const formHeader1 = (
-      <div className="d-flex align-items-center border-bottom pb-3">
+      <div className="d-flex align-items-center border-b border-[--border-color] pb-3">
         <div className="step-no ml-3">{step}</div>
         <div className="flex-grow-1">
           <div className="main-title">{_t("transfer.confirm-title")}</div>

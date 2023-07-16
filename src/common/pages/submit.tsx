@@ -1383,7 +1383,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                     key={item}
                                   />
                                   {selectedItem === item && (
-                                    <div className="text-success check position-absolute bg-white rounded-circle d-flex justify-content-center align-items-center">
+                                    <div className="text-success check position-absolute bg-white rounded-[50%] d-flex justify-content-center align-items-center">
                                       {checkSvg}
                                     </div>
                                   )}

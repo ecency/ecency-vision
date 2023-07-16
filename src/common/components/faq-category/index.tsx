@@ -21,10 +21,10 @@ const FaqCategory = (props: Props) => {
   const { contentList, categoryTitle } = props;
   return (
     <div className="faq-container section-container">
-      <Accordion className={expanded ? "border-bottom" : ""}>
+      <Accordion className={expanded ? "border-b border-[--border-color]" : ""}>
         <Accordion.Toggle as={Card} eventKey="0">
           <div
-            className="section d-flex flex-column border-bottom"
+            className="section d-flex flex-column border-b border-[--border-color]"
             onClick={() => setExpanded(!expanded)}
           >
             <div className="d-flex justify-content-between align-items-center section-card position-relative">

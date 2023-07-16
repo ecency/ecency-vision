@@ -320,7 +320,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                             <div className="tooltip-inner rewards-container">
                               {rewardsToShowInTooltip.map((reward, ind) => (
                                 <div
-                                  className="d-flex py-1 border-bottom"
+                                  className="d-flex py-1 border-b border-[--border-color]"
                                   key={reward.pending_token + ind}
                                 >
                                   <div className="mr-1 text-lowercase">{reward.symbol}: </div>

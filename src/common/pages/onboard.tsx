@@ -401,7 +401,7 @@ const Onboard = (props: Props) => {
   const signTransactionModal = (type: string) => {
     return (
       <>
-        <div className="border-bottom d-flex align-items-center">
+        <div className="border-b border-[--border-color] d-flex align-items-center">
           <div className="step-no">2</div>
           <div>
             <div>{_t("onboard.sign-header-title")}</div>
@@ -443,7 +443,7 @@ const Onboard = (props: Props) => {
   const successModalBody = () => {
     return (
       <>
-        <div className="create-account-success-dialog-header border-bottom d-flex">
+        <div className="create-account-success-dialog-header border-b border-[--border-color] d-flex">
           <div className="step-no">2</div>
           <div className="create-account-success-dialog-titles">
             <div className="create-account-main-title">{_t("trx-common.success-title")}</div>
@@ -475,7 +475,7 @@ const Onboard = (props: Props) => {
   const failedModalBody = () => {
     return (
       <>
-        <div className="create-account-success-dialog-header border-bottom d-flex text-danger">
+        <div className="create-account-success-dialog-header border-b border-[--border-color] d-flex text-danger">
           <div className="step-no">❌</div>
           <div className="create-account-success-dialog-titles">
             <div className="create-account-main-title">{_t("onboard.failed-title")}</div>

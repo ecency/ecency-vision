@@ -149,7 +149,7 @@ export const SearchListItem = ({
         ref={ref}
         className={`p${index === 1 ? "b" : "y"}-${
           json_metadata && json_metadata.image ? "5" : "4"
-        } d-flex flex-column border-bottom`}
+        } d-flex flex-column border-b border-[--border-color]`}
       >
         <div className="d-flex">
           {username && (
@@ -158,7 +158,7 @@ export const SearchListItem = ({
                 global.canUseWebp ? "webp/" : ""
               }u/${username}/avatar/medium`}
               alt={username}
-              className="rounded-circle search-item-avatar"
+              className="rounded-[50%] search-item-avatar"
             />
           )}
           <div className="ml-3 deck-body">
@@ -174,7 +174,7 @@ export const SearchListItem = ({
   }
 
   return (
-    <div ref={ref} className="d-flex flex-column border-bottom p-3">
+    <div ref={ref} className="d-flex flex-column border-b border-[--border-color] p-3">
       <div className="deck-body d-flex flex-column w-100">
         <div className="text-dark d-flex flex-column">
           <div className="d-flex align-items-center flex-grow-1 hot-item-link">
@@ -184,7 +184,7 @@ export const SearchListItem = ({
                   global.canUseWebp ? "webp/" : ""
                 }u/${author}/avatar/medium`}
                 alt={title}
-                className="rounded-circle search-item-avatar mr-3"
+                className="rounded-[50%] search-item-avatar mr-3"
               />
             )}
             {author && (

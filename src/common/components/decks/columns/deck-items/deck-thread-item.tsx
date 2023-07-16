@@ -112,7 +112,7 @@ export const ThreadItem = ({
     <div
       ref={ref}
       className={classNameObject({
-        "thread-item border-bottom": true,
+        "thread-item border-b border-[--border-color]": true,
         "has-parent": hasParent && !pure,
         pure,
         "sequence-item": sequenceItem,
