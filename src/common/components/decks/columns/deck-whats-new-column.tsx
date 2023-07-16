@@ -70,7 +70,9 @@ export const DeckWhatsNewColumn = ({ id, draggable, settings }: Props) => {
                 <div className="wn-item">
                   {item.name}
                   {item.name === version && (
-                    <Badge variant="primary">{_t("decks.columns.current")}</Badge>
+                    <div className="bg-primary px-2 py-1 text-xs font-bold text-white rounded">
+                      {_t("decks.columns.current")}
+                    </div>
                   )}
                 </div>
               </Accordion.Toggle>

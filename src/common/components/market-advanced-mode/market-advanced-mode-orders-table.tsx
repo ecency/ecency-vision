@@ -51,9 +51,9 @@ export const MarketAdvancedModeOrdersTable = ({ data, openOrdersData }: Props) =
                     <td title={dateToFormatted(item.timestamp)}>
                       {dateToFullRelative(item.timestamp)}
                       {openOrdersData.some((order) => order.orderid === item.orderid) ? (
-                        <Badge className="ml-2" variant="primary">
+                        <div className="bg-primary px-2 py-1 text-xs font-bold text-white rounded ml-2">
                           {_t("market.advanced.active")}
-                        </Badge>
+                        </div>
                       ) : (
                         <></>
                       )}

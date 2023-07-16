@@ -29,7 +29,9 @@ export const MarketInfo = ({
         <ListGroupItem>
           <div className="d-flex justify-content-between">
             <span>{_t("market.fee")}</span>
-            <span className="badge badge-success text-white">{_t("market.fee-free")}</span>
+            <span className="px-2 py-1 bg-green text-xs font-bold rounded text-white">
+              {_t("market.fee-free")}
+            </span>
           </div>
         </ListGroupItem>
       </ListGroup>
