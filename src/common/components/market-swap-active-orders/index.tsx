@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormLabel, ListGroup, ListGroupItem } from "react-bootstrap";
+import { FormLabel } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import { getOpenOrder, OpenOrdersData } from "../../api/hive";
 import { GenericOrderItem } from "./generic-order-item";
@@ -34,18 +34,21 @@ export const MarketSwapActiveOrders = ({ activeUser, global }: Props) => {
         <FormLabel>
           <small className="font-weight-bold">{_t("market.pending-orders")}</small>
         </FormLabel>
-        <ListGroup className="market-swap-active-orders">
+        <div className="list-group rounded-xl border border-[--border-color] market-swap-active-orders">
           {orders.map((order) => (
-            <ListGroupItem key={order.id} className="border-b border-[--border-color]">
+            <div
+              key={order.id}
+              className="list-group-item border-b border-[--border-color] px-4 py-3"
+            >
               <GenericOrderItem
                 from={order.sell_price.base}
                 to={order.sell_price.quote}
                 createdAt={order.created}
                 onCancel={() => setCancelingOrder(order.orderid)}
               />
-            </ListGroupItem>
+            </div>
           ))}
-        </ListGroup>
+        </div>
       </div>
       {cancelingOrder ? (
         <BuySellHiveDialog

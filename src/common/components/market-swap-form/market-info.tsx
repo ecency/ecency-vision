@@ -1,6 +1,5 @@
 import React from "react";
 import { _t } from "../../i18n";
-import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { MarketAsset } from "./market-pair";
 
 export interface Props {
@@ -25,16 +24,16 @@ export const MarketInfo = ({
         <span className="text-secondary ml-1">(${usdFromMarketRate.toFixed(3)})</span>
       </small>
 
-      <ListGroup>
-        <ListGroupItem>
+      <div className="rounded-xl border border-[--border-color]">
+        <div className="px-4 py-3">
           <div className="d-flex justify-content-between">
             <span>{_t("market.fee")}</span>
             <span className="px-2 py-1 bg-green text-xs font-bold rounded text-white">
               {_t("market.fee-free")}
             </span>
           </div>
-        </ListGroupItem>
-      </ListGroup>
+        </div>
+      </div>
     </div>
   );
 };
