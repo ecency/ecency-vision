@@ -26,7 +26,7 @@ export const MarketInfo = ({
       <small className={"market-info font-weight-bold d-block mb-4 " + className}>
         1 {fromAsset} = {marketRate.toFixed(3)} {toAsset}
         <span className="text-secondary ml-1">
-          ({usdFromMarketRate.toFixed(3)}
+          ({usdFromMarketRate}
           <span className="pl-1" />
           {global.currency.toUpperCase()})
         </span>
