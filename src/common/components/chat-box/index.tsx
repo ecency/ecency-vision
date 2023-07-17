@@ -155,11 +155,11 @@ export default function ChatBox(props: Props) {
     setShow(!!props.activeUser?.username);
   }, []);
 
-  // useEffect(() => {
-  //   if (window.raven) {
-  //     setHasUserJoinedChat(true);
-  //   }
-  // }, [window?.raven]);
+  useEffect(() => {
+    if (window.raven) {
+      setHasUserJoinedChat(true);
+    }
+  }, [window?.raven]);
 
   useEffect(() => {
     const msgsList = fetchDirectMessages(receiverPubKey!);

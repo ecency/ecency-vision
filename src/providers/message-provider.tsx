@@ -66,7 +66,6 @@ const MessageProvider = (props: Props) => {
   const createRavenInstance = (e: Event) => {
     const detail = (e as CustomEvent).detail as NostrKeys;
     const ravenInstance = initRaven(detail);
-    console.log("Create rvan instance run");
     setRaven(ravenInstance);
   };
 
@@ -113,14 +112,6 @@ const MessageProvider = (props: Props) => {
   const handleProfileUpdate = (data: Profile[]) => {
     console.log("handleProfileUpdate", data);
     props.addProfile(data);
-    // setProfiles([
-    //     ...profiles.filter(x => data.find(y => x.creator === y.creator) === undefined),
-    //     ...data
-    // ]);
-    // const profile = data.find(x => x.creator === keys!.pub);
-    // if (profile) {
-    //     setProfile(profile);
-    // }
   };
 
   useEffect(() => {

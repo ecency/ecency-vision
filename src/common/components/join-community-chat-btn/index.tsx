@@ -42,11 +42,11 @@ export default function JoinCommunityChatBtn(props: Props) {
     fetchCommunityProfile();
   }, [props.activeUser]);
 
-  // useEffect(() => {
-  //   if (window.raven) {
-  //     setHasUserJoinedChat(true);
-  //   }
-  // }, [window?.raven]);
+  useEffect(() => {
+    if (window.raven) {
+      setHasUserJoinedChat(true);
+    }
+  }, [window?.raven]);
 
   useEffect(() => {
     checkIsChatJoined();
