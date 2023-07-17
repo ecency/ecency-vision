@@ -110,6 +110,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
   showReblogs = () => {
     this.stateSet({showReblogStats: true})
   }
+  
   hideReblogs = () => {
     this.stateSet({showReblogStats: false})
   }
@@ -135,6 +136,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
         <span className="ml-1 inner-btn">{rebloggedBy.length}</span>
         </div>
           <EntryRebloStats 
+          {...this.props}
           hideReblogs={this.hideReblogs}
           showReblogStats={showReblogStats}
           rebloggedBy={rebloggedBy}

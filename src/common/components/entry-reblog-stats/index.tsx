@@ -23,9 +23,11 @@ const EntryRebloStats = (props: any) => {
                   return (
                     <div className="list-item" key={username}>
                       <div className="item-main">
-                        <ProfileLink {...props} username={username}>
-                          <UserAvatar username={username} size="small" />
-                        </ProfileLink>
+                      {ProfileLink({
+                          ...props,
+                          username,
+                          children: <UserAvatar username={username} size="small" />
+                        })}
 
                         <div className="item-info">
                           {ProfileLink({
