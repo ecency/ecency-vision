@@ -13,6 +13,7 @@ export type Metadata = {
   name: string;
   about: string;
   picture: string;
+  communityName?: string;
 };
 
 export type Profile = { id: string; creator: string; created: number } & Metadata;

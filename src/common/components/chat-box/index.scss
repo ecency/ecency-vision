@@ -5,7 +5,7 @@
 
 .chatbox-container {
   position: fixed;
-  // z-index: 99;
+  z-index: 99;
   right: 15rem;
   bottom: 0rem;
   height: 53px;
@@ -75,6 +75,11 @@
       font-size: 21px;
       font-family: $font-family-sans-serif;
 
+      max-width: 183px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
       @include themify(day) {
         color: $charcoal-grey;
       }
@@ -90,15 +95,15 @@
       justify-content: center;
       margin-top: 1.1rem;
       .message-image {
-        margin: 0.2rem 0.3rem 0 0;
+        margin-top: 2px;
 
         .message-svg {
-          width: 40px;
-          height: 40px;
+          width: 32px;
+          height: 32px;
           justify-content: center;
           text-align: center;
           border-radius: 50%;
-          padding-top: 11px;
+          padding-top: 9px;
           display: flex;
 
           svg {
@@ -116,14 +121,26 @@
           display: flex;
           justify-content: center;
           text-align: center;
-          padding-top: 6px;
-          width: 40px;
-          height: 40px;
+          padding-top: 1px;
+          width: 28px;
+          height: 28px;
           border-radius: 50%;
         }
 
         .arrow-svg:hover {
           background: rgba(29, 155, 240, 0.1);
+        }
+      }
+      .community-menu {
+        margin-top: -15px;
+        svg {
+          @include themify(day) {
+            color: $charcoal-grey;
+          }
+
+          @include themify(night) {
+            color: $white-two;
+          }
         }
       }
     }
@@ -132,7 +149,18 @@
   .chat-body {
     position: relative;
     height: 470px;
-    overflow-y: auto;
+    overflow: scroll;
+    overflow-x: hidden;
+
+    .community-header,
+    .dm-header {
+      padding: 10px;
+      border-bottom: 1px solid #e7e7e7;
+      padding-left: 14px;
+      font-family: Faktum, sans-serif;
+      font-weight: 700;
+      // background: #e4e6eb;
+    }
 
     &.current-user {
       padding-bottom: 10px;
@@ -144,6 +172,22 @@
       @include themify(night) {
         border-bottom: 1px solid #172b44;
       }
+    }
+
+    &.community {
+      padding-bottom: 10px;
+      height: 412px;
+      margin-bottom: 8px;
+      @include themify(day) {
+        border-bottom: 1px solid $white-three;
+      }
+      @include themify(night) {
+        border-bottom: 1px solid #172b44;
+      }
+    }
+
+    &.no-scroll {
+      overflow: hidden;
     }
 
     &.join-chat {
@@ -169,10 +213,10 @@
       border-bottom: 0.5px solid rgba(134, 150, 160, 0.15);
 
       .user-img {
-        padding: 18px 16px;
+        padding: 13px 16px;
       }
       .user-title {
-        padding-top: 19px;
+        padding-top: 13px;
         width: -webkit-fill-available;
 
         .username {
@@ -184,7 +228,7 @@
             color: $white-two;
           }
 
-          font-size: 17px;
+          font-size: 18px;
           font-weight: 700;
           margin-bottom: 0.2rem !important;
         }
@@ -318,7 +362,7 @@
         margin-top: 14%;
       }
       .custom-divider {
-        margin: 0 24px;
+        margin: 12px 24px 0px 24px;
         font-size: 0.7em;
         color: $dark;
         .custom-divider-text {
@@ -332,6 +376,12 @@
         .user-img {
           padding: 18px 8px 8px 16px;
         }
+        .community-user-img {
+          padding: 8px 8px 8px 16px;
+          .user-avatar.medium {
+            cursor: pointer;
+          }
+        }
         .user-info {
           padding-top: 8px;
           .user-msg-time {
@@ -341,6 +391,9 @@
             font-size: 12px;
             margin-left: 9px;
             margin-bottom: 2px;
+            .username-community {
+              margin-right: 8px;
+            }
           }
           .receiver-message-content {
             @include themify(day) {
@@ -416,7 +469,7 @@
                 max-width: 100%;
               }
             }
-            
+
             border-radius: 10px 10px 0px;
             max-width: 280px;
             // background-color: rgb(0, 132, 255);
@@ -496,5 +549,40 @@
         }
       }
     }
+  }
+}
+
+.chats-dialog {
+  .chat-modals-body {
+    padding: 2rem;
+
+    .leave-dialog-body {
+      font-size: 18px;
+      margin-top: 12px;
+    }
+    .leave-confirm-buttons {
+      text-align: right !important;
+      .close-btn,
+      .confirm-btn {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.profile-box {
+  padding: 15px;
+
+  .user-avatar.large {
+    margin-left: 73px;
+    margin-bottom: 20px;
+  }
+  .profile-name {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 800;
   }
 }

@@ -1,6 +1,6 @@
 import moment from "moment";
 import { generatePrivateKey, getPublicKey } from "../../lib/nostr-tools/keys";
-import { DirectMessage } from "../../providers/message-provider-types";
+import { Channel } from "../../providers/message-provider-types";
 import { getAccountFull } from "../api/hive";
 import { updateProfile } from "../api/operations";
 import { ActiveUser } from "../store/active-user/types";
@@ -37,6 +37,7 @@ export const resetProfile = async (activeUser: ActiveUser | null) => {
     version: 2
   };
   const updatedProfile = await updateProfile(response, { ...profileC });
+  console.log(updatedProfile);
 };
 
 export const setProfileMetaData = async (activeUser: ActiveUser | null, keys: NostrKeys) => {
@@ -52,6 +53,18 @@ export const setProfileMetaData = async (activeUser: ActiveUser | null, keys: No
   return updatedProfile;
 };
 
+export const setChannelMetaData = async (username: string, channel: Channel) => {
+  const response = await getAccountFull(username!);
+  const { posting_json_metadata } = response;
+  const profile = JSON.parse(posting_json_metadata!).profile;
+  const newProfile = {
+    channel: channel
+  };
+  console.log({ ...profile, ...newProfile });
+  const updatedProfile = await updateProfile(response, { ...profile, ...newProfile });
+  return updatedProfile;
+};
+
 export const createNoStrAccount = () => {
   const priv = generatePrivateKey();
   const pub = getPublicKey(priv);
@@ -61,14 +74,6 @@ export const createNoStrAccount = () => {
 export function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
   return value !== null && value !== undefined;
 }
-
-export const getDirectMessages = (messages: DirectMessage[], peer?: string) => {
-  const clean = messages.filter((x) => x.peer === peer).sort((a, b) => a.created - b.created);
-
-  return clean
-    .map((c) => ({ ...c, children: clean.filter((x) => x.root === c.id) }))
-    .filter((x) => !x.root);
-};
 
 export const formatMessageTime = (unixTs: number) => moment.unix(unixTs).format("h:mm a");
 

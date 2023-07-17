@@ -21,6 +21,7 @@ setProxyBase(defaults.imageServer);
 import BaseComponent from "../base";
 import SubscriptionBtn from "../subscription-btn";
 import CommunityPostBtn from "../community-post-btn";
+import JoinCommunityChatBtn from "../join-community-chat-btn";
 import Tooltip from "../tooltip";
 import ImageUploadDialog from "../image-upload";
 
@@ -138,6 +139,7 @@ interface Props {
   toggleUIProp: (what: ToggleType) => void;
   updateSubscriptions: (list: Subscription[]) => void;
   addAccount: (data: Account) => void;
+  addCommunity: (data: Community) => void;
 }
 
 export class CommunityCover extends Component<Props> {
@@ -203,6 +205,7 @@ export class CommunityCover extends Component<Props> {
         <div className="controls-holder">
           <SubscriptionBtn {...this.props} />
           {CommunityPostBtn({ ...this.props })}
+          <JoinCommunityChatBtn {...this.props} />
         </div>
         {canUpdateCoverImage && (
           <EditCoverImage
@@ -231,7 +234,8 @@ export default (p: Props) => {
     deleteUser: p.deleteUser,
     toggleUIProp: p.toggleUIProp,
     updateSubscriptions: p.updateSubscriptions,
-    addAccount: p.addAccount
+    addAccount: p.addAccount,
+    addCommunity: p.addCommunity
   };
 
   return <CommunityCover {...props} />;

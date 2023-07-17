@@ -41,7 +41,14 @@ import { fetchPoints, resetPoints } from "./points";
 import { setSigningKey } from "./signing-key";
 import { setEntryPin, trackEntryPin } from "./entry-pin-tracker";
 import { savePageScroll } from "./persistent-page-scroll";
-import { addDirectContacts, addDirectMessages, resetChat } from "./chat";
+import {
+  addDirectContacts,
+  addDirectMessages,
+  resetChat,
+  addChannels,
+  addPublicMessage,
+  addProfile
+} from "./chat";
 
 // @note Do not use it directly
 export const ACTIONS = {
@@ -93,7 +100,10 @@ export const ACTIONS = {
   setNotificationsSettingsItem,
   addDirectContacts,
   addDirectMessages,
-  resetChat
+  resetChat,
+  addChannels,
+  addPublicMessage,
+  addProfile
 };
 
 export const getActions = () => ({

@@ -644,7 +644,8 @@
     "roles-account": "Account",
     "roles-role": "Role",
     "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "roles-add": "Add User",
+    "join-community-chat": "Join Community Chat"
   },
   "community-cover": {
     "rewards": "rewards",
@@ -1661,7 +1662,10 @@
     "back": "Back",
     "no-chat": "No conversation found",
     "start-chat": "Start chat",
-    "not-joined": "This user hasn't joined the chat yet"
+    "not-joined": "This user hasn't joined the chat yet",
+    "subscribers": "Subscribers",
+    "invite": "Invite",
+    "leave:": "Leave"
   },
   "add-image": {
     "title": "Add Image",

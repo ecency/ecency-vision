@@ -1,5 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Button, Form, FormControl, InputGroup, Spinner } from "react-bootstrap";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { History } from "history";
+import {
+  Button,
+  Form,
+  FormControl,
+  InputGroup,
+  Modal,
+  OverlayTrigger,
+  Popover,
+  Spinner
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import mediumZoom, { Zoom } from "medium-zoom";
@@ -7,7 +17,7 @@ import mediumZoom, { Zoom } from "medium-zoom";
 import { ActiveUser } from "../../store/active-user/types";
 import { Chat, DirectContactsType } from "../../store/chat/types";
 import { Global, Theme } from "../../store/global/types";
-import { DirectMessage } from "../../../providers/message-provider-types";
+import { Channel, DirectMessage, PublicMessage } from "../../../providers/message-provider-types";
 
 import Tooltip from "../tooltip";
 import UserAvatar from "../user-avatar";
@@ -15,7 +25,7 @@ import SeachUser from "../search-user";
 import LinearProgress from "../linear-progress";
 import EmojiPicker from "../emoji-picker";
 import GifPicker from "../gif-picker";
-import { error } from "../feedback";
+import { error, success } from "../feedback";
 import { setNostrkeys } from "../../../providers/message-provider";
 
 import {
@@ -28,7 +38,11 @@ import {
   chevronDownSvgForSlider,
   emoticonHappyOutlineSvg,
   gifIcon,
-  chatBoxImageSvg
+  chatBoxImageSvg,
+  linkSvg,
+  keyOutlineSvg,
+  KebabMenu,
+  chatLeaveSvg
 } from "../../img/svg";
 
 import { dateToFormatted } from "../../helper/parse-date";
@@ -36,7 +50,6 @@ import {
   createNoStrAccount,
   formatMessageDate,
   formatMessageTime,
-  getDirectMessages,
   getProfileMetaData,
   NostrKeys,
   setProfileMetaData,
@@ -51,6 +64,10 @@ import { uploadImage } from "../../api/misc";
 import { addImage } from "../../api/private-api";
 
 import "./index.scss";
+import { getCommunity } from "../../api/bridge";
+import { Community } from "../../store/communities/types";
+import { npubEncode } from "../../../lib/nostr-tools/nip19";
+import DropDown, { MenuItem } from "../dropdown";
 
 export interface profileData {
   joiningData: string;
@@ -59,6 +76,7 @@ export interface profileData {
 }
 
 interface Props {
+  history: History;
   activeUser: ActiveUser | null;
   global: Global;
   chat: Chat;
@@ -69,12 +87,14 @@ let zoom: Zoom | null = null;
 
 export default function ChatBox(props: Props) {
   const prevPropsRef = useRef(props);
+  const popoverRef = useRef(null);
   const chatBodyDivRef = React.createRef<HTMLDivElement>();
   const fileInput = React.createRef<HTMLInputElement>();
   const [expanded, setExpanded] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
   const [isCurrentUser, setIsCurrentUser] = useState(false);
   const [message, setMessage] = useState("");
+  const [dMMessage, setDMMessage] = useState("");
   const [isMessageText, setIsMessageText] = useState(false);
   const [profileData, setProfileData] = useState<profileData>();
   const [isScrollToTop, setIsScrollToTop] = useState(false);
@@ -86,10 +106,48 @@ export default function ChatBox(props: Props) {
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeys>();
   const [receiverPubKey, setReceiverPubKey] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
-  const [messagesList, setMessagesList] = useState<DirectMessage[]>([]);
+  const [directMessagesList, setDirectMessagesList] = useState<DirectMessage[]>([]);
   const [isUserFromSearch, setIsUserFromSearch] = useState(false);
   const [isCurrentUserJoined, setIsCurrentUserJoined] = useState(true);
   const [shGif, setShGif] = useState(false);
+  const [isCommunity, setIsCommunity] = useState(false);
+  const [communityName, setCommunityName] = useState("");
+  const [currentCommunity, setCurrentCommunity] = useState<Community>();
+  const [currentChannel, setCurrentChannel] = useState<Channel>();
+  const [publicMessages, setPublicMessages] = useState<PublicMessage[]>([]);
+  const [activeMessage, setActiveMessage] = useState("");
+  const [keyDialog, setKeyDialog] = useState(false);
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const clickedElement = event.target as HTMLElement;
+      const isAvatarClicked =
+        clickedElement.classList.contains("user-avatar") &&
+        clickedElement.classList.contains("medium");
+      if (
+        popoverRef.current &&
+        !(popoverRef.current as HTMLElement).contains(event.target as Node) &&
+        !isAvatarClicked
+      ) {
+        setActiveMessage("");
+      }
+    };
+
+    if (chatBodyDivRef.current) {
+      chatBodyDivRef.current.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      if (chatBodyDivRef.current) {
+        chatBodyDivRef.current.removeEventListener("mousedown", handleClickOutside);
+      }
+    };
+  }, [activeMessage]);
+
+  useEffect(() => {
+    console.log(currentChannel, "currentChannel");
+  }, [currentChannel]);
 
   useEffect(() => {
     // resetProfile(props.activeUser);
@@ -97,10 +155,16 @@ export default function ChatBox(props: Props) {
     setShow(!!props.activeUser?.username);
   }, []);
 
+  // useEffect(() => {
+  //   if (window.raven) {
+  //     setHasUserJoinedChat(true);
+  //   }
+  // }, [window?.raven]);
+
   useEffect(() => {
-    const msgsList = fetchMessages(receiverPubKey!);
+    const msgsList = fetchDirectMessages(receiverPubKey!);
     const messages = msgsList.sort((a, b) => a.created - b.created);
-    setMessagesList(messages);
+    setDirectMessagesList(messages);
   }, [props.chat.directMessages]);
 
   useEffect(() => {
@@ -112,27 +176,46 @@ export default function ChatBox(props: Props) {
   }, [props.global.theme]);
 
   useEffect(() => {
-    scrollToBottom();
-    if (messagesList.length !== 0) {
+    scrollerClicked();
+    if (directMessagesList.length !== 0 || publicMessages.length !== 0) {
       //Initialize the zooming effect
       zoomInitializer();
     }
-  }, [messagesList]);
+  }, [directMessagesList, publicMessages]);
+
+  useEffect(() => {
+    if (currentChannel && isCommunity) {
+      const publicMessages = fetchCommunityMessages(currentChannel.id);
+      const messages = publicMessages.sort((a, b) => a.created - b.created);
+      setPublicMessages(messages);
+    }
+    scrollerClicked();
+  }, [currentChannel, isCommunity, props.chat.publicMessages]);
 
   useEffect(() => {
     if (isCurrentUser) {
       zoomInitializer();
-      scrollToBottom();
+      scrollerClicked();
+    } else {
+      scrollerClicked();
     }
   }, [isCurrentUser]);
 
   useEffect(() => {
     fetchProfileData();
     setShow(!!props.activeUser?.username);
-    const msgsList = fetchMessages(receiverPubKey!);
+    const msgsList = fetchDirectMessages(receiverPubKey!);
     const messages = msgsList.sort((a, b) => a.created - b.created);
-    setMessagesList(messages);
+    setDirectMessagesList(messages);
   }, [props.activeUser]);
+
+  useEffect(() => {
+    if (isCommunity) {
+      fetchCommunity();
+      scrollerClicked();
+      fetchCurrentChannel(communityName);
+    }
+  }, [isCommunity, communityName]);
 
   useEffect(() => {
     if (currentUser) {
@@ -148,9 +231,9 @@ export default function ChatBox(props: Props) {
 
       const peer = props.chat.directContacts.find((x) => x.name === currentUser)?.pubkey ?? null;
       setReceiverPubKey(peer!);
-      const msgsList = fetchMessages(peer!);
+      const msgsList = fetchDirectMessages(peer!);
       const messages = msgsList.sort((a, b) => a.created - b.created);
-      setMessagesList(messages);
+      setDirectMessagesList(messages);
       if (!window.raven) {
         setNostrkeys(activeUserKeys!);
       }
@@ -158,8 +241,29 @@ export default function ChatBox(props: Props) {
       setIsCurrentUserJoined(true);
       setMessage("");
       setShowSpinner(false);
+      scrollerClicked();
     }
   }, [currentUser]);
+
+  const fetchCommunity = async () => {
+    const community = await getCommunity(communityName, props.activeUser?.username);
+    setCurrentCommunity(community!);
+    setProfileData({
+      joiningData: community?.created_at!,
+      about: community?.about,
+      followers: community?.subscribers
+    });
+  };
+
+  const fetchCurrentChannel = (communityName: string) => {
+    for (const item of props.chat.channels) {
+      if (item.communityName === communityName) {
+        setCurrentChannel(item);
+        return item;
+      }
+    }
+    return {};
+  };
 
   const formatFollowers = (count: number | undefined) => {
     if (count) {
@@ -188,10 +292,19 @@ export default function ChatBox(props: Props) {
     }
   };
 
-  const fetchMessages = (peer: string) => {
+  const fetchDirectMessages = (peer: string) => {
     for (const item of props.chat.directMessages) {
       if (item.peer === peer) {
         return item.chat;
+      }
+    }
+    return [];
+  };
+
+  const fetchCommunityMessages = (channelId: string) => {
+    for (const item of props.chat.publicMessages) {
+      if (item.channelId === channelId) {
+        return item.PublicMessage;
       }
     }
     return [];
@@ -215,7 +328,7 @@ export default function ChatBox(props: Props) {
   const fetchProfileData = async () => {
     const profileData = await getProfileMetaData(props.activeUser?.username!);
     setActiveUserKeys(profileData?.noStrKey);
-    const hasNoStrKey = "noStrKey" in profileData;
+    const hasNoStrKey = profileData.hasOwnProperty("noStrKey");
     setHasUserJoinedChat(hasNoStrKey);
     setShow(!!props.activeUser?.username);
   };
@@ -238,10 +351,12 @@ export default function ChatBox(props: Props) {
   };
 
   const sendMessage = () => {
-    if (message.length !== 0) {
+    if (message.length !== 0 && !message.includes("Uploading")) {
       setMessage("");
       setIsMessageText(false);
-      window.raven?.sendDirectMessage(receiverPubKey, message);
+      isCommunity
+        ? window?.raven?.sendPublicMessage(currentChannel!, message, [], "")
+        : window.raven?.sendDirectMessage(receiverPubKey, message);
     }
     if (isUserFromSearch && receiverPubKey) {
       window.raven?.publishContacts(currentUser, receiverPubKey);
@@ -252,23 +367,25 @@ export default function ChatBox(props: Props) {
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     var element = event.currentTarget;
     let srollHeight: number = (element.scrollHeight / 100) * 25;
-    const isScrollToTop = !isCurrentUser && element.scrollTop >= srollHeight;
+    const isScrollToTop = !isCurrentUser && !isCommunity && element.scrollTop >= srollHeight;
     const isScrollToBottom =
-      isCurrentUser &&
+      (isCurrentUser || isCommunity) &&
       element.scrollTop + chatBodyDivRef?.current?.clientHeight! < element.scrollHeight;
     setIsScrollToTop(isScrollToTop);
     setIsScrollToBottom(isScrollToBottom);
   };
 
   const scrollerClicked = () => {
-    chatBodyDivRef?.current?.scrollTo({
-      top: isCurrentUser ? chatBodyDivRef?.current?.scrollHeight : 0
+    chatBodyDivRef?.current?.scroll({
+      top: isCurrentUser || isCommunity ? chatBodyDivRef?.current?.scrollHeight : 0,
+      behavior: "auto"
     });
   };
 
   const scrollToBottom = () => {
-    chatBodyDivRef?.current?.scrollTo({
-      top: chatBodyDivRef?.current?.scrollHeight
+    chatBodyDivRef?.current?.scroll({
+      top: chatBodyDivRef?.current?.scrollHeight,
+      behavior: "auto"
     });
   };
 
@@ -297,8 +414,8 @@ export default function ChatBox(props: Props) {
     <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
   );
 
-  const getFormattedDateAndDay = (msg: DirectMessage, i: number) => {
-    const prevMsg = messagesList[i - 1];
+  const getFormattedDateAndDay = (msg: DirectMessage | PublicMessage, i: number) => {
+    const prevMsg = isCurrentUser ? directMessagesList[i - 1] : publicMessages[i - 1];
     const msgDate = formatMessageDate(msg.created);
     const prevMsgDate = prevMsg ? formatMessageDate(prevMsg.created) : null;
     if (msgDate !== prevMsgDate) {
@@ -316,14 +433,16 @@ export default function ChatBox(props: Props) {
   };
 
   const getLastMessage = (pubkey: string) => {
-    const msgsList = fetchMessages(pubkey!);
+    const msgsList = fetchDirectMessages(pubkey!);
     const messages = msgsList.sort((a, b) => a.created - b.created);
     const lastMessage = messages.slice(-1);
     return lastMessage[0]?.content;
   };
 
   const handleGifSelection = (gif: string) => {
-    window.raven?.sendDirectMessage(receiverPubKey, gif);
+    isCurrentUser
+      ? window.raven?.sendDirectMessage(receiverPubKey, gif)
+      : window?.raven?.sendPublicMessage(currentChannel!, gif, [], "");
   };
 
   const toggleGif = (e?: React.MouseEvent<HTMLElement>) => {
@@ -390,6 +509,7 @@ export default function ChatBox(props: Props) {
         const imgTag = imageUrl.length > 0 && `![](${imageUrl})\n\n`;
 
         imgTag && setMessage(imgTag);
+        setIsMessageText(true);
       } else {
         error(_t("editor-toolbar.image-error-cache"));
       }
@@ -407,12 +527,124 @@ export default function ChatBox(props: Props) {
     return content.includes("https://images.ecency.com");
   };
 
+  const communityClicked = (community: string, name: string) => {
+    setIsCommunity(true);
+    setCommunityName(community);
+  };
+
+  const getProfileName = (creator: string) => {
+    const profile = props.chat.profiles.find((x) => x.creator === creator);
+    return profile?.name;
+  };
+
+  const sendDM = (name: string, pubkey: string) => {
+    if (dMMessage) {
+      window.raven?.sendDirectMessage(pubkey, dMMessage);
+
+      setIsCurrentUser(true);
+      setCurrentUser(name);
+      setIsCommunity(false);
+      setCommunityName("");
+      setActiveMessage("");
+      setDMMessage("");
+    }
+  };
+
+  const handleDMChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    setDMMessage(e.target.value);
+  };
+
+  const handleImageClick = (id: string) => {
+    if (activeMessage === id) {
+      popoverRef.current = null;
+      setActiveMessage("");
+    } else {
+      popoverRef.current = null;
+      setActiveMessage(id);
+    }
+  };
+
+  const inviteClicked = () => {
+    const textField = document.createElement("textarea");
+    textField.innerText = currentChannel?.id!;
+    document.body.appendChild(textField);
+    textField.select();
+    document.execCommand("copy");
+    textField.remove();
+    success("Channel Id copied into clipboard");
+  };
+
+  const LeaveModal = () => {
+    return (
+      <>
+        <div className="leave-dialog-header border-bottom">
+          <div className="leave-dialog-titles">
+            <h2 className="leave-main-title">Confirmaton</h2>
+          </div>
+        </div>
+        <div className="leave-dialog-body">Are you sure?</div>
+        <p className="leave-confirm-buttons">
+          {/* <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setKeyDialog(false);
+            }}
+          >
+            {_t("g.back")}
+          </a> */}
+          <Button
+            variant="outline-primary"
+            className="close-btn"
+            onClick={() => {
+              setKeyDialog(false);
+              setStep(0);
+            }}
+          >
+            Close
+          </Button>
+          <Button variant="outline-primary" className="confirm-btn">
+            Confirm
+          </Button>
+        </p>
+      </>
+    );
+  };
+  const LeaveClicked = () => {
+    setKeyDialog(true);
+    setStep(1);
+  };
+
+  const toggleKeyDialog = () => {
+    setKeyDialog(!keyDialog);
+  };
+
+  const menuItems: MenuItem[] = [
+    {
+      label: _t("chat.invite"),
+      onClick: inviteClicked,
+      icon: linkSvg
+    },
+    {
+      label: "Leave",
+      onClick: LeaveClicked,
+      icon: chatLeaveSvg
+    }
+  ];
+
+  const menuConfig = {
+    history: props.history,
+    label: "",
+    icon: KebabMenu,
+    items: menuItems
+  };
+
   return (
     <>
       {show && (
         <div className={`chatbox-container ${expanded ? "expanded" : ""}`}>
           <div className="chat-header">
-            {currentUser && expanded && (
+            {(currentUser || communityName) && expanded && (
               <Tooltip content={_t("chat.back")}>
                 <div className="back-arrow-image">
                   <span
@@ -420,6 +652,9 @@ export default function ChatBox(props: Props) {
                     onClick={() => {
                       setCurrentUser("");
                       setIsCurrentUser(false);
+                      setCommunityName("");
+                      setIsCommunity(false);
+                      setActiveMessage("");
                     }}
                   >
                     {" "}
@@ -429,13 +664,24 @@ export default function ChatBox(props: Props) {
               </Tooltip>
             )}
             <div className="message-title" onClick={() => setExpanded(!expanded)}>
-              {currentUser && (
+              {(currentUser || isCommunity) && (
                 <p className="user-icon">
-                  <UserAvatar username={currentUser} size="small" />
+                  <UserAvatar
+                    username={
+                      isCurrentUser ? currentUser : (isCommunity && currentCommunity?.name) || ""
+                    }
+                    size="small"
+                  />
                 </p>
               )}
 
-              <p className="message-content">{currentUser ? currentUser : _t("chat.messages")}</p>
+              <p className="message-content">
+                {currentUser
+                  ? currentUser
+                  : isCommunity
+                  ? currentCommunity?.title
+                  : _t("chat.messages")}
+              </p>
             </div>
             <div className="actionable-imgs">
               {!currentUser && hasUserJoinedChat && (
@@ -452,117 +698,289 @@ export default function ChatBox(props: Props) {
                   </p>
                 </Tooltip>
               </div>
+              {isCommunity && (
+                <div className="community-menu">
+                  <DropDown {...menuConfig} float="right" alignBottom={false} noMarginTop={true} />
+                </div>
+              )}
             </div>
           </div>
 
           <div
-            className={`chat-body ${currentUser ? "current-user" : ""} ${
-              !hasUserJoinedChat ? "join-chat" : ""
-            }`}
+            className={`chat-body ${
+              currentUser ? "current-user" : isCommunity ? "community" : ""
+            } ${!hasUserJoinedChat ? "join-chat" : activeMessage ? "no-scroll" : ""}`}
             ref={chatBodyDivRef}
             onScroll={handleScroll}
           >
             {hasUserJoinedChat ? (
               <>
-                {currentUser.length !== 0 ? (
+                {currentUser.length !== 0 || communityName.length !== 0 ? (
                   <>
-                    <Link to={`/@${currentUser}`}>
-                      <div className="user-profile">
-                        {profileData?.joiningData && (
-                          <div className="user-profile-data">
-                            <span className="user-logo">
-                              <UserAvatar username={currentUser} size="large" />
-                            </span>
-                            <h4 className="user-name user-logo ">{currentUser}</h4>
-                            {profileData.about && (
-                              <p className="about user-logo ">{profileData.about}</p>
-                            )}
-
-                            <div className="created-date user-logo joining-info">
-                              <p>
-                                {" "}
-                                {_t("chat.joined")}{" "}
-                                {dateToFormatted(profileData!.joiningData, "LL")}
-                              </p>
-                              <p className="followers">
-                                {" "}
-                                {formatFollowers(profileData!.followers)} {_t("chat.followers")}
-                              </p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </Link>
                     <div className="chats">
                       {!isCurrentUserJoined ? (
                         <p className="not-joined">{_t("chat.not-joined")}</p>
                       ) : (
                         <>
-                          {messagesList.map((msg, i) => {
-                            const dayAndMonth = getFormattedDateAndDay(msg, i);
-                            let renderedPreview = renderPostBody(
-                              msg.content,
-                              false,
-                              props.global.canUseWebp
-                            );
+                          {" "}
+                          <Link
+                            to={
+                              isCurrentUser
+                                ? `/@${currentUser}`
+                                : isCommunity
+                                ? `/created/${currentCommunity?.name}`
+                                : ""
+                            }
+                          >
+                            <div className="user-profile">
+                              {profileData?.joiningData && (
+                                <div className="user-profile-data">
+                                  <span className="user-logo">
+                                    <UserAvatar
+                                      username={
+                                        isCurrentUser
+                                          ? currentUser
+                                          : (isCommunity && currentCommunity?.name) || ""
+                                      }
+                                      size="large"
+                                    />
+                                  </span>
+                                  <h4 className="user-name user-logo ">
+                                    {isCurrentUser
+                                      ? currentUser
+                                      : (isCommunity && currentCommunity?.title) || ""}
+                                  </h4>
+                                  {profileData.about && (
+                                    <p className="about user-logo ">{profileData.about}</p>
+                                  )}
 
-                            renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
-                            renderedPreview = renderedPreview.replace(/<\/p>/g, "");
-
-                            const isGif = isMessageGif(msg.content);
-
-                            const isImage = isMessageImage(msg.content);
-
-                            return (
-                              <React.Fragment key={msg.id}>
-                                {dayAndMonth}
-                                {msg.creator !== activeUserKeys?.pub ? (
-                                  <div key={msg.id} className="message">
-                                    <div className="user-img">
-                                      <Link to={`/@${currentUser}`}>
-                                        <span>
-                                          <UserAvatar username={currentUser} size="medium" />
-                                        </span>
-                                      </Link>
-                                    </div>
-                                    <div className="user-info">
-                                      <p className="user-msg-time">
-                                        {formatMessageTime(msg.created)}
-                                      </p>
-                                      <div
-                                        className={`receiver-message-content ${
-                                          isGif ? "gif" : ""
-                                        } ${isImage ? "chat-image" : ""}`}
-                                        dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                                      />
-                                    </div>
-                                  </div>
-                                ) : (
-                                  <div key={msg.id} className="sender">
-                                    <p className="sender-message-time">
-                                      {formatMessageTime(msg.created)}
+                                  <div className="created-date user-logo joining-info">
+                                    <p>
+                                      {" "}
+                                      {_t("chat.joined")}{" "}
+                                      {dateToFormatted(profileData!.joiningData, "LL")}
                                     </p>
-                                    <div className="sender-message">
-                                      <div
-                                        className={`sender-message-content ${isGif ? "gif" : ""} ${
-                                          isImage ? "chat-image" : ""
-                                        }`}
-                                        dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                                      />
-                                    </div>
+                                    <p className="followers">
+                                      {" "}
+                                      {formatFollowers(profileData!.followers)}{" "}
+                                      {isCommunity ? _t("chat.subscribers") : _t("chat.followers")}
+                                    </p>
                                   </div>
-                                )}
-                              </React.Fragment>
-                            );
-                          })}
+                                </div>
+                              )}
+                            </div>
+                          </Link>
+                          {isCurrentUser
+                            ? directMessagesList.map((msg, i) => {
+                                const dayAndMonth = getFormattedDateAndDay(msg, i);
+                                let renderedPreview = renderPostBody(
+                                  msg.content,
+                                  false,
+                                  props.global.canUseWebp
+                                );
+
+                                renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
+                                renderedPreview = renderedPreview.replace(/<\/p>/g, "");
+
+                                const isGif = isMessageGif(msg.content);
+
+                                const isImage = isMessageImage(msg.content);
+
+                                return (
+                                  <React.Fragment key={msg.id}>
+                                    {dayAndMonth}
+                                    {msg.creator !== activeUserKeys?.pub ? (
+                                      <div key={msg.id} className="message">
+                                        <div className="user-img">
+                                          <Link to={`/@${currentUser}`}>
+                                            <span>
+                                              <UserAvatar username={currentUser} size="medium" />
+                                            </span>
+                                          </Link>
+                                        </div>
+                                        <div className="user-info">
+                                          <p className="user-msg-time">
+                                            {formatMessageTime(msg.created)}
+                                          </p>
+                                          <div
+                                            className={`receiver-message-content ${
+                                              isGif ? "gif" : ""
+                                            } ${isImage ? "chat-image" : ""}`}
+                                            dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                                          />
+                                        </div>
+                                      </div>
+                                    ) : (
+                                      <div key={msg.id} className="sender">
+                                        <p className="sender-message-time">
+                                          {formatMessageTime(msg.created)}
+                                        </p>
+                                        <div className="sender-message">
+                                          <div
+                                            className={`sender-message-content ${
+                                              isGif ? "gif" : ""
+                                            } ${isImage ? "chat-image" : ""}`}
+                                            dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                                          />
+                                        </div>
+                                      </div>
+                                    )}
+                                  </React.Fragment>
+                                );
+                              })
+                            : publicMessages.map((pMsg, i) => {
+                                const dayAndMonth = getFormattedDateAndDay(pMsg, i);
+                                let renderedPreview = renderPostBody(
+                                  pMsg.content,
+                                  false,
+                                  props.global.canUseWebp
+                                );
+
+                                renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
+                                renderedPreview = renderedPreview.replace(/<\/p>/g, "");
+
+                                const isGif = isMessageGif(pMsg.content);
+
+                                const isImage = isMessageImage(pMsg.content);
+
+                                const name = getProfileName(pMsg.creator);
+
+                                const popover = (
+                                  <Popover
+                                    id={`profile-popover`}
+                                    placement="right"
+                                    className="profile-popover"
+                                  >
+                                    <Popover.Content>
+                                      <div className="profile-box" ref={popoverRef}>
+                                        <UserAvatar username={name!} size="large" />
+
+                                        <p className="profile-name">{name!}</p>
+
+                                        <Form
+                                          onSubmit={(e: React.FormEvent) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            sendDM(name!, pMsg.creator);
+                                          }}
+                                        >
+                                          <InputGroup className="dm-input-group">
+                                            <Form.Control
+                                              value={dMMessage}
+                                              autoFocus={true}
+                                              onChange={handleDMChange}
+                                              required={true}
+                                              type="text"
+                                              placeholder={"Send direct message"}
+                                              autoComplete="off"
+                                              className="dm-chat-input"
+                                              style={{
+                                                maxWidth: "100%",
+                                                overflowWrap: "break-word"
+                                              }}
+                                            />
+                                          </InputGroup>
+                                        </Form>
+                                      </div>
+                                    </Popover.Content>
+                                  </Popover>
+                                );
+
+                                return (
+                                  <React.Fragment key={pMsg.id}>
+                                    {dayAndMonth}
+                                    {pMsg.creator !== activeUserKeys?.pub ? (
+                                      <div key={pMsg.id} className="message">
+                                        <div className="community-user-img">
+                                          <OverlayTrigger
+                                            trigger="click"
+                                            placement="right"
+                                            // trigger={["hover", "focus"]}
+                                            show={activeMessage === pMsg.id}
+                                            overlay={popover}
+                                            delay={1000}
+                                            onToggle={() => handleImageClick(pMsg.id)}
+                                          >
+                                            <span>
+                                              <UserAvatar username={name!} size="medium" />
+                                            </span>
+                                          </OverlayTrigger>
+                                        </div>
+
+                                        <div className="user-info">
+                                          <p className="user-msg-time">
+                                            <span className="username-community">{name}</span>
+                                            {formatMessageTime(pMsg.created)}
+                                          </p>
+                                          <div
+                                            className={`receiver-message-content ${
+                                              isGif ? "gif" : ""
+                                            } ${isImage ? "chat-image" : ""}`}
+                                            dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                                          />
+                                        </div>
+                                      </div>
+                                    ) : (
+                                      <div key={pMsg.id} className="sender">
+                                        <p className="sender-message-time">
+                                          {formatMessageTime(pMsg.created)}
+                                        </p>
+                                        <div className="sender-message">
+                                          <div
+                                            className={`sender-message-content ${
+                                              isGif ? "gif" : ""
+                                            } ${isImage ? "chat-image" : ""}`}
+                                            dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                                          />
+                                        </div>
+                                      </div>
+                                    )}
+                                  </React.Fragment>
+                                );
+                              })}
                         </>
                       )}
                     </div>
                   </>
                 ) : (
                   <>
-                    {props.chat.directContacts.length !== 0 ? (
+                    {props.chat.directContacts.length !== 0 || props.chat.channels.length !== 0 ? (
                       <React.Fragment>
+                        {props.chat.channels.length !== 0 && (
+                          <>
+                            <div className="community-header">Communities</div>
+                            {props.chat.channels.map((channel) => {
+                              return (
+                                <div key={channel.id} className="chat-content">
+                                  <Link to={`/created/${channel.communityName}`}>
+                                    <div className="user-img">
+                                      <span>
+                                        <UserAvatar
+                                          username={channel.communityName!}
+                                          size="medium"
+                                        />
+                                      </span>
+                                    </div>
+                                  </Link>
+
+                                  <div
+                                    className="user-title"
+                                    onClick={() =>
+                                      communityClicked(channel.communityName!, channel.name)
+                                    }
+                                  >
+                                    <p className="username" style={{ paddingTop: "8px" }}>
+                                      {channel.name}
+                                    </p>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                            {props.chat.directContacts.length !== 0 && (
+                              <div className="dm-header">DMs</div>
+                            )}
+                          </>
+                        )}
                         {props.chat.directContacts.map((user: DirectContactsType) => {
                           return (
                             <div key={user.pubkey} className="chat-content">
@@ -602,7 +1020,8 @@ export default function ChatBox(props: Props) {
               </Button>
             )}
 
-            {((isScrollToTop && !isCurrentUser) || (isCurrentUser && isScrollToBottom)) && (
+            {((isScrollToTop && !isCurrentUser) ||
+              ((isCurrentUser || isCommunity) && isScrollToBottom)) && (
               <Tooltip
                 content={isScrollToTop ? _t("scroll-to-top.title") : _t("chat.scroll-to-bottom")}
               >
@@ -611,13 +1030,13 @@ export default function ChatBox(props: Props) {
                   style={{ bottom: isCurrentUser && isScrollToBottom ? "20px" : "55px" }}
                   onClick={scrollerClicked}
                 >
-                  {isCurrentUser ? chevronDownSvgForSlider : chevronUpSvg}
+                  {isCurrentUser || isCommunity ? chevronDownSvgForSlider : chevronUpSvg}
                 </div>
               </Tooltip>
             )}
           </div>
           {showSpinner && <LinearProgress />}
-          {currentUser && (
+          {(currentUser || isCommunity) && (
             <div className="chat">
               <div className="chatbox-emoji-picker">
                 <div className="chatbox-emoji">
@@ -712,6 +1131,7 @@ export default function ChatBox(props: Props) {
                 <InputGroup className="chat-input-group">
                   <Form.Control
                     value={message}
+                    autoFocus={true}
                     onChange={handleMessage}
                     required={true}
                     type="text"
@@ -724,7 +1144,7 @@ export default function ChatBox(props: Props) {
                     }
                   />
                   <InputGroup.Append
-                    className={`msg-svg ${isMessageText ? "active" : ""}`}
+                    className={`msg-svg ${isMessageText || message.length !== 0 ? "active" : ""}`}
                     onClick={sendMessage}
                   >
                     {messageSendSvg}
@@ -741,6 +1161,24 @@ export default function ChatBox(props: Props) {
           setSearchUser={setSearchUser}
           setCurrentUserFromSearch={setCurrentUserFromSearch}
         />
+      )}
+
+      {keyDialog && (
+        <Modal
+          animation={false}
+          show={true}
+          centered={true}
+          onHide={toggleKeyDialog}
+          keyboard={false}
+          className="chats-dialog modal-thin-header"
+          size="lg"
+        >
+          <Modal.Header closeButton={true} />
+          <Modal.Body className="chat-modals-body">
+            {step === 1 && LeaveModal()}
+            {/* {step === 2 && successModal()} */}
+          </Modal.Body>
+        </Modal>
       )}
     </>
   );

@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 
 import { ActiveUser } from "../common/store/active-user/types";
 import { Chat, DirectContactsType } from "../common/store/chat/types";
-import { DirectMessage, Profile, Keys, DirectContact } from "./message-provider-types";
+import {
+  DirectMessage,
+  Profile,
+  Keys,
+  DirectContact,
+  Channel,
+  PublicMessage
+} from "./message-provider-types";
 
 import { initRaven, RavenEvents } from "../common/helper/message-helper";
 import { getProfileMetaData, NostrKeys } from "../common/helper/chat-utils";
@@ -21,6 +28,9 @@ export const setNostrkeys = (keys: NostrKeys) => {
 interface Props {
   addDirectContacts: (data?: DirectContactsType[]) => void;
   addDirectMessages: (peer: string, data?: DirectMessage[]) => void;
+  addPublicMessage: (channelId: string, data?: PublicMessage[]) => void;
+  addChannels: (data: Channel[]) => void;
+  addProfile: (data: Profile[]) => void;
 }
 
 const MessageProvider = (props: Props) => {
@@ -29,7 +39,8 @@ const MessageProvider = (props: Props) => {
   const [since, setSince] = useState<number>(0);
   const [keys, setKeys] = useState<Keys>();
   const [raven, setRaven] = useState<any>();
-  const [messageBuffer, setMessageBuffer] = useState<DirectMessage[]>([]);
+  const [directMessageBuffer, setDirectMessageBuffer] = useState<DirectMessage[]>([]);
+  const [publicMessageBuffer, setPublicMessageBuffer] = useState<PublicMessage[]>([]);
 
   useEffect(() => {
     window.addEventListener("createRavenInstance", createRavenInstance);
@@ -55,6 +66,7 @@ const MessageProvider = (props: Props) => {
   const createRavenInstance = (e: Event) => {
     const detail = (e as CustomEvent).detail as NostrKeys;
     const ravenInstance = initRaven(detail);
+    console.log("Create rvan instance run");
     setRaven(ravenInstance);
   };
 
@@ -69,7 +81,10 @@ const MessageProvider = (props: Props) => {
 
     const timer = setTimeout(
       () => {
-        raven?.listen(Math.floor((since || Date.now()) / 1000));
+        raven?.listen(
+          chat.channels.map((x) => x.id),
+          Math.floor((since || Date.now()) / 1000)
+        );
         setSince(Date.now());
       },
       since === 0 ? 500 : 10000
@@ -78,7 +93,7 @@ const MessageProvider = (props: Props) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [since, ravenReady, raven]);
+  }, [since, ravenReady, raven, chat.channels]);
 
   // // Ready state handler
   const handleReadyState = () => {
@@ -94,14 +109,36 @@ const MessageProvider = (props: Props) => {
     };
   }, [ravenReady, raven]);
 
-  const handleProfileUpdate = (data: DirectContact[]) => {
+  // Profile update handler
+  const handleProfileUpdate = (data: Profile[]) => {
+    console.log("handleProfileUpdate", data);
+    props.addProfile(data);
+    // setProfiles([
+    //     ...profiles.filter(x => data.find(y => x.creator === y.creator) === undefined),
+    //     ...data
+    // ]);
+    // const profile = data.find(x => x.creator === keys!.pub);
+    // if (profile) {
+    //     setProfile(profile);
+    // }
+  };
+
+  useEffect(() => {
+    raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
+    raven?.addListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
+    return () => {
+      raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
+    };
+  }, [raven, chat.profiles]);
+
+  //Direct contact handler
+  const handleDirectContact = (data: DirectContact[]) => {
     const result = [...chat.directContacts];
     data.forEach(({ name, pubkey }) => {
       const isPresent = chat.directContacts.some(
         (obj) => obj.name === name && obj.pubkey === pubkey
       );
       if (!isPresent) {
-        //Add the object to the result array if it's not already present in store state.
         result.push({ name, pubkey });
       }
     });
@@ -111,27 +148,28 @@ const MessageProvider = (props: Props) => {
   };
 
   useEffect(() => {
-    raven?.removeListener(RavenEvents.DirectContact, handleProfileUpdate);
-    raven?.addListener(RavenEvents.DirectContact, handleProfileUpdate);
+    raven?.removeListener(RavenEvents.DirectContact, handleDirectContact);
+    raven?.addListener(RavenEvents.DirectContact, handleDirectContact);
     return () => {
-      raven?.removeListener(RavenEvents.DirectContact, handleProfileUpdate);
+      raven?.removeListener(RavenEvents.DirectContact, handleDirectContact);
     };
   }, [raven]);
 
   // // Direct message handler
   const handleDirectMessage = (data: DirectMessage[]) => {
-    setMessageBuffer((messageBuffer) => [...messageBuffer!, ...data]);
+    setDirectMessageBuffer((directMessageBuffer) => [...directMessageBuffer!, ...data]);
+    console.log("HandleDirectMessage", data);
     raven?.checkProfiles(data.map((x) => x.peer));
   };
 
-  const setMessages = () => {
-    messageBuffer.forEach((obj) => {
+  const setDirectMessages = () => {
+    directMessageBuffer.forEach((obj) => {
       const { peer } = obj;
       const matchingStateItem = chat.directMessages.find((stateItem) => stateItem.peer === peer);
       if (matchingStateItem) {
         if (matchingStateItem.chat.length === 0) {
           props.addDirectMessages(peer, [obj]);
-          setMessageBuffer((prevMessageBuffer) =>
+          setDirectMessageBuffer((prevMessageBuffer) =>
             prevMessageBuffer.filter((message) => message.id !== obj.id)
           );
         } else {
@@ -143,7 +181,7 @@ const MessageProvider = (props: Props) => {
           });
           if (!itemExists) {
             props.addDirectMessages(peer, [obj]);
-            setMessageBuffer((prevMessageBuffer) =>
+            setDirectMessageBuffer((prevMessageBuffer) =>
               prevMessageBuffer.filter((message) => message.id !== obj.id)
             );
           }
@@ -154,9 +192,9 @@ const MessageProvider = (props: Props) => {
 
   useEffect(() => {
     if (chat.directContacts.length !== 0) {
-      setMessages();
+      setDirectMessages();
     }
-  }, [chat.directContacts, messageBuffer]);
+  }, [chat.directContacts, directMessageBuffer]);
 
   useEffect(() => {
     raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
@@ -166,10 +204,95 @@ const MessageProvider = (props: Props) => {
     };
   }, [raven]);
 
+  // Channel creation handler
+  const handleChannelCreation = (data: Channel[]) => {
+    console.log("handleChannelCreation", data);
+
+    const append = data.filter((x) => chat.channels.find((y) => y.id === x.id) === undefined);
+    props.addChannels(append);
+  };
+
+  useEffect(() => {
+    raven?.removeListener(RavenEvents.ChannelCreation, handleChannelCreation);
+    raven?.addListener(RavenEvents.ChannelCreation, handleChannelCreation);
+
+    return () => {
+      raven?.removeListener(RavenEvents.ChannelCreation, handleChannelCreation);
+    };
+  }, [raven]);
+
+  //Public Message handler
+  const handlePublicMessage = (data: PublicMessage[]) => {
+    console.log("handlePublicMessage", data, chat.profiles);
+    setPublicMessageBuffer((publicMessageBuffer) => [...publicMessageBuffer!, ...data]);
+
+    for (const item of data) {
+      const isCreatorMatch = chat.profiles.some((firstItem) => firstItem.creator === item.creator);
+
+      if (!isCreatorMatch) {
+        let uniqueUsers: string[] = [];
+        for (const item of data) {
+          if (!uniqueUsers.includes(item.creator)) {
+            uniqueUsers.push(item.creator);
+          }
+        }
+        raven?.loadProfiles(uniqueUsers);
+      }
+    }
+  };
+
+  useEffect(() => {
+    raven?.removeListener(RavenEvents.PublicMessage, handlePublicMessage);
+    raven?.addListener(RavenEvents.PublicMessage, handlePublicMessage);
+
+    return () => {
+      raven?.removeListener(RavenEvents.PublicMessage, handlePublicMessage);
+    };
+  }, [raven, chat.profiles, chat.publicMessages]);
+
+  useEffect(() => {
+    if (chat.channels.length !== 0) {
+      setPublicMessages();
+    }
+  }, [chat.publicMessages, publicMessageBuffer]);
+
+  const setPublicMessages = () => {
+    publicMessageBuffer.forEach((obj) => {
+      const { root } = obj;
+      const matchingStateItem = chat.publicMessages.find(
+        (stateItem) => stateItem.channelId === root
+      );
+      if (matchingStateItem) {
+        if (matchingStateItem.PublicMessage.length === 0) {
+          props.addPublicMessage(root, [obj]);
+          setPublicMessageBuffer((prevMessageBuffer) =>
+            prevMessageBuffer.filter((message) => message.id !== obj.id)
+          );
+        } else {
+          let itemExists = false;
+          matchingStateItem.PublicMessage.forEach((item) => {
+            if (item.id === obj.id) {
+              itemExists = true;
+            }
+          });
+          if (!itemExists) {
+            props.addPublicMessage(root, [obj]);
+            setPublicMessageBuffer((prevMessageBuffer) =>
+              prevMessageBuffer.filter((message) => message.id !== obj.id)
+            );
+          }
+        }
+      }
+    });
+  };
+
   useEffect(() => {
     return () => {
       raven?.removeListener(RavenEvents.Ready, handleReadyState);
-      raven?.removeListener(RavenEvents.DirectContact, handleProfileUpdate);
+      raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
+      raven?.removeListener(RavenEvents.ChannelCreation, handleChannelCreation);
+      raven?.removeListener(RavenEvents.DirectContact, handleDirectContact);
+      raven?.removeListener(RavenEvents.PublicMessage, handlePublicMessage);
       raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
     };
   }, [raven]);

@@ -3,10 +3,13 @@ import { Kind } from "../../lib/nostr-tools/event";
 import { Filter } from "../../lib/nostr-tools/filter";
 import { TypedEventEmitter } from "./message-event-emitter";
 import {
+  Channel,
   DirectContact,
   DirectMessage,
   Keys,
-  Metadata
+  Metadata,
+  Profile,
+  PublicMessage
 } from "../../providers/message-provider-types";
 import { encrypt, decrypt } from "../../lib/nostr-tools/nip04";
 import SimplePool from "../../lib/nostr-tools/pool";
@@ -21,15 +24,26 @@ const relays = {
   "wss://nos.lol": { read: true, write: true }
 };
 
+enum NewKinds {
+  MuteList = 10000,
+  Arbitrary = 30078
+}
+
 export enum RavenEvents {
   Ready = "ready",
+  ProfileUpdate = "profile_update",
+  ChannelCreation = "channel_creation",
   DirectMessage = "direct_message",
-  DirectContact = "direct_contact"
+  DirectContact = "direct_contact",
+  PublicMessage = "public_message"
 }
 
 type EventHandlerMap = {
   [RavenEvents.Ready]: () => void;
+  [RavenEvents.ProfileUpdate]: (data: Profile[]) => void;
   [RavenEvents.DirectMessage]: (data: DirectMessage[]) => void;
+  [RavenEvents.ChannelCreation]: (data: Channel[]) => void;
+  [RavenEvents.PublicMessage]: (data: PublicMessage[]) => void;
   [RavenEvents.DirectContact]: (data: DirectContact[]) => void;
 };
 
@@ -75,17 +89,88 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
       {
         kinds: [Kind.Contacts],
         authors: [this.pub]
+      },
+      {
+        kinds: [Kind.ChannelCreation, Kind.EventDeletion],
+        authors: [this.pub]
+      },
+      {
+        kinds: [Kind.ChannelMessage],
+        authors: [this.pub]
+      },
+      {
+        kinds: [NewKinds.Arbitrary],
+        authors: [this.pub],
+        "#d": ["left-channel-list", "read-mark-map"]
       }
     ];
     this.fetchP(filters).then((resp) => {
       const events = resp.sort((a, b) => b.created_at - a.created_at);
+      const deletions = resp
+        .filter((x) => x.kind === Kind.EventDeletion)
+        .map((x) => Raven.findTagValue(x, "e"));
       const profile = events.find((x) => x.kind === Kind.Contacts);
       if (profile && profile?.tags.length !== 0) {
         this.directContacts = profile?.tags;
         this.pushToEventBuffer(profile!);
       }
+
+      const leftChannelList = events.find(
+        (x) =>
+          x.kind.toString() === NewKinds.Arbitrary.toString() &&
+          Raven.findTagValue(x, "d") === "left-channel-list"
+      );
+      console.log(leftChannelList, "leftChannelList");
+      if (leftChannelList) {
+        this.pushToEventBuffer(leftChannelList);
+      }
+
+      const channels = Array.from(
+        new Set(
+          events
+            .map((x) => {
+              if (x.kind === Kind.ChannelCreation) {
+                return x.id;
+              }
+
+              if (x.kind === Kind.ChannelMessage) {
+                return Raven.findTagValue(x, "e");
+              }
+
+              return undefined;
+            })
+            .filter((x) => !deletions.includes(x))
+            .filter(notEmpty)
+        )
+      );
+      if (channels.length !== 0) {
+        this.fetchChannels(channels);
+      }
+
       this.fetchMessages();
       this.emit(RavenEvents.Ready);
+    });
+  }
+
+  public fetchChannels(channels: string[]) {
+    const filters: Filter[] = [
+      {
+        kinds: [Kind.ChannelCreation],
+        ids: channels
+      },
+      ...channels.map((c) => ({
+        kinds: [Kind.ChannelMetadata, Kind.EventDeletion],
+        "#e": [c]
+      })),
+      ...channels.map((c) => ({
+        kinds: [Kind.ChannelMessage],
+        "#e": [c],
+        limit: 30
+      }))
+    ];
+
+    filters.forEach((c) => {
+      this.fetch([c]);
     });
   }
 
@@ -139,26 +224,71 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
     this.fetch(filters);
   }
 
+  public loadChannel(id: string) {
+    // console.log(id, "id");
+    const filters: Filter[] = [
+      {
+        kinds: [Kind.ChannelCreation],
+        ids: [id]
+      },
+      {
+        kinds: [Kind.ChannelMetadata, Kind.EventDeletion],
+        "#e": [id]
+      },
+      {
+        kinds: [Kind.ChannelMessage],
+        "#e": [id],
+        limit: 30
+      }
+    ];
+
+    this.fetch(filters);
+  }
+
+  public loadProfiles(pubs: string[]) {
+    console.log("load profiles run");
+    pubs.forEach((p) => {
+      this.fetch(
+        [
+          {
+            kinds: [Kind.Metadata],
+            authors: [p]
+          }
+        ],
+        true,
+        false
+      );
+    });
+  }
+
   public checkProfiles(pubs: string[]) {
     pubs.forEach((p) => {
       if (this.directContacts.length !== 0) {
         this.directContacts.forEach((c: any) => {
           if (p !== c[0]) {
-            this.fetch([
-              {
-                kinds: [Kind.Metadata],
-                authors: [p]
-              }
-            ]);
+            this.fetch(
+              [
+                {
+                  kinds: [Kind.Metadata],
+                  authors: [p]
+                }
+              ],
+              true,
+              true
+            );
           }
         });
       } else {
-        this.fetch([
-          {
-            kinds: [Kind.Metadata],
-            authors: [p]
-          }
-        ]);
+        this.fetch(
+          [
+            {
+              kinds: [Kind.Metadata],
+              authors: [p]
+            }
+          ],
+          true,
+          true
+        );
       }
     });
   }
@@ -180,14 +310,14 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
     }
   }
 
-  private fetch(filters: Filter[], unsub: boolean = true) {
+  private fetch(filters: Filter[], unsub: boolean = true, isDirectContact: boolean = false) {
+    // console.log("Fetch run", filters);
     const sub = this.pool.sub(this.readRelays, filters);
 
     sub.on("event", (event: Event) => {
-      if (event.kind === Kind.Metadata) {
-        this.addDirectContact(event);
-      }
-      this.pushToEventBuffer(event);
+      event.kind === Kind.Metadata && isDirectContact
+        ? this.addDirectContact(event)
+        : this.pushToEventBuffer(event);
     });
 
     sub.on("eose", () => {
@@ -215,7 +345,7 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
     });
   }
 
-  public listen(since: number) {
+  public listen(channels: string[], since: number) {
     if (this.listenerSub) {
       this.listenerSub.unsub();
     }
@@ -227,6 +357,11 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
           since
         },
         {
+          kinds: [Kind.EventDeletion, Kind.ChannelMetadata, Kind.ChannelMessage],
+          "#e": channels,
+          since
+        },
+        {
           kinds: [Kind.EncryptedDirectMessage],
           "#p": [this.pub],
           since
@@ -234,6 +369,11 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
       ],
       false
     );
+  }
+
+  public async createChannel(meta: Metadata) {
+    // console.log("create channel run");
+    return this.publish(Kind.ChannelCreation, [], JSON.stringify(meta));
   }
 
   private async findHealthyRelay(relays: string[]) {
@@ -263,6 +403,21 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
     return this.publish(Kind.EncryptedDirectMessage, tags, encrypted);
   }
 
+  public async sendPublicMessage(
+    channel: Channel,
+    message: string,
+    mentions?: string[],
+    parent?: string
+  ) {
+    const root = parent || channel.id;
+    const relay = await this.findHealthyRelay(this.pool.seenOn(root) as string[]);
+    const tags = [["e", root, relay, "root"]];
+    if (mentions) {
+      mentions.forEach((m) => tags.push(["p", m]));
+    }
+    return this.publish(Kind.ChannelMessage, tags, message);
+  }
+
   private publish(kind: number, tags: Array<any>[], content: string): Promise<Event> {
     return new Promise((resolve, reject) => {
       this.signEvent({
@@ -276,22 +431,26 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
       })
         .then((event) => {
           if (!event) {
+            console.log("Event not found");
             reject("Couldn't sign event!");
             return;
           }
           const pub = this.pool.publish(this.writeRelays, event);
           pub.on("ok", () => {
             resolve(event);
+            console.log("event is send", event);
             if (event.kind === Kind.Contacts) {
               this.getContacts();
             }
           });
 
           pub.on("failed", () => {
+            console.log("Failed to sign event");
             reject("Couldn't sign event!");
           });
         })
         .catch(() => {
+          console.log("Catch run event not");
           reject("Couldn't sign event!");
         });
     });
@@ -332,7 +491,7 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
 
   async processEventQueue() {
     this.eventQueueFlag = false;
-    const data = this.eventQueue
+    const directContacts = this.eventQueue
       .filter((x) => x.kind === Kind.Contacts)
       .map((e: any) => {
         const profiles: Array<[string, string]> = e.tags;
@@ -340,12 +499,75 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
       })
       .filter(notEmpty);
 
-    if (data.length > 0) {
-      const directContactsProfile: Array<{ pubkey: string; name: string }> = data[0];
+    if (directContacts.length > 0) {
+      const directContactsProfile: Array<{ pubkey: string; name: string }> = directContacts[0];
 
       if (directContactsProfile.length > 0) {
         this.emit(RavenEvents.DirectContact, directContactsProfile);
       }
+    }
+
+    const profileUpdates: Profile[] = this.eventQueue
+      .filter((x) => x.kind === Kind.Metadata)
+      .map((ev) => {
+        const content = Raven.parseJson(ev.content);
+        return content
+          ? {
+              id: ev.id,
+              creator: ev.pubkey,
+              created: ev.created_at,
+              ...Raven.normalizeMetadata(content)
+            }
+          : null;
+      })
+      .filter(notEmpty);
+    if (profileUpdates.length > 0) {
+      this.emit(RavenEvents.ProfileUpdate, profileUpdates);
+    }
+
+    const channelCreations: Channel[] = this.eventQueue
+      .filter((x) => x.kind === Kind.ChannelCreation)
+      .map((ev) => {
+        const content = Raven.parseJson(ev.content);
+        // console.log(content,"events")
+        return content
+          ? {
+              id: ev.id,
+              creator: ev.pubkey,
+              created: ev.created_at,
+              communityName: content.communityName,
+              ...Raven.normalizeMetadata(content)
+            }
+          : null;
+      })
+      .filter(notEmpty);
+    if (channelCreations.length > 0) {
+      this.emit(RavenEvents.ChannelCreation, channelCreations);
+    }
+
+    const publicMessages: PublicMessage[] = this.eventQueue
+      .filter((x) => x.kind === Kind.ChannelMessage)
+      .map((ev) => {
+        const eTags = Raven.filterTagValue(ev, "e");
+        const root = eTags.find((x) => x[3] === "root")?.[1];
+        const mentions = Raven.filterTagValue(ev, "p")
+          .map((x) => x?.[1])
+          .filter(notEmpty);
+        if (!root) return null;
+        return ev.content
+          ? {
+              id: ev.id,
+              root,
+              content: ev.content,
+              creator: ev.pubkey,
+              mentions,
+              created: ev.created_at
+            }
+          : null;
+      })
+      .filter(notEmpty);
+    if (publicMessages.length > 0) {
+      this.emit(RavenEvents.PublicMessage, publicMessages);
     }
 
     Promise.all(
@@ -410,11 +632,11 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
     }
   }
 
-  static findTagValue(ev: Event, tag: "e" | "p") {
+  static findTagValue(ev: Event, tag: "e" | "p" | "d") {
     return ev.tags.find(([t]) => t === tag)?.[1];
   }
 
-  static filterTagValue(ev: Event, tag: "e" | "p") {
+  static filterTagValue(ev: Event, tag: "e" | "p" | "d") {
     return ev.tags.filter(([t]) => t === tag);
   }
 }
@@ -429,6 +651,7 @@ export const initRaven = (keys: Keys): Raven | undefined => {
 
   if (keys) {
     window.raven = new Raven(keys.priv, keys.pub);
+    console.log("window raven", window.raven);
   }
 
   return window.raven;
