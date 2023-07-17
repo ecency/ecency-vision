@@ -21,17 +21,21 @@ export const MarketInfo = ({
   usdFromMarketRate
 }: Props) => {
   const { global } = useMappedStore();
-  const { isRefetching, isLoading } = useCurrencyRateQuery(fromAsset, toAsset);
+  const { isFetching, isError } = useCurrencyRateQuery(fromAsset, toAsset);
 
   return (
     <div>
       <small className={"market-info font-weight-bold d-block mb-4 " + className}>
         1 {fromAsset} = {marketRate.toFixed(3)} {toAsset}
-        <span className="text-secondary ml-1">
-          ({isRefetching || isLoading ? "Calculating in" : usdFromMarketRate}
-          <span className="pl-1" />
-          {global.currency.toUpperCase()})
-        </span>
+        {isError ? (
+          <></>
+        ) : (
+          <span className="text-secondary ml-1">
+            ({isFetching ? _t("market.calculating-in") : usdFromMarketRate}
+            <span className="pl-1" />
+            {global.currency.toUpperCase()})
+          </span>
+        )}
       </small>
 
       <ListGroup>

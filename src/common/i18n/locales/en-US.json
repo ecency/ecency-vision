@@ -637,6 +637,7 @@
     "start-new-one": "Start new Swap",
     "signing": "Signing..",
     "success-swap": "Successfully swapped!",
+    "calculating-in": "Calculating in",
     "advanced": {
       "history": "History",
       "stake": "Order book",
