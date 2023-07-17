@@ -8,8 +8,7 @@ import { History } from "history";
 import { DeckToolbar } from "./deck-toolbar/deck-toolbar";
 import { DeckFloatingManager } from "./deck-floating-manager";
 import { DeckLoader } from "./deck-loader";
-import { DeckThreadsFormManager } from "./deck-threads-form";
-import { DeckThreadsForm } from "./deck-threads-form";
+import { DeckThreadsForm, DeckThreadsFormManager } from "./deck-threads-form";
 import { DeckThreadsManager } from "./columns/deck-threads-manager";
 import SSRSuspense from "../ssr-suspense";
 import { classNameObject } from "../../helper/class-name-object";
@@ -61,7 +60,7 @@ export const Decks = ({ history }: Props) => {
                     isExpanded={isExpanded}
                     setIsExpanded={setIsExpanded}
                   />
-                  <DeckThreadsForm className={showThreadsForm ? "show" : ""} />
+                  <DeckThreadsForm className={showThreadsForm ? "show" : ""} persistable={true} />
                   {isDecksLoading ? (
                     <DeckLoader />
                   ) : (
