@@ -23,6 +23,9 @@ export function useCurrencyRateQuery(fromAsset: MarketAsset, toAsset: MarketAsse
       const fromAccountRate = await getCurrencyTokenRate(global.currency, fromAsset);
       const toAccountRate = await getCurrencyTokenRate(global.currency, toAsset);
       return [formatTillPresentDigits(fromAccountRate), formatTillPresentDigits(toAccountRate)];
+    },
+    {
+      refetchInterval: 30000 // in ms
     }
   );
 }
