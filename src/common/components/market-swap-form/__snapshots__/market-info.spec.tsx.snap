@@ -15,7 +15,7 @@ exports[`should render market rate 1`] = `
       className="text-secondary ml-1"
     >
       (
-      12.000
+      Calculating in
       <span
         className="pl-1"
       />
