@@ -7,7 +7,6 @@ import { MarketAsset, MarketPairs } from "./market-pair";
 import { ActiveUser } from "../../store/active-user/types";
 import { getBalance } from "./api/get-balance";
 import { getHiveMarketRate, HiveMarketRateListener } from "./api/hive";
-import { getCGMarket } from "./api/coingecko-api";
 import { MarketSwapFormStep } from "./form-step";
 import { SignMethods } from "./sign-methods";
 import { Global } from "../../store/global/types";
@@ -16,7 +15,7 @@ import { checkSvg, swapSvg } from "../../img/svg";
 import { MarketSwapFormSuccess } from "./market-swap-form-success";
 import "./index.scss";
 import { classNameObject } from "../../helper/class-name-object";
-import { getCurrencyRates, getCurrencyTokenRate } from "../../api/private-api";
+import { getCurrencyTokenRate } from "../../api/private-api";
 
 export interface Props {
   activeUser: ActiveUser | null;
