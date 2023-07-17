@@ -4,7 +4,7 @@ import { _t } from '../../i18n';
 
 export const FilterFriends = (props: any) => {
 
-    const { filter } = props;
+    const { filter, updateFilterType } = props;
 
     const [label, setLabel] = useState("");
 
@@ -21,14 +21,18 @@ export const FilterFriends = (props: any) => {
                     label: <span>All</span>,
                     onClick: () => {
                     setLabel("All");
+                    console.log(label)
                     filter("All");
-                    }
+                    updateFilterType("All")
+                }
                 },
                 {
                     label: <span>Recently</span>,
                     onClick: () => {
-                    setLabel("Recently");
-                    filter("Recently");
+                        setLabel("Recently");
+                        console.log(label)
+                        filter("Recently");
+                    updateFilterType("Recently")
                     }
                 },
                 {
@@ -36,6 +40,7 @@ export const FilterFriends = (props: any) => {
                     onClick: () => {
                     setLabel("This month");
                     filter("This month");
+                    updateFilterType("This month")
                     }
                 },
                 {
@@ -43,6 +48,7 @@ export const FilterFriends = (props: any) => {
                     onClick: () => {
                     setLabel("This year");
                     filter("This year");
+                    updateFilterType("This year")
                     }
                 },
                 {
@@ -50,6 +56,7 @@ export const FilterFriends = (props: any) => {
                     onClick: () => {
                     setLabel("One year");
                     filter("One year");
+                    updateFilterType("One year")
                     }
                 },
                 {
@@ -57,6 +64,7 @@ export const FilterFriends = (props: any) => {
                     onClick: () => {
                     setLabel("More than 1 year");
                     filter("More than 1 year");
+                    updateFilterType("More than 1 year")
                     }
                 }
                 ]

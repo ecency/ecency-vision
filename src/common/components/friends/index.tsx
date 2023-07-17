@@ -45,6 +45,7 @@ interface ListState {
   hasMore: boolean;
   isFiltered: boolean;
   search: string;
+  filterType: string;
 }
 
 const loadLimit = 30;
@@ -57,7 +58,8 @@ export class List extends BaseComponent<ListProps, ListState> {
     filtered: [],
     hasMore: false,
     isFiltered: false,
-    search: ""
+    search: "",
+    filterType: ""
   };
 
   _timer: any = null;
@@ -193,37 +195,92 @@ export class List extends BaseComponent<ListProps, ListState> {
     let data: Friend[];
 
     try {
-      data = await this.fetch();
+      data = await this.fetch("", 30);
     } catch (e) {
       data = [];
     }
     const currentTime = new Date();
 
     const filteredData = data.filter(item => {
-    const lastSeenTime = new Date(this.formatTimeDIfference(item.lastSeen));
+      const lastSeenTime = new Date(this.formatTimeDIfference(item.lastSeen));
 
-    const timeDifference = currentTime.getTime() - lastSeenTime.getTime();
+      const timeDifference = currentTime.getTime() - lastSeenTime.getTime();
 
-    const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
-    const monthsDifference = Math.ceil(daysDifference / 30);
-    const yearsDifference = Math.ceil(daysDifference / 365);
+      const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+      const monthsDifference = Math.ceil(daysDifference / 30);
+      const yearsDifference = Math.ceil(daysDifference / 365);
 
-    return (
-      (type === "Recently" && daysDifference < 7) ||
-      (type === "This month" && daysDifference > 7 && daysDifference < 30) || 
-      (type === "This year" && daysDifference >= 30 && daysDifference < 360) ||
-      (type === "One year" && (daysDifference === 365)) ||
-      (type === "More than 1 year" && yearsDifference > 1)
-    );
-  });
+      return (
+        (type === "Recently" && daysDifference < 7) ||
+        (type === "This month" && daysDifference > 7 && daysDifference < 30) || 
+        (type === "This year" && daysDifference >= 30 && daysDifference < 360) ||
+        (type === "One year" && (daysDifference === 365)) ||
+        (type === "More than 1 year" && yearsDifference > 1)
+        );
+    });
 
-  if(type === "All"){
-    this.stateSet({filtered: data, isFiltered: true, loading: false})
-  } else{
-    this.stateSet({filtered: filteredData, isFiltered: true, loading: false})
-  }
-
+      if(type === "All"){
+        this.stateSet({filtered: data, isFiltered: true, loading: false})
+      } else{
+        this.stateSet({filtered: filteredData, isFiltered: true, loading: false})
+      }
   };
+
+  filterMore = async (type: string) => {
+    const { filtered } = this.state;
+    const lastItem = [...filtered].pop()!;
+    const startUserName = lastItem.name;
+
+    this.stateSet({ loading: true });
+
+    let moreData: Friend[];
+
+    try {
+      moreData = await this.fetch(startUserName);
+    } catch (e) {
+      moreData = [];
+    };
+
+    const currentTime = new Date();
+
+    const filteredData = moreData.filter(item => {
+      const lastSeenTime = new Date(this.formatTimeDIfference(item.lastSeen));
+
+      const timeDifference = currentTime.getTime() - lastSeenTime.getTime();
+
+      const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+      const monthsDifference = Math.ceil(daysDifference / 30);
+      const yearsDifference = Math.ceil(daysDifference / 365);
+
+      return (
+        (type === "Recently" && daysDifference < 7) ||
+        (type === "This month" && daysDifference > 7 && daysDifference < 30) || 
+        (type === "This year" && daysDifference >= 30 && daysDifference < 360) ||
+        (type === "One year" && (daysDifference === 365)) ||
+        (type === "More than 1 year" && yearsDifference > 1)
+        );
+    });
+
+
+    if(type === "All"){
+      this.stateSet({
+        filtered: [...filtered, ...moreData.filter((a) => !filtered.find((b) => b.name === a.name))], 
+        isFiltered: true, 
+        loading: false
+      })
+    } else{
+      this.stateSet({
+        filtered: [...filtered, ...filteredData.filter((a) => !filtered.find((b) => b.name === a.name))],
+        hasMore: moreData.length >= loadLimit,
+        loading: false
+      });
+    }
+    
+  };
+
+  updateFilterType = (type: string) => {
+    this.stateSet({filterType: type})
+  }
 
   formatTimeDIfference = (timeString: string): number => {
     const currentTime = new Date();
@@ -302,7 +359,7 @@ export class List extends BaseComponent<ListProps, ListState> {
   };
 
   render() {
-    const { loading, data, results, hasMore, search, filtered, isFiltered } = this.state;
+    const { loading, data, results, hasMore, search, filtered, isFiltered, filterType } = this.state;
 
     const inSearch = search.length >= 3;
 
@@ -316,7 +373,11 @@ export class List extends BaseComponent<ListProps, ListState> {
           )}
 
           <div>
-            <FilterFriends data={data} filter={this.filterList}/>
+            <FilterFriends 
+            data={data} 
+            filter={this.filterList}
+            updateFilterType={this.updateFilterType}
+            />
           </div>
 
           <div className="friends-list">
@@ -339,6 +400,13 @@ export class List extends BaseComponent<ListProps, ListState> {
           {!inSearch && data.length > 1 && (
             <div className="load-more">
               <Button disabled={loading || !hasMore} onClick={this.fetchMore}>
+                {_t("g.load-more")}
+              </Button>
+            </div>
+          )}
+          {!inSearch && filtered.length > 1 && (
+            <div className="load-more">
+              <Button onClick={()=> this.filterMore(filterType)}>
                 {_t("g.load-more")}
               </Button>
             </div>
