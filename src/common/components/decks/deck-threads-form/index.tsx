@@ -159,6 +159,7 @@ export const DeckThreadsForm = ({
       setImageName(null);
       _t("decks.threads-form.successfully-created");
     } catch (e) {
+      console.error(e);
     } finally {
       setLoading(false);
     }
