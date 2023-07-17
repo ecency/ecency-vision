@@ -16,6 +16,8 @@ import { MarketSwapFormSuccess } from "./market-swap-form-success";
 import "./index.scss";
 import { classNameObject } from "../../helper/class-name-object";
 import { useCurrencyRateQuery } from "./api/currency-rate-query";
+import { useQueryClient } from "@tanstack/react-query";
+import { QueryIdentifiers } from "../../core";
 
 export interface Props {
   activeUser: ActiveUser | null;
@@ -63,6 +65,7 @@ export const MarketSwapForm = ({
   const [tooMuchSlippage, setTooMuchSlippage] = useState(false);
 
   const { data } = useCurrencyRateQuery(fromAsset, toAsset);
+  const query = useQueryClient();
 
   useEffect(() => {
     fetchMarket();
@@ -71,6 +74,15 @@ export const MarketSwapForm = ({
   useEffect(() => {
     fetchMarket();
   }, [global.currency]);
+
+  useEffect(() => {
+    query.invalidateQueries([
+      QueryIdentifiers.SWAP_FORM_CURRENCY_RATE,
+      global.currency,
+      fromAsset,
+      toAsset
+    ]);
+  }, [fromAsset, toAsset, global.currency]);
 
   useEffect(() => {
     if (data) {
