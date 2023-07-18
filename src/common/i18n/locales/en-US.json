@@ -1337,7 +1337,17 @@
   "friends": {
     "followers": "Followers ({{n}})",
     "following": "Following ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Follow",

@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import DropDown from "../dropdown";
 import { _t } from '../../i18n';
+import { FilterFriendsType } from "../../enums";
 
-export const FilterFriends = (props: any) => {
+interface Props{
+    filterList: (type: FilterFriendsType) => Promise<void>;
+    updateFilterType: (type: FilterFriendsType) => void;
+}
 
-    const { filter, updateFilterType } = props;
+export const FilterFriends = (props: Props) => {
+
+    const { filterList, updateFilterType } = props;
 
     const [label, setLabel] = useState("");
+
 
     const dropDown = (
         <div className="friends-filter">
@@ -15,56 +22,54 @@ export const FilterFriends = (props: any) => {
             let dropDownConfig: any;
             dropDownConfig = {
                 history: "",
-                label: label ? label : "Filter",
+                label: label ? label : _t("friends-filter.filter"),
                 items: [
                 {
-                    label: <span>All</span>,
+                    label: <span>{_t("friends-filter.all")}</span>,
                     onClick: () => {
-                    setLabel("All");
-                    console.log(label)
-                    filter("All");
-                    updateFilterType("All")
+                    setLabel(_t("friends-filter.all"));
+                    filterList(FilterFriendsType.All);
+                    updateFilterType(FilterFriendsType.All)
                 }
                 },
                 {
-                    label: <span>Recently</span>,
+                    label: <span>{_t("friends-filter.recently")}</span>,
                     onClick: () => {
-                        setLabel("Recently");
-                        console.log(label)
-                        filter("Recently");
-                    updateFilterType("Recently")
+                        setLabel(_t("friends-filter.recently"));
+                        filterList(FilterFriendsType.Recently);
+                    updateFilterType(FilterFriendsType.Recently)
                     }
                 },
                 {
-                    label: <span>This month</span>,
+                    label: <span>{_t("friends-filter.this-month")}</span>,
                     onClick: () => {
-                    setLabel("This month");
-                    filter("This month");
-                    updateFilterType("This month")
+                    setLabel(_t("friends-filter.this-month"));
+                    filterList(FilterFriendsType.ThisMonth);
+                    updateFilterType(FilterFriendsType.ThisMonth)
                     }
                 },
                 {
-                    label: <span>This year</span>,
+                    label: <span>{_t("friends-filter.this-year")}</span>,
                     onClick: () => {
-                    setLabel("This year");
-                    filter("This year");
-                    updateFilterType("This year")
+                    setLabel(_t("friends-filter.this-year"));
+                    filterList(FilterFriendsType.ThisYear);
+                    updateFilterType(FilterFriendsType.ThisYear)
                     }
                 },
                 {
-                    label: <span>One year</span>,
+                    label: <span>{_t("friends-filter.one-year")}</span>,
                     onClick: () => {
-                    setLabel("One year");
-                    filter("One year");
-                    updateFilterType("One year")
+                    setLabel(_t("friends-filter.one-year"));
+                    filterList(FilterFriendsType.OneYear);
+                    updateFilterType(FilterFriendsType.OneYear)
                     }
                 },
                 {
-                    label: <span>More than 1 year</span>,
+                    label: <span>{_t("friends-filter.two-years-more")}</span>,
                     onClick: () => {
-                    setLabel("More than 1 year");
-                    filter("More than 1 year");
-                    updateFilterType("More than 1 year")
+                    setLabel(_t("friends-filter.two-years-more"));
+                    filterList(FilterFriendsType.MoreThanOneYear);
+                    updateFilterType(FilterFriendsType.MoreThanOneYear)
                     }
                 }
                 ]

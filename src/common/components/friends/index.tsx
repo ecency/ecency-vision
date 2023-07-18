@@ -22,6 +22,7 @@ import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
 import { FilterFriends } from "../friends-filter";
 import moment from "moment";
+import { FilterFriendsType } from "../../enums";
 
 interface Friend {
   name: string;
@@ -45,7 +46,7 @@ interface ListState {
   hasMore: boolean;
   isFiltered: boolean;
   search: string;
-  filterType: string;
+  filterType: string | FilterFriendsType;
 }
 
 const loadLimit = 30;
@@ -190,7 +191,7 @@ export class List extends BaseComponent<ListProps, ListState> {
     }
   };
 
-  filterList = async (type: string) => {
+  filterList = async (type: FilterFriendsType | string) => {
     this.stateSet({ loading: true, data: [], hasMore: false });
     let data: Friend[];
 
@@ -207,26 +208,25 @@ export class List extends BaseComponent<ListProps, ListState> {
       const timeDifference = currentTime.getTime() - lastSeenTime.getTime();
 
       const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
-      const monthsDifference = Math.ceil(daysDifference / 30);
       const yearsDifference = Math.ceil(daysDifference / 365);
 
       return (
-        (type === "Recently" && daysDifference < 7) ||
-        (type === "This month" && daysDifference > 7 && daysDifference < 30) || 
-        (type === "This year" && daysDifference >= 30 && daysDifference < 360) ||
-        (type === "One year" && (daysDifference === 365)) ||
-        (type === "More than 1 year" && yearsDifference > 1)
-        );
+        (type === FilterFriendsType.Recently && daysDifference < 7) ||
+        (type === FilterFriendsType.ThisMonth && daysDifference > 7 && daysDifference < 30) ||
+        (type === FilterFriendsType.ThisYear && daysDifference >= 30 && daysDifference < 360) ||
+        (type === FilterFriendsType.OneYear && daysDifference === 365) ||
+        (type === FilterFriendsType.MoreThanOneYear && yearsDifference > 1)
+      );
     });
 
-      if(type === "All"){
+      if(type === FilterFriendsType.All){
         this.stateSet({filtered: data, isFiltered: true, loading: false})
       } else{
         this.stateSet({filtered: filteredData, isFiltered: true, loading: false})
       }
   };
 
-  filterMore = async (type: string) => {
+  filterMore = async (type: FilterFriendsType | string) => {
     const { filtered } = this.state;
     const lastItem = [...filtered].pop()!;
     const startUserName = lastItem.name;
@@ -249,20 +249,19 @@ export class List extends BaseComponent<ListProps, ListState> {
       const timeDifference = currentTime.getTime() - lastSeenTime.getTime();
 
       const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
-      const monthsDifference = Math.ceil(daysDifference / 30);
       const yearsDifference = Math.ceil(daysDifference / 365);
 
       return (
-        (type === "Recently" && daysDifference < 7) ||
-        (type === "This month" && daysDifference > 7 && daysDifference < 30) || 
-        (type === "This year" && daysDifference >= 30 && daysDifference < 360) ||
-        (type === "One year" && (daysDifference === 365)) ||
-        (type === "More than 1 year" && yearsDifference > 1)
-        );
+        (type === FilterFriendsType.Recently && daysDifference < 7) ||
+        (type === FilterFriendsType.ThisMonth && daysDifference > 7 && daysDifference < 30) ||
+        (type === FilterFriendsType.ThisYear && daysDifference >= 30 && daysDifference < 360) ||
+        (type === FilterFriendsType.OneYear && daysDifference === 365) ||
+        (type === FilterFriendsType.MoreThanOneYear && yearsDifference > 1)
+      );
     });
 
 
-    if(type === "All"){
+    if(type ===  FilterFriendsType.All){
       this.stateSet({
         filtered: [...filtered, ...moreData.filter((a) => !filtered.find((b) => b.name === a.name))], 
         isFiltered: true, 
@@ -350,7 +349,7 @@ export class List extends BaseComponent<ListProps, ListState> {
               </div>
             </div>
             <div className="last-seen mt-1">
-              <a href="#">{item.lastSeen}</a>
+              <a href="#">{`${_t("friends.active")} ${item.lastSeen}`}</a>
             </div>
           </div>
         ))}
@@ -374,8 +373,7 @@ export class List extends BaseComponent<ListProps, ListState> {
 
           <div>
             <FilterFriends 
-            data={data} 
-            filter={this.filterList}
+            filterList={this.filterList}
             updateFilterType={this.updateFilterType}
             />
           </div>
