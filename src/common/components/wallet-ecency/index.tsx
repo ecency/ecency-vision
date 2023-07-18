@@ -47,6 +47,9 @@ import FormattedCurrency from "../formatted-currency";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { PurchaseQrDialog } from "../purchase-qr";
 import { PurchaseTypes } from "../purchase-qr/purchase-types";
+import { usePointsQuery } from "../../api/queries";
+import { useQueryClient } from "@tanstack/react-query";
+import { QueryIdentifiers } from "../../core";
 
 export const formatMemo = (memo: string, history: History) => {
   return memo.split(" ").map((x) => {
@@ -198,8 +201,12 @@ export const WalletEcency = (props: Props) => {
   const [estimatedPointsValueLoading, setEstimatedPointsValueLoading] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
+  const [filter, setFilter] = useState(0);
 
-  const { global, activeUser, account, points, history, fetchPoints, updateActiveUser } = props;
+  const { global, activeUser, account, history, updateActiveUser } = props;
+  const { data: points, isLoading } = usePointsQuery(account.name, filter);
+
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     setIsMounted(true);
@@ -208,7 +215,6 @@ export const WalletEcency = (props: Props) => {
     }
     let user = history.location.pathname.split("/")[1];
     user = user.replace("@", "");
-    global.isElectron && initiateOnElectron(user);
     getEstimatedPointsValue();
 
     return () => {
@@ -232,20 +238,6 @@ export const WalletEcency = (props: Props) => {
       });
   };
 
-  const initiateOnElectron = (username: string) => {
-    if (!isMounted && global.isElectron) {
-      let getPoints = new Promise((res) => fetchPoints(username));
-      username &&
-        getPoints
-          .then((res) => {
-            setIsMounted(true);
-          })
-          .catch((error) => {
-            console.error("getPoints", error);
-          });
-    }
-  };
-
   const claim = (e?: React.MouseEvent<HTMLAnchorElement>) => {
     if (e) e.preventDefault();
 
@@ -254,7 +246,7 @@ export const WalletEcency = (props: Props) => {
     claimPoints(username)
       .then(() => {
         success(_t("points.claim-ok"));
-        fetchPoints(username);
+        queryClient.invalidateQueries([QueryIdentifiers.POINTS, account.name, filter]);
         updateActiveUser();
       })
       .catch(() => {
@@ -283,9 +275,7 @@ export const WalletEcency = (props: Props) => {
   };
 
   const filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    const filter = Number(e.target.value);
-    const { fetchPoints, account } = props;
-    fetchPoints(account.name, filter);
+    setFilter(filter);
   };
 
   if (!global.usePrivate) {
@@ -500,7 +490,7 @@ export const WalletEcency = (props: Props) => {
             <div className="p-transaction-list">
               <div className="transaction-list-header">
                 <h2>{_t("points.history")}</h2>
-                <FormControl as="select" value={points.filter} onChange={filterChanged}>
+                <FormControl as="select" value={filter} onChange={filterChanged}>
                   <option value="0">{_t("points.filter-all")}</option>
                   {txFilters.map((x) => (
                     <option key={x} value={x}>
@@ -511,7 +501,7 @@ export const WalletEcency = (props: Props) => {
               </div>
 
               {(() => {
-                if (points.loading) {
+                if (isLoading) {
                   return <LinearProgress />;
                 }
 
@@ -520,7 +510,7 @@ export const WalletEcency = (props: Props) => {
                     {points.transactions.map((tr) => (
                       <TransactionRow history={history} tr={tr} key={tr.id} />
                     ))}
-                    {!points.loading && points.transactions.length === 0 && (
+                    {!isLoading && points.transactions.length === 0 && (
                       <p className="text-muted empty-list">{_t("g.empty-list")}</p>
                     )}
                   </div>
