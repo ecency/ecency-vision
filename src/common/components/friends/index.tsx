@@ -23,6 +23,7 @@ import "./_index.scss";
 import { FilterFriends } from "../friends-filter";
 import moment from "moment";
 import { FilterFriendsType } from "../../enums";
+import { formatTimeDIfference } from "../../helper/parse-date";
 
 interface Friend {
   name: string;
@@ -203,7 +204,7 @@ export class List extends BaseComponent<ListProps, ListState> {
     const currentTime = new Date();
 
     const filteredData = data.filter(item => {
-      const lastSeenTime = new Date(this.formatTimeDIfference(item.lastSeen));
+      const lastSeenTime = new Date(formatTimeDIfference(item.lastSeen));
 
       const timeDifference = currentTime.getTime() - lastSeenTime.getTime();
 
@@ -244,7 +245,7 @@ export class List extends BaseComponent<ListProps, ListState> {
     const currentTime = new Date();
 
     const filteredData = moreData.filter(item => {
-      const lastSeenTime = new Date(this.formatTimeDIfference(item.lastSeen));
+      const lastSeenTime = new Date(formatTimeDIfference(item.lastSeen));
 
       const timeDifference = currentTime.getTime() - lastSeenTime.getTime();
 
@@ -280,49 +281,6 @@ export class List extends BaseComponent<ListProps, ListState> {
   updateFilterType = (type: string) => {
     this.stateSet({filterType: type})
   }
-
-  formatTimeDIfference = (timeString: string): number => {
-    const currentTime = new Date();
-    const [value, unit] = timeString.split(" ");
-    let milliseconds = 0;
-  
-    if (unit.includes("second")) {
-      milliseconds = Number(value) * 1000;
-    } else if (unit.includes("minute")) {
-      milliseconds = Number(value) * 60 * 1000;
-    } else if (unit.includes("hour")) {
-      if(value.includes("an")){
-        milliseconds = 60 * 60 * 1000;
-      } else{
-        milliseconds = Number(value) * 60 * 60 * 1000;
-      }
-    } else if (unit.includes("day")) {
-      if(value.includes("a")){
-        milliseconds = 24 * 60 * 60 * 1000;
-      } else {
-        milliseconds = Number(value) * 24 * 60 * 60 * 1000;
-      }
-    } else if (unit.includes("week")) {
-      milliseconds = Number(value) * 7 * 24 * 60 * 60 * 1000;
-    } else if (unit.includes("month")) {
-      if(value.includes("a")) {
-        milliseconds = 30 * 24 * 60 * 60 * 1000;
-      } else{
-        milliseconds = Number(value) * 30 * 24 * 60 * 60 * 1000;
-      }
-    } else if (unit.includes("year")) {
-      if(value.includes("a")){
-        milliseconds = 365 * 24 * 60 * 60 * 1000;
-      } else{        
-        milliseconds = Number(value) * 365 * 24 * 60 * 60 * 1000;
-      }
-    }
-
-    const difference = currentTime.getTime() - milliseconds;
-  
-    return difference;
-  };
-  
 
   renderList = (loading: boolean, list: Friend[]) => {
     return (
