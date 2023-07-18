@@ -42,11 +42,11 @@ export default function JoinCommunityChatBtn(props: Props) {
     fetchCommunityProfile();
   }, [props.activeUser]);
 
-  // useEffect(() => {
-  //   if (window.raven) {
-  //     setHasUserJoinedChat(true);
-  //   }
-  // }, [window?.raven]);
+  useEffect(() => {
+    if (window.raven) {
+      setHasUserJoinedChat(true);
+    }
+  }, [window?.raven]);
 
   useEffect(() => {
     checkIsChatJoined();
@@ -118,7 +118,6 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   const joinCommunityChat = () => {
     if (chat.leftChannelsList.includes(currentChannel?.id!)) {
-      console.log("If true in join community");
       window?.raven?.updateLeftChannelList(
         chat.leftChannelsList.filter((x) => x !== currentChannel?.id)
       );

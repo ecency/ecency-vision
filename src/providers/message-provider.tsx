@@ -150,7 +150,7 @@ const MessageProvider = (props: Props) => {
   // // Direct message handler
   const handleDirectMessage = (data: DirectMessage[]) => {
     setDirectMessageBuffer((directMessageBuffer) => [...directMessageBuffer!, ...data]);
-    console.log("HandleDirectMessage", data);
+    // console.log("HandleDirectMessage", data);
     raven?.checkProfiles(data.map((x) => x.peer));
   };
 
@@ -198,7 +198,7 @@ const MessageProvider = (props: Props) => {
 
   // Channel creation handler
   const handleChannelCreation = (data: Channel[]) => {
-    console.log("handleChannelCreation", data);
+    // console.log("handleChannelCreation", data);
 
     const append = data.filter((x) => chat.channels.find((y) => y.id === x.id) === undefined);
     props.addChannels(append);
@@ -215,7 +215,7 @@ const MessageProvider = (props: Props) => {
 
   //Public Message handler
   const handlePublicMessage = (data: PublicMessage[]) => {
-    console.log("handlePublicMessage", data);
+    // console.log("handlePublicMessage", data);
     setPublicMessageBuffer((publicMessageBuffer) => [...publicMessageBuffer!, ...data]);
 
     for (const item of data) {
@@ -280,7 +280,7 @@ const MessageProvider = (props: Props) => {
 
   // Left channel handler
   const handleLeftChannelList = (data: string[]) => {
-    console.log("handleLeftChannelList", data);
+    // console.log("handleLeftChannelList", data);
     // setLeftChannelList(data);
     props.addleftChannels(data);
   };

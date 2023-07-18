@@ -146,9 +146,9 @@ export default function ChatBox(props: Props) {
     };
   }, [activeMessage]);
 
-  useEffect(() => {
-    console.log(props.chat, "chat in store");
-  }, [props.chat]);
+  // useEffect(() => {
+  //   console.log(props.chat, "chat in store");
+  // }, [props.chat]);
 
   useEffect(() => {
     // resetProfile(props.activeUser);
@@ -156,11 +156,11 @@ export default function ChatBox(props: Props) {
     setShow(!!props.activeUser?.username);
   }, []);
 
-  // useEffect(() => {
-  //   if (window.raven) {
-  //     setHasUserJoinedChat(true);
-  //   }
-  // }, [window?.raven]);
+  useEffect(() => {
+    if (window.raven) {
+      setHasUserJoinedChat(true);
+    }
+  }, [window?.raven]);
 
   useEffect(() => {
     const communities = getCommunities();
@@ -576,12 +576,13 @@ export default function ChatBox(props: Props) {
 
   const inviteClicked = () => {
     const textField = document.createElement("textarea");
-    textField.innerText = currentChannel?.id!;
+    const url = `https://ecency.com/community/join?communityId=${currentChannel?.id}`;
+    textField.innerText = url;
     document.body.appendChild(textField);
     textField.select();
     document.execCommand("copy");
     textField.remove();
-    success("Channel Id copied into clipboard");
+    success("Link copied into clipboard");
   };
 
   const LeaveModal = () => {
@@ -594,15 +595,6 @@ export default function ChatBox(props: Props) {
         </div>
         <div className="leave-dialog-body">Are you sure?</div>
         <p className="leave-confirm-buttons">
-          {/* <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              setKeyDialog(false);
-            }}
-          >
-            {_t("g.back")}
-          </a> */}
           <Button
             variant="outline-primary"
             className="close-btn"
@@ -620,9 +612,6 @@ export default function ChatBox(props: Props) {
               window?.raven
                 ?.updateLeftChannelList([...props.chat.leftChannelsList!, currentChannel?.id!])
                 .then(() => {})
-                .catch((e: any) => {
-                  // error(e.toString(), "error");
-                })
                 .finally(() => {
                   setKeyDialog(false);
                   setStep(0);
