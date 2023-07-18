@@ -257,9 +257,8 @@ export class Promote extends BaseComponent<Props, State> {
             </div>
             {inProgress && <LinearProgress />}
             <div className="transaction-form-body d-flex flex-column">
-              <div className="justify-self-center d-flex">
-                <span className="mr-1">{_t("promote.learn-more")}</span>
-                <a href={_t("promote.faq-link")}>{_t("promote.faq")}</a>
+              <div className="align-self-center">
+                <a href="/faq#how-promotion-work">{_t("promote.learn-more")}</a>
               </div>
               <Form.Group as={Row}>
                 <Form.Label column={true} sm="2">
