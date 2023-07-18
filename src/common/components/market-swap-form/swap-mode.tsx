@@ -1,9 +1,9 @@
 import React from "react";
-import { MarketSwapForm } from "../../components/market-swap-form";
+import { MarketSwapForm } from "./index";
 import { Button, Col, Row } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { Link } from "react-router-dom";
-import { MarketSwapActiveOrders } from "../../components/market-swap-active-orders";
+import { MarketSwapActiveOrders } from "./market-swap-active-orders";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_swap-mode.scss";
 

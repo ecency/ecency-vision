@@ -8,6 +8,7 @@ import {
   setNsfw,
   toggleListStyle,
   toggleTheme,
+  newVersionChangeAct,
   unMuteNotifications
 } from "./global";
 import { fetchTrendingTags } from "./trending-tags";
@@ -42,6 +43,7 @@ import { setSigningKey } from "./signing-key";
 // @note Do not use it directly
 export const ACTIONS = {
   toggleTheme,
+  newVersionChangeAct,
   hideIntro,
   toggleListStyle,
   muteNotifications,

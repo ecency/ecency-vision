@@ -26,6 +26,7 @@ interface Props {
   onSuccess?: (reply: Entry) => void;
   hideAvatar?: boolean;
   entry?: ThreadItemEntry;
+  persistable?: boolean;
 }
 
 export const DeckThreadsForm = ({
@@ -35,7 +36,8 @@ export const DeckThreadsForm = ({
   replySource,
   onSuccess,
   hideAvatar = false,
-  entry
+  entry,
+  persistable = false
 }: Props) => {
   const rootRef = useRef(null);
   useClickAway(rootRef, () => setFocused(false));
@@ -48,10 +50,13 @@ export const DeckThreadsForm = ({
     PREFIX + "_local_draft",
     {}
   );
-  const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "_dtf_th", "ecency.waves");
-  const [text, setText] = useLocalStorage(PREFIX + "_dtf_t", "");
-  const [image, setImage] = useLocalStorage<string | null>(PREFIX + "_dtf_i", null);
-  const [imageName, setImageName] = useLocalStorage<string | null>(PREFIX + "_dtf_in", null);
+  const [persistedForm, setPersistedForm] = useLocalStorage<Record<string, any>>(PREFIX + "_dtf_f");
+
+  const [threadHost, setThreadHost] = useState("ecency.waves");
+  const [text, setText] = useState("");
+  const [image, setImage] = useState<string | null>(null);
+  const [imageName, setImageName] = useState<string | null>(null);
+
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -78,6 +83,26 @@ export const DeckThreadsForm = ({
       setText(nextText);
     }
   }, [entry]);
+
+  useEffect(() => {
+    if (persistable) {
+      setThreadHost(threadHost ? threadHost : persistedForm?.threadHost);
+      setText(text ? text : persistedForm?.text);
+      setImage(image ? image : persistedForm?.image);
+      setImageName(imageName ? imageName : persistedForm?.imageName);
+    }
+  }, [persistedForm]);
+
+  useEffect(() => {
+    if (persistable) {
+      setPersistedForm({
+        threadHost,
+        text,
+        image,
+        imageName
+      });
+    }
+  }, [threadHost, text, image, imageName]);
 
   const submit = async () => {
     if (!activeUser) {
@@ -134,6 +159,7 @@ export const DeckThreadsForm = ({
       setImageName(null);
       _t("decks.threads-form.successfully-created");
     } catch (e) {
+      console.error(e);
     } finally {
       setLoading(false);
     }

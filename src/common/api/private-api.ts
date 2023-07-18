@@ -162,6 +162,18 @@ export const getCurrencyTokenRate = (currency: string, token: string): Promise<n
     .get(apiBase(`/private-api/market-data/${currency === "hbd" ? "usd" : currency}/${token}`))
     .then((resp: any) => resp.data);
 
+export const getCurrencyRates = (): Promise<{
+  [currency: string]: {
+    quotes: {
+      [currency: string]: {
+        last_updated: string;
+        percent_change: number;
+        price: number;
+      };
+    };
+  };
+}> => axios.get(apiBase("/private-api/market-data/latest")).then((resp: any) => resp.data);
+
 export const getUnreadNotificationCount = (username: string): Promise<number> => {
   const data = { code: getAccessToken(username) };
 
