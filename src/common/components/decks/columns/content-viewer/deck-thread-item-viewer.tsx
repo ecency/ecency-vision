@@ -61,13 +61,9 @@ export const DeckThreadItemViewer = ({
 
   const build = (dataset: Record<string, IdentifiableEntry>) => {
     const result: IdentifiableEntry[] = [];
-    const values = [
-      ...Object.values(dataset).filter(
-        (v) => v.author !== entry.author && v.permlink !== entry.permlink
-      )
-    ];
+    const values = [...Object.values(dataset).filter((v) => v.permlink !== entry.permlink)];
     Object.entries(dataset)
-      .filter(([_, v]) => v.author !== entry.author && v.permlink !== entry.permlink)
+      .filter(([_, v]) => v.permlink !== entry.permlink)
       .forEach(([key, value]) => {
         const parent = values.find((v) => v.replies.includes(key));
         if (parent) {
