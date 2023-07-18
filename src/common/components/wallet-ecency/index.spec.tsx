@@ -1,21 +1,21 @@
 import React from "react";
 
-import { create, act } from "react-test-renderer";
+import { create } from "react-test-renderer";
 
 import { StaticRouter } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
 
-import { WalletEcency, formatMemo } from "./index";
+import { formatMemo, WalletEcency } from "./index";
 
 import { initialState as transactionsInitialState } from "../../store/transactions/index";
 
 import {
-  globalInstance,
-  pointTransactionsInstance,
   activeUserMaker,
+  allOver,
   dynamicPropsIntance1,
-  allOver
+  globalInstance,
+  pointTransactionsInstance
 } from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
@@ -39,7 +39,6 @@ const defProps = {
   },
   signingKey: "",
   transactions: transactionsInitialState,
-  fetchPoints: () => {},
   addAccount: () => {},
   updateActiveUser: () => {},
   updateWalletValues: () => {},

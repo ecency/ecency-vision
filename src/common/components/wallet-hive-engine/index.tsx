@@ -4,13 +4,13 @@ import { proxifyImageSrc } from "@ecency/render-helper";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-import { OperationGroup, Transactions } from "../../store/transactions/types";
+import { Transactions } from "../../store/transactions/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
 import HiveEngineToken from "../../helper/hive-engine-wallet";
 import LinearProgress from "../linear-progress";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
 import { SortEngineTokens } from "../sort-hive-engine-tokens";
 import { EngineTokensEstimated } from "../engine-tokens-estimated";
@@ -21,21 +21,21 @@ import "./_index.scss";
 import {
   claimRewards,
   getHiveEngineTokenBalances,
+  getMetrics,
   getUnclaimedRewards,
-  TokenStatus,
-  getMetrics
+  TokenStatus
 } from "../../api/hive-engine";
 
 import {
-  informationVariantSvg,
-  plusCircle,
-  transferOutlineSvg,
-  lockOutlineSvg,
-  unlockOutlineSvg,
   delegateOutlineSvg,
-  undelegateOutlineSvg,
+  informationVariantSvg,
+  lockOutlineSvg,
+  plusCircle,
+  priceDownSvg,
   priceUpSvg,
-  priceDownSvg
+  transferOutlineSvg,
+  undelegateOutlineSvg,
+  unlockOutlineSvg
 } from "../../img/svg";
 
 import { formatError } from "../../api/operations";
@@ -53,7 +53,6 @@ interface Props {
   addAccount: (data: Account) => void;
   updateActiveUser: (data?: Account) => void;
   setSigningKey: (key: string) => void;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
 }
 
@@ -699,8 +698,7 @@ export default (p: Props) => {
     addAccount: p.addAccount,
     updateActiveUser: p.updateActiveUser,
     setSigningKey: p.setSigningKey,
-    updateWalletValues: p.updateWalletValues,
-    fetchPoints: p.fetchPoints
+    updateWalletValues: p.updateWalletValues
   };
 
   return <WalletHiveEngine {...props} />;

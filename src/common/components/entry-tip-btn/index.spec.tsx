@@ -3,11 +3,11 @@ import React from "react";
 import EntryTipBtn, { TippingDialog } from "./index";
 
 import {
-  globalInstance,
   dynamicPropsIntance1,
-  UiInstance,
   entryInstance1,
-  fullAccountInstance
+  fullAccountInstance,
+  globalInstance,
+  UiInstance
 } from "../../helper/test-helper";
 import { withStore } from "../../tests/with-store";
 
@@ -53,7 +53,6 @@ it("(2) Dialog", async () => {
     deleteUser: () => {},
     toggleUIProp: () => {},
     setSigningKey: () => {},
-    fetchPoints: () => {},
     updateWalletValues: () => {},
     onHide: () => {}
   };

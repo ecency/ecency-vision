@@ -9,7 +9,7 @@ import { Account } from "../../store/accounts/types";
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { Transactions } from "../../store/transactions/types";
-import { Points, PointTransaction, TransactionType } from "../../store/points/types";
+import { PointTransaction, TransactionType } from "../../store/points/types";
 import DropDown from "../dropdown";
 import Transfer from "../transfer";
 import Tooltip from "../tooltip";
@@ -172,10 +172,8 @@ interface Props {
   history: History;
   activeUser: ActiveUser | null;
   account: Account;
-  points: Points;
   signingKey: string;
   transactions: Transactions;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
   addAccount: (data: Account) => void;
   updateActiveUser: (data?: Account) => void;
@@ -199,7 +197,6 @@ export const WalletEcency = (props: Props) => {
   const [transfer, setTransfer] = useState(false);
   const [estimatedPointsValue, setEstimatedPointsValue] = useState(0);
   const [estimatedPointsValueLoading, setEstimatedPointsValueLoading] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
   const [filter, setFilter] = useState(0);
 
@@ -209,17 +206,12 @@ export const WalletEcency = (props: Props) => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    setIsMounted(true);
     if (!global.usePrivate) {
       history.push("/");
     }
     let user = history.location.pathname.split("/")[1];
     user = user.replace("@", "");
     getEstimatedPointsValue();
-
-    return () => {
-      setIsMounted(false);
-    };
   }, []);
 
   const getEstimatedPointsValue = () => {
@@ -275,7 +267,7 @@ export const WalletEcency = (props: Props) => {
   };
 
   const filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    setFilter(filter);
+    setFilter(Number(e.target.value));
   };
 
   if (!global.usePrivate) {
@@ -554,10 +546,8 @@ export default (p: Props) => {
     history: p.history,
     activeUser: p.activeUser,
     account: p.account,
-    points: p.points,
     signingKey: p.signingKey,
     transactions: p.transactions,
-    fetchPoints: p.fetchPoints,
     updateWalletValues: p.updateWalletValues,
     addAccount: p.addAccount,
     updateActiveUser: p.updateActiveUser,
