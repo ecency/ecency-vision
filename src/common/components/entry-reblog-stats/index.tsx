@@ -1,21 +1,27 @@
 import React, { useState } from 'react'
-import { Form, Modal } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 import { _t } from '../../i18n';
 import ProfileLink from '../profile-link';
 import UserAvatar from '../user-avatar';
 import LinearProgress from '../linear-progress';
 
 const EntryRebloStats = (props: any) => {
+  const limit = 30
     const { hideReblogs, showReblogStats, rebloggedBy, inProgress} = props;
-    const [searchedText, setSearchedText] = useState("")
+    const [searchedText, setSearchedText] = useState("");
+    const [loadLimit, setLoadLimit] = useState(10)
+
+    const loadMore = () => {
+      setLoadLimit(prev => prev + limit)
+    }
 
     const reblogLists = (
       <>
         {inProgress && <LinearProgress/>}
-        <div className="voters-list">
+        <div className="voters-list d-flex flex-column">
           <div className="list-body">
             {rebloggedBy.length > 0
-              ? rebloggedBy?.filter(
+              ? rebloggedBy?.slice(0, loadLimit).filter(
                 (name: any) =>
                   name.toLowerCase().startsWith(searchedText) ||
                   name.toLowerCase().includes(searchedText)
@@ -40,8 +46,11 @@ const EntryRebloStats = (props: any) => {
                     </div>
                   );
                 })
-              : _t("communities.no-results")}
+                : _t("communities.no-results")}
           </div>
+            {rebloggedBy.length > limit && <Button className="align-self-center w-50 mt-3"
+            onClick={loadMore}
+            >{_t("g.load-more")}</Button>}
         </div>
       </>
     )
