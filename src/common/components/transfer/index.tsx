@@ -231,9 +231,7 @@ export class Transfer extends BaseComponent<Props, State> {
     this.stateSet({ to }, this.handleTo);
       // Check memo if to is an exchange account
       if (exchangeAccounts.includes(to)){
-       console.log("can not transfer...", this.state.memo === "")
        this.stateSet({ toExchangeError: _t("transfer.memo-required") });
-       console.log(this.state.toExchangeError)
      } else {
        this.stateSet({ toExchangeError: "" });
      }
@@ -245,7 +243,6 @@ export class Transfer extends BaseComponent<Props, State> {
      // Check memo if selected is an exchange account
      if (exchangeAccounts.includes(to)) {
       this.stateSet({ toExchangeError: _t("transfer.memo-required") });
-      console.log(this.state.toExchangeError)
     } else {
       this.stateSet({ toExchangeError: "" });
     }
