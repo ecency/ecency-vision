@@ -219,6 +219,11 @@ ipcMain.on("download-update", (event: any, version: any) => {
 });
 
 ipcMain.on("update-restart", () => {
-  autoUpdater.quitAndInstall();
-  console.log("Restart");
+  setImmediate(() => {
+    app.removeAllListeners("window-all-closed");
+    if (mainWindow != null) {
+      mainWindow.close();
+    }
+    autoUpdater.quitAndInstall();
+  });
 });
