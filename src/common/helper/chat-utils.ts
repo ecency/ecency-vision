@@ -78,3 +78,5 @@ export function notEmpty<TValue>(value: TValue | null | undefined): value is TVa
 export const formatMessageTime = (unixTs: number) => moment.unix(unixTs).format("h:mm a");
 
 export const formatMessageDate = (unixTs: number) => moment.unix(unixTs).format("dddd, MMMM Do");
+
+export const isSha256 = (s: string) => /^[a-f0-9]{64}$/gi.test(s);

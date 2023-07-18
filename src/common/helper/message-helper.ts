@@ -14,7 +14,7 @@ import {
 import { encrypt, decrypt } from "../../lib/nostr-tools/nip04";
 import SimplePool from "../../lib/nostr-tools/pool";
 import { signEvent, getEventHash, Event } from "../../lib/nostr-tools/event";
-import { notEmpty } from "./chat-utils";
+import { isSha256, notEmpty } from "./chat-utils";
 
 const relays = {
   "wss://relay1.nostrchat.io": { read: true, write: true },
@@ -32,6 +32,7 @@ enum NewKinds {
 export enum RavenEvents {
   Ready = "ready",
   ProfileUpdate = "profile_update",
+  LeftChannelList = "left_channel_list",
   ChannelCreation = "channel_creation",
   DirectMessage = "direct_message",
   DirectContact = "direct_contact",
@@ -44,6 +45,7 @@ type EventHandlerMap = {
   [RavenEvents.DirectMessage]: (data: DirectMessage[]) => void;
   [RavenEvents.ChannelCreation]: (data: Channel[]) => void;
   [RavenEvents.PublicMessage]: (data: PublicMessage[]) => void;
+  [RavenEvents.LeftChannelList]: (data: string[]) => void;
   [RavenEvents.DirectContact]: (data: DirectContact[]) => void;
 };
 
@@ -174,6 +176,12 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
     });
   }
 
+  public async updateLeftChannelList(channelIds: string[]) {
+    console.log(channelIds, "channelIds");
+    const tags = [["d", "left-channel-list"]];
+    return this.publish(NewKinds.Arbitrary, tags, JSON.stringify(channelIds));
+  }
+
   public fetchMessages() {
     this.directContacts.map((contact: any) => {
       const filters: Filter[] = [
@@ -225,7 +233,7 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
   }
 
   public loadChannel(id: string) {
-    // console.log(id, "id");
+    console.log(id, "id");
     const filters: Filter[] = [
       {
         kinds: [Kind.ChannelCreation],
@@ -523,6 +531,21 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
       .filter(notEmpty);
     if (profileUpdates.length > 0) {
       this.emit(RavenEvents.ProfileUpdate, profileUpdates);
+    }
+
+    const leftChannelListEv = this.eventQueue
+      .filter(
+        (x) =>
+          x.kind.toString() === NewKinds.Arbitrary.toString() &&
+          Raven.findTagValue(x, "d") === "left-channel-list"
+      )
+      .sort((a, b) => b.created_at - a.created_at)[0];
+
+    if (leftChannelListEv) {
+      const content = Raven.parseJson(leftChannelListEv.content);
+      if (Array.isArray(content) && content.every((x) => isSha256(x))) {
+        this.emit(RavenEvents.LeftChannelList, content);
+      }
     }
 
     const channelCreations: Channel[] = this.eventQueue

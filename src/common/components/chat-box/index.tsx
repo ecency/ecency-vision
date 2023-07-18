@@ -118,6 +118,7 @@ export default function ChatBox(props: Props) {
   const [activeMessage, setActiveMessage] = useState("");
   const [keyDialog, setKeyDialog] = useState(false);
   const [step, setStep] = useState(0);
+  const [communities, setCommunities] = useState<Channel[]>([]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -146,8 +147,8 @@ export default function ChatBox(props: Props) {
   }, [activeMessage]);
 
   useEffect(() => {
-    console.log(currentChannel, "currentChannel");
-  }, [currentChannel]);
+    console.log(props.chat, "chat in store");
+  }, [props.chat]);
 
   useEffect(() => {
     // resetProfile(props.activeUser);
@@ -155,11 +156,16 @@ export default function ChatBox(props: Props) {
     setShow(!!props.activeUser?.username);
   }, []);
 
+  // useEffect(() => {
+  //   if (window.raven) {
+  //     setHasUserJoinedChat(true);
+  //   }
+  // }, [window?.raven]);
+
   useEffect(() => {
-    if (window.raven) {
-      setHasUserJoinedChat(true);
-    }
-  }, [window?.raven]);
+    const communities = getCommunities();
+    setCommunities(communities);
+  }, [props.chat.channels, props.chat.leftChannelsList]);
 
   useEffect(() => {
     const msgsList = fetchDirectMessages(receiverPubKey!);
@@ -299,6 +305,10 @@ export default function ChatBox(props: Props) {
       }
     }
     return [];
+  };
+
+  const getCommunities = () => {
+    return props.chat.channels.filter((item) => !props.chat.leftChannelsList.includes(item.id));
   };
 
   const fetchCommunityMessages = (channelId: string) => {
@@ -603,7 +613,24 @@ export default function ChatBox(props: Props) {
           >
             Close
           </Button>
-          <Button variant="outline-primary" className="confirm-btn">
+          <Button
+            variant="outline-primary"
+            className="confirm-btn"
+            onClick={() => {
+              window?.raven
+                ?.updateLeftChannelList([...props.chat.leftChannelsList!, currentChannel?.id!])
+                .then(() => {})
+                .catch((e: any) => {
+                  // error(e.toString(), "error");
+                })
+                .finally(() => {
+                  setKeyDialog(false);
+                  setStep(0);
+                  setIsCommunity(false);
+                  setCommunityName("");
+                });
+            }}
+          >
             Confirm
           </Button>
         </p>
@@ -944,12 +971,13 @@ export default function ChatBox(props: Props) {
                   </>
                 ) : (
                   <>
-                    {props.chat.directContacts.length !== 0 || props.chat.channels.length !== 0 ? (
+                    {props.chat.directContacts.length !== 0 ||
+                    (props.chat.channels.length !== 0 && communities.length !== 0) ? (
                       <React.Fragment>
-                        {props.chat.channels.length !== 0 && (
+                        {props.chat.channels.length !== 0 && communities.length !== 0 && (
                           <>
                             <div className="community-header">Communities</div>
-                            {props.chat.channels.map((channel) => {
+                            {communities.map((channel) => {
                               return (
                                 <div key={channel.id} className="chat-content">
                                   <Link to={`/created/${channel.communityName}`}>

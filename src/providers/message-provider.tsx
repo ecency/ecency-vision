@@ -31,6 +31,7 @@ interface Props {
   addPublicMessage: (channelId: string, data?: PublicMessage[]) => void;
   addChannels: (data: Channel[]) => void;
   addProfile: (data: Profile[]) => void;
+  addleftChannels: (data: string[]) => void;
 }
 
 const MessageProvider = (props: Props) => {
@@ -110,7 +111,7 @@ const MessageProvider = (props: Props) => {
 
   // Profile update handler
   const handleProfileUpdate = (data: Profile[]) => {
-    console.log("handleProfileUpdate", data);
+    // console.log("handleProfileUpdate", data);
     props.addProfile(data);
   };
 
@@ -214,7 +215,7 @@ const MessageProvider = (props: Props) => {
 
   //Public Message handler
   const handlePublicMessage = (data: PublicMessage[]) => {
-    console.log("handlePublicMessage", data, chat.profiles);
+    console.log("handlePublicMessage", data);
     setPublicMessageBuffer((publicMessageBuffer) => [...publicMessageBuffer!, ...data]);
 
     for (const item of data) {
@@ -277,12 +278,29 @@ const MessageProvider = (props: Props) => {
     });
   };
 
+  // Left channel handler
+  const handleLeftChannelList = (data: string[]) => {
+    console.log("handleLeftChannelList", data);
+    // setLeftChannelList(data);
+    props.addleftChannels(data);
+  };
+
+  useEffect(() => {
+    raven?.removeListener(RavenEvents.LeftChannelList, handleLeftChannelList);
+    raven?.addListener(RavenEvents.LeftChannelList, handleLeftChannelList);
+
+    return () => {
+      raven?.removeListener(RavenEvents.LeftChannelList, handleLeftChannelList);
+    };
+  }, [raven, chat.leftChannelsList]);
+
   useEffect(() => {
     return () => {
       raven?.removeListener(RavenEvents.Ready, handleReadyState);
       raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
       raven?.removeListener(RavenEvents.ChannelCreation, handleChannelCreation);
       raven?.removeListener(RavenEvents.DirectContact, handleDirectContact);
+      raven?.removeListener(RavenEvents.LeftChannelList, handleLeftChannelList);
       raven?.removeListener(RavenEvents.PublicMessage, handlePublicMessage);
       raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
     };

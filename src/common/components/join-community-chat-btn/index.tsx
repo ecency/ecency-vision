@@ -36,23 +36,23 @@ export default function JoinCommunityChatBtn(props: Props) {
   useEffect(() => {
     fetchCommunityProfile();
     fetchUserProfileData();
-  }, [chat.channels, currentChannel]);
+  }, [chat.channels, currentChannel, chat.leftChannelsList]);
 
   useEffect(() => {
     fetchCommunityProfile();
   }, [props.activeUser]);
 
-  useEffect(() => {
-    if (window.raven) {
-      setHasUserJoinedChat(true);
-    }
-  }, [window?.raven]);
+  // useEffect(() => {
+  //   if (window.raven) {
+  //     setHasUserJoinedChat(true);
+  //   }
+  // }, [window?.raven]);
 
   useEffect(() => {
     checkIsChatJoined();
 
     fetchCurrentChannel();
-  }, [isJoinChat, props.community, chat.channels]);
+  }, [isJoinChat, props.community, chat.channels, chat.leftChannelsList]);
 
   const fetchUserProfileData = async () => {
     const profileData = await getProfileMetaData(props.activeUser?.username!);
@@ -76,11 +76,15 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   const checkIsChatJoined = () => {
     for (const item of chat.channels) {
-      if (item.communityName === props.community.name) {
+      if (
+        item.communityName === props.community.name &&
+        !chat.leftChannelsList.includes(currentChannel?.id!)
+      ) {
         setIsJoinChat(true);
+      } else {
+        setIsJoinChat(false);
       }
     }
-    return [];
   };
 
   const createCommunityChat = async () => {
@@ -113,6 +117,12 @@ export default function JoinCommunityChatBtn(props: Props) {
   };
 
   const joinCommunityChat = () => {
+    if (chat.leftChannelsList.includes(currentChannel?.id!)) {
+      console.log("If true in join community");
+      window?.raven?.updateLeftChannelList(
+        chat.leftChannelsList.filter((x) => x !== currentChannel?.id)
+      );
+    }
     window?.raven?.loadChannel(currentChannel?.id!);
     setIsJoinChat(true);
   };
@@ -149,10 +159,15 @@ export default function JoinCommunityChatBtn(props: Props) {
       {props.community["context"].role === "owner" ? (
         isJoinChat ? (
           <Button variant="outline-primary">Chat Joined</Button>
-        ) : hasUserJoinedChat ? (
+        ) : hasUserJoinedChat && !isChatEnabled ? (
           <Button onClick={createCommunityChat}>
             {inProgress && chatButtonSpinner}
             Start Community Chat
+          </Button>
+        ) : !isJoinChat && isChatEnabled ? (
+          <Button onClick={joinCommunityChat}>
+            {" "}
+            {inProgress && chatButtonSpinner}Join Community Chat
           </Button>
         ) : (
           <Button onClick={handleJoinChat}> {inProgress && chatButtonSpinner}Join Chat</Button>

@@ -17,7 +17,8 @@ import {
   directMessagesList,
   ChannelsAction,
   PublicMessagesAction,
-  ProfilesAction
+  ProfilesAction,
+  LeftChannelsAction
 } from "./types";
 
 export const initialState: Chat = {
@@ -25,7 +26,8 @@ export const initialState: Chat = {
   directMessages: [],
   channels: [],
   publicMessages: [],
-  profiles: []
+  profiles: [],
+  leftChannelsList: []
 };
 
 export default (state: Chat = initialState, action: Actions): Chat => {
@@ -97,6 +99,15 @@ export default (state: Chat = initialState, action: Actions): Chat => {
       };
     }
 
+    case ActionTypes.LEFTCHANNELLIST: {
+      const { data } = action;
+      console.log("data in store", data);
+      return {
+        ...state,
+        leftChannelsList: [...data]
+      };
+    }
+
     default:
       return state;
   }
@@ -112,7 +123,6 @@ export const addDirectMessages = (peer: string, data: DirectMessage[]) => (dispa
 };
 
 export const resetChat = () => (dispatch: Dispatch) => {
-  console.log("Reset chat run in store");
   dispatch(resetChatAct());
 };
 
@@ -127,6 +137,10 @@ export const addPublicMessage =
 
 export const addProfile = (data: Profile[]) => (dispatch: Dispatch) => {
   dispatch(addProfilesAct(data));
+};
+
+export const addleftChannels = (data: string[]) => (dispatch: Dispatch) => {
+  dispatch(addleftChannelsAct(data));
 };
 
 /* Action Creators */
@@ -173,6 +187,13 @@ export const addChannelsAct = (data: Channel[]): ChannelsAction => {
 export const addProfilesAct = (data: Profile[]): ProfilesAction => {
   return {
     type: ActionTypes.PROFILES,
+    data
+  };
+};
+
+export const addleftChannelsAct = (data: string[]): LeftChannelsAction => {
+  return {
+    type: ActionTypes.LEFTCHANNELLIST,
     data
   };
 };
