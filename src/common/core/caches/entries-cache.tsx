@@ -168,6 +168,7 @@ export function useEntryCache<T extends Entry>(
         }
         return response;
       } else if (!entry) {
+        updateCache([initialOrPath as T]);
         return initialOrPath as T;
       }
 
