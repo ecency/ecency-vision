@@ -20,6 +20,7 @@ import { setUserRole, formatError } from "../../api/operations";
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import "./_index.scss";
+import { queryClient, QueryIdentifiers } from "../../core";
 
 interface Props {
   global: Global;
@@ -28,7 +29,6 @@ interface Props {
   user: string;
   role: string;
   roles: string[];
-  addCommunity: (data: Community) => void;
   onHide: () => void;
 }
 
@@ -61,7 +61,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
 
   submit = async () => {
     const { user, role } = this.state;
-    const { community, activeUser, addCommunity, onHide } = this.props;
+    const { community, activeUser, onHide } = this.props;
 
     if (user.trim() === "") {
       this._input.current?.focus();
@@ -89,8 +89,10 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
           team.find((x) => x[0] === user) === undefined
             ? [...team, [user, role, ""]]
             : team.map((x) => (x[0] === user ? [x[0], role, x[2]] : x));
-        const nCom: Community = { ...clone(community), team: nTeam };
-        addCommunity(nCom);
+        queryClient.setQueryData([QueryIdentifiers.COMMUNITY, community.name], {
+          ...clone(community),
+          ...{ ...clone(community), team: nTeam }
+        });
         onHide();
       })
       .catch((err) => error(...formatError(err)))

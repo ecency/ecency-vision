@@ -89,6 +89,7 @@ import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
 import { updateSpeakVideoInfo, markAsPublished } from "../api/threespeak";
 import { ConfirmNsfwContent } from "../components/video-nsfw";
+import { PostBodyLazyRenderer } from "../components/post-body-lazy-renderer";
 
 setProxyBase(defaults.imageServer);
 
@@ -129,7 +130,6 @@ class PreviewContent extends Component<PreviewProps> {
 
   render() {
     const { title, tags, body, global } = this.props;
-    let renderedPreview = renderPostBody(body, false, global.canUseWebp);
     return (
       <>
         <div className="preview-title">{title}</div>
@@ -149,10 +149,7 @@ class PreviewContent extends Component<PreviewProps> {
           })}
         </div>
 
-        <div
-          className="preview-body markdown-view"
-          dangerouslySetInnerHTML={{ __html: renderedPreview }}
-        />
+        <PostBodyLazyRenderer className="preview-body markdown-view" rawBody={body} />
       </>
     );
   }

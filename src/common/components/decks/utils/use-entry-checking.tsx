@@ -11,7 +11,7 @@ export function useEntryChecking(
 ) {
   const { activeUser } = useMappedStore();
 
-  const isLocal = ({ post_id }: Entry) => post_id === 1 || typeof post_id === "string";
+  const isLocal = ({ post_id }: Entry) => post_id === 1 || typeof post_id === "string" || !post_id;
 
   return useInterval(
     async () => {

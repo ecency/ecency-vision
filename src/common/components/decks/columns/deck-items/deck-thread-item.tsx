@@ -18,6 +18,7 @@ import { Entry } from "../../../../store/entries/types";
 import { DeckThreadItemHeader } from "./deck-thread-item-header";
 import moment from "moment";
 import { dateToRelative } from "../../../../helper/parse-date";
+import EntryMenu from "../../../entry-menu";
 
 export interface ThreadItemProps {
   initialEntry: IdentifiableEntry;
@@ -62,18 +63,12 @@ export const ThreadItem = ({
   const [status, setStatus] = useState<"default" | "pending">("default");
   const [intervalStarted, setIntervalStarted] = useState(false);
 
-  useEntryChecking(
-    entry,
-    intervalStarted,
-    (nextEntry) => {
-      updateCache([
-        { ...nextEntry, host: initialEntry.host, container: initialEntry.container } as Entry
-      ]);
-      setIntervalStarted(false);
-    },
-    (initialEntry, updatedEntry) =>
-      typeof initialEntry.post_id === "number" ? initialEntry.body !== updatedEntry?.body : true
-  );
+  useEntryChecking(entry, intervalStarted, (nextEntry) => {
+    updateCache([
+      { ...nextEntry, host: initialEntry.host, container: initialEntry.container } as Entry
+    ]);
+    setIntervalStarted(false);
+  });
 
   useEffect(() => {
     onMounted();
@@ -86,8 +81,8 @@ export const ThreadItem = ({
   }, [triggerPendingStatus]);
 
   useEffect(() => {
-    setIntervalStarted(status === "pending");
-  }, [status]);
+    setIntervalStarted(typeof entry.post_id === "string" || !entry.post_id || entry.post_id === 1);
+  }, [entry]);
 
   useEffect(() => {
     if (inViewport && onAppear) {
@@ -100,11 +95,11 @@ export const ThreadItem = ({
       !!entry.parent_author && !!entry.parent_permlink && entry.parent_author !== entry.host
     );
 
-    if (typeof entry.post_id === "string") {
-      setStatus("pending");
-    } else {
-      setStatus("default");
-    }
+    // if (typeof entry.post_id === "string") {
+    //   setStatus("pending");
+    // } else {
+    //   setStatus("default");
+    // }
   }, [entry]);
 
   return (
@@ -145,7 +140,7 @@ export const ThreadItem = ({
               isPostSlider={false}
               history={history}
               afterVote={(votes, estimated) => {
-                updateVotes(entry.post_id, votes, estimated);
+                updateVotes(entry, votes, estimated);
               }}
             />
             <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
@@ -156,11 +151,14 @@ export const ThreadItem = ({
               </div>
             </Button>
           </div>
-          {activeUser?.username === entry.author && (
-            <Button className="edit-btn" variant="link" onClick={() => onEdit(entry)}>
-              {_t("decks.columns.edit-wave")}
-            </Button>
-          )}
+          <div>
+            <EntryMenu history={history} entry={entry} />
+            {activeUser?.username === entry.author && (
+              <Button className="edit-btn" variant="link" onClick={() => onEdit(entry)}>
+                {_t("decks.columns.edit-wave")}
+              </Button>
+            )}
+          </div>
         </div>
       )}
       {hasParent && !pure && (

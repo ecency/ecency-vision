@@ -1,0 +1,114 @@
+@import "../../style/vars_mixins";
+
+.onboard-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px;
+  margin-top: 70px;
+  width: 690px;
+  border-radius: 15px;
+
+  @media (max-width: $md-break) {
+    width: 490px;
+  }
+
+  @media (max-width: $sm-break) {
+    width: 340px;
+  }
+
+  @include themify(day) {
+    background: lighten($steel-grey, 40);
+  }
+
+  @include themify(night) {
+    background: $dark-grey-blue;
+  }
+
+  .asking {
+    display: flex;
+    flex-direction: column;
+
+    .reg-details {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .asking-body {
+      @media (max-width: $md-break) {
+        width: 490px;
+      }
+      @media (max-width: $sm-break) {
+        width: 320px;
+      }
+    }
+  }
+
+  .onboard-svg {
+    cursor: pointer;
+  }
+
+  .creating {
+    display: flex;
+    flex-direction: column;
+  }
+  .creating-confirm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .creating-confirm-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+
+      .onboard-btn-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+    }
+  }
+  .login-warning {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.create-account-dialog {
+  .create-account-dialog-header {
+    display: flex;
+    .create-account-main-title {
+      margin-top: 11px;
+    }
+  }
+  .model-content {
+    .confirm-title {
+      display: flex;
+      justify-content: center;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      .cancel-btn {
+        margin-left: 25px;
+        background: #6c757d;
+        border-color: #6c757d;
+      }
+    }
+  }
+  .create-account-success-dialog-header {
+    .create-account-main-title {
+      margin-top: 10px;
+    }
+  }
+  .success-dialog-body {
+    margin: 2rem 0 1.4rem 0;
+    .success-dialog-content {
+      text-align: center;
+      margin-bottom: 1.4rem;
+    }
+  }
+}

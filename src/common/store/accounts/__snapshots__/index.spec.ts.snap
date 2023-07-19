@@ -67,6 +67,7 @@ Array [
       ],
       "weight_threshold": 1,
     },
+    "pending_claimed_accounts": 0,
     "post_count": 261,
     "posting": Object {
       "account_auths": Array [

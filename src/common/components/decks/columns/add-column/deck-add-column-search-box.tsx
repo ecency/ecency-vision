@@ -144,7 +144,7 @@ export const DeckAddColumnSearchBox = ({
             <UserAvatar size="medium" global={global} username={i.tag || i.name} />
             <div className="d-flex w-100 flex-column">
               <div className="username">{i.name}</div>
-              <div className="description text-truncate">{i.description}</div>
+              <div className="description">{i.description}</div>
             </div>
             {isRecent && !!recentList?.length && (
               <Button

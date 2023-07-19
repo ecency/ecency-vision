@@ -162,6 +162,18 @@ export const getCurrencyTokenRate = (currency: string, token: string): Promise<n
     .get(apiBase(`/private-api/market-data/${currency === "hbd" ? "usd" : currency}/${token}`))
     .then((resp: any) => resp.data);
 
+export const getCurrencyRates = (): Promise<{
+  [currency: string]: {
+    quotes: {
+      [currency: string]: {
+        last_updated: string;
+        percent_change: number;
+        price: number;
+      };
+    };
+  };
+}> => axios.get(apiBase("/private-api/market-data/latest")).then((resp: any) => resp.data);
+
 export const getUnreadNotificationCount = (username: string): Promise<number> => {
   const data = { code: getAccessToken(username) };
 
@@ -616,4 +628,15 @@ export const addRecoveries = (
 export const deleteRecoveries = (username: string, recoveryId: string): Promise<any> => {
   const data = { code: getAccessToken(username), id: recoveryId };
   return axios.post(apiBase(`/private-api/recoveries-delete`), data).then((resp) => resp.data);
+};
+
+export const onboardEmail = (username: string, email: string, friend: string): Promise<any> => {
+  const dataBody = {
+    username,
+    email,
+    friend
+  };
+  return axios
+    .post(apiBase(`/private-api/account-create-friend`), dataBody)
+    .then((resp) => resp.data);
 };

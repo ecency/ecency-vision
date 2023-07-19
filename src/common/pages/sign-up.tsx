@@ -22,6 +22,8 @@ import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import { getAccount } from "../api/hive";
 import "./sign-up.scss";
+import { Link } from "react-router-dom";
+import { b64uEnc } from "../util/b64";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -36,7 +38,9 @@ export const SignUp = (props: PageProps) => {
 
   const [username, setUsername] = useState("");
   const [usernameError, setUsernameError] = useState("");
+  const [referralError, setReferralError] = useState("");
   const [usernameTouched, setUsernameTouched] = useState(false);
+  const [referralTouched, setReferralTouched] = useState(false);
 
   const [email, setEmail] = useState("");
   const [referral, setReferral] = useState("");
@@ -48,6 +52,7 @@ export const SignUp = (props: PageProps) => {
   const [url, setUrl] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [registrationError, setRegistrationError] = useState("");
+  const [urlHash, setUrlHash] = useState("");
 
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
@@ -119,6 +124,26 @@ export const SignUp = (props: PageProps) => {
     }
   }, [username, usernameTouched]);
 
+  useEffect(() => {
+    setReferralError("");
+    setIsDisabled(false);
+
+    if (!referral) {
+      return;
+    }
+    if (referral.length > 16) {
+      setReferralError(_t("sign-up.referral-max-length-error"));
+      setIsDisabled(true);
+    } else {
+      referral.split(".").some((item) => {
+        if (item.length < 3) {
+          setReferralError(_t("sign-up.referral-min-length-error"));
+          setIsDisabled(true);
+        }
+      });
+    }
+  }, [referral, referralTouched]);
+
   const regularRegister = async () => {
     setInProgress(true);
     try {
@@ -151,6 +176,21 @@ export const SignUp = (props: PageProps) => {
   const captchaCheck = (value: string | null) => {
     if (value) {
       setIsVerified(true);
+    }
+  };
+
+  const encodeUrlInfo = (username: string, email: string, referral: string) => {
+    const accInfo = {
+      username,
+      email,
+      referral
+    };
+    try {
+      const stringifiedInfo = JSON.stringify(accInfo);
+      const hashedInfo = b64uEnc(stringifiedInfo);
+      setUrlHash(hashedInfo);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -216,7 +256,7 @@ export const SignUp = (props: PageProps) => {
                       return;
                     }
 
-                    if (usernameError) {
+                    if (usernameError || referralError) {
                       return;
                     }
 
@@ -226,8 +266,18 @@ export const SignUp = (props: PageProps) => {
                       return;
                     }
 
+                    const referralIsValid = await getAccount(referral);
+                    if (!referralIsValid && referral !== "") {
+                      setReferralError(_t("sign-up.referral-invalid"));
+                      return;
+                    }
+
                     if (stage === Stage.FORM) {
                       setStage(Stage.REGISTER_TYPE);
+                    }
+
+                    if ((username && email) || referral) {
+                      encodeUrlInfo(username, email, referral);
                     }
                   }}
                 >
@@ -264,8 +314,10 @@ export const SignUp = (props: PageProps) => {
                       value={referral}
                       onChange={(e: FormChangeEvent) => setReferral(e.target.value.toLowerCase())}
                       disabled={lockReferral}
+                      onBlur={() => setReferralTouched(true)}
                     />
                   </Form.Group>
+                  <Form.Text className="text-danger pl-3">{referralError}</Form.Text>
                   {!props.global.isElectron && (
                     <div style={{ marginTop: "16px", marginBottom: "16px" }}>
                       <ReCAPTCHA
@@ -317,7 +369,7 @@ export const SignUp = (props: PageProps) => {
 
             {stage === Stage.REGISTER_TYPE ? (
               <div className="form-content">
-                <div className="card mb-3">
+                <div className="card mb-3 mt-5">
                   <div className="card-header">
                     <b>{_t("sign-up.free-account")}</b>
                   </div>
@@ -335,7 +387,7 @@ export const SignUp = (props: PageProps) => {
                     </div>
                   )}
                 </div>
-                <div className="card">
+                <div className="card mb-3">
                   <div className="card-header">
                     <b>{_t("sign-up.buy-account")}</b>
                   </div>
@@ -354,6 +406,31 @@ export const SignUp = (props: PageProps) => {
                       onClick={() => setStage(Stage.BUY_ACCOUNT)}
                     >
                       {_t("sign-up.buy-account")} – $2.99
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="card mb-3">
+                  <div className="card-header">
+                    <b>{props.activeUser ? _t("onboard.title-active-user") : _t("onboard.title-visitor")}</b>
+                  </div>
+                  <div className="card-body">
+                    <p>{props.activeUser ? _t("onboard.description-active-user") : 
+                      _t("onboard.description-visitor")}
+                    </p>
+                    <ul>
+                      {props.activeUser && <li>{_t("onboard.creating-description")}</li>}
+                      {!props.activeUser && <li>{_t("onboard.asking-description")}</li>}
+                    </ul>
+                  </div>
+                  <div className="card-footer">
+                    <Button
+                      as={Link}
+                      to={`/onboard-friend/asking/${urlHash}`}
+                      className="w-100"
+                      variant="primary"
+                    >
+                      {props.activeUser ? _t("onboard.creating") : _t("onboard.asking")}
                     </Button>
                   </div>
                 </div>

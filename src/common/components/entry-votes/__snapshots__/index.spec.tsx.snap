@@ -65,7 +65,7 @@ Array [
     className="fade alert alert-warning show"
     role="alert"
   >
-    You have pending votes. Please, wait a minute and re-open this dialog to see your vote.
+    Content has pending votes. Please, wait a minute and refresh this dialog to see new votes.
   </div>,
   <div
     className="voters-list"

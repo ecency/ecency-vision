@@ -8,6 +8,7 @@ import {
   setNsfw,
   toggleListStyle,
   toggleTheme,
+  newVersionChangeAct,
   unMuteNotifications
 } from "./global";
 import { fetchTrendingTags } from "./trending-tags";
@@ -22,7 +23,6 @@ import {
   updateReply
 } from "./discussion";
 import { addAccount } from "./accounts";
-import { addCommunity } from "./communities";
 import { fetchTransactions, resetTransactions } from "./transactions";
 import { addUser, deleteUser } from "./users";
 import { setActiveUser, updateActiveUser } from "./active-user";
@@ -39,12 +39,11 @@ import {
 } from "./notifications";
 import { fetchPoints, resetPoints } from "./points";
 import { setSigningKey } from "./signing-key";
-import { setEntryPin, trackEntryPin } from "./entry-pin-tracker";
-import { savePageScroll } from "./persistent-page-scroll";
 
 // @note Do not use it directly
 export const ACTIONS = {
   toggleTheme,
+  newVersionChangeAct,
   hideIntro,
   toggleListStyle,
   muteNotifications,
@@ -67,7 +66,6 @@ export const ACTIONS = {
   addReply,
   deleteReply,
   addAccount,
-  addCommunity,
   fetchTransactions,
   resetTransactions,
   addUser,
@@ -85,8 +83,6 @@ export const ACTIONS = {
   fetchPoints,
   resetPoints,
   setSigningKey,
-  trackEntryPin,
-  setEntryPin,
   updateNotificationsSettings,
   fetchNotificationsSettings,
   setNotificationsSettingsItem
