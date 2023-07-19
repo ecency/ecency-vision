@@ -30,7 +30,8 @@ export function usePointsQuery(username: string, filter = 0) {
       }
     },
     {
-      initialData: DEFAULT
+      initialData: DEFAULT,
+      retryDelay: 30000
     }
   );
 }
