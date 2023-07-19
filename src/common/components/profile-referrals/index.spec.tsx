@@ -7,7 +7,7 @@ import { StaticRouter } from "react-router-dom";
 
 import { ProfileReferrals } from "./index";
 
-import { globalInstance, allOver, dynamicPropsIntance1 } from "../../helper/test-helper";
+import { allOver, dynamicPropsIntance1, globalInstance } from "../../helper/test-helper";
 import { initialState as transactionsInitialState } from "../../store/transactions/index";
 
 jest.mock("../../api/bridge", () => ({
@@ -82,7 +82,6 @@ it("(1) Default render - With data.", async () => {
     updateActiveUser: () => {},
     setSigningKey: () => {},
     fetchTransactions: () => {},
-    fetchPoints: () => {},
     updateWalletValues: () => {}
   };
 

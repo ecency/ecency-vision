@@ -408,23 +408,21 @@ export const deleteFragment = (username: string, fragmentId: string): Promise<an
   return axios.post(apiBase(`/private-api/fragments-delete`), data).then((resp) => resp.data);
 };
 
-export const getPoints = (
-  username: string
+export const getPoints = async (
+  username: string,
+  usePrivate?: boolean
 ): Promise<{
   points: string;
   unclaimed_points: string;
 }> => {
-  if (window.usePrivate) {
+  if (usePrivate ?? window.usePrivate) {
     const data = { username };
     return axios.post(apiBase(`/private-api/points`), data).then((resp) => resp.data);
   }
-
-  return new Promise((resolve) => {
-    resolve({
-      points: "0.000",
-      unclaimed_points: "0.000"
-    });
-  });
+  return {
+    points: "0.000",
+    unclaimed_points: "0.000"
+  };
 };
 
 export const getPointTransactions = (

@@ -563,27 +563,31 @@ const Onboard = (props: Props) => {
 
                 {fileIsDownloaded && (
                   <div className="d-flex flex-column align-self-center justify-content-center mt-3">
-                    {!props.activeUser && <>
-                      <h4>{_t("onboard.copy-info-message")}</h4>
-                      <div className="d-flex align-items-center">
-                        <span className="">{splitUrl(onboardUrl + secret)}...</span>
-                        <span
-                          style={{ width: "5%" }}
-                          className="onboard-svg"
-                          onClick={() => {
-                            clipboard(onboardUrl + secret);
-                            success(_t("onboard.copy-link"));
-                          }}
-                        >
-                          {copyContent}
+                    {!props.activeUser && (
+                      <>
+                        <h4>{_t("onboard.copy-info-message")}</h4>
+                        <div className="d-flex align-items-center">
+                          <span className="">{splitUrl(onboardUrl + secret)}...</span>
+                          <span
+                            style={{ width: "5%" }}
+                            className="onboard-svg"
+                            onClick={() => {
+                              clipboard(onboardUrl + secret);
+                              success(_t("onboard.copy-link"));
+                            }}
+                          >
+                            {copyContent}
+                          </span>
+                        </div>
+                      </>
+                    )}
+                    {props.activeUser && (
+                      <>
+                        <span>
+                          <a href={onboardUrl + secret}>{_t("onboard.click-link")}</a>
                         </span>
-                      </div>
-                    </>}
-                    {props.activeUser && <>
-                      <span>                    
-                        <a href={onboardUrl + secret}>{_t("onboard.click-link")}</a>
-                      </span>
-                    </>}
+                      </>
+                    )}
                   </div>
                 )}
               </div>
