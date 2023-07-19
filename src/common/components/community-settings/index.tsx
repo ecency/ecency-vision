@@ -180,11 +180,9 @@ export class CommunitySettings extends BaseComponent<Props, State> {
     };
 
     this.stateSet({ inProgress: true });
-    console.log("Submit run");
     return updateCommunity(activeUser.username, community.name, newProps)
       .then(() => {
         const nCom: Community = { ...clone(community), ...newProps };
-        console.log(nCom, "New dara");
         addCommunity(nCom);
         onHide();
       })
