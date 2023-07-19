@@ -16,6 +16,7 @@ import {
   setProfileMetaData
 } from "../../helper/chat-utils";
 import { setNostrkeys } from "../../../providers/message-provider";
+import { NOSTRKEY } from "../chat-box/chat-constants";
 
 interface Props {
   history: History;
@@ -56,7 +57,7 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   const fetchUserProfileData = async () => {
     const profileData = await getProfileMetaData(props.activeUser?.username!);
-    const hasNoStrKey = profileData && profileData.hasOwnProperty("noStrKey");
+    const hasNoStrKey = profileData && profileData.hasOwnProperty(NOSTRKEY);
     setHasUserJoinedChat(hasNoStrKey);
   };
 
@@ -64,7 +65,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     const communityProfile = await getProfileMetaData(props.community?.name);
     const haschannelMetaData = communityProfile && communityProfile.hasOwnProperty("channel");
     setIsChatEnabled(haschannelMetaData);
-    const hasNoStrKey = communityProfile && communityProfile.hasOwnProperty("noStrKey");
+    const hasNoStrKey = communityProfile && communityProfile.hasOwnProperty(NOSTRKEY);
     if (!currentChannel) {
       setCurrentChannel(communityProfile.channel);
     }

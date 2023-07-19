@@ -12,6 +12,7 @@ import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import defaults from "../constants/defaults.json";
+import { NOSTRKEY } from "../components/chat-box/chat-constants";
 import CommunitySubscribers from "../components/community-subscribers";
 import CommunityActivities from "../components/community-activities";
 import LinearProgress from "../components/linear-progress";
@@ -218,7 +219,7 @@ export const CommunityPage = (props: Props) => {
   const fetchUserProfileData = async () => {
     if (props.activeUser) {
       const profileData = await getProfileMetaData(props.activeUser?.username!);
-      const hasNoStrKey = profileData && profileData.hasOwnProperty("noStrKey");
+      const hasNoStrKey = profileData && profileData.hasOwnProperty(NOSTRKEY);
       setHasUserJoinedChat(hasNoStrKey);
     }
   };
