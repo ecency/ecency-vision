@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
 import { EntryScreen } from "./pages/entry";
-import { SearchPageContainer, SearchMorePageContainer } from "./pages/search";
-import { ProposalsIndexContainer, ProposalDetailContainer } from "./pages/proposals";
+import { SearchMorePageContainer, SearchPageContainer } from "./pages/search";
+import { ProposalDetailContainer, ProposalsIndexContainer } from "./pages/proposals";
 import NotFound from "./components/404";
 import Tracker from "./tracker";
 import {
   AboutPage,
-  GuestPostPage,
   ContributePage,
-  PrivacyPage,
-  WhitePaperPage,
-  TosPage,
+  ContributorsPage,
   FaqPage,
-  ContributorsPage
+  GuestPostPage,
+  PrivacyPage,
+  TosPage,
+  WhitePaperPage
 } from "./pages/static";
 import routes from "./routes";
 import * as ls from "./util/local-storage";
@@ -26,6 +26,7 @@ import Announcement from "./components/announcement";
 import FloatingFAQ from "./components/floating-faq";
 import { useMappedStore } from "./store/use-mapped-store";
 import { EntriesCacheManager } from "./core";
+import { UserActivityRecorder } from "./components/user-activity-recorder";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -94,6 +95,7 @@ const App = (props: any) => {
       {/*Excluded from production*/}
       {/*<ReactQueryDevtools initialIsOpen={false} />*/}
       <Tracker />
+      <UserActivityRecorder />
       <Switch>
         <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
         <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer} />
