@@ -52,7 +52,8 @@ import {
   GifPickerStyle,
   GIPHGY,
   NOSTRKEY,
-  UPLOADING
+  UPLOADING,
+  GifImagesStyle
 } from "./chat-constants";
 
 import { dateToFormatted } from "../../helper/parse-date";
@@ -1134,9 +1135,7 @@ export default function ChatBox(props: Props) {
                       {shGif && (
                         <GifPicker
                           style={GifPickerStyle}
-                          gifImagesStyle={{
-                            width: "170px"
-                          }}
+                          gifImagesStyle={GifImagesStyle}
                           shGif={true}
                           changeState={(gifState) => {
                             setShGif(gifState!);

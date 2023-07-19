@@ -121,9 +121,7 @@ const MyDropDown = (props: Props) => {
 
   const { label, float, items } = props;
 
-  const menuDownStyle: MenuDownStyle = {
-    width: "28px",
-    height: "28px",
+  const menuDownStyle = {
     ...(props.style && props.style) // Merge the passed style props if available
   };
 

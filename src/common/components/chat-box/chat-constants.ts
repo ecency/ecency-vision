@@ -23,6 +23,10 @@ export const DropDownStyle = {
   height: "40px"
 };
 
+export const GifImagesStyle = {
+  width: "170px"
+};
+
 export const NOSTRKEY = "noStrKey";
 export const UPLOADING = "Uploading";
 export const GIPHGY = "giphy";

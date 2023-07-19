@@ -55,17 +55,6 @@ interface State {
   cache: EmojiCacheItem[] | null;
   filter: string;
 }
-
-interface EmojiPickerStyle {
-  width: string;
-  position?: "absolute" | "relative" | "fixed" | "static";
-  right: string | number;
-  zIndex: number;
-  borderBottomRightRadius: string;
-  borderBottomLeftRadius: string;
-  padding: string;
-}
-
 export default class EmojiPicker extends BaseComponent<Props> {
   state: State = {
     data: null,
@@ -163,14 +152,7 @@ export default class EmojiPicker extends BaseComponent<Props> {
 
     const recent: string[] = ls.get("recent-emoji", []);
 
-    const emojiPickerStyle: EmojiPickerStyle = {
-      width: "280px",
-      position: "absolute",
-      right: "0",
-      zIndex: 1000,
-      borderBottomRightRadius: "8px",
-      borderBottomLeftRadius: "8px",
-      padding: "14px 6px",
+    const emojiPickerStyle = {
       ...(this.props.style && this.props.style) // Merge the passed style props if available
     };
 

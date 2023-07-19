@@ -34,16 +34,6 @@ interface State {
   total_count: number;
 }
 
-interface GifPickerStyle {
-  width: string;
-  position?: "absolute" | "relative" | "fixed" | "static";
-  right: string | number;
-  zIndex: number;
-  borderBottomRightRadius: string;
-  borderBottomLeftRadius: string;
-  padding: string;
-}
-
 interface GifImageStyle {
   width: string;
 }
@@ -225,14 +215,7 @@ export default class GifPicker extends BaseComponent<Props> {
       return null;
     }
 
-    const gifPickerStyle: GifPickerStyle = {
-      width: "430px",
-      position: "absolute",
-      right: "0",
-      zIndex: 12,
-      borderBottomRightRadius: "8px",
-      borderBottomLeftRadius: "8px",
-      padding: "14px 6px",
+    const gifPickerStyle = {
       ...(this.props.style && this.props.style)
     };
 
