@@ -23,20 +23,9 @@ export const getProfileMetaData = async (username: string) => {
 export const resetProfile = async (activeUser: ActiveUser | null) => {
   const profile = await getProfileMetaData(activeUser?.username!);
   delete profile.noStrKey;
-  delete profile.profile;
-  delete profile.version;
+  delete profile.channel;
   const response = await getAccountFull(activeUser?.username!);
-  const profileC = {
-    name: activeUser?.username,
-    about: "",
-    cover_image: "",
-    profile_image: "",
-    website: "",
-    location: "",
-    pinned: "",
-    version: 2
-  };
-  const updatedProfile = await updateProfile(response, { ...profileC });
+  const updatedProfile = await updateProfile(response, { ...profile });
   console.log(updatedProfile);
 };
 
@@ -80,3 +69,7 @@ export const formatMessageTime = (unixTs: number) => moment.unix(unixTs).format(
 export const formatMessageDate = (unixTs: number) => moment.unix(unixTs).format("dddd, MMMM Do");
 
 export const isSha256 = (s: string) => /^[a-f0-9]{64}$/gi.test(s);
+
+export const getCommunities = (channels: Channel[], leftChannels: string[]) => {
+  return channels.filter((item) => !leftChannels.includes(item.id));
+};

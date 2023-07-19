@@ -11,7 +11,7 @@ import {
   PublicMessage
 } from "./message-provider-types";
 
-import { initRaven, RavenEvents } from "../common/helper/message-helper";
+import { initMessageService, MessageEvents } from "../common/helper/message-service";
 import { getProfileMetaData, NostrKeys } from "../common/helper/chat-utils";
 
 import { useMappedStore } from "../common/store/use-mapped-store";
@@ -21,7 +21,7 @@ export const setNostrkeys = (keys: NostrKeys) => {
     pub: keys.pub,
     priv: keys.priv
   };
-  const ev = new CustomEvent("createRavenInstance", { detail });
+  const ev = new CustomEvent("createMSInstance", { detail });
   window.dispatchEvent(ev);
 };
 
@@ -36,25 +36,25 @@ interface Props {
 
 const MessageProvider = (props: Props) => {
   const { activeUser, chat } = useMappedStore();
-  const [ravenReady, setRavenReady] = useState(false);
+  const [messageServiceReady, setMessageServiceReady] = useState(false);
   const [since, setSince] = useState<number>(0);
   const [keys, setKeys] = useState<Keys>();
-  const [raven, setRaven] = useState<any>();
+  const [messageService, setMessageService] = useState<any>();
   const [directMessageBuffer, setDirectMessageBuffer] = useState<DirectMessage[]>([]);
   const [publicMessageBuffer, setPublicMessageBuffer] = useState<PublicMessage[]>([]);
 
   useEffect(() => {
-    window.addEventListener("createRavenInstance", createRavenInstance);
+    window.addEventListener("createMSInstance", createMSInstance);
 
     return () => {
-      window.removeEventListener("createRavenInstance", createRavenInstance);
+      window.removeEventListener("createMSInstance", createMSInstance);
     };
   }, []);
 
   useEffect(() => {
-    if (!window.raven && keys) {
-      const ravenInstance = initRaven(keys);
-      setRaven(ravenInstance);
+    if (!window.messageService && keys) {
+      const messageServiceInstance = initMessageService(keys);
+      setMessageService(messageServiceInstance);
     }
   }, [keys]);
 
@@ -64,10 +64,10 @@ const MessageProvider = (props: Props) => {
     }
   }, [activeUser]);
 
-  const createRavenInstance = (e: Event) => {
+  const createMSInstance = (e: Event) => {
     const detail = (e as CustomEvent).detail as NostrKeys;
-    const ravenInstance = initRaven(detail);
-    setRaven(ravenInstance);
+    const messageServiceInstance = initMessageService(detail);
+    setMessageService(messageServiceInstance);
   };
 
   const getNostrKeys = async (activeUser: ActiveUser) => {
@@ -77,11 +77,11 @@ const MessageProvider = (props: Props) => {
 
   //Listen for events in an interval.
   useEffect(() => {
-    if (!ravenReady) return;
+    if (!messageServiceReady) return;
 
     const timer = setTimeout(
       () => {
-        raven?.listen(
+        messageService?.listen(
           chat.channels.map((x) => x.id),
           Math.floor((since || Date.now()) / 1000)
         );
@@ -93,21 +93,21 @@ const MessageProvider = (props: Props) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [since, ravenReady, raven, chat.channels]);
+  }, [since, messageServiceReady, messageService, chat.channels]);
 
   // // Ready state handler
   const handleReadyState = () => {
-    setRavenReady(true);
+    setMessageServiceReady(true);
   };
 
   useEffect(() => {
-    raven?.removeListener(RavenEvents.Ready, handleReadyState);
-    raven?.addListener(RavenEvents.Ready, handleReadyState);
+    messageService?.removeListener(MessageEvents.Ready, handleReadyState);
+    messageService?.addListener(MessageEvents.Ready, handleReadyState);
 
     return () => {
-      raven?.removeListener(RavenEvents.Ready, handleReadyState);
+      messageService?.removeListener(MessageEvents.Ready, handleReadyState);
     };
-  }, [ravenReady, raven]);
+  }, [messageServiceReady, messageService]);
 
   // Profile update handler
   const handleProfileUpdate = (data: Profile[]) => {
@@ -116,12 +116,12 @@ const MessageProvider = (props: Props) => {
   };
 
   useEffect(() => {
-    raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
-    raven?.addListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
+    messageService?.removeListener(MessageEvents.ProfileUpdate, handleProfileUpdate);
+    messageService?.addListener(MessageEvents.ProfileUpdate, handleProfileUpdate);
     return () => {
-      raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
+      messageService?.removeListener(MessageEvents.ProfileUpdate, handleProfileUpdate);
     };
-  }, [raven, chat.profiles]);
+  }, [messageService, chat.profiles]);
 
   //Direct contact handler
   const handleDirectContact = (data: DirectContact[]) => {
@@ -140,18 +140,18 @@ const MessageProvider = (props: Props) => {
   };
 
   useEffect(() => {
-    raven?.removeListener(RavenEvents.DirectContact, handleDirectContact);
-    raven?.addListener(RavenEvents.DirectContact, handleDirectContact);
+    messageService?.removeListener(MessageEvents.DirectContact, handleDirectContact);
+    messageService?.addListener(MessageEvents.DirectContact, handleDirectContact);
     return () => {
-      raven?.removeListener(RavenEvents.DirectContact, handleDirectContact);
+      messageService?.removeListener(MessageEvents.DirectContact, handleDirectContact);
     };
-  }, [raven]);
+  }, [messageService]);
 
   // // Direct message handler
   const handleDirectMessage = (data: DirectMessage[]) => {
     setDirectMessageBuffer((directMessageBuffer) => [...directMessageBuffer!, ...data]);
     // console.log("HandleDirectMessage", data);
-    raven?.checkProfiles(data.map((x) => x.peer));
+    messageService?.checkProfiles(data.map((x) => x.peer));
   };
 
   const setDirectMessages = () => {
@@ -189,12 +189,12 @@ const MessageProvider = (props: Props) => {
   }, [chat.directContacts, directMessageBuffer]);
 
   useEffect(() => {
-    raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
-    raven?.addListener(RavenEvents.DirectMessage, handleDirectMessage);
+    messageService?.removeListener(MessageEvents.DirectMessage, handleDirectMessage);
+    messageService?.addListener(MessageEvents.DirectMessage, handleDirectMessage);
     return () => {
-      raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
+      messageService?.removeListener(MessageEvents.DirectMessage, handleDirectMessage);
     };
-  }, [raven]);
+  }, [messageService]);
 
   // Channel creation handler
   const handleChannelCreation = (data: Channel[]) => {
@@ -205,13 +205,13 @@ const MessageProvider = (props: Props) => {
   };
 
   useEffect(() => {
-    raven?.removeListener(RavenEvents.ChannelCreation, handleChannelCreation);
-    raven?.addListener(RavenEvents.ChannelCreation, handleChannelCreation);
+    messageService?.removeListener(MessageEvents.ChannelCreation, handleChannelCreation);
+    messageService?.addListener(MessageEvents.ChannelCreation, handleChannelCreation);
 
     return () => {
-      raven?.removeListener(RavenEvents.ChannelCreation, handleChannelCreation);
+      messageService?.removeListener(MessageEvents.ChannelCreation, handleChannelCreation);
     };
-  }, [raven]);
+  }, [messageService]);
 
   //Public Message handler
   const handlePublicMessage = (data: PublicMessage[]) => {
@@ -228,19 +228,19 @@ const MessageProvider = (props: Props) => {
             uniqueUsers.push(item.creator);
           }
         }
-        raven?.loadProfiles(uniqueUsers);
+        messageService?.loadProfiles(uniqueUsers);
       }
     }
   };
 
   useEffect(() => {
-    raven?.removeListener(RavenEvents.PublicMessage, handlePublicMessage);
-    raven?.addListener(RavenEvents.PublicMessage, handlePublicMessage);
+    messageService?.removeListener(MessageEvents.PublicMessage, handlePublicMessage);
+    messageService?.addListener(MessageEvents.PublicMessage, handlePublicMessage);
 
     return () => {
-      raven?.removeListener(RavenEvents.PublicMessage, handlePublicMessage);
+      messageService?.removeListener(MessageEvents.PublicMessage, handlePublicMessage);
     };
-  }, [raven, chat.profiles, chat.publicMessages]);
+  }, [messageService, chat.profiles, chat.publicMessages]);
 
   useEffect(() => {
     if (chat.channels.length !== 0) {
@@ -286,25 +286,25 @@ const MessageProvider = (props: Props) => {
   };
 
   useEffect(() => {
-    raven?.removeListener(RavenEvents.LeftChannelList, handleLeftChannelList);
-    raven?.addListener(RavenEvents.LeftChannelList, handleLeftChannelList);
+    messageService?.removeListener(MessageEvents.LeftChannelList, handleLeftChannelList);
+    messageService?.addListener(MessageEvents.LeftChannelList, handleLeftChannelList);
 
     return () => {
-      raven?.removeListener(RavenEvents.LeftChannelList, handleLeftChannelList);
+      messageService?.removeListener(MessageEvents.LeftChannelList, handleLeftChannelList);
     };
-  }, [raven, chat.leftChannelsList]);
+  }, [messageService, chat.leftChannelsList]);
 
   useEffect(() => {
     return () => {
-      raven?.removeListener(RavenEvents.Ready, handleReadyState);
-      raven?.removeListener(RavenEvents.ProfileUpdate, handleProfileUpdate);
-      raven?.removeListener(RavenEvents.ChannelCreation, handleChannelCreation);
-      raven?.removeListener(RavenEvents.DirectContact, handleDirectContact);
-      raven?.removeListener(RavenEvents.LeftChannelList, handleLeftChannelList);
-      raven?.removeListener(RavenEvents.PublicMessage, handlePublicMessage);
-      raven?.removeListener(RavenEvents.DirectMessage, handleDirectMessage);
+      messageService?.removeListener(MessageEvents.Ready, handleReadyState);
+      messageService?.removeListener(MessageEvents.ProfileUpdate, handleProfileUpdate);
+      messageService?.removeListener(MessageEvents.ChannelCreation, handleChannelCreation);
+      messageService?.removeListener(MessageEvents.DirectContact, handleDirectContact);
+      messageService?.removeListener(MessageEvents.LeftChannelList, handleLeftChannelList);
+      messageService?.removeListener(MessageEvents.PublicMessage, handlePublicMessage);
+      messageService?.removeListener(MessageEvents.DirectMessage, handleDirectMessage);
     };
-  }, [raven]);
+  }, [messageService]);
 
   return <>{}</>;
 };

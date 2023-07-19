@@ -43,10 +43,10 @@ export default function JoinCommunityChatBtn(props: Props) {
   }, [props.activeUser]);
 
   useEffect(() => {
-    if (window.raven) {
+    if (window.messageService) {
       setHasUserJoinedChat(true);
     }
-  }, [window?.raven]);
+  }, [window?.messageService]);
 
   useEffect(() => {
     checkIsChatJoined();
@@ -56,15 +56,15 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   const fetchUserProfileData = async () => {
     const profileData = await getProfileMetaData(props.activeUser?.username!);
-    const hasNoStrKey = profileData.hasOwnProperty("noStrKey");
+    const hasNoStrKey = profileData && profileData.hasOwnProperty("noStrKey");
     setHasUserJoinedChat(hasNoStrKey);
   };
 
   const fetchCommunityProfile = async () => {
     const communityProfile = await getProfileMetaData(props.community?.name);
-    const haschannelMetaData = communityProfile.hasOwnProperty("channel");
+    const haschannelMetaData = communityProfile && communityProfile.hasOwnProperty("channel");
     setIsChatEnabled(haschannelMetaData);
-    const hasNoStrKey = communityProfile.hasOwnProperty("noStrKey");
+    const hasNoStrKey = communityProfile && communityProfile.hasOwnProperty("noStrKey");
     if (!currentChannel) {
       setCurrentChannel(communityProfile.channel);
     }
@@ -91,7 +91,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     const { community } = props;
     try {
       setInProgress(true);
-      const data = await window?.raven?.createChannel({
+      const data = await window?.messageService?.createChannel({
         name: community.title,
         about: community.description,
         communityName: community.name,
@@ -118,11 +118,11 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   const joinCommunityChat = () => {
     if (chat.leftChannelsList.includes(currentChannel?.id!)) {
-      window?.raven?.updateLeftChannelList(
+      window?.messageService?.updateLeftChannelList(
         chat.leftChannelsList.filter((x) => x !== currentChannel?.id)
       );
     }
-    window?.raven?.loadChannel(currentChannel?.id!);
+    window?.messageService?.loadChannel(currentChannel?.id!);
     setIsJoinChat(true);
   };
 
@@ -143,7 +143,11 @@ export default function JoinCommunityChatBtn(props: Props) {
     await setProfileMetaData(props.activeUser, keys);
     setHasUserJoinedChat(true);
     setNostrkeys(keys);
-    window.raven?.updateProfile({ name: props.activeUser?.username!, about: "", picture: "" });
+    window.messageService?.updateProfile({
+      name: props.activeUser?.username!,
+      about: "",
+      picture: ""
+    });
     setInProgress(false);
     fetchCommunityProfile();
     resetChat();
@@ -163,7 +167,7 @@ export default function JoinCommunityChatBtn(props: Props) {
             {inProgress && chatButtonSpinner}
             Start Community Chat
           </Button>
-        ) : !isJoinChat && isChatEnabled ? (
+        ) : !isJoinChat && isChatEnabled && hasUserJoinedChat ? (
           <Button onClick={joinCommunityChat}>
             {" "}
             {inProgress && chatButtonSpinner}Join Community Chat

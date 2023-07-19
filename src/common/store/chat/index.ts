@@ -101,7 +101,6 @@ export default (state: Chat = initialState, action: Actions): Chat => {
 
     case ActionTypes.LEFTCHANNELLIST: {
       const { data } = action;
-      console.log("data in store", data);
       return {
         ...state,
         leftChannelsList: [...data]

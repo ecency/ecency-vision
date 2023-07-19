@@ -9,7 +9,7 @@
   right: 15rem;
   bottom: 0rem;
   height: 53px;
-  width: 400px;
+  width: 410px;
 
   border-top-right-radius: 16px;
   border-top-left-radius: 16px;
@@ -32,8 +32,8 @@
 
   .chat-header {
     border-bottom: 1px solid $white-four;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 6px;
+    padding-right: 6px;
     cursor: pointer;
     height: 53px;
     display: flex;
@@ -59,23 +59,23 @@
     .back-arrow-svg:hover {
       background: rgba(29, 155, 240, 0.1);
     }
-    .message-title {
+    .message-header-title {
       display: flex;
       width: 288px;
-      margin-left: 0.8rem;
+      margin-left: 0.6rem;
       .user-icon {
         margin: 14px 11px 0 0;
       }
     }
 
-    .message-content {
+    .message-header-content {
       margin-top: 0.8rem;
       font-weight: 700;
       line-height: 24px;
       font-size: 21px;
       font-family: $font-family-sans-serif;
 
-      max-width: 183px;
+      max-width: 200px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -98,12 +98,12 @@
         margin-top: 2px;
 
         .message-svg {
-          width: 32px;
-          height: 32px;
+          width: 40px;
+          height: 40px;
           justify-content: center;
           text-align: center;
           border-radius: 50%;
-          padding-top: 9px;
+          padding-top: 11px;
           display: flex;
 
           svg {
@@ -121,9 +121,9 @@
           display: flex;
           justify-content: center;
           text-align: center;
-          padding-top: 1px;
-          width: 28px;
-          height: 28px;
+          padding-top: 6px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
         }
 
@@ -132,6 +132,7 @@
         }
       }
       .community-menu {
+        margin-bottom: 12px;
         svg {
           @include themify(day) {
             color: $charcoal-grey;
@@ -204,6 +205,44 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .user-search-bar {
+      margin: 12px;
+    }
+    .user-search-suggestion-list {
+      .search-content {
+        padding: 0.7rem;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        margin-bottom: 1rem;
+
+        .search-user-img {
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          margin-left: 10px;
+        }
+
+        .search-user-title {
+          margin-left: 1rem;
+          .search-username {
+            margin-top: 7px;
+            margin-bottom: 0;
+            font-size: 20px;
+            font-weight: 700;
+          }
+        }
+        &:hover {
+          @include themify(day) {
+            background: $white-four;
+          }
+          @include themify(night) {
+            background: $charcoal-grey;
+          }
+        }
+      }
     }
 
     .chat-content {

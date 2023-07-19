@@ -1,9 +1,9 @@
-import Raven from "./message-helper";
+import MessageService from "./message-service";
 import { Event } from "../../lib/nostr-tools/event";
 
 declare global {
   interface Window {
-    raven?: Raven;
+    messageService?: MessageService;
     nostr?: {
       getPublicKey: () => Promise<string>;
       signEvent: (event: Event) => Promise<Event>;

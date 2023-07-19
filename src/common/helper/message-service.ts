@@ -29,7 +29,7 @@ enum NewKinds {
   Arbitrary = 30078
 }
 
-export enum RavenEvents {
+export enum MessageEvents {
   Ready = "ready",
   ProfileUpdate = "profile_update",
   LeftChannelList = "left_channel_list",
@@ -40,16 +40,16 @@ export enum RavenEvents {
 }
 
 type EventHandlerMap = {
-  [RavenEvents.Ready]: () => void;
-  [RavenEvents.ProfileUpdate]: (data: Profile[]) => void;
-  [RavenEvents.DirectMessage]: (data: DirectMessage[]) => void;
-  [RavenEvents.ChannelCreation]: (data: Channel[]) => void;
-  [RavenEvents.PublicMessage]: (data: PublicMessage[]) => void;
-  [RavenEvents.LeftChannelList]: (data: string[]) => void;
-  [RavenEvents.DirectContact]: (data: DirectContact[]) => void;
+  [MessageEvents.Ready]: () => void;
+  [MessageEvents.ProfileUpdate]: (data: Profile[]) => void;
+  [MessageEvents.DirectMessage]: (data: DirectMessage[]) => void;
+  [MessageEvents.ChannelCreation]: (data: Channel[]) => void;
+  [MessageEvents.PublicMessage]: (data: PublicMessage[]) => void;
+  [MessageEvents.LeftChannelList]: (data: string[]) => void;
+  [MessageEvents.DirectContact]: (data: DirectContact[]) => void;
 };
 
-class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
+class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   private pool: SimplePool;
   private poolL: SimplePool;
 
@@ -110,7 +110,7 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
       const events = resp.sort((a, b) => b.created_at - a.created_at);
       const deletions = resp
         .filter((x) => x.kind === Kind.EventDeletion)
-        .map((x) => Raven.findTagValue(x, "e"));
+        .map((x) => MessageService.findTagValue(x, "e"));
       const profile = events.find((x) => x.kind === Kind.Contacts);
       if (profile && profile?.tags.length !== 0) {
         this.directContacts = profile?.tags;
@@ -120,9 +120,9 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
       const leftChannelList = events.find(
         (x) =>
           x.kind.toString() === NewKinds.Arbitrary.toString() &&
-          Raven.findTagValue(x, "d") === "left-channel-list"
+          MessageService.findTagValue(x, "d") === "left-channel-list"
       );
-      console.log(leftChannelList, "leftChannelList");
+
       if (leftChannelList) {
         this.pushToEventBuffer(leftChannelList);
       }
@@ -136,7 +136,7 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
               }
 
               if (x.kind === Kind.ChannelMessage) {
-                return Raven.findTagValue(x, "e");
+                return MessageService.findTagValue(x, "e");
               }
 
               return undefined;
@@ -150,7 +150,7 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
       }
 
       this.fetchMessages();
-      this.emit(RavenEvents.Ready);
+      this.emit(MessageEvents.Ready);
     });
   }
 
@@ -201,6 +201,7 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
   }
 
   public publishContacts(username: string, pubkey: string) {
+    console.log("Publish contact run", username, pubkey);
     const newUser = [pubkey, username];
     newUser.forEach((element) => {
       let nameExist = false;
@@ -216,6 +217,7 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
       // If the name doesn't exist, add the element to the direct contacts array
       if (!nameExist) {
         this.directContacts.push(newUser);
+        console.log("Event is fired");
         this.publish(Kind.Contacts, this.directContacts, "");
         return;
       }
@@ -511,47 +513,48 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
       const directContactsProfile: Array<{ pubkey: string; name: string }> = directContacts[0];
 
       if (directContactsProfile.length > 0) {
-        this.emit(RavenEvents.DirectContact, directContactsProfile);
+        console.log(directContactsProfile, "directContactsProfile");
+        this.emit(MessageEvents.DirectContact, directContactsProfile);
       }
     }
 
     const profileUpdates: Profile[] = this.eventQueue
       .filter((x) => x.kind === Kind.Metadata)
       .map((ev) => {
-        const content = Raven.parseJson(ev.content);
+        const content = MessageService.parseJson(ev.content);
         return content
           ? {
               id: ev.id,
               creator: ev.pubkey,
               created: ev.created_at,
-              ...Raven.normalizeMetadata(content)
+              ...MessageService.normalizeMetadata(content)
             }
           : null;
       })
       .filter(notEmpty);
     if (profileUpdates.length > 0) {
-      this.emit(RavenEvents.ProfileUpdate, profileUpdates);
+      this.emit(MessageEvents.ProfileUpdate, profileUpdates);
     }
 
     const leftChannelListEv = this.eventQueue
       .filter(
         (x) =>
           x.kind.toString() === NewKinds.Arbitrary.toString() &&
-          Raven.findTagValue(x, "d") === "left-channel-list"
+          MessageService.findTagValue(x, "d") === "left-channel-list"
       )
       .sort((a, b) => b.created_at - a.created_at)[0];
 
     if (leftChannelListEv) {
-      const content = Raven.parseJson(leftChannelListEv.content);
+      const content = MessageService.parseJson(leftChannelListEv.content);
       if (Array.isArray(content) && content.every((x) => isSha256(x))) {
-        this.emit(RavenEvents.LeftChannelList, content);
+        this.emit(MessageEvents.LeftChannelList, content);
       }
     }
 
     const channelCreations: Channel[] = this.eventQueue
       .filter((x) => x.kind === Kind.ChannelCreation)
       .map((ev) => {
-        const content = Raven.parseJson(ev.content);
+        const content = MessageService.parseJson(ev.content);
         // console.log(content,"events")
         return content
           ? {
@@ -559,21 +562,21 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
               creator: ev.pubkey,
               created: ev.created_at,
               communityName: content.communityName,
-              ...Raven.normalizeMetadata(content)
+              ...MessageService.normalizeMetadata(content)
             }
           : null;
       })
       .filter(notEmpty);
     if (channelCreations.length > 0) {
-      this.emit(RavenEvents.ChannelCreation, channelCreations);
+      this.emit(MessageEvents.ChannelCreation, channelCreations);
     }
 
     const publicMessages: PublicMessage[] = this.eventQueue
       .filter((x) => x.kind === Kind.ChannelMessage)
       .map((ev) => {
-        const eTags = Raven.filterTagValue(ev, "e");
+        const eTags = MessageService.filterTagValue(ev, "e");
         const root = eTags.find((x) => x[3] === "root")?.[1];
-        const mentions = Raven.filterTagValue(ev, "p")
+        const mentions = MessageService.filterTagValue(ev, "p")
           .map((x) => x?.[1])
           .filter(notEmpty);
         if (!root) return null;
@@ -590,16 +593,16 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
       })
       .filter(notEmpty);
     if (publicMessages.length > 0) {
-      this.emit(RavenEvents.PublicMessage, publicMessages);
+      this.emit(MessageEvents.PublicMessage, publicMessages);
     }
 
     Promise.all(
       this.eventQueue
         .filter((x) => x.kind === Kind.EncryptedDirectMessage)
         .map((ev) => {
-          const receiver = Raven.findTagValue(ev, "p");
+          const receiver = MessageService.findTagValue(ev, "p");
           if (!receiver) return null;
-          const eTags = Raven.filterTagValue(ev, "e");
+          const eTags = MessageService.filterTagValue(ev, "e");
           const root = eTags.find((x) => x[3] === "root")?.[1];
 
           const peer = receiver === this.pub ? ev.pubkey : receiver;
@@ -627,7 +630,7 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
         })
         .filter(notEmpty)
     ).then((directMessages: DirectMessage[]) => {
-      this.emit(RavenEvents.DirectMessage, directMessages);
+      this.emit(MessageEvents.DirectMessage, directMessages);
     });
 
     this.eventQueue = [];
@@ -664,18 +667,18 @@ class Raven extends TypedEventEmitter<RavenEvents, EventHandlerMap> {
   }
 }
 
-export default Raven;
+export default MessageService;
 
-export const initRaven = (keys: Keys): Raven | undefined => {
-  if (window.raven) {
-    window.raven.close();
-    window.raven = undefined;
+export const initMessageService = (keys: Keys): MessageService | undefined => {
+  if (window.messageService) {
+    window.messageService.close();
+    window.messageService = undefined;
   }
 
   if (keys) {
-    window.raven = new Raven(keys.priv, keys.pub);
-    console.log("window raven", window.raven);
+    window.messageService = new MessageService(keys.priv, keys.pub);
+    console.log("window messageService", window.messageService);
   }
 
-  return window.raven;
+  return window.messageService;
 };

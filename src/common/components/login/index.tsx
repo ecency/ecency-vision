@@ -772,7 +772,7 @@ class LoginDialog extends Component<Props> {
       //reset the already stored chat
       resetChat();
 
-      //create new raven instance for newly logged in user
+      //create new message service instance for newly logged in user
       if (profile && profile.noStrKey) {
         setNostrkeys(profile.noStrKey);
       }

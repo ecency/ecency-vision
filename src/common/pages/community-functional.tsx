@@ -35,6 +35,16 @@ import { EntryListContent } from "../components/entry-list";
 import { connect } from "react-redux";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
 import "./community.scss";
+import { Button, Modal } from "react-bootstrap";
+import LoginRequired from "../components/login-required";
+import {
+  createNoStrAccount,
+  getCommunities,
+  getProfileMetaData,
+  setProfileMetaData
+} from "../helper/chat-utils";
+import { useMappedStore } from "../store/use-mapped-store";
+import { Channel } from "../../providers/message-provider-types";
 
 interface MatchParams {
   filter: string;
@@ -47,9 +57,10 @@ interface Props extends PageProps {
 
 export const CommunityPage = (props: Props) => {
   const getSearchParam = () => {
-    return props.location.search.replace("?", "").replace("q", "").replace("=", "");
+    const updatedLocation = props.location.search.replace(/communityid=.*?(?=&|$)/, "");
+    return updatedLocation.replace("?", "").replace("q", "").replace("=", "").replace("&", "");
   };
-
+  const { chat } = useMappedStore();
   const [community, setCommunity] = useState<Community | null>(null);
   const [account, setAccount] = useState<Account | null>(null);
   const [loading, setLoading] = useState(true);
@@ -57,9 +68,29 @@ export const CommunityPage = (props: Props) => {
   const [search, setSearch] = useState(getSearchParam());
   const [searchDataLoading, setSearchDataLoading] = useState(getSearchParam().length > 0);
   const [searchData, setSearchData] = useState<SearchResult[]>([]);
+  const [isJoinCommunity, setIsJoinCommunity] = useState(false);
+  const [hasUserJoinedChat, setHasUserJoinedChat] = useState(true);
+  const [inProgress, setInProgress] = useState(false);
+  const [channelId, setChannelId] = useState("");
+  const [communities, setCommunities] = useState<Channel[]>([]);
+  const [isCommunityAlreadyJoined, setIsCommunityAlreadyJoined] = useState(false);
 
   const prevMatch = usePrevious(props.match);
   const prevActiveUser = usePrevious(props.activeUser);
+
+  useEffect(() => {
+    fetchUserProfileData();
+  }, [props.activeUser]);
+
+  useEffect(() => {
+    const communities = getCommunities(chat.channels, chat.leftChannelsList);
+    setCommunities(communities);
+  }, [chat.channels, chat.leftChannelsList]);
+
+  useEffect(() => {
+    const isAlreadyExists = communities.some((community) => community.id === channelId);
+    setIsCommunityAlreadyJoined(isAlreadyExists);
+  }, [communities]);
 
   useEffect(() => {
     ensureData();
@@ -69,6 +100,12 @@ export const CommunityPage = (props: Props) => {
     const { filter, name } = match.params;
     // fetch blog posts.
     if (EntryFilter[filter]) fetchEntries(filter, name, false);
+    const urlParams = new URLSearchParams(location.search);
+    const communityId = urlParams.get("communityid");
+    if (communityId) {
+      setChannelId(communityId);
+      setIsJoinCommunity(true);
+    }
 
     fetchSubscriptions();
   }, []);
@@ -178,6 +215,14 @@ export const CommunityPage = (props: Props) => {
     delayedSearch(value);
   };
 
+  const fetchUserProfileData = async () => {
+    if (props.activeUser) {
+      const profileData = await getProfileMetaData(props.activeUser?.username!);
+      const hasNoStrKey = profileData && profileData.hasOwnProperty("noStrKey");
+      setHasUserJoinedChat(hasNoStrKey);
+    }
+  };
+
   const getMetaProps = () => {
     const { filter } = props.match.params;
     const ncount = props.notifications.unread > 0 ? `(${props.notifications.unread}) ` : "";
@@ -200,8 +245,123 @@ export const CommunityPage = (props: Props) => {
     <NavBar {...props} />
   );
 
+  const handleJoinChat = async () => {
+    setInProgress(true);
+    const keys = createNoStrAccount();
+    await setProfileMetaData(props.activeUser, keys);
+    setHasUserJoinedChat(true);
+    window.messageService?.updateProfile({
+      name: props.activeUser?.username!,
+      about: "",
+      picture: ""
+    });
+    setInProgress(false);
+  };
+
+  const joinCommunityChat = () => {
+    const communityIds = new Set(communities.map((community) => community.id));
+    if (!communityIds.has(channelId)) {
+      const messageService = window?.messageService;
+      if (messageService) {
+        const updatedLeftChannelsList = chat.leftChannelsList.filter((x) => x !== channelId);
+        messageService.updateLeftChannelList(updatedLeftChannelsList);
+        messageService.loadChannel(channelId);
+      }
+    }
+
+    setIsJoinCommunity(false);
+  };
+
+  const joinCommunityModal = () => {
+    if (hasUserJoinedChat && !isCommunityAlreadyJoined) {
+      return (
+        <>
+          <div className="join-community-dialog-header border-bottom">
+            <div className="join-community-dialog-titles">
+              <h2 className="join-community-main-title">Confirmaton</h2>
+            </div>
+          </div>
+          <div
+            className="join-community-dialog-body"
+            style={{ fontSize: "18px", marginTop: "12px" }}
+          >
+            Are you sure?
+          </div>
+          <p className="join-community-confirm-buttons" style={{ textAlign: "right" }}>
+            <Button
+              variant="outline-primary"
+              className="close-btn"
+              style={{ marginRight: "20px" }}
+              onClick={() => {
+                setIsJoinCommunity(false);
+              }}
+            >
+              Close
+            </Button>
+            <Button variant="outline-primary" className="confirm-btn" onClick={joinCommunityChat}>
+              Confirm
+            </Button>
+          </p>
+        </>
+      );
+    } else {
+      if (isCommunityAlreadyJoined) {
+        return (
+          <>
+            <div className="join-chat-header border-bottom">
+              <div className="join-chat-titles">
+                <h4 className="join-chat-main-title"> You have already joined this community</h4>
+              </div>
+            </div>
+            <p className="join-chat-btn" style={{ marginTop: "30px", textAlign: "right" }}>
+              <Button
+                variant="outline-primary"
+                className="join-btn"
+                onClick={() => setIsJoinCommunity(false)}
+              >
+                Ok
+              </Button>
+            </p>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <div className="join-chat-header border-bottom">
+              <div className="join-chat-titles">
+                <h4 className="join-chat-main-title"> Please Join the Chat to Continue</h4>
+              </div>
+            </div>
+            {inProgress && <LinearProgress />}
+            <p className="join-chat-btn" style={{ marginTop: "30px", textAlign: "center" }}>
+              <Button className="join-btn" onClick={handleJoinChat}>
+                Join Chat
+              </Button>
+            </p>
+          </>
+        );
+      }
+    }
+  };
+
   return community && account ? (
     <>
+      {isJoinCommunity && (
+        <LoginRequired {...props}>
+          <Modal
+            animation={false}
+            show={true}
+            centered={true}
+            onHide={() => setIsJoinCommunity(false)}
+            keyboard={false}
+            className="authorities-dialog modal-thin-header"
+            size="lg"
+          >
+            <Modal.Header closeButton={true} />
+            <Modal.Body>{joinCommunityModal()}</Modal.Body>
+          </Modal>
+        </LoginRequired>
+      )}
       <Meta {...getMetaProps()} />
       <ScrollToTop />
       <Theme global={props.global} />
