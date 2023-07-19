@@ -1384,7 +1384,8 @@
     "view-more": "More...",
     "info-views": "Views:",
     "info-duration": "Duration:",
-    "info-size": "File size:"
+    "info-size": "File size:",
+    "play-video": "Play video"
   },
   "nsfw-content": {
     "title":"NSFW contents",

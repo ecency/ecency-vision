@@ -16,8 +16,6 @@ const VideoGallery = (props: any) => {
   const [isEmbedded, setIsembedded] = useState(false);
   const [label, setLabel] = useState("All");
   const [filtered, setFiltered] = useState<any>([]);
-  // const [confirmIsNsfw, setConfirmIsNsfw] = useState(false);
-  // const [isNsfw, setIsNsfw] = useState(false)
 
   useEffect(() => {
     getAllStatus();
@@ -102,15 +100,6 @@ const VideoGallery = (props: any) => {
     insertText(element)
     setIsembedded(true)
   };
-
-  // const handleChange = () => {
-  //   setIsNsfw(prevIsNsfw => {
-  //     const updatedIsNsfw = !prevIsNsfw;
-  //     console.log("updated isNsfw", updatedIsNsfw);
-  //     console.log("isNsfw", isNsfw);
-  //     return updatedIsNsfw;
-  //   });
-  // }
 
   const dropDown = (
     <div className="video-status-picker">
@@ -274,14 +263,16 @@ const VideoGallery = (props: any) => {
           {items?.map((item: any, i: number) => {
             return (
               <div className="video-list-body" key={i}>
-                  {item.status === "published" ?
-                 <div className="video-wrapper">
-                    <iframe
-                      src={`https://3speak.tv/embed?v=${activeUser.username}/${item.permlink}`}
-                      allowFullScreen
-                      className="iframe"
-                    ></iframe>
-                 </div> : 
+                  {
+                    // Slows down rendering
+                //   item.status === "published" ?
+                //  <div className="video-wrapper">
+                //     <iframe
+                //       src={`https://3speak.tv/embed?v=${activeUser.username}/${item.permlink}`}
+                //       allowFullScreen
+                //       className="iframe"
+                //     ></iframe>
+                //  </div> : 
                 <img src={item.thumbUrl} alt="" />
                 }
                 <div className="list-details-wrapper">
@@ -314,9 +305,9 @@ const VideoGallery = (props: any) => {
                     ) : item.status === "encoding_failed" ? (
                       <span className="encoding-failed">{_t("video-gallery.status-failed")}</span>
                     ) : item.status === "published" ? (
-                      <div>
+                      <div className="published-wrapper">
                         <span className="published">{_t("video-gallery.status-published")}</span>
-                        {/* <button className="post-video-btn">view</button> */}
+                        <button className="post-video-btn">{_t("video-gallery.play-video")}</button>
                       </div>
                     ) : (
                       <span className="encoding">{_t("video-gallery.status-encoding")}</span>
@@ -356,16 +347,6 @@ const VideoGallery = (props: any) => {
       {!loading && items?.length === 0 || filtered?.length === 0 && <div className="gallery-list">{_t("g.empty-list")}</div>}
     </div>
   );
-
-  // const confirmNsfw = (
-  //   <div className="d-flex flex-column m-3">
-  //     <div>        
-  //       <input type="checkbox" checked={isNsfw} onChange={handleChange} ></input>
-  //       <label className="text-danger ml-3">Please check if your content is NSFW</label>
-  //     </div>
-  //     <Button className="w-50 align-self-center">Confirm</Button>
-  //   </div>
-  // )
 
   return (
     <div>
