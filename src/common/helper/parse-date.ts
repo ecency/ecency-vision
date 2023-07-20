@@ -66,4 +66,46 @@ const parseDate = (d: string): Date => {
   }
 };
 
+export const  formatTimeDIfference = (timeString: string): number => {
+  const currentTime = new Date();
+  const [value, unit] = timeString.split(" ");
+  let milliseconds = 0;
+
+  if (unit.includes("second")) {
+    milliseconds = Number(value) * 1000;
+  } else if (unit.includes("minute")) {
+    milliseconds = Number(value) * 60 * 1000;
+  } else if (unit.includes("hour")) {
+    if(value.includes("an")){
+      milliseconds = 60 * 60 * 1000;
+    } else{
+      milliseconds = Number(value) * 60 * 60 * 1000;
+    }
+  } else if (unit.includes("day")) {
+    if(value.includes("a")){
+      milliseconds = 24 * 60 * 60 * 1000;
+    } else {
+      milliseconds = Number(value) * 24 * 60 * 60 * 1000;
+    }
+  } else if (unit.includes("week")) {
+    milliseconds = Number(value) * 7 * 24 * 60 * 60 * 1000;
+  } else if (unit.includes("month")) {
+    if(value.includes("a")) {
+      milliseconds = 30 * 24 * 60 * 60 * 1000;
+    } else{
+      milliseconds = Number(value) * 30 * 24 * 60 * 60 * 1000;
+    }
+  } else if (unit.includes("year")) {
+    if(value.includes("a")){
+      milliseconds = 365 * 24 * 60 * 60 * 1000;
+    } else{        
+      milliseconds = Number(value) * 365 * 24 * 60 * 60 * 1000;
+    }
+  }
+
+  const difference = currentTime.getTime() - milliseconds;
+
+  return difference;
+};
+
 export default parseDate;
