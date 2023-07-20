@@ -2,12 +2,9 @@ import hs from "hivesigner";
 
 import {
   AccountUpdateOperation,
-  Authority,
   CustomJsonOperation,
-  KeyRole,
   Operation,
   OperationName,
-  VirtualOperationName,
   PrivateKey,
   TransactionConfirmation
 } from "@hiveio/dhive";

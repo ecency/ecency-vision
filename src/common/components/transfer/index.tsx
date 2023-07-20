@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import { PrivateKey, cryptoUtils } from "@hiveio/dhive";
+import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 
 import isEqual from "react-fast-compare";
 
-import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Button, Col, Form, FormControl, InputGroup, Modal, Row } from "react-bootstrap";
 
 import badActors from "@hiveio/hivescript/bad-actors.json";
 
@@ -24,12 +24,25 @@ import { error } from "../feedback";
 import HiveWallet from "../../helper/hive-wallet";
 import amountFormatCheck from "../../helper/amount-format-check";
 import parseAsset from "../../helper/parse-asset";
-import { vestsToHp, hpToVests } from "../../helper/vesting";
+import { hpToVests, vestsToHp } from "../../helper/vesting";
 
 import { getAccount, getAccountFull, getVestingDelegations } from "../../api/hive";
 
 import {
+  claimInterest,
+  claimInterestHot,
+  claimInterestKc,
+  convert,
+  convertHot,
+  convertKc,
+  delegateVestingShares,
+  delegateVestingSharesHot,
+  delegateVestingSharesKc,
+  formatError,
   transfer,
+  transferFromSavings,
+  transferFromSavingsHot,
+  transferFromSavingsKc,
   transferHot,
   transferKc,
   transferPoint,
@@ -38,25 +51,12 @@ import {
   transferToSavings,
   transferToSavingsHot,
   transferToSavingsKc,
-  transferFromSavings,
-  transferFromSavingsHot,
-  transferFromSavingsKc,
-  claimInterest,
-  claimInterestHot,
-  claimInterestKc,
   transferToVesting,
   transferToVestingHot,
   transferToVestingKc,
-  convert,
-  convertHot,
-  convertKc,
-  delegateVestingShares,
-  delegateVestingSharesHot,
-  delegateVestingSharesKc,
   withdrawVesting,
   withdrawVestingHot,
-  withdrawVestingKc,
-  formatError
+  withdrawVestingKc
 } from "../../api/operations";
 
 import { _t } from "../../i18n";
@@ -68,6 +68,7 @@ import { dateToFullRelative } from "../../helper/parse-date";
 import { formatNumber } from "../../helper/format-number";
 import "./_index.scss";
 import exchangeAccounts from "../../constants/exchanges";
+import { queryClient, QueryIdentifiers } from "../../core";
 
 export type TransferMode =
   | "transfer"
@@ -142,7 +143,6 @@ interface Props {
   addAccount: (data: Account) => void;
   updateActiveUser: (data?: Account) => void;
   setSigningKey: (key: string) => void;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
   onHide: () => void;
   handleClickAway?: () => void;
@@ -642,19 +642,11 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   finish = () => {
-    const {
-      onHide,
-      mode,
-      asset,
-      account,
-      activeUser,
-      fetchPoints,
-      updateWalletValues,
-      handleClickAway
-    } = this.props;
+    const { onHide, mode, asset, account, activeUser, updateWalletValues, handleClickAway } =
+      this.props;
     if (account && activeUser && account.name !== activeUser.username) {
       if (mode === "transfer" && asset === "POINT") {
-        fetchPoints(account.name);
+        queryClient.invalidateQueries([QueryIdentifiers.POINTS, account.name]); // todo: find filter
       } else {
         updateWalletValues();
       }

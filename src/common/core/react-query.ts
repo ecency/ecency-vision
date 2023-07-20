@@ -19,5 +19,6 @@ export enum QueryIdentifiers {
   DECK_USER = "deck-user",
   DECK_COMMUNITY = "deck-community",
 
-  SWAP_FORM_CURRENCY_RATE = "swap-form-currency-rate"
+  SWAP_FORM_CURRENCY_RATE = "swap-form-currency-rate",
+  POINTS = "points"
 }
