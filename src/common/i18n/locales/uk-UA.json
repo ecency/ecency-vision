@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Просувати",
     "sub-title": "Просувати ваш допис",
-    "duration": "Тривалість"
+    "duration": "Тривалість",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Підсилити",
     "sub-title": "Підсилити ваш допис",
     "amount": "Сума",
     "slider-hint": "Перетягніть повзунок, щоб відрегулювати суму.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Баланс",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "Читачів ({{n}})",
     "following": "Cлідкують ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Слідкувати",
