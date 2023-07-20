@@ -56,4 +56,13 @@
       opacity: 1;
     }
   }
+
+}
+
+.reblog-stats{
+  
+  .reblog-count{
+    color: $dark-sky-blue;
+    cursor: pointer;
+  }
 }

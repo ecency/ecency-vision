@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Entry } from "../../store/entries/types";
 import { Account } from "../../store/accounts/types";
 import { User } from "../../store/users/types";
@@ -14,7 +13,7 @@ import { error, success, info } from "../feedback";
 import { reblog, formatError } from "../../api/operations";
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
-import { repeatSvg, viewListSvg } from "../../img/svg";
+import { repeatSvg } from "../../img/svg";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { getRebloggedUsers } from "../../api/hive";
@@ -127,13 +126,15 @@ export class EntryReblogBtn extends BaseComponent<Props> {
 
     const reblogStats = (
       <>
-        <div onClick={this.showReblogs} className="entry-reblog-btn">
-          <Tooltip content={`${rebloggedBy.length} reblogs`}>
-            <a className="inner-btn">
-              {viewListSvg} 
+        <div onClick={this.showReblogs} className="reblog-stats">
+          <Tooltip 
+          content={rebloggedBy.length > 1 ? `${rebloggedBy.length} ${_t("entry-reblog.reblogs")}` :
+           `${rebloggedBy.length} ${_t("entry-reblog.reblog")}`}
+           >
+            <a className="reblog-count">
+              {rebloggedBy.length}
             </a>           
           </Tooltip> 
-        <span className="ml-1 inner-btn">{rebloggedBy.length}</span>
         </div>
           <EntryRebloStats 
           {...this.props}

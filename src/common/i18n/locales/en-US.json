@@ -340,7 +340,8 @@
     "delete-reblog": "Undo Reblog",
     "delete-confirm-title": "Undo reblog?",
     "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-success": "Reblog removed",
+    "reblogs":"Reblogs"
   },
   "entry-tip": {
     "title": "Tip"
