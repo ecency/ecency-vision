@@ -1159,7 +1159,7 @@
     "title": "Promocionar",
     "sub-title": "Promociona tu post",
     "duration": "Duración",
-    "learn-more": "Learn more about promotion"
+    "learn-more": "Más información sobre la promoción"
   },
   "boost": {
     "title": "Promocionar",
@@ -1167,7 +1167,7 @@
     "amount": "Cantidad",
     "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
     "hint": "El valor real del voto que recibes puede variar",
-    "learn-more": "Learn more about boosting"
+    "learn-more": "Más información sobre cómo impulsar"
   },
   "redeem-common": {
     "balance": "Balance",
@@ -1344,16 +1344,16 @@
     "followers": "Seguidores ({{n}})",
     "following": "Siguiendo ({{n}})",
     "search-placeholder": "Buscar",
-    "active": "Active:"
+    "active": "Activo:"
   },
   "friends-filter": {
-    "all": "All",
-    "recently": "Recently",
-    "this-month": "This month",
-    "this-year": "This year",
-    "one-year": "One year",
-    "two-years-more": "More than a year",
-    "filter": "Filter"
+    "all": "Todos",
+    "recently": "Recientemente",
+    "this-month": "Este mes",
+    "this-year": "Este año",
+    "one-year": "Un año",
+    "two-years-more": "Más de un año",
+    "filter": "Filtro"
   },
   "follow-controls": {
     "follow": "Seguir",
