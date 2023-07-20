@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Promote",
     "sub-title": "Promote your post",
-    "duration": "Duration"
+    "duration": "Duration",
+    "learn-more":"Learn more about promotion"
   },
   "boost": {
     "title": "Boost",
     "sub-title": "Boost your post",
     "amount": "Amount",
     "slider-hint": "Drag the slider to adjust the amount.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more":"Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Balance",
