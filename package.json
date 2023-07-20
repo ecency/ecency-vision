@@ -116,7 +116,7 @@
     "@types/react-router-dom": "^4.3.4",
     "@types/react-test-renderer": "^16.9.2",
     "@types/react-virtualized": "^9.21.21",
-    "@types/resize-observer-byrowser": "^0.1.7",
+    "@types/resize-observer-browser": "^0.1.7",
     "@types/rss": "^0.0.29",
     "@types/serialize-javascript": "^1.5.0",
     "@types/sortablejs": "^1.15.0",
