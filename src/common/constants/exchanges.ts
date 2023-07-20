@@ -5,7 +5,15 @@ const exchangeAccounts = [
     "probithive", 
     "mxchive", 
     "huobi-pro", 
-    "coinexdeposit"
+    "coinexdeposit",
+    "bittrex",
+    "blocktrades",
+    "changelly",
+    "gopax-deposit",
+    "hitbtc-exchange",
+    "poloniex",
+    "upbit-exchange",
+    "onepagex"
 ]
 
 export default exchangeAccounts;
