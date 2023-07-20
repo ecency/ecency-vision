@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Tanıtım Yap",
     "sub-title": "Gönderini tanıt",
-    "duration": "Süre"
+    "duration": "Süre",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Yükselt",
     "sub-title": "Gönderini yükselt",
     "amount": "Miktar",
     "slider-hint": "Miktarı ayarlamak için kaydırıcıyı sürükleyin.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Bakiye",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "Takipçi ({{n}})",
     "following": "Takip Edilen ({{n}})",
-    "search-placeholder": "Ara"
+    "search-placeholder": "Ara",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Takip et",
