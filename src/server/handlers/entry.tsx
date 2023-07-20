@@ -94,7 +94,9 @@ export default async (req: Request, res: Response) => {
 
       res.send(tree.toString());
       return;
-    } catch (e) {}
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   res.send(render(req, preLoadedState));

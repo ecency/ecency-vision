@@ -4,9 +4,9 @@ import { AppState } from "../../common/store";
 import { renderAmp } from "../amp-template";
 // @ts-ignore
 import { htmlToAMP } from "@ecency/render-helper-amp";
-import * as fs from "fs";
 import config from "../../config";
 import { Redis } from "./redis";
+import * as fs from "fs";
 
 let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || "");
 
@@ -36,10 +36,10 @@ export async function getAsAMP(
   let ampResult = await htmlToAMP(renderResult, false, true, false);
   ampResult = ampResult.replace(/\n/gm, "");
 
-  if (assets["pages-amp-entry-amp-page"].css) {
+  if (assets["pages-entry-index-amp"].css) {
     const styleBlockIndex = ampResult.search("</style>") + 8;
     const pageStyles = fs
-      .readFileSync(`build/public${assets["pages-amp-entry-amp-page"].css[0]}`)
+      .readFileSync(`build/public${assets["pages-entry-index-amp"].css[0]}`)
       .toString();
 
     ampResult = [
