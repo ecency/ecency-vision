@@ -93,12 +93,12 @@ export class List extends BaseComponent<ListProps, ListState> {
             moment(a?.last_post),
             moment(a?.created)
           );
-         return ({
-          name: a.name,
-          reputation: a.reputation!,
-          lastSeen: lastActive.fromNow()
+          return {
+            name: a.name,
+            reputation: a.reputation!,
+            lastSeen: lastActive.fromNow()
+          };
         })
-      })
       );
   };
 
@@ -203,7 +203,7 @@ export class List extends BaseComponent<ListProps, ListState> {
     }
     const currentTime = new Date();
 
-    const filteredData = data.filter(item => {
+    const filteredData = data.filter((item) => {
       const lastSeenTime = new Date(formatTimeDIfference(item.lastSeen));
 
       const timeDifference = currentTime.getTime() - lastSeenTime.getTime();
@@ -220,11 +220,11 @@ export class List extends BaseComponent<ListProps, ListState> {
       );
     });
 
-      if(type === FilterFriendsType.All){
-        this.stateSet({filtered: data, isFiltered: true, loading: false})
-      } else{
-        this.stateSet({filtered: filteredData, isFiltered: true, loading: false})
-      }
+    if (type === FilterFriendsType.All) {
+      this.stateSet({ filtered: data, isFiltered: true, loading: false });
+    } else {
+      this.stateSet({ filtered: filteredData, isFiltered: true, loading: false });
+    }
   };
 
   filterMore = async (type: FilterFriendsType | string) => {
@@ -240,11 +240,11 @@ export class List extends BaseComponent<ListProps, ListState> {
       moreData = await this.fetch(startUserName);
     } catch (e) {
       moreData = [];
-    };
+    }
 
     const currentTime = new Date();
 
-    const filteredData = moreData.filter(item => {
+    const filteredData = moreData.filter((item) => {
       const lastSeenTime = new Date(formatTimeDIfference(item.lastSeen));
 
       const timeDifference = currentTime.getTime() - lastSeenTime.getTime();
@@ -261,26 +261,30 @@ export class List extends BaseComponent<ListProps, ListState> {
       );
     });
 
-
-    if(type ===  FilterFriendsType.All){
+    if (type === FilterFriendsType.All) {
       this.stateSet({
-        filtered: [...filtered, ...moreData.filter((a) => !filtered.find((b) => b.name === a.name))], 
-        isFiltered: true, 
+        filtered: [
+          ...filtered,
+          ...moreData.filter((a) => !filtered.find((b) => b.name === a.name))
+        ],
+        isFiltered: true,
         loading: false
-      })
-    } else{
+      });
+    } else {
       this.stateSet({
-        filtered: [...filtered, ...filteredData.filter((a) => !filtered.find((b) => b.name === a.name))],
+        filtered: [
+          ...filtered,
+          ...filteredData.filter((a) => !filtered.find((b) => b.name === a.name))
+        ],
         hasMore: moreData.length >= loadLimit,
         loading: false
       });
     }
-    
   };
 
   updateFilterType = (type: string) => {
-    this.stateSet({filterType: type})
-  }
+    this.stateSet({ filterType: type });
+  };
 
   renderList = (loading: boolean, list: Friend[]) => {
     return (
@@ -316,7 +320,8 @@ export class List extends BaseComponent<ListProps, ListState> {
   };
 
   render() {
-    const { loading, data, results, hasMore, search, filtered, isFiltered, filterType } = this.state;
+    const { loading, data, results, hasMore, search, filtered, isFiltered, filterType } =
+      this.state;
 
     const inSearch = search.length >= 3;
 
@@ -330,10 +335,7 @@ export class List extends BaseComponent<ListProps, ListState> {
           )}
 
           <div>
-            <FilterFriends 
-            filterList={this.filterList}
-            updateFilterType={this.updateFilterType}
-            />
+            <FilterFriends filterList={this.filterList} updateFilterType={this.updateFilterType} />
           </div>
 
           <div className="friends-list">
@@ -362,9 +364,7 @@ export class List extends BaseComponent<ListProps, ListState> {
           )}
           {!inSearch && filtered.length > 1 && (
             <div className="load-more">
-              <Button onClick={()=> this.filterMore(filterType)}>
-                {_t("g.load-more")}
-              </Button>
+              <Button onClick={() => this.filterMore(filterType)}>{_t("g.load-more")}</Button>
             </div>
           )}
         </div>
