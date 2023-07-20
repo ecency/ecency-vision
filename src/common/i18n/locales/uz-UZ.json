@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Targ'ib qilish",
     "sub-title": "Postingizni targ'ib qiling",
-    "duration": "Davomiyligi"
+    "duration": "Davomiyligi",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Kuchaytirish",
     "sub-title": "Postingizni mustahkamlang",
     "amount": "Miqdor",
     "slider-hint": "Miqdorni belgilash uchun slayderni torting.",
-    "hint": "Siz olgan ovozlarning haqiqiy qiymati farq qilishi mumkin"
+    "hint": "Siz olgan ovozlarning haqiqiy qiymati farq qilishi mumkin",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Balans",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "Kuzatuvchilar ({{n}})",
     "following": "Obuna bo'lgan ({{n}})",
-    "search-placeholder": "Izlash"
+    "search-placeholder": "Izlash",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Kuzatish",
