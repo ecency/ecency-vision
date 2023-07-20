@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "홍보",
     "sub-title": "글 홍보하세요",
-    "duration": "기간"
+    "duration": "기간",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "부스트",
     "sub-title": "글 부스트하세요",
     "amount": "수량",
     "slider-hint": "슬라이드를 드래그해서 수량을 설정할 수 있습니다.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "잔액",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "팔로워 ({{n}})",
     "following": "팔로잉 ({{n}})",
-    "search-placeholder": "검색"
+    "search-placeholder": "검색",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "팔로우",
