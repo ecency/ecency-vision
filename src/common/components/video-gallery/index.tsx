@@ -225,23 +225,28 @@ const VideoGallery = (props: any) => {
                 <div className="list-details-wrapper">
                   <div className="list-title">
                     <span className="details-title">{item.title.substring(0, 15)}...</span>
-                    <div
-                      onMouseOver={() => {
-                        getHoveredItem(item);
-                        setShowMoreInfo(true);
-                      }}
-                      onMouseOut={() => setShowMoreInfo(false)}
-                      className="info-icon-wrapper"
-                    >
-                      <span className="info-icon">{informationVariantSvg}</span>
+                    <div className="info-status">
+                      <Tooltip content={toolTipContent(item.status)}>
+                        {statusIcons(item.status)}
+                      </Tooltip>
+                      <div
+                        onMouseOver={() => {
+                          getHoveredItem(item);
+                          setShowMoreInfo(true);
+                        }}
+                        onMouseOut={() => setShowMoreInfo(false)}
+                        className="info-icon-wrapper"
+                      >
+                        <span className="info-icon">{informationVariantSvg}</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="list-bottom-wrapper">
+                  {/* <div className="list-bottom-wrapper">
                     <span className="video-date">{formatTime(item.created)}</span>
                     <Tooltip content={toolTipContent(item.status)}>
                       {statusIcons(item.status)}
                     </Tooltip>
-                  </div>
+                  </div> */}
                 </div>
                 {showMoreInfo && hoveredItem._id === item._id && (
                   <div className="more-info">
@@ -293,23 +298,28 @@ const VideoGallery = (props: any) => {
                 <div className="list-details-wrapper">
                   <div className="list-title">
                     <span className="details-title">{item.title.substring(0, 15)}...</span>
-                    <div
-                      onMouseOver={() => {
-                        getHoveredItem(item);
-                        setShowMoreInfo(true);
-                      }}
-                      onMouseOut={() => setShowMoreInfo(false)}
-                      className="info-icon-wrapper"
-                    >
-                      <span className="info-icon">{informationVariantSvg} </span>
+                    <div className="info-status">
+                      <Tooltip content={toolTipContent(item.status)}>
+                        {statusIcons(item.status)}
+                      </Tooltip>
+                      <div
+                        onMouseOver={() => {
+                          getHoveredItem(item);
+                          setShowMoreInfo(true);
+                        }}
+                        onMouseOut={() => setShowMoreInfo(false)}
+                        className="info-icon-wrapper"
+                      >
+                        <span className="info-icon">{informationVariantSvg}</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="list-bottom-wrapper">
+                  {/* <div className="list-bottom-wrapper">
                   <span className="video-date">{formatTime(item.created)}</span>
                   <Tooltip content={toolTipContent(item.status)}>
                     {statusIcons(item.status)}
                   </Tooltip>
-                  </div>
+                  </div> */}
                 </div>
 
                 {showMoreInfo && hoveredItem._id === item._id && (
