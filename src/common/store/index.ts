@@ -17,7 +17,6 @@ import discussion from "./discussion";
 import ui from "./ui";
 import subscriptions from "./subscriptions";
 import notifications from "./notifications";
-import points from "./points";
 import signingKey from "./signing-key";
 import persistentPageScroll from "./persistent-page-scroll";
 
@@ -37,7 +36,6 @@ let reducers = {
   ui,
   subscriptions,
   notifications,
-  points,
   signingKey,
   persistentPageScroll
 };

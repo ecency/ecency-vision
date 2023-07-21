@@ -2,6 +2,7 @@ import {
   dismissNewVersion,
   hideIntro,
   muteNotifications,
+  newVersionChangeAct,
   setCurrency,
   setLang,
   setLastIndexPath,
@@ -37,7 +38,6 @@ import {
   setNotificationsSettingsItem,
   updateNotificationsSettings
 } from "./notifications";
-import { fetchPoints, resetPoints } from "./points";
 import { setSigningKey } from "./signing-key";
 
 // @note Do not use it directly
@@ -80,8 +80,6 @@ export const ACTIONS = {
   fetchUnreadNotificationCount,
   setNotificationsFilter,
   markNotifications,
-  fetchPoints,
-  resetPoints,
   setSigningKey,
   updateNotificationsSettings,
   fetchNotificationsSettings,

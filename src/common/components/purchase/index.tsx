@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Form, FormControl, Modal, Button } from "react-bootstrap";
+import { Button, Form, FormControl, Modal } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
@@ -26,7 +26,6 @@ interface Props {
   transactions: Transactions;
   signingKey: string;
   account: Account;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
   addAccount: (data: Account) => void;
   updateActiveUser: (data?: Account) => void;

@@ -412,11 +412,17 @@ export const SignUp = (props: PageProps) => {
 
                 <div className="card mb-3">
                   <div className="card-header">
-                    <b>{props.activeUser ? _t("onboard.title-active-user") : _t("onboard.title-visitor")}</b>
+                    <b>
+                      {props.activeUser
+                        ? _t("onboard.title-active-user")
+                        : _t("onboard.title-visitor")}
+                    </b>
                   </div>
                   <div className="card-body">
-                    <p>{props.activeUser ? _t("onboard.description-active-user") : 
-                      _t("onboard.description-visitor")}
+                    <p>
+                      {props.activeUser
+                        ? _t("onboard.description-active-user")
+                        : _t("onboard.description-visitor")}
                     </p>
                     <ul>
                       {props.activeUser && <li>{_t("onboard.creating-description")}</li>}
