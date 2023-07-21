@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { renderPostBody } from "@ecency/render-helper";
 import md5 from "js-md5";
+import { useMappedStore } from "../store/use-mapped-store";
 
 interface Props {
   rawBody: string;
@@ -10,6 +11,7 @@ interface Props {
 export function PostBodyLazyRenderer({ rawBody, className }: Props) {
   const [result, setResult] = useState<Element[]>([]);
   const [hashes, setHashes] = useState<string[]>([]);
+  const { global } = useMappedStore();
 
   useEffect(() => {
     lazyBuild();
@@ -19,7 +21,7 @@ export function PostBodyLazyRenderer({ rawBody, className }: Props) {
   }, [rawBody]);
 
   const lazyBuild = () => {
-    const renderedBody = renderPostBody(rawBody);
+    const renderedBody = renderPostBody(rawBody, false, global.canUseWebp);
     const tree = document.createElement("div");
     tree.innerHTML = renderedBody;
 
@@ -48,7 +50,7 @@ export function PostBodyLazyRenderer({ rawBody, className }: Props) {
   return (
     <div className={className}>
       {result.map((line, i) => (
-        <p key={hashes[i]} dangerouslySetInnerHTML={{ __html: line.innerHTML }} />
+        <div key={hashes[i]} dangerouslySetInnerHTML={{ __html: line.outerHTML }} />
       ))}
     </div>
   );
