@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "बढ़ावा देना",
     "sub-title": "अपनी पोस्ट का प्रचार करें",
-    "duration": "अवधि"
+    "duration": "अवधि",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "बूस्ट",
     "sub-title": "अपनी पोस्ट का प्रचार करें",
     "amount": "रकम",
     "slider-hint": "राशि समायोजित करने के लिए स्लाइडर को खींचें।",
-    "hint": "आपको प्राप्त होने वाले वोट का वास्तविक मूल्य भिन्न हो सकता है"
+    "hint": "आपको प्राप्त होने वाले वोट का वास्तविक मूल्य भिन्न हो सकता है",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "शेष रकम",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "अनुयायी ({{n}})",
     "following": "निम्नलिखित ({{n}})",
-    "search-placeholder": "खोज"
+    "search-placeholder": "खोज",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "फॉलो करें",

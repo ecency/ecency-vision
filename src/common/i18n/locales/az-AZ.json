@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Tanıt",
     "sub-title": "Promote your post",
-    "duration": "Müddət"
+    "duration": "Müddət",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Gücləndir",
     "sub-title": "Boost your post",
     "amount": "Miqdar",
     "slider-hint": "Miqdarı nizamlamaq üçün diyircəyi sürüşdürün.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Balans",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "Followers ({{n}})",
     "following": "Following ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Follow",

@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Isulong",
     "sub-title": "Isulong ang iyong post",
-    "duration": "Tagal ng pagsulong"
+    "duration": "Tagal ng pagsulong",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Palakasin",
     "sub-title": "Palakasin ang iyong post",
     "amount": "Halaga",
     "slider-hint": "Igalaw pakaliwa o pakanan ang slider para baguhin ang halaga.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Balanse",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "Mga Tagasunod ({{n}})",
     "following": "Mga Sinusundan ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Sundan",

@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "قم بالترويج لمقالك",
     "sub-title": "ترويج لمنشورك",
-    "duration": "المدة"
+    "duration": "المدة",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "تعزيز",
     "sub-title": "تعزيز منشورك",
     "amount": "الكمية",
     "slider-hint": "اسحب شريط التمرير لضبط الكمية.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "الرصيد",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "المتابِعون ({{n}})",
     "following": "المتابَعين ({{n}})",
-    "search-placeholder": "البحث"
+    "search-placeholder": "البحث",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "تابع",

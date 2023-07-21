@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Προώθηση",
     "sub-title": "Προώθησε την δημοσίευση σου",
-    "duration": "Διάρκεια"
+    "duration": "Διάρκεια",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Ενίσχυση",
     "sub-title": "Ενίσχυσε την δημοσίευση",
     "amount": "Ποσό",
     "slider-hint": "Σύρετε τον ολισθητή για να ρυθμίσετε το ποσό.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Υπόλοιπο",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "Ακόλουθοι ({{n}})",
     "following": "Ακολουθείτε ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Ακολούθησε",

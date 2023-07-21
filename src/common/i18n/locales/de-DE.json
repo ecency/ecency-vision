@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Promoten",
     "sub-title": "Promote Deinen Beitrag",
-    "duration": "Dauer"
+    "duration": "Dauer",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Boost",
     "sub-title": "Booste Deinen Beitrag",
     "amount": "Menge",
     "slider-hint": "Ziehe den Slider, um den Wert anzupassen.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Kontostand",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "Followers ({{n}})",
     "following": "Folge ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Folgen",

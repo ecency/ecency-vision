@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Promuovi",
     "sub-title": "Promuovi il tuo post",
-    "duration": "Durata"
+    "duration": "Durata",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Boost",
     "sub-title": "Boost sul tuo post",
     "amount": "Importo",
     "slider-hint": "Trascina il cursore per regolare l'importo.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Saldo",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "({{n}}) Seguaci",
     "following": "({{n}}) Seguiti",
-    "search-placeholder": "Cerca"
+    "search-placeholder": "Cerca",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Segui",

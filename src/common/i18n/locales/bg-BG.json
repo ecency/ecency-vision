@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Промотирай",
     "sub-title": "Промотирай поста си",
-    "duration": "Продължителност"
+    "duration": "Продължителност",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Подсилване",
     "sub-title": "Подсили поста си",
     "amount": "Сума",
     "slider-hint": "Плъзнете слайдъра за да регулирате стойноста.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Баланс",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "Последователи ({{n}})",
     "following": "Следва ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Последвай",

@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Promover",
     "sub-title": "Promover a sua publicação",
-    "duration": "Duração"
+    "duration": "Duração",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Impulsionar",
     "sub-title": "Impulsione a sua publicação",
     "amount": "Quantidade",
     "slider-hint": "Deslize o cursor para ajustar a quantidade.",
-    "hint": "O valor real de voto recebido pode variar"
+    "hint": "O valor real de voto recebido pode variar",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Balanço",
@@ -1341,7 +1343,17 @@
   "friends": {
     "followers": "Seguidores ({{n}})",
     "following": "Seguindo ({{n}})",
-    "search-placeholder": "Procurar"
+    "search-placeholder": "Procurar",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Seguir",
