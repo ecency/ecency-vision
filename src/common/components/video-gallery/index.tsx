@@ -17,10 +17,16 @@ const VideoGallery = (props: any) => {
   const [isEmbedded, setIsembedded] = useState(false);
   const [label, setLabel] = useState("All");
   const [filtered, setFiltered] = useState<any>([]);
+  const [isFiltered, setIsFiltered] = useState(false)
 
   useEffect(() => {
     getAllStatus();
   }, [showGaller]);
+
+  useEffect(() => {
+    setIsFiltered(true);
+    console.log(isFiltered)
+  }, [label]);
 
   const getAllStatus = async () => {
     setLoading(true);
@@ -28,6 +34,7 @@ const VideoGallery = (props: any) => {
     if (data) {
       setItems(data);
       setLoading(false);
+      setLabel("All")
     }
   };
   
@@ -276,6 +283,7 @@ const VideoGallery = (props: any) => {
               </div>
             );
           })}
+          {isFiltered && !filtered && <div className="gallery-list">{_t("g.empty-list")}</div>}
         </div>}
 
         {items && label === "All" && <div className="video-list">
@@ -350,9 +358,9 @@ const VideoGallery = (props: any) => {
               </div>
             );
           })}
+           {!loading && items?.length === 0 && <div className="gallery-list">{_t("g.empty-list")}</div>}
         </div>}
         
-      {!loading && items?.length === 0 || filtered?.length === 0 && <div className="gallery-list">{_t("g.empty-list")}</div>}
     </div>
   );
 

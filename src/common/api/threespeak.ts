@@ -21,7 +21,6 @@ export const threespeakAuth = async (username: string) => {
     );
     const memo_string = response.data.memo;
     let { memoDecoded } = await getDecodedMemo(username, memo_string);
-    console.log("access_token", memoDecoded);
 
     memoDecoded = memoDecoded.replace("#", "");
     const user = await getTokenValidated(memoDecoded, username);
@@ -130,7 +129,6 @@ export const updateSpeakVideoInfo = async (
   axios
     .post(`${studioEndPoint}/mobile/api/update_info`, data, { headers })
     .then((response) => {
-      console.log(response.data); // Do something with the response data
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -152,7 +150,6 @@ export const markAsPublished = async (username: string, videoId: string) => {
     axios
     .post(`${studioEndPoint}/mobile/api/my-videos/iPublished`, data, { headers })
     .then((response) => {
-      console.log(response);
     })
     .catch((error) => {
       console.error("Error:", error);
