@@ -1,24 +1,18 @@
 import React from "react";
 import { History } from "history";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
-
 import { getLeaderboard, LeaderBoardDuration, LeaderBoardItem } from "../../api/private-api";
-
 import { informationVariantSvg } from "../../img/svg";
 import DropDown from "../dropdown";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import LinearProgress from "../linear-progress";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 import "./_index.scss";
+import Tooltip from "../tooltip";
 
 interface Props {
   global: Global;
@@ -87,19 +81,12 @@ export class LeaderBoard extends BaseComponent<Props, State> {
           <div className="list-body">
             <div className="list-body-header">
               <span />
-              <OverlayTrigger
-                delay={{ show: 0, hide: 500 }}
-                key={"bottom"}
-                placement={"bottom"}
-                overlay={
-                  <Tooltip id={`tooltip-${"bottom"}`}>{_t("leaderboard.header-score-tip")}</Tooltip>
-                }
-              >
+              <Tooltip content={_t("leaderboard.header-score-tip")}>
                 <div className="d-flex align-items-center">
                   <span className="info-icon mr-1">{informationVariantSvg}</span>
                   <span className="score">{_t("leaderboard.header-score")}</span>
                 </div>
-              </OverlayTrigger>
+              </Tooltip>
               <span className="points">{_t("leaderboard.header-reward")}</span>
             </div>
 

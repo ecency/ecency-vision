@@ -1,28 +1,19 @@
 import React from "react";
-
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
-
 import moment from "moment";
-
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
-
 import { Account, FullAccount } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-
 import BaseComponent from "../base";
-
 import {
-  findRcAccounts,
-  votingPower,
   downVotingPower,
-  votingValue,
+  findRcAccounts,
   powerRechargeTime,
-  rcPower
+  rcPower,
+  votingPower,
+  votingValue
 } from "../../api/hive";
-
 import { _t } from "../../i18n";
-
-import { informationVariantSvg, hiveSvg } from "../../img/svg";
+import { hiveSvg, informationVariantSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
 

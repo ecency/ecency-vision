@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import Accordion from "react-bootstrap/Accordion";
 import {
   chevronDownSvgForSlider,
   chevronUpSvgForSlider,
   deleteForeverSvg,
-  dragSvg,
-  hot
+  dragSvg
 } from "../../../img/svg";
 import { DeckHeaderSettings } from "./deck-header-settings";
 import { DeckHeaderReloading } from "./deck-header-reloading";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { classNameObject } from "../../../helper/class-name-object";
+import Tooltip from "../../tooltip";
 
 export interface Props {
   title: string;
@@ -42,12 +42,6 @@ export type AllProps = Props & WithDeletionProps & WithIntervalProps;
 export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps | AllProps) => {
   const [expanded, setExpanded] = useState(false);
 
-  let tooltip = (
-    <Tooltip id="profile-tooltip" style={{ zIndex: 10 }}>
-      {_t("decks.header-info")}
-    </Tooltip>
-  );
-
   return (
     <div
       className={classNameObject({
@@ -76,7 +70,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
             )}
             <div className="title">{props.title}</div>
           </div>
-          <OverlayTrigger placement="bottom" overlay={tooltip}>
+          <Tooltip content={_t("decks.header-info")}>
             <Accordion.Toggle
               as={Button}
               variant="link"
@@ -92,7 +86,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
                 <span>{expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}</span>
               </div>
             </Accordion.Toggle>
-          </OverlayTrigger>
+          </Tooltip>
         </div>
         <Accordion.Collapse eventKey="0">
           <Card.Body className="p-0">

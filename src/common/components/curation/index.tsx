@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { History } from "history";
 
 import { Global } from "../../store/global/types";
@@ -8,11 +8,10 @@ import { DynamicProps } from "../../store/dynamic-props/types";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
 
-import { getCuration, CurationDuration, CurationItem } from "../../api/private-api";
+import { CurationDuration, CurationItem, getCuration } from "../../api/private-api";
 
 import { informationVariantSvg } from "../../img/svg";
 import DropDown from "../dropdown";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import LinearProgress from "../linear-progress";
 
 import { _t } from "../../i18n";
@@ -22,6 +21,7 @@ import { vestsToHp } from "../../helper/vesting";
 import formattedNumber from "../../util/formatted-number";
 import { getAccounts } from "../../api/hive";
 import "./_index.scss";
+import Tooltip from "../tooltip";
 
 interface Props {
   global: Global;
@@ -100,21 +100,12 @@ export const Curation = (props: Props) => {
         <div className="list-body">
           <div className="list-body-header">
             <span />
-            <OverlayTrigger
-              delay={{ show: 0, hide: 500 }}
-              key={"bottom"}
-              placement={"bottom"}
-              overlay={
-                <Tooltip id={`tooltip-votes-${"bottom"}`}>
-                  {_t("leaderboard.header-votes-tip")}
-                </Tooltip>
-              }
-            >
+            <Tooltip content={_t("leaderboard.header-votes-tip")}>
               <div className="d-flex align-items-center">
                 <span className="info-icon mr-1">{informationVariantSvg}</span>
                 <span className="score">{_t("leaderboard.header-votes")}</span>
               </div>
-            </OverlayTrigger>
+            </Tooltip>
             <span className="points">{_t("leaderboard.header-reward")}</span>
           </div>
 

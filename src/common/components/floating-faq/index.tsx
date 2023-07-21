@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { Button, Card, OverlayTrigger, Tooltip, Form, InputGroup } from "react-bootstrap";
+import { Button, Card, Form, InputGroup } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 
 import ClickAwayListener from "../clickaway-listener";
 import { faqKeysGeneral } from "../../constants";
 
 import {
-  helpIconSvg,
+  articleSvg,
   chevronDownSvgForSlider,
   chevronUpSvgForSlider,
   closeSvg,
-  articleSvg
+  helpIconSvg
 } from "../../img/svg";
 import data from "./path.json";
 
 import { _t } from "../../i18n";
-
+import Tooltip from "../tooltip";
 import "./index.scss";
 
 export interface FaqObject {
@@ -48,12 +48,6 @@ const FloatingFAQ = () => {
   const [innerWidth, setInnerWidth] = useState(0);
   const [isSubmitPage, setIsSubmitPage] = useState(false);
   const [className, setClassName] = useState("");
-
-  const tooltip = (
-    <Tooltip id="floating-faq-tooltip" style={{ zIndex: 10000 }}>
-      {_t("floating-faq.toggle-icon-info")}
-    </Tooltip>
-  );
 
   useEffect(() => {
     window.addEventListener("handleShow", onHandleShow);
@@ -186,7 +180,7 @@ const FloatingFAQ = () => {
                               </div>
                             </div>
 
-                            <OverlayTrigger placement="bottom" overlay={tooltip}>
+                            <Tooltip content={_t("floating-faq.toggle-icon-info")}>
                               <Accordion.Toggle
                                 as={Button}
                                 variant="link"
@@ -204,7 +198,7 @@ const FloatingFAQ = () => {
                                   </span>
                                 </div>
                               </Accordion.Toggle>
-                            </OverlayTrigger>
+                            </Tooltip>
                           </div>
                         </div>
                       </Accordion.Toggle>
@@ -260,7 +254,7 @@ const FloatingFAQ = () => {
                                 <div className="section-title">{_t("floating-faq.contact")}</div>
                               </div>
                             </div>
-                            <OverlayTrigger placement="bottom" overlay={tooltip}>
+                            <Tooltip content={_t("floating-faq.toggle-icon-info")}>
                               <Accordion.Toggle
                                 as={Button}
                                 variant="link"
@@ -280,7 +274,7 @@ const FloatingFAQ = () => {
                                   </span>
                                 </div>
                               </Accordion.Toggle>
-                            </OverlayTrigger>
+                            </Tooltip>
                           </div>
                         </div>
                       </Accordion.Toggle>

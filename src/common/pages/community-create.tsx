@@ -7,16 +7,7 @@ import numeral from "numeral";
 import base58 from "bs58";
 import { AccountCreateOperation, Authority, cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import random from "../util/rnd";
-import {
-  Button,
-  Form,
-  FormControl,
-  InputGroup,
-  Modal,
-  OverlayTrigger,
-  Spinner,
-  Tooltip
-} from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup, Modal, Spinner } from "react-bootstrap";
 import { _t } from "../i18n";
 import Feedback, { error, success } from "../components/feedback";
 import { formatError, setUserRole, updateCommunity } from "../api/operations";
@@ -35,6 +26,7 @@ import { connect } from "react-redux";
 import NavBar from "../components/navbar";
 import LoginRequired from "../components/login-required";
 import KeyOrHot from "../components/key-or-hot";
+import Tooltip from "../components/tooltip";
 
 const namePattern = "^hive-[1]\\d{4,6}$";
 interface CreateState {
@@ -442,7 +434,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                       <li>{_t("communities-create.reason-two")}</li>
                       <li>{_t("communities-create.reason-three")}</li>
                     </ul>
-                    <div className="learn-more">
+                    <div className="learn-more mb-4">
                       {_t("g.learn-more")} <Link to="/faq">{_t("g.faq")}</Link>
                     </div>
                   </>
@@ -532,16 +524,9 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                     <Form.Label className="mb-0 mr-2">
                                       {_t("communities-create.fee")}
                                     </Form.Label>
-                                    <OverlayTrigger
-                                      placement={"bottom"}
-                                      overlay={
-                                        <Tooltip id={`tooltip-bottom`}>
-                                          {_t("communities-create.reason-four")}
-                                        </Tooltip>
-                                      }
-                                    >
+                                    <Tooltip content={_t("communities-create.reason-four")}>
                                       <span className="info-icon">{informationVariantSvg}</span>
-                                    </OverlayTrigger>
+                                    </Tooltip>
                                   </div>
                                   <div className="fee">{fee}</div>
                                 </Form.Group>

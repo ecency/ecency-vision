@@ -1,16 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 
-interface TooltipProps {
-  content: string;
+interface Props {
+  content: string | JSX.Element;
   children: JSX.Element;
 }
 
-export default class MyTooltip extends Component<TooltipProps> {
-  render() {
-    const { content, children } = this.props;
-
-    const newChildren = React.cloneElement(children, { title: content });
-
-    return newChildren;
-  }
+// TODO: create styled tooltip
+export default function ({ content, children }: Props) {
+  return React.cloneElement(children, { title: content });
 }

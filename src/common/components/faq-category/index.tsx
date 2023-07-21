@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
-import { Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../img/svg";
 import { _t } from "../../i18n";
 import "./index.scss";
+import Tooltip from "../tooltip";
 
 interface Props {
   categoryTitle: string;
@@ -12,11 +13,6 @@ interface Props {
 
 const FaqCategory = (props: Props) => {
   const [expanded, setExpanded] = useState(false);
-  const tooltip = (
-    <Tooltip id="faq-toggleIcon-tooltip" style={{ zIndex: 10 }}>
-      {_t("static.faq.toggle-icon-info")}
-    </Tooltip>
-  );
 
   const { contentList, categoryTitle } = props;
   return (
@@ -33,7 +29,7 @@ const FaqCategory = (props: Props) => {
                   <div className="section-title ml-1">{categoryTitle}</div>
                 </div>
               </div>
-              <OverlayTrigger placement="bottom" overlay={tooltip}>
+              <Tooltip content={_t("static.faq.toggle-icon-info")}>
                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
                   <div
                     className={`pointer`}
@@ -44,7 +40,7 @@ const FaqCategory = (props: Props) => {
                     <span>{expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}</span>
                   </div>
                 </Accordion.Toggle>
-              </OverlayTrigger>
+              </Tooltip>
             </div>
           </div>
         </Accordion.Toggle>

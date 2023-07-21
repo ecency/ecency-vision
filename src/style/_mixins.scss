@@ -368,6 +368,7 @@
   }
 
   &.btn-up-vote {
+    @apply border;
     @apply border-blue-dark-sky-075;
 
     .btn-inner {
