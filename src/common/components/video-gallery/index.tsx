@@ -224,7 +224,7 @@ const VideoGallery = (props: any) => {
                 </div>
                 <div className="list-details-wrapper">
                   <div className="list-title">
-                    <span className="details-title">{item.title}</span>
+                    <span className="details-title">{item.title.substring(0, 15)}...</span>
                     <div
                       onMouseOver={() => {
                         getHoveredItem(item);
@@ -292,7 +292,7 @@ const VideoGallery = (props: any) => {
                 </div>
                 <div className="list-details-wrapper">
                   <div className="list-title">
-                    <span className="details-title">{item.title}</span>
+                    <span className="details-title">{item.title.substring(0, 15)}...</span>
                     <div
                       onMouseOver={() => {
                         getHoveredItem(item);

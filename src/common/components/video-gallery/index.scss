@@ -5,62 +5,49 @@
 
 .video-list{
     display: flex;
-    flex-direction: column;
-    // flex-wrap: wrap;
+    flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
     font-size: 12px;
 
     .video-list-body{
         position: relative;
-        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
+        width:200px;
+        height: max-content;
+
+        @media screen and (max-width: 420px) {
+            width: 300px;
+          }
+        
 
         .thumnail-wrapper{
-            width: 80%;
+            width: 100%;
             cursor: pointer;
 
             img{
                 width: 100%;
-                height: 300px;
+                height: 150px;
                 object-fit: cover;
                 border-radius: 10px;
             }
-        }
-
-        .video-wrapper {
-            width: 80%;
-            height: 0;
-            padding-bottom: 320px;
-            position: relative;
-            overflow: hidden;
-            
-            .iframe {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-            }
-          }
-        
+        }        
 
         .list-details-wrapper{
             display: flex;
             flex-direction: column;
             gap: 5px;
+            padding: 0 10px;
             margin-top: 5px;
-            width: 80%;
+            width: 100%;
 
             .list-title{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 width: 100%;
-                padding: 0 10px;
                 
                 .details-title{
                     font-size: 16px;
@@ -105,7 +92,6 @@
             .list-bottom-wrapper{
                 display: flex;
                 align-items: center;
-                padding: 0 10px;
                 justify-content: space-between;
 
                 .video-date{
@@ -155,11 +141,11 @@
     flex-direction: column;
     position: absolute;
     padding: 10px;
-    right: 70px;
-    top: 100px;
+    right: 20px;
+    top: 10px;
     justify-content: space-around;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border: 1px solid gray;
     border-radius: 5px;
     z-index: 999;
