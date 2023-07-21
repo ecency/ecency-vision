@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import LinearProgress from "../linear-progress";
-import { deleteForeverSvg, informationVariantSvg } from "../../img/svg";
-import { Button, Modal, Tooltip } from "react-bootstrap";
+import { informationVariantSvg } from "../../img/svg";
+import { Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./index.scss";
-import DropDown, { MenuItem } from "../dropdown";
+import DropDown from "../dropdown";
+import Tooltip from "../tooltip";
 
 const VideoGallery = (props: any) => {
   const { showGaller, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary, activeUser, showConfirmNsfwModal} = props;
@@ -101,6 +102,40 @@ const VideoGallery = (props: any) => {
     setIsembedded(true)
   };
 
+   const statusIcons = (status: string) => {
+    return(
+      <div className="status-icon-wrapper">
+        {status === "publish_manual" ? (
+          <span className="status-icon">✔️</span>
+        ) : status === "encoding_failed" ? (
+          <span className="status-icon">❌</span>
+        ) : status === "published" ? (
+          <div>
+            <span className="status-icon">✅</span>
+          </div>
+        ) : status === "deleted" ? (
+            <span className="status-icon">🗑️</span>
+        ) : (
+          <span className="status-icon">🟡</span>
+        )}
+      </div>
+    )
+   }
+
+   const toolTipContent = (status: string) => {
+    return (
+      status === "publish_manual" ? 
+      _t("video-gallery.status-encoded")
+      : status === "encoding_failed" ? _t("video-gallery.status-failed")
+       : status === "published" ?
+          _t("video-gallery.status-published")
+       : status === "deleted" ? 
+          _t("video-gallery.status-deleted")
+      :
+        _t("video-gallery.status-encoding")
+    )
+   }
+
   const dropDown = (
     <div className="video-status-picker">
       <div className="amount">
@@ -174,59 +209,38 @@ const VideoGallery = (props: any) => {
           {(filtered)?.map((item: any, i: number) => {
             return (
               <div className="video-list-body" key={i}>
-                {/* Somehow video delays and make some unnecessary request, will test out later, could be due to network when i tested */}
-                 {item.status === "published" ?
-                 <div className="video-wrapper">
-                    <iframe
-                      src={`https://3speak.tv/embed?v=${activeUser.username}/${item.permlink}`}
-                      allowFullScreen
-                      className="iframe"
-                    ></iframe>
-                 </div> : 
-                <img src={item.thumbUrl} alt="" />
-                }
+                  <div 
+                className="thumnail-wrapper"
+                 onClick={() =>{ 
+                  if(item.status === "publish_manual") {
+                    embeddVideo(item)
+                    setBeneficiary(item)
+                    setShowGallery(false)
+                    showConfirmNsfwModal();
+                  }
+                  }}
+                >
+                    <img src={item.thumbUrl} alt="" />
+                </div>
                 <div className="list-details-wrapper">
                   <div className="list-title">
                     <span className="details-title">{item.title}</span>
-                    <span
+                    <div
                       onMouseOver={() => {
                         getHoveredItem(item);
                         setShowMoreInfo(true);
                       }}
                       onMouseOut={() => setShowMoreInfo(false)}
-                      className="info-icon details-svg"
+                      className="info-icon-wrapper"
                     >
-                      {_t("video-gallery.view-more")}
-                    </span>
+                      <span className="info-icon">{informationVariantSvg}</span>
+                    </div>
                   </div>
                   <div className="list-bottom-wrapper">
                     <span className="video-date">{formatTime(item.created)}</span>
-                    {item.status === "publish_manual" ? (
-                      <button
-                      // disabled={isEmbedded}
-                      className="post-video-btn" onClick={() =>{ 
-                        embeddVideo(item);
-                        setBeneficiary(item);
-                        setShowGallery(false);
-                        showConfirmNsfwModal();
-                        }}>
-                        {_t("video-gallery.status-encoded")}
-                      </button>
-                    ) : item.status === "encoding_failed" ? (
-                      <span className="encoding-failed">{_t("video-gallery.status-failed")}</span>
-                    ) : item.status === "published" ? (
-                      <div>
-                        <span className="published">{_t("video-gallery.status-published")}</span>
-                        {/* <button className="post-video-btn">view</button> */}
-                      </div>
-                    ) : item.status === "deleted" ? (
-                      <div className="deleted">
-                        <span className="text-danger">{_t("video-gallery.status-deleted")}</span>
-                        {/* <span className="text-danger">{deleteForeverSvg}</span> */}
-                      </div>
-                    ) : (
-                      <span className="encoding">{_t("video-gallery.status-encoding")}</span>
-                    )}
+                    <Tooltip content={toolTipContent(item.status)}>
+                      {statusIcons(item.status)}
+                    </Tooltip>
                   </div>
                 </div>
                 {showMoreInfo && hoveredItem._id === item._id && (
@@ -263,57 +277,41 @@ const VideoGallery = (props: any) => {
           {items?.map((item: any, i: number) => {
             return (
               <div className="video-list-body" key={i}>
-                  {
-                    // Slows down rendering
-                //   item.status === "published" ?
-                //  <div className="video-wrapper">
-                //     <iframe
-                //       src={`https://3speak.tv/embed?v=${activeUser.username}/${item.permlink}`}
-                //       allowFullScreen
-                //       className="iframe"
-                //     ></iframe>
-                //  </div> : 
-                <img src={item.thumbUrl} alt="" />
-                }
+                <div 
+                className="thumnail-wrapper"
+                 onClick={() =>{ 
+                  if(item.status === "publish_manual") {
+                    embeddVideo(item)
+                    setBeneficiary(item)
+                    setShowGallery(false)
+                    showConfirmNsfwModal();
+                  }
+                  }}
+                >
+                    <img src={item.thumbUrl} alt="" />
+                </div>
                 <div className="list-details-wrapper">
                   <div className="list-title">
                     <span className="details-title">{item.title}</span>
-                    <span
+                    <div
                       onMouseOver={() => {
                         getHoveredItem(item);
                         setShowMoreInfo(true);
                       }}
                       onMouseOut={() => setShowMoreInfo(false)}
-                      className="info-icon details-svg"
+                      className="info-icon-wrapper"
                     >
-                      {_t("video-gallery.view-more")} 
-                    </span>
+                      <span className="info-icon">{informationVariantSvg} </span>
+                    </div>
                   </div>
                   <div className="list-bottom-wrapper">
-                    <span className="video-date">{formatTime(item.created)}</span>
-                    {item.status === "publish_manual" ? (
-                      <button
-                      disabled={isEmbedded}
-                      className="post-video-btn" 
-                      onClick={() =>{ 
-                        embeddVideo(item)
-                        setBeneficiary(item)
-                        setShowGallery(false)
-                        }}>
-                        {_t("video-gallery.status-encoded")}
-                      </button>
-                    ) : item.status === "encoding_failed" ? (
-                      <span className="encoding-failed">{_t("video-gallery.status-failed")}</span>
-                    ) : item.status === "published" ? (
-                      <div className="published-wrapper">
-                        <span className="published">{_t("video-gallery.status-published")}</span>
-                        <button className="post-video-btn">{_t("video-gallery.play-video")}</button>
-                      </div>
-                    ) : (
-                      <span className="encoding">{_t("video-gallery.status-encoding")}</span>
-                    )}
+                  <span className="video-date">{formatTime(item.created)}</span>
+                  <Tooltip content={toolTipContent(item.status)}>
+                    {statusIcons(item.status)}
+                  </Tooltip>
                   </div>
                 </div>
+
                 {showMoreInfo && hoveredItem._id === item._id && (
                   <div className="more-info">
                     <div className="each-info">

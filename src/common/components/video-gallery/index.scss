@@ -19,6 +19,18 @@
         align-items: center;
         width: 100%;
 
+        .thumnail-wrapper{
+            width: 80%;
+            cursor: pointer;
+
+            img{
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+
         .video-wrapper {
             width: 80%;
             height: 0;
@@ -35,12 +47,6 @@
             }
           }
         
-            img{
-                width: 80%;
-                height: 300px;
-                object-fit: cover;
-                border-radius: 10px;
-            }
 
         .list-details-wrapper{
             display: flex;
@@ -53,22 +59,53 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                width:100%;
+                width: 100%;
+                padding: 0 10px;
                 
                 .details-title{
                     font-size: 16px;
                 }
-                .details-svg{
-                    font-size: 15px;
+
+                .info-icon-wrapper {
+                    height: 15px;
+                    width: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0.8;
+                    border-radius: 50%;
+                    border-width: 1px;
+                    border-style: solid;
                     cursor: pointer;
-                    color: $dark-sky-blue;
-                }
+                    &:hover {
+                      opacity: 1;
+                    }
+                    @include themify(day) {
+                      svg {
+                        color: $dark-six;
+                        border-color: $dark-six;
+                        height: 100%;
+                      }
+                    }
+                    @include themify(night) {
+                      svg {
+                        color: $duck-egg-blue;
+                        border-color: $duck-egg-blue;
+                        height: 100%;
+                      }
+                    }
+                
+                    .info-icon{
+                        width: 15px;
+                        height: 15px;
+                    }
+                  }
             }
 
             .list-bottom-wrapper{
                 display: flex;
                 align-items: center;
-                // width: 100%;
+                padding: 0 10px;
                 justify-content: space-between;
 
                 .video-date{
@@ -92,16 +129,14 @@
                         padding: 5px;
                     }
     
-                    .published{
-                        color: rgb(107, 243, 107);
-                    }
                 }
 
-                .encoding{
-                    color: rgb(238, 238, 128);
-                }
-                .encoding-failed{
-                    color: rgb(241, 80, 80);
+                .status-icon-wrapper{
+                    
+                    .status-icon{
+                        font-size: 18px;
+                        cursor: pointer;
+                    }
                 }
             }
 
@@ -141,5 +176,4 @@
         border: 1px solid $white-five;
       }
   }
-  
   
