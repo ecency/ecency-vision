@@ -300,7 +300,7 @@ export const CommunityPage = (props: Props) => {
               Close
             </Button>
             <Button variant="outline-primary" className="confirm-btn" onClick={joinCommunityChat}>
-              Confirm
+              Join
             </Button>
           </p>
         </>

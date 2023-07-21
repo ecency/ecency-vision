@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { History } from "history";
 
-import { Community } from "../../store/communities/types";
+import { Community, ROLES } from "../../store/communities/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import { _t } from "../../i18n";
 
 import { useMappedStore } from "../../store/use-mapped-store";
-import { Channel } from "../../../providers/message-provider-types";
+import { Channel, communityModerator } from "../../../providers/message-provider-types";
 import {
   createNoStrAccount,
   getProfileMetaData,
@@ -26,6 +26,8 @@ interface Props {
   resetChat: () => void;
 }
 
+type CommunityRoles = [string, string, string];
+
 export default function JoinCommunityChatBtn(props: Props) {
   const { chat } = useMappedStore();
   const [inProgress, setInProgress] = useState(false);
@@ -33,6 +35,11 @@ export default function JoinCommunityChatBtn(props: Props) {
   const [isChatEnabled, setIsChatEnabled] = useState(false);
   const [currentChannel, setCurrentChannel] = useState<Channel>();
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
+  const [communityRoles, setCommunityRoles] = useState<communityModerator[]>([]);
+
+  useEffect(() => {
+    getCommunityRoles();
+  }, []);
 
   useEffect(() => {
     fetchCommunityProfile();
@@ -43,11 +50,11 @@ export default function JoinCommunityChatBtn(props: Props) {
     fetchCommunityProfile();
   }, [props.activeUser]);
 
-  useEffect(() => {
-    if (window.messageService) {
-      setHasUserJoinedChat(true);
-    }
-  }, [window?.messageService]);
+  // useEffect(() => {
+  //   if (window.messageService) {
+  //     setHasUserJoinedChat(true);
+  //   }
+  // }, [window?.messageService]);
 
   useEffect(() => {
     checkIsChatJoined();
@@ -88,6 +95,27 @@ export default function JoinCommunityChatBtn(props: Props) {
     }
   };
 
+  const getCommunityRoles = async () => {
+    let communityRoles: communityModerator[] = [];
+    const { community } = props;
+    for (let i = 0; i < community.team.length; i++) {
+      const item = community.team[i];
+      if (item[1] === ROLES.ADMIN || item[1] === ROLES.MOD || item[1] === ROLES.OWNER) {
+        const profileData = await getProfileMetaData(item[0]);
+        if (profileData && profileData.hasOwnProperty(NOSTRKEY)) {
+          const roleInfo: communityModerator = {
+            name: item[0],
+            pubkey: profileData.noStrKey.pub,
+            role: item[1]
+          };
+
+          communityRoles.push(roleInfo);
+        }
+      }
+    }
+    setCommunityRoles(communityRoles);
+  };
+
   const createCommunityChat = async () => {
     const { community } = props;
     try {
@@ -96,7 +124,8 @@ export default function JoinCommunityChatBtn(props: Props) {
         name: community.title,
         about: community.description,
         communityName: community.name,
-        picture: ""
+        picture: "",
+        communityModerators: communityRoles
       });
 
       const content = JSON.parse(data?.content!);

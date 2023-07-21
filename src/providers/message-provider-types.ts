@@ -14,6 +14,13 @@ export type Metadata = {
   about: string;
   picture: string;
   communityName?: string;
+  communityModerators?: communityModerator[];
+};
+
+export type communityModerator = {
+  name: string;
+  pubkey: string;
+  role: string;
 };
 
 export type Profile = { id: string; creator: string; created: number } & Metadata;

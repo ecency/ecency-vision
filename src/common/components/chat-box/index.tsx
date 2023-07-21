@@ -3,12 +3,14 @@ import useDebounce from "react-use/lib/useDebounce";
 import { History } from "history";
 import {
   Button,
+  Col,
   Form,
   FormControl,
   InputGroup,
   Modal,
   OverlayTrigger,
   Popover,
+  Row,
   Spinner
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -17,9 +19,14 @@ import mediumZoom, { Zoom } from "medium-zoom";
 
 import { ActiveUser } from "../../store/active-user/types";
 import { Chat, DirectContactsType } from "../../store/chat/types";
-import { Community } from "../../store/communities/types";
+import { Community, ROLES } from "../../store/communities/types";
 import { Global, Theme } from "../../store/global/types";
-import { Channel, DirectMessage, PublicMessage } from "../../../providers/message-provider-types";
+import {
+  Channel,
+  communityModerator,
+  DirectMessage,
+  PublicMessage
+} from "../../../providers/message-provider-types";
 
 import Tooltip from "../tooltip";
 import UserAvatar from "../user-avatar";
@@ -43,7 +50,8 @@ import {
   chatBoxImageSvg,
   linkSvg,
   KebabMenu,
-  chatLeaveSvg
+  chatLeaveSvg,
+  editSVG
 } from "../../img/svg";
 
 import {
@@ -93,6 +101,7 @@ interface Props {
 }
 
 let zoom: Zoom | null = null;
+const roles = [ROLES.ADMIN, ROLES.MOD];
 
 export default function ChatBox(props: Props) {
   const prevPropsRef = useRef(props);
@@ -129,6 +138,10 @@ export default function ChatBox(props: Props) {
   const [communities, setCommunities] = useState<Channel[]>([]);
   const [searchtext, setSearchText] = useState("");
   const [userList, setUserList] = useState<string[]>([]);
+  const [user, setUser] = useState("");
+  const [role, setRole] = useState("admin");
+  const [addRoleError, setAddRoleError] = useState("");
+  const [moderator, setModerator] = useState<communityModerator>();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -166,11 +179,11 @@ export default function ChatBox(props: Props) {
     setShow(!!props.activeUser?.username);
   }, []);
 
-  useEffect(() => {
-    if (window.messageService) {
-      setHasUserJoinedChat(true);
-    }
-  }, [window?.messageService]);
+  // useEffect(() => {
+  //   if (window.messageService) {
+  //     setHasUserJoinedChat(true);
+  //   }
+  // }, [window?.messageService]);
 
   useEffect(() => {
     const communities = getCommunities(props.chat.channels, props.chat.leftChannelsList);
@@ -263,8 +276,12 @@ export default function ChatBox(props: Props) {
 
   useDebounce(
     async () => {
-      const resp = await lookupAccounts(searchtext, 7);
-      setUserList(resp);
+      if (searchtext.length !== 0) {
+        const resp = await lookupAccounts(searchtext, 7);
+        setUserList(resp);
+      } else {
+        setUserList([]);
+      }
     },
     500,
     [searchtext]
@@ -605,7 +622,7 @@ export default function ChatBox(props: Props) {
             <h2 className="leave-main-title">Confirmaton</h2>
           </div>
         </div>
-        <div className="leave-dialog-body">Are you sure?</div>
+        <div className="leave-dialog-body">Are you sure to leave this community?</div>
         <p className="leave-confirm-buttons">
           <Button
             variant="outline-primary"
@@ -638,13 +655,184 @@ export default function ChatBox(props: Props) {
       </>
     );
   };
-  const LeaveClicked = () => {
+
+  const EditRolesModal = () => {
+    return (
+      <>
+        <div className="add-dialog-header">
+          <div className="add-dialog-titles">
+            <h4 className="add-main-title">Edit Community Roles</h4>
+          </div>
+        </div>
+        <div className="community-chat-role-edit-dialog-content">
+          {inProgress && <LinearProgress />}
+          <div className={`add-user-role-form ${inProgress ? "in-progress" : ""}`}>
+            <Form.Group as={Row}>
+              <Form.Label column={true} sm="2">
+                {_t("community-role-edit.username")}
+              </Form.Label>
+              <Col sm="10">
+                <InputGroup>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text>@</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    type="text"
+                    autoFocus={user === ""}
+                    placeholder={_t("community-role-edit.username").toLowerCase()}
+                    value={user}
+                    onChange={userChanged}
+                    className={addRoleError ? "is-invalid" : ""}
+                    // ref={this._input}
+                  />
+                </InputGroup>
+                {addRoleError && <Form.Text className="text-danger">{addRoleError}</Form.Text>}
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Form.Label column={true} sm="2">
+                {_t("community-role-edit.role")}
+              </Form.Label>
+              <Col sm="10">
+                <Form.Control as="select" value={role} onChange={roleChanged}>
+                  {roles.map((r, i) => (
+                    <option key={i} value={r}>
+                      {r}
+                    </option>
+                  ))}
+                </Form.Control>
+              </Col>
+            </Form.Group>
+            <div className="d-flex justify-content-end">
+              <Button
+                type="button"
+                onClick={addNewRole}
+                disabled={inProgress || addRoleError.length !== 0}
+              >
+                Add
+              </Button>
+            </div>
+          </div>
+          <table className="table table-striped table-bordered table-roles">
+            <thead>
+              <tr>
+                <th style={{ width: "200px" }}>{_t("community.roles-account")}</th>
+                <th style={{ width: "200px" }}>{_t("community.roles-role")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentChannel?.communityModerators!.map((t, i) => {
+                // const [username, role, title] = t;
+                // const canEdit = roles && roles.includes(role);
+                return (
+                  <tr key={i}>
+                    <td>
+                      <span className="user">
+                        <UserAvatar username={t.name} size="medium" />{" "}
+                        <span className="username">@{t.name}</span>
+                      </span>
+                    </td>
+                    <td>
+                      <Form.Control as="select" value={role} onChange={roleChanged}>
+                        {roles.map((r, i) => (
+                          <option key={i} value={r}>
+                            {r}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </>
+    );
+  };
+
+  useDebounce(
+    async () => {
+      if (user.length === 0) {
+        setAddRoleError("");
+        setInProgress(false);
+        return;
+      }
+
+      try {
+        const profileData = await getProfileMetaData(user);
+        if (profileData && profileData.hasOwnProperty(NOSTRKEY)) {
+          const alreadyExists = currentChannel?.communityModerators?.some(
+            (moderator) => moderator.name === profileData.name
+          );
+          if (alreadyExists) {
+            setAddRoleError("You have already assigned some rule to this user.");
+            setInProgress(false);
+            return;
+          }
+          const moderator = {
+            name: profileData.name,
+            pubkey: profileData.noStrKey.pub,
+            role: role
+          };
+          setModerator(moderator);
+          setAddRoleError("");
+        } else {
+          setAddRoleError("You cannot set this user because this user hasn't joined the chat yet.");
+        }
+      } catch (err) {
+        error(err as string);
+      }
+
+      setInProgress(false);
+    },
+    200,
+    [user, role]
+  );
+
+  const userChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    const { value: user } = e.target;
+    setUser(user);
+    console.log();
+    setInProgress(true);
+  };
+
+  const addNewRole = () => {
+    const updatedRoles = [...(currentChannel?.communityModerators || []), moderator!];
+
+    console.log("updatedRoles", currentChannel);
+    const updatedMetaData = {
+      name: currentChannel?.name!,
+      about: currentChannel?.about!,
+      picture: "",
+      communityName: currentChannel?.communityName!,
+      communityModerators: updatedRoles
+    };
+
+    console.log(updatedMetaData, "updatedMetaData");
+    window.messageService?.updateChannel(currentChannel!, updatedMetaData).then((resp) => {
+      console.log(resp, "resp");
+    });
+  };
+
+  const roleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    const { value: role } = e.target;
+    setRole(role);
+  };
+
+  const leaveClicked = () => {
     setKeyDialog(true);
     setStep(1);
   };
 
+  const editRolesClicked = () => {
+    setKeyDialog(true);
+    setStep(2);
+  };
+
   const toggleKeyDialog = () => {
     setKeyDialog(!keyDialog);
+    setUser("");
   };
 
   const handleBackArrowSvg = () => {
@@ -665,9 +853,18 @@ export default function ChatBox(props: Props) {
     },
     {
       label: "Leave",
-      onClick: LeaveClicked,
+      onClick: leaveClicked,
       icon: chatLeaveSvg
-    }
+    },
+    ...(props.activeUser?.username === currentChannel?.communityName
+      ? [
+          {
+            label: "Edit Roles",
+            onClick: editRolesClicked,
+            icon: editSVG
+          }
+        ]
+      : [])
   ];
 
   const menuConfig = {
@@ -1219,7 +1416,7 @@ export default function ChatBox(props: Props) {
           <Modal.Header closeButton={true} />
           <Modal.Body className="chat-modals-body">
             {step === 1 && LeaveModal()}
-            {/* {step === 2 && successModal()} */}
+            {step === 2 && EditRolesModal()}
           </Modal.Body>
         </Modal>
       )}

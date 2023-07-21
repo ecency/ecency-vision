@@ -8,7 +8,8 @@ import {
   Keys,
   DirectContact,
   Channel,
-  PublicMessage
+  PublicMessage,
+  ChannelUpdate
 } from "./message-provider-types";
 
 import { initMessageService, MessageEvents } from "../common/helper/message-service";
@@ -198,7 +199,7 @@ const MessageProvider = (props: Props) => {
 
   // Channel creation handler
   const handleChannelCreation = (data: Channel[]) => {
-    // console.log("handleChannelCreation", data);
+    console.log("handleChannelCreation", data);
 
     const append = data.filter((x) => chat.channels.find((y) => y.id === x.id) === undefined);
     props.addChannels(append);
@@ -213,9 +214,25 @@ const MessageProvider = (props: Props) => {
     };
   }, [messageService]);
 
+  // Channel update handler
+  const handleChannelUpdate = (data: ChannelUpdate[]) => {
+    console.log("handleChannelUpdate", data);
+    // const append = data.filter(x => channelUpdates.find(y => y.id === x.id) === undefined);
+    // setChannelUpdates([...channelUpdates, ...append]);
+  };
+
+  useEffect(() => {
+    messageService?.removeListener(MessageEvents.ChannelUpdate, handleChannelUpdate);
+    messageService?.addListener(MessageEvents.ChannelUpdate, handleChannelUpdate);
+
+    return () => {
+      messageService?.removeListener(MessageEvents.ChannelUpdate, handleChannelUpdate);
+    };
+  }, [messageService]);
+
   //Public Message handler
   const handlePublicMessage = (data: PublicMessage[]) => {
-    // console.log("handlePublicMessage", data);
+    console.log("handlePublicMessage", data);
     setPublicMessageBuffer((publicMessageBuffer) => [...publicMessageBuffer!, ...data]);
 
     for (const item of data) {
@@ -301,6 +318,7 @@ const MessageProvider = (props: Props) => {
       messageService?.removeListener(MessageEvents.ChannelCreation, handleChannelCreation);
       messageService?.removeListener(MessageEvents.DirectContact, handleDirectContact);
       messageService?.removeListener(MessageEvents.LeftChannelList, handleLeftChannelList);
+      messageService?.removeListener(MessageEvents.ChannelUpdate, handleChannelUpdate);
       messageService?.removeListener(MessageEvents.PublicMessage, handlePublicMessage);
       messageService?.removeListener(MessageEvents.DirectMessage, handleDirectMessage);
     };

@@ -4,6 +4,7 @@ import { Filter } from "../../lib/nostr-tools/filter";
 import { TypedEventEmitter } from "./message-event-emitter";
 import {
   Channel,
+  ChannelUpdate,
   DirectContact,
   DirectMessage,
   Keys,
@@ -33,6 +34,7 @@ export enum MessageEvents {
   Ready = "ready",
   ProfileUpdate = "profile_update",
   LeftChannelList = "left_channel_list",
+  ChannelUpdate = "channel_update",
   ChannelCreation = "channel_creation",
   DirectMessage = "direct_message",
   DirectContact = "direct_contact",
@@ -44,6 +46,7 @@ type EventHandlerMap = {
   [MessageEvents.ProfileUpdate]: (data: Profile[]) => void;
   [MessageEvents.DirectMessage]: (data: DirectMessage[]) => void;
   [MessageEvents.ChannelCreation]: (data: Channel[]) => void;
+  [MessageEvents.ChannelUpdate]: (data: ChannelUpdate[]) => void;
   [MessageEvents.PublicMessage]: (data: PublicMessage[]) => void;
   [MessageEvents.LeftChannelList]: (data: string[]) => void;
   [MessageEvents.DirectContact]: (data: DirectContact[]) => void;
@@ -325,6 +328,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     const sub = this.pool.sub(this.readRelays, filters);
 
     sub.on("event", (event: Event) => {
+      console.log(event, "channel event");
       event.kind === Kind.Metadata && isDirectContact
         ? this.addDirectContact(event)
         : this.pushToEventBuffer(event);
@@ -382,8 +386,15 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public async createChannel(meta: Metadata) {
-    // console.log("create channel run");
+    // console.log("create channel run", meta);
     return this.publish(Kind.ChannelCreation, [], JSON.stringify(meta));
+  }
+
+  public async updateChannel(channel: Channel, meta: Metadata) {
+    console.log(channel, meta, "Update channel run");
+    return this.findHealthyRelay(this.pool.seenOn(channel.id) as string[]).then((relay) => {
+      return this.publish(Kind.ChannelMetadata, [["e", channel.id, relay]], JSON.stringify(meta));
+    });
   }
 
   private async findHealthyRelay(relays: string[]) {
@@ -513,7 +524,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       const directContactsProfile: Array<{ pubkey: string; name: string }> = directContacts[0];
 
       if (directContactsProfile.length > 0) {
-        console.log(directContactsProfile, "directContactsProfile");
+        // console.log(directContactsProfile, "directContactsProfile");
         this.emit(MessageEvents.DirectContact, directContactsProfile);
       }
     }
@@ -555,13 +566,13 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       .filter((x) => x.kind === Kind.ChannelCreation)
       .map((ev) => {
         const content = MessageService.parseJson(ev.content);
-        // console.log(content,"events")
         return content
           ? {
               id: ev.id,
               creator: ev.pubkey,
               created: ev.created_at,
               communityName: content.communityName,
+              communityModerators: content.communityModerators,
               ...MessageService.normalizeMetadata(content)
             }
           : null;
@@ -569,6 +580,30 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       .filter(notEmpty);
     if (channelCreations.length > 0) {
       this.emit(MessageEvents.ChannelCreation, channelCreations);
+    }
+
+    const channelUpdates: ChannelUpdate[] = this.eventQueue
+      .filter((x) => x.kind === Kind.ChannelMetadata)
+      .map((ev) => {
+        const content = MessageService.parseJson(ev.content);
+        console.log("content", content);
+        const channelId = MessageService.findTagValue(ev, "e");
+        if (!channelId) return null;
+        return content
+          ? {
+              id: ev.id,
+              creator: ev.pubkey,
+              created: ev.created_at,
+              communityName: content.communityName,
+              communityModerators: content.communityModerators,
+              channelId,
+              ...MessageService.normalizeMetadata(content)
+            }
+          : null;
+      })
+      .filter(notEmpty);
+    if (channelUpdates.length > 0) {
+      this.emit(MessageEvents.ChannelUpdate, channelUpdates);
     }
 
     const publicMessages: PublicMessage[] = this.eventQueue
