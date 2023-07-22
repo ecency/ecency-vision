@@ -1220,6 +1220,7 @@
     "memo-placeholder": "введите сюда свои заметки",
     "memo-help": "Это примечание видно всем",
     "memo-error": "Никогда не помещайте приватные ключи в мемо-поле, оно открыто для всех.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* доступно",
     "override-warning-1": "Новая сумма отменяет предыдущую.",
     "override-warning-2": "Аккаунту ({{account}}) уже было делегировано {{previousAmount}}.",
