@@ -229,19 +229,18 @@ export class Transfer extends BaseComponent<Props, State> {
   toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { value: to } = e.target;
     this.stateSet({ to }, this.handleTo);
-      // Check memo if to is an exchange account
-      if (exchangeAccounts.includes(to)){
-       this.stateSet({ toExchangeError: _t("transfer.memo-required") });
-     } else {
-       this.stateSet({ toExchangeError: "" });
-     }
- 
+    // Check memo if to is an exchange account
+    if (exchangeAccounts.includes(to)) {
+      this.stateSet({ toExchangeError: _t("transfer.memo-required") });
+    } else {
+      this.stateSet({ toExchangeError: "" });
+    }
   };
 
   toSelected = (to: string) => {
     this.stateSet({ to }, this.handleTo);
-     // Check memo if selected is an exchange account
-     if (exchangeAccounts.includes(to)) {
+    // Check memo if selected is an exchange account
+    if (exchangeAccounts.includes(to)) {
       this.stateSet({ toExchangeError: _t("transfer.memo-required") });
     } else {
       this.stateSet({ toExchangeError: "" });
@@ -261,9 +260,13 @@ export class Transfer extends BaseComponent<Props, State> {
     if (mError) this.setState({ memoError: _t("transfer.memo-error").toUpperCase() });
     this.stateSet({ memo });
     if (memo) {
-      {this.stateSet({ toExchangeError: "" });}
+      {
+        this.stateSet({ toExchangeError: "" });
+      }
     } else {
-      {this.stateSet({ toExchangeError: _t("transfer.memo-required") });}
+      {
+        this.stateSet({ toExchangeError: _t("transfer.memo-required") });
+      }
     }
   };
 
@@ -428,9 +431,16 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   canSubmit = () => {
-    const { toData, toError, amountError, memoError, inProgress, amount, toExchangeError } = this.state;
+    const { toData, toError, amountError, memoError, inProgress, amount, toExchangeError } =
+      this.state;
     return (
-      toData && !toExchangeError && !toError && !amountError && !memoError && !inProgress && parseFloat(amount) > 0
+      toData &&
+      !toExchangeError &&
+      !toError &&
+      !amountError &&
+      !memoError &&
+      !inProgress &&
+      parseFloat(amount) > 0
     );
   };
 
