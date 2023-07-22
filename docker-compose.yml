@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   cache:
-    image: redis:6.2-alpine
+    image: redis:alpine
     environment:
       - REDIS_HOST_PASSWORD
     restart: always
