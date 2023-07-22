@@ -18,7 +18,7 @@ export async function getAsAMP(
 ): Promise<string> {
   const client = createClient({
     socket: {
-      host: "cache",
+      host: "redis",
       port: 6379
     },
     password: config.redisPass
