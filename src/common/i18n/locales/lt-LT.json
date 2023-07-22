@@ -1220,6 +1220,7 @@
     "memo-placeholder": "įveskite savo pastabas čia",
     "memo-help": "Ši atmintinė yra vieša",
     "memo-error": "Niekada nedėkite privačių raktų į atmintinės lauką, jis yra viešai matomas visiems.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* turima Hive Power",
     "override-warning-1": "Nauja suma viršija ankstesnę.",
     "override-warning-2": "Paskyra ({{account}}) jau buvo perduota {{previousAmount}}.",
