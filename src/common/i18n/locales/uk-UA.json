@@ -1220,6 +1220,7 @@
     "memo-placeholder": "введіть сюди свої примітки",
     "memo-help": "Ця примітка є публічною",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* вільна Hive сила",
     "override-warning-1": "Нова сума замінює попередню.",
     "override-warning-2": "Обліковий запис ({{account}}) вже делегований з {{previousAmount}}.",
