@@ -1220,6 +1220,7 @@
     "memo-placeholder": "메모 내용을 입력하세요",
     "memo-help": "이 메모는 누구나 볼 수 있습니다",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* 사용 가능한 하이브 파워",
     "override-warning-1": "새 금액이 이전 금액보다 우선 적용됩니다.",
     "override-warning-2": "({{account}}) 계정에게 이미 {{previousAmount}}을 임대되었습니다.",
