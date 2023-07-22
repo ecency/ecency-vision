@@ -1220,6 +1220,7 @@
     "memo-placeholder": "immetti qui la tua annotazione",
     "memo-help": "Questo promemoria è pubblico",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* hive power disponibile",
     "override-warning-1": "Il nuovo importo sostituisce il precedente.",
     "override-warning-2": "L'account ({{account}}) ha già ricevuto la delega di {{previousAmount}}.",
