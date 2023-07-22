@@ -10,7 +10,13 @@ services:
       - '6379:6379'
     networks:
       - overlay
-    command: redis-server --save 20 1 --loglevel warning --requirepass $$REDIS_HOST_PASSWORD
+    command: [
+      "bash", "-c",
+      '
+       docker-entrypoint.sh
+       --save 20 1 --loglevel warning --requirepass "$$(cat $$REDIS_HOST_PASSWORD)"
+      '
+    ]
     volumes:
       - cache:/data
     deploy:
