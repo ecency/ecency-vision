@@ -1220,6 +1220,7 @@
     "memo-placeholder": "Hier dein Memo eingeben",
     "memo-help": "Diese Memo ist öffentlich",
     "memo-error": "Gib niemals private Schlüssel in ein Memo-Feld ein, da sie für alle öffentlich sichtbar sind.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* verfügbare Hive Power",
     "override-warning-1": "Die neue Menge überschreibt die vorherige.",
     "override-warning-2": "Das Konto ({{account}}) wurde bereits mit {{previousAmount}} delegiert.",

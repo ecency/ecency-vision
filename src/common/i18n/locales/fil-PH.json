@@ -1220,6 +1220,7 @@
     "memo-placeholder": "ilagay ang iyong paalala dito",
     "memo-help": "Ang memo na ito ay isasapubliko",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "*puwedeng gamitin na hive power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",

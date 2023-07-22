@@ -1220,6 +1220,7 @@
     "memo-placeholder": "εισάγετε εδώ τις σημειώσεις σας",
     "memo-help": "Το σημείωμα είναι δημόσιο",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* διαθέσιμο hive power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",

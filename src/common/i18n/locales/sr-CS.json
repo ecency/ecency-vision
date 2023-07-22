@@ -1220,6 +1220,7 @@
     "memo-placeholder": "ovde unesite svoje beleške",
     "memo-help": "Ovaj dopis je javan",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* dostupna hive snaga",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
