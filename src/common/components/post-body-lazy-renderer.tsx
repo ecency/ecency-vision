@@ -8,9 +8,13 @@ interface Props {
   className?: string;
 }
 
+interface Line {
+  element: Element;
+  hash: string;
+}
+
 export function PostBodyLazyRenderer({ rawBody, className }: Props) {
-  const [result, setResult] = useState<Element[]>([]);
-  const [hashes, setHashes] = useState<string[]>([]);
+  const [lines, setLines] = useState<Line[]>([]);
   const { global } = useMappedStore();
 
   useEffect(() => {
@@ -25,32 +29,23 @@ export function PostBodyLazyRenderer({ rawBody, className }: Props) {
     const tree = document.createElement("div");
     tree.innerHTML = renderedBody;
 
-    const nextHashes: string[] = [];
-    const linesToRender: number[] = [];
-    const nextLines: Element[] = [];
+    const nextLines: Line[] = [];
 
     for (let i = 0; i < tree.children.length; i++) {
-      const child = tree.children.item(i)!!;
+      const element = tree.children.item(i)!!;
 
-      const hash = md5(child.innerHTML);
-      const existingHash = hashes[i];
+      const hash = md5(element.outerHTML + `index-${i}`);
 
-      if (hash !== existingHash) {
-        linesToRender.push(i);
-      }
-
-      nextHashes.push(hash);
-      nextLines.push(child);
+      nextLines.push({ element, hash });
     }
 
-    setHashes(nextHashes);
-    setResult(nextLines);
+    setLines(nextLines);
   };
 
   return (
     <div className={className}>
-      {result.map((line, i) => (
-        <div key={hashes[i]} dangerouslySetInnerHTML={{ __html: line.outerHTML }} />
+      {lines.map(({ element, hash }) => (
+        <div key={hash} dangerouslySetInnerHTML={{ __html: element.outerHTML }} />
       ))}
     </div>
   );
