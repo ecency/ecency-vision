@@ -8,8 +8,7 @@ services:
     restart: always
     ports:
       - "6379:6379"
-    networks:
-      - default
+    hostname: redis
     command:
       - /bin/sh
       - -c
@@ -24,8 +23,7 @@ services:
       - REDIS_HOST_PASSWORD
     ports:
       - "3001:3000"
-    networks:
-      - default
+    hostname: web1
     depends_on:
       - redis
 
@@ -36,17 +34,14 @@ services:
       - REDIS_HOST_PASSWORD
     ports:
       - "3002:3000"
-    networks:
-      - default
+    hostname: web2
     depends_on:
       - redis
 
   nginx:
     build: ./nginx
     ports:
-    - '80:80'
-    networks:
-      - default
+    - '8080:80'
     depends_on:
       - web1
       - web2
