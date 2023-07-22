@@ -40,30 +40,6 @@ services:
     depends_on:
       - redis
 
-  web3:
-    image: ecency/vision:development
-    environment:
-      - USE_PRIVATE
-      - REDIS_HOST_PASSWORD
-    restart: always
-    ports:
-      - "3003:3000"
-    hostname: web3
-    depends_on:
-      - redis
-
-  web4:
-    image: ecency/vision:development
-    environment:
-      - USE_PRIVATE
-      - REDIS_HOST_PASSWORD
-    restart: always
-    ports:
-      - "3004:3000"
-    hostname: web4
-    depends_on:
-      - redis
-
   nginx:
     build: ./nginx
     ports:
@@ -71,8 +47,6 @@ services:
     depends_on:
       - web1
       - web2
-      - web3
-      - web4
 
 volumes:
   redis:
