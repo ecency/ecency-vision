@@ -1220,7 +1220,7 @@
     "memo-placeholder": "escribe tus notas aquí",
     "memo-help": "Este memo es público",
     "memo-error": "Nunca ponga las claves privadas en un campo memo, eso es visible públicamente para todos.",
-    "memo-required": "Transfer to an exchange must have a memo.",
+    "memo-required": "La transferencia a una Cuenta de Intercambio debe tener un memo.",
     "available-hp-hint": "* potencia de Hive disponible",
     "override-warning-1": "La nueva cantidad anula la anterior.",
     "override-warning-2": "La cuenta ({{account}}) ya ha sido delegada con {{previousAmount}}.",
