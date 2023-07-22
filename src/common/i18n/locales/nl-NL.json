@@ -1220,6 +1220,7 @@
     "memo-placeholder": "voer hier je notities in",
     "memo-help": "Deze notitie is openbaar",
     "memo-error": "Plaats nooit privésleutels in een notitie veld, het is openbaar zichtbaar voor iedereen.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* beschikbaar Hive power",
     "override-warning-1": "Het nieuwe bedrag vervangt de vorige.",
     "override-warning-2": "Account ({{account}}) is al toevertrouwd met {{previousAmount}}.",
