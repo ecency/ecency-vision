@@ -89,7 +89,7 @@ import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
 
 import { updateSpeakVideoInfo, markAsPublished } from "../api/threespeak";
-import { ConfirmNsfwContent } from "../components/video-nsfw";
+// import { ConfirmNsfwContent } from "../components/video-nsfw";
 import { PostBodyLazyRenderer } from "../components/post-body-lazy-renderer";
 
 setProxyBase(defaults.imageServer);
@@ -182,7 +182,6 @@ interface State extends PostBase, Advanced {
   isDraftEmpty: boolean;
   drafts: boolean;
   showHelp: boolean;
-  showConfirmNsfw: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -224,7 +223,6 @@ class SubmitPage extends BaseComponent<Props, State> {
     videoId: "",
     speakPermlink: "",
     speakAuthor: "",
-    showConfirmNsfw: false,
     isNsfw: false
   };
 
@@ -1065,15 +1063,9 @@ class SubmitPage extends BaseComponent<Props, State> {
     }, this.saveAdvanced)
   }
 
-  showConfirmNsfwModal = () => {
-    this.setState({ showConfirmNsfw: true})
-  }
-  hideConfirmNsfwModal = () => {
-    this.setState({ showConfirmNsfw: false})
-  }
-
   togleNsfwC = () => {
-    this.setState(prevState => ({ isNsfw: !prevState.isNsfw }), this.saveAdvanced);
+    this.setState({ isNsfw: true }, this.saveAdvanced);
+    console.log(this.state.isNsfw)
   }
   
 
@@ -1163,7 +1155,7 @@ class SubmitPage extends BaseComponent<Props, State> {
             {EditorToolbar({ 
               ...this.props, 
               setVideoEncoderBeneficiary: this.setVideoEncoderBeneficiary,
-              showConfirmNsfwModal: this.showConfirmNsfwModal
+              togleNsfwC: this.togleNsfwC
               })}
             <div className="title-input">
               <Form.Control
@@ -1200,14 +1192,13 @@ class SubmitPage extends BaseComponent<Props, State> {
                 activeUser={(activeUser && activeUser.username) || ""}
               />
             </div>
-            { this.state.showConfirmNsfw &&
+            {/* { this.state.showConfirmNsfw &&
               <ConfirmNsfwContent 
-              showConfirmNsfw={this.state.showConfirmNsfw}
               hideConfirmNsfwModal={this.hideConfirmNsfwModal}
               togleNsfwC={this.togleNsfwC}
               isNsfw={this.state.isNsfw}
               />
-            }
+            } */}
             {activeUser ? (
               <AvailableCredits
                 className="mr-2"

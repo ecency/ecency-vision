@@ -24,6 +24,7 @@
         
 
         .thumnail-wrapper{
+          position: relative;
             width: 100%;
             cursor: pointer;
 
@@ -32,6 +33,30 @@
                 height: 150px;
                 object-fit: cover;
                 border-radius: 10px;
+            }
+
+            .nsfw-wrapper{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: absolute;
+              top: 0;
+              left: 10px;
+              width: 25px;
+              border-radius: 50%;
+              margin-top: 5px;
+
+              @include themify(night) {
+                background: #283241;
+                color: $pinkish-grey;
+                border: 1px solid $dark;
+              }
+        
+              @include themify(day) {
+                background: $white;
+                color: $charcoal-grey;
+                border: 1px solid $white-five;
+              }
             }
         }        
 
@@ -59,10 +84,46 @@
                   gap: 5px;
 
                   .status-icon-wrapper{
+                    border-radius: 50%;
                     
-                    .status-icon{
-                        font-size: 16px;
+                    .status-icon-encoded{
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 50%;
                         cursor: pointer;
+                        background-color: rgb(163, 232, 59);
+                    }
+
+                    .status-icon-published{
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        background-color: rgb(45, 71, 6);
+                    }
+
+                    .status-icon-failed{
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        background-color: rgb(199, 94, 94);
+                    }
+
+                    .status-icon-encoding{
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        background-color: rgb(228, 144, 42);
+                    }
+
+                    .status-icon-deleted{
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        background-color: gray;
                     }
                 }
 

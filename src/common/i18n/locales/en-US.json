@@ -1465,7 +1465,8 @@
     "info-views": "Views:",
     "info-duration": "Duration:",
     "info-size": "File size:",
-    "play-video": "Play video"
+    "insert-video": "Insert to post",
+    "insert-nsfw": "Insert as NSFW"
   },
   "nsfw-content": {
     "title":"NSFW contents",

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import LinearProgress from "../linear-progress";
-import { informationVariantSvg } from "../../img/svg";
+import { dotsHorizontal, informationVariantSvg } from "../../img/svg";
 import { Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./index.scss";
 import DropDown from "../dropdown";
 import Tooltip from "../tooltip";
+import { ConfirmNsfwContent } from "../video-nsfw";
 
 const VideoGallery = (props: any) => {
-  const { showGaller, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary, activeUser, showConfirmNsfwModal} = props;
+  const { showGaller, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary, togleNsfwC} = props;
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
@@ -113,17 +114,17 @@ const VideoGallery = (props: any) => {
     return(
       <div className="status-icon-wrapper">
         {status === "publish_manual" ? (
-          <span className="status-icon">✔️</span>
+          <div className="status-icon-encoded"></div>
         ) : status === "encoding_failed" ? (
-          <span className="status-icon">❌</span>
+          <div className="status-icon-failed"></div>
         ) : status === "published" ? (
           <div>
-            <span className="status-icon">✅</span>
+            <div className="status-icon-published"></div>
           </div>
         ) : status === "deleted" ? (
-            <span className="status-icon">🗑️</span>
+            <div className="status-icon-deleted"></div>
         ) : (
-          <span className="status-icon">🟡</span>
+          <div className="status-icon-encoding"></div>
         )}
       </div>
     )
@@ -217,18 +218,22 @@ const VideoGallery = (props: any) => {
             return (
               <div className="video-list-body" key={i}>
                   <div 
-                className="thumnail-wrapper"
-                 onClick={() =>{ 
-                  if(item.status === "publish_manual") {
-                    embeddVideo(item)
-                    setBeneficiary(item)
-                    setShowGallery(false)
-                    showConfirmNsfwModal();
-                  }
-                  }}
-                >
+                    className="thumnail-wrapper"
+                    //  onClick={() =>{ 
+                    //   }
+                    //   }}
+                    >
                     <img src={item.thumbUrl} alt="" />
-                </div>
+                    {item.status === "publish_manual" && <div className="nsfw-wrapper">
+                      <ConfirmNsfwContent 
+                      togleNsfwC={togleNsfwC} 
+                      embeddVideo={embeddVideo} 
+                      item={item}
+                      setBeneficiary={setBeneficiary}
+                      setShowGallery={setShowGallery}
+                      />
+                    </div>}
+                  </div>
                 <div className="list-details-wrapper">
                   <div className="list-title">
                     <span className="details-title">{item.title.substring(0, 15)}...</span>
@@ -292,16 +297,19 @@ const VideoGallery = (props: any) => {
               <div className="video-list-body" key={i}>
                 <div 
                 className="thumnail-wrapper"
-                 onClick={() =>{ 
-                  if(item.status === "publish_manual") {
-                    embeddVideo(item)
-                    setBeneficiary(item)
-                    setShowGallery(false)
-                    showConfirmNsfwModal();
-                  }
-                  }}
+                //  onClick={() =>{ 
+                //   }}
                 >
                     <img src={item.thumbUrl} alt="" />
+                    {item.status === "publish_manual" && <div className="nsfw-wrapper">
+                      <ConfirmNsfwContent 
+                      togleNsfwC={togleNsfwC} 
+                      embeddVideo={embeddVideo} 
+                      item={item}
+                      setBeneficiary={setBeneficiary}
+                      setShowGallery={setShowGallery}
+                      />
+                    </div>}
                 </div>
                 <div className="list-details-wrapper">
                   <div className="list-title">

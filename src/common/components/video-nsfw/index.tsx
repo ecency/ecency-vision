@@ -1,39 +1,42 @@
 import React, { useState } from 'react'
-import { Button, Modal } from 'react-bootstrap';
 import { _t } from '../../i18n';
+import DropDown from "../dropdown";
+import { dotsHorizontal } from "../../img/svg";
 import "./index.scss"
 
 export const ConfirmNsfwContent = (props: any) => {
 
-    const { showConfirmNsfw, hideConfirmNsfwModal, togleNsfwC, isNsfw } = props;
+  const { togleNsfwC, embeddVideo, item, setShowGallery, setBeneficiary, i } = props;
 
-    const confirmNsfw = (
-        <div className="confirm-nsfw">
-          <div className="nsfw-check-wrapper" onClick={()=> togleNsfwC() }>        
-            <input className="nsfw-checkbox" type="checkbox"/>
-            <span className="nsfw-label text-danger ml-3 align-middle">{_t("nsfw-content.warning")}</span>
-          </div>
-          <Button className="w-50 align-self-center"
-          onClick={() => hideConfirmNsfwModal()}
-          >{_t("nsfw-content.continue")}</Button>
-        </div>
-      )
+  const menuItems = [
+    {
+      label: _t("video-gallery.insert-video"),
+      onClick: () =>  {
+        embeddVideo(item)
+        setBeneficiary(item)
+        setShowGallery(false)
+      },
+    },
+    {
+      label: _t("video-gallery.insert-nsfw"),
+      onClick: () =>{
+        if(item.status === "publish_manual") {
+          embeddVideo(item)
+          setBeneficiary(item)
+          setShowGallery(false)
+          togleNsfwC()
+        }
+        },
+    },
+  ]
+
   return (
-    <div>
-      <Modal
-        show={showConfirmNsfw}
-        centered={true}
-        onHide={() => hideConfirmNsfwModal()}
-        size="lg"
-        className="gallery-modal"
-      >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("nsfw-content.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {confirmNsfw}
-        </Modal.Body>
-      </Modal>
-    </div>
+    <DropDown
+      items={menuItems}
+      icon={dotsHorizontal}
+      label=""
+      float="left"
+      history={null}    
+      />
   )
 }

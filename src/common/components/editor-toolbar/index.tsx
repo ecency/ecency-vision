@@ -48,7 +48,7 @@ interface Props {
   showEmoji?: boolean;
   showGif?: boolean;
   setVideoEncoderBeneficiary: any;
-  showConfirmNsfwModal: () => void;
+  togleNsfwC: () => void;
 }
 
 interface State {
@@ -569,7 +569,7 @@ export class EditorToolbar extends Component<Props> {
                 global={global}
                 insertText={this.insertText}
                 setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
-                showConfirmNsfwModal={this.props.showConfirmNsfwModal}
+                togleNsfwC={this.props.togleNsfwC}
               />
             </div>
           </Tooltip>
@@ -655,7 +655,7 @@ export default (props: Props) => {
     showEmoji: props.showEmoji,
     showGif: props.showGif,
     setVideoEncoderBeneficiary: props.setVideoEncoderBeneficiary,
-    showConfirmNsfwModal: props.showConfirmNsfwModal
+    togleNsfwC: props.togleNsfwC
   };
   return <EditorToolbar {...p} />;
 };
