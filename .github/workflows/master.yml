@@ -70,7 +70,7 @@ jobs:
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
-          docker stack deploy -c docker-compose.yml -c docker-compose.production.yml vis
+          docker-compose -f docker-compose.production.yml up -d
 
   deploy-US:
     needs: build
@@ -93,7 +93,7 @@ jobs:
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
-          docker stack deploy -c docker-compose.yml -c docker-compose.production.yml vision
+          docker-compose -f docker-compose.production.yml up -d
 
   deploy-SG:
     needs: build
@@ -116,4 +116,4 @@ jobs:
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
-          docker stack deploy -c docker-compose.yml -c docker-compose.production.yml vision
+          docker-compose -f docker-compose.production.yml up -d
