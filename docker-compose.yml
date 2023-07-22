@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   cache:
@@ -7,7 +7,7 @@ services:
       - REDIS_HOST_PASSWORD
     restart: always
     ports:
-      - '6379:6379'
+      - "127.0.0.1:6379:6379"
     networks:
       - overlay
     command: 
@@ -56,4 +56,3 @@ volumes:
     
 networks:
   overlay:
-    external: true
