@@ -17,7 +17,7 @@ services:
     environment:
       - USE_PRIVATE
       - REDIS_HOST_PASSWORD
-      - REDIS_HOST: cache
+      - REDIS_HOST=cache
     ports:
       - "3000:3000"
     depends_on:
