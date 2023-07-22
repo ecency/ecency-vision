@@ -9,7 +9,7 @@ services:
     ports:
       - "127.0.0.1:6379:6379"
     networks:
-      - overlay
+      - default
     command: 
       - /bin/sh
       - -c
@@ -27,7 +27,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - overlay
+      - default
     depends_on:
       - cache
     deploy:
@@ -53,6 +53,3 @@ services:
 volumes:
   cache:
     driver: local
-    
-networks:
-  overlay:
