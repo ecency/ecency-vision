@@ -23,6 +23,7 @@ export async function getAsAMP(
     },
     password: config.redisPass
   });
+  await client.connect();
   const redis = new Redis(client);
 
   try {
