@@ -17,10 +17,6 @@ export async function getAsAMP(
   forceRender = false
 ): Promise<string> {
   const client = createClient({
-    socket: {
-      host: config.redisHost,
-      port: 6379
-    },
     password: config.redisPass
   });
   const redis = new Redis(client);

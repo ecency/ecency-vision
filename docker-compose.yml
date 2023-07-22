@@ -8,18 +8,23 @@ services:
     restart: always
     ports:
       - '6379:6379'
+    networks:
+      - overlay
     command: redis-server --save 20 1 --loglevel warning --requirepass $$REDIS_HOST_PASSWORD
     volumes:
       - cache:/data
+    deploy:
+      replicas: 1
 
   app:
     image: ecency/vision:development
     environment:
       - USE_PRIVATE
       - REDIS_HOST_PASSWORD
-      - REDIS_HOST=cache
     ports:
       - "3000:3000"
+    networks:
+      - overlay
     depends_on:
       - cache
     deploy:
@@ -45,3 +50,6 @@ services:
 volumes:
   cache:
     driver: local
+    
+networks:
+  overlay:
