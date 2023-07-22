@@ -57,16 +57,16 @@ jobs:
       uses: appleboy/ssh-action@master
       env:
         USE_PRIVATE: ${{secrets.USE_PRIVATE}}
-        REDIS_URL: ${{secrets.REDIS_URL}}
+        REDIS_HOST_PASSWORD: ${{secrets.REDIS_HOST_PASSWORD}}
       with:
         host: ${{ secrets.SSH_STAGING_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: USE_PRIVATE, REDIS_URL
+        envs: USE_PRIVATE, REDIS_HOST_PASSWORD
         script: |
           export USE_PRIVATE=$USE_PRIVATE
-          export REDIS_URL=$REDIS_URL
+          export REDIS_HOST_PASSWORD=$REDIS_HOST_PASSWORD
           cd ~/vision-staging
           git pull origin development
           docker pull ecency/vision:development

@@ -57,16 +57,16 @@ jobs:
       uses: appleboy/ssh-action@master
       env:
         USE_PRIVATE: ${{secrets.USE_PRIVATE}}
-        REDIS_URL: ${{secrets.REDIS_URL}}
+        REDIS_HOST_PASSWORD: ${{secrets.REDIS_HOST_PASSWORD}}
       with:
         host: ${{ secrets.SSH_HOST_EU }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: USE_PRIVATE, REDIS_URL
+        envs: USE_PRIVATE, REDIS_HOST_PASSWORD
         script: |
           export USE_PRIVATE=$USE_PRIVATE
-          export REDIS_URL=$REDIS_URL
+          export REDIS_HOST_PASSWORD=$REDIS_HOST_PASSWORD
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
@@ -80,16 +80,16 @@ jobs:
       uses: appleboy/ssh-action@master
       env:
         USE_PRIVATE: ${{secrets.USE_PRIVATE}}
-        REDIS_URL: ${{secrets.REDIS_URL}}
+        REDIS_HOST_PASSWORD: ${{secrets.REDIS_HOST_PASSWORD}}
       with:
         host: ${{ secrets.SSH_HOST_US }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: USE_PRIVATE, REDIS_URL
+        envs: USE_PRIVATE, REDIS_HOST_PASSWORD
         script: |
           export USE_PRIVATE=$USE_PRIVATE
-          export REDIS_URL=$REDIS_URL
+          export REDIS_HOST_PASSWORD=$REDIS_HOST_PASSWORD
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
@@ -103,16 +103,16 @@ jobs:
       uses: appleboy/ssh-action@master
       env:
         USE_PRIVATE: ${{secrets.USE_PRIVATE}}
-        REDIS_URL: ${{secrets.REDIS_URL}}
+        REDIS_HOST_PASSWORD: ${{secrets.REDIS_HOST_PASSWORD}}
       with:
         host: ${{ secrets.SSH_HOST_SG }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: USE_PRIVATE, REDIS_URL
+        envs: USE_PRIVATE, REDIS_HOST_PASSWORD
         script: |
           export USE_PRIVATE=$USE_PRIVATE
-          export REDIS_URL=$REDIS_URL
+          export REDIS_HOST_PASSWORD=$REDIS_HOST_PASSWORD
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest

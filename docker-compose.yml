@@ -1,13 +1,26 @@
-version: '3.7'
+version: '3.8'
 
 services:
+  cache:
+    image: redis:6.2-alpine
+    environment:
+      - REDIS_HOST_PASSWORD
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass $$REDIS_HOST_PASSWORD
+    volumes:
+      - cache:/data
   app:
     image: ecency/vision:development
     environment:
       - USE_PRIVATE
-      - REDIS_URL
+      - REDIS_HOST_PASSWORD
+      - REDIS_HOST: cache
     ports:
       - "3000:3000"
+    depends_on:
+      - cache
     deploy:
       replicas: 4
       resources:
@@ -27,3 +40,6 @@ services:
         delay: 5s
         max_attempts: 5
         window: 30s
+volumes:
+  cache:
+    driver: local
