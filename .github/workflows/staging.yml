@@ -70,4 +70,4 @@ jobs:
           cd ~/vision-staging
           git pull origin development
           docker pull ecency/vision:development
-          docker stack deploy -c docker-compose.yml vision
+          docker-compose up -d
