@@ -293,7 +293,7 @@ const EntryAmpComponent = (props: Props) => {
         title={`${notificationsCount}${truncate(entry.title, 67)}`}
         description={`${truncate(postBodySummary(entry.body, 210), 140)} by @${entry.author}`}
         url={entry.url}
-        canonical={entryCanonical(entry) ?? ""}
+        canonical={entryCanonical(entry, true) ?? ""}
         image={image}
         published={published.toISOString()}
         modified={modified.toISOString()}
