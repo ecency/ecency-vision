@@ -1220,6 +1220,7 @@
     "memo-placeholder": "यहां अपने नोट्स दर्ज करें",
     "memo-help": "यह ज्ञापन सार्वजनिक है",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* उपलब्ध हाइव शक्ति",
     "override-warning-1": "नई राशि पिछले एक को ओवरराइड करती है।",
     "override-warning-2": "खाता ({{account}}) पहले ही {{previousAmount}} के साथ प्रत्यायोजित किया जा चुका है।",
