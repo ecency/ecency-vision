@@ -120,6 +120,13 @@ interface PreviewProps extends PostBase {
   global: Global;
 }
 
+interface videoProps {
+  beneficiaries: string;
+  _id: string;
+  owner: string;
+  permlink: string;
+}
+
 class PreviewContent extends Component<PreviewProps> {
   shouldComponentUpdate(nextProps: Readonly<PreviewProps>): boolean {
     return (
@@ -1039,7 +1046,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     );
   };
 
-  setVideoEncoderBeneficiary = async (video: any) => {
+  setVideoEncoderBeneficiary = async (video: videoProps) => {
     const videoBeneficiary = JSON.parse(video.beneficiaries)
     const videoEncoders = [
       {

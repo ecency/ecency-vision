@@ -8,8 +8,24 @@ import DropDown from "../dropdown";
 import Tooltip from "../tooltip";
 import { ConfirmNsfwContent } from "../video-nsfw";
 
-const VideoGallery = (props: any) => {
-  const { showGaller, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary, togleNsfwC} = props;
+interface videoProps {
+  status: string;
+  owner: string;
+  thumbUrl: string;
+  permlink: string;
+}
+
+interface Props {
+  showGallery: boolean;
+  setShowGallery:  React.Dispatch<React.SetStateAction<boolean>>;
+  checkStat: () => Promise<any>;
+  insertText: (before: string, after?: string) => void;
+  setVideoEncoderBeneficiary:  (video: any) => void;
+  togleNsfwC: () => void;
+}
+
+const VideoGallery = (props: Props) => {
+  const { showGallery, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary, togleNsfwC} = props;
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
@@ -22,7 +38,7 @@ const VideoGallery = (props: any) => {
 
   useEffect(() => {
     getAllStatus();
-  }, [showGaller]);
+  }, [showGallery]);
 
   useEffect(() => {
     setIsFiltered(true);
@@ -91,7 +107,7 @@ const VideoGallery = (props: any) => {
   };
 
   const filterList = (type: any) => {
-   const itemsFiletred = items.filter((video: any) => (video.status === type));
+   const itemsFiletred = items.filter((video: videoProps) => (video.status === type));
    setFiltered(itemsFiletred)
   };
 
@@ -99,7 +115,7 @@ const VideoGallery = (props: any) => {
     setHoveredItem(item);
   };
 
-  const embeddVideo = (video: any) => {
+  const embeddVideo = (video: videoProps) => {
     const speakUrl = "https://3speak.tv/watch?v="
     const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`
 
@@ -375,7 +391,7 @@ const VideoGallery = (props: any) => {
   return (
     <div>
       <Modal
-        show={showGaller}
+        show={showGallery}
         centered={true}
         onHide={() => setShowGallery(false)}
         size="lg"

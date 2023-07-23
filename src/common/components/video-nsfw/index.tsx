@@ -4,9 +4,17 @@ import DropDown from "../dropdown";
 import { dotsHorizontal } from "../../img/svg";
 import "./index.scss"
 
-export const ConfirmNsfwContent = (props: any) => {
+interface Props {
+  togleNsfwC: () => void;
+  embeddVideo: (video: any) => void;
+  item: any;
+  setShowGallery:  React.Dispatch<React.SetStateAction<boolean>>;
+  setBeneficiary: (video: any) => void;
+}
 
-  const { togleNsfwC, embeddVideo, item, setShowGallery, setBeneficiary, i } = props;
+export const ConfirmNsfwContent = (props: Props) => {
+
+  const { togleNsfwC, embeddVideo, item, setShowGallery, setBeneficiary } = props;
 
   const menuItems = [
     {

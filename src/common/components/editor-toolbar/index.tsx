@@ -47,7 +47,7 @@ interface Props {
   sm?: boolean;
   showEmoji?: boolean;
   showGif?: boolean;
-  setVideoEncoderBeneficiary: any;
+  setVideoEncoderBeneficiary:  (video: any) => void;
   togleNsfwC: () => void;
 }
 

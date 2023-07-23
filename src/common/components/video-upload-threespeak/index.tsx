@@ -11,8 +11,18 @@ import * as tus from "tus-js-client";
 import VideoGallery from "../video-gallery";
 import useMount from "react-use/lib/useMount";
 import { success } from "../feedback";
+import { ActiveUser } from "../../store/active-user/types";
+import { Global } from "../../store/global/types";
 
-export const VideoUpload = (props: any) => {
+interface Props {
+  global: Global;
+  activeUser: ActiveUser | null;
+  insertText: (before: string, after?: string) => void
+  setVideoEncoderBeneficiary:  (video: any) => void;
+  togleNsfwC: () => void;
+}
+
+export const VideoUpload = (props: Props) => {
   const { activeUser, global, insertText, setVideoEncoderBeneficiary, togleNsfwC } = props;
 
   const tusEndPoint = "https://uploads.3speak.tv/files/";
@@ -31,7 +41,7 @@ export const VideoUpload = (props: any) => {
   const [videoPercentage, setVideoPercentage] = useState("");
   const [thumbPercentage, setThumbPercenrage] = useState("");
   const [isNsfwC, setIsNsfwC] = useState(false);
-  const [showGaller, setShowGallery] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [duration, setDuration] = useState("");
 
@@ -248,13 +258,11 @@ export const VideoUpload = (props: any) => {
       </div>
       <div>        
         <VideoGallery
-          showGaller={showGaller}
+          showGallery={showGallery}
           setShowGallery={setShowGallery}
           checkStat={checkStat}
-          selectedFile={selectedFile}
           insertText={insertText}
           setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
-          activeUser={activeUser}
           togleNsfwC={togleNsfwC}
         />
       </div>
