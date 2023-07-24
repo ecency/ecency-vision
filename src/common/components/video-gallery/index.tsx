@@ -17,15 +17,22 @@ interface videoProps {
 
 interface Props {
   showGallery: boolean;
-  setShowGallery:  React.Dispatch<React.SetStateAction<boolean>>;
+  setShowGallery: React.Dispatch<React.SetStateAction<boolean>>;
   checkStat: () => Promise<any>;
   insertText: (before: string, after?: string) => void;
-  setVideoEncoderBeneficiary:  (video: any) => void;
-  togleNsfwC: () => void;
+  setVideoEncoderBeneficiary?: (video: any) => void;
+  toggleNsfwC?: () => void;
 }
 
 const VideoGallery = (props: Props) => {
-  const { showGallery, setShowGallery, checkStat, insertText, setVideoEncoderBeneficiary, togleNsfwC} = props;
+  const {
+    showGallery,
+    setShowGallery,
+    checkStat,
+    insertText,
+    setVideoEncoderBeneficiary,
+    toggleNsfwC
+  } = props;
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
@@ -34,7 +41,7 @@ const VideoGallery = (props: Props) => {
   const [isEmbedded, setIsembedded] = useState(false);
   const [label, setLabel] = useState("All");
   const [filtered, setFiltered] = useState<any>([]);
-  const [isFiltered, setIsFiltered] = useState(false)
+  const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
     getAllStatus();
@@ -42,7 +49,7 @@ const VideoGallery = (props: Props) => {
 
   useEffect(() => {
     setIsFiltered(true);
-    console.log(isFiltered)
+    console.log(isFiltered);
   }, [label]);
 
   const getAllStatus = async () => {
@@ -51,12 +58,12 @@ const VideoGallery = (props: Props) => {
     if (data) {
       setItems(data);
       setLoading(false);
-      setLabel("All")
+      setLabel("All");
     }
   };
-  
+
   const setBeneficiary = (video: any) => {
-    setVideoEncoderBeneficiary(video)
+    setVideoEncoderBeneficiary && setVideoEncoderBeneficiary(video);
   };
 
   const formatTime = (dateStr: string | number | Date) => {
@@ -107,8 +114,8 @@ const VideoGallery = (props: Props) => {
   };
 
   const filterList = (type: any) => {
-   const itemsFiletred = items.filter((video: videoProps) => (video.status === type));
-   setFiltered(itemsFiletred)
+    const itemsFiletred = items.filter((video: videoProps) => video.status === type);
+    setFiltered(itemsFiletred);
   };
 
   const getHoveredItem = (item: any) => {
@@ -116,49 +123,45 @@ const VideoGallery = (props: Props) => {
   };
 
   const embeddVideo = (video: videoProps) => {
-    const speakUrl = "https://3speak.tv/watch?v="
-    const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`
+    const speakUrl = "https://3speak.tv/watch?v=";
+    const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`;
 
-    const element = (
-   ` <center>${speakFile}</center>`
-    )
-    insertText(element)
-    setIsembedded(true)
+    const element = ` <center>${speakFile}</center>`;
+    insertText(element);
+    setIsembedded(true);
   };
 
-   const statusIcons = (status: string) => {
-    return(
+  const statusIcons = (status: string) => {
+    return (
       <div className="status-icon-wrapper">
         {status === "publish_manual" ? (
-          <div className="status-icon-encoded"></div>
+          <div className="status-icon-encoded" />
         ) : status === "encoding_failed" ? (
-          <div className="status-icon-failed"></div>
+          <div className="status-icon-failed" />
         ) : status === "published" ? (
           <div>
-            <div className="status-icon-published"></div>
+            <div className="status-icon-published" />
           </div>
         ) : status === "deleted" ? (
-            <div className="status-icon-deleted"></div>
+          <div className="status-icon-deleted" />
         ) : (
-          <div className="status-icon-encoding"></div>
+          <div className="status-icon-encoding" />
         )}
       </div>
-    )
-   }
+    );
+  };
 
-   const toolTipContent = (status: string) => {
-    return (
-      status === "publish_manual" ? 
-      _t("video-gallery.status-encoded")
-      : status === "encoding_failed" ? _t("video-gallery.status-failed")
-       : status === "published" ?
-          _t("video-gallery.status-published")
-       : status === "deleted" ? 
-          _t("video-gallery.status-deleted")
-      :
-        _t("video-gallery.status-encoding")
-    )
-   }
+  const toolTipContent = (status: string) => {
+    return status === "publish_manual"
+      ? _t("video-gallery.status-encoded")
+      : status === "encoding_failed"
+      ? _t("video-gallery.status-failed")
+      : status === "published"
+      ? _t("video-gallery.status-published")
+      : status === "deleted"
+      ? _t("video-gallery.status-deleted")
+      : _t("video-gallery.status-encoding");
+  };
 
   const dropDown = (
     <div className="video-status-picker">
@@ -173,47 +176,45 @@ const VideoGallery = (props: Props) => {
                 label: <span id="ascending">{_t("video-gallery.all")}</span>,
                 onClick: () => {
                   setLabel(_t("video-gallery.all"));
-                  setFiltered(items)
+                  setFiltered(items);
                 }
               },
               {
                 label: <span id="descending">{_t("video-gallery.published")}</span>,
                 onClick: () => {
                   setLabel(_t("video-gallery.published"));
-                  filterList("published")
+                  filterList("published");
                 }
               },
               {
                 label: <span id="by-value">{_t("video-gallery.encoding")}</span>,
                 onClick: () => {
-                  const encoding = "encoding_ipfs" || "encoding_preparing"
+                  const encoding = "encoding_ipfs" || "encoding_preparing";
                   setLabel(_t("video-gallery.encoding"));
-                  filterList(encoding)
+                  filterList(encoding);
                 }
               },
               {
                 label: <span id="by-balance">{_t("video-gallery.encoded")}</span>,
                 onClick: () => {
                   setLabel(_t("video-gallery.encoded"));
-                  filterList("publish_manual")
+                  filterList("publish_manual");
                 }
               },
               {
                 label: <span id="by-stake">{_t("video-gallery.failed")}</span>,
                 onClick: () => {
                   setLabel(_t("video-gallery.failed"));
-                  filterList("encoding_failed")
+                  filterList("encoding_failed");
                 }
               },
               {
-                label: (
-                  <span id="delegations-in">{_t("video-gallery.status-deleted")}</span>
-                ),
+                label: <span id="delegations-in">{_t("video-gallery.status-deleted")}</span>,
                 onClick: () => {
                   setLabel(_t("video-gallery.status-deleted"));
-                  filterList("deleted")
+                  filterList("deleted");
                 }
-              },
+              }
             ]
           };
           return (
@@ -224,32 +225,35 @@ const VideoGallery = (props: Props) => {
         })()}
       </div>
     </div>
-  )
+  );
 
   const modalBody = (
     <div className="dialog-content">
       {loading && <LinearProgress />}
-        {filtered && <div className="video-list">
-          {(filtered)?.map((item: any, i: number) => {
+      {filtered && (
+        <div className="video-list">
+          {filtered?.map((item: any, i: number) => {
             return (
               <div className="video-list-body" key={i}>
-                  <div 
-                    className="thumnail-wrapper"
-                    //  onClick={() =>{ 
-                    //   }
-                    //   }}
-                    >
-                    <img src={item.thumbUrl} alt="" />
-                    {item.status === "publish_manual" && <div className="nsfw-wrapper">
-                      <ConfirmNsfwContent 
-                      togleNsfwC={togleNsfwC} 
-                      embeddVideo={embeddVideo} 
-                      item={item}
-                      setBeneficiary={setBeneficiary}
-                      setShowGallery={setShowGallery}
+                <div
+                  className="thumnail-wrapper"
+                  //  onClick={() =>{
+                  //   }
+                  //   }}
+                >
+                  <img src={item.thumbUrl} alt="" />
+                  {item.status === "publish_manual" && (
+                    <div className="nsfw-wrapper">
+                      <ConfirmNsfwContent
+                        toggleNsfwC={toggleNsfwC}
+                        embeddVideo={embeddVideo}
+                        item={item}
+                        setBeneficiary={setBeneficiary}
+                        setShowGallery={setShowGallery}
                       />
-                    </div>}
-                  </div>
+                    </div>
+                  )}
+                </div>
                 <div className="list-details-wrapper">
                   <div className="list-title">
                     <span className="details-title">{item.title.substring(0, 15)}...</span>
@@ -305,27 +309,31 @@ const VideoGallery = (props: Props) => {
             );
           })}
           {isFiltered && !filtered && <div className="gallery-list">{_t("g.empty-list")}</div>}
-        </div>}
+        </div>
+      )}
 
-        {items && label === "All" && <div className="video-list">
+      {items && label === "All" && (
+        <div className="video-list">
           {items?.map((item: any, i: number) => {
             return (
               <div className="video-list-body" key={i}>
-                <div 
-                className="thumnail-wrapper"
-                //  onClick={() =>{ 
-                //   }}
+                <div
+                  className="thumnail-wrapper"
+                  //  onClick={() =>{
+                  //   }}
                 >
-                    <img src={item.thumbUrl} alt="" />
-                    {item.status === "publish_manual" && <div className="nsfw-wrapper">
-                      <ConfirmNsfwContent 
-                      togleNsfwC={togleNsfwC} 
-                      embeddVideo={embeddVideo} 
-                      item={item}
-                      setBeneficiary={setBeneficiary}
-                      setShowGallery={setShowGallery}
+                  <img src={item.thumbUrl} alt="" />
+                  {item.status === "publish_manual" && (
+                    <div className="nsfw-wrapper">
+                      <ConfirmNsfwContent
+                        toggleNsfwC={toggleNsfwC}
+                        embeddVideo={embeddVideo}
+                        item={item}
+                        setBeneficiary={setBeneficiary}
+                        setShowGallery={setShowGallery}
                       />
-                    </div>}
+                    </div>
+                  )}
                 </div>
                 <div className="list-details-wrapper">
                   <div className="list-title">
@@ -382,9 +390,11 @@ const VideoGallery = (props: Props) => {
               </div>
             );
           })}
-           {!loading && items?.length === 0 && <div className="gallery-list">{_t("g.empty-list")}</div>}
-        </div>}
-        
+          {!loading && items?.length === 0 && (
+            <div className="gallery-list">{_t("g.empty-list")}</div>
+          )}
+        </div>
+      )}
     </div>
   );
 

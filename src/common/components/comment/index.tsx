@@ -242,7 +242,7 @@ export class Comment extends Component<Props, State> {
             !showEmoji && !showGif && this.setState({ showEmoji: true, showGif: true })
           }
         >
-          {EditorToolbar({ ...this.props, sm: true, showEmoji })}
+          {EditorToolbar({ ...this.props, sm: true, showEmoji, comment: true })}
           <div className="comment-body" onKeyDown={this.handleShortcuts} ref={this.commentBodyRef}>
             <TextareaAutocomplete
               className={`the-editor accepts-emoji ${text?.length > 20 ? "expanded" : ""}`}

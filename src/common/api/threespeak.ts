@@ -110,7 +110,6 @@ export const updateSpeakVideoInfo = async (
   tags: string[],
   isNsfwC: boolean
 ) => {
-
   const token = await threespeakAuth(username);
 
   const data = {
@@ -128,30 +127,27 @@ export const updateSpeakVideoInfo = async (
 
   axios
     .post(`${studioEndPoint}/mobile/api/update_info`, data, { headers })
-    .then((response) => {
-    })
+    .then((response) => {})
     .catch((error) => {
       console.error("Error:", error);
     });
 };
 
-
 export const markAsPublished = async (username: string, videoId: string) => {
   const token = await threespeakAuth(username);
-    const data = {
-      videoId
-    };
+  const data = {
+    videoId
+  };
 
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`
-    };
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`
+  };
 
-    axios
+  axios
     .post(`${studioEndPoint}/mobile/api/my-videos/iPublished`, data, { headers })
-    .then((response) => {
-    })
+    .then((response) => {})
     .catch((error) => {
       console.error("Error:", error);
     });
-}
+};
