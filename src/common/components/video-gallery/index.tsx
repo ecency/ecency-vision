@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LinearProgress from "../linear-progress";
-import { dotsHorizontal, informationVariantSvg } from "../../img/svg";
+import { informationVariantSvg } from "../../img/svg";
 import { Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./index.scss";
@@ -272,12 +272,6 @@ const VideoGallery = (props: Props) => {
                       </div>
                     </div>
                   </div>
-                  {/* <div className="list-bottom-wrapper">
-                    <span className="video-date">{formatTime(item.created)}</span>
-                    <Tooltip content={toolTipContent(item.status)}>
-                      {statusIcons(item.status)}
-                    </Tooltip>
-                  </div> */}
                 </div>
                 {showMoreInfo && hoveredItem._id === item._id && (
                   <div className="more-info">
@@ -364,12 +358,6 @@ const VideoGallery = (props: Props) => {
                       </div>
                     </div>
                   </div>
-                  {/* <div className="list-bottom-wrapper">
-                  <span className="video-date">{formatTime(item.created)}</span>
-                  <Tooltip content={toolTipContent(item.status)}>
-                    {statusIcons(item.status)}
-                  </Tooltip>
-                  </div> */}
                 </div>
 
                 {showMoreInfo && hoveredItem._id === item._id && (
