@@ -9,7 +9,6 @@ import {
   setNsfw,
   toggleListStyle,
   toggleTheme,
-  newVersionChangeAct,
   unMuteNotifications
 } from "./global";
 import { fetchTrendingTags } from "./trending-tags";
