@@ -16,6 +16,7 @@ import { _t } from "../../i18n";
 import { hiveSvg, informationVariantSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
+import { StyledTooltip } from "../tooltip";
 
 interface ContentProps {
   account: FullAccount;
@@ -115,17 +116,13 @@ export class ProfileInfo extends BaseComponent<Props, State> {
     const { account } = this.props;
     const { rcAccount } = this.state;
     if (account?.__loaded && rcAccount) {
-      const tooltip = (
-        <Tooltip id="profile-tooltip" style={{ zIndex: 10 }}>
-          <InfoContent {...this.props} account={account} rcAccount={rcAccount} />
-        </Tooltip>
-      );
-
       return (
         <span className="profile-info">
-          <OverlayTrigger placement="bottom" overlay={tooltip}>
+          <StyledTooltip
+            content={<InfoContent {...this.props} account={account} rcAccount={rcAccount} />}
+          >
             {informationVariantSvg}
-          </OverlayTrigger>
+          </StyledTooltip>
         </span>
       );
     }
