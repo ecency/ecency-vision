@@ -1,7 +1,7 @@
-import { chevronDownSvgForSlider, chevronUpSvgForSlider, hot } from "../../img/svg";
-import { Button, Card } from "react-bootstrap";
+import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../img/svg";
+import { Button } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
-import React, { useState } from "react";
+import React from "react";
 
 interface Props {
   title?: string | JSX.Element;
@@ -55,7 +55,7 @@ export const MarketAdvancedModeWidgetHeader = ({
       </div>
       {settings ? (
         <Accordion.Collapse eventKey="0">
-          <Card.Body className="p-0 market-advanced-mode-widget-settings">{settings}</Card.Body>
+          <div className="p-0 market-advanced-mode-widget-settings">{settings}</div>
         </Accordion.Collapse>
       ) : (
         <></>

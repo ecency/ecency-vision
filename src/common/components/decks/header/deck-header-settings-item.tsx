@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Accordion, Button, Card } from "react-bootstrap";
+import { Accordion, Button } from "react-bootstrap";
 import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../../img/svg";
 
 interface Props {
@@ -32,7 +32,7 @@ export const DeckHeaderSettingsItem = ({ title, children, hasBorderBottom, class
         </span>
       </Accordion.Toggle>
       <Accordion.Collapse eventKey="0">
-        <Card.Body className="p-0 d-flex justify-content-end p-2">{children}</Card.Body>
+        <div className="d-flex justify-content-end p-2">{children}</div>
       </Accordion.Collapse>
     </Accordion>
   );

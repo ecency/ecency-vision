@@ -14,7 +14,7 @@ import SearchQuery from "../../helper/search-query";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 
-import { searchAccount, AccountSearchResult } from "../../api/search-api";
+import { AccountSearchResult, searchAccount } from "../../api/search-api";
 
 import { _t } from "../../i18n";
 
@@ -75,11 +75,11 @@ export class SearchPeople extends BaseComponent<Props, State> {
     const { loading, results } = this.state;
 
     return (
-      <div className="card search-people">
-        <div className="card-header">
+      <div className="border bg-white rounded  search-people">
+        <div className="bg-gray-100 border-b p-3">
           <strong>{_t("search-people.title")}</strong>
         </div>
-        <div className="card-body">
+        <div className="p-3">
           {(() => {
             if (loading) {
               return <LinearProgress />;

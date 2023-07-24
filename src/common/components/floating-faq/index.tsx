@@ -205,7 +205,7 @@ const FloatingFAQ = () => {
 
                       <Accordion.Collapse eventKey="0">
                         <div className="help-content">
-                          <Card.Body>
+                          <div className="card-body p-3">
                             <Form.Group className="search-bar w-100">
                               <Form.Control
                                 type="text"
@@ -236,7 +236,7 @@ const FloatingFAQ = () => {
                                 </a>
                               );
                             })}
-                          </Card.Body>
+                          </div>
                         </div>
                       </Accordion.Collapse>
                     </Accordion>
@@ -279,7 +279,7 @@ const FloatingFAQ = () => {
                         </div>
                       </Accordion.Toggle>
                       <Accordion.Collapse eventKey="1">
-                        <Card.Body className="p-3">
+                        <div className="card-body p-3">
                           <Form.Group>
                             <InputGroup size="sm" className="username">
                               <InputGroup.Prepend>
@@ -317,7 +317,7 @@ const FloatingFAQ = () => {
                           >
                             {_t("floating-faq.submit")}
                           </Button>
-                        </Card.Body>
+                        </div>
                       </Accordion.Collapse>
                     </Accordion>
                   </div>

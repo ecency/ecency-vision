@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import Accordion from "react-bootstrap/Accordion";
 import {
@@ -89,7 +89,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
           </Tooltip>
         </div>
         <Accordion.Collapse eventKey="0">
-          <Card.Body className="p-0">
+          <div className="p-0">
             <DeckHeaderSettings
               updateInterval={"updateIntervalMs" in props ? props.updateIntervalMs : undefined}
               setDeckUpdateInterval={
@@ -125,7 +125,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
                 <></>
               )}
             </div>
-          </Card.Body>
+          </div>
         </Accordion.Collapse>
       </Accordion>
     </div>

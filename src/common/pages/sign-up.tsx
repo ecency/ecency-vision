@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from "react-redux";
 import qrcode from "qrcode";
@@ -369,14 +369,14 @@ export const SignUp = (props: PageProps) => {
 
             {stage === Stage.REGISTER_TYPE ? (
               <div className="form-content">
-                <div className="card mb-3 mt-5">
-                  <div className="card-header">
+                <div className="card border bg-white rounded mb-3 mt-5">
+                  <div className="bg-gray-100 border-b p-3">
                     <b>{_t("sign-up.free-account")}</b>
                   </div>
-                  <div className="card-body">
+                  <div className="p-3">
                     <div>{_t("sign-up.free-account-desc")}</div>
                   </div>
-                  <div className="card-footer">
+                  <div className="bg-gray-100 border-t py-2 px-3">
                     <Button variant="primary" className="w-100" onClick={regularRegister}>
                       {_t("sign-up.register-free")}
                     </Button>
@@ -387,11 +387,11 @@ export const SignUp = (props: PageProps) => {
                     </div>
                   )}
                 </div>
-                <div className="card mb-3">
-                  <div className="card-header">
+                <div className="card border bg-white rounded mb-3">
+                  <div className="bg-gray-100 border-b p-3">
                     <b>{_t("sign-up.buy-account")}</b>
                   </div>
-                  <div className="card-body">
+                  <div className="p-3">
                     <p>{_t("sign-up.buy-account-desc")}</p>
                     <ul>
                       <li>{_t("sign-up.buy-account-li-1")}</li>
@@ -399,7 +399,7 @@ export const SignUp = (props: PageProps) => {
                       <li>{_t("sign-up.buy-account-li-3")}</li>
                     </ul>
                   </div>
-                  <div className="card-footer">
+                  <div className="bg-gray-100 border-t py-2 px-3">
                     <Button
                       className="w-100"
                       variant="primary"
@@ -410,18 +410,18 @@ export const SignUp = (props: PageProps) => {
                   </div>
                 </div>
 
-                <div className="card mb-3">
-                  <div className="card-header">
+                <div className="card border bg-white rounded mb-3">
+                  <div className="bg-gray-100 border-b p-3">
                     <b>{_t("onboard.title")}</b>
                   </div>
-                  <div className="card-body">
+                  <div className="p-3">
                     <p>{_t("onboard.description")}</p>
                     <ul>
                       <li>{_t("onboard.asking-description")}</li>
                       <li>{_t("onboard.creating-description")}</li>
                     </ul>
                   </div>
-                  <div className="card-footer">
+                  <div className="bg-gray-100 border-t py-2 px-3">
                     <Button
                       as={Link}
                       to={`/onboard-friend/asking/${urlHash}`}

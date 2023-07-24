@@ -377,8 +377,8 @@ export class SearchComment extends BaseComponent<Props, State> {
       ) : null;
 
     return (
-      <div className="card search-comment">
-        <div className="card-header d-flex justify-content-between align-items-center">
+      <div className="border bg-white rounded search-comment">
+        <div className="bg-gray-100 border-b p-3 d-flex justify-content-between align-items-center">
           <div>
             <strong>{_t("search-comment.title")}</strong>
             {(() => {

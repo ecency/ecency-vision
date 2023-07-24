@@ -82,11 +82,11 @@ export class SearchCommunities extends BaseComponent<Props, State> {
     const { loading, results } = this.state;
 
     return (
-      <div className="card search-communities">
-        <div className="card-header">
+      <div className="border bg-white rounded search-communities">
+        <div className="bg-gray-100 border-b p-3">
           <strong>{_t("search-communities.title")}</strong>
         </div>
-        <div className="card-body">
+        <div className="p-3">
           {(() => {
             if (loading) {
               return <LinearProgress />;

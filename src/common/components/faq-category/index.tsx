@@ -45,7 +45,7 @@ const FaqCategory = (props: Props) => {
           </div>
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
-          <Card.Body className="p-0">
+          <div className="p-0">
             <div className="section-body">
               {contentList.map((x) => (
                 <a key={x} className="section-content" href={`#${x}`}>
@@ -53,7 +53,7 @@ const FaqCategory = (props: Props) => {
                 </a>
               ))}
             </div>
-          </Card.Body>
+          </div>
         </Accordion.Collapse>
       </Accordion>
     </div>

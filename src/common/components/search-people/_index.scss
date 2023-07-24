@@ -5,5 +5,9 @@
 
   .people-list {
     @include search-side-list;
+
+    .list-item {
+      list-style: none;
+    }
   }
 }
