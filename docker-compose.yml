@@ -15,6 +15,8 @@ services:
       - redis-server --save 20 1 --loglevel warning --requirepass "$${REDIS_HOST_PASSWORD:?REDIS_HOST_PASSWORD variable is not set}"
     volumes:
       - redis:/data
+    networks:
+      - vision
 
   web1:
     image: ecency/vision:development
@@ -27,6 +29,8 @@ services:
     hostname: web1
     depends_on:
       - redis
+    networks:
+      - vision
 
   web2:
     image: ecency/vision:development
@@ -39,6 +43,8 @@ services:
     hostname: web2
     depends_on:
       - redis
+    networks:
+      - vision
 
   web3:
     image: ecency/vision:development
@@ -51,6 +57,8 @@ services:
     hostname: web3
     depends_on:
       - redis
+    networks:
+      - vision
 
   web4:
     image: ecency/vision:development
@@ -63,6 +71,8 @@ services:
     hostname: web4
     depends_on:
       - redis
+    networks:
+      - vision
 
   nginx:
     build: ./nginx
@@ -71,7 +81,15 @@ services:
     depends_on:
       - web1
       - web2
+      - web3
+      - web4
+    networks:
+      - vision
 
 volumes:
   redis:
     driver: local
+
+networks:
+  vision:
+    external: true
