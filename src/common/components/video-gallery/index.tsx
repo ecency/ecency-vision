@@ -20,8 +20,8 @@ interface Props {
   setShowGallery: React.Dispatch<React.SetStateAction<boolean>>;
   checkStat: () => Promise<any>;
   insertText: (before: string, after?: string) => void;
-  setVideoEncoderBeneficiary: (video: any) => void;
-  togleNsfwC: () => void;
+  setVideoEncoderBeneficiary?: (video: any) => void;
+  toggleNsfwC?: () => void;
 }
 
 const VideoGallery = (props: Props) => {
@@ -31,7 +31,7 @@ const VideoGallery = (props: Props) => {
     checkStat,
     insertText,
     setVideoEncoderBeneficiary,
-    togleNsfwC
+    toggleNsfwC
   } = props;
 
   const [loading, setLoading] = useState(false);
@@ -63,7 +63,7 @@ const VideoGallery = (props: Props) => {
   };
 
   const setBeneficiary = (video: any) => {
-    setVideoEncoderBeneficiary(video);
+    setVideoEncoderBeneficiary && setVideoEncoderBeneficiary(video);
   };
 
   const formatTime = (dateStr: string | number | Date) => {
@@ -245,7 +245,7 @@ const VideoGallery = (props: Props) => {
                   {item.status === "publish_manual" && (
                     <div className="nsfw-wrapper">
                       <ConfirmNsfwContent
-                        togleNsfwC={togleNsfwC}
+                        toggleNsfwC={toggleNsfwC}
                         embeddVideo={embeddVideo}
                         item={item}
                         setBeneficiary={setBeneficiary}
@@ -326,7 +326,7 @@ const VideoGallery = (props: Props) => {
                   {item.status === "publish_manual" && (
                     <div className="nsfw-wrapper">
                       <ConfirmNsfwContent
-                        togleNsfwC={togleNsfwC}
+                        toggleNsfwC={toggleNsfwC}
                         embeddVideo={embeddVideo}
                         item={item}
                         setBeneficiary={setBeneficiary}

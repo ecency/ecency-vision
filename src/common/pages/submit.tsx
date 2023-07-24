@@ -106,7 +106,7 @@ interface Advanced {
   videoId: string;
   speakPermlink: string;
   speakAuthor: string;
-  isNsfw: boolean
+  isNsfw: boolean;
 }
 
 interface PreviewProps extends PostBase {
@@ -259,8 +259,10 @@ class SubmitPage extends BaseComponent<Props, State> {
       // delete active user from beneficiaries list
       if (activeUser) {
         const { beneficiaries } = this.state;
-        if (beneficiaries.find((x: { account: string; }) => x.account === activeUser.username)) {
-          const b = [...beneficiaries.filter((x: { account: string; }) => x.account !== activeUser.username)];
+        if (beneficiaries.find((x: { account: string }) => x.account === activeUser.username)) {
+          const b = [
+            ...beneficiaries.filter((x: { account: string }) => x.account !== activeUser.username)
+          ];
           this.stateSet({ beneficiaries: b });
         }
       }
@@ -474,7 +476,18 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   saveAdvanced = (): void => {
-    const { reward, beneficiaries, schedule, reblogSwitch, description, isThreespeak, videoId, speakPermlink, speakAuthor, isNsfw } = this.state;
+    const {
+      reward,
+      beneficiaries,
+      schedule,
+      reblogSwitch,
+      description,
+      isThreespeak,
+      videoId,
+      speakPermlink,
+      speakAuthor,
+      isNsfw
+    } = this.state;
 
     const advanced: Advanced = {
       reward,
@@ -560,7 +573,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
   beneficiaryDeleted = (username: string) => {
     const { beneficiaries } = this.state;
-    const b = [...beneficiaries.filter((x: { account: string; }) => x.account !== username)];
+    const b = [...beneficiaries.filter((x: { account: string }) => x.account !== username)];
     this.stateSet({ beneficiaries: b }, this.saveAdvanced);
   };
 
@@ -682,8 +695,8 @@ class SubmitPage extends BaseComponent<Props, State> {
 
   markVideo = async (videoId: string) => {
     const { activeUser } = this.props;
-    await markAsPublished(activeUser!.username, videoId)
-  }
+    await markAsPublished(activeUser!.username, videoId);
+  };
 
   publish = async (): Promise<void> => {
     if (!this.validate()) {
@@ -691,7 +704,20 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     const { activeUser, history, addEntry } = this.props;
-    const { title, tags, body, description, reward, reblogSwitch, beneficiaries, videoId, isThreespeak, speakPermlink, speakAuthor, isNsfw } = this.state;
+    const {
+      title,
+      tags,
+      body,
+      description,
+      reward,
+      reblogSwitch,
+      beneficiaries,
+      videoId,
+      isThreespeak,
+      speakPermlink,
+      speakAuthor,
+      isNsfw
+    } = this.state;
 
     // clean body
     const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, "");
@@ -707,7 +733,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     let authorData = activeUser.data as FullAccount;
 
     let permlink = createPermlink(title);
-    console.log(isThreespeak)
+    console.log(isThreespeak);
 
     // permlink duplication check
     let c;
@@ -724,11 +750,11 @@ class SubmitPage extends BaseComponent<Props, State> {
       permlink = createPermlink(title, true);
     }
 
-     if (isThreespeak && speakPermlink !== "") {
+    if (isThreespeak && speakPermlink !== "") {
       permlink = speakPermlink;
-       // update speak video with title, body and tags
-       updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw)
-       console.log(isNsfw)
+      // update speak video with title, body and tags
+      updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw);
+      console.log(isNsfw);
     }
 
     const [parentPermlink] = tags;
@@ -746,7 +772,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     comment(author, "", parentPermlink, permlink, title, cbody, jsonMeta, options, true)
       .then(() => {
         this.clearAdvanced();
-        
+
         // Create entry object in store
         const entry = {
           ...tempEntry({
@@ -763,21 +789,20 @@ class SubmitPage extends BaseComponent<Props, State> {
           percent_hbd: options.percent_hbd
         };
         addEntry(entry);
-        
+
         success(_t("submit.published"));
         this.clear();
         const newLoc = makePathEntry(parentPermlink, author, permlink);
         history.push(newLoc);
 
         //Mark speak video as published
-        if (isThreespeak && activeUser.username === speakAuthor ) {
-          success(`Don't refresh this page, wait for few seconds for video to process`)
+        if (isThreespeak && activeUser.username === speakAuthor) {
+          success(`Don't refresh this page, wait for few seconds for video to process`);
           setTimeout(() => {
-            this.markVideo(videoId)
-           }, 10000)
+            this.markVideo(videoId);
+          }, 10000);
         }
-        
-        })
+      })
       .then(() => {
         if (isCommunity(tags[0]) && reblogSwitch) {
           reblog(author, author, permlink);
@@ -1041,34 +1066,36 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   setVideoEncoderBeneficiary = async (video: videoProps) => {
-    const videoBeneficiary = JSON.parse(video.beneficiaries)
+    const videoBeneficiary = JSON.parse(video.beneficiaries);
     const videoEncoders = [
       {
         account: "spk.beneficiary",
         src: "ECONDER_PAY",
         weight: 900
-      }, 
+      },
       {
         account: "threespeakleader",
         src: "ECONDER_PAY",
         weight: 100
       }
-    ]
-    const joinedBeneficiary = [...videoBeneficiary, ...videoEncoders]
-    this.stateSet({ 
-      beneficiaries: joinedBeneficiary, 
-      videoId: await video._id, 
-      isThreespeak: true,
-      speakPermlink: video.permlink,
-      speakAuthor: video.owner
-    }, this.saveAdvanced)
-  }
+    ];
+    const joinedBeneficiary = [...videoBeneficiary, ...videoEncoders];
+    this.stateSet(
+      {
+        beneficiaries: joinedBeneficiary,
+        videoId: await video._id,
+        isThreespeak: true,
+        speakPermlink: video.permlink,
+        speakAuthor: video.owner
+      },
+      this.saveAdvanced
+    );
+  };
 
-  togleNsfwC = () => {
+  toggleNsfwC = () => {
     this.setState({ isNsfw: true }, this.saveAdvanced);
-    console.log(this.state.isNsfw)
-  }
-  
+    console.log(this.state.isNsfw);
+  };
 
   render() {
     const {
@@ -1153,11 +1180,12 @@ class SubmitPage extends BaseComponent<Props, State> {
                 })}
               </div>
             )}
-            {EditorToolbar({ 
-              ...this.props, 
+            {EditorToolbar({
+              ...this.props,
               setVideoEncoderBeneficiary: this.setVideoEncoderBeneficiary,
-              togleNsfwC: this.togleNsfwC
-              })}
+              toggleNsfwC: this.toggleNsfwC,
+              comment: false
+            })}
             <div className="title-input">
               <Form.Control
                 className="accepts-emoji"

@@ -47,8 +47,9 @@ interface Props {
   sm?: boolean;
   showEmoji?: boolean;
   showGif?: boolean;
-  setVideoEncoderBeneficiary:  (video: any) => void;
-  togleNsfwC: () => void;
+  setVideoEncoderBeneficiary?: (video: any) => void;
+  toggleNsfwC?: () => void;
+  comment: boolean;
 }
 
 interface State {
@@ -562,17 +563,19 @@ export class EditorToolbar extends Component<Props> {
             </Tooltip>
           )}
 
-          <Tooltip content="Upload Video">
-            <div className="editor-tool" role="none">
-              <VideoUpload
-                activeUser={activeUser}
-                global={global}
-                insertText={this.insertText}
-                setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
-                togleNsfwC={this.props.togleNsfwC}
-              />
-            </div>
-          </Tooltip>
+          {!this.props.comment && (
+            <Tooltip content="Upload Video">
+              <div className="editor-tool" role="none">
+                <VideoUpload
+                  activeUser={activeUser}
+                  global={global}
+                  insertText={this.insertText}
+                  setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
+                  toggleNsfwC={this.props.toggleNsfwC}
+                />
+              </div>
+            </Tooltip>
+          )}
         </div>
         <input
           onChange={this.fileInputChanged}
@@ -655,7 +658,8 @@ export default (props: Props) => {
     showEmoji: props.showEmoji,
     showGif: props.showGif,
     setVideoEncoderBeneficiary: props.setVideoEncoderBeneficiary,
-    togleNsfwC: props.togleNsfwC
+    toggleNsfwC: props.toggleNsfwC,
+    comment: props.comment
   };
   return <EditorToolbar {...p} />;
 };

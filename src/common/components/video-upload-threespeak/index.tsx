@@ -3,10 +3,7 @@ import { videoSvg, uploadSvgV } from "../../img/svg";
 import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./index.scss";
-import {
-  getAllVideoStatuses,
-  uploadVideoInfo,
-} from "../../api/threespeak";
+import { getAllVideoStatuses, uploadVideoInfo } from "../../api/threespeak";
 import * as tus from "tus-js-client";
 import VideoGallery from "../video-gallery";
 import useMount from "react-use/lib/useMount";
@@ -17,13 +14,13 @@ import { Global } from "../../store/global/types";
 interface Props {
   global: Global;
   activeUser: ActiveUser | null;
-  insertText: (before: string, after?: string) => void
-  setVideoEncoderBeneficiary:  (video: any) => void;
-  togleNsfwC: () => void;
+  insertText: (before: string, after?: string) => void;
+  setVideoEncoderBeneficiary?: (video: any) => void;
+  toggleNsfwC?: () => void;
 }
 
 export const VideoUpload = (props: Props) => {
-  const { activeUser, global, insertText, setVideoEncoderBeneficiary, togleNsfwC } = props;
+  const { activeUser, global, insertText, setVideoEncoderBeneficiary, toggleNsfwC } = props;
 
   const tusEndPoint = "https://uploads.3speak.tv/files/";
   const fileInput = useRef<HTMLInputElement>(null);
@@ -60,7 +57,7 @@ export const VideoUpload = (props: Props) => {
       const { duration } = videoRef.current;
       const minutes = Math.floor(duration / 60);
       const seconds = Math.floor(duration % 60);
-      const videoDuration = `${minutes}:${seconds}`
+      const videoDuration = `${minutes}:${seconds}`;
       setDuration(videoDuration);
     }
   };
@@ -143,7 +140,7 @@ export const VideoUpload = (props: Props) => {
     const allStatus = await getAllVideoStatuses(activeUser!.username);
     return allStatus;
   };
-  
+
   const uploadVideoModal = (
     <div className="dialog-content">
       <div className="file-input">
@@ -190,7 +187,7 @@ export const VideoUpload = (props: Props) => {
       </div>
       <Button
         disabled={!canUpload}
-        onClick={() => {          
+        onClick={() => {
           setStep("preview");
         }}
       >
@@ -202,11 +199,12 @@ export const VideoUpload = (props: Props) => {
   const previewVideo = (
     <div className="dialog-content">
       <div className="file-input">
-        <video 
-        ref={videoRef}
-        onLoadedMetadata={getVideoDuration}
-        controls={true} 
-        poster={coverImage}>
+        <video
+          ref={videoRef}
+          onLoadedMetadata={getVideoDuration}
+          controls={true}
+          poster={coverImage}
+        >
           <source src={selectedFile} type="video/mp4" />
         </video>
       </div>
@@ -256,14 +254,14 @@ export const VideoUpload = (props: Props) => {
           </div>
         )}
       </div>
-      <div>        
+      <div>
         <VideoGallery
           showGallery={showGallery}
           setShowGallery={setShowGallery}
           checkStat={checkStat}
           insertText={insertText}
           setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
-          togleNsfwC={togleNsfwC}
+          toggleNsfwC={toggleNsfwC}
         />
       </div>
       <div>
