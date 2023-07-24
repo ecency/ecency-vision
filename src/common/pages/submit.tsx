@@ -733,7 +733,6 @@ class SubmitPage extends BaseComponent<Props, State> {
     let authorData = activeUser.data as FullAccount;
 
     let permlink = createPermlink(title);
-    console.log(isThreespeak);
 
     // permlink duplication check
     let c;
@@ -754,7 +753,6 @@ class SubmitPage extends BaseComponent<Props, State> {
       permlink = speakPermlink;
       // update speak video with title, body and tags
       updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw);
-      console.log(isNsfw);
     }
 
     const [parentPermlink] = tags;
@@ -1094,7 +1092,6 @@ class SubmitPage extends BaseComponent<Props, State> {
 
   toggleNsfwC = () => {
     this.setState({ isNsfw: true }, this.saveAdvanced);
-    console.log(this.state.isNsfw);
   };
 
   render() {

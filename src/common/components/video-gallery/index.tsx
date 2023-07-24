@@ -49,7 +49,6 @@ const VideoGallery = (props: Props) => {
 
   useEffect(() => {
     setIsFiltered(true);
-    console.log(isFiltered);
   }, [label]);
 
   const getAllStatus = async () => {
