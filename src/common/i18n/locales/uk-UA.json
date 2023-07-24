@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Просувати",
     "sub-title": "Просувати ваш допис",
-    "duration": "Тривалість"
+    "duration": "Тривалість",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Підсилити",
     "sub-title": "Підсилити ваш допис",
     "amount": "Сума",
     "slider-hint": "Перетягніть повзунок, щоб відрегулювати суму.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Баланс",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "введіть сюди свої примітки",
     "memo-help": "Ця примітка є публічною",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* вільна Hive сила",
     "override-warning-1": "Нова сума замінює попередню.",
     "override-warning-2": "Обліковий запис ({{account}}) вже делегований з {{previousAmount}}.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "Читачів ({{n}})",
     "following": "Cлідкують ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Слідкувати",

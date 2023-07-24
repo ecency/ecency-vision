@@ -133,6 +133,9 @@
     .list-body {
       max-height: 200px;
       overflow-x: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
 
       .list-item {
         padding: 8px 20px;
@@ -140,6 +143,7 @@
         display: flex;
         align-items: center;
         white-space: nowrap;
+        width: 20px;
 
         &:last-child {
           border-bottom-left-radius: $border-radius;

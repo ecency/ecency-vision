@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Promovează",
     "sub-title": "Promote your post",
-    "duration": "Durată"
+    "duration": "Durată",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Boost",
     "sub-title": "La mesajul dvs",
     "amount": "Sumă",
     "slider-hint": "Trage glisorul pentru a ajusta cantitatea.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Sold",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "introdu comentariul tău aici",
     "memo-help": "Această notă este publică",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* available hive power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "Urmăritori ({{n}})",
     "following": "Urmăriți ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Urmărește",

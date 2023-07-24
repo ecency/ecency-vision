@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Reklamuoti",
     "sub-title": "Reklamuoti savo įrašą",
-    "duration": "Trukmė"
+    "duration": "Trukmė",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Paspartinti",
     "sub-title": "Paspartinti savo įrašą",
     "amount": "Kiekis",
     "slider-hint": "Vilkite slankiklį, kad sureguliuotumėte kiekį.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Likutis",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "įveskite savo pastabas čia",
     "memo-help": "Ši atmintinė yra vieša",
     "memo-error": "Niekada nedėkite privačių raktų į atmintinės lauką, jis yra viešai matomas visiems.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* turima Hive Power",
     "override-warning-1": "Nauja suma viršija ankstesnę.",
     "override-warning-2": "Paskyra ({{account}}) jau buvo perduota {{previousAmount}}.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "Sekėjai ({{n}})",
     "following": "Sekami ({{n}})",
-    "search-placeholder": "Paieška"
+    "search-placeholder": "Paieška",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Sekti",

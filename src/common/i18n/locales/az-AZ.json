@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Tanıt",
     "sub-title": "Promote your post",
-    "duration": "Müddət"
+    "duration": "Müddət",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Gücləndir",
     "sub-title": "Boost your post",
     "amount": "Miqdar",
     "slider-hint": "Miqdarı nizamlamaq üçün diyircəyi sürüşdürün.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Balans",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "notlarınızı buraya daxil edin",
     "memo-help": "This memo is public",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* available hive power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "Followers ({{n}})",
     "following": "Following ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Follow",

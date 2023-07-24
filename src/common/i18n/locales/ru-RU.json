@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Продвинуть",
     "sub-title": "Продвижение вашего поста",
-    "duration": "Длительность"
+    "duration": "Длительность",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Усилить",
     "sub-title": "Усилить ваш пост",
     "amount": "Сумма",
     "slider-hint": "Перетащите ползунок для настройки суммы.",
-    "hint": "Фактическое значение голоса, которое вы получите, может варьироваться"
+    "hint": "Фактическое значение голоса, которое вы получите, может варьироваться",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Баланс",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "введите сюда свои заметки",
     "memo-help": "Это примечание видно всем",
     "memo-error": "Никогда не помещайте приватные ключи в мемо-поле, оно открыто для всех.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* доступно",
     "override-warning-1": "Новая сумма отменяет предыдущую.",
     "override-warning-2": "Аккаунту ({{account}}) уже было делегировано {{previousAmount}}.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "Подписчики ({{n}})",
     "following": "Подписан на ({{n}})",
-    "search-placeholder": "Поиск"
+    "search-placeholder": "Поиск",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Подписаться",

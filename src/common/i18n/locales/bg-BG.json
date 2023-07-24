@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Промотирай",
     "sub-title": "Промотирай поста си",
-    "duration": "Продължителност"
+    "duration": "Продължителност",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Подсилване",
     "sub-title": "Подсили поста си",
     "amount": "Сума",
     "slider-hint": "Плъзнете слайдъра за да регулирате стойноста.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Баланс",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "добави своите бележки тук",
     "memo-help": "Тази бележка е публична",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* налична hive стойност на гласа",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "Последователи ({{n}})",
     "following": "Следва ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Последвай",

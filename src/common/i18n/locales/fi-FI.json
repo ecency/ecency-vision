@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Korosta",
     "sub-title": "Korosta julkaisuasi",
-    "duration": "Kesto"
+    "duration": "Kesto",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Tehosta",
     "sub-title": "Tehosta julkaisuasi",
     "amount": "Määrä",
     "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää.",
-    "hint": "Antamasi äänen todellinen arvo voi vaihdella"
+    "hint": "Antamasi äänen todellinen arvo voi vaihdella",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Saldo",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "kirjoita muistio tähän",
     "memo-help": "Tämä muistio on julkinen",
     "memo-error": "Älä koskaan kopioi yksityisiä avaimia muistikenttään, se on julkisesti kaikkien nähtävissä.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* hive power saatavilla",
     "override-warning-1": "Uusi määrä ohittaa edellisen määrän.",
     "override-warning-2": "Tili ({{account}}) on jo valtuutettu {{previousAmount}}.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "Seuraajat ({{n}})",
     "following": "Seurataan ({{n}})",
-    "search-placeholder": "Haku"
+    "search-placeholder": "Haku",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Seuraa",

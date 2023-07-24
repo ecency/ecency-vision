@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "推广",
     "sub-title": "推广您的帖子",
-    "duration": "周期"
+    "duration": "周期",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "推荐",
     "sub-title": "推荐您的帖子",
     "amount": "数量",
     "slider-hint": "拖动滑块来调整金额。",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "余额",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "在此输入您的备注",
     "memo-help": "此备忘录是公开的",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* 可用的HIVE Power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "粉丝 ({{n}})",
     "following": "关注 ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "关注",

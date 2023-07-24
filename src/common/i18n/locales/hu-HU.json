@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Hirdetés",
     "sub-title": "Promováld a bejegyzésed",
-    "duration": "Időtartam"
+    "duration": "Időtartam",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Felpörgetés",
     "sub-title": "Boost your post",
     "amount": "Összeg",
     "slider-hint": "A csúszka húzásával állítsd be a mennyiséget.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Egyenleg",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "megjegyzés ide",
     "memo-help": "Ez az üzenet nyilvános",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* elérhető hive power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "Követők ({{n}})",
     "following": "Követés ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Követés",

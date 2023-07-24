@@ -87,7 +87,7 @@ export const DeckThreadsForm = ({
   useEffect(() => {
     if (persistable) {
       setThreadHost(threadHost ? threadHost : persistedForm?.threadHost);
-      setText(text ? text : persistedForm?.text);
+      setText(text ? text : persistedForm?.text ?? "");
       setImage(image ? image : persistedForm?.image);
       setImageName(imageName ? imageName : persistedForm?.imageName);
     }
@@ -172,12 +172,12 @@ export const DeckThreadsForm = ({
       className={"deck-toolbar-threads-form-submit "}
       size={size}
     >
-      {!activeUser && !entry && text!!.length <= 255 && _t("decks.threads-form.login-and-publish")}
+      {!activeUser && !entry && text?.length <= 255 && _t("decks.threads-form.login-and-publish")}
       {activeUser &&
         !entry &&
-        text!!.length <= 255 &&
+        text?.length <= 255 &&
         (loading ? _t("decks.threads-form.publishing") : _t("decks.threads-form.publish"))}
-      {text!!.length > 255 && !entry && _t("decks.threads-form.create-regular-post")}
+      {text?.length > 255 && !entry && _t("decks.threads-form.create-regular-post")}
       {entry && _t("decks.threads-form.save")}
     </Button>
   );
@@ -239,12 +239,12 @@ export const DeckThreadsForm = ({
             )}
           </div>
         </div>
-        {inline && text!!.length > 255 && (
+        {inline && text?.length > 255 && (
           <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
         )}
         {!inline && (
           <div className="deck-toolbar-threads-form-bottom">
-            {text!!.length > 255 && (
+            {text?.length > 255 && (
               <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
             )}
             <DeckThreadsCreatedRecently

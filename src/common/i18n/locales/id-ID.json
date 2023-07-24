@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Promosikan",
     "sub-title": "Promosikan postingan Anda",
-    "duration": "Durasi"
+    "duration": "Durasi",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Naikkan",
     "sub-title": "Naikkan postingan Anda",
     "amount": "Jumlah",
     "slider-hint": "Seret penggeser tersebut untuk menyesuaikan jumlahnya.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Saldo",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "tuliskan catatan Anda disini",
     "memo-help": "Memo ini adalah Publik",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* hive power yang tersedia",
     "override-warning-1": "Jumlah baru menggantikan yang sebelumnya.",
     "override-warning-2": "Akun {{account}} sudah didelegasikan dengan {{previousAmount}}.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "Pengikut ({{n}})",
     "following": "Mengikuti ({{n}})",
-    "search-placeholder": "Mencari"
+    "search-placeholder": "Mencari",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Ikuti",

@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "बढ़ावा देना",
     "sub-title": "अपनी पोस्ट का प्रचार करें",
-    "duration": "अवधि"
+    "duration": "अवधि",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "बूस्ट",
     "sub-title": "अपनी पोस्ट का प्रचार करें",
     "amount": "रकम",
     "slider-hint": "राशि समायोजित करने के लिए स्लाइडर को खींचें।",
-    "hint": "आपको प्राप्त होने वाले वोट का वास्तविक मूल्य भिन्न हो सकता है"
+    "hint": "आपको प्राप्त होने वाले वोट का वास्तविक मूल्य भिन्न हो सकता है",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "शेष रकम",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "यहां अपने नोट्स दर्ज करें",
     "memo-help": "यह ज्ञापन सार्वजनिक है",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* उपलब्ध हाइव शक्ति",
     "override-warning-1": "नई राशि पिछले एक को ओवरराइड करती है।",
     "override-warning-2": "खाता ({{account}}) पहले ही {{previousAmount}} के साथ प्रत्यायोजित किया जा चुका है।",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "अनुयायी ({{n}})",
     "following": "निम्नलिखित ({{n}})",
-    "search-placeholder": "खोज"
+    "search-placeholder": "खोज",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "फॉलो करें",

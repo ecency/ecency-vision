@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Targ'ib qilish",
     "sub-title": "Postingizni targ'ib qiling",
-    "duration": "Davomiyligi"
+    "duration": "Davomiyligi",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Kuchaytirish",
     "sub-title": "Postingizni mustahkamlang",
     "amount": "Miqdor",
     "slider-hint": "Miqdorni belgilash uchun slayderni torting.",
-    "hint": "Siz olgan ovozlarning haqiqiy qiymati farq qilishi mumkin"
+    "hint": "Siz olgan ovozlarning haqiqiy qiymati farq qilishi mumkin",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Balans",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "qaydlaringizni shu yerga kiriting",
     "memo-help": "Ushbu eslatma hammaga ko'rinarli",
     "memo-error": "Hech qachon shaxsiy kalitlarni xabarlar oynasiga qo'ymang, u hamma uchun ochiq.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* mavjud hive kuch",
     "override-warning-1": "Yangi miqdor avvalgisini bekor qiladi.",
     "override-warning-2": "Hisob ({{account}}) allaqachon {{previousAmount}} bilan delegatsiyalangan.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "Kuzatuvchilar ({{n}})",
     "following": "Obuna bo'lgan ({{n}})",
-    "search-placeholder": "Izlash"
+    "search-placeholder": "Izlash",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Kuzatish",

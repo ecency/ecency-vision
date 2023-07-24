@@ -1,29 +1,77 @@
-version: '3.7'
+version: "3.7"
 
 services:
-  app:
+  redis:
+    image: redis:alpine
+    environment:
+      - REDIS_HOST_PASSWORD
+    restart: always
+    ports:
+      - "6379:6379"
+    hostname: redis
+    command:
+      - /bin/sh
+      - -c
+      - redis-server --save 20 1 --loglevel warning --requirepass "$${REDIS_HOST_PASSWORD:?REDIS_HOST_PASSWORD variable is not set}"
+    volumes:
+      - redis:/data
+
+  web1:
     image: ecency/vision:development
     environment:
       - USE_PRIVATE
-      - REDIS_URL
+      - REDIS_HOST_PASSWORD
+    restart: always
     ports:
-      - "3000:3000"
-    deploy:
-      replicas: 4
-      resources:
-        limits:
-          cpus: "0.9"
-          memory: 2048M
-      update_config:
-        parallelism: 4
-        order: start-first
-        failure_action: rollback
-        delay: 10s
-      rollback_config:
-        parallelism: 0
-        order: stop-first
-      restart_policy:
-        condition: any
-        delay: 5s
-        max_attempts: 5
-        window: 30s
+      - "3001:3000"
+    hostname: web1
+    depends_on:
+      - redis
+
+  web2:
+    image: ecency/vision:development
+    environment:
+      - USE_PRIVATE
+      - REDIS_HOST_PASSWORD
+    restart: always
+    ports:
+      - "3002:3000"
+    hostname: web2
+    depends_on:
+      - redis
+
+  web3:
+    image: ecency/vision:development
+    environment:
+      - USE_PRIVATE
+      - REDIS_HOST_PASSWORD
+    restart: always
+    ports:
+      - "3003:3000"
+    hostname: web3
+    depends_on:
+      - redis
+
+  web4:
+    image: ecency/vision:development
+    environment:
+      - USE_PRIVATE
+      - REDIS_HOST_PASSWORD
+    restart: always
+    ports:
+      - "3004:3000"
+    hostname: web4
+    depends_on:
+      - redis
+
+  nginx:
+    build: ./nginx
+    ports:
+    - '3000:80'
+    depends_on:
+      - web1
+      - web2
+
+volumes:
+  redis:
+    driver: local

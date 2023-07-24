@@ -22,7 +22,7 @@ export class Redis {
           clearTimeout(timeoutId);
           resolve(result);
         })
-        .catch((err) => reject(err));
+        .catch(reject);
     });
   }
 
@@ -42,7 +42,7 @@ export class Redis {
           clearTimeout(timeoutId);
           resolve(result);
         })
-        .catch((err) => reject(err));
+        .catch(reject);
     });
   }
 }

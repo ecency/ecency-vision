@@ -12,7 +12,6 @@ import { crossPostMessage } from "../../helper/cross-post";
 import { Tsx } from "../../i18n/helper";
 import moment from "moment/moment";
 import parseDate from "../../helper/parse-date";
-import accountReputation from "../../helper/account-reputation";
 import { catchPostImage, postBodySummary, renderPostBody } from "@ecency/render-helper";
 import replaceLinkIdToDataId from "../../util/replace-link-id-to-data-id";
 import { deleteForeverSvg, pencilOutlineSvg } from "../../img/svg";
@@ -77,7 +76,6 @@ const EntryAmpComponent = (props: Props) => {
   const [isHidden, setIsHidden] = useState(false);
   const [isLowReputation, setIsLowReputation] = useState(false);
   const [mightContainMutedComments, setMightContainMutedComments] = useState(false);
-  const [reputation, setReputation] = useState(0);
   const [image, setImage] = useState("");
   const [app, setApp] = useState("");
   const [appShort, setAppShort] = useState("");
@@ -145,7 +143,6 @@ const EntryAmpComponent = (props: Props) => {
         !!entry.stats?.gray && entry.net_rshares >= 0 && entry.author_reputation < 0
       );
       setMightContainMutedComments(!!props.activeUser && entryIsMuted && !isComment && !isOwnEntry);
-      setReputation(accountReputation(entry.author_reputation));
       setImage(catchPostImage(entry, 600, 500, props.global.canUseWebp ? "webp" : "match"));
       const _app = appName(entry.json_metadata.app);
       setApp(_app);
@@ -293,7 +290,7 @@ const EntryAmpComponent = (props: Props) => {
         title={`${notificationsCount}${truncate(entry.title, 67)}`}
         description={`${truncate(postBodySummary(entry.body, 210), 140)} by @${entry.author}`}
         url={entry.url}
-        canonical={entryCanonical(entry) ?? ""}
+        canonical={entryCanonical(entry, true) ?? ""}
         image={image}
         published={published.toISOString()}
         modified={modified.toISOString()}
@@ -423,7 +420,6 @@ const EntryAmpComponent = (props: Props) => {
                     // Cross post body
                     if (originalEntry) {
                       const published = moment(parseDate(originalEntry.created));
-                      const reputation = accountReputation(originalEntry.author_reputation);
                       const renderedBody = {
                         __html: renderPostBody(originalEntry.body, false, props.global.canUseWebp)
                       };
@@ -462,12 +458,6 @@ const EntryAmpComponent = (props: Props) => {
                                               content={`https://ecency.com/@${originalEntry.author}`}
                                             />
                                           </span>
-                                        </span>
-                                        <span
-                                          className="author-reputation"
-                                          title={_t("entry.author-reputation")}
-                                        >
-                                          {reputation}
                                         </span>
                                       </div>
                                     )
@@ -647,12 +637,6 @@ const EntryAmpComponent = (props: Props) => {
                                           />
                                         </span>
                                       </span>
-                                      <span
-                                        className="author-reputation"
-                                        title={_t("entry.author-reputation")}
-                                      >
-                                        {reputation}
-                                      </span>
                                     </div>
                                   )
                                 })}
@@ -771,12 +755,6 @@ const EntryAmpComponent = (props: Props) => {
                         children: (
                           <div className="author notranslate">
                             <span className="author-name">{entry.author}</span>
-                            <span
-                              className="author-reputation"
-                              title={_t("entry.author-reputation")}
-                            >
-                              {reputation}
-                            </span>
                           </div>
                         )
                       })}

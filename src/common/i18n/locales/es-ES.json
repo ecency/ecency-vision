@@ -1158,14 +1158,16 @@
   "promote": {
     "title": "Promocionar",
     "sub-title": "Promociona tu post",
-    "duration": "Duración"
+    "duration": "Duración",
+    "learn-more": "Más información sobre la promoción"
   },
   "boost": {
     "title": "Promocionar",
     "sub-title": "Promociona tu publicación",
     "amount": "Cantidad",
     "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
-    "hint": "El valor real del voto que recibes puede variar"
+    "hint": "El valor real del voto que recibes puede variar",
+    "learn-more": "Más información sobre cómo impulsar"
   },
   "redeem-common": {
     "balance": "Balance",
@@ -1218,6 +1220,7 @@
     "memo-placeholder": "escribe tus notas aquí",
     "memo-help": "Este memo es público",
     "memo-error": "Nunca ponga las claves privadas en un campo memo, eso es visible públicamente para todos.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* potencia de Hive disponible",
     "override-warning-1": "La nueva cantidad anula la anterior.",
     "override-warning-2": "La cuenta ({{account}}) ya ha sido delegada con {{previousAmount}}.",
@@ -1341,7 +1344,17 @@
   "friends": {
     "followers": "Seguidores ({{n}})",
     "following": "Siguiendo ({{n}})",
-    "search-placeholder": "Buscar"
+    "search-placeholder": "Buscar",
+    "active": "Activo:"
+  },
+  "friends-filter": {
+    "all": "Todos",
+    "recently": "Recientemente",
+    "this-month": "Este mes",
+    "this-year": "Este año",
+    "one-year": "Un año",
+    "two-years-more": "Más de un año",
+    "filter": "Filtro"
   },
   "follow-controls": {
     "follow": "Seguir",
