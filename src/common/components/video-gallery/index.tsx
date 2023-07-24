@@ -303,6 +303,17 @@ const VideoGallery = (props: Props) => {
                         {`${(item.size / (1024 * 1024)).toFixed(2)}MB`}
                       </span>
                     </div>
+                    <div className="each-info d-flex align-items-center">
+                      <span className="mr-1"> {_t("video-gallery.status")}</span>
+                      <span>
+                        <Tooltip content="">
+                          {statusIcons(item.status)}
+                        </Tooltip>
+                      </span>
+                      <span>
+                          {toolTipContent(item.status)}
+                      </span>
+                    </div>
                   </div>
                 )}
               </div>
@@ -383,6 +394,17 @@ const VideoGallery = (props: Props) => {
                       <span>
                         {_t("video-gallery.info-size")}{" "}
                         {`${(item.size / (1024 * 1024)).toFixed(2)}MB`}
+                      </span>
+                    </div>
+                    <div className="each-info d-flex">
+                      <span className="mr-1"> {_t("video-gallery.status")}</span>
+                      <span>
+                        <Tooltip content="">
+                          {statusIcons(item.status)}
+                        </Tooltip>
+                      </span>
+                      <span>
+                          {toolTipContent(item.status)}
                       </span>
                     </div>
                   </div>

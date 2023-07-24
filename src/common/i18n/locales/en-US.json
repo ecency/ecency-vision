@@ -1462,7 +1462,7 @@
     "status-failed": "Encoding failed",
     "status-deleted": "Deleted",
     "info-created": "Created:",
-    "view-more": "More...",
+    "status": "Status:",
     "info-views": "Views:",
     "info-duration": "Duration:",
     "info-size": "File size:",
