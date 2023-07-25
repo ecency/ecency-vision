@@ -1,5 +1,6 @@
 import {
   Channel,
+  ChannelUpdate,
   DirectMessage,
   Profile,
   PublicMessage
@@ -27,6 +28,7 @@ export interface Chat {
   publicMessages: publicMessagesList[];
   profiles: Profile[];
   leftChannelsList: string[];
+  updatedChannel: ChannelUpdate[];
 }
 
 export enum ActionTypes {
@@ -36,7 +38,8 @@ export enum ActionTypes {
   CHANNELS = "@chat/CHANNELS",
   PUBLICMESSAGES = "@chat/PUBLICMESSAGES",
   PROFILES = "@chat/PROFILES",
-  LEFTCHANNELLIST = "@chat/LEFTCHANNELLIST"
+  LEFTCHANNELLIST = "@chat/LEFTCHANNELLIST",
+  UPDATEDCHANNEL = "@chat/UPDATEDCHANNEL"
 }
 
 export interface DirectContactsAction {
@@ -60,7 +63,7 @@ export interface PublicMessagesAction {
   channelId: string;
 }
 
-export interface ChannelsAction {
+export interface AddChannelsAction {
   type: ActionTypes.CHANNELS;
   data: Channel[];
 }
@@ -74,11 +77,17 @@ export interface LeftChannelsAction {
   data: string[];
 }
 
+export interface UpdateChannelAction {
+  type: ActionTypes.UPDATEDCHANNEL;
+  data: ChannelUpdate[];
+}
+
 export type Actions =
   | DirectContactsAction
   | DirectMessagesAction
   | ResetChatAction
-  | ChannelsAction
+  | AddChannelsAction
   | PublicMessagesAction
   | ProfilesAction
-  | LeftChannelsAction;
+  | LeftChannelsAction
+  | UpdateChannelAction;

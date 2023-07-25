@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { ActiveUser } from "../common/store/active-user/types";
-import { Chat, DirectContactsType } from "../common/store/chat/types";
+import { DirectContactsType } from "../common/store/chat/types";
 import {
   DirectMessage,
   Profile,
@@ -13,15 +13,17 @@ import {
 } from "./message-provider-types";
 
 import { initMessageService, MessageEvents } from "../common/helper/message-service";
-import { getProfileMetaData, NostrKeys } from "../common/helper/chat-utils";
+import { getProfileMetaData, NostrKeysType, getPrivateKey } from "../common/helper/chat-utils";
+import * as ls from "../common/util/local-storage";
 
 import { useMappedStore } from "../common/store/use-mapped-store";
 
-export const setNostrkeys = (keys: NostrKeys) => {
-  const detail: NostrKeys = {
+export const setNostrkeys = (keys: NostrKeysType) => {
+  const detail: NostrKeysType = {
     pub: keys.pub,
     priv: keys.priv
   };
+  // console.log("detail", detail)
   const ev = new CustomEvent("createMSInstance", { detail });
   window.dispatchEvent(ev);
 };
@@ -33,6 +35,7 @@ interface Props {
   addChannels: (data: Channel[]) => void;
   addProfile: (data: Profile[]) => void;
   addleftChannels: (data: string[]) => void;
+  UpdateChannels: (data: ChannelUpdate[]) => void;
 }
 
 const MessageProvider = (props: Props) => {
@@ -53,7 +56,8 @@ const MessageProvider = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    if (!window.messageService && keys) {
+    if (!window.messageService && keys?.priv) {
+      // console.log(keys, "keys")
       const messageServiceInstance = initMessageService(keys);
       setMessageService(messageServiceInstance);
     }
@@ -66,14 +70,21 @@ const MessageProvider = (props: Props) => {
   }, [activeUser]);
 
   const createMSInstance = (e: Event) => {
-    const detail = (e as CustomEvent).detail as NostrKeys;
+    const detail = (e as CustomEvent).detail as NostrKeysType;
+    // console.log(detail, "details")
     const messageServiceInstance = initMessageService(detail);
     setMessageService(messageServiceInstance);
   };
 
   const getNostrKeys = async (activeUser: ActiveUser) => {
     const profile = await getProfileMetaData(activeUser.username);
-    setKeys(profile.noStrKey);
+    const noStrPrivKey = getPrivateKey(activeUser.username);
+    const keys = {
+      pub: profile.noStrKey,
+      priv: noStrPrivKey
+    };
+    // console.log('keys', keys)
+    setKeys(keys);
   };
 
   //Listen for events in an interval.
@@ -126,6 +137,7 @@ const MessageProvider = (props: Props) => {
 
   //Direct contact handler
   const handleDirectContact = (data: DirectContact[]) => {
+    // console.log("handleDirectContact", data)
     const result = [...chat.directContacts];
     data.forEach(({ name, pubkey }) => {
       const isPresent = chat.directContacts.some(
@@ -199,7 +211,7 @@ const MessageProvider = (props: Props) => {
 
   // Channel creation handler
   const handleChannelCreation = (data: Channel[]) => {
-    console.log("handleChannelCreation", data);
+    // console.log("handleChannelCreation", data);
 
     const append = data.filter((x) => chat.channels.find((y) => y.id === x.id) === undefined);
     props.addChannels(append);
@@ -216,9 +228,8 @@ const MessageProvider = (props: Props) => {
 
   // Channel update handler
   const handleChannelUpdate = (data: ChannelUpdate[]) => {
-    console.log("handleChannelUpdate", data);
-    // const append = data.filter(x => channelUpdates.find(y => y.id === x.id) === undefined);
-    // setChannelUpdates([...channelUpdates, ...append]);
+    // console.log("handleChannelUpdate", data);
+    props.UpdateChannels(data);
   };
 
   useEffect(() => {
@@ -232,7 +243,7 @@ const MessageProvider = (props: Props) => {
 
   //Public Message handler
   const handlePublicMessage = (data: PublicMessage[]) => {
-    console.log("handlePublicMessage", data);
+    // console.log("handlePublicMessage", data);
     setPublicMessageBuffer((publicMessageBuffer) => [...publicMessageBuffer!, ...data]);
 
     for (const item of data) {

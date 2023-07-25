@@ -51,7 +51,9 @@ import {
   linkSvg,
   KebabMenu,
   chatLeaveSvg,
-  editSVG
+  editSVG,
+  keySvg,
+  syncSvg
 } from "../../img/svg";
 
 import {
@@ -64,17 +66,20 @@ import {
   GifImagesStyle
 } from "./chat-constants";
 
+import { getPublicKey } from "../../../lib/nostr-tools/keys";
 import { dateToFormatted } from "../../helper/parse-date";
 import {
   createNoStrAccount,
   formatMessageDate,
   formatMessageTime,
   getProfileMetaData,
-  NostrKeys,
+  NostrKeysType,
   setProfileMetaData,
   resetProfile,
-  getCommunities
+  getCommunities,
+  getPrivateKey
 } from "../../helper/chat-utils";
+import * as ls from "../../util/local-storage";
 import { renderPostBody } from "@ecency/render-helper";
 import { getAccessToken } from "../../helper/user-token";
 import { _t } from "../../i18n";
@@ -101,7 +106,7 @@ interface Props {
 }
 
 let zoom: Zoom | null = null;
-const roles = [ROLES.ADMIN, ROLES.MOD];
+const roles = [ROLES.ADMIN, ROLES.MOD, ROLES.GUEST];
 
 export default function ChatBox(props: Props) {
   const prevPropsRef = useRef(props);
@@ -121,7 +126,7 @@ export default function ChatBox(props: Props) {
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [show, setShow] = useState(false);
-  const [activeUserKeys, setActiveUserKeys] = useState<NostrKeys>();
+  const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
   const [receiverPubKey, setReceiverPubKey] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
   const [directMessagesList, setDirectMessagesList] = useState<DirectMessage[]>([]);
@@ -142,6 +147,8 @@ export default function ChatBox(props: Props) {
   const [role, setRole] = useState("admin");
   const [addRoleError, setAddRoleError] = useState("");
   const [moderator, setModerator] = useState<communityModerator>();
+  const [noStrPrivKey, setNoStrPrivKey] = useState("");
+  const [chatPrivKey, setChatPrivkey] = useState("");
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -170,13 +177,15 @@ export default function ChatBox(props: Props) {
   }, [clickedMessage]);
 
   useEffect(() => {
-    console.log(props.chat, "chat in store");
+    setInProgress(false);
   }, [props.chat]);
 
   useEffect(() => {
     // resetProfile(props.activeUser);
     fetchProfileData();
     setShow(!!props.activeUser?.username);
+    const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
+    setNoStrPrivKey(noStrPrivKey);
   }, []);
 
   // useEffect(() => {
@@ -201,8 +210,14 @@ export default function ChatBox(props: Props) {
     if (prevProps.global.theme !== props.global.theme) {
       setBackground();
     }
+    if (prevProps.activeUser?.username !== props.activeUser?.username) {
+      setIsCommunity(false);
+      setIsCurrentUser(false);
+      setCurrentUser("");
+      setCommunityName("");
+    }
     prevPropsRef.current = props;
-  }, [props.global.theme]);
+  }, [props.global.theme, props.activeUser]);
 
   useEffect(() => {
     scrollerClicked();
@@ -214,6 +229,7 @@ export default function ChatBox(props: Props) {
 
   useEffect(() => {
     if (currentChannel && isCommunity) {
+      window?.messageService?.fetchChannel(currentChannel.id);
       const publicMessages = fetchCommunityMessages(currentChannel.id);
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
@@ -236,6 +252,8 @@ export default function ChatBox(props: Props) {
     const msgsList = fetchDirectMessages(receiverPubKey!);
     const messages = msgsList.sort((a, b) => a.created - b.created);
     setDirectMessagesList(messages);
+    const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
+    setNoStrPrivKey(noStrPrivKey);
   }, [props.activeUser]);
 
   useEffect(() => {
@@ -279,7 +297,9 @@ export default function ChatBox(props: Props) {
       if (searchtext.length !== 0) {
         const resp = await lookupAccounts(searchtext, 7);
         setUserList(resp);
+        setInProgress(false);
       } else {
+        setInProgress(false);
         setUserList([]);
       }
     },
@@ -298,13 +318,27 @@ export default function ChatBox(props: Props) {
   };
 
   const fetchCurrentChannel = (communityName: string) => {
-    for (const item of props.chat.channels) {
-      if (item.communityName === communityName) {
+    const item = props.chat.channels.find((channel) => channel.communityName === communityName);
+    if (item) {
+      const updated = props.chat.updatedChannel
+        .filter((x) => x.channelId === item.id)
+        .sort((a, b) => b.created - a.created)[0];
+      if (updated && currentChannel) {
+        const channel = {
+          name: updated.name,
+          about: updated.about,
+          picture: updated.picture,
+          communityName: updated.communityName,
+          communityModerators: updated.communityModerators,
+          id: updated.channelId,
+          creator: currentChannel.creator,
+          created: currentChannel.created
+        };
+        setCurrentChannel(channel);
+      } else {
         setCurrentChannel(item);
-        return item;
       }
     }
-    return {};
   };
 
   const formatFollowers = (count: number | undefined) => {
@@ -362,14 +396,19 @@ export default function ChatBox(props: Props) {
     const { posting_json_metadata } = response;
     const profile = JSON.parse(posting_json_metadata!).profile;
     const { noStrKey } = profile || {};
-    setReceiverPubKey(noStrKey?.pub);
-    setIsCurrentUserJoined(!!noStrKey?.pub);
+    setReceiverPubKey(noStrKey);
+    setIsCurrentUserJoined(!!noStrKey);
     setInProgress(false);
   };
 
   const fetchProfileData = async () => {
     const profileData = await getProfileMetaData(props.activeUser?.username!);
-    setActiveUserKeys(profileData?.noStrKey);
+    const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
+    const activeUserKeys = {
+      pub: profileData?.noStrKey,
+      priv: noStrPrivKey
+    };
+    setActiveUserKeys(activeUserKeys);
     const hasNoStrKey = profileData && profileData.hasOwnProperty(NOSTRKEY);
     setHasUserJoinedChat(hasNoStrKey);
     setShow(!!props.activeUser?.username);
@@ -398,7 +437,6 @@ export default function ChatBox(props: Props) {
       !props.chat.directContacts.some((contact) => contact.name === currentUser) &&
       isCurrentUser
     ) {
-      console.log("Publish contacts run from chatbox component.");
       window.messageService?.publishContacts(currentUser, receiverPubKey);
     }
   };
@@ -432,12 +470,27 @@ export default function ChatBox(props: Props) {
     setShowSearchUser(!showSearchUser);
   };
 
+  const handleRefreshSvgClick = () => {
+    if (getPrivateKey(props.activeUser?.username!)) {
+      setInProgress(true);
+      const keys = {
+        pub: activeUserKeys?.pub!,
+        priv: getPrivateKey(props.activeUser?.username!)
+      };
+      setNostrkeys(keys);
+    } else {
+      setNoStrPrivKey("");
+    }
+  };
+
   const handleJoinChat = async () => {
     const { resetChat } = props;
     setShowSpinner(true);
     resetChat();
     const keys = createNoStrAccount();
-    await setProfileMetaData(props.activeUser, keys);
+    ls.set(`${props.activeUser?.username}_noStrPrivKey`, keys.priv);
+    setNoStrPrivKey(keys.priv);
+    await setProfileMetaData(props.activeUser, keys.pub);
     setHasUserJoinedChat(true);
     setNostrkeys(keys);
     window.messageService?.updateProfile({
@@ -603,15 +656,59 @@ export default function ChatBox(props: Props) {
     }
   };
 
-  const inviteClicked = () => {
+  const inviteClicked = (content: string) => {
     const textField = document.createElement("textarea");
-    const url = `http://localhost:3000/created/${currentCommunity?.name}?communityid=${currentChannel?.id}`;
-    textField.innerText = url;
+    textField.innerText = content;
     document.body.appendChild(textField);
     textField.select();
     document.execCommand("copy");
     textField.remove();
-    success("Link copied into clipboard");
+    success(`${isCommunity ? "Link" : "Key"} copied into clipboard`);
+  };
+
+  const handleImportChatSubmit = () => {
+    try {
+      const pubKey = getPublicKey(chatPrivKey);
+      if (pubKey === activeUserKeys?.pub) {
+        setNoStrPrivKey(chatPrivKey);
+        ls.set(`${props.activeUser?.username}_noStrPrivKey`, chatPrivKey);
+        const keys = {
+          pub: activeUserKeys?.pub!,
+          priv: chatPrivKey
+        };
+        setNostrkeys(keys);
+        setStep(4);
+        setChatPrivkey("");
+      } else {
+        setAddRoleError("Invalid Private key");
+      }
+    } catch (error) {
+      setAddRoleError("Invalid Private key");
+    }
+  };
+
+  const finish = () => {
+    setStep(0);
+    setKeyDialog(false);
+  };
+
+  const updateRole = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+    moderator: communityModerator
+  ) => {
+    const selectedRole = event.target.value;
+    const moderatorIndex = currentChannel?.communityModerators?.findIndex(
+      (mod) => mod.name === moderator.name
+    );
+    if (moderatorIndex !== -1 && currentChannel) {
+      const newUpdatedChannel: Channel = { ...currentChannel };
+      const newUpdatedModerator = { ...newUpdatedChannel?.communityModerators![moderatorIndex!] };
+      newUpdatedModerator.role = selectedRole;
+      newUpdatedChannel!.communityModerators![moderatorIndex!] = newUpdatedModerator;
+      setCurrentChannel(newUpdatedChannel);
+      window.messageService?.updateChannel(currentChannel, newUpdatedChannel);
+      success("Roles updated succesfully");
+    }
   };
 
   const LeaveModal = () => {
@@ -707,45 +804,126 @@ export default function ChatBox(props: Props) {
               <Button
                 type="button"
                 onClick={addNewRole}
-                disabled={inProgress || addRoleError.length !== 0}
+                disabled={inProgress || addRoleError.length !== 0 || user.length === 0}
               >
                 Add
               </Button>
             </div>
           </div>
-          <table className="table table-striped table-bordered table-roles">
-            <thead>
-              <tr>
-                <th style={{ width: "200px" }}>{_t("community.roles-account")}</th>
-                <th style={{ width: "200px" }}>{_t("community.roles-role")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentChannel?.communityModerators!.map((t, i) => {
-                // const [username, role, title] = t;
-                // const canEdit = roles && roles.includes(role);
-                return (
-                  <tr key={i}>
-                    <td>
-                      <span className="user">
-                        <UserAvatar username={t.name} size="medium" />{" "}
-                        <span className="username">@{t.name}</span>
-                      </span>
-                    </td>
-                    <td>
-                      <Form.Control as="select" value={role} onChange={roleChanged}>
-                        {roles.map((r, i) => (
-                          <option key={i} value={r}>
-                            {r}
-                          </option>
-                        ))}
-                      </Form.Control>
-                    </td>
+          {currentChannel?.communityModerators?.length !== 0 ? (
+            <>
+              <table className="table table-striped table-bordered table-roles">
+                <thead>
+                  <tr>
+                    <th style={{ width: "200px" }}>{_t("community.roles-account")}</th>
+                    <th style={{ width: "200px" }}>{_t("community.roles-role")}</th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                </thead>
+                <tbody>
+                  {currentChannel?.communityModerators &&
+                    currentChannel?.communityModerators!.map((moderator, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>
+                            <span className="user">
+                              <UserAvatar username={moderator.name} size="medium" />{" "}
+                              <span className="username">@{moderator.name}</span>
+                            </span>
+                          </td>
+                          <td>
+                            {moderator.name === props.activeUser?.username ? (
+                              <p style={{ margin: "5px 0 0 12px" }}>{moderator.role}</p>
+                            ) : (
+                              <Form.Control
+                                as="select"
+                                value={moderator.role}
+                                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                                  updateRole(e, moderator)
+                                }
+                              >
+                                {roles.map((r, i) => (
+                                  <option key={i} value={r}>
+                                    {r}
+                                  </option>
+                                ))}
+                              </Form.Control>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
+            </>
+          ) : (
+            <div className="text-center">
+              <p>No admin or moderator for this community chat.</p>
+            </div>
+          )}
+        </div>
+      </>
+    );
+  };
+
+  const ImportChatModal = () => {
+    return (
+      <>
+        <div className="import-chat-dialog-header border-bottom">
+          <div className="step-no">1</div>
+          <div className="import-chat-dialog-titles">
+            <div className="import-chat-main-title">Enter Chat private key</div>
+            <div className="import-chat-sub-title">Enter chat private key to import all chats</div>
+          </div>
+        </div>
+        <div className="private-key">
+          <Form
+            onSubmit={(e: React.FormEvent) => {
+              e.preventDefault();
+            }}
+          >
+            <InputGroup>
+              <InputGroup.Prepend>
+                <InputGroup.Text>{keySvg}</InputGroup.Text>
+              </InputGroup.Prepend>
+              <Form.Control
+                value={chatPrivKey}
+                type="password"
+                autoFocus={true}
+                autoComplete="off"
+                placeholder="Chat private key"
+                onChange={(e) => setChatPrivkey(e.target.value)}
+              />
+              <InputGroup.Append>
+                <Button onClick={handleImportChatSubmit}>{_t("key-or-hot.sign")}</Button>
+              </InputGroup.Append>
+            </InputGroup>
+            {addRoleError && <Form.Text className="text-danger">{addRoleError}</Form.Text>}
+          </Form>
+        </div>
+      </>
+    );
+  };
+
+  const chatSuccessModal = () => {
+    return (
+      <>
+        <div className="import-chat-dialog-header border-bottom">
+          <div className="step-no">2</div>
+          <div className="import-chat-dialog-titles">
+            <div className="import-chat-main-title">{_t("manage-authorities.success-title")}</div>
+            <div className="import-chat-sub-title">
+              {_t("manage-authorities.success-sub-title")}
+            </div>
+          </div>
+        </div>
+        <div className="success-dialog-body">
+          <div className="success-dialog-content">
+            <span>Chats imported successfully </span>
+          </div>
+          <div className="d-flex justify-content-center">
+            <span className="hr-6px-btn-spacer" />
+            <Button onClick={finish}>{_t("g.finish")}</Button>
+          </div>
         </div>
       </>
     );
@@ -771,8 +949,8 @@ export default function ChatBox(props: Props) {
             return;
           }
           const moderator = {
-            name: profileData.name,
-            pubkey: profileData.noStrKey.pub,
+            name: user,
+            pubkey: profileData.noStrKey,
             role: role
           };
           setModerator(moderator);
@@ -793,14 +971,11 @@ export default function ChatBox(props: Props) {
   const userChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { value: user } = e.target;
     setUser(user);
-    console.log();
     setInProgress(true);
   };
 
   const addNewRole = () => {
     const updatedRoles = [...(currentChannel?.communityModerators || []), moderator!];
-
-    console.log("updatedRoles", currentChannel);
     const updatedMetaData = {
       name: currentChannel?.name!,
       about: currentChannel?.about!,
@@ -809,10 +984,14 @@ export default function ChatBox(props: Props) {
       communityModerators: updatedRoles
     };
 
-    console.log(updatedMetaData, "updatedMetaData");
-    window.messageService?.updateChannel(currentChannel!, updatedMetaData).then((resp) => {
-      console.log(resp, "resp");
-    });
+    window.messageService?.updateChannel(currentChannel!, updatedMetaData);
+    currentChannel?.communityModerators?.push(moderator!);
+    const updatedChannel: Channel = {
+      ...currentChannel!,
+      communityModerators: updatedRoles
+    };
+    setUser("");
+    setCurrentChannel(updatedChannel);
   };
 
   const roleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
@@ -833,6 +1012,7 @@ export default function ChatBox(props: Props) {
   const toggleKeyDialog = () => {
     setKeyDialog(!keyDialog);
     setUser("");
+    setAddRoleError("");
   };
 
   const handleBackArrowSvg = () => {
@@ -845,10 +1025,19 @@ export default function ChatBox(props: Props) {
     setSearchText("");
   };
 
-  const menuItems: MenuItem[] = [
+  const handleImportChat = () => {
+    setKeyDialog(true);
+
+    setStep(3);
+  };
+
+  const communityMenuItems: MenuItem[] = [
     {
       label: _t("chat.invite"),
-      onClick: inviteClicked,
+      onClick: () =>
+        inviteClicked(
+          `http://localhost:3000/created/${currentCommunity?.name}?communityid=${currentChannel?.id}`
+        ),
       icon: linkSvg
     },
     {
@@ -865,6 +1054,21 @@ export default function ChatBox(props: Props) {
           }
         ]
       : [])
+  ];
+
+  const communityMenuConfig = {
+    history: props.history,
+    label: "",
+    icon: KebabMenu,
+    items: communityMenuItems
+  };
+
+  const menuItems: MenuItem[] = [
+    {
+      label: "Copy private key",
+      onClick: () => inviteClicked(noStrPrivKey),
+      icon: linkSvg
+    }
   ];
 
   const menuConfig = {
@@ -912,10 +1116,21 @@ export default function ChatBox(props: Props) {
               </p>
             </div>
             <div className="actionable-imgs">
-              {!currentUser && hasUserJoinedChat && (
-                <div className="message-image" onClick={handleMessageSvgClick}>
-                  <Tooltip content={_t("chat.new-message")}>
-                    <p className="message-svg">{addMessageSVG}</p>
+              {!currentUser && hasUserJoinedChat && noStrPrivKey && !isCommunity && (
+                <>
+                  <div className="message-image" onClick={handleMessageSvgClick}>
+                    <Tooltip content={_t("chat.new-message")}>
+                      <p className="message-svg">{addMessageSVG}</p>
+                    </Tooltip>
+                  </div>
+                </>
+              )}
+              {!currentUser && hasUserJoinedChat && noStrPrivKey && (
+                <div className="message-image" onClick={handleRefreshSvgClick}>
+                  <Tooltip content={_t("chat.refresh")}>
+                    <p className="message-svg" style={{ paddingTop: "10px" }}>
+                      {syncSvg}
+                    </p>
                   </Tooltip>
                 </div>
               )}
@@ -929,6 +1144,17 @@ export default function ChatBox(props: Props) {
               {isCommunity && (
                 <div className="community-menu">
                   <DropDown
+                    {...communityMenuConfig}
+                    float="right"
+                    alignBottom={false}
+                    noMarginTop={true}
+                    style={DropDownStyle}
+                  />
+                </div>
+              )}{" "}
+              {!isCommunity && !isCurrentUser && noStrPrivKey && (
+                <div className="simple-menu">
+                  <DropDown
                     {...menuConfig}
                     float="right"
                     alignBottom={false}
@@ -939,6 +1165,8 @@ export default function ChatBox(props: Props) {
               )}
             </div>
           </div>
+
+          {inProgress && !isCommunity && !isCurrentUser && <LinearProgress />}
 
           <div
             className={`chat-body ${
@@ -1179,6 +1407,7 @@ export default function ChatBox(props: Props) {
                           autoFocus={true}
                           onChange={(e) => {
                             setSearchText(e.target.value);
+                            setInProgress(true);
                           }}
                         />
                       </Form.Group>
@@ -1210,8 +1439,9 @@ export default function ChatBox(props: Props) {
                   </>
                 ) : (
                   <>
-                    {props.chat.directContacts.length !== 0 ||
-                    (props.chat.channels.length !== 0 && communities.length !== 0) ? (
+                    {(props.chat.directContacts.length !== 0 ||
+                      (props.chat.channels.length !== 0 && communities.length !== 0)) &&
+                    noStrPrivKey ? (
                       <React.Fragment>
                         {props.chat.channels.length !== 0 && communities.length !== 0 && (
                           <>
@@ -1267,15 +1497,24 @@ export default function ChatBox(props: Props) {
                           );
                         })}
                       </React.Fragment>
+                    ) : !noStrPrivKey || noStrPrivKey.length === 0 || noStrPrivKey === null ? (
+                      <>
+                        {/* <p className="no-chat">{_t("chat.no-chat")}</p> */}
+                        <div className="start-chat-btn" style={{ marginTop: "25%" }}>
+                          <Button variant="primary" onClick={handleImportChat}>
+                            Import Chat
+                          </Button>
+                        </div>
+                      </>
                     ) : (
-                      <React.Fragment>
+                      <>
                         <p className="no-chat">{_t("chat.no-chat")}</p>
                         <div className="start-chat-btn">
                           <Button variant="primary" onClick={() => setShowSearchUser(true)}>
                             {_t("chat.start-chat")}
                           </Button>
                         </div>
-                      </React.Fragment>
+                      </>
                     )}
                   </>
                 )}
@@ -1417,6 +1656,8 @@ export default function ChatBox(props: Props) {
           <Modal.Body className="chat-modals-body">
             {step === 1 && LeaveModal()}
             {step === 2 && EditRolesModal()}
+            {step === 3 && ImportChatModal()}
+            {step === 4 && chatSuccessModal()}
           </Modal.Body>
         </Modal>
       )}

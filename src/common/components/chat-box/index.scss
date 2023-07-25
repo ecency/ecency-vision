@@ -75,7 +75,7 @@
       font-size: 21px;
       font-family: $font-family-sans-serif;
 
-      max-width: 200px;
+      max-width: 190px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -121,7 +121,7 @@
           display: flex;
           justify-content: center;
           text-align: center;
-          padding-top: 7px;
+          padding-top: 6px;
           width: 40px;
           height: 40px;
           border-radius: 50%;
@@ -131,8 +131,10 @@
           background: rgba(29, 155, 240, 0.1);
         }
       }
-      .community-menu {
-        margin-bottom: 12px;
+      .community-menu,
+      .simple-menu {
+        border: none;
+        margin-bottom: 16px;
         svg {
           @include themify(day) {
             color: $charcoal-grey;
@@ -455,7 +457,7 @@
               }
             }
             color: #050505;
-            max-width: 280px;
+            max-width: 290px;
             word-wrap: break-word;
             padding: 10px;
             border-radius: 0px 10px 10px;
@@ -475,7 +477,7 @@
           margin-bottom: 2px;
         }
         .sender-message {
-          max-width: 280px;
+          max-width: 290px;
           margin-left: auto;
 
           display: flex;
@@ -484,7 +486,7 @@
 
           .sender-message-content {
             border-radius: 10px 10px 0px;
-            max-width: 280px;
+            max-width: 290px;
             word-wrap: break-word;
             margin-bottom: 0;
             color: $charcoal-grey;
@@ -602,6 +604,27 @@
       .confirm-btn {
         margin-right: 20px;
       }
+    }
+
+    .import-chat-dialog-header {
+      display: flex;
+      .import-chat-dialog-titles {
+        margin-top: 9px;
+      }
+      .import-chat-main-title {
+        font-weight: bold;
+      }
+    }
+    .success-dialog-body {
+      margin: 2rem 0 1.4rem 0;
+      .success-dialog-content {
+        text-align: center;
+        margin-bottom: 1.4rem;
+      }
+    }
+
+    .private-key {
+      margin: 2rem 0;
     }
   }
   .add-dialog-header {

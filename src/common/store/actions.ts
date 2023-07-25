@@ -48,7 +48,8 @@ import {
   addChannels,
   addPublicMessage,
   addProfile,
-  addleftChannels
+  addleftChannels,
+  UpdateChannels
 } from "./chat";
 
 // @note Do not use it directly
@@ -105,7 +106,8 @@ export const ACTIONS = {
   addChannels,
   addPublicMessage,
   addProfile,
-  addleftChannels
+  addleftChannels,
+  UpdateChannels
 };
 
 export const getActions = () => ({

@@ -4,8 +4,9 @@ import { Channel } from "../../providers/message-provider-types";
 import { getAccountFull } from "../api/hive";
 import { updateProfile } from "../api/operations";
 import { ActiveUser } from "../store/active-user/types";
+import * as ls from "../util/local-storage";
 
-export interface NostrKeys {
+export interface NostrKeysType {
   pub: string;
   priv: string;
 }
@@ -24,18 +25,19 @@ export const resetProfile = async (activeUser: ActiveUser | null) => {
   const profile = await getProfileMetaData(activeUser?.username!);
   delete profile.noStrKey;
   delete profile.channel;
+  ls.remove(`${activeUser?.username}_noStrPrivKey`);
   const response = await getAccountFull(activeUser?.username!);
   const updatedProfile = await updateProfile(response, { ...profile });
-  console.log(updatedProfile);
+  console.log(updatedProfile, profile);
 };
 
-export const setProfileMetaData = async (activeUser: ActiveUser | null, keys: NostrKeys) => {
+export const setProfileMetaData = async (activeUser: ActiveUser | null, noStrPubKey: string) => {
   const response = await getAccountFull(activeUser?.username!);
 
   const { posting_json_metadata } = response;
   const profile = JSON.parse(posting_json_metadata!).profile;
   const newProfile = {
-    noStrKey: keys
+    noStrKey: noStrPubKey
   };
 
   const updatedProfile = await updateProfile(response, { ...profile, ...newProfile });
@@ -72,4 +74,8 @@ export const isSha256 = (s: string) => /^[a-f0-9]{64}$/gi.test(s);
 
 export const getCommunities = (channels: Channel[], leftChannels: string[]) => {
   return channels.filter((item) => !leftChannels.includes(item.id));
+};
+
+export const getPrivateKey = (username: string) => {
+  return ls.get(`${username}_noStrPrivKey`);
 };

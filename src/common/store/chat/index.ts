@@ -2,7 +2,8 @@ import {
   Channel,
   DirectMessage,
   PublicMessage,
-  Profile
+  Profile,
+  ChannelUpdate
 } from "./../../../providers/message-provider-types";
 import { Dispatch } from "redux";
 
@@ -15,10 +16,11 @@ import {
   DirectMessagesAction,
   ResetChatAction,
   directMessagesList,
-  ChannelsAction,
+  AddChannelsAction,
   PublicMessagesAction,
   ProfilesAction,
-  LeftChannelsAction
+  LeftChannelsAction,
+  UpdateChannelAction
 } from "./types";
 
 export const initialState: Chat = {
@@ -27,7 +29,8 @@ export const initialState: Chat = {
   channels: [],
   publicMessages: [],
   profiles: [],
-  leftChannelsList: []
+  leftChannelsList: [],
+  updatedChannel: []
 };
 
 export default (state: Chat = initialState, action: Actions): Chat => {
@@ -107,6 +110,14 @@ export default (state: Chat = initialState, action: Actions): Chat => {
       };
     }
 
+    case ActionTypes.UPDATEDCHANNEL: {
+      const { data } = action;
+      return {
+        ...state,
+        updatedChannel: [...state.updatedChannel, ...data]
+      };
+    }
+
     default:
       return state;
   }
@@ -140,6 +151,10 @@ export const addProfile = (data: Profile[]) => (dispatch: Dispatch) => {
 
 export const addleftChannels = (data: string[]) => (dispatch: Dispatch) => {
   dispatch(addleftChannelsAct(data));
+};
+
+export const UpdateChannels = (data: ChannelUpdate[]) => (dispatch: Dispatch) => {
+  dispatch(UpdateChannelsAct(data));
 };
 
 /* Action Creators */
@@ -176,7 +191,7 @@ export const resetChatAct = (): ResetChatAction => {
   };
 };
 
-export const addChannelsAct = (data: Channel[]): ChannelsAction => {
+export const addChannelsAct = (data: Channel[]): AddChannelsAction => {
   return {
     type: ActionTypes.CHANNELS,
     data
@@ -193,6 +208,13 @@ export const addProfilesAct = (data: Profile[]): ProfilesAction => {
 export const addleftChannelsAct = (data: string[]): LeftChannelsAction => {
   return {
     type: ActionTypes.LEFTCHANNELLIST,
+    data
+  };
+};
+
+export const UpdateChannelsAct = (data: ChannelUpdate[]): UpdateChannelAction => {
+  return {
+    type: ActionTypes.UPDATEDCHANNEL,
     data
   };
 };

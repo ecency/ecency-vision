@@ -158,6 +158,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public fetchChannels(channels: string[]) {
+    // console.log("fetch channels run");
     const filters: Filter[] = [
       {
         kinds: [Kind.ChannelCreation],
@@ -179,8 +180,24 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     });
   }
 
+  public fetchChannel(id: string) {
+    // console.log("fetchChannel run", id);
+    const filters: Filter[] = [
+      {
+        kinds: [Kind.ChannelCreation],
+        ids: [id]
+      },
+      {
+        kinds: [Kind.ChannelMetadata, Kind.EventDeletion],
+        "#e": [id]
+      }
+    ];
+
+    this.fetch(filters);
+  }
+
   public async updateLeftChannelList(channelIds: string[]) {
-    console.log(channelIds, "channelIds");
+    // console.log(channelIds, "channelIds");
     const tags = [["d", "left-channel-list"]];
     return this.publish(NewKinds.Arbitrary, tags, JSON.stringify(channelIds));
   }
@@ -204,7 +221,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public publishContacts(username: string, pubkey: string) {
-    console.log("Publish contact run", username, pubkey);
     const newUser = [pubkey, username];
     newUser.forEach((element) => {
       let nameExist = false;
@@ -220,7 +236,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       // If the name doesn't exist, add the element to the direct contacts array
       if (!nameExist) {
         this.directContacts.push(newUser);
-        console.log("Event is fired");
+        // console.log("Event is fired");
         this.publish(Kind.Contacts, this.directContacts, "");
         return;
       }
@@ -238,7 +254,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public loadChannel(id: string) {
-    console.log(id, "id");
+    // console.log(id, "id");
     const filters: Filter[] = [
       {
         kinds: [Kind.ChannelCreation],
@@ -259,7 +275,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public loadProfiles(pubs: string[]) {
-    console.log("load profiles run");
     pubs.forEach((p) => {
       this.fetch(
         [
@@ -328,7 +343,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     const sub = this.pool.sub(this.readRelays, filters);
 
     sub.on("event", (event: Event) => {
-      console.log(event, "channel event");
       event.kind === Kind.Metadata && isDirectContact
         ? this.addDirectContact(event)
         : this.pushToEventBuffer(event);
@@ -490,6 +504,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   pushToEventBuffer(event: Event) {
+    // console.log("event reaches in event buffer");
     const cacheKey = `${event.id}_emitted`;
     if (this.nameCache[cacheKey] === undefined) {
       if (this.eventQueueFlag) {
@@ -511,6 +526,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   async processEventQueue() {
+    // console.log("Event reaches in process queue");
     this.eventQueueFlag = false;
     const directContacts = this.eventQueue
       .filter((x) => x.kind === Kind.Contacts)
@@ -705,6 +721,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
 export default MessageService;
 
 export const initMessageService = (keys: Keys): MessageService | undefined => {
+  // console.log("keys in raven instance", keys)
   if (window.messageService) {
     window.messageService.close();
     window.messageService = undefined;
@@ -712,7 +729,7 @@ export const initMessageService = (keys: Keys): MessageService | undefined => {
 
   if (keys) {
     window.messageService = new MessageService(keys.priv, keys.pub);
-    console.log("window messageService", window.messageService);
+    // console.log("window messageService", window.messageService);
   }
 
   return window.messageService;

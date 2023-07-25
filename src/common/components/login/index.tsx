@@ -36,7 +36,7 @@ import { hsTokenRenew } from "../../api/auth-api";
 import { formatError, grantPostingPermission, revokePostingPermission } from "../../api/operations";
 
 import { getRefreshToken } from "../../helper/user-token";
-import { getProfileMetaData } from "../../helper/chat-utils";
+import { getPrivateKey, getProfileMetaData } from "../../helper/chat-utils";
 
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -773,8 +773,12 @@ class LoginDialog extends Component<Props> {
       resetChat();
 
       //create new message service instance for newly logged in user
-      if (profile && profile.noStrKey) {
-        setNostrkeys(profile.noStrKey);
+      if (profile && profile.noStrKey && getPrivateKey(account.name)) {
+        const keys = {
+          pub: profile.noStrKey,
+          priv: getPrivateKey(account.name)
+        };
+        setNostrkeys(keys);
       }
       // activate user
       setActiveUser(user.username);

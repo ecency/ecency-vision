@@ -12,9 +12,11 @@ import { Channel, communityModerator } from "../../../providers/message-provider
 import {
   createNoStrAccount,
   getProfileMetaData,
+  NostrKeysType,
   setChannelMetaData,
   setProfileMetaData
 } from "../../helper/chat-utils";
+import * as ls from "../../util/local-storage";
 import { setNostrkeys } from "../../../providers/message-provider";
 import { NOSTRKEY } from "../chat-box/chat-constants";
 
@@ -26,8 +28,6 @@ interface Props {
   resetChat: () => void;
 }
 
-type CommunityRoles = [string, string, string];
-
 export default function JoinCommunityChatBtn(props: Props) {
   const { chat } = useMappedStore();
   const [inProgress, setInProgress] = useState(false);
@@ -36,6 +36,7 @@ export default function JoinCommunityChatBtn(props: Props) {
   const [currentChannel, setCurrentChannel] = useState<Channel>();
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [communityRoles, setCommunityRoles] = useState<communityModerator[]>([]);
+  const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
 
   useEffect(() => {
     getCommunityRoles();
@@ -50,11 +51,12 @@ export default function JoinCommunityChatBtn(props: Props) {
     fetchCommunityProfile();
   }, [props.activeUser]);
 
-  // useEffect(() => {
-  //   if (window.messageService) {
-  //     setHasUserJoinedChat(true);
-  //   }
-  // }, [window?.messageService]);
+  useEffect(() => {
+    if (window.messageService && activeUserKeys) {
+      getCommunityRoles();
+      setHasUserJoinedChat(true);
+    }
+  }, [window?.messageService, activeUserKeys]);
 
   useEffect(() => {
     checkIsChatJoined();
@@ -97,15 +99,24 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   const getCommunityRoles = async () => {
     let communityRoles: communityModerator[] = [];
-    const { community } = props;
+    const { community, activeUser } = props;
+    const ownerData = await getProfileMetaData(community.name);
+    const ownerRole = {
+      name: activeUser!.username,
+      pubkey: ownerData.noStrKey || activeUserKeys?.pub,
+      role: "owner"
+    };
+
+    communityRoles.push(ownerRole);
+
     for (let i = 0; i < community.team.length; i++) {
       const item = community.team[i];
-      if (item[1] === ROLES.ADMIN || item[1] === ROLES.MOD || item[1] === ROLES.OWNER) {
+      if (item[1] === ROLES.ADMIN || item[1] === ROLES.MOD) {
         const profileData = await getProfileMetaData(item[0]);
         if (profileData && profileData.hasOwnProperty(NOSTRKEY)) {
           const roleInfo: communityModerator = {
             name: item[0],
-            pubkey: profileData.noStrKey.pub,
+            pubkey: profileData.noStrKey,
             role: item[1]
           };
 
@@ -167,10 +178,12 @@ export default function JoinCommunityChatBtn(props: Props) {
   };
 
   const handleJoinChat = async () => {
-    const { resetChat } = props;
+    const { resetChat, activeUser } = props;
     setInProgress(true);
     const keys = createNoStrAccount();
-    await setProfileMetaData(props.activeUser, keys);
+    setActiveUserKeys(keys);
+    ls.set(`${activeUser?.username}_noStrPrivKey`, keys.priv);
+    await setProfileMetaData(props.activeUser, keys.pub);
     setHasUserJoinedChat(true);
     setNostrkeys(keys);
     window.messageService?.updateProfile({

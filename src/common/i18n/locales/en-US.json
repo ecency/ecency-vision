@@ -1665,7 +1665,8 @@
     "not-joined": "This user hasn't joined the chat yet",
     "subscribers": "Subscribers",
     "invite": "Invite",
-    "leave:": "Leave"
+    "leave:": "Leave",
+    "refresh": "Refresh"
   },
   "add-image": {
     "title": "Add Image",
