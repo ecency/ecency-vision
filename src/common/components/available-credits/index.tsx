@@ -3,10 +3,10 @@ import { usePopper } from "react-popper";
 import {
   client,
   findRcAccounts,
-  powerRechargeTime,
-  rcPower,
   getRcOperationStats,
-  RcOperation
+  powerRechargeTime,
+  RcOperation,
+  rcPower
 } from "../../api/hive";
 import { _t } from "../../i18n";
 import moment, { Moment } from "moment";
@@ -107,10 +107,11 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
           onFocus={show}
           onBlur={hide}
         >
-          <div className="progress">
+          <div className="available-credits-progress">
             <div
               className={
-                "indicator " + (rcpFixed <= 10 ? "danger" : rcpFixed <= 25 ? "warning" : "")
+                "available-credits-indicator " +
+                (rcpFixed <= 10 ? "danger" : rcpFixed <= 25 ? "warning" : "")
               }
               style={{ width: `${rcpFixed}%` }}
             />

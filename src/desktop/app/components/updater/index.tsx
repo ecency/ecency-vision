@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, ProgressBar } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { Global } from "../../../../common/store/global/types";
 
@@ -130,8 +130,14 @@ export default class Updater extends Component<Props, State> {
         {downloading && (
           <>
             <p className="info-text">{_t("updater.downloading")}</p>
-            <div className="progress">
-              <ProgressBar max={100} min={0} now={percent} label={`${percent}%`} />
+            <div className="bg-gray-200 h-[1rem] text-white rounded-lg flex overflow-hidden">
+              <div
+                className="flex duration-300 justify-center overflow-hidden text-xs bg-blue-dark-sky"
+                role="progressbar"
+                style={{ width: `${percent}%` }}
+              >
+                {percent}%
+              </div>
             </div>
           </>
         )}

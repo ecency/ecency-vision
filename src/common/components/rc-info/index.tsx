@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
-import { findRcAccounts } from "../../api/hive";
+import { findRcAccounts, getRcOperationStats } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation";
-import { RcDelegationsList } from "../rc-delegations-list";
+import { ConfirmDelete, RcDelegationsList } from "../rc-delegations-list";
 import { rcFormatter } from "../../util/formatted-number";
-import { ConfirmDelete } from "../rc-delegations-list";
-import { getRcOperationStats } from "../../api/hive";
 import RcProgressCircle from "../rc-progress-circle";
 import "./_index.scss";
 
@@ -124,16 +122,16 @@ export const ResourceCreditsInfo = (props: any) => {
   return (
     <div>
       <div className="cursor-pointer d-flex flex-column mb-1" onClick={showModal}>
-        <div className="progress">
+        <div className="bg-gray-200 h-[1rem] text-white rounded-lg flex overflow-hidden">
           <div
-            className="progress-bar progress-bar-success"
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-blue-dark-sky"
             role="progressbar"
             style={{ width: `${rcPercent}%` }}
           >
             {_t("rc-info.available")}
           </div>
           <div
-            className="progress-bar used"
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-[#F0706A]"
             role="progressbar"
             style={{ width: `${100 - rcPercent}%` }}
           >
@@ -170,7 +168,7 @@ export const ResourceCreditsInfo = (props: any) => {
           <div className="rc-infocontainer">
             <div className="percent">
               <div className="circle">
-                <div className="outer-circle progress">
+                <div className="outer-circle">
                   <div className="inner-circle">
                     <span>{`${rcPercent}%`}</span>
                   </div>

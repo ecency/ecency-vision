@@ -95,15 +95,6 @@
     }
   }
 
-  .progress {
-    .progress-bar-success {
-      @apply bg-blue-dark-sky;
-    }
-    .progress-bar-danger {
-      @apply bg-red;
-    }
-  }
-
   .basic-info,
   .stats,
   .extra-props,

@@ -5,7 +5,7 @@
     position: relative;
     overflow: hidden;
 
-    .progress {
+    .available-credits-progress {
       @apply bg-gray-200;
       height: 8px;
       width: 100%;
@@ -16,7 +16,7 @@
         @apply stroke-gray-700;
       }
 
-      .indicator {
+      .available-credits-indicator {
         height: 4px;
         border-radius: 2px;
         background-color: $primary;
