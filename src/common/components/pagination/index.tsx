@@ -1,6 +1,33 @@
-import React, { Component, useEffect, useState } from "react";
-import { Pagination } from "react-bootstrap";
+import React, {
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  ReactNode,
+  useEffect,
+  useState
+} from "react";
 import { isMobile } from "../../util/is-mobile";
+import { classNameObject } from "../../helper/class-name-object";
+
+function PageButton(
+  props: Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, any>, "className"> & {
+    active?: boolean;
+    children: ReactNode;
+  }
+) {
+  return (
+    <button
+      {...props}
+      className={classNameObject({
+        "border-r border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600":
+          true,
+        "text-blue-dark-sky bg-white hover:bg-gray-100": !props.active,
+        "border-blue-dark-sky bg-blue-dark-sky text-white": props.active
+      })}
+    >
+      {props.children}
+    </button>
+  );
+}
 
 interface Props {
   dataLength: number;
@@ -46,50 +73,32 @@ const MyPagination = ({
   const allItems = records.map((i, x) => {
     const num = i + 1;
     return (
-      <Pagination.Item
-        active={num === page}
-        onClick={() => {
-          changePage(num);
-        }}
-        key={num}
-      >
+      <PageButton active={page === num} onClick={() => changePage(num)} key={num}>
         {num}
-      </Pagination.Item>
+      </PageButton>
     );
   });
 
   const items = allItems.slice(sliceStart, sliceEnd);
 
   return (
-    <Pagination className={className}>
-      <Pagination.First
-        disabled={!(sliceStart > 0)}
-        onClick={() => {
-          changePage(1);
-        }}
-      />
-      <Pagination.Prev
-        disabled={!(page > 1)}
-        onClick={() => {
-          changePage(page - 1);
-        }}
-      />
+    <div className={className}>
+      <PageButton disabled={!(sliceStart > 0)} onClick={() => changePage(1)}>
+        first
+      </PageButton>
+      <PageButton disabled={!(page > 1)} onClick={() => changePage(page - 1)}>
+        prev
+      </PageButton>
       {items}
-      <Pagination.Next
-        disabled={page >= pages}
-        onClick={() => {
-          changePage(page + 1);
-        }}
-      />
+      <PageButton disabled={page >= pages} onClick={() => changePage(page + 1)}>
+        next
+      </PageButton>
       {showLastNo && (
-        <Pagination.Last
-          disabled={page >= pages}
-          onClick={() => {
-            changePage(pages);
-          }}
-        />
+        <PageButton disabled={page >= pages} onClick={() => changePage(pages)}>
+          last
+        </PageButton>
       )}
-    </Pagination>
+    </div>
   );
 };
 

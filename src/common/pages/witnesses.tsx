@@ -584,21 +584,19 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                 )}
 
                 <div className="table-tools">
-                  <div className="pagination">
-                    {witnesses.length > pageSize && (
-                      <Pagination
-                        dataLength={witnesses.length}
-                        pageSize={pageSize}
-                        maxItems={4}
-                        page={page}
-                        onPageChange={(page) => {
-                          this.setState({ page }, () => {
-                            this.handlePageChange();
-                          });
-                        }}
-                      />
-                    )}
-                  </div>
+                  {witnesses.length > pageSize && (
+                    <Pagination
+                      dataLength={witnesses.length}
+                      pageSize={pageSize}
+                      maxItems={4}
+                      page={page}
+                      onPageChange={(page) => {
+                        this.setState({ page }, () => {
+                          this.handlePageChange();
+                        });
+                      }}
+                    />
+                  )}
 
                   <div className="sorter">
                     <span className="label">{_t("witnesses.sort")}</span>

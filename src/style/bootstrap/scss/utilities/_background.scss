@@ -9,11 +9,3 @@
     @include bg-gradient-variant(".bg-gradient-#{$color}", $value, true);
   }
 }
-
-.bg-white {
-  background-color: $white !important;
-}
-
-.bg-transparent {
-  background-color: transparent !important;
-}
