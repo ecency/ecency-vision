@@ -453,7 +453,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             {isActive && (
               <div className="sub-menu mt-3 mt-md-0">
                 <ul
-                  className={`nav nav-pills position-relative nav-fill ${
+                  className={`flex flex-wrap position-relative mb-0 ${
                     introduction === IntroductionType.NONE
                       ? ""
                       : introduction === IntroductionType.FRIENDS
@@ -465,7 +465,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                     <Link
                       to={`/@${activeUser?.username}/feed`}
                       className={_c(
-                        `nav-link my-link ${
+                        `rounded-2xl flex items-center font-[500] px-2.5 py-1 ${
                           filter === "feed" &&
                           (introduction === IntroductionType.NONE ||
                             introduction === IntroductionType.FRIENDS)
@@ -510,18 +510,18 @@ export class EntryIndexMenu extends Component<Props, States> {
                   <DropDown {...menuConfig} float="left" />
                 </div>
                 <div className="lg-menu position-relative">
-                  <ul className={`nav nav-pills nav-fill`}>
+                  <ul className="flex flex-wrap mb-0">
                     {menuConfig.items.map((i, k) => {
                       return (
-                        <li key={k} className={`nav-item ${i.flash ? "flash" : ""}`}>
+                        <li key={k} className={`${i.flash ? "flash" : ""}`}>
                           <Link
                             to={i.href!}
                             className={_c(
-                              `nav-link link-${i.id} ${
+                              `rounded-2xl flex items-center font-[500] px-2.5 py-1 link-${i.id} ${
                                 introduction !== IntroductionType.NONE && !i.flash && i.selected
                                   ? ""
                                   : i.selected || i.flash
-                                  ? "active"
+                                  ? "bg-blue-dark-sky text-white"
                                   : ""
                               }`
                             )}
@@ -578,13 +578,17 @@ export class EntryIndexMenu extends Component<Props, States> {
                   ) : null}
                 </div>
                 <div className="lg-menu position-relative">
-                  <ul className="nav nav-pills nav-fill">
+                  <ul className="flex flex-wrap">
                     {mobileMenuConfig.items.map((i, k) => {
                       return (
-                        <li key={k} className="nav-item">
+                        <li key={k}>
                           <Link
                             to={i.href!}
-                            className={_c(`nav-link link-${i.id} ${i.selected ? "active" : ""}`)}
+                            className={_c(
+                              `rounded-xl flex items-center font-[500] px-2 py-1 link-${i.id} ${
+                                i.selected ? "active" : ""
+                              }`
+                            )}
                           >
                             {i.label}
                           </Link>
