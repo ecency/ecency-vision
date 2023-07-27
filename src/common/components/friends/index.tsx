@@ -149,7 +149,8 @@ export class List extends BaseComponent<ListProps, ListState> {
     if (search.length < 3) {
       this.stateSet({
         results: [],
-        loading: false
+        loading: false,
+        isFiltered: true
       });
       return;
     }
@@ -162,9 +163,51 @@ export class List extends BaseComponent<ListProps, ListState> {
 
     try {
       if (mode === "following") {
-        results = await searchFollowing(account.name, search);
+        const followingData = await searchFollowing(account.name, search);
+        const followingAccountNames = followingData.map((following) => following.name);
+        const accounts = await getAccounts(followingAccountNames);
+
+          results = followingData.map((following) => {
+          const isMatch = accounts.find((account) => account.name === following.name);
+          if (!isMatch) {
+            return following;
+          }
+
+          const lastActive = moment.max(
+            moment(isMatch.last_vote_time),
+            moment(isMatch.last_post),
+            moment(isMatch.created)
+          );
+
+          return {
+            ...following,
+            lastSeen: lastActive.fromNow(),
+          };
+        });
+        this.stateSet({ isFiltered: false })
       } else {
-        results = await searchFollower(account.name, search);
+        const followerData = await searchFollower(account.name, search);
+        const followerAccountNames = followerData.map((follower) => follower.name);
+        const accounts = await getAccounts(followerAccountNames);
+
+          results = followerData.map((follower) => {
+          const isMatch = accounts.find((account) => account.name === follower.name);
+          if (!isMatch) {
+            return follower;
+          }
+
+          const lastActive = moment.max(
+            moment(isMatch.last_vote_time),
+            moment(isMatch.last_post),
+            moment(isMatch.created)
+          );
+
+          return {
+            ...follower,
+            lastSeen: lastActive.fromNow(),
+          };
+        });
+        this.stateSet({ isFiltered: false })
       }
     } catch (e) {
       results = [];
@@ -289,9 +332,9 @@ export class List extends BaseComponent<ListProps, ListState> {
   renderList = (loading: boolean, list: Friend[]) => {
     return (
       <>
-        {!loading && list.length === 0 && <div className="empty-list"> {_t("g.empty-list")}</div>}
+        {!loading && list?.length === 0 && <div className="empty-list"> {_t("g.empty-list")}</div>}
 
-        {list.map((item) => (
+        {list?.map((item) => (
           <div className="list-item" key={item.name}>
             <div className="item-main">
               {ProfileLink({
@@ -349,7 +392,7 @@ export class List extends BaseComponent<ListProps, ListState> {
             </div>
 
             <div className="list-body">
-              {inSearch && this.renderList(loading, results)}
+              {inSearch && !isFiltered && this.renderList(loading, results)}
               {!inSearch && !isFiltered && this.renderList(loading, data)}
               {isFiltered && this.renderList(loading, filtered)}
             </div>
