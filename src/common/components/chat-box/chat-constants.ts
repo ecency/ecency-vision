@@ -30,3 +30,7 @@ export const GifImagesStyle = {
 export const NOSTRKEY = "noStrKey";
 export const UPLOADING = "Uploading";
 export const GIPHGY = "giphy";
+export const HIDEMESSAGE = "hideMessage";
+export const ADDROLE = "addRole";
+export const REMOVEUSER = "removeUser";
+export const LEAVECOMMUNITY = "leaveCommunity";

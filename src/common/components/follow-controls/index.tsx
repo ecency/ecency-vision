@@ -191,6 +191,14 @@ export default class FollowControls extends BaseComponent<Props, State> {
       )
     });
 
+    if (where && where === "chat-box" && following) {
+      return <>{btnUnfollow}</>;
+    }
+
+    if (where && where === "chat-box" && !following) {
+      return <>{btnFollow}</>;
+    }
+
     if (fetching) {
       return (
         <>

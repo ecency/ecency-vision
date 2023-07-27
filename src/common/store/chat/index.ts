@@ -96,9 +96,14 @@ export default (state: Chat = initialState, action: Actions): Chat => {
 
     case ActionTypes.PROFILES: {
       const { data } = action;
+
+      const filteredProfiles = data.filter((profile) => {
+        return !state.profiles.some((existingProfile) => existingProfile.id === profile.id);
+      });
+
       return {
         ...state,
-        profiles: [...state.profiles, ...data]
+        profiles: [...state.profiles, ...filteredProfiles]
       };
     }
 

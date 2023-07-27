@@ -4,7 +4,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import { search as searchApi, SearchResult } from "../api/search-api";
 import { getCommunity, getSubscriptions } from "../api/bridge";
 import { EntryFilter, ListStyle } from "../store/global/types";
+import { Channel } from "../../providers/message-provider-types";
 import { usePrevious } from "../util/use-previous";
+import * as ls from "../util/local-storage";
 import { makeGroupKey } from "../store/entries";
 import _ from "lodash";
 import Meta from "../components/meta";
@@ -45,7 +47,7 @@ import {
   setProfileMetaData
 } from "../helper/chat-utils";
 import { useMappedStore } from "../store/use-mapped-store";
-import { Channel } from "../../providers/message-provider-types";
+import { setNostrkeys } from "../../providers/message-provider";
 
 interface MatchParams {
   filter: string;
@@ -249,7 +251,9 @@ export const CommunityPage = (props: Props) => {
   const handleJoinChat = async () => {
     setInProgress(true);
     const keys = createNoStrAccount();
-    await setProfileMetaData(props.activeUser, keys);
+    ls.set(`${props.activeUser?.username}_noStrPrivKey`, keys.priv);
+    await setProfileMetaData(props.activeUser, keys.pub);
+    setNostrkeys(keys);
     setHasUserJoinedChat(true);
     window.messageService?.updateProfile({
       name: props.activeUser?.username!,

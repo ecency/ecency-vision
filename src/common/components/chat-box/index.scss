@@ -477,7 +477,7 @@
           margin-bottom: 2px;
         }
         .sender-message {
-          max-width: 290px;
+          max-width: 320px;
           margin-left: auto;
 
           display: flex;
@@ -521,6 +521,17 @@
           }
         }
       }
+      .hide-msg {
+        margin-left: 6px;
+        margin-top: 22px;
+        svg {
+          height: 14px;
+          width: 14px;
+        }
+        .hide-msg-svg {
+          cursor: pointer;
+        }
+      }
     }
   }
   .chat {
@@ -534,6 +545,11 @@
     }
     @include themify(night) {
       background: #cee2ff;
+    }
+
+    &.disable {
+      pointer-events: none;
+      opacity: 0.5;
     }
 
     .chatbox-emoji-picker {
@@ -645,17 +661,18 @@
 
 .profile-box {
   padding: 15px;
-
-  .user-avatar.large {
-    margin-left: 73px;
-    margin-bottom: 20px;
-  }
-  .profile-name {
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 800;
+  .profile-box-content {
+    .user-avatar.large {
+      margin-bottom: 20px;
+    }
+    .profile-name {
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .profile-box-buttons {
+      margin-bottom: 15px;
+      padding: 0 5px;
+    }
   }
 }

@@ -21,8 +21,12 @@ import { ActiveUser } from "../../store/active-user/types";
 import { Chat, DirectContactsType } from "../../store/chat/types";
 import { Community, ROLES } from "../../store/communities/types";
 import { Global, Theme } from "../../store/global/types";
+import { User } from "../../store/users/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { Account } from "../../store/accounts/types";
 import {
   Channel,
+  ChannelUpdate,
   communityModerator,
   DirectMessage,
   PublicMessage
@@ -36,6 +40,7 @@ import GifPicker from "../gif-picker";
 import { error, success } from "../feedback";
 import { setNostrkeys } from "../../../providers/message-provider";
 import DropDown, { MenuItem } from "../dropdown";
+import FollowControls from "../follow-controls";
 
 import {
   addMessageSVG,
@@ -53,7 +58,8 @@ import {
   chatLeaveSvg,
   editSVG,
   keySvg,
-  syncSvg
+  syncSvg,
+  hideSvg
 } from "../../img/svg";
 
 import {
@@ -63,7 +69,11 @@ import {
   GIPHGY,
   NOSTRKEY,
   UPLOADING,
-  GifImagesStyle
+  GifImagesStyle,
+  ADDROLE,
+  HIDEMESSAGE,
+  REMOVEUSER,
+  LEAVECOMMUNITY
 } from "./chat-constants";
 
 import { getPublicKey } from "../../../lib/nostr-tools/keys";
@@ -98,11 +108,19 @@ export interface profileData {
 }
 
 interface Props {
-  history: History;
+  users: User[];
   activeUser: ActiveUser | null;
+  ui: UI;
+  targetUsername: string;
+  where?: string;
+  history: History;
   global: Global;
   chat: Chat;
   resetChat: () => void;
+  setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data?: Account) => void;
+  deleteUser: (username: string) => void;
+  toggleUIProp: (what: ToggleType) => void;
 }
 
 let zoom: Zoom | null = null;
@@ -149,6 +167,47 @@ export default function ChatBox(props: Props) {
   const [moderator, setModerator] = useState<communityModerator>();
   const [noStrPrivKey, setNoStrPrivKey] = useState("");
   const [chatPrivKey, setChatPrivkey] = useState("");
+  const [hoveredMessageId, setHoveredMessageId] = useState("");
+  const [privilegedUsers, setPrivilegedUsers] = useState<string[]>([]);
+  const [hiddenMsgId, setHiddenMsgId] = useState("");
+  const [removedUserId, setRemovedUserID] = useState("");
+  const [removedUsers, setRemovedUsers] = useState<string[]>([]);
+  const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
+
+  useEffect(() => {
+    console.log(isActveUserRemoved, "isActveUserRemoved");
+  }, [isActveUserRemoved]);
+
+  useEffect(() => {
+    console.log(currentChannel, "currentChannel");
+  }, [currentChannel]);
+
+  useEffect(() => {
+    const updated: ChannelUpdate = props.chat.updatedChannel
+      .filter((x) => x.channelId === currentChannel?.id!)
+      .sort((a, b) => b.created - a.created)[0];
+    if (currentChannel) {
+      const publicMessages: PublicMessage[] = fetchCommunityMessages(
+        currentChannel.id,
+        updated.hiddenMessageIds
+      );
+      const messages = publicMessages.sort((a, b) => a.created - b.created);
+      setPublicMessages(messages);
+      const channel = {
+        name: updated.name,
+        about: updated.about,
+        picture: updated.picture,
+        communityName: updated.communityName,
+        communityModerators: updated.communityModerators,
+        id: updated.channelId,
+        creator: updated.creator,
+        created: currentChannel?.created!,
+        hiddenMessageIds: updated.hiddenMessageIds,
+        removedUserIds: updated.removedUserIds
+      };
+      setCurrentChannel(channel);
+    }
+  }, [props.chat.updatedChannel]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -178,7 +237,19 @@ export default function ChatBox(props: Props) {
 
   useEffect(() => {
     setInProgress(false);
+    console.log("chat in store", props.chat);
   }, [props.chat]);
+
+  useEffect(() => {
+    currentChannel?.communityModerators && getPrivilegedUsers(currentChannel?.communityModerators!);
+    currentChannel?.removedUserIds && setRemovedUsers(currentChannel.removedUserIds);
+    currentChannel && scrollerClicked();
+    if (removedUsers) {
+      const removed = removedUsers.includes(activeUserKeys?.pub!);
+      setIsActiveUserRemoved(removed);
+    }
+    scrollerClicked();
+  }, [currentChannel, removedUsers]);
 
   useEffect(() => {
     // resetProfile(props.activeUser);
@@ -191,6 +262,7 @@ export default function ChatBox(props: Props) {
   // useEffect(() => {
   //   if (window.messageService) {
   //     setHasUserJoinedChat(true);
+  //     setInProgress(false);
   //   }
   // }, [window?.messageService]);
 
@@ -230,7 +302,7 @@ export default function ChatBox(props: Props) {
   useEffect(() => {
     if (currentChannel && isCommunity) {
       window?.messageService?.fetchChannel(currentChannel.id);
-      const publicMessages = fetchCommunityMessages(currentChannel.id);
+      const publicMessages: PublicMessage[] = fetchCommunityMessages(currentChannel.id);
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
     }
@@ -307,6 +379,14 @@ export default function ChatBox(props: Props) {
     [searchtext]
   );
 
+  const getPrivilegedUsers = (communityModerators: communityModerator[]) => {
+    const filteredUsers =
+      communityModerators &&
+      communityModerators.filter((user) => ["owner", "admin", "mod"].includes(user.role));
+    const privilegedUsersName = filteredUsers?.map((user) => user.name);
+    setPrivilegedUsers(privilegedUsersName!);
+  };
+
   const fetchCommunity = async () => {
     const community = await getCommunity(communityName, props.activeUser?.username);
     setCurrentCommunity(community!);
@@ -318,12 +398,14 @@ export default function ChatBox(props: Props) {
   };
 
   const fetchCurrentChannel = (communityName: string) => {
-    const item = props.chat.channels.find((channel) => channel.communityName === communityName);
-    if (item) {
-      const updated = props.chat.updatedChannel
-        .filter((x) => x.channelId === item.id)
+    const channel = props.chat.channels.find((channel) => channel.communityName === communityName);
+    console.log("fetch current chanel", channel);
+    if (channel) {
+      const updated: ChannelUpdate = props.chat.updatedChannel
+        .filter((x) => x.channelId === channel.id)
         .sort((a, b) => b.created - a.created)[0];
-      if (updated && currentChannel) {
+      if (updated) {
+        console.log("updated", updated);
         const channel = {
           name: updated.name,
           about: updated.about,
@@ -331,12 +413,14 @@ export default function ChatBox(props: Props) {
           communityName: updated.communityName,
           communityModerators: updated.communityModerators,
           id: updated.channelId,
-          creator: currentChannel.creator,
-          created: currentChannel.created
+          creator: updated.creator,
+          created: currentChannel?.created!,
+          hiddenMessageIds: updated.hiddenMessageIds,
+          removedUserIds: updated.removedUserIds
         };
         setCurrentChannel(channel);
       } else {
-        setCurrentChannel(item);
+        setCurrentChannel(channel);
       }
     }
   };
@@ -377,10 +461,11 @@ export default function ChatBox(props: Props) {
     return [];
   };
 
-  const fetchCommunityMessages = (channelId: string) => {
+  const fetchCommunityMessages = (channelId: string, hiddenMessageIds?: string[]) => {
+    const hideMessageIds = hiddenMessageIds || currentChannel?.hiddenMessageIds || [];
     for (const item of props.chat.publicMessages) {
       if (item.channelId === channelId) {
-        return item.PublicMessage;
+        return item.PublicMessage.filter((message) => !hideMessageIds.includes(message.id));
       }
     }
     return [];
@@ -459,13 +544,6 @@ export default function ChatBox(props: Props) {
     });
   };
 
-  const scrollToBottom = () => {
-    chatBodyDivRef?.current?.scroll({
-      top: chatBodyDivRef?.current?.scrollHeight,
-      behavior: "auto"
-    });
-  };
-
   const handleMessageSvgClick = () => {
     setShowSearchUser(!showSearchUser);
   };
@@ -478,6 +556,9 @@ export default function ChatBox(props: Props) {
         priv: getPrivateKey(props.activeUser?.username!)
       };
       setNostrkeys(keys);
+      if (isCommunity && communityName) {
+        fetchCurrentChannel(communityName);
+      }
     } else {
       setNoStrPrivKey("");
     }
@@ -646,13 +727,14 @@ export default function ChatBox(props: Props) {
     setDMMessage(e.target.value);
   };
 
-  const handleImageClick = (id: string) => {
-    if (clickedMessage === id) {
+  const handleImageClick = (msgId: string, pubkey: string) => {
+    if (clickedMessage === msgId) {
       popoverRef.current = null;
       setClickedMessage("");
     } else {
       popoverRef.current = null;
-      setClickedMessage(id);
+      setClickedMessage(msgId);
+      setRemovedUserID(pubkey);
     }
   };
 
@@ -705,52 +787,29 @@ export default function ChatBox(props: Props) {
       const newUpdatedModerator = { ...newUpdatedChannel?.communityModerators![moderatorIndex!] };
       newUpdatedModerator.role = selectedRole;
       newUpdatedChannel!.communityModerators![moderatorIndex!] = newUpdatedModerator;
+      console.log("Update role", newUpdatedChannel);
       setCurrentChannel(newUpdatedChannel);
       window.messageService?.updateChannel(currentChannel, newUpdatedChannel);
       success("Roles updated succesfully");
     }
   };
 
-  const LeaveModal = () => {
-    return (
-      <>
-        <div className="leave-dialog-header border-bottom">
-          <div className="leave-dialog-titles">
-            <h2 className="leave-main-title">Confirmaton</h2>
-          </div>
-        </div>
-        <div className="leave-dialog-body">Are you sure to leave this community?</div>
-        <p className="leave-confirm-buttons">
-          <Button
-            variant="outline-primary"
-            className="close-btn"
-            onClick={() => {
-              setKeyDialog(false);
-              setStep(0);
-            }}
-          >
-            Close
-          </Button>
-          <Button
-            variant="outline-primary"
-            className="confirm-btn"
-            onClick={() => {
-              window?.messageService
-                ?.updateLeftChannelList([...props.chat.leftChannelsList!, currentChannel?.id!])
-                .then(() => {})
-                .finally(() => {
-                  setKeyDialog(false);
-                  setStep(0);
-                  setIsCommunity(false);
-                  setCommunityName("");
-                });
-            }}
-          >
-            Confirm
-          </Button>
-        </p>
-      </>
-    );
+  const handleConfirmaButton = (actionType: string) => {
+    if (actionType === HIDEMESSAGE) {
+      handleChannelUpdate(HIDEMESSAGE);
+    } else if (actionType === REMOVEUSER) {
+      handleChannelUpdate(REMOVEUSER);
+    } else if (actionType === LEAVECOMMUNITY) {
+      window?.messageService
+        ?.updateLeftChannelList([...props.chat.leftChannelsList!, currentChannel?.id!])
+        .then(() => {})
+        .finally(() => {
+          setKeyDialog(false);
+          setStep(0);
+          setIsCommunity(false);
+          setCommunityName("");
+        });
+    }
   };
 
   const EditRolesModal = () => {
@@ -803,7 +862,7 @@ export default function ChatBox(props: Props) {
             <div className="d-flex justify-content-end">
               <Button
                 type="button"
-                onClick={addNewRole}
+                onClick={() => handleChannelUpdate(ADDROLE)}
                 disabled={inProgress || addRoleError.length !== 0 || user.length === 0}
               >
                 Add
@@ -929,6 +988,41 @@ export default function ChatBox(props: Props) {
     );
   };
 
+  const confirmationModal = (actionType: string) => {
+    return (
+      <>
+        <div className="join-community-dialog-header border-bottom">
+          <div className="join-community-dialog-titles">
+            <h2 className="join-community-main-title">Confirmaton</h2>
+          </div>
+        </div>
+        <div className="join-community-dialog-body" style={{ fontSize: "18px", marginTop: "12px" }}>
+          Are you sure?
+        </div>
+        <p className="join-community-confirm-buttons" style={{ textAlign: "right" }}>
+          <Button
+            variant="outline-primary"
+            className="close-btn"
+            style={{ marginRight: "20px" }}
+            onClick={() => {
+              setStep(0);
+              setKeyDialog(false);
+            }}
+          >
+            Close
+          </Button>
+          <Button
+            variant="outline-primary"
+            className="confirm-btn"
+            onClick={() => handleConfirmaButton(actionType)}
+          >
+            Confirm
+          </Button>
+        </p>
+      </>
+    );
+  };
+
   useDebounce(
     async () => {
       if (user.length === 0) {
@@ -974,24 +1068,53 @@ export default function ChatBox(props: Props) {
     setInProgress(true);
   };
 
-  const addNewRole = () => {
-    const updatedRoles = [...(currentChannel?.communityModerators || []), moderator!];
-    const updatedMetaData = {
+  const handleChannelUpdate = (operationType: string) => {
+    let updatedMetaData = {
       name: currentChannel?.name!,
       about: currentChannel?.about!,
       picture: "",
       communityName: currentChannel?.communityName!,
-      communityModerators: updatedRoles
+      communityModerators: currentChannel?.communityModerators,
+      hiddenMessageIds: currentChannel?.hiddenMessageIds,
+      removedUserIds: currentChannel?.removedUserIds
     };
 
-    window.messageService?.updateChannel(currentChannel!, updatedMetaData);
-    currentChannel?.communityModerators?.push(moderator!);
-    const updatedChannel: Channel = {
-      ...currentChannel!,
-      communityModerators: updatedRoles
-    };
-    setUser("");
-    setCurrentChannel(updatedChannel);
+    switch (operationType) {
+      case ADDROLE:
+        const updatedRoles = [...(currentChannel?.communityModerators || []), moderator!];
+        updatedMetaData.communityModerators = updatedRoles;
+        break;
+      case HIDEMESSAGE:
+        const updatedHiddenMessages = [...(currentChannel?.hiddenMessageIds || []), hiddenMsgId!];
+        updatedMetaData.hiddenMessageIds = updatedHiddenMessages;
+        break;
+      case REMOVEUSER:
+        const updatedRemovedUsers = [...(currentChannel?.removedUserIds || []), removedUserId!];
+        updatedMetaData.removedUserIds = updatedRemovedUsers;
+        break;
+      default:
+        break;
+    }
+
+    console.log(updatedMetaData, "updatedMetaData");
+    try {
+      window.messageService?.updateChannel(currentChannel!, updatedMetaData);
+      setCurrentChannel({ ...currentChannel!, ...updatedMetaData });
+      if (operationType === HIDEMESSAGE) {
+        setStep(0);
+        setKeyDialog(false);
+        fetchCommunityMessages(currentChannel?.id!);
+        setHiddenMsgId("");
+      }
+      if (operationType === REMOVEUSER) {
+        setStep(0);
+        setKeyDialog(false);
+        // fetchCommunityMessages(currentChannel?.id!);
+        setRemovedUserID("");
+      }
+    } catch (err) {
+      error("Error occurred while updating community");
+    }
   };
 
   const roleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
@@ -1125,7 +1248,7 @@ export default function ChatBox(props: Props) {
                   </div>
                 </>
               )}
-              {!currentUser && hasUserJoinedChat && noStrPrivKey && (
+              {hasUserJoinedChat && noStrPrivKey && (
                 <div className="message-image" onClick={handleRefreshSvgClick}>
                   <Tooltip content={_t("chat.refresh")}>
                     <p className="message-svg" style={{ paddingTop: "10px" }}>
@@ -1314,30 +1437,54 @@ export default function ChatBox(props: Props) {
                               >
                                 <Popover.Content>
                                   <div className="profile-box" ref={popoverRef}>
-                                    <UserAvatar username={name!} size="large" />
+                                    <div className="profile-box-content">
+                                      <div className="profile-box-logo d-flex justify-content-center">
+                                        <UserAvatar username={name!} size="large" />
+                                      </div>
 
-                                    <p className="profile-name">{name!}</p>
-
-                                    <Form
-                                      onSubmit={(e: React.FormEvent) => {
-                                        e.preventDefault();
-                                        e.stopPropagation();
-                                        sendDM(name!, pMsg.creator);
-                                      }}
-                                    >
-                                      <InputGroup className="dm-input-group">
-                                        <Form.Control
-                                          value={dMMessage}
-                                          autoFocus={true}
-                                          onChange={handleDMChange}
-                                          required={true}
-                                          type="text"
-                                          placeholder={"Send direct message"}
-                                          autoComplete="off"
-                                          className="dm-chat-input"
+                                      <p className="d-flex justify-content-center profile-name">
+                                        {name!}
+                                      </p>
+                                      <div className="d-flex justify-content-between profile-box-buttons">
+                                        <FollowControls
+                                          {...props}
+                                          targetUsername={name!}
+                                          where={"chat-box"}
                                         />
-                                      </InputGroup>
-                                    </Form>
+
+                                        <Button
+                                          variant="primary"
+                                          onClick={() => {
+                                            setKeyDialog(true);
+                                            setStep(6);
+                                            setClickedMessage("");
+                                          }}
+                                        >
+                                          Remove
+                                        </Button>
+                                      </div>
+
+                                      <Form
+                                        onSubmit={(e: React.FormEvent) => {
+                                          e.preventDefault();
+                                          e.stopPropagation();
+                                          sendDM(name!, pMsg.creator);
+                                        }}
+                                      >
+                                        <InputGroup className="dm-input-group">
+                                          <Form.Control
+                                            value={dMMessage}
+                                            autoFocus={true}
+                                            onChange={handleDMChange}
+                                            required={true}
+                                            type="text"
+                                            placeholder={"Send direct message"}
+                                            autoComplete="off"
+                                            className="dm-chat-input"
+                                          />
+                                        </InputGroup>
+                                      </Form>
+                                    </div>
                                   </div>
                                 </Popover.Content>
                               </Popover>
@@ -1347,7 +1494,12 @@ export default function ChatBox(props: Props) {
                               <React.Fragment key={pMsg.id}>
                                 {dayAndMonth}
                                 {pMsg.creator !== activeUserKeys?.pub ? (
-                                  <div key={pMsg.id} className="message">
+                                  <div
+                                    key={pMsg.id}
+                                    className="message"
+                                    onMouseEnter={() => setHoveredMessageId(pMsg.id)}
+                                    onMouseLeave={() => setHoveredMessageId("")}
+                                  >
                                     <div className="community-user-img">
                                       <OverlayTrigger
                                         trigger="click"
@@ -1355,7 +1507,7 @@ export default function ChatBox(props: Props) {
                                         show={clickedMessage === pMsg.id}
                                         overlay={popover}
                                         delay={1000}
-                                        onToggle={() => handleImageClick(pMsg.id)}
+                                        onToggle={() => handleImageClick(pMsg.id, pMsg.creator)}
                                       >
                                         <span>
                                           <UserAvatar username={name!} size="medium" />
@@ -1375,13 +1527,56 @@ export default function ChatBox(props: Props) {
                                         dangerouslySetInnerHTML={{ __html: renderedPreview }}
                                       />
                                     </div>
+                                    {hoveredMessageId === pMsg.id &&
+                                      privilegedUsers.includes(props.activeUser?.username!) && (
+                                        <Tooltip content={"Hide Message"}>
+                                          <div className="hide-msg">
+                                            <p
+                                              className="hide-msg-svg"
+                                              onClick={() => {
+                                                setClickedMessage("");
+                                                setKeyDialog(true);
+                                                setStep(5);
+                                                setHiddenMsgId(pMsg.id);
+                                              }}
+                                            >
+                                              {hideSvg}
+                                            </p>
+                                          </div>
+                                        </Tooltip>
+                                      )}
                                   </div>
                                 ) : (
-                                  <div key={pMsg.id} className="sender">
+                                  <div
+                                    key={pMsg.id}
+                                    className="sender"
+                                    onMouseEnter={() => setHoveredMessageId(pMsg.id)}
+                                    onMouseLeave={() => setHoveredMessageId("")}
+                                  >
                                     <p className="sender-message-time">
                                       {formatMessageTime(pMsg.created)}
                                     </p>
                                     <div className="sender-message">
+                                      {hoveredMessageId === pMsg.id && (
+                                        <Tooltip content={"Hide Message"}>
+                                          <div
+                                            className="hide-msg"
+                                            style={{ marginTop: 0, marginRight: "6px" }}
+                                          >
+                                            <p
+                                              className="hide-msg-svg"
+                                              onClick={() => {
+                                                setClickedMessage("");
+                                                setKeyDialog(true);
+                                                setStep(5);
+                                                setHiddenMsgId(pMsg.id);
+                                              }}
+                                            >
+                                              {hideSvg}
+                                            </p>
+                                          </div>
+                                        </Tooltip>
+                                      )}
                                       <div
                                         className={`sender-message-content ${isGif ? "gif" : ""} ${
                                           isImage ? "chat-image" : ""
@@ -1540,10 +1735,16 @@ export default function ChatBox(props: Props) {
                 </div>
               </Tooltip>
             )}
+            {isActveUserRemoved && isCommunity && (
+              <p className="d-flex justify-content-center mt-4 mb-0">
+                You have been removed from this community
+              </p>
+            )}
           </div>
           {inProgress && <LinearProgress />}
+
           {(currentUser || isCommunity) && (
-            <div className="chat">
+            <div className={`chat ${isActveUserRemoved ? "disable" : ""}`}>
               <div className="chatbox-emoji-picker">
                 <div className="chatbox-emoji">
                   <Tooltip content={_t("editor-toolbar.emoji")}>
@@ -1627,7 +1828,12 @@ export default function ChatBox(props: Props) {
                     autoComplete="off"
                     className="chat-input"
                     style={{ maxWidth: "100%", overflowWrap: "break-word" }}
-                    disabled={inProgress || receiverPubKey === null || receiverPubKey === undefined}
+                    disabled={
+                      inProgress ||
+                      receiverPubKey === null ||
+                      receiverPubKey === undefined ||
+                      isActveUserRemoved
+                    }
                   />
                   <InputGroup.Append
                     className={`msg-svg ${isMessageText || message.length !== 0 ? "active" : ""}`}
@@ -1654,7 +1860,9 @@ export default function ChatBox(props: Props) {
         >
           <Modal.Header closeButton={true} />
           <Modal.Body className="chat-modals-body">
-            {step === 1 && LeaveModal()}
+            {step === 1 && confirmationModal(LEAVECOMMUNITY)}
+            {step === 5 && confirmationModal(HIDEMESSAGE)}
+            {step === 6 && confirmationModal(REMOVEUSER)}
             {step === 2 && EditRolesModal()}
             {step === 3 && ImportChatModal()}
             {step === 4 && chatSuccessModal()}

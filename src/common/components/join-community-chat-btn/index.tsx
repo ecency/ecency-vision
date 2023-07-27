@@ -136,7 +136,9 @@ export default function JoinCommunityChatBtn(props: Props) {
         about: community.description,
         communityName: community.name,
         picture: "",
-        communityModerators: communityRoles
+        communityModerators: communityRoles,
+        hiddenMessageIds: [],
+        removedUserIds: []
       });
 
       const content = JSON.parse(data?.content!);

@@ -15,6 +15,8 @@ export type Metadata = {
   picture: string;
   communityName?: string;
   communityModerators?: communityModerator[];
+  hiddenMessageIds?: string[];
+  removedUserIds?: string[];
 };
 
 export type communityModerator = {

@@ -275,6 +275,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public loadProfiles(pubs: string[]) {
+    console.log("lod profiles");
     pubs.forEach((p) => {
       this.fetch(
         [
@@ -400,7 +401,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public async createChannel(meta: Metadata) {
-    // console.log("create channel run", meta);
+    console.log("create channel run", meta);
     return this.publish(Kind.ChannelCreation, [], JSON.stringify(meta));
   }
 
@@ -423,6 +424,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public async updateProfile(profile: Metadata) {
+    console.log("Update profile run", profile);
     return this.publish(Kind.Metadata, [], JSON.stringify(profile));
   }
 
@@ -560,6 +562,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       })
       .filter(notEmpty);
     if (profileUpdates.length > 0) {
+      console.log("Profile Updates", profileUpdates);
       this.emit(MessageEvents.ProfileUpdate, profileUpdates);
     }
 
@@ -589,6 +592,8 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
               created: ev.created_at,
               communityName: content.communityName,
               communityModerators: content.communityModerators,
+              hiddenMessageIds: content.hiddenMessageIds,
+              removedUserIds: content.removedUserIds,
               ...MessageService.normalizeMetadata(content)
             }
           : null;
@@ -602,7 +607,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       .filter((x) => x.kind === Kind.ChannelMetadata)
       .map((ev) => {
         const content = MessageService.parseJson(ev.content);
-        console.log("content", content);
         const channelId = MessageService.findTagValue(ev, "e");
         if (!channelId) return null;
         return content
@@ -612,6 +616,8 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
               created: ev.created_at,
               communityName: content.communityName,
               communityModerators: content.communityModerators,
+              hiddenMessageIds: content.hiddenMessageIds,
+              removedUserIds: content.removedUserIds,
               channelId,
               ...MessageService.normalizeMetadata(content)
             }
@@ -619,6 +625,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       })
       .filter(notEmpty);
     if (channelUpdates.length > 0) {
+      console.log("channelUpdates", channelUpdates);
       this.emit(MessageEvents.ChannelUpdate, channelUpdates);
     }
 
