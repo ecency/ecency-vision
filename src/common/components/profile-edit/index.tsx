@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Form, FormControl, InputGroup, Button, Spinner, Col } from "react-bootstrap";
+import { Button, Col, Form, FormControl, InputGroup } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 import { Account, FullAccount } from "../../store/accounts/types";
@@ -14,6 +14,7 @@ import { _t } from "../../i18n";
 import { updateProfile } from "../../api/operations";
 import { getAccount } from "../../api/hive";
 import "./index.scss";
+import { Spinner } from "../spinner";
 
 interface Props {
   activeUser: ActiveUser;
@@ -127,9 +128,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
       changed
     } = this.state;
 
-    const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-    );
+    const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
     return (
       <div className="profile-edit">

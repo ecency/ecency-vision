@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Spinner } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 
@@ -12,6 +12,7 @@ import { getAccessToken } from "../../helper/user-token";
 import { _t } from "../../i18n";
 
 import { uploadSvg } from "../../img/svg";
+import { Spinner } from "../spinner";
 
 interface UploadButtonProps {
   activeUser: ActiveUser;
@@ -70,7 +71,7 @@ export default class UploadButton extends BaseComponent<UploadButtonProps, Uploa
 
   render() {
     const { inProgress } = this.state;
-    const spinner = <Spinner animation="grow" variant="light" size="sm" />;
+    const spinner = <Spinner className="w-3.5 h-3.5" />;
 
     return (
       <>

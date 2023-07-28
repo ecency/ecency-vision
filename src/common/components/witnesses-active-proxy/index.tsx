@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Spinner } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { History } from "history";
 
@@ -22,6 +22,8 @@ import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from "../.
 
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { Spinner } from "../spinner";
+
 interface Props {
   history: History;
   global: Global;
@@ -75,9 +77,7 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
   render() {
     const { inProgress, account } = this.state;
     const { activeUser, username } = this.props;
-    const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-    );
+    const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
     const btn = (
       <Button disabled={inProgress}>
         {inProgress && spinner}

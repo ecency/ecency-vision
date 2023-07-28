@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Form, FormControl, InputGroup, Modal, Button, Spinner } from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup, Modal } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 
@@ -8,6 +8,7 @@ import BaseComponent from "../base";
 import UploadButton from "../image-upload-button";
 
 import { _t } from "../../i18n";
+import { Spinner } from "../spinner";
 
 interface Props {
   activeUser: ActiveUser;
@@ -45,9 +46,7 @@ export class ImageUpload extends BaseComponent<Props, State> {
     const { title, inProgress } = this.props;
     const { image, uploading } = this.state;
 
-    const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-    );
+    const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
     return (
       <div className="image-upload-dialog-content">

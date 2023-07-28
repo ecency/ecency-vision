@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Button, Form, FormControl, Modal, Spinner } from "react-bootstrap";
+import { Button, Form, FormControl, Modal } from "react-bootstrap";
 
-import { PrivateKey, KeyRole, cryptoUtils } from "@hiveio/dhive";
+import { cryptoUtils, KeyRole, PrivateKey } from "@hiveio/dhive";
 
 import base58 from "bs58";
 
@@ -11,7 +11,7 @@ import { ActiveUser } from "../../store/active-user/types";
 import BaseComponent from "../base";
 import { error, success } from "../feedback";
 
-import { updatePassword, formatError } from "../../api/operations";
+import { formatError, updatePassword } from "../../api/operations";
 
 import random from "../../util/rnd";
 
@@ -20,6 +20,7 @@ import { _t } from "../../i18n";
 import { keySvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
+import { Spinner } from "../spinner";
 
 interface Props {
   activeUser: ActiveUser;
@@ -182,9 +183,7 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
             />
           </Form.Group>
           <Button variant="primary" type="submit" disabled={inProgress}>
-            {inProgress && (
-              <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-            )}
+            {inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
             {_t("g.update")}
           </Button>
         </Form>

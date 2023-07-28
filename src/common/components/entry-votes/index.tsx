@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 
-import { Alert, Form, FormControl } from "react-bootstrap";
+import { Alert, Form, FormControl, Modal } from "react-bootstrap";
 
 import { History } from "history";
-
-import { Modal, Spinner } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
@@ -18,7 +16,7 @@ import ProfileLink from "../profile-link/index";
 import Tooltip from "../tooltip";
 import Pagination from "../pagination";
 
-import { Vote, getActiveVotes } from "../../api/hive";
+import { getActiveVotes, Vote } from "../../api/hive";
 
 import parseAsset from "../../helper/parse-asset";
 import parseDate, { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
@@ -32,6 +30,7 @@ import { _t } from "../../i18n";
 import { heartSvg } from "../../img/svg";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
+import { Spinner } from "../spinner";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   // const totalPayout =
@@ -139,7 +138,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
     if (loading) {
       return (
         <div className="dialog-loading">
-          <Spinner animation="grow" variant="primary" />
+          <Spinner className="w-4 h-4" />
         </div>
       );
     }

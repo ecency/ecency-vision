@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Entry } from "../../../store/entries/types";
-import { Alert, Spinner } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import { EntryLink } from "../../entry-link";
 import { checkSvg } from "../../../img/svg";
 import { DeckThreadsContext } from "../columns/deck-threads-manager";
 import { useEntryChecking } from "../utils";
+import { Spinner } from "../../spinner";
 
 interface Props {
   lastEntry?: Entry;
@@ -43,7 +44,7 @@ export const DeckThreadsCreatedRecently = ({ lastEntry, setLastEntry }: Props) =
         <Alert variant={!isLocal(lastEntry) ? "success" : "secondary"} key={lastEntry.post_id}>
           <div className="d-flex align-items-center">
             <div className="icon">
-              {!isLocal(lastEntry) ? checkSvg : <Spinner animation="border" />}
+              {!isLocal(lastEntry) ? checkSvg : <Spinner className="w-4 h-4" />}
             </div>
             <div className="pl-3">
               {!isLocal(lastEntry)

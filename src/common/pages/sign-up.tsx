@@ -5,7 +5,7 @@ import qrcode from "qrcode";
 import axios from "axios";
 import queryString from "query-string";
 import useLocalStorage from "react-use/lib/useLocalStorage";
-import { Button, Form, FormControl, Spinner } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { PREFIX } from "../util/local-storage";
@@ -24,6 +24,7 @@ import { getAccount } from "../api/hive";
 import "./sign-up.scss";
 import { Link } from "react-router-dom";
 import { b64uEnc } from "../util/b64";
+import { Spinner } from "../components/spinner";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 
@@ -336,14 +337,7 @@ export const SignUp = (props: PageProps) => {
                           type="submit"
                           disabled={inProgress || !isVerified || isDisabled}
                         >
-                          {inProgress && (
-                            <Spinner
-                              animation="grow"
-                              variant="light"
-                              size="sm"
-                              style={{ marginRight: "6px" }}
-                            />
-                          )}
+                          {inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
                           {_t("sign-up.submit")}
                         </Button>
                       </div>

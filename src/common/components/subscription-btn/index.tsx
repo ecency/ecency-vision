@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Spinner, ButtonProps } from "react-bootstrap";
+import { Button, ButtonProps } from "react-bootstrap";
 
 import { Subscription } from "../../store/subscriptions/types";
 import { Community } from "../../store/communities/types";
@@ -16,6 +16,7 @@ import { error } from "../feedback";
 import { formatError, subscribe, unSubscribe } from "../../api/operations";
 
 import { _t } from "../../i18n";
+import { Spinner } from "../spinner";
 
 interface Props {
   users: User[];
@@ -85,7 +86,7 @@ export default class SubscriptionBtn extends BaseComponent<Props, State> {
     if (inProgress) {
       return (
         <Button disabled={true} {...buttonProps}>
-          <Spinner animation="grow" variant="light" size="sm" />
+          <Spinner className="w-3.5 h-3.5" />
         </Button>
       );
     }

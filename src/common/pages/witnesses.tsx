@@ -1,7 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { Form, FormControl, Spinner } from "react-bootstrap";
+import { Form, FormControl } from "react-bootstrap";
 
 import { pathToRegexp } from "path-to-regexp";
 
@@ -36,6 +36,7 @@ import { FullAccount } from "../store/accounts/types";
 import { WitnessCard } from "../components/witness-card";
 import { dateToRelative } from "../helper/parse-date";
 import "./witnesses.scss";
+import { Spinner } from "../components/spinner";
 
 interface WitnessTransformed {
   rank: number;
@@ -567,13 +568,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                 {sliced && sliced.length > 0 ? (
                   <div className="witnesses-table">
                     {table}
-                    {spinner && (
-                      <Spinner
-                        animation="grow"
-                        variant="primary"
-                        style={{ position: "fixed", bottom: "10%", left: "50%" }}
-                      />
-                    )}
+                    {spinner && <Spinner className="fixed bottom-[10%] left-[50%] w-3.5 h-3.5" />}
                   </div>
                 ) : (
                   <div className="witnesses-table">

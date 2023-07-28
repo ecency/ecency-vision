@@ -355,13 +355,6 @@
       @include themify(night) {
         @apply bg-gray-800;
       }
-
-      .spinner-border {
-        width: 1rem;
-        height: 1rem;
-        border-width: 0.125rem;
-        opacity: 0.5;
-      }
     }
 
     .updated-label {

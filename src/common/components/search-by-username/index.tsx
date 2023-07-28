@@ -7,6 +7,7 @@ import { lookupAccounts } from "../../api/hive";
 import { error } from "../feedback";
 import { formatError } from "../../api/operations";
 import { ActiveUser } from "../../store/active-user/types";
+import { Spinner } from "../spinner";
 
 interface Props {
   username?: string;
@@ -104,15 +105,7 @@ export const SearchByUsername = ({
     >
       <InputGroup>
         <InputGroup.Prepend>
-          <InputGroup.Text>
-            {isUsernameDataLoading ? (
-              <div className="spinner-border text-primary spinner-border-sm" role="status">
-                <span className="sr-only">{_t("g.loading")}</span>
-              </div>
-            ) : (
-              "@"
-            )}
-          </InputGroup.Text>
+          <InputGroup.Text>{isUsernameDataLoading ? <Spinner /> : "@"}</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control
           type="text"

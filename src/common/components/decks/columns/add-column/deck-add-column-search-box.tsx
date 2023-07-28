@@ -5,11 +5,11 @@ import { formatError } from "../../../../api/operations";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import useDebounce from "react-use/lib/useDebounce";
 import { Button, Form, InputGroup } from "react-bootstrap";
-import { _t } from "../../../../i18n";
 import { UserAvatar } from "../../../user-avatar";
 import { getCommunities } from "../../../../api/bridge";
 import { UsernameDataItem } from "./common";
 import { closeSvg } from "../../../../img/svg";
+import { Spinner } from "../../../spinner";
 
 interface Props {
   isCommunity?: boolean;
@@ -103,15 +103,7 @@ export const DeckAddColumnSearchBox = ({
     <div className="deck-add-column-search-box">
       <InputGroup>
         <InputGroup.Prepend>
-          <InputGroup.Text>
-            {isUsernameDataLoading ? (
-              <div className="spinner-border text-primary spinner-border-sm" role="status">
-                <span className="sr-only">{_t("g.loading")}</span>
-              </div>
-            ) : (
-              "@"
-            )}
-          </InputGroup.Text>
+          <InputGroup.Text>{isUsernameDataLoading ? <Spinner /> : "@"}</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control
           type="text"

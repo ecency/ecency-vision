@@ -10,7 +10,7 @@ import isEqual from "react-fast-compare";
 
 import { History } from "history";
 
-import { Button, Col, Form, FormControl, Row, Spinner } from "react-bootstrap";
+import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 
 import moment, { Moment } from "moment";
 
@@ -32,7 +32,7 @@ import Feedback, { error, success } from "../components/feedback";
 import NavBar from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import FullHeight from "../components/full-height";
-import EditorToolbar from "../components/editor-toolbar";
+import EditorToolbar, { detectEvent, toolbarEventListener } from "../components/editor-toolbar";
 import TagSelector from "../components/tag-selector";
 import CommunitySelector from "../components/community-selector";
 import Tag from "../components/tag";
@@ -43,7 +43,6 @@ import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
 import ClickAwayListener from "../components/clickaway-listener";
-import { detectEvent, toolbarEventListener } from "../components/editor-toolbar";
 import "./submit.scss";
 
 import {
@@ -79,7 +78,7 @@ import * as ls from "../util/local-storage";
 
 import { version } from "../../../package.json";
 
-import { checkSvg, contentSaveSvg, contentLoadSvg, helpIconSvg } from "../img/svg";
+import { checkSvg, contentLoadSvg, contentSaveSvg, helpIconSvg } from "../img/svg";
 
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import ModalConfirm from "../components/modal-confirm";
@@ -87,6 +86,7 @@ import TextareaAutocomplete from "../components/textarea-autocomplete";
 import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
+import { Spinner } from "../components/spinner";
 
 setProxyBase(defaults.imageServer);
 
@@ -1025,9 +1025,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     const { global, activeUser } = this.props;
 
-    const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-    );
+    const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
     // const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
     let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
     return (

@@ -292,14 +292,9 @@
       }
     }
 
-    .icon, .spinner-border {
+    .icon {
       width: 24px;
       height: 24px;
-    }
-
-    .spinner-border {
-      opacity: 0.5;
-      border-width: 0.125rem;
     }
 
     svg path {

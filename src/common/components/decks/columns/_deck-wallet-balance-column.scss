@@ -102,13 +102,6 @@
       @include padding(0.5rem);
       @include border-radius(0.5rem);
       @include font-size(0.875rem);
-
-      .spinner-border {
-        width: 1rem;
-        height: 1rem;
-        opacity: 0.5;
-        border-width: 2px;
-      }
     }
 
     @include padding(1rem);

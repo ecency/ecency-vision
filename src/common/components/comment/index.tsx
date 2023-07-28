@@ -1,11 +1,11 @@
 import React, { Component, Ref } from "react";
 
-import { FormControl, Button, Spinner } from "react-bootstrap";
+import { Button, FormControl } from "react-bootstrap";
 
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Account } from "../../store/accounts/types";
-import { UI, ToggleType } from "../../store/ui/types";
+import { ToggleType, UI } from "../../store/ui/types";
 import { Entry } from "../../store/entries/types";
 
 import EditorToolbar from "../editor-toolbar";
@@ -15,9 +15,6 @@ import { detectEvent, toolbarEventListener } from "../../components/editor-toolb
 import defaults from "../../constants/defaults.json";
 
 import { renderPostBody, setProxyBase } from "@ecency/render-helper";
-
-setProxyBase(defaults.imageServer);
-
 import { _t } from "../../i18n";
 import { Global } from "../../store/global/types";
 import * as ss from "../../util/session-storage";
@@ -26,6 +23,9 @@ import TextareaAutocomplete from "../textarea-autocomplete";
 import { AvailableCredits } from "../available-credits";
 import { Location } from "history";
 import "./_index.scss";
+import { Spinner } from "../spinner";
+
+setProxyBase(defaults.imageServer);
 
 interface PreviewProps {
   text: string;
@@ -299,15 +299,7 @@ export class Comment extends Component<Props, State> {
                   disabled={inProgress}
                   onClick={this.submit}
                 >
-                  {inProgress && (
-                    <Spinner
-                      animation="grow"
-                      variant="light"
-                      size="sm"
-                      style={{ marginRight: "6px" }}
-                    />
-                  )}{" "}
-                  {submitText}
+                  {inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />} {submitText}
                 </Button>
               )
             })}

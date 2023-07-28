@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import { Modal, Form, Button, FormControl, Spinner } from "react-bootstrap";
+import { Button, Form, FormControl, Modal } from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
 
-import { PrivateKey, PublicKey, cryptoUtils } from "@hiveio/dhive";
+import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 
 import { History, Location } from "history";
 import * as ls from "../../util/local-storage";
@@ -13,11 +13,10 @@ import { decodeObj } from "../../util/encoder";
 import { AppWindow } from "../../../client/window";
 
 import { Global } from "../../store/global/types";
-import { UI } from "../../store/ui/types";
+import { ToggleType, UI } from "../../store/ui/types";
 import { User, UserKeys } from "../../store/users/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { ToggleType } from "../../store/ui/types";
 
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
@@ -33,13 +32,13 @@ import { generateKeys } from "../../helper/generate-private-keys";
 import { getAccount } from "../../api/hive";
 import { usrActivity } from "../../api/private-api";
 import { hsTokenRenew } from "../../api/auth-api";
-import { formatError, grantPostingPermission, revokePostingPermission } from "../../api/operations";
+import { formatError, grantPostingPermission } from "../../api/operations";
 
 import { getRefreshToken } from "../../helper/user-token";
 
 import ReCAPTCHA from "react-google-recaptcha";
 
-import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
+import { addAccountAuthority, signBuffer } from "../../helper/keychain";
 
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
@@ -48,6 +47,7 @@ import { deleteForeverSvg } from "../../img/svg";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
+import { Spinner } from "../spinner";
 
 declare var window: AppWindow;
 
@@ -171,9 +171,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
       ? "./img/keychain.png"
       : require("../../img/keychain.png");
 
-    const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-    );
+    const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
     return (
       <>
@@ -575,9 +573,7 @@ export class Login extends BaseComponent<LoginProps, State> {
       ? "./img/keychain.png"
       : require("../../img/keychain.png");
 
-    const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-    );
+    const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
     return (
       <>
