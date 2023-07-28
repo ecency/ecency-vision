@@ -7,6 +7,9 @@ import React, {
 } from "react";
 import { isMobile } from "../../util/is-mobile";
 import { classNameObject } from "../../helper/class-name-object";
+import { arrowLeftSvg, arrowRightSvg } from "../../img/svg";
+import "./index.css";
+import { _t } from "../../i18n";
 
 function PageButton(
   props: Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, any>, "className"> & {
@@ -18,7 +21,7 @@ function PageButton(
     <button
       {...props}
       className={classNameObject({
-        "border-r border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600":
+        "pagination border-r border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600":
           true,
         "text-blue-dark-sky bg-white hover:bg-gray-100": !props.active,
         "border-blue-dark-sky bg-blue-dark-sky text-white": props.active
@@ -84,18 +87,18 @@ const MyPagination = ({
   return (
     <div className={className}>
       <PageButton disabled={!(sliceStart > 0)} onClick={() => changePage(1)}>
-        first
+        {_t("g.first")}
       </PageButton>
       <PageButton disabled={!(page > 1)} onClick={() => changePage(page - 1)}>
-        prev
+        {arrowLeftSvg}
       </PageButton>
       {items}
       <PageButton disabled={page >= pages} onClick={() => changePage(page + 1)}>
-        next
+        {arrowRightSvg}
       </PageButton>
       {showLastNo && (
         <PageButton disabled={page >= pages} onClick={() => changePage(pages)}>
-          last
+          {_t("g.last")}
         </PageButton>
       )}
     </div>
