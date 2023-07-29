@@ -147,6 +147,12 @@ const App = (props: any) => {
           path={routes.PROPOSAL_DETAIL}
           component={ProposalDetailContainer}
         />
+        <Route
+          exact={true}
+          strict={true}
+          path={`/me${routes.PROPOSAL_DETAIL}`}
+          component={ProposalDetailContainer}
+        />
         <Route exact={true} strict={true} path={routes.ABOUT} component={AboutPage} />
         <Route exact={true} strict={true} path={routes.GUESTS} component={GuestPostPage} />
         <Route exact={true} strict={true} path={routes.CONTRIBUTE} component={ContributePage} />
