@@ -597,7 +597,7 @@ export const Profile = (props: Props) => {
                             }`
                           )}
                         >
-                          <ProfileActivites/>
+                          <ProfileActivites account={account}/>
                         </div>
                       </div>
                     </>

@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from "react"
-import { getAllActiviies } from '../../api/hive'
+import { getAllActiviies } from "../../api/hive"
+import { dateToFullRelative } from "../../helper/parse-date"
 import "./index.scss"
+import { Link } from "react-router-dom"
+import LinearProgress from "../linear-progress"
+import { Account } from "../../store/accounts/types"
+import { Button } from "react-bootstrap"
 
-export const ProfileActivites = () => {
+interface Props{
+  account: Account
+}
 
-  const [activities, setActivities] = useState([])
+export const ProfileActivites = (props: Props) => {
+
+  const { account } = props;
+
+  const [activities, setActivities] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
   getActivities();
-  }, [])
+  },[])
 
   const getActivities = async () => {
+    setLoading(true)
     try {
-      const response = await getAllActiviies("adesojisouljay")
+      const response = await getAllActiviies(account.name)
       console.log(response.reverse())
       const accountHistory = response.map((entry: [any, any]) => {
         const [index, op] = entry;
@@ -30,6 +43,7 @@ export const ProfileActivites = () => {
       });
       console.log(accountHistory.reverse())
       setActivities(accountHistory.reverse())
+      setLoading(false)
       return accountHistory;
       
     } catch (err) {
@@ -39,31 +53,72 @@ export const ProfileActivites = () => {
 
   return (
     <div className="profile-activities">
+      {loading && <LinearProgress/>}
         <div className="activities-container">
-            {/* <div className="activities">
-              <p>The post body always</p>
-              <div className="activities-details">
-                <span>Authour: @adesojisouljay</span>
-                <span>Permlink: pidhjhxc</span>
-                <span>Post Link: @adesojisouljay/iuhdiu-dusdj-jhjh</span>
-                <span>Time: 4 days ago</span>
-              </div>
-            </div> */}
           {activities?.map((a: any) => {return (
             <>
               {a.type === "comment" ? <div className="activities">
-                <div className="activity-body">
-                  <p>{a.data.body.substring(0, 100)}</p>
+                <div className="activities-header">
+                  <h4>Comment</h4>
                 </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
+                    <span>Authour: @{a.data.author}</span>
+                    <span>Body: {a.data.body.substring(0, 100)}</span>
+                    <span>Permlink: {a.data.permlink}</span>
+                    <span className="mr-1">Post Link: 
+                      <Link to={`/@${a.data.author}/${a.data.permlink}`}>{`/@${a.data.author}/${a.data.permlink}`}</Link>
+                    </span>
+                    <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                  </div>
+                </div>
+              </div> 
+              : a.type === "effective_comment_vote" ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Effective comment vote</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
+                    <span>Authour: @{a.data.author}</span>
+                    <span>Pending payout: {a.data.pending_payout}</span>
+                    <span>Post Link: {a.data.permlink}</span>
+                    <span>Voter: {a.data.voter}</span>
+                    <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                  </div>                  
+                </div>
+            </div> : a.type === "vote" ? <div className="activities">
+              <div className="activities-header">
+                <h4>Vote</h4>
+              </div>
+              <div className="activities-info-wrapper">
                 <div className="activities-details">
-                  <span>Authour: {a.data.author}</span>
-                  <span>Permlink: pidhjhxc</span>
-                  <span>Post Link: @adesojisouljay/iuhdiu-dusdj-jhjh</span>
-                  <span>Time: 4 days ago</span>
+                  <span>Authour: @{a.data.author}</span>
+                  <span>Post permlink: {a.data.permlink}</span>
+                  <span>Voter: {a.data.voter}</span>
+                  <span>Weight: {a.data.weight / 100}%</span>
+                  <span>Time: {dateToFullRelative(a.timestamp)}</span>
                 </div>
-              </div> : null}
+              </div>
+            </div> : a.type === "curation_reward" ? <div className="activities">
+              <div className="activities-header">
+                <h4>Curation reward</h4>
+              </div>
+              <div className="activities-info-wrapper">
+                <div className="activities-details">
+                  <span>Authour: @{a.data.comment_author}</span>
+                  <span>Post permlink: {a.data.comment_permlink}</span>
+                  <span>Curator: {a.data.curator}</span>
+                  <span>Reward: {a.data.reward}</span>
+                  <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                </div>
+              </div>
+            </div>
+              : null}
             </>
           )})}
+        </div>
+        <div className="justify-self-center mt-3">
+          <Button className="w-100">Load more</Button>
         </div>
     </div>
   )
