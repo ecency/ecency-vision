@@ -167,7 +167,7 @@ export class List extends BaseComponent<ListProps, ListState> {
         const followingAccountNames = followingData.map((following) => following.name);
         const accounts = await getAccounts(followingAccountNames);
 
-          results = followingData.map((following) => {
+        results = followingData.map((following) => {
           const isMatch = accounts.find((account) => account.name === following.name);
           if (!isMatch) {
             return following;
@@ -181,16 +181,16 @@ export class List extends BaseComponent<ListProps, ListState> {
 
           return {
             ...following,
-            lastSeen: lastActive.fromNow(),
+            lastSeen: lastActive.fromNow()
           };
         });
-        this.stateSet({ isFiltered: false })
+        this.stateSet({ isFiltered: false });
       } else {
         const followerData = await searchFollower(account.name, search);
         const followerAccountNames = followerData.map((follower) => follower.name);
         const accounts = await getAccounts(followerAccountNames);
 
-          results = followerData.map((follower) => {
+        results = followerData.map((follower) => {
           const isMatch = accounts.find((account) => account.name === follower.name);
           if (!isMatch) {
             return follower;
@@ -204,10 +204,10 @@ export class List extends BaseComponent<ListProps, ListState> {
 
           return {
             ...follower,
-            lastSeen: lastActive.fromNow(),
+            lastSeen: lastActive.fromNow()
           };
         });
-        this.stateSet({ isFiltered: false })
+        this.stateSet({ isFiltered: false });
       }
     } catch (e) {
       results = [];
