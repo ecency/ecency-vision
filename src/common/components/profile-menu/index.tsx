@@ -32,7 +32,7 @@ export class ProfileMenu extends Component<Props> {
   render() {
     const { username, section, activeUser } = this.props;
 
-    const kebabMenuItems: MenuItem[] = ["trail", "replies", "communities"].map((x) => {
+    const kebabMenuItems: MenuItem[] = ["trail", "replies", "communities", "activities"].map((x) => {
       return {
         label: _t(`profile.section-${x}`),
         href: `/@${username}/${x}`,

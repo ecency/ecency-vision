@@ -1,0 +1,23 @@
+.activities-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .activities{
+        display: flex;
+        // flex-direction: column;
+        justify-content: space-between;
+        // gap: 5px;
+        background: #161d26;
+        width: 100%;
+        height: fit-content;
+        padding: 10px;
+        border-radius: 5px;
+
+        .activities-details{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+}
