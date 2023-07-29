@@ -146,6 +146,7 @@ export class TransactionRow extends Component<TransactionRowProps> {
     }
 
     const dateRelative = dateToFullRelative(tr.created);
+    console.log(tr.created)
 
     return (
       <div className="transaction-list-item">

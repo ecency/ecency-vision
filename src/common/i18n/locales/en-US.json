@@ -1441,13 +1441,14 @@
     "choose-thumbnail": "Thumbnail",
     "continue": "Continue",
     "encode": "Send for encoding",
-    "success": "Video has been uploaded and queued for encoding",
+    "success": "Video succesfully uploaded",
     "finished": "Finished",
     "upload-video": "Upload video",
     "video-gallery": "Video gallery",
     "preview": "Preview",
     "to-gallery": "Go to gallery:",
-    "congrats": "Congratulations"
+    "congrats": "Congratulations",
+    "publishing": "Don't refresh this page, wait for few seconds for video to process"
   },
   "video-gallery": {
     "all": "All",

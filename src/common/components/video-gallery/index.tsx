@@ -7,6 +7,7 @@ import "./index.scss";
 import DropDown from "../dropdown";
 import Tooltip from "../tooltip";
 import { ConfirmNsfwContent } from "../video-nsfw";
+import { dateToFullRelative } from "../../helper/parse-date";
 
 interface videoProps {
   status: string;
@@ -63,53 +64,6 @@ const VideoGallery = (props: Props) => {
 
   const setBeneficiary = (video: any) => {
     setVideoEncoderBeneficiary && setVideoEncoderBeneficiary(video);
-  };
-
-  const formatTime = (dateStr: string | number | Date) => {
-    const date: any = new Date(dateStr);
-    const now: any = new Date();
-
-    const difference = Math.abs(now - date);
-    const seconds = Math.floor(difference / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
-    const months = Math.floor(days / 30);
-    const years = Math.floor(months / 12);
-
-    if (years > 0) {
-      if (years === 1) {
-        return `${years} year ago`;
-      } else {
-        return `${years} years ago`;
-      }
-    } else if (months > 0) {
-      if (months === 1) {
-        return `${months} month ago`;
-      } else {
-        return ` ${months} months ago`;
-      }
-    } else if (days > 0) {
-      if (days === 1) {
-        return `${days} day ago`;
-      } else {
-        return `${days} days ago`;
-      }
-    } else if (hours > 0) {
-      if (hours === 1) {
-        return `${hours} hour ago`;
-      } else {
-        return `${hours} hours ago`;
-      }
-    } else if (minutes > 0) {
-      if (minutes === 1) {
-        return `${minutes} mintutes ago`;
-      } else {
-        return `${minutes} minutes ago`;
-      }
-    } else {
-      return `${seconds} seconds ago`;
-    }
   };
 
   const filterList = (type: any) => {
@@ -277,7 +231,7 @@ const VideoGallery = (props: Props) => {
                   <div className="more-info">
                     <div className="each-info">
                       <span>
-                        {_t("video-gallery.info-created")} {formatTime(item.created)}
+                        {_t("video-gallery.info-created")} {dateToFullRelative(item.created)}
                       </span>
                     </div>
                     <div className="each-info">
@@ -364,7 +318,7 @@ const VideoGallery = (props: Props) => {
                   <div className="more-info">
                     <div className="each-info">
                       <span>
-                        {_t("video-gallery.info-created")} {formatTime(item.created)}
+                        {_t("video-gallery.info-created")} {dateToFullRelative(item.created)}
                       </span>
                     </div>
                     <div className="each-info">

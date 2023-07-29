@@ -261,11 +261,11 @@ export class EditorToolbar extends Component<Props> {
   };
 
   bold = () => {
-    this.insertText("*", "*");
+    this.insertText("**", "**");
   };
 
   italic = () => {
-    this.insertText("", "");
+    this.insertText("*", "*");
   };
 
   header = (w: number) => {
@@ -564,7 +564,7 @@ export class EditorToolbar extends Component<Props> {
           )}
 
           {!this.props.comment && (
-            <Tooltip content="Upload Video">
+            <Tooltip content={_t("video-upload.upload-video")}>
               <div className="editor-tool" role="none">
                 <VideoUpload
                   activeUser={activeUser}

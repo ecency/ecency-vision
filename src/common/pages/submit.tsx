@@ -795,7 +795,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         //Mark speak video as published
         if (isThreespeak && activeUser.username === speakAuthor) {
-          success(`Don't refresh this page, wait for few seconds for video to process`);
+          success(_t("vidoe-upload.publishing"));
           setTimeout(() => {
             this.markVideo(videoId);
           }, 10000);

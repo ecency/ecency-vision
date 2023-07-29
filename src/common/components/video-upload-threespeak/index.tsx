@@ -132,7 +132,7 @@ export const VideoUpload = (props: Props) => {
     if (data) {
       setVideoId(data._id);
       setIsNsfwC(data.isNsfwContent);
-      success("Video succesfully uploaded");
+      success(_t("video-upload.success"));
     }
   };
 
