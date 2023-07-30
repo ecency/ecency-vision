@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Col, Form, Modal, Button, FormControl } from "react-bootstrap";
+import { Button, Col, Form, FormControl, Modal } from "react-bootstrap";
 
 import { PrivateKey } from "@hiveio/dhive";
 
@@ -223,23 +223,23 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
         </Form>
 
         {routes.length > 0 && (
-          <table className="table route-table">
+          <table className="table-auto w-full route-table">
             <thead>
               <tr>
-                <th>{_t("withdraw-routes.account")}</th>
-                <th>{_t("withdraw-routes.percent")}</th>
-                <th>{_t("withdraw-routes.auto-power-up")}</th>
-                <th />
+                <th className="border p-2">{_t("withdraw-routes.account")}</th>
+                <th className="border p-2">{_t("withdraw-routes.percent")}</th>
+                <th className="border p-2">{_t("withdraw-routes.auto-power-up")}</th>
+                <th className="border p-2" />
               </tr>
             </thead>
             <tbody>
               {routes.map((r) => {
                 return (
                   <tr key={r.id}>
-                    <td>{r.to_account}</td>
-                    <td>{`${r.percent / 100}%`}</td>
-                    <td>{r.auto_vest ? _t("g.yes") : _t("g.no")}</td>
-                    <td>
+                    <td className="border p-2">{r.to_account}</td>
+                    <td className="border p-2">{`${r.percent / 100}%`}</td>
+                    <td className="border p-2">{r.auto_vest ? _t("g.yes") : _t("g.no")}</td>
+                    <td className="border p-2">
                       <Tooltip content={_t("g.delete")}>
                         <a
                           href="#"

@@ -68,12 +68,16 @@ export class CommunityRoles extends Component<Props, State> {
     return (
       <div className="community-roles">
         <h2>{_t("community.roles-title")}</h2>
-        <table className="table table-striped table-bordered table-roles">
+        <table className="table-auto border-collapse border">
           <thead>
             <tr>
-              <th style={{ width: "200px" }}>{_t("community.roles-account")}</th>
-              <th style={{ width: "74px" }}>{_t("community.roles-role")}</th>
-              <th>{_t("community.roles-account-title")}</th>
+              <th style={{ width: "200px" }} className="border p-3">
+                {_t("community.roles-account")}
+              </th>
+              <th style={{ width: "74px" }} className="border p-3">
+                {_t("community.roles-role")}
+              </th>
+              <th className="border p-3">{_t("community.roles-account-title")}</th>
             </tr>
           </thead>
           <tbody>
@@ -81,20 +85,20 @@ export class CommunityRoles extends Component<Props, State> {
               const [username, role, title] = t;
               const canEdit = roles && roles.includes(role);
               return (
-                <tr key={i}>
-                  <td>
+                <tr key={i} className={i % 2 === 0 ? "bg-gray-100" : ""}>
+                  <td className="border p-3">
                     {ProfileLink({
                       ...this.props,
                       username,
                       children: (
-                        <span className="user">
+                        <span className="user flex gap-3 items-center">
                           <UserAvatar username={username} size="medium" />{" "}
                           <span className="username">{username}</span>
                         </span>
                       )
                     })}
                   </td>
-                  <td>
+                  <td className="border p-3">
                     {canEdit ? (
                       <a
                         href="#"
@@ -109,7 +113,7 @@ export class CommunityRoles extends Component<Props, State> {
                       role
                     )}
                   </td>
-                  <td>{title}</td>
+                  <td className="border p-3">{title}</td>
                 </tr>
               );
             })}

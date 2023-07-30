@@ -16,6 +16,7 @@ import * as ls from "../../util/local-storage";
 import { _t } from "../../i18n";
 import { keySvg } from "../../img/svg";
 import "./index.scss";
+
 interface Props {
   accountData: AccountDataType;
   activeUser: ActiveUser;
@@ -314,7 +315,7 @@ export default function ManageKeys(props: Props) {
   return (
     <>
       <tr>
-        <td className="col-type-content"> {_t("manage-authorities.owner")}</td>
+        <td className="border p-2 col-type-content"> {_t("manage-authorities.owner")}</td>
         <td className="key">
           {ownerReveal
             ? isMobile
@@ -324,7 +325,7 @@ export default function ManageKeys(props: Props) {
             ? formattedPrivateKeys.owner
             : privateKeys?.owner!}
         </td>
-        <td className="d-none d-sm-block">
+        <td className="hidden sm:table-cell border p-2">
           <p className="action-btns">
             <Button
               className="copy-btn"
@@ -355,7 +356,7 @@ export default function ManageKeys(props: Props) {
           </p>
         </td>
 
-        <td className="d-sm-none">
+        <td className="sm:hidden border p-2">
           {
             <ManageAuthIcon
               history={props.history}
@@ -388,8 +389,8 @@ export default function ManageKeys(props: Props) {
       </tr>
 
       <tr>
-        <td className="col-type-content"> {_t("manage-authorities.active")}</td>
-        <td className="key">
+        <td className="border p-2 col-type-content"> {_t("manage-authorities.active")}</td>
+        <td className="border p-2 key">
           {activeReveal
             ? isMobile
               ? formattedPublicKeys.publicActiveKey
@@ -398,7 +399,7 @@ export default function ManageKeys(props: Props) {
             ? formattedPrivateKeys.active
             : privateKeys?.active!}
         </td>
-        <td className="d-none d-sm-block">
+        <td className="hidden sm:table-cell border p-2">
           <p className="action-btns">
             <Button
               className="copy-btn"
@@ -428,7 +429,7 @@ export default function ManageKeys(props: Props) {
             )}
           </p>
         </td>
-        <td className="d-sm-none">
+        <td className="sm:hidden border p-2">
           {
             <ManageAuthIcon
               history={props.history}
@@ -461,8 +462,8 @@ export default function ManageKeys(props: Props) {
         <td className="col-weight-content">{props.accountData!.active[1]}</td>
       </tr>
       <tr>
-        <td className="col-type-content"> {_t("manage-authorities.posting")}</td>
-        <td className="key">
+        <td className="border p-2 col-type-content"> {_t("manage-authorities.posting")}</td>
+        <td className="border p-2 key">
           {postingReveal
             ? isMobile
               ? formattedPublicKeys.publicPostingKey
@@ -471,7 +472,7 @@ export default function ManageKeys(props: Props) {
             ? formattedPrivateKeys.posting
             : privateKeys?.posting!}
         </td>
-        <td className="d-none d-sm-block">
+        <td className="hidden sm:table-cell border p-2">
           <p className="action-btns">
             <Button
               className="copy-btn"
@@ -505,7 +506,7 @@ export default function ManageKeys(props: Props) {
             )}
           </p>
         </td>
-        <td className="d-sm-none">
+        <td className="sm:hidden border p-2">
           {
             <ManageAuthIcon
               history={props.history}
@@ -537,12 +538,12 @@ export default function ManageKeys(props: Props) {
           }
         </td>
 
-        <td className="col-weight-content">{props.accountData!.posting[1]}</td>
+        <td className="border p-2 col-weight-content">{props.accountData!.posting[1]}</td>
       </tr>
 
       <tr>
-        <td className="col-type-content"> {_t("manage-authorities.memo")}</td>
-        <td className="key">
+        <td className="border p-2 col-type-content"> {_t("manage-authorities.memo")}</td>
+        <td className="border p-2 key">
           {memoReveal
             ? isMobile
               ? formattedPublicKeys.publicMemoKey
@@ -551,7 +552,7 @@ export default function ManageKeys(props: Props) {
             ? formattedPrivateKeys.memo
             : privateKeys?.memo!}
         </td>
-        <td className="d-none d-sm-block">
+        <td className="hidden sm:table-cell border p-2">
           <p className="action-btns">
             <Button
               className="copy-btn"
@@ -582,7 +583,7 @@ export default function ManageKeys(props: Props) {
           </p>
         </td>
 
-        <td className="d-sm-none">
+        <td className="border p-2 sm:hidden">
           {
             <ManageAuthIcon
               history={props.history}
@@ -609,7 +610,7 @@ export default function ManageKeys(props: Props) {
             />
           }
         </td>
-        <td className="col-weight-content">{props.accountData!.owner[1]}</td>
+        <td className="border p-2 col-weight-content">{props.accountData!.owner[1]}</td>
       </tr>
 
       {keyDialog && (

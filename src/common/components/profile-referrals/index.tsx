@@ -12,12 +12,11 @@ import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
 import MyPagination from "../pagination";
-import Transfer, { TransferMode, TransferAsset } from "../transfer";
+import Transfer, { TransferAsset, TransferMode } from "../transfer";
 import LinearProgress from "../linear-progress";
 import { shareVariantSvg } from "../../img/svg";
-import { getReferrals, ReferralItem, getReferralsStats, ReferralStat } from "../../api/private-api";
+import { getReferrals, getReferralsStats, ReferralItem, ReferralStat } from "../../api/private-api";
 // import clipboard from '../../util/clipboard';
-
 import { _t } from "../../i18n";
 import { success } from "../feedback";
 import { Tsx } from "../../i18n/helper";
@@ -151,13 +150,13 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
     const table = (
       <>
-        <table className="table d-none d-sm-block d-flex flex-column">
+        <table className="table-auto border border-collapse">
           <thead>
             <tr>
-              <th className="col-rank">{_t("referral.created")}</th>
+              <th className="border p-3 col-rank">{_t("referral.created")}</th>
               <th>{_t("referral.list-referral")}</th>
-              <th className="col-version">{_t("referral.rewarded")}</th>
-              <th className="col-version" />
+              <th className="border p-3 col-version">{_t("referral.rewarded")}</th>
+              <th className="border p-3 col-version" />
             </tr>
           </thead>
           <tbody>
@@ -167,18 +166,18 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
               var createdAt = momentObj.format("YYYY/MM/DD");
               return (
                 <tr key={i}>
-                  <td className="align-middle">
+                  <td className="border p-3">
                     <div className="witness-rank">
                       <span className="rank-number">{createdAt}</span>
                     </div>
                   </td>
-                  <td>
+                  <td className="border p-3">
                     {ProfileLink({
                       history: this.props.history,
                       addAccount: () => {},
                       username: row.username,
                       children: (
-                        <span className="d-flex align-center gap-2">
+                        <span className="flex items-center gap-3">
                           <UserAvatar size="medium" username={row.username} />
                           <span className="d-block align-self-center ml-2">{row.username}</span>
                         </span>
@@ -186,12 +185,12 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                     })}
                   </td>
 
-                  <td className="align-middle">
-                    <span className="bg-primary text-white reward-wrapper py-1 px-3 circle">
+                  <td className="border p-3">
+                    <span className="bg-blue-dark-sky text-white py-1 px-3 rounded-2xl">
                       {row.rewarded === 0 ? _t("g.no") : _t("g.yes")}
                     </span>
                   </td>
-                  <td className="delegate-button">
+                  <td className="border p-3 delegate-button">
                     <button
                       className="btn btn-sm btn-primary"
                       onClick={() => this.openTransferDialog("delegate", "HP", row.username)}
@@ -263,7 +262,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
           return (
             <>
               {header}
-              <div className="table-responsive">
+              <div className="w-full overflow-x-auto">
                 {table}
 
                 {referrals.length >= pageSize && (

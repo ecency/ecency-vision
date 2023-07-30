@@ -351,16 +351,16 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
 
     const table = (
       <>
-        <table className="table">
+        <table className="table-auto w-full border border-collapse">
           <thead>
             <tr>
-              <th className="col-rank">{_t("witnesses.list-rank")}</th>
-              <th>{_t("witnesses.list-witness")}</th>
-              <th className="col-miss">{_t("witnesses.list-miss")}</th>
-              <th className="col-url">{_t("witnesses.list-url")}</th>
-              <th className="col-fee">{_t("witnesses.list-fee")}</th>
-              <th className="col-feed">{_t("witnesses.list-feed")}</th>
-              <th className="col-version">{_t("witnesses.list-version")}</th>
+              <th className="border p-2 col-rank">{_t("witnesses.list-rank")}</th>
+              <th className="border p-2 ">{_t("witnesses.list-witness")}</th>
+              <th className="border p-2 col-miss">{_t("witnesses.list-miss")}</th>
+              <th className="border p-2 col-url">{_t("witnesses.list-url")}</th>
+              <th className="border p-2 col-fee">{_t("witnesses.list-fee")}</th>
+              <th className="border p-2 col-feed">{_t("witnesses.list-feed")}</th>
+              <th className="border p-2 col-version">{_t("witnesses.list-version")}</th>
             </tr>
           </thead>
           <tbody>
@@ -370,7 +370,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                   key={`${row.name}-${row.rank}${i}`}
                   className={`${this.state.proxyVotes.includes(row.name) ? "voted-by-voter" : ""}`}
                 >
-                  <td>
+                  <td className="border p-2">
                     <div className="witness-rank">
                       <span className="rank-number">{row.rank}</span>
                       {WitnessVoteBtn({
@@ -387,7 +387,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                       })}
                     </div>
                   </td>
-                  <td>
+                  <td className="border p-2">
                     {ProfileLink({
                       ...this.props,
                       username: row.name,
@@ -411,10 +411,10 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                       )
                     })}
                   </td>
-                  <td>
+                  <td className="border p-2">
                     <span className="witness-miss">{row.miss}</span>
                   </td>
-                  <td>
+                  <td className="border p-2">
                     {(() => {
                       const { parsedUrl } = row;
                       if (parsedUrl) {
@@ -431,17 +431,17 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                       );
                     })()}
                   </td>
-                  <td>
+                  <td className="border p-2">
                     <span className="witness-fee">{row.fee}</span>
                   </td>
-                  <td>
+                  <td className="border p-2">
                     <div className="witness-feed">
                       <span className="inner">
                         ${row.feed.replace(" HBD", "")} | {dateToRelative(row.priceAge)}
                       </span>
                     </div>
                   </td>
-                  <td>
+                  <td className="border p-2">
                     <div className="witness-version">
                       <span className="inner">{row.version}</span>
                     </div>

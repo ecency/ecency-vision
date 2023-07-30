@@ -202,14 +202,14 @@ export default function ManageAuthorities(props: Props) {
 
   const table = () => {
     return (
-      <table className="table">
+      <table className="table-auto w-full border-collapse border">
         <thead>
           <tr>
-            <th>{_t("manage-authorities.type")}</th>
-            <th>{_t("manage-authorities.key")}</th>
-            <th className="d-none d-sm-block border-b border-[--border-color]-0" />
-            <th className="d-sm-none col-action">{_t("manage-authorities.actions")}</th>
-            <th className="col-weight-content">{_t("manage-authorities.weight")}</th>
+            <th className="border p-2">{_t("manage-authorities.type")}</th>
+            <th className="border p-2">{_t("manage-authorities.key")}</th>
+            <th className="hidden sm:table-cell border p-2" />
+            <th className="sm:hidden border p-2 col-action">{_t("manage-authorities.actions")}</th>
+            <th className="col-weight-content border p-2">{_t("manage-authorities.weight")}</th>
           </tr>
         </thead>
         <tbody>
@@ -219,10 +219,12 @@ export default function ManageAuthorities(props: Props) {
                 return (
                   <>
                     <tr key={i} className="tabl-row">
-                      <td className="col-type-content">{_t("manage-authorities.posting")}</td>
+                      <td className="border p-2 col-type-content">
+                        {_t("manage-authorities.posting")}
+                      </td>
                       {
                         <>
-                          <td>
+                          <td className="border p-2">
                             <p className="col-key-content">
                               <a
                                 className="username"
@@ -237,7 +239,7 @@ export default function ManageAuthorities(props: Props) {
                               </a>
                             </p>
                           </td>
-                          <td className="d-none d-sm-block">
+                          <td className="hidden sm:table-cell border p-2">
                             {" "}
                             <Button
                               onClick={() => handleRevoke(account[0])}
@@ -246,7 +248,7 @@ export default function ManageAuthorities(props: Props) {
                               {_t("manage-authorities.revoke")}
                             </Button>
                           </td>
-                          <td className="d-sm-none">
+                          <td className="sm:hidden border p-2">
                             {
                               <ManageAuthIcon
                                 history={props.history}
@@ -258,7 +260,7 @@ export default function ManageAuthorities(props: Props) {
                               />
                             }
                           </td>
-                          <td className="col-weight-content">{account[1]}</td>
+                          <td className="border p-2 col-weight-content">{account[1]}</td>
                         </>
                       }
                     </tr>

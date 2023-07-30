@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Modal, Form, InputGroup, FormControl } from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup, Modal } from "react-bootstrap";
 
 import BaseComponent from "../base";
 import { error } from "../feedback";
@@ -11,7 +11,7 @@ import { getAccount } from "../../api/hive";
 
 import { _t } from "../../i18n";
 
-import { plusSvg, deleteForeverSvg, accountMultipleSvg } from "../../img/svg";
+import { accountMultipleSvg, deleteForeverSvg, plusSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 
@@ -91,24 +91,24 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
         }}
       >
         <div className="beneficiary-list">
-          <table className="table table-bordered">
+          <table className="table-auto w-full border-collapse border">
             <thead>
               <tr>
-                <th>{_t("beneficiary-editor.username")}</th>
-                <th>{_t("beneficiary-editor.reward")}</th>
-                <th />
+                <th className="border p-2">{_t("beneficiary-editor.username")}</th>
+                <th className="border p-2">{_t("beneficiary-editor.reward")}</th>
+                <th className="border p-2" />
               </tr>
             </thead>
             <tbody>
               {author && available > 0 && (
                 <tr>
-                  <td>{`@${author}`}</td>
-                  <td>{`${available}%`}</td>
-                  <td />
+                  <td className="border p-2">{`@${author}`}</td>
+                  <td className="border p-2">{`${available}%`}</td>
+                  <td className="border p-2" />
                 </tr>
               )}
               <tr>
-                <td>
+                <td className="border p-2">
                   <InputGroup size="sm">
                     <InputGroup.Prepend>
                       <InputGroup.Text>@</InputGroup.Text>
@@ -128,7 +128,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                     />
                   </InputGroup>
                 </td>
-                <td>
+                <td className="border p-2">
                   <InputGroup size="sm">
                     <Form.Control
                       disabled={inProgress}
@@ -150,7 +150,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                     </InputGroup.Append>
                   </InputGroup>
                 </td>
-                <td>
+                <td className="border p-2">
                   <Button disabled={inProgress || available < 1} size="sm" type="submit">
                     {plusSvg}
                   </Button>
@@ -159,9 +159,9 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
               {list.map((x) => {
                 return (
                   <tr key={x.account}>
-                    <td>{`@${x.account}`}</td>
-                    <td>{`${x.weight / 100}%`}</td>
-                    <td>
+                    <td className="border p-2">{`@${x.account}`}</td>
+                    <td className="border p-2">{`${x.weight / 100}%`}</td>
+                    <td className="border p-2">
                       <Button
                         onClick={() => {
                           const { onDelete } = this.props;
