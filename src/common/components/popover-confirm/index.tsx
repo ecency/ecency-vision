@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 
-import { Popover, OverlayTrigger, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { _t } from "../../i18n";
+import { Popover, PopoverContent, PopoverTitle } from "./popover";
 
 interface Props {
   titleText?: string;
@@ -71,8 +72,8 @@ export default class PopoverConfirm extends Component<Props> {
           e.stopPropagation();
         }}
       >
-        <Popover.Title>{titleText || _t("confirm.title")}</Popover.Title>
-        <Popover.Content>
+        <PopoverTitle>{titleText || _t("confirm.title")}</PopoverTitle>
+        <PopoverContent>
           <div style={{ textAlign: "center" }}>
             <Button
               size="sm"
@@ -86,7 +87,7 @@ export default class PopoverConfirm extends Component<Props> {
               {cancelText || _t("confirm.cancel")}
             </Button>
           </div>
-        </Popover.Content>
+        </PopoverContent>
       </Popover>
     );
 
@@ -96,16 +97,8 @@ export default class PopoverConfirm extends Component<Props> {
 
     return (
       <>
-        <OverlayTrigger
-          defaultShow={true}
-          trigger={trigger || []}
-          overlay={popover}
-          placement={placement || "auto"}
-          rootClose={true}
-          container={containerRef || null}
-        >
-          {children}
-        </OverlayTrigger>
+        {popover}
+        {children}
       </>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-import { Popover, OverlayTrigger } from "react-bootstrap";
+import { OverlayTrigger } from "react-bootstrap";
 
 import { Entry } from "../../store/entries/types";
 import { Global } from "../../store/global/types";
@@ -18,6 +18,7 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
+import { Popover, PopoverContent } from "../popover-confirm/popover";
 
 interface Props {
   global: Global;
@@ -197,9 +198,9 @@ export class EntryPayout extends Component<Props> {
 
     const popover = (
       <Popover id={`payout-popover`} className="payout-popover">
-        <Popover.Content>
+        <PopoverContent>
           <EntryPayoutDetail {...this.props} />
-        </Popover.Content>
+        </PopoverContent>
       </Popover>
     );
 
