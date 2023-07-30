@@ -38,7 +38,7 @@ export const VideoUpload = (props: Props) => {
   const [isMounted, setIsMounted] = useState(false);
   const [duration, setDuration] = useState("");
 
-  const canUpload = thumbUrl && videoUrl;
+  const canUpload = thumbUrl && videoUrl && (videoPercentage === 100 && thumbPercentage === 100);
 
   useMount(() => setIsMounted(true));
 
@@ -63,7 +63,6 @@ export const VideoUpload = (props: Props) => {
     if (!file) return;
 
     uploadFile(file!, type, (percentage: number) => {
-      console.log(percentage)
       if (type === "video") {
         setVideoPercentage(percentage);
       } else {
@@ -162,6 +161,7 @@ export const VideoUpload = (props: Props) => {
         </div>
       </div>
       <Button
+        className="mt-3"
         disabled={!canUpload}
         onClick={() => {
           setStep("preview");
@@ -198,6 +198,10 @@ export const VideoUpload = (props: Props) => {
           disabled={!canUpload}
           onClick={() => {
             uploadInfo();
+            setShowModal(false);
+            setStep("upload");
+            setThumbPercentage(0)
+            setVideoPercentage(0)
             setShowGallery(true);
           }}
         >
