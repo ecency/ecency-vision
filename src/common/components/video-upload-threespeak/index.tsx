@@ -3,8 +3,7 @@ import { videoSvg, uploadSvgV } from "../../img/svg";
 import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./index.scss";
-import { getAllVideoStatuses, uploadVideoInfo } from "../../api/threespeak";
-import * as tus from "tus-js-client";
+import { getAllVideoStatuses, uploadFile, uploadVideoInfo } from "../../api/threespeak";
 import VideoGallery from "../video-gallery";
 import useMount from "react-use/lib/useMount";
 import { success } from "../feedback";
@@ -22,7 +21,6 @@ interface Props {
 export const VideoUpload = (props: Props) => {
   const { activeUser, global, insertText, setVideoEncoderBeneficiary, toggleNsfwC } = props;
 
-  const tusEndPoint = "https://uploads.3speak.tv/files/";
   const fileInput = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -30,14 +28,12 @@ export const VideoUpload = (props: Props) => {
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [coverImage, setCoverImage] = useState<any>(null);
   const [step, setStep] = useState("upload");
-  const [videoId, setVideoId] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
   const [thumbUrl, setThumbUrl] = useState("");
   const [fileName, setFileName] = useState("");
   const [fileSize, setFileSize] = useState(0);
-  const [videoPercentage, setVideoPercentage] = useState("");
-  const [thumbPercentage, setThumbPercenrage] = useState("");
-  const [isNsfwC, setIsNsfwC] = useState(false);
+  const [videoPercentage, setVideoPercentage] = useState(0);
+  const [thumbPercentage, setThumbPercentage] = useState(0);
   const [showGallery, setShowGallery] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [duration, setDuration] = useState("");
@@ -62,50 +58,32 @@ export const VideoUpload = (props: Props) => {
     }
   };
 
-  const onChange: any = (event: { target: { files: any[] } }, type: string) => {
-    let file = event.target.files[0];
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>, type: string) => {
+    let file = event.target.files?.[0];
+    if (!file) return;
 
-    let upload: any = new tus.Upload(file, {
-      // Endpoint is the upload creation URL from your tus server
-      endpoint: tusEndPoint,
-      // Retry delays will enable tus-js-client to automatically retry on errors
-      retryDelays: [0, 3000, 5000, 10000, 20000],
-      // Attach additional meta data about the file for the server
-      metadata: {
-        filename: file.name,
-        filetype: file.type
-      },
-      // Callback for errors which cannot be fixed using retries
-      onError: function (error: Error) {
-        return console.log(error);
-      },
-      // Callback for reporting upload progress
-      onProgress: function (bytesUploaded: number, bytesTotal: number) {
-        let vPercentage;
-        let tPercentage;
-        if (type === "video") {
-          vPercentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
-          setVideoPercentage(vPercentage);
-        } else {
-          tPercentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
-          setThumbPercenrage(tPercentage);
-        }
-      },
-      // Callback for once the upload is completed
-      onSuccess: function () {
-        let file = upload?.url.replace(this.endpoint, "");
-        if (type === "video") {
-          setVideoUrl(file);
-          setFileName(upload.file?.name);
-          setFileSize(upload.file?.size);
-        } else {
-          setThumbUrl(file);
-          setFileName(upload.file?.name);
-          setFileSize(upload.file?.size);
-        }
+    uploadFile(file!, type, (percentage: number) => {
+      console.log(percentage)
+      if (type === "video") {
+        setVideoPercentage(percentage);
+      } else {
+        setThumbPercentage(percentage);
       }
-    });
-    upload.start();
+    })
+      .then((result) => {
+        if (type === "video") {
+          setVideoUrl(result.fileUrl);
+          setFileName(result.fileName);
+          setFileSize(result.fileSize);
+        } else {
+          setThumbUrl(result.fileUrl);
+          setFileName(result.fileName);
+          setFileSize(result.fileSize);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleThumbnailChange = (e: ChangeEvent<HTMLInputElement | any>) => {
@@ -130,8 +108,6 @@ export const VideoUpload = (props: Props) => {
       duration
     );
     if (data) {
-      setVideoId(data._id);
-      setIsNsfwC(data.isNsfwContent);
       success(_t("video-upload.success"));
     }
   };

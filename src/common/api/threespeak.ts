@@ -1,7 +1,5 @@
-import { Memo } from "@hiveio/dhive";
 import * as tus from "tus-js-client";
 import axios from "axios";
-import { getPostingKey } from "../helper/user-token";
 import { getDecodedMemo } from "../helper/hive-signer";
 
 const studioEndPoint = "https://studio.3speak.tv";
@@ -42,7 +40,7 @@ export const getTokenValidated = async (jwt: string, username: string) => {
         }
       }
     );
-    return response.data; //cookies
+    return response.data;
   } catch (err) {
     console.log(err);
     throw err;
@@ -150,4 +148,48 @@ export const markAsPublished = async (username: string, videoId: string) => {
     .catch((error) => {
       console.error("Error:", error);
     });
+};
+
+export const uploadFile = async (file: File, type: string, progressCallback: (percentage: number) => void) => {
+  
+  return new Promise<{ 
+    fileUrl: string, 
+    fileName: string, 
+    fileSize: number 
+    }>((resolve, reject) => {
+
+    let vPercentage = 0;
+    let tPercentage = 0;
+
+    const upload: any = new tus.Upload(file, {
+      endpoint: tusEndPoint,
+      retryDelays: [0, 3000, 5000, 10000, 20000],
+      metadata: {
+        filename: file.name,
+        filetype: file.type
+      },
+      onError: function (error: Error) {
+        reject(error);
+      },
+      onProgress: function (bytesUploaded: number, bytesTotal: number) {
+        if (type === "video") {
+          vPercentage = Number(((bytesUploaded / bytesTotal) * 100).toFixed(2));
+          progressCallback(vPercentage);
+        } else {
+          tPercentage = Number(((bytesUploaded / bytesTotal) * 100).toFixed(2));
+          progressCallback(tPercentage);
+        }
+      },
+      onSuccess: function () {
+        let fileUrl = upload?.url.replace(tusEndPoint, "");
+        const result = {
+          fileUrl,
+          fileName: upload.file?.name || '',
+          fileSize: upload.file?.size || 0,
+        };
+        resolve(result);
+      }
+    });
+    upload.start();
+  });
 };
