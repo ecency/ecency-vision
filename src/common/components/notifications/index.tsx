@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import moment from "moment";
 import { History } from "history";
 import { hiveNotifySetLastRead } from "../../api/operations";
@@ -15,8 +15,8 @@ import DropDown from "../dropdown";
 import Tooltip from "../tooltip";
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
-import { checkSvg, settingsSvg, syncSvg, playListAddCheck } from "../../img/svg";
-import { NotifyTypes, NotificationViewType } from "../../enums";
+import { checkSvg, playListAddCheck, settingsSvg, syncSvg } from "../../img/svg";
+import { NotificationViewType, NotifyTypes } from "../../enums";
 import NotificationListItem from "./notification-list-item";
 import {
   fetchNotifications,
@@ -26,6 +26,7 @@ import {
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
 import { useLocation } from "react-router";
+import { Modal, ModalBody } from "../modal";
 
 export const date2key = (s: string): string => {
   if (s === "Yesterday") {
@@ -552,9 +553,9 @@ class NotificationsDialog extends Component<NotificationProps> {
         onHide={this.hide}
         className={"notifications-modal drawer " + this.props.className}
       >
-        <Modal.Body>
+        <ModalBody>
           <DialogContent {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

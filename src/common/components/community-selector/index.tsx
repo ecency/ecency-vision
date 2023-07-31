@@ -1,7 +1,4 @@
 import React from "react";
-
-import { Modal } from "react-bootstrap";
-
 import { FormControl } from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
@@ -22,6 +19,7 @@ import { getCommunities, getCommunity, getSubscriptions } from "../../api/bridge
 
 import { menuDownSvg } from "../../img/svg";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 interface BrowserProps {
   global: Global;
@@ -312,9 +310,9 @@ export class CommunitySelector extends BaseComponent<Props, State> {
             animation={false}
             className="community-selector-modal"
           >
-            <Modal.Header closeButton={true} />
+            <ModalHeader closeButton={true} />
 
-            <Modal.Body>
+            <ModalBody>
               <Browser
                 {...this.props}
                 onHide={this.toggle}
@@ -324,7 +322,7 @@ export class CommunitySelector extends BaseComponent<Props, State> {
                   this.stateSet({ picked: true });
                 }}
               />
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </>

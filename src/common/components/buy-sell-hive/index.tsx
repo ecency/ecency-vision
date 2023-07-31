@@ -4,7 +4,7 @@ import { setActiveUser, updateActiveUser } from "../../store/active-user";
 import { setSigningKey } from "../../store/signing-key";
 import { addAccount } from "../../store/accounts";
 
-import { Modal, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -16,12 +16,12 @@ import { getAccountFull } from "../../api/hive";
 
 import {
   formatError,
-  limitOrderCreateHot,
-  limitOrderCreateKc,
-  limitOrderCreate,
-  limitOrderCancelKc,
+  limitOrderCancel,
   limitOrderCancelHot,
-  limitOrderCancel
+  limitOrderCancelKc,
+  limitOrderCreate,
+  limitOrderCreateHot,
+  limitOrderCreateKc
 } from "../../api/operations";
 
 import { _t } from "../../i18n";
@@ -31,6 +31,7 @@ import { connect } from "react-redux";
 import { AppState } from "../../store";
 import { PrivateKey } from "@hiveio/dhive";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 export enum TransactionType {
   None = 0,
@@ -277,14 +278,13 @@ class BuySellHiveDialog extends Component<any> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="transfer-dialog modal-thin-header"
         size="lg"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader closeButton={true} />
+        <ModalBody>
           <BuySellHive {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

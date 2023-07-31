@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 
-import { Modal, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { _t } from "../../i18n";
+import { Modal, ModalFooter, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   titleText?: string;
@@ -33,10 +34,10 @@ export default class ModalConfirm extends Component<Props> {
 
     return (
       <Modal animation={false} show={true} centered={true} onHide={this.cancel}>
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{titleText || _t("confirm.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Footer>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{titleText || _t("confirm.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalFooter>
           <Button variant="secondary" onClick={this.cancel}>
             {" "}
             {cancelText || _t("confirm.cancel")}
@@ -45,7 +46,7 @@ export default class ModalConfirm extends Component<Props> {
             {" "}
             {okText || _t("confirm.ok")}
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     );
   }

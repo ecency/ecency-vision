@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { History, Location } from "history";
 
-import { Form, FormControl, Modal } from "react-bootstrap";
+import { Form, FormControl } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -18,18 +18,18 @@ import { error } from "../feedback";
 
 import { _t } from "../../i18n";
 
-import { getSchedules, Schedule, deleteSchedule, moveSchedule } from "../../api/private-api";
+import { deleteSchedule, getSchedules, moveSchedule, Schedule } from "../../api/private-api";
 
 import accountReputation from "../../helper/account-reputation";
 
 import defaults from "../../constants/defaults.json";
 
 import {
-  deleteForeverSvg,
-  timeSvg,
-  checkAllSvg,
   alertCircleSvg,
-  textBoxOutline
+  checkAllSvg,
+  deleteForeverSvg,
+  textBoxOutline,
+  timeSvg
 } from "../../img/svg";
 
 import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
@@ -37,6 +37,7 @@ import { dateToFormatted, dateToFullRelative, dateToRelative } from "../../helpe
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 setProxyBase(defaults.imageServer);
 
@@ -354,12 +355,12 @@ class SchedulesDialog extends Component<Props> {
   render() {
     return (
       <Modal show={true} centered={true} onHide={this.hide} size="lg" className="schedules-modal">
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("schedules.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("schedules.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <Schedules {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

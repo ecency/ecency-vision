@@ -7,7 +7,7 @@ import numeral from "numeral";
 import base58 from "bs58";
 import { AccountCreateOperation, Authority, cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import random from "../util/rnd";
-import { Button, Form, FormControl, InputGroup, Modal, Spinner } from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup, Spinner } from "react-bootstrap";
 import { _t } from "../i18n";
 import Feedback, { error, success } from "../components/feedback";
 import { formatError, setUserRole, updateCommunity } from "../api/operations";
@@ -27,6 +27,7 @@ import NavBar from "../components/navbar";
 import LoginRequired from "../components/login-required";
 import KeyOrHot from "../components/key-or-hot";
 import Tooltip from "../components/tooltip";
+import { Modal, ModalBody, ModalHeader } from "../components/modal";
 
 const namePattern = "^hive-[1]\\d{4,6}$";
 interface CreateState {
@@ -681,11 +682,10 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                   show={true}
                   centered={true}
                   onHide={this.toggleKeyDialog}
-                  keyboard={false}
                   className="community-key-modal modal-thin-header"
                 >
-                  <Modal.Header closeButton={true} />
-                  <Modal.Body>
+                  <ModalHeader closeButton={true} />
+                  <ModalBody>
                     {KeyOrHot({
                       ...this.props,
                       activeUser: activeUser!,
@@ -705,7 +705,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                         this.submitKc().then();
                       }
                     })}
-                  </Modal.Body>
+                  </ModalBody>
                 </Modal>
               )}
             </div>

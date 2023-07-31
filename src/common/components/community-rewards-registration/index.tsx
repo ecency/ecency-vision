@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Modal, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { PrivateKey } from "@hiveio/dhive";
 
@@ -23,6 +23,8 @@ import { getRewardedCommunities } from "../../api/private-api";
 
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "../modal";
+
 interface Props {
   global: Global;
   community: Community;
@@ -189,13 +191,12 @@ export default class CommunityRewardsRegistrationDialog extends Component<Props>
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="community-rewards-registration-dialog modal-thin-header"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader closeButton={true} />
+        <ModalBody>
           <CommunityRewardsRegistration {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

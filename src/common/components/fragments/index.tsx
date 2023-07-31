@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl, Modal } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 
@@ -25,6 +25,7 @@ import { handleInvalid, handleOnInput } from "../../util/input-util";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
 import { Spinner } from "../spinner";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 // ADD
 interface AddProps {
@@ -478,12 +479,12 @@ class FragmentsDialog extends Component<Props> {
   render() {
     return (
       <Modal show={true} centered={true} onHide={this.hide} size="lg" className="fragments-modal">
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("fragments.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("fragments.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <Fragments {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

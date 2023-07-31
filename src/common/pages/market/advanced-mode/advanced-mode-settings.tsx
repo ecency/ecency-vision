@@ -1,7 +1,8 @@
-import { Button, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
+import { Button, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import React, { useState } from "react";
 import { settingsSvg } from "../../../img/svg";
 import { _t } from "../../../i18n";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "../../../components/modal";
 
 interface Props {
   updateRate: number;
@@ -17,17 +18,11 @@ export const AdvancedModeSettings = ({ updateRate, setUpdateRate }: Props) => {
       <Button variant="link" onClick={() => setShow(true)}>
         {settingsSvg}
       </Button>
-      <Modal
-        animation={true}
-        show={show}
-        centered={true}
-        onHide={() => setShow(false)}
-        keyboard={false}
-      >
-        <Modal.Header closeButton={true}>
+      <Modal animation={true} show={show} centered={true} onHide={() => setShow(false)}>
+        <ModalHeader closeButton={true}>
           <b>{_t("g.settings")}</b>
-        </Modal.Header>
-        <Modal.Body>
+        </ModalHeader>
+        <ModalBody>
           <FormGroup>
             <FormLabel>
               <small>Update rate(seconds)</small>
@@ -40,8 +35,8 @@ export const AdvancedModeSettings = ({ updateRate, setUpdateRate }: Props) => {
               max={300}
             />
           </FormGroup>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <Button
             variant="primary"
             disabled={rate < 5 || rate >= 300}
@@ -56,7 +51,7 @@ export const AdvancedModeSettings = ({ updateRate, setUpdateRate }: Props) => {
           >
             {_t("g.save")}
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );

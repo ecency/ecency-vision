@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Modal, Form, FormControl } from "react-bootstrap";
+import { Form, FormControl } from "react-bootstrap";
 
 import numeral from "numeral";
 
@@ -15,13 +15,14 @@ import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import Pagination from "../pagination";
 
-import { Proposal, getProposalVotes, getAccounts } from "../../api/hive";
+import { getAccounts, getProposalVotes, Proposal } from "../../api/hive";
 
 import parseAsset from "../../helper/parse-asset";
 import accountReputation from "../../helper/account-reputation";
 
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Voter {
   name: string;
@@ -315,11 +316,11 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
         animation={false}
         className="proposal-votes-dialog"
       >
-        <Modal.Header closeButton={true} className="align-items-center px-0">
-          <Modal.Title>
+        <ModalHeader closeButton={true} className="align-items-center px-0">
+          <ModalTitle>
             {modalTitle + _t("proposals.votes-dialog-title", { n: proposal.id })}
-          </Modal.Title>
-        </Modal.Header>
+          </ModalTitle>
+        </ModalHeader>
         <Form.Group className="w-100 mb-3">
           <Form.Control
             type="text"
@@ -330,14 +331,14 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
             }}
           />
         </Form.Group>
-        <Modal.Body>
+        <ModalBody>
           <ProposalVotesDetail
             {...this.props}
             searchText={searchText}
             getVotesCount={this.getVotesCount}
             checkIsMoreData={this.checkIsMoreData}
           />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

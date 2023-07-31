@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { History } from "history";
 
@@ -33,11 +33,12 @@ import ln2list from "../../util/nl2list";
 import {
   accountGroupSvg,
   informationOutlineSvg,
-  scriptTextOutlineSvg,
-  pencilOutlineSvg
+  pencilOutlineSvg,
+  scriptTextOutlineSvg
 } from "../../img/svg";
 import { renderPostBody } from "@ecency/render-helper";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface EditPicProps {
   activeUser: ActiveUser;
@@ -347,12 +348,12 @@ export class CommunityCard extends Component<Props, State> {
             animation={false}
             className="community-info-dialog"
           >
-            <Modal.Header closeButton={true}>
-              <Modal.Title>{info.title}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
+            <ModalHeader closeButton={true}>
+              <ModalTitle>{info.title}</ModalTitle>
+            </ModalHeader>
+            <ModalBody>
               <div className="description-wrapper">{info.content}</div>
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
 

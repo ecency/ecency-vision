@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
-import { Form, Modal } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -37,6 +37,7 @@ import formattedNumber from "../../util/formatted-number";
 import _c from "../../util/fix-class-names";
 import MyPagination from "../pagination";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   history: History;
@@ -260,14 +261,14 @@ export default class DelegatedVesting extends Component<Props, DelegatedVestingS
     return (
       <>
         <Modal onHide={onHide} show={true} centered={true} animation={false}>
-          <Modal.Header closeButton={true}>
-            <Modal.Title>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>
               <div>
                 <div>{_t("delegated-vesting.title")}</div>
                 <div className="text-muted mt-3 text-small">{subtitle}</div>
               </div>
-            </Modal.Title>
-          </Modal.Header>
+            </ModalTitle>
+          </ModalHeader>
 
           <Form.Group className="w-100 px-3">
             <Form.Control
@@ -280,7 +281,7 @@ export default class DelegatedVesting extends Component<Props, DelegatedVestingS
               }}
             />
           </Form.Group>
-          <Modal.Body>
+          <ModalBody>
             <List
               {...this.props}
               searchText={searchText}
@@ -290,7 +291,7 @@ export default class DelegatedVesting extends Component<Props, DelegatedVestingS
                 })
               }
             />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </>
     );

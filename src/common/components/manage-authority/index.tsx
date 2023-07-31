@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { History } from "history";
 
 import { PrivateKey } from "@hiveio/dhive";
@@ -20,6 +20,7 @@ import { getAccounts } from "../../api/hive";
 
 import { _t } from "../../i18n";
 import "./index.scss";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 interface Props {
   global: Global;
@@ -290,15 +291,14 @@ export default function ManageAuthorities(props: Props) {
           show={true}
           centered={true}
           onHide={toggleKeyDialog}
-          keyboard={false}
           className="authorities-dialog modal-thin-header"
           size="lg"
         >
-          <Modal.Header closeButton={true} />
-          <Modal.Body>
+          <ModalHeader closeButton={true} />
+          <ModalBody>
             {step === 1 && signkeyModal()}
             {step === 2 && successModal()}
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       )}
     </>

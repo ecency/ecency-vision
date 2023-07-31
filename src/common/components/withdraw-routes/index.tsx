@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Col, Form, FormControl, Modal } from "react-bootstrap";
+import { Button, Col, Form, FormControl } from "react-bootstrap";
 
 import { PrivateKey } from "@hiveio/dhive";
 
@@ -26,6 +26,7 @@ import {
 import { deleteForeverSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   global: Global;
@@ -278,15 +279,14 @@ export default class WithdrawRoutesDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="withdraw-routes-dialog"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("withdraw-routes.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("withdraw-routes.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <WithdrawRoutes {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

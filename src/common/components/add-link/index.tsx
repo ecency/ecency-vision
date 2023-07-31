@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl, Modal } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import { _t } from "../../i18n";
 
 import { readClipboard } from "../../util/clipboard";
 
-import { parseUrl } from "../../util/misc";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   onHide: () => void;
@@ -116,12 +116,12 @@ export default class AddLinkDialog extends Component<Props> {
         className="add-link-modal"
         animation={false}
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("add-link.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("add-link.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <AddLink {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

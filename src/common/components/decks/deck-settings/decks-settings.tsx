@@ -1,4 +1,4 @@
-import { Alert, Button, Form, InputGroup, Modal } from "react-bootstrap";
+import { Alert, Button, Form, InputGroup } from "react-bootstrap";
 import React, { useContext, useEffect, useState } from "react";
 import "./_decks-settings.scss";
 import { DeckGrid } from "../types";
@@ -9,6 +9,7 @@ import * as uuid from "uuid";
 import { DeckGridContext } from "../deck-manager";
 import { DEFAULT_COLUMNS } from "../consts";
 import { _t } from "../../../i18n";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../../modal";
 
 interface Props {
   deck?: DeckGrid;
@@ -64,14 +65,13 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
       animation={true}
       show={show}
       centered={true}
-      onHide={setShow}
-      keyboard={false}
+      onHide={() => setShow(false)}
       className="decks-settings"
     >
-      <Modal.Header closeButton={true}>
-        <Modal.Title>{deck ? _t("decks.settings") : _t("decks.create-deck")}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+      <ModalHeader closeButton={true}>
+        <ModalTitle>{deck ? _t("decks.settings") : _t("decks.create-deck")}</ModalTitle>
+      </ModalHeader>
+      <ModalBody>
         {isRemovingDeck && deck && (
           <div>
             <div className="text-center mb-4">{_t("decks.delete-prompt")}</div>
@@ -170,7 +170,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
             </div>
           </Form>
         )}
-      </Modal.Body>
+      </ModalBody>
     </Modal>
   );
 };

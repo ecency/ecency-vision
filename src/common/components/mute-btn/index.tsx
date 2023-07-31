@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Form, FormControl, InputGroup, Modal } from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
 
@@ -18,6 +18,7 @@ import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 interface DialogProps {
   entry: Entry;
@@ -153,12 +154,11 @@ export class MuteBtn extends BaseComponent<Props, State> {
             }
             this.toggleDialog();
           }}
-          keyboard={false}
           className="mute-dialog modal-thin-header"
           size="lg"
         >
-          <Modal.Header closeButton={true} />
-          <Modal.Body>
+          <ModalHeader closeButton={true} />
+          <ModalBody>
             <DialogBody
               entry={entry}
               inProgress={inProgress}
@@ -167,7 +167,7 @@ export class MuteBtn extends BaseComponent<Props, State> {
                 this.mute(!isMuted, value);
               }}
             />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       ) : null;
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import "./wallet-spk-dialog.scss";
 import { Account } from "../../store/accounts/types";
@@ -15,6 +14,7 @@ import { Transactions } from "../../store/transactions/types";
 import { SendSpkDialogPowerUpForm } from "./dialog-steps/send-spk-dialog-power-up-form";
 import { Market } from "../../api/spk-api";
 import { SendSpkDialogLockForm } from "./dialog-steps/send-spk-dialog-lock";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 interface Props {
   global: Global;
@@ -129,12 +129,11 @@ export const SendSpkDialog = ({
         setShow(false);
         clear();
       }}
-      keyboard={false}
       size="lg"
       className="send-spk-dialog modal-thin-header transfer-dialog-content"
     >
-      <Modal.Header closeButton={true} />
-      <Modal.Body>
+      <ModalHeader closeButton={true} />
+      <ModalBody>
         <WalletSpkSteps steps={steps} stepIndex={stepIndex}>
           <>
             {stepIndex === 0 && type === "transfer" ? (
@@ -252,7 +251,7 @@ export const SendSpkDialog = ({
             )}
           </>
         </WalletSpkSteps>
-      </Modal.Body>
+      </ModalBody>
     </Modal>
   );
 };

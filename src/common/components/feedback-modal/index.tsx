@@ -1,4 +1,3 @@
-import { Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import React from "react";
 import { ErrorFeedbackObject } from "../feedback";
@@ -7,6 +6,7 @@ import { InsufficientResourceCreditsDetails } from "./insufficient-resource-cred
 import { CommonDetails } from "./common-details";
 import { ActiveUser } from "../../store/active-user/types";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -32,14 +32,13 @@ export const FeedbackModal = ({ show, setShow, instance, activeUser }: Props) =>
       animation={false}
       show={show}
       centered={true}
-      onHide={setShow}
-      keyboard={false}
+      onHide={() => setShow(false)}
       className="purchase-qr-dialog"
     >
-      <Modal.Header closeButton={true}>
-        <Modal.Title>{_t("feedback-modal.title")}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>{getErrorContent()}</Modal.Body>
+      <ModalHeader closeButton={true}>
+        <ModalTitle>{_t("feedback-modal.title")}</ModalTitle>
+      </ModalHeader>
+      <ModalBody>{getErrorContent()}</ModalBody>
     </Modal>
   );
 };

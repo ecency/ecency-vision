@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-
-import { Modal } from "react-bootstrap";
-
 import { ActiveUser } from "../../store/active-user/types";
 
 import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
@@ -11,9 +8,9 @@ import LinearProgress from "../linear-progress";
 import PopoverConfirm from "../popover-confirm";
 import Tooltip from "../tooltip";
 
-import { getImages, deleteImage, UserImage } from "../../api/private-api";
+import { deleteImage, getImages, UserImage } from "../../api/private-api";
 
-import { success, error } from "../feedback";
+import { error, success } from "../feedback";
 
 import { _t } from "../../i18n";
 
@@ -25,6 +22,7 @@ import defaults from "../../constants/defaults.json";
 import { Global } from "../../store/global/types";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 setProxyBase(defaults.imageServer);
 
@@ -155,12 +153,12 @@ class GalleryDialog extends Component<Props> {
   render() {
     return (
       <Modal show={true} centered={true} onHide={this.hide} size="lg" className="gallery-modal">
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("gallery.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("gallery.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <Gallery {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

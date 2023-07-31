@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { findRcAccounts, getRcOperationStats } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation";
@@ -7,6 +7,7 @@ import { ConfirmDelete, RcDelegationsList } from "../rc-delegations-list";
 import { rcFormatter } from "../../util/formatted-number";
 import RcProgressCircle from "../rc-progress-circle";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 export const ResourceCreditsInfo = (props: any) => {
   const { rcPercent, account, activeUser } = props;
@@ -149,12 +150,11 @@ export const ResourceCreditsInfo = (props: any) => {
         show={showRcInfo}
         centered={true}
         onHide={hideModal}
-        keyboard={false}
         className="purchase-qr-dialog"
         dialogClassName="modal-90w"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>
             <div className="rc-header">
               <span>{_t("rc-info.resource-credits")}</span>
               <div className="about-rc">
@@ -162,9 +162,9 @@ export const ResourceCreditsInfo = (props: any) => {
                 <a href={_t("rc-info.learn-more")}>{_t("rc-info.faq-link")}</a>
               </div>
             </div>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+          </ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <div className="rc-infocontainer">
             <div className="percent">
               <div className="circle">
@@ -233,7 +233,7 @@ export const ResourceCreditsInfo = (props: any) => {
               <Button onClick={showDelegation}>{_t("rc-info.delegation-button")}</Button>
             )}
           </div>
-        </Modal.Body>
+        </ModalBody>
       </Modal>
 
       <Modal
@@ -243,12 +243,12 @@ export const ResourceCreditsInfo = (props: any) => {
         animation={false}
         size="lg"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>
             {listMode === "in" ? _t("rc-info.incoming") : _t("rc-info.outgoing")}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+          </ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <RcDelegationsList
             {...props}
             activeUser={activeUser}
@@ -263,7 +263,7 @@ export const ResourceCreditsInfo = (props: any) => {
             setDelegateeData={setDelegateeData}
             setShowDelegationsList={setShowDelegationsList}
           />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
 
       <div>
@@ -272,14 +272,13 @@ export const ResourceCreditsInfo = (props: any) => {
           show={showDelegationModal}
           centered={true}
           onHide={hideDelegation}
-          keyboard={false}
           className="transfer-dialog modal-thin-header"
           size="lg"
         >
-          <Modal.Header closeButton={true}>
-            <Modal.Title />
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader closeButton={true}>
+            <ModalTitle />
+          </ModalHeader>
+          <ModalBody>
             <ResourceCreditsDelegation
               {...props}
               activeUser={activeUser}
@@ -289,7 +288,7 @@ export const ResourceCreditsInfo = (props: any) => {
               amountFromList={amountFromList}
               delegateeData={delegateeData}
             />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
 
         <Modal
@@ -297,20 +296,19 @@ export const ResourceCreditsInfo = (props: any) => {
           show={showConfirmDelete}
           centered={true}
           onHide={hideConfirmDelete}
-          keyboard={false}
           className="transfer-dialog modal-thin-header"
           // size="lg"
         >
-          <Modal.Header closeButton={true}>
-            <Modal.Title />
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader closeButton={true}>
+            <ModalTitle />
+          </ModalHeader>
+          <ModalBody>
             <ConfirmDelete
               activeUser={activeUser}
               to={toFromList}
               hideConfirmDelete={hideConfirmDelete}
             />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </div>
     </div>

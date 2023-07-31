@@ -5,8 +5,10 @@ import { classNameObject } from "../../helper/class-name-object";
 interface Props {
   show: boolean;
   onHide: () => void;
-  centered: boolean;
-  animation: boolean;
+  centered?: boolean;
+  animation?: boolean;
+  size?: "md" | "lg";
+  dialogClassName?: string;
 }
 
 export const ModalContext = createContext<{
@@ -17,7 +19,7 @@ export const ModalContext = createContext<{
   setShow: () => {}
 });
 
-export function Modal(props: HTMLProps<HTMLDivElement> & Props) {
+export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
   const [show, setShow] = useState<boolean>();
 
   useEffect(() => {
@@ -46,12 +48,23 @@ export function Modal(props: HTMLProps<HTMLDivElement> & Props) {
           <div
             {...props}
             className={classNameObject({
-              "z-[1050] fixed top-0 left-0 right-0 bottom-0": true,
+              "z-[1050] fixed top-0 py-8 left-0 right-0 bottom-0 overflow-y-auto h-full": true,
               [props.className ?? ""]: true,
-              "flex items-center justify-center": props.centered
+              "grid grid-cols-1 justify-items-center items-center": props.centered
             })}
+            onClick={() => setShow(false)}
           >
-            <div className="bg-white rounded-xl max-w-[500px] w-full">{props.children}</div>
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={classNameObject({
+                "bg-white rounded-xl w-full ecency-modal-content": true,
+                "max-w-[500px]": !props.size || props.size === "md",
+                "max-w-[800px]": props.size === "lg",
+                [props.dialogClassName ?? ""]: true
+              })}
+            >
+              {props.children}
+            </div>
           </div>,
           document.querySelector("#modal-dialog-container")!!
         )}
@@ -62,3 +75,4 @@ export function Modal(props: HTMLProps<HTMLDivElement> & Props) {
 export * from "./modal-title";
 export * from "./modal-body";
 export * from "./modal-header";
+export * from "./modal-footer";

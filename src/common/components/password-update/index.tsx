@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Form, FormControl, Modal } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import { cryptoUtils, KeyRole, PrivateKey } from "@hiveio/dhive";
 
@@ -21,6 +21,7 @@ import { keySvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { Spinner } from "../spinner";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   activeUser: ActiveUser;
@@ -225,16 +226,14 @@ export default class PasswordUpdateDialog extends BaseComponent<DialogProps, Dia
             centered={true}
             onHide={this.toggleDialog}
             animation={false}
-            backdrop="static"
-            keyboard={false}
             className="password-update-modal"
           >
-            <Modal.Header closeButton={true}>
-              <Modal.Title>{_t("password-update.title")}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
+            <ModalHeader closeButton={true}>
+              <ModalTitle>{_t("password-update.title")}</ModalTitle>
+            </ModalHeader>
+            <ModalBody>
               <PasswordUpdate {...this.props} onUpdate={this.toggleDialog} />
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </>

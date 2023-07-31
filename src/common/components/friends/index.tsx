@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
-import { Modal, Button, FormControl } from "react-bootstrap";
+import { Button, FormControl } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -12,14 +12,15 @@ import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 
-import { getFollowing, getFollowers, getAccounts } from "../../api/hive";
-import { searchFollowing, searchFollower, FriendSearchResult } from "../../api/search-api";
+import { getAccounts, getFollowers, getFollowing } from "../../api/hive";
+import { FriendSearchResult, searchFollower, searchFollowing } from "../../api/search-api";
 
 import { _t } from "../../i18n";
 
 import accountReputation from "../../helper/account-reputation";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Friend {
   name: string;
@@ -267,12 +268,12 @@ export class Followers extends Component<Props> {
     return (
       <>
         <Modal onHide={onHide} show={true} centered={true} animation={false} size="lg">
-          <Modal.Header closeButton={true}>
-            <Modal.Title>{title}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>{title}</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
             <List {...this.props} mode="follower" />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </>
     );
@@ -292,12 +293,12 @@ export class Following extends Component<Props> {
     return (
       <>
         <Modal onHide={onHide} show={true} centered={true} animation={false} size="lg">
-          <Modal.Header closeButton={true}>
-            <Modal.Title>{title}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>{title}</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
             <List {...this.props} mode="following" />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </>
     );

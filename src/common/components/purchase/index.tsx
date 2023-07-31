@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Form, FormControl, Modal, Button } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
@@ -18,6 +18,7 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 interface Props {
   global: Global;
@@ -177,14 +178,13 @@ export default class PurchaseDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="purchase-dialog modal-thin-header"
         size="lg"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader closeButton={true} />
+        <ModalBody>
           <Purchase {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

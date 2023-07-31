@@ -23,7 +23,7 @@ function PageButton(
       className={classNameObject({
         "pagination border-r border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600":
           true,
-        "text-blue-dark-sky bg-white hover:bg-gray-100": !props.active,
+        "text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800": !props.active,
         "border-blue-dark-sky bg-blue-dark-sky text-white": props.active
       })}
     >

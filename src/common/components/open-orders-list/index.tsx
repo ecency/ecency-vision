@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
-import { Table, Modal } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -19,6 +19,7 @@ import { getOpenOrder, OpenOrdersData } from "../../api/hive";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { AssetSymbol } from "@hiveio/dhive";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   global: Global;
@@ -158,12 +159,12 @@ export default class OpenOrdersList extends Component<Props> {
     return (
       <>
         <Modal onHide={onHide} show={true} centered={true} animation={false}>
-          <Modal.Header closeButton={true}>
-            <Modal.Title>{_t("open-orders-list.title")}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>{_t("open-orders-list.title")}</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
             <List {...this.props} />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl, InputGroup, Modal } from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 
 import BaseComponent from "../base";
 import { error } from "../feedback";
@@ -14,6 +14,7 @@ import { _t } from "../../i18n";
 import { accountMultipleSvg, deleteForeverSvg, plusSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
+import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   author?: string;
@@ -222,17 +223,17 @@ export default class BeneficiaryEditorDialog extends Component<Props, State> {
             animation={false}
             className="beneficiary-editor-dialog"
           >
-            <Modal.Header closeButton={true}>
-              <Modal.Title>{_t("beneficiary-editor.title")}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
+            <ModalHeader closeButton={true}>
+              <ModalTitle>{_t("beneficiary-editor.title")}</ModalTitle>
+            </ModalHeader>
+            <ModalBody>
               <DialogBody {...this.props} />
-            </Modal.Body>
-            <Modal.Footer>
+            </ModalBody>
+            <ModalFooter>
               <Button variant="primary" onClick={this.toggle}>
                 {_t("g.done")}
               </Button>
-            </Modal.Footer>
+            </ModalFooter>
           </Modal>
         )}
       </>

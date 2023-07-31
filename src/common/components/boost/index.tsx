@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import isEqual from "react-fast-compare";
 
-import { Button, Col, Form, FormControl, Modal, Row } from "react-bootstrap";
+import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 
 import { PrivateKey } from "@hiveio/dhive";
 
@@ -10,7 +10,7 @@ import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { EntryHeader, Entry } from "../../store/entries/types";
+import { Entry, EntryHeader } from "../../store/entries/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
@@ -19,7 +19,7 @@ import KeyOrHot from "../key-or-hot";
 import { error } from "../feedback";
 
 import { getPostHeader } from "../../api/bridge";
-import { getBoostOptions, getBoostedPost } from "../../api/private-api";
+import { getBoostedPost, getBoostOptions } from "../../api/private-api";
 import { searchPath } from "../../api/search-api";
 import { boost, boostHot, boostKc, formatError } from "../../api/operations";
 
@@ -30,6 +30,7 @@ import formattedNumber from "../../util/formatted-number";
 
 import { checkAllSvg } from "../../img/svg";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 interface Props {
   global: Global;
@@ -409,14 +410,13 @@ export default class BoostDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
-        className="boost-dialog modal-thin-header"
+        className="boost-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader thin={true} closeButton={true} />
+        <ModalBody>
           <Boost {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

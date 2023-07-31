@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl, InputGroup, Modal } from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 
@@ -9,6 +9,7 @@ import UploadButton from "../image-upload-button";
 
 import { _t } from "../../i18n";
 import { Spinner } from "../spinner";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 interface Props {
   activeUser: ActiveUser;
@@ -91,13 +92,12 @@ export default class ImageUploadDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="image-upload-dialog modal-thin-header"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader closeButton={true} />
+        <ModalBody>
           <ImageUpload {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

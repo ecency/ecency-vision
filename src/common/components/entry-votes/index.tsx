@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Alert, Form, FormControl, Modal } from "react-bootstrap";
+import { Alert, Form, FormControl } from "react-bootstrap";
 
 import { History } from "history";
 
@@ -31,6 +31,7 @@ import { heartSvg } from "../../img/svg";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { Spinner } from "../spinner";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   // const totalPayout =
@@ -329,10 +330,10 @@ export class EntryVotes extends Component<Props, State> {
             animation={false}
             className="entry-votes-modal px-3"
           >
-            <Modal.Header closeButton={true} className="align-items-center px-0">
-              <Modal.Title>{title}</Modal.Title>
-            </Modal.Header>
-            <Form.Group className="w-100 mb-3">
+            <ModalHeader closeButton={true} className="align-items-center px-0">
+              <ModalTitle>{title}</ModalTitle>
+            </ModalHeader>
+            <Form.Group className="w-100 px-3 mb-3">
               <Form.Control
                 type="text"
                 placeholder={_t("friends.search-placeholder")}
@@ -343,7 +344,7 @@ export class EntryVotes extends Component<Props, State> {
                 disabled={searchTextDisabled}
               />
             </Form.Group>
-            <Modal.Body className="px-0">
+            <ModalBody className="px-0">
               <EntryVotesDetail
                 {...this.props}
                 entry={entry}
@@ -352,7 +353,7 @@ export class EntryVotes extends Component<Props, State> {
                   this.setState({ searchTextDisabled: value })
                 }
               />
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </>

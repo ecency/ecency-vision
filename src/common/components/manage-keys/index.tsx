@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { History } from "history";
-import { Button, Form, InputGroup, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 
 import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 import { decodeObj, encodeObj } from "../../util/encoder";
@@ -16,6 +16,7 @@ import * as ls from "../../util/local-storage";
 import { _t } from "../../i18n";
 import { keySvg } from "../../img/svg";
 import "./index.scss";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 interface Props {
   accountData: AccountDataType;
@@ -619,15 +620,14 @@ export default function ManageKeys(props: Props) {
           show={true}
           centered={true}
           onHide={toggleKeyDialog}
-          keyboard={false}
           className="manage-keys modal-thin-header"
           size="lg"
         >
-          <Modal.Header closeButton={true} />
-          <Modal.Body>
+          <ModalHeader closeButton={true} />
+          <ModalBody>
             {step === 1 && passwordModal()}
             {step === 2 && keySuccessModal()}
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       )}
     </>

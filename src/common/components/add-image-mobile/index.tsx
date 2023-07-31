@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
 
@@ -17,6 +17,7 @@ import { error } from "../feedback";
 import { _t } from "../../i18n";
 import defaults from "../../constants/defaults.json";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 setProxyBase(defaults.imageServer);
 
@@ -159,12 +160,12 @@ export default class AddImageDialog extends Component<Props> {
         className="add-image-mobile-modal"
         animation={false}
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("add-image-mobile.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("add-image-mobile.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <AddImage {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

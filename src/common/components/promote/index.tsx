@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import isEqual from "react-fast-compare";
 
-import { Form, FormControl, Modal, Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 
 import { PrivateKey } from "@hiveio/dhive";
 
@@ -17,10 +17,10 @@ import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import { error } from "../feedback";
 
-import { getPromotePrice, PromotePrice, getPromotedPost } from "../../api/private-api";
+import { getPromotedPost, getPromotePrice, PromotePrice } from "../../api/private-api";
 import { searchPath } from "../../api/search-api";
 import { getPostHeader } from "../../api/bridge";
-import { promote, promoteHot, promoteKc, formatError } from "../../api/operations";
+import { formatError, promote, promoteHot, promoteKc } from "../../api/operations";
 
 import { _t } from "../../i18n";
 
@@ -28,6 +28,7 @@ import _c from "../../util/fix-class-names";
 
 import { checkAllSvg } from "../../img/svg";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 interface Props {
   global: Global;
@@ -389,14 +390,13 @@ export default class PromoteDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="promote-dialog modal-thin-header"
         size="lg"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader closeButton={true} />
+        <ModalBody>
           <Promote {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

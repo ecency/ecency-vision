@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Button, Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Community, CommunityTeam } from "../../store/communities/types";
@@ -15,12 +15,13 @@ import { getAccount } from "../../api/hive";
 
 import { clone } from "../../store/util";
 
-import { setUserRole, formatError } from "../../api/operations";
+import { formatError, setUserRole } from "../../api/operations";
 
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import "./_index.scss";
 import { queryClient, QueryIdentifiers } from "../../core";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   global: Global;
@@ -166,16 +167,15 @@ export default class CommunityRoleEditDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="community-role-edit-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("community-role-edit.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("community-role-edit.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <CommunityRoleEdit {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

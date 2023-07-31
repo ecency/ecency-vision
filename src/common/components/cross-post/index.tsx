@@ -1,7 +1,7 @@
 import BaseComponent from "../base";
 import React, { Component } from "react";
 
-import { Button, Form, FormControl, Modal } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import { Entry } from "../../store/entries/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -12,12 +12,13 @@ import SuggestionList from "../suggestion-list";
 import { comment, formatError } from "../../api/operations";
 import { getSubscriptions } from "../../api/bridge";
 
-import { makeCommentOptions, makeApp } from "../../helper/posting";
+import { makeApp, makeCommentOptions } from "../../helper/posting";
 import { makeCrossPostMessage } from "../../helper/cross-post";
 
 import { _t } from "../../i18n";
 
 import { version } from "../../../../package.json";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   activeUser: ActiveUser;
@@ -177,15 +178,14 @@ export default class CrossPostDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="cross-post-dialog"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("cross-post.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("cross-post.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <CrossPost {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { Button, Form, FormControl, Modal } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Form, FormControl } from "react-bootstrap";
 import useDebounce from "react-use/lib/useDebounce";
 
 import { ActiveUser } from "../../store/active-user/types";
@@ -15,17 +14,18 @@ import LinearProgress from "../linear-progress";
 
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
-import { getAccount, findAccountRecoveryRequest } from "../../api/hive";
+import { findAccountRecoveryRequest, getAccount } from "../../api/hive";
 import {
   changeRecoveryAccount,
-  formatError,
   changeRecoveryAccountHot,
-  changeRecoveryAccountKc
+  changeRecoveryAccountKc,
+  formatError
 } from "../../api/operations";
 
 import "./index.scss";
 import { addRecoveries, getRecoveries } from "../../api/private-api";
 import { FullAccount } from "../../store/accounts/types";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 interface Props {
   global: Global;
@@ -428,17 +428,16 @@ export default function AccountRecovery(props: Props) {
             show={true}
             centered={true}
             onHide={toggleKeyDialog}
-            keyboard={false}
             className="recovery-dialog modal-thin-header"
             size="lg"
           >
-            <Modal.Header closeButton={true} />
-            <Modal.Body>
+            <ModalHeader closeButton={true} />
+            <ModalBody>
               {step === 1 && confirmationModal()}
               {step === 2 && signkeyModal()}
               {step === 3 && successModal()}
               {step === 4 && emailUpdateModal()}
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </div>

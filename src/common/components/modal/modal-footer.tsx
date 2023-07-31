@@ -1,12 +1,12 @@
-import React, { HTMLProps } from "react";
 import { classNameObject } from "../../helper/class-name-object";
+import React, { HTMLProps } from "react";
 
-export function ModalBody(props: HTMLProps<HTMLDivElement>) {
+export function ModalFooter(props: HTMLProps<HTMLDivElement>) {
   return (
     <div
       {...props}
       className={classNameObject({
-        "p-3 ecency-modal-body": true,
+        "p-3": true,
         [props.className ?? ""]: true
       })}
     />

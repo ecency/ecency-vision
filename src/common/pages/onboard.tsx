@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { match } from "react-router";
 import { PrivateKey } from "@hiveio/dhive";
 import { Link } from "react-router-dom";
@@ -8,8 +8,7 @@ import Meta from "../components/meta";
 import { connect } from "react-redux";
 import Theme from "../components/theme";
 import NavBar from "../components/navbar";
-import Feedback from "../components/feedback";
-import { success, error } from "../components/feedback";
+import Feedback, { error, success } from "../components/feedback";
 import Tooltip from "../components/tooltip";
 import LinearProgress from "../components/linear-progress";
 import keyOrHot from "../components/key-or-hot";
@@ -17,11 +16,11 @@ import keyOrHot from "../components/key-or-hot";
 import { FullAccount } from "../store/accounts/types";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import {
-  createAccountKc,
   createAccountHs,
+  createAccountKc,
   createAccountKey,
-  createAccountWithCreditKc,
   createAccountWithCreditHs,
+  createAccountWithCreditKc,
   createAccountWithCreditKey
 } from "../api/operations";
 import { onboardEmail } from "../api/private-api";
@@ -32,6 +31,7 @@ import clipboard from "../util/clipboard";
 import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
 import { _t } from "../i18n";
 import "./onboard.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../components/modal";
 
 export interface AccountInfo {
   email: string;
@@ -664,14 +664,13 @@ const Onboard = (props: Props) => {
         show={showModal}
         centered={true}
         onHide={() => setShowModal(false)}
-        keyboard={false}
         className="create-account-dialog modal-thin-header"
         size="lg"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title />
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle />
+        </ModalHeader>
+        <ModalBody>
           <div className="d-flex flex-column">
             {createOption === createOptions.HIVE && (
               <React.Fragment>
@@ -689,7 +688,7 @@ const Onboard = (props: Props) => {
               </React.Fragment>
             )}
           </div>
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     </>
   );

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import { PrivateKey, cryptoUtils } from "@hiveio/dhive";
+import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 
 import isEqual from "react-fast-compare";
 
-import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Button, Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
 
 import badActors from "@hiveio/hivescript/bad-actors.json";
 
@@ -24,12 +24,25 @@ import { error } from "../feedback";
 import HiveWallet from "../../helper/hive-wallet";
 import amountFormatCheck from "../../helper/amount-format-check";
 import parseAsset from "../../helper/parse-asset";
-import { vestsToHp, hpToVests } from "../../helper/vesting";
+import { hpToVests, vestsToHp } from "../../helper/vesting";
 
 import { getAccount, getAccountFull, getVestingDelegations } from "../../api/hive";
 
 import {
+  claimInterest,
+  claimInterestHot,
+  claimInterestKc,
+  convert,
+  convertHot,
+  convertKc,
+  delegateVestingShares,
+  delegateVestingSharesHot,
+  delegateVestingSharesKc,
+  formatError,
   transfer,
+  transferFromSavings,
+  transferFromSavingsHot,
+  transferFromSavingsKc,
   transferHot,
   transferKc,
   transferPoint,
@@ -38,25 +51,12 @@ import {
   transferToSavings,
   transferToSavingsHot,
   transferToSavingsKc,
-  transferFromSavings,
-  transferFromSavingsHot,
-  transferFromSavingsKc,
-  claimInterest,
-  claimInterestHot,
-  claimInterestKc,
   transferToVesting,
   transferToVestingHot,
   transferToVestingKc,
-  convert,
-  convertHot,
-  convertKc,
-  delegateVestingShares,
-  delegateVestingSharesHot,
-  delegateVestingSharesKc,
   withdrawVesting,
   withdrawVestingHot,
-  withdrawVestingKc,
-  formatError
+  withdrawVestingKc
 } from "../../api/operations";
 
 import { _t } from "../../i18n";
@@ -67,6 +67,7 @@ import formattedNumber from "../../util/formatted-number";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { formatNumber } from "../../helper/format-number";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 export type TransferMode =
   | "transfer"
@@ -1084,14 +1085,13 @@ export default class TransferDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="transfer-dialog modal-thin-header"
         size="lg"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader closeButton={true} />
+        <ModalBody>
           <Transfer {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

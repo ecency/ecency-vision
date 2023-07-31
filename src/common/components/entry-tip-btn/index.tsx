@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-
-import { Modal } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -20,6 +17,8 @@ import { useMappedStore } from "../../store/use-mapped-store";
 
 import { giftOutlineSvg } from "../../img/svg";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "../modal";
+
 interface Props {
   global: Global;
   dynamicProps: DynamicProps;
@@ -126,14 +125,13 @@ export class EntryTipBtn extends Component<Props, State> {
             show={true}
             centered={true}
             onHide={this.toggleDialog}
-            keyboard={false}
             className="tipping-dialog modal-thin-header"
             size="lg"
           >
-            <Modal.Header closeButton={true} />
-            <Modal.Body>
+            <ModalHeader closeButton={true} />
+            <ModalBody>
               <TippingDialog {...this.props} onHide={this.toggleDialog} />
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </>

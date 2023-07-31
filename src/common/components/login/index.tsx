@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl, Modal } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
 
@@ -48,6 +48,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
 import { Spinner } from "../spinner";
+import { Modal, ModalBody, ModalHeader } from "../modal";
 
 declare var window: AppWindow;
 
@@ -788,16 +789,16 @@ class LoginDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={this.hide}
-        className="login-modal modal-thin-header"
+        className="login-modal"
         animation={false}
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader thin={true} closeButton={true} />
+        <ModalBody>
           {!ui.loginKc && (
             <Login {...this.props} doLogin={this.doLogin} userListRef={this.userListRef} />
           )}
           {ui.loginKc && <LoginKc {...this.props} doLogin={this.doLogin} />}
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

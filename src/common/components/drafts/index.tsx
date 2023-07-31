@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { History, Location } from "history";
 
-import { Form, FormControl, Modal } from "react-bootstrap";
+import { Form, FormControl } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -18,19 +18,20 @@ import { error, success } from "../feedback";
 
 import { _t } from "../../i18n";
 
-import { getDrafts, Draft, deleteDraft, addDraft, DraftMetadata } from "../../api/private-api";
+import { addDraft, deleteDraft, Draft, DraftMetadata, getDrafts } from "../../api/private-api";
 
 import accountReputation from "../../helper/account-reputation";
 
 import defaults from "../../constants/defaults.json";
 
-import { deleteForeverSvg, pencilOutlineSvg, cloneOutlineSvg } from "../../img/svg";
+import { cloneOutlineSvg, deleteForeverSvg, pencilOutlineSvg } from "../../img/svg";
 
 import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 setProxyBase(defaults.imageServer);
 
@@ -354,12 +355,12 @@ class DraftsDialog extends Component<Props> {
   render() {
     return (
       <Modal show={true} centered={true} onHide={this.hide} size="lg" className="drafts-modal">
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("drafts.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("drafts.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <Drafts {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

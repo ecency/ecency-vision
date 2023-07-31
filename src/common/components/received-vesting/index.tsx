@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
-import { Form, Modal } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -14,7 +14,7 @@ import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
 import LinearProgress from "../linear-progress";
 
-import { ReceivedVestingShare, getReceivedVestingShares } from "../../api/private-api";
+import { getReceivedVestingShares, ReceivedVestingShare } from "../../api/private-api";
 
 import { _t } from "../../i18n";
 
@@ -25,6 +25,7 @@ import parseAsset from "../../helper/parse-asset";
 import formattedNumber from "../../util/formatted-number";
 import MyPagination from "../pagination";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   global: Global;
@@ -178,9 +179,9 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
     return (
       <>
         <Modal onHide={onHide} show={true} centered={true} animation={false}>
-          <Modal.Header closeButton={true}>
-            <Modal.Title>{_t("received-vesting.title")}</Modal.Title>
-          </Modal.Header>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>{_t("received-vesting.title")}</ModalTitle>
+          </ModalHeader>
           <Form.Group className="w-100 px-3">
             <Form.Control
               type="text"
@@ -195,9 +196,9 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
               }}
             />
           </Form.Group>
-          <Modal.Body>
+          <ModalBody>
             <List {...this.props} searchText={searchText} />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </>
     );

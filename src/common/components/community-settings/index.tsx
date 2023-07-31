@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Button, Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Community } from "../../store/communities/types";
@@ -13,12 +13,13 @@ import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import { error } from "../feedback";
 
-import { updateCommunity, formatError } from "../../api/operations";
+import { formatError, updateCommunity } from "../../api/operations";
 
 import { _t } from "../../i18n";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { queryClient, QueryIdentifiers } from "../../core";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 const langOpts = [
   { id: "af", name: "Afrikaans" },
@@ -329,16 +330,15 @@ export default class CommunitySettingsDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="community-settings-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("community-settings.dialog-title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("community-settings.dialog-title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <CommunitySettings {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }
