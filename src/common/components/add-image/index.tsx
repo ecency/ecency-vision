@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl, Modal } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import { _t } from "../../i18n";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
 
 interface Props {
   onHide: () => void;
@@ -100,12 +101,12 @@ export default class AddImageDialog extends Component<Props> {
         className="add-image-modal"
         animation={false}
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("add-image.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("add-image.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <AddImage {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

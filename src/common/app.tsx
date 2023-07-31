@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
 import { EntryScreen } from "./pages/entry";
-import { SearchPageContainer, SearchMorePageContainer } from "./pages/search";
-import { ProposalsIndexContainer, ProposalDetailContainer } from "./pages/proposals";
+import { SearchMorePageContainer, SearchPageContainer } from "./pages/search";
+import { ProposalDetailContainer, ProposalsIndexContainer } from "./pages/proposals";
 import NotFound from "./components/404";
 import Tracker from "./tracker";
 import {
   AboutPage,
-  GuestPostPage,
   ContributePage,
-  PrivacyPage,
-  WhitePaperPage,
-  TosPage,
+  ContributorsPage,
   FaqPage,
-  ContributorsPage
+  GuestPostPage,
+  PrivacyPage,
+  TosPage,
+  WhitePaperPage
 } from "./pages/static";
 import routes from "./routes";
 import * as ls from "./util/local-storage";
@@ -165,6 +165,8 @@ const App = (props: any) => {
       <Announcement activeUser={props.activeUser} />
       <FloatingFAQ />
       <div id="popper-container" />
+      <div id="modal-overlay-container" />
+      <div id="modal-dialog-container" />
     </EntriesCacheManager>
   );
 };
