@@ -308,6 +308,7 @@
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
     "reblogged": "{{n}} reblogged",
+    "reblogs-list-title": "Reblogs",
     "promoted": "Promoted",
     "pinned": "Pinned Post",
     "replies": "1 response. Click to respond.",
@@ -339,7 +340,8 @@
     "delete-reblog": "Undo Reblog",
     "delete-confirm-title": "Undo reblog?",
     "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-success": "Reblog removed",
+    "reblogs":"Reblogs"
   },
   "entry-tip": {
     "title": "Tip"

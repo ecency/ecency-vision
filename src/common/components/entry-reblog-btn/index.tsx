@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Entry } from "../../store/entries/types";
 import { Account } from "../../store/accounts/types";
 import { User } from "../../store/users/types";
@@ -17,6 +16,8 @@ import _c from "../../util/fix-class-names";
 import { repeatSvg } from "../../img/svg";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
+import { getRebloggedUsers } from "../../api/hive";
+import EntryRebloStats from "../entry-reblog-stats";
 
 interface Props {
   entry: Entry;
@@ -35,11 +36,15 @@ interface Props {
 
 interface State {
   inProgress: boolean;
+  rebloggedBy: string[];
+  showReblogStats: boolean;
 }
 
 export class EntryReblogBtn extends BaseComponent<Props> {
   state: State = {
-    inProgress: false
+    inProgress: false,
+    rebloggedBy: [],
+    showReblogStats: false
   };
 
   componentDidMount() {
@@ -50,6 +55,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
       // Otherwise condenser_api.get_blog_entries will be called 2 times on page load.
       setTimeout(fetchReblogs, 500);
     }
+    this.getReblogs()
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {
@@ -93,9 +99,24 @@ export class EntryReblogBtn extends BaseComponent<Props> {
       });
   };
 
+  getReblogs = async () => {
+    const { entry } = this.props
+    this.stateSet({inProgress: true})
+    const rebloggedBy = await getRebloggedUsers(entry.author, entry.permlink)
+    this.stateSet({rebloggedBy, inProgress: false})
+  }
+
+  showReblogs = () => {
+    this.stateSet({showReblogStats: true})
+  }
+  
+  hideReblogs = () => {
+    this.stateSet({showReblogStats: false})
+  }
+
   render() {
     const { activeUser, entry, reblogs } = this.props;
-    const { inProgress } = this.state;
+    const { inProgress, rebloggedBy, showReblogStats } = this.state;
 
     const reblogged =
       entry &&
@@ -103,16 +124,38 @@ export class EntryReblogBtn extends BaseComponent<Props> {
       reblogs.list.find((x) => x.author === entry.author && x.permlink === entry.permlink) !==
         undefined;
 
+    const reblogStats = (
+      <>
+        <div onClick={this.showReblogs} className="reblog-stats">
+          <Tooltip 
+          content={rebloggedBy.length > 1 ? `${rebloggedBy.length} ${_t("entry-reblog.reblogs")}` :
+           `${rebloggedBy.length} ${_t("entry-reblog.reblog")}`}
+           >
+            <a className="reblog-count">
+              {rebloggedBy.length}
+            </a>           
+          </Tooltip> 
+        </div>
+          <EntryRebloStats 
+          {...this.props}
+          hideReblogs={this.hideReblogs}
+          showReblogStats={showReblogStats}
+          rebloggedBy={rebloggedBy}
+          inProgress={inProgress}
+          />
+      </>
+    );
+
     const content = (
-      <div
-        className={_c(
-          `entry-reblog-btn ${reblogged ? "reblogged" : ""} ${inProgress ? "in-progress" : ""} `
-        )}
-      >
-        <Tooltip content={reblogged ? _t("entry-reblog.delete-reblog") : _t("entry-reblog.reblog")}>
-          <a className="inner-btn">{repeatSvg}</a>
-        </Tooltip>
-      </div>
+        <div
+          className={_c(
+            `entry-reblog-btn d-flex align-items-center ${reblogged ? "reblogged" : ""} ${inProgress ? "in-progress" : ""} `
+          )}
+        >
+          <Tooltip content={reblogged ? _t("entry-reblog.delete-reblog") : _t("entry-reblog.reblog")}>
+            <a className="inner-btn">{repeatSvg}</a>
+          </Tooltip>
+        </div>
     );
 
     if (!activeUser) {
@@ -125,14 +168,19 @@ export class EntryReblogBtn extends BaseComponent<Props> {
     // Delete reblog
     if (reblogged) {
       return (
-        <PopoverConfirm
-          onConfirm={this.deleteReblog}
-          okVariant="danger"
-          titleText={_t("entry-reblog.delete-confirm-title")}
-          okText={_t("entry-reblog.delete-confirm-ok")}
-        >
-          {content}
-        </PopoverConfirm>
+        <div className="d-flex">
+          <PopoverConfirm
+            onConfirm={this.deleteReblog}
+            okVariant="danger"
+            titleText={_t("entry-reblog.delete-confirm-title")}
+            okText={_t("entry-reblog.delete-confirm-ok")}
+          >
+            {content}
+          </PopoverConfirm>
+          <>
+            {reblogStats}
+          </>
+        </div>
       );
     }
 
