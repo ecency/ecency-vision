@@ -123,7 +123,7 @@ const MessageProvider = (props: Props) => {
 
   // Profile update handler
   const handleProfileUpdate = (data: Profile[]) => {
-    console.log("handleProfileUpdate", data);
+    // console.log("handleProfileUpdate", data);
     props.addProfile(data);
   };
 
@@ -137,7 +137,7 @@ const MessageProvider = (props: Props) => {
 
   //Direct contact handler
   const handleDirectContact = (data: DirectContact[]) => {
-    console.log("handleDirectContact", data);
+    // console.log("handleDirectContact", data);
     const result = [...chat.directContacts];
     data.forEach(({ name, pubkey }) => {
       const isPresent = chat.directContacts.some(
@@ -211,7 +211,7 @@ const MessageProvider = (props: Props) => {
 
   // Channel creation handler
   const handleChannelCreation = (data: Channel[]) => {
-    console.log("handleChannelCreation", data);
+    // console.log("handleChannelCreation", data);
 
     const append = data.filter((x) => chat.channels.find((y) => y.id === x.id) === undefined);
     props.addChannels(append);
@@ -228,7 +228,7 @@ const MessageProvider = (props: Props) => {
 
   // Channel update handler
   const handleChannelUpdate = (data: ChannelUpdate[]) => {
-    console.log("handleChannelUpdate", data);
+    // console.log("handleChannelUpdate", data);
     props.UpdateChannels(data);
   };
 

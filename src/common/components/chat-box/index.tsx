@@ -41,6 +41,7 @@ import { error, success } from "../feedback";
 import { setNostrkeys } from "../../../providers/message-provider";
 import DropDown, { MenuItem } from "../dropdown";
 import FollowControls from "../follow-controls";
+import OrDivider from "../or-divider";
 
 import {
   addMessageSVG,
@@ -59,7 +60,8 @@ import {
   editSVG,
   keySvg,
   syncSvg,
-  hideSvg
+  hideSvg,
+  removeUserSvg
 } from "../../img/svg";
 
 import {
@@ -72,8 +74,11 @@ import {
   GifImagesStyle,
   ADDROLE,
   HIDEMESSAGE,
-  REMOVEUSER,
-  LEAVECOMMUNITY
+  BLOCKUSER,
+  LEAVECOMMUNITY,
+  UNBLOCKUSER,
+  NEWCHATACCOUNT,
+  CHATIMPORT
 } from "./chat-constants";
 
 import { getPublicKey } from "../../../lib/nostr-tools/keys";
@@ -173,13 +178,15 @@ export default function ChatBox(props: Props) {
   const [removedUserId, setRemovedUserID] = useState("");
   const [removedUsers, setRemovedUsers] = useState<string[]>([]);
   const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
+  const [communityAdmins, setCommunityAdmins] = useState<string[]>([]);
+  const [blockedUsers, setBlockedUsers] = useState<{ name: string; pubkey: string }[]>([]);
 
   useEffect(() => {
-    console.log(isActveUserRemoved, "isActveUserRemoved");
-  }, [isActveUserRemoved]);
+    // console.log("communityAdmins", communityAdmins);
+  }, [communityAdmins]);
 
   useEffect(() => {
-    console.log(currentChannel, "currentChannel");
+    // console.log(currentChannel, "currentChannel");
   }, [currentChannel]);
 
   useEffect(() => {
@@ -242,6 +249,7 @@ export default function ChatBox(props: Props) {
 
   useEffect(() => {
     currentChannel?.communityModerators && getPrivilegedUsers(currentChannel?.communityModerators!);
+    currentChannel?.removedUserIds && getBlockedUsers(currentChannel?.removedUserIds!);
     currentChannel?.removedUserIds && setRemovedUsers(currentChannel.removedUserIds);
     currentChannel && scrollerClicked();
     if (removedUsers) {
@@ -380,11 +388,29 @@ export default function ChatBox(props: Props) {
   );
 
   const getPrivilegedUsers = (communityModerators: communityModerator[]) => {
-    const filteredUsers =
-      communityModerators &&
-      communityModerators.filter((user) => ["owner", "admin", "mod"].includes(user.role));
-    const privilegedUsersName = filteredUsers?.map((user) => user.name);
-    setPrivilegedUsers(privilegedUsersName!);
+    const privilegedRoles = ["owner", "admin", "mod"];
+    const communityAdminRoles = ["owner", "admin"];
+
+    const privilegedUsers = communityModerators.filter((user) =>
+      privilegedRoles.includes(user.role)
+    );
+    const communityAdmins = communityModerators.filter((user) =>
+      communityAdminRoles.includes(user.role)
+    );
+
+    const privilegedUserNames = privilegedUsers.map((user) => user.name);
+    const communityAdminNames = communityAdmins.map((user) => user.name);
+
+    setPrivilegedUsers(privilegedUserNames);
+    setCommunityAdmins(communityAdminNames);
+  };
+
+  const getBlockedUsers = (blockedUser: string[]) => {
+    const blockedUsers = props.chat.profiles
+      .filter((item) => blockedUser.includes(item.creator))
+      .map((item) => ({ name: item.name, pubkey: item.creator }));
+    // console.log("blockedUsers", blockedUsers);
+    setBlockedUsers(blockedUsers);
   };
 
   const fetchCommunity = async () => {
@@ -399,13 +425,13 @@ export default function ChatBox(props: Props) {
 
   const fetchCurrentChannel = (communityName: string) => {
     const channel = props.chat.channels.find((channel) => channel.communityName === communityName);
-    console.log("fetch current chanel", channel);
+    // console.log("fetch current chanel", channel);
     if (channel) {
       const updated: ChannelUpdate = props.chat.updatedChannel
         .filter((x) => x.channelId === channel.id)
         .sort((a, b) => b.created - a.created)[0];
       if (updated) {
-        console.log("updated", updated);
+        // console.log("updated", updated);
         const channel = {
           name: updated.name,
           about: updated.about,
@@ -787,28 +813,50 @@ export default function ChatBox(props: Props) {
       const newUpdatedModerator = { ...newUpdatedChannel?.communityModerators![moderatorIndex!] };
       newUpdatedModerator.role = selectedRole;
       newUpdatedChannel!.communityModerators![moderatorIndex!] = newUpdatedModerator;
-      console.log("Update role", newUpdatedChannel);
       setCurrentChannel(newUpdatedChannel);
       window.messageService?.updateChannel(currentChannel, newUpdatedChannel);
       success("Roles updated succesfully");
     }
   };
 
-  const handleConfirmaButton = (actionType: string) => {
-    if (actionType === HIDEMESSAGE) {
-      handleChannelUpdate(HIDEMESSAGE);
-    } else if (actionType === REMOVEUSER) {
-      handleChannelUpdate(REMOVEUSER);
-    } else if (actionType === LEAVECOMMUNITY) {
-      window?.messageService
-        ?.updateLeftChannelList([...props.chat.leftChannelsList!, currentChannel?.id!])
-        .then(() => {})
-        .finally(() => {
-          setKeyDialog(false);
-          setStep(0);
-          setIsCommunity(false);
-          setCommunityName("");
-        });
+  const handleConfirmButton = (actionType: string) => {
+    switch (actionType) {
+      case HIDEMESSAGE:
+        handleChannelUpdate(HIDEMESSAGE);
+        break;
+      case BLOCKUSER:
+        handleChannelUpdate(BLOCKUSER);
+        break;
+      case UNBLOCKUSER:
+        handleChannelUpdate(UNBLOCKUSER);
+        break;
+      case LEAVECOMMUNITY:
+        window?.messageService
+          ?.updateLeftChannelList([...props.chat.leftChannelsList!, currentChannel?.id!])
+          .then(() => {})
+          .finally(() => {
+            setKeyDialog(false);
+            setStep(0);
+            setIsCommunity(false);
+            setCommunityName("");
+          });
+        break;
+      case NEWCHATACCOUNT:
+        setInProgress(true);
+        resetProfile(props.activeUser)
+          .then((updatedProfile) => {
+            handleJoinChat();
+            setStep(10);
+            setInProgress(false);
+          })
+          .catch((err) => {
+            error(err);
+            console.error("Error:", error);
+          });
+
+        break;
+      default:
+        break;
     }
   };
 
@@ -839,7 +887,6 @@ export default function ChatBox(props: Props) {
                     value={user}
                     onChange={userChanged}
                     className={addRoleError ? "is-invalid" : ""}
-                    // ref={this._input}
                   />
                 </InputGroup>
                 {addRoleError && <Form.Text className="text-danger">{addRoleError}</Form.Text>}
@@ -874,8 +921,8 @@ export default function ChatBox(props: Props) {
               <table className="table table-striped table-bordered table-roles">
                 <thead>
                   <tr>
-                    <th style={{ width: "200px" }}>{_t("community.roles-account")}</th>
-                    <th style={{ width: "200px" }}>{_t("community.roles-role")}</th>
+                    <th style={{ width: "50%" }}>{_t("community.roles-account")}</th>
+                    <th style={{ width: "50%" }}>{_t("community.roles-role")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -924,6 +971,62 @@ export default function ChatBox(props: Props) {
     );
   };
 
+  const blockedUsersModal = () => {
+    return (
+      <>
+        <div className="blocked-user-header" style={{ marginBottom: "1rem" }}>
+          <h4 className="blocked-user-title">Blocked Users</h4>
+        </div>
+
+        {blockedUsers.length !== 0 ? (
+          <>
+            <table className="table table-striped table-bordered table-roles">
+              <thead>
+                <tr>
+                  <th style={{ width: "50%" }}>{_t("community.roles-account")}</th>
+                  <th style={{ width: "50%" }}>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {blockedUsers &&
+                  blockedUsers.map((user, i) => {
+                    return (
+                      <tr key={i}>
+                        <td>
+                          <span className="d-flex user">
+                            <UserAvatar username={user.name} size="medium" />{" "}
+                            <span className="username" style={{ margin: "10px 0 0 10px" }}>
+                              @{user.name}
+                            </span>
+                          </span>
+                        </td>
+                        <td>
+                          <Button
+                            variant="outline-primary"
+                            onClick={() => {
+                              setKeyDialog(true);
+                              setStep(7);
+                              setRemovedUserID(user.pubkey);
+                            }}
+                          >
+                            Unblock
+                          </Button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </>
+        ) : (
+          <div className="text-center">
+            <p>No Blocked user yet.</p>
+          </div>
+        )}
+      </>
+    );
+  };
+
   const ImportChatModal = () => {
     return (
       <>
@@ -963,7 +1066,7 @@ export default function ChatBox(props: Props) {
     );
   };
 
-  const chatSuccessModal = () => {
+  const successModal = (message: string) => {
     return (
       <>
         <div className="import-chat-dialog-header border-bottom">
@@ -977,7 +1080,13 @@ export default function ChatBox(props: Props) {
         </div>
         <div className="success-dialog-body">
           <div className="success-dialog-content">
-            <span>Chats imported successfully </span>
+            <span>
+              {message === CHATIMPORT
+                ? "Chats imported successfully"
+                : message === NEWCHATACCOUNT
+                ? "New Account created successfully"
+                : ""}
+            </span>
           </div>
           <div className="d-flex justify-content-center">
             <span className="hr-6px-btn-spacer" />
@@ -993,11 +1102,16 @@ export default function ChatBox(props: Props) {
       <>
         <div className="join-community-dialog-header border-bottom">
           <div className="join-community-dialog-titles">
-            <h2 className="join-community-main-title">Confirmaton</h2>
+            <h2 className="join-community-main-title">
+              {actionType === NEWCHATACCOUNT ? "Warning" : "Confirmation"}
+            </h2>
           </div>
         </div>
+        {inProgress && actionType === NEWCHATACCOUNT && <LinearProgress />}
         <div className="join-community-dialog-body" style={{ fontSize: "18px", marginTop: "12px" }}>
-          Are you sure?
+          {actionType === NEWCHATACCOUNT
+            ? "creating new account will reset your chats"
+            : "Are you sure?"}
         </div>
         <p className="join-community-confirm-buttons" style={{ textAlign: "right" }}>
           <Button
@@ -1014,7 +1128,7 @@ export default function ChatBox(props: Props) {
           <Button
             variant="outline-primary"
             className="confirm-btn"
-            onClick={() => handleConfirmaButton(actionType)}
+            onClick={() => handleConfirmButton(actionType)}
           >
             Confirm
           </Button>
@@ -1088,15 +1202,33 @@ export default function ChatBox(props: Props) {
         const updatedHiddenMessages = [...(currentChannel?.hiddenMessageIds || []), hiddenMsgId!];
         updatedMetaData.hiddenMessageIds = updatedHiddenMessages;
         break;
-      case REMOVEUSER:
+      case BLOCKUSER:
         const updatedRemovedUsers = [...(currentChannel?.removedUserIds || []), removedUserId!];
         updatedMetaData.removedUserIds = updatedRemovedUsers;
+
+        const isRemovedUserModerator = currentChannel?.communityModerators?.find(
+          (x) => x.pubkey === removedUserId
+        );
+        const isModerator = !!isRemovedUserModerator;
+        if (isModerator) {
+          const NewUpdatedRoles = currentChannel?.communityModerators?.filter(
+            (item) => item.pubkey !== removedUserId
+          );
+          updatedMetaData.communityModerators = NewUpdatedRoles;
+        }
+        break;
+      case UNBLOCKUSER:
+        const NewUpdatedRemovedUsers = currentChannel?.removedUserIds?.filter(
+          (item) => item !== removedUserId
+        );
+        updatedMetaData.removedUserIds = NewUpdatedRemovedUsers;
+        // console.log("NewUpdatedRemovedUsers", NewUpdatedRemovedUsers);
         break;
       default:
         break;
     }
 
-    console.log(updatedMetaData, "updatedMetaData");
+    // console.log(updatedMetaData, "updatedMetaData");
     try {
       window.messageService?.updateChannel(currentChannel!, updatedMetaData);
       setCurrentChannel({ ...currentChannel!, ...updatedMetaData });
@@ -1106,7 +1238,7 @@ export default function ChatBox(props: Props) {
         fetchCommunityMessages(currentChannel?.id!);
         setHiddenMsgId("");
       }
-      if (operationType === REMOVEUSER) {
+      if (operationType === BLOCKUSER || operationType === UNBLOCKUSER) {
         setStep(0);
         setKeyDialog(false);
         // fetchCommunityMessages(currentChannel?.id!);
@@ -1127,9 +1259,14 @@ export default function ChatBox(props: Props) {
     setStep(1);
   };
 
-  const editRolesClicked = () => {
+  const handleEditRoles = () => {
     setKeyDialog(true);
     setStep(2);
+  };
+
+  const handleBlockedUsers = () => {
+    setKeyDialog(true);
+    setStep(8);
   };
 
   const toggleKeyDialog = () => {
@@ -1172,8 +1309,17 @@ export default function ChatBox(props: Props) {
       ? [
           {
             label: "Edit Roles",
-            onClick: editRolesClicked,
+            onClick: handleEditRoles,
             icon: editSVG
+          }
+        ]
+      : []),
+    ...(communityAdmins.includes(props.activeUser?.username!)
+      ? [
+          {
+            label: "Blocked Users",
+            onClick: handleBlockedUsers,
+            icon: removeUserSvg
           }
         ]
       : [])
@@ -1443,25 +1589,54 @@ export default function ChatBox(props: Props) {
                                       </div>
 
                                       <p className="d-flex justify-content-center profile-name">
-                                        {name!}
+                                        {`@${name!}`}
                                       </p>
-                                      <div className="d-flex justify-content-between profile-box-buttons">
+                                      <div
+                                        className={`d-flex ${
+                                          communityAdmins.includes(props.activeUser?.username!)
+                                            ? "justify-content-between"
+                                            : "justify-content-center"
+                                        }  profile-box-buttons`}
+                                      >
                                         <FollowControls
                                           {...props}
                                           targetUsername={name!}
                                           where={"chat-box"}
                                         />
 
-                                        <Button
-                                          variant="primary"
-                                          onClick={() => {
-                                            setKeyDialog(true);
-                                            setStep(6);
-                                            setClickedMessage("");
-                                          }}
-                                        >
-                                          Remove
-                                        </Button>
+                                        {communityAdmins.includes(props.activeUser?.username!) && (
+                                          <>
+                                            {currentChannel?.removedUserIds?.includes(
+                                              pMsg.creator
+                                            ) ? (
+                                              <>
+                                                <Button
+                                                  variant="primary"
+                                                  onClick={() => {
+                                                    setKeyDialog(true);
+                                                    setStep(7);
+                                                    setClickedMessage("");
+                                                  }}
+                                                >
+                                                  Unblock
+                                                </Button>
+                                              </>
+                                            ) : (
+                                              <>
+                                                <Button
+                                                  variant="primary"
+                                                  onClick={() => {
+                                                    setKeyDialog(true);
+                                                    setStep(6);
+                                                    setClickedMessage("");
+                                                  }}
+                                                >
+                                                  Block
+                                                </Button>
+                                              </>
+                                            )}
+                                          </>
+                                        )}
                                       </div>
 
                                       <Form
@@ -1557,7 +1732,7 @@ export default function ChatBox(props: Props) {
                                       {formatMessageTime(pMsg.created)}
                                     </p>
                                     <div className="sender-message">
-                                      {hoveredMessageId === pMsg.id && (
+                                      {hoveredMessageId === pMsg.id && !isActveUserRemoved && (
                                         <Tooltip content={"Hide Message"}>
                                           <div
                                             className="hide-msg"
@@ -1694,10 +1869,21 @@ export default function ChatBox(props: Props) {
                       </React.Fragment>
                     ) : !noStrPrivKey || noStrPrivKey.length === 0 || noStrPrivKey === null ? (
                       <>
-                        {/* <p className="no-chat">{_t("chat.no-chat")}</p> */}
                         <div className="start-chat-btn" style={{ marginTop: "25%" }}>
                           <Button variant="primary" onClick={handleImportChat}>
                             Import Chat
+                          </Button>
+                        </div>
+                        {<OrDivider />}
+                        <div className="start-chat-btn">
+                          <Button
+                            variant="primary"
+                            onClick={() => {
+                              setKeyDialog(true);
+                              setStep(9);
+                            }}
+                          >
+                            Create New Account
                           </Button>
                         </div>
                       </>
@@ -1737,7 +1923,7 @@ export default function ChatBox(props: Props) {
             )}
             {isActveUserRemoved && isCommunity && (
               <p className="d-flex justify-content-center mt-4 mb-0">
-                You have been removed from this community
+                You have been blocked from this community
               </p>
             )}
           </div>
@@ -1862,10 +2048,14 @@ export default function ChatBox(props: Props) {
           <Modal.Body className="chat-modals-body">
             {step === 1 && confirmationModal(LEAVECOMMUNITY)}
             {step === 5 && confirmationModal(HIDEMESSAGE)}
-            {step === 6 && confirmationModal(REMOVEUSER)}
+            {step === 6 && confirmationModal(BLOCKUSER)}
+            {step === 7 && confirmationModal(UNBLOCKUSER)}
+            {step === 9 && confirmationModal(NEWCHATACCOUNT)}
             {step === 2 && EditRolesModal()}
             {step === 3 && ImportChatModal()}
-            {step === 4 && chatSuccessModal()}
+            {step === 4 && successModal(CHATIMPORT)}
+            {step === 10 && successModal(NEWCHATACCOUNT)}
+            {step === 8 && blockedUsersModal()}
           </Modal.Body>
         </Modal>
       )}

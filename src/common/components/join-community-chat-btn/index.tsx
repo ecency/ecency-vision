@@ -79,9 +79,9 @@ export default function JoinCommunityChatBtn(props: Props) {
       setCurrentChannel(communityProfile.channel);
     }
 
-    if (!haschannelMetaData && currentChannel) {
-      await setChannelMetaData(props.community.name, currentChannel!);
-    }
+    // if (!haschannelMetaData && currentChannel) {
+    //   // await setChannelMetaData(props.community.name, currentChannel!);
+    // }
   };
 
   const checkIsChatJoined = () => {
@@ -103,7 +103,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     const ownerData = await getProfileMetaData(community.name);
     const ownerRole = {
       name: activeUser!.username,
-      pubkey: ownerData.noStrKey || activeUserKeys?.pub,
+      pubkey: activeUserKeys?.pub || ownerData.noStrKey,
       role: "owner"
     };
 
@@ -151,8 +151,9 @@ export default function JoinCommunityChatBtn(props: Props) {
         about: content.about,
         picture: content.picture
       };
-      await setChannelMetaData(community.name, currentChannel!);
-      setCurrentChannel(channelMetaData);
+      setChannelMetaData(community.name, channelMetaData).then(() =>
+        setCurrentChannel(channelMetaData)
+      );
     } finally {
       setInProgress(false);
       setIsJoinChat(true);

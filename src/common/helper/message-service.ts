@@ -275,7 +275,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public loadProfiles(pubs: string[]) {
-    console.log("lod profiles");
+    // console.log("lod profiles");
     pubs.forEach((p) => {
       this.fetch(
         [
@@ -344,6 +344,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     const sub = this.pool.sub(this.readRelays, filters);
 
     sub.on("event", (event: Event) => {
+      console.log("Event in fetch", event);
       event.kind === Kind.Metadata && isDirectContact
         ? this.addDirectContact(event)
         : this.pushToEventBuffer(event);
@@ -401,12 +402,12 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public async createChannel(meta: Metadata) {
-    console.log("create channel run", meta);
+    // console.log("create channel run", meta);
     return this.publish(Kind.ChannelCreation, [], JSON.stringify(meta));
   }
 
   public async updateChannel(channel: Channel, meta: Metadata) {
-    console.log(channel, meta, "Update channel run");
+    // console.log(channel, meta, "Update channel run");
     return this.findHealthyRelay(this.pool.seenOn(channel.id) as string[]).then((relay) => {
       return this.publish(Kind.ChannelMetadata, [["e", channel.id, relay]], JSON.stringify(meta));
     });
@@ -424,7 +425,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public async updateProfile(profile: Metadata) {
-    console.log("Update profile run", profile);
+    // console.log("Update profile run", profile);
     return this.publish(Kind.Metadata, [], JSON.stringify(profile));
   }
 
@@ -464,7 +465,8 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
         content,
         created_at: Math.floor(Date.now() / 1000),
         id: "",
-        sig: ""
+        sig: "",
+        sent: false
       })
         .then((event) => {
           if (!event) {
@@ -562,7 +564,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       })
       .filter(notEmpty);
     if (profileUpdates.length > 0) {
-      console.log("Profile Updates", profileUpdates);
+      // console.log("Profile Updates", profileUpdates);
       this.emit(MessageEvents.ProfileUpdate, profileUpdates);
     }
 
@@ -625,7 +627,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       })
       .filter(notEmpty);
     if (channelUpdates.length > 0) {
-      console.log("channelUpdates", channelUpdates);
+      // console.log("channelUpdates", channelUpdates);
       this.emit(MessageEvents.ChannelUpdate, channelUpdates);
     }
 
@@ -638,6 +640,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
           .map((x) => x?.[1])
           .filter(notEmpty);
         if (!root) return null;
+        console.log(ev, "evenet");
         return ev.content
           ? {
               id: ev.id,

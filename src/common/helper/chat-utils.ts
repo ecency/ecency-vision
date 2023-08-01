@@ -21,14 +21,20 @@ export const getProfileMetaData = async (username: string) => {
   }
 };
 
-export const resetProfile = async (activeUser: ActiveUser | null) => {
-  const profile = await getProfileMetaData(activeUser?.username!);
-  delete profile.noStrKey;
-  delete profile.channel;
-  ls.remove(`${activeUser?.username}_noStrPrivKey`);
-  const response = await getAccountFull(activeUser?.username!);
-  const updatedProfile = await updateProfile(response, { ...profile });
-  console.log(updatedProfile, profile);
+export const resetProfile = (activeUser: ActiveUser | null) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const profile = await getProfileMetaData(activeUser?.username!);
+      delete profile.noStrKey;
+      delete profile.channel;
+      ls.remove(`${activeUser?.username}_noStrPrivKey`);
+      const response = await getAccountFull(activeUser?.username!);
+      const updatedProfile = await updateProfile(response, { ...profile });
+      resolve(updatedProfile);
+    } catch (error) {
+      reject(error);
+    }
+  });
 };
 
 export const setProfileMetaData = async (activeUser: ActiveUser | null, noStrPubKey: string) => {
@@ -44,16 +50,21 @@ export const setProfileMetaData = async (activeUser: ActiveUser | null, noStrPub
   return updatedProfile;
 };
 
-export const setChannelMetaData = async (username: string, channel: Channel) => {
-  const response = await getAccountFull(username!);
-  const { posting_json_metadata } = response;
-  const profile = JSON.parse(posting_json_metadata!).profile;
-  const newProfile = {
-    channel: channel
-  };
-  console.log({ ...profile, ...newProfile });
-  const updatedProfile = await updateProfile(response, { ...profile, ...newProfile });
-  return updatedProfile;
+export const setChannelMetaData = (username: string, channel: Channel) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await getAccountFull(username!);
+      const { posting_json_metadata } = response;
+      const profile = JSON.parse(posting_json_metadata!).profile;
+      const newProfile = {
+        channel: channel
+      };
+      const updatedProfile = await updateProfile(response, { ...profile, ...newProfile });
+      resolve(updatedProfile);
+    } catch (error) {
+      reject(error);
+    }
+  });
 };
 
 export const createNoStrAccount = () => {
