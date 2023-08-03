@@ -1468,7 +1468,8 @@
     "info-duration": "Duración:",
     "info-size": "Tamaño del archivo:",
     "insert-video": "Insertar para publicar",
-    "insert-nsfw": "Insertar como NSFW"
+    "insert-nsfw": "Insertar como NSFW",
+    "refresh": "Refresh"
   },
   "nsfw-content": {
     "title": "Contenido NSFW",
