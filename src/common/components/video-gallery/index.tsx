@@ -113,23 +113,21 @@ const VideoGallery = ({
           </div>
           <div className="dialog-content">
             {isLoading && <LinearProgress />}
-            {items && label === "All" && (
-              <div className="video-list">
-                {items?.map((item) => (
-                  <VideoGalleryItem
-                    item={item}
-                    key={item._id}
-                    insertText={insertText}
-                    setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
-                    toggleNsfwC={toggleNsfwC}
-                    setShowGallery={setShowGallery}
-                  />
-                ))}
-                {!isLoading && items?.length === 0 && (
-                  <div className="gallery-list">{_t("g.empty-list")}</div>
-                )}
-              </div>
-            )}
+            <div className="video-list">
+              {items?.map((item) => (
+                <VideoGalleryItem
+                  item={item}
+                  key={item._id}
+                  insertText={insertText}
+                  setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
+                  toggleNsfwC={toggleNsfwC}
+                  setShowGallery={setShowGallery}
+                />
+              ))}
+              {!isLoading && items?.length === 0 && (
+                <div className="gallery-list">{_t("g.empty-list")}</div>
+              )}
+            </div>
           </div>
         </Modal.Body>
       </Modal>
