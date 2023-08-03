@@ -1,14 +1,17 @@
 import React, { ChangeEvent, useRef, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-import { uploadSvgV, videoSvg } from "../../img/svg";
+import { videoSvg } from "../../img/svg";
 import { _t } from "../../i18n";
-import { uploadFile, uploadVideoInfo } from "../../api/threespeak";
+import { useThreeSpeakVideoUpload } from "../../api/threespeak";
 import VideoGallery from "../video-gallery";
-import { success } from "../feedback";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 import "./index.scss";
+import { VideoUploadItem } from "./video-upload-item";
+import { createFile } from "../../util/create-file";
+
+const DEFAULT_THUMBNAIL = require("./assets/thumbnail-play.jpg");
 
 interface Props {
   global: Global;
@@ -20,60 +23,35 @@ interface Props {
 
 export const VideoUpload = (props: Props) => {
   const { activeUser, global, insertText, setVideoEncoderBeneficiary, toggleNsfwC } = props;
+  const {
+    mutateAsync: uploadFile,
+    completedByType: { video: videoPercentage, thumbnail: thumbPercentage }
+  } = useThreeSpeakVideoUpload();
 
-  const fileInput = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const [showModal, setShowModal] = useState(false);
   const [selectedFile, setSelectedFile] = useState<any>(null);
-  const [coverImage, setCoverImage] = useState<any>(null);
+  const [coverImage, setCoverImage] = useState<string>();
   const [step, setStep] = useState("upload");
   const [videoUrl, setVideoUrl] = useState("");
   const [thumbUrl, setThumbUrl] = useState("");
-  const [fileName, setFileName] = useState("");
-  const [fileSize, setFileSize] = useState(0);
-  const [videoPercentage, setVideoPercentage] = useState(0);
-  const [thumbPercentage, setThumbPercentage] = useState(0);
   const [showGallery, setShowGallery] = useState(false);
-  const [duration, setDuration] = useState("");
 
-  const canUpload = thumbUrl && videoUrl && videoPercentage === 100 && thumbPercentage === 100;
+  const canUpload = videoUrl && videoPercentage === 100;
 
-  const getVideoDuration = () => {
-    if (videoRef.current) {
-      const { duration } = videoRef.current;
-      const minutes = Math.floor(duration / 60);
-      const seconds = Math.floor(duration % 60);
-      const videoDuration = `${minutes}:${seconds}`;
-      setDuration(videoDuration);
-    }
-  };
-
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>, type: string) => {
+  const onChange = async (event: React.ChangeEvent<HTMLInputElement>, type: string) => {
     let file = event.target.files?.[0];
     if (!file) return;
 
-    uploadFile(file!, type, (percentage: number) => {
+    const result = await uploadFile({ file, type });
+    if (result) {
       if (type === "video") {
-        setVideoPercentage(percentage);
+        setVideoUrl(result.fileUrl);
       } else {
-        setThumbPercentage(percentage);
+        setThumbUrl(result.fileUrl);
       }
-    })
-      .then((result) => {
-        if (type === "video") {
-          setVideoUrl(result.fileUrl);
-          setFileName(result.fileName);
-          setFileSize(result.fileSize);
-        } else {
-          setThumbUrl(result.fileUrl);
-          setFileName(result.fileName);
-          setFileSize(result.fileSize);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }
   };
 
   const handleThumbnailChange = (e: ChangeEvent<HTMLInputElement | any>) => {
@@ -88,68 +66,33 @@ export const VideoUpload = (props: Props) => {
     setSelectedFile(URL?.createObjectURL(file));
   };
 
-  const uploadInfo = async () => {
-    const data = await uploadVideoInfo(
-      fileName,
-      fileSize,
-      videoUrl,
-      thumbUrl,
-      activeUser!.username,
-      duration
-    );
-    if (data) {
-      success(_t("video-upload.success"));
-    }
-  };
-
   const uploadVideoModal = (
-    <div className="dialog-content">
-      <div className="file-input">
-        <label htmlFor="video-input">
-          {_t("video-upload.choose-video")} {uploadSvgV}
-        </label>
-        <input
-          type="file"
-          ref={fileInput}
+    <div className="dialog-content ">
+      <div className="three-speak-video-uploading">
+        <VideoUploadItem
+          label={_t("video-upload.choose-video")}
+          onFileChange={handleVideoChange}
+          type="video"
           accept="video/*"
-          id="video-input"
-          style={{ display: "none" }}
-          onChange={handleVideoChange}
+          completed={videoPercentage}
         />
-        <div className="progresss">
-          {Number(videoPercentage) > 0 && (
-            <>
-              <div style={{ width: `${Number(videoPercentage)}%` }} className="progress-bar" />
-              <span>{`${videoPercentage}%`}</span>
-            </>
-          )}
-        </div>
-      </div>
-      <div className="file-input">
-        <label htmlFor="image-input">
-          {_t("video-upload.choose-thumbnail")} {uploadSvgV}
-        </label>
-        <input
-          type="file"
-          ref={fileInput}
+        <VideoUploadItem
+          label={_t("video-upload.choose-thumbnail")}
+          onFileChange={handleThumbnailChange}
+          type="thumbnail"
           accept="image/*"
-          id="image-input"
-          style={{ display: "none" }}
-          onChange={handleThumbnailChange}
+          completed={thumbPercentage}
         />
-        <div className="progresss">
-          {Number(thumbPercentage) > 0 && (
-            <>
-              <div style={{ width: Number(thumbPercentage) + "%" }} className="progress-bar" />
-              <span>{`${thumbPercentage}%`}</span>
-            </>
-          )}
-        </div>
       </div>
       <Button
         className="mt-3"
         disabled={!canUpload}
-        onClick={() => {
+        onClick={async () => {
+          if (!thumbUrl) {
+            const file = await createFile(DEFAULT_THUMBNAIL);
+            onChange({ target: { files: [file] } } as any, "thumbnail");
+            setCoverImage(URL?.createObjectURL(file));
+          }
           setStep("preview");
         }}
       >
@@ -161,16 +104,11 @@ export const VideoUpload = (props: Props) => {
   const previewVideo = (
     <div className="dialog-content">
       <div className="file-input">
-        <video
-          ref={videoRef}
-          onLoadedMetadata={getVideoDuration}
-          controls={true}
-          poster={coverImage}
-        >
+        <video ref={videoRef} controls={true} poster={coverImage}>
           <source src={selectedFile} type="video/mp4" />
         </video>
       </div>
-      <div className="d-flex">
+      <div className="d-flex justify-content-end mt-3">
         <Button
           className="bg-dark"
           onClick={() => {
@@ -180,14 +118,11 @@ export const VideoUpload = (props: Props) => {
           {_t("g.back")}
         </Button>
         <Button
-          className="ml-5"
+          className="ml-3"
           disabled={!canUpload}
           onClick={() => {
-            uploadInfo();
             setShowModal(false);
             setStep("upload");
-            setThumbPercentage(0);
-            setVideoPercentage(0);
             setShowGallery(true);
           }}
         >
@@ -237,7 +172,6 @@ export const VideoUpload = (props: Props) => {
           onHide={() => setShowModal(false)}
           keyboard={false}
           className="add-image-modal"
-          // size="lg"
         >
           <Modal.Header closeButton={true}>
             <Modal.Title>
