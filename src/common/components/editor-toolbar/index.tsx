@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, ChangeEvent } from "react";
 import isEqual from "react-fast-compare";
 import axios from "axios";
 
@@ -38,6 +38,7 @@ import {
   textShortSvg,
   gifIcon
 } from "../../img/svg";
+import { VideoUpload } from "../video-upload-threespeak";
 
 interface Props {
   global: Global;
@@ -46,6 +47,9 @@ interface Props {
   sm?: boolean;
   showEmoji?: boolean;
   showGif?: boolean;
+  setVideoEncoderBeneficiary?: (video: any) => void;
+  toggleNsfwC?: () => void;
+  comment: boolean;
 }
 
 interface State {
@@ -79,6 +83,7 @@ export class EditorToolbar extends Component<Props> {
 
   holder = React.createRef<HTMLDivElement>();
   fileInput = React.createRef<HTMLInputElement>();
+  videoInput = React.createRef<HTMLInputElement>();
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
     return (
@@ -477,7 +482,9 @@ export class EditorToolbar extends Component<Props> {
                         onClick={(e: React.MouseEvent<HTMLElement>) => {
                           e.stopPropagation();
                           const el = this.fileInput.current;
-                          if (el) el.click();
+                          if (el) {
+                            el.click();
+                          }
                         }}
                       >
                         {_t("editor-toolbar.upload")}
@@ -552,6 +559,20 @@ export class EditorToolbar extends Component<Props> {
             <Tooltip content={_t("editor-toolbar.fragments")}>
               <div className="editor-tool" onClick={this.toggleFragments}>
                 {textShortSvg}
+              </div>
+            </Tooltip>
+          )}
+
+          {!this.props.comment && (
+            <Tooltip content={_t("video-upload.upload-video")}>
+              <div className="editor-tool" role="none">
+                <VideoUpload
+                  activeUser={activeUser}
+                  global={global}
+                  insertText={this.insertText}
+                  setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
+                  toggleNsfwC={this.props.toggleNsfwC}
+                />
               </div>
             </Tooltip>
           )}
@@ -635,7 +656,10 @@ export default (props: Props) => {
     activeUser: props.activeUser,
     sm: props.sm,
     showEmoji: props.showEmoji,
-    showGif: props.showGif
+    showGif: props.showGif,
+    setVideoEncoderBeneficiary: props.setVideoEncoderBeneficiary,
+    toggleNsfwC: props.toggleNsfwC,
+    comment: props.comment
   };
   return <EditorToolbar {...p} />;
 };

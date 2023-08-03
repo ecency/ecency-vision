@@ -81,6 +81,9 @@ import TextareaAutocomplete from "../components/textarea-autocomplete";
 import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
+
+import { updateSpeakVideoInfo, markAsPublished } from "../api/threespeak";
+// import { ConfirmNsfwContent } from "../components/video-nsfw";
 import { PostBodyLazyRenderer } from "../components/post-body-lazy-renderer";
 
 setProxyBase(defaults.imageServer);
@@ -98,11 +101,24 @@ interface Advanced {
   schedule: string | null;
   reblogSwitch: boolean;
   description: string | null;
+  // Speak Advanced
+  isThreespeak: boolean;
+  videoId: string;
+  speakPermlink: string;
+  speakAuthor: string;
+  isNsfw: boolean;
 }
 
 interface PreviewProps extends PostBase {
   history: History;
   global: Global;
+}
+
+interface videoProps {
+  beneficiaries: string;
+  _id: string;
+  owner: string;
+  permlink: string;
 }
 
 class PreviewContent extends Component<PreviewProps> {
@@ -202,7 +218,13 @@ class SubmitPage extends BaseComponent<Props, State> {
     disabled: true,
     isDraftEmpty: true,
     drafts: false,
-    showHelp: false
+    showHelp: false,
+    // Speakstates
+    isThreespeak: false,
+    videoId: "",
+    speakPermlink: "",
+    speakAuthor: "",
+    isNsfw: false
   };
 
   _updateTimer: any = null;
@@ -237,8 +259,10 @@ class SubmitPage extends BaseComponent<Props, State> {
       // delete active user from beneficiaries list
       if (activeUser) {
         const { beneficiaries } = this.state;
-        if (beneficiaries.find((x) => x.account === activeUser.username)) {
-          const b = [...beneficiaries.filter((x) => x.account !== activeUser.username)];
+        if (beneficiaries.find((x: { account: string }) => x.account === activeUser.username)) {
+          const b = [
+            ...beneficiaries.filter((x: { account: string }) => x.account !== activeUser.username)
+          ];
           this.stateSet({ beneficiaries: b });
         }
       }
@@ -452,14 +476,31 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   saveAdvanced = (): void => {
-    const { reward, beneficiaries, schedule, reblogSwitch, description } = this.state;
+    const {
+      reward,
+      beneficiaries,
+      schedule,
+      reblogSwitch,
+      description,
+      isThreespeak,
+      videoId,
+      speakPermlink,
+      speakAuthor,
+      isNsfw
+    } = this.state;
 
     const advanced: Advanced = {
       reward,
       beneficiaries,
       schedule,
       reblogSwitch,
-      description
+      description,
+      // Speak Advanced
+      isThreespeak,
+      videoId,
+      speakPermlink,
+      speakAuthor,
+      isNsfw
     };
 
     ls.set("local_advanced", advanced);
@@ -532,7 +573,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
   beneficiaryDeleted = (username: string) => {
     const { beneficiaries } = this.state;
-    const b = [...beneficiaries.filter((x) => x.account !== username)];
+    const b = [...beneficiaries.filter((x: { account: string }) => x.account !== username)];
     this.stateSet({ beneficiaries: b }, this.saveAdvanced);
   };
 
@@ -580,7 +621,13 @@ class SubmitPage extends BaseComponent<Props, State> {
         beneficiaries: [],
         schedule: null,
         reblogSwitch: false,
-        description: ""
+        description: "",
+        // Speak Advenaced
+        isThreespeak: false,
+        videoId: "",
+        speakPermlink: "",
+        speakAuthor: "",
+        isNsfw: false
       },
       () => {
         this.saveAdvanced();
@@ -646,13 +693,31 @@ class SubmitPage extends BaseComponent<Props, State> {
     return true;
   };
 
+  markVideo = async (videoId: string) => {
+    const { activeUser } = this.props;
+    await markAsPublished(activeUser!.username, videoId);
+  };
+
   publish = async (): Promise<void> => {
     if (!this.validate()) {
       return;
     }
 
     const { activeUser, history, addEntry } = this.props;
-    const { title, tags, body, description, reward, reblogSwitch, beneficiaries } = this.state;
+    const {
+      title,
+      tags,
+      body,
+      description,
+      reward,
+      reblogSwitch,
+      beneficiaries,
+      videoId,
+      isThreespeak,
+      speakPermlink,
+      speakAuthor,
+      isNsfw
+    } = this.state;
 
     // clean body
     const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, "");
@@ -679,9 +744,15 @@ class SubmitPage extends BaseComponent<Props, State> {
             return;*/
     }
 
-    if (c && c.author) {
+    if (c && c.author && !isThreespeak && speakPermlink === "") {
       // create permlink with random suffix
       permlink = createPermlink(title, true);
+    }
+
+    if (isThreespeak && speakPermlink !== "") {
+      permlink = speakPermlink;
+      // update speak video with title, body and tags
+      updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw);
     }
 
     const [parentPermlink] = tags;
@@ -721,6 +792,14 @@ class SubmitPage extends BaseComponent<Props, State> {
         this.clear();
         const newLoc = makePathEntry(parentPermlink, author, permlink);
         history.push(newLoc);
+
+        //Mark speak video as published
+        if (isThreespeak && activeUser.username === speakAuthor) {
+          success(_t("vidoe-upload.publishing"));
+          setTimeout(() => {
+            this.markVideo(videoId);
+          }, 10000);
+        }
       })
       .then(() => {
         if (isCommunity(tags[0]) && reblogSwitch) {
@@ -984,6 +1063,37 @@ class SubmitPage extends BaseComponent<Props, State> {
     );
   };
 
+  setVideoEncoderBeneficiary = async (video: videoProps) => {
+    const videoBeneficiary = JSON.parse(video.beneficiaries);
+    const videoEncoders = [
+      {
+        account: "spk.beneficiary",
+        src: "ECONDER_PAY",
+        weight: 900
+      },
+      {
+        account: "threespeakleader",
+        src: "ECONDER_PAY",
+        weight: 100
+      }
+    ];
+    const joinedBeneficiary = [...videoBeneficiary, ...videoEncoders];
+    this.stateSet(
+      {
+        beneficiaries: joinedBeneficiary,
+        videoId: await video._id,
+        isThreespeak: true,
+        speakPermlink: video.permlink,
+        speakAuthor: video.owner
+      },
+      this.saveAdvanced
+    );
+  };
+
+  toggleNsfwC = () => {
+    this.setState({ isNsfw: true }, this.saveAdvanced);
+  };
+
   render() {
     const {
       title,
@@ -1067,7 +1177,12 @@ class SubmitPage extends BaseComponent<Props, State> {
                 })}
               </div>
             )}
-            {EditorToolbar({ ...this.props })}
+            {EditorToolbar({
+              ...this.props,
+              setVideoEncoderBeneficiary: this.setVideoEncoderBeneficiary,
+              toggleNsfwC: this.toggleNsfwC,
+              comment: false
+            })}
             <div className="title-input">
               <Form.Control
                 className="accepts-emoji"
@@ -1103,6 +1218,13 @@ class SubmitPage extends BaseComponent<Props, State> {
                 activeUser={(activeUser && activeUser.username) || ""}
               />
             </div>
+            {/* { this.state.showConfirmNsfw &&
+              <ConfirmNsfwContent 
+              hideConfirmNsfwModal={this.hideConfirmNsfwModal}
+              togleNsfwC={this.togleNsfwC}
+              isNsfw={this.state.isNsfw}
+              />
+            } */}
             {activeUser ? (
               <AvailableCredits
                 className="mr-2"

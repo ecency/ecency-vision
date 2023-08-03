@@ -26,6 +26,7 @@ import Announcement from "./components/announcement";
 import FloatingFAQ from "./components/floating-faq";
 import { useMappedStore } from "./store/use-mapped-store";
 import { EntriesCacheManager } from "./core";
+
 import { UserActivityRecorder } from "./components/user-activity-recorder";
 
 // Define lazy pages
