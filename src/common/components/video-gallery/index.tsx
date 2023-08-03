@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LinearProgress from "../linear-progress";
-import { informationVariantSvg } from "../../img/svg";
+import { informationVariantSvg, refreshSvg } from "../../img/svg";
 import { Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./index.scss";
@@ -48,10 +48,6 @@ const VideoGallery = (props: Props) => {
     getAllStatus();
   }, [showGallery]);
 
-  useEffect(() => {
-    setIsFiltered(true);
-  }, [label]);
-
   const getAllStatus = async () => {
     setLoading(true);
     const data = await checkStat();
@@ -81,7 +77,6 @@ const VideoGallery = (props: Props) => {
 
     const element = ` <center>${speakFile}</center>`;
     insertText(element);
-    setIsembedded(true);
   };
 
   const statusIcons = (status: string) => {
@@ -130,12 +125,14 @@ const VideoGallery = (props: Props) => {
                 onClick: () => {
                   setLabel(_t("video-gallery.all"));
                   setFiltered(items);
+                  setIsFiltered(true);
                 }
               },
               {
                 label: <span id="descending">{_t("video-gallery.published")}</span>,
                 onClick: () => {
                   setLabel(_t("video-gallery.published"));
+                  setIsFiltered(true);
                   filterList("published");
                 }
               },
@@ -151,6 +148,7 @@ const VideoGallery = (props: Props) => {
                 label: <span id="by-balance">{_t("video-gallery.encoded")}</span>,
                 onClick: () => {
                   setLabel(_t("video-gallery.encoded"));
+                  setIsFiltered(true);
                   filterList("publish_manual");
                 }
               },
@@ -158,6 +156,7 @@ const VideoGallery = (props: Props) => {
                 label: <span id="by-stake">{_t("video-gallery.failed")}</span>,
                 onClick: () => {
                   setLabel(_t("video-gallery.failed"));
+                  setIsFiltered(true);
                   filterList("encoding_failed");
                 }
               },
@@ -165,6 +164,7 @@ const VideoGallery = (props: Props) => {
                 label: <span id="delegations-in">{_t("video-gallery.status-deleted")}</span>,
                 onClick: () => {
                   setLabel(_t("video-gallery.status-deleted"));
+                  setIsFiltered(true);
                   filterList("deleted");
                 }
               }
@@ -176,6 +176,17 @@ const VideoGallery = (props: Props) => {
             </div>
           );
         })()}
+      </div>
+      <div className="refresh-gallery"
+      onClick={() => {
+        getAllStatus();
+        setIsFiltered(false);
+        setFiltered(null)
+      }}
+      >
+        <Tooltip content={_t("video-gallery.refresh")}>
+          <span className="info-icon">{refreshSvg}</span>
+        </Tooltip>
       </div>
     </div>
   );
@@ -234,11 +245,11 @@ const VideoGallery = (props: Props) => {
                         {_t("video-gallery.info-created")} {dateToFullRelative(item.created)}
                       </span>
                     </div>
-                    <div className="each-info">
+                   {item.status === "published" && <div className="each-info">
                       <span>
                         {_t("video-gallery.info-views")} {item.views}
                       </span>
-                    </div>
+                    </div>}
                     <div className="each-info">
                       <span>
                         {_t("video-gallery.info-duration")} {item.duration}
@@ -262,7 +273,7 @@ const VideoGallery = (props: Props) => {
               </div>
             );
           })}
-          {isFiltered && !filtered && <div className="gallery-list">{_t("g.empty-list")}</div>}
+          {isFiltered && filtered.length <= 0 && <div className="gallery-list">{_t("g.empty-list")}</div>}
         </div>
       )}
 
@@ -317,11 +328,11 @@ const VideoGallery = (props: Props) => {
                         {_t("video-gallery.info-created")} {dateToFullRelative(item.created)}
                       </span>
                     </div>
-                    <div className="each-info">
+                    {item.status === "published" && <div className="each-info">
                       <span>
                         {_t("video-gallery.info-views")} {item.views}
                       </span>
-                    </div>
+                    </div>}
                     <div className="each-info">
                       <span>
                         {_t("video-gallery.info-duration")} {item.duration}

@@ -173,7 +173,17 @@
   }
 
   .video-status-picker{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
+
+    .refresh-gallery{
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
+
   }
   
   .more-info{
@@ -218,7 +228,8 @@
             height: 15px;
             border-radius: 50%;
             cursor: pointer;
-            background-color: rgb(45, 71, 6);
+            background-color: rgb(81, 130, 8);
+            // background-color: rgb(45, 71, 6);
         }
 
         .status-icon-failed{
@@ -246,4 +257,3 @@
         }
     }
   }
-  

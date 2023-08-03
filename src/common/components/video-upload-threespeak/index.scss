@@ -47,16 +47,23 @@
       position: relative;
       width: 80%;
       height: 20px;
-      // gap: 10px;
       border-radius: 5px;
       text-align: center;
-      background-color: gray;
+      color: #fcfcfc;
+      // background-color: gray;
+      
+      @include themify(day) {
+        background-color: #c1c5c7;
+      }
+      
+      @include themify(night) {
+        background-color: #161d26;
+      }
 
       .progress-bar{
         height: 20px;
-        color: aqua;
         border-radius: 5px;
-        // width: 100%;
+        background-color: #357ce6;
       }
       span{
         position: absolute;
