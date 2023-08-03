@@ -1,14 +1,14 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from "react";
-import { videoSvg, uploadSvgV } from "../../img/svg";
 import { Button, Modal } from "react-bootstrap";
+
+import { videoSvg, uploadSvgV } from "../../img/svg";
 import { _t } from "../../i18n";
-import "./index.scss";
 import { getAllVideoStatuses, uploadFile, uploadVideoInfo } from "../../api/threespeak";
 import VideoGallery from "../video-gallery";
-import useMount from "react-use/lib/useMount";
 import { success } from "../feedback";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
+import "./index.scss";
 
 interface Props {
   global: Global;
@@ -35,18 +35,9 @@ export const VideoUpload = (props: Props) => {
   const [videoPercentage, setVideoPercentage] = useState(0);
   const [thumbPercentage, setThumbPercentage] = useState(0);
   const [showGallery, setShowGallery] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const [duration, setDuration] = useState("");
 
-  const canUpload = thumbUrl && videoUrl && (videoPercentage === 100 && thumbPercentage === 100);
-
-  useMount(() => setIsMounted(true));
-
-  useEffect(() => {
-    // if (isMounted) {
-    //   // threespeakAuth(activeUser!.username);
-    // }
-  }, []);
+  const canUpload = thumbUrl && videoUrl && videoPercentage === 100 && thumbPercentage === 100;
 
   const getVideoDuration = () => {
     if (videoRef.current) {
@@ -200,8 +191,8 @@ export const VideoUpload = (props: Props) => {
             uploadInfo();
             setShowModal(false);
             setStep("upload");
-            setThumbPercentage(0)
-            setVideoPercentage(0)
+            setThumbPercentage(0);
+            setVideoPercentage(0);
             setShowGallery(true);
           }}
         >
