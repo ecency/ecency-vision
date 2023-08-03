@@ -1,9 +1,9 @@
-import { ConfirmNsfwContent } from "../video-nsfw";
 import { informationSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { dateToFullRelative } from "../../helper/parse-date";
 import React, { useState } from "react";
 import { ThreeSpeakVideo } from "../../api/threespeak";
+import { Button } from "react-bootstrap";
 
 interface videoProps {
   status: string;
@@ -82,17 +82,6 @@ export function VideoGalleryItem({
     <div className="video-list-body">
       <div className="thumnail-wrapper">
         <img src={item.thumbUrl} alt="" />
-        {item.status === "publish_manual" && (
-          <div className="nsfw-wrapper">
-            <ConfirmNsfwContent
-              toggleNsfwC={toggleNsfwC}
-              embeddVideo={embeddVideo}
-              item={item}
-              setBeneficiary={setBeneficiary}
-              setShowGallery={setShowGallery}
-            />
-          </div>
-        )}
       </div>
       <div className="list-details-wrapper">
         <div className="list-title">
@@ -112,7 +101,33 @@ export function VideoGalleryItem({
               {informationSvg}
             </div>
           </div>
-          <div className="details-title w-100 text-truncate">{item.title}</div>
+          <div className="w-100 text-truncate">{item.title}</div>
+          <div className="details-actions">
+            <Button
+              size="sm"
+              onClick={() => {
+                embeddVideo(item);
+                setBeneficiary(item);
+                setShowGallery(false);
+              }}
+            >
+              Insert
+            </Button>
+            {item.status === "publish_manual" && (
+              <Button
+                variant="link"
+                size="sm"
+                onClick={() => {
+                  embeddVideo(item);
+                  setBeneficiary(item);
+                  setShowGallery(false);
+                  toggleNsfwC && toggleNsfwC();
+                }}
+              >
+                Insert as NSFW
+              </Button>
+            )}
+          </div>
         </div>
       </div>
       {showMoreInfo && hoveredItem._id === item._id && (
