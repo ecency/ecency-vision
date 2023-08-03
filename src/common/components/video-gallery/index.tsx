@@ -177,7 +177,7 @@ const VideoGallery = (props: Props) => {
           );
         })()}
       </div>
-      <div className="refresh-gallery mr-5"
+      <div className="refresh-gallery"
       onClick={() => {
         getAllStatus();
         setIsFiltered(false);
