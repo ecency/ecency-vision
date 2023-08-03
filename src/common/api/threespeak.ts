@@ -150,14 +150,16 @@ export const markAsPublished = async (username: string, videoId: string) => {
     });
 };
 
-export const uploadFile = async (file: File, type: string, progressCallback: (percentage: number) => void) => {
-  
-  return new Promise<{ 
-    fileUrl: string, 
-    fileName: string, 
-    fileSize: number 
-    }>((resolve, reject) => {
-
+export const uploadFile = async (
+  file: File,
+  type: string,
+  progressCallback: (percentage: number) => void
+) => {
+  return new Promise<{
+    fileUrl: string;
+    fileName: string;
+    fileSize: number;
+  }>((resolve, reject) => {
     let vPercentage = 0;
     let tPercentage = 0;
 
@@ -184,8 +186,8 @@ export const uploadFile = async (file: File, type: string, progressCallback: (pe
         let fileUrl = upload?.url.replace(tusEndPoint, "");
         const result = {
           fileUrl,
-          fileName: upload.file?.name || '',
-          fileSize: upload.file?.size || 0,
+          fileName: upload.file?.name || "",
+          fileSize: upload.file?.size || 0
         };
         resolve(result);
       }

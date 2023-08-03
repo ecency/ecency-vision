@@ -253,13 +253,9 @@ const VideoGallery = (props: Props) => {
                     <div className="each-info d-flex align-items-center">
                       <span className="mr-1"> {_t("video-gallery.status")}</span>
                       <span>
-                        <Tooltip content="">
-                          {statusIcons(item.status)}
-                        </Tooltip>
+                        <Tooltip content="">{statusIcons(item.status)}</Tooltip>
                       </span>
-                      <span>
-                          {toolTipContent(item.status)}
-                      </span>
+                      <span>{toolTipContent(item.status)}</span>
                     </div>
                   </div>
                 )}
@@ -340,13 +336,9 @@ const VideoGallery = (props: Props) => {
                     <div className="each-info d-flex">
                       <span className="mr-1"> {_t("video-gallery.status")}</span>
                       <span>
-                        <Tooltip content="">
-                          {statusIcons(item.status)}
-                        </Tooltip>
+                        <Tooltip content="">{statusIcons(item.status)}</Tooltip>
                       </span>
-                      <span>
-                          {toolTipContent(item.status)}
-                      </span>
+                      <span>{toolTipContent(item.status)}</span>
                     </div>
                   </div>
                 )}
