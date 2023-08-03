@@ -7,8 +7,6 @@ import "./index.scss";
 import DropDown from "../dropdown";
 import { ThreeSpeakVideo, useThreeSpeakVideo } from "../../api/threespeak";
 import { VideoGalleryItem } from "./video-gallery-item";
-import { useQueryClient } from "@tanstack/react-query";
-import { QueryIdentifiers } from "../../core";
 
 interface Props {
   showGallery: boolean;
@@ -25,12 +23,10 @@ const VideoGallery = ({
   setVideoEncoderBeneficiary,
   toggleNsfwC
 }: Props) => {
-  const queryClient = useQueryClient();
-
   const [label, setLabel] = useState("All");
   const [filterStatus, setFilterStatus] = useState<ThreeSpeakVideo["status"] | "all">("all");
 
-  const { data: items, isLoading } = useThreeSpeakVideo(filterStatus);
+  const { data: items, isLoading, refresh } = useThreeSpeakVideo(filterStatus);
 
   return (
     <div>
@@ -101,11 +97,8 @@ const VideoGallery = ({
               className="refresh-gallery p-0"
               onClick={() => {
                 setFilterStatus("all");
-                queryClient.invalidateQueries([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST]);
-                queryClient.invalidateQueries([
-                  QueryIdentifiers.THREE_SPEAK_VIDEO_LIST_FILTERED,
-                  "all"
-                ]);
+                setLabel(_t("video-gallery.all"));
+                refresh();
               }}
             >
               {refreshSvg}

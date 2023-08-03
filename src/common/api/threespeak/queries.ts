@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../../core";
 import { getAllVideoStatuses } from "./api";
 import { useMappedStore } from "../../store/use-mapped-store";
@@ -6,6 +6,8 @@ import { ThreeSpeakVideo } from "./types";
 
 export function useThreeSpeakVideo(filterStatus: ThreeSpeakVideo["status"] | "all") {
   const { activeUser } = useMappedStore();
+  const queryClient = useQueryClient();
+
   const apiQuery = useQuery(
     [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST],
     async () => {
@@ -21,7 +23,7 @@ export function useThreeSpeakVideo(filterStatus: ThreeSpeakVideo["status"] | "al
     }
   );
 
-  return useQuery(
+  const filteredQuery = useQuery(
     [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST_FILTERED, filterStatus],
     () => {
       if (filterStatus === "all") {
@@ -34,4 +36,11 @@ export function useThreeSpeakVideo(filterStatus: ThreeSpeakVideo["status"] | "al
       enabled: apiQuery.data?.length > 0
     }
   );
+  return {
+    ...filteredQuery,
+    refresh: () => {
+      queryClient.setQueryData([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST], []);
+      queryClient.invalidateQueries([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST]);
+    }
+  };
 }
