@@ -328,11 +328,11 @@ const VideoGallery = (props: Props) => {
                         {_t("video-gallery.info-created")} {dateToFullRelative(item.created)}
                       </span>
                     </div>
-                    <div className="each-info">
+                    {item.status === "published" && <div className="each-info">
                       <span>
                         {_t("video-gallery.info-views")} {item.views}
                       </span>
-                    </div>
+                    </div>}
                     <div className="each-info">
                       <span>
                         {_t("video-gallery.info-duration")} {item.duration}
