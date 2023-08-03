@@ -194,13 +194,14 @@ const VideoGallery = (props: Props) => {
   const modalBody = (
     <div className="dialog-content">
       {loading && <LinearProgress />}
-      {filtered && (
+      {filtered && label !== "All" && (
         <div className="video-list">
           {filtered?.map((item: any, i: number) => {
             return (
               <div className="video-list-body" key={i}>
                 <div
                   className="thumnail-wrapper"
+                  // Onclick should embed video
                   //  onClick={() =>{
                   //   }
                   //   }}
