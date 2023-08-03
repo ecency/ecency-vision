@@ -1,6 +1,7 @@
 import * as tus from "tus-js-client";
 import axios from "axios";
-import { getDecodedMemo } from "../helper/hive-signer";
+import { getDecodedMemo } from "../../helper/hive-signer";
+import { ThreeSpeakVideo } from "./types";
 
 const studioEndPoint = "https://studio.3speak.tv";
 const tusEndPoint = "https://uploads.3speak.tv/files/";
@@ -86,7 +87,7 @@ export const uploadVideoInfo = async (
 export const getAllVideoStatuses = async (username: string) => {
   const token = await threespeakAuth(username);
   try {
-    let response = await client.get(`${studioEndPoint}/mobile/api/my-videos`, {
+    let response = await client.get<ThreeSpeakVideo[]>(`${studioEndPoint}/mobile/api/my-videos`, {
       withCredentials: false,
       headers: {
         "Content-Type": "application/json",

@@ -20,5 +20,7 @@ export enum QueryIdentifiers {
   DECK_COMMUNITY = "deck-community",
 
   SWAP_FORM_CURRENCY_RATE = "swap-form-currency-rate",
-  POINTS = "points"
+  POINTS = "points",
+  THREE_SPEAK_VIDEO_LIST = "three-speak-video-list",
+  THREE_SPEAK_VIDEO_LIST_FILTERED = "three-speak-video-list-filtered"
 }

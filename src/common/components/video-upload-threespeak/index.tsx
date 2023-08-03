@@ -1,9 +1,9 @@
-import React, { useState, ChangeEvent, useEffect, useRef } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-import { videoSvg, uploadSvgV } from "../../img/svg";
+import { uploadSvgV, videoSvg } from "../../img/svg";
 import { _t } from "../../i18n";
-import { getAllVideoStatuses, uploadFile, uploadVideoInfo } from "../../api/threespeak";
+import { uploadFile, uploadVideoInfo } from "../../api/threespeak";
 import VideoGallery from "../video-gallery";
 import { success } from "../feedback";
 import { ActiveUser } from "../../store/active-user/types";
@@ -100,11 +100,6 @@ export const VideoUpload = (props: Props) => {
     if (data) {
       success(_t("video-upload.success"));
     }
-  };
-
-  const checkStat = async () => {
-    const allStatus = await getAllVideoStatuses(activeUser!.username);
-    return allStatus;
   };
 
   const uploadVideoModal = (
@@ -229,7 +224,6 @@ export const VideoUpload = (props: Props) => {
         <VideoGallery
           showGallery={showGallery}
           setShowGallery={setShowGallery}
-          checkStat={checkStat}
           insertText={insertText}
           setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
           toggleNsfwC={toggleNsfwC}

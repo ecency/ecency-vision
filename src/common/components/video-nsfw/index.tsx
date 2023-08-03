@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { _t } from "../../i18n";
 import DropDown from "../dropdown";
 import { dotsHorizontal } from "../../img/svg";
@@ -8,7 +8,7 @@ interface Props {
   toggleNsfwC?: () => void;
   embeddVideo: (video: any) => void;
   item: any;
-  setShowGallery: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowGallery: (v: boolean) => void;
   setBeneficiary: (video: any) => void;
 }
 
@@ -37,5 +37,5 @@ export const ConfirmNsfwContent = (props: Props) => {
     }
   ];
 
-  return <DropDown items={menuItems} icon={dotsHorizontal} label="" float="left" history={null} />;
+  return <DropDown items={menuItems} icon={dotsHorizontal} label="" float="right" history={null} />;
 };
