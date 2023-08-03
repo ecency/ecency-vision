@@ -23,7 +23,7 @@ import { getRewardedCommunities } from "../../api/private-api";
 
 import { _t } from "../../i18n";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   global: Global;

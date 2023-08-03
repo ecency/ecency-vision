@@ -20,7 +20,7 @@ import { _t } from "../../i18n";
 import accountReputation from "../../helper/account-reputation";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Friend {
   name: string;

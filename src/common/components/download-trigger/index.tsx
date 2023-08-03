@@ -4,7 +4,7 @@ import { geLatestDesktopTag } from "../../api/misc";
 import platform from "../../util/platform";
 import { history } from "../../store";
 import "./_index.scss";
-import { Modal, ModalBody } from "../modal";
+import { Modal, ModalBody } from "@ui/modal";
 
 interface ContentState {
   desktopTag: string;

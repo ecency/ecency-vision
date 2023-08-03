@@ -6,7 +6,7 @@ import { InsufficientResourceCreditsDetails } from "./insufficient-resource-cred
 import { CommonDetails } from "./common-details";
 import { ActiveUser } from "../../store/active-user/types";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   activeUser: ActiveUser | null;

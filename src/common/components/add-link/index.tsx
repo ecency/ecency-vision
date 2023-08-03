@@ -7,7 +7,7 @@ import { _t } from "../../i18n";
 import { readClipboard } from "../../util/clipboard";
 
 import { handleInvalid, handleOnInput } from "../../util/input-util";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   onHide: () => void;

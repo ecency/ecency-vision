@@ -31,7 +31,7 @@ import { connect } from "react-redux";
 import { AppState } from "../../store";
 import { PrivateKey } from "@hiveio/dhive";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 export enum TransactionType {
   None = 0,

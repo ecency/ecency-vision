@@ -1,12 +1,12 @@
 import React, { HTMLProps } from "react";
-import { classNameObject } from "../../helper/class-name-object";
+import { classNameObject } from "../../../helper/class-name-object";
 
-export function ModalTitle(props: HTMLProps<HTMLDivElement>) {
+export function ModalBody(props: HTMLProps<HTMLDivElement>) {
   return (
     <div
       {...props}
       className={classNameObject({
-        "text-xl": true,
+        "p-3 ecency-modal-body": true,
         [props.className ?? ""]: true
       })}
     />

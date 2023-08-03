@@ -1,12 +1,12 @@
-import { classNameObject } from "../../helper/class-name-object";
 import React, { HTMLProps } from "react";
+import { classNameObject } from "../../../helper/class-name-object";
 
-export function ModalFooter(props: HTMLProps<HTMLDivElement>) {
+export function ModalTitle(props: HTMLProps<HTMLDivElement>) {
   return (
     <div
       {...props}
       className={classNameObject({
-        "p-3": true,
+        "text-xl": true,
         [props.className ?? ""]: true
       })}
     />

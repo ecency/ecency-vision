@@ -5,7 +5,7 @@ import { ActiveUser } from "../../store/active-user/types";
 import { Location } from "history";
 import { PurchaseTypes } from "./purchase-types";
 import { _t } from "../../i18n";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   show: boolean;
@@ -22,7 +22,6 @@ export const PurchaseQrDialog = ({ show, setShow, activeUser, location, type }: 
       show={show}
       centered={true}
       onHide={() => setShow(false)}
-      keyboard={false}
       className="purchase-qr-dialog"
     >
       <ModalHeader closeButton={true}>

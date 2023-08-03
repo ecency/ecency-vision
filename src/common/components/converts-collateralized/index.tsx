@@ -22,7 +22,7 @@ import {
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   global: Global;

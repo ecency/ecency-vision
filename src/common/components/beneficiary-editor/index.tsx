@@ -14,7 +14,7 @@ import { _t } from "../../i18n";
 import { accountMultipleSvg, deleteForeverSvg, plusSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
-import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   author?: string;

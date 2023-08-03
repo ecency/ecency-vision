@@ -22,7 +22,7 @@ import accountReputation from "../../helper/account-reputation";
 
 import { _t } from "../../i18n";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Voter {
   name: string;

@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import React, { createContext, HTMLProps, useEffect, useState } from "react";
-import { classNameObject } from "../../helper/class-name-object";
+import { classNameObject } from "../../../helper/class-name-object";
 
 interface Props {
   show: boolean;

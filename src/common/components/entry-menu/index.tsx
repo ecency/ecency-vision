@@ -8,7 +8,7 @@ import EntryShare, { shareFacebook, shareReddit, shareTwitter } from "../entry-s
 import MuteBtn from "../mute-btn";
 import Promote from "../promote";
 import Boost from "../boost";
-import ModalConfirm from "../modal-confirm";
+import ModalConfirm from "@ui/modal-confirm";
 import { error, success } from "../feedback";
 import DropDown from "../dropdown";
 import CrossPost from "../cross-post";

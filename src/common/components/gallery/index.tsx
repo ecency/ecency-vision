@@ -5,7 +5,7 @@ import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
-import PopoverConfirm from "../popover-confirm";
+import PopoverConfirm from "@ui/popover-confirm";
 import Tooltip from "../tooltip";
 
 import { deleteImage, getImages, UserImage } from "../../api/private-api";
@@ -22,7 +22,7 @@ import defaults from "../../constants/defaults.json";
 import { Global } from "../../store/global/types";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 setProxyBase(defaults.imageServer);
 

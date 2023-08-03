@@ -9,7 +9,7 @@ import * as uuid from "uuid";
 import { DeckGridContext } from "../deck-manager";
 import { DEFAULT_COLUMNS } from "../consts";
 import { _t } from "../../../i18n";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   deck?: DeckGrid;

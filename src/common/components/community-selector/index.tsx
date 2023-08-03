@@ -19,7 +19,7 @@ import { getCommunities, getCommunity, getSubscriptions } from "../../api/bridge
 
 import { menuDownSvg } from "../../img/svg";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface BrowserProps {
   global: Global;

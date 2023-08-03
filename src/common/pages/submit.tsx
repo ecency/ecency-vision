@@ -81,7 +81,7 @@ import { version } from "../../../package.json";
 import { checkSvg, contentLoadSvg, contentSaveSvg, helpIconSvg } from "../img/svg";
 
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
-import ModalConfirm from "../components/modal-confirm";
+import ModalConfirm from "@ui/modal-confirm";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
 import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";

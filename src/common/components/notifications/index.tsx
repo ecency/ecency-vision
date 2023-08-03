@@ -26,7 +26,7 @@ import {
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
 import { useLocation } from "react-router";
-import { Modal, ModalBody } from "../modal";
+import { Modal, ModalBody } from "@ui/modal";
 
 export const date2key = (s: string): string => {
   if (s === "Yesterday") {

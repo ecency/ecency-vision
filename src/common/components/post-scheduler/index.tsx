@@ -10,7 +10,7 @@ import { _t } from "../../i18n";
 
 import { closeSvg, timeSvg } from "../../img/svg";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   date: Moment | null;

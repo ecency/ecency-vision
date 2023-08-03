@@ -4,7 +4,7 @@ import { Entry } from "../../store/entries/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
-import PopoverConfirm from "../popover-confirm";
+import PopoverConfirm from "@ui/popover-confirm";
 
 import { error } from "../feedback";
 

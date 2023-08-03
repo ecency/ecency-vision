@@ -67,7 +67,7 @@ import formattedNumber from "../../util/formatted-number";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { formatNumber } from "../../helper/format-number";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 export type TransferMode =
   | "transfer"

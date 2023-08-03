@@ -23,7 +23,7 @@ import { commentHistory, CommentHistoryListItem } from "../../api/private-api";
 import { historySvg, tagSvg } from "../../img/svg";
 import { dateToFormatted } from "../../helper/parse-date";
 import "./index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 setProxyBase(defaults.imageServer);
 

@@ -6,9 +6,9 @@ import { ActiveUser } from "../../store/active-user/types";
 
 import KeyOrHot from "../key-or-hot";
 
-import PopoverConfirm from "../popover-confirm";
+import PopoverConfirm from "@ui/popover-confirm";
 import "./index.scss";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   global: Global;

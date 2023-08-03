@@ -18,7 +18,7 @@ import { makeCrossPostMessage } from "../../helper/cross-post";
 import { _t } from "../../i18n";
 
 import { version } from "../../../../package.json";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   activeUser: ActiveUser;

@@ -9,7 +9,7 @@ import UploadButton from "../image-upload-button";
 
 import { _t } from "../../i18n";
 import { Spinner } from "../spinner";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   activeUser: ActiveUser;

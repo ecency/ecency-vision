@@ -11,7 +11,7 @@ import { FullAccount } from "../../store/accounts/types";
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
-import PopoverConfirm from "../popover-confirm";
+import PopoverConfirm from "@ui/popover-confirm";
 import Tooltip from "../tooltip";
 import Tag from "../tag";
 import { error, success } from "../feedback";
@@ -31,7 +31,7 @@ import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 setProxyBase(defaults.imageServer);
 

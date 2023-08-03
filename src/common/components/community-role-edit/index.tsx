@@ -21,7 +21,7 @@ import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import "./_index.scss";
 import { queryClient, QueryIdentifiers } from "../../core";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   global: Global;

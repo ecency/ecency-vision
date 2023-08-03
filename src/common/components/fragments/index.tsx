@@ -20,12 +20,12 @@ import {
   updateFragment
 } from "../../api/private-api";
 
-import PopoverConfirm from "../popover-confirm";
+import PopoverConfirm from "@ui/popover-confirm";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
 import { Spinner } from "../spinner";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 // ADD
 interface AddProps {

@@ -17,7 +17,7 @@ import { error } from "../feedback";
 import { _t } from "../../i18n";
 import defaults from "../../constants/defaults.json";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 setProxyBase(defaults.imageServer);
 

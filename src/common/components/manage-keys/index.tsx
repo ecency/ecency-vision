@@ -16,7 +16,7 @@ import * as ls from "../../util/local-storage";
 import { _t } from "../../i18n";
 import { keySvg } from "../../img/svg";
 import "./index.scss";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   accountData: AccountDataType;

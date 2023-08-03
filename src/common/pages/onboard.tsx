@@ -31,7 +31,7 @@ import clipboard from "../util/clipboard";
 import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
 import { _t } from "../i18n";
 import "./onboard.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../components/modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 export interface AccountInfo {
   email: string;

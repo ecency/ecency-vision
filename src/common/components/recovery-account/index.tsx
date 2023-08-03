@@ -9,7 +9,7 @@ import { PrivateKey } from "@hiveio/dhive";
 import keyOrHot from "../key-or-hot";
 import UserAvatar from "../user-avatar";
 import { error } from "../feedback";
-import PopoverConfirm from "../popover-confirm";
+import PopoverConfirm from "@ui/popover-confirm";
 import LinearProgress from "../linear-progress";
 
 import { arrowRightSvg } from "../../img/svg";
@@ -25,7 +25,7 @@ import {
 import "./index.scss";
 import { addRecoveries, getRecoveries } from "../../api/private-api";
 import { FullAccount } from "../../store/accounts/types";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   global: Global;

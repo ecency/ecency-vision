@@ -4,7 +4,7 @@ import { Button, Form, FormControl } from "react-bootstrap";
 
 import { _t } from "../../i18n";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   onHide: () => void;

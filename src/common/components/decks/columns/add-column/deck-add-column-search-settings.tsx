@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { SettingsProps } from "./common";
-import { Button, Col, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { DeckGridContext } from "../../deck-manager";
 import { _t } from "../../../../i18n";
-import { ButtonGroup } from "../../../button-group";
+import { ButtonGroup } from "@ui/button-group";
 import { SearchType } from "../../../../helper/search-query";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { DateOpt, SearchSort } from "../../consts";

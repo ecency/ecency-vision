@@ -37,7 +37,7 @@ import formattedNumber from "../../util/formatted-number";
 import _c from "../../util/fix-class-names";
 import MyPagination from "../pagination";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   history: History;

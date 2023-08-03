@@ -17,7 +17,7 @@ import { Bookmark, Favorite, getBookmarks, getFavorites } from "../../api/privat
 import { _t } from "../../i18n";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface BookmarksProps {
   history: History;

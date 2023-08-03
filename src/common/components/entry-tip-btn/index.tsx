@@ -17,7 +17,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 
 import { giftOutlineSvg } from "../../img/svg";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   global: Global;

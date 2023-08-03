@@ -20,7 +20,7 @@ import { getAccounts } from "../../api/hive";
 
 import { _t } from "../../i18n";
 import "./index.scss";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   global: Global;

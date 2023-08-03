@@ -8,7 +8,7 @@ import UserAvatar from "../user-avatar";
 import { History } from "history";
 import { Global } from "../../store/global/types";
 import "./wallet-spk-delegated-power-dialog.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   show: boolean;

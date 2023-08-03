@@ -14,7 +14,7 @@ import { Transactions } from "../../store/transactions/types";
 import { SendSpkDialogPowerUpForm } from "./dialog-steps/send-spk-dialog-power-up-form";
 import { Market } from "../../api/spk-api";
 import { SendSpkDialogLockForm } from "./dialog-steps/send-spk-dialog-lock";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   global: Global;

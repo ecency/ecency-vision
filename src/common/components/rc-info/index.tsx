@@ -7,7 +7,7 @@ import { ConfirmDelete, RcDelegationsList } from "../rc-delegations-list";
 import { rcFormatter } from "../../util/formatted-number";
 import RcProgressCircle from "../rc-progress-circle";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 export const ResourceCreditsInfo = (props: any) => {
   const { rcPercent, account, activeUser } = props;

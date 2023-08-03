@@ -18,7 +18,7 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   global: Global;

@@ -21,7 +21,7 @@ import { ActiveUser } from "../../store/active-user/types";
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
-import PopoverConfirm from "../popover-confirm";
+import PopoverConfirm from "@ui/popover-confirm";
 import OrDivider from "../or-divider";
 import { error } from "../feedback";
 
@@ -48,7 +48,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
 import { Spinner } from "../spinner";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 declare var window: AppWindow;
 

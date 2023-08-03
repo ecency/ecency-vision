@@ -1,6 +1,6 @@
 import React, { HTMLProps, useContext } from "react";
-import { classNameObject } from "../../helper/class-name-object";
-import { closeSvg } from "../../img/svg";
+import { classNameObject } from "../../../helper/class-name-object";
+import { closeSvg } from "../../../img/svg";
 import { ModalContext } from "./index";
 
 interface Props {

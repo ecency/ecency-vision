@@ -27,7 +27,7 @@ import NavBar from "../components/navbar";
 import LoginRequired from "../components/login-required";
 import KeyOrHot from "../components/key-or-hot";
 import Tooltip from "../components/tooltip";
-import { Modal, ModalBody, ModalHeader } from "../components/modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 const namePattern = "^hive-[1]\\d{4,6}$";
 interface CreateState {

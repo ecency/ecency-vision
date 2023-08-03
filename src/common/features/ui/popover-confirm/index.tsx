@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 import { Button } from "react-bootstrap";
 
-import { _t } from "../../i18n";
-import { Popover, PopoverContent, PopoverTitle } from "./popover";
+import { Popover, PopoverContent, PopoverTitle } from "@ui/popover";
+import { _t } from "../../../i18n";
 
 interface Props {
   titleText?: string;

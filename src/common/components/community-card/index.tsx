@@ -38,7 +38,7 @@ import {
 } from "../../img/svg";
 import { renderPostBody } from "@ecency/render-helper";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface EditPicProps {
   activeUser: ActiveUser;

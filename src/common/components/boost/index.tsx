@@ -30,7 +30,7 @@ import formattedNumber from "../../util/formatted-number";
 
 import { checkAllSvg } from "../../img/svg";
 import "./_index.scss";
-import { Modal, ModalBody, ModalHeader } from "../modal";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   global: Global;

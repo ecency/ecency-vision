@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 import { Button } from "react-bootstrap";
 
-import { _t } from "../../i18n";
-import { Modal, ModalFooter, ModalHeader, ModalTitle } from "../modal";
+import { Modal, ModalFooter, ModalHeader, ModalTitle } from "@ui/modal";
+import { _t } from "../../../i18n";
 
 interface Props {
   titleText?: string;

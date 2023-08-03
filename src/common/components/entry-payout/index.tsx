@@ -18,7 +18,7 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
-import { Popover, PopoverContent } from "../popover-confirm/popover";
+import { Popover, PopoverContent } from "@ui/popover";
 
 interface Props {
   global: Global;
