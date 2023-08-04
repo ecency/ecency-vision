@@ -1437,8 +1437,8 @@
     "description": "Qisqa Tasvir"
   },
   "video-upload": {
-    "choose-video": "Video",
-    "choose-thumbnail": "Thumbnail",
+    "choose-video": "Select a video",
+    "choose-thumbnail": "Set a thumbnail(optional)",
     "continue": "Continue",
     "encode": "Send for encoding",
     "success": "Video succesfully uploaded",
