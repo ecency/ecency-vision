@@ -22,10 +22,9 @@ export const threespeakAuth = async (username: string) => {
     let { memoDecoded } = await getDecodedMemo(username, memo_string);
 
     memoDecoded = memoDecoded.replace("#", "");
-    const user = await getTokenValidated(memoDecoded, username);
     return memoDecoded;
   } catch (err) {
-    console.log(err);
+    console.error(err);
     throw err;
   }
 };
@@ -58,7 +57,7 @@ export const uploadVideoInfo = async (
 ) => {
   const token = await threespeakAuth(username);
   try {
-    const { data } = await axios.post(
+    const { data } = await axios.post<ThreeSpeakVideo>(
       `${studioEndPoint}/mobile/api/upload_info?app=ecency`,
       {
         filename: videoUrl,

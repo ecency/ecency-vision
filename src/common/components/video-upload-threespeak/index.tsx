@@ -3,7 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 
 import { videoSvg } from "../../img/svg";
 import { _t } from "../../i18n";
-import { useThreeSpeakVideoUpload } from "../../api/threespeak";
+import { useThreeSpeakVideoUpload, useUploadVideoInfo } from "../../api/threespeak";
 import VideoGallery from "../video-gallery";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
@@ -27,6 +27,7 @@ export const VideoUpload = (props: Props) => {
     mutateAsync: uploadFile,
     completedByType: { video: videoPercentage, thumbnail: thumbPercentage }
   } = useThreeSpeakVideoUpload();
+  const { mutateAsync: uploadInfo } = useUploadVideoInfo();
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -34,11 +35,24 @@ export const VideoUpload = (props: Props) => {
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [coverImage, setCoverImage] = useState<string>();
   const [step, setStep] = useState("upload");
+  const [fileName, setFileName] = useState("");
+  const [fileSize, setFileSize] = useState(0);
   const [videoUrl, setVideoUrl] = useState("");
   const [thumbUrl, setThumbUrl] = useState("");
   const [showGallery, setShowGallery] = useState(false);
+  const [duration, setDuration] = useState("");
 
   const canUpload = videoUrl && videoPercentage === 100;
+
+  const getVideoDuration = () => {
+    if (videoRef.current) {
+      const { duration } = videoRef.current;
+      const minutes = Math.floor(duration / 60);
+      const seconds = Math.floor(duration % 60);
+      const videoDuration = `${minutes}:${seconds}`;
+      setDuration(videoDuration);
+    }
+  };
 
   const onChange = async (event: React.ChangeEvent<HTMLInputElement>, type: string) => {
     let file = event.target.files?.[0];
@@ -48,8 +62,12 @@ export const VideoUpload = (props: Props) => {
     if (result) {
       if (type === "video") {
         setVideoUrl(result.fileUrl);
+        setFileName(result.fileName);
+        setFileSize(result.fileSize);
       } else {
         setThumbUrl(result.fileUrl);
+        setFileName(result.fileName);
+        setFileSize(result.fileSize);
       }
     }
   };
@@ -104,7 +122,12 @@ export const VideoUpload = (props: Props) => {
   const previewVideo = (
     <div className="dialog-content">
       <div className="file-input">
-        <video ref={videoRef} controls={true} poster={coverImage}>
+        <video
+          onLoadedMetadata={getVideoDuration}
+          ref={videoRef}
+          controls={true}
+          poster={coverImage}
+        >
           <source src={selectedFile} type="video/mp4" />
         </video>
       </div>
@@ -121,6 +144,14 @@ export const VideoUpload = (props: Props) => {
           className="ml-3"
           disabled={!canUpload}
           onClick={() => {
+            uploadInfo({
+              fileName,
+              fileSize,
+              videoUrl,
+              thumbUrl,
+              activeUser: activeUser!.username,
+              duration
+            });
             setShowModal(false);
             setStep("upload");
             setShowGallery(true);
