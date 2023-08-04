@@ -1437,8 +1437,8 @@
     "description": "Descripción breve"
   },
   "video-upload": {
-    "choose-video": "Vídeo",
-    "choose-thumbnail": "Miniatura",
+    "choose-video": "Select a video",
+    "choose-thumbnail": "Set a thumbnail(optional)",
     "continue": "Continuar",
     "encode": "Enviar para la codificación",
     "success": "Video subido correctamente",
