@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import LinearProgress from "../linear-progress";
 import { refreshSvg } from "../../img/svg";
 import { Button, Modal } from "react-bootstrap";
@@ -27,10 +27,6 @@ const VideoGallery = ({
   const [filterStatus, setFilterStatus] = useState<ThreeSpeakVideo["status"] | "all">("all");
 
   const { data: items, isLoading, refresh } = useThreeSpeakVideo(filterStatus);
-
-  useEffect(() => {
-    console.log(items);
-  }, [items]);
 
   return (
     <div>
