@@ -1,16 +1,14 @@
 import { Request } from "express";
-import { createClient, RedisClient } from "redis";
+import { createClient } from "redis";
 import { AppState } from "../../common/store";
 import { renderAmp } from "../amp-template";
 // @ts-ignore
 import { htmlToAMP } from "@ecency/render-helper-amp";
-import * as fs from "fs";
-import { promisify } from "util";
 import config from "../../config";
+import { Redis } from "./redis";
+import * as fs from "fs";
 
 let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || "");
-const redisGetAsync = (client: RedisClient) => promisify(client.get).bind(client);
-const redisSetAsync = (client: RedisClient) => promisify(client.set).bind(client);
 
 export async function getAsAMP(
   identifier: string,
@@ -19,12 +17,23 @@ export async function getAsAMP(
   forceRender = false
 ): Promise<string> {
   const client = createClient({
-    url: config.redisUrl
+    socket: {
+      host: "redis",
+      port: 6379
+    },
+    password: config.redisPass
   });
+  await client.connect();
+  const redis = new Redis(client);
 
-  const cache = await redisGetAsync(client)(identifier);
-  if (cache && !forceRender) {
-    return cache;
+  try {
+    const cache = await redis.get(identifier);
+    if (cache && !forceRender) {
+      return cache;
+    }
+  } catch (e) {
+    console.error(e);
+    console.error("Redis is unavailable. AMP caches ignoring");
   }
 
   const renderResult = await renderAmp(request, preloadedState);
@@ -32,10 +41,10 @@ export async function getAsAMP(
   let ampResult = await htmlToAMP(renderResult, false, true, false);
   ampResult = ampResult.replace(/\n/gm, "");
 
-  if (assets["pages-amp-entry-amp-page"].css) {
+  if (assets["pages-entry-index-amp"].css) {
     const styleBlockIndex = ampResult.search("</style>") + 8;
     const pageStyles = fs
-      .readFileSync(`build/public${assets["pages-amp-entry-amp-page"].css[0]}`)
+      .readFileSync(`build/public${assets["pages-entry-index-amp"].css[0]}`)
       .toString();
 
     ampResult = [
@@ -48,6 +57,11 @@ export async function getAsAMP(
   const modifiedClasses = "theme-day";
   ampResult = ampResult.replace("<body>", `<body class="${modifiedClasses}">`);
 
-  await redisSetAsync(client)(identifier, ampResult);
+  try {
+    await redis.set(identifier, ampResult);
+  } catch (e) {
+    console.error(e);
+    console.error("Redis is unavailable. AMP caches ignoring");
+  }
   return ampResult;
 }

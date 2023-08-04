@@ -232,12 +232,14 @@
     "referral-max-length-error": "Length of referral should be no more than 16 characters"
   },
   "onboard": {
-    "title": "Onboard a friend",
-    "description": "You can create account for a friend",
+    "title-active-user": "Onboard a friend",
+    "title-visitor": "Ask from a friend",
+    "description-active-user": "You can create account for a friend.",
+    "description-visitor": "You can ask a friend to create an account for you.",
     "creating": "Create for a friend",
     "asking": " Ask from a friend",
-    "creating-description": "Create account for a friend (requires login)",
-    "asking-description": "Ask a friend to help you create an account",
+    "creating-description": "Pay with hive or account credit",
+    "asking-description": "Copy account link and send to friend.",
     "username": "Username:",
     "email": "Email:",
     "referral": "Referral:",
@@ -248,6 +250,7 @@
     "confirm-details": "Confirm Details",
     "share": "(You can send code to a friend) Copy code",
     "copy-link": "Account link copied successfully",
+    "click-link": "Click here to continue",
     "continue": "Continue",
     "public-active": "Public Active key:",
     "public-memo": "Public Memo key:",
@@ -637,6 +640,7 @@
     "start-new-one": "Start new Swap",
     "signing": "Signing..",
     "success-swap": "Successfully swapped!",
+    "calculating-in": "Calculating in",
     "advanced": {
       "history": "History",
       "stake": "Order book",
@@ -844,7 +848,7 @@
     "follows-you": "Sizi takip ediyor",
     "section-blog": "Blog",
     "section-posts": "Yazılar",
-    "section-trail": "Trail",
+    "section-trail": "Likes",
     "section-comments": "Yorumlar",
     "section-replies": "Yanıtlar",
     "section-communities": "Topluluklar",
@@ -1154,14 +1158,16 @@
   "promote": {
     "title": "Tanıtım Yap",
     "sub-title": "Gönderini tanıt",
-    "duration": "Süre"
+    "duration": "Süre",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Yükselt",
     "sub-title": "Gönderini yükselt",
     "amount": "Miktar",
     "slider-hint": "Miktarı ayarlamak için kaydırıcıyı sürükleyin.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Bakiye",
@@ -1214,6 +1220,7 @@
     "memo-placeholder": "notlarınızı buraya girin",
     "memo-help": "Bu notlar herkese açıktır",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* mevcut hive power",
     "override-warning-1": "Yeni miktar öncekini geçersiz kılar.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -1337,7 +1344,17 @@
   "friends": {
     "followers": "Takipçi ({{n}})",
     "following": "Takip Edilen ({{n}})",
-    "search-placeholder": "Ara"
+    "search-placeholder": "Ara",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Takip et",

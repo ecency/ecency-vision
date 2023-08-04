@@ -162,6 +162,18 @@ export const getCurrencyTokenRate = (currency: string, token: string): Promise<n
     .get(apiBase(`/private-api/market-data/${currency === "hbd" ? "usd" : currency}/${token}`))
     .then((resp: any) => resp.data);
 
+export const getCurrencyRates = (): Promise<{
+  [currency: string]: {
+    quotes: {
+      [currency: string]: {
+        last_updated: string;
+        percent_change: number;
+        price: number;
+      };
+    };
+  };
+}> => axios.get(apiBase("/private-api/market-data/latest")).then((resp: any) => resp.data);
+
 export const getUnreadNotificationCount = (username: string): Promise<number> => {
   const data = { code: getAccessToken(username) };
 
@@ -396,23 +408,21 @@ export const deleteFragment = (username: string, fragmentId: string): Promise<an
   return axios.post(apiBase(`/private-api/fragments-delete`), data).then((resp) => resp.data);
 };
 
-export const getPoints = (
-  username: string
+export const getPoints = async (
+  username: string,
+  usePrivate?: boolean
 ): Promise<{
   points: string;
   unclaimed_points: string;
 }> => {
-  if (window.usePrivate) {
+  if (usePrivate ?? window.usePrivate) {
     const data = { username };
     return axios.post(apiBase(`/private-api/points`), data).then((resp) => resp.data);
   }
-
-  return new Promise((resolve) => {
-    resolve({
-      points: "0.000",
-      unclaimed_points: "0.000"
-    });
-  });
+  return {
+    points: "0.000",
+    unclaimed_points: "0.000"
+  };
 };
 
 export const getPointTransactions = (

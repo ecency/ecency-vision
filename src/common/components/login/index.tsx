@@ -133,7 +133,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     this.stateSet({ inProgress: true });
 
     const signer = (message: string): Promise<string> =>
-      signBuffer(username, message, "Active").then((r) => r.result);
+      signBuffer(username, message, "Posting").then((r) => r.result);
 
     let code: string;
     try {

@@ -232,12 +232,14 @@
     "referral-max-length-error": "Length of referral should be no more than 16 characters"
   },
   "onboard": {
-    "title": "Onboard a friend",
-    "description": "You can create account for a friend",
+    "title-active-user": "Onboard a friend",
+    "title-visitor": "Ask from a friend",
+    "description-active-user": "You can create account for a friend.",
+    "description-visitor": "You can ask a friend to create an account for you.",
     "creating": "Create for a friend",
     "asking": " Ask from a friend",
-    "creating-description": "Create account for a friend (requires login)",
-    "asking-description": "Ask a friend to help you create an account",
+    "creating-description": "Pay with hive or account credit",
+    "asking-description": "Copy account link and send to friend.",
     "username": "Username:",
     "email": "Email:",
     "referral": "Referral:",
@@ -248,6 +250,7 @@
     "confirm-details": "Confirm Details",
     "share": "(You can send code to a friend) Copy code",
     "copy-link": "Account link copied successfully",
+    "click-link": "Click here to continue",
     "continue": "Continue",
     "public-active": "Public Active key:",
     "public-memo": "Public Memo key:",
@@ -637,6 +640,7 @@
     "start-new-one": "Start new Swap",
     "signing": "Signing..",
     "success-swap": "Successfully swapped!",
+    "calculating-in": "Calculating in",
     "advanced": {
       "history": "History",
       "stake": "Order book",
@@ -844,7 +848,7 @@
     "follows-you": "당신을 팔로우합니다",
     "section-blog": "블로그",
     "section-posts": "게시물",
-    "section-trail": "Trail",
+    "section-trail": "Likes",
     "section-comments": "댓글",
     "section-replies": "답글",
     "section-communities": "커뮤니티",
@@ -1154,14 +1158,16 @@
   "promote": {
     "title": "홍보",
     "sub-title": "글 홍보하세요",
-    "duration": "기간"
+    "duration": "기간",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "부스트",
     "sub-title": "글 부스트하세요",
     "amount": "수량",
     "slider-hint": "슬라이드를 드래그해서 수량을 설정할 수 있습니다.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "잔액",
@@ -1214,6 +1220,7 @@
     "memo-placeholder": "메모 내용을 입력하세요",
     "memo-help": "이 메모는 누구나 볼 수 있습니다",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* 사용 가능한 하이브 파워",
     "override-warning-1": "새 금액이 이전 금액보다 우선 적용됩니다.",
     "override-warning-2": "({{account}}) 계정에게 이미 {{previousAmount}}을 임대되었습니다.",
@@ -1337,7 +1344,17 @@
   "friends": {
     "followers": "팔로워 ({{n}})",
     "following": "팔로잉 ({{n}})",
-    "search-placeholder": "검색"
+    "search-placeholder": "검색",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "팔로우",

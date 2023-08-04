@@ -13,7 +13,6 @@ import { initialState as uiInitialState } from "./ui";
 import { initialState as subscriptionsInitialState } from "./subscriptions";
 import { initialState as notificationsInitialState } from "./notifications";
 import { initialState as entriesInitialState } from "./entries";
-import { initialState as pointsInitialState } from "./points";
 import { initialState as signingKeyInitialState } from "./signing-key";
 import { initialState as persistentPageScrollInitialState } from "./persistent-page-scroll";
 
@@ -31,7 +30,6 @@ const initialState: AppState = {
   subscriptions: subscriptionsInitialState,
   notifications: notificationsInitialState,
   entries: entriesInitialState,
-  points: pointsInitialState,
   signingKey: signingKeyInitialState,
   persistentPageScroll: persistentPageScrollInitialState
 };

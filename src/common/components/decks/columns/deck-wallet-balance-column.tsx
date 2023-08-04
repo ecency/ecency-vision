@@ -5,7 +5,7 @@ import { _t } from "../../../i18n";
 import { History } from "history";
 import { UserDeckGridItem } from "../types";
 import "./_deck-wallet-balance-column.scss";
-import { getCurrencyTokenRate, getPoints } from "../../../api/private-api";
+import { getCurrencyTokenRate } from "../../../api/private-api";
 import { Spinner } from "react-bootstrap";
 import FormattedCurrency from "../../formatted-currency";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -19,6 +19,7 @@ import { getHiveEngineTokenBalances, getMetrics } from "../../../api/hive-engine
 import { getSpkWallet } from "../../../api/spk-api";
 import { getEstimatedBalance } from "../../wallet-spk/util";
 import { DeckGridContext } from "../deck-manager";
+import { usePointsQuery } from "../../../api/queries";
 
 interface Props {
   id: string;
@@ -60,9 +61,11 @@ export const DeckWalletBalanceColumn = ({
   const [account, setAccount] = useState<FullAccount | null>(null);
 
   // Ecency wallet
-  const [points, setPoints] = useState("0");
   const [pointsLoading, setPointsLoading] = useState(false);
   const [estimatedValue, setEstimatedValue] = useState(0);
+  const {
+    data: { points }
+  } = usePointsQuery(username);
 
   // Hive wallet
   const [hive, setHive] = useState("0");
@@ -124,10 +127,8 @@ export const DeckWalletBalanceColumn = ({
     setPointsLoading(true);
 
     try {
-      const { points } = await getPoints(username);
       const estimatedValue = await getCurrencyTokenRate("usd", "estm");
 
-      setPoints(points);
       setEstimatedValue(estimatedValue);
     } catch (e) {
     } finally {

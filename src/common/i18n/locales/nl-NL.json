@@ -232,12 +232,14 @@
     "referral-max-length-error": "Length of referral should be no more than 16 characters"
   },
   "onboard": {
-    "title": "Onboard a friend",
-    "description": "You can create account for a friend",
+    "title-active-user": "Onboard a friend",
+    "title-visitor": "Ask from a friend",
+    "description-active-user": "You can create account for a friend.",
+    "description-visitor": "You can ask a friend to create an account for you.",
     "creating": "Create for a friend",
     "asking": " Ask from a friend",
-    "creating-description": "Create account for a friend (requires login)",
-    "asking-description": "Ask a friend to help you create an account",
+    "creating-description": "Pay with hive or account credit",
+    "asking-description": "Copy account link and send to friend.",
     "username": "Username:",
     "email": "Email:",
     "referral": "Referral:",
@@ -248,6 +250,7 @@
     "confirm-details": "Confirm Details",
     "share": "(You can send code to a friend) Copy code",
     "copy-link": "Account link copied successfully",
+    "click-link": "Click here to continue",
     "continue": "Continue",
     "public-active": "Public Active key:",
     "public-memo": "Public Memo key:",
@@ -637,6 +640,7 @@
     "start-new-one": "Start nieuwe omwisseling",
     "signing": "Bezig met ondertekenen..",
     "success-swap": "Omwisselen gelukt!",
+    "calculating-in": "Calculating in",
     "advanced": {
       "history": "History",
       "stake": "Order book",
@@ -844,7 +848,7 @@
     "follows-you": "Volgt jou",
     "section-blog": "Blog",
     "section-posts": "Artikelen",
-    "section-trail": "Trail",
+    "section-trail": "Likes",
     "section-comments": "Reacties",
     "section-replies": "Antwoorden",
     "section-communities": "Gemeenschappen",
@@ -1154,14 +1158,16 @@
   "promote": {
     "title": "Promoten",
     "sub-title": "Promote your post",
-    "duration": "Duration"
+    "duration": "Duration",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Boost",
     "sub-title": "Boost your post",
     "amount": "Amount",
     "slider-hint": "Drag the slider to adjust the amount.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Balance",
@@ -1214,6 +1220,7 @@
     "memo-placeholder": "voer hier je notities in",
     "memo-help": "Deze notitie is openbaar",
     "memo-error": "Plaats nooit privésleutels in een notitie veld, het is openbaar zichtbaar voor iedereen.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* beschikbaar Hive power",
     "override-warning-1": "Het nieuwe bedrag vervangt de vorige.",
     "override-warning-2": "Account ({{account}}) is al toevertrouwd met {{previousAmount}}.",
@@ -1337,7 +1344,17 @@
   "friends": {
     "followers": "Volgers ({{n}})",
     "following": "Volgen ({{n}})",
-    "search-placeholder": "Zoeken"
+    "search-placeholder": "Zoeken",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Volgen",

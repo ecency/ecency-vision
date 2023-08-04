@@ -9,11 +9,11 @@ import { createBrowserHistory } from "history";
 import { initialState as transactionsInitialState } from "../../store/transactions/index";
 
 import {
-  globalInstance,
+  allOver,
+  collateralizedConversionRequestInstance,
   dynamicPropsIntance1,
   fullAccountInstance,
-  allOver,
-  collateralizedConversionRequestInstance
+  globalInstance
 } from "../../helper/test-helper";
 import { StaticRouter } from "react-router-dom";
 import { FullAccount } from "../../store/accounts/types";
@@ -133,7 +133,6 @@ const defProps = {
   updateActiveUser: () => {},
   setSigningKey: () => {},
   fetchTransactions: () => {},
-  fetchPoints: () => {},
   updateWalletValues: () => {}
 };
 

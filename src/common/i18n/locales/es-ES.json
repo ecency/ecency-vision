@@ -232,12 +232,14 @@
     "referral-max-length-error": "La longitud de la referencia no debe tener más de 16 caracteres"
   },
   "onboard": {
-    "title": "Incorporar a un amigo",
-    "description": "Puedes crear una cuenta para un amigo",
+    "title-active-user": "Incorporar a un amigo",
+    "title-visitor": "Preguntar a un amigo",
+    "description-active-user": "Puedes crear una cuenta para un amigo.",
+    "description-visitor": "Puedes pedir a un amigo que cree una cuenta para ti.",
     "creating": "Crea una cuenta para un amigo",
     "asking": " Preguntar a un amigo",
-    "creating-description": "Crear cuenta para un amigo (requiere iniciar sesión)",
-    "asking-description": "Pide a un amigo que te ayude a crear una cuenta",
+    "creating-description": "Pagar la cuenta con Hive o Crédito",
+    "asking-description": "Copiar el enlace de cuenta y enviarlo a un amigo.",
     "username": "Nombre de Usuario:",
     "email": "Correo electrónico:",
     "referral": "Referido:",
@@ -248,6 +250,7 @@
     "confirm-details": "Confirmar Detalles",
     "share": "(Puedes enviar código a un amigo) Copiar código",
     "copy-link": "Enlace de cuenta copiado correctamente",
+    "click-link": "Haz clic aquí para continuar",
     "continue": "Continuar",
     "public-active": "Clave Pública Activa:",
     "public-memo": "Clave Pública de Memo:",
@@ -554,7 +557,7 @@
       "updates": "Actualizaciones",
       "release-list": "Versiones de lanzamiento",
       "current": "Actual",
-      "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
+      "infinite-failed": "Vaya, la búsqueda falló. Siéntate, estamos reintentando..."
     },
     "threads-form": {
       "save": "Guardar",
@@ -637,6 +640,7 @@
     "start-new-one": "Iniciar nuevo Intercambio",
     "signing": "Firmando..",
     "success-swap": "¡Intercambiado con éxito!",
+    "calculating-in": "Calculando en",
     "advanced": {
       "history": "Historial",
       "stake": "Libro de órdenes",
@@ -844,7 +848,7 @@
     "follows-you": "Te sigue",
     "section-blog": "Escribe",
     "section-posts": "Publicaciones",
-    "section-trail": "Sendero",
+    "section-trail": "Me gusta",
     "section-comments": "Comentarios",
     "section-replies": "Respuestas",
     "section-communities": "Comunidades",
@@ -1154,14 +1158,16 @@
   "promote": {
     "title": "Promocionar",
     "sub-title": "Promociona tu post",
-    "duration": "Duración"
+    "duration": "Duración",
+    "learn-more": "Más información sobre la promoción"
   },
   "boost": {
     "title": "Promocionar",
     "sub-title": "Promociona tu publicación",
     "amount": "Cantidad",
     "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
-    "hint": "El valor real del voto que recibes puede variar"
+    "hint": "El valor real del voto que recibes puede variar",
+    "learn-more": "Más información sobre cómo impulsar"
   },
   "redeem-common": {
     "balance": "Balance",
@@ -1214,6 +1220,7 @@
     "memo-placeholder": "escribe tus notas aquí",
     "memo-help": "Este memo es público",
     "memo-error": "Nunca ponga las claves privadas en un campo memo, eso es visible públicamente para todos.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* potencia de Hive disponible",
     "override-warning-1": "La nueva cantidad anula la anterior.",
     "override-warning-2": "La cuenta ({{account}}) ya ha sido delegada con {{previousAmount}}.",
@@ -1337,7 +1344,17 @@
   "friends": {
     "followers": "Seguidores ({{n}})",
     "following": "Siguiendo ({{n}})",
-    "search-placeholder": "Buscar"
+    "search-placeholder": "Buscar",
+    "active": "Activo:"
+  },
+  "friends-filter": {
+    "all": "Todos",
+    "recently": "Recientemente",
+    "this-month": "Este mes",
+    "this-year": "Este año",
+    "one-year": "Un año",
+    "two-years-more": "Más de un año",
+    "filter": "Filtro"
   },
   "follow-controls": {
     "follow": "Seguir",

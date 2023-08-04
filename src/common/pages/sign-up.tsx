@@ -412,13 +412,21 @@ export const SignUp = (props: PageProps) => {
 
                 <div className="card mb-3">
                   <div className="card-header">
-                    <b>{_t("onboard.title")}</b>
+                    <b>
+                      {props.activeUser
+                        ? _t("onboard.title-active-user")
+                        : _t("onboard.title-visitor")}
+                    </b>
                   </div>
                   <div className="card-body">
-                    <p>{_t("onboard.description")}</p>
+                    <p>
+                      {props.activeUser
+                        ? _t("onboard.description-active-user")
+                        : _t("onboard.description-visitor")}
+                    </p>
                     <ul>
-                      <li>{_t("onboard.asking-description")}</li>
-                      <li>{_t("onboard.creating-description")}</li>
+                      {props.activeUser && <li>{_t("onboard.creating-description")}</li>}
+                      {!props.activeUser && <li>{_t("onboard.asking-description")}</li>}
                     </ul>
                   </div>
                   <div className="card-footer">
@@ -428,7 +436,7 @@ export const SignUp = (props: PageProps) => {
                       className="w-100"
                       variant="primary"
                     >
-                      {_t("onboard.asking")}
+                      {props.activeUser ? _t("onboard.creating") : _t("onboard.asking")}
                     </Button>
                   </div>
                 </div>

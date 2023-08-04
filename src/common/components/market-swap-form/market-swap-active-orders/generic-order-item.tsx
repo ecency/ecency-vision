@@ -1,8 +1,8 @@
 import React from "react";
-import { arrowRightSvg } from "../../img/svg";
-import { dateToFullRelative } from "../../helper/parse-date";
+import { arrowRightSvg } from "../../../img/svg";
+import { dateToFullRelative } from "../../../helper/parse-date";
 import { Button } from "react-bootstrap";
-import { _t } from "../../i18n";
+import { _t } from "../../../i18n";
 
 interface Props {
   from: string;

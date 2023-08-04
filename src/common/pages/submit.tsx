@@ -15,12 +15,7 @@ import { Button, Col, Form, FormControl, Row, Spinner } from "react-bootstrap";
 import moment, { Moment } from "moment";
 
 import defaults from "../constants/defaults.json";
-import {
-  postBodySummary,
-  proxifyImageSrc,
-  renderPostBody,
-  setProxyBase
-} from "@ecency/render-helper";
+import { postBodySummary, proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
 import { Entry } from "../store/entries/types";
 import { Global } from "../store/global/types";
 import { FullAccount } from "../store/accounts/types";
@@ -32,7 +27,7 @@ import Feedback, { error, success } from "../components/feedback";
 import NavBar from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import FullHeight from "../components/full-height";
-import EditorToolbar from "../components/editor-toolbar";
+import EditorToolbar, { detectEvent, toolbarEventListener } from "../components/editor-toolbar";
 import TagSelector from "../components/tag-selector";
 import CommunitySelector from "../components/community-selector";
 import Tag from "../components/tag";
@@ -43,7 +38,6 @@ import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
 import ClickAwayListener from "../components/clickaway-listener";
-import { detectEvent, toolbarEventListener } from "../components/editor-toolbar";
 import "./submit.scss";
 
 import {
@@ -79,7 +73,7 @@ import * as ls from "../util/local-storage";
 
 import { version } from "../../../package.json";
 
-import { checkSvg, contentSaveSvg, contentLoadSvg, helpIconSvg } from "../img/svg";
+import { checkSvg, contentLoadSvg, contentSaveSvg, helpIconSvg } from "../img/svg";
 
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import ModalConfirm from "../components/modal-confirm";
@@ -87,6 +81,7 @@ import TextareaAutocomplete from "../components/textarea-autocomplete";
 import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
+import { PostBodyLazyRenderer } from "../components/post-body-lazy-renderer";
 
 setProxyBase(defaults.imageServer);
 
@@ -121,7 +116,6 @@ class PreviewContent extends Component<PreviewProps> {
 
   render() {
     const { title, tags, body, global } = this.props;
-    let renderedPreview = renderPostBody(body, false, global.canUseWebp);
     return (
       <>
         <div className="preview-title">{title}</div>
@@ -141,10 +135,7 @@ class PreviewContent extends Component<PreviewProps> {
           })}
         </div>
 
-        <div
-          className="preview-body markdown-view"
-          dangerouslySetInnerHTML={{ __html: renderedPreview }}
-        />
+        <PostBodyLazyRenderer className="preview-body markdown-view" rawBody={body} />
       </>
     );
   }

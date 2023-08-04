@@ -232,12 +232,14 @@
     "referral-max-length-error": "Длина имени реферала должна быть не более 16 символов"
   },
   "onboard": {
-    "title": "Панель друга",
-    "description": "Вы можете создать учётную запись для друга",
+    "title-active-user": "Onboard a friend",
+    "title-visitor": "Ask from a friend",
+    "description-active-user": "You can create account for a friend.",
+    "description-visitor": "You can ask a friend to create an account for you.",
     "creating": "Создать друга",
     "asking": " Спросить у друга",
-    "creating-description": "Создайте учетную запись для друга (требуется авторизация)",
-    "asking-description": "Попросите друга помочь вам создать учетную запись",
+    "creating-description": "Pay with hive or account credit",
+    "asking-description": "Copy account link and send to friend.",
     "username": "Имя пользователя:",
     "email": "Эл. почта:",
     "referral": "Реферал:",
@@ -248,6 +250,7 @@
     "confirm-details": "Подтвердить данные",
     "share": "(Вы можете отправить код другу) Копировать код",
     "copy-link": "Ссылка на аккаунт успешно скопирована",
+    "click-link": "Click here to continue",
     "continue": "Продолжить",
     "public-active": "Публичный активный ключ:",
     "public-memo": "Публичный мемо ключ:",
@@ -554,7 +557,7 @@
       "updates": "Обновления",
       "release-list": "Релиз версии",
       "current": "Текущая",
-      "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
+      "infinite-failed": "Упс, не удалось загрузить. Подождите, мы попытаемся снова..."
     },
     "threads-form": {
       "save": "Сохранить",
@@ -637,6 +640,7 @@
     "start-new-one": "Начать новый обмен",
     "signing": "Войти..",
     "success-swap": "Успешно изменено!",
+    "calculating-in": "Calculating in",
     "advanced": {
       "history": "История",
       "stake": "Список ордеров",
@@ -844,7 +848,7 @@
     "follows-you": "Подписан(а) на вас",
     "section-blog": "Блог",
     "section-posts": "Посты",
-    "section-trail": "Тропа",
+    "section-trail": "Likes",
     "section-comments": "Комментарии",
     "section-replies": "Ответы",
     "section-communities": "Сообщества",
@@ -1154,14 +1158,16 @@
   "promote": {
     "title": "Продвинуть",
     "sub-title": "Продвижение вашего поста",
-    "duration": "Длительность"
+    "duration": "Длительность",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Усилить",
     "sub-title": "Усилить ваш пост",
     "amount": "Сумма",
     "slider-hint": "Перетащите ползунок для настройки суммы.",
-    "hint": "Фактическое значение голоса, которое вы получите, может варьироваться"
+    "hint": "Фактическое значение голоса, которое вы получите, может варьироваться",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Баланс",
@@ -1214,6 +1220,7 @@
     "memo-placeholder": "введите сюда свои заметки",
     "memo-help": "Это примечание видно всем",
     "memo-error": "Никогда не помещайте приватные ключи в мемо-поле, оно открыто для всех.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* доступно",
     "override-warning-1": "Новая сумма отменяет предыдущую.",
     "override-warning-2": "Аккаунту ({{account}}) уже было делегировано {{previousAmount}}.",
@@ -1337,7 +1344,17 @@
   "friends": {
     "followers": "Подписчики ({{n}})",
     "following": "Подписан на ({{n}})",
-    "search-placeholder": "Поиск"
+    "search-placeholder": "Поиск",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Подписаться",

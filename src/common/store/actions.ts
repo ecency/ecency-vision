@@ -2,13 +2,13 @@ import {
   dismissNewVersion,
   hideIntro,
   muteNotifications,
+  newVersionChangeAct,
   setCurrency,
   setLang,
   setLastIndexPath,
   setNsfw,
   toggleListStyle,
   toggleTheme,
-  newVersionChangeAct,
   unMuteNotifications
 } from "./global";
 import { fetchTrendingTags } from "./trending-tags";
@@ -37,7 +37,6 @@ import {
   setNotificationsSettingsItem,
   updateNotificationsSettings
 } from "./notifications";
-import { fetchPoints, resetPoints } from "./points";
 import { setSigningKey } from "./signing-key";
 
 // @note Do not use it directly
@@ -80,8 +79,6 @@ export const ACTIONS = {
   fetchUnreadNotificationCount,
   setNotificationsFilter,
   markNotifications,
-  fetchPoints,
-  resetPoints,
   setSigningKey,
   updateNotificationsSettings,
   fetchNotificationsSettings,
