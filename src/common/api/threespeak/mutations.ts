@@ -1,11 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { uploadFile } from "./api";
+import { uploadFile, uploadVideoInfo } from "./api";
 import { QueryIdentifiers } from "../../core";
+import { ThreeSpeakVideo } from "./types";
 
 export function useThreeSpeakVideoUpload() {
-  const queryClient = useQueryClient();
-
   const [completedByType, setCompletedByType] = useState<Record<string, number>>({});
 
   const mutation = useMutation(
@@ -21,14 +20,53 @@ export function useThreeSpeakVideoUpload() {
         setCompletedByType({ ...completedByType, [type]: 0 });
       }
       return null;
-    },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST]);
-        queryClient.invalidateQueries([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST_FILTERED, "all"]);
-      }
     }
   );
 
   return { ...mutation, completedByType };
+}
+
+export function useUploadVideoInfo() {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    ["threeSpeakVideoUploadInfo"],
+    async ({
+      fileName,
+      fileSize,
+      videoUrl,
+      thumbUrl,
+      activeUser,
+      duration
+    }: {
+      fileName: string;
+      fileSize: number;
+      videoUrl: string;
+      thumbUrl: string;
+      activeUser: string;
+      duration: string;
+    }) => {
+      try {
+        return await uploadVideoInfo(fileName, fileSize, videoUrl, thumbUrl, activeUser, duration);
+      } catch (e) {
+        console.error(e);
+      }
+      return null;
+    },
+
+    {
+      onSuccess: (response) => {
+        if (response) {
+          const next = [
+            response,
+            ...(queryClient.getQueryData<ThreeSpeakVideo[]>([
+              QueryIdentifiers.THREE_SPEAK_VIDEO_LIST
+            ]) ?? [])
+          ];
+          queryClient.setQueryData([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST], next);
+          queryClient.setQueryData([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST_FILTERED, "all"], next);
+        }
+      }
+    }
+  );
 }
