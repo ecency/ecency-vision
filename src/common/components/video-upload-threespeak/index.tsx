@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 import { videoSvg } from "../../img/svg";
@@ -25,7 +25,8 @@ export const VideoUpload = (props: Props) => {
   const { activeUser, global, insertText, setVideoEncoderBeneficiary, toggleNsfwC } = props;
   const {
     mutateAsync: uploadFile,
-    completedByType: { video: videoPercentage, thumbnail: thumbPercentage }
+    completedByType: { video: videoPercentage, thumbnail: thumbPercentage },
+    setCompletedByType
   } = useThreeSpeakVideoUpload();
   const { mutateAsync: uploadInfo } = useUploadVideoInfo();
 
@@ -43,6 +44,21 @@ export const VideoUpload = (props: Props) => {
   const [duration, setDuration] = useState("");
 
   const canUpload = videoUrl && videoPercentage === 100;
+
+  // Reset on dialog hide
+  useEffect(() => {
+    if (!showModal) {
+      setSelectedFile(null);
+      setCoverImage(undefined);
+      setFileName("");
+      setFileSize(0);
+      setVideoUrl("");
+      setThumbUrl("");
+      setDuration("");
+      setStep("upload");
+      setCompletedByType({});
+    }
+  }, [showModal]);
 
   const getVideoDuration = () => {
     if (videoRef.current) {
