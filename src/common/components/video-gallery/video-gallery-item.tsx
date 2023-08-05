@@ -102,18 +102,18 @@ export function VideoGalleryItem({
             </div>
           </div>
           <div className="w-100 text-truncate">{item.title}</div>
-          <div className="details-actions">
-            <Button
-              size="sm"
-              onClick={() => {
-                embeddVideo(item);
-                setBeneficiary(item);
-                setShowGallery(false);
-              }}
-            >
-              Insert
-            </Button>
-            {item.status === "publish_manual" && (
+          {item.status === "publish_manual" && (
+            <div className="details-actions">
+              <Button
+                size="sm"
+                onClick={() => {
+                  embeddVideo(item);
+                  setBeneficiary(item);
+                  setShowGallery(false);
+                }}
+              >
+                Insert
+              </Button>
               <Button
                 variant="link"
                 size="sm"
@@ -126,8 +126,8 @@ export function VideoGalleryItem({
               >
                 Insert as NSFW
               </Button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
       {showMoreInfo && hoveredItem._id === item._id && (
