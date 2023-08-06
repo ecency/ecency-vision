@@ -180,7 +180,7 @@ export const VideoUpload = (props: Props) => {
   );
 
   return (
-    <div className="mt-2 cursor-pointer new-feature">
+    <div className="cursor-pointer new-feature">
       <div className="d-flex justify-content-center bg-red">
         {videoSvg}
         {activeUser && (
