@@ -23,7 +23,7 @@ export function useThreeSpeakVideoUpload() {
     }
   );
 
-  return { ...mutation, completedByType };
+  return { ...mutation, completedByType, setCompletedByType };
 }
 
 export function useUploadVideoInfo() {

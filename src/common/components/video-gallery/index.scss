@@ -69,40 +69,40 @@
           .status-icon-wrapper {
 
             .status-icon-encoded {
-              width: 0.75rem;
-              height: 0.75rem;
+              width: 0.5rem;
+              height: 0.5rem;
               border-radius: 50%;
               cursor: pointer;
-              background-color: rgb(163, 232, 59);
+              background-color: $green;
             }
 
             .status-icon-published {
-              width: 0.75rem;
-              height: 0.75rem;
+              width: 0.5rem;
+              height: 0.5rem;
               border-radius: 50%;
               cursor: pointer;
-              background-color: rgb(45, 71, 6);
+              background-color: $dark-sky-blue;
             }
 
             .status-icon-failed {
-              width: 0.75rem;
-              height: 0.75rem;
+              width: 0.5rem;
+              height: 0.5rem;
               border-radius: 50%;
               cursor: pointer;
               background-color: rgb(199, 94, 94);
             }
 
             .status-icon-encoding {
-              width: 0.75rem;
-              height: 0.75rem;
+              width: 0.5rem;
+              height: 0.5rem;
               border-radius: 50%;
               cursor: pointer;
               background-color: rgb(228, 144, 42);
             }
 
             .status-icon-deleted {
-              width: 0.75rem;
-              height: 0.75rem;
+              width: 0.5rem;
+              height: 0.5rem;
               border-radius: 50%;
               cursor: pointer;
               background-color: $gray-400;

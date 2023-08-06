@@ -46,6 +46,20 @@ export function VideoGalleryItem({
     insertText(element);
   };
 
+  const insert = async (isNsfw = false) => {
+    let nextItem = item;
+
+    embeddVideo(nextItem);
+    if (item.status !== "published") {
+      setBeneficiary(nextItem);
+    }
+    setShowGallery(false);
+
+    if (isNsfw) {
+      toggleNsfwC && toggleNsfwC();
+    }
+  };
+
   const statusIcons = (status: string) => {
     return (
       <div className="status-icon-wrapper">
@@ -102,32 +116,16 @@ export function VideoGalleryItem({
             </div>
           </div>
           <div className="w-100 text-truncate">{item.title}</div>
-          <div className="details-actions">
-            <Button
-              size="sm"
-              onClick={() => {
-                embeddVideo(item);
-                setBeneficiary(item);
-                setShowGallery(false);
-              }}
-            >
-              Insert
-            </Button>
-            {item.status === "publish_manual" && (
-              <Button
-                variant="link"
-                size="sm"
-                onClick={() => {
-                  embeddVideo(item);
-                  setBeneficiary(item);
-                  setShowGallery(false);
-                  toggleNsfwC && toggleNsfwC();
-                }}
-              >
+          {["publish_manual", "published"].includes(item.status) && (
+            <div className="details-actions">
+              <Button size="sm" onClick={() => insert()}>
+                Insert
+              </Button>
+              <Button variant="link" size="sm" onClick={() => insert(true)}>
                 Insert as NSFW
               </Button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
       {showMoreInfo && hoveredItem._id === item._id && (
