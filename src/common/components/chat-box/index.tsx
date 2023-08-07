@@ -61,7 +61,8 @@ import {
   keySvg,
   syncSvg,
   hideSvg,
-  removeUserSvg
+  removeUserSvg,
+  alertCircleSvg
 } from "../../img/svg";
 
 import {
@@ -92,7 +93,8 @@ import {
   setProfileMetaData,
   resetProfile,
   getCommunities,
-  getPrivateKey
+  getPrivateKey,
+  notEmpty
 } from "../../helper/chat-utils";
 import * as ls from "../../util/local-storage";
 import { renderPostBody } from "@ecency/render-helper";
@@ -180,10 +182,12 @@ export default function ChatBox(props: Props) {
   const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
   const [communityAdmins, setCommunityAdmins] = useState<string[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<{ name: string; pubkey: string }[]>([]);
+  const [isTop, setIsTop] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    // console.log("communityAdmins", communityAdmins);
-  }, [communityAdmins]);
+    console.log("isTop", isTop);
+  }, [isTop]);
 
   useEffect(() => {
     // console.log(currentChannel, "currentChannel");
@@ -193,13 +197,14 @@ export default function ChatBox(props: Props) {
     const updated: ChannelUpdate = props.chat.updatedChannel
       .filter((x) => x.channelId === currentChannel?.id!)
       .sort((a, b) => b.created - a.created)[0];
-    if (currentChannel) {
+    if (currentChannel && updated) {
       const publicMessages: PublicMessage[] = fetchCommunityMessages(
         currentChannel.id,
         updated.hiddenMessageIds
       );
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
+      console.log("community messages", messages);
       const channel = {
         name: updated.name,
         about: updated.about,
@@ -215,6 +220,14 @@ export default function ChatBox(props: Props) {
       setCurrentChannel(channel);
     }
   }, [props.chat.updatedChannel]);
+
+  useEffect(() => {
+    console.log("isTop", isTop);
+    if (isTop) {
+      fetchPrevMessages();
+      console.log("event is dispatched");
+    }
+  }, [isTop]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -243,7 +256,11 @@ export default function ChatBox(props: Props) {
   }, [clickedMessage]);
 
   useEffect(() => {
-    setInProgress(false);
+    //what if there is no channel or there is no direct contact in store. handle this thing too.
+    if (props.chat.channels.length !== 0 || props.chat.directContacts.length !== 0) {
+      setInProgress(false);
+    }
+
     console.log("chat in store", props.chat);
   }, [props.chat]);
 
@@ -256,7 +273,7 @@ export default function ChatBox(props: Props) {
       const removed = removedUsers.includes(activeUserKeys?.pub!);
       setIsActiveUserRemoved(removed);
     }
-    scrollerClicked();
+    // scrollerClicked();
   }, [currentChannel, removedUsers]);
 
   useEffect(() => {
@@ -283,6 +300,7 @@ export default function ChatBox(props: Props) {
     const msgsList = fetchDirectMessages(receiverPubKey!);
     const messages = msgsList.sort((a, b) => a.created - b.created);
     setDirectMessagesList(messages);
+    // if(messages)
   }, [props.chat.directMessages]);
 
   useEffect(() => {
@@ -300,10 +318,17 @@ export default function ChatBox(props: Props) {
   }, [props.global.theme, props.activeUser]);
 
   useEffect(() => {
-    scrollerClicked();
     if (directMessagesList.length !== 0 || publicMessages.length !== 0) {
       //Initialize the zooming effect
       zoomInitializer();
+    }
+    if (directMessagesList.length !== 0) {
+      scrollerClicked();
+    }
+
+    if (!isTop && !isScrollToTop && publicMessages.length !== 0) {
+      console.log("I want this");
+      scrollerClicked();
     }
   }, [directMessagesList, publicMessages]);
 
@@ -313,8 +338,9 @@ export default function ChatBox(props: Props) {
       const publicMessages: PublicMessage[] = fetchCommunityMessages(currentChannel.id);
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
+      console.log("community messages", messages);
     }
-    scrollerClicked();
+    // scrollerClicked();
   }, [currentChannel, isCommunity, props.chat.publicMessages]);
 
   useEffect(() => {
@@ -368,7 +394,7 @@ export default function ChatBox(props: Props) {
       setIsCurrentUserJoined(true);
       setMessage("");
       setInProgress(false);
-      scrollerClicked();
+      // scrollerClicked();
     }
   }, [currentUser]);
 
@@ -537,11 +563,18 @@ export default function ChatBox(props: Props) {
 
   const sendMessage = () => {
     if (message.length !== 0 && !message.includes(UPLOADING)) {
+      if (isCommunity) {
+        if (!isActveUserRemoved) {
+          window?.messageService?.sendPublicMessage(currentChannel!, message, [], "");
+        } else {
+          error("You cannot send messages in this group.");
+        }
+      }
+      if (isCurrentUser) {
+        window.messageService?.sendDirectMessage(receiverPubKey, message);
+      }
       setMessage("");
       setIsMessageText(false);
-      isCommunity
-        ? window?.messageService?.sendPublicMessage(currentChannel!, message, [], "")
-        : window.messageService?.sendDirectMessage(receiverPubKey, message);
     }
     if (
       receiverPubKey &&
@@ -552,7 +585,67 @@ export default function ChatBox(props: Props) {
     }
   };
 
+  const fetchPrevMessages = () => {
+    if (!hasMore || inProgress) return;
+
+    setInProgress(true);
+    window.messageService
+      ?.fetchPrevMessages(currentChannel!.id, publicMessages[0].created)
+      .then((events) => {
+        console.log("events in chatbox", events);
+
+        const newMessages = events
+          .map((ev) => {
+            const eTags = ev.tags.filter(([t]) => t === "e");
+            const root = eTags.find((x) => x[3] === "root")?.[1];
+            const mentions = ev.tags
+              .filter(([t]) => t === "p")
+              .map((x) => x?.[1])
+              .filter(notEmpty);
+
+            if (!root) return null;
+
+            return ev.content
+              ? {
+                  id: ev.id,
+                  root,
+                  content: ev.content,
+                  creator: ev.pubkey,
+                  mentions,
+                  created: ev.created_at,
+                  sent: 1
+                }
+              : null;
+          })
+          .filter(notEmpty);
+
+        const filteredNewMessages = newMessages.filter((newMsg) => {
+          return !publicMessages.some((pubMsg) => pubMsg.id === newMsg.id);
+        });
+
+        const messages = filteredNewMessages.sort((a, b) => a.created - b.created);
+
+        setPublicMessages((prevMessages) => [...messages, ...prevMessages]);
+
+        setInProgress(false);
+        console.log("num", events.length);
+        if (events.length < 30 - 5) {
+          setHasMore(false);
+        }
+        console.log("number", events.length);
+      })
+      .finally(() => {
+        setInProgress(false);
+        setIsTop(false);
+      });
+  };
+
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
+    // if (isTop) {
+    //   console.log("Hurrah");
+    //   event.preventDefault();
+    //   return;
+    // }
     var element = event.currentTarget;
     let srollHeight: number = (element.scrollHeight / 100) * 25;
     const isScrollToTop = !isCurrentUser && !isCommunity && element.scrollTop >= srollHeight;
@@ -561,9 +654,17 @@ export default function ChatBox(props: Props) {
       element.scrollTop + chatBodyDivRef?.current?.clientHeight! < element.scrollHeight;
     setIsScrollToTop(isScrollToTop);
     setIsScrollToBottom(isScrollToBottom);
+    const scrollerTop = element.scrollTop <= 600;
+    console.log("scrollerTop", scrollerTop);
+    if (isCommunity && scrollerTop) {
+      setIsTop(true);
+    } else {
+      setIsTop(false); // Set isTop to false when the condition is not met
+    }
   };
 
   const scrollerClicked = () => {
+    console.log("scroller clicked");
     chatBodyDivRef?.current?.scroll({
       top: isCurrentUser || isCommunity ? chatBodyDivRef?.current?.scrollHeight : 0,
       behavior: "auto"
@@ -575,6 +676,9 @@ export default function ChatBox(props: Props) {
   };
 
   const handleRefreshSvgClick = () => {
+    const { resetChat } = props;
+    resetChat();
+    handleBackArrowSvg();
     if (getPrivateKey(props.activeUser?.username!)) {
       setInProgress(true);
       const keys = {
@@ -1283,6 +1387,8 @@ export default function ChatBox(props: Props) {
     setClickedMessage("");
     setShowSearchUser(false);
     setSearchText("");
+    setMessage("");
+    setHasMore(true);
   };
 
   const handleImportChat = () => {
@@ -1405,7 +1511,12 @@ export default function ChatBox(props: Props) {
               )}
               <div className="arrow-image">
                 <Tooltip content={expanded ? _t("chat.collapse") : _t("chat.expand")}>
-                  <p className="arrow-svg" onClick={() => setExpanded(!expanded)}>
+                  <p
+                    className="arrow-svg"
+                    onClick={() => {
+                      setExpanded(!expanded);
+                    }}
+                  >
                     {expanded ? expandArrow : collapseArrow}
                   </p>
                 </Tooltip>
@@ -1440,7 +1551,13 @@ export default function ChatBox(props: Props) {
           <div
             className={`chat-body ${
               currentUser ? "current-user" : isCommunity ? "community" : ""
-            } ${!hasUserJoinedChat ? "join-chat" : clickedMessage ? "no-scroll" : ""}`}
+            } ${
+              !hasUserJoinedChat
+                ? "join-chat"
+                : clickedMessage || (isTop && hasMore)
+                ? "no-scroll"
+                : ""
+            }`}
             ref={chatBodyDivRef}
             onScroll={handleScroll}
           >
@@ -1758,6 +1875,29 @@ export default function ChatBox(props: Props) {
                                         }`}
                                         dangerouslySetInnerHTML={{ __html: renderedPreview }}
                                       />
+                                      {pMsg.sent === 0 && (
+                                        <span style={{ margin: "10px 0 0 5px" }}>
+                                          <Spinner animation="border" variant="primary" size="sm" />
+                                        </span>
+                                      )}
+                                      {pMsg.sent === 2 && (
+                                        <Tooltip content={"Sending failed"}>
+                                          <span style={{ margin: "14px 0 0 5px" }}>
+                                            {/* <Spinner animation="border" variant="danger" size="sm" /> */}
+                                            <div
+                                              className="sent-failed"
+                                              style={{
+                                                width: "10px",
+                                                height: "10px",
+                                                borderRadius: "50%",
+                                                backgroundColor: "white",
+                                                border: "2px solid red",
+                                                cursor: "pointer"
+                                              }}
+                                            />
+                                          </span>
+                                        </Tooltip>
+                                      )}
                                     </div>
                                   </div>
                                 )}
@@ -1887,6 +2027,8 @@ export default function ChatBox(props: Props) {
                           </Button>
                         </div>
                       </>
+                    ) : inProgress ? (
+                      <h3 className="no-chat">Loading...</h3>
                     ) : (
                       <>
                         <p className="no-chat">{_t("chat.no-chat")}</p>

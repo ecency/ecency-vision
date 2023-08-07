@@ -20,7 +20,9 @@ import {
   PublicMessagesAction,
   ProfilesAction,
   LeftChannelsAction,
-  UpdateChannelAction
+  UpdateChannelAction,
+  ReplacePublicMessagesAction,
+  VerifySendingMessageAction
 } from "./types";
 
 export const initialState: Chat = {
@@ -82,6 +84,7 @@ export default (state: Chat = initialState, action: Actions): Chat => {
 
     case ActionTypes.PUBLICMESSAGES: {
       const { channelId, data } = action;
+
       return {
         ...state,
         publicMessages: [
@@ -120,6 +123,56 @@ export default (state: Chat = initialState, action: Actions): Chat => {
       return {
         ...state,
         updatedChannel: [...state.updatedChannel, ...data]
+      };
+    }
+
+    case ActionTypes.REPLACEPUBLICMESSAGE: {
+      const { channelId, data } = action;
+      const publicChatObject = state.publicMessages.find((item) => item.channelId === channelId);
+      const publicChat = publicChatObject?.PublicMessage!;
+
+      const updatedMainArray = publicChat?.map((message) => {
+        const matchingMessage = data.find((subMessage) => subMessage.id === message.id);
+        return matchingMessage ? matchingMessage : message;
+      });
+
+      // Add new messages from subArray that do not exist in the mainArray
+      data.forEach((subMessage) => {
+        const existsInMainArray = publicChat.some((message) => message.id === subMessage.id);
+        if (!existsInMainArray) {
+          updatedMainArray.push(subMessage);
+        }
+      });
+
+      return {
+        ...state,
+        publicMessages: [
+          ...state.publicMessages.map((obj) =>
+            obj.channelId === channelId
+              ? { channelId: channelId, PublicMessage: [...updatedMainArray] }
+              : obj
+          )
+        ]
+      };
+    }
+
+    case ActionTypes.VERIFYMESSAGESENDING: {
+      const { channelId, data } = action;
+
+      const publicChatObject = state.publicMessages.find((item) => item.channelId === channelId);
+      const publicChat = publicChatObject?.PublicMessage || [];
+
+      const updatedPublicChat = publicChat.map((item) =>
+        data.some((object) => object.id === item.id && item.sent === 0)
+          ? { ...item, sent: 2 }
+          : item
+      );
+      console.log("updatedPublicChat", updatedPublicChat);
+      return {
+        ...state,
+        publicMessages: state.publicMessages.map((obj) =>
+          obj.channelId === channelId ? { channelId, PublicMessage: updatedPublicChat } : obj
+        )
       };
     }
 
@@ -162,6 +215,16 @@ export const UpdateChannels = (data: ChannelUpdate[]) => (dispatch: Dispatch) =>
   dispatch(UpdateChannelsAct(data));
 };
 
+export const replacePublicMessage =
+  (channelId: string, data: PublicMessage[]) => (dispatch: Dispatch) => {
+    dispatch(replacePublicMessagesAct(channelId, data));
+  };
+
+export const verifyMessageSending =
+  (channelId: string, data: PublicMessage[]) => (dispatch: Dispatch) => {
+    dispatch(verifyMessageSendingAct(channelId, data));
+  };
+
 /* Action Creators */
 
 export const addDirectContactsAct = (data: DirectContactsType[]): DirectContactsAction => {
@@ -185,6 +248,17 @@ export const addPublicMessagesAct = (
 ): PublicMessagesAction => {
   return {
     type: ActionTypes.PUBLICMESSAGES,
+    channelId,
+    data
+  };
+};
+
+export const replacePublicMessagesAct = (
+  channelId: string,
+  data: PublicMessage[]
+): ReplacePublicMessagesAction => {
+  return {
+    type: ActionTypes.REPLACEPUBLICMESSAGE,
     channelId,
     data
   };
@@ -220,6 +294,17 @@ export const addleftChannelsAct = (data: string[]): LeftChannelsAction => {
 export const UpdateChannelsAct = (data: ChannelUpdate[]): UpdateChannelAction => {
   return {
     type: ActionTypes.UPDATEDCHANNEL,
+    data
+  };
+};
+
+export const verifyMessageSendingAct = (
+  channelId: string,
+  data: PublicMessage[]
+): VerifySendingMessageAction => {
+  return {
+    type: ActionTypes.VERIFYMESSAGESENDING,
+    channelId,
     data
   };
 };

@@ -49,7 +49,9 @@ import {
   addPublicMessage,
   addProfile,
   addleftChannels,
-  UpdateChannels
+  UpdateChannels,
+  replacePublicMessage,
+  verifyMessageSending
 } from "./chat";
 
 // @note Do not use it directly
@@ -107,7 +109,9 @@ export const ACTIONS = {
   addPublicMessage,
   addProfile,
   addleftChannels,
-  UpdateChannels
+  UpdateChannels,
+  replacePublicMessage,
+  verifyMessageSending
 };
 
 export const getActions = () => ({

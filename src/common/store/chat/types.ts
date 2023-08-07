@@ -39,7 +39,9 @@ export enum ActionTypes {
   PUBLICMESSAGES = "@chat/PUBLICMESSAGES",
   PROFILES = "@chat/PROFILES",
   LEFTCHANNELLIST = "@chat/LEFTCHANNELLIST",
-  UPDATEDCHANNEL = "@chat/UPDATEDCHANNEL"
+  UPDATEDCHANNEL = "@chat/UPDATEDCHANNEL",
+  REPLACEPUBLICMESSAGE = "@chat/REPLACEPUBLICMESSAGE",
+  VERIFYMESSAGESENDING = "@chat/VERIFYMESSAGESENDING"
 }
 
 export interface DirectContactsAction {
@@ -82,6 +84,18 @@ export interface UpdateChannelAction {
   data: ChannelUpdate[];
 }
 
+export interface ReplacePublicMessagesAction {
+  type: ActionTypes.REPLACEPUBLICMESSAGE;
+  data: PublicMessage[];
+  channelId: string;
+}
+
+export interface VerifySendingMessageAction {
+  type: ActionTypes.VERIFYMESSAGESENDING;
+  data: PublicMessage[];
+  channelId: string;
+}
+
 export type Actions =
   | DirectContactsAction
   | DirectMessagesAction
@@ -90,4 +104,6 @@ export type Actions =
   | PublicMessagesAction
   | ProfilesAction
   | LeftChannelsAction
-  | UpdateChannelAction;
+  | UpdateChannelAction
+  | ReplacePublicMessagesAction
+  | VerifySendingMessageAction;

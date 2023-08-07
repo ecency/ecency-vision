@@ -43,6 +43,7 @@ export type PublicMessage = {
   created: number;
   children?: PublicMessage[];
   mentions: string[];
+  sent?: number;
 };
 
 export type DirectMessage = {
@@ -54,6 +55,7 @@ export type DirectMessage = {
   created: number;
   children?: DirectMessage[];
   decrypted: boolean;
+  sent?: number;
 };
 
 export type Message = PublicMessage | DirectMessage;

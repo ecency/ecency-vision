@@ -24,6 +24,7 @@ const relays = {
   "wss://relay.snort.social": { read: true, write: true },
   "wss://nos.lol": { read: true, write: true }
 };
+const MESSAGE_PAGE_SIZE = 30;
 
 enum NewKinds {
   MuteList = 10000,
@@ -38,7 +39,8 @@ export enum MessageEvents {
   ChannelCreation = "channel_creation",
   DirectMessage = "direct_message",
   DirectContact = "direct_contact",
-  PublicMessage = "public_message"
+  PublicMessageBeforeSent = "public_message_before_sent",
+  PublicMessageAfterSent = "public_message_after_sent"
 }
 
 type EventHandlerMap = {
@@ -47,7 +49,8 @@ type EventHandlerMap = {
   [MessageEvents.DirectMessage]: (data: DirectMessage[]) => void;
   [MessageEvents.ChannelCreation]: (data: Channel[]) => void;
   [MessageEvents.ChannelUpdate]: (data: ChannelUpdate[]) => void;
-  [MessageEvents.PublicMessage]: (data: PublicMessage[]) => void;
+  [MessageEvents.PublicMessageBeforeSent]: (data: PublicMessage[]) => void;
+  [MessageEvents.PublicMessageAfterSent]: (data: PublicMessage[]) => void;
   [MessageEvents.LeftChannelList]: (data: string[]) => void;
   [MessageEvents.DirectContact]: (data: DirectContact[]) => void;
 };
@@ -148,12 +151,36 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
             .filter(notEmpty)
         )
       );
+      console.log("channels", channels);
       if (channels.length !== 0) {
         this.fetchChannels(channels);
       }
 
       this.fetchMessages();
       this.emit(MessageEvents.Ready);
+    });
+  }
+
+  public fetchPrevMessages(channel: string, until: number) {
+    console.log("check plz", channel, until);
+    return this.fetchP(
+      [
+        {
+          kinds: [Kind.ChannelMessage],
+          "#e": [channel],
+          until,
+          limit: MESSAGE_PAGE_SIZE
+        }
+      ],
+      false
+    ).then((events) => {
+      console.log("events", events);
+      return events;
+      // events.forEach((ev) => {
+      //   this.pushToEventBuffer(ev);
+      // });
+      // console.log('events ki length',events.length)
+      // return events.length;
     });
   }
 
@@ -171,7 +198,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       ...channels.map((c) => ({
         kinds: [Kind.ChannelMessage],
         "#e": [c],
-        limit: 30
+        limit: MESSAGE_PAGE_SIZE
       }))
     ];
 
@@ -267,7 +294,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       {
         kinds: [Kind.ChannelMessage],
         "#e": [id],
-        limit: 30
+        limit: MESSAGE_PAGE_SIZE
       }
     ];
 
@@ -344,7 +371,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     const sub = this.pool.sub(this.readRelays, filters);
 
     sub.on("event", (event: Event) => {
-      console.log("Event in fetch", event);
+      // console.log("Event in fetch", event);
       event.kind === Kind.Metadata && isDirectContact
         ? this.addDirectContact(event)
         : this.pushToEventBuffer(event);
@@ -465,15 +492,41 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
         content,
         created_at: Math.floor(Date.now() / 1000),
         id: "",
-        sig: "",
-        sent: false
+        sig: ""
       })
         .then((event) => {
           if (!event) {
-            console.log("Event not found");
+            // console.log("Event not found");
             reject("Couldn't sign event!");
             return;
           }
+          if (event.kind === Kind.ChannelMessage) {
+            let eventArray = [];
+
+            const eTags = MessageService.filterTagValue(event, "e");
+            const root = eTags.find((x) => x[3] === "root")?.[1];
+            const mentions = MessageService.filterTagValue(event, "p")
+              .map((x) => x?.[1])
+              .filter(notEmpty);
+            const formattedEvent = event.content
+              ? {
+                  id: event.id,
+                  root,
+                  content: event.content,
+                  creator: event.pubkey,
+                  mentions,
+                  created: event.created_at,
+                  sent: 0
+                }
+              : null;
+            // console.log("mery mtlb ka event", event);
+            eventArray.push(formattedEvent);
+            const filteredEventArray = eventArray.filter(
+              (item) => item !== null
+            ) as PublicMessage[];
+            this.emit(MessageEvents.PublicMessageBeforeSent, filteredEventArray);
+          }
+
           const pub = this.pool.publish(this.writeRelays, event);
           pub.on("ok", () => {
             resolve(event);
@@ -484,12 +537,12 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
           });
 
           pub.on("failed", () => {
-            console.log("Failed to sign event");
+            // console.log("Failed to sign event");
             reject("Couldn't sign event!");
           });
         })
         .catch(() => {
-          console.log("Catch run event not");
+          // console.log("Catch run event not");
           reject("Couldn't sign event!");
         });
     });
@@ -508,7 +561,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   pushToEventBuffer(event: Event) {
-    // console.log("event reaches in event buffer");
+    // console.log("event reaches in event buffer", event);
     const cacheKey = `${event.id}_emitted`;
     if (this.nameCache[cacheKey] === undefined) {
       if (this.eventQueueFlag) {
@@ -640,7 +693,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
           .map((x) => x?.[1])
           .filter(notEmpty);
         if (!root) return null;
-        console.log(ev, "evenet");
         return ev.content
           ? {
               id: ev.id,
@@ -648,13 +700,15 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
               content: ev.content,
               creator: ev.pubkey,
               mentions,
-              created: ev.created_at
+              created: ev.created_at,
+              sent: 1
             }
           : null;
       })
       .filter(notEmpty);
     if (publicMessages.length > 0) {
-      this.emit(MessageEvents.PublicMessage, publicMessages);
+      // console.log("publicMessages", publicMessages);
+      this.emit(MessageEvents.PublicMessageAfterSent, publicMessages);
     }
 
     Promise.all(
@@ -674,7 +728,8 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
             peer,
             creator: ev.pubkey,
             created: ev.created_at,
-            decrypted: false
+            decrypted: false,
+            sent: 1
           };
 
           if (this.priv === "nip07") {
@@ -731,7 +786,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
 export default MessageService;
 
 export const initMessageService = (keys: Keys): MessageService | undefined => {
-  // console.log("keys in raven instance", keys)
+  // console.log("keys in raven instance", keys);
   if (window.messageService) {
     window.messageService.close();
     window.messageService = undefined;
@@ -739,7 +794,7 @@ export const initMessageService = (keys: Keys): MessageService | undefined => {
 
   if (keys) {
     window.messageService = new MessageService(keys.priv, keys.pub);
-    // console.log("window messageService", window.messageService);
+    console.log("window messageService", window.messageService);
   }
 
   return window.messageService;
