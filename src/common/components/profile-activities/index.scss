@@ -8,11 +8,15 @@
     flex-direction: column;
     gap: 10px;
 
+    .activities-page-info{
+        align-self: center;
+    }
+
     .activities{
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 5px;
+        gap: 3px;
         // background: #161d26;
         width: 100%;
         height: fit-content;
@@ -50,7 +54,16 @@
                 flex: 1;
                 display: flex;
                 flex-direction: column;
+                // justify-content: center;
+                // align-items: center;
                 gap: 5px;
+
+                .auhtor-wrapper{
+                    display: flex;
+                    // justify-content: center;
+                    align-items: center;
+                    gap: 5px;
+                }
             }
         }
 
