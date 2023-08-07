@@ -119,11 +119,13 @@ export function VideoGalleryItem({
           {["publish_manual", "published"].includes(item.status) && (
             <div className="details-actions">
               <Button size="sm" onClick={() => insert()}>
-                Insert
+                {_t("video-gallery.insert-video")}
               </Button>
-              <Button variant="link" size="sm" onClick={() => insert(true)}>
-                Insert as NSFW
-              </Button>
+              {item.status != "published" && (
+                <Button variant="link" size="sm" onClick={() => insert(true)}>
+                  {_t("video-gallery.insert-nsfw")}
+                </Button>
+              )}
             </div>
           )}
         </div>
