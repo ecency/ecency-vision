@@ -3,9 +3,16 @@ import { QueryIdentifiers } from "../../core";
 import { getAllVideoStatuses } from "./api";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { ThreeSpeakVideo } from "./types";
+import { usePrevious } from "../../util/use-previous";
+import { useAsyncFn } from "react-use";
 
-export function useThreeSpeakVideo(filterStatus: ThreeSpeakVideo["status"] | "all") {
+export function useThreeSpeakVideo(
+  filterStatus: ThreeSpeakVideo["status"] | "all",
+  enabled = true
+) {
   const { activeUser } = useMappedStore();
+  const prevActiveUser = usePrevious(activeUser);
+
   const queryClient = useQueryClient();
 
   const apiQuery = useQuery(
@@ -19,7 +26,8 @@ export function useThreeSpeakVideo(filterStatus: ThreeSpeakVideo["status"] | "al
       return [];
     },
     {
-      initialData: []
+      initialData: [],
+      enabled
     }
   );
 
@@ -36,8 +44,17 @@ export function useThreeSpeakVideo(filterStatus: ThreeSpeakVideo["status"] | "al
       enabled: apiQuery.data?.length > 0
     }
   );
+
+  useAsyncFn(async () => {
+    if (activeUser?.username !== prevActiveUser?.username) {
+      await queryClient.invalidateQueries([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST]);
+      await queryClient.invalidateQueries([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, "all"]);
+    }
+  }, [activeUser]);
+
   return {
     ...filteredQuery,
+    isFetching: apiQuery.isFetching,
     refresh: () => {
       queryClient.setQueryData([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST], []);
       queryClient.invalidateQueries([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST]);

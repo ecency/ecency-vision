@@ -24,7 +24,7 @@ export const threespeakAuth = async (username: string) => {
     memoDecoded = memoDecoded.replace("#", "");
     return memoDecoded;
   } catch (err) {
-    console.error(err);
+    console.error(new Error("[3Speak auth] Failed to login"));
     throw err;
   }
 };
@@ -95,7 +95,8 @@ export const getAllVideoStatuses = async (username: string) => {
     });
     return response.data;
   } catch (err) {
-    console.log(err);
+    console.error(new Error("[3Speak video] Failed to get videos"));
+
     throw err;
   }
 };
@@ -123,12 +124,11 @@ export const updateSpeakVideoInfo = async (
     Authorization: `Bearer ${token}`
   };
 
-  axios
-    .post(`${studioEndPoint}/mobile/api/update_info`, data, { headers })
-    .then((response) => {})
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  try {
+    await axios.post(`${studioEndPoint}/mobile/api/update_info`, data, { headers });
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 export const markAsPublished = async (username: string, videoId: string) => {

@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent } from "react";
+import React, { Component } from "react";
 import isEqual from "react-fast-compare";
 import axios from "axios";
 
@@ -24,19 +24,19 @@ import _c from "../../util/fix-class-names";
 import "./_index.scss";
 
 import {
+  codeTagsSvg,
+  emoticonHappyOutlineSvg,
   formatBoldSvg,
   formatItalicSvg,
-  formatTitleSvg,
-  codeTagsSvg,
-  formatQuoteCloseSvg,
-  formatListNumberedSvg,
   formatListBulletedSvg,
-  linkSvg,
-  imageSvg,
+  formatListNumberedSvg,
+  formatQuoteCloseSvg,
+  formatTitleSvg,
+  gifIcon,
   gridSvg,
-  emoticonHappyOutlineSvg,
-  textShortSvg,
-  gifIcon
+  imageSvg,
+  linkSvg,
+  textShortSvg
 } from "../../img/svg";
 import { VideoUpload } from "../video-upload-threespeak";
 

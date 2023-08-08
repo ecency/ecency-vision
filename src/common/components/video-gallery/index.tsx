@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LinearProgress from "../linear-progress";
 import { refreshSvg } from "../../img/svg";
 import { Button, Modal } from "react-bootstrap";
@@ -7,6 +7,7 @@ import "./index.scss";
 import DropDown from "../dropdown";
 import { ThreeSpeakVideo, useThreeSpeakVideo } from "../../api/threespeak";
 import { VideoGalleryItem } from "./video-gallery-item";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 interface Props {
   showGallery: boolean;
@@ -23,10 +24,15 @@ const VideoGallery = ({
   setVideoEncoderBeneficiary,
   toggleNsfwC
 }: Props) => {
+  const { activeUser } = useMappedStore();
   const [label, setLabel] = useState("All");
   const [filterStatus, setFilterStatus] = useState<ThreeSpeakVideo["status"] | "all">("all");
 
-  const { data: items, isLoading, refresh } = useThreeSpeakVideo(filterStatus);
+  const { data: items, isFetching, refresh } = useThreeSpeakVideo(filterStatus, showGallery);
+
+  useEffect(() => {
+    setFilterStatus("all");
+  }, [activeUser]);
 
   return (
     <div>
@@ -105,7 +111,7 @@ const VideoGallery = ({
             </Button>
           </div>
           <div className="dialog-content">
-            {isLoading && <LinearProgress />}
+            {isFetching && <LinearProgress />}
             <div className="video-list">
               {items?.map((item) => (
                 <VideoGalleryItem
@@ -117,7 +123,7 @@ const VideoGallery = ({
                   setShowGallery={setShowGallery}
                 />
               ))}
-              {!isLoading && items?.length === 0 && (
+              {!isFetching && items?.length === 0 && (
                 <div className="gallery-list">{_t("g.empty-list")}</div>
               )}
             </div>
