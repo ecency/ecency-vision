@@ -9,7 +9,14 @@
   transition: 0.3s;
 
   &:hover {
-    background-color: $gray-100;
+    @include themify(day) {
+      background-color: darken($white, 6);
+    }
+
+    @include themify(night) {
+      background-color: lighten($dark, 6);
+    }
+    
   }
 }
 
