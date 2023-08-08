@@ -239,7 +239,7 @@ export const ProfileCard = (props: Props) => {
 
         <div className="prop">
           {rssSvg}
-          <a target="_external" href={`${defaults.base}/@${account?.name}/rss.xml`}>
+          <a target="_external" href={`${defaults.base}/@${account?.name}/rss`}>
             RSS feed
           </a>
         </div>
