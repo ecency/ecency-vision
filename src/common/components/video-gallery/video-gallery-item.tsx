@@ -14,7 +14,7 @@ interface videoProps {
 
 interface Props {
   item: ThreeSpeakVideo;
-  insertText: (before: string, after?: string) => HTMLElement;
+  insertText: (before: string, after?: string) => any;
   setVideoEncoderBeneficiary?: (video: any) => void;
   toggleNsfwC?: () => void;
   setShowGallery: (v: boolean) => void;

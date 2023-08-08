@@ -1,7 +1,6 @@
 import React from "react";
 import { DeckThreadsFormToolbarImagePicker } from "./deck-threads-form-toolbar-image-picker";
 import { DeckThreadsFormEmojiPicker } from "./deck-threads-form-emoji-picker";
-import { DeckThreadsFormToolbarVideoPicker } from "./deck-threads-form-toolbar-video-picker";
 
 interface Props {
   onAddImage: (url: string, name: string) => void;
@@ -14,7 +13,7 @@ export const DeckThreadsFormToolbar = ({ onAddImage, onEmojiPick, onAddVideo }: 
     <div className="deck-threads-form-toolbar">
       <DeckThreadsFormToolbarImagePicker onAddImage={onAddImage} />
       <DeckThreadsFormEmojiPicker onPick={onEmojiPick} />
-      <DeckThreadsFormToolbarVideoPicker onSelect={onAddVideo} />
+      {/*<DeckThreadsFormToolbarVideoPicker onSelect={onAddVideo} />*/}
     </div>
   );
 };

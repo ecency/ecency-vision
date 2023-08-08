@@ -37,6 +37,7 @@ export function DeckThreadsFormToolbarVideoPicker({ onSelect }: Props) {
       )}
       <VideoUpload show={showUpload} setShow={setShowUpload} setShowGallery={setShowGallery} />
       <VideoGallery
+        preFilter="published"
         showGallery={showGallery}
         setShowGallery={setShowGallery}
         insertText={(v) => {
