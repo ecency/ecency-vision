@@ -12,7 +12,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 interface Props {
   showGallery: boolean;
   setShowGallery: React.Dispatch<React.SetStateAction<boolean>>;
-  insertText: (before: string, after?: string) => void;
+  insertText: (before: string, after?: string) => HTMLElement;
   setVideoEncoderBeneficiary?: (video: any) => void;
   toggleNsfwC?: () => void;
 }

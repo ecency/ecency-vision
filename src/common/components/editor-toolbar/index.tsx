@@ -195,6 +195,7 @@ export class EditorToolbar extends Component<Props> {
     if (el) {
       insertOrReplace(el, before, after);
     }
+    return this.getTargetEl();
   };
 
   replaceText = (find: string, rep: string) => {
