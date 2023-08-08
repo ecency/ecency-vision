@@ -448,6 +448,13 @@ export class EditorToolbar extends Component<Props> {
               {formatQuoteCloseSvg}
             </div>
           </Tooltip>
+          {global.usePrivate && (
+            <Tooltip content={_t("editor-toolbar.fragments")}>
+              <div className="editor-tool" onClick={this.toggleFragments}>
+                {textShortSvg}
+              </div>
+            </Tooltip>
+          )}
           <div className="tool-separator" />
           <Tooltip content={_t("editor-toolbar.ol")}>
             <div className="editor-tool" onClick={this.ol}>
@@ -459,13 +466,23 @@ export class EditorToolbar extends Component<Props> {
               {formatListBulletedSvg}
             </div>
           </Tooltip>
-          <div className="tool-separator" />
-          <Tooltip content={_t("editor-toolbar.link")}>
-            <div className="editor-tool" onClick={this.toggleLink}>
-              {linkSvg}
+          <Tooltip content={_t("editor-toolbar.table")}>
+            <div className="editor-tool" onClick={this.table}>
+              {gridSvg}
+              <div className="sub-tool-menu">
+                <div className="sub-tool-menu-item" onClick={this.table}>
+                  {_t("editor-toolbar.table-3-col")}
+                </div>
+                <div className="sub-tool-menu-item" onClick={this.table2}>
+                  {_t("editor-toolbar.table-2-col")}
+                </div>
+                <div className="sub-tool-menu-item" onClick={this.table1}>
+                  {_t("editor-toolbar.table-1-col")}
+                </div>
+              </div>
             </div>
           </Tooltip>
-
+          <div className="tool-separator" />
           {(() => {
             if (activeUser && global.isMobile) {
               return (
@@ -513,63 +530,6 @@ export class EditorToolbar extends Component<Props> {
               </Tooltip>
             );
           })()}
-
-          <Tooltip content={_t("editor-toolbar.table")}>
-            <div className="editor-tool" onClick={this.table}>
-              {gridSvg}
-              <div className="sub-tool-menu">
-                <div className="sub-tool-menu-item" onClick={this.table}>
-                  {_t("editor-toolbar.table-3-col")}
-                </div>
-                <div className="sub-tool-menu-item" onClick={this.table2}>
-                  {_t("editor-toolbar.table-2-col")}
-                </div>
-                <div className="sub-tool-menu-item" onClick={this.table1}>
-                  {_t("editor-toolbar.table-1-col")}
-                </div>
-              </div>
-            </div>
-          </Tooltip>
-          <Tooltip content={_t("editor-toolbar.emoji")}>
-            <div className="editor-tool" role="none">
-              {emoticonHappyOutlineSvg}
-              {showEmoji && (
-                <EmojiPicker
-                  fallback={(e) => {
-                    this.insertText(e, "");
-                  }}
-                />
-              )}
-            </div>
-          </Tooltip>
-
-          <Tooltip content={_t("Gif")}>
-            <div className="editor-tool" role="none">
-              <div className="editor-tool-gif-icon" onClick={this.toggleGif}>
-                {gifIcon}
-              </div>
-              {this.state.shGif && (
-                <GifPicker
-                  shGif={true}
-                  changeState={(gifState) => {
-                    this.setState({ shGif: gifState });
-                  }}
-                  fallback={(e) => {
-                    this.insertText(e, "");
-                  }}
-                />
-              )}
-            </div>
-          </Tooltip>
-
-          {global.usePrivate && (
-            <Tooltip content={_t("editor-toolbar.fragments")}>
-              <div className="editor-tool" onClick={this.toggleFragments}>
-                {textShortSvg}
-              </div>
-            </Tooltip>
-          )}
-
           {!this.props.comment && (
             <Tooltip content={_t("video-upload.upload-video")}>
               <div className="editor-tool" role="none">
@@ -612,6 +572,41 @@ export class EditorToolbar extends Component<Props> {
               </div>
             </Tooltip>
           )}
+          <Tooltip content={_t("editor-toolbar.emoji")}>
+            <div className="editor-tool" role="none">
+              {emoticonHappyOutlineSvg}
+              {showEmoji && (
+                <EmojiPicker
+                  fallback={(e) => {
+                    this.insertText(e, "");
+                  }}
+                />
+              )}
+            </div>
+          </Tooltip>
+          <Tooltip content={_t("Gif")}>
+            <div className="editor-tool" role="none">
+              <div className="editor-tool-gif-icon" onClick={this.toggleGif}>
+                {gifIcon}
+              </div>
+              {this.state.shGif && (
+                <GifPicker
+                  shGif={true}
+                  changeState={(gifState) => {
+                    this.setState({ shGif: gifState });
+                  }}
+                  fallback={(e) => {
+                    this.insertText(e, "");
+                  }}
+                />
+              )}
+            </div>
+          </Tooltip>
+          <Tooltip content={_t("editor-toolbar.link")}>
+            <div className="editor-tool" onClick={this.toggleLink}>
+              {linkSvg}
+            </div>
+          </Tooltip>
         </div>
         <input
           onChange={this.fileInputChanged}

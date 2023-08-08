@@ -157,7 +157,11 @@ export function useEntryCache<T extends Entry>(
   const query = useQuery(
     [QueryIdentifiers.ENTRY, queryKey],
     async () => {
-      const entry = getByLink(queryKey) as T;
+      let entry = getByLink(queryKey) as T;
+
+      if (!entry) {
+        entry = getExistingEntryFromStore() as T;
+      }
 
       if (!entry && typeof initialOrPath === "string") {
         const response = await bridgeApi.getPost(author, permlink);

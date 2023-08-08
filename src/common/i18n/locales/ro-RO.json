@@ -1436,6 +1436,46 @@
     "empty-body-alert": "Enter post body",
     "description": "Short description"
   },
+  "video-upload": {
+    "choose-video": "Select a video",
+    "choose-thumbnail": "Set a thumbnail(optional)",
+    "continue": "Continue",
+    "encode": "Send for encoding",
+    "success": "Video succesfully uploaded",
+    "finished": "Finished",
+    "upload-video": "Upload video",
+    "video-gallery": "Video gallery",
+    "preview": "Preview",
+    "to-gallery": "Go to gallery",
+    "congrats": "Congratulations",
+    "publishing": "Don't refresh this page, wait for few seconds for video to process"
+  },
+  "video-gallery": {
+    "all": "All",
+    "title": "Video gallery",
+    "published": "Published",
+    "encoding": "Encoding",
+    "encoded": "Encoded",
+    "failed": "Failed",
+    "status-encoded": "Ready for posting",
+    "status-encoding": "Encoding",
+    "status-published": "Published",
+    "status-failed": "Encoding failed",
+    "status-deleted": "Deleted",
+    "info-created": "Created:",
+    "status": "Status:",
+    "info-views": "Views:",
+    "info-duration": "Duration:",
+    "info-size": "File size:",
+    "insert-video": "Insert",
+    "insert-nsfw": "Insert as NSFW",
+    "refresh": "Refresh"
+  },
+  "nsfw-content": {
+    "title": "NSFW contents",
+    "warning": "Please check this if your content is NSFW",
+    "continue": "Continue"
+  },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
     "placeholder-focus": "Introdu eticheta",
@@ -2103,7 +2143,7 @@
     "send": "Send",
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
-    "success-message-subscribe": "A verification link has been sent to your email account!",
+    "success-message-subscribe": "You are subscribed to our newsletters!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   },

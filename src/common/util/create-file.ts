@@ -4,5 +4,5 @@ export async function createFile(uri: string) {
   let metadata = {
     type: "image/jpeg"
   };
-  return new File([data], "test.jpg", metadata);
+  return new File([data], "thumbnail.jpg", metadata);
 }
