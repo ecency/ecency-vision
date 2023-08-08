@@ -82,7 +82,7 @@ import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
 
-import { updateSpeakVideoInfo, markAsPublished } from "../api/threespeak";
+import { markAsPublished, updateSpeakVideoInfo } from "../api/threespeak";
 // import { ConfirmNsfwContent } from "../components/video-nsfw";
 import { PostBodyLazyRenderer } from "../components/post-body-lazy-renderer";
 
@@ -1402,6 +1402,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                             </Form.Label>
                             <Col sm="9">
                               <BeneficiaryEditor
+                                body={this.state.body}
                                 author={activeUser?.username}
                                 list={beneficiaries}
                                 onAdd={this.beneficiaryAdded}
