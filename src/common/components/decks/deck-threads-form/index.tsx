@@ -17,6 +17,7 @@ import { DeckThreadsCreatedRecently } from "./deck-threads-created-recently";
 import { IdentifiableEntry, ThreadItemEntry } from "../columns/deck-threads-manager";
 import useClickAway from "react-use/lib/useClickAway";
 import { classNameObject } from "../../../helper/class-name-object";
+import usePrevious from "react-use/lib/usePrevious";
 
 interface Props {
   className?: string;
@@ -51,6 +52,7 @@ export const DeckThreadsForm = ({
     {}
   );
   const [persistedForm, setPersistedForm] = useLocalStorage<Record<string, any>>(PREFIX + "_dtf_f");
+  const previousPersistedForm = usePrevious(persistedForm);
 
   const [threadHost, setThreadHost] = useState("ecency.waves");
   const [text, setText] = useState("");
@@ -91,16 +93,25 @@ export const DeckThreadsForm = ({
       setText(text ? text : persistedForm?.text ?? "");
       setImage(image ? image : persistedForm?.image);
       setImageName(imageName ? imageName : persistedForm?.imageName);
+      setVideo(video ? video : persistedForm?.video);
     }
   }, [persistedForm]);
 
   useEffect(() => {
-    if (persistable) {
+    if (
+      persistable &&
+      (persistedForm?.threadHost !== threadHost ||
+        persistedForm?.text !== text ||
+        persistedForm?.image !== image ||
+        persistedForm?.imageName !== imageName ||
+        persistedForm?.video !== video)
+    ) {
       setPersistedForm({
         threadHost,
         text,
         image,
-        imageName
+        imageName,
+        video
       });
     }
   }, [threadHost, text, image, imageName]);
@@ -121,6 +132,10 @@ export const DeckThreadsForm = ({
 
       if (image) {
         content = `${content}<br>![${imageName ?? ""}](${image})`;
+      }
+
+      if (video) {
+        content = `${content}<br>${video}`;
       }
 
       // Push to draft built content with attachments
