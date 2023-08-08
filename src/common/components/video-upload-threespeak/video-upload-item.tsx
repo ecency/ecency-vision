@@ -28,7 +28,7 @@ export function VideoUploadItem({ onFileChange, type, accept, label, completed }
         style={{ display: "none" }}
         onChange={onFileChange}
       />
-      {completed && (
+      {completed ? (
         <ProgressBar
           className="w-100 mt-3"
           max={100}
@@ -36,6 +36,8 @@ export function VideoUploadItem({ onFileChange, type, accept, label, completed }
           now={completed}
           label={`${completed}%`}
         />
+      ) : (
+        <></>
       )}
     </div>
   );

@@ -16,7 +16,7 @@ export function useThreeSpeakVideo(
   const queryClient = useQueryClient();
 
   const apiQuery = useQuery(
-    [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST],
+    [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, activeUser?.username ?? ""],
     async () => {
       try {
         return await getAllVideoStatuses(activeUser!.username);
