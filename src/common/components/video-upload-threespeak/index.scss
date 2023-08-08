@@ -15,12 +15,12 @@
 
 .new-feature::after {
   content: '';
-  height: 0.5rem;
-  width: 0.5rem;
+  height: 0.35rem;
+  width: 0.35rem;
   background: $red;
   position: absolute;
-  top: -0.25rem;
-  right: 0.25rem;
+  top: -0.125rem;
+  right: 0.35rem;
   border-radius: 1rem;
 }
 

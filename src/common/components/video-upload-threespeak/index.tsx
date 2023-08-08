@@ -16,7 +16,7 @@ interface Props {
   setShowGallery: (v: boolean) => void;
 }
 
-export const VideoUpload = (props: Props) => {
+export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>) => {
   const { activeUser, toggleUIProp, global } = useMappedStore();
   const {
     mutateAsync: uploadFile,
@@ -175,7 +175,7 @@ export const VideoUpload = (props: Props) => {
 
   return (
     <div
-      className="cursor-pointer new-feature"
+      className={"cursor-pointer " + props.className}
       onClick={() => (activeUser ? null : toggleUIProp("login"))}
     >
       <div className="d-flex justify-content-center bg-red">{props.children}</div>

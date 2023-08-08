@@ -573,6 +573,7 @@ export class EditorToolbar extends Component<Props> {
             <Tooltip content={_t("video-upload.upload-video")}>
               <div className="editor-tool" role="none">
                 <VideoUpload
+                  className="new-feature"
                   show={this.state.showVideoUpload}
                   setShow={(v) => this.setState({ showVideoUpload: v })}
                   setShowGallery={(v) => this.setState({ showVideoGallery: v })}

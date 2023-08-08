@@ -56,6 +56,7 @@ export const DeckThreadsForm = ({
   const [text, setText] = useState("");
   const [image, setImage] = useState<string | null>(null);
   const [imageName, setImageName] = useState<string | null>(null);
+  const [video, setVideo] = useState<string | null>(null);
 
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -213,6 +214,7 @@ export const DeckThreadsForm = ({
               <DeckThreadsFormThreadSelection host={threadHost} setHost={setThreadHost} />
             )}
             <DeckThreadsFormControl
+              video={video}
               text={text!!}
               setText={setText}
               selectedImage={image!!}
@@ -220,6 +222,7 @@ export const DeckThreadsForm = ({
                 setImage(url);
                 setImageName(name);
               }}
+              onAddVideo={setVideo}
               setSelectedImage={setImage}
               placeholder={placeholder}
               onTextareaFocus={() => setFocused(true)}
