@@ -47,6 +47,7 @@ export interface MetaData {
 export interface BeneficiaryRoute {
   account: string;
   weight: number;
+  src?: string;
 }
 
 export interface CommentOptions {

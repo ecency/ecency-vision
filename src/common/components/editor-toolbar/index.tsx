@@ -36,9 +36,11 @@ import {
   gridSvg,
   imageSvg,
   linkSvg,
-  textShortSvg
+  textShortSvg,
+  videoSvg
 } from "../../img/svg";
 import { VideoUpload } from "../video-upload-threespeak";
+import VideoGallery from "../video-gallery";
 
 interface Props {
   global: Global;
@@ -59,6 +61,8 @@ interface State {
   link: boolean;
   mobileImage: boolean;
   shGif: boolean;
+  showVideoUpload: boolean;
+  showVideoGallery: boolean;
 }
 
 export const detectEvent = (eventType: string) => {
@@ -78,7 +82,9 @@ export class EditorToolbar extends Component<Props> {
     image: false,
     link: false,
     mobileImage: false,
-    shGif: false
+    shGif: false,
+    showVideoUpload: false,
+    showVideoGallery: false
   };
 
   holder = React.createRef<HTMLDivElement>();
@@ -189,6 +195,7 @@ export class EditorToolbar extends Component<Props> {
     if (el) {
       insertOrReplace(el, before, after);
     }
+    return this.getTargetEl();
   };
 
   replaceText = (find: string, rep: string) => {
@@ -527,6 +534,37 @@ export class EditorToolbar extends Component<Props> {
             <Tooltip content={_t("video-upload.upload-video")}>
               <div className="editor-tool" role="none">
                 <VideoUpload
+                  className="new-feature"
+                  show={this.state.showVideoUpload}
+                  setShow={(v) => this.setState({ showVideoUpload: v })}
+                  setShowGallery={(v) => this.setState({ showVideoGallery: v })}
+                >
+                  {videoSvg}
+                  {activeUser && (
+                    <div className="sub-tool-menu">
+                      <div
+                        className="sub-tool-menu-item"
+                        onClick={() => this.setState({ showVideoUpload: true })}
+                      >
+                        {_t("video-upload.upload-video")}
+                      </div>
+                      {global.usePrivate && (
+                        <div
+                          className="sub-tool-menu-item"
+                          onClick={(e: React.MouseEvent<HTMLElement>) => {
+                            e.stopPropagation();
+                            this.setState({ showVideoGallery: true });
+                          }}
+                        >
+                          {_t("video-upload.video-gallery")}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </VideoUpload>
+                <VideoGallery
+                  showGallery={this.state.showVideoGallery}
+                  setShowGallery={(v) => this.setState({ showVideoGallery: v })}
                   insertText={this.insertText}
                   setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
                   toggleNsfwC={this.props.toggleNsfwC}

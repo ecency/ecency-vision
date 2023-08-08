@@ -1068,12 +1068,12 @@ class SubmitPage extends BaseComponent<Props, State> {
     const videoEncoders = [
       {
         account: "spk.beneficiary",
-        src: "ECONDER_PAY",
+        src: "ENCODER_PAY",
         weight: 900
       },
       {
         account: "threespeakleader",
-        src: "ECONDER_PAY",
+        src: "ENCODER_PAY",
         weight: 100
       }
     ];
@@ -1402,6 +1402,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                             </Form.Label>
                             <Col sm="9">
                               <BeneficiaryEditor
+                                body={this.state.body}
                                 author={activeUser?.username}
                                 list={beneficiaries}
                                 onAdd={this.beneficiaryAdded}

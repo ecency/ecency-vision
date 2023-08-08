@@ -12,9 +12,10 @@ import { useMappedStore } from "../../store/use-mapped-store";
 interface Props {
   showGallery: boolean;
   setShowGallery: React.Dispatch<React.SetStateAction<boolean>>;
-  insertText: (before: string, after?: string) => void;
+  insertText: (before: string, after?: string) => any;
   setVideoEncoderBeneficiary?: (video: any) => void;
   toggleNsfwC?: () => void;
+  preFilter?: string;
 }
 
 const VideoGallery = ({
@@ -22,16 +23,19 @@ const VideoGallery = ({
   setShowGallery,
   insertText,
   setVideoEncoderBeneficiary,
-  toggleNsfwC
+  toggleNsfwC,
+  preFilter
 }: Props) => {
   const { activeUser } = useMappedStore();
   const [label, setLabel] = useState("All");
-  const [filterStatus, setFilterStatus] = useState<ThreeSpeakVideo["status"] | "all">("all");
+  const [filterStatus, setFilterStatus] = useState<ThreeSpeakVideo["status"] | "all">(
+    preFilter ?? "all"
+  );
 
   const { data: items, isFetching, refresh } = useThreeSpeakVideo(filterStatus, showGallery);
 
   useEffect(() => {
-    setFilterStatus("all");
+    setFilterStatus(preFilter ?? "all");
   }, [activeUser]);
 
   return (
@@ -48,61 +52,65 @@ const VideoGallery = ({
         </Modal.Header>
         <Modal.Body>
           <div className="video-status-picker">
-            <DropDown
-              float="left"
-              label={label}
-              history={"" as any}
-              items={[
-                {
-                  label: <span id="ascending">{_t("video-gallery.all")}</span>,
-                  onClick: () => {
-                    setLabel(_t("video-gallery.all"));
-                    setFilterStatus("all");
+            {!preFilter ? (
+              <DropDown
+                float="left"
+                label={label}
+                history={"" as any}
+                items={[
+                  {
+                    label: <span id="ascending">{_t("video-gallery.all")}</span>,
+                    onClick: () => {
+                      setLabel(_t("video-gallery.all"));
+                      setFilterStatus("all");
+                    }
+                  },
+                  {
+                    label: <span id="descending">{_t("video-gallery.published")}</span>,
+                    onClick: () => {
+                      setLabel(_t("video-gallery.published"));
+                      setFilterStatus("published");
+                    }
+                  },
+                  {
+                    label: <span id="by-value">{_t("video-gallery.encoding")}</span>,
+                    onClick: () => {
+                      const encoding = "encoding_ipfs" || "encoding_preparing";
+                      setLabel(_t("video-gallery.encoding"));
+                      setFilterStatus(encoding);
+                    }
+                  },
+                  {
+                    label: <span id="by-balance">{_t("video-gallery.encoded")}</span>,
+                    onClick: () => {
+                      setLabel(_t("video-gallery.encoded"));
+                      setFilterStatus("publish_manual");
+                    }
+                  },
+                  {
+                    label: <span id="by-stake">{_t("video-gallery.failed")}</span>,
+                    onClick: () => {
+                      setLabel(_t("video-gallery.failed"));
+                      setFilterStatus("encoding_failed");
+                    }
+                  },
+                  {
+                    label: <span id="delegations-in">{_t("video-gallery.status-deleted")}</span>,
+                    onClick: () => {
+                      setLabel(_t("video-gallery.status-deleted"));
+                      setFilterStatus("deleted");
+                    }
                   }
-                },
-                {
-                  label: <span id="descending">{_t("video-gallery.published")}</span>,
-                  onClick: () => {
-                    setLabel(_t("video-gallery.published"));
-                    setFilterStatus("published");
-                  }
-                },
-                {
-                  label: <span id="by-value">{_t("video-gallery.encoding")}</span>,
-                  onClick: () => {
-                    const encoding = "encoding_ipfs" || "encoding_preparing";
-                    setLabel(_t("video-gallery.encoding"));
-                    setFilterStatus(encoding);
-                  }
-                },
-                {
-                  label: <span id="by-balance">{_t("video-gallery.encoded")}</span>,
-                  onClick: () => {
-                    setLabel(_t("video-gallery.encoded"));
-                    setFilterStatus("publish_manual");
-                  }
-                },
-                {
-                  label: <span id="by-stake">{_t("video-gallery.failed")}</span>,
-                  onClick: () => {
-                    setLabel(_t("video-gallery.failed"));
-                    setFilterStatus("encoding_failed");
-                  }
-                },
-                {
-                  label: <span id="delegations-in">{_t("video-gallery.status-deleted")}</span>,
-                  onClick: () => {
-                    setLabel(_t("video-gallery.status-deleted"));
-                    setFilterStatus("deleted");
-                  }
-                }
-              ]}
-            />
+                ]}
+              />
+            ) : (
+              <></>
+            )}
             <Button
               variant="link"
               className="refresh-gallery p-0"
               onClick={() => {
-                setFilterStatus("all");
+                setFilterStatus(preFilter ?? "all");
                 setLabel(_t("video-gallery.all"));
                 refresh();
               }}

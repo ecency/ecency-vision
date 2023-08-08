@@ -1,8 +1,8 @@
 import { informationSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { dateToFullRelative } from "../../helper/parse-date";
-import React, { useState } from "react";
-import { ThreeSpeakVideo } from "../../api/threespeak";
+import React, { useEffect, useState } from "react";
+import { ThreeSpeakVideo, useThreeSpeakVideo } from "../../api/threespeak";
 import { Button } from "react-bootstrap";
 
 interface videoProps {
@@ -14,7 +14,7 @@ interface videoProps {
 
 interface Props {
   item: ThreeSpeakVideo;
-  insertText: (before: string, after?: string) => void;
+  insertText: (before: string, after?: string) => any;
   setVideoEncoderBeneficiary?: (video: any) => void;
   toggleNsfwC?: () => void;
   setShowGallery: (v: boolean) => void;
@@ -27,8 +27,15 @@ export function VideoGalleryItem({
   insertText,
   setShowGallery
 }: Props) {
+  const { data } = useThreeSpeakVideo("all");
+
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<any>(null);
+  const [manualPublishSpeakVideos, setManualPublishSpeakVideos] = useState<ThreeSpeakVideo[]>([]);
+
+  useEffect(() => {
+    setManualPublishSpeakVideos(data.filter((i) => i.status === "publish_manual"));
+  }, [data]);
 
   const setBeneficiary = (video: any) => {
     setVideoEncoderBeneficiary && setVideoEncoderBeneficiary(video);
@@ -43,7 +50,14 @@ export function VideoGalleryItem({
     const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`;
 
     const element = ` <center>${speakFile}</center>`;
-    insertText(element);
+    const body = insertText("").innerHTML;
+    const hasManualPublishInBody = manualPublishSpeakVideos
+      .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
+      .some((i) => body.includes(i));
+
+    if (!hasManualPublishInBody) {
+      insertText(element);
+    }
   };
 
   const insert = async (isNsfw = false) => {

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { uploadFile, uploadVideoInfo } from "./api";
 import { QueryIdentifiers } from "../../core";
-import { ThreeSpeakVideo } from "./types";
+import { useThreeSpeakVideo } from "./queries";
 
 export function useThreeSpeakVideoUpload() {
   const [completedByType, setCompletedByType] = useState<Record<string, number>>({});
@@ -28,6 +28,7 @@ export function useThreeSpeakVideoUpload() {
 
 export function useUploadVideoInfo() {
   const queryClient = useQueryClient();
+  const { data, refetch } = useThreeSpeakVideo("all");
 
   return useMutation(
     ["threeSpeakVideoUploadInfo"],
@@ -55,14 +56,15 @@ export function useUploadVideoInfo() {
     },
 
     {
-      onSuccess: (response) => {
+      onSuccess: async (response) => {
         if (response) {
-          const next = [
-            response,
-            ...(queryClient.getQueryData<ThreeSpeakVideo[]>([
-              QueryIdentifiers.THREE_SPEAK_VIDEO_LIST
-            ]) ?? [])
-          ];
+          let current = data;
+          if (current.length === 0) {
+            const response = await refetch();
+            current = response.data ?? [];
+          }
+
+          const next = [response, ...current];
           queryClient.setQueryData([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST], next);
           queryClient.setQueryData([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST_FILTERED, "all"], next);
         }
