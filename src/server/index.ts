@@ -33,14 +33,15 @@ server
   // Common backend
   .get(
     [
-      `^/:filter(${entryFilters.join("|")})/:tag/rss.xml$` // /trending/esteem/rss.xml
+      `^/:filter(${entryFilters.join("|")})/:tag/rss.xml$` // /trending/ecency/rss.xml
     ],
     entryRssHandler
   )
   .get(
     [
-      "^/@:author/:section(feed|blog|posts)/rss.xml$", // /posts/@esteemapp/rss.xml
-      "^/@:author/rss.xml$" // @esteemapp/rss.xml
+      "^/@:author/:section(feed|blog|posts)/rss.xml$", // /posts/@ecency/rss.xml
+      "^/@:author/rss.xml$", // @ecency/rss.xml
+      "^/@:author/rss$" //@ecency/rss
     ],
     authorRssHandler
   )

@@ -441,6 +441,13 @@ export class EditorToolbar extends Component<Props> {
               {formatQuoteCloseSvg}
             </div>
           </Tooltip>
+          {global.usePrivate && (
+            <Tooltip content={_t("editor-toolbar.fragments")}>
+              <div className="editor-tool" onClick={this.toggleFragments}>
+                {textShortSvg}
+              </div>
+            </Tooltip>
+          )}
           <div className="tool-separator" />
           <Tooltip content={_t("editor-toolbar.ol")}>
             <div className="editor-tool" onClick={this.ol}>
@@ -452,13 +459,23 @@ export class EditorToolbar extends Component<Props> {
               {formatListBulletedSvg}
             </div>
           </Tooltip>
-          <div className="tool-separator" />
-          <Tooltip content={_t("editor-toolbar.link")}>
-            <div className="editor-tool" onClick={this.toggleLink}>
-              {linkSvg}
+          <Tooltip content={_t("editor-toolbar.table")}>
+            <div className="editor-tool" onClick={this.table}>
+              {gridSvg}
+              <div className="sub-tool-menu">
+                <div className="sub-tool-menu-item" onClick={this.table}>
+                  {_t("editor-toolbar.table-3-col")}
+                </div>
+                <div className="sub-tool-menu-item" onClick={this.table2}>
+                  {_t("editor-toolbar.table-2-col")}
+                </div>
+                <div className="sub-tool-menu-item" onClick={this.table1}>
+                  {_t("editor-toolbar.table-1-col")}
+                </div>
+              </div>
             </div>
           </Tooltip>
-
+          <div className="tool-separator" />
           {(() => {
             if (activeUser && global.isMobile) {
               return (
@@ -506,23 +523,19 @@ export class EditorToolbar extends Component<Props> {
               </Tooltip>
             );
           })()}
-
-          <Tooltip content={_t("editor-toolbar.table")}>
-            <div className="editor-tool" onClick={this.table}>
-              {gridSvg}
-              <div className="sub-tool-menu">
-                <div className="sub-tool-menu-item" onClick={this.table}>
-                  {_t("editor-toolbar.table-3-col")}
-                </div>
-                <div className="sub-tool-menu-item" onClick={this.table2}>
-                  {_t("editor-toolbar.table-2-col")}
-                </div>
-                <div className="sub-tool-menu-item" onClick={this.table1}>
-                  {_t("editor-toolbar.table-1-col")}
-                </div>
+          {!this.props.comment && (
+            <Tooltip content={_t("video-upload.upload-video")}>
+              <div className="editor-tool" role="none">
+                <VideoUpload
+                  activeUser={activeUser}
+                  global={global}
+                  insertText={this.insertText}
+                  setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
+                  toggleNsfwC={this.props.toggleNsfwC}
+                />
               </div>
-            </div>
-          </Tooltip>
+            </Tooltip>
+          )}
           <Tooltip content={_t("editor-toolbar.emoji")}>
             <div className="editor-tool" role="none">
               {emoticonHappyOutlineSvg}
@@ -535,7 +548,6 @@ export class EditorToolbar extends Component<Props> {
               )}
             </div>
           </Tooltip>
-
           <Tooltip content={_t("Gif")}>
             <div className="editor-tool" role="none">
               <div className="editor-tool-gif-icon" onClick={this.toggleGif}>
@@ -554,26 +566,11 @@ export class EditorToolbar extends Component<Props> {
               )}
             </div>
           </Tooltip>
-
-          {global.usePrivate && (
-            <Tooltip content={_t("editor-toolbar.fragments")}>
-              <div className="editor-tool" onClick={this.toggleFragments}>
-                {textShortSvg}
-              </div>
-            </Tooltip>
-          )}
-
-          {!this.props.comment && (
-            <Tooltip content={_t("video-upload.upload-video")}>
-              <div className="editor-tool" role="none">
-                <VideoUpload
-                  insertText={this.insertText}
-                  setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
-                  toggleNsfwC={this.props.toggleNsfwC}
-                />
-              </div>
-            </Tooltip>
-          )}
+          <Tooltip content={_t("editor-toolbar.link")}>
+            <div className="editor-tool" onClick={this.toggleLink}>
+              {linkSvg}
+            </div>
+          </Tooltip>
         </div>
         <input
           onChange={this.fileInputChanged}

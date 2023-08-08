@@ -82,7 +82,7 @@ import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
 
-import { updateSpeakVideoInfo, markAsPublished } from "../api/threespeak";
+import { markAsPublished, updateSpeakVideoInfo } from "../api/threespeak";
 // import { ConfirmNsfwContent } from "../components/video-nsfw";
 import { PostBodyLazyRenderer } from "../components/post-body-lazy-renderer";
 

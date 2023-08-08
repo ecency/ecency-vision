@@ -7,15 +7,12 @@ import { StaticRouter } from "react-router-dom";
 import { Account } from "../../store/accounts/types";
 
 import ProfileCard from "./index";
-import { create } from "react-test-renderer";
 
 import {
   globalInstance,
-  activeUserInstance,
   activeUserMaker,
   fullAccountInstance,
-  allOver,
-  flushPending
+  allOver
 } from "../../helper/test-helper";
 import { withStore } from "../../tests/with-store";
 
@@ -103,6 +100,6 @@ it("(3) Should show profile edits", async () => {
       <ProfileCard {...props} />
     </StaticRouter>
   );
-  await flushPending();
+  await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });

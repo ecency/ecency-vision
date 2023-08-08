@@ -27,7 +27,7 @@ export default async (req: Request, res: Response) => {
     console.error(
       `${new Date().toISOString()} ${
         bridgeApi.bridgeServer?.currentAddress
-      } ERROR fetching @${author}/${permlink}`
+      } ERROR fetching query @${author}/${permlink}`
     );
   }
 
@@ -93,10 +93,11 @@ export default async (req: Request, res: Response) => {
       date.forEach((d) => (d.innerHTML = moment(entry.created).fromNow()));
 
       res.send(tree.toString());
-      return;
     } catch (e) {
       console.error(e);
+      res.status(400).send("An error occurred while fetching the post.");
     }
+    return;
   }
 
   res.send(render(req, preLoadedState));
