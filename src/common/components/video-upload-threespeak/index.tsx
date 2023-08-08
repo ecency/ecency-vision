@@ -5,24 +5,22 @@ import { videoSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { useThreeSpeakVideoUpload, useUploadVideoInfo } from "../../api/threespeak";
 import VideoGallery from "../video-gallery";
-import { ActiveUser } from "../../store/active-user/types";
-import { Global } from "../../store/global/types";
 import "./index.scss";
 import { VideoUploadItem } from "./video-upload-item";
 import { createFile } from "../../util/create-file";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 const DEFAULT_THUMBNAIL = require("./assets/thumbnail-play.jpg");
 
 interface Props {
-  global: Global;
-  activeUser: ActiveUser | null;
   insertText: (before: string, after?: string) => void;
   setVideoEncoderBeneficiary?: (video: any) => void;
   toggleNsfwC?: () => void;
 }
 
 export const VideoUpload = (props: Props) => {
-  const { activeUser, global, insertText, setVideoEncoderBeneficiary, toggleNsfwC } = props;
+  const { insertText, setVideoEncoderBeneficiary, toggleNsfwC } = props;
+  const { activeUser, toggleUIProp, global } = useMappedStore();
   const {
     mutateAsync: uploadFile,
     completedByType: { video: videoPercentage, thumbnail: thumbPercentage },
@@ -180,7 +178,10 @@ export const VideoUpload = (props: Props) => {
   );
 
   return (
-    <div className="cursor-pointer new-feature">
+    <div
+      className="cursor-pointer new-feature"
+      onClick={() => (activeUser ? null : toggleUIProp("login"))}
+    >
       <div className="d-flex justify-content-center bg-red">
         {videoSvg}
         {activeUser && (
