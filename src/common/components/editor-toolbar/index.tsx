@@ -527,8 +527,6 @@ export class EditorToolbar extends Component<Props> {
             <Tooltip content={_t("video-upload.upload-video")}>
               <div className="editor-tool" role="none">
                 <VideoUpload
-                  activeUser={activeUser}
-                  global={global}
                   insertText={this.insertText}
                   setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
                   toggleNsfwC={this.props.toggleNsfwC}

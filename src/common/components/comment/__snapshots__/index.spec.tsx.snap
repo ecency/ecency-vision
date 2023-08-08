@@ -104,6 +104,20 @@ exports[`(1) Default render 1`] = `
       </svg>
     </div>
     <div
+      className="editor-tool"
+      onClick={[Function]}
+      title="Snippets"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M4,9H20V11H4V9M4,13H14V15H4V13Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
       className="tool-separator"
     />
     <div
@@ -130,37 +144,6 @@ exports[`(1) Default render 1`] = `
       >
         <path
           d="M7,5H21V7H7V5M7,13V11H21V13H7M4,4.5A1.5,1.5 0 0,1 5.5,6A1.5,1.5 0 0,1 4,7.5A1.5,1.5 0 0,1 2.5,6A1.5,1.5 0 0,1 4,4.5M4,10.5A1.5,1.5 0 0,1 5.5,12A1.5,1.5 0 0,1 4,13.5A1.5,1.5 0 0,1 2.5,12A1.5,1.5 0 0,1 4,10.5M7,19V17H21V19H7M4,16.5A1.5,1.5 0 0,1 5.5,18A1.5,1.5 0 0,1 4,19.5A1.5,1.5 0 0,1 2.5,18A1.5,1.5 0 0,1 4,16.5Z"
-          fill="currentColor"
-        />
-      </svg>
-    </div>
-    <div
-      className="tool-separator"
-    />
-    <div
-      className="editor-tool"
-      onClick={[Function]}
-      title="Link (Alt + K)"
-    >
-      <svg
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z"
-          fill="currentColor"
-        />
-      </svg>
-    </div>
-    <div
-      className="editor-tool"
-      onClick={[Function]}
-      title="Image (Alt + D)"
-    >
-      <svg
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"
           fill="currentColor"
         />
       </svg>
@@ -202,6 +185,23 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
     <div
+      className="tool-separator"
+    />
+    <div
+      className="editor-tool"
+      onClick={[Function]}
+      title="Image (Alt + D)"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
       className="editor-tool"
       role="none"
       title="Emoji"
@@ -241,13 +241,13 @@ exports[`(1) Default render 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Snippets"
+      title="Link (Alt + K)"
     >
       <svg
         viewBox="0 0 24 24"
       >
         <path
-          d="M4,9H20V11H4V9M4,13H14V15H4V13Z"
+          d="M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z"
           fill="currentColor"
         />
       </svg>
@@ -445,6 +445,20 @@ exports[`(2) Cancellable, in progress 1`] = `
       </svg>
     </div>
     <div
+      className="editor-tool"
+      onClick={[Function]}
+      title="Snippets"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M4,9H20V11H4V9M4,13H14V15H4V13Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
       className="tool-separator"
     />
     <div
@@ -471,37 +485,6 @@ exports[`(2) Cancellable, in progress 1`] = `
       >
         <path
           d="M7,5H21V7H7V5M7,13V11H21V13H7M4,4.5A1.5,1.5 0 0,1 5.5,6A1.5,1.5 0 0,1 4,7.5A1.5,1.5 0 0,1 2.5,6A1.5,1.5 0 0,1 4,4.5M4,10.5A1.5,1.5 0 0,1 5.5,12A1.5,1.5 0 0,1 4,13.5A1.5,1.5 0 0,1 2.5,12A1.5,1.5 0 0,1 4,10.5M7,19V17H21V19H7M4,16.5A1.5,1.5 0 0,1 5.5,18A1.5,1.5 0 0,1 4,19.5A1.5,1.5 0 0,1 2.5,18A1.5,1.5 0 0,1 4,16.5Z"
-          fill="currentColor"
-        />
-      </svg>
-    </div>
-    <div
-      className="tool-separator"
-    />
-    <div
-      className="editor-tool"
-      onClick={[Function]}
-      title="Link (Alt + K)"
-    >
-      <svg
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z"
-          fill="currentColor"
-        />
-      </svg>
-    </div>
-    <div
-      className="editor-tool"
-      onClick={[Function]}
-      title="Image (Alt + D)"
-    >
-      <svg
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"
           fill="currentColor"
         />
       </svg>
@@ -543,6 +526,23 @@ exports[`(2) Cancellable, in progress 1`] = `
       </div>
     </div>
     <div
+      className="tool-separator"
+    />
+    <div
+      className="editor-tool"
+      onClick={[Function]}
+      title="Image (Alt + D)"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
       className="editor-tool"
       role="none"
       title="Emoji"
@@ -582,13 +582,13 @@ exports[`(2) Cancellable, in progress 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Snippets"
+      title="Link (Alt + K)"
     >
       <svg
         viewBox="0 0 24 24"
       >
         <path
-          d="M4,9H20V11H4V9M4,13H14V15H4V13Z"
+          d="M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z"
           fill="currentColor"
         />
       </svg>
