@@ -1,10 +1,7 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-
-import { videoSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { useThreeSpeakVideoUpload, useUploadVideoInfo } from "../../api/threespeak";
-import VideoGallery from "../video-gallery";
 import "./index.scss";
 import { VideoUploadItem } from "./video-upload-item";
 import { createFile } from "../../util/create-file";
@@ -13,13 +10,13 @@ import { useMappedStore } from "../../store/use-mapped-store";
 const DEFAULT_THUMBNAIL = require("./assets/thumbnail-play.jpg");
 
 interface Props {
-  insertText: (before: string, after?: string) => void;
-  setVideoEncoderBeneficiary?: (video: any) => void;
-  toggleNsfwC?: () => void;
+  children?: ReactNode;
+  show: boolean;
+  setShow: (v: boolean) => void;
+  setShowGallery: (v: boolean) => void;
 }
 
 export const VideoUpload = (props: Props) => {
-  const { insertText, setVideoEncoderBeneficiary, toggleNsfwC } = props;
   const { activeUser, toggleUIProp, global } = useMappedStore();
   const {
     mutateAsync: uploadFile,
@@ -30,7 +27,6 @@ export const VideoUpload = (props: Props) => {
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const [showModal, setShowModal] = useState(false);
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [coverImage, setCoverImage] = useState<string>();
   const [step, setStep] = useState("upload");
@@ -45,7 +41,7 @@ export const VideoUpload = (props: Props) => {
 
   // Reset on dialog hide
   useEffect(() => {
-    if (!showModal) {
+    if (!props.show) {
       setSelectedFile(null);
       setCoverImage(undefined);
       setFileName("");
@@ -56,7 +52,7 @@ export const VideoUpload = (props: Props) => {
       setStep("upload");
       setCompletedByType({});
     }
-  }, [showModal]);
+  }, [props.show]);
 
   const getVideoDuration = () => {
     if (videoRef.current) {
@@ -166,9 +162,9 @@ export const VideoUpload = (props: Props) => {
               activeUser: activeUser!.username,
               duration
             });
-            setShowModal(false);
+            props.setShow(false);
             setStep("upload");
-            setShowGallery(true);
+            props.setShowGallery(true);
           }}
         >
           {_t("video-upload.to-gallery")}
@@ -182,42 +178,13 @@ export const VideoUpload = (props: Props) => {
       className="cursor-pointer new-feature"
       onClick={() => (activeUser ? null : toggleUIProp("login"))}
     >
-      <div className="d-flex justify-content-center bg-red">
-        {videoSvg}
-        {activeUser && (
-          <div className="sub-tool-menu">
-            <div className="sub-tool-menu-item" onClick={() => setShowModal(true)}>
-              {_t("video-upload.upload-video")}
-            </div>
-            {global.usePrivate && (
-              <div
-                className="sub-tool-menu-item"
-                onClick={(e: React.MouseEvent<HTMLElement>) => {
-                  e.stopPropagation();
-                  setShowGallery(true);
-                }}
-              >
-                {_t("video-upload.video-gallery")}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-      <div>
-        <VideoGallery
-          showGallery={showGallery}
-          setShowGallery={setShowGallery}
-          insertText={insertText}
-          setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
-          toggleNsfwC={toggleNsfwC}
-        />
-      </div>
+      <div className="d-flex justify-content-center bg-red">{props.children}</div>
       <div>
         <Modal
           animation={false}
-          show={showModal}
+          show={props.show}
           centered={true}
-          onHide={() => setShowModal(false)}
+          onHide={() => props.setShow(false)}
           keyboard={false}
           className="add-image-modal"
         >
