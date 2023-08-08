@@ -127,7 +127,7 @@ export const updateSpeakVideoInfo = async (
   try {
     await axios.post(`${studioEndPoint}/mobile/api/update_info`, data, { headers });
   } catch (e) {
-    console.error();
+    console.error(e);
   }
 };
 
