@@ -27,7 +27,7 @@ export default async (req: Request, res: Response) => {
     console.error(
       `${new Date().toISOString()} ${
         bridgeApi.bridgeServer?.currentAddress
-      } ERROR fetching @${author}/${permlink}`
+      } ERROR fetching query @${author}/${permlink}`
     );
   }
 
