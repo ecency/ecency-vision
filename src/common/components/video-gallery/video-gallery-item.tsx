@@ -146,7 +146,7 @@ export function VideoGalleryItem({
           )}
           <div className="each-info">
             <span>
-              {_t("video-gallery.info-duration")} {item.duration}
+              {_t("video-gallery.info-duration")} {`${item.duration}m`}
             </span>
           </div>
           <div className="each-info">
