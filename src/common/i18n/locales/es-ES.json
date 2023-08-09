@@ -230,7 +230,7 @@
     "referral-invalid": "Esta referencia no es válida. Por favor, prueba con otra",
     "referral-min-length-error": "La longitud de la referencia debe tener al menos 3 caracteres",
     "referral-max-length-error": "La longitud de la referencia no debe tener más de 16 caracteres",
-    "email-max-length-error": "Length of email should be no more than 72 characters"
+    "email-max-length-error": "La longitud del correo electrónico no debe tener más de 72 caracteres"
   },
   "onboard": {
     "title-active-user": "Incorporar a un amigo",
