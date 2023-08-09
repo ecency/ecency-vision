@@ -229,7 +229,8 @@
     "username-exists": "Tämä nimimerkki on jo käytössä! Kokeile toista",
     "referral-invalid": "Tämä suositus on virheellinen. Kokeile toista",
     "referral-min-length-error": "Käyttäjänimen pituuden on oltava vähintään 3 merkkiä",
-    "referral-max-length-error": "Käyttäjänimen pituuden on oltava vähemmän kuin 16 merkkiä"
+    "referral-max-length-error": "Käyttäjänimen pituuden on oltava vähemmän kuin 16 merkkiä",
+    "email-max-length-error": "Length of email should be no more than 72 characters"
   },
   "onboard": {
     "title-active-user": "Onboard a friend",

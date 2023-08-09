@@ -229,7 +229,8 @@
     "username-exists": "This username already registered. Please, try another one",
     "referral-invalid": "This referral is invalid. Please, try another one",
     "referral-min-length-error": "Length of referral should be at least 3 characters",
-    "referral-max-length-error": "Length of referral should be no more than 16 characters"
+    "referral-max-length-error": "Length of referral should be no more than 16 characters",
+    "email-max-length-error": "Length of email should be no more than 72 characters"
   },
   "onboard": {
     "title-active-user": "Onboard a friend",

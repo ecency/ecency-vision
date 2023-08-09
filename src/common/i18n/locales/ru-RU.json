@@ -229,7 +229,8 @@
     "username-exists": "Это имя пользователя уже зарегистрировано. Пожалуйста, подберите другое",
     "referral-invalid": "Этот реферал недействителен. Пожалуйста, попробуйте другого",
     "referral-min-length-error": "Длина имени реферала должна быть не менее трёх символов",
-    "referral-max-length-error": "Длина имени реферала должна быть не более 16 символов"
+    "referral-max-length-error": "Длина имени реферала должна быть не более 16 символов",
+    "email-max-length-error": "Length of email should be no more than 72 characters"
   },
   "onboard": {
     "title-active-user": "Панель друга",
