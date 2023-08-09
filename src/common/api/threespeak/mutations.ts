@@ -3,6 +3,7 @@ import { useState } from "react";
 import { uploadFile, uploadVideoInfo } from "./api";
 import { QueryIdentifiers } from "../../core";
 import { useThreeSpeakVideo } from "./queries";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 export function useThreeSpeakVideoUpload(type: "video" | "thumbnail") {
   const [completed, setCompleted] = useState<number>(0);
@@ -26,6 +27,7 @@ export function useThreeSpeakVideoUpload(type: "video" | "thumbnail") {
 
 export function useUploadVideoInfo() {
   const queryClient = useQueryClient();
+  const { activeUser } = useMappedStore();
   const { data, refetch } = useThreeSpeakVideo("all");
 
   return useMutation(
@@ -63,8 +65,10 @@ export function useUploadVideoInfo() {
           }
 
           const next = [response, ...current];
-          queryClient.setQueryData([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST], next);
-          queryClient.setQueryData([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST_FILTERED, "all"], next);
+          queryClient.setQueryData(
+            [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, activeUser?.username ?? ""],
+            next
+          );
         }
       }
     }

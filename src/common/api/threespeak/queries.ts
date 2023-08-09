@@ -47,7 +47,10 @@ export function useThreeSpeakVideo(
 
   useAsyncFn(async () => {
     if (activeUser?.username !== prevActiveUser?.username) {
-      await queryClient.invalidateQueries([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST]);
+      await queryClient.invalidateQueries([
+        QueryIdentifiers.THREE_SPEAK_VIDEO_LIST,
+        activeUser?.username ?? ""
+      ]);
       await queryClient.invalidateQueries([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, "all"]);
     }
   }, [activeUser]);
@@ -56,8 +59,14 @@ export function useThreeSpeakVideo(
     ...filteredQuery,
     isFetching: apiQuery.isFetching,
     refresh: () => {
-      queryClient.setQueryData([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST], []);
-      queryClient.invalidateQueries([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST]);
+      queryClient.setQueryData(
+        [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, activeUser?.username ?? ""],
+        []
+      );
+      queryClient.invalidateQueries([
+        QueryIdentifiers.THREE_SPEAK_VIDEO_LIST,
+        activeUser?.username ?? ""
+      ]);
     }
   };
 }
