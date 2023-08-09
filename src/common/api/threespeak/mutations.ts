@@ -4,26 +4,24 @@ import { uploadFile, uploadVideoInfo } from "./api";
 import { QueryIdentifiers } from "../../core";
 import { useThreeSpeakVideo } from "./queries";
 
-export function useThreeSpeakVideoUpload() {
-  const [completedByType, setCompletedByType] = useState<Record<string, number>>({});
+export function useThreeSpeakVideoUpload(type: "video" | "thumbnail") {
+  const [completed, setCompleted] = useState<number>(0);
 
   const mutation = useMutation(
-    ["threespeakVideoUpload"],
-    async ({ file, type }: { file: File; type: string }) => {
+    ["threeSpeakVideoUpload", type],
+    async ({ file }: { file: File }) => {
       try {
-        return uploadFile(file, type, (percentage) =>
-          setCompletedByType({ ...completedByType, [type]: percentage })
-        );
+        return uploadFile(file, type, (percentage) => setCompleted(percentage));
       } catch (e) {
         console.error(e);
       } finally {
-        setCompletedByType({ ...completedByType, [type]: 0 });
+        setCompleted(0);
       }
       return null;
     }
   );
 
-  return { ...mutation, completedByType, setCompletedByType };
+  return { ...mutation, completed, setCompleted };
 }
 
 export function useUploadVideoInfo() {
