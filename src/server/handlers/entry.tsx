@@ -20,8 +20,9 @@ export default async (req: Request, res: Response) => {
   const { category, author, permlink } = req.params;
   let entry: Entry | null = null;
   try {
-    await queryClient.fetchQuery([QueryIdentifiers.ENTRY, makePath("", author, permlink)], () =>
-      bridgeApi.getPost(author, permlink)
+    entry = await queryClient.fetchQuery(
+      [QueryIdentifiers.ENTRY, makePath("", author, permlink)],
+      () => bridgeApi.getPost(author, permlink)
     );
   } catch (error) {
     console.error(
@@ -33,16 +34,6 @@ export default async (req: Request, res: Response) => {
 
   if (permlink.indexOf(".") > -1) {
     console.error(`${new Date().toISOString()} ERROR permlink @${author}/${permlink}`);
-  } else {
-    try {
-      entry = await bridgeApi.getPost(author, permlink);
-    } catch (e) {
-      console.error(
-        `${new Date().toISOString()} ${
-          bridgeApi.bridgeServer?.currentAddress
-        } ERROR fetching @${author}/${permlink}`
-      );
-    }
   }
 
   let entries = {};
