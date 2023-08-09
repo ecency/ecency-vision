@@ -15,13 +15,13 @@ import { commentHistory } from "../../api/private-api";
 
 export const EntriesCacheContext = createContext<{
   getByLink: (link: string) => Entry | undefined;
-  updateCache: (entries: Entry[], skipInvalidation?: boolean) => void;
+  updateCache: (entries: Entry[], skipInvalidation?: boolean) => Entry[];
   addReply: (entry: Entry, reply: Entry) => void;
   updateRepliesCount: (entry: Entry, count: number) => void;
   updateVotes: (entry: Entry, votes: EntryVote[], estimated: number) => void;
 }>({
   getByLink: () => ({} as Entry),
-  updateCache: () => {},
+  updateCache: () => [],
   addReply: () => {},
   updateRepliesCount: () => {},
   updateVotes: () => {}
@@ -50,6 +50,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
         ])
       );
     }
+    return entries;
   };
 
   const addReply = (entry: Entry, reply: Entry) => {
@@ -172,8 +173,7 @@ export function useEntryCache<T extends Entry>(
         }
         return response;
       } else if (!entry) {
-        updateCache([initialOrPath as T]);
-        return initialOrPath as T;
+        return updateCache([initialOrPath as T])[0];
       }
 
       return entry;
