@@ -229,7 +229,8 @@
     "username-exists": "Utilizador já registado. Por favor, tente outro",
     "referral-invalid": "Está referência é invalida. Por favor, tente outra",
     "referral-min-length-error": "O tamanho da referência deve ter no mínimo 3 caracteres",
-    "referral-max-length-error": "O tango da referência não pode ter mais do que 16 caracteres"
+    "referral-max-length-error": "O tango da referência não pode ter mais do que 16 caracteres",
+    "email-max-length-error": "Length of email should be no more than 72 characters"
   },
   "onboard": {
     "title-active-user": "Traz um amigo",
