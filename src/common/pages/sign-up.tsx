@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from "react-redux";
 import qrcode from "qrcode";
@@ -43,6 +43,7 @@ export const SignUp = (props: PageProps) => {
   const [referralTouched, setReferralTouched] = useState(false);
 
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [referral, setReferral] = useState("");
   const [lockReferral, setLockReferral] = useState(false);
   const [inProgress, setInProgress] = useState(false);
@@ -123,6 +124,14 @@ export const SignUp = (props: PageProps) => {
       });
     }
   }, [username, usernameTouched]);
+
+  useEffect(() => {
+    if (email.length > 72) {
+      setEmailError(_t("sign-up.email-max-length-error"));
+    } else {
+      setEmailError("");
+    }
+  }, [email]);
 
   useEffect(() => {
     setReferralError("");
@@ -256,7 +265,7 @@ export const SignUp = (props: PageProps) => {
                       return;
                     }
 
-                    if (usernameError || referralError) {
+                    if (usernameError || referralError || emailError) {
                       return;
                     }
 
@@ -304,8 +313,10 @@ export const SignUp = (props: PageProps) => {
                       onChange={(e: FormChangeEvent) => setEmail(e.target.value)}
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-email")}
+                      isInvalid={emailError !== ""}
                       onInput={handleOnInput}
                     />
+                    <Form.Text className="text-danger pl-3">{emailError}</Form.Text>
                   </Form.Group>
                   <Form.Group>
                     <Form.Control
