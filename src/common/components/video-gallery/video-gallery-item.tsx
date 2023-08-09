@@ -55,7 +55,7 @@ export function VideoGalleryItem({
       .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
       .some((i) => body.includes(i));
 
-    if (!hasManualPublishInBody) {
+    if (!hasManualPublishInBody || video.status == "published") {
       insertText(element);
     }
   };
