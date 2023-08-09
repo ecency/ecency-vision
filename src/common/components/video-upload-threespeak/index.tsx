@@ -19,10 +19,15 @@ interface Props {
 export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>) => {
   const { activeUser, toggleUIProp, global } = useMappedStore();
   const {
-    mutateAsync: uploadFile,
-    completedByType: { video: videoPercentage, thumbnail: thumbPercentage },
-    setCompletedByType
-  } = useThreeSpeakVideoUpload();
+    mutateAsync: uploadVideo,
+    completed: videoPercentage,
+    setCompleted: setVideoPercentage
+  } = useThreeSpeakVideoUpload("video");
+  const {
+    mutateAsync: uploadThumbnail,
+    completed: thumbnailPercentage,
+    setCompleted: setThumbnailPercentage
+  } = useThreeSpeakVideoUpload("thumbnail");
   const { mutateAsync: uploadInfo } = useUploadVideoInfo();
 
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -36,7 +41,6 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
   const [fileSize, setFileSize] = useState(0);
   const [videoUrl, setVideoUrl] = useState("");
   const [thumbUrl, setThumbUrl] = useState("");
-  const [showGallery, setShowGallery] = useState(false);
   const [duration, setDuration] = useState("");
 
   const canUpload = videoUrl && videoPercentage === 100;
@@ -54,7 +58,8 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
       setThumbUrl("");
       setDuration("");
       setStep("upload");
-      setCompletedByType({});
+      setVideoPercentage(0);
+      setThumbnailPercentage(0);
     }
   }, [props.show]);
 
@@ -72,13 +77,16 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
     let file = event.target.files?.[0];
     if (!file) return;
 
-    const result = await uploadFile({ file, type });
-    if (result) {
-      if (type === "video") {
+    if (type === "video") {
+      const result = await uploadVideo({ file });
+      if (result) {
         setVideoUrl(result.fileUrl);
         setFilevName(result.fileName);
         setFilevSize(result.fileSize);
-      } else {
+      }
+    } else {
+      const result = await uploadThumbnail({ file });
+      if (result) {
         setThumbUrl(result.fileUrl);
         setFileName(result.fileName);
         setFileSize(result.fileSize);
@@ -113,7 +121,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
           onFileChange={handleThumbnailChange}
           type="thumbnail"
           accept="image/*"
-          completed={thumbPercentage}
+          completed={thumbnailPercentage}
         />
       </div>
       <Button

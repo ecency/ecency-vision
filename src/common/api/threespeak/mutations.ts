@@ -3,31 +3,31 @@ import { useState } from "react";
 import { uploadFile, uploadVideoInfo } from "./api";
 import { QueryIdentifiers } from "../../core";
 import { useThreeSpeakVideo } from "./queries";
+import { useMappedStore } from "../../store/use-mapped-store";
 
-export function useThreeSpeakVideoUpload() {
-  const [completedByType, setCompletedByType] = useState<Record<string, number>>({});
+export function useThreeSpeakVideoUpload(type: "video" | "thumbnail") {
+  const [completed, setCompleted] = useState<number>(0);
 
   const mutation = useMutation(
-    ["threespeakVideoUpload"],
-    async ({ file, type }: { file: File; type: string }) => {
+    ["threeSpeakVideoUpload", type],
+    async ({ file }: { file: File }) => {
       try {
-        return uploadFile(file, type, (percentage) =>
-          setCompletedByType({ ...completedByType, [type]: percentage })
-        );
+        return uploadFile(file, type, (percentage) => setCompleted(percentage));
       } catch (e) {
         console.error(e);
       } finally {
-        setCompletedByType({ ...completedByType, [type]: 0 });
+        setCompleted(0);
       }
       return null;
     }
   );
 
-  return { ...mutation, completedByType, setCompletedByType };
+  return { ...mutation, completed, setCompleted };
 }
 
 export function useUploadVideoInfo() {
   const queryClient = useQueryClient();
+  const { activeUser } = useMappedStore();
   const { data, refetch } = useThreeSpeakVideo("all");
 
   return useMutation(
@@ -65,8 +65,10 @@ export function useUploadVideoInfo() {
           }
 
           const next = [response, ...current];
-          queryClient.setQueryData([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST], next);
-          queryClient.setQueryData([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST_FILTERED, "all"], next);
+          queryClient.setQueryData(
+            [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, activeUser?.username ?? ""],
+            next
+          );
         }
       }
     }
