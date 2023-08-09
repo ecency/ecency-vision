@@ -116,7 +116,10 @@ export function VideoGalleryItem({
           <div className="info-status">
             <div className="status">
               {statusIcons(item.status)}
-              {toolTipContent(item.status)}
+              {toolTipContent(item.status)}{" "}
+              {item.status == "encoding_ipfs" || item.status == "encoding_preparing"
+                ? `${item.encodingProgress}%`
+                : ""}
             </div>
             <div
               onMouseOver={() => {
