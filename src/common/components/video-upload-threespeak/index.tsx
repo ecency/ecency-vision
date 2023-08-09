@@ -30,7 +30,9 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [coverImage, setCoverImage] = useState<string>();
   const [step, setStep] = useState("upload");
+  const [filevName, setFilevName] = useState("");
   const [fileName, setFileName] = useState("");
+  const [filevSize, setFilevSize] = useState(0);
   const [fileSize, setFileSize] = useState(0);
   const [videoUrl, setVideoUrl] = useState("");
   const [thumbUrl, setThumbUrl] = useState("");
@@ -46,6 +48,8 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
       setCoverImage(undefined);
       setFileName("");
       setFileSize(0);
+      setFilevName("");
+      setFilevSize(0);
       setVideoUrl("");
       setThumbUrl("");
       setDuration("");
@@ -72,8 +76,8 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
     if (result) {
       if (type === "video") {
         setVideoUrl(result.fileUrl);
-        setFileName(result.fileName);
-        setFileSize(result.fileSize);
+        setFilevName(result.fileName);
+        setFilevSize(result.fileSize);
       } else {
         setThumbUrl(result.fileUrl);
         setFileName(result.fileName);
@@ -155,8 +159,8 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
           disabled={!canUpload}
           onClick={() => {
             uploadInfo({
-              fileName,
-              fileSize,
+              fileName: filevName,
+              fileSize: filevSize,
               videoUrl,
               thumbUrl,
               activeUser: activeUser!.username,
