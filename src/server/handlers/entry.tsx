@@ -19,6 +19,14 @@ import { makePath } from "../../common/components/entry-link";
 export default async (req: Request, res: Response) => {
   const { category, author, permlink } = req.params;
   let entry: Entry | null = null;
+
+  if (permlink.indexOf(".") > -1) {
+    console.error(`${new Date().toISOString()} ERROR permlink @${author}/${permlink}`);
+    res.status(404);
+    res.send("Not found.");
+    return;
+  }
+
   try {
     entry = await queryClient.fetchQuery(
       [QueryIdentifiers.ENTRY, makePath("", author, permlink)],
@@ -30,10 +38,6 @@ export default async (req: Request, res: Response) => {
         bridgeApi.bridgeServer?.currentAddress
       } ERROR fetching query @${author}/${permlink}`
     );
-  }
-
-  if (permlink.indexOf(".") > -1) {
-    console.error(`${new Date().toISOString()} ERROR permlink @${author}/${permlink}`);
   }
 
   let entries = {};
