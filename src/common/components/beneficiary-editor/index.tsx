@@ -166,7 +166,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                     <td>{`${x.weight / 100}%`}</td>
                     <td>
                       {!!this.props.body.match(THREE_SPEAK_VIDEO_PATTERN) &&
-                      ["threespeakleader", "spk.beneficiary"].includes(x.account) ? (
+                      x.src === "ENCODER_PAY" ? (
                         <></>
                       ) : (
                         <Button

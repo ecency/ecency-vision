@@ -1068,12 +1068,12 @@ class SubmitPage extends BaseComponent<Props, State> {
     const videoEncoders = [
       {
         account: "spk.beneficiary",
-        src: "ECONDER_PAY",
+        src: "ENCODER_PAY",
         weight: 900
       },
       {
         account: "threespeakleader",
-        src: "ECONDER_PAY",
+        src: "ENCODER_PAY",
         weight: 100
       }
     ];

@@ -55,7 +55,7 @@ export function VideoGalleryItem({
       .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
       .some((i) => body.includes(i));
 
-    if (!hasManualPublishInBody) {
+    if (!hasManualPublishInBody || video.status == "published") {
       insertText(element);
     }
   };
@@ -116,7 +116,10 @@ export function VideoGalleryItem({
           <div className="info-status">
             <div className="status">
               {statusIcons(item.status)}
-              {toolTipContent(item.status)}
+              {toolTipContent(item.status)}{" "}
+              {item.status == "encoding_ipfs" || item.status == "encoding_preparing"
+                ? `${item.encodingProgress}%`
+                : ""}
             </div>
             <div
               onMouseOver={() => {
