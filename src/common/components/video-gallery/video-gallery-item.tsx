@@ -32,6 +32,7 @@ export function VideoGalleryItem({
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<any>(null);
   const [manualPublishSpeakVideos, setManualPublishSpeakVideos] = useState<ThreeSpeakVideo[]>([]);
+  const speakUrl = "https://3speak.tv/watch?v=";
 
   useEffect(() => {
     setManualPublishSpeakVideos(data.filter((i) => i.status === "publish_manual"));
@@ -46,16 +47,15 @@ export function VideoGalleryItem({
   };
 
   const embeddVideo = (video: videoProps) => {
-    const speakUrl = "https://3speak.tv/watch?v=";
     const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`;
 
     const element = ` <center>${speakFile}</center>`;
     const body = insertText("").innerHTML;
-    const hasManualPublishInBody = manualPublishSpeakVideos
+    const hup = manualPublishSpeakVideos
       .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
       .some((i) => body.includes(i));
 
-    if (!hasManualPublishInBody || video.status == "published") {
+    if (!hup || video.status == "published") {
       insertText(element);
     }
   };
@@ -64,7 +64,12 @@ export function VideoGalleryItem({
     let nextItem = item;
 
     embeddVideo(nextItem);
-    if (item.status !== "published") {
+    const body = insertText("").innerHTML;
+    const hup = manualPublishSpeakVideos
+      .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
+      .some((i) => body.includes(i));
+
+    if (item.status !== "published" && !hup) {
       setBeneficiary(nextItem);
     }
     setShowGallery(false);
