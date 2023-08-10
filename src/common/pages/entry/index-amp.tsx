@@ -84,7 +84,7 @@ const EntryAmpComponent = (props: Props) => {
   const entryControlsRef = useRef<HTMLDivElement | null>(null);
 
   const { data: entry, error: entryError } = useEntryCache(
-    props.match.params.category,
+    "",
     props.match.params.username.replace("@", ""),
     props.match.params.permlink
   );

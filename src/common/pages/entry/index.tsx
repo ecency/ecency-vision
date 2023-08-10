@@ -110,7 +110,7 @@ const EntryComponent = (props: Props) => {
 
   const { updateVotes, updateCache } = useContext(EntriesCacheContext);
   const { data: entry, error: entryError } = useEntryCache(
-    props.match.params.category,
+    "",
     props.match.params.username.replace("@", ""),
     props.match.params.permlink
   );
