@@ -104,7 +104,7 @@ export function useEntryReFetch(entry: Entry | null) {
 
   useEffect(() => {
     if (entry) {
-      setKey(makePath(entry.category, entry.author, entry.permlink));
+      setKey(makePath("", entry.author, entry.permlink));
     }
   }, [entry]);
 
