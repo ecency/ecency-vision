@@ -158,7 +158,10 @@ const Onboard = (props: Props) => {
     try {
       const info = JSON.parse(b64uDec(urlInfo!));
       const masterPassword: string = await generatePassword(32);
-      const keys: AccountInfo["keys"] = getPrivateKeys(formatUsername(info?.username), masterPassword);
+      const keys: AccountInfo["keys"] = getPrivateKeys(
+        formatUsername(info?.username),
+        masterPassword
+      );
       // prepare object to encode
       const pubkeys = {
         activePublicKey: keys.activePubkey,
@@ -455,7 +458,8 @@ const Onboard = (props: Props) => {
         <div className="success-dialog-body">
           <div className="success-dialog-content">
             <span>
-              {_t("onboard.success-message")} <strong>{formatUsername(decodedInfo!.username)}</strong>
+              {_t("onboard.success-message")}{" "}
+              <strong>{formatUsername(decodedInfo!.username)}</strong>
             </span>
           </div>
           <div className="d-flex justify-content-center">
@@ -652,7 +656,8 @@ const Onboard = (props: Props) => {
         <div className="onboard-container">
           <div className="login-warning">
             <span>
-              {_t("onboard.success-message")} <strong>@{formatUsername(decodedInfo!.username)}</strong>
+              {_t("onboard.success-message")}{" "}
+              <strong>@{formatUsername(decodedInfo!.username)}</strong>
             </span>
           </div>
           <Button
