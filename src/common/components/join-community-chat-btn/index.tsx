@@ -37,6 +37,7 @@ export default function JoinCommunityChatBtn(props: Props) {
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [communityRoles, setCommunityRoles] = useState<communityModerator[]>([]);
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
+  const [loadCommunity, setLoadCommunity] = useState(false);
 
   useEffect(() => {
     getCommunityRoles();
@@ -55,8 +56,11 @@ export default function JoinCommunityChatBtn(props: Props) {
     if (window.messageService && activeUserKeys) {
       getCommunityRoles();
       setHasUserJoinedChat(true);
+      if (loadCommunity) {
+        window?.messageService?.loadChannel(currentChannel?.id!);
+      }
     }
-  }, [window?.messageService, activeUserKeys]);
+  }, [window?.messageService, activeUserKeys, loadCommunity]);
 
   useEffect(() => {
     checkIsChatJoined();
@@ -161,6 +165,12 @@ export default function JoinCommunityChatBtn(props: Props) {
   };
 
   const joinCommunityChat = () => {
+    if (!hasUserJoinedChat) {
+      handleJoinChat();
+      setLoadCommunity(true);
+      setIsJoinChat(true);
+      return;
+    }
     if (chat.leftChannelsList.includes(currentChannel?.id!)) {
       window?.messageService?.updateLeftChannelList(
         chat.leftChannelsList.filter((x) => x !== currentChannel?.id)
@@ -221,10 +231,11 @@ export default function JoinCommunityChatBtn(props: Props) {
         ) : (
           <Button onClick={handleJoinChat}> {inProgress && chatButtonSpinner}Join Chat</Button>
         )
-      ) : isChatEnabled && !isJoinChat && hasUserJoinedChat ? (
-        <Button onClick={joinCommunityChat}>{_t("community.join-community-chat")}</Button>
-      ) : !hasUserJoinedChat ? (
-        <Button onClick={handleJoinChat}> {inProgress && chatButtonSpinner}Join Chat </Button>
+      ) : isChatEnabled && !isJoinChat ? (
+        <Button onClick={joinCommunityChat}>
+          {inProgress && chatButtonSpinner}
+          {_t("community.join-community-chat")}
+        </Button>
       ) : isJoinChat ? (
         <Button variant="outline-primary">Chat Joined</Button>
       ) : (

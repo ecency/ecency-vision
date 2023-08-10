@@ -304,7 +304,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public loadChannel(id: string) {
-    // console.log(id, "id");
+    // console.log(id, "load channel id");
     const filters: Filter[] = [
       {
         kinds: [Kind.ChannelCreation],

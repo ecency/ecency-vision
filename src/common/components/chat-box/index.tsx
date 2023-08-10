@@ -227,10 +227,10 @@ export default function ChatBox(props: Props) {
   }, [props.chat.updatedChannel]);
 
   useEffect(() => {
-    // console.log("isTop", isTop);
+    console.log("isTop", isTop);
     if (isTop) {
       fetchPrevMessages();
-      // console.log("event is dispatched");
+      console.log("event is dispatched");
     }
   }, [isTop]);
 
@@ -261,11 +261,9 @@ export default function ChatBox(props: Props) {
   }, [clickedMessage]);
 
   useEffect(() => {
-    //what if there is no channel or there is no direct contact in store. handle this thing too.
     if (props.chat.channels.length !== 0 || props.chat.directContacts.length !== 0) {
       setInProgress(false);
     }
-
     console.log("chat in store", props.chat);
   }, [props.chat]);
 
@@ -305,6 +303,7 @@ export default function ChatBox(props: Props) {
   useEffect(() => {
     const communities = getCommunities(props.chat.channels, props.chat.leftChannelsList);
     setCommunities(communities);
+    fetchProfileData();
   }, [props.chat.channels, props.chat.leftChannelsList]);
 
   useEffect(() => {
@@ -336,7 +335,18 @@ export default function ChatBox(props: Props) {
       scrollerClicked();
     }
 
-    if (!isTop && !isScrollToTop && publicMessages.length !== 0) {
+    console.log(
+      "isTop",
+      !isTop,
+      "isScrollToTop",
+      !isScrollToTop,
+      "publicMessages",
+      publicMessages.length,
+      "isCommunity",
+      isCommunity
+    );
+    if (!isTop && !isScrollToTop && publicMessages.length !== 0 && isCommunity) {
+      console.log("yes i run");
       scrollerClicked();
     }
   }, [directMessagesList, publicMessages]);
@@ -604,6 +614,7 @@ export default function ChatBox(props: Props) {
     window.messageService
       ?.fetchPrevMessages(currentChannel!.id, publicMessages[0].created)
       .then((num) => {
+        console.log("number", num);
         if (num < 25) {
           setHasMore(false);
         }
@@ -632,6 +643,7 @@ export default function ChatBox(props: Props) {
   };
 
   const scrollerClicked = () => {
+    console.log("Scroller clicked");
     chatBodyDivRef?.current?.scroll({
       top: isCurrentUser || isCommunity ? chatBodyDivRef?.current?.scrollHeight : 0,
       behavior: "auto"
