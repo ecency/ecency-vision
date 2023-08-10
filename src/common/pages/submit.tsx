@@ -999,7 +999,7 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   buildMetadata = () => {
-    const { tags, body, description, selectedThumbnail, selectionTouched } = this.state;
+    const { tags, title, body, description, selectedThumbnail, selectionTouched } = this.state;
     const { thumbnails, ...meta } = extractMetaData(body);
     let localThumbnail = ls.get("draft_selected_image");
 
@@ -1021,7 +1021,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       meta.video = {
         info: {
           platform: "3speak",
-          title: this.state.videoMetadata.title,
+          title: title || this.state.videoMetadata.title,
           author: this.state.videoMetadata.owner,
           permlink: this.state.videoMetadata.permlink,
           duration: this.state.videoMetadata.duration,
@@ -1045,7 +1045,7 @@ class SubmitPage extends BaseComponent<Props, State> {
           ]
         },
         content: {
-          description: this.state.videoMetadata.description,
+          description: description || this.state.videoMetadata.description,
           tags: this.state.videoMetadata.tags_v2
         }
       };
