@@ -23,7 +23,6 @@ export const ProfileActivites = (props: any) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log(props)
     getActivities();
   },[]);
 
@@ -46,7 +45,7 @@ export const ProfileActivites = (props: any) => {
         const { timestamp, block } = op;
         const type = op.op[0];
         const data = op.op[1];
-        console.log(type)
+        // console.log(type)
   
         if (types.includes(type)) {
           return {
@@ -63,7 +62,8 @@ export const ProfileActivites = (props: any) => {
   
       const filteredAccountHistory = accountHistory.filter((entry: any) => entry !== null);
   
-      console.log(accountHistory);
+      // console.log(response);
+      // console.log(filteredAccountHistory);
       setActivities(filteredAccountHistory.reverse());
       setLoading(false);
       return filteredAccountHistory;
@@ -77,7 +77,7 @@ export const ProfileActivites = (props: any) => {
       try {
         if(a?.data?.json){
           jsonData = JSON.parse(a?.data?.json)
-          console.log(jsonData)
+          // console.log(jsonData)
         };              
       } catch (error) {
         console.log(error)
@@ -95,8 +95,9 @@ export const ProfileActivites = (props: any) => {
           {activities?.map((a: any, i: number) => {
            const jsonData = handleCustomJson(a)
             return (
-            <div key={i}>
-              {a?.type === "comment" && a.data.author === account?.name && a.data.parent_author !== "" ? <div className="activities">
+            <>
+              {
+              a?.type === "comment" && a.data.author === account?.name && a.data.parent_author !== "" ? <div className="activities">
                 <div className="activities-header">
                   <h4>Comment</h4>
                 </div>
@@ -156,12 +157,40 @@ export const ProfileActivites = (props: any) => {
                   </div>
                 </div>
               </div> 
-             : a?.type === "vote" && a.data.voter === account?.name ? <div className="activities">
-              <div className="activities-header">
-                <h4>Vote</h4>
-              </div>
-              <div className="activities-info-wrapper">
-                <div className="activities-details">
+              : a?.type === "vote" && a.data.voter === account?.name ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Vote</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
+                      <div>
+                        {ProfileLink({
+                          ...props,
+                          username: account?.name,
+                          children: <UserAvatar username={account?.name} size="medium" />
+                        })}
+                      </div>
+                      <div className="activity-info">
+                        <div>
+                          <Link to={`/@${a.data.voter}`} >@{a.data.voter}</Link>
+                          <span> voted on </span>
+                          <a href={`${window.origin}/@${a.data.author}/${a.data.permlink}`}>
+                            {a.data.permlink} 
+                          </a>
+                          <span> by </span>
+                          <Link to={`/@${a.data.author}`} className="ml-1">@{a.data.author}</Link>
+                        </div>
+                        <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      </div>
+                  </div>
+                </div>
+              </div> 
+              : a?.type === "proposal_pay" ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Proposal pay</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
                     <div>
                       {ProfileLink({
                         ...props,
@@ -170,281 +199,254 @@ export const ProfileActivites = (props: any) => {
                       })}
                     </div>
                     <div className="activity-info">
+                      <span>
+                        <a href="#">@{a.data.receiver}</a>
+                        <span> received {a.data.payment} from </span>
+                        <a href="#" className="ml-1">@{a.data.payer}</a>
+                      </span>
                       <div>
-                        <Link to="#">@{a.data.voter}</Link>
-                        <span> voted on </span>
-                        <Link to={`/@${a.data.author}/${a.data.permlink}`}>
-                          {a.data.permlink} 
-                        </Link>
-                        <span> by </span>
-                        <a href="#" className="ml-1">@{a.data.author}</a>
+                        <span>Time: {dateToFullRelative(a.timestamp)}</span>
                       </div>
-                      <span>Time: {dateToFullRelative(a.timestamp)}</span>
                     </div>
+                  </div>
                 </div>
               </div>
-            </div> 
-             : a?.type === "proposal_pay" ? <div className="activities">
-              <div className="activities-header">
-                <h4>Proposal pay</h4>
-              </div>
-              <div className="activities-info-wrapper">
-                <div className="activities-details">
-                  <div>
-                    {ProfileLink({
-                      ...props,
-                      username: account?.name,
-                      children: <UserAvatar username={account?.name} size="medium" />
-                    })}
-                  </div>
-                  <div className="activity-info">
-                    <span>
-                      <a href="#">@{a.data.receiver}</a>
-                      <span> received {a.data.payment} from </span>
-                      <a href="#" className="ml-1">@{a.data.payer}</a>
-                    </span>
+              : (a?.data.id === "follow" && jsonData[1]!?.what?.includes("blog")) ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Follow</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
                     <div>
-                      <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      {ProfileLink({
+                        ...props,
+                        username: account?.name,
+                        children: <UserAvatar username={account?.name} size="medium" />
+                      })}
+                    </div>
+                    <div className="activity-info">                    
+                      <span>
+                        <a href="#">@{jsonData[1]?.follower}</a>
+                        <span> started following </span>
+                        <a href="#" className="ml-1">@{jsonData[1].following}</a>
+                      </span>
+                      <div>
+                        <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-             : (a?.data.id === "follow" && jsonData[1]!?.what?.includes("blog")) ? <div className="activities">
-              <div className="activities-header">
-                <h4>Follow</h4>
-              </div>
-              <div className="activities-info-wrapper">
-                <div className="activities-details">
-                  <div>
-                    {ProfileLink({
-                      ...props,
-                      username: account?.name,
-                      children: <UserAvatar username={account?.name} size="medium" />
-                    })}
-                  </div>
-                  <div className="activity-info">                    
-                    <span>
-                      <a href="#">@{jsonData[1]?.follower}</a>
-                      <span> started following </span>
-                      <a href="#" className="ml-1">@{jsonData[1].following}</a>
-                    </span>
+              </div> 
+              : (a?.data.id === "follow" && !jsonData[1]?.what?.includes("blog")) ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Unfollow</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
                     <div>
-                      <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      {ProfileLink({
+                        ...props,
+                        username: account?.name,
+                        children: <UserAvatar username={account?.name} size="medium" />
+                      })}
+                    </div>
+                    <div className="activity-info">
+                      <span>
+                        <a href="#">@{jsonData[1].follower}</a>
+                        <span> unfollowed </span>
+                        <a href="#" className="ml-1">@{jsonData[1].following}</a>
+                      </span>
+                      <div>
+                        <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div> 
-             : (a?.data.id === "follow" && !jsonData[1]?.what?.includes("blog")) ? <div className="activities">
-              <div className="activities-header">
-                <h4>Unfollow</h4>
-              </div>
-              <div className="activities-info-wrapper">
-                <div className="activities-details">
-                  <div>
-                    {ProfileLink({
-                      ...props,
-                      username: account?.name,
-                      children: <UserAvatar username={account?.name} size="medium" />
-                    })}
-                  </div>
-                  <div className="activity-info">
-                    <span>
-                      <a href="#">@{jsonData[1].follower}</a>
-                      <span> unfollowed </span>
-                      <a href="#" className="ml-1">@{jsonData[1].following}</a>
-                    </span>
+              </div> 
+              : (a?.data.id === "community" && jsonData?.includes("subscribe")) ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Subscribe</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
                     <div>
-                      <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      {ProfileLink({
+                        ...props,
+                        username: account?.name,
+                        children: <UserAvatar username={account?.name} size="medium" />
+                      })}
+                    </div>
+                    <div className="activity-info">
+                      <span>
+                        <Link to="#">@{account?.name}</Link>
+                        <span> Subscribed to community</span>
+                        <Link to={`/created/${jsonData[1]?.community}`} className="ml-1">{jsonData[1]?.community}</Link>
+                      </span>
+                      <div>
+                        <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div> 
-             : (a?.data.id === "community" && jsonData?.includes("subscribe")) ? <div className="activities">
-              <div className="activities-header">
-                <h4>Subscribe</h4>
-              </div>
-              <div className="activities-info-wrapper">
-                <div className="activities-details">
-                  <div>
-                    {ProfileLink({
-                      ...props,
-                      username: account?.name,
-                      children: <UserAvatar username={account?.name} size="medium" />
-                    })}
-                  </div>
-                  <div className="activity-info">
-                    <span>
-                      <Link to="#">@{account?.name}</Link>
-                      <span> Subscribed to community</span>
-                      <Link to={`/created/${jsonData[1]?.community}`} className="ml-1">{jsonData[1]?.community}</Link>
-                    </span>
+              </div> 
+              :( a?.data.id === "community" && jsonData?.includes("unsubscribe")) ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Unsubscribe</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
                     <div>
-                      <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      {ProfileLink({
+                        ...props,
+                        username: account?.name,
+                        children: <UserAvatar username={account?.name} size="medium" />
+                      })}
+                    </div>
+                    <div className="activity-info">
+                      <span>
+                        <Link to="#">@{account?.name}</Link>
+                        <span> unsubscribed from community</span>
+                        <Link to={`/created/${jsonData[1]?.community}`} className="ml-1">{jsonData[1]?.community}</Link>
+                      </span>
+                      <div>
+                        <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div> 
-             :( a?.data.id === "community" && jsonData?.includes("unsubscribe")) ? <div className="activities">
-              <div className="activities-header">
-                <h4>Unsubscribe</h4>
-              </div>
-              <div className="activities-info-wrapper">
-                <div className="activities-details">
-                  <div>
-                    {ProfileLink({
-                      ...props,
-                      username: account?.name,
-                      children: <UserAvatar username={account?.name} size="medium" />
-                    })}
-                  </div>
-                  <div className="activity-info">
-                    <span>
-                      <Link to="#">@{account?.name}</Link>
-                      <span> unsubscribed from community</span>
-                      <Link to={`/created/${jsonData[1]?.community}`} className="ml-1">{jsonData[1]?.community}</Link>
-                    </span>
+              : (a?.type === "account_witness_vote" && a?.data.approve) ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Witness Vote</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
                     <div>
-                      <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      {ProfileLink({
+                        ...props,
+                        username: account?.name,
+                        children: <UserAvatar username={account?.name} size="medium" />
+                      })}
+                    </div>
+                    <div className="activity-info">
+                      <span>
+                        <a href="#">@{a.data.account}</a>
+                        <span> voted witness </span>
+                        <Link to={`/@${a.data.witness}`} className="ml-1">@{a.data.witness}</Link>
+                      </span>
+                      <div>
+                        <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-             : (a?.type === "account_witness_vote" && a?.data.approve) ? <div className="activities">
-              <div className="activities-header">
-                <h4>Witness Vote</h4>
-              </div>
-              <div className="activities-info-wrapper">
-                <div className="activities-details">
-                  <div>
-                    {ProfileLink({
-                      ...props,
-                      username: account?.name,
-                      children: <UserAvatar username={account?.name} size="medium" />
-                    })}
-                  </div>
-                  <div className="activity-info">
-                    <span>
-                      <a href="#">@{a.data.account}</a>
-                      <span> voted witness </span>
-                      <Link to={`/@${a.data.witness}`} className="ml-1">@{a.data.witness}</Link>
-                    </span>
+              </div> 
+              : (a?.type === "account_witness_vote" && !a?.data.approve) ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Unapprove witness Vote</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
                     <div>
-                      <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      {ProfileLink({
+                        ...props,
+                        username: account?.name,
+                        children: <UserAvatar username={account?.name} size="medium" />
+                      })}
+                    </div>
+                    <div className="activity-info">
+                      <span>
+                        <a href="#">@{a.data.account}</a>
+                        <span> unvoted witness </span>
+                        <Link to={`/@${a.data.witness}`} className="ml-1">@{a.data.witness}</Link>
+                      </span>
+                      <div>
+                        <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div> 
-             : (a?.type === "account_witness_vote" && !a?.data.approve) ? <div className="activities">
-              <div className="activities-header">
-                <h4>Unapprove witness Vote</h4>
-              </div>
-              <div className="activities-info-wrapper">
-                <div className="activities-details">
-                  <div>
-                    {ProfileLink({
-                      ...props,
-                      username: account?.name,
-                      children: <UserAvatar username={account?.name} size="medium" />
-                    })}
-                  </div>
-                  <div className="activity-info">
-                    <span>
-                      <a href="#">@{a.data.account}</a>
-                      <span> unvoted witness </span>
-                      <Link to={`/@${a.data.witness}`} className="ml-1">@{a.data.witness}</Link>
-                    </span>
+              </div> 
+              : (a?.type === "update_proposal_votes" && a?.data.approve) ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Approve proposal</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
                     <div>
-                      <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      {ProfileLink({
+                        ...props,
+                        username: account?.name,
+                        children: <UserAvatar username={account?.name} size="medium" />
+                      })}
+                    </div>
+                    <div className="activity-info">
+                      <span>
+                        <a href="#">@{a.data.voter}</a>
+                        <span> approved </span>
+                        <Link to={`/proposals/${a.data.proposal_ids}`} className="ml-1">proposal#{a.data.proposal_ids}</Link>
+                      </span>
+                      <div>
+                        <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div> 
-             : (a?.type === "update_proposal_votes" && a?.data.approve) ? <div className="activities">
-              <div className="activities-header">
-                <h4>Approve proposal</h4>
-              </div>
-              <div className="activities-info-wrapper">
-                <div className="activities-details">
-                  <div>
-                    {ProfileLink({
-                      ...props,
-                      username: account?.name,
-                      children: <UserAvatar username={account?.name} size="medium" />
-                    })}
-                  </div>
-                  <div className="activity-info">
-                    <span>
-                      <a href="#">@{a.data.voter}</a>
-                      <span> approved </span>
-                      <Link to={`/proposals/${a.data.proposal_ids}`} className="ml-1">proposal#{a.data.proposal_ids}</Link>
-                    </span>
+              </div> 
+              : (a?.type === "update_proposal_votes" && !a?.data.approve) ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Unapprove proposal</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
                     <div>
-                      <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      {ProfileLink({
+                        ...props,
+                        username: account?.name,
+                        children: <UserAvatar username={account?.name} size="medium" />
+                      })}
+                    </div>
+                    <div className="activity-info">
+                      <span>
+                        <a href="#">@{a.data.voter}</a>
+                        <span> unapproved </span>
+                        <Link to={`/proposals/${a?.data.proposal_ids}`} className="ml-1">proposal#{a?.data.proposal_ids}</Link>
+                      </span>
+                      <div>
+                        <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div> 
-             : (a?.type === "update_proposal_votes" && !a?.data.approve) ? <div className="activities">
-              <div className="activities-header">
-                <h4>Unapprove proposal</h4>
-              </div>
-              <div className="activities-info-wrapper">
-                <div className="activities-details">
-                  <div>
-                    {ProfileLink({
-                      ...props,
-                      username: account?.name,
-                      children: <UserAvatar username={account?.name} size="medium" />
-                    })}
-                  </div>
-                  <div className="activity-info">
-                    <span>
-                      <a href="#">@{a.data.voter}</a>
-                      <span> unapproved </span>
-                      <Link to={`/proposals/${a?.data.proposal_ids}`} className="ml-1">proposal#{a?.data.proposal_ids}</Link>
-                    </span>
+              </div> 
+              : a?.type === "account_update2" ? <div className="activities">
+                <div className="activities-header">
+                  <h4>Account update</h4>
+                </div>
+                <div className="activities-info-wrapper">
+                  <div className="activities-details">
                     <div>
-                      <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      {ProfileLink({
+                        ...props,
+                        username: account?.name,
+                        children: <UserAvatar username={account?.name} size="medium" />
+                      })}
+                    </div>
+                    <div className="activity-info">
+                      <span>
+                        <a href="#">@{a?.data.account}</a>
+                        <span> updated their account</span>
+                      </span>
+                      <div>
+                        <span>Time: {dateToFullRelative(a.timestamp)}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div> 
-             : a?.type === "account_update2" ? <div className="activities">
-              <div className="activities-header">
-                <h4>Account update</h4>
-              </div>
-              <div className="activities-info-wrapper">
-                <div className="activities-details">
-                  <div>
-                    {ProfileLink({
-                      ...props,
-                      username: account?.name,
-                      children: <UserAvatar username={account?.name} size="medium" />
-                    })}
-                  </div>
-                  <div className="activity-info">
-                    <span>
-                      <a href="#">@{a?.data.account}</a>
-                      <span> updated their account</span>
-                    </span>
-                    <div>
-                      <span>Time: {dateToFullRelative(a.timestamp)}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> 
-            : <></>}
-            </div>
+              </div> 
+              : <></>
+              }
+            </>
           )})}
         </div>
         {!loading && <div className="justify-self-center mt-3">
