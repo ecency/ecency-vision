@@ -125,7 +125,7 @@ const Onboard = (props: Props) => {
   useEffect(() => {
     if (decodedInfo) {
       setConfirmDetails([
-        { label: _t("onboard.username"), value: formatUsername(decodedInfo?.username) },
+        { label: _t("onboard.username"), value: formatUsername(decodedInfo!.username) },
         { label: _t("onboard.public-owner"), value: decodedInfo?.pubkeys?.ownerPublicKey },
         { label: _t("onboard.public-active"), value: decodedInfo?.pubkeys?.activePublicKey },
         { label: _t("onboard.public-posting"), value: decodedInfo?.pubkeys?.postingPublicKey },
@@ -196,7 +196,7 @@ const Onboard = (props: Props) => {
     const username = decodedInfo!.username || accountInfo!.username;
     const email = decodedInfo!.email || accountInfo!.email;
     if (activeUser) {
-      await onboardEmail(username, formatEmail(email), activeUser?.username);
+      await onboardEmail(formatUsername(username), formatEmail(email), activeUser?.username);
     }
   };
 
@@ -253,6 +253,7 @@ const Onboard = (props: Props) => {
   const formatUsername = (username: string) => {
     return username?.replace(/\+/g, "-").replace(/=/g, ".");
   };
+
   const formatEmail = (username: string) => {
     return username?.replace(/\+/g, "-").replace(/=/g, ".").replace(/\//g, "_");
   };
@@ -454,14 +455,14 @@ const Onboard = (props: Props) => {
         <div className="success-dialog-body">
           <div className="success-dialog-content">
             <span>
-              {_t("onboard.success-message")} <strong>{decodedInfo?.username}</strong>
+              {_t("onboard.success-message")} <strong>{formatUsername(decodedInfo!.username)}</strong>
             </span>
           </div>
           <div className="d-flex justify-content-center">
             <span className="hr-6px-btn-spacer" />
             <Button
               as={Link}
-              to={`/@${decodedInfo?.username}`}
+              to={`/@${formatUsername(decodedInfo!.username)}`}
               className="mt-3 w-50 align-self-center"
               onClick={finish}
             >
@@ -651,12 +652,12 @@ const Onboard = (props: Props) => {
         <div className="onboard-container">
           <div className="login-warning">
             <span>
-              {_t("onboard.success-message")} <strong>@{decodedInfo?.username}</strong>
+              {_t("onboard.success-message")} <strong>@{formatUsername(decodedInfo!.username)}</strong>
             </span>
           </div>
           <Button
             as={Link}
-            to={`/@${decodedInfo?.username}`}
+            to={`/@${formatUsername(decodedInfo!.username)}`}
             className="mt-3 w-50 align-self-center"
             onClick={() => {
               const { location } = props;
