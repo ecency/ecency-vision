@@ -18,6 +18,7 @@ interface Props {
   setVideoEncoderBeneficiary?: (video: any) => void;
   toggleNsfwC?: () => void;
   setShowGallery: (v: boolean) => void;
+  setVideoMetadata?: (v: ThreeSpeakVideo) => void;
 }
 
 export function VideoGalleryItem({
@@ -25,7 +26,8 @@ export function VideoGalleryItem({
   toggleNsfwC,
   setVideoEncoderBeneficiary,
   insertText,
-  setShowGallery
+  setShowGallery,
+  setVideoMetadata
 }: Props) {
   const { data } = useThreeSpeakVideo("all");
 
@@ -56,6 +58,11 @@ export function VideoGalleryItem({
       .some((i) => body.includes(i));
 
     if (!hasManualPublishInBody || video.status == "published") {
+      setVideoMetadata?.(
+        manualPublishSpeakVideos.find(
+          (v) => v.permlink === video.permlink && v.owner === video.owner
+        )!!
+      );
       insertText(element);
     }
   };

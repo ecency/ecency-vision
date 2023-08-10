@@ -82,7 +82,7 @@ import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
 
-import { markAsPublished, updateSpeakVideoInfo } from "../api/threespeak";
+import { markAsPublished, ThreeSpeakVideo, updateSpeakVideoInfo } from "../api/threespeak";
 // import { ConfirmNsfwContent } from "../components/video-nsfw";
 import { PostBodyLazyRenderer } from "../components/post-body-lazy-renderer";
 
@@ -183,6 +183,7 @@ interface State extends PostBase, Advanced {
   isDraftEmpty: boolean;
   drafts: boolean;
   showHelp: boolean;
+  videoMetadata: ThreeSpeakVideo | null;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -224,7 +225,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     videoId: "",
     speakPermlink: "",
     speakAuthor: "",
-    isNsfw: false
+    isNsfw: false,
+    videoMetadata: null
   };
 
   _updateTimer: any = null;
@@ -1015,6 +1017,40 @@ class SubmitPage extends BaseComponent<Props, State> {
     if (meta.image) {
       meta.image = [...new Set(meta.image)];
     }
+    if (this.state.videoMetadata) {
+      meta.video = {
+        info: {
+          platform: "3speak",
+          title: this.state.videoMetadata.title,
+          author: this.state.videoMetadata.owner,
+          permlink: this.state.videoMetadata.permlink,
+          duration: this.state.videoMetadata.duration,
+          filesize: this.state.videoMetadata.size,
+          file: this.state.videoMetadata.filename,
+          lang: this.state.videoMetadata.language,
+          firstUpload: this.state.videoMetadata.firstUpload,
+          ipfs: null,
+          ipfsThumbnail: null,
+          video_v2: this.state.videoMetadata.video_v2,
+          sourceMap: [
+            {
+              type: "video",
+              url: this.state.videoMetadata.video_v2,
+              format: "m3u8"
+            },
+            {
+              type: "thumbnail",
+              url: this.state.videoMetadata.thumbUrl
+            }
+          ]
+        },
+        content: {
+          description: this.state.videoMetadata.description,
+          tags: this.state.videoMetadata.tags_v2
+        }
+      };
+    }
+
     const summary = description === null ? postBodySummary(this.state.body, 200) : description;
 
     return makeJsonMetaData(meta, tags, summary, version);
@@ -1181,7 +1217,8 @@ class SubmitPage extends BaseComponent<Props, State> {
               ...this.props,
               setVideoEncoderBeneficiary: this.setVideoEncoderBeneficiary,
               toggleNsfwC: this.toggleNsfwC,
-              comment: false
+              comment: false,
+              setVideoMetadata: (v: ThreeSpeakVideo) => this.setState({ videoMetadata: v })
             })}
             <div className="title-input">
               <Form.Control
