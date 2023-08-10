@@ -16,6 +16,7 @@ interface Props {
   setVideoEncoderBeneficiary?: (video: any) => void;
   toggleNsfwC?: () => void;
   preFilter?: string;
+  setVideoMetadata?: (v: ThreeSpeakVideo) => void;
 }
 
 const VideoGallery = ({
@@ -24,7 +25,8 @@ const VideoGallery = ({
   insertText,
   setVideoEncoderBeneficiary,
   toggleNsfwC,
-  preFilter
+  preFilter,
+  setVideoMetadata
 }: Props) => {
   const { activeUser } = useMappedStore();
   const [label, setLabel] = useState("All");
@@ -129,6 +131,7 @@ const VideoGallery = ({
                   setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
                   toggleNsfwC={toggleNsfwC}
                   setShowGallery={setShowGallery}
+                  setVideoMetadata={setVideoMetadata}
                 />
               ))}
               {!isFetching && items?.length === 0 && (
