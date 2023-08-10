@@ -158,7 +158,7 @@ const Onboard = (props: Props) => {
     try {
       const info = JSON.parse(b64uDec(urlInfo));
       const masterPassword: string = await generatePassword(32);
-      const keys: any = getPrivateKeys(info?.username, masterPassword);
+      const keys: any = getPrivateKeys(formatUsername(info?.username), masterPassword);
       // prepare object to encode
       const pubkeys = {
         activePublicKey: keys.activePubkey,
