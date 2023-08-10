@@ -38,13 +38,13 @@ export interface AccountInfo {
   username: string;
   referral: string;
   keys: {
-    active: string;
+    active?: string;
     activePubkey: string;
-    memo: string;
+    memo?: string;
     memoPubkey: string;
-    owner: string;
+    owner?: string;
     ownerPubkey: string;
-    posting: string;
+    posting?: string;
     postingPubkey: string;
   };
 }
@@ -154,11 +154,11 @@ const Onboard = (props: Props) => {
   };
 
   const initAccountKey = async () => {
-    const urlInfo = props.match.url.split("/")[3];
+    const urlInfo = props.match.params.secret;
     try {
-      const info = JSON.parse(b64uDec(urlInfo));
+      const info = JSON.parse(b64uDec(urlInfo!));
       const masterPassword: string = await generatePassword(32);
-      const keys: any = getPrivateKeys(formatUsername(info?.username), masterPassword);
+      const keys: AccountInfo["keys"] = getPrivateKeys(formatUsername(info?.username), masterPassword);
       // prepare object to encode
       const pubkeys = {
         activePublicKey: keys.activePubkey,
@@ -173,8 +173,8 @@ const Onboard = (props: Props) => {
         pubkeys
       };
       // stringify object to encode
-      const stringifiedPubKeys = JSON.stringify(dataToEncode);
-      const hashedPubKeys = b64uEnc(stringifiedPubKeys);
+      const stringifiedData = JSON.stringify(dataToEncode);
+      const hashedPubKeys = b64uEnc(stringifiedData);
       setSecret(hashedPubKeys);
       const accInfo = {
         username: formatUsername(info.username),
@@ -356,8 +356,8 @@ const Onboard = (props: Props) => {
       username: formatUsername(decodedInfo!.username),
       email: formatEmail(decodedInfo!.email)
     };
-    const stringifiedPubKeys = JSON.stringify(dataToEncode);
-    const hashedInfo = b64uEnc(stringifiedPubKeys);
+    const stringifiedData = JSON.stringify(dataToEncode);
+    const hashedInfo = b64uEnc(stringifiedData);
     if (activeUser) {
       try {
         if (type === createOptions.HIVE) {

@@ -1,15 +1,23 @@
 import { KeyRole, PrivateKey } from "@hiveio/dhive";
 import { randomBytes } from "crypto";
-
 export const getPrivateKeys = (username: any, password: any) => {
   const roles: Array<KeyRole> = ["owner", "active", "posting", "memo"];
   type keysType = {
+    owner: string;
+    active: string;
+    posting: string;
+    memo: string;
     ownerPubkey: string;
     activePubkey: string;
     postingPubkey: string;
     memoPubkey: string;
   };
-  const privKeys: keysType = {
+
+  let privKeys: keysType = {
+    owner: "",
+    active: "",
+    posting: "",
+    memo: "",
     ownerPubkey: "",
     activePubkey: "",
     postingPubkey: "",
