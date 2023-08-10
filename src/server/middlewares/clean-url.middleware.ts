@@ -9,20 +9,19 @@ class CleanUrlMiddlewareError extends Error {
 export class CleanUrlMiddleware {
   constructor(private request: Request, private response: Response, private next: NextFunction) {}
 
-  private removeDuplicates(): void {
+  private removeDuplicates(): boolean {
     const hasDuplicates = ["//", "@@"].some((i) => this.request.url.includes(i));
     if (hasDuplicates) {
       throw new CleanUrlMiddlewareError(this.request.url.replace(new RegExp("/{2,}", "g"), "/"));
     }
+    return false;
   }
 
-  private processHsCode(): void {
-    if (this.request.url.includes("-hs?code")) {
-      this.next();
-    }
+  private processHsCode(): boolean {
+    return this.request.url.includes("-hs?code");
   }
 
-  private checkLowerCase(): void {
+  private checkLowerCase(): boolean {
     if (
       this.request.url !== this.request.url.toLowerCase() &&
       !this.request.url.includes("auth?code") &&
@@ -30,26 +29,31 @@ export class CleanUrlMiddleware {
     ) {
       throw new CleanUrlMiddlewareError(this.request.url.toLowerCase());
     } else {
-      this.next();
+      return true;
     }
   }
 
-  private stripLastSlash(): void {
+  private stripLastSlash(): boolean {
     if (this.request.path.substr(-1) === "/" && this.request.path.length > 1) {
       const query = this.request.url.slice(this.request.path.length);
       throw new CleanUrlMiddlewareError(this.request.path.slice(0, -1) + query);
     } else {
-      this.next();
+      return true;
     }
   }
 
   public static build(request: Request, response: Response, next: NextFunction) {
     const instance = new CleanUrlMiddleware(request, response, next);
     try {
-      instance.removeDuplicates();
-      instance.processHsCode();
-      instance.checkLowerCase();
-      instance.stripLastSlash();
+      if (instance.removeDuplicates()) {
+        next();
+      } else if (instance.processHsCode()) {
+        next();
+      } else if (instance.checkLowerCase()) {
+        next();
+      } else if (instance.stripLastSlash()) {
+        next();
+      }
     } catch (e) {
       if (e instanceof CleanUrlMiddlewareError) {
         instance.response.redirect(301, e.redirectUri);
