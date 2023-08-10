@@ -143,13 +143,17 @@
   .custom-dropdown .dropdown-btn .label {
     font-size: 0.875rem;
   }
-
+  .hint {
+    border-radius: 1.15rem;
+    line-height: 1.25;
+    padding: 0.4rem .575rem;
+    margin-left: auto;
+  }
   .refresh-gallery svg {
     width: 1.25rem;
     height: 1.25rem;
     cursor: pointer;
   }
-
 }
 
 .more-info {

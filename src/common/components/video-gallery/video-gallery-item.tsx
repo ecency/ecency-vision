@@ -130,7 +130,7 @@ export function VideoGalleryItem({
               {statusIcons(item.status)}
               {toolTipContent(item.status)}{" "}
               {item.status == "encoding_ipfs" || item.status == "encoding_preparing"
-                ? `${item.encodingProgress}%`
+                ? `${item.encodingProgress.toFixed(2)}%`
                 : ""}
             </div>
             <div

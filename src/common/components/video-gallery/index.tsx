@@ -108,6 +108,7 @@ const VideoGallery = ({
             ) : (
               <></>
             )}
+            <div className="hint">{_t("video-gallery.refresh")}</div>
             <Button
               variant="link"
               className="refresh-gallery p-0"
