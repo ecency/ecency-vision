@@ -62,7 +62,8 @@ import {
   syncSvg,
   hideSvg,
   removeUserSvg,
-  alertCircleSvg
+  resendMessageSvg,
+  failedMessageSvg
 } from "../../img/svg";
 
 import {
@@ -79,7 +80,8 @@ import {
   LEAVECOMMUNITY,
   UNBLOCKUSER,
   NEWCHATACCOUNT,
-  CHATIMPORT
+  CHATIMPORT,
+  RESENDMESSAGE
 } from "./chat-constants";
 
 import { getPublicKey } from "../../../lib/nostr-tools/keys";
@@ -128,6 +130,8 @@ interface Props {
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
+  deletePublicMessage: (channelId: string, msgId: string) => void;
+  deleteDirectMessage: (peer: string, msgId: string) => void;
 }
 
 let zoom: Zoom | null = null;
@@ -142,7 +146,7 @@ export default function ChatBox(props: Props) {
   const [currentUser, setCurrentUser] = useState("");
   const [isCurrentUser, setIsCurrentUser] = useState(false);
   const [message, setMessage] = useState("");
-  const [dMMessage, setDMMessage] = useState("");
+  const [dmMessage, setDmMessage] = useState("");
   const [isMessageText, setIsMessageText] = useState(false);
   const [profileData, setProfileData] = useState<profileData>();
   const [isScrollToTop, setIsScrollToTop] = useState(false);
@@ -184,10 +188,11 @@ export default function ChatBox(props: Props) {
   const [blockedUsers, setBlockedUsers] = useState<{ name: string; pubkey: string }[]>([]);
   const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const [resendMessage, setResendMessage] = useState<PublicMessage | DirectMessage>();
 
   useEffect(() => {
-    console.log("isTop", isTop);
-  }, [isTop]);
+    console.log("publicMessages", publicMessages);
+  }, [publicMessages]);
 
   useEffect(() => {
     // console.log(currentChannel, "currentChannel");
@@ -204,7 +209,7 @@ export default function ChatBox(props: Props) {
       );
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
-      console.log("community messages", messages);
+      // console.log("community messages", messages);
       const channel = {
         name: updated.name,
         about: updated.about,
@@ -222,10 +227,10 @@ export default function ChatBox(props: Props) {
   }, [props.chat.updatedChannel]);
 
   useEffect(() => {
-    console.log("isTop", isTop);
+    // console.log("isTop", isTop);
     if (isTop) {
       fetchPrevMessages();
-      console.log("event is dispatched");
+      // console.log("event is dispatched");
     }
   }, [isTop]);
 
@@ -285,10 +290,16 @@ export default function ChatBox(props: Props) {
   }, []);
 
   // useEffect(() => {
+  //   console.log("Use effect run");
   //   if (window.messageService) {
   //     setHasUserJoinedChat(true);
-  //     setInProgress(false);
+  //     // setInProgress(false);
   //   }
+  //   setTimeout(() => {
+  //     if (props.chat.channels.length === 0 && props.chat.directContacts.length === 0) {
+  //       setInProgress(false);
+  //     }
+  //   }, 5000);
   // }, [window?.messageService]);
 
   useEffect(() => {
@@ -300,7 +311,6 @@ export default function ChatBox(props: Props) {
     const msgsList = fetchDirectMessages(receiverPubKey!);
     const messages = msgsList.sort((a, b) => a.created - b.created);
     setDirectMessagesList(messages);
-    // if(messages)
   }, [props.chat.directMessages]);
 
   useEffect(() => {
@@ -327,7 +337,6 @@ export default function ChatBox(props: Props) {
     }
 
     if (!isTop && !isScrollToTop && publicMessages.length !== 0) {
-      console.log("I want this");
       scrollerClicked();
     }
   }, [directMessagesList, publicMessages]);
@@ -338,7 +347,7 @@ export default function ChatBox(props: Props) {
       const publicMessages: PublicMessage[] = fetchCommunityMessages(currentChannel.id);
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
-      console.log("community messages", messages);
+      // console.log("community messages", messages);
     }
     // scrollerClicked();
   }, [currentChannel, isCommunity, props.chat.publicMessages]);
@@ -507,7 +516,7 @@ export default function ChatBox(props: Props) {
   const fetchDirectMessages = (peer: string) => {
     for (const item of props.chat.directMessages) {
       if (item.peer === peer) {
-        return item.chat;
+        return Object.values(item.chat);
       }
     }
     return [];
@@ -517,7 +526,10 @@ export default function ChatBox(props: Props) {
     const hideMessageIds = hiddenMessageIds || currentChannel?.hiddenMessageIds || [];
     for (const item of props.chat.publicMessages) {
       if (item.channelId === channelId) {
-        return item.PublicMessage.filter((message) => !hideMessageIds.includes(message.id));
+        const filteredPublicMessages = Object.values(item.PublicMessage).filter(
+          (message) => !hideMessageIds.includes(message.id)
+        );
+        return filteredPublicMessages;
       }
     }
     return [];
@@ -591,48 +603,10 @@ export default function ChatBox(props: Props) {
     setInProgress(true);
     window.messageService
       ?.fetchPrevMessages(currentChannel!.id, publicMessages[0].created)
-      .then((events) => {
-        console.log("events in chatbox", events);
-
-        const newMessages = events
-          .map((ev) => {
-            const eTags = ev.tags.filter(([t]) => t === "e");
-            const root = eTags.find((x) => x[3] === "root")?.[1];
-            const mentions = ev.tags
-              .filter(([t]) => t === "p")
-              .map((x) => x?.[1])
-              .filter(notEmpty);
-
-            if (!root) return null;
-
-            return ev.content
-              ? {
-                  id: ev.id,
-                  root,
-                  content: ev.content,
-                  creator: ev.pubkey,
-                  mentions,
-                  created: ev.created_at,
-                  sent: 1
-                }
-              : null;
-          })
-          .filter(notEmpty);
-
-        const filteredNewMessages = newMessages.filter((newMsg) => {
-          return !publicMessages.some((pubMsg) => pubMsg.id === newMsg.id);
-        });
-
-        const messages = filteredNewMessages.sort((a, b) => a.created - b.created);
-
-        setPublicMessages((prevMessages) => [...messages, ...prevMessages]);
-
-        setInProgress(false);
-        console.log("num", events.length);
-        if (events.length < 30 - 5) {
+      .then((num) => {
+        if (num < 25) {
           setHasMore(false);
         }
-        console.log("number", events.length);
       })
       .finally(() => {
         setInProgress(false);
@@ -641,11 +615,6 @@ export default function ChatBox(props: Props) {
   };
 
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
-    // if (isTop) {
-    //   console.log("Hurrah");
-    //   event.preventDefault();
-    //   return;
-    // }
     var element = event.currentTarget;
     let srollHeight: number = (element.scrollHeight / 100) * 25;
     const isScrollToTop = !isCurrentUser && !isCommunity && element.scrollTop >= srollHeight;
@@ -655,16 +624,14 @@ export default function ChatBox(props: Props) {
     setIsScrollToTop(isScrollToTop);
     setIsScrollToBottom(isScrollToBottom);
     const scrollerTop = element.scrollTop <= 600;
-    console.log("scrollerTop", scrollerTop);
     if (isCommunity && scrollerTop) {
       setIsTop(true);
     } else {
-      setIsTop(false); // Set isTop to false when the condition is not met
+      setIsTop(false);
     }
   };
 
   const scrollerClicked = () => {
-    console.log("scroller clicked");
     chatBodyDivRef?.current?.scroll({
       top: isCurrentUser || isCommunity ? chatBodyDivRef?.current?.scrollHeight : 0,
       behavior: "auto"
@@ -841,20 +808,20 @@ export default function ChatBox(props: Props) {
   };
 
   const sendDM = (name: string, pubkey: string) => {
-    if (dMMessage) {
-      window.messageService?.sendDirectMessage(pubkey, dMMessage);
+    if (dmMessage) {
+      window.messageService?.sendDirectMessage(pubkey, dmMessage);
 
       setIsCurrentUser(true);
       setCurrentUser(name);
       setIsCommunity(false);
       setCommunityName("");
       setClickedMessage("");
-      setDMMessage("");
+      setDmMessage("");
     }
   };
 
   const handleDMChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    setDMMessage(e.target.value);
+    setDmMessage(e.target.value);
   };
 
   const handleImageClick = (msgId: string, pubkey: string) => {
@@ -923,6 +890,20 @@ export default function ChatBox(props: Props) {
     }
   };
 
+  const handleResendMessage = () => {
+    setKeyDialog(false);
+    setStep(0);
+    if (resendMessage) {
+      if (currentChannel) {
+        props.deletePublicMessage(currentChannel.id, resendMessage.id);
+        window?.messageService?.sendPublicMessage(currentChannel!, resendMessage.content, [], "");
+      } else if (isCurrentUser && receiverPubKey) {
+        props.deleteDirectMessage(receiverPubKey, resendMessage.id);
+        window.messageService?.sendDirectMessage(receiverPubKey, resendMessage.content);
+      }
+    }
+  };
+
   const handleConfirmButton = (actionType: string) => {
     switch (actionType) {
       case HIDEMESSAGE:
@@ -955,9 +936,10 @@ export default function ChatBox(props: Props) {
           })
           .catch((err) => {
             error(err);
-            console.error("Error:", error);
           });
-
+        break;
+      case RESENDMESSAGE:
+        handleResendMessage();
         break;
       default:
         break;
@@ -1326,13 +1308,11 @@ export default function ChatBox(props: Props) {
           (item) => item !== removedUserId
         );
         updatedMetaData.removedUserIds = NewUpdatedRemovedUsers;
-        // console.log("NewUpdatedRemovedUsers", NewUpdatedRemovedUsers);
         break;
       default:
         break;
     }
 
-    // console.log(updatedMetaData, "updatedMetaData");
     try {
       window.messageService?.updateChannel(currentChannel!, updatedMetaData);
       setCurrentChannel({ ...currentChannel!, ...updatedMetaData });
@@ -1345,7 +1325,6 @@ export default function ChatBox(props: Props) {
       if (operationType === BLOCKUSER || operationType === UNBLOCKUSER) {
         setStep(0);
         setKeyDialog(false);
-        // fetchCommunityMessages(currentChannel?.id!);
         setRemovedUserID("");
       }
     } catch (err) {
@@ -1662,13 +1641,41 @@ export default function ChatBox(props: Props) {
                                     <p className="sender-message-time">
                                       {formatMessageTime(msg.created)}
                                     </p>
-                                    <div className="sender-message">
+                                    <div
+                                      className={`sender-message ${
+                                        msg.sent === 2 ? "failed" : msg.sent === 0 ? "sending" : ""
+                                      }`}
+                                    >
+                                      {msg.sent === 2 && (
+                                        <Tooltip content={"Resend"}>
+                                          <span
+                                            className="resend-svg"
+                                            onClick={() => {
+                                              setKeyDialog(true);
+                                              setStep(11);
+                                              setResendMessage(msg);
+                                            }}
+                                          >
+                                            {resendMessageSvg}
+                                          </span>
+                                        </Tooltip>
+                                      )}
                                       <div
                                         className={`sender-message-content ${isGif ? "gif" : ""} ${
                                           isImage ? "chat-image" : ""
                                         }`}
                                         dangerouslySetInnerHTML={{ __html: renderedPreview }}
                                       />
+                                      {msg.sent === 0 && (
+                                        <span style={{ margin: "10px 0 0 5px" }}>
+                                          <Spinner animation="border" variant="primary" size="sm" />
+                                        </span>
+                                      )}
+                                      {msg.sent === 2 && (
+                                        <Tooltip content={"Failed"}>
+                                          <span className="failed-svg">{failedMessageSvg}</span>
+                                        </Tooltip>
+                                      )}
                                     </div>
                                   </div>
                                 )}
@@ -1765,7 +1772,7 @@ export default function ChatBox(props: Props) {
                                       >
                                         <InputGroup className="dm-input-group">
                                           <Form.Control
-                                            value={dMMessage}
+                                            value={dmMessage}
                                             autoFocus={true}
                                             onChange={handleDMChange}
                                             required={true}
@@ -1848,13 +1855,18 @@ export default function ChatBox(props: Props) {
                                     <p className="sender-message-time">
                                       {formatMessageTime(pMsg.created)}
                                     </p>
-                                    <div className="sender-message">
+                                    <div
+                                      className={`sender-message ${
+                                        pMsg.sent === 2
+                                          ? "failed"
+                                          : pMsg.sent === 0
+                                          ? "sending"
+                                          : ""
+                                      }`}
+                                    >
                                       {hoveredMessageId === pMsg.id && !isActveUserRemoved && (
                                         <Tooltip content={"Hide Message"}>
-                                          <div
-                                            className="hide-msg"
-                                            style={{ marginTop: 0, marginRight: "6px" }}
-                                          >
+                                          <div className="hide-msg">
                                             <p
                                               className="hide-msg-svg"
                                               onClick={() => {
@@ -1869,6 +1881,20 @@ export default function ChatBox(props: Props) {
                                           </div>
                                         </Tooltip>
                                       )}
+                                      {pMsg.sent === 2 && (
+                                        <Tooltip content={"Resend"}>
+                                          <span
+                                            className="resend-svg"
+                                            onClick={() => {
+                                              setKeyDialog(true);
+                                              setStep(11);
+                                              setResendMessage(pMsg);
+                                            }}
+                                          >
+                                            {resendMessageSvg}
+                                          </span>
+                                        </Tooltip>
+                                      )}
                                       <div
                                         className={`sender-message-content ${isGif ? "gif" : ""} ${
                                           isImage ? "chat-image" : ""
@@ -1881,21 +1907,8 @@ export default function ChatBox(props: Props) {
                                         </span>
                                       )}
                                       {pMsg.sent === 2 && (
-                                        <Tooltip content={"Sending failed"}>
-                                          <span style={{ margin: "14px 0 0 5px" }}>
-                                            {/* <Spinner animation="border" variant="danger" size="sm" /> */}
-                                            <div
-                                              className="sent-failed"
-                                              style={{
-                                                width: "10px",
-                                                height: "10px",
-                                                borderRadius: "50%",
-                                                backgroundColor: "white",
-                                                border: "2px solid red",
-                                                cursor: "pointer"
-                                              }}
-                                            />
-                                          </span>
+                                        <Tooltip content={"Failed"}>
+                                          <span className="failed-svg">{failedMessageSvg}</span>
                                         </Tooltip>
                                       )}
                                     </div>
@@ -2193,6 +2206,7 @@ export default function ChatBox(props: Props) {
             {step === 6 && confirmationModal(BLOCKUSER)}
             {step === 7 && confirmationModal(UNBLOCKUSER)}
             {step === 9 && confirmationModal(NEWCHATACCOUNT)}
+            {step === 11 && confirmationModal(RESENDMESSAGE)}
             {step === 2 && EditRolesModal()}
             {step === 3 && ImportChatModal()}
             {step === 4 && successModal(CHATIMPORT)}

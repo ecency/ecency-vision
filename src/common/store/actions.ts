@@ -51,7 +51,12 @@ import {
   addleftChannels,
   UpdateChannels,
   replacePublicMessage,
-  verifyMessageSending
+  verifyPublicMessageSending,
+  replaceDirectMessage,
+  verifyDirectMessageSending,
+  deletePublicMessage,
+  deleteDirectMessage,
+  addPreviousPublicMessages
 } from "./chat";
 
 // @note Do not use it directly
@@ -111,7 +116,12 @@ export const ACTIONS = {
   addleftChannels,
   UpdateChannels,
   replacePublicMessage,
-  verifyMessageSending
+  verifyPublicMessageSending,
+  replaceDirectMessage,
+  verifyDirectMessageSending,
+  deletePublicMessage,
+  deleteDirectMessage,
+  addPreviousPublicMessages
 };
 
 export const getActions = () => ({

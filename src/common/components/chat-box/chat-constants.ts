@@ -37,3 +37,4 @@ export const LEAVECOMMUNITY = "leaveCommunity";
 export const UNBLOCKUSER = "unblockUser";
 export const NEWCHATACCOUNT = "newChatAccount";
 export const CHATIMPORT = "chatImport";
+export const RESENDMESSAGE = "resendMessage";

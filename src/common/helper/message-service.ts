@@ -37,20 +37,24 @@ export enum MessageEvents {
   LeftChannelList = "left_channel_list",
   ChannelUpdate = "channel_update",
   ChannelCreation = "channel_creation",
-  DirectMessage = "direct_message",
+  DirectMessageBeforeSent = "direct_message_before_sent",
+  DirectMessageAfterSent = "direct_message_after_sent",
   DirectContact = "direct_contact",
   PublicMessageBeforeSent = "public_message_before_sent",
-  PublicMessageAfterSent = "public_message_after_sent"
+  PublicMessageAfterSent = "public_message_after_sent",
+  PreviousPublicMessages = "previous_public_messages"
 }
 
 type EventHandlerMap = {
   [MessageEvents.Ready]: () => void;
   [MessageEvents.ProfileUpdate]: (data: Profile[]) => void;
-  [MessageEvents.DirectMessage]: (data: DirectMessage[]) => void;
+  [MessageEvents.DirectMessageBeforeSent]: (data: DirectMessage[]) => void;
+  [MessageEvents.DirectMessageAfterSent]: (data: DirectMessage[]) => void;
   [MessageEvents.ChannelCreation]: (data: Channel[]) => void;
   [MessageEvents.ChannelUpdate]: (data: ChannelUpdate[]) => void;
   [MessageEvents.PublicMessageBeforeSent]: (data: PublicMessage[]) => void;
   [MessageEvents.PublicMessageAfterSent]: (data: PublicMessage[]) => void;
+  [MessageEvents.PreviousPublicMessages]: (data: PublicMessage[]) => void;
   [MessageEvents.LeftChannelList]: (data: string[]) => void;
   [MessageEvents.DirectContact]: (data: DirectContact[]) => void;
 };
@@ -174,13 +178,32 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       ],
       false
     ).then((events) => {
-      console.log("events", events);
-      return events;
-      // events.forEach((ev) => {
-      //   this.pushToEventBuffer(ev);
-      // });
-      // console.log('events ki length',events.length)
-      // return events.length;
+      if (events.length > 0) {
+        const formattedEvents = events
+          .map((ev) => {
+            const eTags = MessageService.filterTagValue(ev, "e");
+            const root = eTags.find((x) => x[3] === "root")?.[1];
+            const mentions = MessageService.filterTagValue(ev, "p")
+              .map((x) => x?.[1])
+              .filter(notEmpty);
+            if (!root) return null;
+            return ev.content
+              ? {
+                  id: ev.id,
+                  root,
+                  content: ev.content,
+                  creator: ev.pubkey,
+                  mentions,
+                  created: ev.created_at,
+                  sent: 1
+                }
+              : null;
+          })
+          .filter(notEmpty);
+        this.emit(MessageEvents.PreviousPublicMessages, formattedEvents);
+      }
+
+      return events.length;
     });
   }
 
@@ -302,7 +325,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public loadProfiles(pubs: string[]) {
-    // console.log("lod profiles");
+    // console.log("load profiles");
     pubs.forEach((p) => {
       this.fetch(
         [
@@ -440,6 +463,72 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     });
   }
 
+  public emitPublicMessageBeforeSent(event: Event) {
+    let publiMessagesEventArray = [];
+
+    const eTags = MessageService.filterTagValue(event, "e");
+    const root = eTags.find((x) => x[3] === "root")?.[1];
+    const mentions = MessageService.filterTagValue(event, "p")
+      .map((x) => x?.[1])
+      .filter(notEmpty);
+    const formattedEvent = event.content
+      ? {
+          id: event.id,
+          root,
+          content: event.content,
+          creator: event.pubkey,
+          mentions,
+          created: event.created_at,
+          sent: 0
+        }
+      : null;
+    publiMessagesEventArray.push(formattedEvent);
+    const filteredEventArray = publiMessagesEventArray.filter(
+      (item) => item !== null
+    ) as PublicMessage[];
+    this.emit(MessageEvents.PublicMessageBeforeSent, filteredEventArray);
+  }
+
+  public async emitDirectMessageBeforeSent(event: Event) {
+    const eventArray = [];
+    const receiver = MessageService.findTagValue(event, "p");
+
+    if (!receiver) {
+      return;
+    }
+
+    const eTags = MessageService.filterTagValue(event, "e");
+    const root = eTags.find((x) => x[3] === "root")?.[1];
+
+    const peer = receiver === this.pub ? event.pubkey : receiver;
+    const msg = {
+      id: event.id,
+      root,
+      content: event.content,
+      peer,
+      creator: event.pubkey,
+      created: event.created_at,
+      decrypted: false,
+      sent: 0
+    };
+    if (this.priv === "nip07") {
+      eventArray.push(msg);
+    }
+
+    try {
+      const content = await decrypt(this.priv, peer, event.content);
+      const decrypted = {
+        ...msg,
+        content,
+        decrypted: true
+      };
+      eventArray.push(decrypted);
+    } catch (error) {
+      console.error("Error decrypting:", error);
+    }
+    this.emit(MessageEvents.DirectMessageBeforeSent, eventArray);
+  }
+
   private async findHealthyRelay(relays: string[]) {
     for (const relay of relays) {
       try {
@@ -483,7 +572,10 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     return this.publish(Kind.ChannelMessage, tags, message);
   }
 
+  public resendMessage(kind: number, tags: Array<any>[], content: string) {}
+
   private publish(kind: number, tags: Array<any>[], content: string): Promise<Event> {
+    console.log("kind", kind, "tags", tags, "content", content);
     return new Promise((resolve, reject) => {
       this.signEvent({
         kind,
@@ -496,37 +588,14 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       })
         .then((event) => {
           if (!event) {
-            // console.log("Event not found");
             reject("Couldn't sign event!");
             return;
           }
           if (event.kind === Kind.ChannelMessage) {
-            let eventArray = [];
-
-            const eTags = MessageService.filterTagValue(event, "e");
-            const root = eTags.find((x) => x[3] === "root")?.[1];
-            const mentions = MessageService.filterTagValue(event, "p")
-              .map((x) => x?.[1])
-              .filter(notEmpty);
-            const formattedEvent = event.content
-              ? {
-                  id: event.id,
-                  root,
-                  content: event.content,
-                  creator: event.pubkey,
-                  mentions,
-                  created: event.created_at,
-                  sent: 0
-                }
-              : null;
-            // console.log("mery mtlb ka event", event);
-            eventArray.push(formattedEvent);
-            const filteredEventArray = eventArray.filter(
-              (item) => item !== null
-            ) as PublicMessage[];
-            this.emit(MessageEvents.PublicMessageBeforeSent, filteredEventArray);
+            this.emitPublicMessageBeforeSent(event);
+          } else if (event.kind === Kind.EncryptedDirectMessage) {
+            this.emitDirectMessageBeforeSent(event);
           }
-
           const pub = this.pool.publish(this.writeRelays, event);
           pub.on("ok", () => {
             resolve(event);
@@ -746,7 +815,9 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
         })
         .filter(notEmpty)
     ).then((directMessages: DirectMessage[]) => {
-      this.emit(MessageEvents.DirectMessage, directMessages);
+      if (directMessages.length > 0) {
+        this.emit(MessageEvents.DirectMessageAfterSent, directMessages);
+      }
     });
 
     this.eventQueue = [];

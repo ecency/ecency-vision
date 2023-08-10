@@ -482,7 +482,36 @@
 
           display: flex;
           justify-content: flex-end;
-          margin-right: 15px;
+          margin-right: 17px;
+
+          .resend-svg {
+            margin: 5px 15px 0 0;
+            cursor: pointer;
+            svg {
+              @include themify(day) {
+                fill: $light-black;
+              }
+              @include themify(night) {
+                fill: $white;
+              }
+            }
+          }
+
+          .failed-svg {
+            margin: 8px 0 0 5px;
+            svg {
+              width: 16px;
+              height: 16px;
+              fill: $red !important;
+            }
+          }
+
+          &.sending {
+            margin-right: 5px;
+          }
+          &.failed {
+            margin-right: 7px;
+          }
 
           .sender-message-content {
             border-radius: 10px 10px 0px;
@@ -522,14 +551,15 @@
         }
       }
       .hide-msg {
-        margin-left: 6px;
-        margin-top: 22px;
+        margin-right: 15px;
+        margin-top: 5px;
         svg {
           height: 14px;
           width: 14px;
         }
         .hide-msg-svg {
           cursor: pointer;
+          margin-bottom: 0;
         }
       }
     }

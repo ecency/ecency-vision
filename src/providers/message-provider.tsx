@@ -9,7 +9,8 @@ import {
   DirectContact,
   Channel,
   PublicMessage,
-  ChannelUpdate
+  ChannelUpdate,
+  MessagesObject
 } from "./message-provider-types";
 
 import { initMessageService, MessageEvents } from "../common/helper/message-service";
@@ -29,14 +30,17 @@ export const setNostrkeys = (keys: NostrKeysType) => {
 
 interface Props {
   addDirectContacts: (data?: DirectContactsType[]) => void;
-  addDirectMessages: (peer: string, data?: DirectMessage[]) => void;
-  addPublicMessage: (channelId: string, data?: PublicMessage[]) => void;
+  addDirectMessages: (peer: string, data?: DirectMessage) => void;
+  addPublicMessage: (channelId: string, data?: PublicMessage) => void;
   addChannels: (data: Channel[]) => void;
   addProfile: (data: Profile[]) => void;
   addleftChannels: (data: string[]) => void;
   UpdateChannels: (data: ChannelUpdate[]) => void;
-  replacePublicMessage: (channelId: string, data?: PublicMessage[]) => void;
-  verifyMessageSending: (channelId: string, data?: PublicMessage[]) => void;
+  replacePublicMessage: (channelId: string, data?: PublicMessage) => void;
+  verifyPublicMessageSending: (channelId: string, data?: PublicMessage) => void;
+  replaceDirectMessage: (peer: string, data: DirectMessage) => void;
+  verifyDirectMessageSending: (peer: string, data: DirectMessage) => void;
+  addPreviousPublicMessages: (channelId: string, data: MessagesObject) => void;
 }
 
 const MessageProvider = (props: Props) => {
@@ -48,17 +52,23 @@ const MessageProvider = (props: Props) => {
   const [directMessageBuffer, setDirectMessageBuffer] = useState<DirectMessage[]>([]);
   const [publicMessageBuffer, setPublicMessageBuffer] = useState<PublicMessage[]>([]);
   const [isCommunityCreated, setIsCommunityCreated] = useState(false);
-  const [replacedMessagesBuffer, setReplacedMessagesBuffer] = useState<string[]>([]);
+  const [replacedPublicMessagesBuffer, setReplacedPublicMessagesBuffer] = useState<string[]>([]);
+  const [isDirectChatCreated, setIsDirectChatCreated] = useState(false);
+  const [replacedDirectMessagesBuffer, setReplacedDirectMessagesBuffer] = useState<string[]>([]);
 
   useEffect(() => {
     if (chat.channels.length !== 0) {
       setIsCommunityCreated(true);
     }
-  }, [chat.channels]);
+
+    if (chat.directMessages.length !== 0) {
+      setIsDirectChatCreated(true);
+    }
+  }, [chat.channels, chat.directMessages]);
 
   useEffect(() => {
-    // console.log("replacedMessagesBuffer", replacedMessagesBuffer);
-  }, [replacedMessagesBuffer]);
+    console.log("replacedDirectMessagesBuffer", replacedDirectMessagesBuffer);
+  }, [replacedDirectMessagesBuffer]);
 
   useEffect(() => {
     window.addEventListener("createMSInstance", createMSInstance);
@@ -100,7 +110,6 @@ const MessageProvider = (props: Props) => {
       pub: profile.noStrKey,
       priv: noStrPrivKey
     };
-    // console.log('keys', keys)
     setKeys(keys);
   };
 
@@ -177,10 +186,61 @@ const MessageProvider = (props: Props) => {
     };
   }, [messageService]);
 
-  // // Direct message handler
-  const handleDirectMessage = (data: DirectMessage[]) => {
-    setDirectMessageBuffer((directMessageBuffer) => [...directMessageBuffer!, ...data]);
-    // console.log("HandleDirectMessage", data);
+  //Direct message ahandle before sent
+
+  const handleDirectMessageBeforeSent = (data: DirectMessage[]) => {
+    console.log("handleDirectMessageBeeforeSent", data);
+    data.map((m) => {
+      const { peer, id } = m;
+      setReplacedDirectMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
+      props.addDirectMessages(peer, m);
+      checkDirectMessageSending(peer, m);
+    });
+  };
+
+  useEffect(() => {
+    messageService?.removeListener(
+      MessageEvents.DirectMessageBeforeSent,
+      handleDirectMessageBeforeSent
+    );
+    messageService?.addListener(
+      MessageEvents.DirectMessageBeforeSent,
+      handleDirectMessageBeforeSent
+    );
+
+    return () => {
+      messageService?.removeListener(
+        MessageEvents.DirectMessageBeforeSent,
+        handleDirectMessageBeforeSent
+      );
+    };
+  }, [messageService, chat.directMessages]);
+
+  const checkDirectMessageSending = (peer: string, data: DirectMessage) => {
+    setTimeout(() => {
+      props.verifyDirectMessageSending(peer, data);
+    }, 20000);
+  };
+
+  // // Direct message handler after sent
+  const handleDirectMessageAfterSent = (data: DirectMessage[]) => {
+    console.log("handleDirectMessageAfterSent", data);
+    if (isDirectChatCreated) {
+      data.forEach((message) => {
+        const { peer, id } = message;
+        if (replacedDirectMessagesBuffer.includes(id)) {
+          setReplacedDirectMessagesBuffer((prevBuffer) =>
+            prevBuffer.filter((messageId) => messageId !== id)
+          );
+          console.log("I reached");
+          props.replaceDirectMessage(peer, message);
+        } else {
+          props.addDirectMessages(peer, message);
+        }
+      });
+    } else {
+      setDirectMessageBuffer((directMessageBuffer) => [...directMessageBuffer!, ...data]);
+    }
     messageService?.checkProfiles(data.map((x) => x.peer));
   };
 
@@ -189,25 +249,10 @@ const MessageProvider = (props: Props) => {
       const { peer } = obj;
       const matchingStateItem = chat.directMessages.find((stateItem) => stateItem.peer === peer);
       if (matchingStateItem) {
-        if (matchingStateItem.chat.length === 0) {
-          props.addDirectMessages(peer, [obj]);
-          setDirectMessageBuffer((prevMessageBuffer) =>
-            prevMessageBuffer.filter((message) => message.id !== obj.id)
-          );
-        } else {
-          let itemExists = false;
-          matchingStateItem.chat.forEach((item) => {
-            if (item.id === obj.id) {
-              itemExists = true;
-            }
-          });
-          if (!itemExists) {
-            props.addDirectMessages(peer, [obj]);
-            setDirectMessageBuffer((prevMessageBuffer) =>
-              prevMessageBuffer.filter((message) => message.id !== obj.id)
-            );
-          }
-        }
+        props.addDirectMessages(peer, obj);
+        setDirectMessageBuffer((prevMessageBuffer) =>
+          prevMessageBuffer.filter((message) => message.id !== obj.id)
+        );
       }
     });
   };
@@ -219,12 +264,19 @@ const MessageProvider = (props: Props) => {
   }, [chat.directContacts, directMessageBuffer]);
 
   useEffect(() => {
-    messageService?.removeListener(MessageEvents.DirectMessage, handleDirectMessage);
-    messageService?.addListener(MessageEvents.DirectMessage, handleDirectMessage);
+    messageService?.removeListener(
+      MessageEvents.DirectMessageAfterSent,
+      handleDirectMessageAfterSent
+    );
+    messageService?.addListener(MessageEvents.DirectMessageAfterSent, handleDirectMessageAfterSent);
+
     return () => {
-      messageService?.removeListener(MessageEvents.DirectMessage, handleDirectMessage);
+      messageService?.removeListener(
+        MessageEvents.DirectMessageAfterSent,
+        handleDirectMessageAfterSent
+      );
     };
-  }, [messageService]);
+  }, [messageService, chat.directMessages]);
 
   // Channel creation handler
   const handleChannelCreation = (data: Channel[]) => {
@@ -258,9 +310,9 @@ const MessageProvider = (props: Props) => {
     };
   }, [messageService]);
 
-  const checkMessageSending = (channelId: string, data: PublicMessage[]) => {
+  const checkPublicMessageSending = (channelId: string, data: PublicMessage) => {
     setTimeout(() => {
-      props.verifyMessageSending(channelId, data);
+      props.verifyPublicMessageSending(channelId, data);
     }, 20000);
   };
 
@@ -270,9 +322,9 @@ const MessageProvider = (props: Props) => {
     console.log("handlePublicMessageBeeforeSent", data);
     data.map((m) => {
       const { id, root } = m;
-      setReplacedMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
-      props.addPublicMessage(root, [m]);
-      checkMessageSending(root, [m]);
+      setReplacedPublicMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
+      props.addPublicMessage(root, m);
+      checkPublicMessageSending(root, m);
     });
   };
 
@@ -300,32 +352,32 @@ const MessageProvider = (props: Props) => {
     if (isCommunityCreated) {
       data.forEach((message) => {
         const { root, id } = message;
-        if (replacedMessagesBuffer.includes(id)) {
-          setReplacedMessagesBuffer((prevBuffer) =>
+        if (replacedPublicMessagesBuffer.includes(id)) {
+          setReplacedPublicMessagesBuffer((prevBuffer) =>
             prevBuffer.filter((messageId) => messageId !== id)
           );
-          props.replacePublicMessage(root, [message]);
+          props.replacePublicMessage(root, message);
         } else {
-          props.addPublicMessage(root, [message]);
+          props.addPublicMessage(root, message);
         }
       });
     } else {
       setPublicMessageBuffer((publicMessageBuffer) => [...publicMessageBuffer, ...data]);
     }
 
+    let uniqueUsers: string[] = [];
     for (const item of data) {
       const isCreatorMatch = chat.profiles.some((profile) => profile.creator === item.creator);
 
       if (!isCreatorMatch) {
-        let uniqueUsers: string[] = [];
         for (const item of data) {
           if (!uniqueUsers.includes(item.creator)) {
             uniqueUsers.push(item.creator);
           }
         }
-        messageService?.loadProfiles(uniqueUsers);
       }
     }
+    window?.messageService?.loadProfiles(uniqueUsers);
   };
 
   useEffect(() => {
@@ -356,13 +408,40 @@ const MessageProvider = (props: Props) => {
         (stateItem) => stateItem.channelId === root
       );
       if (matchingStateItem) {
-        props.addPublicMessage(root, [obj]);
+        props.addPublicMessage(root, obj);
         setPublicMessageBuffer((prevMessageBuffer) =>
           prevMessageBuffer.filter((message) => message.id !== obj.id)
         );
       }
     });
   };
+
+  //previous public messages handler
+  const handlePreviousPublicMessages = (data: PublicMessage[]) => {
+    console.log("handlePreviousPublicMessages", data);
+    const channelId = data[0].root;
+    const messagesObject: MessagesObject = data.reduce((result, message) => {
+      result[message.id] = message;
+      return result;
+    }, {});
+
+    props.addPreviousPublicMessages(channelId, messagesObject);
+  };
+
+  useEffect(() => {
+    messageService?.removeListener(
+      MessageEvents.PreviousPublicMessages,
+      handlePreviousPublicMessages
+    );
+    messageService?.addListener(MessageEvents.PreviousPublicMessages, handlePreviousPublicMessages);
+
+    return () => {
+      messageService?.removeListener(
+        MessageEvents.PreviousPublicMessages,
+        handlePreviousPublicMessages
+      );
+    };
+  }, [messageService, chat.profiles, chat.publicMessages]);
 
   // Left channel handler
   const handleLeftChannelList = (data: string[]) => {
@@ -389,6 +468,10 @@ const MessageProvider = (props: Props) => {
       messageService?.removeListener(MessageEvents.LeftChannelList, handleLeftChannelList);
       messageService?.removeListener(MessageEvents.ChannelUpdate, handleChannelUpdate);
       messageService?.removeListener(
+        MessageEvents.PreviousPublicMessages,
+        handlePreviousPublicMessages
+      );
+      messageService?.removeListener(
         MessageEvents.PublicMessageBeforeSent,
         handlePublicMessageBeforeSent
       );
@@ -396,7 +479,14 @@ const MessageProvider = (props: Props) => {
         MessageEvents.PublicMessageAfterSent,
         handlePublicMessageAfterSent
       );
-      messageService?.removeListener(MessageEvents.DirectMessage, handleDirectMessage);
+      messageService?.removeListener(
+        MessageEvents.DirectMessageBeforeSent,
+        handleDirectMessageBeforeSent
+      );
+      messageService?.removeListener(
+        MessageEvents.DirectMessageAfterSent,
+        handleDirectMessageAfterSent
+      );
     };
   }, [messageService]);
 

@@ -2151,3 +2151,15 @@ export const removeUserSvg = (
     <line x1="23" y1="8" x2="18" y2="13" />
   </svg>
 );
+
+export const resendMessageSvg = (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+    <path d="M19.0003 10.0003L19.0004 19.0002L17.0004 19.0002L17.0003 12.0003L6.82845 12.0002L10.7782 15.9499L9.36396 17.3642L3 11.0002L9.36396 4.63623L10.7782 6.05044L6.8284 10.0002L19.0003 10.0003Z" />
+  </svg>
+);
+
+export const failedMessageSvg = (
+  <svg viewBox="0 0 24 24">
+    <path d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+  </svg>
+);

@@ -3,7 +3,8 @@ import {
   DirectMessage,
   PublicMessage,
   Profile,
-  ChannelUpdate
+  ChannelUpdate,
+  MessagesObject
 } from "./../../../providers/message-provider-types";
 import { Dispatch } from "redux";
 
@@ -15,14 +16,18 @@ import {
   DirectContactsType,
   DirectMessagesAction,
   ResetChatAction,
-  directMessagesList,
   AddChannelsAction,
   PublicMessagesAction,
   ProfilesAction,
   LeftChannelsAction,
   UpdateChannelAction,
   ReplacePublicMessagesAction,
-  VerifySendingMessageAction
+  VerifyPublicMessageSendingAction,
+  ReplaceDirectMessagesAction,
+  VerifyDirectMessageSendingAction,
+  DeletePublicMessagesAction,
+  DeleteDirectMessagesAction,
+  AddPreviousPublicMessagesAction
 } from "./types";
 
 export const initialState: Chat = {
@@ -50,7 +55,7 @@ export default (state: Chat = initialState, action: Actions): Chat => {
         directContacts: [...state.directContacts, ...uniqueDirectContacts],
         directMessages: [
           ...state.directMessages,
-          ...uniqueDirectContacts.map((contact) => ({ chat: [], peer: contact.pubkey }))
+          ...uniqueDirectContacts.map((contact) => ({ chat: {}, peer: contact.pubkey }))
         ]
       };
     }
@@ -58,11 +63,11 @@ export default (state: Chat = initialState, action: Actions): Chat => {
       const { peer, data } = action;
       return {
         ...state,
-        directMessages: [
-          ...state.directMessages.map((contact) =>
-            contact.peer === peer ? { peer: peer, chat: [...contact.chat, ...data] } : contact
-          )
-        ]
+        directMessages: state.directMessages.map((contact) =>
+          contact.peer === peer
+            ? { peer: peer, chat: { ...contact.chat, [data.id]: data } }
+            : contact
+        )
       };
     }
 
@@ -72,13 +77,15 @@ export default (state: Chat = initialState, action: Actions): Chat => {
     case ActionTypes.CHANNELS: {
       const { data } = action;
 
+      const defaultPublicMessages = data.map((channel) => ({
+        channelId: channel.id,
+        PublicMessage: {}
+      }));
+
       return {
         ...state,
         channels: [...state.channels, ...data],
-        publicMessages: [
-          ...state.publicMessages,
-          ...data.map((channel) => ({ channelId: channel.id, PublicMessage: [] }))
-        ]
+        publicMessages: [...state.publicMessages, ...defaultPublicMessages]
       };
     }
 
@@ -87,13 +94,17 @@ export default (state: Chat = initialState, action: Actions): Chat => {
 
       return {
         ...state,
-        publicMessages: [
-          ...state.publicMessages.map((obj) =>
-            obj.channelId === channelId
-              ? { channelId: channelId, PublicMessage: [...obj.PublicMessage, ...data] }
-              : obj
-          )
-        ]
+        publicMessages: state.publicMessages.map((obj) =>
+          obj.channelId === channelId
+            ? {
+                channelId: channelId,
+                PublicMessage: {
+                  ...obj.PublicMessage,
+                  [data.id]: data // Add the new message object with its ID as the key
+                }
+              }
+            : obj
+        )
       };
     }
 
@@ -129,49 +140,134 @@ export default (state: Chat = initialState, action: Actions): Chat => {
     case ActionTypes.REPLACEPUBLICMESSAGE: {
       const { channelId, data } = action;
       const publicChatObject = state.publicMessages.find((item) => item.channelId === channelId);
-      const publicChat = publicChatObject?.PublicMessage!;
+      const publicChat = publicChatObject?.PublicMessage || {};
 
-      const updatedMainArray = publicChat?.map((message) => {
-        const matchingMessage = data.find((subMessage) => subMessage.id === message.id);
-        return matchingMessage ? matchingMessage : message;
-      });
-
-      // Add new messages from subArray that do not exist in the mainArray
-      data.forEach((subMessage) => {
-        const existsInMainArray = publicChat.some((message) => message.id === subMessage.id);
-        if (!existsInMainArray) {
-          updatedMainArray.push(subMessage);
-        }
-      });
+      if (publicChat.hasOwnProperty(data.id)) {
+        publicChat[data.id] = data;
+      } else {
+        publicChat[data.id] = data;
+      }
 
       return {
         ...state,
         publicMessages: [
           ...state.publicMessages.map((obj) =>
             obj.channelId === channelId
-              ? { channelId: channelId, PublicMessage: [...updatedMainArray] }
+              ? { channelId: channelId, PublicMessage: { ...publicChat } }
               : obj
           )
         ]
       };
     }
 
-    case ActionTypes.VERIFYMESSAGESENDING: {
+    case ActionTypes.VERIFYPUBLICMESSAGESENDING: {
       const { channelId, data } = action;
 
       const publicChatObject = state.publicMessages.find((item) => item.channelId === channelId);
-      const publicChat = publicChatObject?.PublicMessage || [];
+      const publicChat = publicChatObject?.PublicMessage || {};
 
-      const updatedPublicChat = publicChat.map((item) =>
-        data.some((object) => object.id === item.id && item.sent === 0)
-          ? { ...item, sent: 2 }
-          : item
-      );
-      console.log("updatedPublicChat", updatedPublicChat);
+      if (publicChat.hasOwnProperty(data.id)) {
+        if (publicChat[data.id].sent === 0) {
+          publicChat[data.id].sent = 2;
+        }
+      }
       return {
         ...state,
         publicMessages: state.publicMessages.map((obj) =>
-          obj.channelId === channelId ? { channelId, PublicMessage: updatedPublicChat } : obj
+          obj.channelId === channelId ? { channelId, PublicMessage: { ...publicChat } } : obj
+        )
+      };
+    }
+
+    case ActionTypes.REPLACEDIRECTMESSAGE: {
+      const { peer, data } = action;
+      const directMessagesObject = state.directMessages.find((item) => item.peer === peer);
+      const directMessages = directMessagesObject?.chat || {};
+
+      if (directMessages.hasOwnProperty(data.id)) {
+        directMessages[data.id] = data;
+      } else {
+        directMessages[data.id] = data;
+      }
+
+      return {
+        ...state,
+        directMessages: [
+          ...state.directMessages.map((obj) =>
+            obj.peer === peer ? { peer, chat: { ...directMessages } } : obj
+          )
+        ]
+      };
+    }
+
+    case ActionTypes.VERIFYDIRECTMESSAGESENDING: {
+      const { peer, data } = action;
+
+      const directMessagesObject = state.directMessages.find((item) => item.peer === peer);
+      const directMessages = directMessagesObject?.chat || {};
+
+      if (directMessages.hasOwnProperty(data.id)) {
+        if (directMessages[data.id].sent === 0) {
+          directMessages[data.id].sent = 2;
+        }
+      }
+      return {
+        ...state,
+        directMessages: state.directMessages.map((obj) =>
+          obj.peer === peer ? { peer, chat: { ...directMessages } } : obj
+        )
+      };
+    }
+
+    case ActionTypes.DELETEPUBLICMESSAGE: {
+      const { channelId, msgId } = action;
+
+      const publicChatObject = state.publicMessages.find((item) => item.channelId === channelId);
+      const publicChat = publicChatObject?.PublicMessage || {};
+
+      if (publicChat[msgId]) {
+        delete publicChat[msgId];
+      }
+      return {
+        ...state,
+        publicMessages: state.publicMessages.map((obj) =>
+          obj.channelId === channelId ? { channelId, PublicMessage: { ...publicChat } } : obj
+        )
+      };
+    }
+
+    case ActionTypes.DELETEDIRECTMESSAGE: {
+      const { peer, msgId } = action;
+
+      const directMessagesObject = state.directMessages.find((item) => item.peer === peer);
+      const directMessages = directMessagesObject?.chat || {};
+
+      if (directMessages[msgId]) {
+        delete directMessages[msgId];
+      }
+
+      return {
+        ...state,
+        directMessages: [
+          ...state.directMessages.map((obj) =>
+            obj.peer === peer ? { peer, chat: { ...directMessages } } : obj
+          )
+        ]
+      };
+    }
+
+    case ActionTypes.ADDPREVIOUSPUBLICMESSAGES: {
+      const { channelId, data } = action;
+
+      const publicChatObject = state.publicMessages.find((item) => item.channelId === channelId);
+      const publicChat = publicChatObject?.PublicMessage || {};
+
+      return {
+        ...state,
+        publicMessages: state.publicMessages.map((obj) =>
+          obj.channelId === channelId
+            ? { channelId, PublicMessage: { ...data, ...publicChat } }
+            : obj
         )
       };
     }
@@ -186,7 +282,7 @@ export const addDirectContacts = (data: DirectContactsType[]) => (dispatch: Disp
   dispatch(addDirectContactsAct(data));
 };
 
-export const addDirectMessages = (peer: string, data: DirectMessage[]) => (dispatch: Dispatch) => {
+export const addDirectMessages = (peer: string, data: DirectMessage) => (dispatch: Dispatch) => {
   dispatch(addDirectMessagesAct(peer, data));
 };
 
@@ -199,7 +295,7 @@ export const addChannels = (data: Channel[]) => (dispatch: Dispatch) => {
 };
 
 export const addPublicMessage =
-  (channelId: string, data: PublicMessage[]) => (dispatch: Dispatch) => {
+  (channelId: string, data: PublicMessage) => (dispatch: Dispatch) => {
     dispatch(addPublicMessagesAct(channelId, data));
   };
 
@@ -216,13 +312,35 @@ export const UpdateChannels = (data: ChannelUpdate[]) => (dispatch: Dispatch) =>
 };
 
 export const replacePublicMessage =
-  (channelId: string, data: PublicMessage[]) => (dispatch: Dispatch) => {
+  (channelId: string, data: PublicMessage) => (dispatch: Dispatch) => {
     dispatch(replacePublicMessagesAct(channelId, data));
   };
 
-export const verifyMessageSending =
-  (channelId: string, data: PublicMessage[]) => (dispatch: Dispatch) => {
-    dispatch(verifyMessageSendingAct(channelId, data));
+export const verifyPublicMessageSending =
+  (channelId: string, data: PublicMessage) => (dispatch: Dispatch) => {
+    dispatch(verifyPublicMessageSendingAct(channelId, data));
+  };
+
+export const replaceDirectMessage = (peer: string, data: DirectMessage) => (dispatch: Dispatch) => {
+  dispatch(replaceDirectMessagesAct(peer, data));
+};
+
+export const verifyDirectMessageSending =
+  (peer: string, data: DirectMessage) => (dispatch: Dispatch) => {
+    dispatch(verifyDirectMessageSendingAct(peer, data));
+  };
+
+export const deletePublicMessage = (channelId: string, msgId: string) => (dispatch: Dispatch) => {
+  dispatch(deletePublicMessageAct(channelId, msgId));
+};
+
+export const deleteDirectMessage = (peer: string, msgId: string) => (dispatch: Dispatch) => {
+  dispatch(deleteDirectMessageAct(peer, msgId));
+};
+
+export const addPreviousPublicMessages =
+  (channelId: string, data: MessagesObject) => (dispatch: Dispatch) => {
+    dispatch(addPreviousPublicMessagesAct(channelId, data));
   };
 
 /* Action Creators */
@@ -234,7 +352,7 @@ export const addDirectContactsAct = (data: DirectContactsType[]): DirectContacts
   };
 };
 
-export const addDirectMessagesAct = (peer: string, data: DirectMessage[]): DirectMessagesAction => {
+export const addDirectMessagesAct = (peer: string, data: DirectMessage): DirectMessagesAction => {
   return {
     type: ActionTypes.DIRECTMESSAGES,
     peer,
@@ -244,21 +362,10 @@ export const addDirectMessagesAct = (peer: string, data: DirectMessage[]): Direc
 
 export const addPublicMessagesAct = (
   channelId: string,
-  data: PublicMessage[]
+  data: PublicMessage
 ): PublicMessagesAction => {
   return {
     type: ActionTypes.PUBLICMESSAGES,
-    channelId,
-    data
-  };
-};
-
-export const replacePublicMessagesAct = (
-  channelId: string,
-  data: PublicMessage[]
-): ReplacePublicMessagesAction => {
-  return {
-    type: ActionTypes.REPLACEPUBLICMESSAGE,
     channelId,
     data
   };
@@ -298,12 +405,75 @@ export const UpdateChannelsAct = (data: ChannelUpdate[]): UpdateChannelAction =>
   };
 };
 
-export const verifyMessageSendingAct = (
+export const replacePublicMessagesAct = (
   channelId: string,
-  data: PublicMessage[]
-): VerifySendingMessageAction => {
+  data: PublicMessage
+): ReplacePublicMessagesAction => {
   return {
-    type: ActionTypes.VERIFYMESSAGESENDING,
+    type: ActionTypes.REPLACEPUBLICMESSAGE,
+    channelId,
+    data
+  };
+};
+
+export const verifyPublicMessageSendingAct = (
+  channelId: string,
+  data: PublicMessage
+): VerifyPublicMessageSendingAction => {
+  return {
+    type: ActionTypes.VERIFYPUBLICMESSAGESENDING,
+    channelId,
+    data
+  };
+};
+
+export const replaceDirectMessagesAct = (
+  peer: string,
+  data: DirectMessage
+): ReplaceDirectMessagesAction => {
+  return {
+    type: ActionTypes.REPLACEDIRECTMESSAGE,
+    peer,
+    data
+  };
+};
+
+export const verifyDirectMessageSendingAct = (
+  peer: string,
+  data: DirectMessage
+): VerifyDirectMessageSendingAction => {
+  return {
+    type: ActionTypes.VERIFYDIRECTMESSAGESENDING,
+    peer,
+    data
+  };
+};
+
+export const deletePublicMessageAct = (
+  channelId: string,
+  msgId: string
+): DeletePublicMessagesAction => {
+  return {
+    type: ActionTypes.DELETEPUBLICMESSAGE,
+    channelId,
+    msgId
+  };
+};
+
+export const deleteDirectMessageAct = (peer: string, msgId: string): DeleteDirectMessagesAction => {
+  return {
+    type: ActionTypes.DELETEDIRECTMESSAGE,
+    peer,
+    msgId
+  };
+};
+
+export const addPreviousPublicMessagesAct = (
+  channelId: string,
+  data: MessagesObject
+): AddPreviousPublicMessagesAction => {
+  return {
+    type: ActionTypes.ADDPREVIOUSPUBLICMESSAGES,
     channelId,
     data
   };

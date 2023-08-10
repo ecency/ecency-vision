@@ -2,6 +2,7 @@ import {
   Channel,
   ChannelUpdate,
   DirectMessage,
+  MessagesObject,
   Profile,
   PublicMessage
 } from "./../../../providers/message-provider-types";
@@ -13,12 +14,12 @@ export interface DirectContactsType {
 
 export interface directMessagesList {
   peer: string;
-  chat: DirectMessage[];
+  chat: { [messageId: string]: DirectMessage };
 }
 
 export interface publicMessagesList {
   channelId: string;
-  PublicMessage: PublicMessage[];
+  PublicMessage: { [messageId: string]: PublicMessage };
 }
 
 export interface Chat {
@@ -41,7 +42,12 @@ export enum ActionTypes {
   LEFTCHANNELLIST = "@chat/LEFTCHANNELLIST",
   UPDATEDCHANNEL = "@chat/UPDATEDCHANNEL",
   REPLACEPUBLICMESSAGE = "@chat/REPLACEPUBLICMESSAGE",
-  VERIFYMESSAGESENDING = "@chat/VERIFYMESSAGESENDING"
+  VERIFYPUBLICMESSAGESENDING = "@chat/VERIFYMESSAGESENDING",
+  REPLACEDIRECTMESSAGE = "@chat/REPLACEDIRECTMESSAGE",
+  VERIFYDIRECTMESSAGESENDING = "@chat/VERIFYDIRECTMESSAGESENDING",
+  DELETEPUBLICMESSAGE = "@chat/DELETEPUBLICMESSAGE",
+  DELETEDIRECTMESSAGE = "@chat/DELETEDIRECTMESSAGE",
+  ADDPREVIOUSPUBLICMESSAGES = "@chat/ADDPREVIOUSPUBLICMESSAGES"
 }
 
 export interface DirectContactsAction {
@@ -55,13 +61,13 @@ export interface ResetChatAction {
 
 export interface DirectMessagesAction {
   type: ActionTypes.DIRECTMESSAGES;
-  data: DirectMessage[];
+  data: DirectMessage;
   peer: string;
 }
 
 export interface PublicMessagesAction {
   type: ActionTypes.PUBLICMESSAGES;
-  data: PublicMessage[];
+  data: PublicMessage;
   channelId: string;
 }
 
@@ -86,14 +92,43 @@ export interface UpdateChannelAction {
 
 export interface ReplacePublicMessagesAction {
   type: ActionTypes.REPLACEPUBLICMESSAGE;
-  data: PublicMessage[];
+  data: PublicMessage;
   channelId: string;
 }
 
-export interface VerifySendingMessageAction {
-  type: ActionTypes.VERIFYMESSAGESENDING;
-  data: PublicMessage[];
+export interface ReplaceDirectMessagesAction {
+  type: ActionTypes.REPLACEDIRECTMESSAGE;
+  data: DirectMessage;
+  peer: string;
+}
+
+export interface VerifyPublicMessageSendingAction {
+  type: ActionTypes.VERIFYPUBLICMESSAGESENDING;
+  data: PublicMessage;
   channelId: string;
+}
+
+export interface VerifyDirectMessageSendingAction {
+  type: ActionTypes.VERIFYDIRECTMESSAGESENDING;
+  data: DirectMessage;
+  peer: string;
+}
+export interface DeletePublicMessagesAction {
+  type: ActionTypes.DELETEPUBLICMESSAGE;
+  msgId: string;
+  channelId: string;
+}
+
+export interface DeleteDirectMessagesAction {
+  type: ActionTypes.DELETEDIRECTMESSAGE;
+  msgId: string;
+  peer: string;
+}
+
+export interface AddPreviousPublicMessagesAction {
+  type: ActionTypes.ADDPREVIOUSPUBLICMESSAGES;
+  channelId: string;
+  data: MessagesObject;
 }
 
 export type Actions =
@@ -106,4 +141,9 @@ export type Actions =
   | LeftChannelsAction
   | UpdateChannelAction
   | ReplacePublicMessagesAction
-  | VerifySendingMessageAction;
+  | VerifyPublicMessageSendingAction
+  | ReplaceDirectMessagesAction
+  | VerifyDirectMessageSendingAction
+  | DeletePublicMessagesAction
+  | DeleteDirectMessagesAction
+  | AddPreviousPublicMessagesAction;

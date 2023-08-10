@@ -58,6 +58,10 @@ export type DirectMessage = {
   sent?: number;
 };
 
+export type MessagesObject = {
+  [key: string]: PublicMessage;
+};
+
 export type Message = PublicMessage | DirectMessage;
 
 export type ChannelMessageHide = { id: string; reason: string };
