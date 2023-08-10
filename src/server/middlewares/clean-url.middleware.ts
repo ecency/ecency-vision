@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 class CleanUrlMiddlewareError extends Error {
   constructor(public redirectUri: string) {
     super();
+    this.name = "CleanUrlMiddlewareError";
   }
 }
 
@@ -63,8 +64,8 @@ export class CleanUrlMiddleware {
       } else if (instance.stripLastSlash()) {
         next();
       }
-    } catch (e) {
-      if (e instanceof CleanUrlMiddlewareError) {
+    } catch (e: any) {
+      if (e instanceof CleanUrlMiddlewareError || e.name == "CleanUrlMiddlewareError") {
         instance.response.redirect(301, e.redirectUri);
       }
     }
