@@ -34,9 +34,11 @@ export const baseApiRequest = (
 export const cleanURL = (req: any, res: any, next: any) => {
   if (req.url.includes("//")) {
     res.redirect(req.url.replace(new RegExp("/{2,}", "g"), "/"));
+    return;
   }
   if (req.url.includes("@@")) {
     res.redirect(req.url.replace(new RegExp("@{2,}", "g"), "@"));
+    return;
   }
   if (req.url.includes("-hs?code")) {
     next();
@@ -46,6 +48,7 @@ export const cleanURL = (req: any, res: any, next: any) => {
     !req.url.includes("onboard-friend/")
   ) {
     res.redirect(301, req.url.toLowerCase());
+    return;
   } else {
     next();
   }
@@ -55,6 +58,7 @@ export const stripLastSlash = (req: any, res: any, next: any) => {
   if (req.path.substr(-1) === "/" && req.path.length > 1) {
     let query = req.url.slice(req.path.length);
     res.redirect(301, req.path.slice(0, -1) + query);
+    return;
   } else {
     next();
   }
