@@ -10,9 +10,18 @@ export class CleanUrlMiddleware {
   constructor(private request: Request, private response: Response, private next: NextFunction) {}
 
   private removeDuplicates(): boolean {
-    const hasDuplicates = ["//", "@@"].some((i) => this.request.url.includes(i));
+    let replaceValue = "";
+    const hasDuplicates = ["//", "@@"].some((i) => {
+      if (this.request.url.includes(i)) {
+        replaceValue = i[0];
+        return true;
+      }
+      return false;
+    });
     if (hasDuplicates) {
-      throw new CleanUrlMiddlewareError(this.request.url.replace(new RegExp("/{2,}", "g"), "/"));
+      throw new CleanUrlMiddlewareError(
+        this.request.url.replace(new RegExp(replaceValue + "{2,}", "g"), replaceValue)
+      );
     }
     return false;
   }
