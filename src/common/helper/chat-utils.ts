@@ -30,7 +30,7 @@ export const resetProfile = (activeUser: ActiveUser | null) => {
       ls.remove(`${activeUser?.username}_noStrPrivKey`);
       const response = await getAccountFull(activeUser?.username!);
       const updatedProfile = await updateProfile(response, { ...profile });
-      console.log("Updated profile", updatedProfile);
+      // console.log("Updated profile", updatedProfile);
       resolve(updatedProfile);
     } catch (error) {
       reject(error);
@@ -61,7 +61,6 @@ export const setChannelMetaData = (username: string, channel: Channel) => {
         channel: channel
       };
       const updatedProfile = await updateProfile(response, { ...profile, ...newProfile });
-      console.log("Channel metadata updated successfully", updatedProfile);
       resolve(updatedProfile);
     } catch (error) {
       reject(error);

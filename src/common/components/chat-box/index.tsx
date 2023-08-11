@@ -600,7 +600,7 @@ export default function ChatBox(props: Props) {
       element.scrollTop + chatBodyDivRef?.current?.clientHeight! < element.scrollHeight - 200;
     setIsScrollToTop(isScrollToTop);
     setIsScrollToBottom(isScrollToBottom);
-    const scrollerTop = element.scrollTop <= 600;
+    const scrollerTop = element.scrollTop <= 600 && publicMessages.length > 25;
     if (isCommunity && scrollerTop) {
       setIsTop(true);
     } else {
