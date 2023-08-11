@@ -49,7 +49,7 @@ export default (state: Chat = initialState, action: Actions): Chat => {
           return existingContact.name === contact.name && existingContact.pubkey === contact.pubkey;
         });
       });
-      // console.log(uniqueDirectContacts, "uniqueDirectContacts");
+
       return {
         ...state,
         directContacts: [...state.directContacts, ...uniqueDirectContacts],

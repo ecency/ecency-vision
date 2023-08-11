@@ -23,7 +23,6 @@ export const setNostrkeys = (keys: NostrKeysType) => {
     pub: keys.pub,
     priv: keys.priv
   };
-  // console.log("detail", detail)
   const ev = new CustomEvent("createMSInstance", { detail });
   window.dispatchEvent(ev);
 };
@@ -60,15 +59,10 @@ const MessageProvider = (props: Props) => {
     if (chat.channels.length !== 0) {
       setIsCommunityCreated(true);
     }
-
     if (chat.directMessages.length !== 0) {
       setIsDirectChatCreated(true);
     }
   }, [chat.channels, chat.directMessages]);
-
-  useEffect(() => {
-    console.log("replacedDirectMessagesBuffer", replacedDirectMessagesBuffer);
-  }, [replacedDirectMessagesBuffer]);
 
   useEffect(() => {
     window.addEventListener("createMSInstance", createMSInstance);
@@ -79,12 +73,7 @@ const MessageProvider = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    // console.log("publicMessageBuffer", publicMessageBuffer);
-  }, [publicMessageBuffer]);
-
-  useEffect(() => {
     if (!window.messageService && keys?.priv) {
-      // console.log(keys, "keys")
       const messageServiceInstance = initMessageService(keys);
       setMessageService(messageServiceInstance);
     }
@@ -98,7 +87,6 @@ const MessageProvider = (props: Props) => {
 
   const createMSInstance = (e: Event) => {
     const detail = (e as CustomEvent).detail as NostrKeysType;
-    // console.log(detail, "details")
     const messageServiceInstance = initMessageService(detail);
     setMessageService(messageServiceInstance);
   };
@@ -149,7 +137,6 @@ const MessageProvider = (props: Props) => {
 
   // Profile update handler
   const handleProfileUpdate = (data: Profile[]) => {
-    // console.log("handleProfileUpdate", data);
     props.addProfile(data);
   };
 
@@ -163,7 +150,6 @@ const MessageProvider = (props: Props) => {
 
   //Direct contact handler
   const handleDirectContact = (data: DirectContact[]) => {
-    // console.log("handleDirectContact", data);
     const result = [...chat.directContacts];
     data.forEach(({ name, pubkey }) => {
       const isPresent = chat.directContacts.some(
@@ -189,7 +175,6 @@ const MessageProvider = (props: Props) => {
   //Direct message ahandle before sent
 
   const handleDirectMessageBeforeSent = (data: DirectMessage[]) => {
-    console.log("handleDirectMessageBeeforeSent", data);
     data.map((m) => {
       const { peer, id } = m;
       setReplacedDirectMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
@@ -224,7 +209,6 @@ const MessageProvider = (props: Props) => {
 
   // // Direct message handler after sent
   const handleDirectMessageAfterSent = (data: DirectMessage[]) => {
-    console.log("handleDirectMessageAfterSent", data);
     if (isDirectChatCreated) {
       data.forEach((message) => {
         const { peer, id } = message;
@@ -232,7 +216,6 @@ const MessageProvider = (props: Props) => {
           setReplacedDirectMessagesBuffer((prevBuffer) =>
             prevBuffer.filter((messageId) => messageId !== id)
           );
-          console.log("I reached");
           props.replaceDirectMessage(peer, message);
         } else {
           props.addDirectMessages(peer, message);
@@ -280,8 +263,6 @@ const MessageProvider = (props: Props) => {
 
   // Channel creation handler
   const handleChannelCreation = (data: Channel[]) => {
-    // console.log("handleChannelCreation", data);
-
     const append = data.filter((x) => chat.channels.find((y) => y.id === x.id) === undefined);
     props.addChannels(append);
   };
@@ -297,7 +278,6 @@ const MessageProvider = (props: Props) => {
 
   // Channel update handler
   const handleChannelUpdate = (data: ChannelUpdate[]) => {
-    // console.log("handleChannelUpdate", data);
     props.UpdateChannels(data);
   };
 
@@ -319,7 +299,6 @@ const MessageProvider = (props: Props) => {
   //public message handle before sent
 
   const handlePublicMessageBeforeSent = (data: PublicMessage[]) => {
-    console.log("handlePublicMessageBeeforeSent", data);
     data.map((m) => {
       const { id, root } = m;
       setReplacedPublicMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
@@ -348,7 +327,6 @@ const MessageProvider = (props: Props) => {
 
   //Public Message handler after sent
   const handlePublicMessageAfterSent = (data: PublicMessage[]) => {
-    console.log("handlePublicMessageAfterSent", data, chat);
     if (isCommunityCreated) {
       data.forEach((message) => {
         const { root, id } = message;
@@ -418,7 +396,6 @@ const MessageProvider = (props: Props) => {
 
   //previous public messages handler
   const handlePreviousPublicMessages = (data: PublicMessage[]) => {
-    console.log("handlePreviousPublicMessages", data);
     const channelId = data[0].root;
     const messagesObject: MessagesObject = data.reduce((result, message) => {
       result[message.id] = message;
@@ -445,8 +422,6 @@ const MessageProvider = (props: Props) => {
 
   // Left channel handler
   const handleLeftChannelList = (data: string[]) => {
-    // console.log("handleLeftChannelList", data);
-    // setLeftChannelList(data);
     props.addleftChannels(data);
   };
 

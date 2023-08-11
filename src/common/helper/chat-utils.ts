@@ -61,6 +61,7 @@ export const setChannelMetaData = (username: string, channel: Channel) => {
         channel: channel
       };
       const updatedProfile = await updateProfile(response, { ...profile, ...newProfile });
+      console.log("Channel metadata updated successfully", updatedProfile);
       resolve(updatedProfile);
     } catch (error) {
       reject(error);

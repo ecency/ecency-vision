@@ -95,8 +95,7 @@ import {
   setProfileMetaData,
   resetProfile,
   getCommunities,
-  getPrivateKey,
-  notEmpty
+  getPrivateKey
 } from "../../helper/chat-utils";
 import * as ls from "../../util/local-storage";
 import { renderPostBody } from "@ecency/render-helper";
@@ -191,14 +190,6 @@ export default function ChatBox(props: Props) {
   const [resendMessage, setResendMessage] = useState<PublicMessage | DirectMessage>();
 
   useEffect(() => {
-    console.log("publicMessages", publicMessages);
-  }, [publicMessages]);
-
-  useEffect(() => {
-    // console.log(currentChannel, "currentChannel");
-  }, [currentChannel]);
-
-  useEffect(() => {
     const updated: ChannelUpdate = props.chat.updatedChannel
       .filter((x) => x.channelId === currentChannel?.id!)
       .sort((a, b) => b.created - a.created)[0];
@@ -209,7 +200,6 @@ export default function ChatBox(props: Props) {
       );
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
-      // console.log("community messages", messages);
       const channel = {
         name: updated.name,
         about: updated.about,
@@ -227,10 +217,8 @@ export default function ChatBox(props: Props) {
   }, [props.chat.updatedChannel]);
 
   useEffect(() => {
-    console.log("isTop", isTop);
     if (isTop) {
       fetchPrevMessages();
-      console.log("event is dispatched");
     }
   }, [isTop]);
 
@@ -264,7 +252,6 @@ export default function ChatBox(props: Props) {
     if (props.chat.channels.length !== 0 || props.chat.directContacts.length !== 0) {
       setInProgress(false);
     }
-    console.log("chat in store", props.chat);
   }, [props.chat]);
 
   useEffect(() => {
@@ -276,7 +263,6 @@ export default function ChatBox(props: Props) {
       const removed = removedUsers.includes(activeUserKeys?.pub!);
       setIsActiveUserRemoved(removed);
     }
-    // scrollerClicked();
   }, [currentChannel, removedUsers]);
 
   useEffect(() => {
@@ -288,7 +274,6 @@ export default function ChatBox(props: Props) {
   }, []);
 
   // useEffect(() => {
-  //   console.log("Use effect run");
   //   if (window.messageService) {
   //     setHasUserJoinedChat(true);
   //     // setInProgress(false);
@@ -328,25 +313,12 @@ export default function ChatBox(props: Props) {
 
   useEffect(() => {
     if (directMessagesList.length !== 0 || publicMessages.length !== 0) {
-      //Initialize the zooming effect
       zoomInitializer();
     }
     if (directMessagesList.length !== 0) {
       scrollerClicked();
     }
-
-    console.log(
-      "isTop",
-      !isTop,
-      "isScrollToTop",
-      !isScrollToTop,
-      "publicMessages",
-      publicMessages.length,
-      "isCommunity",
-      isCommunity
-    );
-    if (!isTop && !isScrollToTop && publicMessages.length !== 0 && isCommunity) {
-      console.log("yes i run");
+    if (!isScrollToBottom && publicMessages.length !== 0 && isCommunity) {
       scrollerClicked();
     }
   }, [directMessagesList, publicMessages]);
@@ -357,9 +329,7 @@ export default function ChatBox(props: Props) {
       const publicMessages: PublicMessage[] = fetchCommunityMessages(currentChannel.id);
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
-      // console.log("community messages", messages);
     }
-    // scrollerClicked();
   }, [currentChannel, isCommunity, props.chat.publicMessages]);
 
   useEffect(() => {
@@ -454,7 +424,6 @@ export default function ChatBox(props: Props) {
     const blockedUsers = props.chat.profiles
       .filter((item) => blockedUser.includes(item.creator))
       .map((item) => ({ name: item.name, pubkey: item.creator }));
-    // console.log("blockedUsers", blockedUsers);
     setBlockedUsers(blockedUsers);
   };
 
@@ -470,13 +439,11 @@ export default function ChatBox(props: Props) {
 
   const fetchCurrentChannel = (communityName: string) => {
     const channel = props.chat.channels.find((channel) => channel.communityName === communityName);
-    // console.log("fetch current chanel", channel);
     if (channel) {
       const updated: ChannelUpdate = props.chat.updatedChannel
         .filter((x) => x.channelId === channel.id)
         .sort((a, b) => b.created - a.created)[0];
       if (updated) {
-        // console.log("updated", updated);
         const channel = {
           name: updated.name,
           about: updated.about,
@@ -589,7 +556,7 @@ export default function ChatBox(props: Props) {
         if (!isActveUserRemoved) {
           window?.messageService?.sendPublicMessage(currentChannel!, message, [], "");
         } else {
-          error("You cannot send messages in this group.");
+          error(_t("chat.message-warning"));
         }
       }
       if (isCurrentUser) {
@@ -614,7 +581,6 @@ export default function ChatBox(props: Props) {
     window.messageService
       ?.fetchPrevMessages(currentChannel!.id, publicMessages[0].created)
       .then((num) => {
-        console.log("number", num);
         if (num < 25) {
           setHasMore(false);
         }
@@ -631,7 +597,7 @@ export default function ChatBox(props: Props) {
     const isScrollToTop = !isCurrentUser && !isCommunity && element.scrollTop >= srollHeight;
     const isScrollToBottom =
       (isCurrentUser || isCommunity) &&
-      element.scrollTop + chatBodyDivRef?.current?.clientHeight! < element.scrollHeight;
+      element.scrollTop + chatBodyDivRef?.current?.clientHeight! < element.scrollHeight - 200;
     setIsScrollToTop(isScrollToTop);
     setIsScrollToBottom(isScrollToBottom);
     const scrollerTop = element.scrollTop <= 600;
@@ -643,7 +609,6 @@ export default function ChatBox(props: Props) {
   };
 
   const scrollerClicked = () => {
-    console.log("Scroller clicked");
     chatBodyDivRef?.current?.scroll({
       top: isCurrentUser || isCommunity ? chatBodyDivRef?.current?.scrollHeight : 0,
       behavior: "auto"
@@ -963,7 +928,7 @@ export default function ChatBox(props: Props) {
       <>
         <div className="add-dialog-header">
           <div className="add-dialog-titles">
-            <h4 className="add-main-title">Edit Community Roles</h4>
+            <h4 className="add-main-title">{_t("chat.edit-community-roles")}</h4>
           </div>
         </div>
         <div className="community-chat-role-edit-dialog-content">
@@ -1010,7 +975,7 @@ export default function ChatBox(props: Props) {
                 onClick={() => handleChannelUpdate(ADDROLE)}
                 disabled={inProgress || addRoleError.length !== 0 || user.length === 0}
               >
-                Add
+                {_t("chat.add")}
               </Button>
             </div>
           </div>
@@ -1061,7 +1026,7 @@ export default function ChatBox(props: Props) {
             </>
           ) : (
             <div className="text-center">
-              <p>No admin or moderator for this community chat.</p>
+              <p>{_t("chat.no-admin")}</p>
             </div>
           )}
         </div>
@@ -1073,7 +1038,7 @@ export default function ChatBox(props: Props) {
     return (
       <>
         <div className="blocked-user-header" style={{ marginBottom: "1rem" }}>
-          <h4 className="blocked-user-title">Blocked Users</h4>
+          <h4 className="blocked-user-title">{_t("chat.blocked-users")}</h4>
         </div>
 
         {blockedUsers.length !== 0 ? (
@@ -1082,7 +1047,7 @@ export default function ChatBox(props: Props) {
               <thead>
                 <tr>
                   <th style={{ width: "50%" }}>{_t("community.roles-account")}</th>
-                  <th style={{ width: "50%" }}>Action</th>
+                  <th style={{ width: "50%" }}>{_t("chat.action")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -1107,7 +1072,7 @@ export default function ChatBox(props: Props) {
                               setRemovedUserID(user.pubkey);
                             }}
                           >
-                            Unblock
+                            {_t("chat.unblock")}
                           </Button>
                         </td>
                       </tr>
@@ -1118,7 +1083,7 @@ export default function ChatBox(props: Props) {
           </>
         ) : (
           <div className="text-center">
-            <p>No Blocked user yet.</p>
+            <p> {_t("chat.no-locked-user")}</p>
           </div>
         )}
       </>
@@ -1131,8 +1096,8 @@ export default function ChatBox(props: Props) {
         <div className="import-chat-dialog-header border-bottom">
           <div className="step-no">1</div>
           <div className="import-chat-dialog-titles">
-            <div className="import-chat-main-title">Enter Chat private key</div>
-            <div className="import-chat-sub-title">Enter chat private key to import all chats</div>
+            <div className="import-chat-main-title">{_t("chat.enter-private-key")}</div>
+            <div className="import-chat-sub-title">{_t("chat.enter-private-key-detail")}</div>
           </div>
         </div>
         <div className="private-key">
@@ -1221,14 +1186,14 @@ export default function ChatBox(props: Props) {
               setKeyDialog(false);
             }}
           >
-            Close
+            {_t("chat.close")}
           </Button>
           <Button
             variant="outline-primary"
             className="confirm-btn"
             onClick={() => handleConfirmButton(actionType)}
           >
-            Confirm
+            {_t("chat.confirm")}
           </Button>
         </p>
       </>
@@ -1340,7 +1305,7 @@ export default function ChatBox(props: Props) {
         setRemovedUserID("");
       }
     } catch (err) {
-      error("Error occurred while updating community");
+      error(_t("chat.error-updating-community"));
     }
   };
 
@@ -1398,14 +1363,14 @@ export default function ChatBox(props: Props) {
       icon: linkSvg
     },
     {
-      label: "Leave",
+      label: _t("chat.leave"),
       onClick: leaveClicked,
       icon: chatLeaveSvg
     },
     ...(props.activeUser?.username === currentChannel?.communityName
       ? [
           {
-            label: "Edit Roles",
+            label: _t("chat.edit-roles"),
             onClick: handleEditRoles,
             icon: editSVG
           }
@@ -1414,7 +1379,7 @@ export default function ChatBox(props: Props) {
     ...(communityAdmins.includes(props.activeUser?.username!)
       ? [
           {
-            label: "Blocked Users",
+            label: _t("chat.blocked-users"),
             onClick: handleBlockedUsers,
             icon: removeUserSvg
           }
@@ -1431,7 +1396,7 @@ export default function ChatBox(props: Props) {
 
   const menuItems: MenuItem[] = [
     {
-      label: "Copy private key",
+      label: _t("chat.copy-private-key"),
       onClick: () => inviteClicked(noStrPrivKey),
       icon: linkSvg
     }
@@ -1754,7 +1719,7 @@ export default function ChatBox(props: Props) {
                                                     setClickedMessage("");
                                                   }}
                                                 >
-                                                  Unblock
+                                                  {_t("chat.unblock")}
                                                 </Button>
                                               </>
                                             ) : (
@@ -1767,7 +1732,7 @@ export default function ChatBox(props: Props) {
                                                     setClickedMessage("");
                                                   }}
                                                 >
-                                                  Block
+                                                  {_t("chat.block")}
                                                 </Button>
                                               </>
                                             )}
@@ -1980,7 +1945,7 @@ export default function ChatBox(props: Props) {
                       <React.Fragment>
                         {props.chat.channels.length !== 0 && communities.length !== 0 && (
                           <>
-                            <div className="community-header">Communities</div>
+                            <div className="community-header">{_t("chat.communities")}</div>
                             {communities.map((channel) => {
                               return (
                                 <div key={channel.id} className="chat-content">
@@ -2009,7 +1974,7 @@ export default function ChatBox(props: Props) {
                               );
                             })}
                             {props.chat.directContacts.length !== 0 && (
-                              <div className="dm-header">DMs</div>
+                              <div className="dm-header">{_t("chat.dms")}</div>
                             )}
                           </>
                         )}
@@ -2036,7 +2001,7 @@ export default function ChatBox(props: Props) {
                       <>
                         <div className="start-chat-btn" style={{ marginTop: "25%" }}>
                           <Button variant="primary" onClick={handleImportChat}>
-                            Import Chat
+                            {_t("chat.import-chat")}
                           </Button>
                         </div>
                         {<OrDivider />}
@@ -2048,12 +2013,12 @@ export default function ChatBox(props: Props) {
                               setStep(9);
                             }}
                           >
-                            Create New Account
+                            {_t("chat.create-new-account")}
                           </Button>
                         </div>
                       </>
                     ) : inProgress ? (
-                      <h3 className="no-chat">Loading...</h3>
+                      <h3 className="no-chat">{_t("chat.loading")}</h3>
                     ) : (
                       <>
                         <p className="no-chat">{_t("chat.no-chat")}</p>
@@ -2090,7 +2055,7 @@ export default function ChatBox(props: Props) {
             )}
             {isActveUserRemoved && isCommunity && (
               <p className="d-flex justify-content-center mt-4 mb-0">
-                You have been blocked from this community
+                {_t("chat.blocked-user-message")}
               </p>
             )}
           </div>
