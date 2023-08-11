@@ -44,17 +44,6 @@ export default function JoinCommunityChatBtn(props: Props) {
   }, []);
 
   useEffect(() => {
-    console.log(
-      "isCommunityChatJoined",
-      isCommunityChatJoined,
-      "isChatEnabled",
-      isChatEnabled,
-      "hasUserJoinedChat",
-      hasUserJoinedChat
-    );
-  }, [isCommunityChatJoined, isChatEnabled, hasUserJoinedChat]);
-
-  useEffect(() => {
     fetchCommunityProfile();
     fetchUserProfileData();
   }, [chat.channels, currentChannel, chat.leftChannelsList]);
