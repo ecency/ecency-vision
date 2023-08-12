@@ -12,64 +12,125 @@
         align-self: center;
     }
 
-    .activities{
+    .activities-bottom{
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 3px;
         width: 100%;
-        height: fit-content;
-        padding: 10px;
-        border-radius: 5px;
+        padding: 20px;
+        gap: 20px;
 
-        // @include themify(day) {
-        //     background: #f9f9f9;
-        //     // color: $steel-grey;
-        //     color: #535e65;
-        //   }
+        .activities-filter{
+            position: sticky;
+            flex: 1;
 
-        //   @include themify(night) {
-        //     background: #161d26;
-        //     // color: $pinkish-grey;
-        //     color: #fcfcfc;
-        //   }
-        &:nth-child(odd) {
-            @include themify(day) {
-              background: $white-three;
-            }
-  
-            @include themify(night) {
-              background: $dark-two;
-            }
-          }
-
-        .activities-header{
-            justify-self: center;
-            align-self: center;
-            font-size: 14px;
-        }
-
-        .activities-info-wrapper{
-            display: flex;
-            gap: 10px;
-
-            .activities-body{
-                flex: 2;
-            }
-    
-            .activities-details{
-                flex: 1;
+            .filter-dropdown{
                 display: flex;
-                align-items: center;
-                gap: 5px;
+                flex-direction: column;
+                padding: 5px;
+                margin-bottom: 15px;
+                
+                @include themify(day) {
+                    border-bottom: 1px solid #f5f5f5;
+                }
+                
+                @include themify(night) {
+                      border-bottom: 1px solid #161d26;
+                  }
 
-                .activity-info{
-                    display: flex;
-                    flex-direction: column;
-                    gap: 5px;
+                .dropdown-header{
+                    align-self: center;
                 }
             }
+
+           .filter-container{
+            display: flex;
+            flex-direction: column;
+
+            .filter-header{
+                align-self: center;
+            }
+
+            .filter-wrapper{
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                .filter-types{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    padding: 10px;    
+                    
+                    @include themify(day) {
+                        border-bottom: 1px solid #f5f5f5;
+                    }
+                    
+                    @include themify(night) {
+                          border-bottom: 1px solid #161d26;
+                      }
+                }
+            }
+
+           }
         }
 
+        .activities-wrapper{
+            flex: 4;
+
+            .activities{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 3px;
+                // width: 75%;
+                height: fit-content;
+                padding: 10px;
+                border-radius: 8px;
+        
+                &:nth-child(odd) {
+                    @include themify(day) {
+                      background: $white-three;
+                    }
+          
+                    @include themify(night) {
+                      background: $dark-two;
+                    }
+                  }
+        
+                .activities-header{
+                    justify-self: center;
+                    align-self: center;
+                    font-size: 14px;
+                }
+        
+                .activities-info-wrapper{
+                    display: flex;
+                    gap: 10px;
+        
+                    .activities-body{
+                        flex: 2;
+                    }
+            
+                    .activities-details{
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+    
+                        .activity-icon{
+                            width: 20px;
+                        }
+        
+                        .activity-info{
+                            display: flex;
+                            flex-direction: column;
+                            gap: 5px;
+                        }
+                    }
+                }
+        
+            }
+        }
     }
+
 }
