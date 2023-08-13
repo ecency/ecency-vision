@@ -627,12 +627,13 @@ class SubmitPage extends BaseComponent<Props, State> {
         schedule: null,
         reblogSwitch: false,
         description: "",
-        // Speak Advenaced
+        // Speak Advanced
         isThreespeak: false,
         videoId: "",
         speakPermlink: "",
         speakAuthor: "",
-        isNsfw: false
+        isNsfw: false,
+        videoMetadata: null
       },
       () => {
         this.saveAdvanced();
