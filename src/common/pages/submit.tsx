@@ -107,6 +107,7 @@ interface Advanced {
   speakPermlink: string;
   speakAuthor: string;
   isNsfw: boolean;
+  videoMetadata: any;
 }
 
 interface PreviewProps extends PostBase {
@@ -488,7 +489,8 @@ class SubmitPage extends BaseComponent<Props, State> {
       videoId,
       speakPermlink,
       speakAuthor,
-      isNsfw
+      isNsfw,
+      videoMetadata
     } = this.state;
 
     const advanced: Advanced = {
@@ -502,7 +504,8 @@ class SubmitPage extends BaseComponent<Props, State> {
       videoId,
       speakPermlink,
       speakAuthor,
-      isNsfw
+      isNsfw,
+      videoMetadata
     };
 
     ls.set("local_advanced", advanced);
@@ -1218,7 +1221,8 @@ class SubmitPage extends BaseComponent<Props, State> {
               setVideoEncoderBeneficiary: this.setVideoEncoderBeneficiary,
               toggleNsfwC: this.toggleNsfwC,
               comment: false,
-              setVideoMetadata: (v: ThreeSpeakVideo) => this.setState({ videoMetadata: v })
+              setVideoMetadata: (v: ThreeSpeakVideo) =>
+                this.setState({ videoMetadata: v }, this.saveAdvanced)
             })}
             <div className="title-input">
               <Form.Control
