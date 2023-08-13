@@ -755,12 +755,6 @@ class SubmitPage extends BaseComponent<Props, State> {
       permlink = createPermlink(title, true);
     }
 
-    if (isThreespeak && speakPermlink !== "") {
-      permlink = speakPermlink;
-      // update speak video with title, body and tags
-      updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw);
-    }
-
     const [parentPermlink] = tags;
     let jsonMeta = this.buildMetadata();
     if (jsonMeta && jsonMeta.image && jsonMeta.image.length > 0) {
@@ -769,6 +763,12 @@ class SubmitPage extends BaseComponent<Props, State> {
           .slice(0, 5)
           .map((element: string) => this.getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
       );
+    }
+
+    if (isThreespeak && speakPermlink !== "") {
+      permlink = speakPermlink;
+      // update speak video with title, body and tags
+      updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw);
     }
 
     const options = makeCommentOptions(author, permlink, reward, beneficiaries);
@@ -1003,7 +1003,8 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   buildMetadata = () => {
-    const { tags, title, body, description, selectedThumbnail, selectionTouched } = this.state;
+    const { tags, title, body, description, selectedThumbnail, selectionTouched, videoMetadata } =
+      this.state;
     const { thumbnails, ...meta } = extractMetaData(body);
     let localThumbnail = ls.get("draft_selected_image");
 
@@ -1021,36 +1022,36 @@ class SubmitPage extends BaseComponent<Props, State> {
     if (meta.image) {
       meta.image = [...new Set(meta.image)];
     }
-    if (this.state.videoMetadata) {
+    if (videoMetadata) {
       meta.video = {
         info: {
           platform: "3speak",
-          title: title || this.state.videoMetadata.title,
-          author: this.state.videoMetadata.owner,
-          permlink: this.state.videoMetadata.permlink,
-          duration: this.state.videoMetadata.duration,
-          filesize: this.state.videoMetadata.size,
-          file: this.state.videoMetadata.filename,
-          lang: this.state.videoMetadata.language,
-          firstUpload: this.state.videoMetadata.firstUpload,
+          title: title || videoMetadata.title,
+          author: videoMetadata.owner,
+          permlink: videoMetadata.permlink,
+          duration: videoMetadata.duration,
+          filesize: videoMetadata.size,
+          file: videoMetadata.filename,
+          lang: videoMetadata.language,
+          firstUpload: videoMetadata.firstUpload,
           ipfs: null,
           ipfsThumbnail: null,
-          video_v2: this.state.videoMetadata.video_v2,
+          video_v2: videoMetadata.video_v2,
           sourceMap: [
             {
               type: "video",
-              url: this.state.videoMetadata.video_v2,
+              url: videoMetadata.video_v2,
               format: "m3u8"
             },
             {
               type: "thumbnail",
-              url: this.state.videoMetadata.thumbUrl
+              url: videoMetadata.thumbUrl
             }
           ]
         },
         content: {
-          description: description || this.state.videoMetadata.description,
-          tags: this.state.videoMetadata.tags_v2
+          description: description || videoMetadata.description,
+          tags: videoMetadata.tags_v2
         }
       };
     }
