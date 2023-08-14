@@ -155,19 +155,12 @@ export function Submit(props: PageProps & MatchProps) {
       setSelectedThumbnail(draft.meta?.image?.[0]);
       setDescription(draft.meta?.description ?? "");
 
-      if (
-        draft.meta?.isThreespeak &&
-        draft.meta?.speakAuthor &&
-        draft.meta?.speakPermlink &&
-        draft.meta?.videoId &&
-        draft.meta?.isNsfw &&
-        draft.meta?.videoMetadata
-      ) {
-        threeSpeakManager.setIs3Speak(draft.meta?.isThreespeak);
-        threeSpeakManager.setSpeakAuthor(draft.meta?.speakAuthor);
-        threeSpeakManager.setSpeakPermlink(draft.meta?.speakPermlink);
-        threeSpeakManager.setVideoId(draft.meta?.videoId);
-        threeSpeakManager.setIsNsfw(draft.meta?.isNsfw);
+      if (draft.meta?.isThreespeak) {
+        threeSpeakManager.setIs3Speak(draft.meta?.isThreespeak ?? false);
+        threeSpeakManager.setSpeakAuthor(draft.meta?.speakAuthor ?? "");
+        threeSpeakManager.setSpeakPermlink(draft.meta?.speakPermlink ?? "");
+        threeSpeakManager.setVideoId(draft.meta?.videoId ?? "");
+        threeSpeakManager.setIsNsfw(draft.meta?.isNsfw ?? false);
         threeSpeakManager.setVideoMetadata(draft.meta?.videoMetadata);
       }
 
