@@ -5,7 +5,7 @@ import useLocalStorage from "react-use/lib/useLocalStorage";
 import { useState } from "react";
 import useMount from "react-use/lib/useMount";
 
-export function useLoadLocalDraft(
+export function useLocalDraftManager(
   match: MatchType,
   onDraftLoaded: (title: string, tags: string[], body: string) => void
 ) {
@@ -36,6 +36,7 @@ export function useLoadLocalDraft(
 
   return {
     isDraftEmpty,
-    setIsDraftEmpty
+    setIsDraftEmpty,
+    setLocalDraft
   };
 }
