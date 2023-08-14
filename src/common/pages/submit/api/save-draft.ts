@@ -7,9 +7,17 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 import { BeneficiaryRoute, RewardType } from "../../../api/operations";
 import { buildMetadata } from "../functions";
 import { ThreeSpeakVideo } from "../../../api/threespeak";
+import { useThreeSpeakManager } from "../hooks";
 
 export function useSaveDraftApi(history: History) {
   const { activeUser } = useMappedStore();
+  const {
+    isNsfw,
+    videoId,
+    speakAuthor,
+    is3Speak: isThreespeak,
+    speakPermlink
+  } = useThreeSpeakManager();
 
   return useMutation(
     ["saveDraft"],
@@ -47,10 +55,16 @@ export function useSaveDraftApi(history: History) {
         videoMetadata,
         description
       });
+      debugger;
       const draftMeta: DraftMetadata = {
         ...meta,
         beneficiaries,
-        rewardType: reward
+        rewardType: reward,
+        isNsfw,
+        videoId,
+        speakAuthor,
+        isThreespeak,
+        speakPermlink
       };
 
       try {

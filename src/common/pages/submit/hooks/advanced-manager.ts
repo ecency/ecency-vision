@@ -4,9 +4,12 @@ import { Advanced } from "../types";
 import { useEffect, useState } from "react";
 import { BeneficiaryRoute, RewardType } from "../../../api/operations";
 import { useThreeSpeakManager } from "./three-speak-manager";
+import usePrevious from "react-use/lib/usePrevious";
+import isEqual from "react-fast-compare";
 
 export function useAdvancedManager() {
-  const [localAdvanced, setLocalAdvanced] = useLocalStorage<Advanced>(PREFIX + "local_advanced");
+  const [localAdvanced, setLocalAdvanced] = useLocalStorage<Advanced>(PREFIX + "_local_advanced");
+  const previousLocalAdvanced = usePrevious(localAdvanced);
   const [advanced, setAdvanced] = useState(false);
   const [reward, setReward] = useState<RewardType>("default");
   const [beneficiaries, setBeneficiaries] = useState<BeneficiaryRoute[]>([]);
@@ -17,19 +20,25 @@ export function useAdvancedManager() {
   const threeSpeakManager = useThreeSpeakManager();
 
   useEffect(() => {
-    saveAdvanced();
-  }, [
-    reblogSwitch,
-    beneficiaries,
-    schedule,
-    description,
-    threeSpeakManager.videoMetadata,
-    threeSpeakManager.is3Speak,
-    threeSpeakManager.videoId,
-    threeSpeakManager.speakPermlink,
-    threeSpeakManager.speakAuthor,
-    threeSpeakManager.isNsfw
-  ]);
+    console.log("change", beneficiaries);
+  }, [beneficiaries]);
+
+  useEffect(() => {
+    if (localAdvanced && isEqual(localAdvanced, previousLocalAdvanced)) {
+      console.log("loaded", localAdvanced.beneficiaries);
+      setReward(localAdvanced.reward);
+      setBeneficiaries(localAdvanced.beneficiaries);
+      setSchedule(localAdvanced.schedule);
+      setReblogSwitch(localAdvanced.reblogSwitch);
+      setDescription(localAdvanced.description);
+      threeSpeakManager.setIs3Speak(localAdvanced.isThreespeak);
+      threeSpeakManager.setSpeakAuthor(localAdvanced.speakAuthor);
+      threeSpeakManager.setSpeakPermlink(localAdvanced.speakPermlink);
+      threeSpeakManager.setVideoId(localAdvanced.videoId);
+      threeSpeakManager.setIsNsfw(localAdvanced.isNsfw);
+      threeSpeakManager.setVideoMetadata(localAdvanced.videoMetadata);
+    }
+  }, [localAdvanced]);
 
   const saveAdvanced = () => {
     const advanced: Advanced = {
@@ -38,7 +47,6 @@ export function useAdvancedManager() {
       schedule,
       reblogSwitch,
       description,
-      // Speak Advanced
       isThreespeak: threeSpeakManager.is3Speak,
       videoId: threeSpeakManager.videoId,
       speakPermlink: threeSpeakManager.speakPermlink,
@@ -50,8 +58,6 @@ export function useAdvancedManager() {
   };
 
   return {
-    localAdvanced,
-    setLocalAdvanced,
     advanced,
     setAdvanced,
     reward,
@@ -70,7 +76,7 @@ export function useAdvancedManager() {
       beneficiaries?.length > 0 ||
       schedule !== null ||
       reblogSwitch ||
-      description !== "",
+      (description !== "" && typeof description === "string"),
 
     saveAdvanced,
 

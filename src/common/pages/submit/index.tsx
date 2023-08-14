@@ -11,7 +11,8 @@ import {
   useApiDraftDetector,
   useCommunityDetector,
   useEntryDetector,
-  useLocalDraftManager
+  useLocalDraftManager,
+  useThreeSpeakManager
 } from "./hooks";
 import { postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
 import useLocalStorage from "react-use/lib/useLocalStorage";
@@ -63,6 +64,7 @@ interface MatchProps {
 export function Submit(props: PageProps & MatchProps) {
   const postBodyRef = useRef<HTMLDivElement | null>(null);
   const threeSpeakManagerRef = useRef<ThreeSpeakManagerRef | null>(null);
+  const threeSpeakManager = useThreeSpeakManager();
 
   const { activeUser } = useMappedStore();
   const previousActiveUser = usePrevious(activeUser);
@@ -116,7 +118,8 @@ export function Submit(props: PageProps & MatchProps) {
     schedule,
     setSchedule,
     hasAdvanced,
-    clearAdvanced
+    clearAdvanced,
+    saveAdvanced
   } = useAdvancedManager();
 
   useCommunityDetector(props.location, (community) => {
@@ -152,6 +155,22 @@ export function Submit(props: PageProps & MatchProps) {
       setReward(draft.meta?.rewardType ?? "default");
       setSelectedThumbnail(draft.meta?.image?.[0]);
       setDescription(draft.meta?.description ?? "");
+
+      if (
+        draft.meta?.isThreespeak &&
+        draft.meta?.speakAuthor &&
+        draft.meta?.speakPermlink &&
+        draft.meta?.videoId &&
+        draft.meta?.isNsfw &&
+        draft.meta?.videoMetadata
+      ) {
+        threeSpeakManager.setIs3Speak(draft.meta?.isThreespeak);
+        threeSpeakManager.setSpeakAuthor(draft.meta?.speakAuthor);
+        threeSpeakManager.setSpeakPermlink(draft.meta?.speakPermlink);
+        threeSpeakManager.setVideoId(draft.meta?.videoId);
+        threeSpeakManager.setIsNsfw(draft.meta?.isNsfw);
+        threeSpeakManager.setVideoMetadata(draft.meta?.videoMetadata);
+      }
 
       setTimeout(() => setIsDraftEmpty(false), 100);
     },
@@ -249,7 +268,7 @@ export function Submit(props: PageProps & MatchProps) {
     setIsDraftEmpty(true);
     setDescription("");
 
-    threeSpeakManagerRef.current?.clear();
+    threeSpeakManager.clear();
     clearAdvanced();
     removeThumbnail();
   };
@@ -290,10 +309,11 @@ export function Submit(props: PageProps & MatchProps) {
     ];
     const joinedBeneficiary = [...videoBeneficiary, ...videoEncoders];
     setBeneficiaries(joinedBeneficiary);
-    threeSpeakManagerRef.current?.setVideoId(video._id);
-    threeSpeakManagerRef.current?.setIs3Speak(true);
-    threeSpeakManagerRef.current?.setSpeakPermlink(video.permlink);
-    threeSpeakManagerRef.current?.setSpeakAuthor(video.owner);
+    threeSpeakManager.setVideoId(video._id);
+    threeSpeakManager.setIs3Speak(true);
+    threeSpeakManager.setSpeakPermlink(video.permlink);
+    threeSpeakManager.setSpeakAuthor(video.owner);
+    setTimeout(() => saveAdvanced(), 5000);
   };
 
   const cancelUpdate = () => {
@@ -339,9 +359,9 @@ export function Submit(props: PageProps & MatchProps) {
   };
 
   return (
-    <ThreeSpeakManager ref={threeSpeakManagerRef}>
+    <>
       <Meta
-        title={(props.notifications.unread || "") + _t("submit.page-title")}
+        title={`(${props.notifications.unread || ""}) ` + _t("submit.page-title")}
         description={_t("submit.page-description")}
       />
       <FullHeight />
@@ -377,9 +397,15 @@ export function Submit(props: PageProps & MatchProps) {
           <EditorToolbar
             {...props}
             setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
-            toggleNsfwC={() => threeSpeakManagerRef.current?.setIsNsfw(true)}
+            toggleNsfwC={() => {
+              threeSpeakManager.setIsNsfw(true);
+              setTimeout(() => saveAdvanced(), 5000);
+            }}
             comment={false}
-            setVideoMetadata={(v) => threeSpeakManagerRef.current?.setVideoMetadata(v)}
+            setVideoMetadata={(v) => {
+              threeSpeakManager.setVideoMetadata(v);
+              setTimeout(() => saveAdvanced(), 5000);
+            }}
           />
           <div className="title-input">
             <Form.Control
@@ -527,8 +553,7 @@ export function Submit(props: PageProps & MatchProps) {
                               editingDraft,
                               beneficiaries,
                               reward,
-                              videoMetadata:
-                                threeSpeakManagerRef.current?.videoMetadata ?? undefined
+                              videoMetadata: threeSpeakManager.videoMetadata ?? undefined
                             });
                           }}
                           disabled={disabled || saving || posting || publishing}
@@ -637,7 +662,10 @@ export function Submit(props: PageProps & MatchProps) {
                             <Form.Control
                               as="select"
                               value={reward}
-                              onChange={(e) => setReward(e.target.value as RewardType)}
+                              onChange={(e) => {
+                                setReward(e.target.value as RewardType);
+                                setTimeout(() => saveAdvanced(), 5000);
+                              }}
                             >
                               <option value="default">{_t("submit.reward-default")}</option>
                               <option value="sp">{_t("submit.reward-sp")}</option>
@@ -660,6 +688,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   a.account < b.account ? -1 : 1
                                 );
                                 setBeneficiaries(b);
+                                setTimeout(() => saveAdvanced(), 5000);
                               }}
                               onDelete={(username) => {
                                 const b = [
@@ -668,6 +697,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   )
                                 ];
                                 setBeneficiaries(b);
+                                setTimeout(() => saveAdvanced(), 5000);
                               }}
                             />
                             <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
@@ -683,7 +713,10 @@ export function Submit(props: PageProps & MatchProps) {
                         <Form.Control
                           as="textarea"
                           value={description || postBodySummary(body, 200)}
-                          onChange={(e) => setDescription(e.target.value)}
+                          onChange={(e) => {
+                            setDescription(e.target.value);
+                            setTimeout(() => saveAdvanced(), 5000);
+                          }}
                           rows={3}
                           maxLength={200}
                         />
@@ -702,7 +735,10 @@ export function Submit(props: PageProps & MatchProps) {
                             <Col sm="9">
                               <PostScheduler
                                 date={schedule ? moment(schedule) : null}
-                                onChange={(d) => setSchedule(d ? d.toISOString(true) : null)}
+                                onChange={(d) => {
+                                  setSchedule(d ? d.toISOString(true) : null);
+                                  setTimeout(() => saveAdvanced(), 5000);
+                                }}
                               />
                               <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
                             </Col>
@@ -719,7 +755,10 @@ export function Submit(props: PageProps & MatchProps) {
                             id="reblog-switch"
                             label={_t("submit.reblog")}
                             checked={reblogSwitch}
-                            onChange={(e) => setReblogSwitch(e.target.checked)}
+                            onChange={(e) => {
+                              setReblogSwitch(e.target.checked);
+                              setTimeout(() => saveAdvanced(), 5000);
+                            }}
                           />
                           <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
                         </Col>
@@ -791,8 +830,16 @@ export function Submit(props: PageProps & MatchProps) {
           );
         })()}
       </div>
-    </ThreeSpeakManager>
+    </>
   );
 }
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(Submit as any);
+const SubmitWithProviders = (props: PageProps & MatchProps) => {
+  return (
+    <ThreeSpeakManager>
+      <Submit {...props} />
+    </ThreeSpeakManager>
+  );
+};
+
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(SubmitWithProviders as any);
