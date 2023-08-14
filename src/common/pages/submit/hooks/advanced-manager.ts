@@ -17,15 +17,15 @@ export function useAdvancedManager() {
   return {
     advanced,
     setAdvanced,
-    reward,
+    reward: reward!!,
     setReward,
-    beneficiaries,
+    beneficiaries: beneficiaries!!,
     setBeneficiaries,
-    description,
+    description: description ?? null,
     setDescription,
-    schedule,
+    schedule: schedule!!,
     setSchedule,
-    reblogSwitch,
+    reblogSwitch: reblogSwitch!!,
     setReblogSwitch,
 
     hasAdvanced: () =>
