@@ -135,17 +135,25 @@ export function Submit(props: PageProps & MatchProps) {
     }
   });
 
-  useApiDraftDetector(props.match, props.location, (draft) => {
-    setTitle(draft.title);
-    setTags(draft.tags.trim().split(/[ ,]+/));
-    setBody(draft.body);
-    setEditingDraft(draft);
-    setBeneficiaries(draft.meta?.beneficiaries ?? []);
-    setReward(draft.meta?.rewardType ?? "default");
-    setSelectedThumbnail(draft.meta?.image?.[0]);
-    setDescription(draft.meta?.description ?? "");
-    updatePreview();
-  });
+  useApiDraftDetector(
+    props.match,
+    props.location,
+    (draft) => {
+      setTitle(draft.title);
+      setTags(draft.tags.trim().split(/[ ,]+/));
+      setBody(draft.body);
+      setEditingDraft(draft);
+      setBeneficiaries(draft.meta?.beneficiaries ?? []);
+      setReward(draft.meta?.rewardType ?? "default");
+      setSelectedThumbnail(draft.meta?.image?.[0]);
+      setDescription(draft.meta?.description ?? "");
+      updatePreview();
+    },
+    () => {
+      clear();
+      props.history.replace("/submit");
+    }
+  );
 
   const { mutateAsync: doSchedule, isLoading: posting } = useScheduleApi(() => clear());
   const { mutateAsync: saveDraft, isLoading: saving } = useSaveDraftApi(props.history);

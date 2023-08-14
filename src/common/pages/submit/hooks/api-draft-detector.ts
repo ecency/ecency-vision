@@ -10,7 +10,8 @@ import usePrevious from "react-use/lib/usePrevious";
 export function useApiDraftDetector(
   match: MatchType,
   location: Location,
-  onDraftLoaded: (draft: Draft) => void
+  onDraftLoaded: (draft: Draft) => void,
+  onInvalidDraft: () => void
 ) {
   const { activeUser } = useMappedStore();
   const queryClient = useQueryClient();
@@ -37,7 +38,16 @@ export function useApiDraftDetector(
   );
   const draftQuery = useQuery(
     [QueryIdentifiers.BY_DRAFT_ID, match.params.draftId],
-    () => draftsQuery.data.find((draft) => draft._id === match.params.draftId),
+    () => {
+      const existingDraft = draftsQuery.data.find((draft) => draft._id === match.params.draftId);
+
+      if (!existingDraft) {
+        onInvalidDraft();
+        return;
+      }
+
+      return existingDraft;
+    },
     {
       enabled: draftsQuery.data.length > 0 && !!match.params.draftId
     }
