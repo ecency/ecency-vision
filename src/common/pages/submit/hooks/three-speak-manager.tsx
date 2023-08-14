@@ -1,5 +1,7 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, { createContext, ReactNode, useContext } from "react";
 import { ThreeSpeakVideo } from "../../../api/threespeak";
+import useLocalStorage from "react-use/lib/useLocalStorage";
+import { PREFIX } from "../../../util/local-storage";
 
 export interface ThreeSpeakManagerContext {
   clear: () => void;
@@ -40,25 +42,25 @@ export function useThreeSpeakManager() {
 }
 
 export function ThreeSpeakManager(props: { children: ReactNode }) {
-  const [is3Speak, setIs3Speak] = useState(false);
-  const [videoId, setVideoId] = useState("");
-  const [speakPermlink, setSpeakPermlink] = useState("");
-  const [speakAuthor, setSpeakAuthor] = useState("");
-  const [isNsfw, setIsNsfw] = useState(false);
-  const [videoMetadata, setVideoMetadata] = useState<ThreeSpeakVideo>();
+  const [is3Speak, setIs3Speak] = useLocalStorage(PREFIX + "_sa_3s", false);
+  const [videoId, setVideoId] = useLocalStorage(PREFIX + "_sa_3s_vid", "");
+  const [speakPermlink, setSpeakPermlink] = useLocalStorage(PREFIX + "_sa_3s_p", "");
+  const [speakAuthor, setSpeakAuthor] = useLocalStorage(PREFIX + "_sa_3s_a", "");
+  const [isNsfw, setIsNsfw] = useLocalStorage(PREFIX + "_sa_3s_n", false);
+  const [videoMetadata, setVideoMetadata] = useLocalStorage<ThreeSpeakVideo>(PREFIX + "_sa_3s_vm");
 
   return (
     <ThreeSpeakVideoContext.Provider
       value={{
-        is3Speak,
+        is3Speak: is3Speak!!,
         setIs3Speak,
-        videoId,
+        videoId: videoId!!,
         setVideoId,
-        speakPermlink,
+        speakPermlink: speakPermlink!!,
         setSpeakPermlink,
-        speakAuthor,
+        speakAuthor: speakAuthor!!,
         setSpeakAuthor,
-        isNsfw,
+        isNsfw: isNsfw!!,
         setIsNsfw,
         videoMetadata,
         setVideoMetadata,

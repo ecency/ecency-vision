@@ -118,8 +118,7 @@ export function Submit(props: PageProps & MatchProps) {
     schedule,
     setSchedule,
     hasAdvanced,
-    clearAdvanced,
-    saveAdvanced
+    clearAdvanced
   } = useAdvancedManager();
 
   useCommunityDetector(props.location, (community) => {
@@ -313,7 +312,6 @@ export function Submit(props: PageProps & MatchProps) {
     threeSpeakManager.setIs3Speak(true);
     threeSpeakManager.setSpeakPermlink(video.permlink);
     threeSpeakManager.setSpeakAuthor(video.owner);
-    setTimeout(() => saveAdvanced(), 5000);
   };
 
   const cancelUpdate = () => {
@@ -399,12 +397,10 @@ export function Submit(props: PageProps & MatchProps) {
             setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
             toggleNsfwC={() => {
               threeSpeakManager.setIsNsfw(true);
-              setTimeout(() => saveAdvanced(), 5000);
             }}
             comment={false}
             setVideoMetadata={(v) => {
               threeSpeakManager.setVideoMetadata(v);
-              setTimeout(() => saveAdvanced(), 5000);
             }}
           />
           <div className="title-input">
@@ -664,7 +660,6 @@ export function Submit(props: PageProps & MatchProps) {
                               value={reward}
                               onChange={(e) => {
                                 setReward(e.target.value as RewardType);
-                                setTimeout(() => saveAdvanced(), 5000);
                               }}
                             >
                               <option value="default">{_t("submit.reward-default")}</option>
@@ -688,7 +683,6 @@ export function Submit(props: PageProps & MatchProps) {
                                   a.account < b.account ? -1 : 1
                                 );
                                 setBeneficiaries(b);
-                                setTimeout(() => saveAdvanced(), 5000);
                               }}
                               onDelete={(username) => {
                                 const b = [
@@ -697,7 +691,6 @@ export function Submit(props: PageProps & MatchProps) {
                                   )
                                 ];
                                 setBeneficiaries(b);
-                                setTimeout(() => saveAdvanced(), 5000);
                               }}
                             />
                             <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
@@ -715,7 +708,6 @@ export function Submit(props: PageProps & MatchProps) {
                           value={description || postBodySummary(body, 200)}
                           onChange={(e) => {
                             setDescription(e.target.value);
-                            setTimeout(() => saveAdvanced(), 5000);
                           }}
                           rows={3}
                           maxLength={200}
@@ -737,7 +729,6 @@ export function Submit(props: PageProps & MatchProps) {
                                 date={schedule ? moment(schedule) : null}
                                 onChange={(d) => {
                                   setSchedule(d ? d.toISOString(true) : null);
-                                  setTimeout(() => saveAdvanced(), 5000);
                                 }}
                               />
                               <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
@@ -757,7 +748,6 @@ export function Submit(props: PageProps & MatchProps) {
                             checked={reblogSwitch}
                             onChange={(e) => {
                               setReblogSwitch(e.target.checked);
-                              setTimeout(() => saveAdvanced(), 5000);
                             }}
                           />
                           <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
