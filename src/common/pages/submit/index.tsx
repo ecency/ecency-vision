@@ -85,6 +85,7 @@ export function Submit(props: PageProps & MatchProps) {
   const [disabled, setDisabled] = useState(true);
   const [drafts, setDrafts] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+  const [isDraftEmpty, setIsDraftEmpty] = useState(false);
 
   // Misc
   const [editingEntry, setEditingEntry] = useState<Entry | null>(null);
@@ -92,8 +93,9 @@ export function Submit(props: PageProps & MatchProps) {
 
   let _updateTimer: any; // todo think about it
 
-  const { isDraftEmpty, setIsDraftEmpty, localDraft, setLocalDraft } = useLocalDraftManager(
+  const { setLocalDraft } = useLocalDraftManager(
     props.match,
+    setIsDraftEmpty,
     (title, tags, body) => {
       setTitle(title);
       setTags(tags);
@@ -139,11 +141,10 @@ export function Submit(props: PageProps & MatchProps) {
     (draft) => {
       setTitle(draft.title);
       setTags(
-        draft.tags_arr ??
-          draft.tags
-            .trim()
-            .split(",")
-            .filter((t) => !!t)
+        draft.tags
+          .trim()
+          .split(",")
+          .filter((t) => !!t)
       );
       setBody(draft.body);
       setEditingDraft(draft);
@@ -151,6 +152,8 @@ export function Submit(props: PageProps & MatchProps) {
       setReward(draft.meta?.rewardType ?? "default");
       setSelectedThumbnail(draft.meta?.image?.[0]);
       setDescription(draft.meta?.description ?? "");
+
+      setTimeout(() => setIsDraftEmpty(false), 100);
     },
     () => {
       clear();
@@ -220,7 +223,7 @@ export function Submit(props: PageProps & MatchProps) {
       if (editingEntry === null) {
         setLocalDraft({ title, tags, body, description });
       }
-      setIsDraftEmpty(Boolean(title?.length || tags?.length || body?.length));
+      setIsDraftEmpty(!Boolean(title?.length || tags?.length || body?.length));
     }, 50);
   };
 
