@@ -39,7 +39,7 @@ export function useApiDraftDetector(
     [QueryIdentifiers.BY_DRAFT_ID, match.params.draftId],
     () => draftsQuery.data.find((draft) => draft._id === match.params.draftId),
     {
-      enabled: draftsQuery.data.length > 0
+      enabled: draftsQuery.data.length > 0 && !!match.params.draftId
     }
   );
 
