@@ -92,13 +92,12 @@ export function Submit(props: PageProps & MatchProps) {
 
   let _updateTimer: any; // todo think about it
 
-  const { isDraftEmpty, setIsDraftEmpty, setLocalDraft } = useLocalDraftManager(
+  const { isDraftEmpty, setIsDraftEmpty, localDraft, setLocalDraft } = useLocalDraftManager(
     props.match,
     (title, tags, body) => {
       setTitle(title);
       setTags(tags);
       setBody(body);
-      updatePreview();
     }
   );
   const {
@@ -129,7 +128,6 @@ export function Submit(props: PageProps & MatchProps) {
       setBody(entry.body);
       setDescription(entry.json_metadata?.description ?? postBodySummary(body, 200));
       setEditingEntry(entry);
-      updatePreview();
     } else if (editingEntry) {
       setEditingEntry(null);
     }
@@ -140,14 +138,19 @@ export function Submit(props: PageProps & MatchProps) {
     props.location,
     (draft) => {
       setTitle(draft.title);
-      setTags(draft.tags.trim().split(/[ ,]+/));
+      setTags(
+        draft.tags_arr ??
+          draft.tags
+            .trim()
+            .split(",")
+            .filter((t) => !!t)
+      );
       setBody(draft.body);
       setEditingDraft(draft);
       setBeneficiaries(draft.meta?.beneficiaries ?? []);
       setReward(draft.meta?.rewardType ?? "default");
       setSelectedThumbnail(draft.meta?.image?.[0]);
       setDescription(draft.meta?.description ?? "");
-      updatePreview();
     },
     () => {
       clear();
@@ -192,8 +195,8 @@ export function Submit(props: PageProps & MatchProps) {
   }, [activeUser]);
 
   useEffect(() => {
-    updatePreview();
-  }, [tags]);
+    setLocalDraft({ tags, title, body, description });
+  }, [tags, title, body]);
 
   useEffect(() => {
     handleFloatingContainer(showHelp, "submit");

@@ -55,10 +55,15 @@ export const ThreeSpeakManager = forwardRef<ThreeSpeakManagerRef, { children: Re
         is3Speak,
         setIs3Speak,
         videoId,
+        setVideoId,
         speakPermlink,
+        setSpeakPermlink,
         speakAuthor,
+        setSpeakAuthor,
         isNsfw,
+        setIsNsfw,
         videoMetadata,
+        setVideoMetadata,
         clear: () => {
           setIs3Speak(false);
           setVideoId("");

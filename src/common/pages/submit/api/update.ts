@@ -10,7 +10,7 @@ import { _t } from "../../../i18n";
 import { makePath as makePathEntry } from "../../../components/entry-link";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { History } from "history";
-import { buildMetadata } from "../functions";
+import { buildMetadata, getDimensionsFromDataUrl } from "../functions";
 import { useThreeSpeakManager } from "../hooks";
 
 export function useUpdateApi(history: History, onClear: () => void) {
@@ -24,18 +24,6 @@ export function useUpdateApi(history: History, onClear: () => void) {
     isNsfw,
     videoMetadata
   } = useThreeSpeakManager();
-
-  const getHeightAndWidthFromDataUrl = (dataURL: string) =>
-    new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => {
-        resolve((img.width / img.height).toFixed(4));
-      };
-      img.onerror = function () {
-        resolve(0);
-      };
-      img.src = dataURL;
-    });
 
   return useMutation(
     ["update"],
@@ -88,7 +76,7 @@ export function useUpdateApi(history: History, onClear: () => void) {
         jsonMeta.image_ratios = await Promise.all(
           jsonMeta.image
             .slice(0, 5)
-            .map((element: string) => getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
+            .map((element: string) => getDimensionsFromDataUrl(proxifyImageSrc(element)))
         );
       }
 

@@ -222,6 +222,7 @@ export interface Draft {
   body: string;
   created: string;
   post_type: string;
+  tags_arr: string[];
   tags: string;
   timestamp: number;
   title: string;

@@ -37,6 +37,7 @@ export function useLocalDraftManager(
   return {
     isDraftEmpty,
     setIsDraftEmpty,
+    localDraft,
     setLocalDraft
   };
 }

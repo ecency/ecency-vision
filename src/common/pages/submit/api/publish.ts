@@ -19,7 +19,7 @@ import isCommunity from "../../../helper/is-community";
 import { History } from "history";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { useThreeSpeakManager } from "../hooks";
-import { buildMetadata } from "../functions";
+import { buildMetadata, getDimensionsFromDataUrl } from "../functions";
 
 export function usePublishApi(history: History, onClear: () => void) {
   const { activeUser, addEntry } = useMappedStore();
@@ -31,18 +31,6 @@ export function usePublishApi(history: History, onClear: () => void) {
     isNsfw,
     videoMetadata
   } = useThreeSpeakManager();
-
-  const getHeightAndWidthFromDataUrl = (dataURL: string) =>
-    new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => {
-        resolve((img.width / img.height).toFixed(4));
-      };
-      img.onerror = function () {
-        resolve(0);
-      };
-      img.src = dataURL;
-    });
 
   return useMutation(
     ["publish"],
@@ -106,7 +94,7 @@ export function usePublishApi(history: History, onClear: () => void) {
         jsonMeta.image_ratios = await Promise.all(
           jsonMeta.image
             .slice(0, 5)
-            .map((element: string) => getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
+            .map((element: string) => getDimensionsFromDataUrl(proxifyImageSrc(element)))
         );
       }
 
