@@ -55,7 +55,6 @@ export function useSaveDraftApi(history: History) {
         videoMetadata,
         description
       });
-      debugger;
       const draftMeta: DraftMetadata = {
         ...meta,
         beneficiaries,
