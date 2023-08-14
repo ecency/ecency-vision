@@ -54,6 +54,7 @@ import { makePath as makePathEntry } from "../../components/entry-link";
 import { RewardType } from "../../api/operations";
 import { SubmitPreviewContent } from "./submit-preview-content";
 import { useUpdateApi } from "./api/update";
+import "./_index.scss";
 
 interface MatchProps {
   match: MatchType;
@@ -65,7 +66,6 @@ export function Submit(props: PageProps & MatchProps) {
 
   const { activeUser } = useMappedStore();
   const previousActiveUser = usePrevious(activeUser);
-  const previousLocation = usePrevious(props.location);
 
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState<string[]>([]);
@@ -115,7 +115,6 @@ export function Submit(props: PageProps & MatchProps) {
     schedule,
     setSchedule,
     hasAdvanced,
-    saveAdvanced,
     clearAdvanced
   } = useAdvancedManager();
 
