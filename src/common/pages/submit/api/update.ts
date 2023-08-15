@@ -12,9 +12,11 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 import { History } from "history";
 import { buildMetadata, getDimensionsFromDataUrl } from "../functions";
 import { useThreeSpeakManager } from "../hooks";
+import { useContext } from "react";
+import { EntriesCacheContext } from "../../../core";
 
 export function useUpdateApi(history: History, onClear: () => void) {
-  const { activeUser, updateEntry } = useMappedStore();
+  const { activeUser } = useMappedStore();
 
   const {
     videoId,
@@ -24,6 +26,8 @@ export function useUpdateApi(history: History, onClear: () => void) {
     isNsfw,
     videoMetadata
   } = useThreeSpeakManager();
+
+  const { updateCache } = useContext(EntriesCacheContext);
 
   return useMutation(
     ["update"],
@@ -101,7 +105,7 @@ export function useUpdateApi(history: History, onClear: () => void) {
           json_metadata: jsonMeta,
           updated: correctIsoDate(moment().toISOString())
         };
-        updateEntry(entry);
+        updateCache([entry]);
 
         onClear();
         success(_t("submit.updated"));

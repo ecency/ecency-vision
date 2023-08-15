@@ -130,6 +130,7 @@ export function Submit(props: PageProps & MatchProps) {
       setBody(entry.body);
       setDescription(entry.json_metadata?.description ?? postBodySummary(body, 200));
       setEditingEntry(entry);
+      threeSpeakManager.setIsEditing(true);
     } else if (editingEntry) {
       setEditingEntry(null);
     }
@@ -443,7 +444,7 @@ export function Submit(props: PageProps & MatchProps) {
             <></>
           )}
           <div className="bottom-toolbar">
-            {editingEntry === null && (
+            {editingEntry === null && editingDraft === null && (
               <Button variant="outline-info" onClick={() => setClearModal(true)}>
                 {_t("submit.clear")}
               </Button>

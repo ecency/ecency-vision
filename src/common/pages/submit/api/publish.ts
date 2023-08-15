@@ -20,9 +20,11 @@ import { History } from "history";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { useThreeSpeakManager } from "../hooks";
 import { buildMetadata, getDimensionsFromDataUrl } from "../functions";
+import { useContext } from "react";
+import { EntriesCacheContext } from "../../../core";
 
 export function usePublishApi(history: History, onClear: () => void) {
-  const { activeUser, addEntry } = useMappedStore();
+  const { activeUser } = useMappedStore();
   const {
     videoId,
     is3Speak: isThreespeak,
@@ -31,6 +33,7 @@ export function usePublishApi(history: History, onClear: () => void) {
     isNsfw,
     videoMetadata
   } = useThreeSpeakManager();
+  const { updateCache } = useContext(EntriesCacheContext);
 
   return useMutation(
     ["publish"],
@@ -124,7 +127,7 @@ export function usePublishApi(history: History, onClear: () => void) {
           max_accepted_payout: options.max_accepted_payout,
           percent_hbd: options.percent_hbd
         };
-        addEntry(entry);
+        updateCache([entry]);
 
         success(_t("submit.published"));
         onClear();

@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext } from "react";
+import React, { createContext, ReactNode, useContext, useState } from "react";
 import { ThreeSpeakVideo } from "../../../api/threespeak";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
@@ -17,6 +17,8 @@ export interface ThreeSpeakManagerContext {
   setIsNsfw: (isNsfw: boolean) => void;
   videoMetadata?: ThreeSpeakVideo;
   setVideoMetadata: (videoMetadata?: ThreeSpeakVideo) => void;
+  isEditing: boolean;
+  setIsEditing: (v: boolean) => void;
 }
 
 export interface ThreeSpeakManagerRef extends ThreeSpeakManagerContext {}
@@ -34,7 +36,9 @@ export const ThreeSpeakVideoContext = createContext<ThreeSpeakManagerContext>({
   setIsNsfw: () => {},
   videoMetadata: undefined,
   setVideoMetadata: () => {},
-  clear: () => {}
+  clear: () => {},
+  isEditing: false,
+  setIsEditing: () => {}
 });
 
 export function useThreeSpeakManager() {
@@ -48,6 +52,7 @@ export function ThreeSpeakManager(props: { children: ReactNode }) {
   const [speakAuthor, setSpeakAuthor] = useLocalStorage(PREFIX + "_sa_3s_a", "");
   const [isNsfw, setIsNsfw] = useLocalStorage(PREFIX + "_sa_3s_n", false);
   const [videoMetadata, setVideoMetadata] = useLocalStorage<ThreeSpeakVideo>(PREFIX + "_sa_3s_vm");
+  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <ThreeSpeakVideoContext.Provider
@@ -64,6 +69,8 @@ export function ThreeSpeakManager(props: { children: ReactNode }) {
         setIsNsfw,
         videoMetadata,
         setVideoMetadata,
+        isEditing,
+        setIsEditing,
 
         clear: () => {
           setIs3Speak(false);
