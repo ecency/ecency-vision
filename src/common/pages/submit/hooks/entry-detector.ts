@@ -13,9 +13,17 @@ export function useEntryDetector(
   history: History,
   onEntryDetected: (entry?: Entry) => void
 ) {
-  const { data } = useEntryCache("", match.params.username, match.params.username);
+  const { data } = useEntryCache(
+    "",
+    match.params.username?.replace("@", ""),
+    match.params.permlink
+  );
   const { data: normalizedEntry } = useQuery(
-    [QueryIdentifiers.NORMALIZED_ENTRY, match.params.username, match.params.permlink],
+    [
+      QueryIdentifiers.NORMALIZED_ENTRY,
+      match.params.username?.replace("@", ""),
+      match.params.permlink
+    ],
     async () => {
       try {
         const response = await bridgeApi.normalizePost(data);
