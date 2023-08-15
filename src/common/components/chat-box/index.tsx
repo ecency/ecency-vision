@@ -273,17 +273,17 @@ export default function ChatBox(props: Props) {
     setNoStrPrivKey(noStrPrivKey);
   }, []);
 
-  useEffect(() => {
-    if (window.messageService) {
-      setHasUserJoinedChat(true);
-      // setInProgress(false);
-    }
-    setTimeout(() => {
-      if (props.chat.channels.length === 0 && props.chat.directContacts.length === 0) {
-        setInProgress(false);
-      }
-    }, 5000);
-  }, [window?.messageService]);
+  // useEffect(() => {
+  //   if (window.messageService) {
+  //     setHasUserJoinedChat(true);
+  //     // setInProgress(false);
+  //   }
+  //   setTimeout(() => {
+  //     if (props.chat.channels.length === 0 && props.chat.directContacts.length === 0) {
+  //       setInProgress(false);
+  //     }
+  //   }, 5000);
+  // }, [window?.messageService]);
 
   useEffect(() => {
     const communities = getCommunities(props.chat.channels, props.chat.leftChannelsList);
