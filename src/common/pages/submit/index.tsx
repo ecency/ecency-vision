@@ -6,7 +6,6 @@ import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../commo
 import { extractMetaData } from "../../helper/posting";
 import {
   ThreeSpeakManager,
-  ThreeSpeakManagerRef,
   useAdvancedManager,
   useApiDraftDetector,
   useCommunityDetector,
@@ -63,7 +62,6 @@ interface MatchProps {
 
 export function Submit(props: PageProps & MatchProps) {
   const postBodyRef = useRef<HTMLDivElement | null>(null);
-  const threeSpeakManagerRef = useRef<ThreeSpeakManagerRef | null>(null);
   const threeSpeakManager = useThreeSpeakManager();
 
   const { activeUser } = useMappedStore();

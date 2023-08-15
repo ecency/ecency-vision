@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addDraft, Draft, DraftMetadata, updateDraft } from "../../../api/private-api";
 import { error, success } from "../../../components/feedback";
 import { _t } from "../../../i18n";
@@ -8,6 +8,7 @@ import { BeneficiaryRoute, RewardType } from "../../../api/operations";
 import { buildMetadata } from "../functions";
 import { ThreeSpeakVideo } from "../../../api/threespeak";
 import { useThreeSpeakManager } from "../hooks";
+import { QueryIdentifiers } from "../../../core";
 
 export function useSaveDraftApi(history: History) {
   const { activeUser } = useMappedStore();
@@ -18,6 +19,8 @@ export function useSaveDraftApi(history: History) {
     is3Speak: isThreespeak,
     speakPermlink
   } = useThreeSpeakManager();
+
+  const queryClient = useQueryClient();
 
   return useMutation(
     ["saveDraft"],
@@ -76,6 +79,8 @@ export function useSaveDraftApi(history: History) {
 
           const { drafts } = resp;
           const draft = drafts[drafts?.length - 1];
+
+          queryClient.setQueryData([QueryIdentifiers.DRAFTS, activeUser?.username], drafts);
 
           history.push(`/draft/${draft._id}`);
         }
