@@ -223,49 +223,37 @@ export class Transfer extends BaseComponent<Props, State> {
   }
 
   assetChanged = (asset: TransferAsset) => {
-    const { to } = this.state;
+    const { to, memo } = this.state;
     this.stateSet({ asset }, () => {
       this.checkAmount();
-      this.exchangeHandler(to);
+      this.exchangeHandler(to, memo);
     });
   };
 
-  exchangeHandler = (to: string) => {
-    const { asset, memo } = this.state;
+  exchangeHandler = (to: string, memo: string) => {
+    const { asset } = this.state;
     
     if (exchangeAccounts.includes(to) && asset !== "HIVE") {
-      this.stateSet({ exchangeWarning: "can not send hbd to exchange account", toExchangeWarning: ""})
-      console.log("can not send hbd to exchange account");
+      this.stateSet({ exchangeWarning: _t("transfer.invalid-asset"), toExchangeWarning: ""})
     } else if (exchangeAccounts.includes(to) && asset === "HIVE" && !memo) {
         this.stateSet({ toExchangeWarning: _t("transfer.memo-required"), exchangeWarning: "" });
-        console.log("sending assets...With memo...💯💯");
     } else{
         this.stateSet({ toExchangeWarning: "", exchangeWarning: "" });
     }
+    
   }
 
   toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { value: to } = e.target;
-    const { asset } = this.state;
+    const { memo } = this.state;
     this.stateSet({ to }, this.handleTo);
-    // Check memo if to is an exchange account
-    this.exchangeHandler(to);
-    // if (exchangeAccounts.includes(to) && asset === "HIVE") {
-    //   this.stateSet({ toExchangeWarning: _t("transfer.memo-required") });
-    // } else {
-    //   this.stateSet({ toExchangeWarning: "" });
-    // }
+    this.exchangeHandler(to, memo);
   };
 
   toSelected = (to: string) => {
     this.stateSet({ to }, this.handleTo);
-    // Check memo if selected is an exchange account
-    this.exchangeHandler(to);
-    // if (exchangeAccounts.includes(to)) {
-    //   this.stateSet({ toExchangeWarning: _t("transfer.memo-required") });
-    // } else {
-    //   this.stateSet({ toExchangeWarning: "" });
-    // }
+    const { memo } = this.state;
+    this.exchangeHandler(to, memo);
   };
 
   amountChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
@@ -281,16 +269,7 @@ export class Transfer extends BaseComponent<Props, State> {
     const mError = cryptoUtils.isWif(memo.trim());
     if (mError) this.setState({ memoError: _t("transfer.memo-error").toUpperCase() });
     this.stateSet({ memo });
-    this.exchangeHandler(to);
-    // if (memo) {
-    //   {
-    //     this.stateSet({ toExchangeWarning: "" });
-    //   }
-    // } else {
-    //   {
-    //     this.stateSet({ toExchangeWarning: _t("transfer.memo-required") });
-    //   }
-    // }
+    this.exchangeHandler(to, memo);
   };
 
   handleTo = () => {
