@@ -1682,7 +1682,7 @@
     "error-updating-community": "Error occurred while updating community",
     "leave": "Leave",
     "edit-roles": "Edit Roles",
-    "copy-private-key": "Copy private key",
+    "manage-chat-key": "Manage chat key",
     "block": "Block",
     "communities": "Communities",
     "dms": "DMs",

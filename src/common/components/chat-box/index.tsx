@@ -63,7 +63,8 @@ import {
   hideSvg,
   removeUserSvg,
   resendMessageSvg,
-  failedMessageSvg
+  failedMessageSvg,
+  chatKeySvg
 } from "../../img/svg";
 
 import {
@@ -188,6 +189,15 @@ export default function ChatBox(props: Props) {
   const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [resendMessage, setResendMessage] = useState<PublicMessage | DirectMessage>();
+  const [importPrivKey, setImportPrivKey] = useState(false);
+
+  useEffect(() => {
+    // resetProfile(props.activeUser);
+    fetchProfileData();
+    setShow(!!props.activeUser?.username);
+    const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
+    setNoStrPrivKey(noStrPrivKey);
+  }, []);
 
   useEffect(() => {
     const updated: ChannelUpdate = props.chat.updatedChannel
@@ -264,14 +274,6 @@ export default function ChatBox(props: Props) {
       setIsActiveUserRemoved(removed);
     }
   }, [currentChannel, removedUsers]);
-
-  useEffect(() => {
-    // resetProfile(props.activeUser);
-    fetchProfileData();
-    setShow(!!props.activeUser?.username);
-    const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
-    setNoStrPrivKey(noStrPrivKey);
-  }, []);
 
   useEffect(() => {
     if (window.messageService) {
@@ -642,6 +644,7 @@ export default function ChatBox(props: Props) {
     setShowSpinner(true);
     resetChat();
     const keys = createNoStrAccount();
+    console.log("keys", keys);
     ls.set(`${props.activeUser?.username}_noStrPrivKey`, keys.priv);
     setNoStrPrivKey(keys.priv);
     await setProfileMetaData(props.activeUser, keys.pub);
@@ -1089,44 +1092,44 @@ export default function ChatBox(props: Props) {
     );
   };
 
-  const ImportChatModal = () => {
-    return (
-      <>
-        <div className="import-chat-dialog-header border-bottom">
-          <div className="step-no">1</div>
-          <div className="import-chat-dialog-titles">
-            <div className="import-chat-main-title">{_t("chat.enter-private-key")}</div>
-            <div className="import-chat-sub-title">{_t("chat.enter-private-key-detail")}</div>
-          </div>
-        </div>
-        <div className="private-key">
-          <Form
-            onSubmit={(e: React.FormEvent) => {
-              e.preventDefault();
-            }}
-          >
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text>{keySvg}</InputGroup.Text>
-              </InputGroup.Prepend>
-              <Form.Control
-                value={chatPrivKey}
-                type="password"
-                autoFocus={true}
-                autoComplete="off"
-                placeholder="Chat private key"
-                onChange={(e) => setChatPrivkey(e.target.value)}
-              />
-              <InputGroup.Append>
-                <Button onClick={handleImportChatSubmit}>{_t("key-or-hot.sign")}</Button>
-              </InputGroup.Append>
-            </InputGroup>
-            {addRoleError && <Form.Text className="text-danger">{addRoleError}</Form.Text>}
-          </Form>
-        </div>
-      </>
-    );
-  };
+  // const ImportChatModal = () => {
+  //   return (
+  //     <>
+  //       <div className="import-chat-dialog-header border-bottom">
+  //         <div className="step-no">1</div>
+  //         <div className="import-chat-dialog-titles">
+  //           <div className="import-chat-main-title">{_t("chat.enter-private-key")}</div>
+  //           <div className="import-chat-sub-title">{_t("chat.enter-private-key-detail")}</div>
+  //         </div>
+  //       </div>
+  //       <div className="private-key">
+  //         <Form
+  //           onSubmit={(e: React.FormEvent) => {
+  //             e.preventDefault();
+  //           }}
+  //         >
+  //           <InputGroup>
+  //             <InputGroup.Prepend>
+  //               <InputGroup.Text>{keySvg}</InputGroup.Text>
+  //             </InputGroup.Prepend>
+  //             <Form.Control
+  //               value={chatPrivKey}
+  //               type="password"
+  //               autoFocus={true}
+  //               autoComplete="off"
+  //               placeholder="Chat private key"
+  //               onChange={(e) => setChatPrivkey(e.target.value)}
+  //             />
+  //             <InputGroup.Append>
+  //               <Button onClick={handleImportChatSubmit}>{_t("key-or-hot.sign")}</Button>
+  //             </InputGroup.Append>
+  //           </InputGroup>
+  //           {addRoleError && <Form.Text className="text-danger">{addRoleError}</Form.Text>}
+  //         </Form>
+  //       </div>
+  //     </>
+  //   );
+  // };
 
   const successModal = (message: string) => {
     return (
@@ -1346,12 +1349,6 @@ export default function ChatBox(props: Props) {
     setHasMore(true);
   };
 
-  const handleImportChat = () => {
-    setKeyDialog(true);
-
-    setStep(3);
-  };
-
   const communityMenuItems: MenuItem[] = [
     {
       label: _t("chat.invite"),
@@ -1395,9 +1392,9 @@ export default function ChatBox(props: Props) {
 
   const menuItems: MenuItem[] = [
     {
-      label: _t("chat.copy-private-key"),
+      label: _t("chat.manage-chat-key"),
       onClick: () => inviteClicked(noStrPrivKey),
-      icon: linkSvg
+      icon: chatKeySvg
     }
   ];
 
@@ -1464,18 +1461,6 @@ export default function ChatBox(props: Props) {
                   </Tooltip>
                 </div>
               )}
-              <div className="arrow-image">
-                <Tooltip content={expanded ? _t("chat.collapse") : _t("chat.expand")}>
-                  <p
-                    className="arrow-svg"
-                    onClick={() => {
-                      setExpanded(!expanded);
-                    }}
-                  >
-                    {expanded ? expandArrow : collapseArrow}
-                  </p>
-                </Tooltip>
-              </div>
               {isCommunity && (
                 <div className="community-menu">
                   <DropDown
@@ -1498,6 +1483,18 @@ export default function ChatBox(props: Props) {
                   />
                 </div>
               )}
+              <div className="arrow-image">
+                <Tooltip content={expanded ? _t("chat.collapse") : _t("chat.expand")}>
+                  <p
+                    className="arrow-svg"
+                    onClick={() => {
+                      setExpanded(!expanded);
+                    }}
+                  >
+                    {expanded ? expandArrow : collapseArrow}
+                  </p>
+                </Tooltip>
+              </div>
             </div>
           </div>
 
@@ -1998,11 +1995,46 @@ export default function ChatBox(props: Props) {
                       </React.Fragment>
                     ) : !noStrPrivKey || noStrPrivKey.length === 0 || noStrPrivKey === null ? (
                       <>
-                        <div className="start-chat-btn" style={{ marginTop: "25%" }}>
-                          <Button variant="primary" onClick={handleImportChat}>
+                        <div className="start-chat-btn" style={{ marginTop: "20%" }}>
+                          <Button
+                            variant="primary"
+                            onClick={() => setImportPrivKey(!importPrivKey)}
+                          >
                             {_t("chat.import-chat")}
                           </Button>
                         </div>
+                        {importPrivKey && (
+                          <div className="private-key" style={{ margin: "15px 10px" }}>
+                            <Form
+                              onSubmit={(e: React.FormEvent) => {
+                                e.preventDefault();
+                              }}
+                            >
+                              <InputGroup>
+                                <InputGroup.Prepend>
+                                  <InputGroup.Text>{keySvg}</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <Form.Control
+                                  value={chatPrivKey}
+                                  type="password"
+                                  autoFocus={true}
+                                  autoComplete="off"
+                                  placeholder="Chat private key"
+                                  onChange={(e) => setChatPrivkey(e.target.value)}
+                                />
+                                <InputGroup.Append>
+                                  <Button onClick={handleImportChatSubmit}>
+                                    {_t("key-or-hot.sign")}
+                                  </Button>
+                                </InputGroup.Append>
+                              </InputGroup>
+                              {addRoleError && (
+                                <Form.Text className="text-danger">{addRoleError}</Form.Text>
+                              )}
+                            </Form>
+                          </div>
+                        )}
+
                         {<OrDivider />}
                         <div className="start-chat-btn">
                           <Button
@@ -2184,7 +2216,6 @@ export default function ChatBox(props: Props) {
             {step === 9 && confirmationModal(NEWCHATACCOUNT)}
             {step === 11 && confirmationModal(RESENDMESSAGE)}
             {step === 2 && EditRolesModal()}
-            {step === 3 && ImportChatModal()}
             {step === 4 && successModal(CHATIMPORT)}
             {step === 10 && successModal(NEWCHATACCOUNT)}
             {step === 8 && blockedUsersModal()}

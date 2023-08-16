@@ -69,7 +69,7 @@
     }
 
     .message-header-content {
-      margin-top: 0.9rem;
+      margin: 0.8rem 0;
       font-weight: 700;
       line-height: 24px;
       font-size: 21px;
@@ -667,10 +667,6 @@
         text-align: center;
         margin-bottom: 1.4rem;
       }
-    }
-
-    .private-key {
-      margin: 2rem 0;
     }
   }
   .add-dialog-header {
