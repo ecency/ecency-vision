@@ -9,7 +9,7 @@ import { PrivateKey } from "@hiveio/dhive";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { Entry } from "../../store/entries/types";
+import { Entry, EntryHeader } from "../../store/entries/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
@@ -19,7 +19,7 @@ import { error } from "../feedback";
 
 import { getPromotePrice, PromotePrice, getPromotedPost } from "../../api/private-api";
 import { searchPath } from "../../api/search-api";
-import { getPost } from "../../api/bridge";
+import { getPostHeader } from "../../api/bridge";
 import { promote, promoteHot, promoteKc, formatError } from "../../api/operations";
 
 import { _t } from "../../i18n";
@@ -140,7 +140,7 @@ export class Promote extends BaseComponent<Props, State> {
     const { duration } = this.state;
 
     const { prices } = this.state;
-    const { price } = prices.find((x) => x.duration === duration)!;
+    const { price } = prices?.find((x) => x.duration === duration)!;
 
     const balanceError =
       parseFloat(activeUser.points.points) < price ? _t("trx-common.insufficient-funds") : "";
@@ -166,9 +166,9 @@ export class Promote extends BaseComponent<Props, State> {
     this.stateSet({ inProgress: true });
 
     // Check if post is valid
-    let post: Entry | null;
+    let post: EntryHeader | null;
     try {
-      post = await getPost(author, permlink);
+      post = await getPostHeader(author, permlink);
     } catch (e) {
       post = null;
     }
@@ -181,7 +181,7 @@ export class Promote extends BaseComponent<Props, State> {
     // Check if the post already promoted
     const promoted = await getPromotedPost(activeUser.username, author, permlink);
     if (promoted) {
-      this.stateSet({ postError: _t("redeem-common.post-error-exists"), inProgress: false });
+      this.stateSet({ postError: _t("redeem-common.post-promoted-exists"), inProgress: false });
       return;
     }
 
@@ -256,7 +256,10 @@ export class Promote extends BaseComponent<Props, State> {
               </div>
             </div>
             {inProgress && <LinearProgress />}
-            <div className="transaction-form-body">
+            <div className="transaction-form-body d-flex flex-column">
+              <div className="align-self-center">
+                <a href="/faq#how-promotion-work">{_t("promote.learn-more")}</a>
+              </div>
               <Form.Group as={Row}>
                 <Form.Label column={true} sm="2">
                   {_t("redeem-common.balance")}

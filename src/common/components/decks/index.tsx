@@ -8,10 +8,12 @@ import { History } from "history";
 import { DeckToolbar } from "./deck-toolbar/deck-toolbar";
 import { DeckFloatingManager } from "./deck-floating-manager";
 import { DeckLoader } from "./deck-loader";
-import { DeckThreadsFormManager } from "./deck-threads-form";
-import { DeckThreadsForm } from "./deck-threads-form";
+import { DeckThreadsForm, DeckThreadsFormManager } from "./deck-threads-form";
 import { DeckThreadsManager } from "./columns/deck-threads-manager";
 import SSRSuspense from "../ssr-suspense";
+import { classNameObject } from "../../helper/class-name-object";
+import useMount from "react-use/lib/useMount";
+import { DeckFloatingToolbarActivator } from "./deck-toolbar/deck-floating-toolbar-activator";
 
 interface Props {
   history: History;
@@ -21,10 +23,17 @@ export const Decks = ({ history }: Props) => {
   const { setNavShow } = useNav();
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
     setNavShow(false);
   }, []);
+
+  useMount(() => {
+    if (window.innerWidth <= 576) {
+      setIsCollapsed(true);
+    }
+  });
 
   return (
     <SSRSuspense fallback={<>Decks not available in a server</>}>
@@ -34,18 +43,24 @@ export const Decks = ({ history }: Props) => {
             <DeckThreadsFormManager>
               {({ show: showThreadsForm }) => (
                 <div
-                  className={
-                    "decks w-100 " +
-                    (isExpanded ? "expanded " : "") +
-                    (showThreadsForm ? "thread-form-showed" : "")
-                  }
+                  className={classNameObject({
+                    decks: true,
+                    "w-100": true,
+                    expanded: isExpanded,
+                    "toolbar-collapsed": isCollapsed,
+                    "thread-form-showed": showThreadsForm
+                  })}
                 >
+                  <DeckFloatingToolbarActivator
+                    open={!isCollapsed}
+                    setOpen={(v) => setIsCollapsed(!v)}
+                  />
                   <DeckToolbar
                     history={history}
                     isExpanded={isExpanded}
                     setIsExpanded={setIsExpanded}
                   />
-                  <DeckThreadsForm className={showThreadsForm ? "show" : ""} />
+                  <DeckThreadsForm className={showThreadsForm ? "show" : ""} persistable={true} />
                   {isDecksLoading ? (
                     <DeckLoader />
                   ) : (

@@ -8,13 +8,14 @@ import entryIndexHandler from "./handlers/entry-index";
 import communityHandler from "./handlers/community";
 import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
-import fallbackHandler, { healthCheck, iosURI, androidURI, nodeList } from "./handlers/fallback";
-import { entryRssHandler, authorRssHandler } from "./handlers/rss";
+import fallbackHandler, { androidURI, healthCheck, iosURI, nodeList } from "./handlers/fallback";
+import { authorRssHandler, entryRssHandler } from "./handlers/rss";
 import * as authApi from "./handlers/auth-api";
-import { cleanURL, authCheck, stripLastSlash } from "./util";
+import { authCheck } from "./util";
 import { coingeckoHandler } from "./handlers/coingecko.handler";
 import config from "../config";
 import defaults from "../common/constants/defaults.json";
+import { CleanUrlMiddleware } from "./middlewares";
 
 const server = express();
 
@@ -27,20 +28,20 @@ server
   .use("/assets", express.static(`${process.env.RAZZLE_PUBLIC_DIR!}/assets`))
   .use(express.json())
   .use(cookieParser())
-  .use(cleanURL)
-  .use(stripLastSlash)
+  .use(CleanUrlMiddleware.build)
 
   // Common backend
   .get(
     [
-      `^/:filter(${entryFilters.join("|")})/:tag/rss.xml$` // /trending/esteem/rss.xml
+      `^/:filter(${entryFilters.join("|")})/:tag/rss.xml$` // /trending/ecency/rss.xml
     ],
     entryRssHandler
   )
   .get(
     [
-      "^/@:author/:section(feed|blog|posts)/rss.xml$", // /posts/@esteemapp/rss.xml
-      "^/@:author/rss.xml$" // @esteemapp/rss.xml
+      "^/@:author/:section(feed|blog|posts)/rss.xml$", // /posts/@ecency/rss.xml
+      "^/@:author/rss.xml$", // @ecency/rss.xml
+      "^/@:author/rss$" //@ecency/rss
     ],
     authorRssHandler
   )

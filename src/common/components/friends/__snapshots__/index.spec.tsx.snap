@@ -4,6 +4,50 @@ exports[`(1) Render list 1`] = `
 <div
   className="friends-content"
 >
+  <div>
+    <div>
+      <div
+        className="friends-filter"
+      >
+        <div
+          className="filter-options"
+        >
+          <div
+            className="dropdown-wrapper"
+          >
+            <div
+              className="custom-dropdown float-top"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="dropdown-btn"
+              >
+                <div
+                  className="label"
+                >
+                  Filter
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div
     className="friends-list"
   >
@@ -56,6 +100,15 @@ exports[`(1) Render list 1`] = `
             </a>
           </div>
         </div>
+        <div
+          className="last-seen mt-1"
+        >
+          <a
+            href="#"
+          >
+            Active: a few seconds ago
+          </a>
+        </div>
       </div>
       <div
         className="list-item"
@@ -92,6 +145,15 @@ exports[`(1) Render list 1`] = `
             </a>
           </div>
         </div>
+        <div
+          className="last-seen mt-1"
+        >
+          <a
+            href="#"
+          >
+            Active: a few seconds ago
+          </a>
+        </div>
       </div>
       <div
         className="list-item"
@@ -127,6 +189,15 @@ exports[`(1) Render list 1`] = `
               </span>
             </a>
           </div>
+        </div>
+        <div
+          className="last-seen mt-1"
+        >
+          <a
+            href="#"
+          >
+            Active: a few seconds ago
+          </a>
         </div>
       </div>
     </div>

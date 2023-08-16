@@ -24,20 +24,24 @@ import _c from "../../util/fix-class-names";
 import "./_index.scss";
 
 import {
+  codeTagsSvg,
+  emoticonHappyOutlineSvg,
   formatBoldSvg,
   formatItalicSvg,
-  formatTitleSvg,
-  codeTagsSvg,
-  formatQuoteCloseSvg,
-  formatListNumberedSvg,
   formatListBulletedSvg,
-  linkSvg,
-  imageSvg,
+  formatListNumberedSvg,
+  formatQuoteCloseSvg,
+  formatTitleSvg,
+  gifIcon,
   gridSvg,
-  emoticonHappyOutlineSvg,
+  imageSvg,
+  linkSvg,
   textShortSvg,
-  gifIcon
+  videoSvg
 } from "../../img/svg";
+import { VideoUpload } from "../video-upload-threespeak";
+import VideoGallery from "../video-gallery";
+import { ThreeSpeakVideo } from "../../api/threespeak";
 
 interface Props {
   global: Global;
@@ -46,6 +50,10 @@ interface Props {
   sm?: boolean;
   showEmoji?: boolean;
   showGif?: boolean;
+  setVideoEncoderBeneficiary?: (video: any) => void;
+  toggleNsfwC?: () => void;
+  comment: boolean;
+  setVideoMetadata?: (v: ThreeSpeakVideo) => void;
 }
 
 interface State {
@@ -55,6 +63,8 @@ interface State {
   link: boolean;
   mobileImage: boolean;
   shGif: boolean;
+  showVideoUpload: boolean;
+  showVideoGallery: boolean;
 }
 
 export const detectEvent = (eventType: string) => {
@@ -74,11 +84,14 @@ export class EditorToolbar extends Component<Props> {
     image: false,
     link: false,
     mobileImage: false,
-    shGif: false
+    shGif: false,
+    showVideoUpload: false,
+    showVideoGallery: false
   };
 
   holder = React.createRef<HTMLDivElement>();
   fileInput = React.createRef<HTMLInputElement>();
+  videoInput = React.createRef<HTMLInputElement>();
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
     return (
@@ -184,6 +197,7 @@ export class EditorToolbar extends Component<Props> {
     if (el) {
       insertOrReplace(el, before, after);
     }
+    return this.getTargetEl();
   };
 
   replaceText = (find: string, rep: string) => {
@@ -436,6 +450,13 @@ export class EditorToolbar extends Component<Props> {
               {formatQuoteCloseSvg}
             </div>
           </Tooltip>
+          {global.usePrivate && (
+            <Tooltip content={_t("editor-toolbar.fragments")}>
+              <div className="editor-tool" onClick={this.toggleFragments}>
+                {textShortSvg}
+              </div>
+            </Tooltip>
+          )}
           <div className="tool-separator" />
           <Tooltip content={_t("editor-toolbar.ol")}>
             <div className="editor-tool" onClick={this.ol}>
@@ -447,13 +468,23 @@ export class EditorToolbar extends Component<Props> {
               {formatListBulletedSvg}
             </div>
           </Tooltip>
-          <div className="tool-separator" />
-          <Tooltip content={_t("editor-toolbar.link")}>
-            <div className="editor-tool" onClick={this.toggleLink}>
-              {linkSvg}
+          <Tooltip content={_t("editor-toolbar.table")}>
+            <div className="editor-tool" onClick={this.table}>
+              {gridSvg}
+              <div className="sub-tool-menu">
+                <div className="sub-tool-menu-item" onClick={this.table}>
+                  {_t("editor-toolbar.table-3-col")}
+                </div>
+                <div className="sub-tool-menu-item" onClick={this.table2}>
+                  {_t("editor-toolbar.table-2-col")}
+                </div>
+                <div className="sub-tool-menu-item" onClick={this.table1}>
+                  {_t("editor-toolbar.table-1-col")}
+                </div>
+              </div>
             </div>
           </Tooltip>
-
+          <div className="tool-separator" />
           {(() => {
             if (activeUser && global.isMobile) {
               return (
@@ -477,7 +508,9 @@ export class EditorToolbar extends Component<Props> {
                         onClick={(e: React.MouseEvent<HTMLElement>) => {
                           e.stopPropagation();
                           const el = this.fileInput.current;
-                          if (el) el.click();
+                          if (el) {
+                            el.click();
+                          }
                         }}
                       >
                         {_t("editor-toolbar.upload")}
@@ -499,23 +532,49 @@ export class EditorToolbar extends Component<Props> {
               </Tooltip>
             );
           })()}
-
-          <Tooltip content={_t("editor-toolbar.table")}>
-            <div className="editor-tool" onClick={this.table}>
-              {gridSvg}
-              <div className="sub-tool-menu">
-                <div className="sub-tool-menu-item" onClick={this.table}>
-                  {_t("editor-toolbar.table-3-col")}
-                </div>
-                <div className="sub-tool-menu-item" onClick={this.table2}>
-                  {_t("editor-toolbar.table-2-col")}
-                </div>
-                <div className="sub-tool-menu-item" onClick={this.table1}>
-                  {_t("editor-toolbar.table-1-col")}
-                </div>
+          {!this.props.comment && (
+            <Tooltip content={_t("video-upload.upload-video")}>
+              <div className="editor-tool" role="none">
+                <VideoUpload
+                  className="new-feature"
+                  show={this.state.showVideoUpload}
+                  setShow={(v) => this.setState({ showVideoUpload: v })}
+                  setShowGallery={(v) => this.setState({ showVideoGallery: v })}
+                >
+                  {videoSvg}
+                  {activeUser && (
+                    <div className="sub-tool-menu">
+                      <div
+                        className="sub-tool-menu-item"
+                        onClick={() => this.setState({ showVideoUpload: true })}
+                      >
+                        {_t("video-upload.upload-video")}
+                      </div>
+                      {global.usePrivate && (
+                        <div
+                          className="sub-tool-menu-item"
+                          onClick={(e: React.MouseEvent<HTMLElement>) => {
+                            e.stopPropagation();
+                            this.setState({ showVideoGallery: true });
+                          }}
+                        >
+                          {_t("video-upload.video-gallery")}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </VideoUpload>
+                <VideoGallery
+                  showGallery={this.state.showVideoGallery}
+                  setShowGallery={(v) => this.setState({ showVideoGallery: v })}
+                  insertText={this.insertText}
+                  setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
+                  toggleNsfwC={this.props.toggleNsfwC}
+                  setVideoMetadata={this.props.setVideoMetadata}
+                />
               </div>
-            </div>
-          </Tooltip>
+            </Tooltip>
+          )}
           <Tooltip content={_t("editor-toolbar.emoji")}>
             <div className="editor-tool" role="none">
               {emoticonHappyOutlineSvg}
@@ -528,7 +587,6 @@ export class EditorToolbar extends Component<Props> {
               )}
             </div>
           </Tooltip>
-
           <Tooltip content={_t("Gif")}>
             <div className="editor-tool" role="none">
               <div className="editor-tool-gif-icon" onClick={this.toggleGif}>
@@ -547,14 +605,11 @@ export class EditorToolbar extends Component<Props> {
               )}
             </div>
           </Tooltip>
-
-          {global.usePrivate && (
-            <Tooltip content={_t("editor-toolbar.fragments")}>
-              <div className="editor-tool" onClick={this.toggleFragments}>
-                {textShortSvg}
-              </div>
-            </Tooltip>
-          )}
+          <Tooltip content={_t("editor-toolbar.link")}>
+            <div className="editor-tool" onClick={this.toggleLink}>
+              {linkSvg}
+            </div>
+          </Tooltip>
         </div>
         <input
           onChange={this.fileInputChanged}
@@ -635,7 +690,11 @@ export default (props: Props) => {
     activeUser: props.activeUser,
     sm: props.sm,
     showEmoji: props.showEmoji,
-    showGif: props.showGif
+    showGif: props.showGif,
+    setVideoEncoderBeneficiary: props.setVideoEncoderBeneficiary,
+    toggleNsfwC: props.toggleNsfwC,
+    comment: props.comment,
+    setVideoMetadata: props.setVideoMetadata
   };
   return <EditorToolbar {...p} />;
 };

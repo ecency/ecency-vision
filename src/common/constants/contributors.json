@@ -1,10 +1,34 @@
 [
   {
+    "name": "good-karma",
+    "contributes": ["Founder", "Developer"]
+  },
+  {
+    "name": "dkildar",
+    "contributes": ["Developer (Web)"]
+  },
+  {
     "name": "noumantahir",
     "contributes": ["Developer (Mobile)"]
   },
   {
     "name": "ghazanfar89",
+    "contributes": ["Developer (Web)"]
+  },
+  {
+    "name": "talhasch",
+    "contributes": ["Developer (Web)"]
+  },
+  {
+    "name": "mtsaeed",
+    "contributes": ["Developer (Web)"]
+  },
+  {
+    "name": "igormuba",
+    "contributes": ["Developer (Web)"]
+  },
+  {
+    "name": "adesojisouljay",
     "contributes": ["Developer (Web)"]
   },
   {
@@ -17,6 +41,10 @@
   },
   {
     "name": "furkankilic",
+    "contributes": ["Developer (Mobile)"]
+  },
+  {
+    "name": "aliseyalvi",
     "contributes": ["Developer (Mobile)"]
   },
   {
@@ -117,7 +145,7 @@
   },
   {
     "name": "irisworld",
-    "contributes": ["Translation (Russian, Korean)"]
+    "contributes": ["Translation (Russian, Korean)", "Thought leader"]
   },
   {
     "name": "dakeshi",
@@ -145,7 +173,7 @@
   },
   {
     "name": "dunsky",
-    "contributes": ["Translation (Russian)"]
+    "contributes": ["Illustrator", "Translation (Russian)"]
   },
   {
     "name": "lenancie",
@@ -181,11 +209,11 @@
   },
   {
     "name": "acidyo",
-    "contributes": ["Onboarding"]
+    "contributes": ["Onboarding partner"]
   },
   {
     "name": "bluemist",
-    "contributes": ["Onboarding"]
+    "contributes": ["Onboarding partner"]
   },
   {
     "name": "melinda010100",
@@ -305,7 +333,7 @@
   },
   {
     "name": "beeber",
-    "contributes": ["Guest Curator"]
+    "contributes": ["Guest Curator", "Discord Moderator"]
   },
   {
     "name": "unklebonehead",
@@ -329,7 +357,7 @@
   },
   {
     "name": "chaosmagic23",
-    "contributes": ["Guest Curator"]
+    "contributes": ["Guest Curator", "Discord Moderator"]
   },
   {
     "name": "missingnins",
@@ -349,7 +377,7 @@
   },
   {
     "name": "palomap3",
-    "contributes": ["Guest Curator"]
+    "contributes": ["Curator", "Discord Moderator"]
   },
   {
     "name": "solox",
@@ -361,7 +389,7 @@
   },
   {
     "name": "pravesh0 ",
-    "contributes": ["Guest Curator"]
+    "contributes": ["Guest Curator", "Discord Live show host"]
   },
   {
     "name": "reeta0119",
@@ -373,7 +401,7 @@
   },
   {
     "name": "incublus",
-    "contributes": ["Guest Curator"]
+    "contributes": ["Guest Curator", "Discord Live show host"]
   },
   {
     "name": "blessedkid-121",
@@ -396,7 +424,27 @@
     "contributes": ["Guest Curator"]
   },
   {
-    "name": "grindan",
+    "name": "mayifiestas",
     "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "atyh",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "tengolotodo",
+    "contributes": ["Discord Live show host"]
+  },
+  {
+    "name": "joalheal",
+    "contributes": ["Discord Live show host"]
+  },
+  {
+    "name": "stresskiller",
+    "contributes": ["Thought Leader"]
+  },
+  {
+    "name": "acgalarza",
+    "contributes": ["Discord Live show host"]
   }
 ]

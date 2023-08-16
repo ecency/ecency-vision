@@ -24,7 +24,6 @@ interface Props {
   history: History;
   community: Community;
   activeUser: ActiveUser | null;
-  addCommunity: (data: Community) => void;
   resetChat: () => void;
 }
 
@@ -41,6 +40,7 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   useEffect(() => {
     getCommunityRoles();
+    console.log("Community", props.community);
   }, []);
 
   useEffect(() => {
@@ -211,7 +211,7 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   return (
     <>
-      {props.community["context"].role === "owner" ? (
+      {props.community.name === props.activeUser?.username ? (
         isCommunityChatJoined ? (
           <Button variant="outline-primary">{_t("chat.chat-joined")}</Button>
         ) : hasUserJoinedChat && !isChatEnabled ? (

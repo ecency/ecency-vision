@@ -93,6 +93,8 @@ export const makeCommentOptions = (
   rewardType: RewardType,
   beneficiaries?: BeneficiaryRoute[]
 ): CommentOptions => {
+  beneficiaries?.forEach((b) => delete b.src);
+
   const opt: CommentOptions = {
     allow_curation_rewards: true,
     allow_votes: true,

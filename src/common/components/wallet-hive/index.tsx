@@ -22,7 +22,7 @@ import SavingsWithdraw from "../savings-withdraw";
 import OpenOrdersList from "../open-orders-list";
 
 import DropDown from "../dropdown";
-import Transfer, { TransferMode, TransferAsset } from "../transfer";
+import Transfer, { TransferAsset, TransferMode } from "../transfer";
 import { error, success } from "../feedback";
 import WalletMenu from "../wallet-menu";
 import WithdrawRoutes from "../withdraw-routes";
@@ -33,10 +33,10 @@ import { vestsToHp } from "../../helper/vesting";
 
 import {
   getAccount,
+  getCollateralizedConversionRequests,
   getConversionRequests,
-  getSavingsWithdrawFrom,
   getOpenOrder,
-  getCollateralizedConversionRequests
+  getSavingsWithdrawFrom
 } from "../../api/hive";
 
 import { claimRewardBalance, formatError } from "../../api/operations";
@@ -48,7 +48,7 @@ import parseAsset from "../../helper/parse-asset";
 import { _t } from "../../i18n";
 
 import { plusCircle } from "../../img/svg";
-import { dayDiff, dateToFullRelative, hourDiff, secondDiff } from "../../helper/parse-date";
+import { dateToFullRelative, dayDiff, hourDiff, secondDiff } from "../../helper/parse-date";
 import "./_index.scss";
 
 interface Props {
@@ -63,7 +63,6 @@ interface Props {
   updateActiveUser: (data?: Account) => void;
   setSigningKey: (key: string) => void;
   fetchTransactions: (username: string, group?: OperationGroup | "") => void;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
 }
 
@@ -324,7 +323,7 @@ export class WalletHive extends BaseComponent<Props, State> {
       tokenType
     } = this.state;
 
-    if (!account.__loaded) {
+    if (!account?.__loaded) {
       return null;
     }
 
@@ -951,8 +950,7 @@ export default (p: Props) => {
     updateActiveUser: p.updateActiveUser,
     setSigningKey: p.setSigningKey,
     fetchTransactions: p.fetchTransactions,
-    updateWalletValues: p.updateWalletValues,
-    fetchPoints: p.fetchPoints
+    updateWalletValues: p.updateWalletValues
   };
 
   return <WalletHive {...props} />;

@@ -113,7 +113,7 @@ export function renderTweets(renderAreaRef: MutableRefObject<HTMLElement | null>
 
       if (link) {
         const parts = link.split("/");
-        const id = parts[parts.length - 1];
+        const id = parts[parts.length - 1].replace(/\?.*/, "");
         ReactDOM.hydrate(<TwitterTweetEmbed tweetId={id} />, element);
       }
     });
@@ -161,7 +161,7 @@ export async function renderCurrencies(raw: string): Promise<string> {
           case "eth":
             return "ethereum";
           case "leo":
-            return "wleo";
+            return "wrapped-leo";
           default:
             return token;
         }
@@ -188,10 +188,10 @@ export async function renderCurrencies(raw: string): Promise<string> {
               ["ETH", usd],
               ["eth", usd]
             ];
-          case "leo":
+          case "wrapped-leo":
             return [
-              ["WLEO", usd],
-              ["wleo", usd]
+              ["LEO", usd],
+              ["leo", usd]
             ];
           default:
             return [

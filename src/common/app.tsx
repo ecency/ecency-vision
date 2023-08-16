@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
-import EntryContainer from "./pages/entry";
-import { SearchPageContainer, SearchMorePageContainer } from "./pages/search";
-import { ProposalsIndexContainer, ProposalDetailContainer } from "./pages/proposals";
 import MessageProvider from "../providers/message-provider";
+import { EntryScreen } from "./pages/entry";
+import { SearchMorePageContainer, SearchPageContainer } from "./pages/search";
+import { ProposalDetailContainer, ProposalsIndexContainer } from "./pages/proposals";
 import NotFound from "./components/404";
 import Tracker from "./tracker";
 import {
   AboutPage,
-  GuestPostPage,
   ContributePage,
-  PrivacyPage,
-  WhitePaperPage,
-  TosPage,
+  ContributorsPage,
   FaqPage,
-  ContributorsPage
+  GuestPostPage,
+  PrivacyPage,
+  TosPage,
+  WhitePaperPage
 } from "./pages/static";
 import routes from "./routes";
 import * as ls from "./util/local-storage";
@@ -27,6 +27,9 @@ import Announcement from "./components/announcement";
 import FloatingFAQ from "./components/floating-faq";
 import ChatBox from "./components/chat-box";
 import { useMappedStore } from "./store/use-mapped-store";
+import { EntriesCacheManager } from "./core";
+
+import { UserActivityRecorder } from "./components/user-activity-recorder";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -47,6 +50,9 @@ const AuthPage = (props: any) => <AuthContainer {...props} />;
 const SubmitContainer = loadable(() => import("./pages/submit"));
 const SubmitPage = (props: any) => <SubmitContainer {...props} />;
 
+const OnboardContainer = loadable(() => import("./pages/onboard"));
+const OnboardPage = (props: any) => <OnboardContainer {...props} />;
+
 const MarketContainer = loadable(() => import("./pages/market"));
 const MarketPage = (props: any) => <MarketContainer {...props} />;
 
@@ -62,10 +68,10 @@ const CommunityCreatePage = (props: any) => <CommunityCreateContainer {...props}
 const CommunityCreateHSContainer = loadable(() => import("./pages/community-create-hs"));
 const CommunityCreateHSPage = (props: any) => <CommunityCreateHSContainer {...props} />;
 
-const EntryAMPContainer = loadable(() => import("./pages/amp/entry-amp-page"));
+const EntryAMPContainer = loadable(() => import("./pages/entry/index-amp"));
 const EntryPage = (props: any) => {
   const [isAmp, setIsAmp] = useState(props.location.search.includes("?amps"));
-  return isAmp ? <EntryAMPContainer {...props} /> : <EntryContainer {...props} />;
+  return isAmp ? <EntryAMPContainer {...props} /> : <EntryScreen {...props} />;
 };
 
 const PurchaseContainer = loadable(() => import("./pages/purchase"));
@@ -88,8 +94,11 @@ const App = (props: any) => {
   }, []);
 
   return (
-    <>
+    <EntriesCacheManager>
+      {/*Excluded from production*/}
+      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
       <Tracker />
+      <UserActivityRecorder />
       <Switch>
         <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
         <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer} />
@@ -126,6 +135,7 @@ const App = (props: any) => {
         <Route exact={true} strict={true} path={routes.MARKET} component={MarketPage} />
         <Route exact={true} strict={true} path={routes.EDIT} component={SubmitPage} />
         <Route exact={true} strict={true} path={routes.SIGN_UP} component={SignUpPage} />
+        <Route exact={true} strict={true} path={routes.ONBOARD} component={OnboardPage} />
         <Route exact={true} strict={true} path={routes.EDIT_DRAFT} component={SubmitPage} />
         <Route exact={true} strict={true} path={routes.WITNESSES} component={WitnessesPage} />
         <Route
@@ -138,6 +148,12 @@ const App = (props: any) => {
           exact={true}
           strict={true}
           path={routes.PROPOSAL_DETAIL}
+          component={ProposalDetailContainer}
+        />
+        <Route
+          exact={true}
+          strict={true}
+          path={`/me${routes.PROPOSAL_DETAIL}`}
           component={ProposalDetailContainer}
         />
         <Route exact={true} strict={true} path={routes.ABOUT} component={AboutPage} />
@@ -161,7 +177,7 @@ const App = (props: any) => {
       <FloatingFAQ />
       <MessageProvider {...props} />
       <ChatBox {...props} />
-    </>
+    </EntriesCacheManager>
   );
 };
 

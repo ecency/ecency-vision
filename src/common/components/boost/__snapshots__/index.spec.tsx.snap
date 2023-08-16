@@ -31,8 +31,17 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body"
+      className="transaction-form-body d-flex flex-column"
     >
+      <div
+        className="align-self-center"
+      >
+        <a
+          href="/faq#how-boosting-work"
+        >
+          Learn more about boosting
+        </a>
+      </div>
       <div
         className="form-group row"
       >
@@ -184,8 +193,17 @@ exports[`(2) Insufficient Funds 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body"
+      className="transaction-form-body d-flex flex-column"
     >
+      <div
+        className="align-self-center"
+      >
+        <a
+          href="/faq#how-boosting-work"
+        >
+          Learn more about boosting
+        </a>
+      </div>
       <div
         className="form-group row"
       >
@@ -341,8 +359,17 @@ exports[`(2) With entry 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body"
+      className="transaction-form-body d-flex flex-column"
     >
+      <div
+        className="align-self-center"
+      >
+        <a
+          href="/faq#how-boosting-work"
+        >
+          Learn more about boosting
+        </a>
+      </div>
       <div
         className="form-group row"
       >

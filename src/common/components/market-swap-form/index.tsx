@@ -7,7 +7,6 @@ import { MarketAsset, MarketPairs } from "./market-pair";
 import { ActiveUser } from "../../store/active-user/types";
 import { getBalance } from "./api/get-balance";
 import { getHiveMarketRate, HiveMarketRateListener } from "./api/hive";
-import { getCGMarket } from "./api/coingecko-api";
 import { MarketSwapFormStep } from "./form-step";
 import { SignMethods } from "./sign-methods";
 import { Global } from "../../store/global/types";
@@ -15,6 +14,10 @@ import { MarketSwapFormHeader } from "./market-swap-form-header";
 import { checkSvg, swapSvg } from "../../img/svg";
 import { MarketSwapFormSuccess } from "./market-swap-form-success";
 import "./index.scss";
+import { classNameObject } from "../../helper/class-name-object";
+import { useCurrencyRateQuery } from "./api/currency-rate-query";
+import { useQueryClient } from "@tanstack/react-query";
+import { QueryIdentifiers } from "../../core";
 
 export interface Props {
   activeUser: ActiveUser | null;
@@ -23,6 +26,7 @@ export interface Props {
   updateActiveUser: any;
   signingKey: string;
   setSigningKey: (key: string) => void;
+  padding?: string;
 }
 
 export const MarketSwapForm = ({
@@ -31,7 +35,8 @@ export const MarketSwapForm = ({
   addAccount,
   updateActiveUser,
   signingKey,
-  setSigningKey
+  setSigningKey,
+  padding = "p-4"
 }: Props) => {
   const [step, setStep] = useState(MarketSwapFormStep.FORM);
 
@@ -45,8 +50,12 @@ export const MarketSwapForm = ({
   const [balance, setBalance] = useState("");
 
   const [marketRate, setMarketRate] = useState(0);
-  const [usdFromMarketRate, setUsdFromMarketRate] = useState(0);
-  const [usdToMarketRate, setUsdToMarketRate] = useState(0);
+
+  /**
+   * These rates use for showing from asset = to asset in account currency(see account settings)
+   */
+  const [accountFromMarketRate, setAccountFromMarketRate] = useState(0);
+  const [accountToMarketRate, setAccountToMarketRate] = useState(0);
 
   const [disabled, setDisabled] = useState(false);
   const [isAmountMoreThanBalance, setIsAmountMoreThanBalance] = useState(false);
@@ -55,9 +64,32 @@ export const MarketSwapForm = ({
 
   const [tooMuchSlippage, setTooMuchSlippage] = useState(false);
 
+  const { data } = useCurrencyRateQuery(fromAsset, toAsset);
+  const query = useQueryClient();
+
   useEffect(() => {
     fetchMarket();
   }, []);
+
+  useEffect(() => {
+    fetchMarket();
+  }, [global.currency]);
+
+  useEffect(() => {
+    query.invalidateQueries([
+      QueryIdentifiers.SWAP_FORM_CURRENCY_RATE,
+      global.currency,
+      fromAsset,
+      toAsset
+    ]);
+  }, [fromAsset, toAsset, global.currency]);
+
+  useEffect(() => {
+    if (data) {
+      setAccountFromMarketRate(data[0]);
+      setAccountToMarketRate(data[1]);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (activeUser) setBalance(getBalance(fromAsset, activeUser));
@@ -79,8 +111,8 @@ export const MarketSwapForm = ({
     getHiveMarketRate(fromAsset).then((rate) => setMarketRate(rate));
     if (activeUser) setBalance(getBalance(fromAsset, activeUser));
 
-    setUsdFromMarketRate(usdToMarketRate);
-    setUsdToMarketRate(usdFromMarketRate);
+    setAccountFromMarketRate(accountToMarketRate);
+    setAccountToMarketRate(accountFromMarketRate);
   }, [fromAsset]);
 
   const swap = () => {
@@ -95,10 +127,6 @@ export const MarketSwapForm = ({
     setDisabled(true);
     setMarketRate(await getHiveMarketRate(fromAsset));
     setDisabled(false);
-
-    const [fromUsdRate, toUsdRate] = await getCGMarket(fromAsset, toAsset);
-    setUsdFromMarketRate(fromUsdRate);
-    setUsdToMarketRate(toUsdRate);
   };
 
   const submit = () => {
@@ -131,7 +159,12 @@ export const MarketSwapForm = ({
   };
 
   return (
-    <div className="market-swap-form p-4">
+    <div
+      className={classNameObject({
+        "market-swap-form": true,
+        [padding]: true
+      })}
+    >
       <HiveMarketRateListener
         amount={from}
         asset={fromAsset}
@@ -160,7 +193,7 @@ export const MarketSwapForm = ({
           value={from}
           setValue={(v) => setFrom(v)}
           setAsset={(v) => setFromAsset(v)}
-          usdRate={usdFromMarketRate}
+          usdRate={accountFromMarketRate}
           disabled={
             step === MarketSwapFormStep.SIGN ||
             step === MarketSwapFormStep.SUCCESS ||
@@ -212,7 +245,7 @@ export const MarketSwapForm = ({
           value={to}
           setValue={(v) => setTo(v)}
           setAsset={(v) => setToAsset(v)}
-          usdRate={usdToMarketRate}
+          usdRate={accountToMarketRate}
           disabled={true}
           hideChevron={true}
         />
@@ -221,7 +254,7 @@ export const MarketSwapForm = ({
           marketRate={marketRate}
           toAsset={toAsset}
           fromAsset={fromAsset}
-          usdFromMarketRate={usdFromMarketRate}
+          usdFromMarketRate={accountFromMarketRate}
         />
         <div>
           {isInvalidFrom ? (

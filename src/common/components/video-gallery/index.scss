@@ -1,0 +1,194 @@
+@import "src/style/vars_mixins";
+
+.video-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 1fr;
+  }
+
+  .video-list-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    overflow: hidden;
+
+    .thumnail-wrapper {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      cursor: pointer;
+      background-color: $gray-100;
+
+      img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+    }
+
+    .list-details-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 0.75rem;
+
+      .details-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.25rem;
+        margin-top: 1.5rem;
+      }
+
+      .list-title {
+
+        .info-status {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.5rem;
+
+          .status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: $gray-600;
+          }
+
+          .status-icon-wrapper {
+
+            .status-icon-encoded {
+              width: 0.5rem;
+              height: 0.5rem;
+              border-radius: 50%;
+              cursor: pointer;
+              background-color: $green;
+            }
+
+            .status-icon-published {
+              width: 0.5rem;
+              height: 0.5rem;
+              border-radius: 50%;
+              cursor: pointer;
+              background-color: $dark-sky-blue;
+            }
+
+            .status-icon-failed {
+              width: 0.5rem;
+              height: 0.5rem;
+              border-radius: 50%;
+              cursor: pointer;
+              background-color: rgb(199, 94, 94);
+            }
+
+            .status-icon-encoding {
+              width: 0.5rem;
+              height: 0.5rem;
+              border-radius: 50%;
+              cursor: pointer;
+              background-color: rgb(228, 144, 42);
+            }
+
+            .status-icon-deleted {
+              width: 0.5rem;
+              height: 0.5rem;
+              border-radius: 50%;
+              cursor: pointer;
+              background-color: $gray-400;
+            }
+          }
+
+          .info-icon-wrapper {
+            opacity: 0.5;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-items: center;
+
+            &:hover {
+              opacity: 0.8;
+            }
+
+            svg {
+              width: 1rem;
+              height: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.video-status-picker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem;
+  font-size: 0.875rem;
+
+  .custom-dropdown .dropdown-btn .label {
+    font-size: 0.875rem;
+  }
+  .hint {
+    border-radius: 1.15rem;
+    line-height: 1.25;
+    padding: 0.4rem .575rem;
+    margin-left: auto;
+  }
+  .refresh-gallery svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+  }
+}
+
+.more-info {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding: 10px;
+  right: 20px;
+  top: 10px;
+  justify-content: space-around;
+  width: max-content;
+  height: 150px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  z-index: 999;
+
+  @include themify(night) {
+    background: #283241;
+    color: $pinkish-grey;
+    border: 1px solid $dark;
+  }
+
+  @include themify(day) {
+    background: $white;
+    color: $charcoal-grey;
+    border: 1px solid $white-five;
+  }
+}
+
+.video-gallery-modal {
+  .modal-body {
+    padding: 0;
+  }
+
+  .dialog-content {
+    padding: 1rem;
+  }
+}

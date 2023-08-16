@@ -13,6 +13,8 @@ import { getAsAMP } from "../services";
 import { getPost } from "../../common/api/hive";
 import { parse } from "node-html-parser";
 import moment from "moment";
+import { queryClient, QueryIdentifiers } from "../../common/core";
+import { makePath } from "../../common/components/entry-link";
 
 export default async (req: Request, res: Response) => {
   const { category, author, permlink } = req.params;
@@ -20,16 +22,22 @@ export default async (req: Request, res: Response) => {
 
   if (permlink.indexOf(".") > -1) {
     console.error(`${new Date().toISOString()} ERROR permlink @${author}/${permlink}`);
-  } else {
-    try {
-      entry = await bridgeApi.getPost(author, permlink);
-    } catch (e) {
-      console.error(
-        `${new Date().toISOString()} ${
-          bridgeApi.bridgeServer?.currentAddress
-        } ERROR fetching @${author}/${permlink}`
-      );
-    }
+    res.status(404);
+    res.send("Not found.");
+    return;
+  }
+
+  try {
+    entry = await queryClient.fetchQuery(
+      [QueryIdentifiers.ENTRY, makePath("", author, permlink)],
+      () => bridgeApi.getPost(author, permlink)
+    );
+  } catch (error) {
+    console.error(
+      `${new Date().toISOString()} ${
+        bridgeApi.bridgeServer?.currentAddress
+      } ERROR fetching query @${author}/${permlink}`
+    );
   }
 
   let entries = {};
@@ -80,8 +88,11 @@ export default async (req: Request, res: Response) => {
       date.forEach((d) => (d.innerHTML = moment(entry.created).fromNow()));
 
       res.send(tree.toString());
-      return;
-    } catch (e) {}
+    } catch (e) {
+      console.error(e);
+      res.status(400).send("An error occurred while fetching the post.");
+    }
+    return;
   }
 
   res.send(render(req, preLoadedState));

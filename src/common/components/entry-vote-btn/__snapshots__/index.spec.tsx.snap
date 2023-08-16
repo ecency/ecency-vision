@@ -29,6 +29,9 @@ Array [
       $ 0.040
     </div>
     <div
+      className="space"
+    />
+    <div
       className="slider slider-up"
     >
       <div

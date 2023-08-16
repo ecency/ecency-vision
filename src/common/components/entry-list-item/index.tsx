@@ -15,7 +15,6 @@ import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Reblogs } from "../../store/reblogs/types";
 import { UI, ToggleType } from "../../store/ui/types";
-import { EntryPinTracker } from "../../store/entry-pin-tracker/types";
 
 import ProfileLink from "../profile-link/index";
 import Tag from "../tag";
@@ -34,16 +33,7 @@ import { Tsx } from "../../i18n/helper";
 import _c from "../../util/fix-class-names";
 import truncate from "../../util/truncate";
 
-import {
-  repeatSvg,
-  pinSvg,
-  commentSvg,
-  muteSvg,
-  volumeOffSvg,
-  closeSvg,
-  downArrowSvg,
-  menuDownSvg
-} from "../../img/svg";
+import { repeatSvg, pinSvg, commentSvg, volumeOffSvg } from "../../img/svg";
 
 import defaults from "../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
@@ -62,14 +52,12 @@ interface Props {
   location: Location;
   global: Global;
   dynamicProps: DynamicProps;
-  communities: Communities;
   community?: Community | null;
   users: User[];
   activeUser: ActiveUser | null;
   reblogs: Reblogs;
   entry: Entry;
   ui: UI;
-  entryPinTracker: EntryPinTracker;
   signingKey: string;
   asAuthor: string;
   promoted: boolean;
@@ -85,10 +73,7 @@ interface Props {
   addReblog: (author: string, permlink: string) => void;
   deleteReblog: (author: string, permlink: string) => void;
   toggleUIProp: (what: ToggleType | "login") => void;
-  addCommunity: (data: Community) => void;
-  trackEntryPin: (entry: Entry) => void;
   setSigningKey: (key: string) => void;
-  setEntryPin: (entry: Entry, pin: boolean) => void;
   muted?: boolean;
   pinEntry?: (entry: Entry | null) => void;
 }
@@ -121,8 +106,6 @@ export default class EntryListItem extends Component<Props, State> {
       !isEqual(this.props.dynamicProps, nextProps.dynamicProps) ||
       !isEqual(this.props.activeUser, nextProps.activeUser) ||
       !isEqual(this.props.reblogs, nextProps.reblogs) ||
-      !isEqual(this.props.communities, nextProps.communities) ||
-      !isEqual(this.props.entryPinTracker, nextProps.entryPinTracker) ||
       !isEqual(this.state, nextState)
     );
   }

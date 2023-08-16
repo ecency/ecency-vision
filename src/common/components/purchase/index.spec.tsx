@@ -3,10 +3,10 @@ import React from "react";
 import { Purchase } from "./index";
 
 import {
-  globalInstance,
+  allOver,
   dynamicPropsIntance1,
   fullAccountInstance,
-  allOver
+  globalInstance
 } from "../../helper/test-helper";
 
 import { initialState as transactionsInitialState } from "../../store/transactions/index";
@@ -47,7 +47,6 @@ const defProps = {
   updateActiveUser: () => {},
   setSigningKey: () => {},
   onHide: () => {},
-  fetchPoints: () => {},
   updateWalletValues: () => {}
 };
 

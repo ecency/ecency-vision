@@ -5,12 +5,12 @@ import { Transfer, TransferAsset, TransferMode } from "./index";
 import { initialState as transactionsInitialState } from "../../store/transactions/index";
 
 import {
-  globalInstance,
   dynamicPropsIntance1,
-  fullAccountInstance
+  fullAccountInstance,
+  globalInstance
 } from "../../helper/test-helper";
 
-import TestRenderer, { ReactTestInstance } from "react-test-renderer";
+import { ReactTestInstance } from "react-test-renderer";
 import { withStore } from "../../tests/with-store";
 
 jest.mock("moment", () => () => ({
@@ -41,7 +41,6 @@ const defProps = {
   addAccount: () => {},
   updateActiveUser: () => {},
   setSigningKey: () => {},
-  fetchPoints: () => {},
   updateWalletValues: () => {},
   onHide: () => {}
 };

@@ -2,7 +2,7 @@ import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common
 import { match } from "react-router";
 import React, { Fragment, useEffect, useState } from "react";
 import { search as searchApi, SearchResult } from "../api/search-api";
-import { getCommunity, getSubscriptions } from "../api/bridge";
+import { getSubscriptions } from "../api/bridge";
 import { EntryFilter, ListStyle } from "../store/global/types";
 import { Channel } from "../../providers/message-provider-types";
 import { usePrevious } from "../util/use-previous";
@@ -25,7 +25,6 @@ import _c from "../util/fix-class-names";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
 import capitalize from "../util/capitalize";
-import { Community } from "../store/communities/types";
 import { Account } from "../store/accounts/types";
 import { CommunityMenu } from "../components/community-menu";
 import { CommunityCover } from "../components/community-cover";
@@ -48,6 +47,8 @@ import {
 } from "../helper/chat-utils";
 import { useMappedStore } from "../store/use-mapped-store";
 import { setNostrkeys } from "../../providers/message-provider";
+import { QueryIdentifiers, useCommunityCache } from "../core";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface MatchParams {
   filter: string;
@@ -64,9 +65,13 @@ export const CommunityPage = (props: Props) => {
     return updatedLocation.replace("?", "").replace("q", "").replace("=", "").replace("&", "");
   };
   const { chat } = useMappedStore();
-  const [community, setCommunity] = useState<Community | null>(null);
-  const [account, setAccount] = useState<Account | null>(null);
-  const [loading, setLoading] = useState(true);
+
+  const queryClient = useQueryClient();
+  const { data: community } = useCommunityCache(props.match.params.name);
+
+  const [account, setAccount] = useState<Account | undefined>(
+    props.accounts.find(({ name }) => [props.match.params.name])
+  );
   const [typing, setTyping] = useState(false);
   const [search, setSearch] = useState(getSearchParam());
   const [searchDataLoading, setSearchDataLoading] = useState(getSearchParam().length > 0);
@@ -77,6 +82,7 @@ export const CommunityPage = (props: Props) => {
   const [channelId, setChannelId] = useState("");
   const [communities, setCommunities] = useState<Channel[]>([]);
   const [isCommunityAlreadyJoined, setIsCommunityAlreadyJoined] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const prevMatch = usePrevious(props.match);
   const prevActiveUser = usePrevious(props.activeUser);
@@ -96,7 +102,8 @@ export const CommunityPage = (props: Props) => {
   }, [communities]);
 
   useEffect(() => {
-    ensureData();
+    setIsLoading(true);
+
     if (search.length) handleInputChange(search);
 
     const { match, fetchEntries } = props;
@@ -114,6 +121,14 @@ export const CommunityPage = (props: Props) => {
   }, []);
 
   useEffect(() => {
+    if (community?.name === props.match.params.name) {
+      setIsLoading(false);
+      props.addAccount(community);
+      setAccount({ ...account, ...community });
+    }
+  }, [community]);
+
+  useEffect(() => {
     const { match, fetchEntries } = props;
     const { filter, name } = match.params;
 
@@ -124,7 +139,8 @@ export const CommunityPage = (props: Props) => {
     const { params: prevParams } = prevMatch;
 
     // community changed. fetch community and account data.
-    if (name !== prevParams.name) ensureData();
+    if (name !== prevParams.name)
+      queryClient.invalidateQueries([QueryIdentifiers.COMMUNITY, match.params.name]);
 
     //  community or filter changed
     if ((filter !== prevParams.filter || name !== prevParams.name) && EntryFilter[filter]) {
@@ -148,33 +164,8 @@ export const CommunityPage = (props: Props) => {
         setSearchData(
           data.results.sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
         );
-        setLoading(false);
         setSearchDataLoading(false);
       }
-    }
-  };
-
-  const ensureData = async (): Promise<void> => {
-    const { match, communities, addCommunity, accounts, addAccount, activeUser } = props;
-
-    const name = match.params.name;
-    const community = communities.find((x) => x.name === name);
-    const account = accounts.find((x) => x.name === name);
-
-    // Community or account data aren't in reducer. Show loading indicator.
-    if (!community || !account) setLoading(true);
-    try {
-      const data = await getCommunity(name, activeUser?.username);
-      if (data) {
-        addCommunity(data);
-        setCommunity(data);
-      }
-      if (data?.name === name) {
-        addAccount(data);
-        setAccount({ ...account, ...data });
-      }
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -198,8 +189,8 @@ export const CommunityPage = (props: Props) => {
   };
 
   const reload = async () => {
-    setLoading(true);
-    await ensureData();
+    queryClient.invalidateQueries([QueryIdentifiers.COMMUNITY, props.match.params.name]);
+
     const { match, fetchEntries, invalidateEntries } = props;
     const { filter, name } = match.params;
 
@@ -243,7 +234,7 @@ export const CommunityPage = (props: Props) => {
   };
 
   const navBar = props.global.isElectron ? (
-    <NavBarElectron {...props} reloading={loading} reloadFn={reload} />
+    <NavBarElectron {...props} reloading={isLoading} reloadFn={reload} />
   ) : (
     <NavBar {...props} />
   );
@@ -380,12 +371,7 @@ export const CommunityPage = (props: Props) => {
         }
       >
         <div className="profile-side">
-          <CommunityCard
-            {...props}
-            account={account}
-            community={community}
-            addCommunity={setCommunity}
-          />
+          <CommunityCard {...props} account={account} community={community} />
         </div>
         <span itemScope={true} itemType="http://schema.org/Organization">
           <meta itemProp="name" content={community.title.trim() || community.name} />
@@ -483,7 +469,7 @@ export const CommunityPage = (props: Props) => {
         </div>
       </div>
     </>
-  ) : loading ? (
+  ) : isLoading ? (
     <>
       {navBar}
       <LinearProgress />

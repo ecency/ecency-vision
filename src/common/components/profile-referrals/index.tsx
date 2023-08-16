@@ -12,12 +12,11 @@ import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
 import MyPagination from "../pagination";
-import Transfer, { TransferMode, TransferAsset } from "../transfer";
+import Transfer, { TransferAsset, TransferMode } from "../transfer";
 import LinearProgress from "../linear-progress";
 import { shareVariantSvg } from "../../img/svg";
-import { getReferrals, ReferralItem, getReferralsStats, ReferralStat } from "../../api/private-api";
+import { getReferrals, getReferralsStats, ReferralItem, ReferralStat } from "../../api/private-api";
 // import clipboard from '../../util/clipboard';
-
 import { _t } from "../../i18n";
 import { success } from "../feedback";
 import { Tsx } from "../../i18n/helper";
@@ -36,7 +35,6 @@ interface Props {
   updateActiveUser: (data?: Account) => void;
   setSigningKey: (key: string) => void;
   fetchTransactions: (username: string, group?: OperationGroup | "") => void;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
 }
 
@@ -305,8 +303,7 @@ export default (p: Props) => {
     addAccount: p.addAccount,
     updateActiveUser: p.updateActiveUser,
     setSigningKey: p.setSigningKey,
-    fetchTransactions: p.fetchTransactions,
-    fetchPoints: p.fetchPoints
+    fetchTransactions: p.fetchTransactions
   };
 
   return <ProfileReferrals {...props} />;

@@ -38,7 +38,8 @@ export const ResourceCreditsDelegation = (props: any) => {
     setAmount(amount);
     if (
       amount === "" ||
-      (Number(amount) >= 5000000000 && Number(amount) < Number(resourceCredit))
+      (Number(amount) >= 5000000000 && Number(amount) < Number(resourceCredit)) ||
+      amount === "0"
     ) {
       setAmountError("");
     } else if (Number(amount) < 5000000000) {
@@ -80,7 +81,7 @@ export const ResourceCreditsDelegation = (props: any) => {
     !inProgress &&
     !amountError &&
     !!amount &&
-    Number(amount) >= 5000000000 &&
+    (Number(amount) === 0 || Number(amount) >= 5000000000) &&
     Number(amount) < Number(resourceCredit);
 
   const handleTo = async (value: string) => {
@@ -98,23 +99,29 @@ export const ResourceCreditsDelegation = (props: any) => {
       setToWarning("");
     }
     setToData(null);
-
-    return getAccount(value)
-      .then((resp) => {
-        if (resp) {
-          setToError("");
-          setToData(resp);
-        } else {
-          setToError(_t("transfer.to-not-found"));
-        }
-        return resp;
-      })
-      .catch((err) => {
-        error(...formatError(err));
-      })
-      .finally(() => {
-        setInProgress(false);
-      });
+    if (value.includes(",")) {
+      setToData(value);
+      setToError("");
+      setInProgress(false);
+      return true;
+    } else {
+      return getAccount(value)
+        .then((resp) => {
+          if (resp) {
+            setToError("");
+            setToData(resp);
+          } else {
+            setToError(_t("transfer.to-not-found"));
+          }
+          return resp;
+        })
+        .catch((err) => {
+          error(...formatError(err));
+        })
+        .finally(() => {
+          setInProgress(false);
+        });
+    }
   };
 
   const delayedSearch = useCallback(_.debounce(handleTo, 3000, { leading: true }), []);

@@ -1,7 +1,7 @@
 import React from "react";
 import configureStore from "../store/configure";
 import initialState from "../store/initial-state";
-import TestRenderer, { ReactTestInstance } from "react-test-renderer";
+import TestRenderer from "react-test-renderer";
 import { Provider } from "react-redux";
 import {
   activeUserInstance,

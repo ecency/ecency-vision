@@ -9,16 +9,18 @@ import { Button } from "react-bootstrap";
 interface Props {
   toggle: JSX.Element;
   children: JSX.Element;
+  options?: Parameters<typeof usePopper>[2];
+  hideOnClick?: boolean;
 }
 
-export const PopperDropdown = ({ children, toggle }: Props) => {
+export const PopperDropdown = ({ children, toggle, options, hideOnClick = false }: Props) => {
   const isMounted = useMounted();
 
   const [isShow, setIsShow] = useState(false);
   const hostRef = useRef<any>(null);
   const [host, setHost] = useState<any>();
   const [popperElement, setPopperElement] = useState<any>();
-  const { styles, attributes, update } = usePopper(host, popperElement);
+  const { styles, attributes, update } = usePopper(host, popperElement, options);
 
   useClickAway(hostRef, () => hide());
 
@@ -46,7 +48,9 @@ export const PopperDropdown = ({ children, toggle }: Props) => {
               {...attributes.popper}
               ref={setPopperElement}
             >
-              <div ref={hostRef}>{children}</div>
+              <div ref={hostRef} onClick={() => (hideOnClick ? hide() : null)}>
+                {children}
+              </div>
             </div>
           ),
           document.querySelector("#popper-container")!!

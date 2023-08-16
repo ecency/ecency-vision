@@ -11,6 +11,7 @@ export interface DynamicProps {
   totalVestingShares: number;
   virtualSupply: number;
   vestingRewardPercent: number;
+  accountCreationFee: string;
 }
 
 export type State = DynamicProps;

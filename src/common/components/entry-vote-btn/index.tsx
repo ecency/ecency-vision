@@ -83,6 +83,8 @@ interface VoteDialogProps {
   setTipDialogMounted: (d: boolean) => void;
   updateWalletValues: () => void;
   onClick: (percent: number, estimated: number) => void;
+  handleClickAway: () => void;
+  isVoted: () => { upVoted: boolean; downVoted: boolean };
 }
 
 interface VoteDialogState {
@@ -231,22 +233,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     this.setState({ mode: m });
   };
 
-  isVoted = () => {
-    const { activeUser } = this.props;
-
-    if (!activeUser) {
-      return { upVoted: false, downVoted: false };
-    }
-
-    const { active_votes: votes } = this.props.entry;
-
-    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares >= 0);
-
-    const downVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares < 0);
-
-    return { upVoted, downVoted };
-  };
-
   upVoteClicked = () => {
     const {
       onClick,
@@ -255,7 +241,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       entry: { post_id }
     } = this.props;
     const { upSliderVal, initialVoteValues } = this.state;
-    const { upVoted } = this.isVoted();
+    const { upVoted } = this.props.isVoted();
     if (!upVoted || (upVoted && initialVoteValues.up !== upSliderVal)) {
       const estimated = Number(this.estimate(upSliderVal).toFixed(3));
       onClick(upSliderVal, estimated);
@@ -279,7 +265,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       entry: { post_id }
     } = this.props;
     const { downSliderVal, initialVoteValues } = this.state;
-    const { downVoted } = this.isVoted();
+    const { downVoted } = this.props.isVoted();
 
     if (!downVoted || (downVoted && initialVoteValues.down !== downSliderVal)) {
       const estimated = Number(this.estimate(downSliderVal).toFixed(3));
@@ -334,6 +320,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               <div className="estimated">
                 <FormattedCurrency {...this.props} value={this.estimate(upSliderVal)} fixAt={3} />
               </div>
+              <div className="space" />
               <div className="slider slider-up">
                 <VotingSlider value={upSliderVal} setVoteValue={this.upSliderChanged} mode={mode} />
               </div>
@@ -386,6 +373,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   mode={mode}
                 />
               </div>
+              <div className="space" />
               <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
               <div
                 className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
@@ -424,6 +412,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   account={this.props.account}
                   updateWalletValues={this.props.updateWalletValues}
                   setTipDialogMounted={this.props.setTipDialogMounted}
+                  handleClickAway={this.props.handleClickAway}
                 />
               </div>
             </div>
@@ -503,11 +492,11 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     if (!activeUser) {
       return { upVoted: false, downVoted: false };
     }
+
     const { active_votes: votes } = this.props.entry;
-
-    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares > 0);
-
+    const upVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares >= 0);
     const downVoted = votes && votes.some((v) => v.voter === activeUser.username && v.rshares < 0);
+
     return { upVoted, downVoted };
   };
 
@@ -599,6 +588,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
         } ${inProgress ? "in-progress" : ""} voted`
       );
     }
+
     let tooltipClass = "";
     if (dialog) {
       if (!upVoted || !downVoted) {
@@ -653,6 +643,8 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                               setTipDialogMounted={this.setTipDialogMounted}
                               updateWalletValues={this.ensureAccount}
                               onClick={this.vote}
+                              handleClickAway={this.handleClickAway}
+                              isVoted={this.isVoted}
                             />
                           </span>
                         </div>

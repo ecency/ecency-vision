@@ -58,6 +58,7 @@
     "replies": "antwoorden",
     "done": "Klaar",
     "apply": "Toepassen",
+    "applying": "Applying...",
     "warning": "Waarschuwing",
     "payout": "Uitbetaling",
     "learn-more": "Leer meer in onze",
@@ -71,7 +72,8 @@
     "settings": "Settings",
     "confirm": "Confirm",
     "username": "Username",
-    "past-few-days": "the past few days"
+    "past-few-days": "the past few days",
+    "you": "You"
   },
   "confirm": {
     "title": "Weet je het zeker?",
@@ -224,7 +226,73 @@
     "username-no-ascii-first-letter-error": "First character should be a Letter",
     "username-contains-symbols-error": "Should contain Letters, Numbers, Hyphen only",
     "username-contains-double-hyphens": "Should not contain double Hyphens",
-    "username-exists": "This username already registered. Please, try another one"
+    "username-exists": "This username already registered. Please, try another one",
+    "referral-invalid": "This referral is invalid. Please, try another one",
+    "referral-min-length-error": "Length of referral should be at least 3 characters",
+    "referral-max-length-error": "Length of referral should be no more than 16 characters",
+    "email-max-length-error": "Length of email should be no more than 72 characters"
+  },
+  "onboard": {
+    "title-active-user": "Onboard a friend",
+    "title-visitor": "Ask from a friend",
+    "description-active-user": "You can create account for a friend.",
+    "description-visitor": "You can ask a friend to create an account for you.",
+    "creating": "Create for a friend",
+    "asking": " Ask from a friend",
+    "creating-description": "Pay with hive or account credit",
+    "asking-description": "Copy account link and send to friend.",
+    "username": "Username:",
+    "email": "Email:",
+    "referral": "Referral:",
+    "copy-key": "Make sure you copy or download your keys.",
+    "download-keys": "Download Keys",
+    "create-account-hive": "Pay with HIVE",
+    "create-account-credit": "Pay with Account Credits ({{n}})",
+    "confirm-details": "Confirm Details",
+    "share": "(You can send code to a friend) Copy code",
+    "copy-link": "Account link copied successfully",
+    "click-link": "Click here to continue",
+    "continue": "Continue",
+    "public-active": "Public Active key:",
+    "public-memo": "Public Memo key:",
+    "public-owner": "Public Owner key:",
+    "public-posting": "Public Posting key:",
+    "login-warning": "Login to create an account for Friend!",
+    "pay-fee": "Pay Account Fee",
+    "modal-title": "Are you sure?",
+    "modal-confirm": "Confirm",
+    "file-warning": "Please handle your password & private keys with extra caution. Your account will no longer be accessible if you loose your password. We do not keep copy of it, it is confidential only you have access to it.",
+    "recommend": "We recommend that,",
+    "recommend-print": "PRINT this file out and store it securely.",
+    "recommend-use": "NEVER use your password/owner key on untrusted apps.",
+    "recommend-save": "Save all your keys within a password manager and/or Ecency mobile wallet, as you will need them frequently.",
+    "recommend-third-party": "Don't keep this file within the reach of a third party.",
+    "account-info": "Your Hive Account Information;",
+    "keys-use": "What your keys can be used for;",
+    "owner-private": "Owner private key:",
+    "active-private": "Active private key:",
+    "posting-private": "Posting private key:",
+    "memo-private": "Memo private key:",
+    "owner": "Owner key:",
+    "active": "Active key:",
+    "posting": "Posting key:",
+    "memo": "Memo key:",
+    "owner-use": "Change Password, Change Keys, Recover Account",
+    "active-use": "Transfer Funds, Power up/down, Voting Witnesses/Proposals",
+    "posting-use": "Post, Comment, Vote, Reblog, Follow, Profile updates",
+    "memo-use": "Send/View encrypted messages on transfers",
+    "copy-tooltip": "Copy password",
+    "regenerate-password": "Regenerate password",
+    "copy-password": "Password copied successfully",
+    "copy-info-message": "Copy Link below and SEND to a friend",
+    "success-message": "You successfully created the account ",
+    "sign-title": "Sign transaction with ",
+    "failed-title": "Failed",
+    "failed-subtitle": "Transaction failed",
+    "failed-message": "Failed to create account",
+    "try-again": "Try again",
+    "sign-header-title": "Sign transaction",
+    "sign-sub-title": "Sign your transaction"
   },
   "trending-tags": {
     "title": "Onderwerpen"
@@ -399,6 +467,12 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You've to be authorized to see notifications",
     "wave": "Wave",
+    "simple": "Simple",
+    "advanced": "Advanced",
+    "author": "Author",
+    "choose-one": "Choose one",
+    "user": "User",
+    "search-query": "Search query",
     "columns": {
       "view-full-post": "View full post",
       "user": "User",
@@ -432,8 +506,9 @@
       "transfers": "Transfers",
       "delegations": "Delegations",
       "search-query": "Search query",
-      "enter-search-query": "Enter a search query and explore all posts",
+      "enter-search-query": "Configure a search query and explore all posts",
       "blogs": "Blogs",
+      "feeds": "Friends Feed",
       "posts": "Posts",
       "comments": "Comments",
       "all-history": "All history",
@@ -459,9 +534,34 @@
       "see-full-thread": "See full thread",
       "no-currency-data": "No data",
       "hide-replies": "Hide replies",
-      "filters": "Filters"
+      "filters": "Filters",
+      "market-swap-form": "Market swap form",
+      "market": "Market",
+      "swap-form": "Swapping form",
+      "msf-description": "Swap your funds quickie with zero latency.",
+      "faq": "Help center",
+      "faq-subtitle": "FAQ",
+      "faq-description": "Find answer to all your questions about Ecency in our help center.",
+      "no-replies": "No replies yet",
+      "add-new-reply": "Add new reply",
+      "no-content": "No content",
+      "infinite-loading": "Loading 🌊...",
+      "end-reached": "You've reached end of 🌊.",
+      "feed-end-reached": "You've reached end of feed.",
+      "topics-subtitle": "The most popular",
+      "replied-to": "replied to",
+      "edit-wave": "Edit",
+      "updated": "Edited {{n}} ago",
+      "balance": "Balance",
+      "whats-new": "What's new",
+      "whats-new-description": "Keep in track the Ecency updates",
+      "updates": "Updates",
+      "release-list": "Release versions",
+      "current": "Current",
+      "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
     },
     "threads-form": {
+      "save": "Save",
       "publish": "Publish it!",
       "create-regular-post": "Create long post",
       "input-placeholder": "What's happening?",
@@ -541,6 +641,7 @@
     "start-new-one": "Start nieuwe omwisseling",
     "signing": "Bezig met ondertekenen..",
     "success-swap": "Omwisselen gelukt!",
+    "calculating-in": "Calculating in",
     "advanced": {
       "history": "History",
       "stake": "Order book",
@@ -575,7 +676,8 @@
     "sort-reward": "Beloning",
     "sort-timestamp": "Tijd",
     "sort-reputation": "Reputatie",
-    "sort-percent": "Percentage"
+    "sort-percent": "Percentage",
+    "pending-message": "Content has pending votes. Please, wait a minute and refresh this dialog to see new votes."
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
@@ -747,7 +849,7 @@
     "follows-you": "Volgt jou",
     "section-blog": "Blog",
     "section-posts": "Artikelen",
-    "section-trail": "Trail",
+    "section-trail": "Likes",
     "section-comments": "Reacties",
     "section-replies": "Antwoorden",
     "section-communities": "Gemeenschappen",
@@ -807,6 +909,7 @@
     "comments-posts": "Posts / Comments:",
     "votes": "Votes:",
     "reblogs-follows": "Reblogs / Follows:",
+    "claim-accounts": "Claim account credits:",
     "no-outgoing": "No outgoing delegation",
     "no-incoming": "No incoming delegation",
     "delegate-title": "Delegate",
@@ -1056,14 +1159,16 @@
   "promote": {
     "title": "Promoten",
     "sub-title": "Promote your post",
-    "duration": "Duration"
+    "duration": "Duration",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Boost",
     "sub-title": "Boost your post",
     "amount": "Amount",
     "slider-hint": "Drag the slider to adjust the amount.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Balance",
@@ -1071,7 +1176,8 @@
     "post-hint": "Autocomplete input",
     "post-placeholder": "username/permlink",
     "post-error": "Geen geldig e-mailadres",
-    "post-error-exists": "The post is already promoted",
+    "post-boosted-exists": "This content is already boosted",
+    "post-promoted-exists": "This content is already promoted",
     "success-message": "Your request submitted. It will be activated in a couple minutes."
   },
   "transfer": {
@@ -1115,6 +1221,7 @@
     "memo-placeholder": "voer hier je notities in",
     "memo-help": "Deze notitie is openbaar",
     "memo-error": "Plaats nooit privésleutels in een notitie veld, het is openbaar zichtbaar voor iedereen.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* beschikbaar Hive power",
     "override-warning-1": "Het nieuwe bedrag vervangt de vorige.",
     "override-warning-2": "Account ({{account}}) is al toevertrouwd met {{previousAmount}}.",
@@ -1238,7 +1345,17 @@
   "friends": {
     "followers": "Volgers ({{n}})",
     "following": "Volgen ({{n}})",
-    "search-placeholder": "Zoeken"
+    "search-placeholder": "Zoeken",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Volgen",
@@ -1320,6 +1437,46 @@
     "empty-body-alert": "Enter post body",
     "description": "Short description"
   },
+  "video-upload": {
+    "choose-video": "Select a video",
+    "choose-thumbnail": "Set a thumbnail(optional)",
+    "continue": "Continue",
+    "encode": "Send for encoding",
+    "success": "Video succesfully uploaded",
+    "finished": "Finished",
+    "upload-video": "Upload video",
+    "video-gallery": "Video gallery",
+    "preview": "Preview",
+    "to-gallery": "Go to gallery",
+    "congrats": "Congratulations",
+    "publishing": "Don't refresh this page, wait for few seconds for video to process"
+  },
+  "video-gallery": {
+    "all": "All",
+    "title": "Video gallery",
+    "published": "Published",
+    "encoding": "Encoding",
+    "encoded": "Encoded",
+    "failed": "Failed",
+    "status-encoded": "Ready for posting",
+    "status-encoding": "Encoding",
+    "status-published": "Published",
+    "status-failed": "Encoding failed",
+    "status-deleted": "Deleted",
+    "info-created": "Created:",
+    "status": "Status:",
+    "info-views": "Views:",
+    "info-duration": "Duration:",
+    "info-size": "File size:",
+    "insert-video": "Insert",
+    "insert-nsfw": "Insert as NSFW",
+    "refresh": "Refresh to get updated status"
+  },
+  "nsfw-content": {
+    "title": "NSFW contents",
+    "warning": "Please check this if your content is NSFW",
+    "continue": "Continue"
+  },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
     "placeholder-focus": "Enter tag",
@@ -1358,7 +1515,8 @@
   },
   "post-scheduler": {
     "title": "Schedule",
-    "btn-label": "Schedule"
+    "btn-label": "Schedule",
+    "error-message": "Please select a valid future date and time."
   },
   "notification": {
     "popup-title": "You have a new notification",
@@ -1986,7 +2144,7 @@
     "send": "Send",
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
-    "success-message-subscribe": "A verification link has been sent to your email account!",
+    "success-message-subscribe": "You are subscribed to our newsletters!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   },

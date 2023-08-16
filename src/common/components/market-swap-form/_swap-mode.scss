@@ -1,0 +1,31 @@
+@import "src/style/vars_mixins";
+
+.swap-form-container {
+  position: relative;
+
+  &.inline {
+    .auth-required {
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  .auth-required {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    width: calc(100% - 2rem);
+    height: 100%;
+    border-radius: 1rem;
+    padding: 1rem;
+    z-index: 9;
+
+    @include themify(day) {
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    @include themify(night) {
+      background-color: rgba(19, 17, 17, 0.7);
+    }
+  }
+}

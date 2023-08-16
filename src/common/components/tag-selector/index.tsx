@@ -180,7 +180,7 @@ export class TagSelector extends Component<Props, State> {
     const { tags, trendingTags } = this.props;
     const { hasFocus, value } = this.state;
     const placeholder =
-      tags.length > 0
+      tags && tags.length > 0
         ? _t("tag-selector.placeholder-has-tags")
         : hasFocus
         ? _t("tag-selector.placeholder-focus")

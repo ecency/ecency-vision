@@ -1,5 +1,5 @@
 import { History } from "history";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
@@ -10,6 +10,9 @@ import { IdentifiableEntry } from "../deck-threads-manager";
 import { DeckThreadsForm } from "../../deck-threads-form";
 import moment from "moment";
 import { DeckThreadItemViewerReply } from "./deck-thread-item-viewer-reply";
+import { EntriesCacheContext, useEntryCache } from "../../../../core";
+import { repliesIconSvg } from "../../icons";
+import { Entry } from "../../../../store/entries/types";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -20,16 +23,21 @@ interface Props {
 }
 
 export const DeckThreadItemViewer = ({
-  entry,
+  entry: initialEntry,
   history,
   backTitle,
   onClose,
   highlightedEntry
 }: Props) => {
-  const [data, setData] = useState<IdentifiableEntry | null>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const { addReply, updateCache, updateRepliesCount } = useContext(EntriesCacheContext);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
+  const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
+
+  const [data, setData] = useState<Entry[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+
   useMount(() => setIsMounted(true));
 
   useEffect(() => {
@@ -45,27 +53,45 @@ export const DeckThreadItemViewer = ({
         i.host = entry.host;
       });
 
-      entry.replies = tempResponse[`${entry.author}/${entry.permlink}`].replies;
-
-      const nextData = buildReplyNode(entry, tempResponse);
+      const nextData = build(tempResponse);
       setData(nextData);
       setIsLoaded(true);
     }
   };
 
-  const buildReplyNode = (root: IdentifiableEntry, dataset: Record<string, IdentifiableEntry>) => {
-    if (root.replies.length > 0) {
-      root.replies = root.replies
-        .filter((r) => r !== `${root.author}/${root.permlink}`)
-        .map((r) => buildReplyNode(dataset[r], dataset));
-      root.replies.sort((a, b) => (moment(a.created).isAfter(b.created) ? -1 : 1));
-    }
-
-    return root;
+  const build = (dataset: Record<string, IdentifiableEntry>) => {
+    const result: IdentifiableEntry[] = [];
+    const values = [...Object.values(dataset).filter((v) => v.permlink !== entry.permlink)];
+    Object.entries(dataset)
+      .filter(([_, v]) => v.permlink !== entry.permlink)
+      .forEach(([key, value]) => {
+        const parent = values.find((v) => v.replies.includes(key));
+        if (parent) {
+          const existingTempIndex = result.findIndex(
+            (v) => v.author === parent.author && v.permlink === parent.permlink
+          );
+          if (existingTempIndex > -1) {
+            result[existingTempIndex].replies.push(value);
+            result[existingTempIndex].replies = result[existingTempIndex].replies.filter(
+              (r) => r !== key
+            );
+          } else {
+            parent.replies.push(value);
+            parent.replies = parent.replies.filter((r) => r !== key);
+            result.push(parent);
+          }
+        } else {
+          result.push(value);
+        }
+      });
+    return result;
   };
 
   return (
-    <div className={"deck-post-viewer deck-thread-item-viewer " + (isMounted ? "visible" : "")}>
+    <div
+      ref={rootRef}
+      className={"deck-post-viewer deck-thread-item-viewer " + (isMounted ? "visible" : "")}
+    >
       <div className="deck-post-viewer-header">
         <div className="actions d-flex pt-3 mr-3">
           <Button
@@ -85,7 +111,7 @@ export const DeckThreadItemViewer = ({
       </div>
       <ThreadItem
         pure={true}
-        entry={entry}
+        initialEntry={entry}
         onEntryView={() => {}}
         history={history}
         onMounted={() => {}}
@@ -98,20 +124,46 @@ export const DeckThreadItemViewer = ({
         onSuccess={(reply) => {
           reply.replies = [];
           if (data) {
-            setData({ ...data, replies: [reply, ...data.replies] });
+            setData([reply, ...data]);
+
+            // Update entry in global cache
+            addReply(entry, reply);
           }
         }}
       />
       <div className="deck-thread-item-viewer-replies">
-        {isLoaded &&
-          data?.replies.map((reply) => (
-            <DeckThreadItemViewerReply
-              isHighlighted={highlightedEntry === `${reply.author}/${reply.permlink}`}
-              key={reply.post_id}
-              entry={reply}
-              history={history}
-            />
-          ))}
+        {isLoaded && (
+          <>
+            {data.map((reply) => (
+              <DeckThreadItemViewerReply
+                isHighlighted={highlightedEntry === `${reply.author}/${reply.permlink}`}
+                key={reply.post_id}
+                entry={reply as IdentifiableEntry}
+                history={history}
+                parentEntry={entry}
+                incrementParentEntryCount={() => updateRepliesCount(entry, entry.children + 1)}
+              />
+            ))}
+            {data.length === 0 && (
+              <div className="no-replies-placeholder">
+                {repliesIconSvg}
+                <p>{_t("decks.columns.no-replies")}</p>
+                <Button
+                  variant="outline-primary"
+                  size="sm"
+                  onClick={() =>
+                    (
+                      rootRef.current?.querySelector(".editor-control") as HTMLElement | null
+                    )?.focus()
+                  }
+                >
+                  {_t("decks.columns.add-new-reply")}
+                </Button>
+              </div>
+            )}
+          </>
+        )}
+
         <div className="skeleton-list">
           {!isLoaded && Array.from(new Array(20)).map((_, i) => <DeckThreadItemSkeleton key={i} />)}
         </div>

@@ -4,6 +4,7 @@ import {
   AccountUpdateOperation,
   CustomJsonOperation,
   Operation,
+  OperationName,
   PrivateKey,
   TransactionConfirmation
 } from "@hiveio/dhive";
@@ -38,11 +39,13 @@ export interface MetaData {
   format?: string;
   community?: string;
   description?: string;
+  video?: any;
 }
 
 export interface BeneficiaryRoute {
   account: string;
   weight: number;
+  src?: string;
 }
 
 export interface CommentOptions {
@@ -948,7 +951,7 @@ export const delegateRC = (
     "delegate_rc",
     {
       from: delegator,
-      delegatees: [delegatees],
+      delegatees: delegatees.includes(",") ? delegatees.split(",") : [delegatees],
       max_rc: max_rc
     }
   ];
@@ -1850,7 +1853,6 @@ export const Revoke = (
       json_metadata: ""
     }
   ];
-
   return hiveClient.broadcast.sendOperations([op], key);
 };
 
@@ -1866,7 +1868,6 @@ export const RevokeHot = (
     account_auths,
     key_auths
   };
-
   const op: Operation = [
     "account_update",
     {
@@ -1878,7 +1879,6 @@ export const RevokeHot = (
   ];
 
   const params: Parameters = { callback: `https://ecency.com/@${account}/permissions` };
-
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -1894,7 +1894,6 @@ export const RevokeKc = (
     account_auths,
     key_auths
   };
-
   const op: Operation = [
     "account_update",
     {
@@ -1904,6 +1903,378 @@ export const RevokeKc = (
       json_metadata: ""
     }
   ];
-
   return keychain.broadcast(account, [op], "Active");
+};
+
+// Create account with hive keychain
+export const createAccountKc = async (data: any, creator_account: string) => {
+  try {
+    const { username, pub_keys, fee } = data;
+
+    const account = {
+      name: username,
+      ...pub_keys,
+      active: false
+    };
+
+    const op_name: OperationName = "account_create";
+
+    const owner = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.ownerPublicKey, 1]]
+    };
+    const active = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.activePublicKey, 1]]
+    };
+    const posting = {
+      weight_threshold: 1,
+      account_auths: [["ecency.app", 1]],
+      key_auths: [[account.postingPublicKey, 1]]
+    };
+    const ops: Array<any> = [];
+    const params: any = {
+      creator: creator_account,
+      new_account_name: account.name,
+      owner,
+      active,
+      posting,
+      memo_key: account.memoPublicKey,
+      json_metadata: "",
+      extensions: [],
+      fee
+    };
+
+    const operation: Operation = [op_name, params];
+    ops.push(operation);
+    try {
+      // For Keychain
+      const newAccount = await keychain.broadcast(creator_account, [operation], "Active");
+      return newAccount;
+    } catch (err: any) {
+      console.log(err);
+      return err.jse_info.name;
+    }
+  } catch (err) {
+    return err;
+  }
+};
+
+// Create account with hive Hs
+export const createAccountHs = async (data: any, creator_account: string, hash: string) => {
+  try {
+    const { username, pub_keys, fee } = data;
+
+    const account = {
+      name: username,
+      ...pub_keys,
+      active: false
+    };
+
+    const op_name: OperationName = "account_create";
+
+    const owner = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.ownerPublicKey, 1]]
+    };
+    const active = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.activePublicKey, 1]]
+    };
+    const posting = {
+      weight_threshold: 1,
+      account_auths: [["ecency.app", 1]],
+      key_auths: [[account.postingPublicKey, 1]]
+    };
+
+    const params: any = {
+      creator: creator_account,
+      new_account_name: account.name,
+      owner,
+      active,
+      posting,
+      memo_key: account.memoPublicKey,
+      json_metadata: "",
+      extensions: [],
+      fee
+    };
+
+    const operation: Operation = [op_name, params];
+
+    try {
+      // For Hive Signer
+      const params: Parameters = {
+        callback: `https://ecency.com/onboard-friend/confirming/${hash}?tid={{id}}`
+      };
+      const newAccount = hs.sendOperation(operation, params, () => {});
+      return newAccount;
+    } catch (err: any) {
+      console.log(err);
+      return err.jse_info.name;
+    }
+  } catch (err) {
+    return err;
+  }
+};
+
+// Create account with hive key
+export const createAccountKey = async (
+  data: any,
+  creator_account: string,
+  creator_key: PrivateKey
+) => {
+  try {
+    const { username, pub_keys, fee } = data;
+
+    const account = {
+      name: username,
+      ...pub_keys,
+      active: false
+    };
+
+    let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+    tokens = tokens[0]?.pending_claimed_accounts;
+
+    let op_name: OperationName = "account_create";
+
+    const owner = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.ownerPublicKey, 1]]
+    };
+    const active = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.activePublicKey, 1]]
+    };
+    const posting = {
+      weight_threshold: 1,
+      account_auths: [["ecency.app", 1]],
+      key_auths: [[account.postingPublicKey, 1]]
+    };
+    const ops: Array<any> = [];
+    const params: any = {
+      creator: creator_account,
+      new_account_name: account?.name,
+      owner,
+      active,
+      posting,
+      memo_key: account.memoPublicKey,
+      json_metadata: "",
+      extensions: [],
+      fee
+    };
+
+    const operation: Operation = [op_name, params];
+    ops.push(operation);
+
+    try {
+      // With Private Key
+      const newAccount = await hiveClient.broadcast.sendOperations(ops, creator_key);
+      return newAccount;
+    } catch (err: any) {
+      console.log(err.message);
+      return err.jse_info.name;
+    }
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
+
+// Create account with credit Kc
+export const createAccountWithCreditKc = async (data: any, creator_account: string) => {
+  try {
+    const { username, pub_keys } = data;
+
+    const account = {
+      name: username,
+      ...pub_keys,
+      active: false
+    };
+
+    let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+    tokens = tokens[0]?.pending_claimed_accounts;
+
+    let fee = null;
+    let op_name: OperationName = "create_claimed_account";
+
+    const owner = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.ownerPublicKey, 1]]
+    };
+    const active = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.activePublicKey, 1]]
+    };
+    const posting = {
+      weight_threshold: 1,
+      account_auths: [["ecency.app", 1]],
+      key_auths: [[account.postingPublicKey, 1]]
+    };
+    const ops: Array<any> = [];
+    const params: any = {
+      creator: creator_account,
+      new_account_name: account.name,
+      owner,
+      active,
+      posting,
+      memo_key: account.memoPublicKey,
+      json_metadata: "",
+      extensions: []
+    };
+
+    if (fee) params.fee = fee;
+    const operation: Operation = [op_name, params];
+    ops.push(operation);
+    try {
+      // For Keychain
+      const newAccount = await keychain.broadcast(creator_account, [operation], "Active");
+      return newAccount;
+    } catch (err: any) {
+      return err.jse_info.name;
+    }
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
+
+// Create account with credit Hs
+export const createAccountWithCreditHs = async (
+  data: any,
+  creator_account: string,
+  hash: string
+) => {
+  try {
+    const { username, pub_keys } = data;
+
+    const account = {
+      name: username,
+      ...pub_keys,
+      active: false
+    };
+
+    let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+    tokens = tokens[0]?.pending_claimed_accounts;
+
+    let fee = null;
+    let op_name: OperationName = "create_claimed_account";
+
+    const owner = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.ownerPublicKey, 1]]
+    };
+    const active = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.activePublicKey, 1]]
+    };
+    const posting = {
+      weight_threshold: 1,
+      account_auths: [["ecency.app", 1]],
+      key_auths: [[account.postingPublicKey, 1]]
+    };
+
+    const params: any = {
+      creator: creator_account,
+      new_account_name: account.name,
+      owner,
+      active,
+      posting,
+      memo_key: account.memoPublicKey,
+      json_metadata: "",
+      extensions: []
+    };
+
+    if (fee) params.fee = fee;
+    const operation: Operation = [op_name, params];
+
+    try {
+      // For Hive Signer
+      const params: Parameters = {
+        callback: `https://ecency.com/onboard-friend/confirming/${hash}?tid={{id}}`
+      };
+      console.log(params);
+      const newAccount = hs.sendOperation(operation, params, () => {});
+      return newAccount;
+    } catch (err: any) {
+      console.log(err);
+      return err.jse_info.name;
+    }
+  } catch (err) {
+    return err;
+  }
+};
+
+// Create account with credit key
+export const createAccountWithCreditKey = async (
+  data: any,
+  creator_account: string,
+  creator_key: PrivateKey
+) => {
+  try {
+    const { username, pub_keys } = data;
+
+    const account = {
+      name: username,
+      ...pub_keys,
+      active: false
+    };
+
+    let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+    tokens = tokens[0]?.pending_claimed_accounts;
+
+    let fee = null;
+    let op_name: OperationName = "create_claimed_account";
+
+    const owner = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.ownerPublicKey, 1]]
+    };
+    const active = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[account.activePublicKey, 1]]
+    };
+    const posting = {
+      weight_threshold: 1,
+      account_auths: [["ecency.app", 1]],
+      key_auths: [[account.postingPublicKey, 1]]
+    };
+    const ops: Array<any> = [];
+    const params: any = {
+      creator: creator_account,
+      new_account_name: account?.name,
+      owner,
+      active,
+      posting,
+      memo_key: account.memoPublicKey,
+      json_metadata: "",
+      extensions: []
+    };
+
+    if (fee) params.fee = fee;
+    const operation: Operation = [op_name, params];
+    ops.push(operation);
+
+    try {
+      // With Private Key
+      const newAccount = await hiveClient.broadcast.sendOperations(ops, creator_key);
+      return newAccount;
+    } catch (err: any) {
+      console.log(err.message);
+      return err.jse_info.name;
+    }
+  } catch (err) {
+    return err;
+  }
 };

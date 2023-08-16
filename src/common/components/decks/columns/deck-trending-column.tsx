@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ListItemSkeleton, SearchListItem } from "./deck-items";
-import { GenericDeckColumn } from "./generic-deck-column";
+import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { ReloadableDeckGridItem } from "../types";
 import { getPostsRanked } from "../../../api/bridge";
 import { Entry } from "../../../store/entries/types";
@@ -8,6 +8,7 @@ import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../deck-manager";
 import { DeckPostViewer } from "./content-viewer";
 import { History } from "history";
+import { _t } from "../../../i18n";
 
 interface Props {
   id: string;
@@ -22,6 +23,7 @@ export const DeckTrendingColumn = ({ id, settings, draggable, history }: Props) 
   const [data, setData] = useState<IdentifiableEntry[]>([]);
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
+  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
@@ -40,16 +42,17 @@ export const DeckTrendingColumn = ({ id, settings, draggable, history }: Props) 
     } catch (e) {
     } finally {
       setIsReloading(false);
+      setIsFirstLoaded(true);
     }
   };
 
   return (
-    <GenericDeckColumn
+    <GenericDeckWithDataColumn
       id={id}
       draggable={draggable}
       header={{
-        title: "Trending",
-        subtitle: "Posts",
+        title: _t("decks.trending"),
+        subtitle: _t("decks.posts"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
@@ -57,6 +60,7 @@ export const DeckTrendingColumn = ({ id, settings, draggable, history }: Props) 
       data={data}
       isExpanded={!!currentViewingEntry}
       isReloading={isReloading}
+      isFirstLoaded={isFirstLoaded}
       onReload={() => fetchData()}
       skeletonItem={<ListItemSkeleton />}
       contentViewer={
@@ -85,6 +89,6 @@ export const DeckTrendingColumn = ({ id, settings, draggable, history }: Props) 
           onEntryView={() => setCurrentViewingEntry(item)}
         />
       )}
-    </GenericDeckColumn>
+    </GenericDeckWithDataColumn>
   );
 };

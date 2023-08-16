@@ -47,6 +47,7 @@ export interface FullAccount {
   savings_hbd_last_interest_payment: string;
   savings_hbd_seconds_last_update: string;
   next_vesting_withdrawal: string;
+  pending_claimed_accounts: number;
   delegated_vesting_shares: string;
   received_vesting_shares: string;
   vesting_withdraw_rate: string;

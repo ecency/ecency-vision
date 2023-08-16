@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Modal, Form, InputGroup, FormControl } from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup, Modal } from "react-bootstrap";
 
 import BaseComponent from "../base";
 import { error } from "../feedback";
@@ -11,11 +11,14 @@ import { getAccount } from "../../api/hive";
 
 import { _t } from "../../i18n";
 
-import { plusSvg, deleteForeverSvg, accountMultipleSvg } from "../../img/svg";
+import { accountMultipleSvg, deleteForeverSvg, plusSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 
+const THREE_SPEAK_VIDEO_PATTERN = /\[!\[]\(https:\/\/ipfs-3speak.*\)\]\(https:\/\/3speak\.tv.*\)/g;
+
 interface Props {
+  body: string;
   author?: string;
   list: BeneficiaryRoute[];
   onAdd: (item: BeneficiaryRoute) => void;
@@ -162,16 +165,21 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                     <td>{`@${x.account}`}</td>
                     <td>{`${x.weight / 100}%`}</td>
                     <td>
-                      <Button
-                        onClick={() => {
-                          const { onDelete } = this.props;
-                          onDelete(x.account);
-                        }}
-                        variant="danger"
-                        size="sm"
-                      >
-                        {deleteForeverSvg}
-                      </Button>
+                      {!!this.props.body.match(THREE_SPEAK_VIDEO_PATTERN) &&
+                      x.src === "ENCODER_PAY" ? (
+                        <></>
+                      ) : (
+                        <Button
+                          onClick={() => {
+                            const { onDelete } = this.props;
+                            onDelete(x.account);
+                          }}
+                          variant="danger"
+                          size="sm"
+                        >
+                          {deleteForeverSvg}
+                        </Button>
+                      )}
                     </td>
                   </tr>
                 );

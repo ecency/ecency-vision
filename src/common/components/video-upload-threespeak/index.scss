@@ -1,0 +1,98 @@
+@import "src/style/vars_mixins";
+
+.new-feature {
+  position: relative;
+}
+
+.video-upload-item {
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    @include themify(day) {
+      background-color: darken($white, 6);
+    }
+
+    @include themify(night) {
+      background-color: lighten($dark, 6);
+    }
+    
+  }
+}
+
+.new-feature::after {
+  content: '';
+  height: 0.35rem;
+  width: 0.35rem;
+  background: $red;
+  position: absolute;
+  top: -0.125rem;
+  right: 0.35rem;
+  border-radius: 1rem;
+}
+
+label {
+  cursor: pointer;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .file-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .progresss {
+    align-self: center;
+    display: flex;
+    position: relative;
+    width: 80%;
+    height: 20px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fcfcfc;
+    // background-color: gray;
+
+    @include themify(day) {
+      background-color: #c1c5c7;
+    }
+
+    @include themify(night) {
+      background-color: #161d26;
+    }
+
+    .progress-bar {
+      height: 20px;
+      border-radius: 5px;
+      background-color: #357ce6;
+    }
+
+    span {
+      position: absolute;
+      align-self: center;
+      left: 40%;
+      // right: 60%;
+    }
+  }
+}
+
+.video-successfull {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+
+.three-speak-video-uploading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @include media-breakpoint-down(xs) {
+    grid-template-columns: 1fr;
+  }
+}

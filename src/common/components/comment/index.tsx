@@ -156,7 +156,7 @@ export class Comment extends Component<Props, State> {
     this._updateTimer = setTimeout(() => {
       const { text } = this.state;
       this.setState({ preview: text || "" });
-    }, 500);
+    }, 50);
   };
 
   submit = () => {
@@ -242,10 +242,10 @@ export class Comment extends Component<Props, State> {
             !showEmoji && !showGif && this.setState({ showEmoji: true, showGif: true })
           }
         >
-          {EditorToolbar({ ...this.props, sm: true, showEmoji })}
+          {EditorToolbar({ ...this.props, sm: true, showEmoji, comment: true })}
           <div className="comment-body" onKeyDown={this.handleShortcuts} ref={this.commentBodyRef}>
             <TextareaAutocomplete
-              className={`the-editor accepts-emoji ${text.length > 20 ? "expanded" : ""}`}
+              className={`the-editor accepts-emoji ${text?.length > 20 ? "expanded" : ""}`}
               as="textarea"
               placeholder={_t("comment.body-placeholder")}
               containerStyle={{ height: !text ? "80px" : inputHeight }}

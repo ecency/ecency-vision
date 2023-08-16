@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ListItemSkeleton, SearchListItem } from "./deck-items";
-import { GenericDeckColumn } from "./generic-deck-column";
+import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { UserDeckGridItem } from "../types";
 import { getAccountPosts } from "../../../api/bridge";
 import { Entry } from "../../../store/entries/types";
@@ -11,6 +11,10 @@ import { DeckPostViewer } from "./content-viewer";
 import { History } from "history";
 import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
 import usePrevious from "react-use/lib/usePrevious";
+import { _t } from "../../../i18n";
+import moment from "moment";
+import { newDataComingPaginatedCondition } from "../utils";
+import { InfiniteScrollLoader } from "./helpers";
 
 interface Props {
   id: string;
@@ -23,8 +27,11 @@ type IdentifiableEntry = Entry & Required<Pick<Entry, "id">>;
 
 export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
   const [data, setData] = useState<IdentifiableEntry[]>([]);
+  const prevData = usePrevious(data);
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
+  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
@@ -40,27 +47,44 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
     }
   }, [settings.contentType]);
 
-  const fetchData = async () => {
+  const fetchData = async (since?: Entry) => {
     if (data.length) {
       setIsReloading(true);
     }
 
     try {
-      const response = await getAccountPosts(settings.contentType, settings.username);
-      setData((response as IdentifiableEntry[]) ?? []);
+      const response = await getAccountPosts(
+        settings.contentType,
+        settings.username,
+        since?.author,
+        since?.permlink
+      );
+      let items = response?.map((i) => ({ ...i, id: i.post_id })) ?? [];
+      items = items.sort((a, b) => (moment(a.created).isAfter(moment(b.created)) ? -1 : 1));
+
+      if (items.length === 0) {
+        setHasNextPage(false);
+      }
+
+      if (since) {
+        setData([...data, ...items]);
+      } else {
+        setData(items ?? []);
+      }
     } catch (e) {
     } finally {
       setIsReloading(false);
+      setIsFirstLoaded(true);
     }
   };
 
   return (
-    <GenericDeckColumn
+    <GenericDeckWithDataColumn
       id={id}
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
-        subtitle: userTitles[settings.contentType] ?? "User",
+        subtitle: userTitles[settings.contentType] ?? _t("decks.user"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
@@ -73,10 +97,13 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
         )
       }}
       data={data}
+      isVirtualScroll={false}
       isExpanded={!!currentViewingEntry}
       isReloading={isReloading}
+      isFirstLoaded={isFirstLoaded}
       onReload={() => fetchData()}
       skeletonItem={<ListItemSkeleton />}
+      newDataComingCondition={(newData) => newDataComingPaginatedCondition(newData, prevData)}
       contentViewer={
         currentViewingEntry ? (
           <DeckPostViewer
@@ -89,6 +116,7 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
           <></>
         )
       }
+      afterDataSlot={<InfiniteScrollLoader data={data} isEndReached={!hasNextPage} />}
     >
       {(item: any, measure: Function, index: number) => (
         <SearchListItem
@@ -100,9 +128,15 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
           }}
           {...item}
           children=""
+          onAppear={() => {
+            const isLast = data[data.length - 1]?.post_id === item.post_id;
+            if (isLast && hasNextPage) {
+              fetchData(item);
+            }
+          }}
           onEntryView={() => setCurrentViewingEntry(item)}
         />
       )}
-    </GenericDeckColumn>
+    </GenericDeckWithDataColumn>
   );
 };

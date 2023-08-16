@@ -139,7 +139,7 @@ interface Props {
   toggleUIProp: (what: ToggleType) => void;
   updateSubscriptions: (list: Subscription[]) => void;
   addAccount: (data: Account) => void;
-  addCommunity: (data: Community) => void;
+  resetChat: () => void;
 }
 
 export class CommunityCover extends Component<Props> {
@@ -235,7 +235,7 @@ export default (p: Props) => {
     toggleUIProp: p.toggleUIProp,
     updateSubscriptions: p.updateSubscriptions,
     addAccount: p.addAccount,
-    addCommunity: p.addCommunity
+    resetChat: p.resetChat
   };
 
   return <CommunityCover {...props} />;

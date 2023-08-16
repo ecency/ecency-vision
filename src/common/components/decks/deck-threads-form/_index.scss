@@ -41,6 +41,28 @@
     }
   }
 
+  &.hideAvatar {
+    z-index: 1;
+    display: flex;
+    cursor: default;
+    min-height: 12rem;
+
+    .deck-toolbar-threads-form-content {
+      min-width: 100%;
+    }
+
+    .deck-toolbar-threads-form-body {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &:not(.inline) {
+    .deck-toolbar-threads-form-content {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -156,6 +178,8 @@
   }
 
   .deck-threads-form-toolbar {
+    display: flex;
+    align-items: center;
     border-top: 1px solid $border-color;
 
     @include margin-top(1rem);
@@ -175,6 +199,27 @@
         background-color: rgba($primary, 0.15);
       }
     }
+
+    &-video-picker {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        width: 0.25rem;
+        height: 0.25rem;
+        opacity: 0;
+        background-color: $danger;
+        border-radius: 50%;
+        transition: 0.3s;
+      }
+
+      &:hover::before {
+        opacity: 1;
+      }
+    }
   }
 
   .deck-threads-form-selected-image {
@@ -189,8 +234,8 @@
 
     .remove {
       position: absolute;
-      top: 0;
-      right: 0;
+      top: 0.5rem;
+      right: 0.5rem;
       background-color: $white;
       display: flex;
       align-items: center;
@@ -205,6 +250,20 @@
         width: 1rem;
         height: 1rem;
       }
+    }
+
+    .type {
+      position: absolute;
+      background-color: $dark-sky-blue;
+      color: $white;
+      rotate: -45deg;
+      padding: 0.125rem;
+      text-align: center;
+      width: 100px;
+      top: 0.75rem;
+      left: -1.75rem;
+      font-size: 0.675rem;
+      text-transform: uppercase;
     }
   }
 
@@ -291,8 +350,33 @@
   }
 
   &-submit {
-      white-space: nowrap;
+    white-space: nowrap;
 
     @include margin-left(1rem);
+  }
+
+  .length-prompt {
+    opacity: 0.5;
+
+    @include margin-top(0.5rem);
+    @include font-size(0.675rem);
+  }
+}
+
+.emoji-picker-container {
+  width: 200px;
+
+  .emoji-picker {
+    border: 1px solid $border-color;
+
+    @include border-radius(1rem);
+
+    @include themify(day) {
+      background-color: $white;
+    }
+
+    @include themify(night) {
+      background-color: $dark-two;
+    }
   }
 }

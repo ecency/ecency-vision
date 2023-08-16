@@ -21,8 +21,6 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const [contentType, setContentType] = useState<string | null>(null);
   const [recent, setRecent] = useLocalStorage<UsernameDataItem[]>(PREFIX + "_dcr", []);
 
-  const updateRecent = (name?: string, tag?: string) => {};
-
   return (
     <div className="deck-add-column-user-settings p-3">
       <div className="helper-text">{_t("decks.columns.add-username-text")}</div>
@@ -41,6 +39,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
             setUsername(v);
           }}
           recentList={recent ?? []}
+          setRecentList={setRecent}
           setItem={({ tag }) => {
             setTag(tag ?? "");
           }}
@@ -48,7 +47,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
       )}
       {username !== "" ? (
         <>
-          <div className="subtitle py-3 mt-3">Content type</div>
+          <div className="subtitle py-3 mt-3">{_t("decks.content-type")}</div>
           <div className="content-type-list">
             {COMMUNITY_CONTENT_TYPES.map(({ title, type }) => (
               <div
