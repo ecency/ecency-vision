@@ -60,7 +60,7 @@ export default function JoinCommunityChatBtn(props: Props) {
         window?.messageService?.loadChannel(currentChannel?.id!);
       }
     }
-  }, [window?.messageService, activeUserKeys, loadCommunity]);
+  }, [typeof window !== "undefined" && window?.messageService, activeUserKeys, loadCommunity]);
 
   useEffect(() => {
     checkIsChatJoined();
