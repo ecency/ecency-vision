@@ -35,7 +35,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: pspc/ecency-boilerplate:latest
+          tags: pspc/ecency-boilerplate:legacy
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
