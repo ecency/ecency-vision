@@ -15,6 +15,7 @@ import { AppWindow } from "../../client/window";
 import isElectron from "../util/is-electron";
 import { NotifyTypes } from "../enums";
 import { BeneficiaryRoute, MetaData, RewardType } from "./operations";
+import { ThreeSpeakVideo } from "./threespeak";
 
 declare var window: AppWindow;
 
@@ -216,12 +217,19 @@ export const addImage = (username: string, url: string): Promise<any> => {
 export interface DraftMetadata extends MetaData {
   beneficiaries: BeneficiaryRoute[];
   rewardType: RewardType;
+  isThreespeak?: boolean;
+  speakAuthor?: string;
+  speakPermlink?: string;
+  videoId?: string;
+  isNsfw?: boolean;
+  videoMetadata?: ThreeSpeakVideo;
 }
 
 export interface Draft {
   body: string;
   created: string;
   post_type: string;
+  tags_arr: string[];
   tags: string;
   timestamp: number;
   title: string;

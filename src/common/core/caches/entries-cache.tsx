@@ -138,9 +138,9 @@ export function useDeletedEntryCache(author: string, permlink: string) {
 
 export function useEntryCache<T extends Entry>(initialEntry: T): DefinedQueryObserverResult<T>;
 export function useEntryCache<T extends Entry>(
-  category: string,
-  author: string,
-  permlink: string
+  category?: string,
+  author?: string,
+  permlink?: string
 ): DefinedQueryObserverResult<T>;
 export function useEntryCache<T extends Entry>(
   initialOrPath: T | string,

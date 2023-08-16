@@ -10,6 +10,7 @@ interface videoProps {
   owner: string;
   thumbUrl: string;
   permlink: string;
+  filename: string;
 }
 
 interface Props {
@@ -51,7 +52,10 @@ export function VideoGalleryItem({
   const embeddVideo = (video: videoProps) => {
     const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`;
 
-    const element = ` <center>${speakFile}</center>`;
+    const element = ` <center>${speakFile}[Download](${video.filename.replace(
+      "ipfs://",
+      "https://ipfs-3speak.b-cdn.net/ipfs/"
+    )})</center>`;
     const body = insertText("").innerHTML;
     const hup = manualPublishSpeakVideos
       .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
