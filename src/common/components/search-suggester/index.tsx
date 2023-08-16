@@ -102,6 +102,7 @@ export class SearchSuggester extends BaseComponent<Props, State> {
       this.stateSet({ loading: true });
       getAccountReputations(name, 20)
         .then((r) => {
+          r.sort((a, b) => (a.reputation > b.reputation ? -1 : 1)).slice(0, 3);
           const suggestions = r.map((x) => `${x.account}`);
           const suggestionWithMode = [
             {
@@ -167,7 +168,10 @@ export class SearchSuggester extends BaseComponent<Props, State> {
         .map((x) => `#${x}`)
         .slice(0, 2);
       // account
-      const lookup_accounts = await getAccountReputations(value, 2);
+      const lookup_accounts = await getAccountReputations(value, 20);
+      const accountsug = lookup_accounts
+        .sort((a, b) => (a.reputation > b.reputation ? -1 : 1))
+        .slice(0, 3);
       // Community
       const get_communities = await getCommunities("", 2, value);
       const communities_suggestions = get_communities || [];
@@ -193,7 +197,7 @@ export class SearchSuggester extends BaseComponent<Props, State> {
           onSelect: (i: Reputations) => {
             this.accountSelected(i.account);
           },
-          items: lookup_accounts
+          items: accountsug
         },
         {
           header: _t("search.header-community"),
