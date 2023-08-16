@@ -102,7 +102,7 @@ export class SearchSuggester extends BaseComponent<Props, State> {
       this.stateSet({ loading: true });
       getAccountReputations(name, 20)
         .then((r) => {
-          r.sort((a, b) => (a.reputation > b.reputation ? -1 : 1)).slice(0, 3);
+          r.sort((a, b) => (a.reputation > b.reputation ? -1 : 1));
           const suggestions = r.map((x) => `${x.account}`);
           const suggestionWithMode = [
             {
