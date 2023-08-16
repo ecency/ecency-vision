@@ -16,8 +16,9 @@ import { _t } from "../../i18n";
 
 import defaults from "../../constants/defaults.json";
 
-import { lookupAccounts } from "../../api/hive";
+import { getAccountReputations, Reputations } from "../../api/hive";
 import { dataLimit, getCommunities } from "../../api/bridge";
+import accountReputation from "../../helper/account-reputation";
 
 interface Props {
   history: History;
@@ -99,25 +100,26 @@ export class SearchSuggester extends BaseComponent<Props, State> {
     if (value.startsWith("@")) {
       const name = value.replace("@", "");
       this.stateSet({ loading: true });
-      lookupAccounts(name, 20)
+      getAccountReputations(name, 20)
         .then((r) => {
-          const suggestions = r.map((x) => `@${x}`);
+          r.sort((a, b) => (a.reputation > b.reputation ? -1 : 1)).slice(0, 3);
+          const suggestions = r.map((x) => `${x.account}`);
           const suggestionWithMode = [
             {
               header: _t("search.header-account"),
-              renderer: (i: string) => {
-                const name = i.replace("@", "");
+              renderer: (i: Reputations) => {
                 return (
                   <>
-                    <UserAvatar username={name} size="medium" />
-                    <span style={{ marginLeft: "8px" }}>{name}</span>
+                    <UserAvatar username={i.account} size="medium" />
+                    <span style={{ marginLeft: "8px" }}>{i.account}</span>
+                    <span style={{ marginLeft: "8px" }}>({accountReputation(i.reputation)})</span>
                   </>
                 );
               },
-              onSelect: (i: string) => {
-                this.accountSelected(i.replace("@", ""));
+              onSelect: (i: Reputations) => {
+                this.accountSelected(i.account);
               },
-              items: suggestions
+              items: r
             }
           ];
           this.stateSet({ mode: "account", suggestions, suggestionWithMode });
@@ -166,8 +168,10 @@ export class SearchSuggester extends BaseComponent<Props, State> {
         .map((x) => `#${x}`)
         .slice(0, 2);
       // account
-      const lookup_accounts = await lookupAccounts(value, 2);
-      const accounts_suggestions = lookup_accounts.map((x) => `@${x}`);
+      const lookup_accounts = await getAccountReputations(value, 20);
+      const accountsug = lookup_accounts
+        .sort((a, b) => (a.reputation > b.reputation ? -1 : 1))
+        .slice(0, 3);
       // Community
       const get_communities = await getCommunities("", 2, value);
       const communities_suggestions = get_communities || [];
@@ -181,19 +185,19 @@ export class SearchSuggester extends BaseComponent<Props, State> {
         },
         {
           header: _t("search.header-account"),
-          renderer: (i: string) => {
-            const name = i.replace("@", "");
+          renderer: (i: Reputations) => {
             return (
               <>
-                <UserAvatar username={name} size="medium" />
-                <span style={{ marginLeft: "8px" }}>{name}</span>
+                <UserAvatar username={i.account} size="medium" />
+                <span style={{ marginLeft: "8px" }}>{i.account}</span>
+                <span style={{ marginLeft: "8px" }}>({accountReputation(i.reputation)})</span>
               </>
             );
           },
-          onSelect: (i: string) => {
-            this.accountSelected(i.replace("@", ""));
+          onSelect: (i: Reputations) => {
+            this.accountSelected(i.account);
           },
-          items: accounts_suggestions
+          items: accountsug
         },
         {
           header: _t("search.header-community"),
