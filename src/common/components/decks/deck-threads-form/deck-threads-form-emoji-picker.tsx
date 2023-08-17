@@ -3,7 +3,7 @@ import { emojiIconSvg } from "../icons";
 import { _t } from "../../../i18n";
 import { PopperDropdown } from "../../popper-dropdown";
 import Tooltip from "../../tooltip";
-import EmojiPicker from "../../emoji-picker";
+import { EmojiPicker } from "../../emoji-picker";
 
 interface Props {
   onPick: (v: string) => void;
@@ -15,11 +15,7 @@ export const DeckThreadsFormEmojiPicker = ({ onPick }: Props) => {
       <Tooltip content={_t("editor-toolbar.image")}>
         <PopperDropdown toggle={emojiIconSvg}>
           <div className="emoji-picker-container">
-            <EmojiPicker
-              fallback={(value) => {
-                onPick(value);
-              }}
-            />
+            <EmojiPicker onSelect={(value) => onPick(value)} />
           </div>
         </PopperDropdown>
       </Tooltip>

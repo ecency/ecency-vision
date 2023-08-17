@@ -7,7 +7,7 @@ import { User } from "../../store/users/types";
 import { Global } from "../../store/global/types";
 
 import Tooltip from "../tooltip";
-import EmojiPicker from "../emoji-picker";
+import { EmojiPicker } from "../emoji-picker";
 import GifPicker from "../gif-picker";
 import Gallery from "../gallery";
 import Fragments from "../fragments";
@@ -65,6 +65,7 @@ interface State {
   shGif: boolean;
   showVideoUpload: boolean;
   showVideoGallery: boolean;
+  isMounted: boolean;
 }
 
 export const detectEvent = (eventType: string) => {
@@ -86,7 +87,8 @@ export class EditorToolbar extends Component<Props> {
     mobileImage: false,
     shGif: false,
     showVideoUpload: false,
-    showVideoGallery: false
+    showVideoGallery: false,
+    isMounted: false
   };
 
   holder = React.createRef<HTMLDivElement>();
@@ -155,6 +157,9 @@ export class EditorToolbar extends Component<Props> {
     window.addEventListener("blockquote", this.quote);
     window.addEventListener("image", this.toggleImage);
     window.addEventListener("customToolbarEvent", this.handleCustomToolbarEvent);
+    this.setState({
+      isMounted: true
+    });
   }
 
   componentWillUnmount() {
@@ -576,13 +581,12 @@ export class EditorToolbar extends Component<Props> {
             </Tooltip>
           )}
           <Tooltip content={_t("editor-toolbar.emoji")}>
-            <div className="editor-tool" role="none">
+            <div className="editor-tool" id="editor-tool-emoji-picker" role="none">
               {emoticonHappyOutlineSvg}
-              {showEmoji && (
+              {showEmoji && this.state.isMounted && (
                 <EmojiPicker
-                  fallback={(e) => {
-                    this.insertText(e, "");
-                  }}
+                  anchor={document.querySelector("#editor-tool-emoji-picker")!!}
+                  onSelect={(e) => this.insertText(e, "")}
                 />
               )}
             </div>
