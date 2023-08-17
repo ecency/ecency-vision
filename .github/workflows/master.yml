@@ -58,15 +58,27 @@ jobs:
       env:
         USE_PRIVATE: ${{secrets.USE_PRIVATE}}
         REDIS_HOST_PASSWORD: ${{secrets.REDIS_HOST_PASSWORD}}
+        PRIVATE_API_ADDR: ${{secrets.PRIVATE_API_ADDR}}
+        PRIVATE_API_AUTH: ${{secrets.PRIVATE_API_AUTH}}
+        HIVESIGNER_CLIENT_SECRET: ${{secrets.HIVESIGNER_CLIENT_SECRET}}
+        SEARCH_API_ADDR: ${{secrets.SEARCH_API_ADDR}}
+        SEARCH_API_SECRET: ${{secrets.SEARCH_API_SECRET}}
+        API_PORT: ${{secrets.API_PORT}}
       with:
         host: ${{ secrets.SSH_HOST_EU }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: USE_PRIVATE, REDIS_HOST_PASSWORD
+        envs: USE_PRIVATE,REDIS_HOST_PASSWORD,PRIVATE_API_ADDR,PRIVATE_API_AUTH,HIVESIGNER_CLIENT_SECRET,SEARCH_API_ADDR,SEARCH_API_SECRET,API_PORT
         script: |
           export USE_PRIVATE=$USE_PRIVATE
           export REDIS_HOST_PASSWORD=$REDIS_HOST_PASSWORD
+          export PRIVATE_API_ADDR=$PRIVATE_API_ADDR
+          export PRIVATE_API_AUTH=$PRIVATE_API_AUTH
+          export HIVESIGNER_CLIENT_SECRET=$HIVESIGNER_CLIENT_SECRET
+          export SEARCH_API_ADDR=$SEARCH_API_ADDR
+          export SEARCH_API_SECRET=$SEARCH_API_SECRET
+          export API_PORT=$API_PORT
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
@@ -81,15 +93,27 @@ jobs:
       env:
         USE_PRIVATE: ${{secrets.USE_PRIVATE}}
         REDIS_HOST_PASSWORD: ${{secrets.REDIS_HOST_PASSWORD}}
+        PRIVATE_API_ADDR: ${{secrets.PRIVATE_API_ADDR}}
+        PRIVATE_API_AUTH: ${{secrets.PRIVATE_API_AUTH}}
+        HIVESIGNER_CLIENT_SECRET: ${{secrets.HIVESIGNER_CLIENT_SECRET}}
+        SEARCH_API_ADDR: ${{secrets.SEARCH_API_ADDR}}
+        SEARCH_API_SECRET: ${{secrets.SEARCH_API_SECRET}}
+        API_PORT: ${{secrets.API_PORT}}
       with:
         host: ${{ secrets.SSH_HOST_US }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: USE_PRIVATE, REDIS_HOST_PASSWORD
+        envs: USE_PRIVATE,REDIS_HOST_PASSWORD,PRIVATE_API_ADDR,PRIVATE_API_AUTH,HIVESIGNER_CLIENT_SECRET,SEARCH_API_ADDR,SEARCH_API_SECRET,API_PORT
         script: |
           export USE_PRIVATE=$USE_PRIVATE
           export REDIS_HOST_PASSWORD=$REDIS_HOST_PASSWORD
+          export PRIVATE_API_ADDR=$PRIVATE_API_ADDR
+          export PRIVATE_API_AUTH=$PRIVATE_API_AUTH
+          export HIVESIGNER_CLIENT_SECRET=$HIVESIGNER_CLIENT_SECRET
+          export SEARCH_API_ADDR=$SEARCH_API_ADDR
+          export SEARCH_API_SECRET=$SEARCH_API_SECRET
+          export API_PORT=$API_PORT
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
@@ -104,15 +128,27 @@ jobs:
       env:
         USE_PRIVATE: ${{secrets.USE_PRIVATE}}
         REDIS_HOST_PASSWORD: ${{secrets.REDIS_HOST_PASSWORD}}
+        PRIVATE_API_ADDR: ${{secrets.PRIVATE_API_ADDR}}
+        PRIVATE_API_AUTH: ${{secrets.PRIVATE_API_AUTH}}
+        HIVESIGNER_CLIENT_SECRET: ${{secrets.HIVESIGNER_CLIENT_SECRET}}
+        SEARCH_API_ADDR: ${{secrets.SEARCH_API_ADDR}}
+        SEARCH_API_SECRET: ${{secrets.SEARCH_API_SECRET}}
+        API_PORT: ${{secrets.API_PORT}}
       with:
         host: ${{ secrets.SSH_HOST_SG }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: USE_PRIVATE, REDIS_HOST_PASSWORD
+        envs: USE_PRIVATE,REDIS_HOST_PASSWORD,PRIVATE_API_ADDR,PRIVATE_API_AUTH,HIVESIGNER_CLIENT_SECRET,SEARCH_API_ADDR,SEARCH_API_SECRET,API_PORT
         script: |
           export USE_PRIVATE=$USE_PRIVATE
           export REDIS_HOST_PASSWORD=$REDIS_HOST_PASSWORD
+          export PRIVATE_API_ADDR=$PRIVATE_API_ADDR
+          export PRIVATE_API_AUTH=$PRIVATE_API_AUTH
+          export HIVESIGNER_CLIENT_SECRET=$HIVESIGNER_CLIENT_SECRET
+          export SEARCH_API_ADDR=$SEARCH_API_ADDR
+          export SEARCH_API_SECRET=$SEARCH_API_SECRET
+          export API_PORT=$API_PORT
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
