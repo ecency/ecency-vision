@@ -52,7 +52,7 @@ export function VideoGalleryItem({
   const embeddVideo = (video: videoProps) => {
     const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`;
 
-    const element = ` <center>${speakFile}[Download](${video.filename.replace(
+    const element = ` <center>${speakFile}[Source](${video.filename.replace(
       "ipfs://",
       "https://ipfs-3speak.b-cdn.net/ipfs/"
     )})</center>`;
