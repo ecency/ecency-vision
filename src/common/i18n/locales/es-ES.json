@@ -1471,7 +1471,7 @@
     "insert-video": "Insertar",
     "insert-nsfw": "Insertar como NSFW",
     "refresh": "Refrescar para obtener el estado actualizado",
-    "video-info": "Videos are stored and powered by SPK network, might have some storage and encoding fees."
+    "video-info": "Los videos son almacenados y mantenidos por la red SPK, puede tener algunos cargos de almacenamiento y codificación."
   },
   "nsfw-content": {
     "title": "Contenido NSFW",
