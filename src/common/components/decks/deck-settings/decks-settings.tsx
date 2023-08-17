@@ -2,7 +2,7 @@ import { Alert, Button, Form, InputGroup, Modal } from "react-bootstrap";
 import React, { useContext, useEffect, useState } from "react";
 import "./_decks-settings.scss";
 import { DeckGrid } from "../types";
-import { EmojiPicker } from "../../emoji-picker";
+import EmojiPicker from "../../emoji-picker/index-old";
 import { deleteForeverSvg, emoticonHappyOutlineSvg } from "../../../img/svg";
 import ClickAwayListener from "../../clickaway-listener";
 import * as uuid from "uuid";
@@ -120,7 +120,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                   {showEmoji ? (
                     <ClickAwayListener onClickAway={() => setShowEmoji(false)}>
                       <EmojiPicker
-                        onSelect={(value) => {
+                        fallback={(value) => {
                           setIcon(value);
                           setShowEmoji(false);
                         }}

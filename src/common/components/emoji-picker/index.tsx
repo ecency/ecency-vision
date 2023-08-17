@@ -5,6 +5,8 @@ import { Picker } from "emoji-mart";
 import { createPortal } from "react-dom";
 import useClickAway from "react-use/lib/useClickAway";
 import useMountedState from "react-use/lib/useMountedState";
+import "./_index.scss";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 export const DEFAULT_EMOJI_DATA = {
   categories: [],
@@ -24,6 +26,8 @@ interface Props {
 export function EmojiPicker({ anchor, onSelect }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
   const instance = useRef<Picker | null>(null);
+
+  const { global } = useMappedStore();
 
   const [show, setShow] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -54,11 +58,19 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
   useEffect(() => {
     if (data.categories.length > 0) {
       instance.current = new Picker({
+        set: "apple",
+        theme: global.theme === "day" ? "light" : "dark",
+        dynamicWidth: true,
+        previewPosition: "none",
         onEmojiSelect: (e: { native: string }) => onSelect(e.native),
         ref
       });
     }
-  }, [data]);
+
+    return () => {
+      instance.current = null;
+    };
+  }, [data, global.theme]);
 
   useEffect(() => {
     if (anchor) {
@@ -73,13 +85,12 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
   return isMounted() ? (
     createPortal(
       <div
+        className="emoji-picker-dialog"
         ref={ref}
         style={{
-          position: "absolute",
-          zIndex: 201,
           top: position.y + 40,
           left: position.x,
-          display: show ? "block" : "none"
+          display: show ? "flex" : "none"
         }}
       />,
       document.body!!
