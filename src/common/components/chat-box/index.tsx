@@ -64,7 +64,9 @@ import {
   removeUserSvg,
   resendMessageSvg,
   failedMessageSvg,
-  chatKeySvg
+  chatKeySvg,
+  copyOutlinSvg,
+  copyContent
 } from "../../img/svg";
 
 import {
@@ -103,17 +105,23 @@ import { renderPostBody } from "@ecency/render-helper";
 import { getAccessToken } from "../../helper/user-token";
 import { _t } from "../../i18n";
 
-import { getAccountFull, lookupAccounts } from "../../api/hive";
+import { getAccountFull, getAccountReputations, lookupAccounts } from "../../api/hive";
 import { uploadImage } from "../../api/misc";
 import { addImage } from "../../api/private-api";
 import { getCommunity } from "../../api/bridge";
 
 import "./index.scss";
+import accountReputation from "../../helper/account-reputation";
 
 export interface profileData {
   joiningData: string;
   about: string | undefined;
   followers: number | undefined;
+}
+
+export interface AccountWithReputation {
+  account: string;
+  reputation: number;
 }
 
 interface Props {
@@ -171,7 +179,7 @@ export default function ChatBox(props: Props) {
   const [step, setStep] = useState(0);
   const [communities, setCommunities] = useState<Channel[]>([]);
   const [searchtext, setSearchText] = useState("");
-  const [userList, setUserList] = useState<string[]>([]);
+  const [userList, setUserList] = useState<AccountWithReputation[]>([]);
   const [user, setUser] = useState("");
   const [role, setRole] = useState("admin");
   const [addRoleError, setAddRoleError] = useState("");
@@ -190,6 +198,12 @@ export default function ChatBox(props: Props) {
   const [hasMore, setHasMore] = useState(true);
   const [resendMessage, setResendMessage] = useState<PublicMessage | DirectMessage>();
   const [importPrivKey, setImportPrivKey] = useState(false);
+  const [revelPrivateKey, setRevealPrivateKey] = useState(false);
+  const [innerWidth, setInnerWidth] = useState(0);
+
+  useEffect(() => {
+    console.log("innerWidth", innerWidth);
+  }, [innerWidth]);
 
   useEffect(() => {
     // resetProfile(props.activeUser);
@@ -197,6 +211,7 @@ export default function ChatBox(props: Props) {
     setShow(!!props.activeUser?.username);
     const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
     setNoStrPrivKey(noStrPrivKey);
+    setInnerWidth(window.innerWidth);
   }, []);
 
   useEffect(() => {
@@ -361,6 +376,13 @@ export default function ChatBox(props: Props) {
   }, [isCommunity, communityName]);
 
   useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
     if (currentUser) {
       const isCurrentUserFound = props.chat.directContacts.some(
         (contact) => contact.name === currentUser
@@ -372,8 +394,7 @@ export default function ChatBox(props: Props) {
         fetchCurrentUserData();
       }
 
-      const peer = props.chat.directContacts.find((x) => x.name === currentUser)?.pubkey ?? null;
-      setReceiverPubKey(peer!);
+      const peer = props.chat.directContacts.find((x) => x.name === currentUser)?.pubkey ?? "";
       const msgsList = fetchDirectMessages(peer!);
       const messages = msgsList.sort((a, b) => a.created - b.created);
       setDirectMessagesList(messages);
@@ -384,15 +405,15 @@ export default function ChatBox(props: Props) {
       setIsCurrentUserJoined(true);
       setMessage("");
       setInProgress(false);
-      // scrollerClicked();
     }
   }, [currentUser]);
 
   useDebounce(
     async () => {
       if (searchtext.length !== 0) {
-        const resp = await lookupAccounts(searchtext, 7);
-        setUserList(resp);
+        const resp = await getAccountReputations(searchtext, 20);
+        const sortedByReputation = resp.sort((a, b) => (a.reputation > b.reputation ? -1 : 1));
+        setUserList(sortedByReputation);
         setInProgress(false);
       } else {
         setInProgress(false);
@@ -464,6 +485,10 @@ export default function ChatBox(props: Props) {
     }
   };
 
+  const handleResize = () => {
+    setInnerWidth(window.innerWidth);
+  };
+
   const formatFollowers = (count: number | undefined) => {
     if (count) {
       return count >= 1e6
@@ -514,6 +539,7 @@ export default function ChatBox(props: Props) {
   };
 
   const fetchCurrentUserData = async () => {
+    console.log("fetch currenyt user data run");
     const response = await getAccountFull(currentUser);
     setProfileData({
       joiningData: response.created,
@@ -1092,45 +1118,6 @@ export default function ChatBox(props: Props) {
     );
   };
 
-  // const ImportChatModal = () => {
-  //   return (
-  //     <>
-  //       <div className="import-chat-dialog-header border-bottom">
-  //         <div className="step-no">1</div>
-  //         <div className="import-chat-dialog-titles">
-  //           <div className="import-chat-main-title">{_t("chat.enter-private-key")}</div>
-  //           <div className="import-chat-sub-title">{_t("chat.enter-private-key-detail")}</div>
-  //         </div>
-  //       </div>
-  //       <div className="private-key">
-  //         <Form
-  //           onSubmit={(e: React.FormEvent) => {
-  //             e.preventDefault();
-  //           }}
-  //         >
-  //           <InputGroup>
-  //             <InputGroup.Prepend>
-  //               <InputGroup.Text>{keySvg}</InputGroup.Text>
-  //             </InputGroup.Prepend>
-  //             <Form.Control
-  //               value={chatPrivKey}
-  //               type="password"
-  //               autoFocus={true}
-  //               autoComplete="off"
-  //               placeholder="Chat private key"
-  //               onChange={(e) => setChatPrivkey(e.target.value)}
-  //             />
-  //             <InputGroup.Append>
-  //               <Button onClick={handleImportChatSubmit}>{_t("key-or-hot.sign")}</Button>
-  //             </InputGroup.Append>
-  //           </InputGroup>
-  //           {addRoleError && <Form.Text className="text-danger">{addRoleError}</Form.Text>}
-  //         </Form>
-  //       </div>
-  //     </>
-  //   );
-  // };
-
   const successModal = (message: string) => {
     return (
       <>
@@ -1347,6 +1334,8 @@ export default function ChatBox(props: Props) {
     setSearchText("");
     setMessage("");
     setHasMore(true);
+    setRevealPrivateKey(false);
+    setAddRoleError("");
   };
 
   const communityMenuItems: MenuItem[] = [
@@ -1393,7 +1382,7 @@ export default function ChatBox(props: Props) {
   const menuItems: MenuItem[] = [
     {
       label: _t("chat.manage-chat-key"),
-      onClick: () => inviteClicked(noStrPrivKey),
+      onClick: () => setRevealPrivateKey(!revelPrivateKey),
       icon: chatKeySvg
     }
   ];
@@ -1408,9 +1397,13 @@ export default function ChatBox(props: Props) {
   return (
     <>
       {show && (
-        <div className={`chatbox-container ${expanded ? "expanded" : ""}`}>
+        <div
+          className={`chatbox-container ${expanded ? "expanded" : ""} ${
+            innerWidth <= 666 ? "small-screen" : ""
+          }`}
+        >
           <div className="chat-header">
-            {(currentUser || communityName || showSearchUser) && expanded && (
+            {(currentUser || communityName || showSearchUser || revelPrivateKey) && expanded && (
               <Tooltip content={_t("chat.back")}>
                 <div className="back-arrow-image">
                   <span className="back-arrow-svg" onClick={handleBackArrowSvg}>
@@ -1439,20 +1432,26 @@ export default function ChatBox(props: Props) {
                   ? currentCommunity?.title
                   : showSearchUser
                   ? "New Message"
+                  : revelPrivateKey
+                  ? "Manage chat key"
                   : "Messages"}
               </p>
             </div>
             <div className="actionable-imgs">
-              {!currentUser && hasUserJoinedChat && noStrPrivKey && !isCommunity && (
-                <>
-                  <div className="message-image" onClick={handleMessageSvgClick}>
-                    <Tooltip content={_t("chat.new-message")}>
-                      <p className="message-svg">{addMessageSVG}</p>
-                    </Tooltip>
-                  </div>
-                </>
-              )}
-              {hasUserJoinedChat && noStrPrivKey && (
+              {!currentUser &&
+                hasUserJoinedChat &&
+                noStrPrivKey &&
+                !isCommunity &&
+                !revelPrivateKey && (
+                  <>
+                    <div className="message-image" onClick={handleMessageSvgClick}>
+                      <Tooltip content={_t("chat.new-message")}>
+                        <p className="message-svg">{addMessageSVG}</p>
+                      </Tooltip>
+                    </div>
+                  </>
+                )}
+              {hasUserJoinedChat && noStrPrivKey && !revelPrivateKey && (
                 <div className="message-image" onClick={handleRefreshSvgClick}>
                   <Tooltip content={_t("chat.refresh")}>
                     <p className="message-svg" style={{ paddingTop: "10px" }}>
@@ -1513,7 +1512,7 @@ export default function ChatBox(props: Props) {
             ref={chatBodyDivRef}
             onScroll={handleScroll}
           >
-            {hasUserJoinedChat ? (
+            {hasUserJoinedChat && !revelPrivateKey ? (
               <>
                 {currentUser.length !== 0 || communityName.length !== 0 ? (
                   <div className="chats">
@@ -1915,18 +1914,21 @@ export default function ChatBox(props: Props) {
                             key={index}
                             className="search-content"
                             onClick={() => {
-                              setCurrentUser(user);
+                              setCurrentUser(user.account);
                               setIsCurrentUser(true);
                             }}
                           >
                             <div className="search-user-img">
                               <span>
-                                <UserAvatar username={user} size="medium" />
+                                <UserAvatar username={user.account} size="medium" />
                               </span>
                             </div>
 
                             <div className="search-user-title">
-                              <p className="search-username">{user}</p>
+                              <p className="search-username">{user.account}</p>
+                              <p className="search-reputation">
+                                ({accountReputation(user.reputation)})
+                              </p>
                             </div>
                           </div>
                         );
@@ -2063,6 +2065,35 @@ export default function ChatBox(props: Props) {
                   </>
                 )}
               </>
+            ) : revelPrivateKey ? (
+              <>
+                <div className="manage-chat-key">
+                  <div className="private-key">
+                    <Form.Group controlId="private-key">
+                      <Form.Label>Private key</Form.Label>
+                      <div className="d-flex private-key-input">
+                        <Form.Control
+                          className="chat-priv-key"
+                          type="text"
+                          readOnly={true}
+                          value={noStrPrivKey}
+                        />
+                        <Tooltip content={"Copy Private key"}>
+                          <p
+                            className="copy-svg"
+                            onClick={() => {
+                              inviteClicked(noStrPrivKey);
+                            }}
+                          >
+                            {copyContent}
+                          </p>
+                        </Tooltip>
+                      </div>
+                    </Form.Group>
+                  </div>
+                  <OrDivider />
+                </div>
+              </>
             ) : (
               <Button className="join-chat-btn" onClick={handleJoinChat}>
                 {showSpinner && chatButtonSpinner}
@@ -2179,8 +2210,7 @@ export default function ChatBox(props: Props) {
                     style={{ maxWidth: "100%", overflowWrap: "break-word" }}
                     disabled={
                       inProgress ||
-                      receiverPubKey === null ||
-                      receiverPubKey === undefined ||
+                      (isCurrentUser && receiverPubKey) === undefined ||
                       isActveUserRemoved
                     }
                   />
@@ -2216,7 +2246,6 @@ export default function ChatBox(props: Props) {
             {step === 9 && confirmationModal(NEWCHATACCOUNT)}
             {step === 11 && confirmationModal(RESENDMESSAGE)}
             {step === 2 && EditRolesModal()}
-            {step === 4 && successModal(CHATIMPORT)}
             {step === 10 && successModal(NEWCHATACCOUNT)}
             {step === 8 && blockedUsersModal()}
           </Modal.Body>

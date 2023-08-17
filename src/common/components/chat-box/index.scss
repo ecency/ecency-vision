@@ -6,7 +6,7 @@
 .chatbox-container {
   position: fixed;
   z-index: 99;
-  right: 15rem;
+  right: 13rem;
   bottom: 0rem;
   height: 53px;
   width: 410px;
@@ -228,12 +228,15 @@
         }
 
         .search-user-title {
+          display: flex;
           margin-left: 1rem;
           .search-username {
-            margin-top: 7px;
-            margin-bottom: 0;
+            margin: 7px 0 0 0;
             font-size: 20px;
             font-weight: 700;
+          }
+          .search-reputation {
+            margin: 9px 0 0 6px;
           }
         }
         &:hover {
@@ -563,6 +566,33 @@
         }
       }
     }
+    .manage-chat-key {
+      .private-key {
+        margin-top: 2.5rem;
+        margin-left: 14px;
+        margin-right: 7px;
+      }
+      .chat-priv-key {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .copy-svg {
+        margin-top: 3px;
+        margin-left: 2px;
+        cursor: pointer;
+
+        svg {
+          @include themify(day) {
+            color: #a1a1a1;
+          }
+          @include themify(night) {
+            color: $white-two;
+          }
+        }
+      }
+    }
   }
   .chat {
     display: flex;
@@ -634,6 +664,30 @@
       }
     }
   }
+  &.small-screen {
+    right: 0;
+    width: 100vw;
+    .chat-header {
+      width: 100vw;
+    }
+    .message-header-content {
+      max-width: 30vw !important;
+    }
+    .sender-message-content,
+    .receiver-message-content {
+      max-width: 75vw !important;
+    }
+    &.expanded {
+      height: 90vh;
+    }
+    .message-header-title {
+      max-width: 100vw;
+      margin-right: 0.3rem;
+    }
+    .chat-body {
+      height: 73vh;
+    }
+  }
 }
 
 .chats-dialog {
@@ -701,4 +755,19 @@
       padding: 0 5px;
     }
   }
+}
+
+.chat-button {
+  position: fixed;
+  z-index: 99;
+  right: 6rem;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50% !important;
+  // .chat-btn {
+  //   width: 40px;
+  //   border-radius: 50% !important;
+  //   padding: 0 !important;
+  // }
 }
