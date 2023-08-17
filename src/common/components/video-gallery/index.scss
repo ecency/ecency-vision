@@ -131,13 +131,27 @@
   }
 }
 
+.video-center {
+  text-align: center;
+  width: auto;
+}
+
+.video-info {
+  padding: 0.5rem;
+  @include themify(night) {
+    color: $gray-500;
+  }
+  @include themify(day) {
+    color: $gray-600;
+  }
+}
+
 .video-status-picker {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
   border-bottom: 1px solid var(--border-color);
-  padding: 1rem;
+  padding: 0 1rem;
   font-size: 0.875rem;
 
   .custom-dropdown .dropdown-btn .label {
