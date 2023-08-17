@@ -1470,7 +1470,8 @@
     "info-size": "File size:",
     "insert-video": "Insert",
     "insert-nsfw": "Insert as NSFW",
-    "refresh": "Refresh to get updated status"
+    "refresh": "Refresh to get updated status",
+    "video-info": "Videos are stored and powered by SPK network, might have some storage and encoding fees."
   },
   "nsfw-content": {
     "title": "NSFW contents",
