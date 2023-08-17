@@ -144,7 +144,7 @@ export function Submit(props: PageProps & MatchProps) {
       setTags(
         draft.tags
           .trim()
-          .split(",")
+          .split(/[ ,]+/)
           .filter((t) => !!t)
       );
       setBody(draft.body);
