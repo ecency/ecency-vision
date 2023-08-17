@@ -26,6 +26,7 @@ export enum EntryFilter {
 export enum ProfileFilter {
   blog = "blog",
   posts = "posts",
+  activities = "activities",
   comments = "comments",
   replies = "replies"
 }

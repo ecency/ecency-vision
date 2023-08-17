@@ -14,6 +14,7 @@ import { DynamicProps } from "../../store/dynamic-props/types"
 import { upvote, commentSvg, ticketSvg, starSvg, peopleSvg } from "../../img/svg"
 import DropDown from "../dropdown"
 import { _t } from "../../i18n"
+import UserActivities from "./activities"
 
 // interface Props{
 // }
@@ -44,32 +45,32 @@ export const ProfileActivites = (props: any) => {
   
     try {
       const response = await getAllActiviies(account.name);
-      const accountHistory = response.map((entry: [any, any]) => {
+      const filterResponse = response.filter((r: any) => {
+        const filterTypes = types.includes(r[1].op[0]);
+        // console.log(filterTypes, r[1].op[0])
+        return filterTypes;
+
+      });
+      const accountHistory = filterResponse.map((entry: [any, any]) => {
         const [index, op] = entry;
         const { timestamp, block } = op;
         const type = op.op[0];
         const data = op.op[1];
-  
-        if (types.includes(type)) {
-          return {
+        
+        return {
             index,
             timestamp,
             block,
             type,
             data,
           };
-        } else {
-          return null;
-        }
       });
-  
-      const filteredAccountHistory = accountHistory.filter((entry: any) => entry !== null);
-  
-      // console.log(response);
-      // console.log(filteredAccountHistory);
-      setActivities(filteredAccountHistory.reverse());
+
+      const filterNotifications = accountHistory.filter((a: any) => a?.data.id !== "notify" && a?.data.id !== "ecency_notify")
+    
+      setActivities(filterNotifications.reverse());
       setLoading(false);
-      return filteredAccountHistory;
+      return filterNotifications;
     } catch (err) {
       console.log(err);
     }
@@ -159,263 +160,18 @@ export const ProfileActivites = (props: any) => {
   return (
     <>
       {loading && <LinearProgress/>}
-        <div className="activities-container">
+        <div className="activities-container mt-3">
           <div className="activities-page-info">
             <span>Activities related to <Link to={`/@${account?.name}`}>@{account?.name}'s</Link> account</span>
           </div>
           <div className="activities-bottom">
             <div className="activities-wrapper">
               {activities?.map((a: any, i: number) => {
-              const jsonData = handleCustomJson(a)
+                // console.log(a)
+                  const jsonData = handleCustomJson(a)
+                  // console.log(jsonData)
                 return (
-                <>
-                  {
-                  a?.type === "comment" && a.data.author === account?.name && a.data.parent_author !== "" ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon">
-                          {commentSvg}
-                        </div>
-                        <div className="activity-info">
-                          <span>
-                            <span> commented on </span>
-                            <Link to={`/${a.data.parent_permlink}/@${a.data.author}/${a.data.permlink}`}>
-                              {a.data.parent_permlink} 
-                            </Link>
-                            <span> by </span>
-                            <a href="#" className="ml-1">@{a.data.parent_author === "" ? a.data.author : a.data.parent_author}</a>
-                          </span>
-                          <div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> 
-                  : a?.type === "comment" && a.data.parent_author === account?.name && a.data.author !== account?.name ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon">
-                          {commentSvg}
-                        </div>
-                        <div className="activity-info">
-                        <span>
-                          <span> replied to </span>
-                          <Link to={`/${a.data.parent_permlink}/@${a.data.author}/${a.data.permlink}`}>
-                            {a.data.parent_permlink} 
-                          </Link>
-                          <span> by </span>
-                          <a href="#" className="ml-1">@{a.data.parent_author === "" ? a.data.author : a.data.parent_author}</a>
-                        </span>
-                        <div>
-                          <span>{dateToFullRelative(a.timestamp)}</span>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> 
-                  : a?.type === "vote" && a.data.voter === account?.name ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                          <div className="activity-icon">
-                            {upvote}
-                          </div>
-                          <div className="activity-info">
-                            <div>
-                              <span> voted on </span>
-                              <a href={`${window.origin}/@${a.data.author}/${a.data.permlink}`}>
-                                {a.data.permlink} 
-                              </a>
-                              <span> by </span>
-                              <Link to={`/@${a.data.author}`} className="ml-1">@{a.data.author}</Link>
-                            </div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                      </div>
-                    </div>
-                  </div> 
-                  : a?.type === "proposal_pay" ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon">
-                          {ticketSvg}
-                        </div>
-                        <div className="activity-info">
-                          <span>
-                            <span> received {a.data.payment} from </span>
-                            <a href="#" className="ml-1">@{a.data.payer}</a>
-                          </span>
-                          <div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  : (a?.data.id === "follow" && jsonData[1]!?.what?.includes("blog")) ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon">
-                          {starSvg}
-                        </div>
-                        <div className="activity-info">                    
-                          <span>
-                            <span> started following </span>
-                            <a href="#" className="ml-1">@{jsonData[1].following}</a>
-                          </span>
-                          <div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> 
-                  : (a?.data.id === "follow" && !jsonData[1]?.what?.includes("blog")) ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon">
-                          {starSvg}
-                        </div>
-                        <div className="activity-info">
-                          <span>
-                            <span> unfollowed </span>
-                            <a href="#" className="ml-1">@{jsonData[1].following}</a>
-                          </span>
-                          <div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> 
-                  : (a?.data.id === "community" && jsonData?.includes("subscribe")) ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon">
-                          {peopleSvg}
-                        </div>
-                        <div className="activity-info">
-                          <span>
-                            <span> Subscribed to community</span>
-                            <Link to={`/created/${jsonData[1]?.community}`} className="ml-1">{jsonData[1]?.community}</Link>
-                          </span>
-                          <div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> 
-                  :( a?.data.id === "community" && jsonData?.includes("unsubscribe")) ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon">
-                          {peopleSvg}
-                        </div>
-                        <div className="activity-info">
-                          <span>
-                            <span> unsubscribed from community</span>
-                            <Link to={`/created/${jsonData[1]?.community}`} className="ml-1">{jsonData[1]?.community}</Link>
-                          </span>
-                          <div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  : (a?.type === "account_witness_vote" && a?.data.approve) ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon text-light">
-                          {upvote}
-                        </div>
-                        <div className="activity-info">
-                          <span>                            <span> voted witness </span>
-                            <Link to={`/@${a.data.witness}`} className="ml-1">@{a.data.witness}</Link>
-                          </span>
-                          <div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> 
-                  : (a?.type === "account_witness_vote" && !a?.data.approve) ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon">
-                          {upvote}
-                        </div>
-                        <div className="activity-info">
-                          <span>                            <span> unvoted witness </span>
-                            <Link to={`/@${a.data.witness}`} className="ml-1">@{a.data.witness}</Link>
-                          </span>
-                          <div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> 
-                  : (a?.type === "update_proposal_votes" && a?.data.approve) ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon">
-                          {upvote}
-                        </div>
-                        <div className="activity-info">
-                          <span>
-                            <span> approved </span>
-                            <Link to={`/proposals/${a.data.proposal_ids}`} className="ml-1">proposal#{a.data.proposal_ids}</Link>
-                          </span>
-                          <div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> 
-                  : (a?.type === "update_proposal_votes" && !a?.data.approve) ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon">
-                          {upvote}
-                        </div>
-                        <div className="activity-info">
-                          <span>
-                            <a href="#">@{a.data.voter}</a>
-                            <span> unapproved </span>
-                            <Link to={`/proposals/${a?.data.proposal_ids}`} className="ml-1">proposal#{a?.data.proposal_ids}</Link>
-                          </span>
-                          <div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> 
-                  : a?.type === "account_update2" ? <div className="activities">
-                    <div className="activities-info-wrapper">
-                      <div className="activities-details">
-                        <div className="activity-icon">
-                          {starSvg}
-                        </div>
-                        <div className="activity-info">
-                          <span>
-                            <a href="#">@{a?.data.account}</a>
-                            <span> updated their account</span>
-                          </span>
-                          <div>
-                            <span>{dateToFullRelative(a.timestamp)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> 
-                  : <></>
-                  }
-                </>
+                    <UserActivities a={a} acctount={account} jsonData={jsonData} key={i} />
               )})}
               {!loading && <div className="d-flex mt-3 align-self-center">
                 <Button className="w-100">Load more</Button>
@@ -439,12 +195,12 @@ export const ProfileActivites = (props: any) => {
                     <Link to={`/@${account?.name}/comments`}>Comments</Link>
                     <Link to={`/@${account?.name}/replies`}>Replies</Link>
                     <Link to={`/@${account?.name}/trail`}>Votes</Link>
-                    <Link to={`/`}>Follows</Link>
+                    <Link to={`/@${account?.name}/communities`}>Communities</Link>
                   </div>
                   <div className="filter-types">
+                    <Link to={`/`}>Follows</Link>
                     <Link to={`/`}>Witness votes</Link>
                     <Link to={`/`}>Proposal votes</Link>
-                    <Link to={`/`}>Communities</Link>
                   </div>
                   <div className="filter-types">
                     <Link to={`/`}>Curation rewards</Link>

@@ -438,7 +438,7 @@ export const Profile = (props: Props) => {
         <div className="content-side">
           {ProfileMenu({ ...props, username, section })}
 
-          {[...Object.keys(ProfileFilter), "communities"].includes(section) &&
+          {[...Object.keys(ProfileFilter), "communities"].includes(section) && section !== "activities" &&
             ProfileCover({ ...props, account })}
 
           {data &&
