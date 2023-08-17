@@ -17,7 +17,7 @@ export const DEFAULT_EMOJI_DATA = {
 };
 
 interface Props {
-  anchor: Element;
+  anchor: Element | null;
   onSelect: (e: string) => void;
 }
 
@@ -62,10 +62,11 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
 
   useEffect(() => {
     if (anchor) {
-      anchor.addEventListener("click", () => setShow(true));
-
-      const { x, y } = anchor.getBoundingClientRect();
-      setPosition({ x, y });
+      anchor.addEventListener("click", () => {
+        const { x, y } = anchor.getBoundingClientRect();
+        setPosition({ x, y });
+        setShow(true);
+      });
     }
   }, [anchor]);
 
@@ -75,6 +76,7 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
         ref={ref}
         style={{
           position: "absolute",
+          zIndex: 201,
           top: position.y + 40,
           left: position.x,
           display: show ? "block" : "none"
