@@ -43,7 +43,7 @@ export default async (req: Request, res: Response) => {
   let entries = {};
 
   if (entry) {
-    if (dmca.some((rx: string) => new RegExp(rx).test(`${entry?.author}/${entry?.permlink}`))) {
+    if (dmca.some((rx: string) => new RegExp(rx).test(`@${entry?.author}/${entry?.permlink}`))) {
       entry.body = "This post is not available due to a copyright/fraudulent claim.";
       entry.title = "";
     }
