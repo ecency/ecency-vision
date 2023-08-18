@@ -29,6 +29,7 @@ export async function getAsAMP(
   try {
     const cache = await redis.get(identifier);
     if (cache && !forceRender) {
+      await client.disconnect();
       return cache;
     }
   } catch (e) {
