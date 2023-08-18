@@ -1,7 +1,7 @@
 import { bellSvg, rocketSvg } from "../../../img/svg";
 import React from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { WalletBadge } from "../../user-nav";
+import WalletBadge from "../../user-nav/wallet-badge";
 import { Dropdown } from "react-bootstrap";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
 import { dotsMenuIconSvg, notificationsIconSvg, walletIconSvg } from "../icons";

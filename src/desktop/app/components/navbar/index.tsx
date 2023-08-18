@@ -21,7 +21,7 @@ import { DynamicProps } from "../../../../common/store/dynamic-props/types";
 
 import ToolTip from "../../../../common/components/tooltip";
 import Login from "../../../../common/components/login";
-import UserNav from "../../../../common/components/user-nav";
+import UserNav from "../../../../common/components/user-nav/user-nav";
 import DropDown from "../../../../common/components/dropdown";
 import SearchSuggester from "../../../../common/components/search-suggester";
 import Updater from "../updater";
