@@ -1949,6 +1949,11 @@
   resolved "https://registry.yarnpkg.com/@types/diff-match-patch/-/diff-match-patch-1.0.32.tgz#d9c3b8c914aa8229485351db4865328337a3d09f"
   integrity sha512-bPYT5ECFiblzsVzyURaNhljBH2Gh1t9LowgUwciMrNAhFewLkHT2H0Mto07Y4/3KCOGZHRQll3CTtQZ0X11D/A==
 
+"@types/dom-mediacapture-record@^1.0.16":
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/@types/dom-mediacapture-record/-/dom-mediacapture-record-1.0.16.tgz#8a37eaa32c1810519843c6406325bb78618d1daf"
+  integrity sha512-GB4f8Es3aTEUjDT3ojQ8IWUhb6f5tlUoxvVw65ppkImG09QRRys6V6t56uLAynZCD3LisMQDuVObOKnnllDtCQ==
+
 "@types/express-serve-static-core@^4.17.18":
   version "4.17.24"
   resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.24.tgz#ea41f93bf7e0d59cd5a76665068ed6aab6815c07"
