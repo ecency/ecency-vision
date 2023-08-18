@@ -76,7 +76,7 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
     if (anchor) {
       anchor.addEventListener("click", () => {
         const { x, y } = anchor.getBoundingClientRect();
-        setPosition({ x, y });
+        setPosition({ x: x + window.scrollX, y: y + window.scrollY });
         setShow(true);
       });
     }
