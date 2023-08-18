@@ -34,7 +34,6 @@ export async function getAsAMP(
   } catch (e) {
     console.error(e);
     console.error("Redis is unavailable. AMP caches ignoring");
-    await client.disconnect();
   }
 
   const renderResult = await renderAmp(request, preloadedState);
@@ -63,7 +62,7 @@ export async function getAsAMP(
   } catch (e) {
     console.error(e);
     console.error("Redis is unavailable. AMP caches ignoring");
-    await client.disconnect();
   }
+  await client.disconnect();
   return ampResult;
 }
