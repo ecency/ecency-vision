@@ -1,6 +1,6 @@
 export const EmojiPickerStyle = {
   width: "94%",
-  bottom: "40px",
+  bottom: "45px",
   left: "0px",
   marginLeft: "14px",
   borderTopLeftRadius: "8px",
