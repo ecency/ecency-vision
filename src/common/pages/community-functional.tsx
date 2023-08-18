@@ -242,7 +242,7 @@ export const CommunityPage = (props: Props) => {
   const handleJoinChat = async () => {
     setInProgress(true);
     const keys = createNoStrAccount();
-    ls.set(`${props.activeUser?.username}_noStrPrivKey`, keys.priv);
+    ls.set(`${props.activeUser?.username}_nsPrivKey`, keys.priv);
     await setProfileMetaData(props.activeUser, keys.pub);
     setNostrkeys(keys);
     setHasUserJoinedChat(true);

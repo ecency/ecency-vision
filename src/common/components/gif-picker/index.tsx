@@ -13,7 +13,7 @@ interface Props {
   changeState: (gifState?: boolean) => void;
   style?: {
     width: string;
-    top: string;
+    bottom: string;
     left: string | number;
     marginLeft: string;
     borderTopLeftRadius: string;

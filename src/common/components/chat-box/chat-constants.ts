@@ -1,6 +1,6 @@
 export const EmojiPickerStyle = {
   width: "94%",
-  top: "255px",
+  bottom: "40px",
   left: "0px",
   marginLeft: "14px",
   borderTopLeftRadius: "8px",
@@ -10,7 +10,7 @@ export const EmojiPickerStyle = {
 
 export const GifPickerStyle = {
   width: "94%",
-  top: "76px",
+  bottom: "45px",
   left: 0,
   marginLeft: "14px",
   borderTopLeftRadius: "8px",
@@ -27,7 +27,7 @@ export const GifImagesStyle = {
   width: "170px"
 };
 
-export const NOSTRKEY = "noStrKey";
+export const NOSTRKEY = "nsKey";
 export const UPLOADING = "Uploading";
 export const GIPHGY = "giphy";
 export const HIDEMESSAGE = "hideMessage";

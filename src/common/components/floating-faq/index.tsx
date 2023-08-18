@@ -154,7 +154,11 @@ const FloatingFAQ = () => {
             onClickAway={() => show && setShow(false)}
           >
             {display && !isSubmitPage && (
-              <Button className="help-btn" variant="primary" onClick={handleShow}>
+              <Button
+                className={`help-btn ${innerWidth <= 666 ? "small-screen" : ""} `}
+                variant="primary"
+                onClick={handleShow}
+              >
                 {helpIconSvg}
 
                 {innerWidth >= 792 && <div className="help">{_t("floating-faq.help")}</div>}
@@ -162,7 +166,11 @@ const FloatingFAQ = () => {
             )}
 
             {show && display ? (
-              <div className={`floating-container ${isSubmitPage ? className : ""}`}>
+              <div
+                className={`floating-container ${isSubmitPage ? className : ""} ${
+                  innerWidth <= 666 ? "small-screen" : ""
+                }`}
+              >
                 <div className="faq-welcome">
                   <h3 className="faq-welcome-message">{_t("floating-faq.welcome")}</h3>
                   <Button

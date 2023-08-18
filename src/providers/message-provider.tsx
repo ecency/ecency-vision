@@ -95,7 +95,7 @@ const MessageProvider = (props: Props) => {
     const profile = await getProfileMetaData(activeUser.username);
     const noStrPrivKey = getPrivateKey(activeUser.username);
     const keys = {
-      pub: profile.noStrKey,
+      pub: profile.nsKey,
       priv: noStrPrivKey
     };
     setKeys(keys);

@@ -202,10 +202,6 @@ export default function ChatBox(props: Props) {
   const [innerWidth, setInnerWidth] = useState(0);
 
   useEffect(() => {
-    console.log("innerWidth", innerWidth);
-  }, [innerWidth]);
-
-  useEffect(() => {
     // resetProfile(props.activeUser);
     fetchProfileData();
     setShow(!!props.activeUser?.username);
@@ -539,7 +535,6 @@ export default function ChatBox(props: Props) {
   };
 
   const fetchCurrentUserData = async () => {
-    console.log("fetch currenyt user data run");
     const response = await getAccountFull(currentUser);
     setProfileData({
       joiningData: response.created,
@@ -548,9 +543,9 @@ export default function ChatBox(props: Props) {
     });
     const { posting_json_metadata } = response;
     const profile = JSON.parse(posting_json_metadata!).profile;
-    const { noStrKey } = profile || {};
-    setReceiverPubKey(noStrKey);
-    setIsCurrentUserJoined(!!noStrKey);
+    const { nsKey } = profile || {};
+    setReceiverPubKey(nsKey);
+    setIsCurrentUserJoined(!!nsKey);
     setInProgress(false);
   };
 
@@ -558,7 +553,7 @@ export default function ChatBox(props: Props) {
     const profileData = await getProfileMetaData(props.activeUser?.username!);
     const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
     const activeUserKeys = {
-      pub: profileData?.noStrKey,
+      pub: profileData?.nsKey,
       priv: noStrPrivKey
     };
     setActiveUserKeys(activeUserKeys);
@@ -671,7 +666,7 @@ export default function ChatBox(props: Props) {
     resetChat();
     const keys = createNoStrAccount();
     console.log("keys", keys);
-    ls.set(`${props.activeUser?.username}_noStrPrivKey`, keys.priv);
+    ls.set(`${props.activeUser?.username}_nsPrivKey`, keys.priv);
     setNoStrPrivKey(keys.priv);
     await setProfileMetaData(props.activeUser, keys.pub);
     setHasUserJoinedChat(true);
@@ -855,7 +850,7 @@ export default function ChatBox(props: Props) {
       const pubKey = getPublicKey(chatPrivKey);
       if (pubKey === activeUserKeys?.pub) {
         setNoStrPrivKey(chatPrivKey);
-        ls.set(`${props.activeUser?.username}_noStrPrivKey`, chatPrivKey);
+        ls.set(`${props.activeUser?.username}_nsPrivKey`, chatPrivKey);
         const keys = {
           pub: activeUserKeys?.pub!,
           priv: chatPrivKey
@@ -866,6 +861,7 @@ export default function ChatBox(props: Props) {
       } else {
         setAddRoleError("Invalid Private key");
       }
+      setImportPrivKey(false);
     } catch (error) {
       setAddRoleError("Invalid Private key");
     }
@@ -1210,7 +1206,7 @@ export default function ChatBox(props: Props) {
           }
           const moderator = {
             name: user,
-            pubkey: profileData.noStrKey,
+            pubkey: profileData.nsKey,
             role: role
           };
           setModerator(moderator);

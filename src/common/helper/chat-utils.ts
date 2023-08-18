@@ -25,9 +25,9 @@ export const resetProfile = (activeUser: ActiveUser | null) => {
   return new Promise(async (resolve, reject) => {
     try {
       const profile = await getProfileMetaData(activeUser?.username!);
-      delete profile.noStrKey;
+      delete profile.nsKey;
       delete profile.channel;
-      ls.remove(`${activeUser?.username}_noStrPrivKey`);
+      ls.remove(`${activeUser?.username}_nsPrivKey`);
       const response = await getAccountFull(activeUser?.username!);
       const updatedProfile = await updateProfile(response, { ...profile });
       console.log("Updated profile", updatedProfile);
@@ -44,7 +44,7 @@ export const setProfileMetaData = async (activeUser: ActiveUser | null, noStrPub
   const { posting_json_metadata } = response;
   const profile = JSON.parse(posting_json_metadata!).profile;
   const newProfile = {
-    noStrKey: noStrPubKey
+    nsKey: noStrPubKey
   };
 
   const updatedProfile = await updateProfile(response, { ...profile, ...newProfile });
@@ -89,5 +89,5 @@ export const getCommunities = (channels: Channel[], leftChannels: string[]) => {
 };
 
 export const getPrivateKey = (username: string) => {
-  return ls.get(`${username}_noStrPrivKey`);
+  return ls.get(`${username}_nsPrivKey`);
 };

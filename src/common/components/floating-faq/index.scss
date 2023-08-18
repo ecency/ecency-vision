@@ -20,6 +20,9 @@
   .help-button-content {
     margin-top: -3px;
   }
+  &.small-screen {
+    bottom: 65px;
+  }
 }
 
 @media (max-width: 791px) {
@@ -39,6 +42,10 @@
   width: 435px;
   border-radius: 18px;
   overflow: hidden;
+
+  &.small-screen {
+    bottom: 7rem;
+  }
 
   &.submit {
     position: fixed;

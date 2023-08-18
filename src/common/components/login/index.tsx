@@ -773,9 +773,9 @@ class LoginDialog extends Component<Props> {
       resetChat();
 
       //create new message service instance for newly logged in user
-      if (profile && profile.noStrKey && getPrivateKey(account.name)) {
+      if (profile && profile.nsKey && getPrivateKey(account.name)) {
         const keys = {
-          pub: profile.noStrKey,
+          pub: profile.nsKey,
           priv: getPrivateKey(account.name)
         };
         setNostrkeys(keys);

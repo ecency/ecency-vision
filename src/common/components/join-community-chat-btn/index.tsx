@@ -103,7 +103,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     const ownerData = await getProfileMetaData(community.name);
     const ownerRole = {
       name: activeUser!.username,
-      pubkey: activeUserKeys?.pub || ownerData.noStrKey,
+      pubkey: activeUserKeys?.pub || ownerData.nsKey,
       role: "owner"
     };
 
@@ -116,7 +116,7 @@ export default function JoinCommunityChatBtn(props: Props) {
         if (profileData && profileData.hasOwnProperty(NOSTRKEY)) {
           const roleInfo: communityModerator = {
             name: item[0],
-            pubkey: profileData.noStrKey,
+            pubkey: profileData.nsKey,
             role: item[1]
           };
 
@@ -191,7 +191,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     setInProgress(true);
     const keys = createNoStrAccount();
     setActiveUserKeys(keys);
-    ls.set(`${activeUser?.username}_noStrPrivKey`, keys.priv);
+    ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
     await setProfileMetaData(props.activeUser, keys.pub);
     setHasUserJoinedChat(true);
     setNostrkeys(keys);
