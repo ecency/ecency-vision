@@ -2066,7 +2066,7 @@ export default function ChatBox(props: Props) {
                 <div className="manage-chat-key">
                   <div className="private-key">
                     <Form.Group controlId="private-key">
-                      <Form.Label>Private key</Form.Label>
+                      <Form.Label>Chat Private key</Form.Label>
                       <div className="d-flex private-key-input">
                         <Form.Control
                           className="chat-priv-key"
