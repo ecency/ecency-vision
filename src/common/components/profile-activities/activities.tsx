@@ -2,12 +2,22 @@ import React from 'react'
 import { dateToFullRelative } from '../../helper/parse-date';
 import { Link } from 'react-router-dom';
 import { upvote, ticketSvg, starSvg, peopleSvg, commentSvg } from '../../img/svg';
+import { Account } from '../../store/accounts/types';
+import { ActivityTypes } from './types/types';
+  
 
-const UserActivities = (props: any) => {
-    const { a, account, jsonData, i } = props;
+interface Props {
+    a: ActivityTypes;
+    account: Account;
+    jsonData: any;
+}
+
+const UserActivities = (props: Props) => {
+
+    const { a, account, jsonData } = props;
 
   return (
-        <div className="activities">
+        <>
             {a?.type === "comment" && a?.data.parent_author === "" ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
@@ -251,8 +261,8 @@ const UserActivities = (props: any) => {
                 </div>
             </div>
             </> 
-            : <>{jsonData[1][0]}</>}
-        </div>
+            : <></>}
+        </>
   )
 }
 
