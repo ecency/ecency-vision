@@ -1,4 +1,6 @@
+import hs from "hivesigner";
 import {b64uEnc} from "../util/b64";
+import { getAccessToken } from "./user-token";
 
 export const getAuthUrl = (redir: string = `${window.location.origin}/auth`) => {
     const app = "ecency.app";
@@ -11,6 +13,18 @@ export const getAuthUrl = (redir: string = `${window.location.origin}/auth`) => 
 
 export const getTokenUrl = (code: string, secret: string) => {
     return `https://hivesigner.com/api/oauth2/token?code=${code}&client_secret=${secret}`;
+};
+
+export const getDecodedMemo = (username: string, memo: string): Promise<any> => {
+    // With hivesigner access token
+    let token = getAccessToken(username);
+    return token
+        ? new hs.Client({
+            accessToken: token
+        })
+            .decode(memo)
+            .then((r: any) => r)
+        : Promise.resolve(0);
 };
 
 export interface HiveSignerMessage {

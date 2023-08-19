@@ -1,4 +1,4 @@
-const PREFIX = "ecency";
+export const PREFIX = "ecency";
 
 
 export const get = (k: string, def: any = null): any => {

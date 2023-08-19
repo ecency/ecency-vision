@@ -41,8 +41,10 @@ import {
     gridSvg,
     emoticonHappyOutlineSvg,
   textShortSvg,
-  infoOutlineSvg
+  infoOutlineSvg,
+  videoSvg
 } from "../../img/svg";
+import VideoUpload from "../upload-video/upload-video";
 
 
 interface Props {
@@ -59,6 +61,7 @@ interface State {
     image: boolean;
     link: boolean;
     mobileImage: boolean;
+    showVideo: boolean;
 }
 
 export class EditorToolbar extends Component<Props> {
@@ -67,7 +70,8 @@ export class EditorToolbar extends Component<Props> {
         fragments: false,
         image: false,
         link: false,
-        mobileImage: false
+        mobileImage: false,
+        showVideo: false,
     }
 
     holder = React.createRef<HTMLDivElement>();
@@ -97,6 +101,15 @@ export class EditorToolbar extends Component<Props> {
         const {image} = this.state;
         this.setState({image: !image});
     }
+
+    toggleVideo = (e?: React.MouseEvent<HTMLElement>) => {
+        if (e) {
+            e.stopPropagation();
+        }
+        const {showVideo} = this.state;
+        this.setState({showVideo: !showVideo});
+    }
+
 
     toggleMobileImage = (e?: React.MouseEvent<HTMLElement>) => {
         if (e) {
@@ -339,7 +352,7 @@ export class EditorToolbar extends Component<Props> {
                 error(_t("editor-toolbar.image-error-cache"))
             }
         } catch (e) {
-            if (e.response?.status === 413) {
+            if ((e as any).response?.status === 413) {
                 error(_t("editor-toolbar.image-error-size"));
             } else {
                 error(_t("editor-toolbar.image-error"));
@@ -354,7 +367,7 @@ export class EditorToolbar extends Component<Props> {
     };
 
     render() {
-        const {gallery, fragments, image, link, mobileImage} = this.state;
+        const {gallery, fragments, image, link, mobileImage, showVideo} = this.state;
         const {global, sm, activeUser, showEmoji = true} = this.props;
 
         return (
@@ -463,7 +476,11 @@ export class EditorToolbar extends Component<Props> {
                             </div>
                         </Tooltip>
                     })()}
-
+                    <Tooltip content={_t("editor-toolbar.video")}>
+                        <div className="editor-tool" onClick={this.toggleVideo}>
+                            {videoSvg}
+                        </div>
+                    </Tooltip>
                     <Tooltip content={_t("editor-toolbar.table")}>
                         <div className="editor-tool" onClick={this.table}>
                             {gridSvg}
@@ -523,6 +540,7 @@ export class EditorToolbar extends Component<Props> {
                     this.image(text, link);
                     this.toggleImage();
                 }}/>}
+                {showVideo && <VideoUpload onHide={this.toggleVideo} onSubmit={() => console.log('submitted video')} />}
                 {link && <AddLink onHide={this.toggleLink} onSubmit={(text: string, link: string) => {
                     this.link(text, link);
                     this.toggleLink();
