@@ -15,29 +15,6 @@ import "./_index.scss";
 import UserNav from "./user-nav";
 import { UserNavProps } from "./types/usernav-types";
 
-class PointsBadge extends Component<{ activeUser: ActiveUser }> {
-  render() {
-    const { activeUser } = this.props;
-
-    let hasUnclaimedPoints = activeUser.points.uPoints !== "0.000";
-
-    return (
-      <>
-        <ToolTip
-          content={
-            hasUnclaimedPoints ? _t("user-nav.unclaimed-points-notice") : _t("user-nav.points")
-          }
-        >
-          <Link to={`/@${activeUser.username}/points`} className="user-points">
-            {hasUnclaimedPoints && <span className="reward-badge" />}
-            {gifCardSvg}
-          </Link>
-        </ToolTip>
-      </>
-    );
-  }
-}
-
 const UserNavContainer: React.FC<Pick<UserNavProps, 'history'>> = ({ history }) => {
   const {
     global,
