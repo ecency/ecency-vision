@@ -17,6 +17,7 @@
     align-items: center;
     justify-content: center;
     border-top: 1px solid var(--border-color);
+    position: fixed;
 
     @include themify(night) {
       background-color: rgba(21, 22, 23);

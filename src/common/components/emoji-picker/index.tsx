@@ -93,7 +93,7 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
           display: show ? "flex" : "none"
         }}
       />,
-      document.body!!
+      document.querySelector("#root")!!
     )
   ) : (
     <></>
