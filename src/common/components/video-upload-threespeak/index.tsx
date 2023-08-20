@@ -124,9 +124,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
           />
         ) : (
           <div className="video-source">
-            {selectedFile ? (
-              <></>
-            ) : (
+            {!selectedFile && "MediaRecorder" in window ? (
               <div
                 className="d-flex align-items-center flex-column border rounded p-3 video-upload-item"
                 onClick={() => setShowRecorder(true)}
@@ -134,6 +132,8 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
                 {recordVideoSvg}
                 {_t("video-upload.record-video")}
               </div>
+            ) : (
+              <></>
             )}
             <VideoUploadItem
               label={_t("video-upload.choose-video")}
