@@ -6,19 +6,20 @@ import { _t } from '../../i18n';
 import { Global } from '../../store/global/types';
 import { ActiveUser } from '../../store/active-user/types';
 import { createFile } from "../../util/create-file";
-import { toggleUIProp } from '../../store/ui';
+import "./_index.scss";
 
 const DEFAULT_THUMBNAIL = require("./assets/thumbnail.jpg");
 
 interface Props {
   show: boolean;
   setShow: (v: boolean) => void;
+  setShowGallery: (v: boolean) => void;
   className?: string;
   global: Global;
   activeUser: ActiveUser;
 }
 
-const VideoUpload: FC<Props> = ({ activeUser, show, setShow, children, className }) => {
+const VideoUpload: FC<Props> = ({ activeUser, show, setShow, setShowGallery }) => {
 
   const {
     mutateAsync: uploadVideo,
@@ -112,14 +113,14 @@ const VideoUpload: FC<Props> = ({ activeUser, show, setShow, children, className
     <div className="dialog-content ">
       <div className="three-speak-video-uploading">
         <VideoUploadItem
-          label={_t("video-upload.choose-video")}
+          label="Choose video to upload"
           onFileChange={handleVideoChange}
           type="video"
           accept="video/*"
           completed={videoPercentage}
         />
         <VideoUploadItem
-          label={_t("video-upload.choose-thumbnail")}
+          label="Choose thumbnail (optional)"
           onFileChange={handleThumbnailChange}
           type="thumbnail"
           accept="image/*"
@@ -138,30 +139,75 @@ const VideoUpload: FC<Props> = ({ activeUser, show, setShow, children, className
           setStep("preview");
         }}
       >
-        {_t("video-upload.continue")}
+        Continue upload
       </Button>
     </div>
   );
 
-  console.log(show);
+  const previewVideo = (
+    <div className="dialog-content">
+      <div className="file-input">
+        <video
+          onLoadedMetadata={getVideoDuration}
+          ref={videoRef}
+          controls={true}
+          poster={coverImage}
+        >
+          <source src={selectedFile} type="video/mp4" />
+        </video>
+      </div>
+      <div className="d-flex justify-content-end mt-3">
+        <Button
+          className="bg-dark"
+          onClick={() => {
+            setStep("upload");
+          }}
+        >
+          {_t("g.back")}
+        </Button>
+        <Button
+          className="ml-3"
+          disabled={!canUpload}
+          onClick={() => {
+            uploadInfo({
+              fileName: filevName,
+              fileSize: filevSize,
+              videoUrl,
+              thumbUrl,
+              activeUser: activeUser!.username,
+              duration
+            });
+            setShow(false);
+            setStep("upload");
+            setShowGallery(true);
+          }}
+        >
+          Upload to gallery
+        </Button>
+      </div>
+    </div>
+  );
 
  return (
         <Modal
           animation={false}
           show={show}
           centered={true}
-          onHide={() => setShow(false)}
+          onHide={() => {
+            console.log('close');
+            setShow(false)}}
           keyboard={false}
           className="add-image-modal"
         >
           <Modal.Header closeButton={true}>
             <Modal.Title>
-              {step === "upload" && <p>{_t("video-upload.upload-video")}</p>}
-              {step === "preview" && <p>{_t("video-upload.preview")}</p>}
+              {step === "upload" && <p>Upload video</p>}
+              {step === "preview" && <p>Video preview</p>}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {step === "upload" && uploadVideoModal}
+            {step === "preview" && previewVideo}
           </Modal.Body>
         </Modal>
   );

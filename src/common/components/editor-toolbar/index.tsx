@@ -102,7 +102,7 @@ export class EditorToolbar extends Component<Props> {
         this.setState({image: !image});
     }
 
-    toggleVideo = (val: boolean) => this.setState({showVideo: !val})
+    toggleVideo = (val: boolean) => this.setState({showVideo: val})
 
 
     toggleMobileImage = (e?: React.MouseEvent<HTMLElement>) => {
@@ -536,7 +536,7 @@ export class EditorToolbar extends Component<Props> {
                     this.image(text, link);
                     this.toggleImage();
                 }}/>}
-                {showVideo && activeUser && <VideoUpload global={global} show={showVideo} activeUser={activeUser} setShow={this.toggleVideo}  />}
+                {showVideo && activeUser && <VideoUpload setShowGallery={(v: boolean) => console.log(v)} global={global} show={showVideo} activeUser={activeUser} setShow={this.toggleVideo}  />}
                 {link && <AddLink onHide={this.toggleLink} onSubmit={(text: string, link: string) => {
                     this.link(text, link);
                     this.toggleLink();
