@@ -102,13 +102,7 @@ export class EditorToolbar extends Component<Props> {
         this.setState({image: !image});
     }
 
-    toggleVideo = (e?: React.MouseEvent<HTMLElement>) => {
-        if (e) {
-            e.stopPropagation();
-        }
-        const {showVideo} = this.state;
-        this.setState({showVideo: !showVideo});
-    }
+    toggleVideo = (val: boolean) => this.setState({showVideo: !val})
 
 
     toggleMobileImage = (e?: React.MouseEvent<HTMLElement>) => {
@@ -370,6 +364,8 @@ export class EditorToolbar extends Component<Props> {
         const {gallery, fragments, image, link, mobileImage, showVideo} = this.state;
         const {global, sm, activeUser, showEmoji = true} = this.props;
 
+        console.log(showVideo);
+
         return (
             <>
                 <div className={_c(`editor-toolbar ${sm ? 'toolbar-sm' : ''}`)} ref={this.holder}>
@@ -477,7 +473,7 @@ export class EditorToolbar extends Component<Props> {
                         </Tooltip>
                     })()}
                     <Tooltip content={_t("editor-toolbar.video")}>
-                        <div className="editor-tool" onClick={this.toggleVideo}>
+                        <div className="editor-tool" onClick={() => this.setState({ showVideo: true })}>
                             {videoSvg}
                         </div>
                     </Tooltip>
@@ -540,7 +536,7 @@ export class EditorToolbar extends Component<Props> {
                     this.image(text, link);
                     this.toggleImage();
                 }}/>}
-                {showVideo && <VideoUpload onHide={this.toggleVideo} onSubmit={() => console.log('submitted video')} />}
+                {showVideo && activeUser && <VideoUpload global={global} show={showVideo} activeUser={activeUser} setShow={this.toggleVideo}  />}
                 {link && <AddLink onHide={this.toggleLink} onSubmit={(text: string, link: string) => {
                     this.link(text, link);
                     this.toggleLink();
