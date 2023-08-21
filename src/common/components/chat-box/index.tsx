@@ -666,7 +666,6 @@ export default function ChatBox(props: Props) {
     setShowSpinner(true);
     resetChat();
     const keys = createNoStrAccount();
-    console.log("keys", keys);
     ls.set(`${props.activeUser?.username}_nsPrivKey`, keys.priv);
     setNoStrPrivKey(keys.priv);
     await setProfileMetaData(props.activeUser, keys.pub);

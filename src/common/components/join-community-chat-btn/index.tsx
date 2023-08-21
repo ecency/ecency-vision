@@ -40,10 +40,6 @@ export default function JoinCommunityChatBtn(props: Props) {
   const [initiateCommunityChat, setInitiateCommunityChat] = useState(false);
 
   useEffect(() => {
-    getCommunityRoles();
-  }, []);
-
-  useEffect(() => {
     fetchCommunityProfile();
     fetchUserProfileData();
   }, [chat.channels, currentChannel, chat.leftChannelsList]);
@@ -61,11 +57,11 @@ export default function JoinCommunityChatBtn(props: Props) {
       }
       if (initiateCommunityChat) {
         createCommunityChat();
+        setInitiateCommunityChat(false);
       }
     }
   }, [
     typeof window !== "undefined" && window?.messageService,
-    activeUserKeys,
     loadCommunity,
     initiateCommunityChat
   ]);
@@ -79,6 +75,9 @@ export default function JoinCommunityChatBtn(props: Props) {
   const fetchUserProfileData = async () => {
     const profileData = await getProfileMetaData(props.activeUser?.username!);
     const hasNoStrKey = profileData && profileData.hasOwnProperty(NOSTRKEY);
+    if (hasNoStrKey) {
+      setActiveUserKeys(profileData.nsKey);
+    }
     setHasUserJoinedChat(hasNoStrKey);
   };
 
@@ -86,7 +85,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     const communityProfile = await getProfileMetaData(props.community?.name);
     const haschannelMetaData = communityProfile && communityProfile.hasOwnProperty("channel");
     setIsChatEnabled(haschannelMetaData);
-    const hasNoStrKey = communityProfile && communityProfile.hasOwnProperty(NOSTRKEY);
+
     if (!currentChannel) {
       setCurrentChannel(communityProfile.channel);
     }
@@ -189,10 +188,9 @@ export default function JoinCommunityChatBtn(props: Props) {
       handleJoinChat();
       setInitiateCommunityChat(true);
       setIsCommunityChatJoined(true);
-      console.log("if true");
+      return;
     } else {
       createCommunityChat();
-      console.log("Else true");
     }
   };
 
