@@ -1850,7 +1850,10 @@
     "blocked-user-message": "You have been blocked from this community",
     "chat-joined": "Chat Joined",
     "start-community-chat": "Start Community Chat",
-    "join-community-chat": "Join Community Chat"
+    "join-community-chat": "Join Community Chat",
+    "submit": "Submit",
+    "chat-priv-key": "Chat Private key",
+    "copy-priv-key": "Copy Private key"
   },
   "add-image": {
     "title": "Add Image",

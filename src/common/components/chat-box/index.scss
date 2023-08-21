@@ -566,33 +566,6 @@
         }
       }
     }
-    .manage-chat-key {
-      .private-key {
-        margin-top: 2.5rem;
-        margin-left: 14px;
-        margin-right: 7px;
-      }
-      .chat-priv-key {
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .copy-svg {
-        margin-top: 3px;
-        margin-left: 2px;
-        cursor: pointer;
-
-        svg {
-          @include themify(day) {
-            color: #a1a1a1;
-          }
-          @include themify(night) {
-            color: $white-two;
-          }
-        }
-      }
-    }
   }
   .chat {
     display: flex;

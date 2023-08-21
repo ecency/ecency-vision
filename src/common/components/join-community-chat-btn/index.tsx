@@ -37,10 +37,10 @@ export default function JoinCommunityChatBtn(props: Props) {
   const [communityRoles, setCommunityRoles] = useState<communityModerator[]>([]);
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
   const [loadCommunity, setLoadCommunity] = useState(false);
+  const [initiateCommunityChat, setInitiateCommunityChat] = useState(false);
 
   useEffect(() => {
     getCommunityRoles();
-    console.log("Community", props.community);
   }, []);
 
   useEffect(() => {
@@ -53,14 +53,22 @@ export default function JoinCommunityChatBtn(props: Props) {
   }, [props.activeUser]);
 
   useEffect(() => {
-    if (window.messageService && activeUserKeys) {
+    if (window.messageService) {
       getCommunityRoles();
-      setHasUserJoinedChat(true);
+      fetchUserProfileData();
       if (loadCommunity) {
         window?.messageService?.loadChannel(currentChannel?.id!);
       }
+      if (initiateCommunityChat) {
+        createCommunityChat();
+      }
     }
-  }, [typeof window !== "undefined" && window?.messageService, activeUserKeys, loadCommunity]);
+  }, [
+    typeof window !== "undefined" && window?.messageService,
+    activeUserKeys,
+    loadCommunity,
+    initiateCommunityChat
+  ]);
 
   useEffect(() => {
     checkIsChatJoined();
@@ -176,6 +184,18 @@ export default function JoinCommunityChatBtn(props: Props) {
     setIsCommunityChatJoined(true);
   };
 
+  const startCommunityChat = () => {
+    if (!hasUserJoinedChat) {
+      handleJoinChat();
+      setInitiateCommunityChat(true);
+      setIsCommunityChatJoined(true);
+      console.log("if true");
+    } else {
+      createCommunityChat();
+      console.log("Else true");
+    }
+  };
+
   const fetchCurrentChannel = () => {
     for (const item of chat.channels) {
       if (item.communityName === props.community.name) {
@@ -214,8 +234,8 @@ export default function JoinCommunityChatBtn(props: Props) {
       {props.community.name === props.activeUser?.username ? (
         isCommunityChatJoined ? (
           <Button variant="outline-primary">{_t("chat.chat-joined")}</Button>
-        ) : hasUserJoinedChat && !isChatEnabled ? (
-          <Button onClick={createCommunityChat}>
+        ) : !isChatEnabled ? (
+          <Button onClick={startCommunityChat}>
             {inProgress && chatButtonSpinner}
             {_t("chat.start-community-chat")}
           </Button>
@@ -226,11 +246,7 @@ export default function JoinCommunityChatBtn(props: Props) {
             {_t("chat.join-community-chat")}
           </Button>
         ) : (
-          <Button onClick={handleJoinChat}>
-            {" "}
-            {inProgress && chatButtonSpinner}
-            {_t("chat.join-chat")}
-          </Button>
+          <></>
         )
       ) : isChatEnabled && !isCommunityChatJoined ? (
         <Button onClick={joinCommunityChat}>

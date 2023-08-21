@@ -42,6 +42,7 @@ import { setNostrkeys } from "../../../providers/message-provider";
 import DropDown, { MenuItem } from "../dropdown";
 import FollowControls from "../follow-controls";
 import OrDivider from "../or-divider";
+import ManageChatKey from "../manage-chat-key";
 
 import {
   addMessageSVG,
@@ -64,9 +65,7 @@ import {
   removeUserSvg,
   resendMessageSvg,
   failedMessageSvg,
-  chatKeySvg,
-  copyOutlinSvg,
-  copyContent
+  chatKeySvg
 } from "../../img/svg";
 
 import {
@@ -103,6 +102,7 @@ import {
 import * as ls from "../../util/local-storage";
 import { renderPostBody } from "@ecency/render-helper";
 import { getAccessToken } from "../../helper/user-token";
+import accountReputation from "../../helper/account-reputation";
 import { _t } from "../../i18n";
 
 import { getAccountFull, getAccountReputations, lookupAccounts } from "../../api/hive";
@@ -111,7 +111,6 @@ import { addImage } from "../../api/private-api";
 import { getCommunity } from "../../api/bridge";
 
 import "./index.scss";
-import accountReputation from "../../helper/account-reputation";
 
 export interface profileData {
   joiningData: string;
@@ -289,6 +288,8 @@ export default function ChatBox(props: Props) {
   useEffect(() => {
     if (window.messageService) {
       setHasUserJoinedChat(true);
+      const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
+      setNoStrPrivKey(noStrPrivKey);
     }
     setTimeout(() => {
       if (props.chat.channels.length === 0 && props.chat.directContacts.length === 0) {
@@ -1993,7 +1994,10 @@ export default function ChatBox(props: Props) {
                       </React.Fragment>
                     ) : !noStrPrivKey || noStrPrivKey.length === 0 || noStrPrivKey === null ? (
                       <>
-                        <div className="start-chat-btn" style={{ marginTop: "20%" }}>
+                        <div
+                          className="d-flex justify-content-center import-chat-btn"
+                          style={{ marginTop: "20%" }}
+                        >
                           <Button
                             variant="primary"
                             onClick={() => setImportPrivKey(!importPrivKey)}
@@ -2022,7 +2026,7 @@ export default function ChatBox(props: Props) {
                                 />
                                 <InputGroup.Append>
                                   <Button onClick={handleImportChatSubmit}>
-                                    {_t("key-or-hot.sign")}
+                                    {_t("chat.submit")}
                                   </Button>
                                 </InputGroup.Append>
                               </InputGroup>
@@ -2032,9 +2036,8 @@ export default function ChatBox(props: Props) {
                             </Form>
                           </div>
                         )}
-
                         {<OrDivider />}
-                        <div className="start-chat-btn">
+                        <div className="d-flex justify-content-center create-new-chat-btn">
                           <Button
                             variant="primary"
                             onClick={() => {
@@ -2062,34 +2065,7 @@ export default function ChatBox(props: Props) {
                 )}
               </>
             ) : revelPrivateKey ? (
-              <>
-                <div className="manage-chat-key">
-                  <div className="private-key">
-                    <Form.Group controlId="private-key">
-                      <Form.Label>Chat Private key</Form.Label>
-                      <div className="d-flex private-key-input">
-                        <Form.Control
-                          className="chat-priv-key"
-                          type="text"
-                          readOnly={true}
-                          value={noStrPrivKey}
-                        />
-                        <Tooltip content={"Copy Private key"}>
-                          <p
-                            className="copy-svg"
-                            onClick={() => {
-                              copyToClipboard(noStrPrivKey);
-                            }}
-                          >
-                            {copyContent}
-                          </p>
-                        </Tooltip>
-                      </div>
-                    </Form.Group>
-                  </div>
-                  <OrDivider />
-                </div>
-              </>
+              <ManageChatKey noStrPrivKey={noStrPrivKey} copyPrivateKey={copyToClipboard} />
             ) : (
               <Button className="join-chat-btn" onClick={handleJoinChat}>
                 {showSpinner && chatButtonSpinner}
