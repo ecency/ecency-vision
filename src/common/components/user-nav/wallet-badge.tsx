@@ -4,8 +4,9 @@ import HiveWallet from '../../helper/hive-wallet';
 import { _t } from '../../i18n';
 import { creditCardSvg } from '../../img/svg';
 import ToolTip from "../tooltip";
+import { UserNavProps } from './types/usernav-types';
 
-const WalletBadge = (props: any) => {
+const WalletBadge = (props: UserNavProps) => {
   const { activeUser, dynamicProps, icon } = props;
 
   let hasUnclaimedRewards = false;

@@ -15,7 +15,7 @@ import DropDown from "../dropdown";
 import ToolTip from "../tooltip";
 import { UserNavProps } from './types/usernav-types';
 
-const UserNav = (props: UserNavProps | any) => {
+const UserNav = (props: UserNavProps) => {
 
   const { toggleUIProp, activeUser, history, ui, notifications, global, dynamicProps, setActiveUser } = props;
   const { unread } = notifications;
@@ -141,7 +141,7 @@ const UserNav = (props: UserNavProps | any) => {
             {rocketSvg}
           </div>
         )}
-        <WalletBadge activeUser={activeUser} dynamicProps={dynamicProps} />
+        <WalletBadge {...props} />
 
         {global.usePrivate && (
           <ToolTip content={_t('user-nav.notifications')}>

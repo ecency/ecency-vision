@@ -1,10 +1,12 @@
-import { Notifications, Account } from "@hiveio/dhive";
+import { Account } from "../../../store/accounts/types";
 import { ActiveUser } from "../../../store/active-user/types";
 import { DynamicProps } from "../../../store/dynamic-props/types";
 import { updateNotificationsSettings, setNotificationsSettingsItem } from "../../../store/notifications";
-import { NotificationFilter } from "../../../store/notifications/types";
+import { NotificationFilter, Notifications } from "../../../store/notifications/types";
 import { UI, ToggleType } from "../../../store/ui/types";
 import { User } from "../../../store/users/types";
+import { History, Location } from "history";
+import { Global } from "../../../store/global/types";
 
 export interface UserNavProps {
     global: Global;
@@ -28,5 +30,6 @@ export interface UserNavProps {
     unMuteNotifications: () => void;
     updateNotificationsSettings: typeof updateNotificationsSettings;
     setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
+    icon?: JSX.Element;
   }
   
