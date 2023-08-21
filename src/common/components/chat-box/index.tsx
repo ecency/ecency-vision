@@ -835,7 +835,7 @@ export default function ChatBox(props: Props) {
     }
   };
 
-  const inviteClicked = (content: string) => {
+  const copyToClipboard = (content: string) => {
     const textField = document.createElement("textarea");
     textField.innerText = content;
     document.body.appendChild(textField);
@@ -1338,7 +1338,7 @@ export default function ChatBox(props: Props) {
     {
       label: _t("chat.invite"),
       onClick: () =>
-        inviteClicked(
+        copyToClipboard(
           `http://localhost:3000/created/${currentCommunity?.name}?communityid=${currentChannel?.id}`
         ),
       icon: linkSvg
@@ -2078,7 +2078,7 @@ export default function ChatBox(props: Props) {
                           <p
                             className="copy-svg"
                             onClick={() => {
-                              inviteClicked(noStrPrivKey);
+                              copyToClipboard(noStrPrivKey);
                             }}
                           >
                             {copyContent}
