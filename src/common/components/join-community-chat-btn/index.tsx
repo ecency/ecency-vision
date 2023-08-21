@@ -49,20 +49,25 @@ export default function JoinCommunityChatBtn(props: Props) {
   }, [props.activeUser]);
 
   useEffect(() => {
-    if (window.messageService) {
+    if (activeUserKeys) {
       getCommunityRoles();
+    }
+  }, [activeUserKeys]);
+
+  useEffect(() => {
+    if (window.messageService) {
       fetchUserProfileData();
       if (loadCommunity) {
         window?.messageService?.loadChannel(currentChannel?.id!);
       }
-      if (initiateCommunityChat) {
+      if (initiateCommunityChat && communityRoles.length !== 0) {
         createCommunityChat();
-        setInitiateCommunityChat(false);
       }
     }
   }, [
     typeof window !== "undefined" && window?.messageService,
     loadCommunity,
+    communityRoles,
     initiateCommunityChat
   ]);
 
@@ -105,7 +110,7 @@ export default function JoinCommunityChatBtn(props: Props) {
   };
 
   const getCommunityRoles = async () => {
-    let communityRoles: communityModerator[] = [];
+    let communityTeam: communityModerator[] = [];
     const { community, activeUser } = props;
     const ownerData = await getProfileMetaData(community.name);
     const ownerRole = {
@@ -114,7 +119,7 @@ export default function JoinCommunityChatBtn(props: Props) {
       role: "owner"
     };
 
-    communityRoles.push(ownerRole);
+    communityTeam.push(ownerRole);
 
     for (let i = 0; i < community.team.length; i++) {
       const item = community.team[i];
@@ -127,11 +132,11 @@ export default function JoinCommunityChatBtn(props: Props) {
             role: item[1]
           };
 
-          communityRoles.push(roleInfo);
+          communityTeam.push(roleInfo);
         }
       }
     }
-    setCommunityRoles(communityRoles);
+    setCommunityRoles(communityTeam);
   };
 
   const createCommunityChat = async () => {
@@ -164,6 +169,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     } finally {
       setInProgress(false);
       setIsCommunityChatJoined(true);
+      setInitiateCommunityChat(false);
     }
   };
 
