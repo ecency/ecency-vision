@@ -16,7 +16,6 @@ import { EntriesCacheContext, useEntryCache } from "../../../../core";
 import { useEntryChecking } from "../../utils";
 import { Entry } from "../../../../store/entries/types";
 import { DeckThreadItemHeader } from "./deck-thread-item-header";
-import moment from "moment";
 import { dateToRelative } from "../../../../helper/parse-date";
 import EntryMenu from "../../../entry-menu";
 
@@ -100,6 +99,12 @@ export const ThreadItem = ({
     // } else {
     //   setStatus("default");
     // }
+  }, [entry]);
+
+  useEffect(() => {
+    if (entry.updated !== entry.created) {
+      setStatus("default");
+    }
   }, [entry]);
 
   return (
