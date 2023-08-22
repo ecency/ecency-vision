@@ -43,6 +43,7 @@ import DropDown, { MenuItem } from "../dropdown";
 import FollowControls from "../follow-controls";
 import OrDivider from "../or-divider";
 import ManageChatKey from "../manage-chat-key";
+import ClickAwayListener from "../clickaway-listener";
 
 import {
   addMessageSVG,
@@ -199,6 +200,7 @@ export default function ChatBox(props: Props) {
   const [importPrivKey, setImportPrivKey] = useState(false);
   const [revelPrivateKey, setRevealPrivateKey] = useState(false);
   const [innerWidth, setInnerWidth] = useState(0);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   useEffect(() => {
     // resetProfile(props.activeUser);
@@ -2096,45 +2098,57 @@ export default function ChatBox(props: Props) {
 
           {(currentUser || isCommunity) && (
             <div className={`chat ${isActveUserRemoved ? "disable" : ""}`}>
-              <div className="chatbox-emoji-picker">
-                <div className="chatbox-emoji">
-                  <Tooltip content={_t("editor-toolbar.emoji")}>
-                    <div className="emoji-icon">{emoticonHappyOutlineSvg}</div>
-                  </Tooltip>
-                  <EmojiPicker
-                    style={EmojiPickerStyle}
-                    fallback={(e) => {
-                      handleEmojiSelection(e);
-                    }}
-                  />
+              <ClickAwayListener onClickAway={() => showEmojiPicker && setShowEmojiPicker(false)}>
+                <div className="chatbox-emoji-picker">
+                  <div className="chatbox-emoji">
+                    <Tooltip content={_t("editor-toolbar.emoji")}>
+                      <div
+                        className="emoji-icon"
+                        onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                      >
+                        {emoticonHappyOutlineSvg}
+                      </div>
+                    </Tooltip>
+                    {showEmojiPicker && (
+                      <EmojiPicker
+                        style={EmojiPickerStyle}
+                        fallback={(e) => {
+                          handleEmojiSelection(e);
+                        }}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
+              </ClickAwayListener>
 
               {message.length === 0 && (
                 <React.Fragment>
-                  <div className="chatbox-emoji-picker">
-                    <div className="chatbox-emoji">
-                      <Tooltip content={_t("Gif")}>
-                        <div className="emoji-icon" onClick={toggleGif}>
-                          {" "}
-                          {gifIcon}
-                        </div>
-                      </Tooltip>
-                      {shGif && (
-                        <GifPicker
-                          style={GifPickerStyle}
-                          gifImagesStyle={GifImagesStyle}
-                          shGif={true}
-                          changeState={(gifState) => {
-                            setShGif(gifState!);
-                          }}
-                          fallback={(e) => {
-                            handleGifSelection(e);
-                          }}
-                        />
-                      )}
+                  <ClickAwayListener onClickAway={() => shGif && setShGif(false)}>
+                    <div className="chatbox-emoji-picker">
+                      <div className="chatbox-emoji">
+                        <Tooltip content={_t("Gif")}>
+                          <div className="emoji-icon" onClick={toggleGif}>
+                            {" "}
+                            {gifIcon}
+                          </div>
+                        </Tooltip>
+                        {shGif && (
+                          <GifPicker
+                            style={GifPickerStyle}
+                            gifImagesStyle={GifImagesStyle}
+                            shGif={true}
+                            changeState={(gifState) => {
+                              setShGif(gifState!);
+                            }}
+                            fallback={(e) => {
+                              handleGifSelection(e);
+                            }}
+                          />
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  </ClickAwayListener>
+
                   <Tooltip content={"Image"}>
                     <div
                       className="chatbox-image"

@@ -13,7 +13,7 @@
   padding: 14px 6px;
 
   @media (max-width: $sm-break) {
-    width: 160px !important;
+    width: 160px;
   }
 
   @include themify(day) {
