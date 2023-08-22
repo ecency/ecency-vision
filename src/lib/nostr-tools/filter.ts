@@ -8,7 +8,7 @@ export type Filter = {
   since?: number;
   until?: number;
   limit?: number;
-  [key: `#${string}`]: string[];
+  [key: string]: string[] | number | number[] | undefined;
 };
 
 export function matchFilter(filter: Filter, event: Event & { id: string }): boolean {
@@ -25,8 +25,8 @@ export function matchFilter(filter: Filter, event: Event & { id: string }): bool
   for (let f in filter) {
     if (f[0] === "#") {
       let tagName = f.slice(1);
-      let values = filter[`#${tagName}`];
-      if (values && !event.tags?.find(([t, v]) => t === f.slice(1) && values.indexOf(v) !== -1))
+      let values = filter[`#${tagName}`] as string[];
+      if (values && !event.tags?.find(([t, v]) => t === f.slice(1) && values!.indexOf(v) !== -1))
         return false;
     }
   }

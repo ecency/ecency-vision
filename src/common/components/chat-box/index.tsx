@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 import useDebounce from "react-use/lib/useDebounce";
 import { History } from "history";
 import {
@@ -147,7 +147,7 @@ const roles = [ROLES.ADMIN, ROLES.MOD, ROLES.GUEST];
 
 export default function ChatBox(props: Props) {
   const prevPropsRef = useRef(props);
-  const popoverRef = useRef(null);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
   const chatBodyDivRef = React.createRef<HTMLDivElement>();
   const fileInput = React.createRef<HTMLInputElement>();
   const [expanded, setExpanded] = useState(false);
@@ -247,12 +247,17 @@ export default function ChatBox(props: Props) {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const clickedElement = event.target as HTMLElement;
+
+      if (!popoverRef.current) {
+        return;
+      }
+
       const isAvatarClicked =
         clickedElement.classList.contains("user-avatar") &&
         clickedElement.classList.contains("medium");
       if (
         popoverRef.current &&
-        !(popoverRef.current as HTMLElement).contains(event.target as Node) &&
+        !popoverRef.current?.contains(event.target as Node) &&
         !isAvatarClicked
       ) {
         setClickedMessage("");
@@ -1676,7 +1681,10 @@ export default function ChatBox(props: Props) {
                                 className="profile-popover"
                               >
                                 <Popover.Content>
-                                  <div className="profile-box" ref={popoverRef}>
+                                  <div
+                                    className="profile-box"
+                                    ref={popoverRef as RefObject<HTMLDivElement>}
+                                  >
                                     <div className="profile-box-content">
                                       <div className="profile-box-logo d-flex justify-content-center">
                                         <UserAvatar username={name!} size="large" />
@@ -1799,7 +1807,7 @@ export default function ChatBox(props: Props) {
                                     {hoveredMessageId === pMsg.id &&
                                       privilegedUsers.includes(props.activeUser?.username!) && (
                                         <Tooltip content={"Hide Message"}>
-                                          <div className="hide-msg">
+                                          <div className="hide-msg receiver">
                                             <p
                                               className="hide-msg-svg"
                                               onClick={() => {
