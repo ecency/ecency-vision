@@ -656,6 +656,3 @@ export const getRcOperationStats = (): Promise<any> => client.call("rc_api", "ge
 
 export const getContentReplies = (author: string, permlink: string): Promise<Entry[] | null> =>
   client.call("condenser_api", "get_content_replies", { author, permlink });
-
-  export const getAllActiviies = async (username: string, limit = 100) => 
-  client.call('condenser_api', 'get_account_history', [username, -1, limit, ]);

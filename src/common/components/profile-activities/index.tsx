@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { getAllActiviies } from "../../api/hive"
 import "./index.scss"
 import { Link } from "react-router-dom"
 import LinearProgress from "../linear-progress"
@@ -10,6 +9,8 @@ import UserActivities from "./activities"
 import ActivitiesDropdown from "./activities-dropdown"
 import ActivitiesTypes from "./activities-types"
 import { ActivityTypes } from './types/types';
+import { fetchActvities } from "./operations"
+import { ActivitiesGroup } from "./types/activities-group"
 
 interface Props{
   account: Account;
@@ -21,60 +22,31 @@ export const ProfileActivites = (props: Props) => {
 
   const [activities, setActivities] = useState<ActivityTypes[]>([]);
   const [loading, setLoading] = useState(false);
+  const [filter, setFilter] = useState<ActivitiesGroup | "">("")
 
   useEffect(() => {
-    getActivities();
-  },[]);
+    newActivities();
+  },[filter]);
 
-  const getActivities = async () => {
-    setLoading(true);
-    const types = [
-      "comment",
-      "proposal_pay",
-      "vote",
-      "custom_json",
-      "account_witness_vote",
-      "update_proposal_votes",
-      "account_update2"
-    ];
-  
+ 
+  const newActivities = async () => {
+    setLoading(true)
+
     try {
-      const response = await getAllActiviies(account.name);
-      const filterResponse = response.filter((r: any) => {
-        const filterTypes = types.includes(r[1].op[0]);
-        return filterTypes;
+      const data = await fetchActvities(account!.name, filter, -1, 20);
 
-      });
-      const accountHistory = filterResponse.map((entry: any) => {
-        const [index, op] = entry;
-        const { timestamp, block } = op;
-        const type = op.op[0];
-        const data = op.op[1];
-        
-        return {
-            index,
-            timestamp,
-            block,
-            type,
-            data,
-          };
-      });
-
-      const filterNotifications = accountHistory.filter((a: ActivityTypes) => a?.data.id !== "notify" && a?.data.id !== "ecency_notify")
-    
-      setActivities(filterNotifications.reverse());
+      setActivities(data);
       setLoading(false);
-      return filterNotifications;
     } catch (err) {
       console.log(err);
     }
-  };
+  }
 
   const handleCustomJson = (a: ActivityTypes) => {
     let jsonData;
       try {
-        if(a?.data?.json){
-          jsonData = JSON.parse(a?.data?.json)
+        if(a?.json){
+          jsonData = JSON.parse(a?.json)
         };              
       } catch (error) {
         console.log(error)
@@ -99,12 +71,15 @@ export const ProfileActivites = (props: Props) => {
                   </div>
               )})}
               {!loading && <div className="d-flex mt-3 align-self-center">
-                <Button className="w-100">Load more</Button>
+                <Button 
+                className="w-100"
+                onClick={() => console.log("Loading more...")}
+                >Load more</Button>
               </div>}
             </div>
             <div className="activities-filter">
               <div className="filter-dropdown">
-                  <ActivitiesDropdown  />                
+                  <ActivitiesDropdown setFilter={setFilter} />                
               </div>
               <div className="types-container">
                 <ActivitiesTypes account={account} />

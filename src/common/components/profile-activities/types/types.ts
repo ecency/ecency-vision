@@ -1,6 +1,5 @@
 export interface ActivityTypes {
     type: string;
-    data: {
       parent_author?: string;
       parent_permlink?: string;
       author?: string;
@@ -17,6 +16,5 @@ export interface ActivityTypes {
       voter?: string;
       witness?: string;
       json: string;
-    };
     timestamp: string;
   }

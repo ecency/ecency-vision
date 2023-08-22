@@ -18,7 +18,7 @@ const UserActivities = (props: Props) => {
 
   return (
         <>
-            {a?.type === "comment" && a?.data.parent_author === "" ? <>
+            {a?.type === "comment" && a?.parent_author === "" ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
@@ -27,11 +27,11 @@ const UserActivities = (props: Props) => {
                 <div className="activity-info">
                     <span>
                     <span> commented on </span>
-                    <Link to={`/${a.data.parent_permlink}/@${a.data.author}/${a.data.permlink}`}>
-                        {a.data.parent_permlink} 
+                    <Link to={`/${a.parent_permlink}/@${a.author}/${a.permlink}`}>
+                        {a.parent_permlink} 
                     </Link>
                     <span> by </span>
-                        <a href="#" className="ml-1">@{a.data.parent_author === "" ? a.data.author : a.data.parent_author}</a>
+                        <a href="#" className="ml-1">@{a.parent_author === "" ? a.author : a.parent_author}</a>
                     </span>
                     <div>
                         <span>{dateToFullRelative(a.timestamp)}</span>
@@ -40,7 +40,7 @@ const UserActivities = (props: Props) => {
                 </div>
             </div>
             </> 
-            : a?.type === "comment" && a?.data.author !== account?.name ? <>
+            : a?.type === "comment" && a?.author !== account?.name ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
@@ -49,11 +49,11 @@ const UserActivities = (props: Props) => {
                 <div className="activity-info">
                 <span>
                     <span> replied to </span>
-                    <Link to={`/${a.data.parent_permlink}/@${a.data.author}/${a.data.permlink}`}>
-                    {a.data.parent_permlink} 
+                    <Link to={`/${a.parent_permlink}/@${a.author}/${a.permlink}`}>
+                    {a.parent_permlink} 
                     </Link>
                     <span> by </span>
-                    <a href="#" className="ml-1">@{a.data.parent_author === "" ? a.data.author : a.data.parent_author}</a>
+                    <a href="#" className="ml-1">@{a.parent_author === "" ? a.author : a.parent_author}</a>
                 </span>
                 <div>
                     <span>{dateToFullRelative(a.timestamp)}</span>
@@ -71,11 +71,11 @@ const UserActivities = (props: Props) => {
                     <div className="activity-info">
                     <div>
                         <span> voted on </span>
-                        <a href={`${window.origin}/@${a.data.author}/${a.data.permlink}`}>
-                        {a.data.permlink} 
+                        <a href={`${window.origin}/@${a.author}/${a.permlink}`}>
+                        {a.permlink} 
                         </a>
                         <span> by </span>
-                        <Link to={`/@${a.data.author}`} className="ml-1">@{a.data.author}</Link>
+                        <Link to={`/@${a.author}`} className="ml-1">@{a.author}</Link>
                     </div>
                     <span>{dateToFullRelative(a.timestamp)}</span>
                     </div>
@@ -90,8 +90,8 @@ const UserActivities = (props: Props) => {
                 </div>
                 <div className="activity-info">
                     <span>
-                    <span> received {a.data.payment} from </span>
-                    <a href="#" className="ml-1">@{a.data.payer}</a>
+                    <span> received {a.payment} from </span>
+                    <a href="#" className="ml-1">@{a.payer}</a>
                     </span>
                     <div>
                     <span>{dateToFullRelative(a.timestamp)}</span>
@@ -100,7 +100,7 @@ const UserActivities = (props: Props) => {
                 </div>
             </div>
             </>
-            : (a?.data.id === "follow" && jsonData[1]!?.what?.includes("blog")) ? <>
+            : (a?.id === "follow" && jsonData[1]!?.what?.includes("blog")) ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
@@ -118,7 +118,7 @@ const UserActivities = (props: Props) => {
                 </div>
             </div>
             </> 
-            : (a?.data.id === "follow" && !jsonData[1]?.what?.includes("blog")) ? <>
+            : (a?.id === "follow" && !jsonData[1]?.what?.includes("blog")) ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
@@ -136,7 +136,7 @@ const UserActivities = (props: Props) => {
                 </div>
             </div>
             </> 
-            : (a?.data.id === "community" && jsonData?.includes("subscribe")) ? <>
+            : (a?.id === "community" && jsonData?.includes("subscribe")) ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
@@ -154,7 +154,7 @@ const UserActivities = (props: Props) => {
                 </div>
             </div>
             </> 
-            :( a?.data.id === "community" && jsonData?.includes("unsubscribe")) ? <>
+            :( a?.id === "community" && jsonData?.includes("unsubscribe")) ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
@@ -171,8 +171,8 @@ const UserActivities = (props: Props) => {
                 </div>
                 </div>
             </div>
-            </>
-            : (a?.type === "account_witness_vote" && a?.data.approve) ? <>
+            </>            
+            : (a?.type === "account_witness_vote" && a?.approve) ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon text-light">
@@ -180,7 +180,7 @@ const UserActivities = (props: Props) => {
                 </div>
                 <div className="activity-info">
                     <span>                            <span> voted witness </span>
-                    <Link to={`/@${a.data.witness}`} className="ml-1">@{a.data.witness}</Link>
+                    <Link to={`/@${a.witness}`} className="ml-1">@{a.witness}</Link>
                     </span>
                     <div>
                     <span>{dateToFullRelative(a.timestamp)}</span>
@@ -189,7 +189,7 @@ const UserActivities = (props: Props) => {
                 </div>
             </div>
             </> 
-            : (a?.type === "account_witness_vote" && !a?.data.approve) ? <>
+            : (a?.type === "account_witness_vote" && !a?.approve) ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
@@ -197,7 +197,7 @@ const UserActivities = (props: Props) => {
                 </div>
                 <div className="activity-info">
                     <span>                            <span> unvoted witness </span>
-                    <Link to={`/@${a.data.witness}`} className="ml-1">@{a.data.witness}</Link>
+                    <Link to={`/@${a.witness}`} className="ml-1">@{a.witness}</Link>
                     </span>
                     <div>
                     <span>{dateToFullRelative(a.timestamp)}</span>
@@ -206,7 +206,7 @@ const UserActivities = (props: Props) => {
                 </div>
             </div>
             </> 
-            : (a?.type === "update_proposal_votes" && a?.data.approve) ? <>
+            : (a?.type === "update_proposal_votes" && a?.approve) ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
@@ -215,7 +215,7 @@ const UserActivities = (props: Props) => {
                 <div className="activity-info">
                     <span>
                     <span> approved </span>
-                    <Link to={`/proposals/${a.data.proposal_ids}`} className="ml-1">proposal#{a.data.proposal_ids}</Link>
+                    <Link to={`/proposals/${a.proposal_ids}`} className="ml-1">proposal#{a.proposal_ids}</Link>
                     </span>
                     <div>
                     <span>{dateToFullRelative(a.timestamp)}</span>
@@ -224,7 +224,7 @@ const UserActivities = (props: Props) => {
                 </div>
             </div>
             </> 
-            : (a?.type === "update_proposal_votes" && !a?.data.approve) ? <>
+            : (a?.type === "update_proposal_votes" && !a?.approve) ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
@@ -232,9 +232,9 @@ const UserActivities = (props: Props) => {
                 </div>
                 <div className="activity-info">
                     <span>
-                    <a href="#">@{a.data.voter}</a>
+                    <a href="#">@{a.voter}</a>
                     <span> unapproved </span>
-                    <Link to={`/proposals/${a?.data.proposal_ids}`} className="ml-1">proposal#{a?.data.proposal_ids}</Link>
+                    <Link to={`/proposals/${a?.proposal_ids}`} className="ml-1">proposal#{a?.proposal_ids}</Link>
                     </span>
                     <div>
                     <span>{dateToFullRelative(a.timestamp)}</span>
@@ -251,7 +251,7 @@ const UserActivities = (props: Props) => {
                 </div>
                 <div className="activity-info">
                     <span>
-                    <a href="#">@{a?.data.account}</a>
+                    <a href="#">@{a?.account}</a>
                     <span> updated their account</span>
                     </span>
                     <div>
@@ -261,7 +261,8 @@ const UserActivities = (props: Props) => {
                 </div>
             </div>
             </> 
-            : <></>}
+            //Comment needs proper checks and formating
+            : <>{a.type}</>}
         </>
   )
 }
