@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { uploadSvgV } from "../../img/svg";
 import { ProgressBar } from "react-bootstrap";
+import './_index.scss';
 
 interface Props {
   onFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

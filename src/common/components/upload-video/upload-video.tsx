@@ -193,9 +193,7 @@ const VideoUpload: FC<Props> = ({ activeUser, show, setShow, setShowGallery }) =
           animation={false}
           show={show}
           centered={true}
-          onHide={() => {
-            console.log('close');
-            setShow(false)}}
+          onHide={() => setShow(false)}
           keyboard={false}
           className="add-image-modal"
         >
