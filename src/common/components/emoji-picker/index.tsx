@@ -23,14 +23,21 @@ interface Props {
   onSelect: (e: string) => void;
 }
 
+/**
+ * Renders an emoji picker dialog.
+ *
+ * @param {Props} anchor - The anchor element to position the picker relative to.
+ * @param {function} onSelect - The callback function to be called when an emoji is selected.
+ * @return The rendered emoji picker dialog.
+ */
 export function EmojiPicker({ anchor, onSelect }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const instance = useRef<Picker | null>(null);
 
   const { global } = useMappedStore();
 
   const [show, setShow] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [pickerInstance, setPickerInstance] = useState<Picker>();
 
   useClickAway(ref, () => {
     setShow(false);
@@ -57,19 +64,17 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
 
   useEffect(() => {
     if (data.categories.length > 0) {
-      instance.current = new Picker({
-        set: "apple",
-        theme: global.theme === "day" ? "light" : "dark",
-        dynamicWidth: true,
-        previewPosition: "none",
-        onEmojiSelect: (e: { native: string }) => onSelect(e.native),
-        ref
-      });
+      setPickerInstance(
+        new Picker({
+          dynamicWidth: true,
+          onEmojiSelect: (e: { native: string }) => onSelect(e.native),
+          previewPosition: "none",
+          ref,
+          set: "apple",
+          theme: global.theme === "day" ? "light" : "dark"
+        })
+      );
     }
-
-    return () => {
-      instance.current = null;
-    };
   }, [data, global.theme]);
 
   useEffect(() => {
@@ -82,20 +87,16 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
     }
   }, [anchor]);
 
-  return isMounted() ? (
-    createPortal(
-      <div
-        className="emoji-picker-dialog"
-        ref={ref}
-        style={{
-          top: position.y + 40,
-          left: position.x,
-          display: show ? "flex" : "none"
-        }}
-      />,
-      document.querySelector("#root")!!
-    )
-  ) : (
-    <></>
+  return createPortal(
+    <div
+      className="emoji-picker-dialog"
+      ref={ref}
+      style={{
+        top: position.y + 40,
+        left: position.x,
+        display: show ? "flex" : "none"
+      }}
+    />,
+    document.querySelector("#root")!!
   );
 }
