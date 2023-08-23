@@ -39,7 +39,7 @@ export default function ManageChatKey(props: Props) {
             </div>
           </Form.Group>
         </div>
-        <OrDivider />
+        {/* <OrDivider /> */}
       </div>
     </>
   );

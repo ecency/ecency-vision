@@ -89,6 +89,7 @@ exports[`(2) With active user 1`] = `
           </div>
           <div
             className="menu-down"
+            style={Object {}}
           >
             <svg
               viewBox="0 0 24 24"
@@ -156,6 +157,7 @@ exports[`(2) With active user 1`] = `
           
           <div
             className="menu-down"
+            style={Object {}}
           >
             <svg
               fill="none"

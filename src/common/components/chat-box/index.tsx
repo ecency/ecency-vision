@@ -106,7 +106,7 @@ import { getAccessToken } from "../../helper/user-token";
 import accountReputation from "../../helper/account-reputation";
 import { _t } from "../../i18n";
 
-import { getAccountFull, getAccountReputations, lookupAccounts } from "../../api/hive";
+import { getAccountFull, getAccountReputations } from "../../api/hive";
 import { uploadImage } from "../../api/misc";
 import { addImage } from "../../api/private-api";
 import { getCommunity } from "../../api/bridge";
@@ -415,7 +415,7 @@ export default function ChatBox(props: Props) {
   useDebounce(
     async () => {
       if (searchtext.length !== 0) {
-        const resp = await getAccountReputations(searchtext, 20);
+        const resp = await getAccountReputations(searchtext, 30);
         const sortedByReputation = resp.sort((a, b) => (a.reputation > b.reputation ? -1 : 1));
         setUserList(sortedByReputation);
         setInProgress(false);

@@ -38,7 +38,8 @@ const defProps = {
   deleteUser: () => {},
   toggleUIProp: () => {},
   updateSubscriptions: () => {},
-  addAccount: () => {}
+  addAccount: () => {},
+  resetChat: () => {}
 };
 
 it("(1) Render with loaded account object", () => {

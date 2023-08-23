@@ -3,6 +3,7 @@
 exports[`(1) Default full render 1`] = `
 <div
   className="emoji-picker"
+  style={Object {}}
 >
   <div
     className="search-box"
@@ -11106,6 +11107,7 @@ exports[`(1) Default full render 1`] = `
 exports[`(2) Filter 1`] = `
 <div
   className="emoji-picker"
+  style={Object {}}
 >
   <div
     className="search-box"
@@ -11180,6 +11182,7 @@ exports[`(2) Filter 1`] = `
 exports[`(3) Filter - No result 1`] = `
 <div
   className="emoji-picker"
+  style={Object {}}
 >
   <div
     className="search-box"
