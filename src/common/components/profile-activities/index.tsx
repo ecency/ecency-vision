@@ -25,22 +25,36 @@ export const ProfileActivites = (props: Props) => {
   const [filter, setFilter] = useState<ActivitiesGroup | "">("")
 
   useEffect(() => {
-    newActivities();
+    userActivities(-1);
   },[filter]);
 
- 
-  const newActivities = async () => {
-    setLoading(true)
-
+  const userActivities = async (start: number) => {
+    setLoading(true);
+    
     try {
-      const data = await fetchActvities(account!.name, filter, -1, 20);
+      const data = await fetchActvities(account!.name, filter, start, 20);
+      const filterNotifications = data?.filter((a: ActivityTypes) => a?.id !== "notify" && a?.id !== "ecency_notify");
+      console.log(filterNotifications)
 
-      setActivities(data);
+      if (filter === "") {
+        setActivities(prevActivities => [...prevActivities, ...filterNotifications]);
+      } else {
+        setActivities([...filterNotifications]);
+      }
+
       setLoading(false);
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
-  }
+  };
+
+  const handleLoadMore = () => {
+    const lastActivity = activities[activities.length - 1];
+    if (lastActivity) {
+      userActivities(lastActivity.num);
+    }
+  };
 
   const handleCustomJson = (a: ActivityTypes) => {
     let jsonData;
@@ -73,7 +87,7 @@ export const ProfileActivites = (props: Props) => {
               {!loading && <div className="d-flex mt-3 align-self-center">
                 <Button 
                 className="w-100"
-                onClick={() => console.log("Loading more...")}
+                onClick={() => handleLoadMore()}
                 >Load more</Button>
               </div>}
             </div>
