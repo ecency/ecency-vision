@@ -18,7 +18,7 @@ const UserActivities = (props: Props) => {
 
   return (
         <>
-            {a?.type === "comment" && a?.parent_author === "" ? <>
+            {a?.type === "comment" && a?.author === account!.name ? <>
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
@@ -48,9 +48,10 @@ const UserActivities = (props: Props) => {
                 </div>
                 <div className="activity-info">
                 <span>
+                    <a href="#" className="ml-1">@{a?.author}</a>
                     <span> replied to </span>
                     <Link to={`/${a.parent_permlink}/@${a.author}/${a.permlink}`}>
-                    {a.parent_permlink} 
+                        {a.parent_permlink} 
                     </Link>
                     <span> by </span>
                     <a href="#" className="ml-1">@{a.parent_author === "" ? a.author : a.parent_author}</a>
