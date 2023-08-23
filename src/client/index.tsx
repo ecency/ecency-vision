@@ -26,7 +26,7 @@ import { queryClient } from "../core/react-query";
 
 declare var window: AppWindow;
 
-const store = configureStore(window["__PRELOADED_STATE__"]);
+const store = configureStore(window["__PRELOADED_STATE__" as any] as any);
 
 hydrate(
     <QueryClientProvider client={queryClient}>
