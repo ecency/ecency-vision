@@ -9,6 +9,7 @@ import { ConfirmDelete } from "../rc-delegations-list";
 import { getRcOperationStats } from "../../api/hive";
 import RcProgressCircle from "../rc-progress-circle";
 import "./_index.scss";
+import ClaimAccountCredit from "../claim-account-credit";
 
 export const ResourceCreditsInfo = (props: any) => {
   const { rcPercent, account, activeUser } = props;
@@ -167,6 +168,9 @@ export const ResourceCreditsInfo = (props: any) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <div className="align-self-center" >
+            <ClaimAccountCredit account={account}/>
+          </div>
           <div className="rc-infocontainer">
             <div className="percent">
               <div className="circle">

@@ -2280,3 +2280,25 @@ export const createAccountWithCreditKey = async (
     return err;
   }
 };
+
+export const claimAccount = async (username: string, key: PrivateKey | any): Promise<any> => {
+  const op: any = [
+    "claim_account",
+    {
+      fee: {
+        amount: "0",
+        precision: 3,
+      },
+      creator: username,
+      extensions: []
+    }
+  ]
+
+  try {
+    const response = await  hiveClient.broadcast.sendOperations(op, key);
+    return response;
+  } catch (error) {
+    console.error("error claiming credit:", error);
+    throw error;
+  }
+};
