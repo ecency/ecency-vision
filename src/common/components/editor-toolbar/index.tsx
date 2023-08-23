@@ -367,8 +367,6 @@ export class EditorToolbar extends Component<Props> {
         const {gallery, fragments, image, link, mobileImage, showVideo, showVideoGallery} = this.state;
         const {global, sm, activeUser, showEmoji = true} = this.props;
 
-        console.log(showVideo);
-
         return (
             <>
                 <div className={_c(`editor-toolbar ${sm ? 'toolbar-sm' : ''}`)} ref={this.holder}>
