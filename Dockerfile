@@ -1,4 +1,4 @@
-FROM node:12.16.2 as base
+FROM node:14.17 as base
 
 WORKDIR /var/app
 
