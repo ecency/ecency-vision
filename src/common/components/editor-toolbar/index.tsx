@@ -41,8 +41,11 @@ import {
     gridSvg,
     emoticonHappyOutlineSvg,
   textShortSvg,
-  infoOutlineSvg
+  infoOutlineSvg,
+  videoSvg
 } from "../../img/svg";
+import VideoUpload from "../upload-video/upload-video";
+import VideoGallery from "../video-gallery";
 
 
 interface Props {
@@ -59,6 +62,8 @@ interface State {
     image: boolean;
     link: boolean;
     mobileImage: boolean;
+    showVideo: boolean;
+    showVideoGallery: boolean;
 }
 
 export class EditorToolbar extends Component<Props> {
@@ -67,7 +72,9 @@ export class EditorToolbar extends Component<Props> {
         fragments: false,
         image: false,
         link: false,
-        mobileImage: false
+        mobileImage: false,
+        showVideo: false,
+        showVideoGallery: false,
     }
 
     holder = React.createRef<HTMLDivElement>();
@@ -97,6 +104,9 @@ export class EditorToolbar extends Component<Props> {
         const {image} = this.state;
         this.setState({image: !image});
     }
+
+    toggleVideo = (val: boolean) => this.setState({showVideo: val})
+    toggleVideoGallery = (val: boolean) => this.setState({ showVideoGallery: val})
 
     toggleMobileImage = (e?: React.MouseEvent<HTMLElement>) => {
         if (e) {
@@ -339,7 +349,7 @@ export class EditorToolbar extends Component<Props> {
                 error(_t("editor-toolbar.image-error-cache"))
             }
         } catch (e) {
-            if (e.response?.status === 413) {
+            if ((e as any).response?.status === 413) {
                 error(_t("editor-toolbar.image-error-size"));
             } else {
                 error(_t("editor-toolbar.image-error"));
@@ -354,7 +364,7 @@ export class EditorToolbar extends Component<Props> {
     };
 
     render() {
-        const {gallery, fragments, image, link, mobileImage} = this.state;
+        const {gallery, fragments, image, link, mobileImage, showVideo, showVideoGallery} = this.state;
         const {global, sm, activeUser, showEmoji = true} = this.props;
 
         return (
@@ -463,7 +473,24 @@ export class EditorToolbar extends Component<Props> {
                             </div>
                         </Tooltip>
                     })()}
-
+                    <Tooltip content={_t("editor-toolbar.video")}>
+                        <div className="editor-tool" >
+                            {videoSvg}
+                             <div className="sub-tool-menu">
+                                        <div
+                                            className="sub-tool-menu-item"
+                                            onClick={() => this.setState({ showVideo: true })}>
+                                            Upload from PC
+                                        </div>
+                                        <div
+                                          className="sub-tool-menu-item"
+                                          onClick={() => this.setState({ showVideoGallery: true })}
+                                        >
+                                            Video gallery
+                                        </div>
+                            </div>
+                        </div>
+                    </Tooltip>
                     <Tooltip content={_t("editor-toolbar.table")}>
                         <div className="editor-tool" onClick={this.table}>
                             {gridSvg}
@@ -523,6 +550,8 @@ export class EditorToolbar extends Component<Props> {
                     this.image(text, link);
                     this.toggleImage();
                 }}/>}
+                {showVideo && activeUser && <VideoUpload setShowGallery={() => this.setState({ showVideoGallery: true })} global={global} show={showVideo} activeUser={activeUser} setShow={this.toggleVideo}  />}
+                {showVideoGallery && activeUser && <VideoGallery activeUser={activeUser} showGallery={showVideoGallery} setShowGallery={this.toggleVideoGallery} insertText={this.insertText} />}
                 {link && <AddLink onHide={this.toggleLink} onSubmit={(text: string, link: string) => {
                     this.link(text, link);
                     this.toggleLink();
