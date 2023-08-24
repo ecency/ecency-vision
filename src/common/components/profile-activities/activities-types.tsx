@@ -23,8 +23,8 @@ const ActivitiesTypes = (props: Props) => {
             </div>
             <div className="filter-types">
             <Link to={`/`}>Follows</Link>
-            <Link to={`/`}>Witness votes</Link>
-            <Link to={`/`}>Proposal votes</Link>
+            <Link to={`/witnesses?voter=${account.name}`}>Witness votes</Link>
+            <Link to={`/proposals?voter=${account.name}`}>Proposal votes</Link>
             </div>
             <div className="filter-types">
             <Link to={`/`}>Curation rewards</Link>

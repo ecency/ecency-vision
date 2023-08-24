@@ -15,7 +15,6 @@ interface Props {
 const UserActivities = (props: Props) => {
 
     const { a, account, jsonData } = props;
-    console.log(account)
 
   return (
         <>

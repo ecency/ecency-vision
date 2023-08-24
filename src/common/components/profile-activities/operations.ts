@@ -37,7 +37,6 @@ export const ACCOUNT_ACTIVITY_GROUPS: Record<ActivitiesGroup, number[]>  = {
 
     const name = username.replace("@", "");
 
-    console.log(ops)
     let filters: ActivitiesGroup[] | "" = [];
     switch (group) {
       case "comment":
