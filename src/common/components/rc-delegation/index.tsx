@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import _ from "lodash";
-import { Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 import badActors from "@hiveio/hivescript/bad-actors.json";
 
 import LinearProgress from "../linear-progress";
@@ -12,6 +12,7 @@ import { getAccount } from "../../api/hive";
 
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
+import { InputGroup } from "@ui/input";
 
 export const ResourceCreditsDelegation = (props: any) => {
   const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList, delegateeData } =
@@ -158,10 +159,7 @@ export const ResourceCreditsDelegation = (props: any) => {
                 {_t("transfer.from")}
               </Form.Label>
               <Col sm="10">
-                <InputGroup>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text>@</InputGroup.Text>
-                  </InputGroup.Prepend>
+                <InputGroup prepend="@">
                   <Form.Control value={activeUser.username} readOnly={true} />
                 </InputGroup>
               </Col>
@@ -174,10 +172,7 @@ export const ResourceCreditsDelegation = (props: any) => {
                 </Form.Label>
                 <Col sm="10">
                   {/* <SuggestionList > */}
-                  <InputGroup>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text>@</InputGroup.Text>
-                    </InputGroup.Prepend>
+                  <InputGroup prepend="@">
                     <Form.Control
                       type="text"
                       autoFocus={to === ""}
@@ -199,10 +194,7 @@ export const ResourceCreditsDelegation = (props: any) => {
                 {_t("transfer.amount")}
               </Form.Label>
               <Col sm="10" className="d-flex align-items-center">
-                <InputGroup>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text>#</InputGroup.Text>
-                  </InputGroup.Prepend>
+                <InputGroup prepend="#">
                   <Form.Control
                     type="text"
                     placeholder={_t("transfer.amount-placeholder")}

@@ -1,4 +1,4 @@
-import { Form, InputGroup } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import React from "react";
 import { MarketAsset } from "./market-pair";
@@ -74,38 +74,36 @@ export const SwapAmountControl = ({
             ${formatValue(+value.replace(/,/gm, "") * usdRate + "")}
           </small>
         </div>
-        <InputGroup.Append>
-          <div className="d-flex flex-column align-items-end">
-            <select
-              disabled={disabled}
-              value={asset}
-              className={
-                "form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 " +
-                (hideChevron ? "hide-chevron" : "")
-              }
-              onChange={(e) => setAsset(e.target.value as MarketAsset)}
-            >
-              {availableAssets.map((pairAsset) => (
-                <option key={pairAsset} value={pairAsset}>
-                  {pairAsset}
-                </option>
-              ))}
-            </select>
-            {balance && showBalance ? (
-              <small className="balance d-block text-secondary text-nowrap">
-                {_t("market.balance")}:
-                <span
-                  className="text-primary font-weight-bold cursor-pointer ml-1"
-                  onClick={() => (disabled ? null : setValue(balance.split(" ")[0]))}
-                >
-                  {balance}
-                </span>
-              </small>
-            ) : (
-              <></>
-            )}
-          </div>
-        </InputGroup.Append>
+        <div className="d-flex flex-column align-items-end">
+          <select
+            disabled={disabled}
+            value={asset}
+            className={
+              "form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 " +
+              (hideChevron ? "hide-chevron" : "")
+            }
+            onChange={(e) => setAsset(e.target.value as MarketAsset)}
+          >
+            {availableAssets.map((pairAsset) => (
+              <option key={pairAsset} value={pairAsset}>
+                {pairAsset}
+              </option>
+            ))}
+          </select>
+          {balance && showBalance ? (
+            <small className="balance d-block text-secondary text-nowrap">
+              {_t("market.balance")}:
+              <span
+                className="text-primary font-weight-bold cursor-pointer ml-1"
+                onClick={() => (disabled ? null : setValue(balance.split(" ")[0]))}
+              >
+                {balance}
+              </span>
+            </small>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
       {elementAfterBalance}
     </Form.Group>

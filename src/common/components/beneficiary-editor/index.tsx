@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import BaseComponent from "../base";
 import { error } from "../feedback";
@@ -15,6 +15,7 @@ import { accountMultipleSvg, deleteForeverSvg, plusSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "@ui/modal";
+import { InputGroup } from "@ui/input";
 
 interface Props {
   author?: string;
@@ -110,10 +111,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
               )}
               <tr>
                 <td className="border p-2">
-                  <InputGroup size="sm">
-                    <InputGroup.Prepend>
-                      <InputGroup.Text>@</InputGroup.Text>
-                    </InputGroup.Prepend>
+                  <InputGroup prepend="@">
                     <Form.Control
                       disabled={inProgress}
                       autoFocus={true}
@@ -130,7 +128,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                   </InputGroup>
                 </td>
                 <td className="border p-2">
-                  <InputGroup size="sm">
+                  <InputGroup append="%">
                     <Form.Control
                       disabled={inProgress}
                       required={true}
@@ -146,9 +144,6 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                       }
                       onInput={handleOnInput}
                     />
-                    <InputGroup.Append>
-                      <InputGroup.Text>%</InputGroup.Text>
-                    </InputGroup.Append>
                   </InputGroup>
                 </td>
                 <td className="border p-2">

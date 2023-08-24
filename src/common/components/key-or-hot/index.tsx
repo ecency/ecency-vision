@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 
@@ -14,6 +14,7 @@ import { _t } from "../../i18n";
 
 import { keySvg } from "../../img/svg";
 import "./index.scss";
+import { InputGroup } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -98,10 +99,14 @@ export class KeyOrHot extends Component<Props, State> {
               e.preventDefault();
             }}
           >
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text>{keySvg}</InputGroup.Text>
-              </InputGroup.Prepend>
+            <InputGroup
+              prepend={keySvg}
+              append={
+                <Button disabled={inProgress} onClick={this.keyEntered}>
+                  {_t("key-or-hot.sign")}
+                </Button>
+              }
+            >
               <Form.Control
                 value={key}
                 type="password"
@@ -110,11 +115,6 @@ export class KeyOrHot extends Component<Props, State> {
                 placeholder={_t("key-or-hot.key-placeholder")}
                 onChange={this.keyChanged}
               />
-              <InputGroup.Append>
-                <Button disabled={inProgress} onClick={this.keyEntered}>
-                  {_t("key-or-hot.sign")}
-                </Button>
-              </InputGroup.Append>
             </InputGroup>
           </Form>
           <OrDivider />

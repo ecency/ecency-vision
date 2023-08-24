@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Community } from "../../store/communities/types";
@@ -20,6 +20,7 @@ import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { queryClient, QueryIdentifiers } from "../../core";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { InputGroup } from "@ui/input";
 
 const langOpts = [
   { id: "af", name: "Afrikaans" },

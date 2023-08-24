@@ -1,13 +1,12 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 import BuySellHiveDialog, { TransactionType } from "../buy-sell-hive";
 import { error } from "../feedback";
 import { Skeleton } from "../skeleton";
+import { InputGroup } from "@ui/input";
 
 interface Props {
   type: 1 | 2;
@@ -147,37 +146,34 @@ export const HiveBarter = ({
       >
         <Form.Group>
           <Form.Label className={isInline ? "font-small" : ""}>{_t("market.price")}</Form.Label>
-          <InputGroup>
+          <InputGroup append="HBD/HIVE">
             <Form.Control
               value={price}
               placeholder="0.0"
               onChange={(e) => setPriceValue(e.target.value)}
             />
-            <InputGroup.Text className="rounded-l">HBD/HIVE</InputGroup.Text>
           </InputGroup>
         </Form.Group>
 
         <Form.Group>
           <Form.Label className={isInline ? "font-small" : ""}>{_t("market.amount")}</Form.Label>
-          <InputGroup>
+          <InputGroup append="HIVE">
             <Form.Control
               placeholder="0.0"
               value={isNaN(amount) ? 0 : amount}
               onChange={(e) => setAmountValue(e.target.value)}
             />
-            <InputGroup.Text className="rounded-l">HIVE</InputGroup.Text>
           </InputGroup>
         </Form.Group>
 
         <Form.Group className="mb-4">
           <Form.Label className={isInline ? "font-small" : ""}>{_t("market.total")}</Form.Label>
-          <InputGroup>
+          <InputGroup append="HBD">
             <Form.Control
               placeholder="0.0"
               value={isNaN(total) ? 0 : total}
               onChange={(e) => setTotalValue(e.target.value)}
             />
-            <InputGroup.Text className="rounded-l">HBD</InputGroup.Text>
           </InputGroup>
         </Form.Group>
         <Button block={true} type="submit" disabled={disabled}>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Community, CommunityTeam } from "../../store/communities/types";
@@ -22,6 +22,7 @@ import { Tsx } from "../../i18n/helper";
 import "./_index.scss";
 import { queryClient, QueryIdentifiers } from "../../core";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { InputGroup } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -113,10 +114,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
               {_t("community-role-edit.username")}
             </Form.Label>
             <Col sm="10">
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Text>@</InputGroup.Text>
-                </InputGroup.Prepend>
+              <InputGroup prepend="@">
                 <Form.Control
                   type="text"
                   autoFocus={user === ""}

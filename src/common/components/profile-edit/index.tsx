@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Col, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Col, Form, FormControl } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 import { Account, FullAccount } from "../../store/accounts/types";
@@ -15,6 +15,7 @@ import { updateProfile } from "../../api/operations";
 import { getAccount } from "../../api/hive";
 import "./index.scss";
 import { Spinner } from "../spinner";
+import { InputGroup } from "@ui/input";
 
 interface Props {
   activeUser: ActiveUser;
@@ -163,17 +164,9 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
           <Col lg={6} xl={4}>
             <Form.Group>
               <Form.Label>{_t("profile-edit.profile-image")}</Form.Label>
-              <InputGroup className="mb-3">
-                <Form.Control
-                  type="text"
-                  disabled={inProgress}
-                  placeholder="https://"
-                  value={profileImage}
-                  maxLength={500}
-                  data-var="profileImage"
-                  onChange={this.valueChanged}
-                />
-                <InputGroup.Append>
+              <InputGroup
+                className="mb-3"
+                append={
                   <UploadButton
                     {...this.props}
                     onBegin={() => {
@@ -183,24 +176,26 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                       this.stateSet({ profileImage: url, uploading: false, changed: true });
                     }}
                   />
-                </InputGroup.Append>
+                }
+              >
+                <Form.Control
+                  type="text"
+                  disabled={inProgress}
+                  placeholder="https://"
+                  value={profileImage}
+                  maxLength={500}
+                  data-var="profileImage"
+                  onChange={this.valueChanged}
+                />
               </InputGroup>
             </Form.Group>
           </Col>
           <Col lg={6} xl={4}>
             <Form.Group>
               <Form.Label>{_t("profile-edit.cover-image")}</Form.Label>
-              <InputGroup className="mb-3">
-                <Form.Control
-                  type="text"
-                  disabled={inProgress}
-                  placeholder="https://"
-                  value={coverImage}
-                  maxLength={500}
-                  data-var="coverImage"
-                  onChange={this.valueChanged}
-                />
-                <InputGroup.Append>
+              <InputGroup
+                className="mb-3"
+                append={
                   <UploadButton
                     {...this.props}
                     onBegin={() => {
@@ -210,7 +205,17 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                       this.stateSet({ coverImage: url, uploading: false, changed: true });
                     }}
                   />
-                </InputGroup.Append>
+                }
+              >
+                <Form.Control
+                  type="text"
+                  disabled={inProgress}
+                  placeholder="https://"
+                  value={coverImage}
+                  maxLength={500}
+                  data-var="coverImage"
+                  onChange={this.valueChanged}
+                />
               </InputGroup>
             </Form.Group>
           </Col>

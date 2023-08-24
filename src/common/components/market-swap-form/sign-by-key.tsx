@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { keySvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import { error } from "../feedback";
 import { ActiveUser } from "../../store/active-user/types";
+import { InputGroup } from "@ui/input";
 
 export interface Props {
   activeUser: ActiveUser | null;
@@ -53,10 +54,7 @@ export const SignByKey = ({
 
   return (
     <div className="mt-4">
-      <InputGroup>
-        <InputGroup.Prepend>
-          <InputGroup.Text>{keySvg}</InputGroup.Text>
-        </InputGroup.Prepend>
+      <InputGroup prepend={keySvg}>
         <Form.Control
           value={key}
           type="password"

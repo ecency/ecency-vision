@@ -1,10 +1,11 @@
 import { WalletSpkGroup } from "../wallet-spk-group";
-import { Alert, Button, Form, InputGroup } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { ActiveUser } from "../../../store/active-user/types";
 import { Transactions } from "../../../store/transactions/types";
 import { getSpkWallet, Market } from "../../../api/spk-api";
+import { InputGroup } from "@ui/input";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -65,10 +66,7 @@ export const SendSpkDialogDelegateForm = ({
   return (
     <>
       <WalletSpkGroup label="wallet.spk.send.from">
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text>@</InputGroup.Text>
-          </InputGroup.Prepend>
+        <InputGroup prepend="@">
           <Form.Control
             type="text"
             autoFocus={true}
@@ -79,10 +77,7 @@ export const SendSpkDialogDelegateForm = ({
         </InputGroup>
       </WalletSpkGroup>
       <WalletSpkGroup label="wallet.spk.send.to">
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text>@</InputGroup.Text>
-          </InputGroup.Prepend>
+        <InputGroup prepend="@">
           <select
             ref={selectRef}
             placeholder={_t("wallet.spk.delegate.node-operator-placeholder")}
@@ -100,10 +95,7 @@ export const SendSpkDialogDelegateForm = ({
       </WalletSpkGroup>
       <WalletSpkGroup label="wallet.spk.send.amount">
         <>
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text>#</InputGroup.Text>
-            </InputGroup.Prepend>
+          <InputGroup prepend="#">
             <Form.Control
               type="text"
               autoFocus={true}

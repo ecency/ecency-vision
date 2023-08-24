@@ -1,4 +1,4 @@
-import { Alert, Button, Form, InputGroup } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import React, { useContext, useEffect, useState } from "react";
 import "./_decks-settings.scss";
 import { DeckGrid } from "../types";
@@ -10,6 +10,7 @@ import { DeckGridContext } from "../deck-manager";
 import { DEFAULT_COLUMNS } from "../consts";
 import { _t } from "../../../i18n";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { InputGroup } from "@ui/input";
 
 interface Props {
   deck?: DeckGrid;
@@ -107,29 +108,32 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
         {!isRemovingDeck && (
           <Form>
             <Form.Group className="mb-4">
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <Button
-                    variant="link"
-                    onClick={() => {
-                      setShowEmoji(!showEmoji);
-                    }}
-                  >
-                    {icon ? icon : emoticonHappyOutlineSvg}
-                  </Button>
-                  {showEmoji ? (
-                    <ClickAwayListener onClickAway={() => setShowEmoji(false)}>
-                      <EmojiPicker
-                        fallback={(value) => {
-                          setIcon(value);
-                          setShowEmoji(false);
-                        }}
-                      />
-                    </ClickAwayListener>
-                  ) : (
-                    <></>
-                  )}
-                </InputGroup.Prepend>
+              <InputGroup
+                prepend={
+                  <>
+                    <Button
+                      variant="link"
+                      onClick={() => {
+                        setShowEmoji(!showEmoji);
+                      }}
+                    >
+                      {icon ? icon : emoticonHappyOutlineSvg}
+                    </Button>
+                    {showEmoji ? (
+                      <ClickAwayListener onClickAway={() => setShowEmoji(false)}>
+                        <EmojiPicker
+                          fallback={(value) => {
+                            setIcon(value);
+                            setShowEmoji(false);
+                          }}
+                        />
+                      </ClickAwayListener>
+                    ) : (
+                      <></>
+                    )}
+                  </>
+                }
+              >
                 <Form.Control
                   placeholder="Name"
                   value={name}

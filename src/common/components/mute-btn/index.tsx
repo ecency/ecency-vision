@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
 
@@ -19,6 +19,7 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { InputGroup } from "@ui/input";
 
 interface DialogProps {
   entry: Entry;

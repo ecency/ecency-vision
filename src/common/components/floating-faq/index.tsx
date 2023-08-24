@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { Button, Card, Form, InputGroup } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 
 import ClickAwayListener from "../clickaway-listener";
@@ -18,6 +18,7 @@ import data from "./path.json";
 import { _t } from "../../i18n";
 import Tooltip from "../tooltip";
 import "./index.scss";
+import { InputGroup } from "@ui/input";
 
 export interface FaqObject {
   show: boolean;
@@ -281,10 +282,7 @@ const FloatingFAQ = () => {
                       <Accordion.Collapse eventKey="1">
                         <div className="card-body p-3">
                           <Form.Group>
-                            <InputGroup size="sm" className="username">
-                              <InputGroup.Prepend>
-                                <InputGroup.Text>@</InputGroup.Text>
-                              </InputGroup.Prepend>
+                            <InputGroup className="username" prepend="@">
                               <Form.Control
                                 autoFocus={true}
                                 required={true}
@@ -293,7 +291,7 @@ const FloatingFAQ = () => {
                             </InputGroup>
                           </Form.Group>
                           <Form.Group>
-                            <InputGroup size="sm" className="message">
+                            <InputGroup className="message">
                               <Form.Control
                                 as="textarea"
                                 type="text"

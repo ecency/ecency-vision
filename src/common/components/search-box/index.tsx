@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, FormControl, InputGroup } from "react-bootstrap";
+import { Button, FormControl } from "react-bootstrap";
 import { _t } from "../../i18n";
 
 import { copyContent, magnifySvg } from "../../img/svg";
@@ -31,19 +31,17 @@ export default class SearchBox extends Component<Props> {
               {...{ ...other, value, username, filter }}
               className={"input-with-copy rounded-r"}
             />
-            <InputGroup.Append>
-              <Button
-                variant="primary"
-                size="sm"
-                className="copy-to-clipboard rounded-l"
-                disabled={value.length === 0}
-                onClick={() => {
-                  this.copyToClipboard(`https://ecency.com/${username}/${filter}?q=${value}`);
-                }}
-              >
-                {copyContent}
-              </Button>
-            </InputGroup.Append>
+            <Button
+              variant="primary"
+              size="sm"
+              className="copy-to-clipboard rounded-l"
+              disabled={value.length === 0}
+              onClick={() => {
+                this.copyToClipboard(`https://ecency.com/${username}/${filter}?q=${value}`);
+              }}
+            >
+              {copyContent}
+            </Button>
           </div>
         ) : (
           <>

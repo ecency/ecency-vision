@@ -11,7 +11,7 @@ import Meta from "../../components/meta";
 import ScrollToTop from "../../components/scroll-to-top";
 import Theme from "../../components/theme";
 import NavBarElectron from "../../../desktop/app/components/navbar";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { copyContent } from "../../img/svg";
 import { Link } from "react-router-dom";
 import { Tsx } from "../../i18n/helper";
@@ -19,6 +19,7 @@ import { faqKeysGeneral } from "../../constants";
 import NavBar from "../../components/navbar";
 import FaqCategory from "../../components/faq-category";
 import { connect } from "react-redux";
+import { InputGroup } from "@ui/input";
 
 interface FAQPageState {
   search: string;
@@ -110,17 +111,8 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                 <h1 className="text-white faq-title text-center mb-3">
                   {_t("static.faq.page-title")}
                 </h1>
-                <InputGroup className="mb-3 w-75">
-                  <Form.Control
-                    placeholder={`${_t("static.faq.search-placeholder")}`}
-                    className="w-75"
-                    onChange={(e) => {
-                      this.setState({ search: e.target.value });
-                    }}
-                    value={search}
-                    autoFocus={true}
-                  />
-                  <InputGroup.Append>
+                <InputGroup
+                  append={
                     <Button
                       variant="primary"
                       size="sm"
@@ -134,7 +126,18 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                     >
                       {copyContent}
                     </Button>
-                  </InputGroup.Append>
+                  }
+                  className="mb-3 w-75"
+                >
+                  <Form.Control
+                    placeholder={`${_t("static.faq.search-placeholder")}`}
+                    className="w-75"
+                    onChange={(e) => {
+                      this.setState({ search: e.target.value });
+                    }}
+                    value={search}
+                    autoFocus={true}
+                  />
                 </InputGroup>
                 {search.length > 0 && (
                   <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">

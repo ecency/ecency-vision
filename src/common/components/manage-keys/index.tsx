@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { History } from "history";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 import { decodeObj, encodeObj } from "../../util/encoder";
@@ -17,6 +17,7 @@ import { _t } from "../../i18n";
 import { keySvg } from "../../img/svg";
 import "./index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { InputGroup } from "@ui/input";
 
 interface Props {
   accountData: AccountDataType;
@@ -268,10 +269,10 @@ export default function ManageKeys(props: Props) {
               e.preventDefault();
             }}
           >
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text>{keySvg}</InputGroup.Text>
-              </InputGroup.Prepend>
+            <InputGroup
+              prepend={keySvg}
+              append={<Button onClick={handleSubmit}>{_t("key-or-hot.sign")}</Button>}
+            >
               <Form.Control
                 value={key}
                 type="password"
@@ -280,9 +281,6 @@ export default function ManageKeys(props: Props) {
                 placeholder={_t("manage-authorities.placeholder")}
                 onChange={(e) => setKey(e.target.value)}
               />
-              <InputGroup.Append>
-                <Button onClick={handleSubmit}>{_t("key-or-hot.sign")}</Button>
-              </InputGroup.Append>
             </InputGroup>
           </Form>
         </div>

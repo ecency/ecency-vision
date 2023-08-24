@@ -1,10 +1,11 @@
 import { WalletSpkGroup } from "../wallet-spk-group";
-import { Alert, Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import { SearchByUsername } from "../../search-by-username";
 import { _t } from "../../../i18n";
 import React from "react";
 import { ActiveUser } from "../../../store/active-user/types";
 import { Transactions } from "../../../store/transactions/types";
+import { InputGroup } from "@ui/input";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -59,10 +60,7 @@ export const SendSpkDialogForm = ({
   return (
     <>
       <WalletSpkGroup label="wallet.spk.send.from">
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text>@</InputGroup.Text>
-          </InputGroup.Prepend>
+        <InputGroup prepend="@">
           <Form.Control
             type="text"
             autoFocus={true}
@@ -83,10 +81,7 @@ export const SendSpkDialogForm = ({
       </WalletSpkGroup>
       <WalletSpkGroup label="wallet.spk.send.amount">
         <>
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text>#</InputGroup.Text>
-            </InputGroup.Prepend>
+          <InputGroup prepend="#">
             <Form.Control
               type="text"
               autoFocus={true}

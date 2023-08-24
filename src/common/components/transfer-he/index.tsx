@@ -6,7 +6,7 @@ import numeral from "numeral";
 
 import isEqual from "react-fast-compare";
 
-import { Button, Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 
 import badActors from "@hiveio/hivescript/bad-actors.json";
 
@@ -57,6 +57,7 @@ import formattedNumber from "../../util/formatted-number";
 import { dateToFullRelative } from "../../helper/parse-date";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { InputGroup } from "@ui/input";
 
 export type TransferMode = "transfer" | "delegate" | "undelegate" | "stake" | "unstake";
 
@@ -634,10 +635,7 @@ export class Transfer extends BaseComponent<Props, State> {
                     {_t("transfer.from")}
                   </Form.Label>
                   <Col sm="10">
-                    <InputGroup>
-                      <InputGroup.Prepend>
-                        <InputGroup.Text>@</InputGroup.Text>
-                      </InputGroup.Prepend>
+                    <InputGroup prepend="@">
                       <Form.Control value={activeUser.username} readOnly={true} />
                     </InputGroup>
                   </Col>
@@ -652,10 +650,7 @@ export class Transfer extends BaseComponent<Props, State> {
                     </Form.Label>
                     <Col sm="10">
                       <SuggestionList items={recent} {...suggestionProps}>
-                        <InputGroup>
-                          <InputGroup.Prepend>
-                            <InputGroup.Text>@</InputGroup.Text>
-                          </InputGroup.Prepend>
+                        <InputGroup prepend="@">
                           <Form.Control
                             type="text"
                             autoFocus={to === ""}
@@ -678,10 +673,7 @@ export class Transfer extends BaseComponent<Props, State> {
                   {_t("transfer.amount")}
                 </Form.Label>
                 <Col sm="10" className="d-flex align-items-center">
-                  <InputGroup>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text>#</InputGroup.Text>
-                    </InputGroup.Prepend>
+                  <InputGroup prepend="#">
                     <Form.Control
                       type="text"
                       placeholder={_t("transfer.amount-placeholder")}

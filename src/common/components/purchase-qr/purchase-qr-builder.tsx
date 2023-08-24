@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Alert, Button, Form, InputGroup } from "react-bootstrap";
+import { Alert, Form } from "react-bootstrap";
 import { _t } from "../../i18n";
-import { error, success } from "../feedback";
+import { success } from "../feedback";
 import qrcode from "qrcode";
-import { copyContent } from "../../img/svg";
 import { ActiveUser } from "../../store/active-user/types";
 import defaults from "../../constants/defaults.json";
 import { PurchaseTypes } from "./purchase-types";
 import { PurchaseQrTypes } from "./purchase-qr-types";
 import { Location } from "history";
 import { SearchByUsername } from "../search-by-username";
+import { InputGroupCopyClipboard } from "@ui/input";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -106,19 +106,7 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId, locat
       />
       {isQrShow ? (
         <Form.Group className="w-100">
-          <InputGroup onClick={() => copyToClipboard(getURL())}>
-            <Form.Control value={getURL()} disabled={true} className="text-primary pointer" />
-            <InputGroup.Append>
-              <Button
-                variant="primary"
-                size="sm"
-                className="copy-to-clipboard"
-                onClick={() => copyToClipboard(getURL())}
-              >
-                {copyContent}
-              </Button>
-            </InputGroup.Append>
-          </InputGroup>
+          <InputGroupCopyClipboard value={getURL()} />
         </Form.Group>
       ) : (
         <></>

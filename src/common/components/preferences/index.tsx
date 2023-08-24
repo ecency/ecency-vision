@@ -1,6 +1,6 @@
 import React from "react";
 import i18n from "i18next";
-import { Col, Form, FormControl, InputGroup, Button } from "react-bootstrap";
+import { Col, Form, FormControl } from "react-bootstrap";
 
 import { Global, Theme } from "../../store/global/types";
 import BaseComponent from "../base";
@@ -10,11 +10,11 @@ import { getCurrencyRate } from "../../api/misc";
 import currencySymbol from "../../helper/currency-symbol";
 import currencies from "../../constants/currencies.json";
 import { ActiveUser } from "../../store/active-user/types";
-import { copyContent } from "../../img/svg";
 import * as ls from "../../util/local-storage";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { NotifyTypes } from "../../enums/notify-types";
+import { InputGroupCopyClipboard } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -214,34 +214,10 @@ export class Preferences extends BaseComponent<Props, State> {
                 <Col lg={6} xl={4}>
                   <Form.Group>
                     <Form.Label>{_t("preferences.referral-link")}</Form.Label>
-                    <InputGroup
+                    <InputGroupCopyClipboard
                       className="mb-3"
-                      onClick={() =>
-                        this.copyToClipboard(
-                          `https://ecency.com/signup?referral=${activeUser!.username}`
-                        )
-                      }
-                    >
-                      <Form.Control
-                        value={`https://ecency.com/signup?referral=${activeUser!.username}`}
-                        disabled={true}
-                        className="text-primary pointer"
-                      />
-                      <InputGroup.Append>
-                        <Button
-                          variant="primary"
-                          size="sm"
-                          className="copy-to-clipboard"
-                          onClick={() =>
-                            this.copyToClipboard(
-                              `https://ecency.com/signup?referral=${activeUser!.username}`
-                            )
-                          }
-                        >
-                          {copyContent}
-                        </Button>
-                      </InputGroup.Append>
-                    </InputGroup>
+                      value={`https://ecency.com/signup?referral=${activeUser!.username}`}
+                    />
                   </Form.Group>
                 </Col>
                 <Col lg={6} xl={4}>

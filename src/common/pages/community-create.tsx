@@ -7,7 +7,7 @@ import numeral from "numeral";
 import base58 from "bs58";
 import { AccountCreateOperation, Authority, cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import random from "../util/rnd";
-import { Button, Form, FormControl, InputGroup, Spinner } from "react-bootstrap";
+import { Button, Form, FormControl, Spinner } from "react-bootstrap";
 import { _t } from "../i18n";
 import Feedback, { error, success } from "../components/feedback";
 import { formatError, setUserRole, updateCommunity } from "../api/operations";
@@ -28,6 +28,7 @@ import LoginRequired from "../components/login-required";
 import KeyOrHot from "../components/key-or-hot";
 import Tooltip from "../components/tooltip";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { InputGroup } from "@ui/input";
 
 const namePattern = "^hive-[1]\\d{4,6}$";
 interface CreateState {
@@ -576,15 +577,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                   <Form.Group>
                                     <InputGroup
                                       className="mb-3"
-                                      onClick={() => this.copyToClipboard(wif)}
-                                    >
-                                      <Form.Control
-                                        value={wif}
-                                        disabled={true}
-                                        className="pointer"
-                                        id="copy-to-clipboard"
-                                      />
-                                      <InputGroup.Append>
+                                      append={
                                         <Button
                                           variant="primary"
                                           size="sm"
@@ -593,7 +586,15 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                         >
                                           {copyContent}
                                         </Button>
-                                      </InputGroup.Append>
+                                      }
+                                      onAppendClick={() => this.copyToClipboard(wif)}
+                                    >
+                                      <Form.Control
+                                        value={wif}
+                                        disabled={true}
+                                        className="pointer"
+                                        id="copy-to-clipboard"
+                                      />
                                     </InputGroup>
                                   </Form.Group>
                                 </Form.Group>

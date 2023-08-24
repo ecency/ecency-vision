@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 
@@ -10,6 +10,7 @@ import UploadButton from "../image-upload-button";
 import { _t } from "../../i18n";
 import { Spinner } from "../spinner";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { InputGroup } from "@ui/input";
 
 interface Props {
   activeUser: ActiveUser;
@@ -53,16 +54,9 @@ export class ImageUpload extends BaseComponent<Props, State> {
       <div className="image-upload-dialog-content">
         <Form.Group>
           <Form.Label>{title}</Form.Label>
-          <InputGroup className="mb-3">
-            <Form.Control
-              type="text"
-              disabled={inProgress}
-              placeholder="https://"
-              value={image}
-              maxLength={500}
-              onChange={this.imageChanged}
-            />
-            <InputGroup.Append>
+          <InputGroup
+            className="mb-3"
+            append={
               <UploadButton
                 {...this.props}
                 onBegin={() => {
@@ -72,7 +66,16 @@ export class ImageUpload extends BaseComponent<Props, State> {
                   this.stateSet({ image: url, uploading: false });
                 }}
               />
-            </InputGroup.Append>
+            }
+          >
+            <Form.Control
+              type="text"
+              disabled={inProgress}
+              placeholder="https://"
+              value={image}
+              maxLength={500}
+              onChange={this.imageChanged}
+            />
           </InputGroup>
         </Form.Group>
         <Button onClick={this.done} disabled={inProgress || uploading}>
