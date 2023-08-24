@@ -422,28 +422,3 @@
     position: fixed;
   }
 }
-
-.deck-thread-image-view-dialog {
-  > .modal-dialog {
-    width: auto;
-    max-width: unset;
-    display: flex;
-    justify-content: center;
-  }
-
-  .modal-body {
-    padding: 0;
-  }
-
-  .modal-content {
-    width: auto;
-  }
-
-  .close {
-  }
-
-  img {
-    width: 100%;
-    height: min(calc(100vh - 3.5rem - 56px), 768px);
-  }
-}

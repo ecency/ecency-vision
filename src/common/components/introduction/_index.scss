@@ -96,8 +96,15 @@
 }
 
 .close-btn {
-  right: 14px;
-  top: 7px;
+  right: 1rem;
+  top: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .intro-btn {

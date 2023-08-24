@@ -82,7 +82,7 @@ export class EntryIndexMenu extends Component<Props, States> {
       showInitialIntroductionJourney = true;
       ls.set(`${activeUser.username}HadTutorial`, "true");
     }
-    if (showInitialIntroductionJourney === true) {
+    if (showInitialIntroductionJourney) {
       showInitialIntroductionJourney = IntroductionType.FRIENDS;
     } else {
       showInitialIntroductionJourney = IntroductionType.NONE;

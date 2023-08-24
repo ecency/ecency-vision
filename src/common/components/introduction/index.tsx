@@ -1,9 +1,8 @@
-import React from "react";
-import { useRef } from "react";
-import { useEffect } from "react";
-import { Col, Container, Row, Button } from "react-bootstrap";
+import React, { useEffect, useRef } from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { closeSvg } from "../../img/svg";
 
 export interface Props {
   title: string;
@@ -42,11 +41,11 @@ export const Introduction = ({
         <Container className="h-100">
           <button
             type="button"
-            className="close position-absolute close-btn"
+            className="position-absolute close-btn"
             onClick={onClose}
             id="close-btn"
           >
-            <span aria-hidden="true">&times;</span>
+            {closeSvg}
           </button>
           <Row className="justify-content-center h-100 align-items-center mt-4 mt-md-0">
             <Col xs={12} md={3} className="p-0 px-md-3">
