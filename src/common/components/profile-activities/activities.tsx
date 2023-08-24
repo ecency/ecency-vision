@@ -1,7 +1,7 @@
 import React from 'react'
 import { dateToFullRelative } from '../../helper/parse-date';
 import { Link } from 'react-router-dom';
-import { upvote, ticketSvg, starSvg, peopleSvg, commentSvg } from '../../img/svg';
+import { upvote, ticketSvg, starSvg, peopleSvg, commentSvg, chevronDownSvgForSlider } from '../../img/svg';
 import { Account } from '../../store/accounts/types';
 import { ActivityTypes } from './types/types';
   
@@ -15,6 +15,7 @@ interface Props {
 const UserActivities = (props: Props) => {
 
     const { a, account, jsonData } = props;
+    console.log(account)
 
   return (
         <>
@@ -31,7 +32,11 @@ const UserActivities = (props: Props) => {
                         {a.parent_permlink} 
                     </Link>
                     <span> by </span>
-                        <a href="#" className="ml-1">@{a.parent_author === "" ? a.author : a.parent_author}</a>
+                    <Link 
+                        to={`/@${a.parent_author === "" ? a.author : a.parent_author}`} 
+                        className="ml-1">
+                            @{a.parent_author === "" ? a.author : a.parent_author}
+                    </Link>
                     </span>
                     <div>
                         <span>{dateToFullRelative(a.timestamp)}</span>
@@ -48,13 +53,17 @@ const UserActivities = (props: Props) => {
                 </div>
                 <div className="activity-info">
                 <span>
-                    <a href="#" className="ml-1">@{a?.author}</a>
+                    <Link to={`/@${a?.author}`} className="ml-1">@{a?.author}</Link>
                     <span> replied to </span>
                     <Link to={`/${a.parent_permlink}/@${a.author}/${a.permlink}`}>
                         {a.parent_permlink} 
                     </Link>
                     <span> by </span>
-                    <a href="#" className="ml-1">@{a.parent_author === "" ? a.author : a.parent_author}</a>
+                    <Link 
+                        to={`/@${a.parent_author === "" ? a.author : a.parent_author}`} 
+                        className="ml-1">
+                            @{a.parent_author === "" ? a.author : a.parent_author}
+                    </Link>
                 </span>
                 <div>
                     <span>{dateToFullRelative(a.timestamp)}</span>
@@ -67,13 +76,13 @@ const UserActivities = (props: Props) => {
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                     <div className="activity-icon">
-                    {upvote}
+                        {upvote}
                     </div>
                     <div className="activity-info">
                     <div>
                         <span> voted on </span>
                         <a href={`${window.origin}/@${a.author}/${a.permlink}`}>
-                        {a.permlink} 
+                            {a.permlink} 
                         </a>
                         <span> by </span>
                         <Link to={`/@${a.author}`} className="ml-1">@{a.author}</Link>
@@ -194,7 +203,11 @@ const UserActivities = (props: Props) => {
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
-                    {upvote}
+                    <div className="downvote-icon">
+                        <span>
+                             {chevronDownSvgForSlider}
+                        </span>
+                    </div>
                 </div>
                 <div className="activity-info">
                     <span>                            <span> unvoted witness </span>
@@ -229,7 +242,11 @@ const UserActivities = (props: Props) => {
             <div className="activities-info-wrapper">
                 <div className="activities-details">
                 <div className="activity-icon">
-                    {upvote}
+                    <div className="downvote-icon">
+                        <span>
+                             {chevronDownSvgForSlider}
+                        </span>
+                    </div>
                 </div>
                 <div className="activity-info">
                     <span>
@@ -262,8 +279,7 @@ const UserActivities = (props: Props) => {
                 </div>
             </div>
             </> 
-            //Comment needs proper checks and formating
-            : <>{a.type}</>}
+            : <></>}
         </>
   )
 }

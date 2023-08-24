@@ -118,7 +118,19 @@
                         gap: 15px;
     
                         .activity-icon{
+                            display: flex;
                             width: 20px;
+
+                            .downvote-icon{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                border-radius: 50%;
+                                height: 20px;
+                                width: 20px;
+                                color: red;
+                                border: 1px solid red;
+                            }
                         }
         
                         .activity-info{
