@@ -12,21 +12,67 @@
         align-self: center;
     }
 
+    .activity-bottom-column{
+        display: flex;
+        flex-direction: column-reverse;
+        @extend .activity-bottom-common;
+
+    }
+
     .activities-bottom{
         display: flex;
         width: 100%;
         padding: 20px;
         gap: 20px;
 
-        .activities-filter{
-            position: sticky;
-            flex: 1;
+        @extend .activity-bottom-common;
+    }
 
-            .filter-dropdown{
+}
+
+.activity-bottom-common{
+    .activities-filter{
+        position: sticky;
+        flex: 1;
+
+        .filter-dropdown{
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            margin-bottom: 15px;
+            
+            @include themify(day) {
+                border-bottom: 1px solid #f5f5f5;
+            }
+            
+            @include themify(night) {
+                  border-bottom: 1px solid #161d26;
+              }
+
+            .dropdown-header{
+                align-self: center;
+            }
+        }
+
+       .types-container{
+        display: flex;
+        flex-direction: column;
+
+        .types-header{
+            align-self: center;
+        }
+
+        .types-wrapper{
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .filter-types{
                 display: flex;
                 flex-direction: column;
-                padding: 5px;
-                margin-bottom: 15px;
+                gap: 10px;
+                padding: 10px;    
                 
                 @include themify(day) {
                     border-bottom: 1px solid #f5f5f5;
@@ -35,114 +81,79 @@
                 @include themify(night) {
                       border-bottom: 1px solid #161d26;
                   }
-
-                .dropdown-header{
-                    align-self: center;
-                }
-            }
-
-           .types-container{
-            display: flex;
-            flex-direction: column;
-
-            .types-header{
-                align-self: center;
-            }
-
-            .types-wrapper{
-                padding: 5px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-
-                .filter-types{
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                    padding: 10px;    
-                    
-                    @include themify(day) {
-                        border-bottom: 1px solid #f5f5f5;
-                    }
-                    
-                    @include themify(night) {
-                          border-bottom: 1px solid #161d26;
-                      }
-                }
-            }
-
-           }
-        }
-
-        .activities-wrapper{
-            flex: 4;
-
-            .activities{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 3px;
-                // width: 75%;
-                height: fit-content;
-                padding: 10px;
-                border-radius: 8px;
-        
-                &:nth-child(odd) {
-                    @include themify(day) {
-                      background: $white-three;
-                    }
-          
-                    @include themify(night) {
-                      background: $dark-two;
-                    }
-                  }
-        
-                .activities-header{
-                    justify-self: center;
-                    align-self: center;
-                    font-size: 14px;
-                }
-        
-                .activities-info-wrapper{
-                    display: flex;
-                    gap: 10px;
-        
-                    .activities-body{
-                        flex: 2;
-                    }
-            
-                    .activities-details{
-                        flex: 1;
-                        display: flex;
-                        align-items: center;
-                        gap: 15px;
-    
-                        .activity-icon{
-                            display: flex;
-                            width: 20px;
-
-                            .downvote-icon{
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                border-radius: 50%;
-                                height: 20px;
-                                width: 20px;
-                                color: red;
-                                border: 1px solid red;
-                            }
-                        }
-        
-                        .activity-info{
-                            display: flex;
-                            flex-direction: column;
-                            gap: 5px;
-                        }
-                    }
-                }
-        
             }
         }
+
+       }
     }
 
+    .activities-wrapper{
+        flex: 4;
+
+        .activities{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 3px;
+            // width: 75%;
+            height: fit-content;
+            padding: 10px;
+            border-radius: 8px;
+    
+            &:nth-child(odd) {
+                @include themify(day) {
+                  background: $white-three;
+                }
+      
+                @include themify(night) {
+                  background: $dark-two;
+                }
+              }
+    
+            .activities-header{
+                justify-self: center;
+                align-self: center;
+                font-size: 14px;
+            }
+    
+            .activities-info-wrapper{
+                display: flex;
+                gap: 10px;
+    
+                .activities-body{
+                    flex: 2;
+                }
+        
+                .activities-details{
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+
+                    .activity-icon{
+                        display: flex;
+                        width: 20px;
+
+                        .downvote-icon{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 50%;
+                            height: 20px;
+                            width: 20px;
+                            color: red;
+                            border: 1px solid red;
+                        }
+                    }
+    
+                    .activity-info{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                    }
+                }
+            }
+    
+        }
+    }
 }

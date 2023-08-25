@@ -597,7 +597,7 @@ export const Profile = (props: Props) => {
                             }`
                           )}
                         >
-                          <ProfileActivites account={account}/>
+                          <ProfileActivites account={account} global={props.global}/>
                         </div>
                       </div>
                     </>

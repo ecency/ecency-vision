@@ -11,14 +11,16 @@ import ActivitiesTypes from "./activities-types"
 import { ActivityTypes } from './types/types';
 import { fetchActvities } from "./operations"
 import { ActivitiesGroup } from "./types/activities-group"
+import { Global } from "../../store/global/types";
 
 interface Props{
   account: Account;
+  global: Global;
 }
 
 export const ProfileActivites = (props: Props) => {
 
-  const { account } = props;
+  const { account, global } = props;
 
   const [activities, setActivities] = useState<ActivityTypes[]>([]);
   const [filteredActivities, setFilteredActivities] = useState<ActivityTypes[]>([]);
@@ -87,7 +89,7 @@ export const ProfileActivites = (props: Props) => {
           <div className="activities-page-info">
             <span>Activities related to <Link to={`/@${account?.name}`}>@{account?.name}'s</Link> account</span>
           </div>
-          <div className="activities-bottom">
+          <div className={!global.isMobile ? "activities-bottom" : "activity-bottom-column"}>
             <div className="activities-wrapper">
               {activitiesToMap?.map((a: ActivityTypes, i: number) => {
                   const jsonData = handleCustomJson(a)
@@ -109,7 +111,7 @@ export const ProfileActivites = (props: Props) => {
                   <ActivitiesDropdown setFilter={setFilter} />                
               </div>
               <div className="types-container">
-                <ActivitiesTypes account={account} />
+                <ActivitiesTypes account={account} global={global} />
               </div>
             </div>
           </div>
