@@ -18,4 +18,5 @@ export interface ActivityTypes {
     json: string;
     timestamp: string;
     num: number;
+    trx_id: string;
   }

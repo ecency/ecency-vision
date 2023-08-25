@@ -22,6 +22,13 @@ const ActivitiesDropdown = (props: Props) => {
                 label: label ? label : "All",
                 items: [
                   {
+                    label: <span>All</span>,
+                    onClick: () => {
+                      setLabel("All");
+                      setFilter("");
+                    }
+                  },
+                  {
                     label: <span>Comments</span>,
                     onClick: () => {
                       setLabel("Comments");
@@ -36,45 +43,38 @@ const ActivitiesDropdown = (props: Props) => {
                     }
                   },
                   {
-                    label: <span>Likes</span>,
-                    onClick: () => {
-                      setLabel("Likes");
-                      setFilter("customJson");
-                    }
-                  },
-                  {
-                    label: <span>Follows</span>,
+                    label: <span>Custom json</span>,
                     onClick: () => {
                       setLabel("Follows");
-                      setFilter("customJson");
+                      setFilter("custom_json");
                     }
                   },
-                  {
-                    label: <span>Communities</span>,
-                    onClick: () => {
-                      setLabel("Communities");
-                      setFilter("customJson");
-                    }
-                  },
-                  {
-                    label: <span>Curation rewards</span>,
-                    onClick: () => {
-                      setLabel("Curation rewards");
-                      // setFilter("Curation rewards");
-                    }
-                  },
+                  // {
+                  //   label: <span>Likes</span>,
+                  //   onClick: () => {
+                  //     setLabel("Likes");
+                  //     setFilter("custom_json");
+                  //   }
+                  // },
+                  // {
+                  //   label: <span>Communities</span>,
+                  //   onClick: () => {
+                  //     setLabel("Communities");
+                  //     setFilter("custom_json");
+                  //   }
+                  // },
                   {
                     label: <span>Witness votes</span>,
                     onClick: () => {
                       setLabel("Witness votes");
-                      setFilter("witnessVote");
+                      setFilter("account_witness_vote");
                     }
                   },
                   {
                     label: <span>Proposal votes</span>,
                     onClick: () => {
                       setLabel("Proposal votes");
-                      setFilter("proposalVote");
+                      setFilter("update_proposal_votes");
                     }
                   }
                 ]

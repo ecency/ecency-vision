@@ -8,19 +8,19 @@ export const ACCOUNT_ACTIVITY_GROUPS: Record<ActivitiesGroup, number[]>  = {
     comment: [
       ops.comment
     ],
-    proposalPay: [
+    proposal_pay: [
         ops.proposal_pay
       ],
       vote: [
         ops.vote
       ],
-      customJson: [
+      custom_json: [
         ops.custom_json,
       ],
-      witnessVote: [
+      account_witness_vote: [
         ops.account_witness_vote
       ],
-      proposalVote: [
+      update_proposal_votes: [
         ops.update_proposal_votes
       ],
       update: [
@@ -42,20 +42,20 @@ export const ACCOUNT_ACTIVITY_GROUPS: Record<ActivitiesGroup, number[]>  = {
       case "comment":
         filters = utils.makeBitMaskFilter(ACCOUNT_ACTIVITY_GROUPS["comment"]);
         break;
-      case "proposalPay":
-        filters = utils.makeBitMaskFilter(ACCOUNT_ACTIVITY_GROUPS["proposalPay"]);
+      case "proposal_pay":
+        filters = utils.makeBitMaskFilter(ACCOUNT_ACTIVITY_GROUPS["proposal_pay"]);
         break;
       case "vote":
         filters = utils.makeBitMaskFilter(ACCOUNT_ACTIVITY_GROUPS["vote"]);
         break;
-      case "customJson":
-        filters = utils.makeBitMaskFilter(ACCOUNT_ACTIVITY_GROUPS["customJson"]);
+      case "custom_json":
+        filters = utils.makeBitMaskFilter(ACCOUNT_ACTIVITY_GROUPS["custom_json"]);
         break;
-      case "witnessVote":
-        filters = utils.makeBitMaskFilter(ACCOUNT_ACTIVITY_GROUPS["witnessVote"]);
+      case "account_witness_vote":
+        filters = utils.makeBitMaskFilter(ACCOUNT_ACTIVITY_GROUPS["account_witness_vote"]);
         break;
-      case "proposalVote":
-        filters = utils.makeBitMaskFilter(ACCOUNT_ACTIVITY_GROUPS["proposalVote"]);
+      case "update_proposal_votes":
+        filters = utils.makeBitMaskFilter(ACCOUNT_ACTIVITY_GROUPS["update_proposal_votes"]);
         break;
       case "update":
         filters = utils.makeBitMaskFilter(ACCOUNT_ACTIVITY_GROUPS["update"]);

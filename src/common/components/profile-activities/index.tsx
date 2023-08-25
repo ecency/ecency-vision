@@ -21,8 +21,11 @@ export const ProfileActivites = (props: Props) => {
   const { account } = props;
 
   const [activities, setActivities] = useState<ActivityTypes[]>([]);
+  const [filteredActivities, setFilteredActivities] = useState<ActivityTypes[]>([]);
   const [loading, setLoading] = useState(false);
-  const [filter, setFilter] = useState<ActivitiesGroup | "">("")
+  const [filter, setFilter] = useState<ActivitiesGroup | "">("");
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [activityId, setActivityId] = useState("")
 
   useEffect(() => {
     userActivities(-1);
@@ -34,12 +37,18 @@ export const ProfileActivites = (props: Props) => {
     try {
       const data = await fetchActvities(account!.name, filter, start, 20);
       const filterNotifications = data?.filter((a: ActivityTypes) => a?.id !== "notify" && a?.id !== "ecency_notify");
-      console.log(filterNotifications)
-
-      if (filter === "") {
-        setActivities(prevActivities => [...prevActivities, ...filterNotifications]);
-      } else {
-        setActivities([...filterNotifications]);
+      
+      if (filterNotifications?.length > 0) {
+        setActivityId(filterNotifications[0].trx_id); 
+          if (!filter) {
+            setIsFiltered(false)
+            setActivities(prevActivities => [...prevActivities, ...filterNotifications]);
+          } else {
+            setIsFiltered(true)
+            
+            const filterNewActivities = [...filteredActivities, ...filterNotifications].filter((a: ActivityTypes) => a.type === filter)
+            setFilteredActivities(filterNewActivities);
+          }
       }
 
       setLoading(false);
@@ -48,10 +57,10 @@ export const ProfileActivites = (props: Props) => {
       setLoading(false);
     }
   };
-
+  
   const handleLoadMore = () => {
-    const lastActivity = activities[activities.length - 1];
-    if (lastActivity) {
+    const lastActivity = activitiesToMap[activitiesToMap?.length - 1];
+    if (canLoadMore) {
       userActivities(lastActivity.num);
     }
   };
@@ -68,6 +77,9 @@ export const ProfileActivites = (props: Props) => {
       return jsonData
   };
 
+  const activitiesToMap: ActivityTypes[] = !isFiltered ? activities : filteredActivities
+  const canLoadMore = activityId !== activitiesToMap[activitiesToMap?.length - 1]?.trx_id
+
   return (
     <>
       {loading && <LinearProgress/>}
@@ -77,7 +89,7 @@ export const ProfileActivites = (props: Props) => {
           </div>
           <div className="activities-bottom">
             <div className="activities-wrapper">
-              {activities?.map((a: ActivityTypes, i: number) => {
+              {activitiesToMap?.map((a: ActivityTypes, i: number) => {
                   const jsonData = handleCustomJson(a)
                 return (
                   <div className="activities" key={i}>
@@ -87,6 +99,7 @@ export const ProfileActivites = (props: Props) => {
               {!loading && <div className="d-flex mt-3 align-self-center">
                 <Button 
                 className="w-100"
+                disabled={loading || !canLoadMore}
                 onClick={() => handleLoadMore()}
                 >Load more</Button>
               </div>}
