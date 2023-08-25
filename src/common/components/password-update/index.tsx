@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import { cryptoUtils, KeyRole, PrivateKey } from "@hiveio/dhive";
 
@@ -22,6 +22,7 @@ import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
 
 interface Props {
   activeUser: ActiveUser;
@@ -50,11 +51,11 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
     this.stateSet({ newPass });
   };
 
-  curPassChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  curPassChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ curPass: e.target.value });
   };
 
-  newPass2Changed = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  newPass2Changed = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ newPass2: e.target.value });
   };
 
@@ -136,11 +137,11 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
         >
           <Form.Group controlId="account-name">
             <Form.Label>{_t("password-update.account")}</Form.Label>
-            <Form.Control type="text" readOnly={true} value={activeUser.username} />
+            <FormControl type="text" readOnly={true} value={activeUser.username} />
           </Form.Group>
           <Form.Group controlId="cur-pass">
             <Form.Label>{_t("password-update.cur-pass")}</Form.Label>
-            <Form.Control
+            <FormControl
               value={curPass}
               onChange={this.curPassChanged}
               required={true}
@@ -164,7 +165,7 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
           </Form.Group>
           <Form.Group controlId="re-new-pass">
             <Form.Label>{_t("password-update.new-pass2")}</Form.Label>
-            <Form.Control
+            <FormControl
               value={newPass2}
               onChange={this.newPass2Changed}
               required={true}

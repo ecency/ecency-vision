@@ -1,11 +1,23 @@
-import React, { HTMLProps } from "react";
-import { INPUT_STYLES } from "@ui/input/form-controls/input-styles";
+import React, { forwardRef, HTMLProps } from "react";
+import { classNameObject } from "../../../../helper/class-name-object";
+import { INPUT_STYLES } from "./input-styles";
 
 export interface InputProps extends HTMLProps<HTMLInputElement> {
-  type: "text" | "password" | "number" | "email";
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type: "text" | "password" | "number" | "email" | "range";
+  // TODO: styles for that
+  plaintext?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function Input(props: InputProps) {
-  return <input {...props} className={INPUT_STYLES + " " + props.className} />;
-}
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  return (
+    <input
+      ref={ref}
+      {...props}
+      className={classNameObject({
+        [INPUT_STYLES]: true,
+        [props.className ?? ""]: !!props.className
+      })}
+    />
+  );
+});

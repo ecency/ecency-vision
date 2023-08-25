@@ -1,6 +1,6 @@
 import React from "react";
 import i18n from "i18next";
-import { Col, Form, FormControl } from "react-bootstrap";
+import { Col, Form } from "react-bootstrap";
 
 import { Global, Theme } from "../../store/global/types";
 import BaseComponent from "../base";
@@ -14,7 +14,7 @@ import * as ls from "../../util/local-storage";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { NotifyTypes } from "../../enums/notify-types";
-import { InputGroupCopyClipboard } from "@ui/input";
+import { FormControl, InputGroupCopyClipboard } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -40,7 +40,7 @@ export class Preferences extends BaseComponent<Props, State> {
     defaultTheme: ""
   };
 
-  notificationsChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  notificationsChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const {
       muteNotifications,
       unMuteNotifications,
@@ -64,7 +64,7 @@ export class Preferences extends BaseComponent<Props, State> {
     success(_t("preferences.updated"));
   };
 
-  themeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  themeChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { toggleTheme } = this.props;
     const { value } = e.target;
     if (value === "system") {
@@ -78,7 +78,7 @@ export class Preferences extends BaseComponent<Props, State> {
     success(_t("preferences.updated"));
   };
 
-  currencyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  currencyChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value: currency } = e.target;
 
     this.stateSet({ inProgress: true });
@@ -95,7 +95,7 @@ export class Preferences extends BaseComponent<Props, State> {
       });
   };
 
-  languageChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  languageChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { setLang } = this.props;
     const { value: code } = e.target;
 
@@ -105,7 +105,7 @@ export class Preferences extends BaseComponent<Props, State> {
     });
   };
 
-  nsfwChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  nsfwChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { setNsfw } = this.props;
     const { value } = e.target;
 
@@ -145,24 +145,22 @@ export class Preferences extends BaseComponent<Props, State> {
             <Col lg={6} xl={4}>
               <Form.Group>
                 <Form.Label>{_t("preferences.notifications")}</Form.Label>
-                <Form.Control
-                  type="text"
+                <FormControl
                   value={global.notifications ? 1 : 0}
-                  as="select"
+                  type="select"
                   onChange={this.notificationsChanged}
                 >
                   <option value={1}>{_t("g.on")}</option>
                   <option value={0}>{_t("g.off")}</option>
-                </Form.Control>
+                </FormControl>
               </Form.Group>
             </Col>
             <Col lg={6} xl={4}>
               <Form.Group>
                 <Form.Label>{_t("preferences.currency")}</Form.Label>
-                <Form.Control
-                  type="text"
+                <FormControl
                   value={global.currency}
-                  as="select"
+                  type="select"
                   onChange={this.currencyChanged}
                   disabled={inProgress}
                 >
@@ -171,16 +169,15 @@ export class Preferences extends BaseComponent<Props, State> {
                       {x.name}
                     </option>
                   ))}
-                </Form.Control>
+                </FormControl>
               </Form.Group>
             </Col>
             <Col lg={6} xl={4}>
               <Form.Group>
                 <Form.Label>{_t("preferences.language")}</Form.Label>
-                <Form.Control
-                  type="text"
+                <FormControl
                   value={global.lang}
-                  as="select"
+                  type="select"
                   onChange={this.languageChanged}
                   disabled={inProgress}
                 >
@@ -189,7 +186,7 @@ export class Preferences extends BaseComponent<Props, State> {
                       {x.name}
                     </option>
                   ))}
-                </Form.Control>
+                </FormControl>
               </Form.Group>
             </Col>
           </Form.Row>
@@ -197,15 +194,10 @@ export class Preferences extends BaseComponent<Props, State> {
             <Col lg={6} xl={4}>
               <Form.Group>
                 <Form.Label>{_t("preferences.nsfw")}</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={global.nsfw ? 1 : 0}
-                  as="select"
-                  onChange={this.nsfwChanged}
-                >
+                <FormControl value={global.nsfw ? 1 : 0} type="select" onChange={this.nsfwChanged}>
                   <option value={1}>{_t("g.on")}</option>
                   <option value={0}>{_t("g.off")}</option>
-                </Form.Control>
+                </FormControl>
               </Form.Group>
             </Col>
 
@@ -223,16 +215,15 @@ export class Preferences extends BaseComponent<Props, State> {
                 <Col lg={6} xl={4}>
                   <Form.Group>
                     <Form.Label>{_t("preferences.theme")}</Form.Label>
-                    <Form.Control
-                      type="text"
+                    <FormControl
                       value={Theme[this.state.defaultTheme]}
-                      as="select"
+                      type="select"
                       onChange={this.themeChanged}
                     >
                       <option value={Theme.system}>{_t("preferences.theme-system-default")}</option>
                       <option value={Theme.day}>{_t("preferences.theme-day")}</option>
                       <option value={Theme.night}>{_t("preferences.theme-night")}</option>
-                    </Form.Control>
+                    </FormControl>
                   </Form.Group>
                 </Col>
               </>

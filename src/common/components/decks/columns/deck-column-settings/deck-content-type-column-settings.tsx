@@ -4,6 +4,7 @@ import { Form } from "react-bootstrap";
 import { DeckHeaderSettingsItem } from "../../header/deck-header-settings-item";
 import { UserDeckGridItem } from "../../types";
 import { DeckGridContext } from "../../deck-manager";
+import { FormControl } from "@ui/input";
 
 interface Props {
   id: string;
@@ -30,18 +31,13 @@ export const DeckContentTypeColumnSettings = ({
       <div className="d-flex align-items-center w-100 pb-2">
         <Form.Text className="label mr-3">{title}</Form.Text>
         <div className="w-100">
-          <Form.Control
-            as={"select"}
-            size="sm"
-            value={settings.contentType}
-            onChange={onSelectChange}
-          >
+          <FormControl type="select" value={settings.contentType} onChange={onSelectChange}>
             {contentTypes.map(({ title, type }) => (
               <option key={type} value={type}>
                 {title}
               </option>
             ))}
-          </Form.Control>
+          </FormControl>
         </div>
       </div>
     </DeckHeaderSettingsItem>

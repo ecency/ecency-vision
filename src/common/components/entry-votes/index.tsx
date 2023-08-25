@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Alert, Form, FormControl } from "react-bootstrap";
+import { Alert, Form } from "react-bootstrap";
 
 import { History } from "history";
 
@@ -32,6 +32,7 @@ import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   // const totalPayout =
@@ -118,7 +119,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
     });
   };
 
-  sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  sortChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.stateSet({ sort: e.target.value as SortOption });
   };
 
@@ -220,12 +221,12 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
           </div>
           <div className="sorter">
             <span className="label">{_t("entry-votes.sort")}</span>
-            <Form.Control as="select" onChange={this.sortChanged} value={sort}>
+            <FormControl type="select" onChange={this.sortChanged} value={sort}>
               <option value="reward">{_t("entry-votes.sort-reward")}</option>
               <option value="timestamp">{_t("entry-votes.sort-timestamp")}</option>
               <option value="reputation">{_t("entry-votes.sort-reputation")}</option>
               <option value="percent">{_t("entry-votes.sort-percent")}</option>
-            </Form.Control>
+            </FormControl>
           </div>
         </div>
       </>
@@ -334,13 +335,11 @@ export class EntryVotes extends Component<Props, State> {
               <ModalTitle>{title}</ModalTitle>
             </ModalHeader>
             <Form.Group className="w-100 px-3 mb-3">
-              <Form.Control
+              <FormControl
                 type="text"
                 placeholder={_t("friends.search-placeholder")}
                 value={searchText}
-                onChange={(e) => {
-                  this.setState({ searchText: e.target.value });
-                }}
+                onChange={(e) => this.setState({ searchText: e.target.value })}
                 disabled={searchTextDisabled}
               />
             </Form.Group>

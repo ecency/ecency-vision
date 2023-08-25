@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import BaseComponent from "../base";
 import { error } from "../feedback";
@@ -15,7 +15,7 @@ import { accountMultipleSvg, deleteForeverSvg, plusSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "@ui/modal";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 interface Props {
   author?: string;
@@ -39,12 +39,12 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
 
   form = React.createRef<HTMLFormElement>();
 
-  usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  usernameChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const username = e.target.value.trim().toLowerCase();
     this.stateSet({ username });
   };
 
-  percentageChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  percentageChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.stateSet({ percentage: e.target.value });
   };
 
@@ -112,7 +112,8 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
               <tr>
                 <td className="border p-2">
                   <InputGroup prepend="@">
-                    <Form.Control
+                    <FormControl
+                      type="text"
                       disabled={inProgress}
                       autoFocus={true}
                       required={true}
@@ -129,11 +130,10 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                 </td>
                 <td className="border p-2">
                   <InputGroup append="%">
-                    <Form.Control
+                    <FormControl
                       disabled={inProgress}
                       required={true}
                       type="number"
-                      size="sm"
                       min={1}
                       max={available}
                       step={1}

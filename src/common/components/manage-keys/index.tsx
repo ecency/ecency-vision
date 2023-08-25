@@ -17,7 +17,7 @@ import { _t } from "../../i18n";
 import { keySvg } from "../../img/svg";
 import "./index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 interface Props {
   accountData: AccountDataType;
@@ -273,7 +273,7 @@ export default function ManageKeys(props: Props) {
               prepend={keySvg}
               append={<Button onClick={handleSubmit}>{_t("key-or-hot.sign")}</Button>}
             >
-              <Form.Control
+              <FormControl
                 value={key}
                 type="password"
                 autoFocus={true}

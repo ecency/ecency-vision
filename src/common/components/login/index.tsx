@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
 
@@ -49,6 +49,7 @@ import { useLocation } from "react-router";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
 
 declare var window: AppWindow;
 
@@ -73,7 +74,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     inProgress: false
   };
 
-  usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  usernameChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: username } = e.target;
     this.stateSet({ username: username.trim().toLowerCase() });
   };
@@ -188,7 +189,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
           }}
         >
           <Form.Group>
-            <Form.Control
+            <FormControl
               type="text"
               value={username}
               onChange={this.usernameChanged}
@@ -353,12 +354,12 @@ export class Login extends BaseComponent<LoginProps, State> {
     }
   };
 
-  usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  usernameChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: username } = e.target;
     this.stateSet({ username: username.trim().toLowerCase() });
   };
 
-  keyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  keyChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: key } = e.target;
     this.stateSet({ key: key.trim() });
   };
@@ -617,7 +618,7 @@ export class Login extends BaseComponent<LoginProps, State> {
         >
           <p className="login-form-text">{_t("login.with-user-pass")}</p>
           <Form.Group>
-            <Form.Control
+            <FormControl
               type="text"
               value={username}
               onChange={this.usernameChanged}
@@ -627,7 +628,7 @@ export class Login extends BaseComponent<LoginProps, State> {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Control
+            <FormControl
               type="password"
               value={key}
               autoComplete="off"

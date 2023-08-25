@@ -1,7 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { Form, FormControl } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 import { pathToRegexp } from "path-to-regexp";
 
@@ -37,6 +37,7 @@ import { WitnessCard } from "../components/witness-card";
 import { dateToRelative } from "../helper/parse-date";
 import "./witnesses.scss";
 import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
 
 interface WitnessTransformed {
   rank: number;
@@ -211,7 +212,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     }
   };
 
-  sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  sortChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.stateSet({ sort: e.target.value as SortOption });
   };
 
@@ -496,7 +497,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
 
     const search = (
       <Form.Group className="mb-3 w-100">
-        <Form.Control
+        <FormControl
           type="text"
           placeholder={_t("witnesses.search-placeholder")}
           value={searchText}
@@ -595,11 +596,11 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
 
                   <div className="sorter">
                     <span className="label">{_t("witnesses.sort")}</span>
-                    <Form.Control as="select" onChange={this.sortChanged} value={sort}>
+                    <FormControl type="select" onChange={this.sortChanged} value={sort}>
                       <option value="rank">{_t("witnesses.sort-rank")}</option>
                       <option value="name">{_t("witnesses.sort-name")}</option>
                       <option value="fee">{_t("witnesses.sort-fee")}</option>
-                    </Form.Control>
+                    </FormControl>
                   </div>
                 </div>
                 <div className="witnesses-controls">

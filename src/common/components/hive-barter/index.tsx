@@ -6,7 +6,7 @@ import { Global } from "../../store/global/types";
 import BuySellHiveDialog, { TransactionType } from "../buy-sell-hive";
 import { error } from "../feedback";
 import { Skeleton } from "../skeleton";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 interface Props {
   type: 1 | 2;
@@ -147,7 +147,8 @@ export const HiveBarter = ({
         <Form.Group>
           <Form.Label className={isInline ? "font-small" : ""}>{_t("market.price")}</Form.Label>
           <InputGroup append="HBD/HIVE">
-            <Form.Control
+            <FormControl
+              type="text"
               value={price}
               placeholder="0.0"
               onChange={(e) => setPriceValue(e.target.value)}
@@ -158,7 +159,8 @@ export const HiveBarter = ({
         <Form.Group>
           <Form.Label className={isInline ? "font-small" : ""}>{_t("market.amount")}</Form.Label>
           <InputGroup append="HIVE">
-            <Form.Control
+            <FormControl
+              type="text"
               placeholder="0.0"
               value={isNaN(amount) ? 0 : amount}
               onChange={(e) => setAmountValue(e.target.value)}
@@ -169,7 +171,8 @@ export const HiveBarter = ({
         <Form.Group className="mb-4">
           <Form.Label className={isInline ? "font-small" : ""}>{_t("market.total")}</Form.Label>
           <InputGroup append="HBD">
-            <Form.Control
+            <FormControl
+              type="text"
               placeholder="0.0"
               value={isNaN(total) ? 0 : total}
               onChange={(e) => setTotalValue(e.target.value)}

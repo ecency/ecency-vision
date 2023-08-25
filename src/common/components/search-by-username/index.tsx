@@ -1,4 +1,3 @@
-import { Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import SuggestionList from "../suggestion-list";
 import React, { useEffect, useState } from "react";
@@ -7,7 +6,7 @@ import { lookupAccounts } from "../../api/hive";
 import { error } from "../feedback";
 import { formatError } from "../../api/operations";
 import { ActiveUser } from "../../store/active-user/types";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 import { Spinner } from "@ui/spinner";
 
 interface Props {
@@ -105,7 +104,7 @@ export const SearchByUsername = ({
       header={!usernameInput ? _t("transfer.recent-transfers") : ""}
     >
       <InputGroup prepend={isUsernameDataLoading ? <Spinner /> : "@"}>
-        <Form.Control
+        <FormControl
           type="text"
           autoFocus={true}
           placeholder=""

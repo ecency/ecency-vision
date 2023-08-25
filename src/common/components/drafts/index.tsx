@@ -2,8 +2,6 @@ import React, { Component } from "react";
 
 import { History, Location } from "history";
 
-import { Form, FormControl } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { FullAccount } from "../../store/accounts/types";
@@ -32,6 +30,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 setProxyBase(defaults.imageServer);
 
@@ -285,7 +284,7 @@ export class Drafts extends BaseComponent<Props, State> {
       error(_t("g.server-error"));
     }
   };
-  filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  filterChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     this.stateSet({ filter: value });
   };
@@ -311,7 +310,7 @@ export class Drafts extends BaseComponent<Props, State> {
           return (
             <>
               <div className="dialog-filter">
-                <Form.Control
+                <FormControl
                   ref={this.state.innerRef}
                   type="text"
                   placeholder={_t("drafts.filter")}

@@ -6,7 +6,7 @@ import numeral from "numeral";
 
 import isEqual from "react-fast-compare";
 
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 import badActors from "@hiveio/hivescript/bad-actors.json";
 
@@ -57,7 +57,7 @@ import formattedNumber from "../../util/formatted-number";
 import { dateToFullRelative } from "../../helper/parse-date";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 export type TransferMode = "transfer" | "delegate" | "undelegate" | "stake" | "unstake";
 
@@ -170,7 +170,7 @@ export class Transfer extends BaseComponent<Props, State> {
     });
   };
 
-  toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  toChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: to } = e.target;
     this.stateSet({ to }, this.handleTo);
   };
@@ -179,14 +179,14 @@ export class Transfer extends BaseComponent<Props, State> {
     this.stateSet({ to }, this.handleTo);
   };
 
-  amountChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  amountChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: amount } = e.target;
     this.stateSet({ amount }, () => {
       this.checkAmount();
     });
   };
 
-  memoChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  memoChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: memo } = e.target;
     const mError = cryptoUtils.isWif(memo);
     if (mError) this.setState({ memoError: _t("transfer.memo-error") });
@@ -636,7 +636,7 @@ export class Transfer extends BaseComponent<Props, State> {
                   </Form.Label>
                   <Col sm="10">
                     <InputGroup prepend="@">
-                      <Form.Control value={activeUser.username} readOnly={true} />
+                      <FormControl type="text" value={activeUser.username} readOnly={true} />
                     </InputGroup>
                   </Col>
                 </Form.Group>
@@ -651,7 +651,7 @@ export class Transfer extends BaseComponent<Props, State> {
                     <Col sm="10">
                       <SuggestionList items={recent} {...suggestionProps}>
                         <InputGroup prepend="@">
-                          <Form.Control
+                          <FormControl
                             type="text"
                             autoFocus={to === ""}
                             placeholder={_t("transfer.to-placeholder")}
@@ -674,7 +674,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 </Form.Label>
                 <Col sm="10" className="d-flex align-items-center">
                   <InputGroup prepend="#">
-                    <Form.Control
+                    <FormControl
                       type="text"
                       placeholder={_t("transfer.amount-placeholder")}
                       value={amount}
@@ -742,7 +742,7 @@ export class Transfer extends BaseComponent<Props, State> {
                       {_t("transfer.memo")}
                     </Form.Label>
                     <Col sm="10">
-                      <Form.Control
+                      <FormControl
                         placeholder={_t("transfer.memo-placeholder")}
                         value={memo}
                         onChange={this.memoChanged}

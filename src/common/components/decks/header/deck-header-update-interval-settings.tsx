@@ -3,6 +3,7 @@ import { _t } from "../../../i18n";
 import { checkSvg } from "../../../img/svg";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { DeckHeaderSettingsItem } from "./deck-header-settings-item";
+import { FormControl } from "@ui/input";
 
 interface Props {
   updateInterval: number;
@@ -66,9 +67,8 @@ export const DeckHeaderUpdateIntervalSettings = ({
     const isPreDefinedValue = deckUpdateOptions.some(({ value }) => updateInterval === value);
     if (isPreDefinedValue && !showInput) {
       return (
-        <Form.Control
-          as={"select"}
-          size="sm"
+        <FormControl
+          type="select"
           placeholder={_t("decks.update-interval-placeholder")}
           value={updateInterval}
           onChange={onSelectChange}
@@ -78,14 +78,13 @@ export const DeckHeaderUpdateIntervalSettings = ({
               {label}
             </option>
           ))}
-        </Form.Control>
+        </FormControl>
       );
     } else {
       return (
         <div className="d-flex w-100">
-          <Form.Control
+          <FormControl
             type="number"
-            size="sm"
             placeholder={_t("deck.update-custom-interval-in-minutes-placeholder")}
             value={inputValue}
             onChange={(event) => setInputValue(+event.target.value)}

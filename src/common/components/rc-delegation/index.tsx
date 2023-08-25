@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import _ from "lodash";
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import badActors from "@hiveio/hivescript/bad-actors.json";
 
 import LinearProgress from "../linear-progress";
@@ -12,7 +12,7 @@ import { getAccount } from "../../api/hive";
 
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 export const ResourceCreditsDelegation = (props: any) => {
   const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList, delegateeData } =
@@ -27,14 +27,14 @@ export const ResourceCreditsDelegation = (props: any) => {
   const [toWarning, setToWarning] = useState<string>("");
   const [toData, setToData] = useState<any>(delegateeData || "");
 
-  const toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  const toChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setInProgress(true);
     setTo(value);
     delayedSearch(value);
   };
 
-  const amountChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  const amountChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: amount } = e.target;
     setAmount(amount);
     if (
@@ -160,7 +160,7 @@ export const ResourceCreditsDelegation = (props: any) => {
               </Form.Label>
               <Col sm="10">
                 <InputGroup prepend="@">
-                  <Form.Control value={activeUser.username} readOnly={true} />
+                  <FormControl type="text" value={activeUser.username} readOnly={true} />
                 </InputGroup>
               </Col>
             </Form.Group>
@@ -173,7 +173,7 @@ export const ResourceCreditsDelegation = (props: any) => {
                 <Col sm="10">
                   {/* <SuggestionList > */}
                   <InputGroup prepend="@">
-                    <Form.Control
+                    <FormControl
                       type="text"
                       autoFocus={to === ""}
                       placeholder={_t("transfer.to-placeholder")}
@@ -195,7 +195,7 @@ export const ResourceCreditsDelegation = (props: any) => {
               </Form.Label>
               <Col sm="10" className="d-flex align-items-center">
                 <InputGroup prepend="#">
-                  <Form.Control
+                  <FormControl
                     type="text"
                     placeholder={_t("transfer.amount-placeholder")}
                     value={amount}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 
@@ -9,7 +9,7 @@ import UploadButton from "../image-upload-button";
 
 import { _t } from "../../i18n";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 import { Spinner } from "@ui/spinner";
 
 interface Props {
@@ -32,7 +32,7 @@ export class ImageUpload extends BaseComponent<Props, State> {
     uploading: false
   };
 
-  imageChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  imageChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: image } = e.target;
 
     this.stateSet({ image });
@@ -68,7 +68,7 @@ export class ImageUpload extends BaseComponent<Props, State> {
               />
             }
           >
-            <Form.Control
+            <FormControl
               type="text"
               disabled={inProgress}
               placeholder="https://"

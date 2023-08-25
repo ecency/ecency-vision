@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import { _t } from "../../i18n";
 
@@ -8,6 +8,7 @@ import { readClipboard } from "../../util/clipboard";
 
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   onHide: () => void;
@@ -39,11 +40,11 @@ export class AddLink extends Component<Props, State> {
 
   form = React.createRef<HTMLFormElement>();
 
-  textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  textChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({ text: e.target.value });
   };
 
-  linkChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  linkChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({ link: e.target.value });
   };
 
@@ -68,7 +69,7 @@ export class AddLink extends Component<Props, State> {
           }}
         >
           <Form.Group>
-            <Form.Control
+            <FormControl
               type="text"
               autoComplete="off"
               value={text}
@@ -81,7 +82,7 @@ export class AddLink extends Component<Props, State> {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Control
+            <FormControl
               type="text"
               autoComplete="off"
               value={link}

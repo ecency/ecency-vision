@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { articleSvg } from "../../../img/svg";
 import { faqKeysGeneral } from "../../../constants";
+import { FormControl } from "@ui/input";
 
 interface Props {
   id: string;
@@ -45,13 +46,11 @@ export const DeckFaqColumn = ({ id, draggable }: Props) => {
         >
           <div className="help-content p-3">
             <Form.Group className="search-bar w-100 mb-4">
-              <Form.Control
+              <FormControl
                 type="text"
                 placeholder={_t("floating-faq.search-placeholder")}
                 value={searchText}
-                onChange={(e) => {
-                  setSearchText(e.target.value);
-                }}
+                onChange={(e) => setSearchText(e.target.value)}
               />
             </Form.Group>
             {!searchText ? (

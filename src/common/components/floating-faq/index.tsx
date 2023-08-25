@@ -18,7 +18,7 @@ import data from "./path.json";
 import { _t } from "../../i18n";
 import Tooltip from "../tooltip";
 import "./index.scss";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 export interface FaqObject {
   show: boolean;
@@ -208,7 +208,7 @@ const FloatingFAQ = () => {
                         <div className="help-content">
                           <div className="card-body p-3">
                             <Form.Group className="search-bar w-100">
-                              <Form.Control
+                              <FormControl
                                 type="text"
                                 placeholder={_t("floating-faq.search-placeholder")}
                                 value={searchText}
@@ -283,7 +283,8 @@ const FloatingFAQ = () => {
                         <div className="card-body p-3">
                           <Form.Group>
                             <InputGroup className="username" prepend="@">
-                              <Form.Control
+                              <FormControl
+                                type="text"
                                 autoFocus={true}
                                 required={true}
                                 placeholder={_t("floating-faq.username")}
@@ -292,9 +293,8 @@ const FloatingFAQ = () => {
                           </Form.Group>
                           <Form.Group>
                             <InputGroup className="message">
-                              <Form.Control
-                                as="textarea"
-                                type="text"
+                              <FormControl
+                                type="textarea"
                                 autoFocus={true}
                                 required={true}
                                 maxLength={1000}

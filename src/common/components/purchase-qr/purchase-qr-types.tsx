@@ -1,7 +1,7 @@
 import SuggestionList from "../suggestion-list";
-import { Form } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { _t } from "../../i18n";
+import { FormControl } from "@ui/input";
 
 interface Props {
   className: string;
@@ -47,7 +47,7 @@ export const PurchaseQrTypes = ({ value, setValue, className }: Props) => {
 
   return (
     <SuggestionList containerClassName={className} items={items} {...suggestionProps}>
-      <Form.Control
+      <FormControl
         type="text"
         autoFocus={true}
         placeholder={_t("purchase-qr.select-amount")}

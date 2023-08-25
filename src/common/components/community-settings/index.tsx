@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Community } from "../../store/communities/types";
@@ -20,7 +20,7 @@ import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { queryClient, QueryIdentifiers } from "../../core";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 const langOpts = [
   { id: "af", name: "Afrikaans" },
@@ -160,7 +160,7 @@ export class CommunitySettings extends BaseComponent<Props, State> {
 
   form = React.createRef<HTMLFormElement>();
 
-  onChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  onChange = (e: React.ChangeEvent<any>): void => {
     const { target: el } = e;
     const key = el.name;
     const val = el.hasOwnProperty("checked") ? el.checked : el.value;
@@ -221,7 +221,7 @@ export class CommunitySettings extends BaseComponent<Props, State> {
             </Form.Label>
             <Col sm="10">
               <InputGroup>
-                <Form.Control
+                <FormControl
                   type="text"
                   autoComplete="off"
                   value={title}
@@ -241,15 +241,13 @@ export class CommunitySettings extends BaseComponent<Props, State> {
               {_t("community-settings.about")}
             </Form.Label>
             <Col sm="10">
-              <InputGroup>
-                <Form.Control
-                  type="text"
-                  autoComplete="off"
-                  value={about}
-                  name="about"
-                  onChange={this.onChange}
-                />
-              </InputGroup>
+              <FormControl
+                type="text"
+                autoComplete="off"
+                value={about}
+                name="about"
+                onChange={this.onChange}
+              />
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
@@ -257,15 +255,13 @@ export class CommunitySettings extends BaseComponent<Props, State> {
               {_t("community-settings.lang")}
             </Form.Label>
             <Col sm="4">
-              <InputGroup>
-                <Form.Control as={"select"} value={lang} name="lang" onChange={this.onChange}>
-                  {langOpts.map((l, k) => (
-                    <option key={k} value={l.id}>
-                      {l.name}
-                    </option>
-                  ))}
-                </Form.Control>
-              </InputGroup>
+              <FormControl type="select" value={lang} name="lang" onChange={this.onChange}>
+                {langOpts.map((l, k) => (
+                  <option key={k} value={l.id}>
+                    {l.name}
+                  </option>
+                ))}
+              </FormControl>
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
@@ -274,8 +270,8 @@ export class CommunitySettings extends BaseComponent<Props, State> {
             </Form.Label>
             <Col sm="10">
               <InputGroup>
-                <Form.Control
-                  as="textarea"
+                <FormControl
+                  type="textarea"
                   value={description}
                   name="description"
                   onChange={this.onChange}
@@ -289,8 +285,8 @@ export class CommunitySettings extends BaseComponent<Props, State> {
             </Form.Label>
             <Col sm="10">
               <InputGroup>
-                <Form.Control
-                  as="textarea"
+                <FormControl
+                  type="textarea"
                   value={flag_text}
                   name="flag_text"
                   onChange={this.onChange}

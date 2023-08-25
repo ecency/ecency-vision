@@ -1,7 +1,7 @@
 import BaseComponent from "../base";
 import React, { Component } from "react";
 
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import { Entry } from "../../store/entries/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -19,6 +19,7 @@ import { _t } from "../../i18n";
 
 import { version } from "../../../../package.json";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   activeUser: ActiveUser;
@@ -65,11 +66,11 @@ export class CrossPost extends BaseComponent<Props, State> {
     this.props.onHide();
   };
 
-  communityChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  communityChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ community: e.target.value });
   };
 
-  messageChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  messageChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ message: e.target.value });
   };
 
@@ -138,7 +139,7 @@ export class CrossPost extends BaseComponent<Props, State> {
             onSelect={this.communitySelected}
             renderer={(x) => x.name}
           >
-            <Form.Control
+            <FormControl
               value={community}
               onChange={this.communityChanged}
               type="text"
@@ -147,7 +148,8 @@ export class CrossPost extends BaseComponent<Props, State> {
           </SuggestionList>
         </Form.Group>
         <Form.Group controlId="message">
-          <Form.Control
+          <FormControl
+            type="text"
             value={message}
             onChange={this.messageChanged}
             maxLength={200}

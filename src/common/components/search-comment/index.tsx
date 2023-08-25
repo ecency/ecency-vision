@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 import { History, Location } from "history";
 
@@ -26,6 +26,7 @@ import { search, SearchResult } from "../../api/search-api";
 
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { FormControl } from "@ui/input";
 
 enum SearchSort {
   POPULARITY = "popularity",
@@ -111,36 +112,36 @@ export class SearchComment extends BaseComponent<Props, State> {
     this.stateSet({ advanced: !advanced });
   };
 
-  searchChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  searchChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.stateSet({ search: e.target.value });
   };
 
-  authorChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  authorChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.stateSet({ author: e.target.value.trim() });
   };
 
-  typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  typeChanged = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     this.stateSet({ type: e.target.value as SearchType });
   };
 
-  categoryChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  categoryChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.stateSet({ category: e.target.value.trim() });
   };
 
-  tagsChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  tagsChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.stateSet({ tags: e.target.value.trim() });
   };
 
-  dateChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  dateChanged = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     ls.set("recent_date", e.target.value);
     this.stateSet({ date: e.target.value as DateOpt });
   };
 
-  sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  sortChanged = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     this.stateSet({ sort: e.target.value as SearchSort });
   };
 
-  hideLowChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  hideLowChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.stateSet({ hideLow: e.target.checked });
   };
 
@@ -285,7 +286,7 @@ export class SearchComment extends BaseComponent<Props, State> {
           <Row>
             <Form.Group as={Col} sm="4" controlId="form-search">
               <Form.Label>{_t("search-comment.search")}</Form.Label>
-              <Form.Control
+              <FormControl
                 type="text"
                 placeholder={_t("search-comment.search-placeholder")}
                 value={search}
@@ -295,7 +296,7 @@ export class SearchComment extends BaseComponent<Props, State> {
             </Form.Group>
             <Form.Group as={Col} sm="4" controlId="form-author">
               <Form.Label>{_t("search-comment.author")}</Form.Label>
-              <Form.Control
+              <FormControl
                 type="text"
                 placeholder={_t("search-comment.author-placeholder")}
                 value={author}
@@ -305,17 +306,17 @@ export class SearchComment extends BaseComponent<Props, State> {
             </Form.Group>
             <Form.Group as={Col} sm="2" controlId="form-type">
               <Form.Label>{_t("search-comment.type")}</Form.Label>
-              <Form.Control as="select" value={type} onChange={this.typeChanged}>
+              <FormControl type="select" value={type} onChange={this.typeChanged}>
                 {Object.values(SearchType).map((x) => (
                   <option value={x} key={x}>
                     {_t(`search-comment.type-${x}`)}
                   </option>
                 ))}
-              </Form.Control>
+              </FormControl>
             </Form.Group>
             <Form.Group as={Col} sm="2" controlId="form-category">
               <Form.Label>{_t("search-comment.category")}</Form.Label>
-              <Form.Control
+              <FormControl
                 type="text"
                 placeholder={_t("search-comment.category-placeholder")}
                 value={category}
@@ -327,7 +328,7 @@ export class SearchComment extends BaseComponent<Props, State> {
           <Row>
             <Form.Group as={Col} sm="8" controlId="form-tag">
               <Form.Label>{_t("search-comment.tags")}</Form.Label>
-              <Form.Control
+              <FormControl
                 type="text"
                 placeholder={_t("search-comment.tags-placeholder")}
                 value={tags}
@@ -337,8 +338,8 @@ export class SearchComment extends BaseComponent<Props, State> {
             </Form.Group>
             <Form.Group as={Col} sm="2" controlId="form-date">
               <Form.Label>{_t("search-comment.date")}</Form.Label>
-              <Form.Control
-                as="select"
+              <FormControl
+                type="select"
                 value={ls.get("recent_date", "month")}
                 onChange={this.dateChanged}
               >
@@ -347,17 +348,17 @@ export class SearchComment extends BaseComponent<Props, State> {
                     {_t(`search-comment.date-${x}`)}
                   </option>
                 ))}
-              </Form.Control>
+              </FormControl>
             </Form.Group>
             <Form.Group as={Col} sm="2" controlId="form-sort">
               <Form.Label>{_t("search-comment.sort")}</Form.Label>
-              <Form.Control as="select" value={sort} onChange={this.sortChanged}>
+              <FormControl type="select" value={sort} onChange={this.sortChanged}>
                 {Object.values(SearchSort).map((x) => (
                   <option value={x} key={x}>
                     {_t(`search-comment.sort-${x}`)}
                   </option>
                 ))}
-              </Form.Control>
+              </FormControl>
             </Form.Group>
           </Row>
           <div className="d-flex justify-content-between align-items-center">

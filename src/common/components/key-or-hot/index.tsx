@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 
@@ -14,7 +14,7 @@ import { _t } from "../../i18n";
 
 import { keySvg } from "../../img/svg";
 import "./index.scss";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -36,7 +36,7 @@ export class KeyOrHot extends Component<Props, State> {
     key: this.props.signingKey || ""
   };
 
-  keyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  keyChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: key } = e.target;
     this.setState({ key });
   };
@@ -107,7 +107,7 @@ export class KeyOrHot extends Component<Props, State> {
                 </Button>
               }
             >
-              <Form.Control
+              <FormControl
                 value={key}
                 type="password"
                 autoFocus={true}

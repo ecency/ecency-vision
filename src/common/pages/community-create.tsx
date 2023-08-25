@@ -7,7 +7,7 @@ import numeral from "numeral";
 import base58 from "bs58";
 import { AccountCreateOperation, Authority, cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import random from "../util/rnd";
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { _t } from "../i18n";
 import Feedback, { error, success } from "../components/feedback";
 import { formatError, setUserRole, updateCommunity } from "../api/operations";
@@ -28,7 +28,7 @@ import LoginRequired from "../components/login-required";
 import KeyOrHot from "../components/key-or-hot";
 import Tooltip from "../components/tooltip";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 import { Spinner } from "@ui/spinner";
 
 const namePattern = "^hive-[1]\\d{4,6}$";
@@ -81,7 +81,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     return "P" + base58.encode(cryptoUtils.sha256(random()));
   };
 
-  onInput = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  onInput = (e: React.ChangeEvent<any>): void => {
     const { target: el } = e;
     const { name: key, value } = el;
 
@@ -89,7 +89,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     this.stateSet({ [key]: value });
   };
 
-  usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  usernameChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: username } = e.target;
     this.stateSet({ username }, () => {
       clearTimeout(this._timer);
@@ -487,7 +487,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                         {!wif && (
                           <>
                             <Form.Group>
-                              <Form.Control
+                              <FormControl
                                 type="text"
                                 autoComplete="off"
                                 autoFocus={true}
@@ -501,12 +501,12 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                 }
                                 onInput={(e: any) => e.target.setCustomValidity("")}
                                 name="title"
-                                isValid={title.length > 2 && title.length < 21}
+                                aria-invalid={title.length <= 2 || title.length >= 21}
                                 placeholder={_t("communities-create.title")}
                               />
                             </Form.Group>
                             <Form.Group>
-                              <Form.Control
+                              <FormControl
                                 type="text"
                                 autoComplete="off"
                                 value={about}
@@ -545,7 +545,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                 </Form.Group>
                                 <Form.Group>
                                   <Form.Label>{_t("communities-create.username")}</Form.Label>
-                                  <Form.Control
+                                  <FormControl
                                     type="text"
                                     autoComplete="off"
                                     value={username}
@@ -590,7 +590,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                       }
                                       onAppendClick={() => this.copyToClipboard(wif)}
                                     >
-                                      <Form.Control
+                                      <FormControl
+                                        type="text"
                                         value={wif}
                                         disabled={true}
                                         className="pointer"

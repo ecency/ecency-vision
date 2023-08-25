@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
-
 import { match } from "react-router";
-
 import queryString from "query-string";
-
 import isEqual from "react-fast-compare";
-
 import { History } from "history";
-
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 import moment, { Moment } from "moment";
 
@@ -87,6 +81,7 @@ import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
 import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
 
 setProxyBase(defaults.imageServer);
 
@@ -486,7 +481,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     );
   };
 
-  titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  titleChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: title } = e.target;
     this.stateSet({ title }, () => {
       this.updatePreview();
@@ -516,19 +511,19 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
   };
 
-  bodyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  bodyChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: body } = e.target;
     this.stateSet({ body }, () => {
       this.updatePreview();
     });
   };
 
-  descriptionChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  descriptionChanged = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const { value: description } = e.target;
     this.stateSet({ description }, this.saveAdvanced);
   };
 
-  rewardChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  rewardChanged = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const reward = e.target.value as RewardType;
     this.stateSet({ reward }, this.saveAdvanced);
   };
@@ -549,7 +544,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     this.stateSet({ schedule: d ? d.toISOString(true) : null }, this.saveAdvanced);
   };
 
-  reblogSwitchChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  reblogSwitchChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.stateSet({ reblogSwitch: e.target.checked }, this.saveAdvanced);
   };
 
@@ -1076,7 +1071,8 @@ class SubmitPage extends BaseComponent<Props, State> {
             )}
             {EditorToolbar({ ...this.props })}
             <div className="title-input">
-              <Form.Control
+              <FormControl
+                type="text"
                 className="accepts-emoji"
                 placeholder={_t("submit.title-placeholder")}
                 autoFocus={true}
@@ -1269,15 +1265,15 @@ class SubmitPage extends BaseComponent<Props, State> {
                               {_t("submit.reward")}
                             </Form.Label>
                             <Col sm="9">
-                              <Form.Control
-                                as="select"
+                              <FormControl
+                                type="select"
                                 value={reward}
                                 onChange={this.rewardChanged}
                               >
                                 <option value="default">{_t("submit.reward-default")}</option>
                                 <option value="sp">{_t("submit.reward-sp")}</option>
                                 <option value="dp">{_t("submit.reward-dp")}</option>
-                              </Form.Control>
+                              </FormControl>
                               <Form.Text muted={true}>{_t("submit.reward-hint")}</Form.Text>
                             </Col>
                           </Form.Group>
@@ -1302,8 +1298,8 @@ class SubmitPage extends BaseComponent<Props, State> {
                           {_t("submit.description")}
                         </Form.Label>
                         <Col sm="9">
-                          <Form.Control
-                            as="textarea"
+                          <FormControl
+                            type="textarea"
                             value={this.state.description || postBodySummary(body, 200)}
                             onChange={this.descriptionChanged}
                             rows={3}

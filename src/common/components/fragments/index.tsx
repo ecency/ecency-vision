@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 
@@ -26,6 +26,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
 
 // ADD
 interface AddProps {
@@ -49,11 +50,11 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
 
   form = React.createRef<HTMLFormElement>();
 
-  titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  titleChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ title: e.target.value });
   };
 
-  bodyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  bodyChanged = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.stateSet({ body: e.target.value });
   };
 
@@ -93,7 +94,7 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
         >
           <Form.Group controlId="title">
             <Form.Label>{_t("fragments.form-title")}</Form.Label>
-            <Form.Control
+            <FormControl
               value={title}
               onChange={this.titleChanged}
               required={true}
@@ -106,15 +107,14 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
           </Form.Group>
           <Form.Group controlId="body">
             <Form.Label>{_t("fragments.form-body")}</Form.Label>
-            <Form.Control
+            <FormControl
               onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-value")}
               onInput={handleOnInput}
-              as="textarea"
+              type="textarea"
               style={{ height: "300px" }}
               value={body}
               onChange={this.bodyChanged}
               required={true}
-              type="text"
               maxLength={5000}
             />
           </Form.Group>
@@ -161,11 +161,11 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
 
   form = React.createRef<HTMLFormElement>();
 
-  titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  titleChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ title: e.target.value });
   };
 
-  bodyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  bodyChanged = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.stateSet({ body: e.target.value });
   };
 
@@ -220,7 +220,7 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
         >
           <Form.Group controlId="title">
             <Form.Label>{_t("fragments.form-title")}</Form.Label>
-            <Form.Control
+            <FormControl
               value={title}
               onChange={this.titleChanged}
               required={true}
@@ -233,13 +233,12 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
           </Form.Group>
           <Form.Group controlId="body">
             <Form.Label>{_t("fragments.form-body")}</Form.Label>
-            <Form.Control
-              as="textarea"
+            <FormControl
+              type="textarea"
               style={{ height: "300px" }}
               value={body}
               onChange={this.bodyChanged}
               required={true}
-              type="text"
               maxLength={5000}
               onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-body")}
               onInput={handleOnInput}
@@ -341,7 +340,7 @@ export class Fragments extends BaseComponent<Props, State> {
       return new Date(b.created).getTime() > new Date(a.created).getTime() ? 1 : -1;
     });
 
-  filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  filterChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     this.stateSet({ filter: value });
   };
@@ -415,7 +414,7 @@ export class Fragments extends BaseComponent<Props, State> {
           return (
             <>
               <div className="dialog-controls">
-                <Form.Control
+                <FormControl
                   ref={innerRef}
                   type="text"
                   placeholder={_t("fragments.filter")}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Form, FormControl } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 import numeral from "numeral";
 
@@ -23,6 +23,7 @@ import accountReputation from "../../helper/account-reputation";
 import { _t } from "../../i18n";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Voter {
   name: string;
@@ -111,7 +112,7 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
     }
   };
 
-  sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  sortChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.stateSet({ sort: e.target.value as SortOption });
   };
 
@@ -263,10 +264,10 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
           </div>
           <div className="sorter">
             <span className="label">{_t("proposals.sort")}</span>
-            <Form.Control as="select" onChange={this.sortChanged} value={sort}>
+            <FormControl type="select" onChange={this.sortChanged} value={sort}>
               <option value="reputation">{_t("proposals.sort-reputation")}</option>
               <option value="hp">{_t("proposals.sort-hp")}</option>
-            </Form.Control>
+            </FormControl>
           </div>
         </div>
       </>
@@ -322,7 +323,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
           </ModalTitle>
         </ModalHeader>
         <Form.Group className="w-100 mb-3">
-          <Form.Control
+          <FormControl
             type="text"
             placeholder={_t("proposals.search-placeholder")}
             value={searchText}

@@ -1,8 +1,9 @@
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { copyContent } from "../../../img/svg";
 import { InputGroup } from "./input-group";
 import React, { HTMLAttributes } from "react";
 import useCopyToClipboard from "react-use/lib/useCopyToClipboard";
+import { FormControl } from "./form-controls";
 
 interface Props {
   value: string;
@@ -29,7 +30,8 @@ export function InputGroupCopyClipboard(props: Props & HTMLAttributes<HTMLElemen
       }
       onClick={() => copy(props.value)}
     >
-      <Form.Control
+      <FormControl
+        type="text"
         value={props.visibleValue ?? props.value}
         disabled={props.editable ?? true}
         className="text-primary pointer"

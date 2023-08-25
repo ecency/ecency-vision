@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import { SettingsProps } from "./common";
 import { Button, Form } from "react-bootstrap";
 import { DeckGridContext } from "../../deck-manager";
@@ -7,6 +7,7 @@ import { ButtonGroup } from "@ui/button-group";
 import { SearchType } from "../../../../helper/search-query";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { DateOpt, SearchSort } from "../../consts";
+import { FormControl } from "@ui/input";
 
 export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
   const [query, setQuery] = useState("");
@@ -33,42 +34,42 @@ export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
       />
 
       <div className="subtitle py-3">{_t("decks.columns.search-query")}</div>
-      <Form.Control
+      <FormControl
         type="text"
         autoFocus={true}
         placeholder=""
         value={query}
-        onChange={(e) => {
-          setQuery(e.target.value);
-        }}
+        onChange={(e) => setQuery(e.target.value)}
       />
       {mode === 1 && (
         <>
           <Form.Group className="mt-3">
             <Form.Label>{_t("decks.author")}</Form.Label>
-            <Form.Control
+            <FormControl
               type="text"
               autoFocus={true}
               placeholder={_t("decks.username")}
               value={author}
-              onChange={(e) => {
-                setAuthor(e.target.value);
-              }}
+              onChange={(e) => setAuthor(e.target.value)}
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>{_t("search-comment.type")}</Form.Label>
-            <Form.Control as="select" value={type} onChange={(e) => setType(e.target.value)}>
+            <FormControl
+              type="select"
+              value={type}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) => setType(e.target.value)}
+            >
               {Object.values(SearchType).map((x) => (
                 <option value={x} key={x}>
                   {_t(`search-comment.type-${x}`)}
                 </option>
               ))}
-            </Form.Control>
+            </FormControl>
           </Form.Group>
           <Form.Group>
             <Form.Label>{_t("search-comment.category")}</Form.Label>
-            <Form.Control
+            <FormControl
               type="text"
               placeholder={_t("search-comment.category-placeholder")}
               value={category}
@@ -77,7 +78,7 @@ export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
           </Form.Group>
           <Form.Group>
             <Form.Label>{_t("search-comment.tags")}</Form.Label>
-            <Form.Control
+            <FormControl
               type="text"
               placeholder={_t("search-comment.tags-placeholder")}
               value={tags}
@@ -86,23 +87,31 @@ export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
           </Form.Group>
           <Form.Group>
             <Form.Label>{_t("search-comment.date")}</Form.Label>
-            <Form.Control as="select" value={date} onChange={(e) => setDate(e.target.value)}>
+            <FormControl
+              type="select"
+              value={date}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) => setDate(e.target.value)}
+            >
               {Object.values(DateOpt).map((x) => (
                 <option value={x} key={x}>
                   {_t(`search-comment.date-${x}`)}
                 </option>
               ))}
-            </Form.Control>
+            </FormControl>
           </Form.Group>
           <Form.Group>
             <Form.Label>{_t("search-comment.sort")}</Form.Label>
-            <Form.Control as="select" value={sort} onChange={(e) => setSort(e.target.value)}>
+            <FormControl
+              type="select"
+              value={sort}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) => setSort(e.target.value)}
+            >
               {Object.values(SearchSort).map((x) => (
                 <option value={x} key={x}>
                   {_t(`search-comment.sort-${x}`)}
                 </option>
               ))}
-            </Form.Control>
+            </FormControl>
           </Form.Group>
           <Form.Group>
             <Form.Check

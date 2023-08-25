@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
@@ -19,6 +19,7 @@ import _c from "../../util/fix-class-names";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -64,7 +65,7 @@ export class Purchase extends BaseComponent<Props, State> {
     });
   };
 
-  sliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  sliderChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const amount = Number(e.target.value);
     this.stateSet({ amount });
 
@@ -143,10 +144,9 @@ export class Purchase extends BaseComponent<Props, State> {
           </div>
         </div>
         <div className="slider-area">
-          <Form.Control
+          <FormControl
             type="range"
             autoFocus={true}
-            custom={true}
             step={0.001}
             min={1}
             max={10000}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import isEqual from "react-fast-compare";
 
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 import { PrivateKey } from "@hiveio/dhive";
 
@@ -29,6 +29,7 @@ import _c from "../../util/fix-class-names";
 import { checkAllSvg } from "../../img/svg";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -103,14 +104,14 @@ export class Promote extends BaseComponent<Props, State> {
       });
   };
 
-  durationChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  durationChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const duration = Number(e.target.value);
     this.stateSet({ duration }, () => {
       this.checkBalance();
     });
   };
 
-  pathChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  pathChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const path = e.target.value;
     this.stateSet({ path, postError: "" });
 
@@ -263,7 +264,8 @@ export class Promote extends BaseComponent<Props, State> {
                   {_t("redeem-common.balance")}
                 </Form.Label>
                 <Col sm="10">
-                  <Form.Control
+                  <FormControl
+                    type="text"
                     className={_c(`balance-input ${balanceError ? "is-invalid" : ""}`)}
                     plaintext={true}
                     readOnly={true}
@@ -278,7 +280,7 @@ export class Promote extends BaseComponent<Props, State> {
                 </Form.Label>
                 <Col sm="10">
                   <SuggestionList items={paths} renderer={(i) => i} onSelect={this.pathSelected}>
-                    <Form.Control
+                    <FormControl
                       className={postError ? "is-invalid" : ""}
                       type="text"
                       value={path}
@@ -298,8 +300,8 @@ export class Promote extends BaseComponent<Props, State> {
                   {_t("promote.duration")}
                 </Form.Label>
                 <Col sm="10">
-                  <Form.Control
-                    as="select"
+                  <FormControl
+                    type="select"
                     value={duration}
                     onChange={this.durationChanged}
                     disabled={inProgress}
@@ -313,7 +315,7 @@ export class Promote extends BaseComponent<Props, State> {
                         </option>
                       );
                     })}
-                  </Form.Control>
+                  </FormControl>
                 </Col>
               </Form.Group>
               <Form.Group as={Row}>

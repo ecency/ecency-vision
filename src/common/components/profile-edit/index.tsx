@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Col, Form, FormControl } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 
 import { ActiveUser } from "../../store/active-user/types";
 import { Account, FullAccount } from "../../store/accounts/types";
@@ -14,7 +14,7 @@ import { _t } from "../../i18n";
 import { updateProfile } from "../../api/operations";
 import { getAccount } from "../../api/hive";
 import "./index.scss";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 import { Spinner } from "@ui/spinner";
 
 interface Props {
@@ -60,7 +60,7 @@ const pureState = (props: Props): State => {
 export default class ProfileEdit extends BaseComponent<Props, State> {
   state: State = pureState(this.props);
 
-  valueChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  valueChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const id = e.target.getAttribute("data-var") as string;
     const { value } = e.target;
 
@@ -138,7 +138,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
           <Col lg={6} xl={4}>
             <Form.Group>
               <Form.Label>{_t("profile-edit.name")}</Form.Label>
-              <Form.Control
+              <FormControl
                 type="text"
                 disabled={inProgress}
                 value={name}
@@ -151,7 +151,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
           <Col lg={6} xl={4}>
             <Form.Group>
               <Form.Label>{_t("profile-edit.about")}</Form.Label>
-              <Form.Control
+              <FormControl
                 type="text"
                 disabled={inProgress}
                 value={about}
@@ -178,7 +178,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                   />
                 }
               >
-                <Form.Control
+                <FormControl
                   type="text"
                   disabled={inProgress}
                   placeholder="https://"
@@ -207,7 +207,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                   />
                 }
               >
-                <Form.Control
+                <FormControl
                   type="text"
                   disabled={inProgress}
                   placeholder="https://"
@@ -222,7 +222,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
           <Col lg={6} xl={4}>
             <Form.Group>
               <Form.Label>{_t("profile-edit.website")}</Form.Label>
-              <Form.Control
+              <FormControl
                 type="text"
                 disabled={inProgress}
                 placeholder="https://"
@@ -236,7 +236,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
           <Col lg={6} xl={4}>
             <Form.Group>
               <Form.Label>{_t("profile-edit.location")}</Form.Label>
-              <Form.Control
+              <FormControl
                 type="text"
                 disabled={inProgress}
                 value={location}

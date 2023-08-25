@@ -5,7 +5,7 @@ import qrcode from "qrcode";
 import axios from "axios";
 import queryString from "query-string";
 import useLocalStorage from "react-use/lib/useLocalStorage";
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { PREFIX } from "../util/local-storage";
@@ -25,8 +25,7 @@ import "./sign-up.scss";
 import { Link } from "react-router-dom";
 import { b64uEnc } from "../util/b64";
 import { Spinner } from "@ui/spinner";
-
-type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
+import { FormControl } from "@ui/input";
 
 enum Stage {
   FORM = "form",
@@ -283,37 +282,37 @@ export const SignUp = (props: PageProps) => {
                   }}
                 >
                   <Form.Group>
-                    <Form.Control
+                    <FormControl
                       type="text"
                       placeholder={_t("sign-up.username")}
                       value={username}
-                      onChange={(e: FormChangeEvent) => setUsername(e.target.value.toLowerCase())}
+                      onChange={(e) => setUsername(e.target.value.toLowerCase())}
                       autoFocus={true}
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-username")}
-                      isInvalid={usernameError !== ""}
+                      aria-invalid={usernameError !== ""}
                       onInput={handleOnInput}
                       onBlur={() => setUsernameTouched(true)}
                     />
                     <Form.Text className="text-danger pl-3">{usernameError}</Form.Text>
                   </Form.Group>
                   <Form.Group>
-                    <Form.Control
+                    <FormControl
                       type="email"
                       placeholder={_t("sign-up.email")}
                       value={email}
-                      onChange={(e: FormChangeEvent) => setEmail(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value)}
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-email")}
                       onInput={handleOnInput}
                     />
                   </Form.Group>
                   <Form.Group>
-                    <Form.Control
+                    <FormControl
                       type="text"
                       placeholder={_t("sign-up.ref")}
                       value={referral}
-                      onChange={(e: FormChangeEvent) => setReferral(e.target.value.toLowerCase())}
+                      onChange={(e) => setReferral(e.target.value.toLowerCase())}
                       disabled={lockReferral}
                       onBlur={() => setReferralTouched(true)}
                     />

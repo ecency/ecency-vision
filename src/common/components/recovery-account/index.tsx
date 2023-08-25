@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import useDebounce from "react-use/lib/useDebounce";
 
 import { ActiveUser } from "../../store/active-user/types";
@@ -26,6 +26,7 @@ import "./index.scss";
 import { addRecoveries, getRecoveries } from "../../api/private-api";
 import { FullAccount } from "../../store/accounts/types";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -119,9 +120,7 @@ export default function AccountRecovery(props: Props) {
     [newRecoveryAccount]
   );
 
-  const newRecoveryAccountChange = async (
-    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
-  ) => {
+  const newRecoveryAccountChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.persist();
     setIsEcency(e.target.value === ECENCY);
     setNewCurrRecoveryAccount(e.target.value);
@@ -216,7 +215,7 @@ export default function AccountRecovery(props: Props) {
     setStep(1);
   };
 
-  const handleRecoveryEmail = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  const handleRecoveryEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRecoveryEmail(e.target.value);
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     setDisabled(!emailRegex.test(e.target.value));
@@ -369,15 +368,15 @@ export default function AccountRecovery(props: Props) {
         >
           <Form.Group controlId="account-name">
             <Form.Label>{_t("account-recovery.curr-recovery-acc")}</Form.Label>
-            <Form.Control type="text" readOnly={true} value={currRecoveryAccount} />
+            <FormControl type="text" readOnly={true} value={currRecoveryAccount} />
           </Form.Group>
           {toWarning && <small className="suggestion-info">{toWarning}</small>}
           <Form.Group controlId="cur-pass">
             <Form.Label>{_t("account-recovery.new-recovery-acc")}</Form.Label>
-            <Form.Control
+            <FormControl
               value={newRecoveryAccount}
               onChange={newRecoveryAccountChange}
-              required={!isEcency ? true : false}
+              required={!isEcency}
               type="text"
               autoFocus={true}
               autoComplete="off"
@@ -388,7 +387,7 @@ export default function AccountRecovery(props: Props) {
           {isEcency && (
             <Form.Group controlId="recovery-email">
               <Form.Label>{_t("account-recovery.new-recovery-email")}</Form.Label>
-              <Form.Control
+              <FormControl
                 value={recoveryEmail}
                 onChange={handleRecoveryEmail}
                 required={true}

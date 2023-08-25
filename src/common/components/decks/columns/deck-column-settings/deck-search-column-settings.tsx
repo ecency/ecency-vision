@@ -1,5 +1,5 @@
 import { SearchDeckGridItem } from "../../types";
-import React, { useContext, useEffect, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { DeckHeaderSettingsItem } from "../../header/deck-header-settings-item";
 import { _t } from "../../../../i18n";
 import { Button, Form } from "react-bootstrap";
@@ -8,6 +8,7 @@ import { DateOpt, SearchSort } from "../../consts";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import "./_deck-search-column-settings.scss";
 import { DeckGridContext } from "../../deck-manager";
+import { FormControl } from "@ui/input";
 
 interface Props {
   id: string;
@@ -42,36 +43,36 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
       hasBorderBottom={false}
     >
       <div className="form-list">
-        <Form.Control
+        <FormControl
           type="text"
           autoFocus={true}
           placeholder={_t("decks.columns.search-query")}
           value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
-          }}
+          onChange={(e) => setQuery(e.target.value)}
         />
-        <Form.Control
+        <FormControl
           type="text"
           autoFocus={true}
           placeholder={_t("decks.username")}
           value={author}
-          onChange={(e) => {
-            setAuthor(e.target.value);
-          }}
+          onChange={(e) => setAuthor(e.target.value)}
         />
         <div className="row">
           <div className="col">
-            <Form.Control as="select" value={type} onChange={(e) => setType(e.target.value)}>
+            <FormControl
+              type="select"
+              value={type}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) => setType(e.target.value)}
+            >
               {Object.values(SearchType).map((x) => (
                 <option value={x} key={x}>
                   {_t(`search-comment.type-${x}`)}
                 </option>
               ))}
-            </Form.Control>
+            </FormControl>
           </div>
           <div className="col">
-            <Form.Control
+            <FormControl
               type="text"
               placeholder={_t("search-comment.category-placeholder")}
               value={category}
@@ -79,7 +80,7 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
             />
           </div>
         </div>
-        <Form.Control
+        <FormControl
           type="text"
           placeholder={_t("search-comment.tags-placeholder")}
           value={tags}
@@ -87,22 +88,30 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
         />
         <div className="row">
           <div className="col">
-            <Form.Control as="select" value={date} onChange={(e) => setDate(e.target.value)}>
+            <FormControl
+              type="select"
+              value={date}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) => setDate(e.target.value)}
+            >
               {Object.values(DateOpt).map((x) => (
                 <option value={x} key={x}>
                   {_t(`search-comment.date-${x}`)}
                 </option>
               ))}
-            </Form.Control>
+            </FormControl>
           </div>
           <div className="col">
-            <Form.Control as="select" value={sort} onChange={(e) => setSort(e.target.value)}>
+            <FormControl
+              type="select"
+              value={sort}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) => setSort(e.target.value)}
+            >
               {Object.values(SearchSort).map((x) => (
                 <option value={x} key={x}>
                   {_t(`search-comment.sort-${x}`)}
                 </option>
               ))}
-            </Form.Control>
+            </FormControl>
           </div>
         </div>
         <Form.Check

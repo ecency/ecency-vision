@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { keySvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import { error } from "../feedback";
 import { ActiveUser } from "../../store/active-user/types";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 export interface Props {
   activeUser: ActiveUser | null;
@@ -55,7 +55,7 @@ export const SignByKey = ({
   return (
     <div className="mt-4">
       <InputGroup prepend={keySvg}>
-        <Form.Control
+        <FormControl
           value={key}
           type="password"
           autoFocus={true}

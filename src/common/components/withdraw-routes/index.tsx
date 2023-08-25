@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Col, Form, FormControl } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 
 import { PrivateKey } from "@hiveio/dhive";
 
@@ -27,6 +27,7 @@ import { deleteForeverSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -76,7 +77,7 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
     });
   };
 
-  onInput = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  onInput = (e: React.ChangeEvent<any>): void => {
     const { target: el } = e;
     const { name: key, value } = el;
 
@@ -173,7 +174,8 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
           <Form.Row>
             <Form.Group as={Col}>
               <Form.Label>{_t("withdraw-routes.account")}</Form.Label>
-              <Form.Control
+              <FormControl
+                type="text"
                 required={true}
                 minLength={3}
                 maxLength={20}
@@ -192,7 +194,7 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
           <Form.Row>
             <Form.Group as={Col} md={3}>
               <Form.Label>{_t("withdraw-routes.percent")}</Form.Label>
-              <Form.Control
+              <FormControl
                 type="number"
                 min={0}
                 max={100}
@@ -206,10 +208,10 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
             </Form.Group>
             <Form.Group as={Col} md={7}>
               <Form.Label>{_t("withdraw-routes.auto-power-up")}</Form.Label>
-              <Form.Control as="select" value={auto} name="auto" onChange={this.onInput}>
+              <FormControl type="select" value={auto} name="auto" onChange={this.onInput}>
                 <option value="yes">{_t("g.yes")}</option>
                 <option value="no">{_t("g.no")}</option>
-              </Form.Control>
+              </FormControl>
             </Form.Group>
             <Form.Group
               as={Col}

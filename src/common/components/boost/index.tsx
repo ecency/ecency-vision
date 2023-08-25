@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import isEqual from "react-fast-compare";
 
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 import { PrivateKey } from "@hiveio/dhive";
 
@@ -31,6 +31,7 @@ import formattedNumber from "../../util/formatted-number";
 import { checkAllSvg } from "../../img/svg";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -105,7 +106,7 @@ export class Boost extends BaseComponent<Props, State> {
       });
   };
 
-  pathChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  pathChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const path = e.target.value;
     this.stateSet({ path, postError: "" });
 
@@ -150,7 +151,7 @@ export class Boost extends BaseComponent<Props, State> {
     return author.length >= 3 && permlink.length >= 3;
   };
 
-  sliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  sliderChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const amount = Number(e.target.value);
     this.stateSet({ amount }, () => {
       this.checkBalance();
@@ -279,7 +280,8 @@ export class Boost extends BaseComponent<Props, State> {
                   {_t("redeem-common.balance")}
                 </Form.Label>
                 <Col sm="10">
-                  <Form.Control
+                  <FormControl
+                    type="text"
                     className={_c(`balance-input ${balanceError ? "is-invalid" : ""}`)}
                     plaintext={true}
                     readOnly={true}
@@ -294,7 +296,7 @@ export class Boost extends BaseComponent<Props, State> {
                 </Form.Label>
                 <Col sm="10">
                   <SuggestionList items={paths} renderer={(i) => i} onSelect={this.pathSelected}>
-                    <Form.Control
+                    <FormControl
                       className={postError ? "is-invalid" : ""}
                       type="text"
                       value={path}
@@ -322,9 +324,8 @@ export class Boost extends BaseComponent<Props, State> {
                       })}
                       <small>{amount} POINTS</small>
                     </div>
-                    <Form.Control
+                    <FormControl
                       type="range"
-                      custom={true}
                       step={sliderStep}
                       min={sliderMin}
                       max={sliderMax}

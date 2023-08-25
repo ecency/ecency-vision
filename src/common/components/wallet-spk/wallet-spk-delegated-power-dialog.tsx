@@ -9,6 +9,7 @@ import { History } from "history";
 import { Global } from "../../store/global/types";
 import "./wallet-spk-delegated-power-dialog.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   show: boolean;
@@ -47,7 +48,7 @@ export const WalletSpkDelegatedPowerDialog = ({
         <ModalTitle>{_t("wallet.spk.delegate.delegated-larynx-power.title")}</ModalTitle>
       </ModalHeader>
       <Form.Group className="w-100 px-3">
-        <Form.Control
+        <FormControl
           type="text"
           placeholder={_t("friends.search-placeholder")}
           value={query}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Community, CommunityTeam } from "../../store/communities/types";
@@ -22,7 +22,7 @@ import { Tsx } from "../../i18n/helper";
 import "./_index.scss";
 import { queryClient, QueryIdentifiers } from "../../core";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -51,12 +51,12 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
 
   _input = React.createRef<HTMLInputElement>();
 
-  userChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  userChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: user } = e.target;
     this.stateSet({ user });
   };
 
-  roleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  roleChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value: role } = e.target;
     this.stateSet({ role });
   };
@@ -115,7 +115,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
             </Form.Label>
             <Col sm="10">
               <InputGroup prepend="@">
-                <Form.Control
+                <FormControl
                   type="text"
                   autoFocus={user === ""}
                   placeholder={_t("community-role-edit.username").toLowerCase()}
@@ -133,13 +133,13 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
               {_t("community-role-edit.role")}
             </Form.Label>
             <Col sm="10">
-              <Form.Control as="select" value={role} onChange={this.roleChanged}>
+              <FormControl type="select" value={role} onChange={this.roleChanged}>
                 {roles.map((r, i) => (
                   <option key={i} value={r}>
                     {r}
                   </option>
                 ))}
-              </Form.Control>
+              </FormControl>
             </Col>
           </Form.Group>
           <div className="d-flex justify-content-end">

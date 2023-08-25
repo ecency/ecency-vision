@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
@@ -9,7 +9,7 @@ import { generateKeys } from "../../helper/generate-private-keys";
 import { _t } from "../../i18n";
 import truncate from "../../util/truncate";
 import "./_index.scss";
-import { InputGroupCopyClipboard } from "@ui/input";
+import { FormControl, InputGroupCopyClipboard } from "@ui/input";
 
 interface Props {
   activeUser: ActiveUser;
@@ -31,7 +31,7 @@ export default class ViewKeys extends BaseComponent<Props, State> {
 
   form = React.createRef<HTMLFormElement>();
 
-  curPassChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  curPassChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ curPass: e.target.value });
   };
 
@@ -73,11 +73,11 @@ export default class ViewKeys extends BaseComponent<Props, State> {
         >
           <Form.Group controlId="account-name">
             <Form.Label>{_t("view-keys.account")}</Form.Label>
-            <Form.Control type="text" readOnly={true} value={activeUser.username} />
+            <FormControl type="text" readOnly={true} value={activeUser.username} />
           </Form.Group>
           <Form.Group controlId="cur-pass">
             <Form.Label>{_t("view-keys.cur-pass")}</Form.Label>
-            <Form.Control
+            <FormControl
               value={curPass}
               onChange={this.curPassChanged}
               required={true}

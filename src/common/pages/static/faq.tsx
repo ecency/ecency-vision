@@ -19,7 +19,7 @@ import { faqKeysGeneral } from "../../constants";
 import NavBar from "../../components/navbar";
 import FaqCategory from "../../components/faq-category";
 import { connect } from "react-redux";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 interface FAQPageState {
   search: string;
@@ -129,7 +129,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                   }
                   className="mb-3 w-75"
                 >
-                  <Form.Control
+                  <FormControl
                     placeholder={`${_t("static.faq.search-placeholder")}`}
                     className="w-75"
                     onChange={(e) => {

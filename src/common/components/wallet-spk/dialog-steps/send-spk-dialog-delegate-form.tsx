@@ -1,11 +1,11 @@
 import { WalletSpkGroup } from "../wallet-spk-group";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { ActiveUser } from "../../../store/active-user/types";
 import { Transactions } from "../../../store/transactions/types";
 import { getSpkWallet, Market } from "../../../api/spk-api";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -67,7 +67,7 @@ export const SendSpkDialogDelegateForm = ({
     <>
       <WalletSpkGroup label="wallet.spk.send.from">
         <InputGroup prepend="@">
-          <Form.Control
+          <FormControl
             type="text"
             autoFocus={true}
             placeholder=""
@@ -78,25 +78,26 @@ export const SendSpkDialogDelegateForm = ({
       </WalletSpkGroup>
       <WalletSpkGroup label="wallet.spk.send.to">
         <InputGroup prepend="@">
-          <select
+          <FormControl
+            type="select"
             ref={selectRef}
             placeholder={_t("wallet.spk.delegate.node-operator-placeholder")}
             className="form-control"
             value={username}
-            onChange={(event: ChangeEvent<any>) => setUsername(event.target.value)}
+            onChange={(event: ChangeEvent<HTMLSelectElement>) => setUsername(event.target.value)}
           >
             {markets.map((market) => (
               <option key={market.name} value={market.name}>
                 {market.status} {market.name}
               </option>
             ))}
-          </select>
+          </FormControl>
         </InputGroup>
       </WalletSpkGroup>
       <WalletSpkGroup label="wallet.spk.send.amount">
         <>
           <InputGroup prepend="#">
-            <Form.Control
+            <FormControl
               type="text"
               autoFocus={true}
               placeholder=""

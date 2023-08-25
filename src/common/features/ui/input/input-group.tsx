@@ -27,8 +27,8 @@ export function InputGroup({
   return (
     <div
       className={classNameObject({
-        "flex items-stretch w-full": true,
-        className: !!className,
+        "ecency-input-group flex items-stretch w-full": true,
+        [className ?? ""]: !!className,
         [INPUT_IN_GROUP]: true
       })}
       onClick={onClick}
@@ -36,9 +36,9 @@ export function InputGroup({
       {prepend ? (
         <div
           className={classNameObject({
-            "border-2 border-r-0 rounded-tl-full rounded-bl-full bg-gray-200": true,
-            "flex items-center justify-center px-2.5":
-              typeof prepend === "string" || (prepend as ReactElement)?.type === Spinner,
+            "ecency-input-group-prepend flex items-center justify-center border-2 border-r-0 rounded-tl-full rounded-bl-full bg-gray-200":
+              true,
+            "px-2.5": typeof prepend === "string" || (prepend as ReactElement)?.type === Spinner,
             "[&>.ecency-spinner]:w-3.5 [&>.ecency-spinner]:h-3.5":
               (prepend as ReactElement)?.type === Spinner
           })}

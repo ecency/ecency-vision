@@ -3,6 +3,7 @@ import { _t } from "../../i18n";
 import React from "react";
 import { MarketAsset } from "./market-pair";
 import numeral from "numeral";
+import { FormControl } from "@ui/input";
 
 export interface Props {
   className?: string;
@@ -63,7 +64,8 @@ export const SwapAmountControl = ({
       <Form.Label>{_t(labelKey)}</Form.Label>
       <div className="d-flex align-items-center w-100">
         <div className="w-100">
-          <Form.Control
+          <FormControl
+            type="text"
             className="amount-control pl-0"
             value={formatValue(value)}
             disabled={disabled}

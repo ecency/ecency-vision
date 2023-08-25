@@ -38,6 +38,7 @@ import _c from "../../util/fix-class-names";
 import MyPagination from "../pagination";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   history: History;
@@ -271,14 +272,11 @@ export default class DelegatedVesting extends Component<Props, DelegatedVestingS
           </ModalHeader>
 
           <Form.Group className="w-100 px-3">
-            <Form.Control
+            <FormControl
               type="text"
               placeholder={_t("friends.search-placeholder")}
               value={searchText}
-              onChange={(e) => {
-                let text = e.target.value;
-                this.setState({ searchText: e.target.value });
-              }}
+              onChange={(e) => this.setState({ searchText: e.target.value })}
             />
           </Form.Group>
           <ModalBody>

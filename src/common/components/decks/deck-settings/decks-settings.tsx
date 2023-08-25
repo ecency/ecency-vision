@@ -10,7 +10,7 @@ import { DeckGridContext } from "../deck-manager";
 import { DEFAULT_COLUMNS } from "../consts";
 import { _t } from "../../../i18n";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 interface Props {
   deck?: DeckGrid;
@@ -134,7 +134,9 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                   </>
                 }
               >
-                <Form.Control
+                <FormControl
+                  className="input-control"
+                  type="text"
                   placeholder="Name"
                   value={name}
                   onChange={({ target }) => setName(target.value)}
