@@ -5,7 +5,8 @@ export function Spinner(props: SVGAttributes<SVGElement>) {
     <svg
       aria-hidden="true"
       className={
-        "text-gray-400 animate-spin dark:text-gray-600 fill-blue-dark-sky " + props.className
+        "ecency-spinner text-gray-400 animate-spin dark:text-gray-600 fill-blue-dark-sky " +
+        props.className
       }
       viewBox="0 0 100 101"
       fill="none"

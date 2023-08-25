@@ -12,7 +12,7 @@ import { getAccessToken } from "../../helper/user-token";
 import { _t } from "../../i18n";
 
 import { uploadSvg } from "../../img/svg";
-import { Spinner } from "../spinner";
+import { Spinner } from "@ui/spinner";
 
 interface UploadButtonProps {
   activeUser: ActiveUser;

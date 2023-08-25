@@ -24,7 +24,7 @@ import { getAccount } from "../api/hive";
 import "./sign-up.scss";
 import { Link } from "react-router-dom";
 import { b64uEnc } from "../util/b64";
-import { Spinner } from "../components/spinner";
+import { Spinner } from "@ui/spinner";
 
 type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
 

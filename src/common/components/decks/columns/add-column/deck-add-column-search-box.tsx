@@ -9,8 +9,8 @@ import { UserAvatar } from "../../../user-avatar";
 import { getCommunities } from "../../../../api/bridge";
 import { UsernameDataItem } from "./common";
 import { closeSvg } from "../../../../img/svg";
-import { Spinner } from "../../../spinner";
 import { FormControl, InputGroup } from "@ui/input";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   isCommunity?: boolean;

@@ -36,7 +36,7 @@ import { FullAccount } from "../store/accounts/types";
 import { WitnessCard } from "../components/witness-card";
 import { dateToRelative } from "../helper/parse-date";
 import "./witnesses.scss";
-import { Spinner } from "../components/spinner";
+import { Spinner } from "@ui/spinner";
 
 interface WitnessTransformed {
   rank: number;

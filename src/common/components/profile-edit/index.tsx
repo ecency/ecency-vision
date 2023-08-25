@@ -14,8 +14,8 @@ import { _t } from "../../i18n";
 import { updateProfile } from "../../api/operations";
 import { getAccount } from "../../api/hive";
 import "./index.scss";
-import { Spinner } from "../spinner";
 import { InputGroup } from "@ui/input";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   activeUser: ActiveUser;

@@ -47,8 +47,8 @@ import { deleteForeverSvg } from "../../img/svg";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
-import { Spinner } from "../spinner";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { Spinner } from "@ui/spinner";
 
 declare var window: AppWindow;
 

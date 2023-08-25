@@ -16,7 +16,7 @@ import { error } from "../feedback";
 import { formatError, subscribe, unSubscribe } from "../../api/operations";
 
 import { _t } from "../../i18n";
-import { Spinner } from "../spinner";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   users: User[];

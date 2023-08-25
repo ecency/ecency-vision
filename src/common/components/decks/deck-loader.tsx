@@ -1,6 +1,6 @@
 import React from "react";
 import { _t } from "../../i18n";
-import { Spinner } from "../spinner";
+import { Spinner } from "@ui/spinner";
 
 export const DeckLoader = () => {
   return (

@@ -6,7 +6,7 @@ import { EntryLink } from "../../entry-link";
 import { checkSvg } from "../../../img/svg";
 import { DeckThreadsContext } from "../columns/deck-threads-manager";
 import { useEntryChecking } from "../utils";
-import { Spinner } from "../../spinner";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   lastEntry?: Entry;

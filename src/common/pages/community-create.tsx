@@ -7,7 +7,7 @@ import numeral from "numeral";
 import base58 from "bs58";
 import { AccountCreateOperation, Authority, cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import random from "../util/rnd";
-import { Button, Form, FormControl, Spinner } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 import { _t } from "../i18n";
 import Feedback, { error, success } from "../components/feedback";
 import { formatError, setUserRole, updateCommunity } from "../api/operations";
@@ -29,6 +29,7 @@ import KeyOrHot from "../components/key-or-hot";
 import Tooltip from "../components/tooltip";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { InputGroup } from "@ui/input";
+import { Spinner } from "@ui/spinner";
 
 const namePattern = "^hive-[1]\\d{4,6}$";
 interface CreateState {
@@ -631,14 +632,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                     className="w-100 p-3"
                                     variant="primary"
                                   >
-                                    {inProgress && (
-                                      <Spinner
-                                        animation="grow"
-                                        variant="light"
-                                        size="sm"
-                                        style={{ marginRight: "6px" }}
-                                      />
-                                    )}
+                                    {inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
                                     {_t("communities-create.submit")}
                                   </Button>
                                 </Form.Group>

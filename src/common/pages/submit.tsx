@@ -86,7 +86,7 @@ import TextareaAutocomplete from "../components/textarea-autocomplete";
 import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
-import { Spinner } from "../components/spinner";
+import { Spinner } from "@ui/spinner";
 
 setProxyBase(defaults.imageServer);
 

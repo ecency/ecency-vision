@@ -5,7 +5,7 @@ import { dateToRelative } from "../../../../helper/parse-date";
 import React from "react";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ThreadItemEntry } from "../deck-threads-manager";
-import { Spinner } from "../../../spinner";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   entry: ThreadItemEntry;

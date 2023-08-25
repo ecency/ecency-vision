@@ -7,8 +7,8 @@ import { lookupAccounts } from "../../api/hive";
 import { error } from "../feedback";
 import { formatError } from "../../api/operations";
 import { ActiveUser } from "../../store/active-user/types";
-import { Spinner } from "../spinner";
 import { InputGroup } from "@ui/input";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   username?: string;

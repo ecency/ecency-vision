@@ -20,8 +20,8 @@ import { _t } from "../../i18n";
 import { keySvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
-import { Spinner } from "../spinner";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   activeUser: ActiveUser;

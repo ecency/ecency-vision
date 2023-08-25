@@ -24,8 +24,8 @@ import PopoverConfirm from "@ui/popover-confirm";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
-import { Spinner } from "../spinner";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Spinner } from "@ui/spinner";
 
 // ADD
 interface AddProps {

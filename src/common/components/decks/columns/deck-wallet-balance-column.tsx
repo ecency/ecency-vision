@@ -18,7 +18,7 @@ import { getHiveEngineTokenBalances, getMetrics } from "../../../api/hive-engine
 import { getSpkWallet } from "../../../api/spk-api";
 import { getEstimatedBalance } from "../../wallet-spk/util";
 import { DeckGridContext } from "../deck-manager";
-import { Spinner } from "../../spinner";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   id: string;

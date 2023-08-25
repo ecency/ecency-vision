@@ -23,7 +23,7 @@ import TextareaAutocomplete from "../textarea-autocomplete";
 import { AvailableCredits } from "../available-credits";
 import { Location } from "history";
 import "./_index.scss";
-import { Spinner } from "../spinner";
+import { Spinner } from "@ui/spinner";
 
 setProxyBase(defaults.imageServer);
 

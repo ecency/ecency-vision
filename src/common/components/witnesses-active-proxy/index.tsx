@@ -22,7 +22,7 @@ import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from "../.
 
 import { _t } from "../../i18n";
 import "./_index.scss";
-import { Spinner } from "../spinner";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   history: History;

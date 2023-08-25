@@ -2,7 +2,7 @@ import { _t } from "../../../i18n";
 import { refreshSvg } from "../../../img/svg";
 import { Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import { Spinner } from "../../spinner";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   onReload: () => void;
