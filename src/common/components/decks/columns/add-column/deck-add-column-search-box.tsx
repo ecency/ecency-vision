@@ -4,13 +4,13 @@ import { error } from "../../../feedback";
 import { formatError } from "../../../../api/operations";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import useDebounce from "react-use/lib/useDebounce";
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { UserAvatar } from "../../../user-avatar";
 import { getCommunities } from "../../../../api/bridge";
 import { UsernameDataItem } from "./common";
 import { closeSvg } from "../../../../img/svg";
 import { Spinner } from "../../../spinner";
-import { InputGroup } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 
 interface Props {
   isCommunity?: boolean;
@@ -103,7 +103,7 @@ export const DeckAddColumnSearchBox = ({
   return (
     <div className="deck-add-column-search-box">
       <InputGroup prepend={isUsernameDataLoading ? <Spinner /> : "@"}>
-        <Form.Control
+        <FormControl
           type="text"
           autoFocus={true}
           placeholder=""
