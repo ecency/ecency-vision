@@ -219,6 +219,12 @@ export function Submit(props: PageProps & MatchProps) {
     updatePreview();
   }, [title, body, tags]);
 
+  useEffect(() => {
+    if (!threeSpeakManager.has3SpeakVideo(body)) {
+      threeSpeakManager.clear();
+    }
+  }, [body]);
+
   const updatePreview = (): void => {
     if (_updateTimer) {
       clearTimeout(_updateTimer);
@@ -423,9 +429,9 @@ export function Submit(props: PageProps & MatchProps) {
               as="textarea"
               placeholder={_t("submit.body-placeholder")}
               value={body && body.length > 0 ? body : preview.body}
-              onChange={(e: { target: { value: React.SetStateAction<string> } }) =>
-                setBody(e.target.value)
-              }
+              onChange={(e: { target: { value: React.SetStateAction<string> } }) => {
+                setBody(e.target.value);
+              }}
               disableRows={true}
               maxrows={100}
               spellCheck={true}
@@ -711,7 +717,7 @@ export function Submit(props: PageProps & MatchProps) {
                     </Form.Group>
                     {editingEntry === null && (
                       <>
-                        {props.global.usePrivate && (
+                        {props.global.usePrivate && !threeSpeakManager.hasUnpublishedVideo && (
                           <Form.Group as={Row}>
                             <Form.Label column={true} sm="3">
                               {_t("submit.schedule")}
