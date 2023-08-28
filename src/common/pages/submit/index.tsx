@@ -5,9 +5,11 @@ import { MatchType, PostBase, VideoProps } from "./types";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../common";
 import { extractMetaData } from "../../helper/posting";
 import {
+  BodyVersioningManager,
   ThreeSpeakManager,
   useAdvancedManager,
   useApiDraftDetector,
+  useBodyVersioningManager,
   useCommunityDetector,
   useEntryDetector,
   useLocalDraftManager,
@@ -63,13 +65,14 @@ interface MatchProps {
 export function Submit(props: PageProps & MatchProps) {
   const postBodyRef = useRef<HTMLDivElement | null>(null);
   const threeSpeakManager = useThreeSpeakManager();
+  const { body, setBody } = useBodyVersioningManager();
+  const previousBody = usePrevious(body);
 
   const { activeUser } = useMappedStore();
   const previousActiveUser = usePrevious(activeUser);
 
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState<string[]>([]);
-  const [body, setBody] = useState("");
   const [selectionTouched, setSelectionTouched] = useState(false);
   const [thumbnails, setThumbnails] = useState<string[]>([]);
   const [selectedThumbnail, setSelectedThumbnail, removeThumbnail] = useLocalStorage<string>(
@@ -204,6 +207,9 @@ export function Submit(props: PageProps & MatchProps) {
     if (activeUser?.username !== previousActiveUser?.username && activeUser) {
       // delete active user from beneficiaries list
       setBeneficiaries(beneficiaries.filter((x) => x.account !== activeUser.username));
+
+      // clear not current user videos
+      threeSpeakManager.findAndClearUnpublished3SpeakVideo(body);
     }
   }, [activeUser]);
 
@@ -220,8 +226,9 @@ export function Submit(props: PageProps & MatchProps) {
   }, [title, body, tags]);
 
   useEffect(() => {
-    if (!threeSpeakManager.has3SpeakVideo(body)) {
+    if (!threeSpeakManager.has3SpeakVideo(body) && !!previousBody) {
       threeSpeakManager.clear();
+      console.log("clearing 3speak");
     }
   }, [body]);
 
@@ -429,7 +436,7 @@ export function Submit(props: PageProps & MatchProps) {
               as="textarea"
               placeholder={_t("submit.body-placeholder")}
               value={body && body.length > 0 ? body : preview.body}
-              onChange={(e: { target: { value: React.SetStateAction<string> } }) => {
+              onChange={(e: { target: { value: string } }) => {
                 setBody(e.target.value);
               }}
               disableRows={true}
@@ -824,9 +831,11 @@ export function Submit(props: PageProps & MatchProps) {
 
 const SubmitWithProviders = (props: PageProps & MatchProps) => {
   return (
-    <ThreeSpeakManager>
-      <Submit {...props} />
-    </ThreeSpeakManager>
+    <BodyVersioningManager>
+      <ThreeSpeakManager>
+        <Submit {...props} />
+      </ThreeSpeakManager>
+    </BodyVersioningManager>
   );
 };
 
