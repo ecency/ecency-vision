@@ -2295,8 +2295,8 @@ export const claimAccount = async (username: string, key: PrivateKey | any): Pro
   ]
 
   try {
-    const response = await  hiveClient.broadcast.sendOperations(op, key);
-    return response;
+    return hiveClient.broadcast.sendOperations(op, key);
+    
   } catch (error) {
     console.error("error claiming credit:", error);
     throw error;
