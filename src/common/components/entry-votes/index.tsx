@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 
-import { Alert, Form, FormControl } from "react-bootstrap";
+import { Alert, Form, FormControl, Modal, Spinner } from "react-bootstrap";
 
 import { History } from "history";
-
-import { Modal, Spinner } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
@@ -18,7 +16,7 @@ import ProfileLink from "../profile-link/index";
 import Tooltip from "../tooltip";
 import Pagination from "../pagination";
 
-import { Vote, getActiveVotes } from "../../api/hive";
+import { getActiveVotes, Vote } from "../../api/hive";
 
 import parseAsset from "../../helper/parse-asset";
 import parseDate, { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
@@ -263,7 +261,12 @@ export class EntryVotes extends Component<Props, State> {
   };
 
   componentDidUpdate(prevProps: Readonly<Props>) {
-    if (prevProps.entry?.active_votes?.length !== this.props.entry?.active_votes?.length) {
+    const hasDifferentVotes =
+      prevProps.entry?.active_votes.length !== this.props.entry?.active_votes.length;
+    const hasCurrentUserVote = this.props.entry?.active_votes.find(
+      ({ voter }) => voter === this.props.activeUser?.username
+    );
+    if (hasCurrentUserVote && hasDifferentVotes) {
       this.setState({ vote: true });
     }
   }
