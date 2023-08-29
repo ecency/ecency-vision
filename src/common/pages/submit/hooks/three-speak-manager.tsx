@@ -1,7 +1,8 @@
-import React, { createContext, ReactNode, useContext, useMemo, useState } from "react";
+import React, { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import { ThreeSpeakVideo } from "../../../api/threespeak";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
+import { useBodyVersioningManager } from "./body-versioning-manager";
 
 export interface ThreeSpeakManagerContext {
   clear: () => void;
@@ -25,6 +26,7 @@ export interface ThreeSpeakManagerContext {
 
   // funcs
   has3SpeakVideo: (body: string) => boolean;
+  findAndClearUnpublished3SpeakVideo: (body: string) => void;
 }
 
 export const ThreeSpeakVideoContext = createContext<ThreeSpeakManagerContext>({
@@ -44,7 +46,8 @@ export const ThreeSpeakVideoContext = createContext<ThreeSpeakManagerContext>({
   isEditing: false,
   setIsEditing: () => {},
   hasUnpublishedVideo: false,
-  has3SpeakVideo: () => false
+  has3SpeakVideo: () => false,
+  findAndClearUnpublished3SpeakVideo: () => {}
 });
 
 export function useThreeSpeakManager() {
@@ -52,7 +55,7 @@ export function useThreeSpeakManager() {
 }
 
 const THREE_SPEAK_VIDEO_PATTERN =
-  /\[!\[\]\(https:\/\/ipfs-3speak\.b-cdn\.net\/ipfs.*\)\]\(https:\/\/3speak.tv\/watch\?.*\)\[Source\]\(https:\/\/ipfs-3speak\.b-cdn\.net\/ipfs\/(.*)\)/g;
+  /\[!\[\]\(https:\/\/ipfs-3speak\.b-cdn\.net\/ipfs.*\)\]\(https:\/\/3speak\.tv\/watch\?.*\)\[Source\]\(https:\/\/ipfs-3speak\.b-cdn\.net\/ipfs\/(.*)\)/g;
 
 export function ThreeSpeakManager(props: { children: ReactNode }) {
   const [is3Speak, setIs3Speak, clearIs3Speak] = useLocalStorage(PREFIX + "_sa_3s", false);
@@ -73,6 +76,41 @@ export function ThreeSpeakManager(props: { children: ReactNode }) {
     [videoMetadata]
   );
 
+  const bodyManager = useBodyVersioningManager(({ metadata }) => {
+    const { videoMetadata } = metadata as {
+      videoMetadata: {
+        videoMetadata: ThreeSpeakVideo;
+        is3Speak: boolean;
+        isNsfw: boolean;
+        videoId: string;
+        speakPermlink: string;
+        speakAuthor: string;
+      };
+    };
+
+    if (videoMetadata) {
+      setVideoMetadata(videoMetadata.videoMetadata);
+      setIs3Speak(videoMetadata.is3Speak);
+      setVideoId(videoMetadata.videoId);
+      setSpeakPermlink(videoMetadata.speakPermlink);
+      setSpeakAuthor(videoMetadata.speakAuthor);
+      setIsNsfw(videoMetadata.isNsfw);
+    }
+  });
+
+  useEffect(() => {
+    bodyManager.updateMetadata({
+      videoMetadata: {
+        is3Speak,
+        videoId,
+        speakPermlink,
+        speakAuthor,
+        isNsfw,
+        videoMetadata
+      }
+    });
+  }, [speakAuthor]);
+
   const has3SpeakVideo = (body: string) => {
     const groups = body.matchAll(THREE_SPEAK_VIDEO_PATTERN);
     let has = false;
@@ -83,6 +121,27 @@ export function ThreeSpeakManager(props: { children: ReactNode }) {
     }
 
     return has;
+  };
+
+  const findAndClearUnpublished3SpeakVideo = (body: string) => {
+    const groups = body.matchAll(THREE_SPEAK_VIDEO_PATTERN);
+    for (const group of groups) {
+      const match = group[1];
+
+      /// <center>[![](https://ipfs-3speak.b-cdn.net/ipfs/bafkreic3bnsxobtm2va6j3i6v44gc2p2wazi4iuiqqci23tdt7eba5ad5e)](https://3speak.tv/watch?v=demo.com/meohyozpiu)[Source](https://ipfs-3speak.b-cdn.net/ipfs/QmUu28DUQ6wQpH8sFt5pVb3ZDfnvib67BUdtyE8uD4p64j)</center>
+      // Has unpublished video
+      if (`ipfs://${match}` === videoMetadata?.filename && videoMetadata?.status !== "published") {
+        body.replace(
+          new RegExp(
+            `\[!\[\]\(https:\/\/ipfs-3speak\.b-cdn\.net\/ipfs\/${videoMetadata?.thumbnail.replace(
+              "ipfs://",
+              ""
+            )}\)\]\(https:\/\/3speak\.tv\/watch\?.*\)\[Source\]\(https:\/\/ipfs-3speak\.b-cdn\.net\/ipfs\/${match}\)`
+          ),
+          ""
+        );
+      }
+    }
   };
 
   return (
@@ -104,6 +163,7 @@ export function ThreeSpeakManager(props: { children: ReactNode }) {
         setIsEditing,
         hasUnpublishedVideo,
         has3SpeakVideo,
+        findAndClearUnpublished3SpeakVideo,
 
         clear: () => {
           clearIs3Speak();
