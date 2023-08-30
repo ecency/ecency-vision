@@ -77,7 +77,7 @@ export function usePublishApi(history: History, onClear: () => void) {
         c = await bridgeApi.getPostHeader(author, permlink);
       } catch (e) {}
 
-      if (c && c.author && !isThreespeak && speakPermlink === "") {
+      if (c && c.author) {
         // create permlink with random suffix
         permlink = createPermlink(title, true);
       }

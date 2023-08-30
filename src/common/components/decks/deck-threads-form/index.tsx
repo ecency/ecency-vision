@@ -89,11 +89,25 @@ export const DeckThreadsForm = ({
 
   useEffect(() => {
     if (persistable) {
-      setThreadHost(threadHost ? threadHost : persistedForm?.threadHost);
-      setText(text ? text : persistedForm?.text ?? "");
-      setImage(image ? image : persistedForm?.image);
-      setImageName(imageName ? imageName : persistedForm?.imageName);
-      setVideo(video ? video : persistedForm?.video);
+      if (!threadHost && persistedForm?.threadHost) {
+        setThreadHost(persistedForm.threadHost);
+      }
+
+      if (!text && persistedForm?.text) {
+        setText(persistedForm.text);
+      }
+
+      if (!image && persistedForm?.image) {
+        setImage(persistedForm.image);
+      }
+
+      if (!imageName && persistedForm?.imageName) {
+        setImageName(persistedForm.imageName);
+      }
+
+      if (!video && persistedForm?.video) {
+        setVideo(persistedForm.video);
+      }
     }
   }, [persistedForm]);
 

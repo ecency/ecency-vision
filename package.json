@@ -1,6 +1,6 @@
 {
   "name": "ecency-vision",
-  "version": "3.0.35",
+  "version": "3.0.36",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -13,7 +13,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@ecency/render-helper": "^2.2.25",
+    "@ecency/render-helper": "^2.2.26",
     "@ecency/render-helper-amp": "^1.1.0",
     "@emoji-mart/data": "^1.1.2",
     "@firebase/analytics": "^0.8.0",

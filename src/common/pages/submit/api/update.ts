@@ -18,14 +18,7 @@ import { EntriesCacheContext } from "../../../core";
 export function useUpdateApi(history: History, onClear: () => void) {
   const { activeUser } = useMappedStore();
 
-  const {
-    videoId,
-    is3Speak: isThreespeak,
-    speakPermlink,
-    speakAuthor,
-    isNsfw,
-    videoMetadata
-  } = useThreeSpeakManager();
+  const { videoMetadata } = useThreeSpeakManager();
 
   const { updateCache } = useContext(EntriesCacheContext);
 
