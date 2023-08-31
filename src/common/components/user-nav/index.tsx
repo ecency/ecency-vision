@@ -30,7 +30,8 @@ import {
   bellSvg,
   bellOffSvg,
   chevronUpSvg,
-  rocketSvg
+  rocketSvg,
+  messangerSvg
 } from "../../img/svg";
 
 import { votingPower, downVotingPower } from "../../api/hive";
@@ -280,6 +281,13 @@ class UserNav extends Component<Props, State> {
                 )}
                 {global.notifications ? bellSvg : bellOffSvg}
               </span>
+            </ToolTip>
+          )}
+          {global.usePrivate && (
+            <ToolTip content={_t("user-nav.chats")}>
+              <Link to={`/chats`}>
+                <span className="chats">{messangerSvg}</span>
+              </Link>
             </ToolTip>
           )}
 

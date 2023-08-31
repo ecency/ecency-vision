@@ -1,0 +1,66 @@
+@import "src/style/colors";
+@import "src/style/variables";
+@import "src/style/bootstrap_vars";
+@import "src/style/mixins";
+
+.chat {
+  grid-row: span 1;
+  display: flex;
+  margin: 4px 8px;
+  padding: 4px;
+  min-height: 45px;
+  border-radius: 20px;
+  @include themify(day) {
+    background: #e4e6eb;
+  }
+  @include themify(night) {
+    background: #cee2ff;
+  }
+
+  &.disable {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .chatbox-emoji-picker {
+    .chatbox-emoji {
+      margin: 8px 0 0 7px;
+      cursor: pointer;
+
+      svg {
+        height: 22px;
+        fill: rgb(60, 68, 73);
+      }
+    }
+  }
+  .chatbox-image {
+    cursor: pointer;
+    .chatbox-image-icon {
+      margin: 7px 0 0 7px;
+    }
+  }
+
+  .chat-input-group {
+    .chat-input {
+      padding-top: 10px;
+      border: none;
+      @include themify(day) {
+        background: #e4e6eb;
+      }
+      @include themify(night) {
+        background: #cee2ff;
+      }
+    }
+    .msg-svg {
+      padding: 8px;
+
+      &.active {
+        cursor: pointer;
+      }
+      &.active:hover {
+        background: rgba(29, 155, 240, 0.1);
+        border-radius: 50%;
+      }
+    }
+  }
+}

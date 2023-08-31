@@ -18,11 +18,6 @@ export interface MenuItem {
   isStatic?: boolean;
 }
 
-interface MenuDownStyle {
-  width: string;
-  height: string;
-}
-
 interface Props {
   history: History | null;
   float: "left" | "right" | "none";

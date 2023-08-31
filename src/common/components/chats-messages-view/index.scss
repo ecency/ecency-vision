@@ -1,0 +1,20 @@
+@import "../../../style/vars_mixins";
+
+.chats-messages-view {
+  @include themify(day) {
+    border-bottom: 1px solid $white-three;
+  }
+  @include themify(night) {
+    border-bottom: 1px solid $charcoal-grey;
+  }
+
+  grid-row: span 16;
+  // height: 79.5vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  // margin-bottom: 20px;
+
+  a::after {
+    display: none;
+  }
+}

@@ -185,6 +185,7 @@ export default function JoinCommunityChatBtn(props: Props) {
         chat.leftChannelsList.filter((x) => x !== currentChannel?.id)
       );
     }
+    setIsCommunityChatJoined(true);
     window?.messageService?.loadChannel(currentChannel?.id!);
     setIsCommunityChatJoined(true);
   };

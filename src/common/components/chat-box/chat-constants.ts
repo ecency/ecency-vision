@@ -1,6 +1,6 @@
 export const EmojiPickerStyle = {
   width: "94%",
-  bottom: "49px",
+  bottom: "58px",
   left: "0px",
   marginLeft: "14px",
   borderTopLeftRadius: "8px",
@@ -38,3 +38,6 @@ export const UNBLOCKUSER = "unblockUser";
 export const NEWCHATACCOUNT = "newChatAccount";
 export const CHATIMPORT = "chatImport";
 export const RESENDMESSAGE = "resendMessage";
+export const CHAT = "chat";
+export const COMMUNITY = "community";
+export const CHATPAGE = "chatPage";

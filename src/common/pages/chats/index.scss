@@ -1,0 +1,16 @@
+@import "../../../style/vars_mixins";
+
+.chats-page {
+  display: flex;
+  margin-top: 3.5rem;
+
+  .full-page {
+    width: 100vw;
+    height: 100vh;
+  }
+    .chats-messages-box {
+      .private-key {
+        margin-top: 4.5rem;
+      }
+    }
+}

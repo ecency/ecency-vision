@@ -1,5 +1,6 @@
 import React, { RefObject, useEffect, useRef, useState } from "react";
 import useDebounce from "react-use/lib/useDebounce";
+import { useLocation } from "react-router";
 import { History } from "history";
 import {
   Button,
@@ -14,7 +15,6 @@ import {
   Spinner
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import mediumZoom, { Zoom } from "medium-zoom";
 
 import { ActiveUser } from "../../store/active-user/types";
@@ -35,27 +35,22 @@ import {
 import Tooltip from "../tooltip";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
-import EmojiPicker from "../emoji-picker";
-import GifPicker from "../gif-picker";
 import { error, success } from "../feedback";
 import { setNostrkeys } from "../../../providers/message-provider";
 import DropDown, { MenuItem } from "../dropdown";
 import FollowControls from "../follow-controls";
 import OrDivider from "../or-divider";
 import ManageChatKey from "../manage-chat-key";
-import ClickAwayListener from "../clickaway-listener";
+import ChatInput from "../chat-input";
+import ChatsProfileBox from "../chats-profile-box";
 
 import {
   addMessageSVG,
   expandArrow,
   collapseArrow,
   arrowBackSvg,
-  messageSendSvg,
   chevronUpSvg,
   chevronDownSvgForSlider,
-  emoticonHappyOutlineSvg,
-  gifIcon,
-  chatBoxImageSvg,
   linkSvg,
   KebabMenu,
   chatLeaveSvg,
@@ -71,12 +66,7 @@ import {
 
 import {
   DropDownStyle,
-  EmojiPickerStyle,
-  GifPickerStyle,
-  GIPHGY,
   NOSTRKEY,
-  UPLOADING,
-  GifImagesStyle,
   ADDROLE,
   HIDEMESSAGE,
   BLOCKUSER,
@@ -84,11 +74,13 @@ import {
   UNBLOCKUSER,
   NEWCHATACCOUNT,
   CHATIMPORT,
-  RESENDMESSAGE
+  RESENDMESSAGE,
+  EmojiPickerStyle,
+  GifPickerStyle,
+  CHAT
 } from "./chat-constants";
 
 import { getPublicKey } from "../../../lib/nostr-tools/keys";
-import { dateToFormatted } from "../../helper/parse-date";
 import {
   createNoStrAccount,
   formatMessageDate,
@@ -98,20 +90,23 @@ import {
   setProfileMetaData,
   resetProfile,
   getCommunities,
-  getPrivateKey
+  getPrivateKey,
+  fetchCommunityMessages,
+  isMessageGif,
+  isMessageImage,
+  getProfileName
 } from "../../helper/chat-utils";
 import * as ls from "../../util/local-storage";
 import { renderPostBody } from "@ecency/render-helper";
-import { getAccessToken } from "../../helper/user-token";
 import accountReputation from "../../helper/account-reputation";
 import { _t } from "../../i18n";
 
 import { getAccountFull, getAccountReputations } from "../../api/hive";
-import { uploadImage } from "../../api/misc";
-import { addImage } from "../../api/private-api";
 import { getCommunity } from "../../api/bridge";
 
 import "./index.scss";
+import ChatsDropdownMenu from "../chats-dropdown-menu";
+import ChatsCommunityDropdownMenu from "../chats-community-dropdown-menu";
 
 export interface profileData {
   joiningData: string;
@@ -122,6 +117,16 @@ export interface profileData {
 export interface AccountWithReputation {
   account: string;
   reputation: number;
+}
+
+export interface EmojiPickerStyleProps {
+  width: string;
+  bottom: string;
+  left: string | number;
+  marginLeft: string;
+  borderTopLeftRadius: string;
+  borderTopRightRadius: string;
+  borderBottomLeftRadius: string;
 }
 
 interface Props {
@@ -143,20 +148,16 @@ interface Props {
 }
 
 let zoom: Zoom | null = null;
-const roles = [ROLES.ADMIN, ROLES.MOD, ROLES.GUEST];
 
 export default function ChatBox(props: Props) {
+  const routerLocation = useLocation();
   const prevPropsRef = useRef(props);
   const popoverRef = useRef<HTMLDivElement | null>(null);
   const chatBodyDivRef = React.createRef<HTMLDivElement>();
-  const fileInput = React.createRef<HTMLInputElement>();
   const [expanded, setExpanded] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
   const [isCurrentUser, setIsCurrentUser] = useState(false);
-  const [message, setMessage] = useState("");
   const [dmMessage, setDmMessage] = useState("");
-  const [isMessageText, setIsMessageText] = useState(false);
-  const [profileData, setProfileData] = useState<profileData>();
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [showSearchUser, setShowSearchUser] = useState(false);
@@ -168,7 +169,6 @@ export default function ChatBox(props: Props) {
   const [showSpinner, setShowSpinner] = useState(false);
   const [directMessagesList, setDirectMessagesList] = useState<DirectMessage[]>([]);
   const [isCurrentUserJoined, setIsCurrentUserJoined] = useState(true);
-  const [shGif, setShGif] = useState(false);
   const [isCommunity, setIsCommunity] = useState(false);
   const [communityName, setCommunityName] = useState("");
   const [currentCommunity, setCurrentCommunity] = useState<Community>();
@@ -180,10 +180,7 @@ export default function ChatBox(props: Props) {
   const [communities, setCommunities] = useState<Channel[]>([]);
   const [searchtext, setSearchText] = useState("");
   const [userList, setUserList] = useState<AccountWithReputation[]>([]);
-  const [user, setUser] = useState("");
-  const [role, setRole] = useState("admin");
   const [addRoleError, setAddRoleError] = useState("");
-  const [moderator, setModerator] = useState<communityModerator>();
   const [noStrPrivKey, setNoStrPrivKey] = useState("");
   const [chatPrivKey, setChatPrivkey] = useState("");
   const [hoveredMessageId, setHoveredMessageId] = useState("");
@@ -193,19 +190,39 @@ export default function ChatBox(props: Props) {
   const [removedUsers, setRemovedUsers] = useState<string[]>([]);
   const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
   const [communityAdmins, setCommunityAdmins] = useState<string[]>([]);
-  const [blockedUsers, setBlockedUsers] = useState<{ name: string; pubkey: string }[]>([]);
   const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [resendMessage, setResendMessage] = useState<PublicMessage | DirectMessage>();
   const [importPrivKey, setImportPrivKey] = useState(false);
   const [revelPrivateKey, setRevealPrivateKey] = useState(false);
   const [innerWidth, setInnerWidth] = useState(0);
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [isChatPage, setIsChatPage] = useState(false);
+
+  useEffect(() => {
+    console.log("Chat in store", props.chat);
+  }, [props.chat]);
+
+  useEffect(() => {
+    if (currentChannel && props.chat.leftChannelsList.includes(currentChannel.id)) {
+      setIsCommunity(false);
+      setCommunityName("");
+    }
+  }, [props.chat.leftChannelsList]);
+
+  useEffect(() => {
+    handleRouterChange();
+  }, [routerLocation]);
+
+  useEffect(() => {
+    if (isChatPage) {
+      setShow(false);
+    }
+  }, [isChatPage]);
 
   useEffect(() => {
     // resetProfile(props.activeUser);
     fetchProfileData();
-    setShow(!!props.activeUser?.username);
+    !isChatPage && setShow(!!props.activeUser?.username);
     const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
     setNoStrPrivKey(noStrPrivKey);
     setInnerWidth(window.innerWidth);
@@ -217,8 +234,9 @@ export default function ChatBox(props: Props) {
       .sort((a, b) => b.created - a.created)[0];
     if (currentChannel && updated) {
       const publicMessages: PublicMessage[] = fetchCommunityMessages(
-        currentChannel.id,
-        updated.hiddenMessageIds
+        props.chat.publicMessages,
+        currentChannel,
+        updated?.hiddenMessageIds
       );
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
@@ -283,7 +301,6 @@ export default function ChatBox(props: Props) {
 
   useEffect(() => {
     currentChannel?.communityModerators && getPrivilegedUsers(currentChannel?.communityModerators!);
-    currentChannel?.removedUserIds && getBlockedUsers(currentChannel?.removedUserIds!);
     currentChannel?.removedUserIds && setRemovedUsers(currentChannel.removedUserIds);
     currentChannel && scrollerClicked();
     if (removedUsers) {
@@ -346,7 +363,11 @@ export default function ChatBox(props: Props) {
   useEffect(() => {
     if (currentChannel && isCommunity) {
       window?.messageService?.fetchChannel(currentChannel.id);
-      const publicMessages: PublicMessage[] = fetchCommunityMessages(currentChannel.id);
+      const publicMessages: PublicMessage[] = fetchCommunityMessages(
+        props.chat.publicMessages,
+        currentChannel,
+        currentChannel.hiddenMessageIds
+      );
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
     }
@@ -363,7 +384,6 @@ export default function ChatBox(props: Props) {
 
   useEffect(() => {
     fetchProfileData();
-    setShow(!!props.activeUser?.username);
     const msgsList = fetchDirectMessages(receiverPubKey!);
     const messages = msgsList.sort((a, b) => a.created - b.created);
     setDirectMessagesList(messages);
@@ -407,7 +427,6 @@ export default function ChatBox(props: Props) {
       }
     } else {
       setIsCurrentUserJoined(true);
-      setMessage("");
       setInProgress(false);
     }
   }, [currentUser]);
@@ -446,21 +465,18 @@ export default function ChatBox(props: Props) {
     setCommunityAdmins(communityAdminNames);
   };
 
-  const getBlockedUsers = (blockedUser: string[]) => {
-    const blockedUsers = props.chat.profiles
-      .filter((item) => blockedUser.includes(item.creator))
-      .map((item) => ({ name: item.name, pubkey: item.creator }));
-    setBlockedUsers(blockedUsers);
+  const handleRouterChange = () => {
+    if (routerLocation.pathname.match("/chats")) {
+      setShow(false);
+      setIsChatPage(true);
+    } else {
+      setShow(true);
+    }
   };
 
   const fetchCommunity = async () => {
     const community = await getCommunity(communityName, props.activeUser?.username);
     setCurrentCommunity(community!);
-    setProfileData({
-      joiningData: community?.created_at!,
-      about: community?.about,
-      followers: community?.subscribers
-    });
   };
 
   const fetchCurrentChannel = (communityName: string) => {
@@ -493,17 +509,6 @@ export default function ChatBox(props: Props) {
     setInnerWidth(window.innerWidth);
   };
 
-  const formatFollowers = (count: number | undefined) => {
-    if (count) {
-      return count >= 1e6
-        ? (count / 1e6).toLocaleString() + "M"
-        : count >= 1e3
-        ? (count / 1e3).toLocaleString() + "K"
-        : count.toLocaleString();
-    }
-    return count;
-  };
-
   const zoomInitializer = () => {
     const elements: HTMLElement[] = [
       ...document.querySelectorAll<HTMLElement>(".chat-image img")
@@ -529,26 +534,8 @@ export default function ChatBox(props: Props) {
     return [];
   };
 
-  const fetchCommunityMessages = (channelId: string, hiddenMessageIds?: string[]) => {
-    const hideMessageIds = hiddenMessageIds || currentChannel?.hiddenMessageIds || [];
-    for (const item of props.chat.publicMessages) {
-      if (item.channelId === channelId) {
-        const filteredPublicMessages = Object.values(item.PublicMessage).filter(
-          (message) => !hideMessageIds.includes(message.id)
-        );
-        return filteredPublicMessages;
-      }
-    }
-    return [];
-  };
-
   const fetchCurrentUserData = async () => {
     const response = await getAccountFull(currentUser);
-    setProfileData({
-      joiningData: response.created,
-      about: response.profile?.about,
-      followers: response.follow_stats?.follower_count
-    });
     const { posting_json_metadata } = response;
     const profile = JSON.parse(posting_json_metadata!).profile;
     const { nsKey } = profile || {};
@@ -567,41 +554,11 @@ export default function ChatBox(props: Props) {
     setActiveUserKeys(activeUserKeys);
     const hasNoStrKey = profileData && profileData.hasOwnProperty(NOSTRKEY);
     setHasUserJoinedChat(hasNoStrKey);
-    setShow(!!props.activeUser?.username);
   };
 
   const userClicked = (username: string) => {
     setIsCurrentUser(true);
     setCurrentUser(username);
-  };
-
-  const handleMessage = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    setMessage(e.target.value);
-    setIsMessageText(e.target.value.length !== 0);
-  };
-
-  const sendMessage = () => {
-    if (message.length !== 0 && !message.includes(UPLOADING)) {
-      if (isCommunity) {
-        if (!isActveUserRemoved) {
-          window?.messageService?.sendPublicMessage(currentChannel!, message, [], "");
-        } else {
-          error(_t("chat.message-warning"));
-        }
-      }
-      if (isCurrentUser) {
-        window.messageService?.sendDirectMessage(receiverPubKey, message);
-      }
-      setMessage("");
-      setIsMessageText(false);
-    }
-    if (
-      receiverPubKey &&
-      !props.chat.directContacts.some((contact) => contact.name === currentUser) &&
-      isCurrentUser
-    ) {
-      window.messageService?.publishContacts(currentUser, receiverPubKey);
-    }
   };
 
   const fetchPrevMessages = () => {
@@ -705,10 +662,6 @@ export default function ChatBox(props: Props) {
     return <></>;
   };
 
-  const handleEmojiSelection = (emoji: string) => {
-    setMessage((prevMessage) => prevMessage + emoji);
-  };
-
   const getLastMessage = (pubkey: string) => {
     const msgsList = fetchDirectMessages(pubkey!);
     const messages = msgsList.sort((a, b) => a.created - b.created);
@@ -716,102 +669,9 @@ export default function ChatBox(props: Props) {
     return lastMessage[0]?.content;
   };
 
-  const handleGifSelection = (gif: string) => {
-    isCurrentUser
-      ? window.messageService?.sendDirectMessage(receiverPubKey, gif)
-      : window?.messageService?.sendPublicMessage(currentChannel!, gif, [], "");
-  };
-
-  const toggleGif = (e?: React.MouseEvent<HTMLElement>) => {
-    if (e) {
-      e.stopPropagation();
-    }
-    setShGif(!shGif);
-  };
-
-  const isMessageGif = (content: string) => {
-    return content.includes(GIPHGY);
-  };
-
-  const checkFile = (filename: string) => {
-    const filenameLow = filename.toLowerCase();
-    return ["jpg", "jpeg", "gif", "png"].some((el) => filenameLow.endsWith(el));
-  };
-
-  const fileInputChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    let files = [...(e.target.files as FileList)].filter((i) => checkFile(i.name)).filter((i) => i);
-
-    const {
-      global: { isElectron }
-    } = props;
-
-    if (files.length > 0) {
-      e.stopPropagation();
-      e.preventDefault();
-    }
-
-    if (files.length > 1 && isElectron) {
-      let isWindows = process.platform === "win32";
-      if (isWindows) {
-        files = files.reverse();
-      }
-    }
-
-    files.forEach((file) => upload(file));
-
-    // reset input
-    e.target.value = "";
-  };
-
-  const upload = async (file: File) => {
-    const { activeUser, global } = props;
-
-    const username = activeUser?.username!;
-
-    const tempImgTag = `![Uploading ${file.name} #${Math.floor(Math.random() * 99)}]()\n\n`;
-
-    setMessage(tempImgTag);
-
-    let imageUrl: string;
-    try {
-      let token = getAccessToken(username);
-      if (token) {
-        const resp = await uploadImage(file, token);
-        imageUrl = resp.url;
-
-        if (global.usePrivate && imageUrl.length > 0) {
-          addImage(username, imageUrl).then();
-        }
-
-        const imgTag = imageUrl.length > 0 && `![](${imageUrl})\n\n`;
-
-        imgTag && setMessage(imgTag);
-        setIsMessageText(true);
-      } else {
-        error(_t("editor-toolbar.image-error-cache"));
-      }
-    } catch (e) {
-      if (axios.isAxiosError(e) && e.response?.status === 413) {
-        error(_t("editor-toolbar.image-error-size"));
-      } else {
-        error(_t("editor-toolbar.image-error"));
-      }
-      return;
-    }
-  };
-
-  const isMessageImage = (content: string) => {
-    return content.includes("https://images.ecency.com");
-  };
-
   const communityClicked = (community: string, name: string) => {
     setIsCommunity(true);
     setCommunityName(community);
-  };
-
-  const getProfileName = (creator: string) => {
-    const profile = props.chat.profiles.find((x) => x.creator === creator);
-    return profile?.name;
   };
 
   const sendDM = (name: string, pubkey: string) => {
@@ -865,11 +725,13 @@ export default function ChatBox(props: Props) {
         setNostrkeys(keys);
         setStep(4);
         setChatPrivkey("");
+        setImportPrivKey(false);
       } else {
+        setImportPrivKey(true);
         setAddRoleError("Invalid Private key");
       }
-      setImportPrivKey(false);
     } catch (error) {
+      setImportPrivKey(true);
       setAddRoleError("Invalid Private key");
     }
   };
@@ -877,25 +739,6 @@ export default function ChatBox(props: Props) {
   const finish = () => {
     setStep(0);
     setKeyDialog(false);
-  };
-
-  const updateRole = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-    moderator: communityModerator
-  ) => {
-    const selectedRole = event.target.value;
-    const moderatorIndex = currentChannel?.communityModerators?.findIndex(
-      (mod) => mod.name === moderator.name
-    );
-    if (moderatorIndex !== -1 && currentChannel) {
-      const newUpdatedChannel: Channel = { ...currentChannel };
-      const newUpdatedModerator = { ...newUpdatedChannel?.communityModerators![moderatorIndex!] };
-      newUpdatedModerator.role = selectedRole;
-      newUpdatedChannel!.communityModerators![moderatorIndex!] = newUpdatedModerator;
-      setCurrentChannel(newUpdatedChannel);
-      window.messageService?.updateChannel(currentChannel, newUpdatedChannel);
-      success("Roles updated succesfully");
-    }
   };
 
   const handleResendMessage = () => {
@@ -920,20 +763,6 @@ export default function ChatBox(props: Props) {
       case BLOCKUSER:
         handleChannelUpdate(BLOCKUSER);
         break;
-      case UNBLOCKUSER:
-        handleChannelUpdate(UNBLOCKUSER);
-        break;
-      case LEAVECOMMUNITY:
-        window?.messageService
-          ?.updateLeftChannelList([...props.chat.leftChannelsList!, currentChannel?.id!])
-          .then(() => {})
-          .finally(() => {
-            setKeyDialog(false);
-            setStep(0);
-            setIsCommunity(false);
-            setCommunityName("");
-          });
-        break;
       case NEWCHATACCOUNT:
         setInProgress(true);
         resetProfile(props.activeUser)
@@ -952,173 +781,6 @@ export default function ChatBox(props: Props) {
       default:
         break;
     }
-  };
-
-  const EditRolesModal = () => {
-    return (
-      <>
-        <div className="add-dialog-header">
-          <div className="add-dialog-titles">
-            <h4 className="add-main-title">{_t("chat.edit-community-roles")}</h4>
-          </div>
-        </div>
-        <div className="community-chat-role-edit-dialog-content">
-          {inProgress && <LinearProgress />}
-          <div className={`add-user-role-form ${inProgress ? "in-progress" : ""}`}>
-            <Form.Group as={Row}>
-              <Form.Label column={true} sm="2">
-                {_t("community-role-edit.username")}
-              </Form.Label>
-              <Col sm="10">
-                <InputGroup>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text>@</InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <Form.Control
-                    type="text"
-                    autoFocus={user === ""}
-                    placeholder={_t("community-role-edit.username").toLowerCase()}
-                    value={user}
-                    onChange={userChanged}
-                    className={addRoleError ? "is-invalid" : ""}
-                  />
-                </InputGroup>
-                {addRoleError && <Form.Text className="text-danger">{addRoleError}</Form.Text>}
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column={true} sm="2">
-                {_t("community-role-edit.role")}
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control as="select" value={role} onChange={roleChanged}>
-                  {roles.map((r, i) => (
-                    <option key={i} value={r}>
-                      {r}
-                    </option>
-                  ))}
-                </Form.Control>
-              </Col>
-            </Form.Group>
-            <div className="d-flex justify-content-end">
-              <Button
-                type="button"
-                onClick={() => handleChannelUpdate(ADDROLE)}
-                disabled={inProgress || addRoleError.length !== 0 || user.length === 0}
-              >
-                {_t("chat.add")}
-              </Button>
-            </div>
-          </div>
-          {currentChannel?.communityModerators?.length !== 0 ? (
-            <>
-              <table className="table table-striped table-bordered table-roles">
-                <thead>
-                  <tr>
-                    <th style={{ width: "50%" }}>{_t("community.roles-account")}</th>
-                    <th style={{ width: "50%" }}>{_t("community.roles-role")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {currentChannel?.communityModerators &&
-                    currentChannel?.communityModerators!.map((moderator, i) => {
-                      return (
-                        <tr key={i}>
-                          <td>
-                            <span className="user">
-                              <UserAvatar username={moderator.name} size="medium" />{" "}
-                              <span className="username">@{moderator.name}</span>
-                            </span>
-                          </td>
-                          <td>
-                            {moderator.name === props.activeUser?.username ? (
-                              <p style={{ margin: "5px 0 0 12px" }}>{moderator.role}</p>
-                            ) : (
-                              <Form.Control
-                                as="select"
-                                value={moderator.role}
-                                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                                  updateRole(e, moderator)
-                                }
-                              >
-                                {roles.map((r, i) => (
-                                  <option key={i} value={r}>
-                                    {r}
-                                  </option>
-                                ))}
-                              </Form.Control>
-                            )}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                </tbody>
-              </table>
-            </>
-          ) : (
-            <div className="text-center">
-              <p>{_t("chat.no-admin")}</p>
-            </div>
-          )}
-        </div>
-      </>
-    );
-  };
-
-  const blockedUsersModal = () => {
-    return (
-      <>
-        <div className="blocked-user-header" style={{ marginBottom: "1rem" }}>
-          <h4 className="blocked-user-title">{_t("chat.blocked-users")}</h4>
-        </div>
-
-        {blockedUsers.length !== 0 ? (
-          <>
-            <table className="table table-striped table-bordered table-roles">
-              <thead>
-                <tr>
-                  <th style={{ width: "50%" }}>{_t("community.roles-account")}</th>
-                  <th style={{ width: "50%" }}>{_t("chat.action")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {blockedUsers &&
-                  blockedUsers.map((user, i) => {
-                    return (
-                      <tr key={i}>
-                        <td>
-                          <span className="d-flex user">
-                            <UserAvatar username={user.name} size="medium" />{" "}
-                            <span className="username" style={{ margin: "10px 0 0 10px" }}>
-                              @{user.name}
-                            </span>
-                          </span>
-                        </td>
-                        <td>
-                          <Button
-                            variant="outline-primary"
-                            onClick={() => {
-                              setKeyDialog(true);
-                              setStep(7);
-                              setRemovedUserID(user.pubkey);
-                            }}
-                          >
-                            {_t("chat.unblock")}
-                          </Button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
-          </>
-        ) : (
-          <div className="text-center">
-            <p> {_t("chat.no-locked-user")}</p>
-          </div>
-        )}
-      </>
-    );
   };
 
   const successModal = (message: string) => {
@@ -1192,51 +854,6 @@ export default function ChatBox(props: Props) {
     );
   };
 
-  useDebounce(
-    async () => {
-      if (user.length === 0) {
-        setAddRoleError("");
-        setInProgress(false);
-        return;
-      }
-
-      try {
-        const profileData = await getProfileMetaData(user);
-        if (profileData && profileData.hasOwnProperty(NOSTRKEY)) {
-          const alreadyExists = currentChannel?.communityModerators?.some(
-            (moderator) => moderator.name === profileData.name
-          );
-          if (alreadyExists) {
-            setAddRoleError("You have already assigned some rule to this user.");
-            setInProgress(false);
-            return;
-          }
-          const moderator = {
-            name: user,
-            pubkey: profileData.nsKey,
-            role: role
-          };
-          setModerator(moderator);
-          setAddRoleError("");
-        } else {
-          setAddRoleError("You cannot set this user because this user hasn't joined the chat yet.");
-        }
-      } catch (err) {
-        error(err as string);
-      }
-
-      setInProgress(false);
-    },
-    200,
-    [user, role]
-  );
-
-  const userChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    const { value: user } = e.target;
-    setUser(user);
-    setInProgress(true);
-  };
-
   const handleChannelUpdate = (operationType: string) => {
     let updatedMetaData = {
       name: currentChannel?.name!,
@@ -1249,10 +866,6 @@ export default function ChatBox(props: Props) {
     };
 
     switch (operationType) {
-      case ADDROLE:
-        const updatedRoles = [...(currentChannel?.communityModerators || []), moderator!];
-        updatedMetaData.communityModerators = updatedRoles;
-        break;
       case HIDEMESSAGE:
         const updatedHiddenMessages = [...(currentChannel?.hiddenMessageIds || []), hiddenMsgId!];
         updatedMetaData.hiddenMessageIds = updatedHiddenMessages;
@@ -1272,12 +885,6 @@ export default function ChatBox(props: Props) {
           updatedMetaData.communityModerators = NewUpdatedRoles;
         }
         break;
-      case UNBLOCKUSER:
-        const NewUpdatedRemovedUsers = currentChannel?.removedUserIds?.filter(
-          (item) => item !== removedUserId
-        );
-        updatedMetaData.removedUserIds = NewUpdatedRemovedUsers;
-        break;
       default:
         break;
     }
@@ -1288,7 +895,11 @@ export default function ChatBox(props: Props) {
       if (operationType === HIDEMESSAGE) {
         setStep(0);
         setKeyDialog(false);
-        fetchCommunityMessages(currentChannel?.id!);
+        fetchCommunityMessages(
+          props.chat.publicMessages,
+          currentChannel!,
+          currentChannel?.hiddenMessageIds
+        );
         setHiddenMsgId("");
       }
       if (operationType === BLOCKUSER || operationType === UNBLOCKUSER) {
@@ -1301,29 +912,8 @@ export default function ChatBox(props: Props) {
     }
   };
 
-  const roleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    const { value: role } = e.target;
-    setRole(role);
-  };
-
-  const leaveClicked = () => {
-    setKeyDialog(true);
-    setStep(1);
-  };
-
-  const handleEditRoles = () => {
-    setKeyDialog(true);
-    setStep(2);
-  };
-
-  const handleBlockedUsers = () => {
-    setKeyDialog(true);
-    setStep(8);
-  };
-
   const toggleKeyDialog = () => {
     setKeyDialog(!keyDialog);
-    setUser("");
     setAddRoleError("");
   };
 
@@ -1335,66 +925,9 @@ export default function ChatBox(props: Props) {
     setClickedMessage("");
     setShowSearchUser(false);
     setSearchText("");
-    setMessage("");
     setHasMore(true);
     setRevealPrivateKey(false);
     setAddRoleError("");
-  };
-
-  const communityMenuItems: MenuItem[] = [
-    {
-      label: _t("chat.invite"),
-      onClick: () =>
-        copyToClipboard(
-          `http://localhost:3000/created/${currentCommunity?.name}?communityid=${currentChannel?.id}`
-        ),
-      icon: linkSvg
-    },
-    {
-      label: _t("chat.leave"),
-      onClick: leaveClicked,
-      icon: chatLeaveSvg
-    },
-    ...(props.activeUser?.username === currentChannel?.communityName
-      ? [
-          {
-            label: _t("chat.edit-roles"),
-            onClick: handleEditRoles,
-            icon: editSVG
-          }
-        ]
-      : []),
-    ...(communityAdmins.includes(props.activeUser?.username!)
-      ? [
-          {
-            label: _t("chat.blocked-users"),
-            onClick: handleBlockedUsers,
-            icon: removeUserSvg
-          }
-        ]
-      : [])
-  ];
-
-  const communityMenuConfig = {
-    history: props.history,
-    label: "",
-    icon: KebabMenu,
-    items: communityMenuItems
-  };
-
-  const menuItems: MenuItem[] = [
-    {
-      label: _t("chat.manage-chat-key"),
-      onClick: () => setRevealPrivateKey(!revelPrivateKey),
-      icon: chatKeySvg
-    }
-  ];
-
-  const menuConfig = {
-    history: props.history,
-    label: "",
-    icon: KebabMenu,
-    items: menuItems
   };
 
   return (
@@ -1465,23 +998,16 @@ export default function ChatBox(props: Props) {
               )}
               {isCommunity && (
                 <div className="community-menu">
-                  <DropDown
-                    {...communityMenuConfig}
-                    float="right"
-                    alignBottom={false}
-                    noMarginTop={true}
-                    style={DropDownStyle}
-                  />
+                  <ChatsCommunityDropdownMenu username={communityName} {...props} />
                 </div>
               )}{" "}
               {!isCommunity && !isCurrentUser && noStrPrivKey && (
                 <div className="simple-menu">
-                  <DropDown
-                    {...menuConfig}
-                    float="right"
-                    alignBottom={false}
-                    noMarginTop={true}
-                    style={DropDownStyle}
+                  <ChatsDropdownMenu
+                    {...props}
+                    onManageChatKey={() => {
+                      setRevealPrivateKey(!revelPrivateKey);
+                    }}
                   />
                 </div>
               )}
@@ -1530,43 +1056,12 @@ export default function ChatBox(props: Props) {
                             : ""
                         }
                       >
-                        <div className="user-profile">
-                          {profileData?.joiningData && (
-                            <div className="user-profile-data">
-                              <span className="user-logo">
-                                <UserAvatar
-                                  username={
-                                    isCurrentUser
-                                      ? currentUser
-                                      : (isCommunity && currentCommunity?.name) || ""
-                                  }
-                                  size="large"
-                                />
-                              </span>
-                              <h4 className="user-name user-logo ">
-                                {isCurrentUser
-                                  ? currentUser
-                                  : (isCommunity && currentCommunity?.title) || ""}
-                              </h4>
-                              {profileData.about && (
-                                <p className="about user-logo ">{profileData.about}</p>
-                              )}
-
-                              <div className="created-date user-logo joining-info">
-                                <p>
-                                  {" "}
-                                  {_t("chat.joined")}{" "}
-                                  {dateToFormatted(profileData!.joiningData, "LL")}
-                                </p>
-                                <p className="followers">
-                                  {" "}
-                                  {formatFollowers(profileData!.followers)}{" "}
-                                  {isCommunity ? _t("chat.subscribers") : _t("chat.followers")}
-                                </p>
-                              </div>
-                            </div>
-                          )}
-                        </div>
+                        <ChatsProfileBox
+                          isCommunity={isCommunity}
+                          isCurrentUser={isCurrentUser}
+                          communityName={communityName}
+                          currentUser={currentUser}
+                        />
                       </Link>
                       {!isCurrentUserJoined && (
                         <p className="not-joined">{_t("chat.not-joined")}</p>
@@ -1672,7 +1167,7 @@ export default function ChatBox(props: Props) {
 
                             const isImage = isMessageImage(pMsg.content);
 
-                            const name = getProfileName(pMsg.creator);
+                            const name = getProfileName(pMsg.creator, props.chat.profiles);
 
                             const popover = (
                               <Popover
@@ -2089,7 +1584,9 @@ export default function ChatBox(props: Props) {
               >
                 <div
                   className="scroller"
-                  style={{ bottom: isCurrentUser && isScrollToBottom ? "20px" : "55px" }}
+                  style={{
+                    bottom: (isCurrentUser || isCommunity) && isScrollToBottom ? "20px" : "55px"
+                  }}
                   onClick={scrollerClicked}
                 >
                   {isCurrentUser || isCommunity ? chevronDownSvgForSlider : chevronUpSvg}
@@ -2103,119 +1600,19 @@ export default function ChatBox(props: Props) {
             )}
           </div>
           {inProgress && <LinearProgress />}
-
-          {(currentUser || isCommunity) && (
-            <div className={`chat ${isActveUserRemoved ? "disable" : ""}`}>
-              <ClickAwayListener onClickAway={() => showEmojiPicker && setShowEmojiPicker(false)}>
-                <div className="chatbox-emoji-picker">
-                  <div className="chatbox-emoji">
-                    <Tooltip content={_t("editor-toolbar.emoji")}>
-                      <div
-                        className="emoji-icon"
-                        onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-                      >
-                        {emoticonHappyOutlineSvg}
-                      </div>
-                    </Tooltip>
-                    {showEmojiPicker && (
-                      <EmojiPicker
-                        style={EmojiPickerStyle}
-                        fallback={(e) => {
-                          handleEmojiSelection(e);
-                        }}
-                      />
-                    )}
-                  </div>
-                </div>
-              </ClickAwayListener>
-
-              {message.length === 0 && (
-                <React.Fragment>
-                  <ClickAwayListener onClickAway={() => shGif && setShGif(false)}>
-                    <div className="chatbox-emoji-picker">
-                      <div className="chatbox-emoji">
-                        <Tooltip content={_t("Gif")}>
-                          <div className="emoji-icon" onClick={toggleGif}>
-                            {" "}
-                            {gifIcon}
-                          </div>
-                        </Tooltip>
-                        {shGif && (
-                          <GifPicker
-                            style={GifPickerStyle}
-                            gifImagesStyle={GifImagesStyle}
-                            shGif={true}
-                            changeState={(gifState) => {
-                              setShGif(gifState!);
-                            }}
-                            fallback={(e) => {
-                              handleGifSelection(e);
-                            }}
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </ClickAwayListener>
-
-                  <Tooltip content={"Image"}>
-                    <div
-                      className="chatbox-image"
-                      onClick={(e: React.MouseEvent<HTMLElement>) => {
-                        e.stopPropagation();
-                        const el = fileInput.current;
-                        if (el) el.click();
-                      }}
-                    >
-                      <div className="chatbox-image-icon">{chatBoxImageSvg}</div>
-                    </div>
-                  </Tooltip>
-
-                  <input
-                    onChange={fileInputChanged}
-                    className="file-input"
-                    ref={fileInput}
-                    type="file"
-                    accept="image/*"
-                    multiple={true}
-                    style={{ display: "none" }}
-                  />
-                </React.Fragment>
-              )}
-
-              <Form
-                onSubmit={(e: React.FormEvent) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  sendMessage();
-                }}
-                style={{ width: "100%" }}
-              >
-                <InputGroup className="chat-input-group">
-                  <Form.Control
-                    value={message}
-                    autoFocus={true}
-                    onChange={handleMessage}
-                    required={true}
-                    type="text"
-                    placeholder={_t("chat.start-chat-placeholder")}
-                    autoComplete="off"
-                    className="chat-input"
-                    style={{ maxWidth: "100%", overflowWrap: "break-word" }}
-                    disabled={
-                      inProgress ||
-                      (isCurrentUser && receiverPubKey) === undefined ||
-                      isActveUserRemoved
-                    }
-                  />
-                  <InputGroup.Append
-                    className={`msg-svg ${isMessageText || message.length !== 0 ? "active" : ""}`}
-                    onClick={sendMessage}
-                  >
-                    {messageSendSvg}
-                  </InputGroup.Append>
-                </InputGroup>
-              </Form>
-            </div>
+          {(isCurrentUser || isCommunity) && (
+            <ChatInput
+              {...props}
+              isCurrentUser={isCurrentUser}
+              isCommunity={isCommunity}
+              receiverPubKey={receiverPubKey}
+              isActveUserRemoved={isActveUserRemoved}
+              currentUser={currentUser}
+              currentChannel={currentChannel!}
+              isCurrentUserJoined={isCurrentUserJoined}
+              emojiPickerStyles={EmojiPickerStyle}
+              gifPickerStyle={GifPickerStyle}
+            />
           )}
         </div>
       )}
@@ -2232,15 +1629,11 @@ export default function ChatBox(props: Props) {
         >
           <Modal.Header closeButton={true} />
           <Modal.Body className="chat-modals-body">
-            {step === 1 && confirmationModal(LEAVECOMMUNITY)}
             {step === 5 && confirmationModal(HIDEMESSAGE)}
             {step === 6 && confirmationModal(BLOCKUSER)}
-            {step === 7 && confirmationModal(UNBLOCKUSER)}
             {step === 9 && confirmationModal(NEWCHATACCOUNT)}
             {step === 11 && confirmationModal(RESENDMESSAGE)}
-            {step === 2 && EditRolesModal()}
             {step === 10 && successModal(NEWCHATACCOUNT)}
-            {step === 8 && blockedUsersModal()}
           </Modal.Body>
         </Modal>
       )}

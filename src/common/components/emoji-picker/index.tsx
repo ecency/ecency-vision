@@ -4,6 +4,7 @@ import { FormControl } from "react-bootstrap";
 
 import BaseComponent from "../base";
 import SearchBox from "../search-box";
+import { EmojiPickerStyleProps } from "../../components/chat-box";
 
 import { _t } from "../../i18n";
 
@@ -39,15 +40,7 @@ interface EmojiCacheItem {
 
 interface Props {
   fallback?: (e: string) => void;
-  style?: {
-    width: string;
-    bottom: string;
-    left: string | number;
-    marginLeft: string;
-    borderTopLeftRadius: string;
-    borderTopRightRadius: string;
-    borderBottomLeftRadius: string;
-  };
+  style?: EmojiPickerStyleProps;
 }
 
 interface State {

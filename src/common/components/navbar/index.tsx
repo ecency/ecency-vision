@@ -36,7 +36,8 @@ import {
   sunSvg,
   upArrowSvg,
   userOutlineSvg,
-  walletSvg
+  walletSvg,
+  messangerSvg
 } from "../../img/svg";
 import UserAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
@@ -516,6 +517,12 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
                     <div className="ml-3 text-15 d-flex">
                       {_t("user-nav.wallet")} <div className="dot align-self-start ml-1" />
                     </div>
+                  </div>
+                </Link>
+                <Link to={`/chats`} onClick={() => setSmVisible(false)}>
+                  <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                    <div className="icon-stroke text-dark">{messangerSvg}</div>
+                    <div className="ml-3 text-15 d-flex">{_t("user-nav.chats")}</div>
                   </div>
                 </Link>
               </>

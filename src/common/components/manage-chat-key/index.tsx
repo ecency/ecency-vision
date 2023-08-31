@@ -13,6 +13,7 @@ interface Props {
 }
 
 export default function ManageChatKey(props: Props) {
+  console.log("hello", props);
   return (
     <>
       <div className="manage-chat-key">
@@ -30,6 +31,7 @@ export default function ManageChatKey(props: Props) {
                 <p
                   className="copy-svg"
                   onClick={() => {
+                    console.log("SVG clicked");
                     props.copyPrivateKey(props.noStrPrivKey);
                   }}
                 >

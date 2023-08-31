@@ -50,6 +50,9 @@ const AuthPage = (props: any) => <AuthContainer {...props} />;
 const SubmitContainer = loadable(() => import("./pages/submit"));
 const SubmitPage = (props: any) => <SubmitContainer {...props} />;
 
+const ChatsContainer = loadable(() => import("./pages/chats"));
+const ChatsPage = (props: any) => <ChatsContainer {...props} />;
+
 const OnboardContainer = loadable(() => import("./pages/onboard"));
 const OnboardPage = (props: any) => <OnboardContainer {...props} />;
 
@@ -132,6 +135,7 @@ const App = (props: any) => {
         <Route exact={true} path={routes.SEARCH_MORE} component={SearchMorePageContainer} />
         <Route exact={true} strict={true} path={routes.AUTH} component={AuthPage} />
         <Route exact={true} strict={true} path={routes.SUBMIT} component={SubmitPage} />
+        <Route exact={true} strict={true} path={routes.CHATS} component={ChatsPage} />
         <Route exact={true} strict={true} path={routes.MARKET} component={MarketPage} />
         <Route exact={true} strict={true} path={routes.EDIT} component={SubmitPage} />
         <Route exact={true} strict={true} path={routes.SIGN_UP} component={SignUpPage} />
