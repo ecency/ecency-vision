@@ -3,7 +3,7 @@ import DropDown from "../dropdown"
 import { ActivitiesGroup } from "./types/activities-group"
 
 interface Props {
-  setFilter: React.Dispatch<React.SetStateAction<"" | ActivitiesGroup>>
+  setFilter: (v: ActivitiesGroup | "") => void
 }
 
 const ActivitiesDropdown = (props: Props) => {
@@ -49,20 +49,6 @@ const ActivitiesDropdown = (props: Props) => {
                       setFilter("custom_json");
                     }
                   },
-                  // {
-                  //   label: <span>Likes</span>,
-                  //   onClick: () => {
-                  //     setLabel("Likes");
-                  //     setFilter("custom_json");
-                  //   }
-                  // },
-                  // {
-                  //   label: <span>Communities</span>,
-                  //   onClick: () => {
-                  //     setLabel("Communities");
-                  //     setFilter("custom_json");
-                  //   }
-                  // },
                   {
                     label: <span>Witness votes</span>,
                     onClick: () => {
