@@ -1471,7 +1471,7 @@
     "insert-video": "Lisää",
     "insert-nsfw": "Lisää NSFW",
     "refresh": "Refresh to get updated status",
-    "video-info": "Videos are stored and powered by SPK network, might have some storage and encoding fees."
+    "video-info": "Videot on tallennettu toimivaksi SPK-verkossa, jossa voi olla joitakin tallennus- ja koodauskuluja."
   },
   "nsfw-content": {
     "title": "NSFW-sisältö",
