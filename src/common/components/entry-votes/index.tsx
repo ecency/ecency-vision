@@ -262,8 +262,8 @@ export class EntryVotes extends Component<Props, State> {
 
   componentDidUpdate(prevProps: Readonly<Props>) {
     const hasDifferentVotes =
-      prevProps.entry?.active_votes.length !== this.props.entry?.active_votes.length;
-    const hasCurrentUserVote = this.props.entry?.active_votes.find(
+      prevProps.entry?.active_votes?.length !== this.props.entry?.active_votes?.length;
+    const hasCurrentUserVote = this.props.entry?.active_votes?.find(
       ({ voter }) => voter === this.props.activeUser?.username
     );
     if (hasCurrentUserVote && hasDifferentVotes) {
