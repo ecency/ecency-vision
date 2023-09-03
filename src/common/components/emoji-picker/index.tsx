@@ -87,16 +87,20 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
     }
   }, [anchor]);
 
-  return createPortal(
-    <div
-      className="emoji-picker-dialog"
-      ref={ref}
-      style={{
-        top: position.y + 40,
-        left: position.x,
-        display: show ? "flex" : "none"
-      }}
-    />,
-    document.querySelector("#root")!!
+  return isMounted() ? (
+    createPortal(
+      <div
+        className="emoji-picker-dialog"
+        ref={ref}
+        style={{
+          top: position.y + 40,
+          left: position.x,
+          display: show ? "flex" : "none"
+        }}
+      />,
+      document.querySelector("#root")!!
+    )
+  ) : (
+    <></>
   );
 }
