@@ -2,7 +2,7 @@ import React from "react";
 
 import renderer from "react-test-renderer";
 
-import EmojiPicker from "./index";
+import EmojiPicker from "./index-old";
 
 import emojiData from "../../../../public/emoji.json";
 

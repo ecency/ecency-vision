@@ -1,207 +1,102 @@
-import React from "react";
-
-import { FormControl } from "react-bootstrap";
-
-import BaseComponent from "../base";
-import SearchBox from "../search-box";
-
-import { _t } from "../../i18n";
-
-import { getEmojiData } from "../../api/misc";
-
-import * as ls from "../../util/local-storage";
-
-import { insertOrReplace } from "../../util/input-util";
+import React, { useEffect, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { QueryIdentifiers } from "../../core";
+import { Picker } from "emoji-mart";
+import { createPortal } from "react-dom";
+import useClickAway from "react-use/lib/useClickAway";
+import useMountedState from "react-use/lib/useMountedState";
 import "./_index.scss";
+import { useMappedStore } from "../../store/use-mapped-store";
 
-interface Emoji {
-  a: string;
-  b: string;
-  j: string[];
-}
-
-interface EmojiCategory {
-  id: string;
-  name: string;
-  emojis: string[];
-}
-
-interface EmojiData {
-  categories: EmojiCategory[];
-  emojis: Record<string, Emoji>;
-}
-
-interface EmojiCacheItem {
-  id: string;
-  name: string;
-  keywords: string[];
-}
+export const DEFAULT_EMOJI_DATA = {
+  categories: [],
+  emojis: {},
+  aliases: {},
+  sheet: {
+    cols: 0,
+    rows: 0
+  }
+};
 
 interface Props {
-  fallback?: (e: string) => void;
+  anchor: Element | null;
+  onSelect: (e: string) => void;
 }
 
-interface State {
-  data: EmojiData | null;
-  cache: EmojiCacheItem[] | null;
-  filter: string;
-}
+/**
+ * Renders an emoji picker dialog.
+ *
+ * @param {Props} anchor - The anchor element to position the picker relative to.
+ * @param {function} onSelect - The callback function to be called when an emoji is selected.
+ * @return The rendered emoji picker dialog.
+ */
+export function EmojiPicker({ anchor, onSelect }: Props) {
+  const ref = useRef<HTMLDivElement | null>(null);
 
-export default class EmojiPicker extends BaseComponent<Props> {
-  state: State = {
-    data: null,
-    cache: null,
-    filter: ""
-  };
+  const { global } = useMappedStore();
 
-  _target: HTMLInputElement | null = null;
+  const [show, setShow] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [pickerInstance, setPickerInstance] = useState<Picker>();
 
-  componentDidMount() {
-    getEmojiData().then((data) => this.setData(data));
+  useClickAway(ref, () => {
+    setShow(false);
+  });
 
-    this.watchTarget(); // initial
+  const { data } = useQuery(
+    [QueryIdentifiers.EMOJI_PICKER],
+    async () => {
+      try {
+        const data = await import(/* webpackChunkName: "emojis" */ "@emoji-mart/data");
+        return data.default as typeof DEFAULT_EMOJI_DATA;
+      } catch (e) {
+        console.error("Failed to load emoji data");
+      }
 
-    if (typeof window !== "undefined") {
-      window.addEventListener("focus", this.watchTarget, true);
+      return DEFAULT_EMOJI_DATA;
+    },
+    {
+      initialData: DEFAULT_EMOJI_DATA
     }
-  }
+  );
 
-  componentWillUnmount() {
-    super.componentWillUnmount();
-    if (typeof window !== "undefined") {
-      window.removeEventListener("focus", this.watchTarget, true);
+  const isMounted = useMountedState();
+
+  useEffect(() => {
+    if (data.categories.length > 0) {
+      setPickerInstance(
+        new Picker({
+          dynamicWidth: true,
+          onEmojiSelect: (e: { native: string }) => onSelect(e.native),
+          previewPosition: "none",
+          ref,
+          set: "apple",
+          theme: global.theme === "day" ? "light" : "dark"
+        })
+      );
     }
-  }
+  }, [data, global.theme]);
 
-  watchTarget = () => {
-    if (document.activeElement?.classList.contains("accepts-emoji")) {
-      this._target = document.activeElement as HTMLInputElement;
+  useEffect(() => {
+    if (anchor) {
+      anchor.addEventListener("click", () => {
+        const { x, y } = anchor.getBoundingClientRect();
+        setPosition({ x: x + window.scrollX, y: y + window.scrollY });
+        setShow(true);
+      });
     }
-  };
+  }, [anchor]);
 
-  setData = (data: EmojiData) => {
-    const cache: EmojiCacheItem[] = Object.keys(data.emojis).map((e) => {
-      const em = data.emojis[e];
-      return {
-        id: e,
-        name: em.a.toLowerCase(),
-        keywords: em.j ? em.j : []
-      };
-    });
-
-    this.stateSet({ data, cache });
-  };
-
-  filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    this.setState({ filter: e.target.value });
-  };
-
-  clicked = (id: string, native: string) => {
-    const recent = ls.get("recent-emoji", []);
-    if (!recent.includes(id)) {
-      const newRecent = [...new Set([id, ...recent])].slice(0, 18);
-      ls.set("recent-emoji", newRecent);
-      this.forceUpdate(); // Re-render recent list
-    }
-
-    if (this._target) {
-      insertOrReplace(this._target, native);
-    } else {
-      const { fallback } = this.props;
-      if (fallback) fallback(native);
-    }
-  };
-
-  renderEmoji = (emoji: string) => {
-    const { data } = this.state;
-    const em = data!.emojis[emoji];
-    if (!em) {
-      return null;
-    }
-    const unicodes = em.b.split("-");
-    const codePoints = unicodes.map((u) => Number(`0x${u}`));
-    const native = String.fromCodePoint(...codePoints);
-
-    return (
-      <div
-        onClick={() => {
-          this.clicked(emoji, native);
-        }}
-        key={emoji}
-        className="emoji"
-        title={em.a}
-      >
-        {native}
-      </div>
-    );
-  };
-
-  render() {
-    const { data, cache, filter } = this.state;
-    if (!data || !cache) {
-      return null;
-    }
-
-    const recent: string[] = ls.get("recent-emoji", []);
-
-    return (
-      <div className="emoji-picker">
-        <SearchBox
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="off"
-          spellCheck="false"
-          placeholder={_t("emoji-picker.filter-placeholder")}
-          value={filter}
-          onChange={this.filterChanged}
-        />
-
-        {(() => {
-          if (filter) {
-            const results = cache
-              .filter(
-                (i) =>
-                  i.id.indexOf(filter) !== -1 ||
-                  i.name.indexOf(filter) !== -1 ||
-                  i.keywords.includes(filter)
-              )
-              .map((i) => i.id);
-
-            return (
-              <div className="emoji-cat-list">
-                <div className="emoji-cat">
-                  <div className="emoji-list">
-                    {results.length === 0 && _t("emoji-picker.filter-no-match")}
-                    {results.length > 0 && results.map((emoji) => this.renderEmoji(emoji))}
-                  </div>
-                </div>
-              </div>
-            );
-          } else {
-            return (
-              <div className="emoji-cat-list">
-                {recent.length > 0 && (
-                  <div className="emoji-cat">
-                    <div className="cat-title">{_t("emoji-picker.recently-used")}</div>
-                    <div className="emoji-list">
-                      {recent.map((emoji) => this.renderEmoji(emoji))}
-                    </div>
-                  </div>
-                )}
-
-                {data.categories.map((cat) => (
-                  <div className="emoji-cat" key={cat.id}>
-                    <div className="cat-title">{cat.name}</div>
-                    <div className="emoji-list">
-                      {cat.emojis.map((emoji) => this.renderEmoji(emoji))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            );
-          }
-        })()}
-      </div>
-    );
-  }
+  return createPortal(
+    <div
+      className="emoji-picker-dialog"
+      ref={ref}
+      style={{
+        top: position.y + 40,
+        left: position.x,
+        display: show ? "flex" : "none"
+      }}
+    />,
+    document.querySelector("#root")!!
+  );
 }
