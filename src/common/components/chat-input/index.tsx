@@ -23,6 +23,7 @@ import { addImage } from "../../api/private-api";
 
 import "./index.scss";
 import { EmojiPickerStyleProps } from "../chat-box";
+import LinearProgress from "../linear-progress";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -102,6 +103,7 @@ export default function ChatInput(props: Props) {
       !props.chat.directContacts.some((contact) => contact.name === currentUser) &&
       isCurrentUser
     ) {
+      console.log("Contact has been published");
       window.messageService?.publishContacts(currentUser, receiverPubKey);
     }
   };
@@ -178,109 +180,111 @@ export default function ChatInput(props: Props) {
   };
 
   return (
-    <div className={`chat ${isActveUserRemoved || !isCurrentUserJoined ? "disable" : ""}`}>
-      <ClickAwayListener onClickAway={() => showEmojiPicker && setShowEmojiPicker(false)}>
-        <div className="chatbox-emoji-picker">
-          <div className="chatbox-emoji">
-            <Tooltip content={_t("editor-toolbar.emoji")}>
-              <div className="emoji-icon" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
-                {emoticonHappyOutlineSvg}
+    <>
+      <div className={`chat ${isActveUserRemoved || !isCurrentUserJoined ? "disable" : ""}`}>
+        <ClickAwayListener onClickAway={() => showEmojiPicker && setShowEmojiPicker(false)}>
+          <div className="chatbox-emoji-picker">
+            <div className="chatbox-emoji">
+              <Tooltip content={_t("editor-toolbar.emoji")}>
+                <div className="emoji-icon" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+                  {emoticonHappyOutlineSvg}
+                </div>
+              </Tooltip>
+              {showEmojiPicker && (
+                <EmojiPicker
+                  style={emojiPickerStyles}
+                  fallback={(e) => {
+                    handleEmojiSelection(e);
+                  }}
+                />
+              )}
+            </div>
+          </div>
+        </ClickAwayListener>
+
+        {message.length === 0 && (
+          <React.Fragment>
+            <ClickAwayListener onClickAway={() => shGif && setShGif(false)}>
+              <div className="chatbox-emoji-picker">
+                <div className="chatbox-emoji">
+                  <Tooltip content={_t("Gif")}>
+                    <div className="emoji-icon" onClick={toggleGif}>
+                      {" "}
+                      {gifIcon}
+                    </div>
+                  </Tooltip>
+                  {shGif && (
+                    <GifPicker
+                      style={gifPickerStyle}
+                      gifImagesStyle={GifImagesStyle}
+                      shGif={true}
+                      changeState={(gifState) => {
+                        setShGif(gifState!);
+                      }}
+                      fallback={(e) => {
+                        handleGifSelection(e);
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+            </ClickAwayListener>
+
+            <Tooltip content={"Image"}>
+              <div
+                className="chatbox-image"
+                onClick={(e: React.MouseEvent<HTMLElement>) => {
+                  e.stopPropagation();
+                  const el = fileInput.current;
+                  if (el) el.click();
+                }}
+              >
+                <div className="chatbox-image-icon">{chatBoxImageSvg}</div>
               </div>
             </Tooltip>
-            {showEmojiPicker && (
-              <EmojiPicker
-                style={emojiPickerStyles}
-                fallback={(e) => {
-                  handleEmojiSelection(e);
-                }}
-              />
-            )}
-          </div>
-        </div>
-      </ClickAwayListener>
 
-      {message.length === 0 && (
-        <React.Fragment>
-          <ClickAwayListener onClickAway={() => shGif && setShGif(false)}>
-            <div className="chatbox-emoji-picker">
-              <div className="chatbox-emoji">
-                <Tooltip content={_t("Gif")}>
-                  <div className="emoji-icon" onClick={toggleGif}>
-                    {" "}
-                    {gifIcon}
-                  </div>
-                </Tooltip>
-                {shGif && (
-                  <GifPicker
-                    style={gifPickerStyle}
-                    gifImagesStyle={GifImagesStyle}
-                    shGif={true}
-                    changeState={(gifState) => {
-                      setShGif(gifState!);
-                    }}
-                    fallback={(e) => {
-                      handleGifSelection(e);
-                    }}
-                  />
-                )}
-              </div>
-            </div>
-          </ClickAwayListener>
+            <input
+              onChange={fileInputChanged}
+              className="file-input"
+              ref={fileInput}
+              type="file"
+              accept="image/*"
+              multiple={true}
+              style={{ display: "none" }}
+            />
+          </React.Fragment>
+        )}
 
-          <Tooltip content={"Image"}>
-            <div
-              className="chatbox-image"
-              onClick={(e: React.MouseEvent<HTMLElement>) => {
-                e.stopPropagation();
-                const el = fileInput.current;
-                if (el) el.click();
-              }}
+        <Form
+          onSubmit={(e: React.FormEvent) => {
+            e.preventDefault();
+            e.stopPropagation();
+            sendMessage();
+          }}
+          style={{ width: "100%" }}
+        >
+          <InputGroup className="chat-input-group">
+            <Form.Control
+              value={message}
+              autoFocus={true}
+              onChange={handleMessage}
+              required={true}
+              type="text"
+              placeholder={_t("chat.start-chat-placeholder")}
+              autoComplete="off"
+              className="chat-input"
+              style={{ maxWidth: "100%", overflowWrap: "break-word" }}
+              disabled={(isCurrentUser && receiverPubKey) === undefined || isActveUserRemoved}
+            />
+            <InputGroup.Append
+              className={`msg-svg ${isMessageText || message.length !== 0 ? "active" : ""}`}
+              onClick={sendMessage}
             >
-              <div className="chatbox-image-icon">{chatBoxImageSvg}</div>
-            </div>
-          </Tooltip>
-
-          <input
-            onChange={fileInputChanged}
-            className="file-input"
-            ref={fileInput}
-            type="file"
-            accept="image/*"
-            multiple={true}
-            style={{ display: "none" }}
-          />
-        </React.Fragment>
-      )}
-
-      <Form
-        onSubmit={(e: React.FormEvent) => {
-          e.preventDefault();
-          e.stopPropagation();
-          sendMessage();
-        }}
-        style={{ width: "100%" }}
-      >
-        <InputGroup className="chat-input-group">
-          <Form.Control
-            value={message}
-            autoFocus={true}
-            onChange={handleMessage}
-            required={true}
-            type="text"
-            placeholder={_t("chat.start-chat-placeholder")}
-            autoComplete="off"
-            className="chat-input"
-            style={{ maxWidth: "100%", overflowWrap: "break-word" }}
-            disabled={(isCurrentUser && receiverPubKey) === undefined || isActveUserRemoved}
-          />
-          <InputGroup.Append
-            className={`msg-svg ${isMessageText || message.length !== 0 ? "active" : ""}`}
-            onClick={sendMessage}
-          >
-            {messageSendSvg}
-          </InputGroup.Append>
-        </InputGroup>
-      </Form>
-    </div>
+              {messageSendSvg}
+            </InputGroup.Append>
+          </InputGroup>
+        </Form>
+      </div>
+    </>
   );
 }

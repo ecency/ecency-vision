@@ -13,10 +13,12 @@ import { CHATPAGE } from "../chat-box/chat-constants";
 interface Props {
   username: string;
   history: History | null;
+  currentChannel: Channel;
+  currentChannelSetter: (channe: Channel) => void;
 }
 
 export default function ChatsMessagesHeader(props: Props) {
-  const { username } = props;
+  const { username, currentChannel, currentChannelSetter } = props;
   const { chat } = useMappedStore();
 
   return (
@@ -28,7 +30,12 @@ export default function ChatsMessagesHeader(props: Props) {
         </div>
         {isChannel(username) && (
           <div className="community-menu">
-            <ChatsCommunityDropdownMenu from={CHATPAGE} {...props} />
+            <ChatsCommunityDropdownMenu
+              from={CHATPAGE}
+              {...props}
+              currentChannel={currentChannel!}
+              currentChannelSetter={currentChannelSetter}
+            />
           </div>
         )}
       </div>

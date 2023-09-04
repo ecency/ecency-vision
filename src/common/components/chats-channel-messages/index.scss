@@ -2,9 +2,9 @@
 
 .channel-messages {
   padding-bottom: 15px;
-  .date-and-month {
-    margin-bottom: 0;
-    color: $dark;
+  .day-and-month {
+    margin-bottom: 1rem;
+    font-size: 14px;
   }
   .profile-box {
     padding: 15px;
@@ -18,13 +18,12 @@
         font-weight: 800;
       }
       .profile-box-buttons {
-        margin-bottom: 15px;
         padding: 0 5px;
       }
     }
   }
 
-  .message {
+  .receiver {
     display: flex;
     .user-img {
       padding: 18px 8px 8px 16px;
@@ -49,34 +48,37 @@
           margin-right: 8px;
         }
       }
-      .receiver-message-content {
-        @include themify(day) {
-          background: #e4e6eb;
-        }
-        @include themify(night) {
-          background: #cee2ff;
-        }
-
-        &.gif {
-          background: none;
-          img {
-            max-width: 100%;
+      .receiver-messag {
+        display: flex;
+        .receiver-message-content {
+          @include themify(day) {
+            background: #e4e6eb;
           }
-        }
-
-        &.chat-image {
-          background: none;
-          img {
-            max-width: 100%;
+          @include themify(night) {
+            background: #cee2ff;
           }
+
+          &.gif {
+            background: none;
+            img {
+              max-width: 100%;
+            }
+          }
+
+          &.chat-image {
+            background: none;
+            img {
+              max-width: 100%;
+            }
+          }
+          color: #050505;
+          // max-width: 290px;
+          display: inline-block;
+          max-width: 70% !important;
+          word-wrap: break-word;
+          padding: 10px;
+          border-radius: 0px 10px 10px;
         }
-        color: #050505;
-        // max-width: 290px;
-        display: inline-block;
-        max-width: 70% !important;
-        word-wrap: break-word;
-        padding: 10px;
-        border-radius: 0px 10px 10px;
       }
     }
   }
@@ -179,7 +181,7 @@
       margin-bottom: 0;
     }
     &.receiver {
-      margin-top: 33px;
+      margin-top: 5px;
       margin-left: 10px;
     }
   }

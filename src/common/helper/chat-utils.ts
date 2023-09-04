@@ -10,7 +10,7 @@ import { getAccountFull } from "../api/hive";
 import { updateProfile } from "../api/operations";
 import { GIPHGY } from "../components/chat-box/chat-constants";
 import { ActiveUser } from "../store/active-user/types";
-import { Chat, publicMessagesList } from "../store/chat/types";
+import { Chat, directMessagesList, publicMessagesList } from "../store/chat/types";
 import * as ls from "../util/local-storage";
 
 export interface NostrKeysType {
@@ -196,4 +196,39 @@ export const copyToClipboard = (content: string) => {
   textField.select();
   document.execCommand("copy");
   textField.remove();
+};
+
+export const getCommunityLastMessage = (
+  channelId: string,
+  publicMessages: publicMessagesList[]
+) => {
+  const msgsList = fetchChannelMessages(channelId!, publicMessages);
+  const messages = msgsList.sort((a, b) => a.created - b.created);
+  const lastMessage = messages.slice(-1);
+  return lastMessage[0]?.content;
+};
+
+export const fetchChannelMessages = (channelId: string, publicMessages: publicMessagesList[]) => {
+  for (const item of publicMessages) {
+    if (item.channelId === channelId) {
+      return Object.values(item.PublicMessage);
+    }
+  }
+  return [];
+};
+
+export const fetchDirectMessages = (peer: string, directMessages: directMessagesList[]) => {
+  for (const item of directMessages) {
+    if (item.peer === peer) {
+      return Object.values(item.chat);
+    }
+  }
+  return [];
+};
+
+export const getDirectLastMessage = (pubkey: string, directMessages: directMessagesList[]) => {
+  const msgsList = fetchDirectMessages(pubkey, directMessages);
+  const messages = msgsList.sort((a, b) => a.created - b.created);
+  const lastMessage = messages.slice(-1);
+  return lastMessage[0]?.content;
 };

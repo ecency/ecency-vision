@@ -8,7 +8,12 @@ import { setNostrkeys } from "../../../providers/message-provider";
 import { Channel } from "../../../providers/message-provider-types";
 import { getAccountReputations } from "../../api/hive";
 import accountReputation from "../../helper/account-reputation";
-import { getCommunities, NostrKeysType } from "../../helper/chat-utils";
+import {
+  getCommunities,
+  getCommunityLastMessage,
+  getDirectLastMessage,
+  NostrKeysType
+} from "../../helper/chat-utils";
 import { _t } from "../../i18n";
 import { arrowBackSvg, chatKeySvg, KebabMenu, syncSvg } from "../../img/svg";
 import { Chat, DirectContactsType } from "../../store/chat/types";
@@ -46,6 +51,7 @@ interface Props {
 export default function ChatsSideBar(props: Props) {
   const {
     channels,
+    chat,
     directContacts,
     activeUserKeys,
     match,
@@ -307,7 +313,9 @@ export default function ChatsSideBar(props: Props) {
                   <UserAvatar username={channel.communityName!} size="medium" />
                   <div className="community-info">
                     <p className="community-name">{channel.name}</p>
-                    <p className="community-last-message">hello</p>
+                    <p className="community-last-message">
+                      {getCommunityLastMessage(channel.id, chat.publicMessages)}
+                    </p>
                   </div>
                 </div>
               </Link>
@@ -316,15 +324,15 @@ export default function ChatsSideBar(props: Props) {
             {directContacts.map((contact) => (
               <Link to={`/chats/@${contact.name}`} key={contact.pubkey}>
                 <div
-                  className={`dm ${
-                    username && username.replace("@", "") === contact.name ? "selected" : ""
-                  }`}
+                  className={`dm ${username && username === `@${contact.name}` ? "selected" : ""}`}
                   onClick={handleRevealPrivKey}
                 >
                   <UserAvatar username={contact.name} size="medium" />
                   <div className="dm-info">
                     <p className="dm-name">{contact.name}</p>
-                    <p className="dm-last-message">hello</p>
+                    <p className="dm-last-message">
+                      {getDirectLastMessage(contact.pubkey, chat.directMessages)}
+                    </p>
                   </div>
                 </div>
               </Link>

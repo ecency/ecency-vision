@@ -1,15 +1,17 @@
-import React, { RefObject, useEffect, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Channel, PublicMessage } from "../../../providers/message-provider-types";
+import { Channel, DirectMessage, PublicMessage } from "../../../providers/message-provider-types";
 import {
   fetchCommunityMessages,
   fetchCurrentUserData,
+  fetchDirectMessages,
   getPrivateKey,
   getProfileMetaData,
   NostrKeysType
 } from "../../helper/chat-utils";
+import { History } from "history";
 import { useMappedStore } from "../../store/use-mapped-store";
-import { Global } from "../../store/global/types";
+import { Global, Theme } from "../../store/global/types";
 import ChatsProfileBox from "../chats-profile-box";
 
 import "./index.scss";
@@ -23,11 +25,12 @@ import { ActiveUser } from "../../store/active-user/types";
 import ChatInput from "../chat-input";
 import ChatsScroller from "../chats-scroller";
 import { EmojiPickerStyleProps } from "../chat-box";
+import { CHATPAGE } from "../chat-box/chat-constants";
 
 const EmojiPickerStyle: EmojiPickerStyleProps = {
   width: "56.5%",
   bottom: "58px",
-  left: "305px",
+  left: "340px",
   marginLeft: "14px",
   borderTopLeftRadius: "8px",
   borderTopRightRadius: "8px",
@@ -36,42 +39,53 @@ const EmojiPickerStyle: EmojiPickerStyleProps = {
 interface Props {
   username: string;
   users: User[];
+  history: History | null;
   activeUser: ActiveUser | null;
   ui: UI;
   global: Global;
+  currentChannel: Channel;
+  inProgress: boolean;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
+  currentChannelSetter: (channel: Channel) => void;
+  setInProgress: (d: boolean) => void;
+  deletePublicMessage: (channelId: string, msgId: string) => void;
 }
 
 export default function ChatsMessagesView(props: Props) {
-  const { username, activeUser, global } = props;
+  const {
+    username,
+    activeUser,
+    global,
+    currentChannel,
+    inProgress,
+    currentChannelSetter,
+    setInProgress,
+    deletePublicMessage
+  } = props;
 
-  const messagesBoxRef = React.createRef<HTMLDivElement>();
+  const messagesBoxRef = useRef<HTMLDivElement>(null);
 
   const { chat } = useMappedStore();
   const [directUser, setDirectUser] = useState("");
   const [publicMessages, setPublicMessages] = useState<PublicMessage[]>([]);
+  const [directMessages, setDirectMessages] = useState<DirectMessage[]>([]);
   const [communityName, setCommunityName] = useState("");
-  const [currentChannel, setCurrentChannel] = useState<Channel>();
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
   const [receiverPubKey, setReceiverPubKey] = useState("");
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [isTop, setIsTop] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  // const [inProgress, setInProgress] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     getActiveUserKeys();
-    setChannelData();
+    isDirectUserOrCommunity();
   }, []);
-
-  useEffect(() => {
-    console.log("publicMessages", publicMessages);
-    if (publicMessages.length !== 0) {
-      scrollToBottom();
-    }
-  }, [publicMessages]);
 
   useEffect(() => {
     if (directUser) {
@@ -80,7 +94,7 @@ export default function ChatsMessagesView(props: Props) {
   }, [directUser]);
 
   useEffect(() => {
-    setChannelData();
+    isDirectUserOrCommunity();
   }, [chat.channels]);
 
   useEffect(() => {
@@ -89,22 +103,41 @@ export default function ChatsMessagesView(props: Props) {
 
   useEffect(() => {
     if (directUser) {
+      getDirectMessages();
     } else if (communityName && currentChannel) {
       getChannelMessages();
     }
-  }, [directUser, communityName, currentChannel]);
+  }, [directUser, communityName, currentChannel, chat.directMessages]);
 
   useEffect(() => {
     setDirectUser("");
     setCommunityName("");
-    setChannelData();
+    isDirectUserOrCommunity();
   }, [username]);
 
-  // useEffect(() => {
-  //   if (isTop) {
-  //     fetchPrevMessages();
-  //   }
-  // }, [isTop]);
+  useEffect(() => {
+    if (isTop) {
+      fetchPrevMessages();
+    }
+  }, [isTop]);
+
+  const fetchPrevMessages = () => {
+    if (!hasMore || inProgress) return;
+
+    setInProgress(true);
+    window.messageService
+      ?.fetchPrevMessages(currentChannel!.id, publicMessages[0].created)
+      .then((num) => {
+        console.log("number", num);
+        if (num < 25) {
+          setHasMore(false);
+        }
+      })
+      .finally(() => {
+        setInProgress(false);
+        setIsTop(false);
+      });
+  };
 
   const getActiveUserKeys = async () => {
     const profileData = await getProfileMetaData(props.activeUser?.username!);
@@ -124,15 +157,12 @@ export default function ChatsMessagesView(props: Props) {
     }
   };
 
-  const setChannelData = () => {
+  const isDirectUserOrCommunity = () => {
     if (username) {
       if (username && username.startsWith("@")) {
         setDirectUser(username.replace("@", ""));
       } else {
         setCommunityName(username);
-        const channel = chat.channels.find((channel) => channel.communityName === username);
-        // console.log("channel", channel);
-        setCurrentChannel(channel);
       }
     }
   };
@@ -149,8 +179,16 @@ export default function ChatsMessagesView(props: Props) {
     }
   };
 
+  const getDirectMessages = () => {
+    const user = chat.directContacts.find((item) => item.name === directUser);
+    console.log("user", user?.pubkey);
+    const messages = user && fetchDirectMessages(user?.pubkey, chat.directMessages);
+    setDirectMessages(messages!);
+    console.log("Messages", messages);
+  };
+
   const scrollToBottom = () => {
-    console.log("Scroll to bottom scliced");
+    console.log("Scroll to bottom clicked", messagesBoxRef.current?.scrollHeight);
     messagesBoxRef &&
       messagesBoxRef?.current?.scroll({
         top: messagesBoxRef.current?.scrollHeight,
@@ -160,11 +198,16 @@ export default function ChatsMessagesView(props: Props) {
 
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     var element = event.currentTarget;
-    // let srollHeight: number = (element.scrollHeight / 100) * 25;
+    let srollHeight: number = (element.scrollHeight / 100) * 25;
     // const isScrollToTop = !isCurrentUser && !isCommunity && element.scrollTop >= srollHeight;
     const isScrollToBottom =
       element.scrollTop + messagesBoxRef?.current?.clientHeight! < element.scrollHeight - 200;
     setIsScrollToBottom(isScrollToBottom);
+    // console.log(element.scrollTop, (element.scrollTop / 100) * 98);
+    const isScrolled = element.scrollTop + element.clientHeight <= element.scrollHeight - 20;
+    setIsScrolled(isScrolled);
+    // const isScrolled = element.scrollHeight/100 *3 - 50;
+    // console.log("isScrolled", isScrolled)
     const scrollerTop = element.scrollTop <= 600 && publicMessages.length > 25;
     if (communityName && scrollerTop) {
       setIsTop(true);
@@ -175,7 +218,11 @@ export default function ChatsMessagesView(props: Props) {
 
   return (
     <>
-      <div className="chats-messages-view" ref={messagesBoxRef} onScroll={handleScroll}>
+      <div
+        className={`chats-messages-view ${isTop && hasMore ? "no-scroll" : ""}`}
+        ref={messagesBoxRef}
+        onScroll={handleScroll}
+      >
         <Link
           to={username.startsWith("@") ? `/${username}` : `/created/${username}`}
           target="_blank"
@@ -189,11 +236,24 @@ export default function ChatsMessagesView(props: Props) {
               publicMessages={publicMessages}
               currentChannel={currentChannel!}
               activeUserKeys={activeUserKeys!}
+              isScrollToBottom={isScrollToBottom}
+              from={CHATPAGE}
+              isScrolled={isScrolled}
+              deletePublicMessage={deletePublicMessage}
               scrollToBottom={scrollToBottom}
+              currentChannelSetter={currentChannelSetter}
             />
           </>
         ) : (
-          <ChatsDirectMessages />
+          <ChatsDirectMessages
+            {...props}
+            directMessages={directMessages && directMessages}
+            activeUserKeys={activeUserKeys!}
+            currentUser={directUser!}
+            isScrolled={isScrolled}
+            isScrollToBottom={isScrollToBottom}
+            scrollToBottom={scrollToBottom}
+          />
         )}
         {isScrollToBottom && (
           <ChatsScroller

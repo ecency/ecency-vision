@@ -143,11 +143,8 @@ export const Chats = (props: Props) => {
         className={props.global.isElectron ? "chats-page mb-lg-0 pt-6" : "chats-page mb-lg-0"}
       >
         {inProgrss ? (
-          <div
-            className="d-flex justify-content-center align-items-center full-page"
-            style={{ backgroundColor: "#f5f5f5" }}
-          >
-            <h3>Loading...</h3>
+          <div className="d-flex justify-content-center align-items-center full-page">
+            <Spinner animation="border" variant="primary" />
           </div>
         ) : (
           <>
@@ -170,7 +167,11 @@ export const Chats = (props: Props) => {
                     </div>
                   ) : (
                     //if any person has not joined any community then how can he see its message. handle this thing here.
-                    <ChatsMessagesBox {...props} activeUserKeys={activeUserKeys} />
+                    <ChatsMessagesBox
+                      {...props}
+                      activeUserKeys={activeUserKeys}
+                      deletePublicMessage={props.deletePublicMessage}
+                    />
                   )}
                 </>
               ) : (

@@ -192,6 +192,14 @@
         font-size: 13px;
         font-family: 400;
       }
+      .community-last-message {
+        max-width: 255px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0;
+        font-size: 14px;
+      }
     }
     &.selected {
       @include themify(day) {

@@ -30,28 +30,25 @@ interface Props {
   history: History | null;
   from?: string;
   username: string;
+  currentChannel: Channel;
+  currentChannelSetter: (channe: Channel) => void;
 }
 
 const roles = [ROLES.ADMIN, ROLES.MOD, ROLES.GUEST];
 
 const ChatsCommunityDropdownMenu = (props: Props) => {
   const { activeUser, chat } = useMappedStore();
-  const { history, username, from } = props;
+  const { history, currentChannelSetter, from, currentChannel } = props;
   const [step, setStep] = useState(0);
   const [keyDialog, setKeyDialog] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [user, setUser] = useState("");
   const [addRoleError, setAddRoleError] = useState("");
   const [role, setRole] = useState("admin");
-  const [currentChannel, setCurrentChannel] = useState<Channel>();
   const [moderator, setModerator] = useState<communityModerator>();
   const [communityAdmins, setCommunityAdmins] = useState<string[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<{ name: string; pubkey: string }[]>([]);
   const [removedUserId, setRemovedUserID] = useState("");
-
-  useEffect(() => {
-    fetchCurrentChannel(formattedUserName(username));
-  }, [chat.updatedChannel, username, chat.channels]);
 
   useEffect(() => {
     getCommunityAdmins();
@@ -60,32 +57,6 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
       getBlockedUsers(currentChannel?.removedUserIds!);
     }
   }, [currentChannel, removedUserId]);
-
-  const fetchCurrentChannel = (communityName: string) => {
-    const channel = chat.channels.find((channel) => channel.communityName === communityName);
-    if (channel) {
-      const updated: ChannelUpdate = chat.updatedChannel
-        .filter((x) => x.channelId === channel.id)
-        .sort((a, b) => b.created - a.created)[0];
-      if (updated) {
-        const channel = {
-          name: updated.name,
-          about: updated.about,
-          picture: updated.picture,
-          communityName: updated.communityName,
-          communityModerators: updated.communityModerators,
-          id: updated.channelId,
-          creator: updated.creator,
-          created: currentChannel?.created!,
-          hiddenMessageIds: updated.hiddenMessageIds,
-          removedUserIds: updated.removedUserIds
-        };
-        setCurrentChannel(channel);
-      } else {
-        setCurrentChannel(channel);
-      }
-    }
-  };
 
   const handleEditRoles = () => {
     setKeyDialog(true);
@@ -141,7 +112,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
       const newUpdatedModerator = { ...newUpdatedChannel?.communityModerators![moderatorIndex!] };
       newUpdatedModerator.role = selectedRole;
       newUpdatedChannel!.communityModerators![moderatorIndex!] = newUpdatedModerator;
-      setCurrentChannel(newUpdatedChannel);
+      currentChannelSetter(newUpdatedChannel);
       window.messageService?.updateChannel(currentChannel, newUpdatedChannel);
       success("Roles updated succesfully");
     }
@@ -511,7 +482,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
     }
     try {
       window.messageService?.updateChannel(currentChannel!, updatedMetaData);
-      setCurrentChannel({ ...currentChannel!, ...updatedMetaData });
+      currentChannelSetter({ ...currentChannel!, ...updatedMetaData });
 
       if (operationType === UNBLOCKUSER) {
         setStep(5);
@@ -532,6 +503,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
         alignBottom={false}
         noMarginTop={true}
       />
+
       {keyDialog && (
         <Modal
           animation={false}
