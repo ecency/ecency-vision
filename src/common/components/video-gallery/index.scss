@@ -81,7 +81,8 @@
               height: 0.5rem;
               border-radius: 50%;
               cursor: pointer;
-              background-color: $dark-sky-blue;
+
+              @apply bg-blue-dark-sky;
             }
 
             .status-icon-failed {

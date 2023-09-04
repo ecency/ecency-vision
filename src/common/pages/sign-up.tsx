@@ -313,7 +313,7 @@ export const SignUp = (props: PageProps) => {
                       onChange={(e) => setEmail(e.target.value)}
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-email")}
-                      isInvalid={emailError !== ""}
+                      aria-invalid={emailError !== ""}
                       onInput={handleOnInput}
                     />
                     <Form.Text className="text-danger pl-3">{emailError}</Form.Text>

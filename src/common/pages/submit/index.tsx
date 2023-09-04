@@ -29,7 +29,6 @@ import Meta from "../../components/meta";
 import FullHeight from "../../components/full-height";
 import Theme from "../../components/theme";
 import Feedback, { error } from "../../components/feedback";
-import ModalConfirm from "../../components/modal-confirm";
 import { _t } from "../../i18n";
 import MdHandler from "../../components/md-handler";
 import NavBarElectron from "../../../desktop/app/components/navbar";
@@ -57,6 +56,7 @@ import { RewardType } from "../../api/operations";
 import { SubmitPreviewContent } from "./submit-preview-content";
 import { useUpdateApi } from "./api/update";
 import "./_index.scss";
+import ModalConfirm from "@ui/modal-confirm";
 
 interface MatchProps {
   match: MatchType;
