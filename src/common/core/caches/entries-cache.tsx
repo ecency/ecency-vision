@@ -15,13 +15,13 @@ import { commentHistory } from "../../api/private-api";
 
 export const EntriesCacheContext = createContext<{
   getByLink: (link: string) => Entry | undefined;
-  updateCache: (entries: Entry[], skipInvalidation?: boolean) => void;
+  updateCache: (entries: Entry[], skipInvalidation?: boolean) => Entry[];
   addReply: (entry: Entry, reply: Entry) => void;
   updateRepliesCount: (entry: Entry, count: number) => void;
   updateVotes: (entry: Entry, votes: EntryVote[], estimated: number) => void;
 }>({
   getByLink: () => ({} as Entry),
-  updateCache: () => {},
+  updateCache: () => [],
   addReply: () => {},
   updateRepliesCount: () => {},
   updateVotes: () => {}
@@ -34,11 +34,11 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
 
   const updateCache = (entries: Entry[], skipInvalidation = false) => {
     entries.forEach((e) => {
-      if (dmca.some((rx: string) => new RegExp(rx).test(`${e.author}/${e.permlink}`))) {
+      if (dmca.some((rx: string) => new RegExp(rx).test(`@${e.author}/${e.permlink}`))) {
         e.body = "This post is not available due to a copyright/fraudulent claim.";
         e.title = "";
       }
-      cache.set(makePath(e.category, e.author, e.permlink), e);
+      cache.set(makePath("", e.author, e.permlink), e);
     });
 
     if (!skipInvalidation) {
@@ -46,14 +46,15 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
       entries.forEach((entry) =>
         queryClient.invalidateQueries([
           QueryIdentifiers.ENTRY,
-          makePath(entry.category, entry.author, entry.permlink)
+          makePath("", entry.author, entry.permlink)
         ])
       );
     }
+    return entries;
   };
 
   const addReply = (entry: Entry, reply: Entry) => {
-    const cached = cache.get(makePath(entry.category, entry.author, entry.permlink))!!;
+    const cached = cache.get(makePath("", entry.author, entry.permlink))!!;
 
     updateCache([
       {
@@ -67,7 +68,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
   const updateRepliesCount = (entry: Entry, count: number) => {
     updateCache([
       {
-        ...cache.get(makePath(entry.category, entry.author, entry.permlink))!!,
+        ...cache.get(makePath("", entry.author, entry.permlink))!!,
         children: count
       }
     ]);
@@ -80,7 +81,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
   const updateVotes = (entry: Entry, votes: EntryVote[], payout: number) => {
     updateCache([
       {
-        ...cache.get(makePath(entry.category, entry.author, entry.permlink))!!,
+        ...cache.get(makePath("", entry.author, entry.permlink))!!,
         active_votes: votes,
         total_votes: votes.length,
         payout,
@@ -103,7 +104,7 @@ export function useEntryReFetch(entry: Entry | null) {
 
   useEffect(() => {
     if (entry) {
-      setKey(makePath(entry.category, entry.author, entry.permlink));
+      setKey(makePath("", entry.author, entry.permlink));
     }
   }, [entry]);
 
@@ -137,9 +138,9 @@ export function useDeletedEntryCache(author: string, permlink: string) {
 
 export function useEntryCache<T extends Entry>(initialEntry: T): DefinedQueryObserverResult<T>;
 export function useEntryCache<T extends Entry>(
-  category: string,
-  author: string,
-  permlink: string
+  category?: string,
+  author?: string,
+  permlink?: string
 ): DefinedQueryObserverResult<T>;
 export function useEntryCache<T extends Entry>(
   initialOrPath: T | string,
@@ -157,7 +158,11 @@ export function useEntryCache<T extends Entry>(
   const query = useQuery(
     [QueryIdentifiers.ENTRY, queryKey],
     async () => {
-      const entry = getByLink(queryKey) as T;
+      let entry = getByLink(queryKey) as T;
+
+      if (!entry) {
+        entry = getExistingEntryFromStore() as T;
+      }
 
       if (!entry && typeof initialOrPath === "string") {
         const response = await bridgeApi.getPost(author, permlink);
@@ -168,7 +173,7 @@ export function useEntryCache<T extends Entry>(
         }
         return response;
       } else if (!entry) {
-        return initialOrPath as T;
+        return updateCache([initialOrPath as T])[0];
       }
 
       return entry;
@@ -193,12 +198,17 @@ export function useEntryCache<T extends Entry>(
     let entry: Entry | undefined;
 
     for (const k of groupKeys) {
-      entry = entries[k].entries.find((x) => x.author === author && x.permlink === permlink);
+      entry = entries[k].entries.find((x) => {
+        if (dmca.some((rx: string) => new RegExp(rx).test(`@${x.author}/${x.permlink}`))) {
+          x.body = "This post is not available due to a copyright/fraudulent claim.";
+          x.title = "";
+        }
+        return x.author === author && x.permlink === permlink;
+      });
       if (entry) {
         break;
       }
     }
-
     return entry;
   };
 

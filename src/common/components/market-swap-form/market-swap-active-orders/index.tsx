@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FormLabel } from "react-bootstrap";
-import { ActiveUser } from "../../store/active-user/types";
-import { getOpenOrder, OpenOrdersData } from "../../api/hive";
+import { ActiveUser } from "../../../store/active-user/types";
+import { getOpenOrder, OpenOrdersData } from "../../../api/hive";
 import { GenericOrderItem } from "./generic-order-item";
-import { _t } from "../../i18n";
-import BuySellHiveDialog, { TransactionType } from "../buy-sell-hive";
-import { Global } from "../../store/global/types";
+import { _t } from "../../../i18n";
+import BuySellHiveDialog, { TransactionType } from "../../buy-sell-hive";
+import { Global } from "../../../store/global/types";
 import "./index.scss";
 
 interface Props {

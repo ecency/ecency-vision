@@ -3,11 +3,11 @@
     {
       "path": "/hot$",
       "suggestions": [
+        "what-hot-feed",
+        "what-information-feed",
         "what-is-ecency",
         "what-is-difference",
-        "what-is-hive",
-        "why-choose-ecency",
-        "how-ecency-works"
+        "what-is-hive"
       ]
     },
     {
@@ -15,8 +15,9 @@
       "suggestions": [
         "what-information-profile",
         "why-score-going-down",
-        "what-can-post",
-        "what-are-tags"
+        "what-new-feed",
+        "what-mean-promoted",
+        "how-change-design"
       ]
     },
     {
@@ -27,6 +28,25 @@
         "what-links-show",
         "what-are-tags",
         "how-use-tags"
+      ]
+    },
+    {
+      "path": "/rising$",
+      "suggestions": [
+        "what-rising-feed",
+        "how-sort-rising",
+        "how-voting-works",
+        "what-voting-power",
+        "how-many-vote"
+      ]
+    },
+    {
+      "path": "/controversial$",
+      "suggestions": [
+        "what-controversial-feed",
+        "how-sort-controversial",
+        "why-choose-ecency",
+        "how-ecency-works"
       ]
     },
     {
@@ -44,6 +64,19 @@
       ]
     },
     {
+      "path": "/witnesses$",
+      "suggestions": [
+        "what-hive-witnesses",
+        "how-vote-witnesses",
+        "how-many-witnesses",
+        "sort-witnesses-page"
+      ]
+    },
+    {
+      "path": "/proposals$",
+      "suggestions": ["how-dhf-work", "how-vote-proposals"]
+    },
+    {
       "path": "/submit",
       "suggestions": [
         "what-are-tags",
@@ -56,6 +89,10 @@
     {
       "path": "/search$",
       "suggestions": ["how-to-search", "what-appears-search"]
+    },
+    {
+      "path": "/market$",
+      "suggestions": ["how-market-works", "how-to-swap-header"]
     },
     {
       "path": "/@.+/wallet",
@@ -107,6 +144,36 @@
     {
       "path": "/.+/@.+/.+",
       "suggestions": ["how-voting-works", "how-to-bookmark", "how-to-favorite"]
+    },
+
+    {
+      "path": "/@.+/blog",
+      "suggestions": [
+        "what-my-blog",
+        "what-information-profile",
+        "what-reputation",
+        "improve-reputation-score",
+        "why-score-going-down"
+      ]
+    },
+    {
+      "path": "/@.+/comments",
+      "suggestions": [
+        "how-find-comments",
+        "how-often-comment",
+        "can-reward-comments",
+        "can-comment-boost"
+      ]
+    },
+    {
+      "path": "/@.+/replies",
+      "suggestions": [
+        "what-information-available",
+        "how-to-search",
+        "what-appears",
+        "how-to-follow",
+        "how-find-information-followers"
+      ]
     }
   ]
 }

@@ -143,6 +143,10 @@ export interface OrdersData {
   trading: OrdersDataItem[];
 }
 
+export interface Reputations {
+  account: string;
+  reputation: number;
+}
 interface ApiError {
   error: string;
   data: any;
@@ -205,6 +209,9 @@ export const getAllTrendingTags = (
 
 export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
   client.database.call("lookup_accounts", [q, limit]);
+
+export const getAccountReputations = (q: string, limit = 50): Promise<Reputations[]> =>
+  client.call("condenser_api", "get_account_reputations", [q, limit]);
 
 export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
   return client.database.getAccounts(usernames).then((resp: any[]): FullAccount[] =>

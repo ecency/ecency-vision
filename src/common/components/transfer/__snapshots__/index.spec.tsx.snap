@@ -105,6 +105,7 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
       </div>
       
       
+      
       <div
         className="form-group row"
       >
@@ -657,6 +658,7 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
       </div>
       
       
+      
       <div
         className="form-group row"
       >
@@ -1092,6 +1094,7 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
       </div>
       
       
+      
       <div
         className="form-group row"
       >
@@ -1523,6 +1526,7 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
       </div>
       
       
+      
       <div
         className="form-group row"
       >
@@ -1946,6 +1950,7 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
           </div>
         </div>
       </div>
+      
       
       
       <div
@@ -2683,6 +2688,7 @@ exports[`(7) Power up (1) Step 1 1`] = `
       </div>
       
       
+      
       <div
         className="form-group row"
       >
@@ -3057,6 +3063,7 @@ exports[`(8) Delegate (1) Step 1 1`] = `
           </div>
         </div>
       </div>
+      
       
       
       <div

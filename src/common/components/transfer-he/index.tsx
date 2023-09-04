@@ -92,7 +92,6 @@ interface Props {
   addAccount: (data: Account) => void;
   updateActiveUser: (data?: Account) => void;
   setSigningKey: (key: string) => void;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
   onHide: () => void;
 }
@@ -451,8 +450,7 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   finish = () => {
-    const { onHide, mode, asset, account, activeUser, fetchPoints, updateWalletValues } =
-      this.props;
+    const { onHide, account, activeUser, updateWalletValues } = this.props;
     if (account && activeUser && account.name !== activeUser.username) {
       updateWalletValues();
     }
@@ -465,7 +463,7 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   render() {
-    const { global, mode, activeUser, transactions, dynamicProps } = this.props;
+    const { mode, activeUser, transactions, dynamicProps } = this.props;
     const {
       step,
       asset,

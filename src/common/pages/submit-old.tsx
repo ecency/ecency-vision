@@ -9,12 +9,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import moment, { Moment } from "moment";
 
 import defaults from "../constants/defaults.json";
-import {
-  postBodySummary,
-  proxifyImageSrc,
-  renderPostBody,
-  setProxyBase
-} from "@ecency/render-helper";
+import { postBodySummary, proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
 import { Entry } from "../store/entries/types";
 import { Global } from "../store/global/types";
 import { FullAccount } from "../store/accounts/types";
@@ -83,6 +78,10 @@ import { handleFloatingContainer } from "../components/floating-faq";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 
+import { markAsPublished, ThreeSpeakVideo, updateSpeakVideoInfo } from "../api/threespeak";
+// import { ConfirmNsfwContent } from "../components/video-nsfw";
+import { PostBodyLazyRenderer } from "../components/post-body-lazy-renderer";
+
 setProxyBase(defaults.imageServer);
 
 interface PostBase {
@@ -98,11 +97,25 @@ interface Advanced {
   schedule: string | null;
   reblogSwitch: boolean;
   description: string | null;
+  // Speak Advanced
+  isThreespeak: boolean;
+  videoId: string;
+  speakPermlink: string;
+  speakAuthor: string;
+  isNsfw: boolean;
+  videoMetadata: any;
 }
 
 interface PreviewProps extends PostBase {
   history: History;
   global: Global;
+}
+
+interface videoProps {
+  beneficiaries: string;
+  _id: string;
+  owner: string;
+  permlink: string;
 }
 
 class PreviewContent extends Component<PreviewProps> {
@@ -116,7 +129,6 @@ class PreviewContent extends Component<PreviewProps> {
 
   render() {
     const { title, tags, body, global } = this.props;
-    let renderedPreview = renderPostBody(body, false, global.canUseWebp);
     return (
       <>
         <div className="preview-title">{title}</div>
@@ -136,10 +148,7 @@ class PreviewContent extends Component<PreviewProps> {
           })}
         </div>
 
-        <div
-          className="preview-body markdown-view"
-          dangerouslySetInnerHTML={{ __html: renderedPreview }}
-        />
+        <PostBodyLazyRenderer className="preview-body markdown-view" rawBody={body} />
       </>
     );
   }
@@ -171,6 +180,7 @@ interface State extends PostBase, Advanced {
   isDraftEmpty: boolean;
   drafts: boolean;
   showHelp: boolean;
+  videoMetadata: ThreeSpeakVideo | null;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -206,7 +216,14 @@ class SubmitPage extends BaseComponent<Props, State> {
     disabled: true,
     isDraftEmpty: true,
     drafts: false,
-    showHelp: false
+    showHelp: false,
+    // Speakstates
+    isThreespeak: false,
+    videoId: "",
+    speakPermlink: "",
+    speakAuthor: "",
+    isNsfw: false,
+    videoMetadata: null
   };
 
   _updateTimer: any = null;
@@ -241,8 +258,10 @@ class SubmitPage extends BaseComponent<Props, State> {
       // delete active user from beneficiaries list
       if (activeUser) {
         const { beneficiaries } = this.state;
-        if (beneficiaries.find((x) => x.account === activeUser.username)) {
-          const b = [...beneficiaries.filter((x) => x.account !== activeUser.username)];
+        if (beneficiaries.find((x: { account: string }) => x.account === activeUser.username)) {
+          const b = [
+            ...beneficiaries.filter((x: { account: string }) => x.account !== activeUser.username)
+          ];
           this.stateSet({ beneficiaries: b });
         }
       }
@@ -456,14 +475,33 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   saveAdvanced = (): void => {
-    const { reward, beneficiaries, schedule, reblogSwitch, description } = this.state;
+    const {
+      reward,
+      beneficiaries,
+      schedule,
+      reblogSwitch,
+      description,
+      isThreespeak,
+      videoId,
+      speakPermlink,
+      speakAuthor,
+      isNsfw,
+      videoMetadata
+    } = this.state;
 
     const advanced: Advanced = {
       reward,
       beneficiaries,
       schedule,
       reblogSwitch,
-      description
+      description,
+      // Speak Advanced
+      isThreespeak,
+      videoId,
+      speakPermlink,
+      speakAuthor,
+      isNsfw,
+      videoMetadata
     };
 
     ls.set("local_advanced", advanced);
@@ -536,7 +574,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
   beneficiaryDeleted = (username: string) => {
     const { beneficiaries } = this.state;
-    const b = [...beneficiaries.filter((x) => x.account !== username)];
+    const b = [...beneficiaries.filter((x: { account: string }) => x.account !== username)];
     this.stateSet({ beneficiaries: b }, this.saveAdvanced);
   };
 
@@ -584,7 +622,14 @@ class SubmitPage extends BaseComponent<Props, State> {
         beneficiaries: [],
         schedule: null,
         reblogSwitch: false,
-        description: ""
+        description: "",
+        // Speak Advanced
+        isThreespeak: false,
+        videoId: "",
+        speakPermlink: "",
+        speakAuthor: "",
+        isNsfw: false,
+        videoMetadata: null
       },
       () => {
         this.saveAdvanced();
@@ -650,13 +695,31 @@ class SubmitPage extends BaseComponent<Props, State> {
     return true;
   };
 
+  markVideo = async (videoId: string) => {
+    const { activeUser } = this.props;
+    await markAsPublished(activeUser!.username, videoId);
+  };
+
   publish = async (): Promise<void> => {
     if (!this.validate()) {
       return;
     }
 
     const { activeUser, history, addEntry } = this.props;
-    const { title, tags, body, description, reward, reblogSwitch, beneficiaries } = this.state;
+    const {
+      title,
+      tags,
+      body,
+      description,
+      reward,
+      reblogSwitch,
+      beneficiaries,
+      videoId,
+      isThreespeak,
+      speakPermlink,
+      speakAuthor,
+      isNsfw
+    } = this.state;
 
     // clean body
     const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, "");
@@ -683,7 +746,7 @@ class SubmitPage extends BaseComponent<Props, State> {
             return;*/
     }
 
-    if (c && c.author) {
+    if (c && c.author && !isThreespeak && speakPermlink === "") {
       // create permlink with random suffix
       permlink = createPermlink(title, true);
     }
@@ -696,6 +759,12 @@ class SubmitPage extends BaseComponent<Props, State> {
           .slice(0, 5)
           .map((element: string) => this.getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
       );
+    }
+
+    if (isThreespeak && speakPermlink !== "") {
+      permlink = speakPermlink;
+      // update speak video with title, body and tags
+      updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw);
     }
 
     const options = makeCommentOptions(author, permlink, reward, beneficiaries);
@@ -725,6 +794,14 @@ class SubmitPage extends BaseComponent<Props, State> {
         this.clear();
         const newLoc = makePathEntry(parentPermlink, author, permlink);
         history.push(newLoc);
+
+        //Mark speak video as published
+        if (isThreespeak && activeUser.username === speakAuthor) {
+          success(_t("vidoe-upload.publishing"));
+          setTimeout(() => {
+            this.markVideo(videoId);
+          }, 10000);
+        }
       })
       .then(() => {
         if (isCommunity(tags[0]) && reblogSwitch) {
@@ -922,7 +999,8 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   buildMetadata = () => {
-    const { tags, body, description, selectedThumbnail, selectionTouched } = this.state;
+    const { tags, title, body, description, selectedThumbnail, selectionTouched, videoMetadata } =
+      this.state;
     const { thumbnails, ...meta } = extractMetaData(body);
     let localThumbnail = ls.get("draft_selected_image");
 
@@ -940,6 +1018,40 @@ class SubmitPage extends BaseComponent<Props, State> {
     if (meta.image) {
       meta.image = [...new Set(meta.image)];
     }
+    if (videoMetadata) {
+      meta.video = {
+        info: {
+          platform: "3speak",
+          title: title || videoMetadata.title,
+          author: videoMetadata.owner,
+          permlink: videoMetadata.permlink,
+          duration: videoMetadata.duration,
+          filesize: videoMetadata.size,
+          file: videoMetadata.filename,
+          lang: videoMetadata.language,
+          firstUpload: videoMetadata.firstUpload,
+          ipfs: null,
+          ipfsThumbnail: null,
+          video_v2: videoMetadata.video_v2,
+          sourceMap: [
+            {
+              type: "video",
+              url: videoMetadata.video_v2,
+              format: "m3u8"
+            },
+            {
+              type: "thumbnail",
+              url: videoMetadata.thumbUrl
+            }
+          ]
+        },
+        content: {
+          description: description || videoMetadata.description,
+          tags: videoMetadata.tags_v2
+        }
+      };
+    }
+
     const summary = description === null ? postBodySummary(this.state.body, 200) : description;
 
     return makeJsonMetaData(meta, tags, summary, version);
@@ -986,6 +1098,37 @@ class SubmitPage extends BaseComponent<Props, State> {
     this.setState({ showHelp: !showHelp }, () =>
       handleFloatingContainer(this.state.showHelp, "submit")
     );
+  };
+
+  setVideoEncoderBeneficiary = async (video: videoProps) => {
+    const videoBeneficiary = JSON.parse(video.beneficiaries);
+    const videoEncoders = [
+      {
+        account: "spk.beneficiary",
+        src: "ENCODER_PAY",
+        weight: 900
+      },
+      {
+        account: "threespeakleader",
+        src: "ENCODER_PAY",
+        weight: 100
+      }
+    ];
+    const joinedBeneficiary = [...videoBeneficiary, ...videoEncoders];
+    this.stateSet(
+      {
+        beneficiaries: joinedBeneficiary,
+        videoId: await video._id,
+        isThreespeak: true,
+        speakPermlink: video.permlink,
+        speakAuthor: video.owner
+      },
+      this.saveAdvanced
+    );
+  };
+
+  toggleNsfwC = () => {
+    this.setState({ isNsfw: true }, this.saveAdvanced);
   };
 
   render() {
@@ -1069,7 +1212,14 @@ class SubmitPage extends BaseComponent<Props, State> {
                 })}
               </div>
             )}
-            {EditorToolbar({ ...this.props })}
+            {EditorToolbar({
+              ...this.props,
+              setVideoEncoderBeneficiary: this.setVideoEncoderBeneficiary,
+              toggleNsfwC: this.toggleNsfwC,
+              comment: false,
+              setVideoMetadata: (v: ThreeSpeakVideo) =>
+                this.setState({ videoMetadata: v }, this.saveAdvanced)
+            })}
             <div className="title-input">
               <FormControl
                 type="text"
@@ -1106,6 +1256,13 @@ class SubmitPage extends BaseComponent<Props, State> {
                 activeUser={(activeUser && activeUser.username) || ""}
               />
             </div>
+            {/* { this.state.showConfirmNsfw &&
+              <ConfirmNsfwContent 
+              hideConfirmNsfwModal={this.hideConfirmNsfwModal}
+              togleNsfwC={this.togleNsfwC}
+              isNsfw={this.state.isNsfw}
+              />
+            } */}
             {activeUser ? (
               <AvailableCredits
                 className="mr-2"
@@ -1283,6 +1440,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                             </Form.Label>
                             <Col sm="9">
                               <BeneficiaryEditor
+                                body={this.state.body}
                                 author={activeUser?.username}
                                 list={beneficiaries}
                                 onAdd={this.beneficiaryAdded}

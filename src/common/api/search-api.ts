@@ -64,6 +64,7 @@ export const search = (
 export interface FriendSearchResult {
   name: string;
   full_name: string;
+  lastSeen: string;
   reputation: number;
 }
 

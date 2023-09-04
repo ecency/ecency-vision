@@ -22,6 +22,7 @@
     "pretty": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5",
+    "skipLibCheck": true,
     "paths": {
       "@ui/*": ["./src/common/features/ui/*"]
     }

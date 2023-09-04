@@ -80,7 +80,7 @@ export const ReadTime = (props: any) => {
             {_t("entry.post-read-time")} {readTime} {_t("entry.post-read-minuites")}
           </p>
           {topCurator && (
-            <p className="top-curator">
+            <div className="top-curator">
               {_t("entry.post-top-curator")}
               <Tooltip content={topCurator}>
                 <Link to={`/@${topCurator}`}>
@@ -89,7 +89,7 @@ export const ReadTime = (props: any) => {
                   </div>
                 </Link>
               </Tooltip>
-            </p>
+            </div>
           )}
         </div>
       )}

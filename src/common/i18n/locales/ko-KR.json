@@ -229,15 +229,18 @@
     "username-exists": "This username already registered. Please, try another one",
     "referral-invalid": "This referral is invalid. Please, try another one",
     "referral-min-length-error": "Length of referral should be at least 3 characters",
-    "referral-max-length-error": "Length of referral should be no more than 16 characters"
+    "referral-max-length-error": "Length of referral should be no more than 16 characters",
+    "email-max-length-error": "Length of email should be no more than 72 characters"
   },
   "onboard": {
-    "title": "Onboard a friend",
-    "description": "You can create account for a friend",
+    "title-active-user": "Onboard a friend",
+    "title-visitor": "Ask from a friend",
+    "description-active-user": "You can create account for a friend.",
+    "description-visitor": "You can ask a friend to create an account for you.",
     "creating": "Create for a friend",
     "asking": " Ask from a friend",
-    "creating-description": "Create account for a friend (requires login)",
-    "asking-description": "Ask a friend to help you create an account",
+    "creating-description": "Pay with hive or account credit",
+    "asking-description": "Copy account link and send to friend.",
     "username": "Username:",
     "email": "Email:",
     "referral": "Referral:",
@@ -248,6 +251,7 @@
     "confirm-details": "Confirm Details",
     "share": "(You can send code to a friend) Copy code",
     "copy-link": "Account link copied successfully",
+    "click-link": "Click here to continue",
     "continue": "Continue",
     "public-active": "Public Active key:",
     "public-memo": "Public Memo key:",
@@ -553,7 +557,8 @@
       "whats-new-description": "Keep in track the Ecency updates",
       "updates": "Updates",
       "release-list": "Release versions",
-      "current": "Current"
+      "current": "Current",
+      "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
     },
     "threads-form": {
       "save": "Save",
@@ -636,6 +641,7 @@
     "start-new-one": "Start new Swap",
     "signing": "Signing..",
     "success-swap": "Successfully swapped!",
+    "calculating-in": "Calculating in",
     "advanced": {
       "history": "History",
       "stake": "Order book",
@@ -843,7 +849,7 @@
     "follows-you": "당신을 팔로우합니다",
     "section-blog": "블로그",
     "section-posts": "게시물",
-    "section-trail": "Trail",
+    "section-trail": "Likes",
     "section-comments": "댓글",
     "section-replies": "답글",
     "section-communities": "커뮤니티",
@@ -1153,14 +1159,16 @@
   "promote": {
     "title": "홍보",
     "sub-title": "글 홍보하세요",
-    "duration": "기간"
+    "duration": "기간",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "부스트",
     "sub-title": "글 부스트하세요",
     "amount": "수량",
     "slider-hint": "슬라이드를 드래그해서 수량을 설정할 수 있습니다.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "잔액",
@@ -1213,6 +1221,7 @@
     "memo-placeholder": "메모 내용을 입력하세요",
     "memo-help": "이 메모는 누구나 볼 수 있습니다",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* 사용 가능한 하이브 파워",
     "override-warning-1": "새 금액이 이전 금액보다 우선 적용됩니다.",
     "override-warning-2": "({{account}}) 계정에게 이미 {{previousAmount}}을 임대되었습니다.",
@@ -1336,7 +1345,17 @@
   "friends": {
     "followers": "팔로워 ({{n}})",
     "following": "팔로잉 ({{n}})",
-    "search-placeholder": "검색"
+    "search-placeholder": "검색",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "팔로우",
@@ -1417,6 +1436,47 @@
     "empty-tags-alert": "글 태그 입력하세요",
     "empty-body-alert": "글 내용 입력하세요",
     "description": "Short description"
+  },
+  "video-upload": {
+    "choose-video": "Select a video",
+    "choose-thumbnail": "Set a thumbnail(optional)",
+    "continue": "Continue",
+    "encode": "Send for encoding",
+    "success": "Video succesfully uploaded",
+    "finished": "Finished",
+    "upload-video": "Upload video",
+    "video-gallery": "Video gallery",
+    "preview": "Preview",
+    "to-gallery": "Go to gallery",
+    "congrats": "Congratulations",
+    "publishing": "Don't refresh this page, wait for few seconds for video to process"
+  },
+  "video-gallery": {
+    "all": "All",
+    "title": "Video gallery",
+    "published": "Published",
+    "encoding": "Encoding",
+    "encoded": "Encoded",
+    "failed": "Failed",
+    "status-encoded": "Ready for posting",
+    "status-encoding": "Encoding",
+    "status-published": "Published",
+    "status-failed": "Encoding failed",
+    "status-deleted": "Deleted",
+    "info-created": "Created:",
+    "status": "Status:",
+    "info-views": "Views:",
+    "info-duration": "Duration:",
+    "info-size": "File size:",
+    "insert-video": "Insert",
+    "insert-nsfw": "Insert as NSFW",
+    "refresh": "Refresh to get updated status",
+    "video-info": "Videos are stored and powered by SPK network, might have some storage and encoding fees."
+  },
+  "nsfw-content": {
+    "title": "NSFW contents",
+    "warning": "Please check this if your content is NSFW",
+    "continue": "Continue"
   },
   "tag-selector": {
     "placeholder-empty": "태그. 첫 번째 태그는 메인 카테고리입니다. 정렬 가능.",
@@ -2085,7 +2145,7 @@
     "send": "보내기",
     "subscribe-paragraph": "탈중앙화 웹에서 무슨 일이 일어나고 있는지 가장 먼저 알아보세요.",
     "copy-rights": "©2021 Ecency. 모든 권리 보유.",
-    "success-message-subscribe": "귀하의 이메일 주소로 인증 확인 링크가 전송되었습니다!",
+    "success-message-subscribe": "You are subscribed to our newsletters!",
     "validation-email": "유효한 이메일 주소를 입력하세요",
     "error-occured": "서버 오류가 발생했습니다."
   },

@@ -17,7 +17,10 @@ import "./_index.scss";
 import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
 
+const THREE_SPEAK_VIDEO_PATTERN = /\[!\[]\(https:\/\/ipfs-3speak.*\)\]\(https:\/\/3speak\.tv.*\)/g;
+
 interface Props {
+  body: string;
   author?: string;
   list: BeneficiaryRoute[];
   onAdd: (item: BeneficiaryRoute) => void;
@@ -158,16 +161,21 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                     <td className="border p-2">{`@${x.account}`}</td>
                     <td className="border p-2">{`${x.weight / 100}%`}</td>
                     <td className="border p-2">
-                      <Button
-                        onClick={() => {
-                          const { onDelete } = this.props;
-                          onDelete(x.account);
-                        }}
-                        variant="danger"
-                        size="sm"
-                      >
-                        {deleteForeverSvg}
-                      </Button>
+                      {!!this.props.body.match(THREE_SPEAK_VIDEO_PATTERN) &&
+                      x.src === "ENCODER_PAY" ? (
+                        <></>
+                      ) : (
+                        <Button
+                          onClick={() => {
+                            const { onDelete } = this.props;
+                            onDelete(x.account);
+                          }}
+                          variant="danger"
+                          size="sm"
+                        >
+                          {deleteForeverSvg}
+                        </Button>
+                      )}
                     </td>
                   </tr>
                 );

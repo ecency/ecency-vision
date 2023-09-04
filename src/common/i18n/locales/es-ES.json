@@ -227,17 +227,20 @@
     "username-contains-symbols-error": "Debe contener solamente letras, números, Signos de Puntuación",
     "username-contains-double-hyphens": "No debe contener Signos de Puntuación dobles",
     "username-exists": "Este nombre de usuario ya está registrado. Por favor, prueba otro",
-    "referral-invalid": "This referral is invalid. Please, try another one",
-    "referral-min-length-error": "Length of referral should be at least 3 characters",
-    "referral-max-length-error": "Length of referral should be no more than 16 characters"
+    "referral-invalid": "Esta referencia no es válida. Por favor, prueba con otra",
+    "referral-min-length-error": "La longitud de la referencia debe tener al menos 3 caracteres",
+    "referral-max-length-error": "La longitud de la referencia no debe tener más de 16 caracteres",
+    "email-max-length-error": "La longitud del correo electrónico no debe tener más de 72 caracteres"
   },
   "onboard": {
-    "title": "Incorporar a un amigo",
-    "description": "Puedes crear una cuenta para un amigo",
+    "title-active-user": "Incorporar a un amigo",
+    "title-visitor": "Preguntar a un amigo",
+    "description-active-user": "Puedes crear una cuenta para un amigo.",
+    "description-visitor": "Puedes pedir a un amigo que cree una cuenta para ti.",
     "creating": "Crea una cuenta para un amigo",
     "asking": " Preguntar a un amigo",
-    "creating-description": "Crear cuenta para un amigo (requiere iniciar sesión)",
-    "asking-description": "Pide a un amigo que te ayude a crear una cuenta",
+    "creating-description": "Pagar la cuenta con Hive o Crédito",
+    "asking-description": "Copiar el enlace de cuenta y enviarlo a un amigo.",
     "username": "Nombre de Usuario:",
     "email": "Correo electrónico:",
     "referral": "Referido:",
@@ -248,6 +251,7 @@
     "confirm-details": "Confirmar Detalles",
     "share": "(Puedes enviar código a un amigo) Copiar código",
     "copy-link": "Enlace de cuenta copiado correctamente",
+    "click-link": "Haz clic aquí para continuar",
     "continue": "Continuar",
     "public-active": "Clave Pública Activa:",
     "public-memo": "Clave Pública de Memo:",
@@ -553,7 +557,8 @@
       "whats-new-description": "Mantente al tanto de las actualizaciones de Ecency",
       "updates": "Actualizaciones",
       "release-list": "Versiones de lanzamiento",
-      "current": "Actual"
+      "current": "Actual",
+      "infinite-failed": "Vaya, la búsqueda falló. Siéntate, estamos reintentando..."
     },
     "threads-form": {
       "save": "Guardar",
@@ -636,6 +641,7 @@
     "start-new-one": "Iniciar nuevo Intercambio",
     "signing": "Firmando..",
     "success-swap": "¡Intercambiado con éxito!",
+    "calculating-in": "Calculando en",
     "advanced": {
       "history": "Historial",
       "stake": "Libro de órdenes",
@@ -843,7 +849,7 @@
     "follows-you": "Te sigue",
     "section-blog": "Escribe",
     "section-posts": "Publicaciones",
-    "section-trail": "Sendero",
+    "section-trail": "Me gusta",
     "section-comments": "Comentarios",
     "section-replies": "Respuestas",
     "section-communities": "Comunidades",
@@ -1153,14 +1159,16 @@
   "promote": {
     "title": "Promocionar",
     "sub-title": "Promociona tu post",
-    "duration": "Duración"
+    "duration": "Duración",
+    "learn-more": "Más información sobre la promoción"
   },
   "boost": {
     "title": "Promocionar",
     "sub-title": "Promociona tu publicación",
     "amount": "Cantidad",
     "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
-    "hint": "El valor real del voto que recibes puede variar"
+    "hint": "El valor real del voto que recibes puede variar",
+    "learn-more": "Más información sobre cómo impulsar"
   },
   "redeem-common": {
     "balance": "Balance",
@@ -1213,6 +1221,7 @@
     "memo-placeholder": "escribe tus notas aquí",
     "memo-help": "Este memo es público",
     "memo-error": "Nunca ponga las claves privadas en un campo memo, eso es visible públicamente para todos.",
+    "memo-required": "La transferencia a una Cuenta de Intercambio debe tener un memo.",
     "available-hp-hint": "* potencia de Hive disponible",
     "override-warning-1": "La nueva cantidad anula la anterior.",
     "override-warning-2": "La cuenta ({{account}}) ya ha sido delegada con {{previousAmount}}.",
@@ -1336,7 +1345,17 @@
   "friends": {
     "followers": "Seguidores ({{n}})",
     "following": "Siguiendo ({{n}})",
-    "search-placeholder": "Buscar"
+    "search-placeholder": "Buscar",
+    "active": "Activo:"
+  },
+  "friends-filter": {
+    "all": "Todos",
+    "recently": "Recientemente",
+    "this-month": "Este mes",
+    "this-year": "Este año",
+    "one-year": "Un año",
+    "two-years-more": "Más de un año",
+    "filter": "Filtro"
   },
   "follow-controls": {
     "follow": "Seguir",
@@ -1417,6 +1436,47 @@
     "empty-tags-alert": "Introducir etiquetas de la publicación",
     "empty-body-alert": "Introducir cuerpo de la publicación",
     "description": "Descripción breve"
+  },
+  "video-upload": {
+    "choose-video": "Selecciona un vídeo",
+    "choose-thumbnail": "Establece una miniatura (opcional)",
+    "continue": "Continuar",
+    "encode": "Enviar para la codificación",
+    "success": "Video subido correctamente",
+    "finished": "Finalizado",
+    "upload-video": "Subir vídeo",
+    "video-gallery": "Galería de vídeo",
+    "preview": "Vista previa",
+    "to-gallery": "Ir a la galería",
+    "congrats": "Felicidades",
+    "publishing": "No actualizar esta página, espera unos segundos para que el vídeo se procese"
+  },
+  "video-gallery": {
+    "all": "Todos",
+    "title": "Galería de vídeo",
+    "published": "Publicado",
+    "encoding": "Codificación",
+    "encoded": "Codificado",
+    "failed": "Ha fallado",
+    "status-encoded": "Listo para publicar",
+    "status-encoding": "Codificación",
+    "status-published": "Publicado",
+    "status-failed": "Codificación fallida",
+    "status-deleted": "Eliminado",
+    "info-created": "Creado:",
+    "status": "Estado:",
+    "info-views": "Vistas:",
+    "info-duration": "Duración:",
+    "info-size": "Tamaño del archivo:",
+    "insert-video": "Insertar",
+    "insert-nsfw": "Insertar como NSFW",
+    "refresh": "Refrescar para obtener el estado actualizado",
+    "video-info": "Videos are stored and powered by SPK network, might have some storage and encoding fees."
+  },
+  "nsfw-content": {
+    "title": "Contenido NSFW",
+    "warning": "Por favor, comprueba esto si tu contenido es NSFW",
+    "continue": "Continuar"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. Primera etiqueta es la categoría principal. Seleccionable.",
@@ -2085,7 +2145,7 @@
     "send": "Enviar",
     "subscribe-paragraph": "Sé el primero en saber lo que está pasando en la web descentralizada.",
     "copy-rights": "©2021 Ecency. Todos los derechos reservados.",
-    "success-message-subscribe": "¡Se ha enviado un enlace de verificación a tu cuenta de correo electrónico!",
+    "success-message-subscribe": "¡Estás suscrito a nuestros boletines de noticias!",
     "validation-email": "Se requiere un email válido",
     "error-occured": "Se ha producido un error en el servidor."
   },

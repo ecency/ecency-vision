@@ -27,6 +27,8 @@ import FloatingFAQ from "./components/floating-faq";
 import { useMappedStore } from "./store/use-mapped-store";
 import { EntriesCacheManager } from "./core";
 
+import { UserActivityRecorder } from "./components/user-activity-recorder";
+
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
 const ProfilePage = (props: any) => <ProfileContainer {...props} />;
@@ -94,6 +96,7 @@ const App = (props: any) => {
       {/*Excluded from production*/}
       {/*<ReactQueryDevtools initialIsOpen={false} />*/}
       <Tracker />
+      <UserActivityRecorder />
       <Switch>
         <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
         <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer} />
@@ -143,6 +146,12 @@ const App = (props: any) => {
           exact={true}
           strict={true}
           path={routes.PROPOSAL_DETAIL}
+          component={ProposalDetailContainer}
+        />
+        <Route
+          exact={true}
+          strict={true}
+          path={`/me${routes.PROPOSAL_DETAIL}`}
           component={ProposalDetailContainer}
         />
         <Route exact={true} strict={true} path={routes.ABOUT} component={AboutPage} />

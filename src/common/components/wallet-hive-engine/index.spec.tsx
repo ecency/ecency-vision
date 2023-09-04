@@ -7,11 +7,11 @@ import TestRenderer from "react-test-renderer";
 import { initialState as transactionsInitialState } from "../../store/transactions/index";
 
 import {
-  globalInstance,
-  dynamicPropsIntance1,
   activeUserInstance,
   allOver,
-  fullAccountInstance
+  dynamicPropsIntance1,
+  fullAccountInstance,
+  globalInstance
 } from "../../helper/test-helper";
 import { StaticRouter } from "react-router-dom";
 import { FullAccount } from "../../store/accounts/types";
@@ -129,7 +129,6 @@ const defProps = {
   addAccount: () => {},
   updateActiveUser: () => {},
   setSigningKey: () => {},
-  fetchPoints: () => {},
   updateWalletValues: () => {}
 };
 

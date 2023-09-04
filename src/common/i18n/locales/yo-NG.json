@@ -229,15 +229,18 @@
     "username-exists": "This username already registered. Please, try another one",
     "referral-invalid": "This referral is invalid. Please, try another one",
     "referral-min-length-error": "Length of referral should be at least 3 characters",
-    "referral-max-length-error": "Length of referral should be no more than 16 characters"
+    "referral-max-length-error": "Length of referral should be no more than 16 characters",
+    "email-max-length-error": "Length of email should be no more than 72 characters"
   },
   "onboard": {
-    "title": "Onboard a friend",
-    "description": "You can create account for a friend",
+    "title-active-user": "Onboard a friend",
+    "title-visitor": "Ask from a friend",
+    "description-active-user": "You can create account for a friend.",
+    "description-visitor": "You can ask a friend to create an account for you.",
     "creating": "Create for a friend",
     "asking": " Ask from a friend",
-    "creating-description": "Create account for a friend (requires login)",
-    "asking-description": "Ask a friend to help you create an account",
+    "creating-description": "Pay with hive or account credit",
+    "asking-description": "Copy account link and send to friend.",
     "username": "Username:",
     "email": "Email:",
     "referral": "Referral:",
@@ -248,6 +251,7 @@
     "confirm-details": "Confirm Details",
     "share": "(You can send code to a friend) Copy code",
     "copy-link": "Account link copied successfully",
+    "click-link": "Click here to continue",
     "continue": "Continue",
     "public-active": "Public Active key:",
     "public-memo": "Public Memo key:",
@@ -553,7 +557,8 @@
       "whats-new-description": "Keep in track the Ecency updates",
       "updates": "Updates",
       "release-list": "Release versions",
-      "current": "Current"
+      "current": "Current",
+      "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
     },
     "threads-form": {
       "save": "Save",
@@ -636,6 +641,7 @@
     "start-new-one": "Bẹ̀rẹ̀ ìpààrọ̀ ọ̀tun",
     "signing": "Signing..",
     "success-swap": "Ìpààrọ̀ tí yanjú!",
+    "calculating-in": "Calculating in",
     "advanced": {
       "history": "History",
       "stake": "Order book",
@@ -843,7 +849,7 @@
     "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Posts",
-    "section-trail": "Trail",
+    "section-trail": "Likes",
     "section-comments": "Comments",
     "section-replies": "Replies",
     "section-communities": "Communities",
@@ -1153,14 +1159,16 @@
   "promote": {
     "title": "Promote",
     "sub-title": "Promote your post",
-    "duration": "Duration"
+    "duration": "Duration",
+    "learn-more": "Learn more about promotion"
   },
   "boost": {
     "title": "Boost",
     "sub-title": "Boost your post",
     "amount": "Amount",
     "slider-hint": "Drag the slider to adjust the amount.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Actual value of vote you receive may vary",
+    "learn-more": "Learn more about boosting"
   },
   "redeem-common": {
     "balance": "Balance",
@@ -1213,6 +1221,7 @@
     "memo-placeholder": "enter your notes here",
     "memo-help": "This memo is public",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-required": "Transfer to an exchange must have a memo.",
     "available-hp-hint": "* available hive power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -1336,7 +1345,17 @@
   "friends": {
     "followers": "Followers ({{n}})",
     "following": "Following ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Search",
+    "active": "Active:"
+  },
+  "friends-filter": {
+    "all": "All",
+    "recently": "Recently",
+    "this-month": "This month",
+    "this-year": "This year",
+    "one-year": "One year",
+    "two-years-more": "More than a year",
+    "filter": "Filter"
   },
   "follow-controls": {
     "follow": "Follow",
@@ -1417,6 +1436,47 @@
     "empty-tags-alert": "Enter post tags",
     "empty-body-alert": "Enter post body",
     "description": "Short description"
+  },
+  "video-upload": {
+    "choose-video": "Select a video",
+    "choose-thumbnail": "Set a thumbnail(optional)",
+    "continue": "Continue",
+    "encode": "Send for encoding",
+    "success": "Video succesfully uploaded",
+    "finished": "Finished",
+    "upload-video": "Upload video",
+    "video-gallery": "Video gallery",
+    "preview": "Preview",
+    "to-gallery": "Go to gallery",
+    "congrats": "Congratulations",
+    "publishing": "Don't refresh this page, wait for few seconds for video to process"
+  },
+  "video-gallery": {
+    "all": "All",
+    "title": "Video gallery",
+    "published": "Published",
+    "encoding": "Encoding",
+    "encoded": "Encoded",
+    "failed": "Failed",
+    "status-encoded": "Ready for posting",
+    "status-encoding": "Encoding",
+    "status-published": "Published",
+    "status-failed": "Encoding failed",
+    "status-deleted": "Deleted",
+    "info-created": "Created:",
+    "status": "Status:",
+    "info-views": "Views:",
+    "info-duration": "Duration:",
+    "info-size": "File size:",
+    "insert-video": "Insert",
+    "insert-nsfw": "Insert as NSFW",
+    "refresh": "Refresh to get updated status",
+    "video-info": "Videos are stored and powered by SPK network, might have some storage and encoding fees."
+  },
+  "nsfw-content": {
+    "title": "NSFW contents",
+    "warning": "Please check this if your content is NSFW",
+    "continue": "Continue"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
@@ -2085,7 +2145,7 @@
     "send": "Send",
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
-    "success-message-subscribe": "A verification link has been sent to your email account!",
+    "success-message-subscribe": "You are subscribed to our newsletters!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   },

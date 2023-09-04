@@ -17,6 +17,7 @@ import { DeckThreadsCreatedRecently } from "./deck-threads-created-recently";
 import { IdentifiableEntry, ThreadItemEntry } from "../columns/deck-threads-manager";
 import useClickAway from "react-use/lib/useClickAway";
 import { classNameObject } from "../../../helper/class-name-object";
+import usePrevious from "react-use/lib/usePrevious";
 
 interface Props {
   className?: string;
@@ -26,6 +27,7 @@ interface Props {
   onSuccess?: (reply: Entry) => void;
   hideAvatar?: boolean;
   entry?: ThreadItemEntry;
+  persistable?: boolean;
 }
 
 export const DeckThreadsForm = ({
@@ -35,7 +37,8 @@ export const DeckThreadsForm = ({
   replySource,
   onSuccess,
   hideAvatar = false,
-  entry
+  entry,
+  persistable = false
 }: Props) => {
   const rootRef = useRef(null);
   useClickAway(rootRef, () => setFocused(false));
@@ -48,10 +51,15 @@ export const DeckThreadsForm = ({
     PREFIX + "_local_draft",
     {}
   );
-  const [threadHost, setThreadHost] = useLocalStorage(PREFIX + "_dtf_th", "ecency.waves");
-  const [text, setText] = useLocalStorage(PREFIX + "_dtf_t", "");
-  const [image, setImage] = useLocalStorage<string | null>(PREFIX + "_dtf_i", null);
-  const [imageName, setImageName] = useLocalStorage<string | null>(PREFIX + "_dtf_in", null);
+  const [persistedForm, setPersistedForm] = useLocalStorage<Record<string, any>>(PREFIX + "_dtf_f");
+  const previousPersistedForm = usePrevious(persistedForm);
+
+  const [threadHost, setThreadHost] = useState("ecency.waves");
+  const [text, setText] = useState("");
+  const [image, setImage] = useState<string | null>(null);
+  const [imageName, setImageName] = useState<string | null>(null);
+  const [video, setVideo] = useState<string | null>(null);
+
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -79,6 +87,49 @@ export const DeckThreadsForm = ({
     }
   }, [entry]);
 
+  useEffect(() => {
+    if (persistable) {
+      if (!threadHost && persistedForm?.threadHost) {
+        setThreadHost(persistedForm.threadHost);
+      }
+
+      if (!text && persistedForm?.text) {
+        setText(persistedForm.text);
+      }
+
+      if (!image && persistedForm?.image) {
+        setImage(persistedForm.image);
+      }
+
+      if (!imageName && persistedForm?.imageName) {
+        setImageName(persistedForm.imageName);
+      }
+
+      if (!video && persistedForm?.video) {
+        setVideo(persistedForm.video);
+      }
+    }
+  }, [persistedForm]);
+
+  useEffect(() => {
+    if (
+      persistable &&
+      (persistedForm?.threadHost !== threadHost ||
+        persistedForm?.text !== text ||
+        persistedForm?.image !== image ||
+        persistedForm?.imageName !== imageName ||
+        persistedForm?.video !== video)
+    ) {
+      setPersistedForm({
+        threadHost,
+        text,
+        image,
+        imageName,
+        video
+      });
+    }
+  }, [threadHost, text, image, imageName]);
+
   const submit = async () => {
     if (!activeUser) {
       toggleUIProp("login");
@@ -95,6 +146,10 @@ export const DeckThreadsForm = ({
 
       if (image) {
         content = `${content}<br>![${imageName ?? ""}](${image})`;
+      }
+
+      if (video) {
+        content = `${content}<br>${video}`;
       }
 
       // Push to draft built content with attachments
@@ -134,6 +189,7 @@ export const DeckThreadsForm = ({
       setImageName(null);
       _t("decks.threads-form.successfully-created");
     } catch (e) {
+      console.error(e);
     } finally {
       setLoading(false);
     }
@@ -146,12 +202,12 @@ export const DeckThreadsForm = ({
       className={"deck-toolbar-threads-form-submit "}
       size={size}
     >
-      {!activeUser && !entry && text!!.length <= 255 && _t("decks.threads-form.login-and-publish")}
+      {!activeUser && !entry && text?.length <= 255 && _t("decks.threads-form.login-and-publish")}
       {activeUser &&
         !entry &&
-        text!!.length <= 255 &&
+        text?.length <= 255 &&
         (loading ? _t("decks.threads-form.publishing") : _t("decks.threads-form.publish"))}
-      {text!!.length > 255 && !entry && _t("decks.threads-form.create-regular-post")}
+      {text?.length > 255 && !entry && _t("decks.threads-form.create-regular-post")}
       {entry && _t("decks.threads-form.save")}
     </Button>
   );
@@ -187,6 +243,7 @@ export const DeckThreadsForm = ({
               <DeckThreadsFormThreadSelection host={threadHost} setHost={setThreadHost} />
             )}
             <DeckThreadsFormControl
+              video={video}
               text={text!!}
               setText={setText}
               selectedImage={image!!}
@@ -194,6 +251,7 @@ export const DeckThreadsForm = ({
                 setImage(url);
                 setImageName(name);
               }}
+              onAddVideo={setVideo}
               setSelectedImage={setImage}
               placeholder={placeholder}
               onTextareaFocus={() => setFocused(true)}
@@ -213,12 +271,12 @@ export const DeckThreadsForm = ({
             )}
           </div>
         </div>
-        {inline && text!!.length > 255 && (
+        {inline && text?.length > 255 && (
           <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
         )}
         {!inline && (
           <div className="deck-toolbar-threads-form-bottom">
-            {text!!.length > 255 && (
+            {text?.length > 255 && (
               <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
             )}
             <DeckThreadsCreatedRecently

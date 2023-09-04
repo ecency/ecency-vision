@@ -43,6 +43,7 @@ export const SignUp = (props: PageProps) => {
   const [referralTouched, setReferralTouched] = useState(false);
 
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [referral, setReferral] = useState("");
   const [lockReferral, setLockReferral] = useState(false);
   const [inProgress, setInProgress] = useState(false);
@@ -123,6 +124,14 @@ export const SignUp = (props: PageProps) => {
       });
     }
   }, [username, usernameTouched]);
+
+  useEffect(() => {
+    if (email.length > 72) {
+      setEmailError(_t("sign-up.email-max-length-error"));
+    } else {
+      setEmailError("");
+    }
+  }, [email]);
 
   useEffect(() => {
     setReferralError("");
@@ -256,7 +265,7 @@ export const SignUp = (props: PageProps) => {
                       return;
                     }
 
-                    if (usernameError || referralError) {
+                    if (usernameError || referralError || emailError) {
                       return;
                     }
 
@@ -304,8 +313,10 @@ export const SignUp = (props: PageProps) => {
                       onChange={(e) => setEmail(e.target.value)}
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-email")}
+                      isInvalid={emailError !== ""}
                       onInput={handleOnInput}
                     />
+                    <Form.Text className="text-danger pl-3">{emailError}</Form.Text>
                   </Form.Group>
                   <Form.Group>
                     <FormControl
@@ -405,13 +416,21 @@ export const SignUp = (props: PageProps) => {
 
                 <div className="card border bg-white rounded mb-3">
                   <div className="bg-gray-100 border-b p-3">
-                    <b>{_t("onboard.title")}</b>
+                    <b>
+                      {props.activeUser
+                        ? _t("onboard.title-active-user")
+                        : _t("onboard.title-visitor")}
+                    </b>
                   </div>
                   <div className="p-3">
-                    <p>{_t("onboard.description")}</p>
+                    <p>
+                      {props.activeUser
+                        ? _t("onboard.description-active-user")
+                        : _t("onboard.description-visitor")}
+                    </p>
                     <ul>
-                      <li>{_t("onboard.asking-description")}</li>
-                      <li>{_t("onboard.creating-description")}</li>
+                      {props.activeUser && <li>{_t("onboard.creating-description")}</li>}
+                      {!props.activeUser && <li>{_t("onboard.asking-description")}</li>}
                     </ul>
                   </div>
                   <div className="bg-gray-100 border-t py-2 px-3">
@@ -421,7 +440,7 @@ export const SignUp = (props: PageProps) => {
                       className="w-100"
                       variant="primary"
                     >
-                      {_t("onboard.asking")}
+                      {props.activeUser ? _t("onboard.creating") : _t("onboard.asking")}
                     </Button>
                   </div>
                 </div>

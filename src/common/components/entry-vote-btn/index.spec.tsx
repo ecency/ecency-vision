@@ -64,6 +64,9 @@ describe("(1) Dialog", () => {
     account: accountFull,
     isPostSlider: false,
     previousVotedValue: null,
+    isVoted: () => {
+      return { upVoted: true, downVoted: false };
+    },
     onClick: () => {},
     setTipDialogMounted: () => {},
     updateWalletValues: () => {},

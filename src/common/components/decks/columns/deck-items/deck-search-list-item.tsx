@@ -245,7 +245,7 @@ export const SearchListItem = ({
             isPostSlider={false}
             history={history}
             afterVote={(votes, estimated) => {
-              updateVotes(entry.post_id, votes, estimated);
+              updateVotes(entry, votes, estimated);
             }}
           />
           <EntryPayout entry={entry} />

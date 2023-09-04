@@ -10,9 +10,10 @@ interface Props {
   toggle: JSX.Element;
   children: JSX.Element;
   options?: Parameters<typeof usePopper>[2];
+  hideOnClick?: boolean;
 }
 
-export const PopperDropdown = ({ children, toggle, options }: Props) => {
+export const PopperDropdown = ({ children, toggle, options, hideOnClick = false }: Props) => {
   const isMounted = useMounted();
 
   const [isShow, setIsShow] = useState(false);
@@ -47,7 +48,9 @@ export const PopperDropdown = ({ children, toggle, options }: Props) => {
               {...attributes.popper}
               ref={setPopperElement}
             >
-              <div ref={hostRef}>{children}</div>
+              <div ref={hostRef} onClick={() => (hideOnClick ? hide() : null)}>
+                {children}
+              </div>
             </div>
           ),
           document.querySelector("#popper-container")!!

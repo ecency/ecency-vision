@@ -35,7 +35,6 @@ interface Props {
   updateActiveUser: (data?: Account) => void;
   setSigningKey: (key: string) => void;
   fetchTransactions: (username: string, group?: OperationGroup | "") => void;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
 }
 
@@ -304,8 +303,7 @@ export default (p: Props) => {
     addAccount: p.addAccount,
     updateActiveUser: p.updateActiveUser,
     setSigningKey: p.setSigningKey,
-    fetchTransactions: p.fetchTransactions,
-    fetchPoints: p.fetchPoints
+    fetchTransactions: p.fetchTransactions
   };
 
   return <ProfileReferrals {...props} />;

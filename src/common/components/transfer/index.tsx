@@ -69,6 +69,8 @@ import { formatNumber } from "../../helper/format-number";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
+import exchangeAccounts from "../../constants/exchanges";
+import { queryClient, QueryIdentifiers } from "../../core";
 
 export type TransferMode =
   | "transfer"
@@ -143,7 +145,6 @@ interface Props {
   addAccount: (data: Account) => void;
   updateActiveUser: (data?: Account) => void;
   setSigningKey: (key: string) => void;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
   onHide: () => void;
   handleClickAway?: () => void;
@@ -156,6 +157,7 @@ interface State {
   to: string;
   toData: Account | null;
   toError: string;
+  toExchangeError: string;
   memoError: string;
   toWarning: string;
   amount: string;
@@ -189,6 +191,7 @@ const pureState = (props: Props): State => {
     to: props.to || _to,
     toData: props.to ? { name: props.to } : _toData,
     toError: "",
+    toExchangeError: "",
     memoError: "",
     toWarning: "",
     amount: props.amount || "0.001",
@@ -228,10 +231,22 @@ export class Transfer extends BaseComponent<Props, State> {
   toChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: to } = e.target;
     this.stateSet({ to }, this.handleTo);
+    // Check memo if to is an exchange account
+    if (exchangeAccounts.includes(to)) {
+      this.stateSet({ toExchangeError: _t("transfer.memo-required") });
+    } else {
+      this.stateSet({ toExchangeError: "" });
+    }
   };
 
   toSelected = (to: string) => {
     this.stateSet({ to }, this.handleTo);
+    // Check memo if selected is an exchange account
+    if (exchangeAccounts.includes(to)) {
+      this.stateSet({ toExchangeError: _t("transfer.memo-required") });
+    } else {
+      this.stateSet({ toExchangeError: "" });
+    }
   };
 
   amountChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -246,6 +261,15 @@ export class Transfer extends BaseComponent<Props, State> {
     const mError = cryptoUtils.isWif(memo.trim());
     if (mError) this.setState({ memoError: _t("transfer.memo-error").toUpperCase() });
     this.stateSet({ memo });
+    if (memo) {
+      {
+        this.stateSet({ toExchangeError: "" });
+      }
+    } else {
+      {
+        this.stateSet({ toExchangeError: _t("transfer.memo-required") });
+      }
+    }
   };
 
   handleTo = () => {
@@ -409,9 +433,16 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   canSubmit = () => {
-    const { toData, toError, amountError, memoError, inProgress, amount } = this.state;
+    const { toData, toError, amountError, memoError, inProgress, amount, toExchangeError } =
+      this.state;
     return (
-      toData && !toError && !amountError && !memoError && !inProgress && parseFloat(amount) > 0
+      toData &&
+      !toExchangeError &&
+      !toError &&
+      !amountError &&
+      !memoError &&
+      !inProgress &&
+      parseFloat(amount) > 0
     );
   };
 
@@ -623,19 +654,11 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   finish = () => {
-    const {
-      onHide,
-      mode,
-      asset,
-      account,
-      activeUser,
-      fetchPoints,
-      updateWalletValues,
-      handleClickAway
-    } = this.props;
+    const { onHide, mode, asset, account, activeUser, updateWalletValues, handleClickAway } =
+      this.props;
     if (account && activeUser && account.name !== activeUser.username) {
       if (mode === "transfer" && asset === "POINT") {
-        fetchPoints(account.name);
+        queryClient.invalidateQueries([QueryIdentifiers.POINTS, account.name]); // todo: find filter
       } else {
         updateWalletValues();
       }
@@ -656,6 +679,7 @@ export class Transfer extends BaseComponent<Props, State> {
       asset,
       to,
       toError,
+      toExchangeError,
       toWarning,
       amount,
       amountError,
@@ -872,6 +896,7 @@ export class Transfer extends BaseComponent<Props, State> {
                   </Form.Group>
                   {toWarning && <FormText msg={toWarning} type="danger" />}
                   {toError && <FormText msg={toError} type="danger" />}
+                  {toExchangeError && <FormText msg={toExchangeError} type="danger" />}
                 </>
               )}
 

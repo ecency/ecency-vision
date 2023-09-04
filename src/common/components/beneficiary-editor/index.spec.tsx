@@ -5,6 +5,7 @@ import BeneficiaryEditorDialog, { DialogBody } from "./index";
 import TestRenderer from "react-test-renderer";
 
 const defProps = {
+  body: "",
   list: [
     {
       account: "foo",

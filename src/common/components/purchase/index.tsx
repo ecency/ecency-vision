@@ -28,7 +28,6 @@ interface Props {
   transactions: Transactions;
   signingKey: string;
   account: Account;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
   addAccount: (data: Account) => void;
   updateActiveUser: (data?: Account) => void;

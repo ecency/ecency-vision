@@ -1,13 +1,12 @@
-import React, { Fragment, useEffect, useState, useCallback } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { match } from "react-router";
 
 import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import { _t } from "../i18n";
-import { ListStyle } from "../store/global/types";
+import { ListStyle, ProfileFilter } from "../store/global/types";
 
 import { makeGroupKey } from "../store/entries";
-import { ProfileFilter } from "../store/global/types";
 import { Entry, EntryGroup } from "../store/entries/types";
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -42,7 +41,7 @@ import { getAccountFull } from "../api/hive";
 
 import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";
-import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 
 import { connect } from "react-redux";
 import { Account, FullAccount } from "../store/accounts/types";
@@ -51,6 +50,8 @@ import useAsyncEffect from "use-async-effect";
 import { usePrevious } from "../util/use-previous";
 import WalletSpk from "../components/wallet-spk";
 import "./profile.scss";
+import { useQueryClient } from "@tanstack/react-query";
+import { QueryIdentifiers } from "../core";
 
 interface MatchParams {
   username: string;
@@ -93,8 +94,10 @@ export const Profile = (props: Props) => {
     hasMore: false
   });
 
+  const queryClient = useQueryClient();
+
   useAsyncEffect(async (_) => {
-    const { accounts, match, global, fetchEntries, fetchPoints } = props;
+    const { accounts, match, global, fetchEntries } = props;
 
     if (search.length) {
       await handleInputChange(searchParam);
@@ -109,7 +112,7 @@ export const Profile = (props: Props) => {
       fetchEntries(global.filter, global.tag, false);
     }
     // fetch points
-    fetchPoints(username);
+    queryClient.invalidateQueries([QueryIdentifiers.POINTS, username]);
 
     const accountUsername = username.replace("@", "");
     const account = accounts.find((x) => x.name === accountUsername) as FullAccount;
@@ -121,9 +124,8 @@ export const Profile = (props: Props) => {
     await initPinnedEntry(username.replace("@", ""), account);
 
     return () => {
-      const { resetTransactions, resetPoints } = props;
+      const { resetTransactions } = props;
       resetTransactions();
-      resetPoints();
     };
   }, []);
   useEffect(() => {
@@ -163,8 +165,7 @@ export const Profile = (props: Props) => {
         props.resetTransactions();
         props.fetchTransactions(`@${nextUsername}`);
 
-        props.resetPoints();
-        props.fetchPoints(`@${nextUsername}`);
+        queryClient.invalidateQueries([QueryIdentifiers.POINTS, nextUsername]);
       }
 
       // Wallet and points are not a correct filter to fetch posts
@@ -268,16 +269,8 @@ export const Profile = (props: Props) => {
   };
 
   const reload = async () => {
-    const {
-      match,
-      global,
-      invalidateEntries,
-      fetchEntries,
-      resetTransactions,
-      fetchTransactions,
-      resetPoints,
-      fetchPoints
-    } = props;
+    const { match, global, invalidateEntries, fetchEntries, resetTransactions, fetchTransactions } =
+      props;
     const { username, section } = match.params;
 
     setLoading(true);
@@ -288,8 +281,7 @@ export const Profile = (props: Props) => {
       fetchTransactions(username);
 
       // reload points
-      resetPoints();
-      fetchPoints(username);
+      queryClient.invalidateQueries([QueryIdentifiers.POINTS, username]);
 
       if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
         // reload posts
