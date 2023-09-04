@@ -1,9 +1,6 @@
-import React, { Component, useEffect, useState, useCallback } from "react";
-
+import React, { Component, useEffect, useState } from "react";
 import { History } from "history";
-
-import { FormControl, Button } from "react-bootstrap";
-
+import { Button } from "react-bootstrap";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { OperationGroup, Transaction, Transactions } from "../../store/transactions/types";
 import { Account } from "../../store/accounts/types";
@@ -21,26 +18,25 @@ import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
 
 import {
-  ticketSvg,
-  compareHorizontalSvg,
+  cashCoinSvg,
   cashMultiple,
-  reOrderHorizontalSvg,
-  pickAxeSvg,
+  chevronDownSvgForSlider,
+  chevronUpSvgForVote,
   closeSvg,
   exchangeSvg,
-  cashCoinSvg,
+  pickAxeSvg,
   powerDownSvg,
   powerUpSvg,
+  reOrderHorizontalSvg,
   starsSvg,
-  chevronUpSvgForVote,
-  chevronDownSvgForSlider,
-  starSvg
+  ticketSvg
 } from "../../img/svg";
 
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import { usePrevious } from "../../util/use-previous";
 import { Global } from "../../store/global/types";
+import { FormControl } from "@ui/input";
 
 interface RowProps {
   history: History;
@@ -608,7 +604,7 @@ const List = (props: Props) => {
     }
   }, [props.transactions]);
 
-  const typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  const typeChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { account, fetchTransactions } = props;
     const group = e.target.value;
 
@@ -634,7 +630,7 @@ const List = (props: Props) => {
     <div className="transaction-list">
       <div className="transaction-list-header">
         <h2>{_t("transactions.title")} </h2>
-        <FormControl as="select" value={props.transactions.group} onChange={typeChanged}>
+        <FormControl type="select" value={props.transactions.group} onChange={typeChanged}>
           <option value="">{_t("transactions.group-all")}</option>
           {["transfers", "market-orders", "interests", "stake-operations", "rewards"].map((x) => (
             <option key={x} value={x}>

@@ -130,6 +130,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                   className="mb-3 w-75"
                 >
                   <FormControl
+                    type="text"
                     placeholder={`${_t("static.faq.search-placeholder")}`}
                     className="w-75"
                     onChange={(e) => {

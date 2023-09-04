@@ -1,9 +1,5 @@
 import React, { Component, Fragment, useEffect, useState } from "react";
-
 import { History } from "history";
-
-import { FormControl } from "react-bootstrap";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { Account } from "../../store/accounts/types";
 import { Global } from "../../store/global/types";
@@ -47,6 +43,7 @@ import FormattedCurrency from "../formatted-currency";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { PurchaseQrDialog } from "../purchase-qr";
 import { PurchaseTypes } from "../purchase-qr/purchase-types";
+import { FormControl } from "@ui/input";
 
 export const formatMemo = (memo: string, history: History) => {
   return memo.split(" ").map((x) => {
@@ -282,7 +279,7 @@ export const WalletEcency = (props: Props) => {
     setBoost(!boost);
   };
 
-  const filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  const filterChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const filter = Number(e.target.value);
     const { fetchPoints, account } = props;
     fetchPoints(account.name, filter);
@@ -500,7 +497,7 @@ export const WalletEcency = (props: Props) => {
             <div className="p-transaction-list">
               <div className="transaction-list-header">
                 <h2>{_t("points.history")}</h2>
-                <FormControl as="select" value={points.filter} onChange={filterChanged}>
+                <FormControl type="select" value={points.filter} onChange={filterChanged}>
                   <option value="0">{_t("points.filter-all")}</option>
                   {txFilters.map((x) => (
                     <option key={x} value={x}>

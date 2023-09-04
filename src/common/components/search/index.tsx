@@ -1,11 +1,6 @@
 import React from "react";
-
 import { History, Location } from "history";
-
-import { FormControl } from "react-bootstrap";
-
 import numeral from "numeral";
-
 import { Global } from "../../store/global/types";
 import { TrendingTags } from "../../store/trending-tags/types";
 
@@ -73,7 +68,7 @@ export class Search extends BaseComponent<Props, State> {
 
   isSearchPage = () => this.props.location.pathname.startsWith("/search");
 
-  queryChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  queryChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value.toLowerCase();
     this.stateSet({ query });
   };

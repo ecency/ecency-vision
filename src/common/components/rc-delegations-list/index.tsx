@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Button, FormControl } from "react-bootstrap";
-import { getOutgoingRc, getIncomingRc } from "../../api/hive";
+import { Button } from "react-bootstrap";
+import { getAccount, getIncomingRc, getOutgoingRc } from "../../api/hive";
 import { delegateRC } from "../../api/operations";
 import { _t } from "../../i18n";
 import LinearProgress from "../linear-progress";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import { useParams } from "react-router";
-import { getAccount } from "../../api/hive";
 import { Account } from "../../store/accounts/types";
 import Tooltip from "../tooltip";
 import "./index.scss";
+import { FormControl } from "@ui/input";
 
 interface Props {
   addAccount: (data: Account) => void;
@@ -79,6 +79,7 @@ export const RcDelegationsList = (props: any) => {
       <div className="list-container">
         <div className="search-box">
           <FormControl
+            type="text"
             value={search}
             placeholder="search list"
             onChange={(e) => setsearch(e.target.value)}

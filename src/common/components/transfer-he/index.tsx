@@ -743,6 +743,7 @@ export class Transfer extends BaseComponent<Props, State> {
                     </Form.Label>
                     <Col sm="10">
                       <FormControl
+                        type="text"
                         placeholder={_t("transfer.memo-placeholder")}
                         value={memo}
                         onChange={this.memoChanged}

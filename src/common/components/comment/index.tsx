@@ -1,6 +1,6 @@
 import React, { Component, Ref } from "react";
 
-import { Button, FormControl } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -134,7 +134,7 @@ export class Comment extends Component<Props, State> {
     ss.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
   };
 
-  textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  textChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: text } = e.target;
     let scHeight: number = e.target.scrollHeight;
     let reduceScHeight: number = scHeight - 20 || scHeight - 24;

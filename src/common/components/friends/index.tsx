@@ -1,26 +1,21 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
-import { Button, FormControl } from "react-bootstrap";
-
+import { Button } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
-
 import { getAccounts, getFollowers, getFollowing } from "../../api/hive";
 import { FriendSearchResult, searchFollower, searchFollowing } from "../../api/search-api";
-
 import { _t } from "../../i18n";
 
 import accountReputation from "../../helper/account-reputation";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Friend {
   name: string;
@@ -158,7 +153,7 @@ export class List extends BaseComponent<ListProps, ListState> {
     });
   };
 
-  searchChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  searchChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(this._timer);
 
     this.stateSet({ search: e.target.value.trim(), loading: true }, () => {
@@ -221,6 +216,7 @@ export class List extends BaseComponent<ListProps, ListState> {
           <div className="friends-list">
             <div className="friend-search-box">
               <FormControl
+                type="text"
                 value={search}
                 placeholder={_t("friends.search-placeholder")}
                 onChange={this.searchChanged}

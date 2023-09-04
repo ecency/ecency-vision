@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-
-import { Button, FormControl } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
-
-import { copyContent, magnifySvg } from "../../img/svg";
+import { copyContent } from "../../img/svg";
 import { success } from "../feedback";
 import "./_index.scss";
+import { FormControl, InputGroup } from "@ui/input";
+import { searchIconSvg } from "../decks/icons";
 
 type Props = any;
 
@@ -44,10 +44,9 @@ export default class SearchBox extends Component<Props> {
             </Button>
           </div>
         ) : (
-          <>
-            <span className="prepend">{magnifySvg}</span>
+          <InputGroup prepend={searchIconSvg}>
             <FormControl type="text" {...{ ...other, value, username, filter }} />
-          </>
+          </InputGroup>
         )}
       </div>
     );

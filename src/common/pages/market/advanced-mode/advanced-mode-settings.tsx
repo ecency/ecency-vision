@@ -1,8 +1,9 @@
-import { Button, FormControl, FormGroup, FormLabel } from "react-bootstrap";
+import { Button, FormGroup, FormLabel } from "react-bootstrap";
 import React, { useState } from "react";
 import { settingsSvg } from "../../../img/svg";
 import { _t } from "../../../i18n";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   updateRate: number;

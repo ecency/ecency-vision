@@ -1,8 +1,5 @@
 import React from "react";
-import { FormControl } from "react-bootstrap";
-
 import isEqual from "react-fast-compare";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { Community } from "../../store/communities/types";
 import { Global } from "../../store/global/types";
@@ -20,6 +17,7 @@ import { getCommunities, getCommunity, getSubscriptions } from "../../api/bridge
 import { menuDownSvg } from "../../img/svg";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface BrowserProps {
   global: Global;
@@ -57,7 +55,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
     });
   };
 
-  queryChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  queryChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (this._timer) {
       clearTimeout(this._timer);
       this._timer = null;
@@ -88,7 +86,6 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
       <div className="search">
         <FormControl
           type="text"
-          size="sm"
           placeholder={_t("community-selector.search-placeholder")}
           value={query}
           onChange={this.queryChanged}

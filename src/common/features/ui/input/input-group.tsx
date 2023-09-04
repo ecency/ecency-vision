@@ -40,7 +40,8 @@ export function InputGroup({
               true,
             "px-2.5": typeof prepend === "string" || (prepend as ReactElement)?.type === Spinner,
             "[&>.ecency-spinner]:w-3.5 [&>.ecency-spinner]:h-3.5":
-              (prepend as ReactElement)?.type === Spinner
+              (prepend as ReactElement)?.type === Spinner,
+            "[&>svg]:w-4 [&>svg]:h-4 px-2": true
           })}
           onClick={() => onPrependClick?.()}
         >

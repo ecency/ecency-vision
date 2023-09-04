@@ -1,7 +1,5 @@
 import React from "react";
-
-import { Button, FormControl } from "react-bootstrap";
-
+import { Button } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -18,6 +16,7 @@ import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from "../.
 import { _t } from "../../i18n";
 import "./_index.scss";
 import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -44,7 +43,7 @@ export class WitnessesProxy extends BaseComponent<Props, State> {
     inProgress: false
   };
 
-  usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  usernameChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ username: e.target.value.trim() });
   };
 
