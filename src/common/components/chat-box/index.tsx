@@ -154,7 +154,7 @@ export default function ChatBox(props: Props) {
   const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
   const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [resendMessage, setResendMessage] = useState<PublicMessage | DirectMessage>();
+  const [removedUsers, setRemovedUsers] = useState<string[]>([]);
   const [importPrivKey, setImportPrivKey] = useState(false);
   const [revelPrivateKey, setRevealPrivateKey] = useState(false);
   const [innerWidth, setInnerWidth] = useState(0);
@@ -282,6 +282,7 @@ export default function ChatBox(props: Props) {
         currentChannel,
         currentChannel.hiddenMessageIds
       );
+      currentChannel?.removedUserIds && setRemovedUsers(currentChannel.removedUserIds);
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
     }
@@ -295,6 +296,13 @@ export default function ChatBox(props: Props) {
       scrollerClicked();
     }
   }, [isCurrentUser]);
+
+  useEffect(() => {
+    if (removedUsers) {
+      const removed = removedUsers.includes(activeUserKeys?.pub!);
+      setIsActiveUserRemoved(removed);
+    }
+  }, [removedUsers]);
 
   useEffect(() => {
     fetchProfileData();
@@ -574,12 +582,6 @@ export default function ChatBox(props: Props) {
 
   const handleConfirmButton = (actionType: string) => {
     switch (actionType) {
-      case HIDEMESSAGE:
-        handleChannelUpdate(HIDEMESSAGE);
-        break;
-      case BLOCKUSER:
-        handleChannelUpdate(BLOCKUSER);
-        break;
       case NEWCHATACCOUNT:
         setInProgress(true);
         resetProfile(props.activeUser)
@@ -591,9 +593,6 @@ export default function ChatBox(props: Props) {
           .catch((err) => {
             error(err);
           });
-        break;
-      case RESENDMESSAGE:
-        // handleResendMessage();
         break;
       default:
         break;
@@ -888,91 +887,6 @@ export default function ChatBox(props: Props) {
                         <p className="not-joined">{_t("chat.not-joined")}</p>
                       )}
                       {isCurrentUser ? (
-                        // directMessagesList.map((msg, i) => {
-                        //   const dayAndMonth = getFormattedDateAndDay(msg, i);
-                        //   let renderedPreview = renderPostBody(
-                        //     msg.content,
-                        //     false,
-                        //     props.global.canUseWebp
-                        //   );
-
-                        //   renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
-                        //   renderedPreview = renderedPreview.replace(/<\/p>/g, "");
-
-                        //   const isGif = isMessageGif(msg.content);
-
-                        //   const isImage = isMessageImage(msg.content);
-
-                        //   return (
-                        //     <React.Fragment key={msg.id}>
-                        //       {dayAndMonth}
-                        //       {msg.creator !== activeUserKeys?.pub ? (
-                        //         <div key={msg.id} className="message">
-                        //           <div className="user-img">
-                        //             <Link to={`/@${currentUser}`}>
-                        //               <span>
-                        //                 <UserAvatar username={currentUser} size="medium" />
-                        //               </span>
-                        //             </Link>
-                        //           </div>
-                        //           <div className="user-info">
-                        //             <p className="user-msg-time">
-                        //               {formatMessageTime(msg.created)}
-                        //             </p>
-                        //             <div
-                        //               className={`receiver-message-content ${isGif ? "gif" : ""} ${
-                        //                 isImage ? "chat-image" : ""
-                        //               }`}
-                        //               dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                        //             />
-                        //           </div>
-                        //         </div>
-                        //       ) : (
-                        //         <div key={msg.id} className="sender">
-                        //           <p className="sender-message-time">
-                        //             {formatMessageTime(msg.created)}
-                        //           </p>
-                        //           <div
-                        //             className={`sender-message ${
-                        //               msg.sent === 2 ? "failed" : msg.sent === 0 ? "sending" : ""
-                        //             }`}
-                        //           >
-                        //             {msg.sent === 2 && (
-                        //               <Tooltip content={"Resend"}>
-                        //                 <span
-                        //                   className="resend-svg"
-                        //                   onClick={() => {
-                        //                     setKeyDialog(true);
-                        //                     setStep(11);
-                        //                     setResendMessage(msg);
-                        //                   }}
-                        //                 >
-                        //                   {resendMessageSvg}
-                        //                 </span>
-                        //               </Tooltip>
-                        //             )}
-                        //             <div
-                        //               className={`sender-message-content ${isGif ? "gif" : ""} ${
-                        //                 isImage ? "chat-image" : ""
-                        //               }`}
-                        //               dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                        //             />
-                        //             {msg.sent === 0 && (
-                        //               <span style={{ margin: "10px 0 0 5px" }}>
-                        //                 <Spinner animation="border" variant="primary" size="sm" />
-                        //               </span>
-                        //             )}
-                        //             {msg.sent === 2 && (
-                        //               <Tooltip content={"Failed"}>
-                        //                 <span className="failed-svg">{failedMessageSvg}</span>
-                        //               </Tooltip>
-                        //             )}
-                        //           </div>
-                        //         </div>
-                        //       )}
-                        //     </React.Fragment>
-                        //   );
-                        // })
                         <ChatsDirectMessages
                           {...props}
                           directMessages={directMessagesList}
@@ -989,6 +903,7 @@ export default function ChatBox(props: Props) {
                           activeUserKeys={activeUserKeys!}
                           activeUser={props.activeUser}
                           isScrollToBottom={false}
+                          isActveUserRemoved={isActveUserRemoved}
                           currentChannelSetter={setCurrentChannel}
                         />
                       )}
@@ -1241,8 +1156,6 @@ export default function ChatBox(props: Props) {
         >
           <Modal.Header closeButton={true} />
           <Modal.Body className="chat-modals-body">
-            {step === 5 && confirmationModal(HIDEMESSAGE)}
-            {step === 6 && confirmationModal(BLOCKUSER)}
             {step === 9 && confirmationModal(NEWCHATACCOUNT)}
             {step === 11 && confirmationModal(RESENDMESSAGE)}
             {step === 10 && successModal(NEWCHATACCOUNT)}

@@ -55,6 +55,7 @@ interface Props {
   history: History | null;
   isScrollToBottom: boolean;
   isScrolled?: boolean;
+  isActveUserRemoved: boolean;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
@@ -76,6 +77,7 @@ export default function ChatsChannelMessages(props: Props) {
     isScrollToBottom,
     isScrolled,
     global,
+    isActveUserRemoved,
     scrollToBottom,
     currentChannelSetter,
     deletePublicMessage
@@ -95,8 +97,6 @@ export default function ChatsChannelMessages(props: Props) {
   const [removedUserId, setRemovedUserID] = useState("");
   const [privilegedUsers, setPrivilegedUsers] = useState<string[]>([]);
   const [hiddenMsgId, setHiddenMsgId] = useState("");
-  const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
-  const [removedUsers, setRemovedUsers] = useState<string[]>([]);
   const [resendMessage, setResendMessage] = useState<PublicMessage>();
 
   // useEffect(() => {
@@ -131,16 +131,8 @@ export default function ChatsChannelMessages(props: Props) {
     if (currentChannel) {
       zoomInitializer();
       getPrivilegedUsers(currentChannel?.communityModerators!);
-      currentChannel?.removedUserIds && setRemovedUsers(currentChannel.removedUserIds);
     }
   }, [currentChannel]);
-
-  useEffect(() => {
-    if (removedUsers) {
-      const removed = removedUsers.includes(activeUserKeys?.pub!);
-      setIsActiveUserRemoved(removed);
-    }
-  }, [removedUsers]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -546,6 +538,11 @@ export default function ChatsChannelMessages(props: Props) {
               </React.Fragment>
             );
           })}
+        {isActveUserRemoved && (
+          <span className="d-flex justify-content-center align-items-center mt-3">
+            You have been blocked from this community
+          </span>
+        )}
       </div>
       {step !== 0 && (
         <ChatsConfirmationModal

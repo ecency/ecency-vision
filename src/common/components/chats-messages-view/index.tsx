@@ -81,6 +81,8 @@ export default function ChatsMessagesView(props: Props) {
   const [hasMore, setHasMore] = useState(true);
   // const [inProgress, setInProgress] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [removedUsers, setRemovedUsers] = useState<string[]>([]);
+  const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
 
   useEffect(() => {
     getActiveUserKeys();
@@ -106,6 +108,7 @@ export default function ChatsMessagesView(props: Props) {
       getDirectMessages();
     } else if (communityName && currentChannel) {
       getChannelMessages();
+      currentChannel?.removedUserIds && setRemovedUsers(currentChannel.removedUserIds);
     }
   }, [directUser, communityName, currentChannel, chat.directMessages]);
 
@@ -120,6 +123,13 @@ export default function ChatsMessagesView(props: Props) {
       fetchPrevMessages();
     }
   }, [isTop]);
+
+  useEffect(() => {
+    if (removedUsers) {
+      const removed = removedUsers.includes(activeUserKeys?.pub!);
+      setIsActiveUserRemoved(removed);
+    }
+  }, [removedUsers]);
 
   const fetchPrevMessages = () => {
     if (!hasMore || inProgress) return;
@@ -239,6 +249,7 @@ export default function ChatsMessagesView(props: Props) {
               isScrollToBottom={isScrollToBottom}
               from={CHATPAGE}
               isScrolled={isScrolled}
+              isActveUserRemoved={isActveUserRemoved}
               deletePublicMessage={deletePublicMessage}
               scrollToBottom={scrollToBottom}
               currentChannelSetter={currentChannelSetter}
@@ -273,7 +284,7 @@ export default function ChatsMessagesView(props: Props) {
         isCurrentUser={directUser ? true : false}
         isCommunity={communityName ? true : false}
         receiverPubKey={receiverPubKey}
-        isActveUserRemoved={false}
+        isActveUserRemoved={isActveUserRemoved}
         currentUser={directUser}
         currentChannel={currentChannel!}
         isCurrentUserJoined={true}
