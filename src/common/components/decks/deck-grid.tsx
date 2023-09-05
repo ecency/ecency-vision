@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 import { DeckGridContext } from "./deck-manager";
 import { DeckAddColumn, DeckUserColumn } from "./columns";
 import {
-  WavesDeckGridItem,
   CommunityDeckGridItem,
   ReloadableDeckGridItem,
   SearchDeckGridItem,
-  UserDeckGridItem
+  UserDeckGridItem,
+  WavesDeckGridItem
 } from "./types";
-import { Button } from "react-bootstrap";
 import { DeckCommunityColumn } from "./columns/deck-community-column";
 import { DeckWalletColumn } from "./columns/deck-wallet-column";
 import { History } from "history";
@@ -26,6 +25,7 @@ import { DeckMsfColumn } from "./columns/deck-msf-column";
 import { DeckFaqColumn } from "./columns/deck-faq-column";
 import { DeckWalletBalanceColumn } from "./columns/deck-wallet-balance-column";
 import { DeckWhatsNewColumn } from "./columns/deck-whats-new-column";
+import { Button } from "@ui/button";
 
 interface Props {
   history: History;
@@ -201,7 +201,6 @@ export const DeckGrid = ({ history }: Props) => {
                   className={
                     "mx-3 add-new-column-button " + (addColumnButtonVisible ? "visible" : "")
                   }
-                  variant="primary"
                   onClick={() =>
                     deckContext.add({
                       key: deckContext.getNextKey(),

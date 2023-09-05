@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "./_index.scss";
-import { Alert, Button } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../img/svg";
 import { DeckThreadsFormContext } from "./deck-threads-form-manager";
 import { _t } from "../../../i18n";
@@ -18,6 +18,7 @@ import { IdentifiableEntry, ThreadItemEntry } from "../columns/deck-threads-mana
 import useClickAway from "react-use/lib/useClickAway";
 import { classNameObject } from "../../../helper/class-name-object";
 import usePrevious from "react-use/lib/usePrevious";
+import { Button } from "@ui/button";
 
 interface Props {
   className?: string;
@@ -227,7 +228,7 @@ export const DeckThreadsForm = ({
     >
       {!inline && (
         <div className="deck-toolbar-threads-form-header">
-          <Button variant="link" onClick={() => setShow(false)}>
+          <Button appearance="link" onClick={() => setShow(false)}>
             {arrowLeftSvg}
           </Button>
           {getSubmitButton()}
@@ -292,7 +293,7 @@ export const DeckThreadsForm = ({
                   location={location}
                 />
               )}
-              <Button href="/submit" target="_blank" variant="outline-primary" size="sm">
+              <Button href="/submit" target="_blank" appearance="primary" outline={true} size="sm">
                 {_t("decks.threads-form.create-regular-post")}
               </Button>
             </div>

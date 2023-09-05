@@ -1,7 +1,4 @@
 import React from "react";
-
-import { Button, ButtonProps } from "react-bootstrap";
-
 import { Subscription } from "../../store/subscriptions/types";
 import { Community } from "../../store/communities/types";
 import { User } from "../../store/users/types";
@@ -17,6 +14,7 @@ import { formatError, subscribe, unSubscribe } from "../../api/operations";
 
 import { _t } from "../../i18n";
 import { Spinner } from "@ui/spinner";
+import { Button, ButtonProps } from "@ui/button";
 
 interface Props {
   users: User[];
@@ -97,7 +95,8 @@ export default class SubscriptionBtn extends BaseComponent<Props, State> {
           onMouseEnter={this.toggleHover}
           onMouseLeave={this.toggleHover}
           onClick={this.unSubscribe}
-          variant={hover ? "outline-danger" : "outline-primary"}
+          outline={true}
+          appearance={hover ? "danger" : "primary"}
           {...buttonProps}
         >
           {hover ? _t("community.unsubscribe") : _t("community.subscribed")}

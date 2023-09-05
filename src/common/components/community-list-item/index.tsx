@@ -57,7 +57,7 @@ export class CommunityListItem extends Component<Props> {
       <div className="item-controls">
         <SubscriptionBtn
           {...this.props}
-          buttonProps={{ block: true, size: this.props.small ? "sm" : undefined }}
+          buttonProps={{ full: true, size: this.props.small ? "sm" : undefined }}
         />
       </div>
     );

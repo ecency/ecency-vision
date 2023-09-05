@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .emoji-picker {
   width: 280px;
@@ -17,11 +14,11 @@
   }
 
   @include themify(day) {
-    background: darken($white-three, 5);
+    @apply bg-white-075;
   }
 
   @include themify(night) {
-    background: $dark-two;
+    @apply bg-dark-200;
   }
 
   .emoji-cat-list {
@@ -35,11 +32,11 @@
         margin: 4px 0 6px 0;
 
         @include themify(day) {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
       }
 
@@ -60,11 +57,13 @@
 
           &:hover {
             @include themify(day) {
-              border-bottom: 2px solid $white-three;
+              border-bottom: 2px solid;
+              @apply border-white-500;
             }
 
             @include themify(night) {
-              border-bottom: 2px solid lighten($dark-six, 14);
+              border-bottom: 2px solid;
+              @apply border-dark-600-010-light;
             }
           }
         }

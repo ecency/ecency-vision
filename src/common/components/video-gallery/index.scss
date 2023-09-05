@@ -187,14 +187,17 @@
 
   @include themify(night) {
     background: #283241;
-    color: $pinkish-grey;
-    border: 1px solid $dark;
+    border: 1px solid;
+    @apply text-gray-pinkish;
+    @apply border-dark-default;
   }
 
   @include themify(day) {
     background: $white;
-    color: $charcoal-grey;
-    border: 1px solid $white-five;
+    border: 1px solid;
+    @apply bg-white;
+    @apply text-gray-charcoal;
+    @apply border-white-500;
   }
 }
 

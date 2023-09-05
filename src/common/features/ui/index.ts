@@ -4,3 +4,4 @@ export * from "./button-group";
 export * from "./popover-confirm";
 export * from "./popover";
 export * from "./input";
+export * from "./button";
