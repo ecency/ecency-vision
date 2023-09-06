@@ -1,26 +1,21 @@
 import React, { Component } from "react";
-
-import { Button, Col, Form, Row } from "react-bootstrap";
-
+import { Col, Form, Row } from "react-bootstrap";
 import { Global } from "../../store/global/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { ActiveUser } from "../../store/active-user/types";
-
 import { clone } from "../../store/util";
 import cleanString from "../../util/clean-string";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import { error } from "../feedback";
-
 import { formatError, updateCommunity } from "../../api/operations";
-
 import { _t } from "../../i18n";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { queryClient, QueryIdentifiers } from "../../core";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 const langOpts = [
   { id: "af", name: "Afrikaans" },

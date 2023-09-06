@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
 export type ButtonAppearance =
   | "primary"
@@ -8,17 +8,33 @@ export type ButtonAppearance =
   | "success"
   | "warning"
   | "info";
-export type ButtonSize = "sm" | "md" | "lg";
+export type ButtonSize = "xs" | "sm" | "md" | "lg";
 
-interface BaseButtonProps {
+interface RegularButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   appearance?: ButtonAppearance;
   size?: ButtonSize;
   outline?: boolean;
   className?: string;
   disabled?: boolean;
   full?: boolean;
-  href?: string;
-  target?: string;
+  icon?: ReactNode;
+  iconPlacement?: "left" | "right";
+  iconClassName?: string;
+  noPadding?: boolean;
 }
 
-export type ButtonProps = BaseButtonProps & HTMLAttributes<HTMLButtonElement | HTMLAnchorElement>;
+interface LinkButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  href: string;
+  appearance?: ButtonAppearance;
+  size?: ButtonSize;
+  outline?: boolean;
+  className?: string;
+  disabled?: boolean;
+  full?: boolean;
+  icon?: ReactNode;
+  iconPlacement?: "left" | "right";
+  iconClassName?: string;
+  noPadding?: boolean;
+}
+
+export type ButtonProps = RegularButtonProps | LinkButtonProps;

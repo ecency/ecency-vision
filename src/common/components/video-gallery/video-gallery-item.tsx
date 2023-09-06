@@ -3,7 +3,7 @@ import { _t } from "../../i18n";
 import { dateToFullRelative } from "../../helper/parse-date";
 import React, { useEffect, useState } from "react";
 import { ThreeSpeakVideo, useThreeSpeakVideo } from "../../api/threespeak";
-import { Button } from "react-bootstrap";
+import { Button } from "@ui/button";
 
 interface videoProps {
   status: string;
@@ -155,7 +155,7 @@ export function VideoGalleryItem({
                 {_t("video-gallery.insert-video")}
               </Button>
               {item.status != "published" && (
-                <Button variant="link" size="sm" onClick={() => insert(true)}>
+                <Button appearance="link" size="sm" onClick={() => insert(true)}>
                   {_t("video-gallery.insert-nsfw")}
                 </Button>
               )}

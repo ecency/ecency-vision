@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-
-import { Button } from "react-bootstrap";
-
 import { Modal, ModalFooter, ModalHeader, ModalTitle } from "@ui/modal";
 import { _t } from "../../../i18n";
+import { Button, ButtonProps } from "@ui/button";
 
 interface Props {
   titleText?: string;
   okText?: string;
-  okVariant?: "primary" | "danger";
+  okVariant?: ButtonProps["appearance"];
   cancelText?: string;
   onConfirm?: () => void;
   onCancel?: () => void;
@@ -38,11 +36,11 @@ export default class ModalConfirm extends Component<Props> {
           <ModalTitle>{titleText || _t("confirm.title")}</ModalTitle>
         </ModalHeader>
         <ModalFooter>
-          <Button variant="secondary" onClick={this.cancel}>
+          <Button appearance="secondary" outline={true} onClick={this.cancel}>
             {" "}
             {cancelText || _t("confirm.cancel")}
           </Button>
-          <Button variant={okVariant || "primary"} onClick={this.confirm}>
+          <Button appearance={okVariant ?? "primary"} onClick={this.confirm}>
             {" "}
             {okText || _t("confirm.ok")}
           </Button>

@@ -1,18 +1,12 @@
 import React, { Component } from "react";
-
-import { Button } from "react-bootstrap";
-
 import { PrivateKey } from "@hiveio/dhive";
-
 import { Global } from "../../store/global/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import { error } from "../feedback";
 import KeyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
-
 import {
   communityRewardsRegister,
   communityRewardsRegisterHot,
@@ -20,10 +14,10 @@ import {
   formatError
 } from "../../api/operations";
 import { getRewardedCommunities } from "../../api/private-api";
-
 import { _t } from "../../i18n";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;

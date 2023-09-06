@@ -1,32 +1,22 @@
 import React, { Fragment } from "react";
-
-import { Button, Col, Form, Row } from "react-bootstrap";
-
+import { Col, Form, Row } from "react-bootstrap";
 import { History, Location } from "history";
-
 import numeral from "numeral";
-
 import moment, { Moment } from "moment";
-
 import queryString from "query-string";
-
 import * as ls from "../../util/local-storage";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import SearchListItem from "../search-list-item";
 import LinearProgress from "../linear-progress";
 import DetectBottom from "../detect-bottom";
-
 import SearchQuery, { SearchType } from "../../helper/search-query";
-
 import { search, SearchResult } from "../../api/search-api";
-
 import { _t } from "../../i18n";
 import "./_index.scss";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 enum SearchSort {
   POPULARITY = "popularity",
@@ -370,9 +360,7 @@ export class SearchComment extends BaseComponent<Props, State> {
               onChange={this.hideLowChanged}
             />
 
-            <Button type="button" onClick={this.apply}>
-              {_t("g.apply")}
-            </Button>
+            <Button onClick={this.apply}>{_t("g.apply")}</Button>
           </div>
         </div>
       ) : null;

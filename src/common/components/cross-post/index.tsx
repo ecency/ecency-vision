@@ -1,25 +1,19 @@
 import BaseComponent from "../base";
 import React, { Component } from "react";
-
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import { Entry } from "../../store/entries/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import { error, success } from "../feedback";
 import SuggestionList from "../suggestion-list";
-
 import { comment, formatError } from "../../api/operations";
 import { getSubscriptions } from "../../api/bridge";
-
 import { makeApp, makeCommentOptions } from "../../helper/posting";
 import { makeCrossPostMessage } from "../../helper/cross-post";
-
 import { _t } from "../../i18n";
-
 import { version } from "../../../../package.json";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser;
@@ -158,10 +152,10 @@ export class CrossPost extends BaseComponent<Props, State> {
         </Form.Group>
         <p className="small text-muted">{_t("cross-post.info")}</p>
         <div className="d-flex justify-content-between">
-          <Button variant="outline-secondary" onClick={this.hide} disabled={posting}>
+          <Button appearance="secondary" outline={true} onClick={this.hide} disabled={posting}>
             {_t("g.cancel")}
           </Button>
-          <Button variant="primary" disabled={!canSubmit || posting} onClick={this.submit}>
+          <Button disabled={!canSubmit || posting} onClick={this.submit}>
             {_t("cross-post.submit-label")} {posting ? "..." : ""}
           </Button>
         </div>

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { copyContent } from "../../img/svg";
 import { success } from "../feedback";
 import "./_index.scss";
 import { FormControl, InputGroup } from "@ui/input";
 import { searchIconSvg } from "../decks/icons";
+import { Button } from "@ui/button";
 
 type Props = any;
 
@@ -32,7 +32,6 @@ export default class SearchBox extends Component<Props> {
               className={"input-with-copy rounded-r"}
             />
             <Button
-              variant="primary"
               size="sm"
               className="copy-to-clipboard rounded-l"
               disabled={value.length === 0}

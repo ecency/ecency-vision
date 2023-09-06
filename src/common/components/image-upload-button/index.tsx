@@ -1,18 +1,13 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import { error, success } from "../feedback";
-
 import { uploadImage } from "../../api/misc";
 import { getAccessToken } from "../../helper/user-token";
-
 import { _t } from "../../i18n";
-
 import { uploadSvg } from "../../img/svg";
 import { Spinner } from "@ui/spinner";
+import { Button } from "@ui/button";
 
 interface UploadButtonProps {
   activeUser: ActiveUser;
@@ -81,17 +76,15 @@ export default class UploadButton extends BaseComponent<UploadButtonProps, Uploa
           onClick={() => {
             this.upload();
           }}
-        >
-          {inProgress && spinner}
-          {!inProgress && uploadSvg}
-          <input
-            type="file"
-            ref={this.input}
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={this.handleFileInput}
-          />
-        </Button>
+          icon={inProgress ? spinner : uploadSvg}
+        />
+        <input
+          type="file"
+          ref={this.input}
+          accept="image/*"
+          style={{ display: "none" }}
+          onChange={this.handleFileInput}
+        />
       </>
     );
   }

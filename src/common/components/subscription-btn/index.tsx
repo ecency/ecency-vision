@@ -1,17 +1,14 @@
 import React from "react";
 import { Subscription } from "../../store/subscriptions/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { ToggleType, UI } from "../../store/ui/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import LoginRequired from "../login-required";
 import { error } from "../feedback";
-
 import { formatError, subscribe, unSubscribe } from "../../api/operations";
-
 import { _t } from "../../i18n";
 import { Spinner } from "@ui/spinner";
 import { Button, ButtonProps } from "@ui/button";

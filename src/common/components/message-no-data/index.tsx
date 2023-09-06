@@ -1,7 +1,8 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./_index.scss";
+import { Button } from "@ui/button";
+
 interface Props {
   buttonTo: string;
   buttonText: string;

@@ -23,9 +23,7 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
   const [show, setShow] = useState<boolean>();
 
   useEffect(() => {
-    if (props.show) {
-      setShow(props.show);
-    }
+    setShow(props.show);
   }, [props.show]);
 
   useEffect(() => {

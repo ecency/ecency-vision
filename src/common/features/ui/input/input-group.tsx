@@ -22,8 +22,6 @@ export function InputGroup({
   onAppendClick,
   onClick
 }: PropsWithChildren<Props> & HTMLAttributes<HTMLElement>) {
-  console.log(prepend);
-
   return (
     <div
       className={classNameObject({

@@ -4,13 +4,13 @@ import { error } from "../../../feedback";
 import { formatError } from "../../../../api/operations";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import useDebounce from "react-use/lib/useDebounce";
-import { Button } from "react-bootstrap";
 import { UserAvatar } from "../../../user-avatar";
 import { getCommunities } from "../../../../api/bridge";
 import { UsernameDataItem } from "./common";
 import { closeSvg } from "../../../../img/svg";
 import { FormControl, InputGroup } from "@ui/input";
 import { Spinner } from "@ui/spinner";
+import { Button } from "@ui/button";
 
 interface Props {
   isCommunity?: boolean;
@@ -138,8 +138,8 @@ export const DeckAddColumnSearchBox = ({
             </div>
             {isRecent && !!recentList?.length && (
               <Button
-                variant="link"
-                onClick={(e) => {
+                appearance="link"
+                onClick={(e: { stopPropagation: () => void }) => {
                   e.stopPropagation();
                   const nextData = recentList?.filter((it) => it.name !== i.name) ?? [];
                   setRecentList(nextData);

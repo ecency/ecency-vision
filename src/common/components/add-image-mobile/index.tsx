@@ -1,23 +1,16 @@
 import React, { Component } from "react";
-
-import { Button } from "react-bootstrap";
-
 import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
-
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
-
 import { getImages, UserImage } from "../../api/private-api";
-
 import { error } from "../feedback";
-
 import { _t } from "../../i18n";
 import defaults from "../../constants/defaults.json";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Button } from "@ui/button";
 
 setProxyBase(defaults.imageServer);
 

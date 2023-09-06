@@ -2,11 +2,12 @@ import { UserAvatar } from "../../user-avatar";
 import { FullAccount } from "../../../store/accounts/types";
 import React from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { Button, Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import { brightnessSvg } from "../../../img/svg";
 import { Theme } from "../../../store/global/types";
 import { _t } from "../../../i18n";
 import { Link } from "react-router-dom";
+import { Button } from "@ui/button";
 
 interface Props {
   isExpanded: boolean;
@@ -70,11 +71,7 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => 
           </>
         ) : (
           <>
-            <Button
-              className="w-100"
-              variant="outline-primary"
-              onClick={() => toggleUIProp("login")}
-            >
+            <Button className="w-full" outline={true} onClick={() => toggleUIProp("login")}>
               {_t("g.login")}
             </Button>
             {getThemeSwitcher()}

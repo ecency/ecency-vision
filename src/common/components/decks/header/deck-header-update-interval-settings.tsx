@@ -1,9 +1,10 @@
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import { checkSvg } from "../../../img/svg";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { DeckHeaderSettingsItem } from "./deck-header-settings-item";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   updateInterval: number;
@@ -55,9 +56,12 @@ export const DeckHeaderUpdateIntervalSettings = ({
   const getSubmitButton = () => {
     if (updateInterval !== inputValue * 1000 * 60) {
       return (
-        <Button variant="link" size="sm" onClick={() => saveInterval(`${inputValue * 1000 * 60}`)}>
-          {checkSvg}
-        </Button>
+        <Button
+          appearance="link"
+          size="sm"
+          onClick={() => saveInterval(`${inputValue * 1000 * 60}`)}
+          icon={checkSvg}
+        />
       );
     }
     return <></>;

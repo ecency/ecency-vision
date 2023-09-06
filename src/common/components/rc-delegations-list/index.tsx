@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import { getAccount, getIncomingRc, getOutgoingRc } from "../../api/hive";
 import { delegateRC } from "../../api/operations";
 import { _t } from "../../i18n";
@@ -11,6 +10,7 @@ import { Account } from "../../store/accounts/types";
 import Tooltip from "../tooltip";
 import "./index.scss";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   addAccount: (data: Account) => void;
@@ -225,7 +225,12 @@ export const ConfirmDelete = (props: any) => {
           {_t("rc-info.confirm-delete")}
         </h5>
         <div className="d-flex justify-content-center p-3">
-          <Button className="mr-2" variant="outline-secondary" onClick={hideConfirmDelete}>
+          <Button
+            className="mr-2"
+            appearance="secondary"
+            outline={true}
+            onClick={hideConfirmDelete}
+          >
             {_t("rc-info.cancel")}
           </Button>
           <Button

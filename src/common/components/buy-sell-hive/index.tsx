@@ -3,17 +3,11 @@ import { addUser } from "../../store/users";
 import { setActiveUser, updateActiveUser } from "../../store/active-user";
 import { setSigningKey } from "../../store/signing-key";
 import { addAccount } from "../../store/accounts";
-
-import { Button } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import { error } from "../feedback";
-
 import { getAccountFull } from "../../api/hive";
-
 import {
   formatError,
   limitOrderCancel,
@@ -23,7 +17,6 @@ import {
   limitOrderCreateHot,
   limitOrderCreateKc
 } from "../../api/operations";
-
 import { _t } from "../../i18n";
 import KeyOrHot from "../key-or-hot";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
@@ -32,6 +25,7 @@ import { AppState } from "../../store";
 import { PrivateKey } from "@hiveio/dhive";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { Button } from "@ui/button";
 
 export enum TransactionType {
   None = 0,
@@ -191,12 +185,12 @@ export class BuySellHive extends BaseComponent<any, State> {
           ) : (
             <div className="d-flex justify-content-end mt-5">
               <div className="d-flex">
-                <Button variant="secondary" className="mr-3" onClick={onHide}>
+                <Button appearance="secondary" className="mr-3" onClick={onHide}>
                   {_t("g.cancel")}
                 </Button>
                 <Button
                   onClick={() => this.setState({ step: 2 })}
-                  variant={Ttype === TransactionType.Cancel ? "danger" : "primary"}
+                  appearance={Ttype === TransactionType.Cancel ? "danger" : "primary"}
                 >
                   {_t("g.continue")}
                 </Button>

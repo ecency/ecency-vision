@@ -1,33 +1,26 @@
 import React, { Component } from "react";
-
-import { Button, Col, Form } from "react-bootstrap";
-
+import { Col, Form } from "react-bootstrap";
 import { PrivateKey } from "@hiveio/dhive";
-
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import KeyOrHot from "../key-or-hot";
 import Tooltip from "../tooltip";
 import { error } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import { getWithdrawRoutes, WithdrawRoute } from "../../api/hive";
-
 import {
   formatError,
   setWithdrawVestingRoute,
   setWithdrawVestingRouteHot,
   setWithdrawVestingRouteKc
 } from "../../api/operations";
-
 import { deleteForeverSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;

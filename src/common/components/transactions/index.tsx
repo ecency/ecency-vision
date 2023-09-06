@@ -1,22 +1,17 @@
 import React, { Component, useEffect, useState } from "react";
 import { History } from "history";
-import { Button } from "react-bootstrap";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { OperationGroup, Transaction, Transactions } from "../../store/transactions/types";
 import { Account } from "../../store/accounts/types";
-
 import LinearProgress from "../linear-progress";
 import EntryLink from "../entry-link";
 import UserAvatar from "../user-avatar";
 import TwoUserAvatar from "../two-user-avatar";
-
 import parseAsset from "../../helper/parse-asset";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { vestsToHp } from "../../helper/vesting";
-
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
-
 import {
   cashCoinSvg,
   cashMultiple,
@@ -31,12 +26,12 @@ import {
   starsSvg,
   ticketSvg
 } from "../../img/svg";
-
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import { usePrevious } from "../../util/use-previous";
 import { Global } from "../../store/global/types";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface RowProps {
   history: History;
@@ -650,7 +645,7 @@ const List = (props: Props) => {
         !props.transactions.loading &&
         props.transactions.list.length > 0 &&
         transactionsList.length > 0 && (
-          <Button disabled={loadingLoadMore} block={true} onClick={loadMore} className="mt-2">
+          <Button disabled={loadingLoadMore} onClick={loadMore} className="w-full mt-2">
             {_t("g.load-more")}
           </Button>
         )}

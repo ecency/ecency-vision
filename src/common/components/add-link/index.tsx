@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import { _t } from "../../i18n";
-
 import { readClipboard } from "../../util/clipboard";
-
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   onHide: () => void;

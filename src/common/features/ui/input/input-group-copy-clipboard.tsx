@@ -1,9 +1,9 @@
-import { Button } from "react-bootstrap";
 import { copyContent } from "../../../img/svg";
 import { InputGroup } from "./input-group";
 import React, { HTMLAttributes } from "react";
 import useCopyToClipboard from "react-use/lib/useCopyToClipboard";
 import { FormControl } from "./form-controls";
+import { Button } from "@ui/button";
 
 interface Props {
   value: string;
@@ -19,12 +19,7 @@ export function InputGroupCopyClipboard(props: Props & HTMLAttributes<HTMLElemen
     <InputGroup
       {...props}
       append={
-        <Button
-          variant="primary"
-          size="sm"
-          className="copy-to-clipboard"
-          onClick={() => copy(props.value)}
-        >
+        <Button size="sm" className="copy-to-clipboard" onClick={() => copy(props.value)}>
           {copyContent}
         </Button>
       }

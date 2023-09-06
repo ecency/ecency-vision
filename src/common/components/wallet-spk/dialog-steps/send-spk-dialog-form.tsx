@@ -1,11 +1,12 @@
 import { WalletSpkGroup } from "../wallet-spk-group";
-import { Alert, Button } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { SearchByUsername } from "../../search-by-username";
 import { _t } from "../../../i18n";
 import React from "react";
 import { ActiveUser } from "../../../store/active-user/types";
 import { Transactions } from "../../../store/transactions/types";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -120,7 +121,7 @@ export const SendSpkDialogForm = ({
         />
       </WalletSpkGroup>
       <WalletSpkGroup label="">
-        <Button disabled={!amount || !username} variant={"primary"} onClick={() => submit()}>
+        <Button disabled={!amount || !username} onClick={() => submit()}>
           {_t("wallet.spk.send.next")}
         </Button>
       </WalletSpkGroup>

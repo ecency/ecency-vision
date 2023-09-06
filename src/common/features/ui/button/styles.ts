@@ -2,7 +2,7 @@ import { ButtonAppearance, ButtonSize } from "@ui/button/props";
 
 export const BUTTON_STYLES: Record<ButtonAppearance, string> = {
   primary: "bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white",
-  secondary: "",
+  secondary: "bg-gray-600 hover:bg-gray-700 focus:bg-gray-800 text-white",
   link: "text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active",
   danger: "",
   success: "",
@@ -13,7 +13,8 @@ export const BUTTON_STYLES: Record<ButtonAppearance, string> = {
 export const BUTTON_OUTLINE_STYLES: Record<ButtonAppearance, string> = {
   primary:
     "border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active",
-  secondary: "",
+  secondary:
+    "border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800",
   link: "",
   danger:
     "border-red hover:border-red-020 focus:border-red-030 text-red hover:text-red-020 focus:text-red-030",
@@ -23,6 +24,7 @@ export const BUTTON_OUTLINE_STYLES: Record<ButtonAppearance, string> = {
 };
 
 export const BUTTON_SIZES: Record<ButtonSize, string> = {
+  xs: "h-[2rem] text-sm font-[500] px-2 text-xs",
   sm: "h-[2rem] text-sm font-[500] px-2",
   md: "h-[2.125rem] px-3",
   lg: ""

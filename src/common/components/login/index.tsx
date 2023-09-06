@@ -1,48 +1,34 @@
 import React, { Component } from "react";
-
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import isEqual from "react-fast-compare";
-
 import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
-
 import { History, Location } from "history";
 import * as ls from "../../util/local-storage";
 import { decodeObj } from "../../util/encoder";
-
 import { AppWindow } from "../../../client/window";
-
 import { Global } from "../../store/global/types";
 import { ToggleType, UI } from "../../store/ui/types";
 import { User, UserKeys } from "../../store/users/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
 import PopoverConfirm from "@ui/popover-confirm";
 import OrDivider from "../or-divider";
 import { error } from "../feedback";
-
 import { getAuthUrl, makeHsCode } from "../../helper/hive-signer";
 import { hsLogin } from "../../../desktop/app/helper/hive-signer";
 import { generateKeys } from "../../helper/generate-private-keys";
-
 import { getAccount } from "../../api/hive";
 import { usrActivity } from "../../api/private-api";
 import { hsTokenRenew } from "../../api/auth-api";
 import { formatError, grantPostingPermission } from "../../api/operations";
-
 import { getRefreshToken } from "../../helper/user-token";
-
 import ReCAPTCHA from "react-google-recaptcha";
-
 import { addAccountAuthority, signBuffer } from "../../helper/keychain";
-
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
-
 import { deleteForeverSvg } from "../../img/svg";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
@@ -50,6 +36,7 @@ import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 declare var window: AppWindow;
 
@@ -198,11 +185,11 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
               onKeyDown={this.inputKeyDown}
             />
           </Form.Group>
-          <Button disabled={inProgress} block={true} onClick={this.login}>
+          <Button disabled={inProgress} className="block" onClick={this.login}>
             {inProgress && spinner}
             {_t("g.login")}
           </Button>
-          <Button variant="outline-primary" disabled={inProgress} block={true} onClick={this.back}>
+          <Button outline={true} className="block" disabled={inProgress} onClick={this.back}>
             {_t("g.back")}
           </Button>
         </Form>
@@ -664,7 +651,7 @@ export class Login extends BaseComponent<LoginProps, State> {
               {_t("login.login-info-2")}
             </a>
           </p>
-          <Button disabled={inProgress || !isVerified} block={true} onClick={this.login}>
+          <Button disabled={inProgress || !isVerified} className="block" onClick={this.login}>
             {inProgress && username && key && spinner}
             {_t("g.login")}
           </Button>

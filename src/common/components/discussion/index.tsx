@@ -1,11 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
-
 import { History, Location } from "history";
-
-import { Button } from "react-bootstrap";
-
 import defaults from "../../constants/defaults.json";
-
 import { renderPostBody, setProxyBase } from "@ecency/render-helper";
 import { Entry, EntryVote } from "../../store/entries/types";
 import { Account, FullAccount } from "../../store/accounts/types";
@@ -27,32 +22,23 @@ import Comment from "../comment";
 import EntryDeleteBtn from "../entry-delete-btn";
 import MuteBtn from "../mute-btn";
 import LoginRequired from "../login-required";
-
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
-
 import { _t } from "../../i18n";
-
 import { comment, formatError } from "../../api/operations";
-
 import * as ss from "../../util/session-storage";
-
 import { createReplyPermlink, makeJsonMetaDataReply } from "../../helper/posting";
 import tempEntry from "../../helper/temp-entry";
-
 import { error } from "../feedback";
-
 import _c from "../../util/fix-class-names";
-
 import { commentSvg, deleteForeverSvg, dotsHorizontal, pencilOutlineSvg } from "../../img/svg";
-
 import { version } from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
-
 import { Tsx } from "../../i18n/helper";
 import MyDropDown from "../dropdown";
 import { ProfilePopover } from "../profile-popover";
 import "./_index.scss";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 setProxyBase(defaults.imageServer);
 

@@ -1,10 +1,11 @@
 import React from "react";
-import { Badge, Button, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { _t } from "../../i18n";
 import { LimitOrderCreate } from "../../store/transactions/types";
 import { OpenOrdersData } from "../../api/hive";
 import { AutoSizer } from "react-virtualized";
+import { Button } from "@ui/button";
 
 const columns = [
   _t("market.date"),
@@ -76,8 +77,8 @@ export const MarketAdvancedModeOrdersTable = ({ data, openOrdersData }: Props) =
                     </td>
                     <td>
                       <Button
-                        className="p-0"
-                        variant="link"
+                        noPadding={true}
+                        appearance="link"
                         size="sm"
                         target="_blank"
                         href={"https://hivexplorer.com/tx/" + item.trx_id}

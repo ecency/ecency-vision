@@ -6,13 +6,13 @@ import { _t } from "../../i18n";
 import { MarketAdvancedModeWidget } from "./market-advanced-mode-widget";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
 import { History } from "history";
-import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ToggleType } from "../../store/ui/types";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
 import { LimitOrderCreate, Transaction } from "../../store/transactions/types";
 import { MarketAdvancedModeOrdersTable } from "./market-advanced-mode-orders-table";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -132,15 +132,11 @@ export const OpenOrdersWidget = ({
               <div className="font-weight-bold mb-3">{_t("market.auth-required-title")}</div>
               <div className="mb-3">{_t("market.advanced.open-orders-auth-required")}</div>
               <div className="d-flex">
-                <Button
-                  variant="outline-primary"
-                  className="mr-2"
-                  onClick={() => toggleUIProp("login")}
-                >
+                <Button outline={true} className="mr-2" onClick={() => toggleUIProp("login")}>
                   {_t("g.login")}
                 </Button>
                 <Link to="/signup">
-                  <Button variant="primary">{_t("g.signup")}</Button>
+                  <Button>{_t("g.signup")}</Button>
                 </Link>
               </div>
             </div>

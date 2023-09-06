@@ -1,8 +1,8 @@
 import React from "react";
 import { arrowRightSvg } from "../../../img/svg";
 import { dateToFullRelative } from "../../../helper/parse-date";
-import { Button } from "react-bootstrap";
 import { _t } from "../../../i18n";
+import { Button } from "@ui/button";
 
 interface Props {
   from: string;
@@ -22,7 +22,7 @@ export const GenericOrderItem = ({ from, to, createdAt, onCancel }: Props) => {
         </div>
         <small className="created-date">{dateToFullRelative(createdAt)}</small>
       </div>
-      <Button variant="link" onClick={onCancel}>
+      <Button appearance="link" onClick={onCancel}>
         {_t("g.cancel")}
       </Button>
     </div>

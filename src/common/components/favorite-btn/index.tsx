@@ -1,23 +1,17 @@
 import React from "react";
-
-import { Button } from "react-bootstrap";
-
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { ToggleType, UI } from "../../store/ui/types";
 import { User } from "../../store/users/types";
-
 import BaseComponent from "../base";
 import Tooltip from "../tooltip";
 import LoginRequired from "../login-required";
 import { error, success } from "../feedback";
-
-import { checkFavorite, addFavorite, deleteFavorite } from "../../api/private-api";
-
+import { addFavorite, checkFavorite, deleteFavorite } from "../../api/private-api";
 import { _t } from "../../i18n";
-
-import { personFavoriteSvg, personFavoriteOutlineSvg } from "../../img/svg";
+import { personFavoriteOutlineSvg, personFavoriteSvg } from "../../img/svg";
 import "./_index.scss";
+import { Button } from "@ui/button";
 
 interface Props {
   targetUsername: string;
@@ -112,9 +106,7 @@ export class FavoriteBtn extends BaseComponent<Props, State> {
         children: (
           <span className="favorite-btn">
             <Tooltip content={_t("favorite-btn.add")}>
-              <Button disabled={inProgress} onClick={this.delete}>
-                {personFavoriteOutlineSvg}
-              </Button>
+              <Button disabled={inProgress} onClick={this.delete} icon={personFavoriteOutlineSvg} />
             </Tooltip>
           </span>
         )
@@ -125,9 +117,7 @@ export class FavoriteBtn extends BaseComponent<Props, State> {
       return (
         <span className="favorite-btn">
           <Tooltip content={_t("favorite-btn.delete")}>
-            <Button disabled={inProgress} onClick={this.delete}>
-              {personFavoriteSvg}
-            </Button>
+            <Button disabled={inProgress} onClick={this.delete} icon={personFavoriteSvg} />
           </Tooltip>
         </span>
       );
@@ -136,9 +126,7 @@ export class FavoriteBtn extends BaseComponent<Props, State> {
     return (
       <span className="favorite-btn">
         <Tooltip content={_t("favorite-btn.add")}>
-          <Button disabled={inProgress} onClick={this.add}>
-            {personFavoriteOutlineSvg}
-          </Button>
+          <Button disabled={inProgress} onClick={this.add} icon={personFavoriteOutlineSvg} />
         </Tooltip>
       </span>
     );

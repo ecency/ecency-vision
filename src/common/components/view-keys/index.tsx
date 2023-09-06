@@ -1,8 +1,6 @@
 import React from "react";
-
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import { success } from "../feedback";
 import { generateKeys } from "../../helper/generate-private-keys";
@@ -10,6 +8,7 @@ import { _t } from "../../i18n";
 import truncate from "../../util/truncate";
 import "./_index.scss";
 import { FormControl, InputGroupCopyClipboard } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser;
@@ -89,7 +88,7 @@ export default class ViewKeys extends BaseComponent<Props, State> {
           <Form.Group controlId="keys-view">
             <div>
               {!keys.memo && (
-                <Button variant="outline-primary" onClick={this.getKeys}>
+                <Button outline={true} onClick={this.getKeys}>
                   {_t("view-keys.view-keys")}
                 </Button>
               )}

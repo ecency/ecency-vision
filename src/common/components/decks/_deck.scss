@@ -533,22 +533,6 @@
       opacity: 1;
       visibility: visible;
     }
-
-    .btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      @include font-size(0.75rem);
-
-      svg {
-        width: auto;
-
-        path {
-          @apply stroke-white;
-        }
-      }
-    }
   }
 
   .deck-faq-container {

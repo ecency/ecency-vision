@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { History } from "history";
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 import { decodeObj, encodeObj } from "../../util/encoder";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { User, UserKeys } from "../../store/users/types";
 import { AccountDataType, actionType, Keytype, PublicKeys } from "../manage-authority/types";
 import ManageAuthIcon from "../manage-auth-icon";
 import { error, success } from "../feedback";
 import { generateKeys } from "../../helper/generate-private-keys";
-
 import * as ls from "../../util/local-storage";
 import { _t } from "../../i18n";
 import { keySvg } from "../../img/svg";
 import "./index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   accountData: AccountDataType;
@@ -328,7 +326,7 @@ export default function ManageKeys(props: Props) {
           <p className="action-btns">
             <Button
               className="copy-btn"
-              variant="outline-primary"
+              outline={true}
               onClick={() =>
                 ownerReveal
                   ? copyToClipboard(props.accountData!.publicKeys.publicOwnerKey.toString())
@@ -338,7 +336,7 @@ export default function ManageKeys(props: Props) {
               {_t("manage-authorities.copy")}
             </Button>
             {privateKeys?.owner! ? (
-              <Button className="reveal-btn" variant="outline-primary" onClick={handleOwnerReveal}>
+              <Button className="reveal-btn" outline={true} onClick={handleOwnerReveal}>
                 {ownerReveal
                   ? _t("manage-authorities.reveal-private-key")
                   : _t("manage-authorities.reveal-public-key")}
@@ -346,7 +344,7 @@ export default function ManageKeys(props: Props) {
             ) : (
               <Button
                 className="import-btn"
-                variant="outline-primary"
+                outline={true}
                 onClick={() => handleImportBtn(Keytype.Owner)}
               >
                 {_t("manage-authorities.import")}
@@ -402,7 +400,7 @@ export default function ManageKeys(props: Props) {
           <p className="action-btns">
             <Button
               className="copy-btn"
-              variant="outline-primary"
+              outline={true}
               onClick={() => {
                 activeReveal
                   ? copyToClipboard(props.accountData!.publicKeys.publicActiveKey.toString())
@@ -412,7 +410,7 @@ export default function ManageKeys(props: Props) {
               {_t("manage-authorities.copy")}
             </Button>
             {privateKeys?.active! ? (
-              <Button className="reveal-btn" variant="outline-primary" onClick={handleActiveReveal}>
+              <Button className="reveal-btn" outline={true} onClick={handleActiveReveal}>
                 {activeReveal
                   ? _t("manage-authorities.reveal-private-key")
                   : _t("manage-authorities.reveal-public-key")}
@@ -420,7 +418,7 @@ export default function ManageKeys(props: Props) {
             ) : (
               <Button
                 className="import-btn"
-                variant="outline-primary"
+                outline={true}
                 onClick={() => handleImportBtn(Keytype.Active)}
               >
                 {_t("manage-authorities.import")}
@@ -475,7 +473,7 @@ export default function ManageKeys(props: Props) {
           <p className="action-btns">
             <Button
               className="copy-btn"
-              variant="outline-primary"
+              outline={true}
               onClick={() =>
                 postingReveal
                   ? copyToClipboard(props.accountData!.publicKeys.publicPostingKey.toString())
@@ -485,11 +483,7 @@ export default function ManageKeys(props: Props) {
               {_t("manage-authorities.copy")}
             </Button>
             {privateKeys?.posting! ? (
-              <Button
-                className="reveal-btn"
-                variant="outline-primary"
-                onClick={handlePostingReveal}
-              >
+              <Button className="reveal-btn" outline={true} onClick={handlePostingReveal}>
                 {postingReveal
                   ? _t("manage-authorities.reveal-private-key")
                   : _t("manage-authorities.reveal-public-key")}
@@ -497,7 +491,7 @@ export default function ManageKeys(props: Props) {
             ) : (
               <Button
                 className="import-btn"
-                variant="outline-primary"
+                outline={true}
                 onClick={() => handleImportBtn(Keytype.Posting)}
               >
                 {_t("manage-authorities.import")}
@@ -555,7 +549,7 @@ export default function ManageKeys(props: Props) {
           <p className="action-btns">
             <Button
               className="copy-btn"
-              variant="outline-primary"
+              outline={true}
               onClick={() =>
                 memoReveal
                   ? copyToClipboard(props.accountData!.publicKeys.publicMemoKey)
@@ -565,7 +559,7 @@ export default function ManageKeys(props: Props) {
               {_t("manage-authorities.copy")}
             </Button>
             {privateKeys?.memo! ? (
-              <Button className="reveal-btn" variant="outline-primary" onClick={handleMemoReveal}>
+              <Button className="reveal-btn" outline={true} onClick={handleMemoReveal}>
                 {memoReveal
                   ? _t("manage-authorities.reveal-private-key")
                   : _t("manage-authorities.reveal-public-key")}
@@ -573,7 +567,7 @@ export default function ManageKeys(props: Props) {
             ) : (
               <Button
                 className="import-btn"
-                variant="outline-primary"
+                outline={true}
                 onClick={() => handleImportBtn(Keytype.Memo)}
               >
                 {_t("manage-authorities.import")}

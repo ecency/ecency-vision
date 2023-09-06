@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import useDebounce from "react-use/lib/useDebounce";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 import { PrivateKey } from "@hiveio/dhive";
-
 import keyOrHot from "../key-or-hot";
 import UserAvatar from "../user-avatar";
 import { error } from "../feedback";
 import PopoverConfirm from "@ui/popover-confirm";
 import LinearProgress from "../linear-progress";
-
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { findAccountRecoveryRequest, getAccount } from "../../api/hive";
@@ -21,12 +18,12 @@ import {
   changeRecoveryAccountKc,
   formatError
 } from "../../api/operations";
-
 import "./index.scss";
 import { addRecoveries, getRecoveries } from "../../api/private-api";
 import { FullAccount } from "../../store/accounts/types";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -248,7 +245,7 @@ export default function AccountRecovery(props: Props) {
               </div>
             </div>
             <div className="d-flex justify-content-center">
-              <Button variant="outline-secondary" onClick={back}>
+              <Button appearance="secondary" outline={true} onClick={back}>
                 {_t("g.back")}
               </Button>
               <span className="hr-6px-btn-spacer" />
@@ -408,14 +405,14 @@ export default function AccountRecovery(props: Props) {
                 titleText={_t("account-recovery.info-message", { n: pendingRecoveryAccount })}
               >
                 <div onClick={(e) => e.stopPropagation()}>
-                  <Button disabled={disabled} variant="primary" type="submit">
+                  <Button disabled={disabled} type="submit">
                     {_t("g.update")}
                   </Button>
                 </div>
               </PopoverConfirm>
             </div>
           ) : (
-            <Button className="update-btn" disabled={disabled} variant="primary" type="submit">
+            <Button className="update-btn" disabled={disabled} type="submit">
               {_t("g.update")}
             </Button>
           )}

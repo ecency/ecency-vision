@@ -9,7 +9,6 @@ import { uploadImage } from "../../../api/misc";
 import { error } from "../../feedback";
 import axios from "axios";
 import Gallery from "../../gallery";
-import { Button, Dropdown } from "react-bootstrap";
 import { PopperDropdown } from "../../popper-dropdown";
 
 interface Props {

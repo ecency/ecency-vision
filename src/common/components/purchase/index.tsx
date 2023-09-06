@@ -1,25 +1,20 @@
 import React, { Component } from "react";
-
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Transactions } from "../../store/transactions/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import { Transfer, TransferAsset } from "../transfer";
-
 import { calcPoints } from "../../api/private-api";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;

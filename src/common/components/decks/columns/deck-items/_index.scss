@@ -119,7 +119,7 @@
       @include padding-right(1rem);
       @include padding-bottom(1rem);
 
-      .btn, .entry-votes, .entry-vote-btn {
+      button, .entry-votes, .entry-vote-btn {
         color: $secondary;
 
         @include padding(0);

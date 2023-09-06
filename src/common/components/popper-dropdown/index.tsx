@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { usePopper } from "react-popper";
 import useClickAway from "react-use/lib/useClickAway";
 import "./_index.scss";
-import { Button } from "react-bootstrap";
+import { Button } from "@ui/button";
 
 interface Props {
   toggle: JSX.Element;
@@ -36,7 +36,7 @@ export const PopperDropdown = ({ children, toggle, options, hideOnClick = false 
 
   return (
     <div className="popper-dropdown dropdown">
-      <Button ref={setHost} variant="link" onClick={() => (isShow ? hide() : show())}>
+      <Button ref={setHost} appearance="link" onClick={() => (isShow ? hide() : show())}>
         {toggle}
       </Button>
       {isMounted &&

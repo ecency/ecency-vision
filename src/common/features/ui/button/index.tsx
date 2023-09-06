@@ -8,19 +8,63 @@ export * from "./props";
 export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   (props, ref) => {
     const className = classNameObject({
+      // Basic
       "cursor-pointer rounded-full duration-300 no-wrap": true,
+      // Outline basics
       "border-[1.5px] border-solid": props.outline ?? false,
+      // With icon
+      "flex items-center justify-center gap-2": !!props.icon,
+      "flex-row-reverse": props.iconPlacement === "left",
+
+      // Styles
       [BUTTON_STYLES[props.appearance ?? "primary"]]: !props.outline ?? true,
       [BUTTON_OUTLINE_STYLES[props.appearance ?? "primary"]]: props.outline ?? false,
       [BUTTON_SIZES[props.size ?? "md"]]: true,
+
+      // Misc
       [props.className ?? ""]: true,
+      "!p-0": props.noPadding,
       "w-full": props.full ?? false
     });
 
-    return props.href ? (
-      <a {...props} className={className} ref={ref as any} />
+    const icon = props.icon ? (
+      <div className={"flex items-center w-5 h-5 " + props.iconClassName}>{props.icon}</div>
     ) : (
-      <button {...props} className={className} ref={ref as any} />
+      <></>
+    );
+    const children = props.children ? (
+      <div
+        className={classNameObject({
+          // Clean up visual composition when icon placed in right side
+          "pl-1.5": !!props.icon && !!props.children && props.iconPlacement === "right",
+          "pr-1.5": !!props.icon && !!props.children && props.iconPlacement !== "right"
+        })}
+      >
+        {props.children}
+      </div>
+    ) : (
+      <></>
+    );
+
+    return "href" in props ? (
+      <a {...props} className={className} ref={ref as any}>
+        {children}
+        {icon}
+      </a>
+    ) : (
+      <button
+        {...props}
+        style={{
+          ...props.style,
+          outline: "none"
+        }}
+        type={props.type ?? "button"}
+        className={className}
+        ref={ref as any}
+      >
+        {children}
+        {icon}
+      </button>
     );
   }
 );

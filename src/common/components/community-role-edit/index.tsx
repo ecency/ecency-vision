@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-
-import { Button, Col, Form, Row } from "react-bootstrap";
-
+import { Col, Form, Row } from "react-bootstrap";
 import { Global } from "../../store/global/types";
-import { Community, CommunityTeam } from "../../store/communities/types";
+import { Community, CommunityTeam } from "../../store/communities";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
 
@@ -23,6 +21,7 @@ import "./_index.scss";
 import { queryClient, QueryIdentifiers } from "../../core";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;

@@ -1,16 +1,13 @@
 import React, { Component } from "react";
-
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import UploadButton from "../image-upload-button";
-
 import { _t } from "../../i18n";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
 import { Spinner } from "@ui/spinner";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser;
@@ -78,8 +75,13 @@ export class ImageUpload extends BaseComponent<Props, State> {
             />
           </InputGroup>
         </Form.Group>
-        <Button onClick={this.done} disabled={inProgress || uploading}>
-          {inProgress && spinner} {_t("g.save")}
+        <Button
+          onClick={this.done}
+          disabled={inProgress || uploading}
+          icon={inProgress && spinner}
+          iconPlacement="left"
+        >
+          {_t("g.save")}
         </Button>
       </div>
     );

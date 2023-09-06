@@ -1,25 +1,19 @@
 import React from "react";
-
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import isEqual from "react-fast-compare";
-
 import { Entry, EntryStat } from "../../store/entries/types";
 import { Community } from "../../store/communities/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { clone } from "../../store/util";
-
 import BaseComponent from "../base";
-
 import { formatError, mutePost } from "../../api/operations";
 import { error } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface DialogProps {
   entry: Entry;

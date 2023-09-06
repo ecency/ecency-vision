@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import _ from "lodash";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import badActors from "@hiveio/hivescript/bad-actors.json";
 
 import LinearProgress from "../linear-progress";
@@ -13,6 +13,7 @@ import { getAccount } from "../../api/hive";
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 export const ResourceCreditsDelegation = (props: any) => {
   const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList, delegateeData } =
@@ -252,13 +253,12 @@ export const ResourceCreditsDelegation = (props: any) => {
               </div>
               <div className="amount">{amount} RC</div>
             </div>
-            <div className="d-flex justify-content-center">
-              <Button variant="outline-secondary" disabled={inProgress} onClick={back}>
+            <div className="flex justify-center">
+              <Button appearance="secondary" outline={true} disabled={inProgress} onClick={back}>
                 {_t("g.back")}
               </Button>
               <span className="hr-6px-btn-spacer" />
               <Button disabled={inProgress} onClick={signTransaction}>
-                {inProgress && <span>spinner</span>}
                 {_t("transfer.confirm")}
               </Button>
             </div>

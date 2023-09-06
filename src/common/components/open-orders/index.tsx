@@ -1,12 +1,12 @@
-import React from "react";
-import { useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import React, { useState } from "react";
+import { Table } from "react-bootstrap";
 import { OpenOrdersData } from "../../api/hive";
 import BuySellHiveDialog, { TransactionType } from "../buy-sell-hive";
 import { _t } from "../../i18n";
 import { Skeleton } from "../skeleton";
 import { ActiveUser } from "../../store/active-user/types";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
+import { Button } from "@ui/button";
 
 const columns = [
   `${_t("market.date")}`,
@@ -78,7 +78,7 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser, co
                     : item.sell_price.base.replace("HBD", "")}
                 </td>
                 <td className="p-2">
-                  <Button size="sm" className="py-0" onClick={() => setIsModalOpen(item.orderid)}>
+                  <Button size="sm" onClick={() => setIsModalOpen(item.orderid)}>
                     {_t("g.cancel")}
                   </Button>
                 </td>

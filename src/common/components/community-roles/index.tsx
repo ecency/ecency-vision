@@ -1,22 +1,16 @@
 import React, { Component } from "react";
-
 import { History, Location } from "history";
-
 import isEqual from "react-fast-compare";
-
-import { Button } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
-import { Community, roleMap } from "../../store/communities/types";
+import { Community, roleMap } from "../../store/communities";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import CommunityRoleEditDialog from "../community-role-edit";
-
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { Button } from "@ui/button";
 
 interface Props {
   history: History;
@@ -120,13 +114,7 @@ export class CommunityRoles extends Component<Props, State> {
           </tbody>
         </table>
         {roles.length > 0 && (
-          <Button
-            onClick={() => {
-              this.showDialog();
-            }}
-          >
-            {_t("community.roles-add")}
-          </Button>
+          <Button onClick={() => this.showDialog()}>{_t("community.roles-add")}</Button>
         )}
 
         {dialog && (

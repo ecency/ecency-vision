@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import isEqual from "react-fast-compare";
 
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 
 import { PrivateKey } from "@hiveio/dhive";
 
@@ -32,6 +32,7 @@ import { checkAllSvg } from "../../img/svg";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -342,12 +343,7 @@ export class Boost extends BaseComponent<Props, State> {
               <Form.Group as={Row}>
                 <Form.Label column={true} sm="2" />
                 <Col sm="10">
-                  <Button
-                    type="button"
-                    onClick={this.next}
-                    disabled={!canSubmit || inProgress}
-                    variant="primary"
-                  >
+                  <Button type="button" onClick={this.next} disabled={!canSubmit || inProgress}>
                     {_t("g.next")}
                   </Button>
                   <Form.Text className="text-warning font-italic">{_t("boost.hint")}</Form.Text>

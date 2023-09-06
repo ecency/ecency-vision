@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../img/svg";
 import { _t } from "../../i18n";
 import "./index.scss";
 import Tooltip from "../tooltip";
+import { Button } from "@ui/button";
 
 interface Props {
   categoryTitle: string;
@@ -30,16 +31,16 @@ const FaqCategory = (props: Props) => {
                 </div>
               </div>
               <Tooltip content={_t("static.faq.toggle-icon-info")}>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
-                  <div
-                    className={`pointer`}
-                    onClick={() => {
-                      setExpanded(!expanded);
-                    }}
-                  >
-                    <span>{expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}</span>
-                  </div>
-                </Accordion.Toggle>
+                <Accordion.Toggle
+                  as={Button}
+                  appearance="link"
+                  eventKey="0"
+                  noPadding={true}
+                  onClick={() => {
+                    setExpanded(!expanded);
+                  }}
+                  icon={expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}
+                />
               </Tooltip>
             </div>
           </div>

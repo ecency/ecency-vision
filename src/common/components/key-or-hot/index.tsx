@@ -1,20 +1,15 @@
 import React, { Component } from "react";
-
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
-
 import OrDivider from "../or-divider";
 import { error } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import { keySvg } from "../../img/svg";
 import "./index.scss";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -119,7 +114,7 @@ export class KeyOrHot extends Component<Props, State> {
           </Form>
           <OrDivider />
           <div className="hs-sign">
-            <Button variant="outline-primary" onClick={this.hotClicked}>
+            <Button outline={true} onClick={this.hotClicked}>
               <img src={hsLogo} className="hs-logo" alt="hivesigner" />{" "}
               {_t("key-or-hot.with-hivesigner")}
             </Button>
@@ -127,7 +122,7 @@ export class KeyOrHot extends Component<Props, State> {
 
           {global.hasKeyChain && (
             <div className="kc-sign">
-              <Button variant="outline-primary" onClick={this.kcClicked}>
+              <Button outline={true} onClick={this.kcClicked}>
                 <img src={keyChainLogo} className="kc-logo" alt="keychain" />{" "}
                 {_t("key-or-hot.with-keychain")}
               </Button>

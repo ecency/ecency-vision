@@ -1,17 +1,11 @@
 import React, { Component } from "react";
-
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import { error } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import { postBodySummary } from "@ecency/render-helper";
-
 import {
   addFragment,
   deleteFragment,
@@ -19,7 +13,6 @@ import {
   getFragments,
   updateFragment
 } from "../../api/private-api";
-
 import PopoverConfirm from "@ui/popover-confirm";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import { useMappedStore } from "../../store/use-mapped-store";
@@ -27,6 +20,7 @@ import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 // ADD
 interface AddProps {
@@ -119,16 +113,16 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
             />
           </Form.Group>
           <div className="d-flex justify-content-between">
-            <Button
-              variant="outline-primary"
-              type="button"
-              disabled={inProgress}
-              onClick={this.back}
-            >
+            <Button outline={true} disabled={inProgress} onClick={this.back}>
               {_t("g.back")}
             </Button>
-            <Button variant="primary" type="submit" disabled={inProgress}>
-              {inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
+            <Button
+              type="submit"
+              disabled={inProgress}
+              icon={inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
+              iconPlacement="left"
+            >
+              {}
               {_t("g.add")}
             </Button>
           </div>
@@ -252,7 +246,8 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
                 }}
               >
                 <Button
-                  variant="outline-danger"
+                  appearance="danger"
+                  outline={true}
                   type="button"
                   disabled={inProgress}
                   style={{ marginRight: "6px" }}
@@ -260,17 +255,16 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
                   {_t("g.delete")}
                 </Button>
               </PopoverConfirm>
-              <Button
-                variant="outline-primary"
-                type="button"
-                disabled={inProgress}
-                onClick={this.back}
-              >
+              <Button outline={true} type="button" disabled={inProgress} onClick={this.back}>
                 {_t("g.back")}
               </Button>
             </div>
-            <Button variant="primary" type="submit" disabled={inProgress}>
-              {inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
+            <Button
+              type="submit"
+              disabled={inProgress}
+              icon={inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
+              iconPlacement="left"
+            >
               {_t("g.update")}
             </Button>
           </div>
@@ -423,13 +417,7 @@ export class Fragments extends BaseComponent<Props, State> {
                   style={{ marginRight: "6px" }}
                 />
                 <div>
-                  <Button
-                    onClick={() => {
-                      this.stateSet({ mode: "add" });
-                    }}
-                  >
-                    {_t("g.add")}
-                  </Button>
+                  <Button onClick={() => this.stateSet({ mode: "add" })}>{_t("g.add")}</Button>
                 </div>
               </div>
 

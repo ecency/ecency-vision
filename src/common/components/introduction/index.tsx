@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./_index.scss";
 import { closeSvg } from "../../img/svg";
+import { Button } from "@ui/button";
 
 export interface Props {
   title: string;
@@ -63,8 +64,8 @@ export const Introduction = ({
                   <Button
                     ref={prevButton}
                     size="lg"
-                    variant="outline-primary"
-                    className="mr-0 mr-md-3 w-100 w-md-50 intro-btn mb-3 mb-md-0"
+                    outline={true}
+                    className="mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
                     onClick={() => {
                       onPrevious();
                     }}
@@ -75,8 +76,7 @@ export const Introduction = ({
                 {onNext && (
                   <Button
                     size="lg"
-                    variant="primary"
-                    className="w-50 w-100 w-md-50 intro-btn"
+                    className="w-full md:w-[50%] intro-btn"
                     onClick={() => {
                       onNext();
                     }}

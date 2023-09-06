@@ -1,10 +1,10 @@
 import { _t } from "../../../i18n";
 import { arrowRightSvg } from "../../../img/svg";
-import { Button } from "react-bootstrap";
 import React from "react";
 import UserAvatar from "../../user-avatar";
 import { ActiveUser } from "../../../store/active-user/types";
 import { Global } from "../../../store/global/types";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -54,7 +54,7 @@ export const SendSpkDialogConfirm = ({
         {memo && <div className="memo">{memo}</div>}
       </div>
       <div className="d-flex justify-content-center">
-        <Button variant="outline-secondary" onClick={() => back()}>
+        <Button appearance="secondary" outline={true} onClick={() => back()}>
           {_t("g.back")}
         </Button>
         <span className="hr-6px-btn-spacer" />

@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
-import { Button } from "react-bootstrap";
-
-import { Community } from "../../store/communities/types";
-
+import { Community } from "../../store/communities";
 import { _t } from "../../i18n";
+import { Button } from "@ui/button";
 
 interface Props {
   history: History;

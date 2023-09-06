@@ -1,28 +1,21 @@
 import React from "react";
-
-import { Button } from "react-bootstrap";
-
 import { History } from "history";
-
 import { Global } from "../../store/global/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { ToggleType, UI } from "../../store/ui/types";
 import { Account, FullAccount } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import KeyOrHotDialog from "../key-or-hot-dialog";
 import LoginRequired from "../login-required";
 import ProfileLink from "../profile-link";
 import { error } from "../feedback";
-
 import { getAccount } from "../../api/hive";
-
 import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from "../../api/operations";
-
 import { _t } from "../../i18n";
 import "./_index.scss";
 import { Spinner } from "@ui/spinner";
+import { Button } from "@ui/button";
 
 interface Props {
   history: History;
@@ -79,8 +72,7 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
     const { activeUser, username } = this.props;
     const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
     const btn = (
-      <Button disabled={inProgress}>
-        {inProgress && spinner}
+      <Button disabled={inProgress} icon={inProgress && spinner} iconPlacement="left">
         {_t("witnesses.proxy-active-btn-label")}
       </Button>
     );

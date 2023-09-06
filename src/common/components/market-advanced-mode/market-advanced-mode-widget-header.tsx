@@ -1,7 +1,7 @@
 import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../img/svg";
-import { Button } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import React from "react";
+import { Button } from "@ui/button";
 
 interface Props {
   title?: string | JSX.Element;
@@ -43,11 +43,14 @@ export const MarketAdvancedModeWidgetHeader = ({
             )}
           </div>
           {settings ? (
-            <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
-              <div className={`pointer`} onClick={() => setExpandedHeader(!expandedHeader)}>
-                <span>{expandedHeader ? chevronUpSvgForSlider : chevronDownSvgForSlider}</span>
-              </div>
-            </Accordion.Toggle>
+            <Accordion.Toggle
+              as={Button}
+              appearance="link"
+              eventKey="0"
+              noPadding={true}
+              onClick={() => setExpandedHeader(!expandedHeader)}
+              icon={expandedHeader ? chevronUpSvgForSlider : chevronDownSvgForSlider}
+            />
           ) : (
             <></>
           )}

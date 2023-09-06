@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import { History } from "history";
-import { Button } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
-
-import { getFollowing, getFollowers, getAccounts, getAccount } from "../../api/hive";
-import { searchFollowing, searchFollower, FriendSearchResult } from "../../api/search-api";
-
+import { getAccounts, getFollowers, getFollowing } from "../../api/hive";
+import { FriendSearchResult, searchFollower, searchFollowing } from "../../api/search-api";
 import { _t } from "../../i18n";
-
 import accountReputation from "../../helper/account-reputation";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
@@ -22,6 +18,7 @@ import { FilterFriends } from "../friends-filter";
 import moment from "moment";
 import { FilterFriendsType } from "../../enums";
 import { formatTimeDIfference } from "../../helper/parse-date";
+import { Button } from "@ui/button";
 
 interface Friend {
   name: string;

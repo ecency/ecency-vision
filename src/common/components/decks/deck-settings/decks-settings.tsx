@@ -1,4 +1,4 @@
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Form } from "react-bootstrap";
 import React, { useContext, useEffect, useState } from "react";
 import "./_decks-settings.scss";
 import { DeckGrid } from "../types";
@@ -11,6 +11,7 @@ import { DEFAULT_COLUMNS } from "../consts";
 import { _t } from "../../../i18n";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   deck?: DeckGrid;
@@ -80,14 +81,14 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
               <Button
                 disabled={isLoading}
                 className="mr-2"
-                variant="primary"
                 onClick={() => setIsRemovingDeck(false)}
               >
                 {_t("g.cancel")}
               </Button>
               <Button
                 disabled={isLoading}
-                variant="outline-danger"
+                outline={true}
+                appearance="danger"
                 onClick={async () => {
                   setIsLoading(true);
                   try {
@@ -112,7 +113,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                 prepend={
                   <>
                     <Button
-                      variant="link"
+                      appearance="link"
                       onClick={() => {
                         setShowEmoji(!showEmoji);
                       }}
@@ -158,15 +159,18 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
             <div className="d-flex justify-content-between">
               <div>
                 {deck && decks.decks.length > 1 ? (
-                  <Button variant="outline-danger" onClick={() => setIsRemovingDeck(true)}>
-                    {deleteForeverSvg}
-                  </Button>
+                  <Button
+                    appearance="danger"
+                    outline={true}
+                    onClick={() => setIsRemovingDeck(true)}
+                    icon={deleteForeverSvg}
+                  />
                 ) : (
                   <></>
                 )}
               </div>
               <div>
-                <Button variant="link" onClick={() => setShow(false)}>
+                <Button appearance="link" onClick={() => setShow(false)}>
                   {_t("g.cancel")}
                 </Button>
                 <Button disabled={!name} onClick={() => submit()}>

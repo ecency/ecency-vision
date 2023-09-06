@@ -2,13 +2,14 @@ import { SearchDeckGridItem } from "../../types";
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { DeckHeaderSettingsItem } from "../../header/deck-header-settings-item";
 import { _t } from "../../../../i18n";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { SearchType } from "../../../../helper/search-query";
 import { DateOpt, SearchSort } from "../../consts";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import "./_deck-search-column-settings.scss";
 import { DeckGridContext } from "../../deck-manager";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   id: string;
@@ -121,7 +122,7 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
           onChange={(e) => setHideLow(e.target.checked)}
         />
         <Button
-          variant="outline-primary"
+          outline={true}
           size="sm"
           disabled={isLoading || isDisabled}
           onClick={() => {

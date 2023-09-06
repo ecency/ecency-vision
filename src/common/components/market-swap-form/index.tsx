@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
@@ -18,6 +18,7 @@ import { classNameObject } from "../../helper/class-name-object";
 import { useCurrencyRateQuery } from "./api/currency-rate-query";
 import { useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../../core";
+import { Button } from "@ui/button";
 
 export interface Props {
   activeUser: ActiveUser | null;
@@ -216,20 +217,17 @@ export const MarketSwapForm = ({
             <div className="overlay">
               {step === MarketSwapFormStep.FORM ? (
                 <Button
+                  outline={true}
                   disabled={disabled || loading}
-                  variant=""
-                  className="swap-button border-[--border-color]"
+                  className="swap-button !border-[--border-color]"
                   onClick={swap}
-                >
-                  {swapSvg}
-                </Button>
+                  icon={swapSvg}
+                />
               ) : (
                 <></>
               )}
               {step === MarketSwapFormStep.SUCCESS ? (
-                <Button variant="" className="swap-button --border-color text-success">
-                  {checkSvg}
-                </Button>
+                <Button className="swap-button --border-color text-success" icon={checkSvg} />
               ) : (
                 <></>
               )}
@@ -273,9 +271,8 @@ export const MarketSwapForm = ({
           )}
           {step === MarketSwapFormStep.FORM ? (
             <Button
-              block={true}
               disabled={disabled || loading || numberAmount(from) === 0 || isAmountMoreThanBalance}
-              className="py-3 mt-4"
+              className="w-full mt-4"
               onClick={() => submit()}
             >
               {_t("market.continue")}

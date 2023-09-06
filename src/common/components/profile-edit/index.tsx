@@ -1,21 +1,17 @@
 import React from "react";
-
-import { Button, Col, Form } from "react-bootstrap";
-
+import { Col, Form } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import { Account, FullAccount } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import UploadButton from "../image-upload-button";
 import { error, success } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import { updateProfile } from "../../api/operations";
 import { getAccount } from "../../api/hive";
 import "./index.scss";
 import { FormControl, InputGroup } from "@ui/input";
 import { Spinner } from "@ui/spinner";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser;
@@ -248,8 +244,12 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
           </Col>
         </Form.Row>
         {changed && (
-          <Button onClick={this.update} disabled={inProgress || uploading}>
-            {inProgress && spinner} {_t("g.update")}
+          <Button
+            icon={inProgress && spinner}
+            onClick={this.update}
+            disabled={inProgress || uploading}
+          >
+            {_t("g.update")}
           </Button>
         )}
       </div>

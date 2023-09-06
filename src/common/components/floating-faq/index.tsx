@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { Button, Card, Form } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
-
 import ClickAwayListener from "../clickaway-listener";
 import { faqKeysGeneral } from "../../constants";
-
 import {
   articleSvg,
   chevronDownSvgForSlider,
@@ -14,11 +12,11 @@ import {
   helpIconSvg
 } from "../../img/svg";
 import data from "./path.json";
-
 import { _t } from "../../i18n";
 import Tooltip from "../tooltip";
 import "./index.scss";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 export interface FaqObject {
   show: boolean;
@@ -149,10 +147,14 @@ const FloatingFAQ = () => {
             onClickAway={() => show && setShow(false)}
           >
             {display && !isSubmitPage && (
-              <Button className="help-btn" variant="primary" onClick={handleShow}>
-                {helpIconSvg}
-
-                {innerWidth >= 792 && <div className="help">{_t("floating-faq.help")}</div>}
+              <Button
+                className="help-btn"
+                onClick={handleShow}
+                icon={helpIconSvg}
+                iconPlacement="left"
+                size="sm"
+              >
+                {innerWidth >= 792 ? _t("floating-faq.help") : ""}
               </Button>
             )}
 
@@ -161,13 +163,13 @@ const FloatingFAQ = () => {
                 <div className="faq-welcome">
                   <h3 className="faq-welcome-message">{_t("floating-faq.welcome")}</h3>
                   <Button
+                    appearance="link"
                     className="close-btn"
                     onClick={() => {
                       setShow(false);
                     }}
-                  >
-                    {closeSvg}
-                  </Button>
+                    icon={closeSvg}
+                  />
                 </div>
                 <div className="faq-content-list">
                   <div className="faq-content-list-item">
@@ -184,21 +186,16 @@ const FloatingFAQ = () => {
                             <Tooltip content={_t("floating-faq.toggle-icon-info")}>
                               <Accordion.Toggle
                                 as={Button}
-                                variant="link"
+                                appearance="link"
+                                noPadding={true}
                                 eventKey="0"
-                                className="p-0"
-                              >
-                                <div
-                                  className={`pointer`}
-                                  onClick={() => {
-                                    setExpandedHelp(!expandedHelp);
-                                  }}
-                                >
-                                  <span>
-                                    {expandedHelp ? chevronUpSvgForSlider : chevronDownSvgForSlider}
-                                  </span>
-                                </div>
-                              </Accordion.Toggle>
+                                onClick={() => {
+                                  setExpandedHelp(!expandedHelp);
+                                }}
+                                icon={
+                                  expandedHelp ? chevronUpSvgForSlider : chevronDownSvgForSlider
+                                }
+                              />
                             </Tooltip>
                           </div>
                         </div>
@@ -258,23 +255,16 @@ const FloatingFAQ = () => {
                             <Tooltip content={_t("floating-faq.toggle-icon-info")}>
                               <Accordion.Toggle
                                 as={Button}
-                                variant="link"
+                                appearance="link"
                                 eventKey="1"
-                                className="p-0"
-                              >
-                                <div
-                                  className={`pointer`}
-                                  onClick={() => {
-                                    setExpandedContact(!expandedContact);
-                                  }}
-                                >
-                                  <span>
-                                    {expandedContact
-                                      ? chevronUpSvgForSlider
-                                      : chevronDownSvgForSlider}
-                                  </span>
-                                </div>
-                              </Accordion.Toggle>
+                                noPadding={true}
+                                onClick={() => {
+                                  setExpandedContact(!expandedContact);
+                                }}
+                                icon={
+                                  expandedContact ? chevronUpSvgForSlider : chevronDownSvgForSlider
+                                }
+                              />
                             </Tooltip>
                           </div>
                         </div>
@@ -304,7 +294,6 @@ const FloatingFAQ = () => {
                           </Form.Group>
                           <Button
                             className="submit-btn"
-                            variant="primary"
                             type="submit"
                             onClick={() =>
                               window.open(

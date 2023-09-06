@@ -1,11 +1,12 @@
 import React from "react";
 import { MarketSwapForm } from "./index";
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { Link } from "react-router-dom";
 import { MarketSwapActiveOrders } from "./market-swap-active-orders";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_swap-mode.scss";
+import { Button } from "@ui/button";
 
 interface Props {
   inline?: boolean;
@@ -40,15 +41,11 @@ export const SwapMode = ({ inline = false }: Props) => {
           <div className="font-weight-bold mb-3">{_t("market.auth-required-title")}</div>
           <div className="mb-3">{_t("market.auth-required-desc")}</div>
           <div className="d-flex">
-            <Button
-              variant="outline-primary"
-              className="mr-2"
-              onClick={() => toggleUIProp("login")}
-            >
+            <Button outline={true} className="mr-2" onClick={() => toggleUIProp("login")}>
               {_t("g.login")}
             </Button>
             <Link to="/signup">
-              <Button variant="primary">{_t("g.signup")}</Button>
+              <Button>{_t("g.signup")}</Button>
             </Link>
           </div>
         </div>

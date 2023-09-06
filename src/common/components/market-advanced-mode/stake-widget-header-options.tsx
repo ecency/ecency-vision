@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { _t } from "../../i18n";
-import { Button } from "react-bootstrap";
 import { allStakeSvg, buyStakeSvg, sellStakeSvg } from "../../img/svg";
+import { Button } from "@ui/button";
 
 export enum StakeWidgetViewType {
   All = "all",
@@ -28,29 +28,26 @@ export const StakeWidgetHeaderOptions = ({
     <div className="stake-widget-header-options flex-wrap">
       <div className="stake-widget-header-view-type">
         <Button
-          variant={"link"}
-          size={"sm"}
+          appearance="link"
+          size="sm"
           className={viewType === StakeWidgetViewType.All ? "active" : ""}
           onClick={() => onViewTypeChange(StakeWidgetViewType.All)}
-        >
-          {allStakeSvg}
-        </Button>
+          icon={allStakeSvg}
+        />
         <Button
-          variant={"link"}
-          size={"sm"}
+          appearance="link"
+          size="sm"
           className={viewType === StakeWidgetViewType.Buy ? "active" : ""}
           onClick={() => onViewTypeChange(StakeWidgetViewType.Buy)}
-        >
-          {buyStakeSvg}
-        </Button>
+          icon={buyStakeSvg}
+        />
         <Button
-          variant={"link"}
-          size={"sm"}
+          appearance="link"
+          size="sm"
           className={viewType === StakeWidgetViewType.Sell ? "active" : ""}
           onClick={() => onViewTypeChange(StakeWidgetViewType.Sell)}
-        >
-          {sellStakeSvg}
-        </Button>
+          icon={sellStakeSvg}
+        />
       </div>
 
       <select

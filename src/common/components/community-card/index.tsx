@@ -1,19 +1,12 @@
 import React, { Component } from "react";
-
-import { Button } from "react-bootstrap";
-
 import { History } from "history";
-
 import { Link } from "react-router-dom";
-
 import isEqual from "react-fast-compare";
-
 import { Global } from "../../store/global/types";
 import { Account, FullAccount } from "../../store/accounts/types";
-import { Community, roleMap, ROLES } from "../../store/communities/types";
+import { Community, roleMap, ROLES } from "../../store/communities";
 import { ActiveUser } from "../../store/active-user/types";
 import { User } from "../../store/users/types";
-
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
@@ -22,14 +15,10 @@ import CommunityRewardsRegistrationDialog from "../community-rewards-registratio
 import ImageUploadDialog from "../image-upload";
 import Tooltip from "../tooltip";
 import { error, success } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import { getAccount } from "../../api/hive";
 import { updateProfile } from "../../api/operations";
-
 import ln2list from "../../util/nl2list";
-
 import {
   accountGroupSvg,
   informationOutlineSvg,
@@ -39,6 +28,7 @@ import {
 import { renderPostBody } from "@ecency/render-helper";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Button } from "@ui/button";
 
 interface EditPicProps {
   activeUser: ActiveUser;

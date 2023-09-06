@@ -1,11 +1,12 @@
 import React, { ChangeEvent, ReactNode, useEffect, useRef, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { useThreeSpeakVideoUpload, useUploadVideoInfo } from "../../api/threespeak";
 import "./index.scss";
 import { VideoUploadItem } from "./video-upload-item";
 import { createFile } from "../../util/create-file";
 import { useMappedStore } from "../../store/use-mapped-store";
+import { Button } from "@ui/button";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 const DEFAULT_THUMBNAIL = require("./assets/thumbnail-play.jpg");
 
@@ -197,19 +198,18 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
           show={props.show}
           centered={true}
           onHide={() => props.setShow(false)}
-          keyboard={false}
           className="add-image-modal"
         >
-          <Modal.Header closeButton={true}>
-            <Modal.Title>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>
               {step === "upload" && <p>{_t("video-upload.upload-video")}</p>}
               {step === "preview" && <p>{_t("video-upload.preview")}</p>}
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+            </ModalTitle>
+          </ModalHeader>
+          <ModalBody>
             {step === "upload" && uploadVideoModal}
             {step === "preview" && previewVideo}
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </div>
     </div>

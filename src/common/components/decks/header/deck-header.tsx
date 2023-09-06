@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import Accordion from "react-bootstrap/Accordion";
 import {
@@ -13,6 +12,7 @@ import { DeckHeaderReloading } from "./deck-header-reloading";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { classNameObject } from "../../../helper/class-name-object";
 import Tooltip from "../../tooltip";
+import { Button } from "@ui/button";
 
 export interface Props {
   title: string;
@@ -73,19 +73,16 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
           <Tooltip content={_t("decks.header-info")}>
             <Accordion.Toggle
               as={Button}
-              variant="link"
+              appearance="link"
               eventKey="0"
-              className="p-0 accordion-toggle"
-            >
-              <div
-                className={`pointer`}
-                onClick={() => {
-                  setExpanded(!expanded);
-                }}
-              >
-                <span>{expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}</span>
-              </div>
-            </Accordion.Toggle>
+              noPadding={true}
+              className="accordion-toggle"
+              iconClassName="justify-end"
+              onClick={() => {
+                setExpanded(!expanded);
+              }}
+              icon={expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}
+            />
           </Tooltip>
         </div>
         <Accordion.Collapse eventKey="0">
@@ -114,12 +111,13 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
               {"onRemove" in props ? (
                 <Button
                   size="sm"
-                  className="d-flex align-items-center pr-0"
-                  variant="link"
+                  className="pr-0"
+                  appearance="link"
                   onClick={() => props.onRemove()}
+                  icon={deleteForeverSvg}
+                  iconPlacement="left"
                 >
-                  <div className="deck-options-icon d-flex mr-1">{deleteForeverSvg}</div>
-                  <span>{_t("decks.remove")}</span>
+                  {_t("decks.remove")}
                 </Button>
               ) : (
                 <></>

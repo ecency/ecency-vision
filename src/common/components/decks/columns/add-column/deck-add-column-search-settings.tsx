@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useContext, useState } from "react";
 import { SettingsProps } from "./common";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { DeckGridContext } from "../../deck-manager";
 import { _t } from "../../../../i18n";
 import { ButtonGroup } from "@ui/button-group";
@@ -8,6 +8,7 @@ import { SearchType } from "../../../../helper/search-query";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { DateOpt, SearchSort } from "../../consts";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
   const [query, setQuery] = useState("");
@@ -125,8 +126,7 @@ export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
       {query !== "" ? (
         <Button
           disabled={!query}
-          className="w-100 mt-5 py-3 sticky-bottom"
-          variant="primary"
+          className="w-full mt-5 sticky-bottom"
           onClick={() =>
             add({
               key: deckKey,

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { History } from "history";
-import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import queryString from "query-string";
 import { FullAccount } from "../../store/accounts/types";
@@ -47,6 +46,7 @@ import { useLocation } from "react-router";
 import usePrevious from "react-use/lib/usePrevious";
 import { Theme } from "../../store/global/types";
 import "./_index.scss";
+import { Button } from "@ui/button";
 
 const GLOBAL_FILTERS = [
   "engine",
@@ -284,7 +284,7 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
                 <div>
                   <div className="login-required">
                     <Button
-                      className="btn-login btn-primary"
+                      className="btn-login"
                       onClick={() => {
                         toggleUIProp("login");
                         setSmVisible(false);

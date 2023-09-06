@@ -118,7 +118,7 @@
         @include font-size(0.875rem);
       }
 
-      .btn {
+      button {
         @apply text-gray-400;
         box-shadow: none;
         outline: none;

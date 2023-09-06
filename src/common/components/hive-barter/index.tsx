@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
@@ -7,6 +7,7 @@ import BuySellHiveDialog, { TransactionType } from "../buy-sell-hive";
 import { error } from "../feedback";
 import { Skeleton } from "../skeleton";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   type: 1 | 2;
@@ -179,7 +180,7 @@ export const HiveBarter = ({
             />
           </InputGroup>
         </Form.Group>
-        <Button block={true} type="submit" disabled={disabled}>
+        <Button className="block" type="submit" disabled={disabled}>
           {type === 1 ? _t("market.buy") : _t("market.sell")}
         </Button>
       </Form>

@@ -1,6 +1,6 @@
 import { _t } from "../../../../i18n";
 import { UserAvatar } from "../../../user-avatar";
-import { Button, Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import React, { useContext, useState } from "react";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import useLocalStorage from "react-use/lib/useLocalStorage";
@@ -8,6 +8,7 @@ import { SettingsProps } from "./common";
 import { PREFIX } from "../../../../util/local-storage";
 import { DeckGridContext } from "../../deck-manager";
 import { AVAILABLE_THREAD_HOSTS } from "../../consts";
+import { Button } from "@ui/button";
 
 export const DeckAddColumnThreadSettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -45,8 +46,7 @@ export const DeckAddColumnThreadSettings = ({ deckKey }: SettingsProps) => {
       {host !== "" ? (
         <Button
           disabled={!host}
-          className="w-100 mt-5 py-3 sticky-bottom"
-          variant="primary"
+          className="w-full mt-5 sticky-bottom"
           onClick={() =>
             add({
               key: deckKey,

@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
-
 import * as ls from "../../util/local-storage";
 import { closeSvg } from "../../img/svg";
-import { getAnnouncementsData, Announcement as AnnouncementApiData } from "../../api/private-api";
+import { Announcement as AnnouncementApiData, getAnnouncementsData } from "../../api/private-api";
 import { Announcement, LaterAnnouncement } from "./types";
 import { useLocation } from "react-router";
-import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { ActiveUser } from "../../store/active-user/types";
 import "./index.scss";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -190,13 +188,13 @@ const Announcement = ({ activeUser }: Props) => {
                     </div>
                     <div className="d-flex actions">
                       <Link to={x?.button_link} onClick={dismissClick}>
-                        <Button variant="primary">{x?.button_text}</Button>
+                        <Button>{x?.button_text}</Button>
                       </Link>
-                      <Button onClick={laterClick} variant="outline-primary">
+                      <Button onClick={laterClick} appearance="primary" outline={true}>
                         {_t("announcements.later")}
                       </Button>
                       {list.length > 1 ? (
-                        <Button onClick={upClick} variant="link">
+                        <Button onClick={upClick} appearance="link">
                           {_t("announcements.next")}
                         </Button>
                       ) : (
@@ -206,7 +204,7 @@ const Announcement = ({ activeUser }: Props) => {
                   </div>
                   <Button
                     className="close-btn"
-                    variant="link"
+                    appearance="link"
                     onClick={() => {
                       closeClick();
                       dismissClick();

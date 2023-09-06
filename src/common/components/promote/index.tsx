@@ -1,35 +1,27 @@
 import React, { Component } from "react";
-
 import isEqual from "react-fast-compare";
-
-import { Button, Col, Form, Row } from "react-bootstrap";
-
+import { Col, Form, Row } from "react-bootstrap";
 import { PrivateKey } from "@hiveio/dhive";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Entry, EntryHeader } from "../../store/entries/types";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import { error } from "../feedback";
-
 import { getPromotedPost, getPromotePrice, PromotePrice } from "../../api/private-api";
 import { searchPath } from "../../api/search-api";
 import { getPostHeader } from "../../api/bridge";
 import { formatError, promote, promoteHot, promoteKc } from "../../api/operations";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
-
 import { checkAllSvg } from "../../img/svg";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -324,12 +316,7 @@ export class Promote extends BaseComponent<Props, State> {
               <Form.Group as={Row}>
                 <Form.Label column={true} sm="2" />
                 <Col sm="10">
-                  <Button
-                    type="button"
-                    onClick={this.next}
-                    disabled={!canSubmit || inProgress}
-                    variant="primary"
-                  >
+                  <Button onClick={this.next} disabled={!canSubmit || inProgress}>
                     {_t("g.next")}
                   </Button>
                 </Col>

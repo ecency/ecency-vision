@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import { History } from "history";
-
 import { PrivateKey } from "@hiveio/dhive";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 import { AccountDataType, actionType } from "./types";
-
 import UserAvatar from "../user-avatar/index";
 import { error } from "../feedback";
 import keyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
 import ManageAuthIcon from "../manage-auth-icon";
 import ManageKeys from "../manage-keys";
-
 import { formatError, Revoke, RevokeHot, RevokeKc } from "../../api/operations";
 import { getAccounts } from "../../api/hive";
-
 import { _t } from "../../i18n";
 import "./index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -242,10 +237,7 @@ export default function ManageAuthorities(props: Props) {
                           </td>
                           <td className="hidden sm:table-cell border p-2">
                             {" "}
-                            <Button
-                              onClick={() => handleRevoke(account[0])}
-                              variant="outline-primary"
-                            >
+                            <Button onClick={() => handleRevoke(account[0])} outline={true}>
                               {_t("manage-authorities.revoke")}
                             </Button>
                           </td>

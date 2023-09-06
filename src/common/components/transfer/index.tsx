@@ -1,33 +1,24 @@
 import React, { Component } from "react";
-
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
-
 import isEqual from "react-fast-compare";
-
-import { Button, Col, Form, Row } from "react-bootstrap";
-
+import { Col, Form, Row } from "react-bootstrap";
 import badActors from "@hiveio/hivescript/bad-actors.json";
-
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { DelegateVestingShares, Transactions } from "../../store/transactions/types";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import UserAvatar from "../user-avatar";
 import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import { error } from "../feedback";
-
 import HiveWallet from "../../helper/hive-wallet";
 import amountFormatCheck from "../../helper/amount-format-check";
 import parseAsset from "../../helper/parse-asset";
 import { hpToVests, vestsToHp } from "../../helper/vesting";
-
 import { getAccount, getAccountFull, getVestingDelegations } from "../../api/hive";
-
 import {
   claimInterest,
   claimInterestHot,
@@ -58,10 +49,8 @@ import {
   withdrawVestingHot,
   withdrawVestingKc
 } from "../../api/operations";
-
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
-
 import { arrowRightSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
 import { dateToFullRelative } from "../../helper/parse-date";
@@ -71,6 +60,7 @@ import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
 import exchangeAccounts from "../../constants/exchanges";
 import { queryClient, QueryIdentifiers } from "../../core";
+import { Button } from "@ui/button";
 
 export type TransferMode =
   | "transfer"
@@ -844,7 +834,7 @@ export class Transfer extends BaseComponent<Props, State> {
                   })}
                 </p>
                 <p>
-                  <Button onClick={this.nextPowerDown} variant="danger">
+                  <Button onClick={this.nextPowerDown} appearance="danger">
                     {_t("transfer.stop-power-down")}
                   </Button>
                 </p>
@@ -1028,12 +1018,16 @@ export class Transfer extends BaseComponent<Props, State> {
                 {memo && <div className="memo">{memo}</div>}
               </div>
               <div className="d-flex justify-content-center">
-                <Button variant="outline-secondary" disabled={inProgress} onClick={this.back}>
+                <Button
+                  appearance="secondary"
+                  outline={true}
+                  disabled={inProgress}
+                  onClick={this.back}
+                >
                   {_t("g.back")}
                 </Button>
                 <span className="hr-6px-btn-spacer" />
                 <Button disabled={inProgress} onClick={this.confirm}>
-                  {inProgress && <span>spinner</span>}
                   {_t("transfer.confirm")}
                 </Button>
               </div>
@@ -1080,7 +1074,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 <div className="success" />
               </Tsx>
               <div className="d-flex justify-content-center">
-                <Button variant="outline-secondary" onClick={this.reset}>
+                <Button appearance="secondary" outline={true} onClick={this.reset}>
                   {_t("transfer.reset")}
                 </Button>
                 <span className="hr-6px-btn-spacer" />

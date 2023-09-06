@@ -1,28 +1,20 @@
 import React from "react";
-
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import { cryptoUtils, KeyRole, PrivateKey } from "@hiveio/dhive";
-
 import base58 from "bs58";
-
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import { error, success } from "../feedback";
-
 import { formatError, updatePassword } from "../../api/operations";
-
 import random from "../../util/rnd";
-
 import { _t } from "../../i18n";
-
 import { keySvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser;
@@ -156,7 +148,7 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
             <Form.Label>{_t("password-update.new-pass")}</Form.Label>
             <div>
               {!newPass && (
-                <Button variant="outline-primary" onClick={this.genWif}>
+                <Button outline={true} onClick={this.genWif}>
                   {_t("password-update.pass-gen")}
                 </Button>
               )}
@@ -184,8 +176,12 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
               onInput={handleOnInput}
             />
           </Form.Group>
-          <Button variant="primary" type="submit" disabled={inProgress}>
-            {inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
+          <Button
+            type="submit"
+            disabled={inProgress}
+            icon={inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
+            iconPlacement="left"
+          >
             {_t("g.update")}
           </Button>
         </Form>

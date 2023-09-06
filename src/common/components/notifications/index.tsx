@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import moment from "moment";
 import { History } from "history";
 import { hiveNotifySetLastRead } from "../../api/operations";
@@ -27,6 +27,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
 import { useLocation } from "react-router";
 import { Modal, ModalBody } from "@ui/modal";
+import { Button } from "@ui/button";
 
 export const date2key = (s: string): string => {
   if (s === "Yesterday") {
@@ -442,9 +443,8 @@ export class DialogContent extends Component<NotificationProps, any> {
                   className={`status-button ${
                     this.state.currentStatus === status ? "active" : ""
                   } shadow-none`}
-                  variant="outline-primary"
+                  outline={true}
                   key={k}
-                  type="button"
                   tabIndex={-1}
                   onClick={() => this.statusClicked(status)}
                 >

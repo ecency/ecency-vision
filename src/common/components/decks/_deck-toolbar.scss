@@ -200,10 +200,7 @@
     @include padding-left(0.6rem);
     @include padding-right(0.6rem);
 
-    > .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    > button {
       width: 3rem;
       height: 3rem;
     }
@@ -213,7 +210,7 @@
     .base-actions {
       flex-wrap: nowrap;
 
-      > *, .btn {
+      > *, button {
         border-bottom: 0 !important;
         border-right: 1px solid $border-color;
 
@@ -227,7 +224,7 @@
       @include padding-left(1rem);
       @include padding-right(1rem);
 
-      > .btn {
+      > button {
         width: 100%;
         height: 3rem;
 

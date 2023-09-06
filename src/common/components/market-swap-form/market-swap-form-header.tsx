@@ -1,8 +1,8 @@
 import { MarketSwapFormStep } from "./form-step";
-import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
 import React, { useEffect, useState } from "react";
 import { arrowLeftSvg, syncSvg } from "../../img/svg";
+import { Button } from "@ui/button";
 
 export interface Props {
   step: MarketSwapFormStep;
@@ -23,9 +23,13 @@ export const MarketSwapFormHeader = ({ step, loading, onBack, className }: Props
   return (
     <div className={"market-swap-form-header d-flex align-items-center title mb-4 " + className}>
       {step === MarketSwapFormStep.SIGN ? (
-        <Button variant="link" size="sm" disabled={loading} onClick={() => onBack()}>
-          {arrowLeftSvg}
-        </Button>
+        <Button
+          appearance="link"
+          size="sm"
+          disabled={loading}
+          onClick={() => onBack()}
+          icon={arrowLeftSvg}
+        />
       ) : (
         <></>
       )}

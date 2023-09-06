@@ -1,21 +1,16 @@
 import React, { Component } from "react";
-
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import BaseComponent from "../base";
 import { error } from "../feedback";
-
 import { BeneficiaryRoute } from "../../api/operations";
-
 import { getAccount } from "../../api/hive";
-
 import { _t } from "../../i18n";
-
 import { accountMultipleSvg, deleteForeverSvg, plusSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 const THREE_SPEAK_VIDEO_PATTERN = /\[!\[]\(https:\/\/ipfs-3speak.*\)\]\(https:\/\/3speak\.tv.*\)/g;
 
@@ -150,9 +145,12 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                   </InputGroup>
                 </td>
                 <td className="border p-2">
-                  <Button disabled={inProgress || available < 1} size="sm" type="submit">
-                    {plusSvg}
-                  </Button>
+                  <Button
+                    disabled={inProgress || available < 1}
+                    size="sm"
+                    type="submit"
+                    icon={plusSvg}
+                  />
                 </td>
               </tr>
               {list.map((x) => {
@@ -170,7 +168,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                             const { onDelete } = this.props;
                             onDelete(x.account);
                           }}
-                          variant="danger"
+                          appearance="danger"
                           size="sm"
                         >
                           {deleteForeverSvg}
@@ -213,9 +211,8 @@ export default class BeneficiaryEditorDialog extends Component<Props, State> {
 
     return (
       <>
-        <Button size="sm" onClick={this.toggle}>
+        <Button size="sm" onClick={this.toggle} icon={accountMultipleSvg}>
           {btnLabel}
-          <span style={{ marginLeft: "6px" }}>{accountMultipleSvg}</span>
         </Button>
 
         {visible && (
@@ -233,9 +230,7 @@ export default class BeneficiaryEditorDialog extends Component<Props, State> {
               <DialogBody {...this.props} />
             </ModalBody>
             <ModalFooter>
-              <Button variant="primary" onClick={this.toggle}>
-                {_t("g.done")}
-              </Button>
+              <Button onClick={this.toggle}>{_t("g.done")}</Button>
             </ModalFooter>
           </Modal>
         )}

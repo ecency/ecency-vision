@@ -1,6 +1,6 @@
 import React from "react";
 import { _t } from "../../i18n";
-import { Button } from "react-bootstrap";
+import { Button } from "@ui/button";
 
 interface Props {
   headBlock: number;
@@ -40,7 +40,7 @@ export const WalletSpkActivePowerDown = ({ headBlock, powerUpList, onStop }: Pro
               count: powerUpList.length
             })}
           </span>
-          <Button size="sm" className="ml-2" variant="outline-danger" onClick={onStop}>
+          <Button size="sm" className="ml-2" appearance="danger" outline={true} onClick={onStop}>
             {_t("g.stop")}
           </Button>
         </div>

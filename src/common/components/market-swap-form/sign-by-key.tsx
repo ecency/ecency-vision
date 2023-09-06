@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import { keySvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import { error } from "../feedback";
 import { ActiveUser } from "../../store/active-user/types";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 export interface Props {
   activeUser: ActiveUser | null;
@@ -66,16 +66,10 @@ export const SignByKey = ({
         />
       </InputGroup>
       <div className="d-flex">
-        <Button block={true} variant="link" className="py-3 mt-4 flex-1 mr-3" onClick={onBack}>
+        <Button appearance="link" className="w-full mt-4 flex-1 mr-3" onClick={onBack}>
           {_t("market.back")}
         </Button>
-        <Button
-          block={true}
-          variant="primary"
-          className="py-3 mt-4 flex-1"
-          onClick={() => generateKey()}
-          disabled={isLoading}
-        >
+        <Button className="w-full mt-4 flex-1" onClick={() => generateKey()} disabled={isLoading}>
           {isLoading ? _t("market.signing") : _t("market.sign")}
         </Button>
       </div>
