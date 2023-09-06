@@ -36,7 +36,7 @@ import { hsTokenRenew } from "../../api/auth-api";
 import { formatError, grantPostingPermission, revokePostingPermission } from "../../api/operations";
 
 import { getRefreshToken } from "../../helper/user-token";
-import { getPrivateKey, getProfileMetaData } from "../../helper/chat-utils";
+import { getPrivateKey, getProfileMetaData } from "../../components/chats/utils";
 
 import ReCAPTCHA from "react-google-recaptcha";
 

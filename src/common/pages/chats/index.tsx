@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { match } from "react-router";
-
 import NavBar from "../../components/navbar";
 import NavBarElectron from "../../../desktop/app/components/navbar";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../common";
-import ChatsSideBar from "../../components/chats-sidebar/indes";
-import ChatsMessagesBox from "../../components/chats-messages-box";
+import ChatsSideBar from "../../components/chats/chats-sidebar/indes";
+import ChatsMessagesBox from "../../components/chats/chats-messages-box";
 
 import "./index.scss";
 
 import * as ls from "../../util/local-storage";
+import { Button, Spinner } from "react-bootstrap";
+import { setNostrkeys } from "../../../providers/message-provider";
+import ManageChatKey from "../../components/manage-chat-key";
+import Feedback, { success } from "../../components/feedback";
+import { NostrKeysType } from "../../components/chats/types";
 import {
   copyToClipboard,
   createNoStrAccount,
   getPrivateKey,
   getProfileMetaData,
-  NostrKeysType,
   setProfileMetaData
-} from "../../helper/chat-utils";
-import { Button, Spinner } from "react-bootstrap";
-import { setNostrkeys } from "../../../providers/message-provider";
-import ManageChatKey from "../../components/manage-chat-key";
-import Feedback, { success } from "../../components/feedback";
+} from "../../components/chats/utils";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 interface MatchParams {
   filter: string;
@@ -37,7 +37,8 @@ interface Props extends PageProps {
 }
 
 export const Chats = (props: Props) => {
-  const { channels, directContacts } = props.chat;
+  const { chat, activeUser, global } = useMappedStore();
+  const { channels, directContacts } = chat;
 
   const [marginTop, setMarginTop] = useState(0);
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
@@ -61,7 +62,7 @@ export const Chats = (props: Props) => {
   useEffect(() => {
     handleResize();
     getActiveUserChatKeys();
-    const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
+    const noStrPrivKey = getPrivateKey(activeUser?.username!);
     setNoStrPrivKey(noStrPrivKey);
   }, []);
 
@@ -93,8 +94,8 @@ export const Chats = (props: Props) => {
 
   const getActiveUserChatKeys = async () => {
     setInProgress(true);
-    const profileData = await getProfileMetaData(props.activeUser?.username!);
-    const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
+    const profileData = await getProfileMetaData(activeUser?.username!);
+    const noStrPrivKey = getPrivateKey(activeUser?.username!);
     const activeUserKeys = {
       pub: profileData?.nsKey,
       priv: noStrPrivKey
@@ -115,13 +116,13 @@ export const Chats = (props: Props) => {
     setShowSpinner(true);
     resetChat();
     const keys = createNoStrAccount();
-    ls.set(`${props.activeUser?.username}_nsPrivKey`, keys.priv);
+    ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
     setNoStrPrivKey(keys.priv);
-    await setProfileMetaData(props.activeUser, keys.pub);
+    await setProfileMetaData(activeUser, keys.pub);
     // setHasUserJoinedChat(true);
     setNostrkeys(keys);
     window.messageService?.updateProfile({
-      name: props.activeUser?.username!,
+      name: activeUser?.username!,
       about: "",
       picture: ""
     });
@@ -136,8 +137,8 @@ export const Chats = (props: Props) => {
 
   return (
     <>
-      <Feedback activeUser={props.activeUser} />
-      {props.global.isElectron ? <NavBarElectron {...props} /> : <NavBar history={props.history} />}
+      <Feedback activeUser={activeUser} />
+      {global.isElectron ? <NavBarElectron {...props} /> : <NavBar history={props.history} />}
       <div
         style={{ marginTop: marginTop }}
         className={props.global.isElectron ? "chats-page mb-lg-0 pt-6" : "chats-page mb-lg-0"}
@@ -153,8 +154,6 @@ export const Chats = (props: Props) => {
                 <>
                   <ChatsSideBar
                     {...props}
-                    channels={channels}
-                    directContacts={directContacts}
                     activeUserKeys={activeUserKeys}
                     inProgressSetter={inProgressSetter}
                     revealPrivateKeySetter={revealPrivateKeySetter}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { ActiveUser } from "../common/store/active-user/types";
 import { DirectContactsType } from "../common/store/chat/types";
+import { NostrKeysType } from "../common/components/chats/types";
 import {
   DirectMessage,
   Profile,
@@ -14,7 +15,7 @@ import {
 } from "./message-provider-types";
 
 import { initMessageService, MessageEvents } from "../common/helper/message-service";
-import { getProfileMetaData, NostrKeysType, getPrivateKey } from "../common/helper/chat-utils";
+import { getProfileMetaData, getPrivateKey } from "../common/components/chats/utils";
 
 import { useMappedStore } from "../common/store/use-mapped-store";
 

@@ -1,0 +1,232 @@
+@import "../../../../style/vars_mixins";
+
+.chats-sidebar {
+  @include themify(day) {
+    background: $white-two;
+    box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.1);
+  }
+  @include themify(night) {
+    background: $dark-two;
+    box-shadow: 0px -5px 5px $charcoal-grey;
+  }
+  width: 330px;
+  height: 100%;
+  margin-top: 10px;
+
+  .chats-title {
+    margin: 30px 16px 12px 16px;
+
+    .chats-content {
+      .back-arrow-image {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-top: 1px;
+
+        &:hover {
+          @include themify(day) {
+            background: rgba(29, 155, 240, 0.1);
+          }
+          @include themify(night) {
+            background: $dark-grey-blue;
+          }
+        }
+      }
+    }
+
+    .chats {
+      @include themify(day) {
+        color: #050505;
+      }
+      @include themify(night) {
+        color: $white;
+      }
+
+      color: #050505;
+      font-weight: 700;
+      font-size: 24px;
+      padding-top: 8px;
+      margin-left: 6px;
+    }
+
+    .chat-actions {
+      .refresh-button {
+        margin-top: 2px;
+        .refresh-svg {
+          width: 40px;
+          height: 40px;
+          justify-content: center;
+          text-align: center;
+          border-radius: 50%;
+          padding-top: 10px;
+          display: flex;
+          cursor: pointer;
+
+          svg {
+            height: 20px;
+            width: 20px;
+          }
+          &:hover {
+            @include themify(day) {
+              background: rgba(29, 155, 240, 0.1);
+            }
+            @include themify(night) {
+              background: $dark-grey-blue;
+            }
+          }
+        }
+      }
+      .chat-menu {
+        border: none;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        text-align: center;
+        display: flex;
+        margin-top: 3px;
+        cursor: pointer;
+        border-radius: 50%;
+        svg {
+          @include themify(day) {
+            color: $charcoal-grey;
+          }
+
+          @include themify(night) {
+            color: $white-two;
+          }
+        }
+        &:hover {
+          @include themify(day) {
+            background: rgba(29, 155, 240, 0.1);
+          }
+          @include themify(night) {
+            background: $dark-grey-blue;
+          }
+        }
+      }
+    }
+  }
+
+  .chats-search {
+    padding: 0 8px 0 15px;
+    margin-bottom: 20px;
+  }
+
+  .divider {
+    @include themify(day) {
+      border-bottom: 1px solid #ced0d4;
+    }
+    @include themify(night) {
+      border-bottom: 1px solid $charcoal-grey;
+    }
+  }
+
+  .searched-users {
+    .user-info {
+      cursor: pointer;
+      padding: 15px 3px 15px 25px;
+    }
+    .user-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 7px 5px 0 15px;
+    }
+    .user-reputation {
+      margin: 9px 5px 0 5px;
+    }
+  }
+
+  .community-title,
+  .dm-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: Faktum, sans-serif;
+    margin-bottom: 0;
+    padding: 15px 0 10px 15px;
+  }
+
+  .community:hover,
+  .dm:hover,
+  .user-info:hover {
+    @include themify(day) {
+      background: #eeeeee;
+    }
+
+    @include themify(night) {
+      background: $dusky-blue;
+    }
+
+    // rgba(29, 155, 240, 0.1);
+  }
+
+  .community,
+  .dm {
+    display: flex;
+    padding: 12.5px 5px 12.5px 13px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 0px 10px;
+
+    // @include themify(day) {
+    //   border: 1px solid #f5f5f5;
+    // }
+
+    // @include themify(night) {
+    //   border: 1px solid $charcoal-grey;
+    // }
+
+    .community-info,
+    .dm-info {
+      .community-name,
+      .dm-name {
+        padding: 3px 0 0 25px;
+        margin-bottom: 0;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .community-last-message,
+      .dm-last-message {
+        margin-bottom: 0;
+        padding: 4px 0 0 25px;
+        font-size: 13px;
+        font-family: 400;
+      }
+      .community-last-message {
+        max-width: 255px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0;
+        font-size: 14px;
+      }
+    }
+    &.selected {
+      @include themify(day) {
+        background: #ecf3ff;
+      }
+
+      @include themify(night) {
+        background: $charcoal-grey;
+      }
+
+      &:hover {
+        @include themify(day) {
+          background: #ecf3ff;
+        }
+
+        @include themify(night) {
+          background: $charcoal-grey;
+        }
+      }
+    }
+  }
+
+  .chats-list {
+    height: calc(100vh - 220px);
+    overflow: auto;
+    a {
+      color: inherit;
+    }
+  }
+}

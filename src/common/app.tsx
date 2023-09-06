@@ -25,7 +25,7 @@ import { connect } from "react-redux";
 import loadable from "@loadable/component";
 import Announcement from "./components/announcement";
 import FloatingFAQ from "./components/floating-faq";
-import ChatBox from "./components/chat-box";
+import ChatPopUp from "./components/chats/chat-popup";
 import { useMappedStore } from "./store/use-mapped-store";
 import { EntriesCacheManager } from "./core";
 
@@ -135,7 +135,12 @@ const App = (props: any) => {
         <Route exact={true} path={routes.SEARCH_MORE} component={SearchMorePageContainer} />
         <Route exact={true} strict={true} path={routes.AUTH} component={AuthPage} />
         <Route exact={true} strict={true} path={routes.SUBMIT} component={SubmitPage} />
-        <Route exact={true} strict={true} path={routes.CHATS} component={ChatsPage} />
+        <Route
+          exact={true}
+          strict={true}
+          path={routes.CHATS}
+          component={global.usePrivate ? ChatsPage : NotFound}
+        />
         <Route exact={true} strict={true} path={routes.MARKET} component={MarketPage} />
         <Route exact={true} strict={true} path={routes.EDIT} component={SubmitPage} />
         <Route exact={true} strict={true} path={routes.SIGN_UP} component={SignUpPage} />
@@ -180,7 +185,7 @@ const App = (props: any) => {
       <Announcement activeUser={props.activeUser} />
       <FloatingFAQ />
       <MessageProvider {...props} />
-      <ChatBox {...props} />
+      <ChatPopUp {...props} />
     </EntriesCacheManager>
   );
 };

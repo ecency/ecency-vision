@@ -7,6 +7,12 @@ import { EntryFilter, ListStyle } from "../store/global/types";
 import { Channel } from "../../providers/message-provider-types";
 import { usePrevious } from "../util/use-previous";
 import * as ls from "../util/local-storage";
+import {
+  createNoStrAccount,
+  getJoinedCommunities,
+  getProfileMetaData,
+  setProfileMetaData
+} from "../components/chats/utils";
 import { makeGroupKey } from "../store/entries";
 import _ from "lodash";
 import Meta from "../components/meta";
@@ -14,7 +20,7 @@ import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import defaults from "../constants/defaults.json";
-import { NOSTRKEY } from "../components/chat-box/chat-constants";
+import { NOSTRKEY } from "../components/chats/chat-popup/chat-constants";
 import CommunitySubscribers from "../components/community-subscribers";
 import CommunityActivities from "../components/community-activities";
 import LinearProgress from "../components/linear-progress";
@@ -39,12 +45,6 @@ import { withPersistentScroll } from "../components/with-persistent-scroll";
 import "./community.scss";
 import { Button, Modal } from "react-bootstrap";
 import LoginRequired from "../components/login-required";
-import {
-  createNoStrAccount,
-  getCommunities,
-  getProfileMetaData,
-  setProfileMetaData
-} from "../helper/chat-utils";
 import { useMappedStore } from "../store/use-mapped-store";
 import { setNostrkeys } from "../../providers/message-provider";
 import { QueryIdentifiers, useCommunityCache } from "../core";
@@ -92,7 +92,7 @@ export const CommunityPage = (props: Props) => {
   }, [props.activeUser]);
 
   useEffect(() => {
-    const communities = getCommunities(chat.channels, chat.leftChannelsList);
+    const communities = getJoinedCommunities(chat.channels, chat.leftChannelsList);
     setCommunities(communities);
   }, [chat.channels, chat.leftChannelsList]);
 

@@ -15,7 +15,6 @@ import {
 import { encrypt, decrypt } from "../../lib/nostr-tools/nip04";
 import SimplePool from "../../lib/nostr-tools/pool";
 import { signEvent, getEventHash, Event } from "../../lib/nostr-tools/event";
-import { isSha256, notEmpty } from "./chat-utils";
 
 const relays = {
   "wss://relay1.nostrchat.io": { read: true, write: true },
@@ -152,7 +151,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
               return undefined;
             })
             .filter((x) => !deletions.includes(x))
-            .filter(notEmpty)
+            .filter(MessageService.notEmpty)
         )
       );
       if (channels.length !== 0) {
@@ -183,7 +182,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
             const root = eTags.find((x) => x[3] === "root")?.[1];
             const mentions = MessageService.filterTagValue(ev, "p")
               .map((x) => x?.[1])
-              .filter(notEmpty);
+              .filter(MessageService.notEmpty);
             if (!root) return null;
             return ev.content
               ? {
@@ -197,7 +196,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
                 }
               : null;
           })
-          .filter(notEmpty);
+          .filter(MessageService.notEmpty);
         this.emit(MessageEvents.PreviousPublicMessages, formattedEvents);
       }
 
@@ -460,7 +459,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     const root = eTags.find((x) => x[3] === "root")?.[1];
     const mentions = MessageService.filterTagValue(event, "p")
       .map((x) => x?.[1])
-      .filter(notEmpty);
+      .filter(MessageService.notEmpty);
     const formattedEvent = event.content
       ? {
           id: event.id,
@@ -641,7 +640,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
         const profiles: Array<[string, string]> = e.tags;
         return profiles.map(([pubkey, name]) => ({ pubkey, name }));
       })
-      .filter(notEmpty);
+      .filter(MessageService.notEmpty);
 
     if (directContacts.length > 0) {
       const directContactsProfile: Array<{ pubkey: string; name: string }> = directContacts[0];
@@ -664,7 +663,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
             }
           : null;
       })
-      .filter(notEmpty);
+      .filter(MessageService.notEmpty);
     if (profileUpdates.length > 0) {
       this.emit(MessageEvents.ProfileUpdate, profileUpdates);
     }
@@ -679,7 +678,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
 
     if (leftChannelListEv) {
       const content = MessageService.parseJson(leftChannelListEv.content);
-      if (Array.isArray(content) && content.every((x) => isSha256(x))) {
+      if (Array.isArray(content) && content.every((x) => MessageService.isSha256(x))) {
         this.emit(MessageEvents.LeftChannelList, content);
       }
     }
@@ -701,7 +700,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
             }
           : null;
       })
-      .filter(notEmpty);
+      .filter(MessageService.notEmpty);
     if (channelCreations.length > 0) {
       this.emit(MessageEvents.ChannelCreation, channelCreations);
     }
@@ -726,7 +725,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
             }
           : null;
       })
-      .filter(notEmpty);
+      .filter(MessageService.notEmpty);
     if (channelUpdates.length > 0) {
       this.emit(MessageEvents.ChannelUpdate, channelUpdates);
     }
@@ -738,7 +737,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
         const root = eTags.find((x) => x[3] === "root")?.[1];
         const mentions = MessageService.filterTagValue(ev, "p")
           .map((x) => x?.[1])
-          .filter(notEmpty);
+          .filter(MessageService.notEmpty);
         if (!root) return null;
         return ev.content
           ? {
@@ -752,7 +751,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
             }
           : null;
       })
-      .filter(notEmpty);
+      .filter(MessageService.notEmpty);
     if (publicMessages.length > 0) {
       this.emit(MessageEvents.PublicMessageAfterSent, publicMessages);
     }
@@ -790,7 +789,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
             };
           });
         })
-        .filter(notEmpty)
+        .filter(MessageService.notEmpty)
     ).then((directMessages: DirectMessage[]) => {
       if (directMessages.length > 0) {
         this.emit(MessageEvents.DirectMessageAfterSent, directMessages);
@@ -820,6 +819,12 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     } catch (e) {
       return null;
     }
+  }
+
+  static isSha256 = (s: string) => /^[a-f0-9]{64}$/gi.test(s);
+
+  static notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
+    return value !== null && value !== undefined;
   }
 
   static findTagValue(ev: Event, tag: "e" | "p" | "d") {

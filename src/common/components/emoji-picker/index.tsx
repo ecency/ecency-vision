@@ -4,7 +4,7 @@ import { FormControl } from "react-bootstrap";
 
 import BaseComponent from "../base";
 import SearchBox from "../search-box";
-import { EmojiPickerStyleProps } from "../../components/chat-box";
+import { EmojiPickerStyleProps } from "../chats/chat-popup";
 
 import { _t } from "../../i18n";
 

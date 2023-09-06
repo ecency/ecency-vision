@@ -21,7 +21,7 @@ setProxyBase(defaults.imageServer);
 import BaseComponent from "../base";
 import SubscriptionBtn from "../subscription-btn";
 import CommunityPostBtn from "../community-post-btn";
-import JoinCommunityChatBtn from "../join-community-chat-btn";
+import JoinCommunityChatBtn from "../chats/join-community-chat-btn";
 import Tooltip from "../tooltip";
 import ImageUploadDialog from "../image-upload";
 

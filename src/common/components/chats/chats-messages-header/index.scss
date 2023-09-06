@@ -1,0 +1,67 @@
+@import "../../../../style/vars_mixins";
+
+.chats-messages-header {
+  grid-row: span 1;
+  width: 60vw;
+  height: 67px;
+  @include themify(day) {
+    border-bottom: 1px solid #e7e7e7;
+  }
+  @include themify(night) {
+    border-bottom: 1px solid $charcoal-grey;
+  }
+
+  .header-content {
+    .user-info {
+      display: inline-flex;
+      padding: 8px 10px;
+      margin: 5px 0 0 9px;
+      cursor: pointer;
+
+      .username {
+        font-size: 21px;
+        font-family: Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        margin: 7px 0 0 12px;
+      }
+      &:hover {
+        border-radius: 10px;
+        @include themify(day) {
+          background: #eeeeee;
+        }
+
+        @include themify(night) {
+          background: $dusky-blue;
+        }
+      }
+    }
+    .community-menu {
+      border: none;
+      width: 40px;
+      height: 40px;
+      justify-content: center;
+      text-align: center;
+      display: flex;
+      margin-top: 14px;
+      cursor: pointer;
+      border-radius: 50%;
+      svg {
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(night) {
+          color: $white-two;
+        }
+      }
+      &:hover {
+        @include themify(day) {
+          background: rgba(29, 155, 240, 0.1);
+        }
+        @include themify(night) {
+          background: $dark-grey-blue;
+        }
+      }
+    }
+  }
+}
