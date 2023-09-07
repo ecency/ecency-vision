@@ -1,10 +1,9 @@
 import React from "react";
-import { Table } from "react-bootstrap";
 import { MarketStatistics } from "../../api/hive";
 import { _t } from "../../i18n";
-import { isMobile } from "../../util/is-mobile";
 import { Skeleton } from "../skeleton";
 import "./index.scss";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 interface Props {
   loading: boolean;
@@ -12,67 +11,67 @@ interface Props {
 }
 export const ChartStats = ({ loading, data }: Props) => {
   return loading ? (
-    <Table striped={true} bordered={true} hover={true}>
+    <Table full={true}>
       <thead>
-        <tr>
-          <th>
+        <Tr>
+          <Th>
             <Skeleton className="skeleton-loading mr-5" />
-          </th>
-          <th>
+          </Th>
+          <Th>
             <Skeleton className="skeleton-loading mr-5" />
-          </th>
-          <th>
+          </Th>
+          <Th>
             <Skeleton className="skeleton-loading mr-5" />
-          </th>
-          <th>
+          </Th>
+          <Th>
             <Skeleton className="skeleton-loading mr-5" />
-          </th>
-          <th>
+          </Th>
+          <Th>
             <Skeleton className="skeleton-loading mr-5" />
-          </th>
-        </tr>
+          </Th>
+        </Tr>
       </thead>
       <tbody>
-        <tr>
-          <td>
+        <Tr>
+          <Td>
             <Skeleton className="skeleton-loading mr-5" />
-          </td>
-          <td>
+          </Td>
+          <Td>
             <Skeleton className="skeleton-loading mr-5" />
-          </td>
-          <td>
+          </Td>
+          <Td>
             <Skeleton className="skeleton-loading mr-5" />
-          </td>
-          <td>
+          </Td>
+          <Td>
             <Skeleton className="skeleton-loading mr-5" />
-          </td>
-          <td>
+          </Td>
+          <Td>
             <Skeleton className="skeleton-loading mr-5" />
-          </td>
-        </tr>
+          </Td>
+        </Tr>
       </tbody>
     </Table>
   ) : (
-    <Table striped={true} bordered={true} hover={true} size={isMobile() ? "sm" : "lg"}>
+    <Table full={true}>
       <thead>
-        <tr>
-          <th>{_t("market.last-price")}</th>
-          <th>{_t("market.volume")}</th>
-          <th>{_t("market.bid")}</th>
-          <th>{_t("market.ask")}</th>
-          <th>{_t("market.spread")}</th>
-        </tr>
+        <Tr>
+          <Th>{_t("market.last-price")}</Th>
+          <Th>{_t("market.volume")}</Th>
+          <Th>{_t("market.bid")}</Th>
+          <Th>{_t("market.ask")}</Th>
+          <Th>{_t("market.spread")}</Th>
+        </Tr>
       </thead>
       <tbody>
-        <tr>
-          <td>
+        <Tr>
+          <Td>
             ${data ? parseFloat(data!.latest!).toFixed(6) : null} (
             <span className="text-success">+0.00%</span>)
-          </td>
-          <td>${data ? parseFloat(data!.hbd_volume)!.toFixed(2) : null}</td>
-          <td>${data ? parseFloat(data!.highest_bid)!.toFixed(6) : null}</td>
-          <td>${data ? parseFloat(data!.lowest_ask)!.toFixed(6) : null}</td>
-          <td>
+          </Td>
+          <Td>${data ? parseFloat(data!.hbd_volume)!.toFixed(2) : null}</Td>
+          <Td>${data ? parseFloat(data!.highest_bid)!.toFixed(6) : null}</Td>
+          <Td>${data ? parseFloat(data!.lowest_ask)!.toFixed(6) : null}</Td>
+          <Td>
             {data
               ? (
                   (200 * (parseFloat(data.lowest_ask) - parseFloat(data.highest_bid))) /
@@ -80,8 +79,8 @@ export const ChartStats = ({ loading, data }: Props) => {
                 ).toFixed(3)
               : null}
             %
-          </td>
-        </tr>
+          </Td>
+        </Tr>
       </tbody>
     </Table>
   );

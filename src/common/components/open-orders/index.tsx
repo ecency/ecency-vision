@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Table } from "react-bootstrap";
 import { OpenOrdersData } from "../../api/hive";
 import BuySellHiveDialog, { TransactionType } from "../buy-sell-hive";
 import { _t } from "../../i18n";
@@ -7,6 +6,8 @@ import { Skeleton } from "../skeleton";
 import { ActiveUser } from "../../store/active-user/types";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { Button } from "@ui/button";
+import { Table, Td, Th, Tr } from "@ui/table";
+import formattedNumber from "../../util/formatted-number";
 
 const columns = [
   `${_t("market.date")}`,
@@ -24,9 +25,17 @@ interface Props {
   onTransactionSuccess: () => void;
   activeUser: ActiveUser;
   compat?: boolean;
+  rounded?: boolean;
 }
 
-export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser, compat }: Props) => {
+export const OpenOrders = ({
+  data,
+  loading,
+  onTransactionSuccess,
+  activeUser,
+  compat,
+  rounded
+}: Props) => {
   const [isModalOpen, setIsModalOpen] = useState<number>(0);
 
   return loading ? (
@@ -46,43 +55,43 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser, co
         </>
       ) : null}
       {compat ? <></> : <h5>{_t("market.open-orders")}</h5>}
-      <Table striped={true} bordered={true} hover={true} size="sm">
+      <Table full={true} rounded={rounded}>
         <thead>
-          <tr>
+          <Tr>
             {columns.map((item) => (
-              <th key={item}>{item}</th>
+              <Th key={item}>{item}</Th>
             ))}
-          </tr>
+          </Tr>
         </thead>
         <tbody>
           {data.map((item) => {
             return (
-              <tr key={item.id}>
-                <td title={dateToFormatted(item.created)}>{dateToFullRelative(item.created)}</td>
-                <td
+              <Tr key={item.id}>
+                <Td title={dateToFormatted(item.created)}>{dateToFullRelative(item.created)}</Td>
+                <Td
                   className={
                     item.sell_price.base.indexOf("HIVE") > 0 ? "text-danger" : "text-success"
                   }
                 >
                   {item.sell_price.base.indexOf("HIVE") > 0 ? "Sell" : "Buy"}
-                </td>
-                <td>{parseFloat(item.real_price).toFixed(6)}</td>
-                <td>
+                </Td>
+                <Td>{formattedNumber(item.real_price)}</Td>
+                <Td>
                   {item.sell_price.base.indexOf("HIVE") > 0
                     ? item.sell_price.base.replace("HIVE", "")
                     : item.sell_price.quote.replace("HIVE", "")}
-                </td>
-                <td>
+                </Td>
+                <Td>
                   {item.sell_price.base.indexOf("HIVE") > 0
                     ? item.sell_price.quote.replace("HBD", "")
                     : item.sell_price.base.replace("HBD", "")}
-                </td>
-                <td className="p-2">
+                </Td>
+                <Td className="p-2">
                   <Button size="sm" onClick={() => setIsModalOpen(item.orderid)}>
                     {_t("g.cancel")}
                   </Button>
-                </td>
-              </tr>
+                </Td>
+              </Tr>
             );
           })}
         </tbody>

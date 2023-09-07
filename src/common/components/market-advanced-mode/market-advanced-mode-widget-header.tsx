@@ -22,13 +22,13 @@ export const MarketAdvancedModeWidgetHeader = ({
 }: Props) => {
   return (
     <Accordion className={expandedHeader ? "border-b border-[--border-color]" : ""}>
-      <div className="d-flex flex-column border-b border-[--border-color]">
-        <div className="d-flex justify-content-between align-items-center deck-header position-relative">
-          <div className="d-flex align-items-center w-100">
+      <div className="flex flex-col border-b border-[--border-color]">
+        <div className="flex justify-cbetween items-center deck-header relative">
+          <div className="flex items-center w-full">
             <div className="cursor-drag deck-index" />
             {headerOptions}
             {title ? (
-              <div className="d-flex align-items-center ml-3">
+              <div className="flex items-center ml-3">
                 {typeof title === "string" ? (
                   <>
                     {icon ? <div className="icon mr-2">{icon}</div> : <></>}

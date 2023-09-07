@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import { MarketMode } from "./market-mode";
 import { _t } from "../../i18n";
+import { ButtonGroup } from "@ui/button-group";
 
 interface Props {
   className?: string;
@@ -17,37 +17,30 @@ export const ModeSelector = ({ mode, onSelect, className }: Props) => {
   }, [mode]);
 
   return (
-    <div className={"d-flex mode-selector " + className ?? ""}>
-      <Button
-        className="rounded-r-none"
-        active={rawMode === MarketMode.SWAP}
-        onClick={() => {
-          onSelect(MarketMode.SWAP);
-          window.location.hash = "swap";
-        }}
-      >
-        {_t("market.mode-swap")}
-      </Button>
-      <Button
-        className="rounded-none"
-        active={rawMode === MarketMode.LIMIT}
-        onClick={() => {
-          onSelect(MarketMode.LIMIT);
-          window.location.hash = "limit";
-        }}
-      >
-        {_t("market.mode-limit")}
-      </Button>
-      <Button
-        className="rounded-l-none"
-        active={rawMode === MarketMode.ADVANCED}
-        onClick={() => {
-          onSelect(MarketMode.ADVANCED);
-          window.location.hash = "advanced";
-        }}
-      >
-        {_t("market.mode-advanced")}
-      </Button>
-    </div>
+    <ButtonGroup
+      className={className}
+      labels={[_t("market.mode-swap"), _t("market.mode-limit"), _t("market.mode-advanced")]}
+      setSelected={(i) => {
+        switch (i) {
+          case 0:
+            onSelect(MarketMode.SWAP);
+            window.location.hash = "swap";
+            break;
+          case 1:
+            onSelect(MarketMode.LIMIT);
+            window.location.hash = "limit";
+            break;
+          case 2:
+            onSelect(MarketMode.ADVANCED);
+            window.location.hash = "advanced";
+            break;
+          default:
+            break;
+        }
+      }}
+      selected={[MarketMode.SWAP, MarketMode.LIMIT, MarketMode.ADVANCED].findIndex(
+        (i) => i === rawMode
+      )}
+    />
   );
 };

@@ -1,11 +1,11 @@
 import React from "react";
-import { Table } from "react-bootstrap";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { _t } from "../../i18n";
 import { LimitOrderCreate } from "../../store/transactions/types";
 import { OpenOrdersData } from "../../api/hive";
 import { AutoSizer } from "react-virtualized";
 import { Button } from "@ui/button";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 const columns = [
   _t("market.date"),
@@ -37,45 +37,45 @@ export const MarketAdvancedModeOrdersTable = ({ data, openOrdersData }: Props) =
     <AutoSizer>
       {({ width, height }) => (
         <div className="rounded" style={{ width: `${width}px`, height: `${height}px` }}>
-          <Table striped={true} bordered={true} hover={true} size="sm">
+          <Table rounded={false} full={true}>
             <thead>
-              <tr>
+              <Tr>
                 {columns.map((item) => (
-                  <th key={item}>{item}</th>
+                  <Th key={item}>{item}</Th>
                 ))}
-              </tr>
+              </Tr>
             </thead>
             <tbody>
               {data.map((item) => {
                 return (
-                  <tr key={item.orderid}>
-                    <td title={dateToFormatted(item.timestamp)}>
+                  <Tr key={item.orderid}>
+                    <Td title={dateToFormatted(item.timestamp)}>
                       {dateToFullRelative(item.timestamp)}
                       {openOrdersData.some((order) => order.orderid === item.orderid) ? (
-                        <div className="bg-primary px-2 py-1 text-xs font-bold text-white rounded ml-2">
+                        <span className="bg-primary px-2 py-1 text-xs font-bold text-white rounded ml-2">
                           {_t("market.advanced.active")}
-                        </div>
+                        </span>
                       ) : (
                         <></>
                       )}
-                    </td>
-                    <td
+                    </Td>
+                    <Td
                       className={
                         item.amount_to_sell?.indexOf("HIVE") > 0 ? "text-danger" : "text-success"
                       }
                     >
                       {item.amount_to_sell?.indexOf("HIVE") > 0 ? "Sell" : "Buy"}
-                    </td>
-                    <td>{getPrice(item).toFixed(6)}</td>
-                    <td>
+                    </Td>
+                    <Td>{getPrice(item).toFixed(6)}</Td>
+                    <Td>
                       {getAmount(item.amount_to_sell, "HIVE") ??
                         getAmount(item.min_to_receive, "HIVE")}
-                    </td>
-                    <td>
+                    </Td>
+                    <Td>
                       {getAmount(item.amount_to_sell, "HBD") ??
                         getAmount(item.min_to_receive, "HBD")}
-                    </td>
-                    <td>
+                    </Td>
+                    <Td>
                       <Button
                         noPadding={true}
                         appearance="link"
@@ -85,8 +85,8 @@ export const MarketAdvancedModeOrdersTable = ({ data, openOrdersData }: Props) =
                       >
                         {_t("market.advanced.view-details")}
                       </Button>
-                    </td>
-                  </tr>
+                    </Td>
+                  </Tr>
                 );
               })}
             </tbody>

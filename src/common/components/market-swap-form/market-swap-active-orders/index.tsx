@@ -34,12 +34,9 @@ export const MarketSwapActiveOrders = ({ activeUser, global }: Props) => {
         <FormLabel>
           <small className="font-weight-bold">{_t("market.pending-orders")}</small>
         </FormLabel>
-        <div className="list-group rounded-xl border border-[--border-color] market-swap-active-orders">
+        <div className="bg-white rounded-[1rem] market-swap-active-orders">
           {orders.map((order) => (
-            <div
-              key={order.id}
-              className="list-group-item border-b border-[--border-color] px-4 py-3"
-            >
+            <div key={order.id} className="border-b border-[--border-color] pl-4 pr-2 py-3">
               <GenericOrderItem
                 from={order.sell_price.base}
                 to={order.sell_price.quote}

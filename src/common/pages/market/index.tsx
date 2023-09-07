@@ -56,7 +56,7 @@ const MarketPage = (props: PageProps) => {
           )}
           {mode !== MarketMode.ADVANCED ? (
             <ModeSelector
-              className="mb-5 mx-auto equal-widths"
+              className="mb-5 mx-auto equal-widths max-w-[600px]"
               mode={mode}
               onSelect={(mode) => {
                 setMode(mode);

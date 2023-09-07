@@ -5,3 +5,4 @@ export * from "./popover-confirm";
 export * from "./popover";
 export * from "./input";
 export * from "./button";
+export * from "./table";

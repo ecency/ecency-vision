@@ -64,6 +64,7 @@ export const OpenOrdersWidget = ({
         username={(activeUser && activeUser.username) || ""}
         activeUser={activeUser!}
         compat={true}
+        rounded={false}
       />
     ) : (
       <div className="market-advanced-mode-trading-form-login-required-widget">
