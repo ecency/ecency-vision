@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { match } from "react-router";
 import { History } from "history";
 import { Account } from "../../../store/accounts/types";
@@ -13,6 +13,7 @@ import LinearProgress from "../../linear-progress";
 import { NostrKeysType } from "../types";
 import { formattedUserName } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
+import { ChatContext } from "../chat-provider";
 
 interface MatchParams {
   filter: string;
@@ -27,7 +28,6 @@ interface Props {
   users: User[];
   history: History | null;
   ui: UI;
-  activeUserKeys: NostrKeysType;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
@@ -36,7 +36,10 @@ interface Props {
 }
 
 export default function ChatsMessagesBox(props: Props) {
+  const context = useContext(ChatContext);
+  const { activeUserKeys } = context;
   const { activeUser, chat } = useMappedStore();
+
   const { channels, updatedChannel } = chat;
   const { match, deletePublicMessage } = props;
   const username = match.params.username;

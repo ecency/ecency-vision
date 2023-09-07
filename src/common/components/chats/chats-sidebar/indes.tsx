@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { History } from "history";
@@ -23,6 +23,7 @@ import { CHAT, DropDownStyle } from "../chat-popup/chat-constants";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
 import { AccountWithReputation, NostrKeysType } from "../types";
 import { useMappedStore } from "../../../store/use-mapped-store";
+import { ChatContext } from "../chat-provider";
 
 interface MatchParams {
   filter: string;
@@ -33,36 +34,23 @@ interface MatchParams {
 }
 interface Props {
   match: match<MatchParams>;
-  // channels: Channel[];
-  // directContacts: DirectContactsType[];
-  activeUserKeys: NostrKeysType;
-  chatPrivKey: string;
-  // chat: Chat;
   history: History;
-  revelPrivateKey: boolean;
-  inProgressSetter: (d: boolean) => void;
-  revealPrivateKeySetter: (d: boolean) => void;
   resetChat: () => void;
 }
 export default function ChatsSideBar(props: Props) {
   const { chat } = useMappedStore();
+  const context = useContext(ChatContext);
   const { channels, directContacts, leftChannelsList } = chat;
-  const {
-    activeUserKeys,
-    match,
-    revelPrivateKey,
-    chatPrivKey,
-    resetChat,
-    inProgressSetter,
-    revealPrivateKeySetter
-  } = props;
+  const { match, resetChat } = props;
+
+  const { activeUserKeys, revealPrivKey, chatPrivKey, setInProgress, setRevealPrivKey } = context;
 
   const chatsSideBarRef = React.createRef<HTMLDivElement>();
   const username = match.params.username;
 
   const [showDivider, setShowDivider] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [inProgress, setInProgress] = useState(false);
+  const [searchInProgress, setSearchInProgress] = useState(false);
   const [userList, setUserList] = useState<AccountWithReputation[]>([]);
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [communities, setCommunities] = useState<Channel[]>([]);
@@ -73,7 +61,7 @@ export default function ChatsSideBar(props: Props) {
         const resp = await getAccountReputations(searchText, 30);
         const sortedByReputation = resp.sort((a, b) => (a.reputation > b.reputation ? -1 : 1));
         setUserList(sortedByReputation);
-        setInProgress(false);
+        setSearchInProgress(false);
       }
     },
     500,
@@ -92,104 +80,6 @@ export default function ChatsSideBar(props: Props) {
     // fetchProfileData();
   }, [channels, leftChannelsList]);
 
-  // const communities = [
-  //   {
-  //     id: "dewf3efq3",
-  //     name: "Best Community"
-  //   },
-  //   {
-  //     id: "kefkjehdewjk",
-  //     name: "Cars Forum"
-  //   },
-  //   {
-  //     id: "hj3fhkl3flk",
-  //     name: "Hive BlockChaiin"
-  //   },
-  //   {
-  //     id: "dewddefq3",
-  //     name: "Devsinc"
-  //   },
-  //   {
-  //     id: "kefksahdewjk",
-  //     name: "Rolustech"
-  //   },
-  //   {
-  //     id: "hj3fdl3flk",
-  //     name: "Stack Overflow"
-  //   },
-  //   {
-  //     id: "kefkjehdsewjk",
-  //     name: "Cars Forum"
-  //   },
-  //   {
-  //     id: "hj3fhkls3flk",
-  //     name: "Hive BlockChain"
-  //   },
-  //   {
-  //     id: "dewddesfq3",
-  //     name: "Devsinc"
-  //   },
-  //   {
-  //     id: "kefksahsdewjk",
-  //     name: "Rolustech"
-  //   },
-  //   {
-  //     id: "hj3fdls3flk",
-  //     name: "Stack Overflow"
-  //   }
-  // ];
-
-  const DMS = [
-    {
-      id: "dewf3efq3",
-      name: "ahmed"
-    },
-    {
-      id: "kefkjehdewjk",
-      name: "hive-189310"
-    },
-    {
-      id: "hj3fhkl3flk",
-      name: "demo.com"
-    },
-    {
-      id: "dewddefq3",
-      name: "good-karma"
-    },
-    {
-      id: "kefksahdewjk",
-      name: "mtsaeed"
-    },
-    {
-      id: "hj3fdl3flk",
-      name: "testers"
-    },
-    {
-      id: "dewf3sefq3",
-      name: "ahmed"
-    },
-    {
-      id: "kefkjeshdewjk",
-      name: "hive-189310"
-    },
-    {
-      id: "hj3fhskl3flk",
-      name: "demo.com"
-    },
-    {
-      id: "dewddesfq3",
-      name: "good-karma"
-    },
-    {
-      id: "kefksashdewjk",
-      name: "mtsaeed"
-    },
-    {
-      id: "hj3fdsl3flk",
-      name: "hive-198973"
-    }
-  ];
-
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     var element = event.currentTarget;
     console.log("element.scrollTop", element.scrollTop);
@@ -207,13 +97,13 @@ export default function ChatsSideBar(props: Props) {
 
   const handleRefreshChat = () => {
     resetChat();
-    setNostrkeys(activeUserKeys);
-    inProgressSetter(true);
+    setNostrkeys(activeUserKeys!);
+    setInProgress(true);
   };
 
   const handleRevealPrivKey = () => {
-    if (revelPrivateKey) {
-      revealPrivateKeySetter(false);
+    if (revealPrivKey) {
+      setRevealPrivKey(false);
     }
   };
 
@@ -221,11 +111,11 @@ export default function ChatsSideBar(props: Props) {
     <div className="chats-sidebar">
       <div className="d-flex justify-content-between chats-title">
         <div className="d-flex chats-content">
-          {revelPrivateKey && (
+          {revealPrivKey && (
             <Tooltip content={_t("chat.back")}>
               <div
                 className="back-arrow-image d-flex justify-content-center align-items-center"
-                onClick={() => revealPrivateKeySetter(false)}
+                onClick={() => setRevealPrivKey(false)}
               >
                 <span className="back-arrow-svg"> {arrowBackSvg}</span>
               </div>
@@ -247,7 +137,7 @@ export default function ChatsSideBar(props: Props) {
             <div className="chat-menu">
               <ChatsDropdownMenu
                 onManageChatKey={() => {
-                  revealPrivateKeySetter(!revelPrivateKey);
+                  setRevealPrivKey(!revealPrivKey);
                 }}
                 {...props}
               />
@@ -263,9 +153,9 @@ export default function ChatsSideBar(props: Props) {
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
-              setInProgress(true);
+              setSearchInProgress(true);
               if (e.target.value.length === 0) {
-                setInProgress(false);
+                setSearchInProgress(false);
                 setUserList([]);
               }
             }}
@@ -273,7 +163,7 @@ export default function ChatsSideBar(props: Props) {
         </Form.Group>
       </div>
       {showDivider && <div className="divider" />}
-      {inProgress && <LinearProgress />}
+      {searchInProgress && <LinearProgress />}
       <div className="chats-list" onScroll={handleScroll} ref={chatsSideBarRef}>
         {searchText ? (
           <div className="searched-users">

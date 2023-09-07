@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { match } from "react-router";
 import NavBar from "../../components/navbar";
@@ -23,6 +23,7 @@ import {
   setProfileMetaData
 } from "../../components/chats/utils";
 import { useMappedStore } from "../../store/use-mapped-store";
+import ChatProvider, { ChatContext } from "../../components/chats/chat-provider";
 
 interface MatchParams {
   filter: string;
@@ -37,15 +38,13 @@ interface Props extends PageProps {
 }
 
 export const Chats = (props: Props) => {
-  const { chat, activeUser, global } = useMappedStore();
-  const { channels, directContacts } = chat;
+  const { activeUser, global } = useMappedStore();
+
+  const context = useContext(ChatContext);
+  const { setChatPrivKey, setActiveUserKeys } = context;
 
   const [marginTop, setMarginTop] = useState(0);
-  const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
-  const [inProgrss, setInProgress] = useState(true);
   const [showSpinner, setShowSpinner] = useState(false);
-  const [noStrPrivKey, setNoStrPrivKey] = useState("");
-  const [revelPrivateKey, setRevealPrivateKey] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -56,19 +55,8 @@ export const Chats = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    console.log("noStrPrivKey", noStrPrivKey);
-  }, [noStrPrivKey]);
-
-  useEffect(() => {
     handleResize();
-    getActiveUserChatKeys();
-    const noStrPrivKey = getPrivateKey(activeUser?.username!);
-    setNoStrPrivKey(noStrPrivKey);
   }, []);
-
-  useEffect(() => {
-    setInProgress(false);
-  }, [activeUserKeys]);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -77,38 +65,11 @@ export const Chats = (props: Props) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (inProgrss) {
-      setTimeout(() => {
-        setInProgress(false);
-      }, 7000);
-    }
-  }, [inProgrss]);
-
   const handleResize = () => {
     const parentElemet = document.getElementById("sticky-container")?.getBoundingClientRect();
     if (parentElemet) {
       setMarginTop(parentElemet?.y + parentElemet?.height - 30);
     }
-  };
-
-  const getActiveUserChatKeys = async () => {
-    setInProgress(true);
-    const profileData = await getProfileMetaData(activeUser?.username!);
-    const noStrPrivKey = getPrivateKey(activeUser?.username!);
-    const activeUserKeys = {
-      pub: profileData?.nsKey,
-      priv: noStrPrivKey
-    };
-    setActiveUserKeys(activeUserKeys);
-  };
-
-  const inProgressSetter = (d: boolean) => {
-    setInProgress(d);
-  };
-
-  const revealPrivateKeySetter = (d: boolean) => {
-    setRevealPrivateKey(d);
   };
 
   const handleJoinChat = async () => {
@@ -117,9 +78,8 @@ export const Chats = (props: Props) => {
     resetChat();
     const keys = createNoStrAccount();
     ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
-    setNoStrPrivKey(keys.priv);
+    setChatPrivKey(keys.priv);
     await setProfileMetaData(activeUser, keys.pub);
-    // setHasUserJoinedChat(true);
     setNostrkeys(keys);
     window.messageService?.updateProfile({
       name: activeUser?.username!,
@@ -130,74 +90,133 @@ export const Chats = (props: Props) => {
     setShowSpinner(false);
   };
 
-  const copyPrivateKey = () => {
-    copyToClipboard(noStrPrivKey);
-    success("Key copied into clipboad");
-  };
-
+  // return (
+  //   <>
+  //   <ChatProvider>
+  //     <Feedback activeUser={activeUser} />
+  //     {global.isElectron ? <NavBarElectron {...props} /> : <NavBar history={props.history} />}
+  //     <div
+  //       style={{ marginTop: marginTop }}
+  //       className={props.global.isElectron ? "chats-page mb-lg-0 pt-6" : "chats-page mb-lg-0"}
+  //     >
+  //       {inProgrss ? (
+  //         <div className="d-flex justify-content-center align-items-center full-page">
+  //           <Spinner animation="border" variant="primary" />
+  //         </div>
+  //       ) : (
+  //         <>
+  //           {activeUserKeys?.pub ? (
+  //             chatPrivKey ? (
+  //               <>
+  //                 <ChatsSideBar
+  //                   {...props}
+  //                   activeUserKeys={activeUserKeys}
+  //                   inProgressSetter={inProgressSetter}
+  //                   revealPrivateKeySetter={revealPrivateKeySetter}
+  //                   revelPrivateKey={revelPrivateKey}
+  //                   chatPrivKey={chatPrivKey}
+  //                 />
+  //                 {revelPrivateKey ? (
+  //                   <div className="chats-messages-box">
+  //                     <ManageChatKey noStrPrivKey={chatPrivKey} copyPrivateKey={copyPrivateKey} />
+  //                   </div>
+  //                 ) : (
+  //                   //if any person has not joined any community then how can he see its message. handle this thing here.
+  //                   <ChatsMessagesBox
+  //                     {...props}
+  //                     activeUserKeys={activeUserKeys}
+  //                     deletePublicMessage={props.deletePublicMessage}
+  //                   />
+  //                 )}
+  //               </>
+  //             ) : (
+  //               <h2>No private key</h2>
+  //             )
+  //           ) : (
+  //             <div className="d-flex justify-content-center align-items-center full-page">
+  //               <div className="no-chat text-center">
+  //                 <p>You haven't joined the chat yet. Please join the chat to start chatting.</p>
+  //                 <Button onClick={handleJoinChat}>
+  //                   {showSpinner && (
+  //                     <Spinner
+  //                       animation="grow"
+  //                       variant="light"
+  //                       size="sm"
+  //                       style={{ marginRight: "6px" }}
+  //                     />
+  //                   )}
+  //                   Join Chat
+  //                 </Button>
+  //               </div>
+  //             </div>
+  //           )}
+  //         </>
+  //       )}
+  //     </div>
+  //     </ChatProvider>
+  //   </>
+  // );
   return (
-    <>
-      <Feedback activeUser={activeUser} />
-      {global.isElectron ? <NavBarElectron {...props} /> : <NavBar history={props.history} />}
-      <div
-        style={{ marginTop: marginTop }}
-        className={props.global.isElectron ? "chats-page mb-lg-0 pt-6" : "chats-page mb-lg-0"}
-      >
-        {inProgrss ? (
-          <div className="d-flex justify-content-center align-items-center full-page">
-            <Spinner animation="border" variant="primary" />
-          </div>
-        ) : (
-          <>
-            {activeUserKeys?.pub ? (
-              noStrPrivKey ? (
-                <>
-                  <ChatsSideBar
-                    {...props}
-                    activeUserKeys={activeUserKeys}
-                    inProgressSetter={inProgressSetter}
-                    revealPrivateKeySetter={revealPrivateKeySetter}
-                    revelPrivateKey={revelPrivateKey}
-                    chatPrivKey={noStrPrivKey}
-                  />
-                  {revelPrivateKey ? (
-                    <div className="chats-messages-box">
-                      <ManageChatKey noStrPrivKey={noStrPrivKey} copyPrivateKey={copyPrivateKey} />
-                    </div>
-                  ) : (
-                    //if any person has not joined any community then how can he see its message. handle this thing here.
-                    <ChatsMessagesBox
-                      {...props}
-                      activeUserKeys={activeUserKeys}
-                      deletePublicMessage={props.deletePublicMessage}
-                    />
-                  )}
-                </>
-              ) : (
-                <h2>No private key</h2>
-              )
-            ) : (
+    <ChatProvider>
+      {(context) => (
+        <>
+          <Feedback activeUser={activeUser} />
+          {global.isElectron ? <NavBarElectron {...props} /> : <NavBar history={props.history} />}
+          <div
+            style={{ marginTop: marginTop }}
+            className={props.global.isElectron ? "chats-page mb-lg-0 pt-6" : "chats-page mb-lg-0"}
+          >
+            {context.inProgress ? (
               <div className="d-flex justify-content-center align-items-center full-page">
-                <div className="no-chat text-center">
-                  <p>You haven't joined the chat yet. Please join the chat to start chatting.</p>
-                  <Button onClick={handleJoinChat}>
-                    {showSpinner && (
-                      <Spinner
-                        animation="grow"
-                        variant="light"
-                        size="sm"
-                        style={{ marginRight: "6px" }}
-                      />
-                    )}
-                    Join Chat
-                  </Button>
-                </div>
+                <Spinner animation="border" variant="primary" />
               </div>
+            ) : (
+              <>
+                {context.activeUserKeys?.pub ? (
+                  context.chatPrivKey ? (
+                    <>
+                      <ChatsSideBar {...props} />
+                      {context.revealPrivKey ? (
+                        <div className="chats-messages-box">
+                          <ManageChatKey />
+                        </div>
+                      ) : (
+                        // Handle the case when the user hasn't joined any community here
+                        <ChatsMessagesBox
+                          {...props}
+                          deletePublicMessage={props.deletePublicMessage}
+                        />
+                      )}
+                    </>
+                  ) : (
+                    <h2>No private key</h2>
+                  )
+                ) : (
+                  <div className="d-flex justify-content-center align-items-center full-page">
+                    <div className="no-chat text-center">
+                      <p>
+                        You haven't joined the chat yet. Please join the chat to start chatting.
+                      </p>
+                      <Button onClick={handleJoinChat}>
+                        {showSpinner && (
+                          <Spinner
+                            animation="grow"
+                            variant="light"
+                            size="sm"
+                            style={{ marginRight: "6px" }}
+                          />
+                        )}
+                        Join Chat
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </>
             )}
-          </>
-        )}
-      </div>
-    </>
+          </div>
+        </>
+      )}
+    </ChatProvider>
   );
 };
 export default connect(pageMapStateToProps, pageMapDispatchToProps)(Chats);

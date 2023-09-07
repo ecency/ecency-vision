@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { copyContent } from "../../img/svg";
+import { ChatContext } from "../chats/chat-provider";
+import { copyToClipboard } from "../chats/utils";
+import { success } from "../feedback";
 import OrDivider from "../or-divider";
 import Tooltip from "../tooltip";
 
 import "./index.scss";
 
-interface Props {
-  noStrPrivKey: string;
-  copyPrivateKey: (privKey: string) => void;
-}
+export default function ManageChatKey() {
+  const context = useContext(ChatContext);
 
-export default function ManageChatKey(props: Props) {
-  console.log("hello", props);
+  const { chatPrivKey } = context;
+
+  const copyPrivateKey = () => {
+    copyToClipboard(chatPrivKey);
+    success("Key copied into clipboad");
+  };
+
   return (
     <>
       <div className="manage-chat-key">
@@ -25,14 +31,14 @@ export default function ManageChatKey(props: Props) {
                 className="chat-priv-key"
                 type="text"
                 readOnly={true}
-                value={props.noStrPrivKey}
+                value={chatPrivKey}
               />
               <Tooltip content={_t("chat.copy-priv-key")}>
                 <p
                   className="copy-svg"
                   onClick={() => {
                     console.log("SVG clicked");
-                    props.copyPrivateKey(props.noStrPrivKey);
+                    copyPrivateKey();
                   }}
                 >
                   {copyContent}
