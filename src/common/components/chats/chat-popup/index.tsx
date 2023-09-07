@@ -884,7 +884,6 @@ export default function ChatPopUp(props: Props) {
                           publicMessages={publicMessages}
                           currentChannel={currentChannel!}
                           activeUserKeys={activeUserKeys!}
-                          activeUser={props.activeUser}
                           isScrollToBottom={false}
                           isActveUserRemoved={isActveUserRemoved}
                           currentChannelSetter={setCurrentChannel}
@@ -1080,7 +1079,7 @@ export default function ChatPopUp(props: Props) {
                 )}
               </>
             ) : revelPrivateKey ? (
-              <ManageChatKey noStrPrivKey={noStrPrivKey} copyPrivateKey={copyToClipboard} />
+              <ManageChatKey />
             ) : (
               <Button className="join-chat-btn" onClick={handleJoinChat}>
                 {showSpinner && chatButtonSpinner}
