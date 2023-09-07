@@ -155,8 +155,10 @@
     }
   }
 
-  // &.receiver {
-  //   margin-top: 5px;
-  //   margin-left: 10px;
-  // }
+  .not-joined {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14%;
+  }
 }

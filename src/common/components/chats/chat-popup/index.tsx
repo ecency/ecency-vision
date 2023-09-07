@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import useDebounce from "react-use/lib/useDebounce";
 import { useLocation } from "react-router";
 import { History } from "history";
@@ -78,6 +78,9 @@ import {
   setProfileMetaData
 } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
+import ChatProvider, { ChatContext } from "../chat-provider";
+import ImportChats from "../import-chats";
+import SetActiveUserChatKeys from "../set-chat-keys";
 
 interface Props {
   users: User[];
@@ -104,6 +107,9 @@ export default function ChatPopUp(props: Props) {
 
   const { activeUser } = useMappedStore();
 
+  const context = useContext(ChatContext);
+  const { receiverPubKey, setReceiverPubKey } = context;
+
   const [expanded, setExpanded] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
   const [isCurrentUser, setIsCurrentUser] = useState(false);
@@ -114,7 +120,6 @@ export default function ChatPopUp(props: Props) {
   const [inProgress, setInProgress] = useState(false);
   const [show, setShow] = useState(false);
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
-  const [receiverPubKey, setReceiverPubKey] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
   const [directMessagesList, setDirectMessagesList] = useState<DirectMessage[]>([]);
   const [isCurrentUserJoined, setIsCurrentUserJoined] = useState(true);
@@ -166,7 +171,7 @@ export default function ChatPopUp(props: Props) {
   }, [isChatPage]);
 
   useEffect(() => {
-    // resetProfile(props.activeUser);
+    // deleteChatPublicKey(props.activeUser);
     fetchProfileData();
     !isChatPage && setShow(!!props.activeUser?.username);
     const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
@@ -210,6 +215,7 @@ export default function ChatPopUp(props: Props) {
 
   useEffect(() => {
     if (window.messageService) {
+      console.log("Use effect run");
       setHasUserJoinedChat(true);
       const noStrPrivKey = getPrivateKey(props.activeUser?.username!);
       setNoStrPrivKey(noStrPrivKey);
@@ -410,7 +416,6 @@ export default function ChatPopUp(props: Props) {
     const { posting_json_metadata } = response;
     const profile = JSON.parse(posting_json_metadata!).profile;
     const { nsKey } = profile || {};
-    setReceiverPubKey(nsKey);
     setIsCurrentUserJoined(!!nsKey);
     setInProgress(false);
   };
@@ -522,16 +527,6 @@ export default function ChatPopUp(props: Props) {
   const communityClicked = (community: string, name: string) => {
     setIsCommunity(true);
     setCommunityName(community);
-  };
-
-  const copyToClipboard = (content: string) => {
-    const textField = document.createElement("textarea");
-    textField.innerText = content;
-    document.body.appendChild(textField);
-    textField.select();
-    document.execCommand("copy");
-    textField.remove();
-    success(`${isCommunity ? "Link" : "Key"} copied into clipboard`);
   };
 
   const handleImportChatSubmit = () => {
@@ -653,64 +648,6 @@ export default function ChatPopUp(props: Props) {
     );
   };
 
-  const handleChannelUpdate = (operationType: string) => {
-    let updatedMetaData = {
-      name: currentChannel?.name!,
-      about: currentChannel?.about!,
-      picture: "",
-      communityName: currentChannel?.communityName!,
-      communityModerators: currentChannel?.communityModerators,
-      hiddenMessageIds: currentChannel?.hiddenMessageIds,
-      removedUserIds: currentChannel?.removedUserIds
-    };
-
-    switch (operationType) {
-      case HIDEMESSAGE:
-        const updatedHiddenMessages = [...(currentChannel?.hiddenMessageIds || []), hiddenMsgId!];
-        updatedMetaData.hiddenMessageIds = updatedHiddenMessages;
-        break;
-      case BLOCKUSER:
-        const updatedRemovedUsers = [...(currentChannel?.removedUserIds || []), removedUserId!];
-        updatedMetaData.removedUserIds = updatedRemovedUsers;
-
-        const isRemovedUserModerator = currentChannel?.communityModerators?.find(
-          (x) => x.pubkey === removedUserId
-        );
-        const isModerator = !!isRemovedUserModerator;
-        if (isModerator) {
-          const NewUpdatedRoles = currentChannel?.communityModerators?.filter(
-            (item) => item.pubkey !== removedUserId
-          );
-          updatedMetaData.communityModerators = NewUpdatedRoles;
-        }
-        break;
-      default:
-        break;
-    }
-
-    try {
-      window.messageService?.updateChannel(currentChannel!, updatedMetaData);
-      setCurrentChannel({ ...currentChannel!, ...updatedMetaData });
-      if (operationType === HIDEMESSAGE) {
-        setStep(0);
-        setKeyDialog(false);
-        fetchCommunityMessages(
-          props.chat.publicMessages,
-          currentChannel!,
-          currentChannel?.hiddenMessageIds
-        );
-        setHiddenMsgId("");
-      }
-      if (operationType === BLOCKUSER || operationType === UNBLOCKUSER) {
-        setStep(0);
-        setKeyDialog(false);
-        setRemovedUserID("");
-      }
-    } catch (err) {
-      error(_t("chat.error-updating-community"));
-    }
-  };
-
   const toggleKeyDialog = () => {
     setKeyDialog(!keyDialog);
     setAddRoleError("");
@@ -730,419 +667,428 @@ export default function ChatPopUp(props: Props) {
   };
 
   return (
-    <>
-      {show && (
-        <div
-          className={`chatbox-container ${expanded ? "expanded" : ""} ${
-            innerWidth <= 666 ? "small-screen" : ""
-          }`}
-        >
-          <div className="chat-header">
-            {(currentUser || communityName || showSearchUser || revelPrivateKey) && expanded && (
-              <Tooltip content={_t("chat.back")}>
-                <div className="back-arrow-image">
-                  <span className="back-arrow-svg" onClick={handleBackArrowSvg}>
-                    {" "}
-                    {arrowBackSvg}
-                  </span>
-                </div>
-              </Tooltip>
-            )}
-            <div className="message-header-title" onClick={() => setExpanded(!expanded)}>
-              {(currentUser || isCommunity) && (
-                <p className="user-icon">
-                  <UserAvatar
-                    username={
-                      isCurrentUser ? currentUser : (isCommunity && currentCommunity?.name) || ""
-                    }
-                    size="small"
-                  />
-                </p>
-              )}
+    <ChatProvider>
+      {(context) => (
+        <>
+          {show && (
+            <div
+              className={`chatbox-container ${expanded ? "expanded" : ""} ${
+                innerWidth <= 666 ? "small-screen" : ""
+              }`}
+            >
+              <SetActiveUserChatKeys />
+              <div className="chat-header">
+                {(currentUser || communityName || showSearchUser || revelPrivateKey) && expanded && (
+                  <Tooltip content={_t("chat.back")}>
+                    <div className="back-arrow-image">
+                      <span className="back-arrow-svg" onClick={handleBackArrowSvg}>
+                        {" "}
+                        {arrowBackSvg}
+                      </span>
+                    </div>
+                  </Tooltip>
+                )}
+                <div className="message-header-title" onClick={() => setExpanded(!expanded)}>
+                  {(currentUser || isCommunity) && (
+                    <p className="user-icon">
+                      <UserAvatar
+                        username={
+                          isCurrentUser
+                            ? currentUser
+                            : (isCommunity && currentCommunity?.name) || ""
+                        }
+                        size="small"
+                      />
+                    </p>
+                  )}
 
-              <p className="message-header-content">
-                {currentUser
-                  ? currentUser
-                  : isCommunity
-                  ? currentCommunity?.title
-                  : showSearchUser
-                  ? "New Message"
-                  : revelPrivateKey
-                  ? "Manage chat key"
-                  : "Messages"}
-              </p>
-            </div>
-            <div className="actionable-imgs">
-              {!currentUser &&
-                hasUserJoinedChat &&
-                noStrPrivKey &&
-                !isCommunity &&
-                !revelPrivateKey && (
-                  <>
-                    <div className="message-image" onClick={handleMessageSvgClick}>
-                      <Tooltip content={_t("chat.new-message")}>
-                        <p className="message-svg">{addMessageSVG}</p>
+                  <p className="message-header-content">
+                    {currentUser
+                      ? currentUser
+                      : isCommunity
+                      ? currentCommunity?.title
+                      : showSearchUser
+                      ? "New Message"
+                      : revelPrivateKey
+                      ? "Manage chat key"
+                      : "Messages"}
+                  </p>
+                </div>
+                <div className="actionable-imgs">
+                  {!currentUser &&
+                    hasUserJoinedChat &&
+                    noStrPrivKey &&
+                    !isCommunity &&
+                    !revelPrivateKey && (
+                      <>
+                        <div className="message-image" onClick={handleMessageSvgClick}>
+                          <Tooltip content={_t("chat.new-message")}>
+                            <p className="message-svg">{addMessageSVG}</p>
+                          </Tooltip>
+                        </div>
+                      </>
+                    )}
+                  {hasUserJoinedChat && noStrPrivKey && !revelPrivateKey && (
+                    <div className="message-image" onClick={handleRefreshSvgClick}>
+                      <Tooltip content={_t("chat.refresh")}>
+                        <p className="message-svg" style={{ paddingTop: "10px" }}>
+                          {syncSvg}
+                        </p>
                       </Tooltip>
                     </div>
-                  </>
-                )}
-              {hasUserJoinedChat && noStrPrivKey && !revelPrivateKey && (
-                <div className="message-image" onClick={handleRefreshSvgClick}>
-                  <Tooltip content={_t("chat.refresh")}>
-                    <p className="message-svg" style={{ paddingTop: "10px" }}>
-                      {syncSvg}
-                    </p>
-                  </Tooltip>
-                </div>
-              )}
-              {isCommunity && (
-                <div className="community-menu">
-                  <ChatsCommunityDropdownMenu
-                    username={communityName}
-                    {...props}
-                    currentChannel={currentChannel!}
-                    currentChannelSetter={setCurrentChannel}
-                  />
-                </div>
-              )}{" "}
-              {!isCommunity && !isCurrentUser && noStrPrivKey && (
-                <div className="simple-menu">
-                  <ChatsDropdownMenu
-                    {...props}
-                    onManageChatKey={() => {
-                      setRevealPrivateKey(!revelPrivateKey);
-                    }}
-                  />
-                </div>
-              )}
-              <div className="arrow-image">
-                <Tooltip content={expanded ? _t("chat.collapse") : _t("chat.expand")}>
-                  <p
-                    className="arrow-svg"
-                    onClick={() => {
-                      setExpanded(!expanded);
-                    }}
-                  >
-                    {expanded ? expandArrow : collapseArrow}
-                  </p>
-                </Tooltip>
-              </div>
-            </div>
-          </div>
-          {inProgress && <LinearProgress />}
-          {inProgress && !isCommunity && !isCurrentUser && <LinearProgress />}
-          <div
-            className={`chat-body ${
-              currentUser ? "current-user" : isCommunity ? "community" : ""
-            } ${
-              !hasUserJoinedChat
-                ? "join-chat"
-                : clickedMessage || (isTop && hasMore)
-                ? "no-scroll"
-                : ""
-            }`}
-            ref={chatBodyDivRef}
-            onScroll={handleScroll}
-          >
-            {hasUserJoinedChat && !revelPrivateKey ? (
-              <>
-                {currentUser.length !== 0 || communityName.length !== 0 ? (
-                  <div className="chats">
-                    <>
-                      {" "}
-                      <Link
-                        to={
-                          isCurrentUser
-                            ? `/@${currentUser}`
-                            : isCommunity
-                            ? `/created/${currentCommunity?.name}`
-                            : ""
-                        }
+                  )}
+                  {isCommunity && (
+                    <div className="community-menu">
+                      <ChatsCommunityDropdownMenu
+                        username={communityName}
+                        {...props}
+                        currentChannel={currentChannel!}
+                        currentChannelSetter={setCurrentChannel}
+                      />
+                    </div>
+                  )}{" "}
+                  {!isCommunity && !isCurrentUser && noStrPrivKey && (
+                    <div className="simple-menu">
+                      <ChatsDropdownMenu
+                        {...props}
+                        onManageChatKey={() => {
+                          setRevealPrivateKey(!revelPrivateKey);
+                        }}
+                      />
+                    </div>
+                  )}
+                  <div className="arrow-image">
+                    <Tooltip content={expanded ? _t("chat.collapse") : _t("chat.expand")}>
+                      <p
+                        className="arrow-svg"
+                        onClick={() => {
+                          setExpanded(!expanded);
+                        }}
                       >
-                        <ChatsProfileBox
-                          isCommunity={isCommunity}
-                          isCurrentUser={isCurrentUser}
-                          communityName={communityName}
-                          currentUser={currentUser}
-                        />
-                      </Link>
-                      {!isCurrentUserJoined && (
-                        <p className="not-joined">{_t("chat.not-joined")}</p>
-                      )}
-                      {isCurrentUser ? (
-                        <ChatsDirectMessages
-                          {...props}
-                          directMessages={directMessagesList}
-                          activeUserKeys={activeUserKeys!}
-                          currentUser={currentUser}
-                          isScrollToBottom={false}
-                        />
-                      ) : (
-                        <ChatsChannelMessages
-                          {...props}
-                          username={communityName}
-                          publicMessages={publicMessages}
-                          currentChannel={currentChannel!}
-                          activeUserKeys={activeUserKeys!}
-                          isScrollToBottom={false}
-                          isActveUserRemoved={isActveUserRemoved}
-                          currentChannelSetter={setCurrentChannel}
-                        />
-                      )}
-                    </>
+                        {expanded ? expandArrow : collapseArrow}
+                      </p>
+                    </Tooltip>
                   </div>
-                ) : showSearchUser ? (
+                </div>
+              </div>
+              {inProgress && <LinearProgress />}
+              {inProgress && !isCommunity && !isCurrentUser && <LinearProgress />}
+              <div
+                className={`chat-body ${
+                  currentUser ? "current-user" : isCommunity ? "community" : ""
+                } ${
+                  !hasUserJoinedChat
+                    ? "join-chat"
+                    : clickedMessage || (isTop && hasMore)
+                    ? "no-scroll"
+                    : ""
+                }`}
+                ref={chatBodyDivRef}
+                onScroll={handleScroll}
+              >
+                {hasUserJoinedChat && !revelPrivateKey ? (
                   <>
-                    <div className="user-search-bar">
-                      <Form.Group className="w-100 mb-3">
-                        <Form.Control
-                          type="text"
-                          placeholder={_t("chat.search")}
-                          value={searchtext}
-                          autoFocus={true}
-                          onChange={(e) => {
-                            setSearchText(e.target.value);
-                            setInProgress(true);
-                          }}
-                        />
-                      </Form.Group>
-                    </div>
-                    <div className="user-search-suggestion-list">
-                      {userList.map((user, index) => {
-                        return (
-                          <div
-                            key={index}
-                            className="search-content"
-                            onClick={() => {
-                              setCurrentUser(user.account);
-                              setIsCurrentUser(true);
-                            }}
+                    {currentUser.length !== 0 || communityName.length !== 0 ? (
+                      <div className="chats">
+                        <>
+                          {" "}
+                          <Link
+                            to={
+                              isCurrentUser
+                                ? `/@${currentUser}`
+                                : isCommunity
+                                ? `/created/${currentCommunity?.name}`
+                                : ""
+                            }
                           >
-                            <div className="search-user-img">
-                              <span>
-                                <UserAvatar username={user.account} size="medium" />
-                              </span>
-                            </div>
+                            <ChatsProfileBox
+                              isCommunity={isCommunity}
+                              isCurrentUser={isCurrentUser}
+                              communityName={communityName}
+                              currentUser={currentUser}
+                            />
+                          </Link>
+                          {isCurrentUser ? (
+                            <ChatsDirectMessages
+                              {...props}
+                              directMessages={directMessagesList}
+                              activeUserKeys={activeUserKeys!}
+                              currentUser={currentUser}
+                              isScrollToBottom={false}
+                            />
+                          ) : (
+                            <ChatsChannelMessages
+                              {...props}
+                              username={communityName}
+                              publicMessages={publicMessages}
+                              currentChannel={currentChannel!}
+                              activeUserKeys={activeUserKeys!}
+                              isScrollToBottom={false}
+                              isActveUserRemoved={isActveUserRemoved}
+                              currentChannelSetter={setCurrentChannel}
+                            />
+                          )}
+                        </>
+                      </div>
+                    ) : showSearchUser ? (
+                      <>
+                        <div className="user-search-bar">
+                          <Form.Group className="w-100 mb-3">
+                            <Form.Control
+                              type="text"
+                              placeholder={_t("chat.search")}
+                              value={searchtext}
+                              autoFocus={true}
+                              onChange={(e) => {
+                                setSearchText(e.target.value);
+                                setInProgress(true);
+                              }}
+                            />
+                          </Form.Group>
+                        </div>
+                        <div className="user-search-suggestion-list">
+                          {userList.map((user, index) => {
+                            return (
+                              <div
+                                key={index}
+                                className="search-content"
+                                onClick={() => {
+                                  setCurrentUser(user.account);
+                                  setIsCurrentUser(true);
+                                }}
+                              >
+                                <div className="search-user-img">
+                                  <span>
+                                    <UserAvatar username={user.account} size="medium" />
+                                  </span>
+                                </div>
 
-                            <div className="search-user-title">
-                              <p className="search-username">{user.account}</p>
-                              <p className="search-reputation">
-                                ({accountReputation(user.reputation)})
-                              </p>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {(props.chat.directContacts.length !== 0 ||
-                      (props.chat.channels.length !== 0 && communities.length !== 0)) &&
-                    !refreshChat &&
-                    noStrPrivKey ? (
-                      <React.Fragment>
-                        {props.chat.channels.length !== 0 && communities.length !== 0 && (
-                          <>
-                            <div className="community-header">{_t("chat.communities")}</div>
-                            {communities.map((channel) => {
+                                <div className="search-user-title">
+                                  <p className="search-username">{user.account}</p>
+                                  <p className="search-reputation">
+                                    ({accountReputation(user.reputation)})
+                                  </p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        {(props.chat.directContacts.length !== 0 ||
+                          (props.chat.channels.length !== 0 && communities.length !== 0)) &&
+                        !refreshChat &&
+                        noStrPrivKey ? (
+                          <React.Fragment>
+                            {props.chat.channels.length !== 0 && communities.length !== 0 && (
+                              <>
+                                <div className="community-header">{_t("chat.communities")}</div>
+                                {communities.map((channel) => {
+                                  return (
+                                    <div key={channel.id} className="chat-content">
+                                      <Link to={`/created/${channel.communityName}`}>
+                                        <div className="user-img">
+                                          <span>
+                                            <UserAvatar
+                                              username={channel.communityName!}
+                                              size="medium"
+                                            />
+                                          </span>
+                                        </div>
+                                      </Link>
+
+                                      <div
+                                        className="user-title"
+                                        onClick={() =>
+                                          communityClicked(channel.communityName!, channel.name)
+                                        }
+                                      >
+                                        <p className="username" style={{ paddingTop: "8px" }}>
+                                          {channel.name}
+                                        </p>
+                                        <p className="last-message">
+                                          {getCommunityLastMessage(
+                                            channel.id,
+                                            props.chat.publicMessages
+                                          )}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                                {props.chat.directContacts.length !== 0 && (
+                                  <div className="dm-header">{_t("chat.dms")}</div>
+                                )}
+                              </>
+                            )}
+                            {props.chat.directContacts.map((user: DirectContactsType) => {
                               return (
-                                <div key={channel.id} className="chat-content">
-                                  <Link to={`/created/${channel.communityName}`}>
+                                <div key={user.pubkey} className="chat-content">
+                                  <Link to={`/@${user.name}`}>
                                     <div className="user-img">
                                       <span>
-                                        <UserAvatar
-                                          username={channel.communityName!}
-                                          size="medium"
-                                        />
+                                        <UserAvatar username={user.name} size="medium" />
                                       </span>
                                     </div>
                                   </Link>
 
                                   <div
                                     className="user-title"
-                                    onClick={() =>
-                                      communityClicked(channel.communityName!, channel.name)
-                                    }
+                                    onClick={() => userClicked(user.name)}
                                   >
-                                    <p className="username" style={{ paddingTop: "8px" }}>
-                                      {channel.name}
-                                    </p>
+                                    <p className="username">{user.name}</p>
                                     <p className="last-message">
-                                      {getCommunityLastMessage(
-                                        channel.id,
-                                        props.chat.publicMessages
-                                      )}
+                                      {getDirectLastMessage(user.pubkey, props.chat.directMessages)}
                                     </p>
                                   </div>
                                 </div>
                               );
                             })}
-                            {props.chat.directContacts.length !== 0 && (
-                              <div className="dm-header">{_t("chat.dms")}</div>
+                          </React.Fragment>
+                        ) : !noStrPrivKey || noStrPrivKey.length === 0 || noStrPrivKey === null ? (
+                          <>
+                            {/* <div
+                              className="d-flex justify-content-center import-chat-btn"
+                              style={{ marginTop: "20%" }}
+                            >
+                              <Button
+                                variant="primary"
+                                onClick={() => setImportPrivKey(!importPrivKey)}
+                              >
+                                {_t("chat.import-chat")}
+                              </Button>
+                            </div>
+                            {importPrivKey && (
+                              <div className="private-key" style={{ margin: "15px 10px" }}>
+                                <Form
+                                  onSubmit={(e: React.FormEvent) => {
+                                    e.preventDefault();
+                                  }}
+                                >
+                                  <InputGroup>
+                                    <InputGroup.Prepend>
+                                      <InputGroup.Text>{keySvg}</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <Form.Control
+                                      value={chatPrivKey}
+                                      type="password"
+                                      autoFocus={true}
+                                      autoComplete="off"
+                                      placeholder="Chat private key"
+                                      onChange={(e) => setChatPrivkey(e.target.value)}
+                                    />
+                                    <InputGroup.Append>
+                                      <Button onClick={handleImportChatSubmit}>
+                                        {_t("chat.submit")}
+                                      </Button>
+                                    </InputGroup.Append>
+                                  </InputGroup>
+                                  {addRoleError && (
+                                    <Form.Text className="text-danger">{addRoleError}</Form.Text>
+                                  )}
+                                </Form>
+                              </div>
                             )}
+                            {<OrDivider />}
+                            <div className="d-flex justify-content-center create-new-chat-btn">
+                              <Button
+                                variant="primary"
+                                onClick={() => {
+                                  setKeyDialog(true);
+                                  setStep(9);
+                                }}
+                              >
+                                {_t("chat.create-new-account")}
+                              </Button>
+                            </div> */}
+                            <ImportChats />
+                          </>
+                        ) : refreshChat ? (
+                          <div className="no-chat">
+                            <Spinner animation="border" variant="primary" />
+                          </div>
+                        ) : (
+                          <>
+                            <p className="no-chat">{_t("chat.no-chat")}</p>
+                            <div className="start-chat-btn">
+                              <Button variant="primary" onClick={() => setShowSearchUser(true)}>
+                                {_t("chat.start-chat")}
+                              </Button>
+                            </div>
                           </>
                         )}
-                        {props.chat.directContacts.map((user: DirectContactsType) => {
-                          return (
-                            <div key={user.pubkey} className="chat-content">
-                              <Link to={`/@${user.name}`}>
-                                <div className="user-img">
-                                  <span>
-                                    <UserAvatar username={user.name} size="medium" />
-                                  </span>
-                                </div>
-                              </Link>
-
-                              <div className="user-title" onClick={() => userClicked(user.name)}>
-                                <p className="username">{user.name}</p>
-                                <p className="last-message">
-                                  {getDirectLastMessage(user.pubkey, props.chat.directMessages)}
-                                </p>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </React.Fragment>
-                    ) : !noStrPrivKey || noStrPrivKey.length === 0 || noStrPrivKey === null ? (
-                      <>
-                        <div
-                          className="d-flex justify-content-center import-chat-btn"
-                          style={{ marginTop: "20%" }}
-                        >
-                          <Button
-                            variant="primary"
-                            onClick={() => setImportPrivKey(!importPrivKey)}
-                          >
-                            {_t("chat.import-chat")}
-                          </Button>
-                        </div>
-                        {importPrivKey && (
-                          <div className="private-key" style={{ margin: "15px 10px" }}>
-                            <Form
-                              onSubmit={(e: React.FormEvent) => {
-                                e.preventDefault();
-                              }}
-                            >
-                              <InputGroup>
-                                <InputGroup.Prepend>
-                                  <InputGroup.Text>{keySvg}</InputGroup.Text>
-                                </InputGroup.Prepend>
-                                <Form.Control
-                                  value={chatPrivKey}
-                                  type="password"
-                                  autoFocus={true}
-                                  autoComplete="off"
-                                  placeholder="Chat private key"
-                                  onChange={(e) => setChatPrivkey(e.target.value)}
-                                />
-                                <InputGroup.Append>
-                                  <Button onClick={handleImportChatSubmit}>
-                                    {_t("chat.submit")}
-                                  </Button>
-                                </InputGroup.Append>
-                              </InputGroup>
-                              {addRoleError && (
-                                <Form.Text className="text-danger">{addRoleError}</Form.Text>
-                              )}
-                            </Form>
-                          </div>
-                        )}
-                        {<OrDivider />}
-                        <div className="d-flex justify-content-center create-new-chat-btn">
-                          <Button
-                            variant="primary"
-                            onClick={() => {
-                              setKeyDialog(true);
-                              setStep(9);
-                            }}
-                          >
-                            {_t("chat.create-new-account")}
-                          </Button>
-                        </div>
-                      </>
-                    ) : refreshChat ? (
-                      <div className="no-chat">
-                        <Spinner animation="border" variant="primary" />
-                      </div>
-                    ) : (
-                      <>
-                        <p className="no-chat">{_t("chat.no-chat")}</p>
-                        <div className="start-chat-btn">
-                          <Button variant="primary" onClick={() => setShowSearchUser(true)}>
-                            {_t("chat.start-chat")}
-                          </Button>
-                        </div>
                       </>
                     )}
                   </>
+                ) : revelPrivateKey ? (
+                  <ManageChatKey />
+                ) : (
+                  <Button className="join-chat-btn" onClick={handleJoinChat}>
+                    {showSpinner && chatButtonSpinner}
+                    {_t("chat.join-chat")}
+                  </Button>
                 )}
-              </>
-            ) : revelPrivateKey ? (
-              <ManageChatKey />
-            ) : (
-              <Button className="join-chat-btn" onClick={handleJoinChat}>
-                {showSpinner && chatButtonSpinner}
-                {_t("chat.join-chat")}
-              </Button>
-            )}
 
-            {((isScrollToTop && !isCurrentUser) ||
-              ((isCurrentUser || isCommunity) && isScrollToBottom)) && (
-              <Tooltip
-                content={isScrollToTop ? _t("scroll-to-top.title") : _t("chat.scroll-to-bottom")}
-              >
-                <div
-                  className="scroller"
-                  style={{
-                    bottom: (isCurrentUser || isCommunity) && isScrollToBottom ? "20px" : "55px"
-                  }}
-                  onClick={scrollerClicked}
-                >
-                  {isCurrentUser || isCommunity ? chevronDownSvgForSlider : chevronUpSvg}
-                </div>
-              </Tooltip>
-            )}
-            {isActveUserRemoved && isCommunity && (
-              <p className="d-flex justify-content-center mt-4 mb-0">
-                {_t("chat.blocked-user-message")}
-              </p>
-            )}
-          </div>
-          {(isCurrentUser || isCommunity) && (
-            <ChatInput
-              isCurrentUser={isCurrentUser}
-              isCommunity={isCommunity}
-              receiverPubKey={receiverPubKey}
-              isActveUserRemoved={isActveUserRemoved}
-              currentUser={currentUser}
-              currentChannel={currentChannel!}
-              isCurrentUserJoined={isCurrentUserJoined}
-              emojiPickerStyles={EmojiPickerStyle}
-              gifPickerStyle={GifPickerStyle}
-            />
+                {((isScrollToTop && !isCurrentUser) ||
+                  ((isCurrentUser || isCommunity) && isScrollToBottom)) && (
+                  <Tooltip
+                    content={
+                      isScrollToTop ? _t("scroll-to-top.title") : _t("chat.scroll-to-bottom")
+                    }
+                  >
+                    <div
+                      className="scroller"
+                      style={{
+                        bottom: (isCurrentUser || isCommunity) && isScrollToBottom ? "20px" : "55px"
+                      }}
+                      onClick={scrollerClicked}
+                    >
+                      {isCurrentUser || isCommunity ? chevronDownSvgForSlider : chevronUpSvg}
+                    </div>
+                  </Tooltip>
+                )}
+                {isActveUserRemoved && isCommunity && (
+                  <p className="d-flex justify-content-center mt-4 mb-0">
+                    {_t("chat.blocked-user-message")}
+                  </p>
+                )}
+              </div>
+              {(isCurrentUser || isCommunity) && (
+                <ChatInput
+                  isCurrentUser={isCurrentUser}
+                  isCommunity={isCommunity}
+                  isActveUserRemoved={isActveUserRemoved}
+                  currentUser={currentUser}
+                  currentChannel={currentChannel!}
+                  isCurrentUserJoined={isCurrentUserJoined}
+                  emojiPickerStyles={EmojiPickerStyle}
+                  gifPickerStyle={GifPickerStyle}
+                />
+              )}
+            </div>
           )}
-        </div>
-      )}
 
-      {keyDialog && (
-        <Modal
-          animation={false}
-          show={true}
-          centered={true}
-          onHide={toggleKeyDialog}
-          keyboard={false}
-          className="chats-dialog modal-thin-header"
-          size="lg"
-        >
-          <Modal.Header closeButton={true} />
-          <Modal.Body className="chat-modals-body">
-            {step === 9 && confirmationModal(NEWCHATACCOUNT)}
-            {step === 11 && confirmationModal(RESENDMESSAGE)}
-            {step === 10 && successModal(NEWCHATACCOUNT)}
-          </Modal.Body>
-        </Modal>
+          {keyDialog && (
+            <Modal
+              animation={false}
+              show={true}
+              centered={true}
+              onHide={toggleKeyDialog}
+              keyboard={false}
+              className="chats-dialog modal-thin-header"
+              size="lg"
+            >
+              <Modal.Header closeButton={true} />
+              <Modal.Body className="chat-modals-body">
+                {step === 9 && confirmationModal(NEWCHATACCOUNT)}
+                {step === 11 && confirmationModal(RESENDMESSAGE)}
+                {step === 10 && successModal(NEWCHATACCOUNT)}
+              </Modal.Body>
+            </Modal>
+          )}
+        </>
       )}
-    </>
+    </ChatProvider>
   );
 }

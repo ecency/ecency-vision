@@ -15,6 +15,8 @@ export default function ManageChatKey() {
 
   const { chatPrivKey } = context;
 
+  console.log("chatPrivKey in manage chat key", chatPrivKey);
+
   const copyPrivateKey = () => {
     copyToClipboard(chatPrivKey);
     success("Key copied into clipboad");

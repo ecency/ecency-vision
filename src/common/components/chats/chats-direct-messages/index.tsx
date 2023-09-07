@@ -1,8 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { DirectMessage } from "../../../../providers/message-provider-types";
 import mediumZoom, { Zoom } from "medium-zoom";
 import { Global, Theme } from "../../../store/global/types";
-import { formatMessageTime, formatMessageDate, isMessageGif, isMessageImage } from "../utils";
+import {
+  formatMessageTime,
+  formatMessageDate,
+  isMessageGif,
+  isMessageImage,
+  getUserChatPublicKey
+} from "../utils";
 import { renderPostBody } from "@ecency/render-helper";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { Link } from "react-router-dom";
@@ -15,6 +21,8 @@ import "./index.scss";
 import { ActiveUser } from "../../../store/active-user/types";
 import usePrevious from "react-use/lib/usePrevious";
 import { NostrKeysType } from "../types";
+import { _t } from "../../../i18n";
+import { ChatContext } from "../chat-provider";
 
 interface Props {
   directMessages: DirectMessage[];
@@ -35,9 +43,28 @@ export default function ChatsDirectMessages(props: Props) {
     isScrollToBottom,
     scrollToBottom
   } = props;
+
+  const context = useContext(ChatContext);
+  const { receiverPubKey, setReceiverPubKey } = context;
   const { chat, global, activeUser } = useMappedStore();
 
   let prevGlobal = usePrevious(global);
+
+  useEffect(() => {
+    if (currentUser) {
+      getReceiverPubKey();
+    }
+  }, [currentUser]);
+
+  const getReceiverPubKey = async () => {
+    const pubKey = await getUserChatPublicKey(currentUser);
+
+    if (pubKey) {
+      setReceiverPubKey(pubKey);
+    } else {
+      setReceiverPubKey("");
+    }
+  };
 
   useEffect(() => {
     if (prevGlobal?.theme !== global.theme) {
@@ -87,87 +114,93 @@ export default function ChatsDirectMessages(props: Props) {
 
   return (
     <div className="direct-messages">
-      {directMessages &&
-        directMessages.map((msg, i) => {
-          const dayAndMonth = getFormattedDateAndDay(msg, i);
-          let renderedPreview = renderPostBody(msg.content, false, global.canUseWebp);
+      {receiverPubKey ? (
+        <>
+          {directMessages &&
+            directMessages.map((msg, i) => {
+              const dayAndMonth = getFormattedDateAndDay(msg, i);
+              let renderedPreview = renderPostBody(msg.content, false, global.canUseWebp);
 
-          renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
-          renderedPreview = renderedPreview.replace(/<\/p>/g, "");
+              renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
+              renderedPreview = renderedPreview.replace(/<\/p>/g, "");
 
-          const isGif = isMessageGif(msg.content);
+              const isGif = isMessageGif(msg.content);
 
-          const isImage = isMessageImage(msg.content);
+              const isImage = isMessageImage(msg.content);
 
-          return (
-            <React.Fragment key={msg.id}>
-              {dayAndMonth}
-              {msg.creator !== activeUserKeys?.pub ? (
-                <div key={msg.id} className="receiver">
-                  <div className="user-img">
-                    <Link to={`/@${currentUser}`}>
-                      <span>
-                        <UserAvatar username={currentUser} size="medium" />
-                      </span>
-                    </Link>
-                  </div>
-                  <div className="user-info">
-                    <p className="user-msg-time">{formatMessageTime(msg.created)}</p>
+              return (
+                <React.Fragment key={msg.id}>
+                  {dayAndMonth}
+                  {msg.creator !== activeUserKeys?.pub ? (
+                    <div key={msg.id} className="receiver">
+                      <div className="user-img">
+                        <Link to={`/@${currentUser}`}>
+                          <span>
+                            <UserAvatar username={currentUser} size="medium" />
+                          </span>
+                        </Link>
+                      </div>
+                      <div className="user-info">
+                        <p className="user-msg-time">{formatMessageTime(msg.created)}</p>
 
-                    <div className="receiver-messag">
-                      <div
-                        className={`receiver-message-content ${isGif ? "gif" : ""} ${
-                          isImage ? "chat-image" : ""
-                        }`}
-                        dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                      />
+                        <div className="receiver-messag">
+                          <div
+                            className={`receiver-message-content ${isGif ? "gif" : ""} ${
+                              isImage ? "chat-image" : ""
+                            }`}
+                            dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ) : (
-                <div key={msg.id} className="sender">
-                  <p className="sender-message-time">{formatMessageTime(msg.created)}</p>
-                  <div
-                    className={`sender-message ${
-                      msg.sent === 2 ? "failed" : msg.sent === 0 ? "sending" : ""
-                    }`}
-                  >
-                    {msg.sent === 2 && (
-                      <Tooltip content={"Resend"}>
-                        <span
-                          className="resend-svg"
-                          onClick={() => {
-                            // setKeyDialog(true);
-                            // setStep(11);
-                            // setResendMessage(msg);
-                          }}
-                        >
-                          {resendMessageSvg}
-                        </span>
-                      </Tooltip>
-                    )}
-                    <div
-                      className={`sender-message-content ${isGif ? "gif" : ""} ${
-                        isImage ? "chat-image" : ""
-                      }`}
-                      dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                    />
-                    {msg.sent === 0 && (
-                      <span style={{ margin: "10px 0 0 5px" }}>
-                        <Spinner animation="border" variant="primary" size="sm" />
-                      </span>
-                    )}
-                    {msg.sent === 2 && (
-                      <Tooltip content={"Failed"}>
-                        <span className="failed-svg">{failedMessageSvg}</span>
-                      </Tooltip>
-                    )}
-                  </div>
-                </div>
-              )}
-            </React.Fragment>
-          );
-        })}
+                  ) : (
+                    <div key={msg.id} className="sender">
+                      <p className="sender-message-time">{formatMessageTime(msg.created)}</p>
+                      <div
+                        className={`sender-message ${
+                          msg.sent === 2 ? "failed" : msg.sent === 0 ? "sending" : ""
+                        }`}
+                      >
+                        {msg.sent === 2 && (
+                          <Tooltip content={"Resend"}>
+                            <span
+                              className="resend-svg"
+                              onClick={() => {
+                                // setKeyDialog(true);
+                                // setStep(11);
+                                // setResendMessage(msg);
+                              }}
+                            >
+                              {resendMessageSvg}
+                            </span>
+                          </Tooltip>
+                        )}
+                        <div
+                          className={`sender-message-content ${isGif ? "gif" : ""} ${
+                            isImage ? "chat-image" : ""
+                          }`}
+                          dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                        />
+                        {msg.sent === 0 && (
+                          <span style={{ margin: "10px 0 0 5px" }}>
+                            <Spinner animation="border" variant="primary" size="sm" />
+                          </span>
+                        )}
+                        {msg.sent === 2 && (
+                          <Tooltip content={"Failed"}>
+                            <span className="failed-svg">{failedMessageSvg}</span>
+                          </Tooltip>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </React.Fragment>
+              );
+            })}
+        </>
+      ) : (
+        <p className="not-joined">{_t("chat.not-joined")}</p>
+      )}
     </div>
   );
 }

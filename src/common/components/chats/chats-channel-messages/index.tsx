@@ -554,6 +554,8 @@ export default function ChatsChannelMessages(props: Props) {
       </div>
       {step !== 0 && (
         <ChatsConfirmationModal
+          actionType={"Confirmation"}
+          content={"Are you sure?"}
           onClose={() => {
             setStep(0);
           }}

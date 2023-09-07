@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Form, FormControl, InputGroup } from "react-bootstrap";
 import axios from "axios";
 
@@ -26,11 +26,11 @@ import { uploadImage } from "../../../api/misc";
 import { addImage } from "../../../api/private-api";
 
 import "./index.scss";
+import { ChatContext } from "../chat-provider";
 
 interface Props {
   isCurrentUser: boolean;
   isCommunity: boolean;
-  receiverPubKey: string | null;
   isActveUserRemoved: boolean;
   currentChannel: Channel;
   currentUser: string;
@@ -43,6 +43,11 @@ export default function ChatInput(props: Props) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { global, activeUser, chat } = useMappedStore();
 
+  const context = useContext(ChatContext);
+  const { receiverPubKey } = context;
+
+  console.log("receiverPubKey", receiverPubKey);
+
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [message, setMessage] = useState("");
   const [shGif, setShGif] = useState(false);
@@ -52,7 +57,6 @@ export default function ChatInput(props: Props) {
     isCommunity,
     isCurrentUser,
     isActveUserRemoved,
-    receiverPubKey,
     currentChannel,
     currentUser,
     isCurrentUserJoined,
@@ -177,7 +181,13 @@ export default function ChatInput(props: Props) {
 
   return (
     <>
-      <div className={`chat ${isActveUserRemoved || !isCurrentUserJoined ? "disable" : ""}`}>
+      <div
+        className={`chat ${
+          isActveUserRemoved || !isCurrentUserJoined || receiverPubKey?.length === 0
+            ? "disable"
+            : ""
+        }`}
+      >
         <ClickAwayListener onClickAway={() => showEmojiPicker && setShowEmojiPicker(false)}>
           <div className="chatbox-emoji-picker">
             <div className="chatbox-emoji">
@@ -270,7 +280,7 @@ export default function ChatInput(props: Props) {
               autoComplete="off"
               className="chat-input"
               style={{ maxWidth: "100%", overflowWrap: "break-word" }}
-              disabled={(isCurrentUser && receiverPubKey) === undefined || isActveUserRemoved}
+              disabled={receiverPubKey?.length === 0 || isActveUserRemoved}
             />
             <InputGroup.Append
               className={`msg-svg ${isMessageText || message.length !== 0 ? "active" : ""}`}

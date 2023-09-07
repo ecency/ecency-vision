@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useRef, useState } from "react";
+import React, { RefObject, useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Channel,
@@ -27,6 +27,7 @@ import ChatInput from "../chat-input";
 import ChatsScroller from "../chats-scroller";
 import { CHATPAGE } from "../chat-popup/chat-constants";
 import { EmojiPickerStyleProps, NostrKeysType } from "../types";
+import { ChatContext } from "../chat-provider";
 
 const EmojiPickerStyle: EmojiPickerStyleProps = {
   width: "56.5%",
@@ -63,6 +64,9 @@ export default function ChatsMessagesView(props: Props) {
     deletePublicMessage
   } = props;
 
+  const context = useContext(ChatContext);
+  const { setReceiverPubKey } = context;
+
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 
   const { chat, activeUser } = useMappedStore();
@@ -71,26 +75,25 @@ export default function ChatsMessagesView(props: Props) {
   const [directMessages, setDirectMessages] = useState<DirectMessage[]>([]);
   const [communityName, setCommunityName] = useState("");
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
-  const [receiverPubKey, setReceiverPubKey] = useState("");
-  const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  // const [inProgress, setInProgress] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [removedUsers, setRemovedUsers] = useState<string[]>([]);
   const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
+
+  // console.log("yaha kiya a rha ha", setReceiverPubKey);
 
   useEffect(() => {
     getActiveUserKeys();
     isDirectUserOrCommunity();
   }, []);
 
-  useEffect(() => {
-    if (directUser) {
-      getReceiverPubKey();
-    }
-  }, [directUser]);
+  // useEffect(() => {
+  //   if (directUser) {
+  //     getReceiverPubKey();
+  //   }
+  // }, [directUser]);
 
   useEffect(() => {
     isDirectUserOrCommunity();
@@ -156,13 +159,15 @@ export default function ChatsMessagesView(props: Props) {
     setActiveUserKeys(activeUserKeys);
   };
 
-  const getReceiverPubKey = async () => {
-    const profileData = await getProfileMetaData(directUser);
+  // const getReceiverPubKey = async () => {
+  //   const profileData = await getProfileMetaData(directUser);
 
-    if (profileData?.nsKey) {
-      setReceiverPubKey(profileData?.nsKey);
-    }
-  };
+  //   if (profileData?.nsKey) {
+  //     setReceiverPubKey(profileData?.nsKey);
+  //   } else {
+  //     setReceiverPubKey("");
+  //   }
+  // };
 
   const isDirectUserOrCommunity = () => {
     if (username) {
@@ -277,7 +282,6 @@ export default function ChatsMessagesView(props: Props) {
         gifPickerStyle={EmojiPickerStyle}
         isCurrentUser={directUser ? true : false}
         isCommunity={communityName ? true : false}
-        receiverPubKey={receiverPubKey}
         isActveUserRemoved={isActveUserRemoved}
         currentUser={directUser}
         currentChannel={currentChannel!}

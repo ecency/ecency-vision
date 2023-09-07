@@ -3,23 +3,22 @@ import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../../i18n";
 
 interface Props {
-  // actionType: any;
-  // step: any;
+  actionType: string;
+  content: string;
   onClose: () => void;
   onConfirm: () => void;
-  // t: any;
 }
 const ChatsConfirmationModal = (props: Props) => {
-  const { onClose, onConfirm } = props;
+  const { onClose, onConfirm, content, actionType } = props;
   const confirmationModalContent = (
     <>
       <div className="join-community-dialog-header border-bottom">
         <div className="join-community-dialog-titles">
-          <h2 className="join-community-main-title">Confirmation</h2>
+          <h2 className="join-community-main-title">{actionType}</h2>
         </div>
       </div>
       <div className="join-community-dialog-body" style={{ fontSize: "18px", marginTop: "12px" }}>
-        Are you sure?
+        {content}
       </div>
       <p className="join-community-confirm-buttons" style={{ textAlign: "right" }}>
         <Button

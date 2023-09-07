@@ -847,6 +847,7 @@ export const initMessageService = (keys: Keys): MessageService | undefined => {
   if (keys) {
     window.messageService = new MessageService(keys.priv, keys.pub);
   }
+  console.log("raven instance created");
 
   return window.messageService;
 };

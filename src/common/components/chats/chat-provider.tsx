@@ -8,10 +8,12 @@ interface Context {
   inProgress: boolean;
   revealPrivKey: boolean;
   chatPrivKey: string;
+  receiverPubKey: string;
   setRevealPrivKey: (d: boolean) => void;
   setInProgress: (d: boolean) => void;
   setChatPrivKey: (key: string) => void;
   setActiveUserKeys: (keys: NostrKeysType) => void;
+  setReceiverPubKey: (key: string) => void;
 }
 
 interface ChatProviderProps {
@@ -23,10 +25,12 @@ export const ChatContext = React.createContext<Context>({
   inProgress: false,
   revealPrivKey: false,
   chatPrivKey: "",
+  receiverPubKey: "",
   setRevealPrivKey: () => {},
   setInProgress: () => {},
   setChatPrivKey: () => {},
-  setActiveUserKeys: () => {}
+  setActiveUserKeys: () => {},
+  setReceiverPubKey: () => {}
 });
 
 export default function ChatProvider({ children }: ChatProviderProps) {
@@ -35,6 +39,7 @@ export default function ChatProvider({ children }: ChatProviderProps) {
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
   const [inProgress, setInProgress] = useState(true);
   const [chatPrivKey, setChatPrivKey] = useState("");
+  const [receiverPubKey, setReceiverPubKey] = useState("");
   const [revealPrivKey, setRevealPrivKey] = useState(false);
 
   useEffect(() => {
@@ -68,10 +73,12 @@ export default function ChatProvider({ children }: ChatProviderProps) {
         inProgress,
         revealPrivKey,
         chatPrivKey,
+        receiverPubKey,
         setRevealPrivKey,
         setInProgress,
         setChatPrivKey,
-        setActiveUserKeys
+        setActiveUserKeys,
+        setReceiverPubKey
       }}
     >
       {children({
@@ -79,10 +86,12 @@ export default function ChatProvider({ children }: ChatProviderProps) {
         inProgress,
         revealPrivKey,
         chatPrivKey,
+        receiverPubKey,
         setRevealPrivKey,
         setInProgress,
         setChatPrivKey,
-        setActiveUserKeys
+        setActiveUserKeys,
+        setReceiverPubKey
       })}
     </ChatContext.Provider>
   );

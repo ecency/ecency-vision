@@ -4,7 +4,6 @@ import { FormControl } from "react-bootstrap";
 
 import BaseComponent from "../base";
 import SearchBox from "../search-box";
-import { EmojiPickerStyleProps } from "../chats/chat-popup";
 
 import { _t } from "../../i18n";
 
@@ -14,6 +13,7 @@ import * as ls from "../../util/local-storage";
 
 import { insertOrReplace } from "../../util/input-util";
 import "./_index.scss";
+import { EmojiPickerStyleProps } from "../chats/types/chat-types";
 
 interface Emoji {
   a: string;
