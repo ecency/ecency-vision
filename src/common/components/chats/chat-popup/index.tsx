@@ -108,7 +108,6 @@ export default function ChatPopUp(props: Props) {
   const { activeUser } = useMappedStore();
 
   const context = useContext(ChatContext);
-  const { receiverPubKey, setReceiverPubKey } = context;
 
   const [expanded, setExpanded] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
@@ -120,6 +119,7 @@ export default function ChatPopUp(props: Props) {
   const [inProgress, setInProgress] = useState(false);
   const [show, setShow] = useState(false);
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
+  const [receiverPubKey, setReceiverPubKey] = useState();
   const [showSpinner, setShowSpinner] = useState(false);
   const [directMessagesList, setDirectMessagesList] = useState<DirectMessage[]>([]);
   const [isCurrentUserJoined, setIsCurrentUserJoined] = useState(true);
@@ -150,8 +150,8 @@ export default function ChatPopUp(props: Props) {
   const [refreshChat, setRefreshChat] = useState(false);
 
   useEffect(() => {
-    console.log("Chat in store", props.chat);
-  }, [props.chat]);
+    console.log("directMessagesList in chat popup", directMessagesList);
+  }, [directMessagesList]);
 
   useEffect(() => {
     if (currentChannel && props.chat.leftChannelsList.includes(currentChannel.id)) {
@@ -416,6 +416,7 @@ export default function ChatPopUp(props: Props) {
     const { posting_json_metadata } = response;
     const profile = JSON.parse(posting_json_metadata!).profile;
     const { nsKey } = profile || {};
+    setReceiverPubKey(nsKey);
     setIsCurrentUserJoined(!!nsKey);
     setInProgress(false);
   };

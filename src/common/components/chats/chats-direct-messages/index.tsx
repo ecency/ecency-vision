@@ -48,11 +48,14 @@ export default function ChatsDirectMessages(props: Props) {
   const { receiverPubKey, setReceiverPubKey } = context;
   const { chat, global, activeUser } = useMappedStore();
 
+  console.log("directMessages", directMessages);
+
   let prevGlobal = usePrevious(global);
 
   useEffect(() => {
     if (currentUser) {
       getReceiverPubKey();
+      console.log("use effect in currentUser");
     }
   }, [currentUser]);
 
