@@ -51,7 +51,6 @@ export default function ChatsProfileBox(props: Props) {
     if (username && username?.length !== 0) {
       if (username?.startsWith("@")) {
         const response = await getAccountFull(formattedUserName(username));
-        console.log("1", response);
         setProfileData({
           joiningData: response.created,
           about: response.profile?.about,
@@ -62,7 +61,6 @@ export default function ChatsProfileBox(props: Props) {
         });
       } else {
         const community = await getCommunity(username!, activeUser?.username);
-        console.log("2", community);
         setProfileData({
           joiningData: community?.created_at!,
           about: community?.about,
@@ -75,7 +73,6 @@ export default function ChatsProfileBox(props: Props) {
     } else {
       if (isCurrentUser && currentUser?.length !== 0) {
         const response = await getAccountFull(currentUser!);
-        console.log("3", response);
         setProfileData({
           joiningData: response.created,
           about: response.profile?.about,
@@ -86,7 +83,6 @@ export default function ChatsProfileBox(props: Props) {
         });
       } else {
         const community = await getCommunity(communityName!, activeUser?.username);
-        console.log("4", community);
         setProfileData({
           joiningData: community?.created_at!,
           about: community?.about,

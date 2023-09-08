@@ -65,7 +65,9 @@ export default function ChatsMessagesView(props: Props) {
   } = props;
 
   const context = useContext(ChatContext);
-  const { setReceiverPubKey } = context;
+  const { receiverPubKey } = context;
+
+  // console.log("Receiver pubkey in Message view component", receiverPubKey, setReceiverPubKey);
 
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 
@@ -82,18 +84,10 @@ export default function ChatsMessagesView(props: Props) {
   const [removedUsers, setRemovedUsers] = useState<string[]>([]);
   const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
 
-  // console.log("yaha kiya a rha ha", setReceiverPubKey);
-
   useEffect(() => {
     getActiveUserKeys();
     isDirectUserOrCommunity();
   }, []);
-
-  // useEffect(() => {
-  //   if (directUser) {
-  //     getReceiverPubKey();
-  //   }
-  // }, [directUser]);
 
   useEffect(() => {
     isDirectUserOrCommunity();
@@ -158,16 +152,6 @@ export default function ChatsMessagesView(props: Props) {
     };
     setActiveUserKeys(activeUserKeys);
   };
-
-  // const getReceiverPubKey = async () => {
-  //   const profileData = await getProfileMetaData(directUser);
-
-  //   if (profileData?.nsKey) {
-  //     setReceiverPubKey(profileData?.nsKey);
-  //   } else {
-  //     setReceiverPubKey("");
-  //   }
-  // };
 
   const isDirectUserOrCommunity = () => {
     if (username) {
@@ -264,6 +248,7 @@ export default function ChatsMessagesView(props: Props) {
             activeUserKeys={activeUserKeys!}
             currentUser={directUser!}
             isScrolled={isScrolled}
+            receiverPubKey={receiverPubKey}
             isScrollToBottom={isScrollToBottom}
             scrollToBottom={scrollToBottom}
           />
@@ -278,6 +263,7 @@ export default function ChatsMessagesView(props: Props) {
         )}
       </div>
       <ChatInput
+        receiverPubKey={receiverPubKey}
         emojiPickerStyles={EmojiPickerStyle}
         gifPickerStyle={EmojiPickerStyle}
         isCurrentUser={directUser ? true : false}

@@ -24,6 +24,7 @@ import ChatsDropdownMenu from "../chats-dropdown-menu";
 import { AccountWithReputation, NostrKeysType } from "../types";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-provider";
+import { getUserChatPublicKey, formattedUserName } from "../../../components/chats/utils";
 
 interface MatchParams {
   filter: string;
@@ -43,7 +44,14 @@ export default function ChatsSideBar(props: Props) {
   const { channels, directContacts, leftChannelsList } = chat;
   const { match, resetChat } = props;
 
-  const { activeUserKeys, revealPrivKey, chatPrivKey, setInProgress, setRevealPrivKey } = context;
+  const {
+    activeUserKeys,
+    revealPrivKey,
+    chatPrivKey,
+    setInProgress,
+    setRevealPrivKey,
+    setReceiverPubKey
+  } = context;
 
   const chatsSideBarRef = React.createRef<HTMLDivElement>();
   const username = match.params.username;
@@ -54,6 +62,8 @@ export default function ChatsSideBar(props: Props) {
   const [userList, setUserList] = useState<AccountWithReputation[]>([]);
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [communities, setCommunities] = useState<Channel[]>([]);
+
+  console.log("username in chats sidebar", username);
 
   useDebounce(
     async () => {
@@ -68,11 +78,11 @@ export default function ChatsSideBar(props: Props) {
     [searchText]
   );
 
-  // useEffect(() => {
-  //   if (isScrollToTop) {
-  //     // console.log("Hurrah");
-  //   }
-  // }, [isScrollToTop]);
+  useEffect(() => {
+    if (username.startsWith("@")) {
+      getReceiverPubKey(formattedUserName(username));
+    }
+  }, [username]);
 
   useEffect(() => {
     const communities = getJoinedCommunities(channels, leftChannelsList);
@@ -104,6 +114,22 @@ export default function ChatsSideBar(props: Props) {
   const handleRevealPrivKey = () => {
     if (revealPrivKey) {
       setRevealPrivKey(false);
+    }
+  };
+
+  const getReceiverPubKey = async (username: string) => {
+    console.log("Username ha yar", username);
+    const peer = directContacts.find((x) => x.name === username)?.pubkey ?? "";
+    if (peer) {
+      setReceiverPubKey(peer);
+    } else {
+      const pubkey = await getUserChatPublicKey(username);
+      console.log("Pubkey", pubkey);
+      if (pubkey === undefined) {
+        setReceiverPubKey("");
+      } else {
+        setReceiverPubKey(pubkey);
+      }
     }
   };
 
@@ -173,7 +199,14 @@ export default function ChatsSideBar(props: Props) {
                 onClick={() => setSearchText("")}
                 key={user.account}
               >
-                <div className="d-flex user-info" key={user.account} onClick={handleRevealPrivKey}>
+                <div
+                  className="d-flex user-info"
+                  key={user.account}
+                  onClick={() => {
+                    handleRevealPrivKey();
+                    getReceiverPubKey(user.account);
+                  }}
+                >
                   <span>
                     <UserAvatar username={user.account} size="medium" />
                   </span>
@@ -205,7 +238,11 @@ export default function ChatsSideBar(props: Props) {
             ))}
             {directContacts.length !== 0 && <p className="dm-title">DMs</p>}
             {directContacts.map((contact) => (
-              <Link to={`/chats/@${contact.name}`} key={contact.pubkey}>
+              <Link
+                to={`/chats/@${contact.name}`}
+                key={contact.pubkey}
+                onClick={() => setReceiverPubKey(contact.pubkey)}
+              >
                 <div
                   className={`dm ${username && username === `@${contact.name}` ? "selected" : ""}`}
                   onClick={handleRevealPrivKey}

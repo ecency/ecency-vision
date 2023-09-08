@@ -119,7 +119,7 @@ export default function ChatPopUp(props: Props) {
   const [inProgress, setInProgress] = useState(false);
   const [show, setShow] = useState(false);
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
-  const [receiverPubKey, setReceiverPubKey] = useState();
+  const [receiverPubKey, setReceiverPubKey] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
   const [directMessagesList, setDirectMessagesList] = useState<DirectMessage[]>([]);
   const [isCurrentUserJoined, setIsCurrentUserJoined] = useState(true);
@@ -279,7 +279,6 @@ export default function ChatPopUp(props: Props) {
 
   useEffect(() => {
     if (isCurrentUser) {
-      // zoomInitializer();
       scrollerClicked();
     } else {
       scrollerClicked();
@@ -319,11 +318,12 @@ export default function ChatPopUp(props: Props) {
 
   useEffect(() => {
     if (currentUser) {
-      const isCurrentUserFound = props.chat.directContacts.some(
+      const isCurrentUserFound = props.chat.directContacts.find(
         (contact) => contact.name === currentUser
       );
       if (isCurrentUserFound) {
-        fetchCurrentUserData();
+        setReceiverPubKey(isCurrentUserFound.pubkey);
+        setIsCurrentUserJoined(true);
       } else {
         setInProgress(true);
         fetchCurrentUserData();
@@ -416,7 +416,12 @@ export default function ChatPopUp(props: Props) {
     const { posting_json_metadata } = response;
     const profile = JSON.parse(posting_json_metadata!).profile;
     const { nsKey } = profile || {};
-    setReceiverPubKey(nsKey);
+    if (nsKey) {
+      setReceiverPubKey(nsKey);
+    } else {
+      setReceiverPubKey("");
+    }
+
     setIsCurrentUserJoined(!!nsKey);
     setInProgress(false);
   };
@@ -528,30 +533,6 @@ export default function ChatPopUp(props: Props) {
   const communityClicked = (community: string, name: string) => {
     setIsCommunity(true);
     setCommunityName(community);
-  };
-
-  const handleImportChatSubmit = () => {
-    try {
-      const pubKey = getPublicKey(chatPrivKey);
-      if (pubKey === activeUserKeys?.pub) {
-        setNoStrPrivKey(chatPrivKey);
-        ls.set(`${props.activeUser?.username}_nsPrivKey`, chatPrivKey);
-        const keys = {
-          pub: activeUserKeys?.pub!,
-          priv: chatPrivKey
-        };
-        setNostrkeys(keys);
-        setStep(4);
-        setChatPrivkey("");
-        setImportPrivKey(false);
-      } else {
-        setImportPrivKey(true);
-        setAddRoleError("Invalid Private key");
-      }
-    } catch (error) {
-      setImportPrivKey(true);
-      setAddRoleError("Invalid Private key");
-    }
   };
 
   const finish = () => {
@@ -677,7 +658,7 @@ export default function ChatPopUp(props: Props) {
                 innerWidth <= 666 ? "small-screen" : ""
               }`}
             >
-              <SetActiveUserChatKeys />
+              {/* <SetActiveUserChatKeys /> */}
               <div className="chat-header">
                 {(currentUser || communityName || showSearchUser || revelPrivateKey) && expanded && (
                   <Tooltip content={_t("chat.back")}>
@@ -812,6 +793,7 @@ export default function ChatPopUp(props: Props) {
                           {isCurrentUser ? (
                             <ChatsDirectMessages
                               {...props}
+                              receiverPubKey={receiverPubKey}
                               directMessages={directMessagesList}
                               activeUserKeys={activeUserKeys!}
                               currentUser={currentUser}
@@ -936,7 +918,10 @@ export default function ChatPopUp(props: Props) {
 
                                   <div
                                     className="user-title"
-                                    onClick={() => userClicked(user.name)}
+                                    onClick={() => {
+                                      userClicked(user.name);
+                                      setReceiverPubKey(user.pubkey);
+                                    }}
                                   >
                                     <p className="username">{user.name}</p>
                                     <p className="last-message">
@@ -949,60 +934,6 @@ export default function ChatPopUp(props: Props) {
                           </React.Fragment>
                         ) : !noStrPrivKey || noStrPrivKey.length === 0 || noStrPrivKey === null ? (
                           <>
-                            {/* <div
-                              className="d-flex justify-content-center import-chat-btn"
-                              style={{ marginTop: "20%" }}
-                            >
-                              <Button
-                                variant="primary"
-                                onClick={() => setImportPrivKey(!importPrivKey)}
-                              >
-                                {_t("chat.import-chat")}
-                              </Button>
-                            </div>
-                            {importPrivKey && (
-                              <div className="private-key" style={{ margin: "15px 10px" }}>
-                                <Form
-                                  onSubmit={(e: React.FormEvent) => {
-                                    e.preventDefault();
-                                  }}
-                                >
-                                  <InputGroup>
-                                    <InputGroup.Prepend>
-                                      <InputGroup.Text>{keySvg}</InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <Form.Control
-                                      value={chatPrivKey}
-                                      type="password"
-                                      autoFocus={true}
-                                      autoComplete="off"
-                                      placeholder="Chat private key"
-                                      onChange={(e) => setChatPrivkey(e.target.value)}
-                                    />
-                                    <InputGroup.Append>
-                                      <Button onClick={handleImportChatSubmit}>
-                                        {_t("chat.submit")}
-                                      </Button>
-                                    </InputGroup.Append>
-                                  </InputGroup>
-                                  {addRoleError && (
-                                    <Form.Text className="text-danger">{addRoleError}</Form.Text>
-                                  )}
-                                </Form>
-                              </div>
-                            )}
-                            {<OrDivider />}
-                            <div className="d-flex justify-content-center create-new-chat-btn">
-                              <Button
-                                variant="primary"
-                                onClick={() => {
-                                  setKeyDialog(true);
-                                  setStep(9);
-                                }}
-                              >
-                                {_t("chat.create-new-account")}
-                              </Button>
-                            </div> */}
                             <ImportChats />
                           </>
                         ) : refreshChat ? (
@@ -1061,6 +992,7 @@ export default function ChatPopUp(props: Props) {
                   isCommunity={isCommunity}
                   isActveUserRemoved={isActveUserRemoved}
                   currentUser={currentUser}
+                  receiverPubKey={receiverPubKey}
                   currentChannel={currentChannel!}
                   isCurrentUserJoined={isCurrentUserJoined}
                   emojiPickerStyles={EmojiPickerStyle}

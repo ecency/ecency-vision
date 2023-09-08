@@ -39,8 +39,8 @@ export default function ChatProvider({ children }: ChatProviderProps) {
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
   const [inProgress, setInProgress] = useState(true);
   const [chatPrivKey, setChatPrivKey] = useState("");
-  const [receiverPubKey, setReceiverPubKey] = useState("");
   const [revealPrivKey, setRevealPrivKey] = useState(false);
+  const [receiverPubKey, setReceiverPubKey] = useState("");
 
   useEffect(() => {
     getActiveUserKeys();
@@ -72,8 +72,8 @@ export default function ChatProvider({ children }: ChatProviderProps) {
         activeUserKeys,
         inProgress,
         revealPrivKey,
-        chatPrivKey,
         receiverPubKey,
+        chatPrivKey,
         setRevealPrivKey,
         setInProgress,
         setChatPrivKey,
@@ -85,8 +85,8 @@ export default function ChatProvider({ children }: ChatProviderProps) {
         activeUserKeys,
         inProgress,
         revealPrivKey,
-        chatPrivKey,
         receiverPubKey,
+        chatPrivKey,
         setRevealPrivKey,
         setInProgress,
         setChatPrivKey,

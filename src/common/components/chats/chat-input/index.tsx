@@ -35,6 +35,7 @@ interface Props {
   currentChannel: Channel;
   currentUser: string;
   isCurrentUserJoined: boolean;
+  receiverPubKey: string;
   emojiPickerStyles: EmojiPickerStyleProps;
   gifPickerStyle: EmojiPickerStyleProps;
 }
@@ -42,11 +43,6 @@ interface Props {
 export default function ChatInput(props: Props) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { global, activeUser, chat } = useMappedStore();
-
-  const context = useContext(ChatContext);
-  const { receiverPubKey } = context;
-
-  console.log("receiverPubKey", receiverPubKey);
 
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [message, setMessage] = useState("");
@@ -61,7 +57,8 @@ export default function ChatInput(props: Props) {
     currentUser,
     isCurrentUserJoined,
     emojiPickerStyles,
-    gifPickerStyle
+    gifPickerStyle,
+    receiverPubKey
   } = props;
 
   useEffect(() => {
@@ -107,7 +104,6 @@ export default function ChatInput(props: Props) {
       !chat.directContacts.some((contact) => contact.name === currentUser) &&
       isCurrentUser
     ) {
-      console.log("Contact has been published");
       window.messageService?.publishContacts(currentUser, receiverPubKey);
     }
   };
@@ -183,7 +179,9 @@ export default function ChatInput(props: Props) {
     <>
       <div
         className={`chat ${
-          isActveUserRemoved || !isCurrentUserJoined || receiverPubKey?.length === 0
+          isActveUserRemoved ||
+          !isCurrentUserJoined ||
+          (isCurrentUser && receiverPubKey?.length === 0)
             ? "disable"
             : ""
         }`}
@@ -280,7 +278,7 @@ export default function ChatInput(props: Props) {
               autoComplete="off"
               className="chat-input"
               style={{ maxWidth: "100%", overflowWrap: "break-word" }}
-              disabled={receiverPubKey?.length === 0 || isActveUserRemoved}
+              disabled={(isCurrentUser && receiverPubKey?.length === 0) || isActveUserRemoved}
             />
             <InputGroup.Append
               className={`msg-svg ${isMessageText || message.length !== 0 ? "active" : ""}`}

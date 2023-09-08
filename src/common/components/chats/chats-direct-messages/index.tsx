@@ -22,7 +22,6 @@ import { ActiveUser } from "../../../store/active-user/types";
 import usePrevious from "react-use/lib/usePrevious";
 import { NostrKeysType } from "../types";
 import { _t } from "../../../i18n";
-import { ChatContext } from "../chat-provider";
 
 interface Props {
   directMessages: DirectMessage[];
@@ -30,6 +29,7 @@ interface Props {
   currentUser: string;
   isScrollToBottom: boolean;
   isScrolled?: boolean;
+  receiverPubKey: string;
   scrollToBottom?: () => void;
 }
 
@@ -40,34 +40,16 @@ export default function ChatsDirectMessages(props: Props) {
     activeUserKeys,
     currentUser,
     isScrolled,
+    receiverPubKey,
     isScrollToBottom,
     scrollToBottom
   } = props;
 
-  const context = useContext(ChatContext);
-  const { receiverPubKey, setReceiverPubKey } = context;
   const { chat, global, activeUser } = useMappedStore();
 
   console.log("directMessages", directMessages);
 
   let prevGlobal = usePrevious(global);
-
-  useEffect(() => {
-    if (currentUser) {
-      getReceiverPubKey();
-      console.log("use effect in currentUser");
-    }
-  }, [currentUser]);
-
-  const getReceiverPubKey = async () => {
-    const pubKey = await getUserChatPublicKey(currentUser);
-
-    if (pubKey) {
-      setReceiverPubKey(pubKey);
-    } else {
-      setReceiverPubKey("");
-    }
-  };
 
   useEffect(() => {
     if (prevGlobal?.theme !== global.theme) {
@@ -83,7 +65,7 @@ export default function ChatsDirectMessages(props: Props) {
     if (!isScrollToBottom && directMessages && directMessages.length !== 0 && !isScrolled) {
       scrollToBottom && scrollToBottom();
     }
-  }, [directMessages, isScrollToBottom, scrollToBottom]);
+  }, [directMessages, isScrollToBottom, scrollToBottom, receiverPubKey]);
 
   const zoomInitializer = () => {
     const elements: HTMLElement[] = [...document.querySelectorAll<HTMLElement>(".chat-image img")];
