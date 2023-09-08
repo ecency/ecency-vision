@@ -79,8 +79,10 @@ export default function ChatsSideBar(props: Props) {
   );
 
   useEffect(() => {
-    if (username.startsWith("@")) {
-      getReceiverPubKey(formattedUserName(username));
+    if (username !== undefined) {
+      if (username.startsWith("@")) {
+        getReceiverPubKey(formattedUserName(username));
+      }
     }
   }, [username]);
 
