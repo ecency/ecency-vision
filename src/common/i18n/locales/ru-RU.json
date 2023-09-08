@@ -1439,6 +1439,7 @@
   },
   "video-upload": {
     "choose-video": "Выбрать видео",
+    "record-video": "Record a video",
     "choose-thumbnail": "Установить миниатюру (необязательно)",
     "continue": "Продолжить",
     "encode": "Отправить для кодирования",
@@ -1449,7 +1450,12 @@
     "preview": "Предварительный просмотр",
     "to-gallery": "Перейти в галерею",
     "congrats": "Поздравляем",
-    "publishing": "Не обновляйте страницу, подождите несколько секунд, пока видео не будет обработано"
+    "publishing": "Не обновляйте страницу, подождите несколько секунд, пока видео не будет обработано",
+    "no-record-permission": "You don't have permission to record video",
+    "confirm-and-upload": "Confirm and upload to 3Speak",
+    "uploading": "Uploading..{{n}}/{{total}}",
+    "uploaded": "Uploaded!",
+    "reset": "Reset"
   },
   "video-gallery": {
     "all": "Все",
