@@ -1439,7 +1439,7 @@
   },
   "video-upload": {
     "choose-video": "Selecciona un vídeo",
-    "record-video": "Record a video",
+    "record-video": "Graba un vídeo",
     "choose-thumbnail": "Establece una miniatura (opcional)",
     "continue": "Continuar",
     "encode": "Enviar para la codificación",
@@ -1451,11 +1451,11 @@
     "to-gallery": "Ir a la galería",
     "congrats": "Felicidades",
     "publishing": "No actualizar esta página, espera unos segundos para que el vídeo se procese",
-    "no-record-permission": "You don't have permission to record video",
-    "confirm-and-upload": "Confirm and upload to 3Speak",
-    "uploading": "Uploading..{{n}}/{{total}}",
-    "uploaded": "Uploaded!",
-    "reset": "Reset"
+    "no-record-permission": "No tiene permiso para grabar vídeo",
+    "confirm-and-upload": "Confirmar y subir a 3Speak",
+    "uploading": "Subiendo...{{n}}/{{total}}",
+    "uploaded": "¡Vídeo subido!",
+    "reset": "Reiniciar"
   },
   "video-gallery": {
     "all": "Todos",
