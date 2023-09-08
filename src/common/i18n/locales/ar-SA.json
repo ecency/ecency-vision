@@ -1439,6 +1439,7 @@
   },
   "video-upload": {
     "choose-video": "Select a video",
+    "record-video": "Record a video",
     "choose-thumbnail": "Set a thumbnail(optional)",
     "continue": "Continue",
     "encode": "Send for encoding",
@@ -1449,7 +1450,12 @@
     "preview": "Preview",
     "to-gallery": "Go to gallery",
     "congrats": "Congratulations",
-    "publishing": "Don't refresh this page, wait for few seconds for video to process"
+    "publishing": "Don't refresh this page, wait for few seconds for video to process",
+    "no-record-permission": "You don't have permission to record video",
+    "confirm-and-upload": "Confirm and upload to 3Speak",
+    "uploading": "Uploading..{{n}}/{{total}}",
+    "uploaded": "Uploaded!",
+    "reset": "Reset"
   },
   "video-gallery": {
     "all": "All",
