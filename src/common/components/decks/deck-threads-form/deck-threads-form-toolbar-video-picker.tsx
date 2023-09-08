@@ -4,8 +4,6 @@ import { PopperDropdown } from "../../popper-dropdown";
 import { videoSvg } from "../../../img/svg";
 import React, { useState } from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { VideoUpload } from "../../video-upload-threespeak";
-import VideoGallery from "../../video-gallery";
 
 interface Props {
   onSelect: (video: string) => void;
@@ -35,15 +33,15 @@ export function DeckThreadsFormToolbarVideoPicker({ onSelect }: Props) {
           </PopperDropdown>
         </Tooltip>
       )}
-      <VideoUpload show={showUpload} setShow={setShowUpload} setShowGallery={setShowGallery} />
-      <VideoGallery
-        preFilter="published"
-        showGallery={showGallery}
-        setShowGallery={setShowGallery}
-        insertText={(v) => {
-          onSelect(v);
-        }}
-      />
+      {/*<VideoUpload show={showUpload} setShow={setShowUpload} setShowGallery={setShowGallery} />*/}
+      {/*<VideoGallery*/}
+      {/*  preFilter="published"*/}
+      {/*  showGallery={showGallery}*/}
+      {/*  setShowGallery={setShowGallery}*/}
+      {/*  insertText={(v) => {*/}
+      {/*    onSelect(v);*/}
+      {/*  }}*/}
+      {/*/>*/}
     </div>
   );
 }

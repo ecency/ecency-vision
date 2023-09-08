@@ -34,7 +34,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
 
   const updateCache = (entries: Entry[], skipInvalidation = false) => {
     entries.forEach((e) => {
-      if (dmca.some((rx: string) => new RegExp(rx).test(`${e.author}/${e.permlink}`))) {
+      if (dmca.some((rx: string) => new RegExp(rx).test(`@${e.author}/${e.permlink}`))) {
         e.body = "This post is not available due to a copyright/fraudulent claim.";
         e.title = "";
       }
@@ -104,7 +104,7 @@ export function useEntryReFetch(entry: Entry | null) {
 
   useEffect(() => {
     if (entry) {
-      setKey(makePath(entry.category, entry.author, entry.permlink));
+      setKey(makePath("", entry.author, entry.permlink));
     }
   }, [entry]);
 
@@ -138,9 +138,9 @@ export function useDeletedEntryCache(author: string, permlink: string) {
 
 export function useEntryCache<T extends Entry>(initialEntry: T): DefinedQueryObserverResult<T>;
 export function useEntryCache<T extends Entry>(
-  category: string,
-  author: string,
-  permlink: string
+  category?: string,
+  author?: string,
+  permlink?: string
 ): DefinedQueryObserverResult<T>;
 export function useEntryCache<T extends Entry>(
   initialOrPath: T | string,
@@ -198,12 +198,17 @@ export function useEntryCache<T extends Entry>(
     let entry: Entry | undefined;
 
     for (const k of groupKeys) {
-      entry = entries[k].entries.find((x) => x.author === author && x.permlink === permlink);
+      entry = entries[k].entries.find((x) => {
+        if (dmca.some((rx: string) => new RegExp(rx).test(`@${x.author}/${x.permlink}`))) {
+          x.body = "This post is not available due to a copyright/fraudulent claim.";
+          x.title = "";
+        }
+        return x.author === author && x.permlink === permlink;
+      });
       if (entry) {
         break;
       }
     }
-
     return entry;
   };
 

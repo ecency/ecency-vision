@@ -10,6 +10,7 @@ interface videoProps {
   owner: string;
   thumbUrl: string;
   permlink: string;
+  filename: string;
 }
 
 interface Props {
@@ -18,6 +19,7 @@ interface Props {
   setVideoEncoderBeneficiary?: (video: any) => void;
   toggleNsfwC?: () => void;
   setShowGallery: (v: boolean) => void;
+  setVideoMetadata?: (v: ThreeSpeakVideo) => void;
 }
 
 export function VideoGalleryItem({
@@ -25,13 +27,15 @@ export function VideoGalleryItem({
   toggleNsfwC,
   setVideoEncoderBeneficiary,
   insertText,
-  setShowGallery
+  setShowGallery,
+  setVideoMetadata
 }: Props) {
   const { data } = useThreeSpeakVideo("all");
 
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<any>(null);
   const [manualPublishSpeakVideos, setManualPublishSpeakVideos] = useState<ThreeSpeakVideo[]>([]);
+  const speakUrl = "https://3speak.tv/watch?v=";
 
   useEffect(() => {
     setManualPublishSpeakVideos(data.filter((i) => i.status === "publish_manual"));
@@ -46,16 +50,23 @@ export function VideoGalleryItem({
   };
 
   const embeddVideo = (video: videoProps) => {
-    const speakUrl = "https://3speak.tv/watch?v=";
     const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`;
 
-    const element = ` <center>${speakFile}</center>`;
+    const element = ` <center>${speakFile}[Source](${video.filename.replace(
+      "ipfs://",
+      "https://ipfs-3speak.b-cdn.net/ipfs/"
+    )})</center>`;
     const body = insertText("").innerHTML;
-    const hasManualPublishInBody = manualPublishSpeakVideos
+    const hup = manualPublishSpeakVideos
       .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
       .some((i) => body.includes(i));
 
-    if (!hasManualPublishInBody || video.status == "published") {
+    if (!hup || video.status == "published") {
+      setVideoMetadata?.(
+        manualPublishSpeakVideos.find(
+          (v) => v.permlink === video.permlink && v.owner === video.owner
+        )!!
+      );
       insertText(element);
     }
   };
@@ -64,7 +75,12 @@ export function VideoGalleryItem({
     let nextItem = item;
 
     embeddVideo(nextItem);
-    if (item.status !== "published") {
+    const body = insertText("").innerHTML;
+    const hup = manualPublishSpeakVideos
+      .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
+      .some((i) => body.includes(i));
+
+    if (!hup && item.status !== "published") {
       setBeneficiary(nextItem);
     }
     setShowGallery(false);
@@ -118,7 +134,7 @@ export function VideoGalleryItem({
               {statusIcons(item.status)}
               {toolTipContent(item.status)}{" "}
               {item.status == "encoding_ipfs" || item.status == "encoding_preparing"
-                ? `${item.encodingProgress}%`
+                ? `${item.encodingProgress.toFixed(2)}%`
                 : ""}
             </div>
             <div

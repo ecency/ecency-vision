@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useEffect, useState } from "react";
 
 import { History, Location } from "history";
 
@@ -7,9 +7,6 @@ import { Button, Form, FormControl } from "react-bootstrap";
 import defaults from "../../constants/defaults.json";
 
 import { renderPostBody, setProxyBase } from "@ecency/render-helper";
-
-setProxyBase(defaults.imageServer);
-
 import { Entry, EntryVote } from "../../store/entries/types";
 import { Account, FullAccount } from "../../store/accounts/types";
 import { Community, ROLES } from "../../store/communities/types";
@@ -18,9 +15,7 @@ import { Global } from "../../store/global/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Discussion as DiscussionType, SortOrder } from "../../store/discussion/types";
-import { UI, ToggleType } from "../../store/ui/types";
-
-import BaseComponent from "../base";
+import { ToggleType, UI } from "../../store/ui/types";
 import ProfileLink from "../profile-link";
 import EntryLink from "../entry-link";
 import UserAvatar from "../user-avatar";
@@ -48,13 +43,7 @@ import { error } from "../feedback";
 
 import _c from "../../util/fix-class-names";
 
-import {
-  commentSvg,
-  pencilOutlineSvg,
-  deleteForeverSvg,
-  menuDownSvg,
-  dotsHorizontal
-} from "../../img/svg";
+import { commentSvg, deleteForeverSvg, dotsHorizontal, pencilOutlineSvg } from "../../img/svg";
 
 import { version } from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
@@ -63,6 +52,8 @@ import { Tsx } from "../../i18n/helper";
 import MyDropDown from "../dropdown";
 import { ProfilePopover } from "../profile-popover";
 import "./_index.scss";
+
+setProxyBase(defaults.imageServer);
 
 interface ItemBodyProps {
   entry: Entry;
@@ -382,7 +373,7 @@ export const Item = (props: ItemProps) => {
             const entryIsMuted = mutedData.includes(entry.author);
             const isComment = !!entry.parent_author;
             const ownEntry = activeUser && activeUser.username === entry.author;
-            const isHidden = entry?.net_rshares < -7000000000 && entry?.active_votes.length > 3; // 1000 HP
+            const isHidden = entry?.net_rshares < -7000000000 && entry?.active_votes?.length > 3; // 1000 HP
             const isMuted =
               entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
             const isLowReputation =

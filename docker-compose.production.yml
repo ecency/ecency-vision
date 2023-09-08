@@ -18,6 +18,23 @@ services:
     networks:
       - vision
 
+  vapi:
+    image: ecency/api:latest
+    environment:
+      - PRIVATE_API_ADDR
+      - PRIVATE_API_AUTH
+      - HIVESIGNER_CLIENT_SECRET
+      - SEARCH_API_ADDR
+      - SEARCH_API_SECRET
+    restart: always
+    ports:
+      - "4000:4000"
+    hostname: vapi
+    depends_on:
+      - redis
+    networks:
+      - vision
+
   web1:
     image: ecency/vision:latest
     environment:

@@ -82,7 +82,7 @@ import Drafts from "../components/drafts";
 import { AvailableCredits } from "../components/available-credits";
 import { handleFloatingContainer } from "../components/floating-faq";
 
-import { markAsPublished, updateSpeakVideoInfo } from "../api/threespeak";
+import { markAsPublished, ThreeSpeakVideo, updateSpeakVideoInfo } from "../api/threespeak";
 // import { ConfirmNsfwContent } from "../components/video-nsfw";
 import { PostBodyLazyRenderer } from "../components/post-body-lazy-renderer";
 
@@ -107,6 +107,7 @@ interface Advanced {
   speakPermlink: string;
   speakAuthor: string;
   isNsfw: boolean;
+  videoMetadata: any;
 }
 
 interface PreviewProps extends PostBase {
@@ -183,6 +184,7 @@ interface State extends PostBase, Advanced {
   isDraftEmpty: boolean;
   drafts: boolean;
   showHelp: boolean;
+  videoMetadata: ThreeSpeakVideo | null;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -224,7 +226,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     videoId: "",
     speakPermlink: "",
     speakAuthor: "",
-    isNsfw: false
+    isNsfw: false,
+    videoMetadata: null
   };
 
   _updateTimer: any = null;
@@ -486,7 +489,8 @@ class SubmitPage extends BaseComponent<Props, State> {
       videoId,
       speakPermlink,
       speakAuthor,
-      isNsfw
+      isNsfw,
+      videoMetadata
     } = this.state;
 
     const advanced: Advanced = {
@@ -500,7 +504,8 @@ class SubmitPage extends BaseComponent<Props, State> {
       videoId,
       speakPermlink,
       speakAuthor,
-      isNsfw
+      isNsfw,
+      videoMetadata
     };
 
     ls.set("local_advanced", advanced);
@@ -622,12 +627,13 @@ class SubmitPage extends BaseComponent<Props, State> {
         schedule: null,
         reblogSwitch: false,
         description: "",
-        // Speak Advenaced
+        // Speak Advanced
         isThreespeak: false,
         videoId: "",
         speakPermlink: "",
         speakAuthor: "",
-        isNsfw: false
+        isNsfw: false,
+        videoMetadata: null
       },
       () => {
         this.saveAdvanced();
@@ -749,12 +755,6 @@ class SubmitPage extends BaseComponent<Props, State> {
       permlink = createPermlink(title, true);
     }
 
-    if (isThreespeak && speakPermlink !== "") {
-      permlink = speakPermlink;
-      // update speak video with title, body and tags
-      updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw);
-    }
-
     const [parentPermlink] = tags;
     let jsonMeta = this.buildMetadata();
     if (jsonMeta && jsonMeta.image && jsonMeta.image.length > 0) {
@@ -763,6 +763,12 @@ class SubmitPage extends BaseComponent<Props, State> {
           .slice(0, 5)
           .map((element: string) => this.getHeightAndWidthFromDataUrl(proxifyImageSrc(element)))
       );
+    }
+
+    if (isThreespeak && speakPermlink !== "") {
+      permlink = speakPermlink;
+      // update speak video with title, body and tags
+      updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw);
     }
 
     const options = makeCommentOptions(author, permlink, reward, beneficiaries);
@@ -997,7 +1003,8 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   buildMetadata = () => {
-    const { tags, body, description, selectedThumbnail, selectionTouched } = this.state;
+    const { tags, title, body, description, selectedThumbnail, selectionTouched, videoMetadata } =
+      this.state;
     const { thumbnails, ...meta } = extractMetaData(body);
     let localThumbnail = ls.get("draft_selected_image");
 
@@ -1015,6 +1022,40 @@ class SubmitPage extends BaseComponent<Props, State> {
     if (meta.image) {
       meta.image = [...new Set(meta.image)];
     }
+    if (videoMetadata) {
+      meta.video = {
+        info: {
+          platform: "3speak",
+          title: title || videoMetadata.title,
+          author: videoMetadata.owner,
+          permlink: videoMetadata.permlink,
+          duration: videoMetadata.duration,
+          filesize: videoMetadata.size,
+          file: videoMetadata.filename,
+          lang: videoMetadata.language,
+          firstUpload: videoMetadata.firstUpload,
+          ipfs: null,
+          ipfsThumbnail: null,
+          video_v2: videoMetadata.video_v2,
+          sourceMap: [
+            {
+              type: "video",
+              url: videoMetadata.video_v2,
+              format: "m3u8"
+            },
+            {
+              type: "thumbnail",
+              url: videoMetadata.thumbUrl
+            }
+          ]
+        },
+        content: {
+          description: description || videoMetadata.description,
+          tags: videoMetadata.tags_v2
+        }
+      };
+    }
+
     const summary = description === null ? postBodySummary(this.state.body, 200) : description;
 
     return makeJsonMetaData(meta, tags, summary, version);
@@ -1181,7 +1222,9 @@ class SubmitPage extends BaseComponent<Props, State> {
               ...this.props,
               setVideoEncoderBeneficiary: this.setVideoEncoderBeneficiary,
               toggleNsfwC: this.toggleNsfwC,
-              comment: false
+              comment: false,
+              setVideoMetadata: (v: ThreeSpeakVideo) =>
+                this.setState({ videoMetadata: v }, this.saveAdvanced)
             })}
             <div className="title-input">
               <Form.Control

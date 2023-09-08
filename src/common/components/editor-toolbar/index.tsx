@@ -7,7 +7,7 @@ import { User } from "../../store/users/types";
 import { Global } from "../../store/global/types";
 
 import Tooltip from "../tooltip";
-import EmojiPicker from "../emoji-picker";
+import { EmojiPicker } from "../emoji-picker";
 import GifPicker from "../gif-picker";
 import Gallery from "../gallery";
 import Fragments from "../fragments";
@@ -41,6 +41,7 @@ import {
 } from "../../img/svg";
 import { VideoUpload } from "../video-upload-threespeak";
 import VideoGallery from "../video-gallery";
+import { ThreeSpeakVideo } from "../../api/threespeak";
 
 interface Props {
   global: Global;
@@ -52,6 +53,7 @@ interface Props {
   setVideoEncoderBeneficiary?: (video: any) => void;
   toggleNsfwC?: () => void;
   comment: boolean;
+  setVideoMetadata?: (v: ThreeSpeakVideo) => void;
 }
 
 interface State {
@@ -63,6 +65,7 @@ interface State {
   shGif: boolean;
   showVideoUpload: boolean;
   showVideoGallery: boolean;
+  isMounted: boolean;
 }
 
 export const detectEvent = (eventType: string) => {
@@ -84,7 +87,8 @@ export class EditorToolbar extends Component<Props> {
     mobileImage: false,
     shGif: false,
     showVideoUpload: false,
-    showVideoGallery: false
+    showVideoGallery: false,
+    isMounted: false
   };
 
   holder = React.createRef<HTMLDivElement>();
@@ -153,6 +157,9 @@ export class EditorToolbar extends Component<Props> {
     window.addEventListener("blockquote", this.quote);
     window.addEventListener("image", this.toggleImage);
     window.addEventListener("customToolbarEvent", this.handleCustomToolbarEvent);
+    this.setState({
+      isMounted: true
+    });
   }
 
   componentWillUnmount() {
@@ -568,18 +575,18 @@ export class EditorToolbar extends Component<Props> {
                   insertText={this.insertText}
                   setVideoEncoderBeneficiary={this.props.setVideoEncoderBeneficiary}
                   toggleNsfwC={this.props.toggleNsfwC}
+                  setVideoMetadata={this.props.setVideoMetadata}
                 />
               </div>
             </Tooltip>
           )}
           <Tooltip content={_t("editor-toolbar.emoji")}>
-            <div className="editor-tool" role="none">
+            <div className="editor-tool" id="editor-tool-emoji-picker" role="none">
               {emoticonHappyOutlineSvg}
-              {showEmoji && (
+              {showEmoji && this.state.isMounted && (
                 <EmojiPicker
-                  fallback={(e) => {
-                    this.insertText(e, "");
-                  }}
+                  anchor={document.querySelector("#editor-tool-emoji-picker")!!}
+                  onSelect={(e) => this.insertText(e, "")}
                 />
               )}
             </div>
@@ -690,7 +697,8 @@ export default (props: Props) => {
     showGif: props.showGif,
     setVideoEncoderBeneficiary: props.setVideoEncoderBeneficiary,
     toggleNsfwC: props.toggleNsfwC,
-    comment: props.comment
+    comment: props.comment,
+    setVideoMetadata: props.setVideoMetadata
   };
   return <EditorToolbar {...p} />;
 };

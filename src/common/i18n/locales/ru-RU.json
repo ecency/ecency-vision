@@ -230,7 +230,7 @@
     "referral-invalid": "Этот реферал недействителен. Пожалуйста, попробуйте другого",
     "referral-min-length-error": "Длина имени реферала должна быть не менее трёх символов",
     "referral-max-length-error": "Длина имени реферала должна быть не более 16 символов",
-    "email-max-length-error": "Length of email should be no more than 72 characters"
+    "email-max-length-error": "Длина письма должна составлять не более 72 символов"
   },
   "onboard": {
     "title-active-user": "Панель друга",
@@ -1468,9 +1468,10 @@
     "info-views": "Просмотров:",
     "info-duration": "Длительность:",
     "info-size": "Размер файла:",
-    "insert-video": "Insert",
+    "insert-video": "Вставить",
     "insert-nsfw": "Вставить как NSFW",
-    "refresh": "Обновить"
+    "refresh": "Обновить для получения обновленной информации о статусе",
+    "video-info": "Videos are stored and powered by SPK network, might have some storage and encoding fees."
   },
   "nsfw-content": {
     "title": "NSFW контент",

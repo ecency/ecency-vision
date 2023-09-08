@@ -2,12 +2,9 @@ import hs from "hivesigner";
 
 import {
   AccountUpdateOperation,
-  Authority,
   CustomJsonOperation,
-  KeyRole,
   Operation,
   OperationName,
-  VirtualOperationName,
   PrivateKey,
   TransactionConfirmation
 } from "@hiveio/dhive";
@@ -42,6 +39,7 @@ export interface MetaData {
   format?: string;
   community?: string;
   description?: string;
+  video?: any;
 }
 
 export interface BeneficiaryRoute {

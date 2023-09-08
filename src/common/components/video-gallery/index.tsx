@@ -8,6 +8,7 @@ import DropDown from "../dropdown";
 import { ThreeSpeakVideo, useThreeSpeakVideo } from "../../api/threespeak";
 import { VideoGalleryItem } from "./video-gallery-item";
 import { useMappedStore } from "../../store/use-mapped-store";
+import { useThreeSpeakManager } from "../../pages/submit/hooks";
 
 interface Props {
   showGallery: boolean;
@@ -16,6 +17,7 @@ interface Props {
   setVideoEncoderBeneficiary?: (video: any) => void;
   toggleNsfwC?: () => void;
   preFilter?: string;
+  setVideoMetadata?: (v: ThreeSpeakVideo) => void;
 }
 
 const VideoGallery = ({
@@ -24,15 +26,24 @@ const VideoGallery = ({
   insertText,
   setVideoEncoderBeneficiary,
   toggleNsfwC,
-  preFilter
+  preFilter,
+  setVideoMetadata
 }: Props) => {
   const { activeUser } = useMappedStore();
+  const { isEditing } = useThreeSpeakManager();
+
   const [label, setLabel] = useState("All");
   const [filterStatus, setFilterStatus] = useState<ThreeSpeakVideo["status"] | "all">(
     preFilter ?? "all"
   );
 
   const { data: items, isFetching, refresh } = useThreeSpeakVideo(filterStatus, showGallery);
+
+  useEffect(() => {
+    if (isEditing) {
+      setFilterStatus("published");
+    }
+  }, [isEditing]);
 
   useEffect(() => {
     setFilterStatus(preFilter ?? "all");
@@ -52,10 +63,10 @@ const VideoGallery = ({
         </Modal.Header>
         <Modal.Body>
           <div className="video-status-picker">
-            {!preFilter ? (
+            {!preFilter && !isEditing ? (
               <DropDown
                 float="left"
-                label={label}
+                label={label?.toUpperCase()}
                 history={"" as any}
                 items={[
                   {
@@ -106,11 +117,12 @@ const VideoGallery = ({
             ) : (
               <></>
             )}
+            <div className="hint">{_t("video-gallery.refresh")}</div>
             <Button
               variant="link"
               className="refresh-gallery p-0"
               onClick={() => {
-                setFilterStatus(preFilter ?? "all");
+                setFilterStatus(isEditing ? filterStatus : preFilter ?? "all");
                 setLabel(_t("video-gallery.all"));
                 refresh();
               }}
@@ -120,6 +132,9 @@ const VideoGallery = ({
           </div>
           <div className="dialog-content">
             {isFetching && <LinearProgress />}
+            {!isFetching && items?.length != 0 && (
+              <div className="video-info">{_t("video-gallery.video-info")}</div>
+            )}
             <div className="video-list">
               {items?.map((item) => (
                 <VideoGalleryItem
@@ -129,12 +144,13 @@ const VideoGallery = ({
                   setVideoEncoderBeneficiary={setVideoEncoderBeneficiary}
                   toggleNsfwC={toggleNsfwC}
                   setShowGallery={setShowGallery}
+                  setVideoMetadata={setVideoMetadata}
                 />
               ))}
-              {!isFetching && items?.length === 0 && (
-                <div className="gallery-list">{_t("g.empty-list")}</div>
-              )}
             </div>
+            {!isFetching && items?.length === 0 && (
+              <div className="video-center">{_t("g.empty-list")}</div>
+            )}
           </div>
         </Modal.Body>
       </Modal>

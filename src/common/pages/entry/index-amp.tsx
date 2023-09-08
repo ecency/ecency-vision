@@ -84,7 +84,7 @@ const EntryAmpComponent = (props: Props) => {
   const entryControlsRef = useRef<HTMLDivElement | null>(null);
 
   const { data: entry, error: entryError } = useEntryCache(
-    props.match.params.category,
+    "",
     props.match.params.username.replace("@", ""),
     props.match.params.permlink
   );
@@ -138,7 +138,7 @@ const EntryAmpComponent = (props: Props) => {
       setIsComment(!!entry.parent_author);
       setIsOwnEntry(props.activeUser?.username === entry.author);
       setIsMuted(!!entry.stats?.gray && entry.net_rshares >= 0 && entry.author_reputation >= 0);
-      setIsHidden(entry?.net_rshares < -7000000000 && entry?.active_votes.length > 3); // 1000 HP
+      setIsHidden(entry?.net_rshares < -7000000000 && entry?.active_votes?.length > 3); // 1000 HP
       setIsLowReputation(
         !!entry.stats?.gray && entry.net_rshares >= 0 && entry.author_reputation < 0
       );

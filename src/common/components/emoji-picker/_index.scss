@@ -1,74 +1,30 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
-.emoji-picker {
-  width: 280px;
+.emoji-picker-dialog {
   position: absolute;
-  right: 0;
-  z-index: 100;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  padding: 14px 6px;
+  z-index: 201;
 
-  @media (max-width: $sm-break) {
-    width: 160px !important;
+  em-emoji-picker {
+    width: 300px;
   }
 
-  @include themify(day) {
-    background: darken($white-three, 5);
-  }
+  @include media-breakpoint-down(sm) {
+    bottom: 0;
+    top: unset !important;
+    left: 0 !important;
+    width: 100%;
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--border-color);
+    position: fixed;
 
-  @include themify(night) {
-    background: $dark-two;
-  }
+    @include themify(night) {
+      background-color: rgba(21, 22, 23);
+    }
 
-  .emoji-cat-list {
-    height: 160px;
-    overflow: auto;
-
-    .emoji-cat {
-      .cat-title {
-        font-weight: 500;
-        font-size: 14px;
-        margin: 4px 0 6px 0;
-
-        @include themify(day) {
-          color: $charcoal-grey;
-        }
-
-        @include themify(night) {
-          color: $pinkish-grey;
-        }
-      }
-
-      .emoji-list {
-        @include clearfix();
-        display: flex;
-        flex-wrap: wrap;
-
-        .emoji {
-          cursor: pointer;
-          font-size: 18px;
-          margin: 3px 3px 1px 3px;
-          align-items: center;
-          justify-content: center;
-          display: flex;
-          font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji";
-          border-bottom: 2px solid transparent;
-
-          &:hover {
-            @include themify(day) {
-              border-bottom: 2px solid $white-three;
-            }
-
-            @include themify(night) {
-              border-bottom: 2px solid lighten($dark-six, 14);
-            }
-          }
-        }
-      }
+    em-emoji-picker {
+      width: 100%;
     }
   }
 }
