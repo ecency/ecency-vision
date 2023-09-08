@@ -1439,6 +1439,7 @@
   },
   "video-upload": {
     "choose-video": "Valitse video",
+    "record-video": "Record a video",
     "choose-thumbnail": "Aseta pikkukuva(valinnainen)",
     "continue": "Jatka",
     "encode": "Send for encoding",
@@ -1449,7 +1450,12 @@
     "preview": "Esikatselu",
     "to-gallery": "Siirry galleriaan",
     "congrats": "Onnittelut",
-    "publishing": "Älä päivitä tätä sivua, odota muutama sekunti videon käsittelemiseksi"
+    "publishing": "Älä päivitä tätä sivua, odota muutama sekunti videon käsittelemiseksi",
+    "no-record-permission": "You don't have permission to record video",
+    "confirm-and-upload": "Confirm and upload to 3Speak",
+    "uploading": "Uploading..{{n}}/{{total}}",
+    "uploaded": "Uploaded!",
+    "reset": "Reset"
   },
   "video-gallery": {
     "all": "Kaikki",
