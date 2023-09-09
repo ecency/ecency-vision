@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { arrowLeftSvg, plusCircle } from "../../img/svg";
 import "./index.scss";
@@ -13,17 +13,26 @@ interface Props {
 }
 
 const ClaimAccountCredit = ({ account }: Props) => {
-  const { global, activeUser } = useMappedStore();
-  const { mutateAsync: claimAccount, isLoading, error, reset } = useAccountClaiming(account);
+  const { global, activeUser, addAccount } = useMappedStore();
+  const { mutateAsync: claimAccount, isLoading, error, isSuccess } = useAccountClaiming(account);
 
   const [key, setKey] = useState("");
   const [isKeySetting, setIsKeySetting] = useState(false);
+
+  useEffect(() => {
+    if (isSuccess) {
+      addAccount({
+        ...account,
+        pending_claimed_accounts: 0
+      });
+    }
+  }, [isSuccess]);
 
   return (
     <>
       {account.pending_claimed_accounts > 0 && (
         <div className="claim-credit">
-          {isKeySetting ? (
+          {isKeySetting && !isSuccess ? (
             <>
               <div className="claim-credit-title">
                 <div className="claim-credit-title-back" onClick={() => setIsKeySetting(false)}>
@@ -49,14 +58,18 @@ const ClaimAccountCredit = ({ account }: Props) => {
           ) : (
             <>
               <div className="claim-credit-title">{_t("rc-info.you-have-unclaimed-rc")}</div>
-              <Button
-                size="sm"
-                className="p-1 pl-2 d-flex align-items-center"
-                onClick={() => setIsKeySetting(true)}
-              >
-                <span className="mr-2">{account.pending_claimed_accounts}</span>
-                {plusCircle}
-              </Button>
+              {!isSuccess ? (
+                <Button
+                  size="sm"
+                  className="p-1 pl-2 d-flex align-items-center"
+                  onClick={() => setIsKeySetting(true)}
+                >
+                  <span className="mr-2">{account.pending_claimed_accounts}</span>
+                  {plusCircle}
+                </Button>
+              ) : (
+                <small className="text-success">{_t("rc.info.successfully-claimed")}</small>
+              )}
             </>
           )}
         </div>

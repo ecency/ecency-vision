@@ -919,7 +919,8 @@
     "extra-details-upvote": "Votes",
     "boost": "Boost",
     "you-have-unclaimed-rc": "You have unclaimed account credits",
-    "you-claiming": "You are claiming {{n}}"
+    "you-claiming": "You are claiming {{n}}",
+    "successfully-claimed": "Successfully claimed!"
   },
   "profile-edit": {
     "title": "Profile",
