@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
-import { findRcAccounts } from "../../api/hive";
+import { findRcAccounts, getRcOperationStats } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation";
-import { RcDelegationsList } from "../rc-delegations-list";
+import { ConfirmDelete, RcDelegationsList } from "../rc-delegations-list";
 import { rcFormatter } from "../../util/formatted-number";
-import { ConfirmDelete } from "../rc-delegations-list";
-import { getRcOperationStats } from "../../api/hive";
 import RcProgressCircle from "../rc-progress-circle";
 import "./_index.scss";
 import ClaimAccountCredit from "../claim-account-credit";
@@ -168,9 +166,6 @@ export const ResourceCreditsInfo = (props: any) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="align-self-center" >
-            <ClaimAccountCredit account={account}/>
-          </div>
           <div className="rc-infocontainer">
             <div className="percent">
               <div className="circle">
@@ -233,6 +228,8 @@ export const ResourceCreditsInfo = (props: any) => {
               </div>
             </div>
           </div>
+
+          <ClaimAccountCredit account={account} />
 
           <div className="d-flex justify-content-center mt-3">
             {activeUser && (

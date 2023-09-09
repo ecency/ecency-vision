@@ -13,7 +13,7 @@ import { Parameters } from "hive-uri";
 
 import { client as hiveClient } from "./hive";
 
-import { Account } from "../store/accounts/types";
+import { Account, FullAccount } from "../store/accounts/types";
 
 import { usrActivity } from "./private-api";
 
@@ -2279,24 +2279,24 @@ export const createAccountWithCreditKey = async (
   }
 };
 
-export const claimAccount = async (username: string, key: PrivateKey | any): Promise<any> => {
-  const op: any = [
-    "claim_account",
-    {
-      fee: {
-        amount: "0",
-        precision: 3,
-      },
-      creator: username,
-      extensions: []
-    }
-  ]
-
-  try {
-    return hiveClient.broadcast.sendOperations(op, key);
-    
-  } catch (error) {
-    console.error("error claiming credit:", error);
-    throw error;
+export const claimAccount = async (account: FullAccount, key: PrivateKey) => {
+  if (!key) {
+    throw new Error("[Account claiming] Active/owner key is not provided");
   }
+
+  return hiveClient.broadcast.sendOperations(
+    // Generate operation for each claiming
+    [...Array(account.pending_claimed_accounts).keys()].map(() => [
+      "claim_account",
+      {
+        fee: {
+          amount: "0",
+          precision: 3
+        },
+        creator: account.name,
+        extensions: []
+      }
+    ]),
+    key
+  );
 };

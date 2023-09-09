@@ -917,7 +917,9 @@
     "extra-details-transfer": "Transfers",
     "extra-details-post": "Posts/Comments",
     "extra-details-upvote": "Votes",
-    "boost": "Boost"
+    "boost": "Boost",
+    "you-have-unclaimed-rc": "You have unclaimed account credits",
+    "you-claiming": "You are claiming {{n}}"
   },
   "profile-edit": {
     "title": "Profile",

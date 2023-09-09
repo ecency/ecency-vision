@@ -1,4 +1,38 @@
-.claim-credit{
-    width: 1rem;
-    height: 1rem;
+@import "src/style/vars_mixins";
+
+.claim-credit {
+    background-color: $gray-100;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+
+    &-title {
+        font-size: 0.875rem;
+        color: $gray-600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &-back {
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
+        }
+
+        @include themify(night) {
+            color: $gray-400;
+        }
+    }
+
+    .key-or-hot {
+        margin: 0;
+        padding: 0;
+    }
+
+    @include themify(night) {
+        background-color: $gray-900;
+    }
 }
