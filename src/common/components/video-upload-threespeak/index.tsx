@@ -142,7 +142,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
               label={_t("video-upload.choose-video")}
               onFileChange={handleVideoChange}
               type="video"
-              accept="video/*"
+              accept="video/mp4"
               completed={videoPercentage}
             />
           </div>
@@ -152,7 +152,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
           label={_t("video-upload.choose-thumbnail")}
           onFileChange={handleThumbnailChange}
           type="thumbnail"
-          accept="image/*"
+          accept="image/jpg, image/jpeg, image/png"
           completed={thumbnailPercentage}
         />
       </div>
