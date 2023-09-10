@@ -2,7 +2,7 @@ import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common
 import { match } from "react-router";
 import React, { Fragment, useEffect, useState } from "react";
 import { search as searchApi, SearchResult } from "../api/search-api";
-import { getCommunity, getSubscriptions } from "../api/bridge";
+import { getSubscriptions } from "../api/bridge";
 import { EntryFilter, ListStyle } from "../store/global/types";
 import { usePrevious } from "../util/use-previous";
 import { makeGroupKey } from "../store/entries";
@@ -22,7 +22,6 @@ import _c from "../util/fix-class-names";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
 import capitalize from "../util/capitalize";
-import { Community } from "../store/communities/types";
 import { Account } from "../store/accounts/types";
 import { CommunityMenu } from "../components/community-menu";
 import { CommunityCover } from "../components/community-cover";
