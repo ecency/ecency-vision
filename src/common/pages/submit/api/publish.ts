@@ -105,6 +105,10 @@ export function usePublishApi(history: History, onClear: () => void) {
         permlink = speakPermlink;
         // update speak video with title, body and tags
         await updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw);
+
+        // set specific metadata for 3speak
+        jsonMeta.app = "3speak/0.3.0";
+        jsonMeta.type = "video";
       }
 
       const options = makeCommentOptions(author, permlink, reward, beneficiaries);
