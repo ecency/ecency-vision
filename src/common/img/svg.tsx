@@ -2052,7 +2052,7 @@ export const recordVideoSvg = (
     />
     <path
       d="M10.5 12C10.5 13.3807 9.38071 14.5 8 14.5C6.61929 14.5 5.5 13.3807 5.5 12C5.5 10.6193 6.61929 9.5 8 9.5C9.38071 9.5 10.5 10.6193 10.5 12Z"
-      stroke="#1C274C"
+      stroke="currentColor"
       strokeWidth="1.5"
     />
     <path d="M8 14.5H16" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round" />
@@ -2074,5 +2074,24 @@ export const circleSvg = (
 export const rectSvg = (
   <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <rect x={6} y={6} fill="currentColor" width={12} height={12} />
+  </svg>
+);
+
+export const switchCameraSvg = (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M11 19H4a2 2 0 01-2-2V7a2 2 0 012-2h5" />
+    <path d="M13 5h7a2 2 0 012 2v10a2 2 0 01-2 2h-5" />
+    <circle cx="12" cy="12" r="3" />
+    <path d="M18 22l-3-3 3-3" />
+    <path d="M6 2l3 3-3 3" />
   </svg>
 );

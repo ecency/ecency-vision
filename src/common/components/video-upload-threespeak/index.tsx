@@ -8,6 +8,7 @@ import { createFile } from "../../util/create-file";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { recordVideoSvg } from "../../img/svg";
 import { VideoUploadRecorder } from "./video-upload-recorder";
+import useMountedState from "react-use/lib/useMountedState";
 
 const DEFAULT_THUMBNAIL = require("./assets/thumbnail-play.jpg");
 
@@ -47,6 +48,8 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
   const [showRecorder, setShowRecorder] = useState(false);
 
   const canUpload = videoUrl;
+
+  const isMounted = useMountedState();
 
   // Reset on dialog hide
   useEffect(() => {
@@ -124,7 +127,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
           />
         ) : (
           <div className="video-source">
-            {!selectedFile && "MediaRecorder" in window ? (
+            {isMounted() && !selectedFile && "MediaRecorder" in window ? (
               <div
                 className="d-flex align-items-center flex-column border rounded p-3 video-upload-item"
                 onClick={() => setShowRecorder(true)}
