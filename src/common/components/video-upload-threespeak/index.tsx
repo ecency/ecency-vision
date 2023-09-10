@@ -142,7 +142,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
               label={_t("video-upload.choose-video")}
               onFileChange={handleVideoChange}
               type="video"
-              accept="video/mp4"
+              accept="video/mp4, video/webm"
               completed={videoPercentage}
             />
           </div>
