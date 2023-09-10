@@ -58,7 +58,7 @@ export function useMenuItemsGenerator(
   useEffect(() => {
     setCanMute(
       activeUser && community
-        ? !!community.team.find(
+        ? !!community.team?.find(
             (m) =>
               m[0] === activeUser.username &&
               [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
@@ -216,7 +216,7 @@ export function useMenuItemsGenerator(
 
   const isTeamManager = () =>
     activeUser && community
-      ? !!community.team.find((m) => {
+      ? !!community.team?.find((m) => {
           return (
             m[0] === activeUser.username &&
             [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
