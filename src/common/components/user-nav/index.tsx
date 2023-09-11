@@ -114,7 +114,7 @@ export const UserNav = ({ history, icon }: Props) => {
         )}
         <WalletBadge icon={icon} />
 
-        {global.usePrivate && (
+        {global.usePrivate ? (
           <ToolTip content={_t("user-nav.notifications")}>
             <span className="notifications" onClick={() => toggleUIProp("notifications")}>
               {notifications.unread > 0 && (
@@ -125,6 +125,8 @@ export const UserNav = ({ history, icon }: Props) => {
               {global.notifications ? bellSvg : bellOffSvg}
             </span>
           </ToolTip>
+        ) : (
+          <></>
         )}
 
         <DropDown {...dropDownConfig} float="right" header={`@${activeUser?.username}`} />
