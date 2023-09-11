@@ -82,6 +82,7 @@ jobs:
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
+          docker pull ecency/api:latest
           docker-compose -f docker-compose.production.yml up -d
 
   deploy-US:
@@ -117,6 +118,7 @@ jobs:
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
+          docker pull ecency/api:latest
           docker-compose -f docker-compose.production.yml up -d
 
   deploy-SG:
@@ -152,4 +154,5 @@ jobs:
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
+          docker pull ecency/api:latest
           docker-compose -f docker-compose.production.yml up -d

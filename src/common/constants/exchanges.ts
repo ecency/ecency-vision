@@ -13,7 +13,8 @@ const exchangeAccounts = [
   "hitbtc-exchange",
   "poloniex",
   "upbit-exchange",
-  "onepagex"
+  "onepagex",
+  "bdhivesteem"
 ];
 
 export default exchangeAccounts;

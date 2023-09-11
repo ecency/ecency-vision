@@ -165,7 +165,7 @@ const EntryComponent = (props: Props) => {
       setIsComment(!!entry.parent_author);
       setIsOwnEntry(props.activeUser?.username === entry.author);
       setIsMuted(!!entry.stats?.gray && entry.net_rshares >= 0 && entry.author_reputation >= 0);
-      setIsHidden(entry?.net_rshares < -7000000000 && entry?.active_votes.length > 3); // 1000 HP
+      setIsHidden(entry?.net_rshares < -7000000000 && entry?.active_votes?.length > 3); // 1000 HP
       setIsLowReputation(
         !!entry.stats?.gray && entry.net_rshares >= 0 && entry.author_reputation < 0
       );
