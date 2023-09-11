@@ -15,15 +15,14 @@ import { TrendingTags } from "../../../../common/store/trending-tags/types";
 import { Account } from "../../../../common/store/accounts/types";
 import { User } from "../../../../common/store/users/types";
 import { ActiveUser } from "../../../../common/store/active-user/types";
-import { UI, ToggleType } from "../../../../common/store/ui/types";
+import { ToggleType, UI } from "../../../../common/store/ui/types";
 import { NotificationFilter, Notifications } from "../../../../common/store/notifications/types";
 import { DynamicProps } from "../../../../common/store/dynamic-props/types";
 
 import ToolTip from "../../../../common/components/tooltip";
 import Login from "../../../../common/components/login";
-import UserNav from "../../../../common/components/user-nav/user-nav";
+import { UserNav } from "../../../../common/components/user-nav";
 import DropDown from "../../../../common/components/dropdown";
-import SearchSuggester from "../../../../common/components/search-suggester";
 import Updater from "../updater";
 import SwitchLang from "../../../../common/components/switch-lang";
 
@@ -40,27 +39,25 @@ import routes from "../../../../common/routes";
 import { version } from "../../../package.json";
 
 import {
-  brightnessSvg,
-  pencilOutlineSvg,
   arrowLeftSvg,
   arrowRightSvg,
-  refreshSvg,
-  magnifySvg,
+  brightnessSvg,
   dotsHorizontal,
-  translateSvg
+  magnifySvg,
+  pencilOutlineSvg,
+  refreshSvg
 } from "../../../../common/img/svg";
 import isElectron from "../../../../common/util/is-electron";
 import "./_index.scss";
-
-// why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
-
-const pathToRegexp = require("path-to-regexp");
 import isCommunity from "../../../../common/helper/is-community";
-import { NotifyTypes } from "../../../../common/enums";
 import {
   setNotificationsSettingsItem,
   updateNotificationsSettings
 } from "../../../../common/store/notifications";
+
+// why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
+
+const pathToRegexp = require("path-to-regexp");
 const logo = "./img/logo-circle.svg";
 
 interface AddressBarProps {

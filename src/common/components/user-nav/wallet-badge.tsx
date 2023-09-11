@@ -1,21 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import HiveWallet from '../../helper/hive-wallet';
-import { _t } from '../../i18n';
-import { creditCardSvg } from '../../img/svg';
+import React, { ReactNode, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import HiveWallet from "../../helper/hive-wallet";
+import { _t } from "../../i18n";
+import { creditCardSvg } from "../../img/svg";
 import ToolTip from "../tooltip";
-import { UserNavProps } from './types/usernav-types';
+import { useMappedStore } from "../../store/use-mapped-store";
 
-const WalletBadge = (props: UserNavProps) => {
-  const { activeUser, dynamicProps, icon } = props;
+export const WalletBadge = ({ icon }: { icon: ReactNode }) => {
+  const { activeUser, dynamicProps } = useMappedStore();
 
-  let hasUnclaimedRewards = false;
-  const { data: account } = activeUser;
+  const [hasUnclaimedRewards, setHasUnclaimedRewards] = useState(false);
 
-  if (account.__loaded) {
-    hasUnclaimedRewards = new HiveWallet(account, dynamicProps).hasUnclaimedRewards;
-  }
-
+  useEffect(() => {
+    if (activeUser?.data?.__loaded) {
+      setHasUnclaimedRewards(new HiveWallet(activeUser.data, dynamicProps).hasUnclaimedRewards);
+    }
+  }, [activeUser]);
   return (
     <>
       <ToolTip
@@ -23,13 +23,11 @@ const WalletBadge = (props: UserNavProps) => {
           hasUnclaimedRewards ? _t("user-nav.unclaimed-reward-notice") : _t("user-nav.wallet")
         }
       >
-        <Link to={`/@${activeUser.username}/wallet`} className="user-wallet">
+        <Link to={`/@${activeUser?.username}/wallet`} className="user-wallet">
           {hasUnclaimedRewards && <span className="reward-badge" />}
           {icon ?? creditCardSvg}
         </Link>
       </ToolTip>
     </>
   );
-}
-
-export default WalletBadge;
+};

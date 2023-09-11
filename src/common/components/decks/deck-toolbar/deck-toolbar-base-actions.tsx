@@ -1,10 +1,10 @@
 import { bellSvg, rocketSvg } from "../../../img/svg";
 import React from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import WalletBadge from "../../user-nav/wallet-badge";
+import { WalletBadge } from "../../user-nav";
 import { Dropdown } from "react-bootstrap";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
-import { dotsMenuIconSvg, notificationsIconSvg, walletIconSvg } from "../icons";
+import { dotsMenuIconSvg, walletIconSvg } from "../icons";
 import { _t } from "../../../i18n";
 import Link from "../../alink";
 
@@ -36,7 +36,7 @@ export const DeckToolbarBaseActions = ({
             </div>
           )}
           {global.usePrivate && <div onClick={() => setShowPurchaseDialog(true)}>{rocketSvg}</div>}
-          <WalletBadge icon={walletIconSvg} activeUser={activeUser} dynamicProps={dynamicProps} />
+          <WalletBadge icon={walletIconSvg} />
         </>
       )}
       {isExpanded || !activeUser ? (

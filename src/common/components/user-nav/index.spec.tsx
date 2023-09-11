@@ -3,15 +3,14 @@ import { StaticRouter } from "react-router-dom";
 
 import { createBrowserHistory, createLocation } from "history";
 
-import UserNav from "./index";
-import renderer from "react-test-renderer";
+import { UserNav } from "./index";
 
 import {
-  notificationsInstance1,
-  UiInstance,
-  globalInstance,
+  dynamicPropsIntance1,
   fullAccountInstance,
-  dynamicPropsIntance1
+  globalInstance,
+  notificationsInstance1,
+  UiInstance
 } from "../../helper/test-helper";
 import { withStore } from "../../tests/with-store";
 
