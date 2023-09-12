@@ -40,14 +40,14 @@ export function VideoUploadRecorder({
     isSuccess
   } = useThreeSpeakVideoUpload("video");
 
-  useMount(() => initStream());
+  useMount(() => initStreamSafe());
 
   useUnmount(() => {
     stream?.getTracks().forEach((track) => track.stop());
   });
 
   useEffect(() => {
-    initStream();
+    initStreamSafe();
   }, [currentCamera]);
 
   useEffect(() => {
@@ -57,14 +57,16 @@ export function VideoUploadRecorder({
     }
   }, [stream, ref]);
 
-  const initStream = async () => {
+  const initStream = async (mimeType: string) => {
+    setNoPermission(false);
+
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: currentCamera ? { deviceId: currentCamera.deviceId } : true,
         audio: true
       });
       const mediaRecorder = new MediaRecorder(stream, {
-        mimeType: "video/webm"
+        mimeType
       });
 
       setMediaRecorder(mediaRecorder);
@@ -78,8 +80,16 @@ export function VideoUploadRecorder({
         }
       });
     } catch (e) {
-      console.error("Video recording:", e);
       setNoPermission(true);
+      throw e;
+    }
+  };
+
+  const initStreamSafe = async () => {
+    try {
+      await initStream("video/webm");
+    } catch (e) {
+      await initStream("video/mp4");
     }
   };
 
