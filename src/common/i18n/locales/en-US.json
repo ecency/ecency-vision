@@ -918,7 +918,8 @@
     "extra-details-post": "Posts/Comments",
     "extra-details-upvote": "Votes",
     "boost": "Boost",
-    "you-have-unclaimed-rc": "You have unclaimed account credits",
+    "you-have-claimed-rc": "Already claimed account credits",
+    "claim": "Claim",
     "you-claiming": "You are claiming {{n}}",
     "successfully-claimed": "Successfully claimed!"
   },

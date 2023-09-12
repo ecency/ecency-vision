@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, ListGroup, ListGroupItem, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { findRcAccounts, getRcOperationStats } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation";
@@ -216,20 +216,37 @@ export const ResourceCreditsInfo = (props: any) => {
 
               <div className="extra-details">
                 <p>{_t("rc-info.extra-details-heading")}</p>
-                <div className="extras">
-                  <ul>
-                    <li>{`${_t("rc-info.comments-posts")} ${commentAmount}`}</li>
-                    <li>{`${_t("rc-info.votes")} ${voteAmount}`}</li>
-                    <li>{`${_t("rc-info.transfers")} ${transferAmount}`}</li>
-                    <li>{`${_t("rc-info.reblogs-follows")} ${customJsonAmount}`}</li>
-                    <li>{`${_t("rc-info.claim-accounts")} ${claimAccountAmount}`}</li>
-                  </ul>
-                </div>
+                <ListGroup className="rc-info-extras">
+                  <ListGroupItem>
+                    {_t("rc-info.comments-posts")}
+                    <span>{commentAmount}</span>
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    {_t("rc-info.votes")}
+                    <span>{voteAmount}</span>
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    {_t("rc-info.transfers")}
+                    <span>{transferAmount}</span>
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    {_t("rc-info.reblogs-follows")}
+                    <span>{customJsonAmount}</span>
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    {true ? (
+                      <ClaimAccountCredit
+                        claimAccountAmount={claimAccountAmount}
+                        account={account}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </ListGroupItem>
+                </ListGroup>
               </div>
             </div>
           </div>
-
-          <ClaimAccountCredit account={account} />
 
           <div className="d-flex justify-content-center mt-3">
             {activeUser && (

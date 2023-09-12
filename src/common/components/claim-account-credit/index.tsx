@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { arrowLeftSvg, plusCircle } from "../../img/svg";
+import { arrowLeftSvg } from "../../img/svg";
 import "./index.scss";
 import { FullAccount } from "../../store/accounts/types";
 import { useAccountClaiming } from "../../api/mutations";
 import { _t } from "../../i18n";
 import KeyOrHot from "../key-or-hot";
 import { useMappedStore } from "../../store/use-mapped-store";
+import { claimAccountByHiveSigner } from "../../api/operations";
 
 interface Props {
   account: FullAccount;
+  claimAccountAmount: number;
 }
 
-const ClaimAccountCredit = ({ account }: Props) => {
+const ClaimAccountCredit = ({ account, claimAccountAmount }: Props) => {
   const { global, activeUser, addAccount } = useMappedStore();
   const { mutateAsync: claimAccount, isLoading, error, isSuccess } = useAccountClaiming(account);
 
@@ -28,53 +30,53 @@ const ClaimAccountCredit = ({ account }: Props) => {
     }
   }, [isSuccess]);
 
+  const signKs = () => {};
+
   return (
-    <>
-      {account.pending_claimed_accounts > 0 && (
-        <div className="claim-credit">
-          {isKeySetting && !isSuccess ? (
-            <>
-              <div className="claim-credit-title">
-                <div className="claim-credit-title-back" onClick={() => setIsKeySetting(false)}>
-                  {arrowLeftSvg}
-                </div>
-                {_t("rc-info.you-claiming", { n: account.pending_claimed_accounts })}
-              </div>
-              {error ? (
-                <small className="d-block text-danger">{(error as Error)?.message}</small>
-              ) : (
-                <></>
-              )}
-              <KeyOrHot
-                keyOnly={true}
-                inProgress={isLoading}
-                signingKey={key}
-                setSigningKey={(k) => setKey(k)}
-                global={global}
-                activeUser={activeUser}
-                onKey={(key) => claimAccount(key)}
-              />
-            </>
-          ) : (
-            <>
-              <div className="claim-credit-title">{_t("rc-info.you-have-unclaimed-rc")}</div>
-              {!isSuccess ? (
-                <Button
-                  size="sm"
-                  className="p-1 pl-2 d-flex align-items-center"
-                  onClick={() => setIsKeySetting(true)}
-                >
-                  <span className="mr-2">{account.pending_claimed_accounts}</span>
-                  {plusCircle}
-                </Button>
-              ) : (
-                <small className="text-success">{_t("rc.info.successfully-claimed")}</small>
-              )}
-            </>
-          )}
-        </div>
+    <div className="claim-credit">
+      <div className="claim-credit-title mb-3">
+        {isKeySetting ? (
+          <div className="claim-credit-title-back" onClick={() => setIsKeySetting(false)}>
+            {arrowLeftSvg}
+          </div>
+        ) : (
+          <></>
+        )}
+        {_t("rc-info.claim-accounts")}
+        <span className="text-primary">{claimAccountAmount}</span>
+      </div>
+      {!isSuccess && !isKeySetting ? (
+        <Button size="sm" onClick={() => setIsKeySetting(true)}>
+          {_t("rc-info.claim")}
+        </Button>
+      ) : (
+        <></>
       )}
-    </>
+      {isSuccess ? (
+        <small className="text-success mb-3 d-block">{_t("rc-info.successfully-claimed")}</small>
+      ) : (
+        <></>
+      )}
+      {error ? (
+        <small className="d-block text-danger mb-3">{(error as Error)?.message}</small>
+      ) : (
+        <></>
+      )}
+      {isKeySetting && !isSuccess ? (
+        <KeyOrHot
+          inProgress={isLoading}
+          signingKey={key}
+          setSigningKey={(k) => setKey(k)}
+          global={global}
+          activeUser={activeUser}
+          onKey={(key) => claimAccount(key)}
+          onHot={() => claimAccountByHiveSigner(account)}
+          onKc={signKs}
+        />
+      ) : (
+        <></>
+      )}
+    </div>
   );
 };
 

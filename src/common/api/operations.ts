@@ -9,7 +9,7 @@ import {
   TransactionConfirmation
 } from "@hiveio/dhive";
 
-import { Parameters } from "hive-uri";
+import { encodeOp, Parameters } from "hive-uri";
 
 import { client as hiveClient } from "./hive";
 
@@ -2286,18 +2286,42 @@ export const claimAccount = async (account: FullAccount, key: PrivateKey) => {
   }
 
   return hiveClient.broadcast.sendOperations(
-    // Generate operation for each claiming
-    [...Array(account.pending_claimed_accounts).keys()].map(() => [
-      "claim_account",
-      {
-        fee: {
-          amount: "0",
-          precision: 3
-        },
-        creator: account.name,
-        extensions: []
-      }
-    ]),
+    [
+      [
+        "claim_account",
+        {
+          fee: {
+            amount: "0",
+            precision: 3,
+            nai: "@@000000021"
+          },
+          creator: account.name,
+          extensions: []
+        }
+      ]
+    ],
     key
+  );
+};
+
+export const claimAccountByHiveSigner = (account: FullAccount) => {
+  hotSign(
+    encodeOp(
+      [
+        "claim_account",
+        {
+          fee: "0.000 HIVE",
+          creator: account.name,
+          extensions: []
+        }
+      ],
+      {}
+    ).replace("hive://sign/", ""),
+    {
+      authority: "active",
+      required_auths: `["${account.name}"]`,
+      required_posting_auths: "[]"
+    },
+    `@${account.name}/wallet`
   );
 };
