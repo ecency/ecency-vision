@@ -114,8 +114,25 @@ label {
     left: 0;
     right: 0;
     z-index: 9;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .switch-camera {
+      opacity: 0.75;
+      cursor: pointer;
+      color: $white;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
 
     .record-btn {
       color: $danger;

@@ -29,6 +29,7 @@ export function VideoUploadRecorder({
   const [recordedVideoSrc, setRecordedVideoSrc] = useState<string>();
   const [recordedBlob, setRecordedBlob] = useState<Blob>();
   const [noPermission, setNoPermission] = useState(false);
+  const [currentCamera, setCurrentCamera] = useState<MediaDeviceInfo>();
 
   const ref = useRef<HTMLVideoElement | null>(null);
 
@@ -39,10 +40,27 @@ export function VideoUploadRecorder({
     isSuccess
   } = useThreeSpeakVideoUpload("video");
 
-  useMount(async () => {
+  useMount(() => initStream());
+
+  useUnmount(() => {
+    stream?.getTracks().forEach((track) => track.stop());
+  });
+
+  useEffect(() => {
+    initStream();
+  }, [currentCamera]);
+
+  useEffect(() => {
+    if (stream && ref.current) {
+      // @ts-ignore
+      ref.current?.srcObject = stream;
+    }
+  }, [stream, ref]);
+
+  const initStream = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: true,
+        video: currentCamera ? { deviceId: currentCamera.deviceId } : true,
         audio: true
       });
       const mediaRecorder = new MediaRecorder(stream, {
@@ -60,20 +78,10 @@ export function VideoUploadRecorder({
         }
       });
     } catch (e) {
+      console.error("Video recording:", e);
       setNoPermission(true);
     }
-  });
-
-  useUnmount(() => {
-    stream?.getTracks().forEach((track) => track.stop());
-  });
-
-  useEffect(() => {
-    if (stream && ref.current) {
-      // @ts-ignore
-      ref.current?.srcObject = stream;
-    }
-  }, [stream, ref]);
+  };
 
   return (
     <div className="video-upload-recorder">
@@ -86,7 +94,18 @@ export function VideoUploadRecorder({
       )}
 
       {!noPermission && !recordedVideoSrc ? (
-        <VideoUploadRecorderActions noPermission={noPermission} mediaRecorder={mediaRecorder} />
+        <VideoUploadRecorderActions
+          noPermission={noPermission}
+          mediaRecorder={mediaRecorder}
+          onCameraSelect={(camera) => {
+            stream
+              ?.getTracks()
+              .filter(({ kind }) => kind === "video")
+              .forEach((track) => track.stop());
+
+            setCurrentCamera(camera);
+          }}
+        />
       ) : (
         <></>
       )}

@@ -40,6 +40,7 @@ export interface MetaData {
   community?: string;
   description?: string;
   video?: any;
+  type?: string;
 }
 
 export interface BeneficiaryRoute {
