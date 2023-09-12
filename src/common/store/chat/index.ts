@@ -5,7 +5,7 @@ import {
   Profile,
   ChannelUpdate,
   MessagesObject
-} from "./../../../providers/message-provider-types";
+} from "../../../managers/message-manager-types";
 import { Dispatch } from "redux";
 
 import {

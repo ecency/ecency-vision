@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { History } from "history";
 import { match } from "react-router";
 import useDebounce from "react-use/lib/useDebounce";
-import { setNostrkeys } from "../../../../providers/message-provider";
-import { Channel } from "../../../../providers/message-provider-types";
+import { setNostrkeys } from "../../../../managers/message-manager";
+import { Channel } from "../../../../managers/message-manager-types";
 import { getAccountReputations } from "../../../api/hive";
 import accountReputation from "../../../helper/account-reputation";
 import { getCommunityLastMessage, getDirectLastMessage, getJoinedCommunities } from "../utils";
@@ -23,7 +23,7 @@ import { CHAT, DropDownStyle } from "../chat-popup/chat-constants";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
 import { AccountWithReputation, NostrKeysType } from "../types";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { ChatContext } from "../chat-provider";
+import { ChatContext } from "../chat-context-provider";
 import { getUserChatPublicKey, formattedUserName } from "../../../components/chats/utils";
 
 interface MatchParams {
@@ -40,7 +40,7 @@ interface Props {
 }
 export default function ChatsSideBar(props: Props) {
   const { chat } = useMappedStore();
-  const context = useContext(ChatContext);
+  const chatContext = useContext(ChatContext);
   const { channels, directContacts, leftChannelsList } = chat;
   const { match, resetChat } = props;
 
@@ -51,7 +51,7 @@ export default function ChatsSideBar(props: Props) {
     setInProgress,
     setRevealPrivKey,
     setReceiverPubKey
-  } = context;
+  } = chatContext;
 
   const chatsSideBarRef = React.createRef<HTMLDivElement>();
   const username = match.params.username;

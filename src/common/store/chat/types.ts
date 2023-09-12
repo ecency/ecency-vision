@@ -5,7 +5,7 @@ import {
   MessagesObject,
   Profile,
   PublicMessage
-} from "./../../../providers/message-provider-types";
+} from "../../../managers/message-manager-types";
 
 export interface DirectContactsType {
   name: string;

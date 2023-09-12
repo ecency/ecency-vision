@@ -8,12 +8,12 @@ import ChatsMessagesHeader from "../chats-messages-header";
 import ChatsMessagesView from "../chats-messages-view";
 
 import "./index.scss";
-import { Channel, ChannelUpdate } from "../../../../providers/message-provider-types";
+import { Channel, ChannelUpdate } from "../../../../managers/message-manager-types";
 import LinearProgress from "../../linear-progress";
 import { NostrKeysType } from "../types";
 import { formattedUserName } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { ChatContext } from "../chat-provider";
+import { ChatContext } from "../chat-context-provider";
 
 interface MatchParams {
   filter: string;
@@ -36,8 +36,8 @@ interface Props {
 }
 
 export default function ChatsMessagesBox(props: Props) {
-  const context = useContext(ChatContext);
-  const { activeUserKeys } = context;
+  const chatContext = useContext(ChatContext);
+  const { activeUserKeys } = chatContext;
   const { activeUser, chat } = useMappedStore();
 
   const { channels, updatedChannel } = chat;

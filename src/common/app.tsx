@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
-import MessageProvider from "../providers/message-provider";
+import MessageManager from "../managers/message-manager";
 import { EntryScreen } from "./pages/entry";
 import { SearchMorePageContainer, SearchPageContainer } from "./pages/search";
 import { ProposalDetailContainer, ProposalsIndexContainer } from "./pages/proposals";
@@ -25,11 +25,12 @@ import { connect } from "react-redux";
 import loadable from "@loadable/component";
 import Announcement from "./components/announcement";
 import FloatingFAQ from "./components/floating-faq";
-import ChatPopUp from "./components/chats/chat-popup";
 import { useMappedStore } from "./store/use-mapped-store";
 import { EntriesCacheManager } from "./core";
 
 import { UserActivityRecorder } from "./components/user-activity-recorder";
+import ChatContextProvider from "./components/chats/chat-context-provider";
+import ChatPopUp from "./components/chats/chat-popup";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -184,8 +185,10 @@ const App = (props: any) => {
 
       <Announcement activeUser={props.activeUser} />
       <FloatingFAQ />
-      <MessageProvider {...props} />
-      <ChatPopUp {...props} />
+      <ChatContextProvider>
+        <MessageManager {...props} />
+        <ChatPopUp {...props} />
+      </ChatContextProvider>
     </EntriesCacheManager>
   );
 };

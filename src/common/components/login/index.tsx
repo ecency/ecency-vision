@@ -41,7 +41,7 @@ import { getPrivateKey, getProfileMetaData } from "../../components/chats/utils"
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
-import { setNostrkeys } from "../../../providers/message-provider";
+import { setNostrkeys } from "../../../managers/message-manager";
 
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";

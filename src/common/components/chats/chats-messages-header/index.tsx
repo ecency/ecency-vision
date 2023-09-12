@@ -6,7 +6,7 @@ import ChatsCommunityDropdownMenu from "../chats-community-dropdown-menu";
 import UserAvatar from "../../user-avatar";
 
 import "./index.scss";
-import { Channel } from "../../../../providers/message-provider-types";
+import { Channel } from "../../../../managers/message-manager-types";
 import { CHATPAGE } from "../chat-popup/chat-constants";
 import { Chat } from "../../../store/chat/types";
 import { formattedUserName } from "../utils";

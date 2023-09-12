@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { ActiveUser } from "../common/store/active-user/types";
 import { DirectContactsType } from "../common/store/chat/types";
@@ -12,12 +12,13 @@ import {
   PublicMessage,
   ChannelUpdate,
   MessagesObject
-} from "./message-provider-types";
+} from "./message-manager-types";
 
-import { initMessageService, MessageEvents } from "../common/helper/message-service";
+import MessageService, { MessageEvents } from "../common/helper/message-service";
 import { getProfileMetaData, getPrivateKey } from "../common/components/chats/utils";
 
 import { useMappedStore } from "../common/store/use-mapped-store";
+import { ChatContext } from "../common/components/chats/chat-context-provider";
 
 export const setNostrkeys = (keys: NostrKeysType) => {
   const detail: NostrKeysType = {
@@ -43,18 +44,27 @@ interface Props {
   addPreviousPublicMessages: (channelId: string, data: MessagesObject) => void;
 }
 
-const MessageProvider = (props: Props) => {
+const MessageManager = (props: Props) => {
   const { activeUser, chat } = useMappedStore();
+
+  // const messageServiceContext = useContext(MessageServiceContext);
+  // const { setMessageServiceInstance } = messageServiceContext;
+
+  // console.log("messageServiceContext", messageServiceContext);
+
   const [messageServiceReady, setMessageServiceReady] = useState(false);
-  const [since, setSince] = useState<number>(0);
+  const [since, setSince] = useState(0);
   const [keys, setKeys] = useState<Keys>();
-  const [messageService, setMessageService] = useState<any>();
+  const [messageService, setMessageService] = useState<MessageService | undefined>(undefined);
   const [directMessageBuffer, setDirectMessageBuffer] = useState<DirectMessage[]>([]);
   const [publicMessageBuffer, setPublicMessageBuffer] = useState<PublicMessage[]>([]);
   const [isCommunityCreated, setIsCommunityCreated] = useState(false);
   const [replacedPublicMessagesBuffer, setReplacedPublicMessagesBuffer] = useState<string[]>([]);
   const [isDirectChatCreated, setIsDirectChatCreated] = useState(false);
   const [replacedDirectMessagesBuffer, setReplacedDirectMessagesBuffer] = useState<string[]>([]);
+
+  const { messageServiceInstance, initMessageServiceInstance, setMessageServiceInstance } =
+    useContext(ChatContext);
 
   useEffect(() => {
     if (chat.channels.length !== 0) {
@@ -74,9 +84,11 @@ const MessageProvider = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    if (!window.messageService && keys?.priv) {
-      const messageServiceInstance = initMessageService(keys);
-      setMessageService(messageServiceInstance);
+    if (!messageServiceInstance && keys?.priv) {
+      const messageService = initMessageServiceInstance(keys);
+      console.log("I run from that", messageService);
+      setMessageServiceInstance(messageService!);
+      setMessageService(messageService!);
     }
   }, [keys]);
 
@@ -88,8 +100,10 @@ const MessageProvider = (props: Props) => {
 
   const createMSInstance = (e: Event) => {
     const detail = (e as CustomEvent).detail as NostrKeysType;
-    const messageServiceInstance = initMessageService(detail);
-    setMessageService(messageServiceInstance);
+    const messageService = initMessageServiceInstance(detail);
+    console.log("I am here messageServiceInstance", messageService);
+    setMessageServiceInstance(messageService!);
+    setMessageService(messageService!);
   };
 
   const getNostrKeys = async (activeUser: ActiveUser) => {
@@ -264,8 +278,8 @@ const MessageProvider = (props: Props) => {
 
   // Channel creation handler
   const handleChannelCreation = (data: Channel[]) => {
-    const append = data.filter((x) => chat.channels.find((y) => y.id === x.id) === undefined);
-    props.addChannels(append);
+    console.log("handle channel creation run");
+    props.addChannels(data.filter((x) => !chat.channels.find((y) => y.id === x.id)));
   };
 
   useEffect(() => {
@@ -343,20 +357,18 @@ const MessageProvider = (props: Props) => {
     } else {
       setPublicMessageBuffer((publicMessageBuffer) => [...publicMessageBuffer, ...data]);
     }
-
     let uniqueUsers: string[] = [];
+
     for (const item of data) {
-      const isCreatorMatch = chat.profiles.some((profile) => profile.creator === item.creator);
+      const isCreatorMatch = chat.profiles.find((profile) => profile.creator === item.creator);
 
       if (!isCreatorMatch) {
-        for (const item of data) {
-          if (!uniqueUsers.includes(item.creator)) {
-            uniqueUsers.push(item.creator);
-          }
+        if (!uniqueUsers.includes(item.creator)) {
+          uniqueUsers.push(item.creator);
         }
       }
     }
-    window?.messageService?.loadProfiles(uniqueUsers);
+    messageServiceInstance?.loadProfiles(uniqueUsers);
   };
 
   useEffect(() => {
@@ -469,4 +481,4 @@ const MessageProvider = (props: Props) => {
   return <>{}</>;
 };
 
-export default MessageProvider;
+export default MessageManager;

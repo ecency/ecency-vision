@@ -1,10 +1,6 @@
 import React, { RefObject, useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Channel,
-  DirectMessage,
-  PublicMessage
-} from "../../../../providers/message-provider-types";
+import { Channel, DirectMessage, PublicMessage } from "../../../../managers/message-manager-types";
 import {
   fetchCommunityMessages,
   fetchDirectMessages,
@@ -27,7 +23,7 @@ import ChatInput from "../chat-input";
 import ChatsScroller from "../chats-scroller";
 import { CHATPAGE } from "../chat-popup/chat-constants";
 import { EmojiPickerStyleProps, NostrKeysType } from "../types";
-import { ChatContext } from "../chat-provider";
+import { ChatContext } from "../chat-context-provider";
 
 const EmojiPickerStyle: EmojiPickerStyleProps = {
   width: "56.5%",
@@ -64,8 +60,7 @@ export default function ChatsMessagesView(props: Props) {
     deletePublicMessage
   } = props;
 
-  const context = useContext(ChatContext);
-  const { receiverPubKey } = context;
+  const { messageServiceInstance, receiverPubKey } = useContext(ChatContext);
 
   // console.log("Receiver pubkey in Message view component", receiverPubKey, setReceiverPubKey);
 
@@ -129,7 +124,7 @@ export default function ChatsMessagesView(props: Props) {
     if (!hasMore || inProgress) return;
 
     setInProgress(true);
-    window.messageService
+    messageServiceInstance
       ?.fetchPrevMessages(currentChannel!.id, publicMessages[0].created)
       .then((num) => {
         console.log("number", num);

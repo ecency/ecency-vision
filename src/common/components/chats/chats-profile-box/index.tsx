@@ -8,6 +8,7 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 import { getAccountFull } from "../../../api/hive";
 import { getCommunity } from "../../../api/bridge";
 import { formattedUserName } from "../utils";
+import { useCommunityCache } from "../../../core/caches/communities-cache";
 
 export interface profileData {
   joiningData: string;
@@ -31,6 +32,14 @@ export default function ChatsProfileBox(props: Props) {
   const { chat, activeUser } = useMappedStore();
 
   const [profileData, setProfileData] = useState<profileData>();
+
+  const { data: community } = useCommunityCache(username ? username! : communityName!);
+
+  // useEffect(() => {
+  //   if (community) {
+  //     console.log("Community 1st", community);
+  //   }
+  // }, [community, communityName]);
 
   useEffect(() => {
     fetchProfileData();
@@ -60,7 +69,6 @@ export default function ChatsProfileBox(props: Props) {
           username: response.name
         });
       } else {
-        const community = await getCommunity(username!, activeUser?.username);
         setProfileData({
           joiningData: community?.created_at!,
           about: community?.about,
@@ -82,7 +90,6 @@ export default function ChatsProfileBox(props: Props) {
           username: response.name
         });
       } else {
-        const community = await getCommunity(communityName!, activeUser?.username);
         setProfileData({
           joiningData: community?.created_at!,
           about: community?.about,

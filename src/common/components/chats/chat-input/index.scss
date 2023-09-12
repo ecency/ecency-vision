@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "../../../../style/vars_mixins";
 
 .chat {
   grid-row: span 1;
@@ -44,6 +41,9 @@
     .chat-input {
       padding-top: 10px;
       border: none;
+      max-width: 100%;
+      overflow-wrap: break-word;
+
       @include themify(day) {
         background: #e4e6eb;
       }

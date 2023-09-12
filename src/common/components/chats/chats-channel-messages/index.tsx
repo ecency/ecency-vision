@@ -1,4 +1,4 @@
-import React, { useRef, useState, RefObject, useEffect } from "react";
+import React, { useRef, useState, RefObject, useEffect, useContext } from "react";
 import mediumZoom, { Zoom } from "medium-zoom";
 import {
   Channel,
@@ -6,7 +6,7 @@ import {
   DirectMessage,
   Profile,
   PublicMessage
-} from "../../../../providers/message-provider-types";
+} from "../../../../managers/message-manager-types";
 import { History } from "history";
 import { renderPostBody } from "@ecency/render-helper";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -38,6 +38,7 @@ import { CHATPAGE } from "../chat-popup/chat-constants";
 import { Theme } from "../../../store/global/types";
 import { NostrKeysType } from "../types";
 import { formatMessageTime, isMessageGif, isMessageImage, formatMessageDate } from "../utils";
+import { ChatContext } from "../chat-context-provider";
 
 interface Props {
   publicMessages: PublicMessage[];
@@ -45,9 +46,7 @@ interface Props {
   activeUserKeys: NostrKeysType;
   username: string;
   from?: string;
-  users: User[];
-  ui: UI;
-  history: History | null;
+  history: History;
   isScrollToBottom: boolean;
   isScrolled?: boolean;
   isActveUserRemoved: boolean;
@@ -75,7 +74,7 @@ export default function ChatsChannelMessages(props: Props) {
     currentChannelSetter,
     deletePublicMessage
   } = props;
-  const { chat, global, activeUser } = useMappedStore();
+  const { chat, global, activeUser, ui, users } = useMappedStore();
 
   let prevGlobal = usePrevious(global);
 
@@ -91,6 +90,8 @@ export default function ChatsChannelMessages(props: Props) {
   const [privilegedUsers, setPrivilegedUsers] = useState<string[]>([]);
   const [hiddenMsgId, setHiddenMsgId] = useState("");
   const [resendMessage, setResendMessage] = useState<PublicMessage>();
+
+  const { messageServiceInstance } = useContext(ChatContext);
 
   // useEffect(() => {
   //   scrollToBottom();
@@ -153,7 +154,7 @@ export default function ChatsChannelMessages(props: Props) {
 
   const sendDM = (name: string, pubkey: string) => {
     if (dmMessage) {
-      window.messageService?.sendDirectMessage(pubkey, dmMessage);
+      messageServiceInstance?.sendDirectMessage(pubkey, dmMessage);
 
       // setIsCurrentUser(true);
       // setCurrentUser(name);
@@ -167,7 +168,7 @@ export default function ChatsChannelMessages(props: Props) {
       //   !props.chat.directContacts.some((contact) => contact.name === currentUser) &&
       //   isCurrentUser
       // ) {
-      //   window.messageService?.publishContacts(currentUser, receiverPubKey);
+      //   messageServiceInstance?.publishContacts(currentUser, receiverPubKey);
       // }
 
       if (from && from === CHATPAGE) {
@@ -286,7 +287,7 @@ export default function ChatsChannelMessages(props: Props) {
     }
 
     try {
-      window.messageService?.updateChannel(currentChannel!, updatedMetaData);
+      messageServiceInstance?.updateChannel(currentChannel!, updatedMetaData);
       currentChannelSetter({ ...currentChannel!, ...updatedMetaData });
       setStep(0);
       // if (operationType === HIDEMESSAGE) {
@@ -365,6 +366,8 @@ export default function ChatsChannelMessages(props: Props) {
                           activeUser={activeUser}
                           targetUsername={name!}
                           where={"chat-box"}
+                          ui={ui}
+                          users={users}
                         />
 
                         {communityAdmins.includes(activeUser?.username!) && (

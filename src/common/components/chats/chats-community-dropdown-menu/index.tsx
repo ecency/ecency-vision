@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { History } from "history";
 import DropDown, { MenuItem } from "../../dropdown";
 import useDebounce from "react-use/lib/useDebounce";
@@ -18,16 +18,17 @@ import {
   Channel,
   ChannelUpdate,
   communityModerator
-} from "../../../../providers/message-provider-types";
+} from "../../../../managers/message-manager-types";
 import { error, success } from "../../feedback";
 import { Button, Form, Modal, Row, Col, InputGroup, FormControl } from "react-bootstrap";
 import LinearProgress from "../../linear-progress";
 import { ROLES } from "../../../store/communities";
 import UserAvatar from "../../user-avatar";
 import { copyToClipboard, getProfileMetaData } from "../utils";
+import { ChatContext } from "../chat-context-provider";
 
 interface Props {
-  history: History | null;
+  history: History;
   from?: string;
   username: string;
   currentChannel: Channel;
@@ -49,6 +50,8 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
   const [communityAdmins, setCommunityAdmins] = useState<string[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<{ name: string; pubkey: string }[]>([]);
   const [removedUserId, setRemovedUserID] = useState("");
+
+  const { messageServiceInstance } = useContext(ChatContext);
 
   useEffect(() => {
     getCommunityAdmins();
@@ -113,7 +116,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
       newUpdatedModerator.role = selectedRole;
       newUpdatedChannel!.communityModerators![moderatorIndex!] = newUpdatedModerator;
       currentChannelSetter(newUpdatedChannel);
-      window.messageService?.updateChannel(currentChannel, newUpdatedChannel);
+      messageServiceInstance?.updateChannel(currentChannel, newUpdatedChannel);
       success("Roles updated succesfully");
     }
   };
@@ -481,7 +484,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
         break;
     }
     try {
-      window.messageService?.updateChannel(currentChannel!, updatedMetaData);
+      messageServiceInstance?.updateChannel(currentChannel!, updatedMetaData);
       currentChannelSetter({ ...currentChannel!, ...updatedMetaData });
 
       if (operationType === UNBLOCKUSER) {

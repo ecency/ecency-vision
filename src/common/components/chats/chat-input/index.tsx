@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Form, FormControl, InputGroup } from "react-bootstrap";
 import axios from "axios";
 
-import { Channel } from "../../../../providers/message-provider-types";
+import { Channel } from "../../../../managers/message-manager-types";
 import { EmojiPickerStyleProps } from "../types";
 
 import ClickAwayListener from "../../clickaway-listener";
@@ -17,7 +17,8 @@ import {
   chatBoxImageSvg,
   messageSendSvg
 } from "../../../img/svg";
-import { GifImagesStyle, UPLOADING } from "../chat-popup/chat-constants";
+import { CHAT_FILE_CONTENT_TYPES, GifImagesStyle, UPLOADING } from "../chat-popup/chat-constants";
+import { classNameObject } from "../../../helper/class-name-object";
 
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { _t } from "../../../i18n";
@@ -26,7 +27,7 @@ import { uploadImage } from "../../../api/misc";
 import { addImage } from "../../../api/private-api";
 
 import "./index.scss";
-import { ChatContext } from "../chat-provider";
+import { ChatContext } from "../chat-context-provider";
 
 interface Props {
   isCurrentUser: boolean;
@@ -48,6 +49,9 @@ export default function ChatInput(props: Props) {
   const [message, setMessage] = useState("");
   const [shGif, setShGif] = useState(false);
   const [isMessageText, setIsMessageText] = useState(false);
+
+  const { messageServiceInstance, chatPrivKey } = useContext(ChatContext);
+  // console.log("yaha check kar ka dekho", messageServiceInstance, chatPrivKey);
 
   const {
     isCommunity,
@@ -80,21 +84,21 @@ export default function ChatInput(props: Props) {
 
   const handleGifSelection = (gif: string) => {
     isCurrentUser
-      ? window.messageService?.sendDirectMessage(receiverPubKey!, gif)
-      : window?.messageService?.sendPublicMessage(currentChannel, gif, [], "");
+      ? messageServiceInstance?.sendDirectMessage(receiverPubKey!, gif)
+      : messageServiceInstance?.sendPublicMessage(currentChannel, gif, [], "");
   };
 
   const sendMessage = () => {
     if (message.length !== 0 && !message.includes(UPLOADING)) {
       if (isCommunity) {
         if (!isActveUserRemoved) {
-          window?.messageService?.sendPublicMessage(currentChannel, message, [], "");
+          messageServiceInstance?.sendPublicMessage(currentChannel, message, [], "");
         } else {
           error(_t("chat.message-warning"));
         }
       }
       if (isCurrentUser) {
-        window.messageService?.sendDirectMessage(receiverPubKey!, message);
+        messageServiceInstance?.sendDirectMessage(receiverPubKey!, message);
       }
       setMessage("");
       setIsMessageText(false);
@@ -104,13 +108,13 @@ export default function ChatInput(props: Props) {
       !chat.directContacts.some((contact) => contact.name === currentUser) &&
       isCurrentUser
     ) {
-      window.messageService?.publishContacts(currentUser, receiverPubKey);
+      messageServiceInstance?.publishContacts(currentUser, receiverPubKey);
     }
   };
 
   const checkFile = (filename: string) => {
     const filenameLow = filename.toLowerCase();
-    return ["jpg", "jpeg", "gif", "png"].some((el) => filenameLow.endsWith(el));
+    return CHAT_FILE_CONTENT_TYPES.some((el) => filenameLow.endsWith(el));
   };
 
   const fileInputChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -249,12 +253,11 @@ export default function ChatInput(props: Props) {
 
             <input
               onChange={fileInputChanged}
-              className="file-input"
+              className="file-input d-none"
               ref={fileInputRef}
               type="file"
               accept="image/*"
               multiple={true}
-              style={{ display: "none" }}
             />
           </React.Fragment>
         )}
@@ -265,7 +268,7 @@ export default function ChatInput(props: Props) {
             e.stopPropagation();
             sendMessage();
           }}
-          style={{ width: "100%" }}
+          className="w-100"
         >
           <InputGroup className="chat-input-group">
             <Form.Control
@@ -277,11 +280,14 @@ export default function ChatInput(props: Props) {
               placeholder={_t("chat.start-chat-placeholder")}
               autoComplete="off"
               className="chat-input"
-              style={{ maxWidth: "100%", overflowWrap: "break-word" }}
               disabled={(isCurrentUser && receiverPubKey?.length === 0) || isActveUserRemoved}
             />
             <InputGroup.Append
-              className={`msg-svg ${isMessageText || message.length !== 0 ? "active" : ""}`}
+              // className={`msg-svg ${isMessageText || message.length !== 0 ? "active" : ""}`}
+              className={classNameObject({
+                "msg-svg": true,
+                active: isMessageText || message.length !== 0
+              })}
               onClick={sendMessage}
             >
               {messageSendSvg}

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Keys } from "../../../managers/message-manager-types";
+import MessageService from "../../helper/message-service";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { NostrKeysType } from "./types";
 import { getPrivateKey, getUserChatPublicKey } from "./utils";
@@ -9,15 +11,19 @@ interface Context {
   revealPrivKey: boolean;
   chatPrivKey: string;
   receiverPubKey: string;
+  messageServiceInstance: MessageService | undefined;
   setRevealPrivKey: (d: boolean) => void;
   setInProgress: (d: boolean) => void;
   setChatPrivKey: (key: string) => void;
   setActiveUserKeys: (keys: NostrKeysType) => void;
   setReceiverPubKey: (key: string) => void;
+
+  setMessageServiceInstance: (instance: MessageService | undefined) => void;
+  initMessageServiceInstance: (keys: Keys) => void;
 }
 
-interface ChatProviderProps {
-  children: (context: Context) => React.ReactNode;
+interface Props {
+  children: JSX.Element | JSX.Element[];
 }
 
 export const ChatContext = React.createContext<Context>({
@@ -26,14 +32,17 @@ export const ChatContext = React.createContext<Context>({
   revealPrivKey: false,
   chatPrivKey: "",
   receiverPubKey: "",
+  messageServiceInstance: undefined,
   setRevealPrivKey: () => {},
   setInProgress: () => {},
   setChatPrivKey: () => {},
   setActiveUserKeys: () => {},
-  setReceiverPubKey: () => {}
+  setReceiverPubKey: () => {},
+  setMessageServiceInstance: () => {},
+  initMessageServiceInstance: () => {}
 });
 
-export default function ChatProvider({ children }: ChatProviderProps) {
+export default function ChatContextProvider({ children }: Props) {
   const { activeUser } = useMappedStore();
 
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
@@ -41,10 +50,19 @@ export default function ChatProvider({ children }: ChatProviderProps) {
   const [chatPrivKey, setChatPrivKey] = useState("");
   const [revealPrivKey, setRevealPrivKey] = useState(false);
   const [receiverPubKey, setReceiverPubKey] = useState("");
+  const [messageServiceInstance, setMessageServiceInstance] = useState<MessageService | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     getActiveUserKeys();
   }, []);
+
+  useEffect(() => {
+    if (messageServiceInstance) {
+      console.log("messageServiceInstance in context", messageServiceInstance);
+    }
+  }, [messageServiceInstance]);
 
   useEffect(() => {
     if (inProgress) {
@@ -66,6 +84,22 @@ export default function ChatProvider({ children }: ChatProviderProps) {
     setActiveUserKeys(activeUserKeys);
   };
 
+  const initMessageServiceInstance = (keys: Keys) => {
+    console.log("Keys are in context", keys, messageServiceInstance);
+    if (messageServiceInstance) {
+      messageServiceInstance.close();
+      setMessageServiceInstance(undefined);
+    }
+
+    let newMessageService: MessageService | undefined = undefined;
+    if (keys) {
+      newMessageService = new MessageService(keys.priv, keys.pub);
+      console.log("raven instance created", newMessageService);
+      setMessageServiceInstance(newMessageService);
+    }
+    return newMessageService;
+  };
+
   return (
     <ChatContext.Provider
       value={{
@@ -74,25 +108,17 @@ export default function ChatProvider({ children }: ChatProviderProps) {
         revealPrivKey,
         receiverPubKey,
         chatPrivKey,
+        messageServiceInstance,
         setRevealPrivKey,
         setInProgress,
         setChatPrivKey,
         setActiveUserKeys,
-        setReceiverPubKey
+        setReceiverPubKey,
+        setMessageServiceInstance,
+        initMessageServiceInstance
       }}
     >
-      {children({
-        activeUserKeys,
-        inProgress,
-        revealPrivKey,
-        receiverPubKey,
-        chatPrivKey,
-        setRevealPrivKey,
-        setInProgress,
-        setChatPrivKey,
-        setActiveUserKeys,
-        setReceiverPubKey
-      })}
+      {children}
     </ChatContext.Provider>
   );
 }

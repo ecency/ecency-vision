@@ -4,7 +4,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { search as searchApi, SearchResult } from "../api/search-api";
 import { getSubscriptions } from "../api/bridge";
 import { EntryFilter, ListStyle } from "../store/global/types";
-import { Channel } from "../../providers/message-provider-types";
+import { Channel } from "../../managers/message-manager-types";
 import { usePrevious } from "../util/use-previous";
 import * as ls from "../util/local-storage";
 import {
@@ -46,9 +46,10 @@ import "./community.scss";
 import { Button, Modal } from "react-bootstrap";
 import LoginRequired from "../components/login-required";
 import { useMappedStore } from "../store/use-mapped-store";
-import { setNostrkeys } from "../../providers/message-provider";
+import { setNostrkeys } from "../../managers/message-manager";
 import { QueryIdentifiers, useCommunityCache } from "../core";
 import { useQueryClient } from "@tanstack/react-query";
+import { profileUpdater } from "../components/chats/chat-popup";
 
 interface MatchParams {
   filter: string;
@@ -83,6 +84,7 @@ export const CommunityPage = (props: Props) => {
   const [communities, setCommunities] = useState<Channel[]>([]);
   const [isCommunityAlreadyJoined, setIsCommunityAlreadyJoined] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
 
   const prevMatch = usePrevious(props.match);
   const prevActiveUser = usePrevious(props.activeUser);
@@ -90,6 +92,13 @@ export const CommunityPage = (props: Props) => {
   useEffect(() => {
     fetchUserProfileData();
   }, [props.activeUser]);
+
+  useEffect(() => {
+    if (shouldUpdateProfile) {
+      console.log("state changed in useeffect");
+      profileUpdater();
+    }
+  }, [shouldUpdateProfile]);
 
   useEffect(() => {
     const communities = getJoinedCommunities(chat.channels, chat.leftChannelsList);
@@ -243,15 +252,12 @@ export const CommunityPage = (props: Props) => {
     setInProgress(true);
     const keys = createNoStrAccount();
     ls.set(`${props.activeUser?.username}_nsPrivKey`, keys.priv);
-    await setProfileMetaData(props.activeUser, keys.pub);
     setNostrkeys(keys);
+    await setProfileMetaData(props.activeUser, keys.pub);
     setHasUserJoinedChat(true);
-    window.messageService?.updateProfile({
-      name: props.activeUser?.username!,
-      about: "",
-      picture: ""
-    });
     setInProgress(false);
+    console.log("State has been changed");
+    setShouldUpdateProfile(true);
   };
 
   const joinCommunityChat = () => {

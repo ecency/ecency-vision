@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { copyContent } from "../../img/svg";
-import { ChatContext } from "../chats/chat-provider";
+import { ChatContext } from "../chats/chat-context-provider";
 import { copyToClipboard } from "../chats/utils";
 import { success } from "../feedback";
 import OrDivider from "../or-divider";

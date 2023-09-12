@@ -11,22 +11,13 @@ import "./index.scss";
 
 import * as ls from "../../util/local-storage";
 import { Button, Spinner } from "react-bootstrap";
-import { setNostrkeys } from "../../../providers/message-provider";
+import { setNostrkeys } from "../../../managers/message-manager";
 import ManageChatKey from "../../components/manage-chat-key";
 import Feedback, { success } from "../../components/feedback";
-import { NostrKeysType } from "../../components/chats/types";
-import {
-  copyToClipboard,
-  createNoStrAccount,
-  getPrivateKey,
-  getProfileMetaData,
-  setProfileMetaData
-} from "../../components/chats/utils";
 import { useMappedStore } from "../../store/use-mapped-store";
-import ChatProvider, { ChatContext } from "../../components/chats/chat-provider";
+import ChatContextProvider, { ChatContext } from "../../components/chats/chat-context-provider";
 import ImportChats from "../../components/chats/import-chats";
 import JoinChat from "../../components/chats/join-chat";
-import SetActiveUserChatKeys from "../../components/chats/set-chat-keys";
 
 interface MatchParams {
   filter: string;
@@ -72,56 +63,53 @@ export const Chats = (props: Props) => {
   };
 
   return (
-    <ChatProvider>
-      {(context) => (
-        <>
-          <Feedback activeUser={activeUser} />
-          <SetActiveUserChatKeys />
-          {global.isElectron ? <NavBarElectron {...props} /> : <NavBar history={props.history} />}
-          <div
-            style={{ marginTop: marginTop }}
-            className={props.global.isElectron ? "chats-page mb-lg-0 pt-6" : "chats-page mb-lg-0"}
-          >
-            {context.inProgress ? (
-              <div className="d-flex justify-content-center align-items-center full-page">
-                <Spinner animation="border" variant="primary" />
-              </div>
-            ) : (
-              <>
-                {context.activeUserKeys?.pub ? (
-                  context.chatPrivKey ? (
-                    <>
-                      <ChatsSideBar {...props} />
-                      {context.revealPrivKey ? (
-                        <div className="chats-messages-box">
-                          <ManageChatKey />
-                        </div>
-                      ) : (
-                        // Handle the case when the user hasn't joined any community here
-                        <ChatsMessagesBox
-                          {...props}
-                          deletePublicMessage={props.deletePublicMessage}
-                        />
-                      )}
-                    </>
-                  ) : (
-                    <>
-                      <div className="import-chat">
-                        <ImportChats />
+    <ChatContextProvider>
+      <>
+        <Feedback activeUser={activeUser} />
+        {global.isElectron ? <NavBarElectron {...props} /> : <NavBar history={props.history} />}
+        <div
+          style={{ marginTop: marginTop }}
+          className={props.global.isElectron ? "chats-page mb-lg-0 pt-6" : "chats-page mb-lg-0"}
+        >
+          {context.inProgress ? (
+            <div className="d-flex justify-content-center align-items-center full-page">
+              <Spinner animation="border" variant="primary" />
+            </div>
+          ) : (
+            <>
+              {context.activeUserKeys?.pub ? (
+                context.chatPrivKey ? (
+                  <>
+                    <ChatsSideBar {...props} />
+                    {context.revealPrivKey ? (
+                      <div className="chats-messages-box">
+                        <ManageChatKey />
                       </div>
-                    </>
-                  )
+                    ) : (
+                      // Handle the case when the user hasn't joined any community here
+                      <ChatsMessagesBox
+                        {...props}
+                        deletePublicMessage={props.deletePublicMessage}
+                      />
+                    )}
+                  </>
                 ) : (
-                  <div className="d-flex justify-content-center align-items-center full-page">
-                    <JoinChat {...props} />
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-        </>
-      )}
-    </ChatProvider>
+                  <>
+                    <div className="import-chat">
+                      <ImportChats />
+                    </div>
+                  </>
+                )
+              ) : (
+                <div className="d-flex justify-content-center align-items-center full-page">
+                  <JoinChat {...props} />
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </>
+    </ChatContextProvider>
   );
 };
 export default connect(pageMapStateToProps, pageMapDispatchToProps)(Chats);

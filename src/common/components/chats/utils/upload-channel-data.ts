@@ -1,4 +1,4 @@
-import { Channel } from "../../../../providers/message-provider-types";
+import { Channel } from "../../../../managers/message-manager-types";
 import { getAccountFull } from "../../../api/hive";
 import { updateProfile } from "../../../api/operations";
 

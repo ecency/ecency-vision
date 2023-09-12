@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { DirectMessage } from "../../../../providers/message-provider-types";
+import { DirectMessage } from "../../../../managers/message-manager-types";
 import mediumZoom, { Zoom } from "medium-zoom";
 import { Global, Theme } from "../../../store/global/types";
 import {

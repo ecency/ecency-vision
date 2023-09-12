@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { History } from "history";
 
@@ -8,9 +8,9 @@ import { ActiveUser } from "../../../store/active-user/types";
 import { _t } from "../../../i18n";
 
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { Channel, communityModerator } from "../../../../providers/message-provider-types";
+import { Channel, communityModerator } from "../../../../managers/message-manager-types";
 import * as ls from "../../../util/local-storage";
-import { setNostrkeys } from "../../../../providers/message-provider";
+import { setNostrkeys } from "../../../../managers/message-manager";
 import { NOSTRKEY } from "../chat-popup/chat-constants";
 import { NostrKeysType } from "../types";
 import {
@@ -19,6 +19,7 @@ import {
   setChannelMetaData,
   setProfileMetaData
 } from "../utils";
+import { ChatContext } from "../chat-context-provider";
 
 interface Props {
   history: History;
@@ -28,6 +29,8 @@ interface Props {
 }
 
 export default function JoinCommunityChatBtn(props: Props) {
+  const { messageServiceInstance } = useContext(ChatContext);
+  console.log("Bhai kiya masla ha apko", messageServiceInstance);
   const { chat } = useMappedStore();
   const [inProgress, setInProgress] = useState(false);
   const [isCommunityChatJoined, setIsCommunityChatJoined] = useState(false);
@@ -55,7 +58,7 @@ export default function JoinCommunityChatBtn(props: Props) {
   }, [activeUserKeys]);
 
   useEffect(() => {
-    if (window.messageService) {
+    if (messageServiceInstance) {
       fetchUserProfileData();
       if (loadCommunity) {
         window?.messageService?.loadChannel(currentChannel?.id!);
@@ -65,7 +68,7 @@ export default function JoinCommunityChatBtn(props: Props) {
       }
     }
   }, [
-    typeof window !== "undefined" && window?.messageService,
+    typeof window !== "undefined" && messageServiceInstance,
     loadCommunity,
     communityRoles,
     initiateCommunityChat
@@ -174,6 +177,7 @@ export default function JoinCommunityChatBtn(props: Props) {
   };
 
   const joinCommunityChat = () => {
+    console.log("Join community chat", messageServiceInstance);
     if (!hasUserJoinedChat) {
       handleJoinChat();
       setLoadCommunity(true);
@@ -220,7 +224,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     await setProfileMetaData(props.activeUser, keys.pub);
     setHasUserJoinedChat(true);
     setNostrkeys(keys);
-    window.messageService?.updateProfile({
+    messageServiceInstance?.updateProfile({
       name: props.activeUser?.username!,
       about: "",
       picture: ""

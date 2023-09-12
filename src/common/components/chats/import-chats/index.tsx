@@ -6,8 +6,8 @@ import { keySvg } from "../../../img/svg";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import OrDivider from "../../or-divider";
 import * as ls from "../../../util/local-storage";
-import { ChatContext } from "../chat-provider";
-import { setNostrkeys } from "../../../../providers/message-provider";
+import { ChatContext } from "../chat-context-provider";
+import { setNostrkeys } from "../../../../managers/message-manager";
 
 import "./index.scss";
 import LinearProgress from "../../linear-progress";
@@ -21,10 +21,10 @@ export default function ImportChats() {
   const [error, setError] = useState("");
   const [inProgress, setInProgress] = useState(false);
   const [privKey, setPrivKey] = useState("");
-  const context = useContext(ChatContext);
   const [step, setStep] = useState(0);
 
-  const { activeUserKeys, setChatPrivKey, setActiveUserKeys } = context;
+  const { activeUserKeys, messageServiceInstance, setActiveUserKeys, setChatPrivKey } =
+    useContext(ChatContext);
 
   const handleImportChatSubmit = () => {
     try {
@@ -61,7 +61,7 @@ export default function ImportChats() {
     setChatPrivKey(keys.priv);
     await setProfileMetaData(activeUser, keys.pub);
     setNostrkeys(keys);
-    window.messageService?.updateProfile({
+    messageServiceInstance?.updateProfile({
       name: activeUser?.username!,
       about: "",
       picture: ""

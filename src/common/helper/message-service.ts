@@ -11,7 +11,7 @@ import {
   Metadata,
   Profile,
   PublicMessage
-} from "../../providers/message-provider-types";
+} from "../../managers/message-manager-types";
 import { encrypt, decrypt } from "../../lib/nostr-tools/nip04";
 import SimplePool from "../../lib/nostr-tools/pool";
 import { signEvent, getEventHash, Event } from "../../lib/nostr-tools/event";
@@ -92,6 +92,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   private async init() {
+    console.log("Init run of message service");
     this.eventQueue = [];
     this.eventQueueFlag = true;
     this.eventQueueBuffer = [];
@@ -530,6 +531,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public async updateProfile(profile: Metadata) {
+    console.log("Profile update run");
     return this.publish(Kind.Metadata, [], JSON.stringify(profile));
   }
 
@@ -701,6 +703,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
           : null;
       })
       .filter(MessageService.notEmpty);
+    console.log("Channel creation event is emitted", channelCreations);
     if (channelCreations.length > 0) {
       this.emit(MessageEvents.ChannelCreation, channelCreations);
     }
@@ -800,7 +803,8 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     this.eventQueueFlag = true;
   }
 
-  close = () => {
+  public close = () => {
+    console.log("Close run");
     this.pool.close(this.readRelays);
     this.removeAllListeners();
   };
@@ -838,16 +842,19 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
 
 export default MessageService;
 
-export const initMessageService = (keys: Keys): MessageService | undefined => {
-  if (window.messageService) {
-    window.messageService.close();
-    window.messageService = undefined;
-  }
+// export const initMessageService = (keys: Keys): MessageService | undefined => {
+//   if (window.messageService) {
+//     window.messageService.close();
+//     window.messageService = undefined;
+//   }
 
-  if (keys) {
-    window.messageService = new MessageService(keys.priv, keys.pub);
-  }
-  console.log("raven instance created");
+//   // const { messageServiceInstance, setMessageServiceInstance } = useMessageServiceContext();
+//   // console.log("I have to check this", messageServiceInstance, setMessageServiceInstance);
 
-  return window.messageService;
-};
+//   if (keys) {
+//     window.messageService = new MessageService(keys.priv, keys.pub);
+//   }
+//   console.log("raven instance created", window.messageService);
+
+//   return window.messageService;
+// };

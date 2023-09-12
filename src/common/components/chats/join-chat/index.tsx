@@ -1,19 +1,18 @@
 import React, { useContext, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { ChatContext } from "../chat-provider";
+import { ChatContext } from "../chat-context-provider";
 import { createNoStrAccount, setProfileMetaData } from "../utils";
 
 import * as ls from "../../../util/local-storage";
-import { setNostrkeys } from "../../../../providers/message-provider";
+import { setNostrkeys } from "../../../../managers/message-manager";
 
 interface Props {
   resetChat: () => void;
 }
 
 export default function JoinChat(props: Props) {
-  const context = useContext(ChatContext);
-  const { setChatPrivKey, setActiveUserKeys } = context;
+  const { messageServiceInstance, setChatPrivKey, setActiveUserKeys } = useContext(ChatContext);
 
   const { activeUser } = useMappedStore();
 
@@ -28,7 +27,7 @@ export default function JoinChat(props: Props) {
     setChatPrivKey(keys.priv);
     await setProfileMetaData(activeUser, keys.pub);
     setNostrkeys(keys);
-    window.messageService?.updateProfile({
+    messageServiceInstance?.updateProfile({
       name: activeUser?.username!,
       about: "",
       picture: ""
