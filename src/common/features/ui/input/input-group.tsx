@@ -2,6 +2,8 @@ import React, { HTMLAttributes, PropsWithChildren, ReactElement, ReactNode } fro
 import { classNameObject } from "../../../helper/class-name-object";
 import { INPUT_IN_GROUP } from "./form-controls/input-styles";
 import { Spinner } from "../spinner";
+import { BUTTON_IN_GROUP } from "@ui/button/styles";
+import { Button } from "@ui/button";
 
 interface Props {
   append?: ReactNode;
@@ -27,19 +29,21 @@ export function InputGroup({
       className={classNameObject({
         "ecency-input-group flex items-stretch w-full": true,
         [className ?? ""]: !!className,
-        [INPUT_IN_GROUP]: true
+        [INPUT_IN_GROUP]: true,
+        [BUTTON_IN_GROUP]: true
       })}
       onClick={onClick}
     >
       {prepend ? (
         <div
           className={classNameObject({
-            "ecency-input-group-prepend flex items-center justify-center border-2 border-r-0 rounded-tl-full rounded-bl-full bg-gray-200":
+            "ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200":
               true,
             "px-2.5": typeof prepend === "string" || (prepend as ReactElement)?.type === Spinner,
             "[&>.ecency-spinner]:w-3.5 [&>.ecency-spinner]:h-3.5":
               (prepend as ReactElement)?.type === Spinner,
-            "[&>svg]:w-4 [&>svg]:h-4 px-2": true
+            "[&>svg]:w-4 [&>svg]:h-4 px-2": true,
+            "border-2": (prepend as ReactElement)?.type !== Button
           })}
           onClick={() => onPrependClick?.()}
         >
@@ -52,11 +56,13 @@ export function InputGroup({
       {append ? (
         <div
           className={classNameObject({
-            "border-2 border-l-0 rounded-tr-full rounded-br-full bg-gray-200": true,
+            "ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200":
+              true,
             "flex items-center justify-center px-2.5":
               typeof append === "string" || (prepend as ReactElement)?.type === Spinner,
             "[&>.ecency-spinner]:w-3.5 [&>.ecency-spinner]:h-3.5":
-              (prepend as ReactElement)?.type === Spinner
+              (prepend as ReactElement)?.type === Spinner,
+            "border-2": (append as ReactElement)?.type !== Button
           })}
           onClick={() => onAppendClick?.()}
         >

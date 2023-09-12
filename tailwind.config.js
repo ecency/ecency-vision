@@ -142,6 +142,11 @@ module.exports = {
       white: colors.white,
       "white-075": "rgba(255, 255, 255, 0.75)",
       "white-500": "#f2f2f2",
+      info: {
+        default: "#17a2b8",
+        hover: "#108b9f",
+        focus: "#0b6775"
+      },
       light: {
         200: "#fcfcfc",
         300: "#f5f5f5",

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-
-import { Button } from "react-bootstrap";
-
 import { Popover, PopoverContent, PopoverTitle } from "@ui/popover";
 import { _t } from "../../../i18n";
+import { Button } from "@ui/button";
 
 interface Props {
   titleText?: string;
@@ -77,13 +75,13 @@ export default class PopoverConfirm extends Component<Props> {
           <div style={{ textAlign: "center" }}>
             <Button
               size="sm"
-              variant={okVariant || "primary"}
+              appearance={okVariant || "primary"}
               style={{ marginRight: "10px" }}
               onClick={this.confirm}
             >
               {okText || _t("confirm.ok")}
             </Button>
-            <Button size="sm" variant="secondary" onClick={this.cancel}>
+            <Button size="sm" appearance="secondary" onClick={this.cancel}>
               {cancelText || _t("confirm.cancel")}
             </Button>
           </div>

@@ -5,8 +5,7 @@ import qrcode from "qrcode";
 import axios from "axios";
 import queryString from "query-string";
 import useLocalStorage from "react-use/lib/useLocalStorage";
-import { Button, Form } from "react-bootstrap";
-
+import { Form } from "react-bootstrap";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { PREFIX } from "../util/local-storage";
 import { signUp } from "../api/private-api";
@@ -26,6 +25,7 @@ import { Link } from "react-router-dom";
 import { b64uEnc } from "../util/b64";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 enum Stage {
   FORM = "form",
@@ -342,12 +342,12 @@ export const SignUp = (props: PageProps) => {
                     <>
                       <div className="d-flex justify-content-center">
                         <Button
-                          variant="primary"
-                          block={true}
+                          className="d-block"
                           type="submit"
                           disabled={inProgress || !isVerified || isDisabled}
+                          icon={inProgress && <Spinner className="w-3.5 h-3.5" />}
+                          iconPlacement="left"
                         >
-                          {inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
                           {_t("sign-up.submit")}
                         </Button>
                       </div>
@@ -381,7 +381,7 @@ export const SignUp = (props: PageProps) => {
                     <div>{_t("sign-up.free-account-desc")}</div>
                   </div>
                   <div className="bg-gray-100 border-t py-2 px-3">
-                    <Button variant="primary" className="w-100" onClick={regularRegister}>
+                    <Button className="w-full" onClick={regularRegister}>
                       {_t("sign-up.register-free")}
                     </Button>
                   </div>
@@ -404,11 +404,7 @@ export const SignUp = (props: PageProps) => {
                     </ul>
                   </div>
                   <div className="bg-gray-100 border-t py-2 px-3">
-                    <Button
-                      className="w-100"
-                      variant="primary"
-                      onClick={() => setStage(Stage.BUY_ACCOUNT)}
-                    >
+                    <Button className="w-full" onClick={() => setStage(Stage.BUY_ACCOUNT)}>
                       {_t("sign-up.buy-account")} – $2.99
                     </Button>
                   </div>
@@ -434,14 +430,11 @@ export const SignUp = (props: PageProps) => {
                     </ul>
                   </div>
                   <div className="bg-gray-100 border-t py-2 px-3">
-                    <Button
-                      as={Link}
-                      to={`/onboard-friend/asking/${urlHash}`}
-                      className="w-100"
-                      variant="primary"
-                    >
-                      {props.activeUser ? _t("onboard.creating") : _t("onboard.asking")}
-                    </Button>
+                    <Link to={`/onboard-friend/asking/${urlHash}`}>
+                      <Button className="w-full">
+                        {props.activeUser ? _t("onboard.creating") : _t("onboard.asking")}
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>

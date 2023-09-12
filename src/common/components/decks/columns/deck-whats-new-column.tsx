@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "./_deck-whats-new-column.scss";
 import { markdownToHTML } from "@ecency/render-helper/lib/methods";
-import { Accordion, Badge } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
 import { version } from "../../../../../package.json";
 import { DeckGridContext } from "../deck-manager";
 import { ReloadableDeckGridItem } from "../types";

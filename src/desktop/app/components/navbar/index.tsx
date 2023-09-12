@@ -1,66 +1,48 @@
 import React, { Component } from "react";
-
 import { Link } from "react-router-dom";
-
 import { History, Location } from "history";
-
-import { Button } from "react-bootstrap";
-
 import isEqual from "react-fast-compare";
-
 import queryString from "query-string";
-
 import { Global, Theme } from "../../../../common/store/global/types";
 import { TrendingTags } from "../../../../common/store/trending-tags/types";
 import { Account } from "../../../../common/store/accounts/types";
 import { User } from "../../../../common/store/users/types";
 import { ActiveUser } from "../../../../common/store/active-user/types";
-import { UI, ToggleType } from "../../../../common/store/ui/types";
+import { ToggleType, UI } from "../../../../common/store/ui/types";
 import { NotificationFilter, Notifications } from "../../../../common/store/notifications/types";
 import { DynamicProps } from "../../../../common/store/dynamic-props/types";
-
 import ToolTip from "../../../../common/components/tooltip";
 import Login from "../../../../common/components/login";
 import UserNav from "../../../../common/components/user-nav";
 import DropDown from "../../../../common/components/dropdown";
-import SearchSuggester from "../../../../common/components/search-suggester";
 import Updater from "../updater";
 import SwitchLang from "../../../../common/components/switch-lang";
-
 import NotificationHandler from "../../../../common/components/notification-handler";
-
 import { _t } from "../../../../common/i18n";
-
 import _c from "../../../../common/util/fix-class-names";
-
 import defaults from "../../../../common/constants/defaults.json";
-
 import routes from "../../../../common/routes";
-
 import { version } from "../../../package.json";
 
 import {
-  brightnessSvg,
-  pencilOutlineSvg,
   arrowLeftSvg,
   arrowRightSvg,
-  refreshSvg,
-  magnifySvg,
+  brightnessSvg,
   dotsHorizontal,
-  translateSvg
+  magnifySvg,
+  pencilOutlineSvg,
+  refreshSvg
 } from "../../../../common/img/svg";
 import isElectron from "../../../../common/util/is-electron";
 import "./_index.scss";
-
-// why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
-
-const pathToRegexp = require("path-to-regexp");
 import isCommunity from "../../../../common/helper/is-community";
-import { NotifyTypes } from "../../../../common/enums";
 import {
   setNotificationsSettingsItem,
   updateNotificationsSettings
 } from "../../../../common/store/notifications";
+import { Button } from "@ui/button";
+// why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
+const pathToRegexp = require("path-to-regexp");
 const logo = "./img/logo-circle.svg";
 
 interface AddressBarProps {
@@ -503,7 +485,7 @@ export class NavBar extends Component<Props, State> {
             {!activeUser && (
               <div className="login-required">
                 <Button
-                  variant="outline-primary"
+                  outline={true}
                   onClick={() => {
                     const { toggleUIProp } = this.props;
                     toggleUIProp("login");

@@ -19,9 +19,11 @@ export function InputGroupCopyClipboard(props: Props & HTMLAttributes<HTMLElemen
     <InputGroup
       {...props}
       append={
-        <Button size="sm" className="copy-to-clipboard" onClick={() => copy(props.value)}>
-          {copyContent}
-        </Button>
+        <Button
+          className="copy-to-clipboard"
+          onClick={() => copy(props.value)}
+          icon={copyContent}
+        />
       }
       onClick={() => copy(props.value)}
     >

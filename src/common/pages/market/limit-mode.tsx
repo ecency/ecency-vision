@@ -15,9 +15,9 @@ import { ChartStats } from "../../components/chart-stats";
 import SSRSuspense from "../../components/ssr-suspense";
 import { HiveBarter } from "../../components/hive-barter";
 import { FullAccount } from "../../store/accounts/types";
-import { Button, ButtonGroup } from "react-bootstrap";
 import { OpenOrders } from "../../components/open-orders";
 import { Orders } from "../../components/orders";
+import { ButtonGroup } from "@ui/button-group";
 
 const MarketChart = React.lazy(() => import("../../components/market-chart"));
 
@@ -151,30 +151,12 @@ export const LimitMarketMode = (props: PageProps) => {
               <div className="d-flex flex-column d-md-none">
                 <div className="d-flex align-items-sm-center justify-content-start justify-content-sm-between flex-column flex-sm-row">
                   <h3>{_t("market.barter")}</h3>
-                  <ButtonGroup size="lg" className="my-3">
-                    <Button
-                      className="rounded-r"
-                      variant={exchangeType === 1 ? "primary" : "secondary"}
-                      onClick={() => setExchangeType(1)}
-                      style={{
-                        borderTopRightRadius: "0px !important",
-                        borderBottomRightRadius: "0px !important"
-                      }}
-                    >
-                      {_t("market.buy")}
-                    </Button>
-                    <Button
-                      variant={exchangeType === 2 ? "primary" : "secondary"}
-                      className="rounded-l"
-                      onClick={() => setExchangeType(2)}
-                      style={{
-                        borderTopLeftRadius: "0px !important",
-                        borderBottomLeftRadius: "0px !important"
-                      }}
-                    >
-                      {_t("market.sell")}
-                    </Button>
-                  </ButtonGroup>
+                  <ButtonGroup
+                    className="my-3"
+                    labels={[_t("market.buy"), _t("market.sell")]}
+                    selected={exchangeType === 1 ? 0 : 1}
+                    setSelected={(v) => setExchangeType(v + 1)}
+                  />
                 </div>
 
                 {exchangeType === 1 ? (

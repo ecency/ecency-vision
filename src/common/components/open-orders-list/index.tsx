@@ -1,18 +1,11 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
-import { Table } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import Tooltip from "../tooltip";
 import LinearProgress from "../linear-progress";
-
 import { _t } from "../../i18n";
-
 import formattedNumber from "../../util/formatted-number";
 import MyPagination from "../pagination";
 import { getOpenOrder, OpenOrdersData } from "../../api/hive";
@@ -20,6 +13,7 @@ import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { AssetSymbol } from "@hiveio/dhive";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 interface Props {
   global: Global;
@@ -86,29 +80,29 @@ export class List extends BaseComponent<Props, State> {
       <div className="open-orders-content">
         <div className="list-body">
           {sliced.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
-          <Table striped={true} bordered={true} hover={true} className="oo-table">
+          <Table>
             <thead>
-              <tr>
-                <th>{_t("open-orders-list.order-id")}</th>
-                <th>{_t("conversion-requests.amount")}</th>
-                <th>{_t("open-orders-list.created")}</th>
-                <th>{_t("open-orders-list.expires")}</th>
-              </tr>
+              <Tr>
+                <Th>{_t("open-orders-list.order-id")}</Th>
+                <Th>{_t("conversion-requests.amount")}</Th>
+                <Th>{_t("open-orders-list.created")}</Th>
+                <Th>{_t("open-orders-list.expires")}</Th>
+              </Tr>
             </thead>
             <tbody>
               {sliced.map((x) => {
                 const { orderid } = x;
                 if (x.sell_price.base.includes(tokenType)) {
                   return (
-                    <tr
+                    <Tr
                       key={orderid}
                       onClick={(e) => {
                         e.preventDefault();
                         history.push(`/market#limit`);
                       }}
                     >
-                      <td>{orderid}</td>
-                      <td>
+                      <Td>{orderid}</Td>
+                      <Td>
                         <Tooltip content={x.sell_price.quote}>
                           <span>
                             {tokenType == "HBD"
@@ -116,18 +110,18 @@ export class List extends BaseComponent<Props, State> {
                               : formattedNumber(x.sell_price.base, { suffix: tokenType })}
                           </span>
                         </Tooltip>
-                      </td>
-                      <td>
+                      </Td>
+                      <Td>
                         <div className="date" title={dateToFormatted(x.created)}>
                           {dateToFullRelative(x.created)}
                         </div>
-                      </td>
-                      <td>
+                      </Td>
+                      <Td>
                         <div className="date" title={dateToFormatted(x.expiration)}>
                           {dateToFullRelative(x.expiration)}
                         </div>
-                      </td>
-                    </tr>
+                      </Td>
+                    </Tr>
                   );
                 } else {
                   return null;

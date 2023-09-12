@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import { match } from "react-router";
 import { PrivateKey } from "@hiveio/dhive";
 import { Link } from "react-router-dom";
@@ -32,6 +31,7 @@ import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
 import { _t } from "../i18n";
 import "./onboard.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Button } from "@ui/button";
 
 export interface AccountInfo {
   email: string;
@@ -464,14 +464,11 @@ const Onboard = (props: Props) => {
           </div>
           <div className="d-flex justify-content-center">
             <span className="hr-6px-btn-spacer" />
-            <Button
-              as={Link}
-              to={`/@${formatUsername(decodedInfo!.username)}`}
-              className="mt-3 w-50 align-self-center"
-              onClick={finish}
-            >
-              {_t("g.finish")}
-            </Button>
+            <Link to={`/@${formatUsername(decodedInfo!.username)}`}>
+              <Button className="mt-3 w-50 align-self-center" onClick={finish}>
+                {_t("g.finish")}
+              </Button>
+            </Link>
           </div>
         </div>
       </>
@@ -556,14 +553,12 @@ const Onboard = (props: Props) => {
                   </Tooltip>
                 </div>
                 <Button
-                  className="d-flex align-self-center justify-content-center mt-3"
+                  className="align-self-center mt-3"
                   disabled={!accountInfo?.username || !accountInfo.email}
-                  onClick={() => {
-                    downloadKeys();
-                  }}
+                  onClick={() => downloadKeys()}
+                  icon={downloadSvg}
                 >
-                  <span>{_t("onboard.download-keys")}</span>
-                  <span className="ml-2">{downloadSvg}</span>
+                  {_t("onboard.download-keys")}
                 </Button>
 
                 {fileIsDownloaded && (
@@ -660,20 +655,20 @@ const Onboard = (props: Props) => {
               <strong>@{formatUsername(decodedInfo!.username)}</strong>
             </span>
           </div>
-          <Button
-            as={Link}
-            to={`/@${formatUsername(decodedInfo!.username)}`}
-            className="mt-3 w-50 align-self-center"
-            onClick={() => {
-              const { location } = props;
-              const queryParams = new URLSearchParams(location.search);
-              if (queryParams.has("tid")) {
-                sendMail();
-              }
-            }}
-          >
-            {_t("g.finish")}
-          </Button>
+          <Link to={`/@${formatUsername(decodedInfo!.username)}`}>
+            <Button
+              className="mt-3 w-50 align-self-center"
+              onClick={() => {
+                const { location } = props;
+                const queryParams = new URLSearchParams(location.search);
+                if (queryParams.has("tid")) {
+                  sendMail();
+                }
+              }}
+            >
+              {_t("g.finish")}
+            </Button>
+          </Link>
         </div>
       )}
       <Modal

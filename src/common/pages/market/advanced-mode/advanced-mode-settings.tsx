@@ -1,9 +1,10 @@
-import { Button, FormGroup, FormLabel } from "react-bootstrap";
+import { FormGroup, FormLabel } from "react-bootstrap";
 import React, { useState } from "react";
 import { settingsSvg } from "../../../img/svg";
 import { _t } from "../../../i18n";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@ui/modal";
 import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   updateRate: number;
@@ -16,9 +17,7 @@ export const AdvancedModeSettings = ({ updateRate, setUpdateRate }: Props) => {
 
   return (
     <>
-      <Button variant="link" onClick={() => setShow(true)}>
-        {settingsSvg}
-      </Button>
+      <Button appearance="link" onClick={() => setShow(true)} icon={settingsSvg} />
       <Modal animation={true} show={show} centered={true} onHide={() => setShow(false)}>
         <ModalHeader closeButton={true}>
           <b>{_t("g.settings")}</b>
@@ -39,7 +38,6 @@ export const AdvancedModeSettings = ({ updateRate, setUpdateRate }: Props) => {
         </ModalBody>
         <ModalFooter>
           <Button
-            variant="primary"
             disabled={rate < 5 || rate >= 300}
             onClick={() => {
               if (rate < 5 || rate >= 300) {

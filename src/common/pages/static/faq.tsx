@@ -11,7 +11,7 @@ import Meta from "../../components/meta";
 import ScrollToTop from "../../components/scroll-to-top";
 import Theme from "../../components/theme";
 import NavBarElectron from "../../../desktop/app/components/navbar";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { copyContent } from "../../img/svg";
 import { Link } from "react-router-dom";
 import { Tsx } from "../../i18n/helper";
@@ -20,6 +20,7 @@ import NavBar from "../../components/navbar";
 import FaqCategory from "../../components/faq-category";
 import { connect } from "react-redux";
 import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface FAQPageState {
   search: string;
@@ -114,7 +115,6 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                 <InputGroup
                   append={
                     <Button
-                      variant="primary"
                       size="sm"
                       className="copy-to-clipboard"
                       disabled={search.length === 0}
@@ -123,9 +123,8 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                           `https://ecency.com/faq?q=${search}&lang=${global.lang.split("-")[0]}`
                         );
                       }}
-                    >
-                      {copyContent}
-                    </Button>
+                      icon={copyContent}
+                    />
                   }
                   className="mb-3 w-75"
                 >

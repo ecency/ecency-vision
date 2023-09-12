@@ -7,7 +7,7 @@ import numeral from "numeral";
 import base58 from "bs58";
 import { AccountCreateOperation, Authority, cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import random from "../util/rnd";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { _t } from "../i18n";
 import Feedback, { error, success } from "../components/feedback";
 import { formatError, setUserRole, updateCommunity } from "../api/operations";
@@ -21,15 +21,16 @@ import Theme from "../components/theme";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import { Link } from "react-router-dom";
 import { handleInvalid, handleOnInput } from "../util/input-util";
-import { alertCircleSvg, checkSvg, copyContent, informationVariantSvg } from "../img/svg";
+import { alertCircleSvg, checkSvg, informationVariantSvg } from "../img/svg";
 import { connect } from "react-redux";
 import NavBar from "../components/navbar";
 import LoginRequired from "../components/login-required";
 import KeyOrHot from "../components/key-or-hot";
 import Tooltip from "../components/tooltip";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
-import { FormControl, InputGroup } from "@ui/input";
+import { FormControl, InputGroupCopyClipboard } from "@ui/input";
 import { Spinner } from "@ui/spinner";
+import { Button } from "@ui/button";
 
 const namePattern = "^hive-[1]\\d{4,6}$";
 interface CreateState {
@@ -576,28 +577,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                 <Form.Group>
                                   <Form.Label>{_t("communities-create.password")}</Form.Label>
                                   <Form.Group>
-                                    <InputGroup
-                                      className="mb-3"
-                                      append={
-                                        <Button
-                                          variant="primary"
-                                          size="sm"
-                                          className="copy-to-clipboard"
-                                          onClick={() => this.copyToClipboard(`${wif}`)}
-                                        >
-                                          {copyContent}
-                                        </Button>
-                                      }
-                                      onAppendClick={() => this.copyToClipboard(wif)}
-                                    >
-                                      <FormControl
-                                        type="text"
-                                        value={wif}
-                                        disabled={true}
-                                        className="pointer"
-                                        id="copy-to-clipboard"
-                                      />
-                                    </InputGroup>
+                                    <InputGroupCopyClipboard value={wif} />
                                   </Form.Group>
                                 </Form.Group>
                                 <Form.Group>
@@ -619,7 +599,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                 </Form.Group>
                                 <Form.Group>
                                   <Button
-                                    className="w-100 p-3 bg-white text-primary"
+                                    appearance="link"
+                                    full={true}
                                     onClick={() => this.setState({ wif: "" })}
                                     id="black-on-night"
                                   >
@@ -630,10 +611,10 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                   <Button
                                     type="submit"
                                     disabled={inProgress}
-                                    className="w-100 p-3"
-                                    variant="primary"
+                                    full={true}
+                                    icon={inProgress && <Spinner className="w-3.5 h-3.5" />}
+                                    iconPlacement="left"
                                   >
-                                    {inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
                                     {_t("communities-create.submit")}
                                   </Button>
                                 </Form.Group>
@@ -645,7 +626,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                           if (!wif && activeUser) {
                             return (
                               <Form.Group>
-                                <Button type="submit" className="w-100 p-3">
+                                <Button type="submit" full={true}>
                                   {_t("g.next")}
                                 </Button>
                               </Form.Group>
@@ -658,7 +639,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                 {LoginRequired({
                                   ...this.props,
                                   children: (
-                                    <Button type="button" className="w-100 p-3">
+                                    <Button type="button" full={true}>
                                       {_t("g.next")}
                                     </Button>
                                   )

@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-
-import { Button } from "react-bootstrap";
-
 import { Global } from "../../../../common/store/global/types";
-
 import { _t } from "../../../../common/i18n";
-
 import { getOperatingSystem } from "../../../../common/util/platform";
 import "./_index.scss";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -96,7 +92,7 @@ export default class Updater extends Component<Props, State> {
             {_t("updater.new-version-available")}{" "}
             <span className="release-name">{global.newVersion}</span>
           </p>
-          <Button className="btn-update" onClick={this.begin}>
+          <Button className="mr-[10px]" onClick={this.begin}>
             {_t("updater.download")}
           </Button>
 
@@ -118,7 +114,7 @@ export default class Updater extends Component<Props, State> {
               {_t("updater.new-version-available")}{" "}
               <span className="release-name">{global.newVersion}</span>
             </p>
-            <Button className="btn-update" onClick={this.begin}>
+            <Button className="mr-[10px]" onClick={this.begin}>
               {_t("updater.update")}
             </Button>
 

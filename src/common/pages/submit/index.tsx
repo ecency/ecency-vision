@@ -34,7 +34,7 @@ import MdHandler from "../../components/md-handler";
 import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import _c from "../../util/fix-class-names";
-import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import TextareaAutocomplete from "../../components/textarea-autocomplete";
 import { AvailableCredits } from "../../components/available-credits";
 import ClickAwayListener from "../../components/clickaway-listener";
@@ -57,6 +57,9 @@ import { SubmitPreviewContent } from "./submit-preview-content";
 import { useUpdateApi } from "./api/update";
 import "./_index.scss";
 import ModalConfirm from "@ui/modal-confirm";
+import { Button } from "@ui/button";
+import { dotsMenuIconSvg } from "../../components/decks/icons";
+import { Spinner } from "@ui/spinner";
 
 interface MatchProps {
   match: MatchType;
@@ -119,7 +122,8 @@ export function Submit(props: PageProps & MatchProps) {
     schedule,
     setSchedule,
     hasAdvanced,
-    clearAdvanced
+    clearAdvanced,
+    getHasAdvanced
   } = useAdvancedManager();
 
   useCommunityDetector(props.location, (community) => {
@@ -458,27 +462,18 @@ export function Submit(props: PageProps & MatchProps) {
           )}
           <div className="bottom-toolbar">
             {editingEntry === null && editingDraft === null && (
-              <Button variant="outline-info" onClick={() => setClearModal(true)}>
+              <Button appearance="info" outline={true} onClick={() => setClearModal(true)}>
                 {_t("submit.clear")}
               </Button>
             )}
 
-            <div className="d-flex align-items-center">
-              <Button
-                variant="outline-primary"
-                onClick={(e) => setAdvanced(!advanced)}
-                className="ml-auto"
-              >
-                {advanced ? (
-                  _t("submit.preview")
-                ) : (
-                  <>
-                    {_t("submit.advanced")}
-                    {hasAdvanced() ? " •••" : null}
-                  </>
-                )}
-              </Button>
-            </div>
+            <Button
+              outline={true}
+              onClick={() => setAdvanced(!advanced)}
+              icon={getHasAdvanced && dotsMenuIconSvg}
+            >
+              {advanced ? _t("submit.preview") : _t("submit.advanced")}
+            </Button>
           </div>
         </div>
         <div className="flex-spacer" />
@@ -488,7 +483,8 @@ export function Submit(props: PageProps & MatchProps) {
               <span />
               <LoginRequired {...props}>
                 <Button
-                  className="d-inline-flex align-items-center"
+                  icon={(posting || publishing) && <Spinner className="w-3.5 h-3.5" />}
+                  iconPlacement="left"
                   onClick={() => {
                     if (!validate()) {
                       return;
@@ -498,14 +494,6 @@ export function Submit(props: PageProps & MatchProps) {
                   }}
                   disabled={posting || publishing}
                 >
-                  {(posting || publishing) && (
-                    <Spinner
-                      animation="grow"
-                      variant="light"
-                      size="sm"
-                      style={{ marginRight: "6px" }}
-                    />
-                  )}
                   {_t("submit.schedule")}
                 </Button>
               </LoginRequired>
@@ -518,28 +506,33 @@ export function Submit(props: PageProps & MatchProps) {
                   <div className="action-buttons">
                     <ClickAwayListener onClickAway={() => setShowHelp(false)}>
                       <Button
-                        className="help-button"
-                        style={{ marginRight: "6px" }}
+                        className="help-button mr-[6px]"
                         onClick={() => setShowHelp(!showHelp)}
+                        icon={helpIconSvg}
+                        iconPlacement="left"
                       >
-                        {helpIconSvg} {_t("floating-faq.help")}
+                        {_t("floating-faq.help")}
                       </Button>
                     </ClickAwayListener>
                     {props.global.usePrivate && isDraftEmpty ? (
                       <LoginRequired {...props}>
                         <Button
-                          variant="outline-primary"
-                          style={{ marginRight: "6px" }}
+                          outline={true}
+                          className="mr-[6px]"
                           onClick={() => setDrafts(!drafts)}
+                          icon={contentLoadSvg}
+                          iconPlacement="left"
                         >
-                          {contentLoadSvg} {_t("submit.load-draft")}
+                          {_t("submit.load-draft")}
                         </Button>
                       </LoginRequired>
                     ) : (
                       <LoginRequired {...props}>
                         <Button
-                          variant="outline-primary"
-                          style={{ marginRight: "6px" }}
+                          outline={true}
+                          className="mr-[6px]"
+                          icon={contentSaveSvg}
+                          iconPlacement="left"
                           onClick={() => {
                             if (!validate()) {
                               return;
@@ -559,7 +552,6 @@ export function Submit(props: PageProps & MatchProps) {
                           }}
                           disabled={disabled || saving || posting || publishing}
                         >
-                          {contentSaveSvg}{" "}
                           {editingDraft === null
                             ? _t("submit.save-draft")
                             : _t("submit.update-draft")}
@@ -568,7 +560,8 @@ export function Submit(props: PageProps & MatchProps) {
                     )}
                     <LoginRequired {...props}>
                       <Button
-                        className="d-inline-flex align-items-center"
+                        icon={(posting || publishing) && <Spinner className="w-3.5 h-3.5" />}
+                        iconPlacement="left"
                         onClick={() => {
                           if (!validate()) {
                             return;
@@ -588,14 +581,6 @@ export function Submit(props: PageProps & MatchProps) {
                         }}
                         disabled={disabled || posting || saving || publishing}
                       >
-                        {(posting || publishing) && (
-                          <Spinner
-                            animation="grow"
-                            variant="light"
-                            size="sm"
-                            style={{ marginRight: "6px" }}
-                          />
-                        )}
                         {_t("submit.publish")}
                       </Button>
                     </LoginRequired>
@@ -606,12 +591,13 @@ export function Submit(props: PageProps & MatchProps) {
 
               {editingEntry !== null && (
                 <>
-                  <Button variant="outline-secondary" onClick={cancelUpdate}>
+                  <Button appearance="secondary" outline={true} onClick={cancelUpdate}>
                     {_t("submit.cancel-update")}
                   </Button>
                   <LoginRequired {...props}>
                     <Button
-                      className="d-inline-flex align-items-center"
+                      icon={(posting || publishing) && <Spinner className="w-3.5 h-3.5" />}
+                      iconPlacement="left"
                       onClick={() => {
                         if (!validate()) {
                           return;
@@ -629,14 +615,6 @@ export function Submit(props: PageProps & MatchProps) {
                       }}
                       disabled={posting || publishing}
                     >
-                      {(posting || publishing) && (
-                        <Spinner
-                          animation="grow"
-                          variant="light"
-                          size="sm"
-                          style={{ marginRight: "6px" }}
-                        />
-                      )}
                       {_t("submit.update")}
                     </Button>
                   </LoginRequired>

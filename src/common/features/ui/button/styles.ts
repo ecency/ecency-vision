@@ -8,7 +8,7 @@ export const BUTTON_STYLES: Record<ButtonAppearance, string> = {
   danger: "",
   success: "",
   warning: "",
-  info: ""
+  info: "bg-info-default hover:info-hover focus:bg-info-focus text-white disabled:opacity-50 disabled:hover:bg-info-default disabled:focus:bg-info-default"
 };
 
 export const BUTTON_OUTLINE_STYLES: Record<ButtonAppearance, string> = {
@@ -21,7 +21,7 @@ export const BUTTON_OUTLINE_STYLES: Record<ButtonAppearance, string> = {
     "border-red hover:border-red-020 focus:border-red-030 text-red hover:text-red-020 focus:text-red-030",
   success: "",
   warning: "",
-  info: ""
+  info: "border-info-default hover:border-info-hover focus:border-info-focus text-info-default hover:text-info-hover focus:text-info-focus"
 };
 
 export const BUTTON_SIZES: Record<ButtonSize, string> = {
@@ -30,3 +30,6 @@ export const BUTTON_SIZES: Record<ButtonSize, string> = {
   md: "h-[2.125rem] px-3",
   lg: ""
 };
+
+export const BUTTON_IN_GROUP =
+  "[&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]";
