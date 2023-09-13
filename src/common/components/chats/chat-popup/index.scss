@@ -258,6 +258,7 @@
         width: -webkit-fill-available;
 
         .username {
+          padding-top: 8px;
           @include themify(day) {
             color: $charcoal-grey;
           }

@@ -284,12 +284,8 @@ export default function ChatPopUp(props: Props) {
   }, [currentChannel, isCommunity, chat.publicMessages]);
 
   useEffect(() => {
-    if (isCurrentUser) {
-      scrollerClicked();
-    } else {
-      scrollerClicked();
-    }
-  }, [isCurrentUser]);
+    scrollerClicked();
+  }, [isCurrentUser, isCommunity]);
 
   useEffect(() => {
     if (removedUsers) {
@@ -488,6 +484,7 @@ export default function ChatPopUp(props: Props) {
   };
 
   const scrollerClicked = () => {
+    console.log("Scroller clicked");
     chatBodyDivRef?.current?.scroll({
       top: isCurrentUser || isCommunity ? chatBodyDivRef?.current?.scrollHeight : 0,
       behavior: "auto"
@@ -879,9 +876,7 @@ export default function ChatPopUp(props: Props) {
                                       communityClicked(channel.communityName!, channel.name)
                                     }
                                   >
-                                    <p className="username" style={{ paddingTop: "8px" }}>
-                                      {channel.name}
-                                    </p>
+                                    <p className="username">{channel.name}</p>
                                     <p className="last-message">
                                       {getCommunityLastMessage(channel.id, chat.publicMessages)}
                                     </p>
