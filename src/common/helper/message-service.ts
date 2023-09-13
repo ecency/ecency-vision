@@ -531,7 +531,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public async updateProfile(profile: Metadata) {
-    console.log("Profile update run");
+    console.log("Profile update run", profile);
     return this.publish(Kind.Metadata, [], JSON.stringify(profile));
   }
 
@@ -574,6 +574,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
         sig: ""
       })
         .then((event) => {
+          console.log("event failed", event);
           if (!event) {
             reject("Couldn't sign event!");
             return;

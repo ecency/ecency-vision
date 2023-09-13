@@ -43,7 +43,6 @@ import { ChatContext } from "../chat-context-provider";
 interface Props {
   publicMessages: PublicMessage[];
   currentChannel: Channel;
-  activeUserKeys: NostrKeysType;
   username: string;
   from?: string;
   history: History;
@@ -64,7 +63,6 @@ export default function ChatsChannelMessages(props: Props) {
   const {
     publicMessages,
     currentChannel,
-    activeUserKeys,
     history,
     from,
     isScrollToBottom,
@@ -75,6 +73,8 @@ export default function ChatsChannelMessages(props: Props) {
     deletePublicMessage
   } = props;
   const { chat, global, activeUser, ui, users } = useMappedStore();
+
+  const { messageServiceInstance, activeUserKeys } = useContext(ChatContext);
 
   let prevGlobal = usePrevious(global);
 
@@ -90,8 +90,6 @@ export default function ChatsChannelMessages(props: Props) {
   const [privilegedUsers, setPrivilegedUsers] = useState<string[]>([]);
   const [hiddenMsgId, setHiddenMsgId] = useState("");
   const [resendMessage, setResendMessage] = useState<PublicMessage>();
-
-  const { messageServiceInstance } = useContext(ChatContext);
 
   // useEffect(() => {
   //   scrollToBottom();
@@ -274,7 +272,7 @@ export default function ChatsChannelMessages(props: Props) {
       case 4:
         if (resendMessage) {
           deletePublicMessage(currentChannel.id, resendMessage?.id);
-          window?.messageService?.sendPublicMessage(
+          messageServiceInstance?.sendPublicMessage(
             currentChannel!,
             resendMessage?.content,
             [],

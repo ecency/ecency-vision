@@ -442,7 +442,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
   const handleConfirmButton = (actionType: string) => {
     switch (actionType) {
       case LEAVECOMMUNITY:
-        window?.messageService
+        messageServiceInstance
           ?.updateLeftChannelList([...chat.leftChannelsList!, currentChannel?.id!])
           .then(() => {})
           .finally(() => {

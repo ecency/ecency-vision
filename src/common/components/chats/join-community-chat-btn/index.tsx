@@ -11,6 +11,8 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 import { Channel, communityModerator } from "../../../../managers/message-manager-types";
 import * as ls from "../../../util/local-storage";
 import { setNostrkeys } from "../../../../managers/message-manager";
+import { ChatContext } from "../chat-context-provider";
+import { profileUpdater } from "../chat-popup";
 import { NOSTRKEY } from "../chat-popup/chat-constants";
 import { NostrKeysType } from "../types";
 import {
@@ -19,7 +21,6 @@ import {
   setChannelMetaData,
   setProfileMetaData
 } from "../utils";
-import { ChatContext } from "../chat-context-provider";
 
 interface Props {
   history: History;
@@ -29,8 +30,7 @@ interface Props {
 }
 
 export default function JoinCommunityChatBtn(props: Props) {
-  const { messageServiceInstance } = useContext(ChatContext);
-  console.log("Bhai kiya masla ha apko", messageServiceInstance);
+  const { messageServiceInstance, setShowSpinner } = useContext(ChatContext);
   const { chat } = useMappedStore();
   const [inProgress, setInProgress] = useState(false);
   const [isCommunityChatJoined, setIsCommunityChatJoined] = useState(false);
@@ -41,6 +41,7 @@ export default function JoinCommunityChatBtn(props: Props) {
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
   const [loadCommunity, setLoadCommunity] = useState(false);
   const [initiateCommunityChat, setInitiateCommunityChat] = useState(false);
+  const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
 
   useEffect(() => {
     fetchCommunityProfile();
@@ -58,10 +59,22 @@ export default function JoinCommunityChatBtn(props: Props) {
   }, [activeUserKeys]);
 
   useEffect(() => {
+    if (shouldUpdateProfile && messageServiceInstance) {
+      profileUpdater(messageServiceInstance);
+    }
+  }, [shouldUpdateProfile, messageServiceInstance]);
+
+  useEffect(() => {
+    if (messageServiceInstance && shouldUpdateProfile) {
+      setShouldUpdateProfile(false);
+    }
+  }, [messageServiceInstance]);
+
+  useEffect(() => {
     if (messageServiceInstance) {
       fetchUserProfileData();
       if (loadCommunity) {
-        window?.messageService?.loadChannel(currentChannel?.id!);
+        messageServiceInstance?.loadChannel(currentChannel?.id!);
       }
       if (initiateCommunityChat && communityRoles.length !== 0) {
         createCommunityChat();
@@ -146,7 +159,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     const { community } = props;
     try {
       setInProgress(true);
-      const data = await window?.messageService?.createChannel({
+      const data = await messageServiceInstance?.createChannel({
         name: community.title,
         about: community.description,
         communityName: community.name,
@@ -179,18 +192,19 @@ export default function JoinCommunityChatBtn(props: Props) {
   const joinCommunityChat = () => {
     console.log("Join community chat", messageServiceInstance);
     if (!hasUserJoinedChat) {
+      setShowSpinner(true);
       handleJoinChat();
       setLoadCommunity(true);
       setIsCommunityChatJoined(true);
       return;
     }
     if (chat.leftChannelsList.includes(currentChannel?.id!)) {
-      window?.messageService?.updateLeftChannelList(
+      messageServiceInstance?.updateLeftChannelList(
         chat.leftChannelsList.filter((x) => x !== currentChannel?.id)
       );
     }
     setIsCommunityChatJoined(true);
-    window?.messageService?.loadChannel(currentChannel?.id!);
+    messageServiceInstance?.loadChannel(currentChannel?.id!);
     setIsCommunityChatJoined(true);
   };
 
@@ -232,6 +246,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     setInProgress(false);
     fetchCommunityProfile();
     resetChat();
+    setShouldUpdateProfile(true);
   };
 
   const chatButtonSpinner = (

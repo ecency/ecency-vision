@@ -22,10 +22,10 @@ import { ActiveUser } from "../../../store/active-user/types";
 import usePrevious from "react-use/lib/usePrevious";
 import { NostrKeysType } from "../types";
 import { _t } from "../../../i18n";
+import { ChatContext } from "../chat-context-provider";
 
 interface Props {
   directMessages: DirectMessage[];
-  activeUserKeys: NostrKeysType;
   currentUser: string;
   isScrollToBottom: boolean;
   isScrolled?: boolean;
@@ -37,7 +37,6 @@ let zoom: Zoom | null = null;
 export default function ChatsDirectMessages(props: Props) {
   const {
     directMessages,
-    activeUserKeys,
     currentUser,
     isScrolled,
     receiverPubKey,
@@ -46,6 +45,7 @@ export default function ChatsDirectMessages(props: Props) {
   } = props;
 
   const { chat, global, activeUser } = useMappedStore();
+  const { activeUserKeys } = useContext(ChatContext);
 
   console.log("directMessages", directMessages);
 

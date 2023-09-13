@@ -6,8 +6,7 @@ import { Button, Form, Modal, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { Community } from "../../../store/communities/types";
-import { User } from "../../../store/users/types";
-import { ToggleType, UI } from "../../../store/ui/types";
+import { ToggleType } from "../../../store/ui/types";
 import { Account } from "../../../store/accounts/types";
 import {
   Channel,
@@ -72,6 +71,7 @@ import {
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import ImportChats from "../import-chats";
+import MessageService from "../../../helper/message-service";
 
 interface Props {
   history: History;
@@ -84,29 +84,31 @@ interface Props {
   deleteDirectMessage: (peer: string, msgId: string) => void;
 }
 
-export const profileUpdater = () => {
-  const ev = new CustomEvent("profileUpdater");
+export const profileUpdater = (messageServiceInstance: MessageService) => {
+  const detail = {
+    messageServiceInstance
+  };
+  const ev = new CustomEvent("profileUpdater", { detail });
   window.dispatchEvent(ev);
 };
 
 export default function ChatPopUp(props: Props) {
   const { activeUser, global, chat } = useMappedStore();
 
-  const chatContext = useContext(ChatContext);
-  // const messageServiceContext = useContext(MessageServiceContext);
-
   const {
-    // activeUserKeys,
-    setRevealPrivKey,
-    // setReceiverPubKey,
     messageServiceInstance,
-    chatPrivKey,
-    revealPrivKey
-  } = chatContext;
+    revealPrivKey,
+    activeUserKeys,
+    showSpinner,
+    setRevealPrivKey,
+    setShowSpinner,
+    setActiveUserKeys
+  } = useContext(ChatContext);
+  // const messageServiceContext = useContext(MessageServiceContext);
 
   // const { messageServiceInstance } = messageServiceContext;
 
-  console.log("messageServiceInstance chatpop up", chatPrivKey, messageServiceInstance);
+  // console.log("messageServiceInstance chatpop up", messageServiceInstance);
 
   const routerLocation = useLocation();
   const prevActiveUser = usePrevious(activeUser);
@@ -121,9 +123,8 @@ export default function ChatPopUp(props: Props) {
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [show, setShow] = useState(false);
-  const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
   const [receiverPubKey, setReceiverPubKey] = useState("");
-  const [showSpinner, setShowSpinner] = useState(false);
+  const [isSpinner, setIsSpinner] = useState(false);
   const [directMessagesList, setDirectMessagesList] = useState<DirectMessage[]>([]);
   const [isCurrentUserJoined, setIsCurrentUserJoined] = useState(true);
   const [isCommunity, setIsCommunity] = useState(false);
@@ -140,16 +141,15 @@ export default function ChatPopUp(props: Props) {
   const [noStrPrivKey, setNoStrPrivKey] = useState("");
   const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
   const [isTop, setIsTop] = useState(false);
+  const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [removedUsers, setRemovedUsers] = useState<string[]>([]);
-  const [revelPrivateKey, setRevealPrivateKey] = useState(false);
   const [innerWidth, setInnerWidth] = useState(0);
   const [isChatPage, setIsChatPage] = useState(false);
-  const [refreshChat, setRefreshChat] = useState(false);
 
-  // useEffect(() => {
-  //   console.log("directMessagesList in chat popup", directMessagesList);
-  // }, [directMessagesList]);
+  useEffect(() => {
+    console.log("chat in store", chat);
+  }, [chat]);
 
   useEffect(() => {
     window.addEventListener("profileUpdater", noStrProfileUpdater);
@@ -158,13 +158,6 @@ export default function ChatPopUp(props: Props) {
       window.removeEventListener("profileUpdater", noStrProfileUpdater);
     };
   }, []);
-
-  useEffect(() => {
-    console.log(
-      "-----------------------------------------------------------------",
-      messageServiceInstance
-    );
-  }, [messageServiceInstance]);
 
   useEffect(() => {
     if (currentChannel && chat.leftChannelsList.includes(currentChannel.id)) {
@@ -191,6 +184,12 @@ export default function ChatPopUp(props: Props) {
     setNoStrPrivKey(noStrPrivKey);
     setInnerWidth(window.innerWidth);
   }, []);
+
+  useEffect(() => {
+    if (shouldUpdateProfile && messageServiceInstance) {
+      profileUpdater(messageServiceInstance);
+    }
+  }, [shouldUpdateProfile, messageServiceInstance]);
 
   useEffect(() => {
     const updated: ChannelUpdate = chat.updatedChannel
@@ -229,12 +228,13 @@ export default function ChatPopUp(props: Props) {
   useEffect(() => {
     if (messageServiceInstance) {
       setHasUserJoinedChat(true);
+      setShouldUpdateProfile(false);
       const noStrPrivKey = getPrivateKey(activeUser?.username!);
       setNoStrPrivKey(noStrPrivKey);
     }
     setTimeout(() => {
       if (chat.channels.length === 0 && chat.directContacts.length === 0) {
-        setRefreshChat(false);
+        setShowSpinner(false);
       }
     }, 5000);
   }, [typeof window !== "undefined" && messageServiceInstance]);
@@ -271,7 +271,7 @@ export default function ChatPopUp(props: Props) {
 
   useEffect(() => {
     if (currentChannel && isCommunity) {
-      window?.messageService?.fetchChannel(currentChannel.id);
+      messageServiceInstance?.fetchChannel(currentChannel.id);
       const publicMessages: PublicMessage[] = fetchCommunityMessages(
         chat.publicMessages,
         currentChannel,
@@ -373,9 +373,10 @@ export default function ChatPopUp(props: Props) {
     }
   };
 
-  const noStrProfileUpdater = () => {
-    console.log("Function run", messageServiceInstance);
-    messageServiceInstance?.updateProfile({
+  const noStrProfileUpdater = (e: Event) => {
+    const detail = (e as CustomEvent).detail;
+    console.log("detail", detail.messageServiceInstance);
+    detail.messageServiceInstance.updateProfile({
       name: activeUser?.username!,
       about: "",
       picture: ""
@@ -443,12 +444,6 @@ export default function ChatPopUp(props: Props) {
 
   const fetchProfileData = async () => {
     const profileData = await getProfileMetaData(activeUser?.username!);
-    const noStrPrivKey = getPrivateKey(activeUser?.username!);
-    const activeUserKeys = {
-      pub: profileData?.nsKey,
-      priv: noStrPrivKey
-    };
-    setActiveUserKeys(activeUserKeys);
     const hasNoStrKey = profileData && profileData.hasOwnProperty(NOSTRKEY);
     setHasUserJoinedChat(hasNoStrKey);
   };
@@ -508,7 +503,7 @@ export default function ChatPopUp(props: Props) {
     resetChat();
     handleBackArrowSvg();
     if (getPrivateKey(activeUser?.username!)) {
-      // setRefreshChat(true);
+      setShowSpinner(true);
       const keys = {
         pub: activeUserKeys?.pub!,
         priv: getPrivateKey(activeUser?.username!)
@@ -524,7 +519,7 @@ export default function ChatPopUp(props: Props) {
 
   const handleJoinChat = async () => {
     const { resetChat } = props;
-    setShowSpinner(true);
+    setIsSpinner(true);
     resetChat();
     const keys = createNoStrAccount();
     ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
@@ -532,9 +527,9 @@ export default function ChatPopUp(props: Props) {
     await setProfileMetaData(activeUser, keys.pub);
     setHasUserJoinedChat(true);
     setNostrkeys(keys);
-    noStrProfileUpdater();
+    setShouldUpdateProfile(true);
     setActiveUserKeys(keys);
-    setShowSpinner(false);
+    setIsSpinner(false);
   };
 
   const chatButtonSpinner = (
@@ -654,7 +649,7 @@ export default function ChatPopUp(props: Props) {
     setShowSearchUser(false);
     setSearchText("");
     setHasMore(true);
-    setRevealPrivateKey(false);
+    setRevealPrivKey(false);
   };
 
   return (
@@ -666,7 +661,7 @@ export default function ChatPopUp(props: Props) {
           }`}
         >
           <div className="chat-header">
-            {(currentUser || communityName || showSearchUser || revelPrivateKey) && expanded && (
+            {(currentUser || communityName || showSearchUser || revealPrivKey) && expanded && (
               <Tooltip content={_t("chat.back")}>
                 <div className="back-arrow-image">
                   <span className="back-arrow-svg" onClick={handleBackArrowSvg}>
@@ -695,26 +690,22 @@ export default function ChatPopUp(props: Props) {
                   ? currentCommunity?.title
                   : showSearchUser
                   ? "New Message"
-                  : revelPrivateKey
+                  : revealPrivKey
                   ? "Manage chat key"
                   : "Messages"}
               </p>
             </div>
             <div className="actionable-imgs">
-              {!currentUser &&
-                hasUserJoinedChat &&
-                noStrPrivKey &&
-                !isCommunity &&
-                !revelPrivateKey && (
-                  <>
-                    <div className="message-image" onClick={handleMessageSvgClick}>
-                      <Tooltip content={_t("chat.new-message")}>
-                        <p className="message-svg">{addMessageSVG}</p>
-                      </Tooltip>
-                    </div>
-                  </>
-                )}
-              {hasUserJoinedChat && noStrPrivKey && !revelPrivateKey && (
+              {!currentUser && hasUserJoinedChat && noStrPrivKey && !isCommunity && !revealPrivKey && (
+                <>
+                  <div className="message-image" onClick={handleMessageSvgClick}>
+                    <Tooltip content={_t("chat.new-message")}>
+                      <p className="message-svg">{addMessageSVG}</p>
+                    </Tooltip>
+                  </div>
+                </>
+              )}
+              {hasUserJoinedChat && noStrPrivKey && !revealPrivKey && (
                 <div className="message-image" onClick={handleRefreshSvgClick}>
                   <Tooltip content={_t("chat.refresh")}>
                     <p className="message-svg" style={{ paddingTop: "10px" }}>
@@ -738,7 +729,7 @@ export default function ChatPopUp(props: Props) {
                   <ChatsDropdownMenu
                     history={props.history}
                     onManageChatKey={() => {
-                      setRevealPrivateKey(!revelPrivateKey);
+                      setRevealPrivKey(!revealPrivKey);
                     }}
                   />
                 </div>
@@ -772,7 +763,7 @@ export default function ChatPopUp(props: Props) {
             ref={chatBodyDivRef}
             onScroll={handleScroll}
           >
-            {hasUserJoinedChat && !revelPrivateKey ? (
+            {hasUserJoinedChat && !revealPrivKey ? (
               <>
                 {currentUser.length !== 0 || communityName.length !== 0 ? (
                   <div className="chats">
@@ -798,7 +789,6 @@ export default function ChatPopUp(props: Props) {
                         <ChatsDirectMessages
                           receiverPubKey={receiverPubKey}
                           directMessages={directMessagesList}
-                          activeUserKeys={activeUserKeys!}
                           currentUser={currentUser}
                           isScrollToBottom={false}
                         />
@@ -808,7 +798,6 @@ export default function ChatPopUp(props: Props) {
                           username={communityName}
                           publicMessages={publicMessages}
                           currentChannel={currentChannel!}
-                          activeUserKeys={activeUserKeys!}
                           isScrollToBottom={false}
                           isActveUserRemoved={isActveUserRemoved}
                           currentChannelSetter={setCurrentChannel}
@@ -864,7 +853,7 @@ export default function ChatPopUp(props: Props) {
                   <>
                     {(chat.directContacts.length !== 0 ||
                       (chat.channels.length !== 0 && communities.length !== 0)) &&
-                    !refreshChat &&
+                    !showSpinner &&
                     noStrPrivKey ? (
                       <React.Fragment>
                         {chat.channels.length !== 0 && communities.length !== 0 && (
@@ -936,7 +925,7 @@ export default function ChatPopUp(props: Props) {
                       <>
                         <ImportChats />
                       </>
-                    ) : refreshChat ? (
+                    ) : showSpinner ? (
                       <div className="no-chat">
                         <Spinner animation="border" variant="primary" />
                       </div>
@@ -953,11 +942,11 @@ export default function ChatPopUp(props: Props) {
                   </>
                 )}
               </>
-            ) : revelPrivateKey ? (
+            ) : revealPrivKey ? (
               <ManageChatKey />
             ) : (
               <Button className="join-chat-btn" onClick={handleJoinChat}>
-                {showSpinner && chatButtonSpinner}
+                {isSpinner && chatButtonSpinner}
                 {_t("chat.join-chat")}
               </Button>
             )}

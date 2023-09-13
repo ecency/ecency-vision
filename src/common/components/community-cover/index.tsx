@@ -35,7 +35,6 @@ import { _t } from "../../i18n";
 
 import { pencilOutlineSvg } from "../../img/svg";
 import "./_index.scss";
-import ChatContextProvider from "../chats/chat-context-provider";
 
 const coverFallbackDay = require("../../img/cover-fallback-day.png");
 const coverFallbackNight = require("../../img/cover-fallback-night.png");
@@ -207,9 +206,7 @@ export class CommunityCover extends Component<Props> {
           <SubscriptionBtn {...this.props} />
           {CommunityPostBtn({ ...this.props })}
 
-          <ChatContextProvider>
-            <JoinCommunityChatBtn {...this.props} />
-          </ChatContextProvider>
+          <JoinCommunityChatBtn {...this.props} />
         </div>
         {canUpdateCoverImage && (
           <EditCoverImage

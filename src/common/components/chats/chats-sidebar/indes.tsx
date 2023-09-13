@@ -48,7 +48,7 @@ export default function ChatsSideBar(props: Props) {
     activeUserKeys,
     revealPrivKey,
     chatPrivKey,
-    setInProgress,
+    setShowSpinner,
     setRevealPrivKey,
     setReceiverPubKey
   } = chatContext;
@@ -63,7 +63,7 @@ export default function ChatsSideBar(props: Props) {
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [communities, setCommunities] = useState<Channel[]>([]);
 
-  console.log("username in chats sidebar", username);
+  console.log("setInProgress in chats sidebar", setShowSpinner);
 
   useDebounce(
     async () => {
@@ -110,7 +110,7 @@ export default function ChatsSideBar(props: Props) {
   const handleRefreshChat = () => {
     resetChat();
     setNostrkeys(activeUserKeys!);
-    setInProgress(true);
+    setShowSpinner(true);
   };
 
   const handleRevealPrivKey = () => {

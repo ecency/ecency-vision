@@ -1,6 +1,6 @@
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { match } from "react-router";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { search as searchApi, SearchResult } from "../api/search-api";
 import { getSubscriptions } from "../api/bridge";
 import { EntryFilter, ListStyle } from "../store/global/types";
@@ -50,6 +50,7 @@ import { setNostrkeys } from "../../managers/message-manager";
 import { QueryIdentifiers, useCommunityCache } from "../core";
 import { useQueryClient } from "@tanstack/react-query";
 import { profileUpdater } from "../components/chats/chat-popup";
+import { ChatContext } from "../components/chats/chat-context-provider";
 
 interface MatchParams {
   filter: string;
@@ -89,16 +90,24 @@ export const CommunityPage = (props: Props) => {
   const prevMatch = usePrevious(props.match);
   const prevActiveUser = usePrevious(props.activeUser);
 
+  const chatContext = useContext(ChatContext);
+  const { messageServiceInstance } = chatContext;
+
   useEffect(() => {
     fetchUserProfileData();
   }, [props.activeUser]);
 
   useEffect(() => {
-    if (shouldUpdateProfile) {
-      console.log("state changed in useeffect");
-      profileUpdater();
+    if (shouldUpdateProfile && messageServiceInstance) {
+      profileUpdater(messageServiceInstance);
     }
-  }, [shouldUpdateProfile]);
+  }, [shouldUpdateProfile, messageServiceInstance]);
+
+  useEffect(() => {
+    if (messageServiceInstance && shouldUpdateProfile) {
+      setShouldUpdateProfile(false);
+    }
+  }, [messageServiceInstance]);
 
   useEffect(() => {
     const communities = getJoinedCommunities(chat.channels, chat.leftChannelsList);
@@ -263,7 +272,7 @@ export const CommunityPage = (props: Props) => {
   const joinCommunityChat = () => {
     const communityIds = new Set(communities.map((community) => community.id));
     if (!communityIds.has(channelId)) {
-      const messageService = window?.messageService;
+      const messageService = messageServiceInstance;
       if (messageService) {
         const updatedLeftChannelsList = chat.leftChannelsList.filter((x) => x !== channelId);
         messageService.updateLeftChannelList(updatedLeftChannelsList);
