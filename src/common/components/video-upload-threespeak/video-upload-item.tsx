@@ -5,7 +5,7 @@ import { ProgressBar } from "react-bootstrap";
 interface Props {
   onFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type: "video" | "thumbnail";
-  accept: "video/*" | "image/*";
+  accept: string;
   label: string;
   completed: number;
 }

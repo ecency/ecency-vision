@@ -29,6 +29,7 @@ export async function getAsAMP(
   try {
     const cache = await redis.get(identifier);
     if (cache && !forceRender) {
+      await client.disconnect();
       return cache;
     }
   } catch (e) {
@@ -63,5 +64,6 @@ export async function getAsAMP(
     console.error(e);
     console.error("Redis is unavailable. AMP caches ignoring");
   }
+  await client.disconnect();
   return ampResult;
 }

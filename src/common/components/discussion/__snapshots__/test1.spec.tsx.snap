@@ -915,7 +915,7 @@ exports[`(1) Full render with active user 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><span><a class=\\"markdown-author-link\\" href=\\"/@esteemapp\\">@esteemapp</a></span><br />
-Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"markdown-post-link\\">click here</a></p>",
+Bug report <a href=\\"https://esteem.app/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"markdown-external-link\\" target=\\"_blank\\" rel=\\"noopener\\">click here</a></p>",
               }
             }
           />
@@ -2696,7 +2696,7 @@ exports[`(3) With selected item 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><span><a class=\\"markdown-author-link\\" href=\\"/@esteemapp\\">@esteemapp</a></span><br />
-Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"markdown-post-link\\">click here</a></p>",
+Bug report <a href=\\"https://esteem.app/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"markdown-external-link\\" target=\\"_blank\\" rel=\\"noopener\\">click here</a></p>",
               }
             }
           />

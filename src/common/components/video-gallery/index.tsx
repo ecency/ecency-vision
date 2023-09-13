@@ -66,7 +66,7 @@ const VideoGallery = ({
             {!preFilter && !isEditing ? (
               <DropDown
                 float="left"
-                label={label}
+                label={label?.toUpperCase()}
                 history={"" as any}
                 items={[
                   {
@@ -132,6 +132,9 @@ const VideoGallery = ({
           </div>
           <div className="dialog-content">
             {isFetching && <LinearProgress />}
+            {!isFetching && items?.length != 0 && (
+              <div className="video-info">{_t("video-gallery.video-info")}</div>
+            )}
             <div className="video-list">
               {items?.map((item) => (
                 <VideoGalleryItem
@@ -144,10 +147,10 @@ const VideoGallery = ({
                   setVideoMetadata={setVideoMetadata}
                 />
               ))}
-              {!isFetching && items?.length === 0 && (
-                <div className="gallery-list">{_t("g.empty-list")}</div>
-              )}
             </div>
+            {!isFetching && items?.length === 0 && (
+              <div className="video-center">{_t("g.empty-list")}</div>
+            )}
           </div>
         </Modal.Body>
       </Modal>

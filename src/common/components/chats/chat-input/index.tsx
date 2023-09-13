@@ -6,7 +6,7 @@ import { Channel } from "../../../../managers/message-manager-types";
 import { EmojiPickerStyleProps } from "../types";
 
 import ClickAwayListener from "../../clickaway-listener";
-import EmojiPicker from "../../emoji-picker";
+import EmojiPicker from "../../emoji-picker/index-old";
 import GifPicker from "../../gif-picker";
 import { error } from "../../feedback";
 import Tooltip from "../../tooltip";

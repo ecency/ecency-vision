@@ -4,6 +4,8 @@ import { dateToFullRelative } from "../../helper/parse-date";
 import React, { useEffect, useState } from "react";
 import { ThreeSpeakVideo, useThreeSpeakVideo } from "../../api/threespeak";
 import { Button } from "react-bootstrap";
+import { proxifyImageSrc } from "@ecency/render-helper";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 interface videoProps {
   status: string;
@@ -30,6 +32,7 @@ export function VideoGalleryItem({
   setShowGallery,
   setVideoMetadata
 }: Props) {
+  const { global } = useMappedStore();
   const { data } = useThreeSpeakVideo("all");
 
   const [showMoreInfo, setShowMoreInfo] = useState(false);
@@ -52,7 +55,7 @@ export function VideoGalleryItem({
   const embeddVideo = (video: videoProps) => {
     const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`;
 
-    const element = ` <center>${speakFile}[Download](${video.filename.replace(
+    const element = ` <center>${speakFile}[Source](${video.filename.replace(
       "ipfs://",
       "https://ipfs-3speak.b-cdn.net/ipfs/"
     )})</center>`;
@@ -125,7 +128,10 @@ export function VideoGalleryItem({
   return (
     <div className="video-list-body">
       <div className="thumnail-wrapper">
-        <img src={item.thumbUrl} alt="" />
+        <img
+          src={proxifyImageSrc(item.thumbUrl, 600, 500, global.canUseWebp ? "webp" : "match")}
+          alt=""
+        />
       </div>
       <div className="list-details-wrapper">
         <div className="list-title">

@@ -34,7 +34,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
 
   const updateCache = (entries: Entry[], skipInvalidation = false) => {
     entries.forEach((e) => {
-      if (dmca.some((rx: string) => new RegExp(rx).test(`${e.author}/${e.permlink}`))) {
+      if (dmca.some((rx: string) => new RegExp(rx).test(`@${e.author}/${e.permlink}`))) {
         e.body = "This post is not available due to a copyright/fraudulent claim.";
         e.title = "";
       }
@@ -199,7 +199,7 @@ export function useEntryCache<T extends Entry>(
 
     for (const k of groupKeys) {
       entry = entries[k].entries.find((x) => {
-        if (dmca.some((rx: string) => new RegExp(rx).test(`${x.author}/${x.permlink}`))) {
+        if (dmca.some((rx: string) => new RegExp(rx).test(`@${x.author}/${x.permlink}`))) {
           x.body = "This post is not available due to a copyright/fraudulent claim.";
           x.title = "";
         }
