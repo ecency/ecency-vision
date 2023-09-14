@@ -432,17 +432,23 @@ export default function ChatsChannelMessages(props: Props) {
                       {!isSameUserMessage && (
                         <p className="user-msg-time">
                           <span className="username-community">{name}</span>
-                          {formatMessageTime(pMsg.created)}
+                          {/* {formatMessageTime(pMsg.created)} */}
                         </p>
                       )}
 
                       <div className="receiver-messag">
                         <div
-                          className={`receiver-message-content ${isGif ? "gif" : ""} ${
+                          className={`receiver-message-wrapper  ${isGif ? "gif" : ""} ${
                             isImage ? "chat-image" : ""
                           }`}
-                          dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                        />
+                        >
+                          <div
+                            className="receiver-message-content"
+                            dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                          />
+                          <p className="receiver-msg-time">{formatMessageTime(pMsg.created)}</p>
+                        </div>
+
                         {hoveredMessageId === pMsg.id &&
                           privilegedUsers.includes(activeUser?.username!) && (
                             <Tooltip content={"Hide Message"}>
@@ -470,7 +476,6 @@ export default function ChatsChannelMessages(props: Props) {
                     onMouseEnter={() => setHoveredMessageId(pMsg.id)}
                     onMouseLeave={() => setHoveredMessageId("")}
                   >
-                    <p className="sender-message-time">{formatMessageTime(pMsg.created)}</p>
                     <div
                       className={`sender-message ${
                         pMsg.sent === 2 ? "failed" : pMsg.sent === 0 ? "sending" : ""
@@ -507,11 +512,16 @@ export default function ChatsChannelMessages(props: Props) {
                       )}
 
                       <div
-                        className={`sender-message-content ${isGif ? "gif" : ""} ${
+                        className={`sender-message-wrapper ${isGif ? "gif" : ""} ${
                           isImage ? "chat-image" : ""
                         }`}
-                        dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                      />
+                      >
+                        <div
+                          className="sender-message-content"
+                          dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                        />
+                        <p className="sender-message-time">{formatMessageTime(pMsg.created)}</p>
+                      </div>
 
                       {pMsg.sent === 0 && (
                         <span style={{ margin: "10px 0 0 5px" }}>

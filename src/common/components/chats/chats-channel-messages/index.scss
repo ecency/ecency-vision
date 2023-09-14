@@ -52,12 +52,38 @@
       }
       .receiver-messag {
         display: flex;
-        .receiver-message-content {
+
+        .receiver-message-wrapper {
+          box-sizing: content-box;
+          border-radius: 0 10px 10px 10px;
+          max-width: 70% !important;
+          word-wrap: break-word;
           @include themify(day) {
             background: #e4e6eb;
           }
           @include themify(night) {
             background: #cee2ff;
+          }
+
+          .receiver-message-content {
+            color: #050505;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 0px 10px 10px 0px;
+          }
+
+          .receiver-msg-time {
+            @include themify(day) {
+              color: rgb(138, 141, 145);
+            }
+            @include themify(night) {
+              color: $charcoal-grey;
+            }
+
+            font-size: 10px;
+            display: flex;
+            justify-content: flex-end;
+            margin: -5px 7px 3px 45px;
           }
 
           &.gif {
@@ -75,39 +101,43 @@
               max-width: 100%;
             }
           }
-          color: #050505;
-          // max-width: 290px;
-          display: inline-block;
-          max-width: 70% !important;
-          word-wrap: break-word;
-          padding: 10px;
-          border-radius: 0px 10px 10px 0px;
+
+          &.gif,
+          &.chat-image {
+            .receiver-message-wrapper {
+              background: none;
+            }
+            .receiver-message-content {
+              padding: 0;
+              img {
+                padding-bottom: 10px;
+              }
+            }
+            .receiver-msg-time {
+              @include themify(day) {
+                color: rgb(138, 141, 145);
+              }
+              @include themify(night) {
+                color: $white-three;
+              }
+            }
+          }
         }
       }
       &.same-user-msg {
         margin-left: 4rem;
         padding-top: 1.5px;
-        .receiver-message-content {
-          // border-radius: 0;
+        .receiver-message-wrapper {
+          border-radius: 0 10px 10px 0;
         }
       }
     }
   }
 
   .sender {
-    margin-bottom: 0.17rem;
-    .sender-message-time {
-      color: rgb(138, 141, 145);
-      display: flex;
-      font-weight: 400;
-      justify-content: flex-end;
-      font-size: 12px;
-      margin: 0;
-      margin-right: 18px;
-      margin-bottom: 2px;
-    }
+    margin: 1px;
+
     .sender-message {
-      // max-width: 320px;
       margin-left: auto;
 
       display: flex;
@@ -143,19 +173,12 @@
         margin-right: 7px;
       }
 
-      .sender-message-content {
-        border-radius: 10px 10px 0px;
+      .sender-message-wrapper {
+        box-sizing: content-box;
+        border-radius: 10px 10px 0 10px;
         max-width: 70%;
         word-wrap: break-word;
-        margin-bottom: 0;
-        color: $charcoal-grey;
-        font-size: 16px;
-        font-weight: 400;
-        padding: 8px 12px 8px 12px;
-        a {
-          text-decoration: underline;
-          color: white;
-        }
+
         @include themify(day) {
           background-color: rgb(0, 132, 255);
           color: $white;
@@ -164,8 +187,10 @@
           background-color: $charcoal-grey;
           color: $white;
         }
+
         &.gif {
           background: none;
+
           padding: 0;
           img {
             max-width: 100%;
@@ -178,6 +203,48 @@
           img {
             max-width: 100%;
           }
+        }
+
+        &.gif,
+        &.chat-image {
+          .sender-message-time {
+            color: rgb(138, 141, 145);
+          }
+          .sender-message-content {
+            padding: 10px 0 0 5px;
+            img {
+              padding-bottom: 10px;
+            }
+          }
+        }
+
+        .sender-message-content {
+          margin-bottom: 0;
+          color: $charcoal-grey;
+          font-size: 16px;
+          font-weight: 400;
+          padding: 8px 8px 8px 12px;
+          a {
+            text-decoration: underline;
+            color: white;
+          }
+          @include themify(day) {
+            color: $white;
+          }
+          @include themify(night) {
+            color: $white;
+          }
+        }
+
+        .sender-message-time {
+          color: $white;
+          margin-bottom: 3px;
+          font-size: 10px;
+          display: flex;
+          justify-content: flex-end;
+          margin-right: 7px;
+          margin-left: 45px;
+          margin-top: -5px;
         }
       }
     }
