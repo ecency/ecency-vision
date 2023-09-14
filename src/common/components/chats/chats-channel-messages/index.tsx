@@ -91,11 +91,6 @@ export default function ChatsChannelMessages(props: Props) {
   const [hiddenMsgId, setHiddenMsgId] = useState("");
   const [resendMessage, setResendMessage] = useState<PublicMessage>();
 
-  // useEffect(() => {
-  //   scrollToBottom();
-  //   console.log("Heloooooooo");
-  // }, [publicMessages]);
-
   useEffect(() => {
     if (prevGlobal?.theme !== global.theme) {
       setBackground();
@@ -153,22 +148,8 @@ export default function ChatsChannelMessages(props: Props) {
   const sendDM = (name: string, pubkey: string) => {
     if (dmMessage) {
       messageServiceInstance?.sendDirectMessage(pubkey, dmMessage);
-
-      // setIsCurrentUser(true);
-      // setCurrentUser(name);
-      // setIsCommunity(false);
-      // setCommunityName("");
       setClickedMessage("");
       setDmMessage("");
-      // console.log("Message is send to", name);
-      // if (
-      //   receiverPubKey &&
-      //   !props.chat.directContacts.some((contact) => contact.name === currentUser) &&
-      //   isCurrentUser
-      // ) {
-      //   messageServiceInstance?.publishContacts(currentUser, receiverPubKey);
-      // }
-
       if (from && from === CHATPAGE) {
         history?.push(`/chats/@${name}`);
       }
@@ -181,7 +162,6 @@ export default function ChatsChannelMessages(props: Props) {
 
   const zoomInitializer = () => {
     const elements: HTMLElement[] = [...document.querySelectorAll<HTMLElement>(".chat-image img")];
-    // .filter((x) => x.parentNode?.nodeName !== "A");
     zoom = mediumZoom(elements);
     setBackground();
   };
@@ -264,7 +244,6 @@ export default function ChatsChannelMessages(props: Props) {
           currentChannel &&
           currentChannel?.removedUserIds!.filter((item) => item !== removedUserId);
 
-        console.log("newUpdatedRemovedUsers", newUpdatedRemovedUsers);
         updatedMetaData.removedUserIds = newUpdatedRemovedUsers;
         break;
       case 4:
@@ -286,21 +265,6 @@ export default function ChatsChannelMessages(props: Props) {
       messageServiceInstance?.updateChannel(currentChannel!, updatedMetaData);
       currentChannelSetter({ ...currentChannel!, ...updatedMetaData });
       setStep(0);
-      // if (operationType === HIDEMESSAGE) {
-      //   setStep(0);
-      //   setKeyDialog(false);
-      //   fetchCommunityMessages(
-      //     props.chat.publicMessages,
-      //     currentChannel!,
-      //     currentChannel?.hiddenMessageIds
-      //   );
-      //   setHiddenMsgId("");
-      // }
-      // if (operationType === BLOCKUSER || operationType === UNBLOCKUSER) {
-      //   setStep(0);
-      //   setKeyDialog(false);
-      //   setRemovedUserID("");
-      // }
     } catch (err) {
       error(_t("chat.error-updating-community"));
     }
@@ -541,12 +505,14 @@ export default function ChatsChannelMessages(props: Props) {
                           </span>
                         </Tooltip>
                       )}
+
                       <div
                         className={`sender-message-content ${isGif ? "gif" : ""} ${
                           isImage ? "chat-image" : ""
                         }`}
                         dangerouslySetInnerHTML={{ __html: renderedPreview }}
                       />
+
                       {pMsg.sent === 0 && (
                         <span style={{ margin: "10px 0 0 5px" }}>
                           <Spinner animation="border" variant="primary" size="sm" />

@@ -730,6 +730,7 @@ export default function ChatPopUp(props: Props) {
                           directMessages={directMessagesList}
                           currentUser={currentUser}
                           isScrollToBottom={false}
+                          deleteDirectMessage={props.deleteDirectMessage}
                         />
                       ) : (
                         <ChatsChannelMessages

@@ -37,7 +37,7 @@ const EmojiPickerStyle: EmojiPickerStyleProps = {
 interface Props {
   username: string;
   users: User[];
-  history: History | null;
+  history: History;
   ui: UI;
   currentChannel: Channel;
   inProgress: boolean;
@@ -48,6 +48,7 @@ interface Props {
   currentChannelSetter: (channel: Channel) => void;
   setInProgress: (d: boolean) => void;
   deletePublicMessage: (channelId: string, msgId: string) => void;
+  deleteDirectMessage: (peer: string, msgId: string) => void;
 }
 
 export default function ChatsMessagesView(props: Props) {
@@ -55,9 +56,11 @@ export default function ChatsMessagesView(props: Props) {
     username,
     currentChannel,
     inProgress,
+    history,
     currentChannelSetter,
     setInProgress,
-    deletePublicMessage
+    deletePublicMessage,
+    deleteDirectMessage
   } = props;
 
   const { messageServiceInstance, receiverPubKey } = useContext(ChatContext);
@@ -226,7 +229,6 @@ export default function ChatsMessagesView(props: Props) {
               {...props}
               publicMessages={publicMessages}
               currentChannel={currentChannel!}
-              activeUserKeys={activeUserKeys!}
               isScrollToBottom={isScrollToBottom}
               from={CHATPAGE}
               isScrolled={isScrolled}
@@ -240,11 +242,11 @@ export default function ChatsMessagesView(props: Props) {
           <ChatsDirectMessages
             {...props}
             directMessages={directMessages && directMessages}
-            activeUserKeys={activeUserKeys!}
             currentUser={directUser!}
             isScrolled={isScrolled}
             receiverPubKey={receiverPubKey}
             isScrollToBottom={isScrollToBottom}
+            deleteDirectMessage={deleteDirectMessage}
             scrollToBottom={scrollToBottom}
           />
         )}
