@@ -197,7 +197,7 @@ const App = (props: any) => {
         <Announcement activeUser={props.activeUser} />
         <FloatingFAQ />
 
-        <MessageManager {...props} />
+        <MessageManager />
         <ChatPopUp {...props} />
       </ChatContextProvider>
     </EntriesCacheManager>

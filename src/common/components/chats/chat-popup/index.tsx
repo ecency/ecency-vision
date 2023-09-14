@@ -75,17 +75,14 @@ import MessageService from "../../../helper/message-service";
 
 interface Props {
   history: History;
-  resetChat: () => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
-  deletePublicMessage: (channelId: string, msgId: string) => void;
-  deleteDirectMessage: (peer: string, msgId: string) => void;
 }
 
 export default function ChatPopUp(props: Props) {
-  const { activeUser, global, chat } = useMappedStore();
+  const { activeUser, global, chat, resetChat } = useMappedStore();
 
   const {
     messageServiceInstance,
@@ -132,10 +129,6 @@ export default function ChatPopUp(props: Props) {
   const [removedUsers, setRemovedUsers] = useState<string[]>([]);
   const [innerWidth, setInnerWidth] = useState(0);
   const [isChatPage, setIsChatPage] = useState(false);
-
-  useEffect(() => {
-    console.log("chat in store", chat);
-  }, [chat]);
 
   useEffect(() => {
     if (currentChannel && chat.leftChannelsList.includes(currentChannel.id)) {
@@ -202,17 +195,11 @@ export default function ChatPopUp(props: Props) {
       const noStrPrivKey = getPrivateKey(activeUser?.username!);
       setNoStrPrivKey(noStrPrivKey);
     }
-    setTimeout(() => {
-      if (chat.channels.length === 0 && chat.directContacts.length === 0) {
-        setShowSpinner(false);
-      }
-    }, 5000);
   }, [typeof window !== "undefined" && messageServiceInstance]);
 
   useEffect(() => {
     const communities = getJoinedCommunities(chat.channels, chat.leftChannelsList);
     setCommunities(communities);
-    // fetchProfileData();
   }, [chat.channels, chat.leftChannelsList]);
 
   useEffect(() => {
@@ -448,7 +435,6 @@ export default function ChatPopUp(props: Props) {
   };
 
   const handleRefreshSvgClick = () => {
-    const { resetChat } = props;
     resetChat();
     handleBackArrowSvg();
     if (getPrivateKey(activeUser?.username!)) {
@@ -730,7 +716,6 @@ export default function ChatPopUp(props: Props) {
                           directMessages={directMessagesList}
                           currentUser={currentUser}
                           isScrollToBottom={false}
-                          deleteDirectMessage={props.deleteDirectMessage}
                         />
                       ) : (
                         <ChatsChannelMessages

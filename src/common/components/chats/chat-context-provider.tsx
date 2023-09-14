@@ -92,7 +92,7 @@ export default function ChatContextProvider(props: Props) {
     if (showSpinner) {
       setTimeout(() => {
         setShowSpinner(false);
-      }, 7000);
+      }, 6000);
     }
   }, [showSpinner]);
 
@@ -105,7 +105,6 @@ export default function ChatContextProvider(props: Props) {
       pub: pubKey,
       priv: privKey
     };
-    setShowSpinner(false);
     setActiveUserKeys(activeUserKeys);
   };
 
@@ -124,6 +123,7 @@ export default function ChatContextProvider(props: Props) {
   };
 
   const joinChat = async () => {
+    console.log("Join chat run in context");
     const { resetChat } = props;
     resetChat();
     const keys = createNoStrAccount();

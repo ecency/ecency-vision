@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { getPublicKey } from "../../../../lib/nostr-tools/keys";
 import { _t } from "../../../i18n";
@@ -23,15 +23,12 @@ export default function ImportChats() {
   const [privKey, setPrivKey] = useState("");
   const [step, setStep] = useState(0);
 
-  const { activeUserKeys, messageServiceInstance, setActiveUserKeys, setChatPrivKey } =
-    useContext(ChatContext);
+  const { activeUserKeys, hasUserJoinedChat, setChatPrivKey, joinChat } = useContext(ChatContext);
 
   const handleImportChatSubmit = () => {
     try {
       setInProgress(true);
       const pubKey = getPublicKey(privKey);
-      console.log("Public key", pubKey);
-      console.log("Active user key", activeUserKeys?.pub);
       if (pubKey === activeUserKeys?.pub) {
         setChatPrivKey(privKey);
         ls.set(`${activeUser?.username}_nsPrivKey`, privKey);
@@ -54,20 +51,11 @@ export default function ImportChats() {
     }
   };
 
-  const handleCreateAccount = async () => {
-    console.log("Confrim run");
-    const keys = createNoStrAccount();
-    ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
-    setChatPrivKey(keys.priv);
-    await setProfileMetaData(activeUser, keys.pub);
-    setNostrkeys(keys);
-    messageServiceInstance?.updateProfile({
-      name: activeUser?.username!,
-      about: "",
-      picture: ""
-    });
-    setActiveUserKeys(keys);
-  };
+  useEffect(() => {
+    if (hasUserJoinedChat) {
+      setStep(0);
+    }
+  }, [hasUserJoinedChat]);
 
   return (
     <>
@@ -126,7 +114,9 @@ export default function ImportChats() {
           onClose={() => {
             setStep(0);
           }}
-          onConfirm={handleCreateAccount}
+          onConfirm={() => {
+            joinChat();
+          }}
         />
       )}
     </>

@@ -55,7 +55,6 @@ interface Props {
   toggleUIProp: (what: ToggleType) => void;
   scrollToBottom?: () => void;
   currentChannelSetter: (channel: Channel) => void;
-  deletePublicMessage: (channelId: string, msgId: string) => void;
 }
 
 let zoom: Zoom | null = null;
@@ -69,10 +68,9 @@ export default function ChatsChannelMessages(props: Props) {
     isScrolled,
     isActveUserRemoved,
     scrollToBottom,
-    currentChannelSetter,
-    deletePublicMessage
+    currentChannelSetter
   } = props;
-  const { chat, global, activeUser, ui, users } = useMappedStore();
+  const { chat, global, activeUser, ui, users, deletePublicMessage } = useMappedStore();
 
   const { messageServiceInstance, activeUserKeys } = useContext(ChatContext);
 

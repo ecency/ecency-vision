@@ -29,28 +29,23 @@ export const setNostrkeys = (keys: NostrKeysType) => {
   window.dispatchEvent(ev);
 };
 
-interface Props {
-  addDirectContacts: (data?: DirectContactsType[]) => void;
-  addDirectMessages: (peer: string, data?: DirectMessage) => void;
-  addPublicMessage: (channelId: string, data?: PublicMessage) => void;
-  addChannels: (data: Channel[]) => void;
-  addProfile: (data: Profile[]) => void;
-  addleftChannels: (data: string[]) => void;
-  UpdateChannels: (data: ChannelUpdate[]) => void;
-  replacePublicMessage: (channelId: string, data?: PublicMessage) => void;
-  verifyPublicMessageSending: (channelId: string, data?: PublicMessage) => void;
-  replaceDirectMessage: (peer: string, data: DirectMessage) => void;
-  verifyDirectMessageSending: (peer: string, data: DirectMessage) => void;
-  addPreviousPublicMessages: (channelId: string, data: MessagesObject) => void;
-}
-
-const MessageManager = (props: Props) => {
-  const { activeUser, chat } = useMappedStore();
-
-  // const messageServiceContext = useContext(MessageServiceContext);
-  // const { setMessageServiceInstance } = messageServiceContext;
-
-  // console.log("messageServiceContext", messageServiceContext);
+const MessageManager = () => {
+  const {
+    activeUser,
+    chat,
+    addDirectMessages,
+    addDirectContacts,
+    addPublicMessage,
+    addChannels,
+    addProfile,
+    addleftChannels,
+    UpdateChannels,
+    replacePublicMessage,
+    verifyPublicMessageSending,
+    replaceDirectMessage,
+    verifyDirectMessageSending,
+    addPreviousPublicMessages
+  } = useMappedStore();
 
   const [messageServiceReady, setMessageServiceReady] = useState(false);
   const [since, setSince] = useState(0);
@@ -86,7 +81,6 @@ const MessageManager = (props: Props) => {
   useEffect(() => {
     if (!messageServiceInstance && keys?.priv) {
       const messageService = initMessageServiceInstance(keys);
-      console.log("I run from that", messageService);
       setMessageServiceInstance(messageService!);
       setMessageService(messageService!);
     }
@@ -101,7 +95,6 @@ const MessageManager = (props: Props) => {
   const createMSInstance = (e: Event) => {
     const detail = (e as CustomEvent).detail as NostrKeysType;
     const messageService = initMessageServiceInstance(detail);
-    console.log("I am here messageServiceInstance", messageService);
     setMessageServiceInstance(messageService!);
     setMessageService(messageService!);
   };
@@ -152,7 +145,7 @@ const MessageManager = (props: Props) => {
 
   // Profile update handler
   const handleProfileUpdate = (data: Profile[]) => {
-    props.addProfile(data);
+    addProfile(data);
   };
 
   useEffect(() => {
@@ -175,7 +168,7 @@ const MessageManager = (props: Props) => {
       }
     });
     if (result.length !== 0) {
-      props.addDirectContacts(result);
+      addDirectContacts(result);
     }
   };
 
@@ -193,7 +186,7 @@ const MessageManager = (props: Props) => {
     data.map((m) => {
       const { peer, id } = m;
       setReplacedDirectMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
-      props.addDirectMessages(peer, m);
+      addDirectMessages(peer, m);
       checkDirectMessageSending(peer, m);
     });
   };
@@ -218,7 +211,7 @@ const MessageManager = (props: Props) => {
 
   const checkDirectMessageSending = (peer: string, data: DirectMessage) => {
     setTimeout(() => {
-      props.verifyDirectMessageSending(peer, data);
+      verifyDirectMessageSending(peer, data);
     }, 20000);
   };
 
@@ -231,9 +224,9 @@ const MessageManager = (props: Props) => {
           setReplacedDirectMessagesBuffer((prevBuffer) =>
             prevBuffer.filter((messageId) => messageId !== id)
           );
-          props.replaceDirectMessage(peer, message);
+          replaceDirectMessage(peer, message);
         } else {
-          props.addDirectMessages(peer, message);
+          addDirectMessages(peer, message);
         }
       });
     } else {
@@ -247,7 +240,7 @@ const MessageManager = (props: Props) => {
       const { peer } = obj;
       const matchingStateItem = chat.directMessages.find((stateItem) => stateItem.peer === peer);
       if (matchingStateItem) {
-        props.addDirectMessages(peer, obj);
+        addDirectMessages(peer, obj);
         setDirectMessageBuffer((prevMessageBuffer) =>
           prevMessageBuffer.filter((message) => message.id !== obj.id)
         );
@@ -279,7 +272,7 @@ const MessageManager = (props: Props) => {
   // Channel creation handler
   const handleChannelCreation = (data: Channel[]) => {
     console.log("handle channel creation run");
-    props.addChannels(data.filter((x) => !chat.channels.find((y) => y.id === x.id)));
+    addChannels(data.filter((x) => !chat.channels.find((y) => y.id === x.id)));
   };
 
   useEffect(() => {
@@ -293,7 +286,7 @@ const MessageManager = (props: Props) => {
 
   // Channel update handler
   const handleChannelUpdate = (data: ChannelUpdate[]) => {
-    props.UpdateChannels(data);
+    UpdateChannels(data);
   };
 
   useEffect(() => {
@@ -307,7 +300,7 @@ const MessageManager = (props: Props) => {
 
   const checkPublicMessageSending = (channelId: string, data: PublicMessage) => {
     setTimeout(() => {
-      props.verifyPublicMessageSending(channelId, data);
+      verifyPublicMessageSending(channelId, data);
     }, 20000);
   };
 
@@ -317,7 +310,7 @@ const MessageManager = (props: Props) => {
     data.map((m) => {
       const { id, root } = m;
       setReplacedPublicMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
-      props.addPublicMessage(root, m);
+      addPublicMessage(root, m);
       checkPublicMessageSending(root, m);
     });
   };
@@ -349,9 +342,9 @@ const MessageManager = (props: Props) => {
           setReplacedPublicMessagesBuffer((prevBuffer) =>
             prevBuffer.filter((messageId) => messageId !== id)
           );
-          props.replacePublicMessage(root, message);
+          replacePublicMessage(root, message);
         } else {
-          props.addPublicMessage(root, message);
+          addPublicMessage(root, message);
         }
       });
     } else {
@@ -399,7 +392,7 @@ const MessageManager = (props: Props) => {
         (stateItem) => stateItem.channelId === root
       );
       if (matchingStateItem) {
-        props.addPublicMessage(root, obj);
+        addPublicMessage(root, obj);
         setPublicMessageBuffer((prevMessageBuffer) =>
           prevMessageBuffer.filter((message) => message.id !== obj.id)
         );
@@ -415,7 +408,7 @@ const MessageManager = (props: Props) => {
       return result;
     }, {});
 
-    props.addPreviousPublicMessages(channelId, messagesObject);
+    addPreviousPublicMessages(channelId, messagesObject);
   };
 
   useEffect(() => {
@@ -435,7 +428,7 @@ const MessageManager = (props: Props) => {
 
   // Left channel handler
   const handleLeftChannelList = (data: string[]) => {
-    props.addleftChannels(data);
+    addleftChannels(data);
   };
 
   useEffect(() => {

@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../../i18n";
+import LinearProgress from "../../linear-progress";
+import { ChatContext } from "../chat-context-provider";
+
+import "./index.scss";
 
 interface Props {
   actionType: string;
@@ -10,6 +14,14 @@ interface Props {
 }
 const ChatsConfirmationModal = (props: Props) => {
   const { onClose, onConfirm, content, actionType } = props;
+  const { hasUserJoinedChat } = useContext(ChatContext);
+  const [inProgress, setInProgress] = useState(false);
+
+  useEffect(() => {
+    if (hasUserJoinedChat && inProgress) {
+      setInProgress(false);
+    }
+  }, [hasUserJoinedChat]);
   const confirmationModalContent = (
     <>
       <div className="join-community-dialog-header border-bottom">
@@ -17,14 +29,12 @@ const ChatsConfirmationModal = (props: Props) => {
           <h2 className="join-community-main-title">{actionType}</h2>
         </div>
       </div>
-      <div className="join-community-dialog-body" style={{ fontSize: "18px", marginTop: "12px" }}>
-        {content}
-      </div>
-      <p className="join-community-confirm-buttons" style={{ textAlign: "right" }}>
+      {inProgress && <LinearProgress />}
+      <div className="join-community-dialog-body">{content}</div>
+      <p className="join-community-confirm-buttons">
         <Button
           variant="outline-primary"
           className="close-btn"
-          style={{ marginRight: "20px" }}
           onClick={() => {
             onClose();
           }}
@@ -35,6 +45,7 @@ const ChatsConfirmationModal = (props: Props) => {
           variant="outline-primary"
           className="confirm-btn"
           onClick={() => {
+            setInProgress(true);
             onConfirm();
           }}
         >

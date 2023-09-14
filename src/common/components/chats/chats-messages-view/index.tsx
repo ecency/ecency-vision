@@ -233,7 +233,7 @@ export default function ChatsMessagesView(props: Props) {
               from={CHATPAGE}
               isScrolled={isScrolled}
               isActveUserRemoved={isActveUserRemoved}
-              deletePublicMessage={deletePublicMessage}
+              // deletePublicMessage={deletePublicMessage}
               scrollToBottom={scrollToBottom}
               currentChannelSetter={currentChannelSetter}
             />
@@ -246,7 +246,7 @@ export default function ChatsMessagesView(props: Props) {
             isScrolled={isScrolled}
             receiverPubKey={receiverPubKey}
             isScrollToBottom={isScrollToBottom}
-            deleteDirectMessage={deleteDirectMessage}
+            // deleteDirectMessage={deleteDirectMessage}
             scrollToBottom={scrollToBottom}
           />
         )}
