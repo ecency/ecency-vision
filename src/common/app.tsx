@@ -103,7 +103,7 @@ const App = (props: any) => {
       {/*<ReactQueryDevtools initialIsOpen={false} />*/}
       <Tracker />
       <UserActivityRecorder />
-      <ChatContextProvider>
+      <ChatContextProvider {...props}>
         <Switch>
           <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
           <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer} />

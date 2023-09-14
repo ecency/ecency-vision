@@ -139,7 +139,6 @@ interface Props {
   toggleUIProp: (what: ToggleType) => void;
   updateSubscriptions: (list: Subscription[]) => void;
   addAccount: (data: Account) => void;
-  resetChat: () => void;
 }
 
 export class CommunityCover extends Component<Props> {
@@ -206,7 +205,7 @@ export class CommunityCover extends Component<Props> {
           <SubscriptionBtn {...this.props} />
           {CommunityPostBtn({ ...this.props })}
 
-          <JoinCommunityChatBtn {...this.props} />
+          <JoinCommunityChatBtn community={this.props.community} history={this.props.history} />
         </div>
         {canUpdateCoverImage && (
           <EditCoverImage
@@ -235,8 +234,7 @@ export default (p: Props) => {
     deleteUser: p.deleteUser,
     toggleUIProp: p.toggleUIProp,
     updateSubscriptions: p.updateSubscriptions,
-    addAccount: p.addAccount,
-    resetChat: p.resetChat
+    addAccount: p.addAccount
   };
 
   return <CommunityCover {...props} />;

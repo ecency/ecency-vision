@@ -260,8 +260,6 @@ export default function ChatsChannelMessages(props: Props) {
         }
         break;
       case 3:
-        console.log("Current removed users", currentChannel?.removedUserIds);
-        console.log("removedUserId", removedUserId);
         const newUpdatedRemovedUsers =
           currentChannel &&
           currentChannel?.removedUserIds!.filter((item) => item !== removedUserId);
@@ -324,6 +322,16 @@ export default function ChatsChannelMessages(props: Props) {
     return <></>;
   };
 
+  const checkContiguousMessage = (msg: PublicMessage, i: number) => {
+    const prevMsg = publicMessages[i - 1];
+    const msgAuthor = msg.creator;
+    const prevMsgAuthor = prevMsg ? prevMsg.creator : null;
+    if (msgAuthor === prevMsgAuthor) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <>
       <div className="channel-messages" ref={channelMessagesRef}>
@@ -331,6 +339,9 @@ export default function ChatsChannelMessages(props: Props) {
           activeUserKeys &&
           publicMessages.map((pMsg, i) => {
             const dayAndMonth = getFormattedDateAndDay(pMsg, i);
+
+            const isSameUserMessage = checkContiguousMessage(pMsg, i);
+
             let renderedPreview = renderPostBody(pMsg.content, false, global.canUseWebp);
 
             renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
@@ -436,26 +447,31 @@ export default function ChatsChannelMessages(props: Props) {
                     onMouseEnter={() => setHoveredMessageId(pMsg.id)}
                     onMouseLeave={() => setHoveredMessageId("")}
                   >
-                    <div className="community-user-img">
-                      <OverlayTrigger
-                        trigger="click"
-                        placement="right"
-                        show={clickedMessage === pMsg.id}
-                        overlay={popover}
-                        delay={1000}
-                        onToggle={() => handleImageClick(pMsg.id, pMsg.creator)}
-                      >
-                        <span>
-                          <UserAvatar username={name!} size="medium" />
-                        </span>
-                      </OverlayTrigger>
-                    </div>
+                    {!isSameUserMessage && (
+                      <div className="community-user-img">
+                        <OverlayTrigger
+                          trigger="click"
+                          placement="right"
+                          show={clickedMessage === pMsg.id}
+                          overlay={popover}
+                          delay={1000}
+                          onToggle={() => handleImageClick(pMsg.id, pMsg.creator)}
+                        >
+                          <span>
+                            <UserAvatar username={name!} size="medium" />
+                          </span>
+                        </OverlayTrigger>
+                      </div>
+                    )}
 
-                    <div className="user-info">
-                      <p className="user-msg-time">
-                        <span className="username-community">{name}</span>
-                        {formatMessageTime(pMsg.created)}
-                      </p>
+                    <div className={`user-info ${isSameUserMessage ? "same-user-msg" : ""}`}>
+                      {!isSameUserMessage && (
+                        <p className="user-msg-time">
+                          <span className="username-community">{name}</span>
+                          {formatMessageTime(pMsg.created)}
+                        </p>
+                      )}
+
                       <div className="receiver-messag">
                         <div
                           className={`receiver-message-content ${isGif ? "gif" : ""} ${

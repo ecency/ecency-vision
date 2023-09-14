@@ -1,39 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
-import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
-import { createNoStrAccount, setProfileMetaData } from "../utils";
 
-import * as ls from "../../../util/local-storage";
-import { setNostrkeys } from "../../../../managers/message-manager";
-
-interface Props {
-  resetChat: () => void;
-}
-
-export default function JoinChat(props: Props) {
-  const { messageServiceInstance, setChatPrivKey, setActiveUserKeys } = useContext(ChatContext);
-
-  const { activeUser } = useMappedStore();
+export default function JoinChat() {
+  const { messageServiceInstance, joinChat } = useContext(ChatContext);
 
   const [showSpinner, setShowSpinner] = useState(false);
 
+  useEffect(() => {
+    if (messageServiceInstance) {
+      setShowSpinner(false);
+    }
+  }, [messageServiceInstance]);
+
   const handleJoinChat = async () => {
-    const { resetChat } = props;
     setShowSpinner(true);
-    resetChat();
-    const keys = createNoStrAccount();
-    ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
-    setChatPrivKey(keys.priv);
-    await setProfileMetaData(activeUser, keys.pub);
-    setNostrkeys(keys);
-    messageServiceInstance?.updateProfile({
-      name: activeUser?.username!,
-      about: "",
-      picture: ""
-    });
-    setActiveUserKeys(keys);
-    setShowSpinner(false);
+    joinChat();
   };
 
   return (

@@ -62,6 +62,7 @@
 
           &.gif {
             background: none;
+            padding: 0;
             img {
               max-width: 100%;
             }
@@ -69,6 +70,7 @@
 
           &.chat-image {
             background: none;
+            padding: 0;
             img {
               max-width: 100%;
             }
@@ -79,7 +81,14 @@
           max-width: 70% !important;
           word-wrap: break-word;
           padding: 10px;
-          border-radius: 0px 10px 10px;
+          border-radius: 0px 10px 10px 0px;
+        }
+      }
+      &.same-user-msg {
+        margin-left: 4rem;
+        padding-top: 1.5px;
+        .receiver-message-content {
+          // border-radius: 0;
         }
       }
     }
@@ -157,6 +166,7 @@
         }
         &.gif {
           background: none;
+          padding: 0;
           img {
             max-width: 100%;
           }
@@ -164,6 +174,7 @@
 
         &.chat-image {
           background: none;
+          padding: 0;
           img {
             max-width: 100%;
           }

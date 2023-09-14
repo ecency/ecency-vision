@@ -84,14 +84,6 @@ interface Props {
   deleteDirectMessage: (peer: string, msgId: string) => void;
 }
 
-export const profileUpdater = (messageServiceInstance: MessageService) => {
-  const detail = {
-    messageServiceInstance
-  };
-  const ev = new CustomEvent("profileUpdater", { detail });
-  window.dispatchEvent(ev);
-};
-
 export default function ChatPopUp(props: Props) {
   const { activeUser, global, chat } = useMappedStore();
 
@@ -100,15 +92,11 @@ export default function ChatPopUp(props: Props) {
     revealPrivKey,
     activeUserKeys,
     showSpinner,
+    hasUserJoinedChat,
     setRevealPrivKey,
     setShowSpinner,
-    setActiveUserKeys
+    joinChat
   } = useContext(ChatContext);
-  // const messageServiceContext = useContext(MessageServiceContext);
-
-  // const { messageServiceInstance } = messageServiceContext;
-
-  // console.log("messageServiceInstance chatpop up", messageServiceInstance);
 
   const routerLocation = useLocation();
   const prevActiveUser = usePrevious(activeUser);
@@ -120,7 +108,6 @@ export default function ChatPopUp(props: Props) {
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [showSearchUser, setShowSearchUser] = useState(false);
-  const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [show, setShow] = useState(false);
   const [receiverPubKey, setReceiverPubKey] = useState("");
@@ -141,7 +128,6 @@ export default function ChatPopUp(props: Props) {
   const [noStrPrivKey, setNoStrPrivKey] = useState("");
   const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
   const [isTop, setIsTop] = useState(false);
-  const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [removedUsers, setRemovedUsers] = useState<string[]>([]);
   const [innerWidth, setInnerWidth] = useState(0);
@@ -150,14 +136,6 @@ export default function ChatPopUp(props: Props) {
   useEffect(() => {
     console.log("chat in store", chat);
   }, [chat]);
-
-  useEffect(() => {
-    window.addEventListener("profileUpdater", noStrProfileUpdater);
-
-    return () => {
-      window.removeEventListener("profileUpdater", noStrProfileUpdater);
-    };
-  }, []);
 
   useEffect(() => {
     if (currentChannel && chat.leftChannelsList.includes(currentChannel.id)) {
@@ -178,18 +156,11 @@ export default function ChatPopUp(props: Props) {
 
   useEffect(() => {
     // deleteChatPublicKey(activeUser);
-    fetchProfileData();
     setShow(!!activeUser?.username && !isChatPage);
     const noStrPrivKey = getPrivateKey(activeUser?.username!);
     setNoStrPrivKey(noStrPrivKey);
     setInnerWidth(window.innerWidth);
   }, []);
-
-  useEffect(() => {
-    if (shouldUpdateProfile && messageServiceInstance) {
-      profileUpdater(messageServiceInstance);
-    }
-  }, [shouldUpdateProfile, messageServiceInstance]);
 
   useEffect(() => {
     const updated: ChannelUpdate = chat.updatedChannel
@@ -227,8 +198,7 @@ export default function ChatPopUp(props: Props) {
 
   useEffect(() => {
     if (messageServiceInstance) {
-      setHasUserJoinedChat(true);
-      setShouldUpdateProfile(false);
+      setIsSpinner(false);
       const noStrPrivKey = getPrivateKey(activeUser?.username!);
       setNoStrPrivKey(noStrPrivKey);
     }
@@ -242,7 +212,7 @@ export default function ChatPopUp(props: Props) {
   useEffect(() => {
     const communities = getJoinedCommunities(chat.channels, chat.leftChannelsList);
     setCommunities(communities);
-    fetchProfileData();
+    // fetchProfileData();
   }, [chat.channels, chat.leftChannelsList]);
 
   useEffect(() => {
@@ -295,7 +265,6 @@ export default function ChatPopUp(props: Props) {
   }, [removedUsers]);
 
   useEffect(() => {
-    fetchProfileData();
     const msgsList = fetchDirectMessages(receiverPubKey!);
     const messages = msgsList.sort((a, b) => a.created - b.created);
     setDirectMessagesList(messages);
@@ -369,16 +338,6 @@ export default function ChatPopUp(props: Props) {
     }
   };
 
-  const noStrProfileUpdater = (e: Event) => {
-    const detail = (e as CustomEvent).detail;
-    console.log("detail", detail.messageServiceInstance);
-    detail.messageServiceInstance.updateProfile({
-      name: activeUser?.username!,
-      about: "",
-      picture: ""
-    });
-  };
-
   const fetchCommunity = async () => {
     const community = await getCommunity(communityName, activeUser?.username);
     setCurrentCommunity(community!);
@@ -438,12 +397,6 @@ export default function ChatPopUp(props: Props) {
     setInProgress(false);
   };
 
-  const fetchProfileData = async () => {
-    const profileData = await getProfileMetaData(activeUser?.username!);
-    const hasNoStrKey = profileData && profileData.hasOwnProperty(NOSTRKEY);
-    setHasUserJoinedChat(hasNoStrKey);
-  };
-
   const userClicked = (username: string) => {
     setIsCurrentUser(true);
     setCurrentUser(username);
@@ -484,7 +437,6 @@ export default function ChatPopUp(props: Props) {
   };
 
   const scrollerClicked = () => {
-    console.log("Scroller clicked");
     chatBodyDivRef?.current?.scroll({
       top: isCurrentUser || isCommunity ? chatBodyDivRef?.current?.scrollHeight : 0,
       behavior: "auto"
@@ -515,18 +467,8 @@ export default function ChatPopUp(props: Props) {
   };
 
   const handleJoinChat = async () => {
-    const { resetChat } = props;
     setIsSpinner(true);
-    resetChat();
-    const keys = createNoStrAccount();
-    ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
-    setNoStrPrivKey(keys.priv);
-    await setProfileMetaData(activeUser, keys.pub);
-    setHasUserJoinedChat(true);
-    setNostrkeys(keys);
-    setShouldUpdateProfile(true);
-    setActiveUserKeys(keys);
-    setIsSpinner(false);
+    joinChat();
   };
 
   const chatButtonSpinner = (

@@ -92,7 +92,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   private async init() {
-    console.log("Init run of message service");
     this.eventQueue = [];
     this.eventQueueFlag = true;
     this.eventQueueBuffer = [];
@@ -574,7 +573,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
         sig: ""
       })
         .then((event) => {
-          console.log("event failed", event);
           if (!event) {
             reject("Couldn't sign event!");
             return;
@@ -805,7 +803,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public close = () => {
-    console.log("Close run");
     this.pool.close(this.readRelays);
     this.removeAllListeners();
   };
@@ -842,20 +839,3 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
 }
 
 export default MessageService;
-
-// export const initMessageService = (keys: Keys): MessageService | undefined => {
-//   if (window.messageService) {
-//     window.messageService.close();
-//     window.messageService = undefined;
-//   }
-
-//   // const { messageServiceInstance, setMessageServiceInstance } = useMessageServiceContext();
-//   // console.log("I have to check this", messageServiceInstance, setMessageServiceInstance);
-
-//   if (keys) {
-//     window.messageService = new MessageService(keys.priv, keys.pub);
-//   }
-//   console.log("raven instance created", window.messageService);
-
-//   return window.messageService;
-// };

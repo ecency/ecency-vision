@@ -3,76 +3,48 @@ import { Button, Spinner } from "react-bootstrap";
 import { History } from "history";
 
 import { Community, ROLES } from "../../../store/communities/types";
-import { ActiveUser } from "../../../store/active-user/types";
 
 import { _t } from "../../../i18n";
 
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { Channel, communityModerator } from "../../../../managers/message-manager-types";
-import * as ls from "../../../util/local-storage";
-import { setNostrkeys } from "../../../../managers/message-manager";
 import { ChatContext } from "../chat-context-provider";
-import { profileUpdater } from "../chat-popup";
 import { NOSTRKEY } from "../chat-popup/chat-constants";
-import { NostrKeysType } from "../types";
-import {
-  createNoStrAccount,
-  getProfileMetaData,
-  setChannelMetaData,
-  setProfileMetaData
-} from "../utils";
+import { getProfileMetaData, setChannelMetaData } from "../utils";
 
 interface Props {
   history: History;
   community: Community;
-  activeUser: ActiveUser | null;
-  resetChat: () => void;
 }
 
 export default function JoinCommunityChatBtn(props: Props) {
-  const { messageServiceInstance, setShowSpinner } = useContext(ChatContext);
-  const { chat } = useMappedStore();
+  const { messageServiceInstance, activeUserKeys, hasUserJoinedChat, joinChat } =
+    useContext(ChatContext);
+  const { chat, activeUser } = useMappedStore();
   const [inProgress, setInProgress] = useState(false);
   const [isCommunityChatJoined, setIsCommunityChatJoined] = useState(false);
   const [isChatEnabled, setIsChatEnabled] = useState(false);
   const [currentChannel, setCurrentChannel] = useState<Channel>();
-  const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [communityRoles, setCommunityRoles] = useState<communityModerator[]>([]);
-  const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
   const [loadCommunity, setLoadCommunity] = useState(false);
   const [initiateCommunityChat, setInitiateCommunityChat] = useState(false);
-  const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
 
   useEffect(() => {
     fetchCommunityProfile();
-    fetchUserProfileData();
   }, [chat.channels, currentChannel, chat.leftChannelsList]);
 
   useEffect(() => {
     fetchCommunityProfile();
-  }, [props.activeUser]);
+  }, [activeUser]);
 
   useEffect(() => {
-    if (activeUserKeys) {
+    if (activeUserKeys && activeUser?.username === props.community.name) {
       getCommunityRoles();
     }
   }, [activeUserKeys]);
 
   useEffect(() => {
-    if (shouldUpdateProfile && messageServiceInstance) {
-      profileUpdater(messageServiceInstance);
-    }
-  }, [shouldUpdateProfile, messageServiceInstance]);
-
-  useEffect(() => {
-    if (messageServiceInstance && shouldUpdateProfile) {
-      setShouldUpdateProfile(false);
-    }
-  }, [messageServiceInstance]);
-
-  useEffect(() => {
     if (messageServiceInstance) {
-      fetchUserProfileData();
       if (loadCommunity) {
         messageServiceInstance?.loadChannel(currentChannel?.id!);
       }
@@ -92,15 +64,6 @@ export default function JoinCommunityChatBtn(props: Props) {
 
     fetchCurrentChannel();
   }, [isCommunityChatJoined, props.community, chat.channels, chat.leftChannelsList]);
-
-  const fetchUserProfileData = async () => {
-    const profileData = await getProfileMetaData(props.activeUser?.username!);
-    const hasNoStrKey = profileData && profileData.hasOwnProperty(NOSTRKEY);
-    if (hasNoStrKey) {
-      setActiveUserKeys(profileData.nsKey);
-    }
-    setHasUserJoinedChat(hasNoStrKey);
-  };
 
   const fetchCommunityProfile = async () => {
     const communityProfile = await getProfileMetaData(props.community?.name);
@@ -127,7 +90,7 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   const getCommunityRoles = async () => {
     let communityTeam: communityModerator[] = [];
-    const { community, activeUser } = props;
+    const { community } = props;
     const ownerData = await getProfileMetaData(community.name);
     const ownerRole = {
       name: activeUser!.username,
@@ -190,10 +153,9 @@ export default function JoinCommunityChatBtn(props: Props) {
   };
 
   const joinCommunityChat = () => {
-    console.log("Join community chat", messageServiceInstance);
     if (!hasUserJoinedChat) {
-      setShowSpinner(true);
-      handleJoinChat();
+      setInProgress(true);
+      joinChat();
       setLoadCommunity(true);
       setIsCommunityChatJoined(true);
       return;
@@ -203,14 +165,13 @@ export default function JoinCommunityChatBtn(props: Props) {
         chat.leftChannelsList.filter((x) => x !== currentChannel?.id)
       );
     }
-    setIsCommunityChatJoined(true);
     messageServiceInstance?.loadChannel(currentChannel?.id!);
     setIsCommunityChatJoined(true);
   };
 
   const startCommunityChat = () => {
     if (!hasUserJoinedChat) {
-      handleJoinChat();
+      joinChat();
       setInitiateCommunityChat(true);
       setIsCommunityChatJoined(true);
       return;
@@ -229,33 +190,13 @@ export default function JoinCommunityChatBtn(props: Props) {
     return {};
   };
 
-  const handleJoinChat = async () => {
-    const { resetChat, activeUser } = props;
-    setInProgress(true);
-    const keys = createNoStrAccount();
-    setActiveUserKeys(keys);
-    ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
-    await setProfileMetaData(props.activeUser, keys.pub);
-    setHasUserJoinedChat(true);
-    setNostrkeys(keys);
-    messageServiceInstance?.updateProfile({
-      name: props.activeUser?.username!,
-      about: "",
-      picture: ""
-    });
-    setInProgress(false);
-    fetchCommunityProfile();
-    resetChat();
-    setShouldUpdateProfile(true);
-  };
-
   const chatButtonSpinner = (
     <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
   );
 
   return (
     <>
-      {props.community.name === props.activeUser?.username ? (
+      {props.community.name === activeUser?.username ? (
         isCommunityChatJoined ? (
           <Button variant="outline-primary">{_t("chat.chat-joined")}</Button>
         ) : !isChatEnabled ? (

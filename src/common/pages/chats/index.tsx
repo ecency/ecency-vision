@@ -100,7 +100,7 @@ export const Chats = (props: Props) => {
               )
             ) : (
               <div className="d-flex justify-content-center align-items-center full-page">
-                <JoinChat {...props} />
+                <JoinChat />
               </div>
             )}
           </>
