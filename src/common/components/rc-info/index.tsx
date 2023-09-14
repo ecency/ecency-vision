@@ -234,14 +234,7 @@ export const ResourceCreditsInfo = (props: any) => {
                     <span>{customJsonAmount}</span>
                   </ListGroupItem>
                   <ListGroupItem>
-                    {true ? (
-                      <ClaimAccountCredit
-                        claimAccountAmount={claimAccountAmount}
-                        account={account}
-                      />
-                    ) : (
-                      <></>
-                    )}
+                    <ClaimAccountCredit claimAccountAmount={claimAccountAmount} account={account} />
                   </ListGroupItem>
                 </ListGroup>
               </div>

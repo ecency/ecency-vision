@@ -2304,7 +2304,7 @@ export const claimAccount = async (account: FullAccount, key: PrivateKey) => {
   );
 };
 
-export const claimAccountByHiveSigner = (account: FullAccount) => {
+export const claimAccountByHiveSigner = (account: FullAccount) =>
   hotSign(
     encodeOp(
       [
@@ -2324,4 +2324,19 @@ export const claimAccountByHiveSigner = (account: FullAccount) => {
     },
     `@${account.name}/wallet`
   );
-};
+
+export const claimAccountByKeychain = (account: FullAccount) =>
+  keychain.broadcast(
+    account.name,
+    [
+      [
+        "claim_account",
+        {
+          creator: account.name,
+          extensions: [],
+          fee: "0.000 HIVE"
+        }
+      ]
+    ],
+    "Active"
+  );

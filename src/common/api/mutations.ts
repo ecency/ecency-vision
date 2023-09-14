@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { usrActivity } from "./private-api";
-import { claimAccount } from "./operations";
+import { claimAccount, claimAccountByKeychain } from "./operations";
 import { FullAccount } from "../store/accounts/types";
 import { PrivateKey } from "@hiveio/dhive";
 
@@ -18,11 +18,22 @@ export function useUserActivity(username: string | undefined, ty: number) {
 }
 
 export function useAccountClaiming(account: FullAccount) {
-  return useMutation(["account-claiming", account.name], async (key: PrivateKey) => {
-    try {
-      return await claimAccount(account, key);
-    } catch (error) {
-      throw new Error("Failed RC claiming. Please, try again or contact with support.");
+  return useMutation(
+    ["account-claiming", account.name],
+    async ({ isKeychain, key }: { key?: PrivateKey; isKeychain?: boolean }) => {
+      try {
+        if (isKeychain) {
+          return await claimAccountByKeychain(account);
+        }
+
+        if (key) {
+          return await claimAccount(account, key);
+        }
+
+        throw new Error();
+      } catch (error) {
+        throw new Error("Failed RC claiming. Please, try again or contact with support.");
+      }
     }
-  });
+  );
 }

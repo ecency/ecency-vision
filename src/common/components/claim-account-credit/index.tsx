@@ -16,7 +16,13 @@ interface Props {
 
 const ClaimAccountCredit = ({ account, claimAccountAmount }: Props) => {
   const { global, activeUser, addAccount } = useMappedStore();
-  const { mutateAsync: claimAccount, isLoading, error, isSuccess } = useAccountClaiming(account);
+  const {
+    mutateAsync: claimAccount,
+    isLoading,
+    error,
+    isSuccess,
+    reset
+  } = useAccountClaiming(account);
 
   const [key, setKey] = useState("");
   const [isKeySetting, setIsKeySetting] = useState(false);
@@ -30,13 +36,17 @@ const ClaimAccountCredit = ({ account, claimAccountAmount }: Props) => {
     }
   }, [isSuccess]);
 
-  const signKs = () => {};
-
   return (
     <div className="claim-credit">
-      <div className="claim-credit-title mb-3">
+      <div className="claim-credit-title">
         {isKeySetting ? (
-          <div className="claim-credit-title-back" onClick={() => setIsKeySetting(false)}>
+          <div
+            className="claim-credit-title-back"
+            onClick={() => {
+              setIsKeySetting(false);
+              reset();
+            }}
+          >
             {arrowLeftSvg}
           </div>
         ) : (
@@ -45,7 +55,10 @@ const ClaimAccountCredit = ({ account, claimAccountAmount }: Props) => {
         {_t("rc-info.claim-accounts")}
         <span className="text-primary">{claimAccountAmount}</span>
       </div>
-      {!isSuccess && !isKeySetting ? (
+      {!isSuccess &&
+      !isKeySetting &&
+      claimAccountAmount > 0 &&
+      activeUser?.username === account.name ? (
         <Button size="sm" onClick={() => setIsKeySetting(true)}>
           {_t("rc-info.claim")}
         </Button>
@@ -53,12 +66,12 @@ const ClaimAccountCredit = ({ account, claimAccountAmount }: Props) => {
         <></>
       )}
       {isSuccess ? (
-        <small className="text-success mb-3 d-block">{_t("rc-info.successfully-claimed")}</small>
+        <small className="text-success my-3 d-block">{_t("rc-info.successfully-claimed")}</small>
       ) : (
         <></>
       )}
       {error ? (
-        <small className="d-block text-danger mb-3">{(error as Error)?.message}</small>
+        <small className="d-block text-danger my-3">{(error as Error)?.message}</small>
       ) : (
         <></>
       )}
@@ -69,9 +82,13 @@ const ClaimAccountCredit = ({ account, claimAccountAmount }: Props) => {
           setSigningKey={(k) => setKey(k)}
           global={global}
           activeUser={activeUser}
-          onKey={(key) => claimAccount(key)}
+          onKey={(key) => claimAccount({ key })}
           onHot={() => claimAccountByHiveSigner(account)}
-          onKc={signKs}
+          onKc={() =>
+            claimAccount({
+              isKeychain: true
+            })
+          }
         />
       ) : (
         <></>
