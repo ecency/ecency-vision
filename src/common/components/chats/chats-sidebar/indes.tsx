@@ -198,7 +198,10 @@ export default function ChatsSideBar(props: Props) {
             {userList.map((user) => (
               <Link
                 to={`/chats/@${user.account}`}
-                onClick={() => setSearchText("")}
+                onClick={() => {
+                  setSearchText("");
+                  setSearchInProgress(false);
+                }}
                 key={user.account}
               >
                 <div

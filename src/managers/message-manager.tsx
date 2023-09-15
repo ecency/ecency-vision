@@ -19,6 +19,7 @@ import { getProfileMetaData, getPrivateKey } from "../common/components/chats/ut
 
 import { useMappedStore } from "../common/store/use-mapped-store";
 import { ChatContext } from "../common/components/chats/chat-context-provider";
+import { useTimeoutFn } from "react-use";
 
 export const setNostrkeys = (keys: NostrKeysType) => {
   const detail: NostrKeysType = {
@@ -81,10 +82,20 @@ const MessageManager = () => {
   useEffect(() => {
     if (!messageServiceInstance && keys?.priv) {
       const messageService = initMessageServiceInstance(keys);
-      setMessageServiceInstance(messageService!);
+      console.log("messageService", messageService!!);
+      setMessageServiceInstance(messageService);
       setMessageService(messageService!);
     }
   }, [keys]);
+
+  // useEffect(() => {
+  //   if (messageServiceInstance === undefined && keys?.priv) {
+  //     const messageService = initMessageServiceInstance(keys);
+  //     if (messageService) {
+  //       setMessageService(messageService);
+  //     }
+  //   }
+  // }, [keys]);
 
   useEffect(() => {
     if (activeUser) {
@@ -95,7 +106,8 @@ const MessageManager = () => {
   const createMSInstance = (e: Event) => {
     const detail = (e as CustomEvent).detail as NostrKeysType;
     const messageService = initMessageServiceInstance(detail);
-    setMessageServiceInstance(messageService!);
+    console.log("messageService", messageService!!);
+    setMessageServiceInstance(messageService);
     setMessageService(messageService!);
   };
 
@@ -187,7 +199,18 @@ const MessageManager = () => {
       const { peer, id } = m;
       setReplacedDirectMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
       addDirectMessages(peer, m);
-      checkDirectMessageSending(peer, m);
+      const startTimeout = () => {
+        console.log("Start time out called");
+        useTimeoutFn(() => {
+          console.log("Inner called");
+          checkDirectMessageSending(peer, m);
+        }, 2000);
+      };
+
+      // Start the timeout
+      startTimeout();
+      // const [startTimeout] = useTimeoutFn(checkDirectMessageSending(peer, m), 20000);
+      // checkDirectMessageSending(peer, m);
     });
   };
 
@@ -210,9 +233,10 @@ const MessageManager = () => {
   }, [messageService, chat.directMessages]);
 
   const checkDirectMessageSending = (peer: string, data: DirectMessage) => {
-    setTimeout(() => {
-      verifyDirectMessageSending(peer, data);
-    }, 20000);
+    // setTimeout(() => {
+    console.log("checkDirectMessageSending called");
+    verifyDirectMessageSending(peer, data);
+    // }, 20000);
   };
 
   // // Direct message handler after sent

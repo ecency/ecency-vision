@@ -26,7 +26,7 @@ interface Context {
   setActiveUserKeys: (keys: NostrKeysType) => void;
   setReceiverPubKey: (key: string) => void;
   setMessageServiceInstance: (instance: MessageService | undefined) => void;
-  initMessageServiceInstance: (keys: Keys) => void;
+  initMessageServiceInstance: (keys: Keys) => MessageService | undefined;
   joinChat: () => void;
 }
 
@@ -49,7 +49,7 @@ export const ChatContext = React.createContext<Context>({
   setActiveUserKeys: () => {},
   setReceiverPubKey: () => {},
   setMessageServiceInstance: () => {},
-  initMessageServiceInstance: () => {},
+  initMessageServiceInstance: () => (({} as MessageService) || undefined),
   joinChat: () => {}
 });
 
@@ -108,6 +108,20 @@ export default function ChatContextProvider(props: Props) {
     setActiveUserKeys(activeUserKeys);
   };
 
+  // const initMessageServiceInstance = (keys: Keys) => {
+  //   if (messageServiceInstance) {
+  //     messageServiceInstance.close();
+  //     setMessageServiceInstance(undefined);
+  //   }
+
+  //   let newMessageService: MessageService | undefined = undefined;
+  //   if (keys) {
+  //     newMessageService = new MessageService(keys.priv, keys.pub);
+  //     setMessageServiceInstance(newMessageService);
+  //   }
+  //   return newMessageService;
+  // };
+
   const initMessageServiceInstance = (keys: Keys) => {
     if (messageServiceInstance) {
       messageServiceInstance.close();
@@ -119,6 +133,7 @@ export default function ChatContextProvider(props: Props) {
       newMessageService = new MessageService(keys.priv, keys.pub);
       setMessageServiceInstance(newMessageService);
     }
+    console.log("newMessageService", newMessageService);
     return newMessageService;
   };
 

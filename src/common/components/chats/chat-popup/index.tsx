@@ -66,6 +66,7 @@ import {
   getJoinedCommunities,
   getPrivateKey,
   getProfileMetaData,
+  getUserChatPublicKey,
   setProfileMetaData
 } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -370,16 +371,20 @@ export default function ChatPopUp(props: Props) {
   };
 
   const fetchCurrentUserData = async () => {
-    const response = await getAccountFull(currentUser);
-    const { posting_json_metadata } = response;
-    const profile = JSON.parse(posting_json_metadata!).profile;
-    const { nsKey } = profile || {};
+    console.log("Fetch profile run");
+    // const response = await getAccountFull(currentUser);
+    // const { posting_json_metadata } = response;
+    // const profile = JSON.parse(posting_json_metadata!).profile;
+    // const { nsKey } = profile || {};
+    const nsKey = await getUserChatPublicKey(currentUser);
+    console.log("nsKey", nsKey);
     if (nsKey) {
       setReceiverPubKey(nsKey);
     } else {
       setReceiverPubKey("");
     }
 
+    console.log("Hello reached");
     setIsCurrentUserJoined(!!nsKey);
     setInProgress(false);
   };
@@ -432,9 +437,11 @@ export default function ChatPopUp(props: Props) {
 
   const handleMessageSvgClick = () => {
     setShowSearchUser(!showSearchUser);
+    setExpanded(true);
   };
 
   const handleRefreshSvgClick = () => {
+    setExpanded(true);
     resetChat();
     handleBackArrowSvg();
     if (getPrivateKey(activeUser?.username!)) {
@@ -650,7 +657,7 @@ export default function ChatPopUp(props: Props) {
                 </div>
               )}{" "}
               {!isCommunity && !isCurrentUser && noStrPrivKey && (
-                <div className="simple-menu">
+                <div className="simple-menu" onClick={() => setExpanded(true)}>
                   <ChatsDropdownMenu
                     history={props.history}
                     onManageChatKey={() => {

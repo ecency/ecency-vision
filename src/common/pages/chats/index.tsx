@@ -88,7 +88,7 @@ export const Chats = (props: Props) => {
                     </div>
                   ) : (
                     // Handle the case when the user hasn't joined any community here
-                    <ChatsMessagesBox {...props} deletePublicMessage={props.deletePublicMessage} />
+                    <ChatsMessagesBox {...props} />
                   )}
                 </>
               ) : (

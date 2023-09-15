@@ -3,7 +3,7 @@ import { StaticRouter } from "react-router-dom";
 
 import { createBrowserHistory, createLocation } from "history";
 
-import UserNav from "./index";
+import { UserNav } from "./index";
 
 import {
   dynamicPropsIntance1,

@@ -327,6 +327,7 @@ export const replaceDirectMessage = (peer: string, data: DirectMessage) => (disp
 
 export const verifyDirectMessageSending =
   (peer: string, data: DirectMessage) => (dispatch: Dispatch) => {
+    console.log("verifyDirectMessageSending called");
     dispatch(verifyDirectMessageSendingAct(peer, data));
   };
 

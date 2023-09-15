@@ -9,7 +9,6 @@ import SwitchLang from "../switch-lang";
 import ToolTip from "../tooltip";
 import Search from "../search";
 import Login from "../login";
-import UserNav from "../user-nav";
 import UserNotifications from "../notifications";
 import Gallery from "../gallery";
 import Drafts from "../drafts";
@@ -48,6 +47,7 @@ import { useLocation } from "react-router";
 import usePrevious from "react-use/lib/usePrevious";
 import { Theme } from "../../store/global/types";
 import "./_index.scss";
+import { UserNav } from "../user-nav";
 
 const GLOBAL_FILTERS = [
   "engine",

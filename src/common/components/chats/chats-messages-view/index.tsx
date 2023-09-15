@@ -47,25 +47,12 @@ interface Props {
   toggleUIProp: (what: ToggleType) => void;
   currentChannelSetter: (channel: Channel) => void;
   setInProgress: (d: boolean) => void;
-  deletePublicMessage: (channelId: string, msgId: string) => void;
-  deleteDirectMessage: (peer: string, msgId: string) => void;
 }
 
 export default function ChatsMessagesView(props: Props) {
-  const {
-    username,
-    currentChannel,
-    inProgress,
-    history,
-    currentChannelSetter,
-    setInProgress,
-    deletePublicMessage,
-    deleteDirectMessage
-  } = props;
+  const { username, currentChannel, inProgress, currentChannelSetter, setInProgress } = props;
 
   const { messageServiceInstance, receiverPubKey } = useContext(ChatContext);
-
-  // console.log("Receiver pubkey in Message view component", receiverPubKey, setReceiverPubKey);
 
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 
@@ -233,7 +220,6 @@ export default function ChatsMessagesView(props: Props) {
               from={CHATPAGE}
               isScrolled={isScrolled}
               isActveUserRemoved={isActveUserRemoved}
-              // deletePublicMessage={deletePublicMessage}
               scrollToBottom={scrollToBottom}
               currentChannelSetter={currentChannelSetter}
             />
@@ -246,7 +232,6 @@ export default function ChatsMessagesView(props: Props) {
             isScrolled={isScrolled}
             receiverPubKey={receiverPubKey}
             isScrollToBottom={isScrollToBottom}
-            // deleteDirectMessage={deleteDirectMessage}
             scrollToBottom={scrollToBottom}
           />
         )}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { match } from "react-router";
 import { History } from "history";
 import { Account } from "../../../store/accounts/types";
@@ -7,13 +7,12 @@ import { User } from "../../../store/users/types";
 import ChatsMessagesHeader from "../chats-messages-header";
 import ChatsMessagesView from "../chats-messages-view";
 
-import "./index.scss";
 import { Channel, ChannelUpdate } from "../../../../managers/message-manager-types";
 import LinearProgress from "../../linear-progress";
-import { NostrKeysType } from "../types";
 import { formattedUserName } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { ChatContext } from "../chat-context-provider";
+
+import "./index.scss";
 
 interface MatchParams {
   filter: string;
@@ -26,22 +25,19 @@ interface MatchParams {
 interface Props {
   match: match<MatchParams>;
   users: User[];
-  history: History | null;
+  history: History;
   ui: UI;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
-  deletePublicMessage: (channelId: string, msgId: string) => void;
 }
 
 export default function ChatsMessagesBox(props: Props) {
-  const chatContext = useContext(ChatContext);
-  const { activeUserKeys } = chatContext;
-  const { activeUser, chat } = useMappedStore();
+  const { chat } = useMappedStore();
 
   const { channels, updatedChannel } = chat;
-  const { match, deletePublicMessage } = props;
+  const { match } = props;
   const username = match.params.username;
 
   const [maxHeight, setMaxHeight] = useState(0);
@@ -109,7 +105,6 @@ export default function ChatsMessagesBox(props: Props) {
               inProgress={inProgress}
               currentChannelSetter={setCurrentChannel}
               setInProgress={setInProgress}
-              deletePublicMessage={deletePublicMessage}
             />
           </>
         )}

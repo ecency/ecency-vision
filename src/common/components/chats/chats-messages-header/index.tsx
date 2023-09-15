@@ -13,7 +13,7 @@ import { formattedUserName } from "../utils";
 
 interface Props {
   username: string;
-  history: History | null;
+  history: History;
   currentChannel: Channel;
   currentChannelSetter: (channe: Channel) => void;
 }
