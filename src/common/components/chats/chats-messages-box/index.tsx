@@ -81,6 +81,7 @@ export default function ChatsMessagesBox(props: Props) {
       if (!isCommunity) {
         setIsCommunityChatJoined(false);
       } else {
+        setIsCommunityChatJoined(true);
         setIsCommunityChatEnabled(true);
       }
     } else {
