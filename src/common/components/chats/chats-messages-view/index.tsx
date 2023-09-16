@@ -69,6 +69,8 @@ export default function ChatsMessagesView(props: Props) {
   const [removedUsers, setRemovedUsers] = useState<string[]>([]);
   const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
 
+  console.log("Current channel in messages view", props.currentChannel);
+
   useEffect(() => {
     getActiveUserKeys();
     isDirectUserOrCommunity();

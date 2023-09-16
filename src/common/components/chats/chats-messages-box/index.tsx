@@ -9,10 +9,11 @@ import ChatsMessagesView from "../chats-messages-view";
 
 import { Channel, ChannelUpdate } from "../../../../managers/message-manager-types";
 import LinearProgress from "../../linear-progress";
-import { formattedUserName } from "../utils";
+import { formattedUserName, getProfileMetaData } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
 
 import "./index.scss";
+import { CHANNEL } from "../chat-popup/chat-constants";
 
 interface MatchParams {
   filter: string;
@@ -43,13 +44,25 @@ export default function ChatsMessagesBox(props: Props) {
   const [maxHeight, setMaxHeight] = useState(0);
   const [currentChannel, setCurrentChannel] = useState<Channel>();
   const [inProgress, setInProgress] = useState(false);
+  const [isCommunityChatEnabled, setIsCommunityChatEnabled] = useState(false);
 
   useEffect(() => {
     setMaxHeight(window.innerHeight - 68);
   }, [typeof window !== "undefined"]);
 
   useEffect(() => {
-    console.log("state has been updated", currentChannel);
+    if (username && !username.startsWith("@")) {
+      const isCommunity = chat.channels.some((channel) => channel.communityName === username);
+      if (!isCommunity) {
+        getCommunityProfile();
+      } else {
+        setIsCommunityChatEnabled(true);
+      }
+    }
+  }, [username]);
+
+  useEffect(() => {
+    console.log("Observe here currentChannel", currentChannel);
   }, [currentChannel]);
 
   useEffect(() => {
@@ -82,6 +95,12 @@ export default function ChatsMessagesBox(props: Props) {
     }
   };
 
+  const getCommunityProfile = async () => {
+    const communityProfile = await getProfileMetaData(username);
+    const haschannelMetaData = communityProfile && communityProfile.hasOwnProperty(CHANNEL);
+    setIsCommunityChatEnabled(haschannelMetaData);
+  };
+
   return (
     <>
       <div className="chats-messages-box" style={{ maxHeight: maxHeight }}>
@@ -89,7 +108,7 @@ export default function ChatsMessagesBox(props: Props) {
           <div className="no-chat-select d-flex justify-content-center align-items-center">
             <p className="start-chat text-center">Select a chat or start a new conversation</p>
           </div>
-        ) : (
+        ) : isCommunityChatEnabled ? (
           <>
             <ChatsMessagesHeader
               username={username}
@@ -107,6 +126,10 @@ export default function ChatsMessagesBox(props: Props) {
               setInProgress={setInProgress}
             />
           </>
+        ) : (
+          <p className="no-chat-select d-flex justify-content-center align-items-center">
+            Community chat not started yet
+          </p>
         )}
       </div>
     </>

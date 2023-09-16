@@ -18,15 +18,15 @@ interface Context {
   revealPrivKey: boolean;
   chatPrivKey: string;
   receiverPubKey: string;
-  messageServiceInstance: MessageService | undefined;
+  messageServiceInstance: MessageService | null;
   hasUserJoinedChat: boolean;
   setRevealPrivKey: (d: boolean) => void;
   setShowSpinner: (d: boolean) => void;
   setChatPrivKey: (key: string) => void;
   setActiveUserKeys: (keys: NostrKeysType) => void;
   setReceiverPubKey: (key: string) => void;
-  setMessageServiceInstance: (instance: MessageService | undefined) => void;
-  initMessageServiceInstance: (keys: Keys) => MessageService | undefined;
+  setMessageServiceInstance: (instance: MessageService | null) => void;
+  initMessageServiceInstance: (keys: Keys) => MessageService | null;
   joinChat: () => void;
 }
 
@@ -41,7 +41,7 @@ export const ChatContext = React.createContext<Context>({
   revealPrivKey: false,
   chatPrivKey: "",
   receiverPubKey: "",
-  messageServiceInstance: undefined,
+  messageServiceInstance: null,
   hasUserJoinedChat: false,
   setRevealPrivKey: () => {},
   setShowSpinner: () => {},
@@ -49,7 +49,7 @@ export const ChatContext = React.createContext<Context>({
   setActiveUserKeys: () => {},
   setReceiverPubKey: () => {},
   setMessageServiceInstance: () => {},
-  initMessageServiceInstance: () => (({} as MessageService) || undefined),
+  initMessageServiceInstance: () => (({} as MessageService) || null),
   joinChat: () => {}
 });
 
@@ -61,9 +61,7 @@ export default function ChatContextProvider(props: Props) {
   const [chatPrivKey, setChatPrivKey] = useState("");
   const [revealPrivKey, setRevealPrivKey] = useState(false);
   const [receiverPubKey, setReceiverPubKey] = useState("");
-  const [messageServiceInstance, setMessageServiceInstance] = useState<MessageService | undefined>(
-    undefined
-  );
+  const [messageServiceInstance, setMessageServiceInstance] = useState<MessageService | null>(null);
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
 
@@ -92,7 +90,7 @@ export default function ChatContextProvider(props: Props) {
     if (showSpinner) {
       setTimeout(() => {
         setShowSpinner(false);
-      }, 6000);
+      }, 3000);
     }
   }, [showSpinner]);
 
@@ -108,27 +106,13 @@ export default function ChatContextProvider(props: Props) {
     setActiveUserKeys(activeUserKeys);
   };
 
-  // const initMessageServiceInstance = (keys: Keys) => {
-  //   if (messageServiceInstance) {
-  //     messageServiceInstance.close();
-  //     setMessageServiceInstance(undefined);
-  //   }
-
-  //   let newMessageService: MessageService | undefined = undefined;
-  //   if (keys) {
-  //     newMessageService = new MessageService(keys.priv, keys.pub);
-  //     setMessageServiceInstance(newMessageService);
-  //   }
-  //   return newMessageService;
-  // };
-
   const initMessageServiceInstance = (keys: Keys) => {
     if (messageServiceInstance) {
       messageServiceInstance.close();
-      setMessageServiceInstance(undefined);
+      setMessageServiceInstance(null);
     }
 
-    let newMessageService: MessageService | undefined = undefined;
+    let newMessageService: MessageService | null = null;
     if (keys) {
       newMessageService = new MessageService(keys.priv, keys.pub);
       setMessageServiceInstance(newMessageService);

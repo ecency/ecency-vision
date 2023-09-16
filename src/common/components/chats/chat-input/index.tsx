@@ -7,6 +7,7 @@ import { EmojiPickerStyleProps } from "../types";
 
 import ClickAwayListener from "../../clickaway-listener";
 import EmojiPicker from "../../emoji-picker/index-old";
+// import { EmojiPicker } from "../../emoji-picker";
 import GifPicker from "../../gif-picker";
 import { error } from "../../feedback";
 import Tooltip from "../../tooltip";
@@ -49,9 +50,9 @@ export default function ChatInput(props: Props) {
   const [message, setMessage] = useState("");
   const [shGif, setShGif] = useState(false);
   const [isMessageText, setIsMessageText] = useState(false);
+  // const [isMounted, setIsMounted] = useState(false);
 
   const { messageServiceInstance, chatPrivKey } = useContext(ChatContext);
-  // console.log("yaha check kar ka dekho", messageServiceInstance, chatPrivKey);
 
   const {
     isCommunity,
@@ -64,6 +65,15 @@ export default function ChatInput(props: Props) {
     gifPickerStyle,
     receiverPubKey
   } = props;
+
+  // useEffect(() => {
+  //   setIsMounted(true);
+  //   setShowEmojiPicker(true);
+  //   return () => {
+  //     setShowEmojiPicker(false);
+  //     setIsMounted(false);
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (!isCurrentUser && !isCommunity) {
@@ -210,6 +220,19 @@ export default function ChatInput(props: Props) {
           </div>
         </ClickAwayListener>
 
+        {/* <div className="chatbox-emoji-picker" id="chatbox-emoji-picker" role="none">
+          <div className="chatbox-emoji">
+            <Tooltip content={_t("editor-toolbar.emoji")}>
+              <div className="emoji-icon">{emoticonHappyOutlineSvg}</div>
+            </Tooltip>
+            {showEmojiPicker && isMounted && (
+              <EmojiPicker
+                anchor={document.querySelector("#chatbox-emoji-picker")!!}
+                onSelect={(e) => handleEmojiSelection(e)}
+              />
+            )}
+          </div>
+        </div> */}
         {message.length === 0 && (
           <React.Fragment>
             <ClickAwayListener onClickAway={() => shGif && setShGif(false)}>

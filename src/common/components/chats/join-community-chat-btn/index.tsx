@@ -9,7 +9,7 @@ import { _t } from "../../../i18n";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { Channel, communityModerator } from "../../../../managers/message-manager-types";
 import { ChatContext } from "../chat-context-provider";
-import { NOSTRKEY } from "../chat-popup/chat-constants";
+import { CHANNEL, NOSTRKEY } from "../chat-popup/chat-constants";
 import { getProfileMetaData, setChannelMetaData } from "../utils";
 
 interface Props {
@@ -67,7 +67,7 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   const fetchCommunityProfile = async () => {
     const communityProfile = await getProfileMetaData(props.community?.name);
-    const haschannelMetaData = communityProfile && communityProfile.hasOwnProperty("channel");
+    const haschannelMetaData = communityProfile && communityProfile.hasOwnProperty(CHANNEL);
     setIsChatEnabled(haschannelMetaData);
 
     if (!currentChannel) {

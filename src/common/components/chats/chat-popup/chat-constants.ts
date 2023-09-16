@@ -43,3 +43,4 @@ export const RESENDMESSAGE = "resendMessage";
 export const CHAT = "chat";
 export const COMMUNITY = "community";
 export const CHATPAGE = "chatPage";
+export const CHANNEL = "channel";
