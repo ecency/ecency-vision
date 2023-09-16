@@ -82,7 +82,7 @@ interface Props {
   toggleUIProp: (what: ToggleType) => void;
 }
 
-export default function ChatPopUp(props: Props) {
+export const ChatPopUp = (props: Props) => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
 
   const {
@@ -943,4 +943,4 @@ export default function ChatPopUp(props: Props) {
       )}
     </>
   );
-}
+};

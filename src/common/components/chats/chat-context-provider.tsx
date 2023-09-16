@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Keys } from "../../../managers/message-manager-types";
+import useDebounce from "react-use/lib/useDebounce";
 import MessageService from "../../helper/message-service";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { NostrKeysType } from "./types";
@@ -11,6 +12,7 @@ import {
 } from "./utils";
 import * as ls from "../../util/local-storage";
 import { setNostrkeys } from "../../../managers/message-manager";
+import { useMount } from "react-use";
 
 interface Context {
   activeUserKeys: NostrKeysType;
@@ -32,7 +34,6 @@ interface Context {
 
 interface Props {
   children: JSX.Element | JSX.Element[];
-  resetChat: () => void;
 }
 
 export const ChatContext = React.createContext<Context>({
@@ -53,8 +54,8 @@ export const ChatContext = React.createContext<Context>({
   joinChat: () => {}
 });
 
-export default function ChatContextProvider(props: Props) {
-  const { activeUser } = useMappedStore();
+export const ChatContextProvider = (props: Props) => {
+  const { activeUser, resetChat } = useMappedStore();
 
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>({ pub: " ", priv: "" });
   const [showSpinner, setShowSpinner] = useState(true);
@@ -65,9 +66,9 @@ export default function ChatContextProvider(props: Props) {
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
 
-  useEffect(() => {
+  useMount(() => {
     getActiveUserKeys();
-  }, []);
+  });
 
   useEffect(() => {
     if (messageServiceInstance) {
@@ -86,24 +87,22 @@ export default function ChatContextProvider(props: Props) {
     }
   }, [shouldUpdateProfile, messageServiceInstance]);
 
-  useEffect(() => {
-    if (showSpinner) {
-      setTimeout(() => {
-        setShowSpinner(false);
-      }, 3000);
-    }
-  }, [showSpinner]);
+  // useEffect(() => {
+  //   if (showSpinner) {
+  //     setTimeout(() => {
+  //       setShowSpinner(false);
+  //     }, 3000);
+  //   }
+  // }, [showSpinner]);
+
+  useDebounce(() => setShowSpinner(false), 6000, [showSpinner]);
 
   const getActiveUserKeys = async () => {
     const pubKey = await getUserChatPublicKey(activeUser?.username!);
     const privKey = getPrivateKey(activeUser?.username!);
     setHasUserJoinedChat(!!pubKey);
     setChatPrivKey(privKey);
-    const activeUserKeys = {
-      pub: pubKey,
-      priv: privKey
-    };
-    setActiveUserKeys(activeUserKeys);
+    setActiveUserKeys({ pub: pubKey, priv: privKey });
   };
 
   const initMessageServiceInstance = (keys: Keys) => {
@@ -122,8 +121,6 @@ export default function ChatContextProvider(props: Props) {
   };
 
   const joinChat = async () => {
-    console.log("Join chat run in context");
-    const { resetChat } = props;
     resetChat();
     const keys = createNoStrAccount();
     ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
@@ -158,4 +155,4 @@ export default function ChatContextProvider(props: Props) {
       {props.children}
     </ChatContext.Provider>
   );
-}
+};
