@@ -95,7 +95,7 @@ export const ChatContextProvider = (props: Props) => {
   //   }
   // }, [showSpinner]);
 
-  useDebounce(() => setShowSpinner(false), 6000, [showSpinner]);
+  useDebounce(() => setShowSpinner(false), 3000, [showSpinner]);
 
   const getActiveUserKeys = async () => {
     const pubKey = await getUserChatPublicKey(activeUser?.username!);

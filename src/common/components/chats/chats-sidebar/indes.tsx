@@ -11,17 +11,14 @@ import accountReputation from "../../../helper/account-reputation";
 import { getCommunityLastMessage, getDirectLastMessage, getJoinedCommunities } from "../utils";
 import { _t } from "../../../i18n";
 import { arrowBackSvg, syncSvg } from "../../../img/svg";
-import { Chat, DirectContactsType } from "../../../store/chat/types";
 import ChatsScroller from "../chats-scroller";
 import LinearProgress from "../../linear-progress";
 import Tooltip from "../../tooltip";
 import UserAvatar from "../../user-avatar";
 
 import "./index.scss";
-import DropDown, { MenuItem } from "../../dropdown";
-import { CHAT, DropDownStyle } from "../chat-popup/chat-constants";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
-import { AccountWithReputation, NostrKeysType } from "../types";
+import { AccountWithReputation } from "../types";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import { getUserChatPublicKey, formattedUserName } from "../../../components/chats/utils";
@@ -63,8 +60,6 @@ export default function ChatsSideBar(props: Props) {
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [communities, setCommunities] = useState<Channel[]>([]);
 
-  console.log("setInProgress in chats sidebar", setShowSpinner);
-
   useDebounce(
     async () => {
       if (searchText.length !== 0) {
@@ -79,7 +74,7 @@ export default function ChatsSideBar(props: Props) {
   );
 
   useEffect(() => {
-    if (username !== undefined) {
+    if (username) {
       if (username.startsWith("@")) {
         getReceiverPubKey(formattedUserName(username));
       }
@@ -89,12 +84,10 @@ export default function ChatsSideBar(props: Props) {
   useEffect(() => {
     const communities = getJoinedCommunities(channels, leftChannelsList);
     setCommunities(communities);
-    // fetchProfileData();
   }, [channels, leftChannelsList]);
 
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     var element = event.currentTarget;
-    console.log("element.scrollTop", element.scrollTop);
     if (element.scrollTop > 2) {
       setShowDivider(true);
     } else {
@@ -120,13 +113,11 @@ export default function ChatsSideBar(props: Props) {
   };
 
   const getReceiverPubKey = async (username: string) => {
-    console.log("Username ha yar", username);
     const peer = directContacts.find((x) => x.name === username)?.pubkey ?? "";
     if (peer) {
       setReceiverPubKey(peer);
     } else {
       const pubkey = await getUserChatPublicKey(username);
-      console.log("Pubkey", pubkey);
       if (pubkey === undefined) {
         setReceiverPubKey("");
       } else {

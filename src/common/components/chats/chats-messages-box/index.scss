@@ -20,6 +20,9 @@
     height: calc(100vh - 70px);
     font-size: 22px;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .start-chat {
       @include themify(day) {
@@ -28,6 +31,10 @@
       @include themify(night) {
         color: $white;
       }
+    }
+    .info-message {
+      font-size: 16px;
+      // font-weight: 100;
     }
   }
 }

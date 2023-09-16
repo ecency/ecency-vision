@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { match } from "react-router";
 import { History } from "history";
 import { Account } from "../../../store/accounts/types";
@@ -14,6 +14,8 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 
 import "./index.scss";
 import { CHANNEL } from "../chat-popup/chat-constants";
+import { Button } from "react-bootstrap";
+import { ChatContext } from "../chat-context-provider";
 
 interface MatchParams {
   filter: string;
@@ -37,6 +39,8 @@ interface Props {
 export default function ChatsMessagesBox(props: Props) {
   const { chat } = useMappedStore();
 
+  const { messageServiceInstance } = useContext(ChatContext);
+
   const { channels, updatedChannel } = chat;
   const { match } = props;
   const username = match.params.username;
@@ -45,25 +49,45 @@ export default function ChatsMessagesBox(props: Props) {
   const [currentChannel, setCurrentChannel] = useState<Channel>();
   const [inProgress, setInProgress] = useState(false);
   const [isCommunityChatEnabled, setIsCommunityChatEnabled] = useState(false);
+  const [isCommunityJoined, setIsCommunityChatJoined] = useState(false);
+  const [currentCommunity, setCurrentCommunity] = useState<Channel>();
+  const [hasLeftCommunity, setHasLeftCommunity] = useState(false);
 
   useEffect(() => {
     setMaxHeight(window.innerHeight - 68);
   }, [typeof window !== "undefined"]);
 
   useEffect(() => {
+    const handleResize = () => {
+      setMaxHeight(window.innerHeight - 68);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (currentCommunity && chat.leftChannelsList.includes(currentCommunity.id)) {
+      setHasLeftCommunity(true);
+    }
+  }, [currentCommunity]);
+
+  useEffect(() => {
     if (username && !username.startsWith("@")) {
+      getCommunityProfile();
       const isCommunity = chat.channels.some((channel) => channel.communityName === username);
       if (!isCommunity) {
-        getCommunityProfile();
+        setIsCommunityChatJoined(false);
       } else {
         setIsCommunityChatEnabled(true);
       }
+    } else {
+      setIsCommunityChatJoined(false);
+      setIsCommunityChatEnabled(true);
     }
   }, [username]);
-
-  useEffect(() => {
-    console.log("Observe here currentChannel", currentChannel);
-  }, [currentChannel]);
 
   useEffect(() => {
     fetchCurrentChannel(formattedUserName(username));
@@ -97,41 +121,67 @@ export default function ChatsMessagesBox(props: Props) {
 
   const getCommunityProfile = async () => {
     const communityProfile = await getProfileMetaData(username);
+    setCurrentCommunity(communityProfile.channel);
     const haschannelMetaData = communityProfile && communityProfile.hasOwnProperty(CHANNEL);
     setIsCommunityChatEnabled(haschannelMetaData);
   };
 
+  const handleJoinCommunity = () => {
+    if (currentCommunity) {
+      if (hasLeftCommunity) {
+        messageServiceInstance?.updateLeftChannelList(
+          chat.leftChannelsList.filter((x) => x !== currentCommunity?.id)
+        );
+      }
+      messageServiceInstance?.loadChannel(currentCommunity?.id);
+      setIsCommunityChatJoined(true);
+    }
+  };
+
   return (
-    <>
-      <div className="chats-messages-box" style={{ maxHeight: maxHeight }}>
-        {match.url == "/chats" ? (
-          <div className="no-chat-select d-flex justify-content-center align-items-center">
-            <p className="start-chat text-center">Select a chat or start a new conversation</p>
-          </div>
-        ) : isCommunityChatEnabled ? (
-          <>
-            <ChatsMessagesHeader
-              username={username}
-              {...props}
-              currentChannel={currentChannel!}
-              currentChannelSetter={setCurrentChannel}
-            />
-            {inProgress && <LinearProgress />}
-            <ChatsMessagesView
-              {...props}
-              username={username}
-              currentChannel={currentChannel!}
-              inProgress={inProgress}
-              currentChannelSetter={setCurrentChannel}
-              setInProgress={setInProgress}
-            />
-          </>
-        ) : (
-          <p className="no-chat-select d-flex justify-content-center align-items-center">
-            Community chat not started yet
-          </p>
-        )}
-      </div>
-    </>
+    <div className="chats-messages-box" style={{ maxHeight: maxHeight }}>
+      {match.url === "/chats" ? (
+        <div className="no-chat-select">
+          <p className="start-chat text-center">Select a chat or start a new conversation</p>
+        </div>
+      ) : (
+        <>
+          {username.startsWith("@") || (isCommunityChatEnabled && isCommunityJoined) ? (
+            <>
+              <ChatsMessagesHeader
+                username={username}
+                {...props}
+                currentChannel={currentChannel!}
+                currentChannelSetter={setCurrentChannel}
+              />
+              {inProgress && <LinearProgress />}
+              <ChatsMessagesView
+                {...props}
+                username={username}
+                currentChannel={currentChannel!}
+                inProgress={inProgress}
+                currentChannelSetter={setCurrentChannel}
+                setInProgress={setInProgress}
+              />
+            </>
+          ) : isCommunityChatEnabled && !isCommunityJoined ? (
+            <div className="no-chat-select">
+              <div className="text-center">
+                <p className="info-message">
+                  {hasLeftCommunity
+                    ? "You have left this community chat. Rejoin the chat now!"
+                    : " You are not part of this community. Join the community chat now!"}
+                </p>
+                <Button onClick={handleJoinCommunity}>
+                  {hasLeftCommunity ? "Rejoin Community Chat" : "Join Community Chat"}
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <p className="no-chat-select">Community chat not started yet</p>
+          )}
+        </>
+      )}
+    </div>
   );
 }
