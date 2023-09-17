@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { History } from "history";
-import { Form } from "react-bootstrap";
 import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 import { decodeObj, encodeObj } from "../../util/encoder";
 import { ActiveUser } from "../../store/active-user/types";
@@ -16,6 +15,7 @@ import "./index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   accountData: AccountDataType;

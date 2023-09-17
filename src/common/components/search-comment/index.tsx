@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, FormCheck, Row } from "react-bootstrap";
 import { History, Location } from "history";
 import numeral from "numeral";
 import moment, { Moment } from "moment";
@@ -272,10 +272,10 @@ export class SearchComment extends BaseComponent<Props, State> {
 
     const advancedForm =
       advanced || disableResults ? (
-        <div className="advanced-section">
+        <Col className="advanced-section">
           <Row>
-            <Form.Group as={Col} sm="4" controlId="form-search">
-              <Form.Label>{_t("search-comment.search")}</Form.Label>
+            <Col className="mb-4" sm={4}>
+              <label>{_t("search-comment.search")}</label>
               <FormControl
                 type="text"
                 placeholder={_t("search-comment.search-placeholder")}
@@ -283,9 +283,9 @@ export class SearchComment extends BaseComponent<Props, State> {
                 onChange={this.searchChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Form.Group>
-            <Form.Group as={Col} sm="4" controlId="form-author">
-              <Form.Label>{_t("search-comment.author")}</Form.Label>
+            </Col>
+            <Col className="mb-4" sm={4}>
+              <label>{_t("search-comment.author")}</label>
               <FormControl
                 type="text"
                 placeholder={_t("search-comment.author-placeholder")}
@@ -293,9 +293,9 @@ export class SearchComment extends BaseComponent<Props, State> {
                 onChange={this.authorChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Form.Group>
-            <Form.Group as={Col} sm="2" controlId="form-type">
-              <Form.Label>{_t("search-comment.type")}</Form.Label>
+            </Col>
+            <Col className="mb-4" sm={2}>
+              <label>{_t("search-comment.type")}</label>
               <FormControl type="select" value={type} onChange={this.typeChanged}>
                 {Object.values(SearchType).map((x) => (
                   <option value={x} key={x}>
@@ -303,9 +303,9 @@ export class SearchComment extends BaseComponent<Props, State> {
                   </option>
                 ))}
               </FormControl>
-            </Form.Group>
-            <Form.Group as={Col} sm="2" controlId="form-category">
-              <Form.Label>{_t("search-comment.category")}</Form.Label>
+            </Col>
+            <Col className="mb-4" sm={2}>
+              <label>{_t("search-comment.category")}</label>
               <FormControl
                 type="text"
                 placeholder={_t("search-comment.category-placeholder")}
@@ -313,11 +313,11 @@ export class SearchComment extends BaseComponent<Props, State> {
                 onChange={this.categoryChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Form.Group>
+            </Col>
           </Row>
           <Row>
-            <Form.Group as={Col} sm="8" controlId="form-tag">
-              <Form.Label>{_t("search-comment.tags")}</Form.Label>
+            <Col className="mb-4" sm={8}>
+              <label>{_t("search-comment.tags")}</label>
               <FormControl
                 type="text"
                 placeholder={_t("search-comment.tags-placeholder")}
@@ -325,9 +325,9 @@ export class SearchComment extends BaseComponent<Props, State> {
                 onChange={this.tagsChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Form.Group>
-            <Form.Group as={Col} sm="2" controlId="form-date">
-              <Form.Label>{_t("search-comment.date")}</Form.Label>
+            </Col>
+            <Col className="mb-4" sm={2}>
+              <label>{_t("search-comment.date")}</label>
               <FormControl
                 type="select"
                 value={ls.get("recent_date", "month")}
@@ -339,9 +339,9 @@ export class SearchComment extends BaseComponent<Props, State> {
                   </option>
                 ))}
               </FormControl>
-            </Form.Group>
-            <Form.Group as={Col} sm="2" controlId="form-sort">
-              <Form.Label>{_t("search-comment.sort")}</Form.Label>
+            </Col>
+            <Col className="mb-4" sm={2}>
+              <label>{_t("search-comment.sort")}</label>
               <FormControl type="select" value={sort} onChange={this.sortChanged}>
                 {Object.values(SearchSort).map((x) => (
                   <option value={x} key={x}>
@@ -349,10 +349,10 @@ export class SearchComment extends BaseComponent<Props, State> {
                   </option>
                 ))}
               </FormControl>
-            </Form.Group>
+            </Col>
           </Row>
           <div className="d-flex justify-content-between align-items-center">
-            <Form.Check
+            <FormCheck
               id="hide-low"
               type="checkbox"
               label={_t("search-comment.hide-low")}
@@ -362,7 +362,7 @@ export class SearchComment extends BaseComponent<Props, State> {
 
             <Button onClick={this.apply}>{_t("g.apply")}</Button>
           </div>
-        </div>
+        </Col>
       ) : null;
 
     return (

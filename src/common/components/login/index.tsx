@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Form } from "react-bootstrap";
 import isEqual from "react-fast-compare";
 import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 import { History, Location } from "history";
@@ -37,6 +36,7 @@ import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 declare var window: AppWindow;
 
@@ -175,7 +175,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
             e.preventDefault();
           }}
         >
-          <Form.Group>
+          <div className="mb-4">
             <FormControl
               type="text"
               value={username}
@@ -184,7 +184,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
               autoFocus={true}
               onKeyDown={this.inputKeyDown}
             />
-          </Form.Group>
+          </div>
           <Button disabled={inProgress} className="block" onClick={this.login}>
             {inProgress && spinner}
             {_t("g.login")}
@@ -604,7 +604,7 @@ export class Login extends BaseComponent<LoginProps, State> {
           }}
         >
           <p className="login-form-text">{_t("login.with-user-pass")}</p>
-          <Form.Group>
+          <div className="mb-4">
             <FormControl
               type="text"
               value={username}
@@ -613,8 +613,8 @@ export class Login extends BaseComponent<LoginProps, State> {
               autoFocus={true}
               onKeyDown={this.inputKeyDown}
             />
-          </Form.Group>
-          <Form.Group>
+          </div>
+          <div className="mb-4">
             <FormControl
               type="password"
               value={key}
@@ -623,7 +623,7 @@ export class Login extends BaseComponent<LoginProps, State> {
               placeholder={_t("login.key-placeholder")}
               onKeyDown={this.inputKeyDown}
             />
-          </Form.Group>
+          </div>
           {!global.isElectron && (
             <div className="google-recaptcha">
               <ReCAPTCHA

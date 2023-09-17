@@ -7,7 +7,6 @@ import numeral from "numeral";
 import base58 from "bs58";
 import { AccountCreateOperation, Authority, cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import random from "../util/rnd";
-import { Form } from "react-bootstrap";
 import { _t } from "../i18n";
 import Feedback, { error, success } from "../components/feedback";
 import { formatError, setUserRole, updateCommunity } from "../api/operations";
@@ -31,6 +30,7 @@ import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl, InputGroupCopyClipboard } from "@ui/input";
 import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 const namePattern = "^hive-[1]\\d{4,6}$";
 interface CreateState {
@@ -487,7 +487,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                       <>
                         {!wif && (
                           <>
-                            <Form.Group>
+                            <div className="mb-4">
                               <FormControl
                                 type="text"
                                 autoComplete="off"
@@ -505,8 +505,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                 aria-invalid={title.length <= 2 || title.length >= 21}
                                 placeholder={_t("communities-create.title")}
                               />
-                            </Form.Group>
-                            <Form.Group>
+                            </div>
+                            <div className="mb-4">
                               <FormControl
                                 type="text"
                                 autoComplete="off"
@@ -516,36 +516,34 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                 name="about"
                                 placeholder={_t("communities-create.about")}
                               />
-                            </Form.Group>
+                            </div>
                           </>
                         )}
                         {(() => {
                           if (activeUser && wif) {
                             return (
                               <>
-                                <Form.Group>
+                                <div className="mb-4">
                                   <div className="d-flex align-items-center">
-                                    <Form.Label className="mb-0 mr-2">
+                                    <label className="mb-0 mr-2">
                                       {_t("communities-create.fee")}
-                                    </Form.Label>
+                                    </label>
                                     <Tooltip content={_t("communities-create.reason-four")}>
                                       <span className="info-icon">{informationVariantSvg}</span>
                                     </Tooltip>
                                   </div>
                                   <div className="fee">{fee}</div>
-                                </Form.Group>
-                                <Form.Group>
-                                  <Form.Label className="mb-0">
-                                    {_t("communities-create.creator")}
-                                  </Form.Label>
+                                </div>
+                                <div className="mb-4">
+                                  <label className="mb-0">{_t("communities-create.creator")}</label>
                                   <div>
                                     <Link className="creator" to={`/@${activeUser.username}`}>
                                       @{activeUser.username}
                                     </Link>
                                   </div>
-                                </Form.Group>
-                                <Form.Group>
-                                  <Form.Label>{_t("communities-create.username")}</Form.Label>
+                                </div>
+                                <div className="mb-4">
+                                  <label>{_t("communities-create.username")}</label>
                                   <FormControl
                                     type="text"
                                     autoComplete="off"
@@ -557,30 +555,30 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                     onChange={this.usernameChanged}
                                   />
                                   {usernameStatus === "ok" && (
-                                    <Form.Text className="text-success">
+                                    <small className="text-success">
                                       {checkSvg} {_t("communities-create.username-available")}
-                                    </Form.Text>
+                                    </small>
                                   )}
                                   {usernameStatus === "conflict" && (
-                                    <Form.Text className="text-danger">
+                                    <small className="text-danger">
                                       {alertCircleSvg}{" "}
                                       {_t("communities-create.username-not-available")}
-                                    </Form.Text>
+                                    </small>
                                   )}
                                   {usernameStatus === "not-valid" && (
-                                    <Form.Text className="text-danger">
+                                    <small className="text-danger">
                                       {alertCircleSvg}{" "}
                                       {_t("communities-create.username-wrong-format")}
-                                    </Form.Text>
+                                    </small>
                                   )}
-                                </Form.Group>
-                                <Form.Group>
-                                  <Form.Label>{_t("communities-create.password")}</Form.Label>
-                                  <Form.Group>
+                                </div>
+                                <div className="mb-4">
+                                  <label>{_t("communities-create.password")}</label>
+                                  <div className="mb-4">
                                     <InputGroupCopyClipboard value={wif} />
-                                  </Form.Group>
-                                </Form.Group>
-                                <Form.Group>
+                                  </div>
+                                </div>
+                                <div className="mb-4">
                                   <label className="label-text">
                                     <input
                                       type="checkbox"
@@ -596,8 +594,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                     />{" "}
                                     {_t("communities-create.confirmation")}
                                   </label>
-                                </Form.Group>
-                                <Form.Group>
+                                </div>
+                                <div className="mb-4">
                                   <Button
                                     appearance="link"
                                     full={true}
@@ -606,8 +604,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                   >
                                     {_t("g.back")}
                                   </Button>
-                                </Form.Group>
-                                <Form.Group>
+                                </div>
+                                <div className="mb-4">
                                   <Button
                                     type="submit"
                                     disabled={inProgress}
@@ -617,7 +615,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                   >
                                     {_t("communities-create.submit")}
                                   </Button>
-                                </Form.Group>
+                                </div>
                                 {inProgress && <p>{progress}</p>}
                               </>
                             );
@@ -625,17 +623,17 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
 
                           if (!wif && activeUser) {
                             return (
-                              <Form.Group>
+                              <div className="mb-4">
                                 <Button type="submit" full={true}>
                                   {_t("g.next")}
                                 </Button>
-                              </Form.Group>
+                              </div>
                             );
                           }
 
                           return (
                             !wif && (
-                              <Form.Group>
+                              <div className="mb-4">
                                 {LoginRequired({
                                   ...this.props,
                                   children: (
@@ -644,7 +642,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                     </Button>
                                   )
                                 })}
-                              </Form.Group>
+                              </div>
                             )
                           );
                         })()}

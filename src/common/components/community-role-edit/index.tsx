@@ -1,20 +1,15 @@
 import React, { Component } from "react";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { Community, CommunityTeam } from "../../store/communities";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import { error } from "../feedback";
-
 import { getAccount } from "../../api/hive";
-
 import { clone } from "../../store/util";
-
 import { formatError, setUserRole } from "../../api/operations";
-
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import "./_index.scss";
@@ -108,10 +103,10 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
       <div className="community-role-edit-dialog-content">
         {inProgress && <LinearProgress />}
         <div className={`user-role-form ${inProgress ? "in-progress" : ""}`}>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-role-edit.username")}
-            </Form.Label>
+          <Row className="mb-4">
+            <Col sm={2}>
+              <label>{_t("community-role-edit.username")}</label>
+            </Col>
             <Col sm="10">
               <InputGroup prepend="@">
                 <FormControl
@@ -124,13 +119,13 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
                   ref={this._input}
                 />
               </InputGroup>
-              {userError && <Form.Text className="text-danger">{userError}</Form.Text>}
+              {userError && <small className="text-danger">{userError}</small>}
             </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-role-edit.role")}
-            </Form.Label>
+          </Row>
+          <Row className="mb-4">
+            <Col sm={2}>
+              <label>{_t("community-role-edit.role")}</label>
+            </Col>
             <Col sm="10">
               <FormControl type="select" value={role} onChange={this.roleChanged}>
                 {roles.map((r, i) => (
@@ -140,7 +135,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
                 ))}
               </FormControl>
             </Col>
-          </Form.Group>
+          </Row>
           <div className="d-flex justify-content-end">
             <Button type="button" onClick={this.submit} disabled={inProgress}>
               {_t("g.save")}

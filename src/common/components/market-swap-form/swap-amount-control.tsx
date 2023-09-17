@@ -1,4 +1,3 @@
-import { Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import React from "react";
 import { MarketAsset } from "./market-pair";
@@ -60,8 +59,8 @@ export const SwapAmountControl = ({
   };
 
   return (
-    <Form.Group className={"px-3 pt-3 pb-5 mb-0 border " + className}>
-      <Form.Label>{_t(labelKey)}</Form.Label>
+    <div className={"px-3 pt-3 pb-5 mb-0 border " + className}>
+      <label>{_t(labelKey)}</label>
       <div className="d-flex align-items-center w-100">
         <div className="w-100">
           <FormControl
@@ -108,6 +107,6 @@ export const SwapAmountControl = ({
         </div>
       </div>
       {elementAfterBalance}
-    </Form.Group>
+    </div>
   );
 };

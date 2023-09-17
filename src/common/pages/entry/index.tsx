@@ -69,6 +69,7 @@ import "./_index.scss";
 import { getFollowing } from "../../api/hive";
 import { useDistanceDetector } from "./distance-detector";
 import usePrevious from "react-use/lib/usePrevious";
+import { Button } from "@ui/button";
 
 const EntryComponent = (props: Props) => {
   const [loading, setLoading] = useState(false);
@@ -942,7 +943,7 @@ const EntryComponent = (props: Props) => {
                       {EntryLink({
                         ...props,
                         entry: originalEntry,
-                        children: <a className="btn btn-primary">{_t("entry.browse-original")}</a>
+                        children: <Button>{_t("entry.browse-original")}</Button>
                       })}
                     </div>
                   )}

@@ -1,10 +1,6 @@
 import React from "react";
-
 import { connect } from "react-redux";
-import { Form } from "react-bootstrap";
-
 import { pathToRegexp } from "path-to-regexp";
-
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import Feedback from "../components/feedback";
@@ -21,16 +17,11 @@ import WitnessesExtra from "../components/witnesses-extra";
 import WitnessesProxy from "../components/witnesses-proxy";
 import WitnessesActiveProxy from "../components/witnesses-active-proxy";
 import Pagination from "../components/pagination";
-
 import routes from "../../common/routes";
-
 import { getAccount, getAccounts, getWitnessesByVote, Witness } from "../api/hive";
-
 import { _t } from "../i18n";
 import { Tsx } from "../i18n/helper";
-
 import { linkSvg, openInNewSvg } from "../img/svg";
-
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { FullAccount } from "../store/accounts/types";
 import { WitnessCard } from "../components/witness-card";
@@ -38,6 +29,7 @@ import { dateToRelative } from "../helper/parse-date";
 import "./witnesses.scss";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 interface WitnessTransformed {
   rank: number;
@@ -352,26 +344,26 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
 
     const table = (
       <>
-        <table className="table-auto w-full border border-collapse">
+        <Table full={true}>
           <thead>
-            <tr>
-              <th className="border p-2 col-rank">{_t("witnesses.list-rank")}</th>
-              <th className="border p-2 ">{_t("witnesses.list-witness")}</th>
-              <th className="border p-2 col-miss">{_t("witnesses.list-miss")}</th>
-              <th className="border p-2 col-url">{_t("witnesses.list-url")}</th>
-              <th className="border p-2 col-fee">{_t("witnesses.list-fee")}</th>
-              <th className="border p-2 col-feed">{_t("witnesses.list-feed")}</th>
-              <th className="border p-2 col-version">{_t("witnesses.list-version")}</th>
-            </tr>
+            <Tr>
+              <Th className="border p-2 col-rank">{_t("witnesses.list-rank")}</Th>
+              <Th className="border p-2 ">{_t("witnesses.list-witness")}</Th>
+              <Th className="border p-2 col-miss">{_t("witnesses.list-miss")}</Th>
+              <Th className="border p-2 col-url">{_t("witnesses.list-url")}</Th>
+              <Th className="border p-2 col-fee">{_t("witnesses.list-fee")}</Th>
+              <Th className="border p-2 col-feed">{_t("witnesses.list-feed")}</Th>
+              <Th className="border p-2 col-version">{_t("witnesses.list-version")}</Th>
+            </Tr>
           </thead>
           <tbody>
             {sliced.map((row, i) => {
               return (
-                <tr
+                <Tr
                   key={`${row.name}-${row.rank}${i}`}
                   className={`${this.state.proxyVotes.includes(row.name) ? "voted-by-voter" : ""}`}
                 >
-                  <td className="border p-2">
+                  <Td className="border p-2">
                     <div className="witness-rank">
                       <span className="rank-number">{row.rank}</span>
                       {WitnessVoteBtn({
@@ -387,8 +379,8 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                         }
                       })}
                     </div>
-                  </td>
-                  <td className="border p-2">
+                  </Td>
+                  <Td className="border p-2">
                     {ProfileLink({
                       ...this.props,
                       username: row.name,
@@ -411,11 +403,11 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                         </span>
                       )
                     })}
-                  </td>
-                  <td className="border p-2">
+                  </Td>
+                  <Td className="border p-2">
                     <span className="witness-miss">{row.miss}</span>
-                  </td>
-                  <td className="border p-2">
+                  </Td>
+                  <Td className="border p-2">
                     {(() => {
                       const { parsedUrl } = row;
                       if (parsedUrl) {
@@ -431,27 +423,27 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                         </a>
                       );
                     })()}
-                  </td>
-                  <td className="border p-2">
+                  </Td>
+                  <Td className="border p-2">
                     <span className="witness-fee">{row.fee}</span>
-                  </td>
-                  <td className="border p-2">
+                  </Td>
+                  <Td className="border p-2">
                     <div className="witness-feed">
                       <span className="inner">
                         ${row.feed.replace(" HBD", "")} | {dateToRelative(row.priceAge)}
                       </span>
                     </div>
-                  </td>
-                  <td className="border p-2">
+                  </Td>
+                  <Td className="border p-2">
                     <div className="witness-version">
                       <span className="inner">{row.version}</span>
                     </div>
-                  </td>
-                </tr>
+                  </Td>
+                </Tr>
               );
             })}
           </tbody>
-        </table>
+        </Table>
         <div className="d-md-none">
           {witnesses.map((row, i) => {
             return (
@@ -496,7 +488,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     );
 
     const search = (
-      <Form.Group className="mb-3 w-100">
+      <div className="mb-3 w-full">
         <FormControl
           type="text"
           placeholder={_t("witnesses.search-placeholder")}
@@ -505,7 +497,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
             this.setState({ searchText: e.target.value });
           }}
         />
-      </Form.Group>
+      </div>
     );
     let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
@@ -535,19 +527,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
               );
             }
 
-            // if (proxy) {
-            //     return <>
-            //         {header}
-            //         <WitnessesActiveProxy
-            //             {...this.props}
-            //             username={proxy}
-            //             onDone={() => {
-            //                 this.stateSet({proxy: null});
-            //             }}
-            //         />
-            //     </>
-            // }
-
             return (
               <>
                 {header}
@@ -555,7 +534,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                   {proxy || params ? (
                     <WitnessesActiveProxy
                       {...this.props}
-                      isProxy={!params ? true : false}
+                      isProxy={!params}
                       username={params || proxy}
                       onDone={() => {
                         this.stateSet({ proxy: "" });
@@ -626,21 +605,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                         }
                       })
                     : null}
-
-                  {/* {!proxy ? WitnessesProxy({
-                                    ...this.props,
-                                    onDone: (username) => {
-                                        this.stateSet({proxy: username, witnesses: []});
-                                    }
-                                }) : (
-                                    <WitnessesActiveProxy
-                                    {...this.props}
-                                    username={proxy}
-                                    onDone={() => {
-                                        this.stateSet({proxy: ''});
-                                    }}
-                                />
-                                )} */}
                 </div>
               </>
             );

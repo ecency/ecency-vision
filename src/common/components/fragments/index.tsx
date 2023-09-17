@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Form } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
@@ -21,6 +20,7 @@ import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 // ADD
 interface AddProps {
@@ -86,8 +86,8 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
               });
           }}
         >
-          <Form.Group controlId="title">
-            <Form.Label>{_t("fragments.form-title")}</Form.Label>
+          <div className="mb-4">
+            <label>{_t("fragments.form-title")}</label>
             <FormControl
               value={title}
               onChange={this.titleChanged}
@@ -98,9 +98,9 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
               onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-title")}
               onInput={handleOnInput}
             />
-          </Form.Group>
-          <Form.Group controlId="body">
-            <Form.Label>{_t("fragments.form-body")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("fragments.form-body")}</label>
             <FormControl
               onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-value")}
               onInput={handleOnInput}
@@ -111,7 +111,7 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
               required={true}
               maxLength={5000}
             />
-          </Form.Group>
+          </div>
           <div className="d-flex justify-content-between">
             <Button outline={true} disabled={inProgress} onClick={this.back}>
               {_t("g.back")}
@@ -212,8 +212,8 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
               });
           }}
         >
-          <Form.Group controlId="title">
-            <Form.Label>{_t("fragments.form-title")}</Form.Label>
+          <div className="mb-4">
+            <label>{_t("fragments.form-title")}</label>
             <FormControl
               value={title}
               onChange={this.titleChanged}
@@ -224,9 +224,9 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
               onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-title")}
               onInput={handleOnInput}
             />
-          </Form.Group>
-          <Form.Group controlId="body">
-            <Form.Label>{_t("fragments.form-body")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("fragments.form-body")}</label>
             <FormControl
               type="textarea"
               style={{ height: "300px" }}
@@ -237,7 +237,7 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
               onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-body")}
               onInput={handleOnInput}
             />
-          </Form.Group>
+          </div>
           <div className="d-flex justify-content-between">
             <div>
               <PopoverConfirm

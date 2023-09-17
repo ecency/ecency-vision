@@ -1,7 +1,7 @@
 import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../img/svg";
-import Accordion from "react-bootstrap/Accordion";
 import React from "react";
 import { Button } from "@ui/button";
+import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
 
 interface Props {
   title?: string | JSX.Element;
@@ -43,7 +43,7 @@ export const MarketAdvancedModeWidgetHeader = ({
             )}
           </div>
           {settings ? (
-            <Accordion.Toggle
+            <AccordionToggle
               as={Button}
               appearance="link"
               eventKey="0"
@@ -57,9 +57,9 @@ export const MarketAdvancedModeWidgetHeader = ({
         </div>
       </div>
       {settings ? (
-        <Accordion.Collapse eventKey="0">
+        <AccordionCollapse eventKey="0">
           <div className="p-0 market-advanced-mode-widget-settings">{settings}</div>
-        </Accordion.Collapse>
+        </AccordionCollapse>
       ) : (
         <></>
       )}

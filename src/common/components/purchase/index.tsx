@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Form } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -147,7 +146,7 @@ export class Purchase extends BaseComponent<Props, State> {
             value={amount}
             onChange={this.sliderChanged}
           />
-          <Form.Text className="text-muted">{_t("purchase.slider-hint")}</Form.Text>
+          <small className="text-muted">{_t("purchase.slider-hint")}</small>
         </div>
         <div className="point-amount">
           {formattedNumber(points, { fractionDigits: 3 })} {"POINTS"}

@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useContext, useState } from "react";
 import { SettingsProps } from "./common";
-import { Form } from "react-bootstrap";
 import { DeckGridContext } from "../../deck-manager";
 import { _t } from "../../../../i18n";
 import { ButtonGroup } from "@ui/button-group";
@@ -9,6 +8,7 @@ import useLocalStorage from "react-use/lib/useLocalStorage";
 import { DateOpt, SearchSort } from "../../consts";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
+import { FormCheck } from "react-bootstrap";
 
 export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
   const [query, setQuery] = useState("");
@@ -44,8 +44,8 @@ export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
       />
       {mode === 1 && (
         <>
-          <Form.Group className="mt-3">
-            <Form.Label>{_t("decks.author")}</Form.Label>
+          <div className="mt-3 mb-4">
+            <label>{_t("decks.author")}</label>
             <FormControl
               type="text"
               autoFocus={true}
@@ -53,9 +53,9 @@ export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
             />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>{_t("search-comment.type")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("search-comment.type")}</label>
             <FormControl
               type="select"
               value={type}
@@ -67,27 +67,27 @@ export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
                 </option>
               ))}
             </FormControl>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>{_t("search-comment.category")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("search-comment.category")}</label>
             <FormControl
               type="text"
               placeholder={_t("search-comment.category-placeholder")}
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>{_t("search-comment.tags")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("search-comment.tags")}</label>
             <FormControl
               type="text"
               placeholder={_t("search-comment.tags-placeholder")}
               value={tags}
               onChange={(e) => setTags(e.target.value)}
             />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>{_t("search-comment.date")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("search-comment.date")}</label>
             <FormControl
               type="select"
               value={date}
@@ -99,9 +99,9 @@ export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
                 </option>
               ))}
             </FormControl>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>{_t("search-comment.sort")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("search-comment.sort")}</label>
             <FormControl
               type="select"
               value={sort}
@@ -113,14 +113,14 @@ export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
                 </option>
               ))}
             </FormControl>
-          </Form.Group>
-          <Form.Group>
-            <Form.Check
+          </div>
+          <div className="mb-4">
+            <FormCheck
               label={_t("search-comment.hide-low")}
               checked={hideLow}
               onChange={(e) => setHideLow(e.target.checked)}
             />
-          </Form.Group>
+          </div>
         </>
       )}
       {query !== "" ? (

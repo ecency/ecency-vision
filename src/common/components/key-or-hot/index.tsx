@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Form } from "react-bootstrap";
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
@@ -10,6 +9,7 @@ import { keySvg } from "../../img/svg";
 import "./index.scss";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   global: Global;

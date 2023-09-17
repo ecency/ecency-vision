@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Form } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import { Account, FullAccount } from "../../store/accounts/types";
 import BaseComponent from "../base";
@@ -130,10 +130,10 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
     return (
       <div className="profile-edit">
         <div className="profile-edit-header">{_t("profile-edit.title")}</div>
-        <Form.Row>
+        <Row>
           <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.name")}</Form.Label>
+            <div className="mb-4">
+              <label>{_t("profile-edit.name")}</label>
               <FormControl
                 type="text"
                 disabled={inProgress}
@@ -142,11 +142,11 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 data-var="name"
                 onChange={this.valueChanged}
               />
-            </Form.Group>
+            </div>
           </Col>
           <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.about")}</Form.Label>
+            <div className="mb-4">
+              <label>{_t("profile-edit.about")}</label>
               <FormControl
                 type="text"
                 disabled={inProgress}
@@ -155,11 +155,11 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 data-var="about"
                 onChange={this.valueChanged}
               />
-            </Form.Group>
+            </div>
           </Col>
           <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.profile-image")}</Form.Label>
+            <div className="mb-4">
+              <label>{_t("profile-edit.profile-image")}</label>
               <InputGroup
                 className="mb-3"
                 append={
@@ -184,11 +184,11 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                   onChange={this.valueChanged}
                 />
               </InputGroup>
-            </Form.Group>
+            </div>
           </Col>
           <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.cover-image")}</Form.Label>
+            <div className="mb-4">
+              <label>{_t("profile-edit.cover-image")}</label>
               <InputGroup
                 className="mb-3"
                 append={
@@ -213,11 +213,11 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                   onChange={this.valueChanged}
                 />
               </InputGroup>
-            </Form.Group>
+            </div>
           </Col>
           <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.website")}</Form.Label>
+            <div className="mb-4">
+              <label>{_t("profile-edit.website")}</label>
               <FormControl
                 type="text"
                 disabled={inProgress}
@@ -227,11 +227,11 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 data-var="website"
                 onChange={this.valueChanged}
               />
-            </Form.Group>
+            </div>
           </Col>
           <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.location")}</Form.Label>
+            <div className="mb-4">
+              <label>{_t("profile-edit.location")}</label>
               <FormControl
                 type="text"
                 disabled={inProgress}
@@ -240,9 +240,9 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 data-var="location"
                 onChange={this.valueChanged}
               />
-            </Form.Group>
+            </div>
           </Col>
-        </Form.Row>
+        </Row>
         {changed && (
           <Button
             icon={inProgress && spinner}

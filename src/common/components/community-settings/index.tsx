@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, FormCheck, Row } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { Community } from "../../store/communities";
 import { ActiveUser } from "../../store/active-user/types";
@@ -16,6 +16,7 @@ import { queryClient, QueryIdentifiers } from "../../core";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 const langOpts = [
   { id: "af", name: "Afrikaans" },
@@ -210,10 +211,10 @@ export class CommunitySettings extends BaseComponent<Props, State> {
             this.submit().then();
           }}
         >
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-settings.title")}
-            </Form.Label>
+          <Row className="mb-4">
+            <Col sm={2}>
+              <label>{_t("community-settings.title")}</label>
+            </Col>
             <Col sm="10">
               <InputGroup>
                 <FormControl
@@ -230,11 +231,11 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                 />
               </InputGroup>
             </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-settings.about")}
-            </Form.Label>
+          </Row>
+          <Row className="mb-4">
+            <Col sm={2}>
+              <label>{_t("community-settings.about")}</label>
+            </Col>
             <Col sm="10">
               <FormControl
                 type="text"
@@ -244,11 +245,11 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                 onChange={this.onChange}
               />
             </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-settings.lang")}
-            </Form.Label>
+          </Row>
+          <Row className="mb-4">
+            <Col sm={2}>
+              <label>{_t("community-settings.lang")}</label>
+            </Col>
             <Col sm="4">
               <FormControl type="select" value={lang} name="lang" onChange={this.onChange}>
                 {langOpts.map((l, k) => (
@@ -258,11 +259,11 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                 ))}
               </FormControl>
             </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-settings.description")}
-            </Form.Label>
+          </Row>
+          <Row className="mb-4">
+            <Col sm={2}>
+              <label>{_t("community-settings.description")}</label>
+            </Col>
             <Col sm="10">
               <InputGroup>
                 <FormControl
@@ -273,11 +274,11 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                 />
               </InputGroup>
             </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-settings.rules")}
-            </Form.Label>
+          </Row>
+          <Row className="mb-4">
+            <Col sm={2}>
+              <label>{_t("community-settings.rules")}</label>
+            </Col>
             <Col sm="10">
               <InputGroup>
                 <FormControl
@@ -287,12 +288,12 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                   onChange={this.onChange}
                 />
               </InputGroup>
-              <Form.Text>{_t("community-settings.rules-help")}</Form.Text>
+              <small>{_t("community-settings.rules-help")}</small>
             </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
+          </Row>
+          <Row className="mb-4">
             <Col sm={{ span: 10, offset: 2 }}>
-              <Form.Check
+              <FormCheck
                 id="check-nsfw"
                 type="checkbox"
                 label="NSFW"
@@ -301,7 +302,7 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                 onChange={this.onChange}
               />
             </Col>
-          </Form.Group>
+          </Row>
           <div className="d-flex justify-content-end">
             <Button type="submit" disabled={inProgress}>
               {_t("g.save")}

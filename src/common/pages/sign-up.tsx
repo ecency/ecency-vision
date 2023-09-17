@@ -5,7 +5,6 @@ import qrcode from "qrcode";
 import axios from "axios";
 import queryString from "query-string";
 import useLocalStorage from "react-use/lib/useLocalStorage";
-import { Form } from "react-bootstrap";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { PREFIX } from "../util/local-storage";
 import { signUp } from "../api/private-api";
@@ -26,6 +25,7 @@ import { b64uEnc } from "../util/b64";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 enum Stage {
   FORM = "form",
@@ -290,7 +290,7 @@ export const SignUp = (props: PageProps) => {
                     }
                   }}
                 >
-                  <Form.Group>
+                  <div className="mb-4">
                     <FormControl
                       type="text"
                       placeholder={_t("sign-up.username")}
@@ -303,9 +303,9 @@ export const SignUp = (props: PageProps) => {
                       onInput={handleOnInput}
                       onBlur={() => setUsernameTouched(true)}
                     />
-                    <Form.Text className="text-danger pl-3">{usernameError}</Form.Text>
-                  </Form.Group>
-                  <Form.Group>
+                    <small className="text-danger pl-3">{usernameError}</small>
+                  </div>
+                  <div className="mb-4">
                     <FormControl
                       type="email"
                       placeholder={_t("sign-up.email")}
@@ -316,19 +316,20 @@ export const SignUp = (props: PageProps) => {
                       aria-invalid={emailError !== ""}
                       onInput={handleOnInput}
                     />
-                    <Form.Text className="text-danger pl-3">{emailError}</Form.Text>
-                  </Form.Group>
-                  <Form.Group>
+                    <small className="text-danger pl-3">{emailError}</small>
+                  </div>
+                  <div className="mb-4">
                     <FormControl
                       type="text"
                       placeholder={_t("sign-up.ref")}
                       value={referral}
                       onChange={(e) => setReferral(e.target.value.toLowerCase())}
                       disabled={lockReferral}
+                      aria-invalid={referralError !== ""}
                       onBlur={() => setReferralTouched(true)}
                     />
-                  </Form.Group>
-                  <Form.Text className="text-danger pl-3">{referralError}</Form.Text>
+                    <small className="text-danger pl-3">{referralError}</small>
+                  </div>
                   {!props.global.isElectron && (
                     <div style={{ marginTop: "16px", marginBottom: "16px" }}>
                       <ReCAPTCHA

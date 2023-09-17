@@ -96,6 +96,7 @@
   },
   "devDependencies": {
     "@loadable/webpack-plugin": "^5.15.2",
+    "@thoughtbot/tailwindcss-aria-attributes": "^0.2.0",
     "@types/bs58": "^4.0.1",
     "@types/bytebuffer": "^5.0.41",
     "@types/cookie-parser": "^1.4.2",

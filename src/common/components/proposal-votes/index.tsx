@@ -1,25 +1,17 @@
 import React, { Component } from "react";
-
-import { Form } from "react-bootstrap";
-
 import numeral from "numeral";
-
 import { History } from "history";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-
 import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import Pagination from "../pagination";
-
 import { getAccounts, getProposalVotes, Proposal } from "../../api/hive";
-
 import parseAsset from "../../helper/parse-asset";
 import accountReputation from "../../helper/account-reputation";
-
 import { _t } from "../../i18n";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
@@ -322,7 +314,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
             {modalTitle + _t("proposals.votes-dialog-title", { n: proposal.id })}
           </ModalTitle>
         </ModalHeader>
-        <Form.Group className="w-100 mb-3">
+        <div className="w-full mb-3">
           <FormControl
             type="text"
             placeholder={_t("proposals.search-placeholder")}
@@ -331,7 +323,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
               this.setState({ searchText: e.target.value });
             }}
           />
-        </Form.Group>
+        </div>
         <ModalBody>
           <ProposalVotesDetail
             {...this.props}

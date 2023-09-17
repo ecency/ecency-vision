@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useContext } from "react";
 import { _t } from "../../../../i18n";
-import { Form } from "react-bootstrap";
 import { DeckHeaderSettingsItem } from "../../header/deck-header-settings-item";
 import { UserDeckGridItem } from "../../types";
 import { DeckGridContext } from "../../deck-manager";
@@ -29,7 +28,7 @@ export const DeckContentTypeColumnSettings = ({
   return (
     <DeckHeaderSettingsItem title={title} hasBorderBottom={false}>
       <div className="d-flex align-items-center w-100 pb-2">
-        <Form.Text className="label mr-3">{title}</Form.Text>
+        <small className="label mr-3">{title}</small>
         <div className="w-100">
           <FormControl type="select" value={settings.contentType} onChange={onSelectChange}>
             {contentTypes.map(({ title, type }) => (

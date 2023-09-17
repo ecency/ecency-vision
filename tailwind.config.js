@@ -1082,5 +1082,5 @@ module.exports = {
       }
     }
   },
-  plugins: []
+  plugins: [require("@thoughtbot/tailwindcss-aria-attributes")]
 };

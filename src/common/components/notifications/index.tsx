@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import { Form } from "react-bootstrap";
 import moment from "moment";
 import { History } from "history";
 import { hiveNotifySetLastRead } from "../../api/operations";
@@ -28,6 +27,7 @@ import "./_index.scss";
 import { useLocation } from "react-router";
 import { Modal, ModalBody } from "@ui/modal";
 import { Button } from "@ui/button";
+import { FormCheck } from "react-bootstrap";
 
 export const date2key = (s: string): string => {
   if (s === "Yesterday") {
@@ -312,7 +312,7 @@ export class DialogContent extends Component<NotificationProps, any> {
     const getNotificationSettingsItem = (title: string, type: NotifyTypes) => ({
       label: _t(title),
       content: (
-        <Form.Check
+        <FormCheck
           type="switch"
           checked={this.state.settings[type]}
           onChange={() => this.saveSettingsWithDebounce(type)}

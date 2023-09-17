@@ -1,7 +1,6 @@
 import React from "react";
 import i18n from "i18next";
-import { Col, Form } from "react-bootstrap";
-
+import { Col, Row } from "react-bootstrap";
 import { Global, Theme } from "../../store/global/types";
 import BaseComponent from "../base";
 import { success } from "../feedback";
@@ -13,7 +12,7 @@ import { ActiveUser } from "../../store/active-user/types";
 import * as ls from "../../util/local-storage";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
-import { NotifyTypes } from "../../enums/notify-types";
+import { NotifyTypes } from "../../enums";
 import { FormControl, InputGroupCopyClipboard } from "@ui/input";
 
 interface Props {
@@ -141,10 +140,10 @@ export class Preferences extends BaseComponent<Props, State> {
         <div className="preferences">
           <div className="preferences-header">{_t("preferences.title")}</div>
 
-          <Form.Row>
+          <Row>
             <Col lg={6} xl={4}>
-              <Form.Group>
-                <Form.Label>{_t("preferences.notifications")}</Form.Label>
+              <div className="mb-4">
+                <label>{_t("preferences.notifications")}</label>
                 <FormControl
                   value={global.notifications ? 1 : 0}
                   type="select"
@@ -153,11 +152,11 @@ export class Preferences extends BaseComponent<Props, State> {
                   <option value={1}>{_t("g.on")}</option>
                   <option value={0}>{_t("g.off")}</option>
                 </FormControl>
-              </Form.Group>
+              </div>
             </Col>
             <Col lg={6} xl={4}>
-              <Form.Group>
-                <Form.Label>{_t("preferences.currency")}</Form.Label>
+              <div className="mb-4">
+                <label>{_t("preferences.currency")}</label>
                 <FormControl
                   value={global.currency}
                   type="select"
@@ -170,11 +169,11 @@ export class Preferences extends BaseComponent<Props, State> {
                     </option>
                   ))}
                 </FormControl>
-              </Form.Group>
+              </div>
             </Col>
             <Col lg={6} xl={4}>
-              <Form.Group>
-                <Form.Label>{_t("preferences.language")}</Form.Label>
+              <div className="mb-4">
+                <label>{_t("preferences.language")}</label>
                 <FormControl
                   value={global.lang}
                   type="select"
@@ -187,34 +186,34 @@ export class Preferences extends BaseComponent<Props, State> {
                     </option>
                   ))}
                 </FormControl>
-              </Form.Group>
+              </div>
             </Col>
-          </Form.Row>
-          <Form.Row>
+          </Row>
+          <Row>
             <Col lg={6} xl={4}>
-              <Form.Group>
-                <Form.Label>{_t("preferences.nsfw")}</Form.Label>
+              <div className="mb-4">
+                <label>{_t("preferences.nsfw")}</label>
                 <FormControl value={global.nsfw ? 1 : 0} type="select" onChange={this.nsfwChanged}>
                   <option value={1}>{_t("g.on")}</option>
                   <option value={0}>{_t("g.off")}</option>
                 </FormControl>
-              </Form.Group>
+              </div>
             </Col>
 
             {activeUser && activeUser.username && (
               <>
                 <Col lg={6} xl={4}>
-                  <Form.Group>
-                    <Form.Label>{_t("preferences.referral-link")}</Form.Label>
+                  <div className="mb-4">
+                    <label>{_t("preferences.referral-link")}</label>
                     <InputGroupCopyClipboard
                       className="mb-3"
                       value={`https://ecency.com/signup?referral=${activeUser!.username}`}
                     />
-                  </Form.Group>
+                  </div>
                 </Col>
                 <Col lg={6} xl={4}>
-                  <Form.Group>
-                    <Form.Label>{_t("preferences.theme")}</Form.Label>
+                  <div className="mb-4">
+                    <label>{_t("preferences.theme")}</label>
                     <FormControl
                       value={Theme[this.state.defaultTheme]}
                       type="select"
@@ -224,11 +223,11 @@ export class Preferences extends BaseComponent<Props, State> {
                       <option value={Theme.day}>{_t("preferences.theme-day")}</option>
                       <option value={Theme.night}>{_t("preferences.theme-night")}</option>
                     </FormControl>
-                  </Form.Group>
+                  </div>
                 </Col>
               </>
             )}
-          </Form.Row>
+          </Row>
         </div>
       </>
     );

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import numeral from "numeral";
 import isEqual from "react-fast-compare";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import badActors from "@hiveio/hivescript/bad-actors.json";
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
@@ -47,6 +47,7 @@ import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 export type TransferMode = "transfer" | "delegate" | "undelegate" | "stake" | "unstake";
 
@@ -58,7 +59,7 @@ class FormText extends Component<{
     return (
       <Row>
         <Col md={{ span: 10, offset: 2 }}>
-          <Form.Text className={`text-${this.props.type} tr-form-text`}>{this.props.msg}</Form.Text>
+          <small className={`text-${this.props.type} tr-form-text`}>{this.props.msg}</small>
         </Col>
       </Row>
     );
@@ -617,24 +618,26 @@ export class Transfer extends BaseComponent<Props, State> {
             {inProgress && <LinearProgress />}
             <Form className="transaction-form-body">
               {mode !== "undelegate" && (
-                <Form.Group as={Row}>
-                  <Form.Label column={true} sm="2">
-                    {_t("transfer.from")}
-                  </Form.Label>
+                <Row className="mb-4">
+                  <Col sm={2}>
+                    <label>{_t("transfer.from")}</label>
+                  </Col>
                   <Col sm="10">
                     <InputGroup prepend="@">
                       <FormControl type="text" value={activeUser.username} readOnly={true} />
                     </InputGroup>
                   </Col>
-                </Form.Group>
+                </Row>
               )}
 
               {showTo && (
                 <>
-                  <Form.Group as={Row}>
-                    <Form.Label column={true} sm="2">
-                      {mode === "undelegate" ? _t("transfer.from") : _t("transfer.to")}
-                    </Form.Label>
+                  <Row className="mb-4">
+                    <Col sm={2}>
+                      <label>
+                        {mode === "undelegate" ? _t("transfer.from") : _t("transfer.to")}
+                      </label>
+                    </Col>
                     <Col sm="10">
                       <SuggestionList items={recent} {...suggestionProps}>
                         <InputGroup prepend="@">
@@ -649,16 +652,16 @@ export class Transfer extends BaseComponent<Props, State> {
                         </InputGroup>
                       </SuggestionList>
                     </Col>
-                  </Form.Group>
+                  </Row>
                   {toWarning && <FormText msg={toWarning} type="danger" />}
                   {toError && <FormText msg={toError} type="danger" />}
                 </>
               )}
 
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("transfer.amount")}
-                </Form.Label>
+              <Row className="mb-4">
+                <Col sm={2}>
+                  <label>{_t("transfer.amount")}</label>
+                </Col>
                 <Col sm="10" className="d-flex align-items-center">
                   <InputGroup prepend="#">
                     <FormControl
@@ -672,7 +675,7 @@ export class Transfer extends BaseComponent<Props, State> {
                     <span className="balance-num align-self-center ml-1">{asset}</span>
                   </InputGroup>
                 </Col>
-              </Form.Group>
+              </Row>
 
               {amountError && amount > balance && <FormText msg={amountError} type="danger" />}
 
@@ -724,10 +727,10 @@ export class Transfer extends BaseComponent<Props, State> {
 
               {showMemo && (
                 <>
-                  <Form.Group as={Row}>
-                    <Form.Label column={true} sm="2">
-                      {_t("transfer.memo")}
-                    </Form.Label>
+                  <Row className="mb-4">
+                    <Col sm={2}>
+                      <label>{_t("transfer.memo")}</label>
+                    </Col>
                     <Col sm="10">
                       <FormControl
                         type="text"
@@ -736,20 +739,20 @@ export class Transfer extends BaseComponent<Props, State> {
                         onChange={this.memoChanged}
                       />
                     </Col>
-                  </Form.Group>
+                  </Row>
                   <FormText msg={_t("transfer.memo-help")} type="muted" />
                   {memoError && <FormText msg={memoError} type="danger" />}
                 </>
               )}
 
-              <Form.Group as={Row}>
+              <Row className="mb-4">
                 <Col sm={{ span: 10, offset: 2 }}>
                   {/* Changed && to || since it just allows the form to submit anyway initially */}
                   <Button onClick={this.next} disabled={!this.canSubmit() || amount > balance}>
                     {_t("g.next")}
                   </Button>
                 </Col>
-              </Form.Group>
+              </Row>
             </Form>
           </div>
         )}

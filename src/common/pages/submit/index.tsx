@@ -34,7 +34,7 @@ import MdHandler from "../../components/md-handler";
 import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import _c from "../../util/fix-class-names";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, FormCheck, Row } from "react-bootstrap";
 import TextareaAutocomplete from "../../components/textarea-autocomplete";
 import { AvailableCredits } from "../../components/available-credits";
 import ClickAwayListener from "../../components/clickaway-listener";
@@ -60,6 +60,7 @@ import ModalConfirm from "@ui/modal-confirm";
 import { Button } from "@ui/button";
 import { dotsMenuIconSvg } from "../../components/decks/icons";
 import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
 
 interface MatchProps {
   match: MatchType;
@@ -413,7 +414,8 @@ export function Submit(props: PageProps & MatchProps) {
             }}
           />
           <div className="title-input">
-            <Form.Control
+            <FormControl
+              type="text"
               className="accepts-emoji"
               placeholder={_t("submit.title-placeholder")}
               autoFocus={true}
@@ -633,29 +635,29 @@ export function Submit(props: PageProps & MatchProps) {
                   <div className="container">
                     {editingEntry === null && (
                       <>
-                        <Form.Group as={Row}>
-                          <Form.Label column={true} sm="3">
-                            {_t("submit.reward")}
-                          </Form.Label>
+                        <Row className="mb-4">
+                          <Col sm={3}>
+                            <label>{_t("submit.reward")}</label>
+                          </Col>
                           <Col sm="9">
-                            <Form.Control
-                              as="select"
+                            <FormControl
+                              type="select"
                               value={reward}
-                              onChange={(e) => {
+                              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                                 setReward(e.target.value as RewardType);
                               }}
                             >
                               <option value="default">{_t("submit.reward-default")}</option>
                               <option value="sp">{_t("submit.reward-sp")}</option>
                               <option value="dp">{_t("submit.reward-dp")}</option>
-                            </Form.Control>
-                            <Form.Text muted={true}>{_t("submit.reward-hint")}</Form.Text>
+                            </FormControl>
+                            <small className="text-muted">{_t("submit.reward-hint")}</small>
                           </Col>
-                        </Form.Group>
-                        <Form.Group as={Row}>
-                          <Form.Label column={true} sm="3">
-                            {_t("submit.beneficiaries")}
-                          </Form.Label>
+                        </Row>
+                        <Row className="mb-4">
+                          <Col sm={3}>
+                            <label>{_t("submit.beneficiaries")}</label>
+                          </Col>
                           <Col sm="9">
                             <BeneficiaryEditor
                               body={body}
@@ -676,37 +678,37 @@ export function Submit(props: PageProps & MatchProps) {
                                 setBeneficiaries(b);
                               }}
                             />
-                            <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
+                            <small className="text-muted">{_t("submit.beneficiaries-hint")}</small>
                           </Col>
-                        </Form.Group>
+                        </Row>
                       </>
                     )}
-                    <Form.Group as={Row}>
-                      <Form.Label column={true} sm="3">
-                        {_t("submit.description")}
-                      </Form.Label>
+                    <Row className="mb-4">
+                      <Col sm={3}>
+                        <label>{_t("submit.description")}</label>
+                      </Col>
                       <Col sm="9">
-                        <Form.Control
-                          as="textarea"
+                        <FormControl
+                          type="textarea"
                           value={description || postBodySummary(body, 200)}
-                          onChange={(e) => {
+                          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             setDescription(e.target.value);
                           }}
                           rows={3}
                           maxLength={200}
                         />
-                        <Form.Text muted={true}>
+                        <small className="text-muted">
                           {description !== "" ? description : postBodySummary(body, 200)}
-                        </Form.Text>
+                        </small>
                       </Col>
-                    </Form.Group>
+                    </Row>
                     {editingEntry === null && (
                       <>
                         {props.global.usePrivate && !threeSpeakManager.hasUnpublishedVideo && (
-                          <Form.Group as={Row}>
-                            <Form.Label column={true} sm="3">
-                              {_t("submit.schedule")}
-                            </Form.Label>
+                          <Row className="mb-4">
+                            <Col sm={2}>
+                              <label>{_t("submit.schedule")}</label>
+                            </Col>
                             <Col sm="9">
                               <PostScheduler
                                 date={schedule ? moment(schedule) : null}
@@ -714,17 +716,17 @@ export function Submit(props: PageProps & MatchProps) {
                                   setSchedule(d ? d.toISOString(true) : null);
                                 }}
                               />
-                              <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
+                              <small className="text-muted">{_t("submit.schedule-hint")}</small>
                             </Col>
-                          </Form.Group>
+                          </Row>
                         )}
                       </>
                     )}
                     {editingEntry === null && tags?.length > 0 && isCommunity(tags[0]) && (
-                      <Form.Group as={Row}>
+                      <Row className="mb-4">
                         <Col sm="3" />
                         <Col sm="9">
-                          <Form.Check
+                          <FormCheck
                             type="switch"
                             id="reblog-switch"
                             label={_t("submit.reblog")}
@@ -733,15 +735,15 @@ export function Submit(props: PageProps & MatchProps) {
                               setReblogSwitch(e.target.checked);
                             }}
                           />
-                          <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
+                          <small className="text-muted">{_t("submit.reblog-hint")}</small>
                         </Col>
-                      </Form.Group>
+                      </Row>
                     )}
                     {thumbnails?.length > 0 && (
-                      <Form.Group as={Row}>
-                        <Form.Label column={true} sm="3">
-                          {_t("submit.thumbnail")}
-                        </Form.Label>
+                      <Row className="mb-4">
+                        <Col sm={3}>
+                          <label>{_t("submit.thumbnail")}</label>
+                        </Col>
                         <div className="col-sm-9 d-flex flex-wrap selection-container">
                           {[...new Set(thumbnails)]!.map((item, i) => {
                             let selectedItem = selectedThumbnail;
@@ -777,7 +779,7 @@ export function Submit(props: PageProps & MatchProps) {
                             );
                           })}
                         </div>
-                      </Form.Group>
+                      </Row>
                     )}
                   </div>
                 </div>

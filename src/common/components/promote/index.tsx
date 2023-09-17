@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import isEqual from "react-fast-compare";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { PrivateKey } from "@hiveio/dhive";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -254,10 +254,10 @@ export class Promote extends BaseComponent<Props, State> {
               <div className="align-self-center">
                 <a href="/faq#how-promotion-work">{_t("promote.learn-more")}</a>
               </div>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("redeem-common.balance")}
-                </Form.Label>
+              <Row className="mb-4">
+                <Col sm={2}>
+                  <label>{_t("redeem-common.balance")}</label>
+                </Col>
                 <Col sm="10">
                   <FormControl
                     type="text"
@@ -266,13 +266,13 @@ export class Promote extends BaseComponent<Props, State> {
                     readOnly={true}
                     value={`${activeUser.points.points} POINTS`}
                   />
-                  {balanceError && <Form.Text className="text-danger">{balanceError}</Form.Text>}
+                  {balanceError && <small className="text-danger">{balanceError}</small>}
                 </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("redeem-common.post")}
-                </Form.Label>
+              </Row>
+              <Row className="mb-4">
+                <Col sm={2}>
+                  <label>{_t("redeem-common.post")}</label>
+                </Col>
                 <Col sm="10">
                   <SuggestionList items={paths} renderer={(i) => i} onSelect={this.pathSelected}>
                     <FormControl
@@ -284,16 +284,16 @@ export class Promote extends BaseComponent<Props, State> {
                       disabled={inProgress}
                     />
                   </SuggestionList>
-                  {postError && <Form.Text className="text-danger">{postError}</Form.Text>}
+                  {postError && <small className="text-danger">{postError}</small>}
                   {!postError && (
-                    <Form.Text className="text-muted">{_t("redeem-common.post-hint")}</Form.Text>
+                    <small className="text-muted">{_t("redeem-common.post-hint")}</small>
                   )}
                 </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("promote.duration")}
-                </Form.Label>
+              </Row>
+              <Row className="mb-4">
+                <Col sm={2}>
+                  <label>{_t("promote.duration")}</label>
+                </Col>
                 <Col sm="10">
                   <FormControl
                     type="select"
@@ -312,15 +312,15 @@ export class Promote extends BaseComponent<Props, State> {
                     })}
                   </FormControl>
                 </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2" />
+              </Row>
+              <Row className="mb-4">
+                <Col sm={2} />
                 <Col sm="10">
                   <Button onClick={this.next} disabled={!canSubmit || inProgress}>
                     {_t("g.next")}
                   </Button>
                 </Col>
-              </Form.Group>
+              </Row>
             </div>
           </div>
         )}

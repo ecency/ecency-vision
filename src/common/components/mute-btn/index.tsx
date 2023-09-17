@@ -1,8 +1,7 @@
 import React from "react";
-import { Form } from "react-bootstrap";
 import isEqual from "react-fast-compare";
 import { Entry, EntryStat } from "../../store/entries/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { ActiveUser } from "../../store/active-user/types";
 import { clone } from "../../store/util";
 import BaseComponent from "../base";
@@ -43,7 +42,7 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
 
     return (
       <div className="mute-form">
-        <Form.Group>
+        <div className="mb-4">
           <div className="entry-title">
             @{entry.author}/{entry.permlink}
           </div>
@@ -58,11 +57,11 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
               maxLength={120}
             />
           </InputGroup>
-          <Form.Text>
+          <small>
             {!isMuted && _t("mute-btn.note-placeholder-mute")}
             {isMuted && "unmute" && _t("mute-btn.note-placeholder-unmute")}
-          </Form.Text>
-        </Form.Group>
+          </small>
+        </div>
         <div>
           <Button
             disabled={value.trim().length === 0 || inProgress}

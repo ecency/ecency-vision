@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Form } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import BaseComponent from "../base";
 import UploadButton from "../image-upload-button";
@@ -49,8 +48,8 @@ export class ImageUpload extends BaseComponent<Props, State> {
 
     return (
       <div className="image-upload-dialog-content">
-        <Form.Group>
-          <Form.Label>{title}</Form.Label>
+        <div className="mb-4">
+          <label>{title}</label>
           <InputGroup
             className="mb-3"
             append={
@@ -74,7 +73,7 @@ export class ImageUpload extends BaseComponent<Props, State> {
               onChange={this.imageChanged}
             />
           </InputGroup>
-        </Form.Group>
+        </div>
         <Button
           onClick={this.done}
           disabled={inProgress || uploading}

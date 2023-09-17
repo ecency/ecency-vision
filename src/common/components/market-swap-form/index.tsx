@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Form } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
@@ -19,6 +19,7 @@ import { useCurrencyRateQuery } from "./api/currency-rate-query";
 import { useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../../core";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 export interface Props {
   activeUser: ActiveUser | null;

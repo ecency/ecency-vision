@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { FormLabel } from "react-bootstrap";
 import { ActiveUser } from "../../../store/active-user/types";
 import { getOpenOrder, OpenOrdersData } from "../../../api/hive";
 import { GenericOrderItem } from "./generic-order-item";
@@ -31,9 +30,9 @@ export const MarketSwapActiveOrders = ({ activeUser, global }: Props) => {
   return orders.length > 0 ? (
     <>
       <div className="mb-4">
-        <FormLabel>
+        <label>
           <small className="font-weight-bold">{_t("market.pending-orders")}</small>
-        </FormLabel>
+        </label>
         <div className="bg-white rounded-[1rem] market-swap-active-orders">
           {orders.map((order) => (
             <div key={order.id} className="border-b border-[--border-color] pl-4 pr-2 py-3">

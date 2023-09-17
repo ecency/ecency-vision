@@ -1,5 +1,4 @@
 import React from "react";
-import { Form } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import BaseComponent from "../base";
 import { success } from "../feedback";
@@ -9,6 +8,7 @@ import truncate from "../../util/truncate";
 import "./_index.scss";
 import { FormControl, InputGroupCopyClipboard } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   activeUser: ActiveUser;
@@ -70,12 +70,12 @@ export default class ViewKeys extends BaseComponent<Props, State> {
             this.getKeys();
           }}
         >
-          <Form.Group controlId="account-name">
-            <Form.Label>{_t("view-keys.account")}</Form.Label>
+          <div className="mb-4">
+            <label>{_t("view-keys.account")}</label>
             <FormControl type="text" readOnly={true} value={activeUser.username} />
-          </Form.Group>
-          <Form.Group controlId="cur-pass">
-            <Form.Label>{_t("view-keys.cur-pass")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("view-keys.cur-pass")}</label>
             <FormControl
               value={curPass}
               onChange={this.curPassChanged}
@@ -84,8 +84,8 @@ export default class ViewKeys extends BaseComponent<Props, State> {
               autoFocus={true}
               autoComplete="off"
             />
-          </Form.Group>
-          <Form.Group controlId="keys-view">
+          </div>
+          <div className="mb-4">
             <div>
               {!keys.memo && (
                 <Button outline={true} onClick={this.getKeys}>
@@ -94,38 +94,38 @@ export default class ViewKeys extends BaseComponent<Props, State> {
               )}
               {keys.memo && (
                 <div>
-                  <Form.Group>
-                    <Form.Label>{_t("view-keys.owner")}</Form.Label>
+                  <div className="mb-4">
+                    <label>{_t("view-keys.owner")}</label>
                     <InputGroupCopyClipboard
                       value={keys.owner}
                       visibleValue={truncate(keys.owner, 30)}
                     />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>{_t("view-keys.active")}</Form.Label>
+                  </div>
+                  <div className="mb-4">
+                    <label>{_t("view-keys.active")}</label>
                     <InputGroupCopyClipboard
                       value={keys.active}
                       visibleValue={truncate(keys.active, 30)}
                     />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>{_t("view-keys.posting")}</Form.Label>
+                  </div>
+                  <div className="mb-4">
+                    <label>{_t("view-keys.posting")}</label>
                     <InputGroupCopyClipboard
                       value={keys.posting}
                       visibleValue={truncate(keys.posting, 30)}
                     />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>{_t("view-keys.memo")}</Form.Label>
+                  </div>
+                  <div className="mb-4">
+                    <label>{_t("view-keys.memo")}</label>
                     <InputGroupCopyClipboard
                       value={keys.memo}
                       visibleValue={truncate(keys.memo, 30)}
                     />
-                  </Form.Group>
+                  </div>
                 </div>
               )}
             </div>
-          </Form.Group>
+          </div>
         </Form>
       </div>
     );

@@ -168,17 +168,15 @@
     }
   }
 
-  .btn:not(.dropdown-toggle) {
+  button:not(.dropdown-toggle) {
     white-space: nowrap;
-
-    @include margin-right(1rem);
+    margin-right: 1rem;
 
     @include media-breakpoint-down(sm) {
       width: calc(100% - 2rem);
-
-      @include margin-bottom(1rem);
-      @include margin-left(1rem);
-      @include margin-right(1rem);
+      margin-bottom: 1rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
     }
   }
 

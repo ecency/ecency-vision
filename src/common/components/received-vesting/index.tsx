@@ -1,27 +1,17 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
-import { Form } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-
 import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
 import LinearProgress from "../linear-progress";
-
 import { getReceivedVestingShares, ReceivedVestingShare } from "../../api/private-api";
-
 import { _t } from "../../i18n";
-
 import { vestsToHp } from "../../helper/vesting";
-
 import parseAsset from "../../helper/parse-asset";
-
 import formattedNumber from "../../util/formatted-number";
 import MyPagination from "../pagination";
 import "./_index.scss";
@@ -183,7 +173,7 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
           <ModalHeader closeButton={true}>
             <ModalTitle>{_t("received-vesting.title")}</ModalTitle>
           </ModalHeader>
-          <Form.Group className="w-100 px-3">
+          <div className="w-full px-3 pb-4">
             <FormControl
               type="text"
               placeholder={_t("friends.search-placeholder")}
@@ -196,7 +186,7 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
                 });
               }}
             />
-          </Form.Group>
+          </div>
           <ModalBody>
             <List {...this.props} searchText={searchText} />
           </ModalBody>

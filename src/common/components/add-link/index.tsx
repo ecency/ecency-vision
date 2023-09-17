@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { readClipboard } from "../../util/clipboard";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   onHide: () => void;
@@ -65,7 +65,7 @@ export class AddLink extends Component<Props, State> {
             onSubmit(text, link);
           }}
         >
-          <Form.Group>
+          <div className="mb-4">
             <FormControl
               type="text"
               autoComplete="off"
@@ -77,8 +77,8 @@ export class AddLink extends Component<Props, State> {
               onInvalid={(e: any) => handleInvalid(e, "add-link.", "validation-text")}
               onInput={handleOnInput}
             />
-          </Form.Group>
-          <Form.Group>
+          </div>
+          <div className="mb-4">
             <FormControl
               type="text"
               autoComplete="off"
@@ -89,7 +89,7 @@ export class AddLink extends Component<Props, State> {
               onInvalid={(e: any) => handleInvalid(e, "add-link.", "validation-link")}
               onInput={handleOnInput}
             />
-          </Form.Group>
+          </div>
           <div className="d-flex justify-content-end">
             <Button type="submit">{_t("g.add")}</Button>
           </div>

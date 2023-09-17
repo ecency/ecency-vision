@@ -31,7 +31,7 @@
     display: none;
   }
 
-  .accordion .deck-header {
+  .ecency-accordion .deck-header {
     padding: 0.69rem;
     display: grid;
     grid-template-areas:
@@ -120,7 +120,7 @@
         }
       }
 
-      .accordion .deck-header {
+      .ecency-accordion .deck-header {
         align-items: center;
         grid-template-areas:
           "prefix drag-icon empty dropdown"

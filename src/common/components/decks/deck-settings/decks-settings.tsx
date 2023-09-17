@@ -1,4 +1,4 @@
-import { Alert, Form } from "react-bootstrap";
+import { Alert, FormCheck } from "react-bootstrap";
 import React, { useContext, useEffect, useState } from "react";
 import "./_decks-settings.scss";
 import { DeckGrid } from "../types";
@@ -12,6 +12,7 @@ import { _t } from "../../../i18n";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   deck?: DeckGrid;
@@ -108,7 +109,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
         )}
         {!isRemovingDeck && (
           <Form>
-            <Form.Group className="mb-4">
+            <div className="mb-4">
               <InputGroup
                 prepend={
                   <>
@@ -143,18 +144,18 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                   onChange={({ target }) => setName(target.value)}
                 />
               </InputGroup>
-            </Form.Group>
-            <Form.Label className="font-weight-bold">{_t("g.settings")}</Form.Label>
+            </div>
+            <label className="font-weight-bold">{_t("g.settings")}</label>
             {isLocalStorage && <Alert variant="primary">{_t("decks.use-local-text")}</Alert>}
             <div className="form-section d-flex">
-              <Form.Group>
-                <Form.Check
+              <div className="mb-4">
+                <FormCheck
                   checked={isLocalStorage}
                   type="checkbox"
                   label={_t("decks.save-locally")}
                   onChange={({ target }) => setIsLocalStorage(target.checked)}
                 />
-              </Form.Group>
+              </div>
             </div>
             <div className="d-flex justify-content-between">
               <div>

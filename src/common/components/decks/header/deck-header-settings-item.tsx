@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Accordion } from "react-bootstrap";
 import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../../img/svg";
 import { Button } from "@ui/button";
+import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
 
 interface Props {
   title: string;
@@ -20,7 +20,7 @@ export const DeckHeaderSettingsItem = ({ title, children, hasBorderBottom, class
         className
       }
     >
-      <Accordion.Toggle
+      <AccordionToggle
         as={Button}
         size="sm"
         eventKey="0"
@@ -30,10 +30,10 @@ export const DeckHeaderSettingsItem = ({ title, children, hasBorderBottom, class
         icon={expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}
       >
         {title}
-      </Accordion.Toggle>
-      <Accordion.Collapse eventKey="0">
+      </AccordionToggle>
+      <AccordionCollapse eventKey="0">
         <div className="d-flex justify-content-end p-2">{children}</div>
-      </Accordion.Collapse>
+      </AccordionCollapse>
     </Accordion>
   );
 };

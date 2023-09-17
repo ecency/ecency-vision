@@ -1,4 +1,3 @@
-import { Form } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import { checkSvg } from "../../../img/svg";
 import React, { ChangeEvent, useEffect, useState } from "react";
@@ -102,9 +101,9 @@ export const DeckHeaderUpdateIntervalSettings = ({
   return (
     <DeckHeaderSettingsItem title={_t("decks.settings")} hasBorderBottom={false}>
       <div className="d-flex align-items-center w-100 pb-2">
-        <Form.Text className="label mr-3">
+        <small className="label mr-3">
           {showInput ? _t("decks.update-interval-min") : _t("decks.update-interval")}
-        </Form.Text>
+        </small>
         <div className="w-100">
           {getControl()}
           {errorMessage ? <div className="text-danger mt-2">{errorMessage}</div> : <></>}

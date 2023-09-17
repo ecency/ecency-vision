@@ -1,4 +1,3 @@
-import { Form } from "react-bootstrap";
 import React, { useState } from "react";
 import { _t } from "../../i18n";
 import Tooltip from "../tooltip";
@@ -47,14 +46,14 @@ export const WalletSpkDelegatedPowerDialog = ({
       <ModalHeader closeButton={true}>
         <ModalTitle>{_t("wallet.spk.delegate.delegated-larynx-power.title")}</ModalTitle>
       </ModalHeader>
-      <Form.Group className="w-100 px-3">
+      <div className="w-full pb-4 px-3">
         <FormControl
           type="text"
           placeholder={_t("friends.search-placeholder")}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-      </Form.Group>
+      </div>
       <ModalBody>
         <div className="delegated-vesting-content">
           <div className="user-list">

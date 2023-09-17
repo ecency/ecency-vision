@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Form } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { PrivateKey } from "@hiveio/dhive";
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -21,6 +21,8 @@ import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 interface Props {
   global: Global;
@@ -164,29 +166,27 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
             this.stateSet({ mode: "sign" });
           }}
         >
-          <Form.Row>
-            <Form.Group as={Col}>
-              <Form.Label>{_t("withdraw-routes.account")}</Form.Label>
-              <FormControl
-                type="text"
-                required={true}
-                minLength={3}
-                maxLength={20}
-                autoComplete="off"
-                autoCorrect="off"
-                autoCapitalize="off"
-                spellCheck="false"
-                value={account}
-                name="account"
-                onChange={this.onInput}
-                onInvalid={(e: any) => handleInvalid(e, "withdraw-routes.", "validation-account")}
-                onInput={handleOnInput}
-              />
-            </Form.Group>
-          </Form.Row>
-          <Form.Row>
-            <Form.Group as={Col} md={3}>
-              <Form.Label>{_t("withdraw-routes.percent")}</Form.Label>
+          <div className="mb-4">
+            <label>{_t("withdraw-routes.account")}</label>
+            <FormControl
+              type="text"
+              required={true}
+              minLength={3}
+              maxLength={20}
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck="false"
+              value={account}
+              name="account"
+              onChange={this.onInput}
+              onInvalid={(e: any) => handleInvalid(e, "withdraw-routes.", "validation-account")}
+              onInput={handleOnInput}
+            />
+          </div>
+          <Row>
+            <Col md={3} className="mb-4">
+              <label>{_t("withdraw-routes.percent")}</label>
               <FormControl
                 type="number"
                 min={0}
@@ -198,44 +198,40 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
                 onInvalid={(e: any) => handleInvalid(e, "withdraw-routes.", "validation-percent")}
                 onInput={handleOnInput}
               />
-            </Form.Group>
-            <Form.Group as={Col} md={7}>
-              <Form.Label>{_t("withdraw-routes.auto-power-up")}</Form.Label>
+            </Col>
+            <Col md={7} className="mb-4">
+              <label>{_t("withdraw-routes.auto-power-up")}</label>
               <FormControl type="select" value={auto} name="auto" onChange={this.onInput}>
                 <option value="yes">{_t("g.yes")}</option>
                 <option value="no">{_t("g.no")}</option>
               </FormControl>
-            </Form.Group>
-            <Form.Group
-              as={Col}
-              md={2}
-              className="d-md-flex align-items-end justify-content-center"
-            >
+            </Col>
+            <Col md={2} className="d-md-flex align-items-end justify-content-center mb-4">
               <Button type="submit" size="sm">
                 {_t("g.add")}
               </Button>
-            </Form.Group>
-          </Form.Row>
+            </Col>
+          </Row>
         </Form>
 
         {routes.length > 0 && (
-          <table className="table-auto w-full route-table">
+          <Table full={true} className="route-table">
             <thead>
-              <tr>
-                <th className="border p-2">{_t("withdraw-routes.account")}</th>
-                <th className="border p-2">{_t("withdraw-routes.percent")}</th>
-                <th className="border p-2">{_t("withdraw-routes.auto-power-up")}</th>
-                <th className="border p-2" />
-              </tr>
+              <Tr>
+                <Th className="border p-2">{_t("withdraw-routes.account")}</Th>
+                <Th className="border p-2">{_t("withdraw-routes.percent")}</Th>
+                <Th className="border p-2">{_t("withdraw-routes.auto-power-up")}</Th>
+                <Th className="border p-2" />
+              </Tr>
             </thead>
             <tbody>
               {routes.map((r) => {
                 return (
-                  <tr key={r.id}>
-                    <td className="border p-2">{r.to_account}</td>
-                    <td className="border p-2">{`${r.percent / 100}%`}</td>
-                    <td className="border p-2">{r.auto_vest ? _t("g.yes") : _t("g.no")}</td>
-                    <td className="border p-2">
+                  <Tr key={r.id}>
+                    <Td className="border p-2">{r.to_account}</Td>
+                    <Td className="border p-2">{`${r.percent / 100}%`}</Td>
+                    <Td className="border p-2">{r.auto_vest ? _t("g.yes") : _t("g.no")}</Td>
+                    <Td className="border p-2">
                       <Tooltip content={_t("g.delete")}>
                         <a
                           href="#"
@@ -253,12 +249,12 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
                           {deleteForeverSvg}
                         </a>
                       </Tooltip>
-                    </td>
-                  </tr>
+                    </Td>
+                  </Tr>
                 );
               })}
             </tbody>
-          </table>
+          </Table>
         )}
       </>
     );

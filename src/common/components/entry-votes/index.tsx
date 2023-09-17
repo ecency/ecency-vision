@@ -1,32 +1,23 @@
 import React, { Component } from "react";
-
-import { Alert, Form } from "react-bootstrap";
-
+import { Alert } from "react-bootstrap";
 import { History } from "history";
-
 import { Global } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar/index";
 import FormattedCurrency from "../formatted-currency";
 import ProfileLink from "../profile-link/index";
 import Tooltip from "../tooltip";
 import Pagination from "../pagination";
-
 import { getActiveVotes, Vote } from "../../api/hive";
-
 import parseAsset from "../../helper/parse-asset";
 import parseDate, { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import accountReputation from "../../helper/account-reputation";
-
 import formattedNumber from "../../util/formatted-number";
 import _c from "../../util/fix-class-names";
-
 import { _t } from "../../i18n";
-
 import { heartSvg } from "../../img/svg";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
@@ -339,7 +330,7 @@ export class EntryVotes extends Component<Props, State> {
             <ModalHeader closeButton={true} className="align-items-center px-0">
               <ModalTitle>{title}</ModalTitle>
             </ModalHeader>
-            <Form.Group className="w-100 px-3 mb-3">
+            <div className="w-full px-3 mb-4">
               <FormControl
                 type="text"
                 placeholder={_t("friends.search-placeholder")}
@@ -347,7 +338,7 @@ export class EntryVotes extends Component<Props, State> {
                 onChange={(e) => this.setState({ searchText: e.target.value })}
                 disabled={searchTextDisabled}
               />
-            </Form.Group>
+            </div>
             <ModalBody className="px-0">
               <EntryVotesDetail
                 {...this.props}

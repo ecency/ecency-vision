@@ -1,4 +1,3 @@
-import { FormGroup, FormLabel } from "react-bootstrap";
 import React, { useState } from "react";
 import { settingsSvg } from "../../../img/svg";
 import { _t } from "../../../i18n";
@@ -23,10 +22,10 @@ export const AdvancedModeSettings = ({ updateRate, setUpdateRate }: Props) => {
           <b>{_t("g.settings")}</b>
         </ModalHeader>
         <ModalBody>
-          <FormGroup>
-            <FormLabel>
+          <div className="mb-4">
+            <label>
               <small>Update rate(seconds)</small>
-            </FormLabel>
+            </label>
             <FormControl
               type="number"
               value={rate}
@@ -34,7 +33,7 @@ export const AdvancedModeSettings = ({ updateRate, setUpdateRate }: Props) => {
               min={5}
               max={300}
             />
-          </FormGroup>
+          </div>
         </ModalBody>
         <ModalFooter>
           <Button

@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
-import { Form } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
@@ -271,14 +266,14 @@ export default class DelegatedVesting extends Component<Props, DelegatedVestingS
             </ModalTitle>
           </ModalHeader>
 
-          <Form.Group className="w-100 px-3">
+          <div className="w-full mb-4 px-3">
             <FormControl
               type="text"
               placeholder={_t("friends.search-placeholder")}
               value={searchText}
               onChange={(e) => this.setState({ searchText: e.target.value })}
             />
-          </Form.Group>
+          </div>
           <ModalBody>
             <List
               {...this.props}

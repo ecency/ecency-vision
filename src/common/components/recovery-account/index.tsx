@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
 import useDebounce from "react-use/lib/useDebounce";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
@@ -24,6 +23,7 @@ import { FullAccount } from "../../store/accounts/types";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   global: Global;
@@ -363,13 +363,13 @@ export default function AccountRecovery(props: Props) {
             update();
           }}
         >
-          <Form.Group controlId="account-name">
-            <Form.Label>{_t("account-recovery.curr-recovery-acc")}</Form.Label>
+          <div className="mb-4">
+            <label>{_t("account-recovery.curr-recovery-acc")}</label>
             <FormControl type="text" readOnly={true} value={currRecoveryAccount} />
-          </Form.Group>
+          </div>
           {toWarning && <small className="suggestion-info">{toWarning}</small>}
-          <Form.Group controlId="cur-pass">
-            <Form.Label>{_t("account-recovery.new-recovery-acc")}</Form.Label>
+          <div className="mb-4">
+            <label>{_t("account-recovery.new-recovery-acc")}</label>
             <FormControl
               value={newRecoveryAccount}
               onChange={newRecoveryAccountChange}
@@ -379,11 +379,11 @@ export default function AccountRecovery(props: Props) {
               autoComplete="off"
               className={toError ? "is-invalid" : ""}
             />
-          </Form.Group>
+          </div>
           {toError && <small className="error-info">{toError}</small>}
           {isEcency && (
-            <Form.Group controlId="recovery-email">
-              <Form.Label>{_t("account-recovery.new-recovery-email")}</Form.Label>
+            <div className="mb-4">
+              <label>{_t("account-recovery.new-recovery-email")}</label>
               <FormControl
                 value={recoveryEmail}
                 onChange={handleRecoveryEmail}
@@ -392,7 +392,7 @@ export default function AccountRecovery(props: Props) {
                 placeholder={_t("account-recovery.email-placeholder")}
                 autoComplete="off"
               />
-            </Form.Group>
+            </div>
           )}
           {inProgress && <LinearProgress />}
 

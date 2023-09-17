@@ -1,5 +1,4 @@
 import React from "react";
-import { Form } from "react-bootstrap";
 import { cryptoUtils, KeyRole, PrivateKey } from "@hiveio/dhive";
 import base58 from "bs58";
 import { ActiveUser } from "../../store/active-user/types";
@@ -15,6 +14,8 @@ import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
+import { FormCheck } from "react-bootstrap";
 
 interface Props {
   activeUser: ActiveUser;
@@ -127,12 +128,12 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
             this.update();
           }}
         >
-          <Form.Group controlId="account-name">
-            <Form.Label>{_t("password-update.account")}</Form.Label>
+          <div className="mb-4">
+            <label>{_t("password-update.account")}</label>
             <FormControl type="text" readOnly={true} value={activeUser.username} />
-          </Form.Group>
-          <Form.Group controlId="cur-pass">
-            <Form.Label>{_t("password-update.cur-pass")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("password-update.cur-pass")}</label>
             <FormControl
               value={curPass}
               onChange={this.curPassChanged}
@@ -143,9 +144,9 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
               autoFocus={true}
               autoComplete="off"
             />
-          </Form.Group>
-          <Form.Group controlId="new-pass">
-            <Form.Label>{_t("password-update.new-pass")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("password-update.new-pass")}</label>
             <div>
               {!newPass && (
                 <Button outline={true} onClick={this.genWif}>
@@ -154,9 +155,9 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
               )}
               {newPass && <code className="pass-generated">{newPass}</code>}
             </div>
-          </Form.Group>
-          <Form.Group controlId="re-new-pass">
-            <Form.Label>{_t("password-update.new-pass2")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("password-update.new-pass2")}</label>
             <FormControl
               value={newPass2}
               onChange={this.newPass2Changed}
@@ -166,16 +167,16 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
               onInvalid={(e: any) => handleInvalid(e, "password-update.", "validation-password")}
               onInput={handleOnInput}
             />
-          </Form.Group>
-          <Form.Group controlId="accept">
-            <Form.Check
+          </div>
+          <div className="mb-4">
+            <FormCheck
               required={true}
               type="checkbox"
               label={_t("password-update.label-check")}
               onInvalid={(e: any) => handleInvalid(e, "password-update.", "validation-label")}
               onInput={handleOnInput}
             />
-          </Form.Group>
+          </div>
           <Button
             type="submit"
             disabled={inProgress}

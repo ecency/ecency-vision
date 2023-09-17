@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
@@ -8,6 +7,7 @@ import { error } from "../feedback";
 import { Skeleton } from "../skeleton";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   type: 1 | 2;
@@ -145,8 +145,8 @@ export const HiveBarter = ({
           setTransaction(type === 1 ? TransactionType.Buy : TransactionType.Sell);
         }}
       >
-        <Form.Group>
-          <Form.Label className={isInline ? "font-small" : ""}>{_t("market.price")}</Form.Label>
+        <div className="mb-4">
+          <label className={isInline ? "font-small" : ""}>{_t("market.price")}</label>
           <InputGroup append="HBD/HIVE">
             <FormControl
               type="text"
@@ -155,10 +155,10 @@ export const HiveBarter = ({
               onChange={(e) => setPriceValue(e.target.value)}
             />
           </InputGroup>
-        </Form.Group>
+        </div>
 
-        <Form.Group>
-          <Form.Label className={isInline ? "font-small" : ""}>{_t("market.amount")}</Form.Label>
+        <div className="mb-4">
+          <label className={isInline ? "font-small" : ""}>{_t("market.amount")}</label>
           <InputGroup append="HIVE">
             <FormControl
               type="text"
@@ -167,10 +167,10 @@ export const HiveBarter = ({
               onChange={(e) => setAmountValue(e.target.value)}
             />
           </InputGroup>
-        </Form.Group>
+        </div>
 
-        <Form.Group className="mb-4">
-          <Form.Label className={isInline ? "font-small" : ""}>{_t("market.total")}</Form.Label>
+        <div className="mb-4">
+          <label className={isInline ? "font-small" : ""}>{_t("market.total")}</label>
           <InputGroup append="HBD">
             <FormControl
               type="text"
@@ -179,7 +179,7 @@ export const HiveBarter = ({
               onChange={(e) => setTotalValue(e.target.value)}
             />
           </InputGroup>
-        </Form.Group>
+        </div>
         <Button className="block" type="submit" disabled={disabled}>
           {type === 1 ? _t("market.buy") : _t("market.sell")}
         </Button>

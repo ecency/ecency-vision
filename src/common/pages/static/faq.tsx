@@ -11,7 +11,6 @@ import Meta from "../../components/meta";
 import ScrollToTop from "../../components/scroll-to-top";
 import Theme from "../../components/theme";
 import NavBarElectron from "../../../desktop/app/components/navbar";
-import { Form } from "react-bootstrap";
 import { copyContent } from "../../img/svg";
 import { Link } from "react-router-dom";
 import { Tsx } from "../../i18n/helper";
@@ -140,7 +139,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                   />
                 </InputGroup>
                 {search.length > 0 && (
-                  <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">
+                  <small className="text-white mt-2 mt-sm-3 w-[75%] text-center helper-text">
                     {searchResult.length > 0 ? (
                       _t("static.faq.search", { search: `"${search}"` })
                     ) : (
@@ -152,7 +151,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                         .
                       </div>
                     )}
-                  </Form.Text>
+                  </small>
                 )}
               </div>
             </div>

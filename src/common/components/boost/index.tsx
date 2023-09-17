@@ -1,33 +1,24 @@
 import React, { Component } from "react";
-
 import isEqual from "react-fast-compare";
-
-import { Col, Form, Row } from "react-bootstrap";
-
+import { Col, Row } from "react-bootstrap";
 import { PrivateKey } from "@hiveio/dhive";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Entry, EntryHeader } from "../../store/entries/types";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import { error } from "../feedback";
-
 import { getPostHeader } from "../../api/bridge";
 import { getBoostedPost, getBoostOptions } from "../../api/private-api";
 import { searchPath } from "../../api/search-api";
 import { boost, boostHot, boostKc, formatError } from "../../api/operations";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 import formattedNumber from "../../util/formatted-number";
-
 import { checkAllSvg } from "../../img/svg";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
@@ -279,10 +270,10 @@ export class Boost extends BaseComponent<Props, State> {
               <div className="align-self-center">
                 <a href="/faq#how-boosting-work">{_t("boost.learn-more")}</a>
               </div>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("redeem-common.balance")}
-                </Form.Label>
+              <Row className="mb-4">
+                <Col sm={2}>
+                  <label>{_t("redeem-common.balance")}</label>
+                </Col>
                 <Col sm="10">
                   <FormControl
                     type="text"
@@ -291,13 +282,13 @@ export class Boost extends BaseComponent<Props, State> {
                     readOnly={true}
                     value={`${activeUser.points.points} POINTS`}
                   />
-                  {balanceError && <Form.Text className="text-danger">{balanceError}</Form.Text>}
+                  {balanceError && <small className="text-danger">{balanceError}</small>}
                 </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("redeem-common.post")}
-                </Form.Label>
+              </Row>
+              <Row className="mb-4">
+                <Col sm={2}>
+                  <label>{_t("redeem-common.post")}</label>
+                </Col>
                 <Col sm="10">
                   <SuggestionList items={paths} renderer={(i) => i} onSelect={this.pathSelected}>
                     <FormControl
@@ -309,16 +300,16 @@ export class Boost extends BaseComponent<Props, State> {
                       disabled={inProgress}
                     />
                   </SuggestionList>
-                  {postError && <Form.Text className="text-danger">{postError}</Form.Text>}
+                  {postError && <small className="text-danger">{postError}</small>}
                   {!postError && (
-                    <Form.Text className="text-muted">{_t("redeem-common.post-hint")}</Form.Text>
+                    <small className="text-muted">{_t("redeem-common.post-hint")}</small>
                   )}
                 </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("boost.amount")}
-                </Form.Label>
+              </Row>
+              <Row className="mb-4">
+                <Col sm={2}>
+                  <label>{_t("boost.amount")}</label>
+                </Col>
                 <Col sm="10">
                   <div className="slider-area">
                     <div className="slider-price">
@@ -336,19 +327,19 @@ export class Boost extends BaseComponent<Props, State> {
                       value={amount}
                       onChange={this.sliderChanged}
                     />
-                    <Form.Text className="text-muted">{_t("boost.slider-hint")}</Form.Text>
+                    <small className="text-muted">{_t("boost.slider-hint")}</small>
                   </div>
                 </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2" />
+              </Row>
+              <Row className="mb-4">
+                <Col sm={2} />
                 <Col sm="10">
                   <Button type="button" onClick={this.next} disabled={!canSubmit || inProgress}>
                     {_t("g.next")}
                   </Button>
-                  <Form.Text className="text-warning font-italic">{_t("boost.hint")}</Form.Text>
+                  <small className="text-warning font-italic">{_t("boost.hint")}</small>
                 </Col>
-              </Form.Group>
+              </Row>
             </div>
           </div>
         )}

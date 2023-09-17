@@ -1,6 +1,5 @@
 import BaseComponent from "../base";
 import React, { Component } from "react";
-import { Form } from "react-bootstrap";
 import { Entry } from "../../store/entries/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { error, success } from "../feedback";
@@ -127,7 +126,7 @@ export class CrossPost extends BaseComponent<Props, State> {
 
     return (
       <>
-        <Form.Group controlId="community">
+        <div className="mb-4">
           <SuggestionList
             items={suggestions}
             onSelect={this.communitySelected}
@@ -140,8 +139,8 @@ export class CrossPost extends BaseComponent<Props, State> {
               placeholder={_t("cross-post.community-placeholder")}
             />
           </SuggestionList>
-        </Form.Group>
-        <Form.Group controlId="message">
+        </div>
+        <div className="mb-4">
           <FormControl
             type="text"
             value={message}
@@ -149,7 +148,7 @@ export class CrossPost extends BaseComponent<Props, State> {
             maxLength={200}
             placeholder={_t("cross-post.message-placeholder")}
           />
-        </Form.Group>
+        </div>
         <p className="small text-muted">{_t("cross-post.info")}</p>
         <div className="d-flex justify-content-between">
           <Button appearance="secondary" outline={true} onClick={this.hide} disabled={posting}>

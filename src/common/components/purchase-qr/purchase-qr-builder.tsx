@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Alert, Form } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { success } from "../feedback";
 import qrcode from "qrcode";
@@ -105,9 +105,9 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId, locat
         style={{ display: isQrShow ? "block" : "none" }}
       />
       {isQrShow ? (
-        <Form.Group className="w-100">
+        <div className="w-full mb-4">
           <InputGroupCopyClipboard value={getURL()} />
-        </Form.Group>
+        </div>
       ) : (
         <></>
       )}

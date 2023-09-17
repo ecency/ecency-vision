@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { _t } from "../../../i18n";
-import Accordion from "react-bootstrap/Accordion";
 import {
   chevronDownSvgForSlider,
   chevronUpSvgForSlider,
@@ -13,6 +12,7 @@ import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { classNameObject } from "../../../helper/class-name-object";
 import Tooltip from "../../tooltip";
 import { Button } from "@ui/button";
+import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
 
 export interface Props {
   title: string;
@@ -71,7 +71,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
             <div className="title">{props.title}</div>
           </div>
           <Tooltip content={_t("decks.header-info")}>
-            <Accordion.Toggle
+            <AccordionToggle
               as={Button}
               appearance="link"
               eventKey="0"
@@ -85,7 +85,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
             />
           </Tooltip>
         </div>
-        <Accordion.Collapse eventKey="0">
+        <AccordionCollapse className="border-b border-[--border-color]" eventKey="0">
           <div className="p-0">
             <DeckHeaderSettings
               updateInterval={"updateIntervalMs" in props ? props.updateIntervalMs : undefined}
@@ -124,7 +124,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
               )}
             </div>
           </div>
-        </Accordion.Collapse>
+        </AccordionCollapse>
       </Accordion>
     </div>
   );

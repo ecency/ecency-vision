@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Form } from "react-bootstrap";
 import BaseComponent from "../base";
 import { error } from "../feedback";
 import { BeneficiaryRoute } from "../../api/operations";
@@ -11,6 +10,7 @@ import "./_index.scss";
 import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 const THREE_SPEAK_VIDEO_PATTERN = /\[!\[]\(https:\/\/ipfs-3speak.*\)\]\(https:\/\/3speak\.tv.*\)/g;
 

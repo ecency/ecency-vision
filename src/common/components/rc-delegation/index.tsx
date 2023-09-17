@@ -1,19 +1,17 @@
 import React, { useCallback, useState } from "react";
 import _ from "lodash";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import badActors from "@hiveio/hivescript/bad-actors.json";
-
 import LinearProgress from "../linear-progress";
 import UserAvatar from "../user-avatar";
 import { error } from "../feedback";
-
 import { delegateRC, formatError } from "../../api/operations";
 import { getAccount } from "../../api/hive";
-
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 export const ResourceCreditsDelegation = (props: any) => {
   const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList, delegateeData } =
@@ -155,45 +153,43 @@ export const ResourceCreditsDelegation = (props: any) => {
           {formHeader1}
           {inProgress && <LinearProgress />}
           <Form className="transaction-form-body">
-            <Form.Group as={Row}>
-              <Form.Label column={true} sm="2">
-                {_t("transfer.from")}
-              </Form.Label>
+            <Row className="mb-4">
+              <Col sm={2}>
+                <label>{_t("transfer.from")}</label>
+              </Col>
               <Col sm="10">
                 <InputGroup prepend="@">
                   <FormControl type="text" value={activeUser.username} readOnly={true} />
                 </InputGroup>
               </Col>
-            </Form.Group>
+            </Row>
 
-            <>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("transfer.to")}
-                </Form.Label>
-                <Col sm="10">
-                  {/* <SuggestionList > */}
-                  <InputGroup prepend="@">
-                    <FormControl
-                      type="text"
-                      autoFocus={to === ""}
-                      placeholder={_t("transfer.to-placeholder")}
-                      value={to}
-                      onChange={toChanged}
-                      className={toError ? "is-invalid" : ""}
-                    />
-                  </InputGroup>
-                  {/* </SuggestionList> */}
-                </Col>
-              </Form.Group>
-              {toWarning && <FormText msg={toWarning} type="danger" />}
-              {toError && <FormText msg={toError} type="danger" />}
-            </>
+            <Row className="mb-4">
+              <Col sm={2}>
+                <label>{_t("transfer.to")}</label>
+              </Col>
+              <Col sm="10">
+                {/* <SuggestionList > */}
+                <InputGroup prepend="@">
+                  <FormControl
+                    type="text"
+                    autoFocus={to === ""}
+                    placeholder={_t("transfer.to-placeholder")}
+                    value={to}
+                    onChange={toChanged}
+                    className={toError ? "is-invalid" : ""}
+                  />
+                </InputGroup>
+                {/* </SuggestionList> */}
+              </Col>
+            </Row>
+            {toWarning && <FormText msg={toWarning} type="danger" />}
+            {toError && <FormText msg={toError} type="danger" />}
 
-            <Form.Group as={Row}>
-              <Form.Label column={true} sm="2">
-                {_t("transfer.amount")}
-              </Form.Label>
+            <Row className="mb-4">
+              <Col sm={2}>
+                <label>{_t("transfer.amount")}</label>
+              </Col>
               <Col sm="10" className="d-flex align-items-center">
                 <InputGroup prepend="#">
                   <FormControl
@@ -207,7 +203,7 @@ export const ResourceCreditsDelegation = (props: any) => {
                   />
                 </InputGroup>
               </Col>
-            </Form.Group>
+            </Row>
 
             {amount < 5000000000 && <FormText msg={amountError} type="danger" />}
             {amount > Number(resourceCredit) && <FormText msg={amountError} type="danger" />}
@@ -221,13 +217,13 @@ export const ResourceCreditsDelegation = (props: any) => {
               </Col>
             </Row>
 
-            <Form.Group as={Row}>
+            <Row className="mb-4">
               <Col sm={{ span: 10, offset: 2 }}>
                 <Button disabled={!canSubmit} onClick={next}>
                   {_t("g.next")}
                 </Button>
               </Col>
-            </Form.Group>
+            </Row>
           </Form>
         </div>
       )}
@@ -274,7 +270,7 @@ const FormText = (props: { msg: any; type: any }) => {
   return (
     <Row>
       <Col md={{ span: 10, offset: 2 }}>
-        <Form.Text className={`text-${type} tr-form-text`}>{msg}</Form.Text>
+        <small className={`text-${type} tr-form-text`}>{msg}</small>
       </Col>
     </Row>
   );
