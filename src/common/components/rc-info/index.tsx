@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, ListGroup, ListGroupItem, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
-import { findRcAccounts } from "../../api/hive";
+import { findRcAccounts, getRcOperationStats } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation";
-import { RcDelegationsList } from "../rc-delegations-list";
+import { ConfirmDelete, RcDelegationsList } from "../rc-delegations-list";
 import { rcFormatter } from "../../util/formatted-number";
-import { ConfirmDelete } from "../rc-delegations-list";
-import { getRcOperationStats } from "../../api/hive";
 import RcProgressCircle from "../rc-progress-circle";
 import "./_index.scss";
+import ClaimAccountCredit from "../claim-account-credit";
 
 export const ResourceCreditsInfo = (props: any) => {
   const { rcPercent, account, activeUser } = props;
@@ -217,15 +216,27 @@ export const ResourceCreditsInfo = (props: any) => {
 
               <div className="extra-details">
                 <p>{_t("rc-info.extra-details-heading")}</p>
-                <div className="extras">
-                  <ul>
-                    <li>{`${_t("rc-info.comments-posts")} ${commentAmount}`}</li>
-                    <li>{`${_t("rc-info.votes")} ${voteAmount}`}</li>
-                    <li>{`${_t("rc-info.transfers")} ${transferAmount}`}</li>
-                    <li>{`${_t("rc-info.reblogs-follows")} ${customJsonAmount}`}</li>
-                    <li>{`${_t("rc-info.claim-accounts")} ${claimAccountAmount}`}</li>
-                  </ul>
-                </div>
+                <ListGroup className="rc-info-extras">
+                  <ListGroupItem>
+                    {_t("rc-info.comments-posts")}
+                    <span>{commentAmount}</span>
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    {_t("rc-info.votes")}
+                    <span>{voteAmount}</span>
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    {_t("rc-info.transfers")}
+                    <span>{transferAmount}</span>
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    {_t("rc-info.reblogs-follows")}
+                    <span>{customJsonAmount}</span>
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    <ClaimAccountCredit claimAccountAmount={claimAccountAmount} account={account} />
+                  </ListGroupItem>
+                </ListGroup>
               </div>
             </div>
           </div>
