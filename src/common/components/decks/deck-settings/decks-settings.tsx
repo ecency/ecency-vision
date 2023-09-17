@@ -79,7 +79,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
         {isRemovingDeck && deck && (
           <div>
             <div className="text-center mb-4">{_t("decks.delete-prompt")}</div>
-            <div className="d-flex align-items-center justify-content-center">
+            <div className="flex items-center justify-center">
               <Button
                 disabled={isLoading}
                 className="mr-2"
@@ -148,7 +148,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
             </div>
             <label className="font-weight-bold">{_t("g.settings")}</label>
             {isLocalStorage && <Alert className="my-3">{_t("decks.use-local-text")}</Alert>}
-            <div className="form-section d-flex">
+            <div className="form-section flex">
               <div className="mb-4">
                 <FormCheck
                   checked={isLocalStorage}
@@ -158,7 +158,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                 />
               </div>
             </div>
-            <div className="d-flex justify-content-between">
+            <div className="flex justify-between">
               <div>
                 {deck && decks.decks.length > 1 ? (
                   <Button

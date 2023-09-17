@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Col, Row } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { Community, CommunityTeam } from "../../store/communities";
 import { Account } from "../../store/accounts/types";
@@ -103,11 +102,11 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
       <div className="community-role-edit-dialog-content">
         {inProgress && <LinearProgress />}
         <div className={`user-role-form ${inProgress ? "in-progress" : ""}`}>
-          <Row className="mb-4">
-            <Col sm={2}>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
               <label>{_t("community-role-edit.username")}</label>
-            </Col>
-            <Col sm="10">
+            </div>
+            <div className="w-full sm:w-10/12">
               <InputGroup prepend="@">
                 <FormControl
                   type="text"
@@ -120,13 +119,13 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
                 />
               </InputGroup>
               {userError && <small className="text-danger">{userError}</small>}
-            </Col>
-          </Row>
-          <Row className="mb-4">
-            <Col sm={2}>
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
               <label>{_t("community-role-edit.role")}</label>
-            </Col>
-            <Col sm="10">
+            </div>
+            <div className="w-full sm:w-10/12">
               <FormControl type="select" value={role} onChange={this.roleChanged}>
                 {roles.map((r, i) => (
                   <option key={i} value={r}>
@@ -134,9 +133,9 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
                   </option>
                 ))}
               </FormControl>
-            </Col>
-          </Row>
-          <div className="d-flex justify-content-end">
+            </div>
+          </div>
+          <div className="flex justify-end">
             <Button type="button" onClick={this.submit} disabled={inProgress}>
               {_t("g.save")}
             </Button>

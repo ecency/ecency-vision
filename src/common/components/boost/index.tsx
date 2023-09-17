@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import isEqual from "react-fast-compare";
-import { Col, Row } from "react-bootstrap";
 import { PrivateKey } from "@hiveio/dhive";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -266,15 +265,15 @@ export class Boost extends BaseComponent<Props, State> {
               </div>
             </div>
             {inProgress && <LinearProgress />}
-            <div className="transaction-form-body d-flex flex-column">
-              <div className="align-self-center">
+            <div className="transaction-form-body flex flex-col">
+              <div className="self-center">
                 <a href="/faq#how-boosting-work">{_t("boost.learn-more")}</a>
               </div>
-              <Row className="mb-4">
-                <Col sm={2}>
+              <div className="flex mb-4">
+                <div className="w-full sm:w-2/12">
                   <label>{_t("redeem-common.balance")}</label>
-                </Col>
-                <Col sm="10">
+                </div>
+                <div className="w-full sm:w-10/12">
                   <FormControl
                     type="text"
                     className={_c(`balance-input ${balanceError ? "is-invalid" : ""}`)}
@@ -283,13 +282,13 @@ export class Boost extends BaseComponent<Props, State> {
                     value={`${activeUser.points.points} POINTS`}
                   />
                   {balanceError && <small className="text-danger">{balanceError}</small>}
-                </Col>
-              </Row>
-              <Row className="mb-4">
-                <Col sm={2}>
+                </div>
+              </div>
+              <div className="flex mb-4">
+                <div className="w-full sm:w-2/12">
                   <label>{_t("redeem-common.post")}</label>
-                </Col>
-                <Col sm="10">
+                </div>
+                <div className="w-full sm:w-10/12">
                   <SuggestionList items={paths} renderer={(i) => i} onSelect={this.pathSelected}>
                     <FormControl
                       className={postError ? "is-invalid" : ""}
@@ -304,13 +303,13 @@ export class Boost extends BaseComponent<Props, State> {
                   {!postError && (
                     <small className="text-muted">{_t("redeem-common.post-hint")}</small>
                   )}
-                </Col>
-              </Row>
-              <Row className="mb-4">
-                <Col sm={2}>
+                </div>
+              </div>
+              <div className="flex mb-4">
+                <div className="w-full sm:w-2/12">
                   <label>{_t("boost.amount")}</label>
-                </Col>
-                <Col sm="10">
+                </div>
+                <div className="w-full sm:w-10/12">
                   <div className="slider-area">
                     <div className="slider-price">
                       {formattedNumber(this.pointsToSbd(amount), {
@@ -329,17 +328,17 @@ export class Boost extends BaseComponent<Props, State> {
                     />
                     <small className="text-muted">{_t("boost.slider-hint")}</small>
                   </div>
-                </Col>
-              </Row>
-              <Row className="mb-4">
-                <Col sm={2} />
-                <Col sm="10">
+                </div>
+              </div>
+              <div className="flex mb-4">
+                <div className="w-full sm:w-2/12" />
+                <div className="w-full sm:w-10/12">
                   <Button type="button" onClick={this.next} disabled={!canSubmit || inProgress}>
                     {_t("g.next")}
                   </Button>
                   <small className="text-warning font-italic">{_t("boost.hint")}</small>
-                </Col>
-              </Row>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -377,11 +376,11 @@ export class Boost extends BaseComponent<Props, State> {
             </div>
             {inProgress && <LinearProgress />}
             <div className="transaction-form-body">
-              <p className="d-flex justify-content-center align-content-center">
+              <p className="flex justify-center items-center">
                 <span className="svg-icon text-success">{checkAllSvg}</span>{" "}
                 {_t("redeem-common.success-message")}
               </p>
-              <div className="d-flex justify-content-center">
+              <div className="flex justify-center">
                 <Button onClick={this.finish}>{_t("g.finish")}</Button>
               </div>
             </div>

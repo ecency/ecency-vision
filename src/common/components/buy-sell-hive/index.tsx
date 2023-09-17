@@ -149,9 +149,9 @@ export class BuySellHive extends BaseComponent<any, State> {
     } = this.props;
 
     const formHeader1 = (
-      <div className="d-flex align-items-center border-b border-[--border-color] pb-3">
+      <div className="flex items-center border-b border-[--border-color] pb-3">
         <div className="step-no ml-3">{step}</div>
-        <div className="flex-grow-1">
+        <div className="grow">
           <div className="main-title">{_t("transfer.confirm-title")}</div>
           <div className="sub-title">{_t("transfer.confirm-sub-title")}</div>
         </div>
@@ -162,13 +162,13 @@ export class BuySellHive extends BaseComponent<any, State> {
       return (
         <div className="mb-3">
           {formHeader1}
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             {Ttype === TransactionType.Cancel ? (
-              <div className="mt-5 w-75 text-center sub-title text-wrap">
+              <div className="mt-5 w-75 text-center sub-title whitespace-pre-wrap">
                 {_t("market.confirm-cancel", { orderid: orderid })}
               </div>
             ) : (
-              <div className="mt-5 w-75 text-center sub-title text-wrap">
+              <div className="mt-5 w-75 text-center sub-title whitespace-pre-wrap">
                 {available < (Ttype === TransactionType.Buy ? total : amount)
                   ? _t("market.transaction-low")
                   : _t("market.confirm-buy", {
@@ -183,8 +183,8 @@ export class BuySellHive extends BaseComponent<any, State> {
           {available < (Ttype === TransactionType.Buy ? total : amount) ? (
             <></>
           ) : (
-            <div className="d-flex justify-content-end mt-5">
-              <div className="d-flex">
+            <div className="flex justify-end mt-5">
+              <div className="flex">
                 <Button appearance="secondary" className="mr-3" onClick={onHide}>
                   {_t("g.cancel")}
                 </Button>
@@ -246,11 +246,11 @@ export class BuySellHive extends BaseComponent<any, State> {
       return (
         <div className="transaction-form">
           {formHeader4}
-          <div className="transaction-form-body d-flex flex-column align-items-center">
-            <div className="my-5 w-75 text-center sub-title text-wrap">
+          <div className="transaction-form-body flex flex-col items-center">
+            <div className="my-5 w-75 text-center sub-title whitespace-pre-wrap">
               {_t("market.transaction-succeeded")}
             </div>
-            <div className="d-flex justify-content-center">
+            <div className="flex justify-center">
               <span className="hr-6px-btn-spacer" />
               <Button onClick={this.finish}>{_t("g.finish")}</Button>
             </div>
@@ -272,7 +272,7 @@ class BuySellHiveDialog extends Component<any> {
         show={true}
         centered={true}
         onHide={onHide}
-        className="transfer-dialog modal-thin-header"
+        className="transfer-dialog"
         size="lg"
       >
         <ModalHeader closeButton={true} />

@@ -11,24 +11,17 @@ import LinearProgress from "../linear-progress";
 import Tooltip from "../tooltip";
 import KeyOrHotDialog from "../key-or-hot-dialog";
 import { error } from "../feedback";
-
 import { DelegatedVestingShare, getVestingDelegations } from "../../api/hive";
-
 import {
   delegateVestingShares,
   delegateVestingSharesHot,
   delegateVestingSharesKc,
   formatError
 } from "../../api/operations";
-
 import { _t } from "../../i18n";
-
 import { vestsToHp } from "../../helper/vesting";
-
 import parseAsset from "../../helper/parse-asset";
-
 import formattedNumber from "../../util/formatted-number";
-
 import _c from "../../util/fix-class-names";
 import MyPagination from "../pagination";
 import "./_index.scss";

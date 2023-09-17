@@ -64,7 +64,7 @@ export const ReadTime = (props: any) => {
           _t("entry.post-read-minuites")
         }
       >
-        <span className="d-flex align-items-center">
+        <span className="flex items-center">
           <span className="info-icon w-[24px] mr-0 mr-md-2">{informationVariantSvg}</span>
         </span>
       </Tooltip>

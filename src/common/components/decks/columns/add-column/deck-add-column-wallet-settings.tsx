@@ -59,7 +59,7 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
       {username !== "" && contentType !== null ? (
         <Button
           disabled={!username || !contentType}
-          className="w-full mt-5 sticky-bottom"
+          className="w-full mt-5 sticky bottom-0"
           onClick={() =>
             add({
               key: deckKey,

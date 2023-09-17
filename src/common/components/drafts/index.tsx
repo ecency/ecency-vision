@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-
 import { History, Location } from "history";
-
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { FullAccount } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
@@ -13,17 +10,11 @@ import PopoverConfirm from "@ui/popover-confirm";
 import Tooltip from "../tooltip";
 import Tag from "../tag";
 import { error, success } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import { addDraft, deleteDraft, Draft, DraftMetadata, getDrafts } from "../../api/private-api";
-
 import accountReputation from "../../helper/account-reputation";
-
 import defaults from "../../constants/defaults.json";
-
 import { cloneOutlineSvg, deleteForeverSvg, pencilOutlineSvg } from "../../img/svg";
-
 import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { useMappedStore } from "../../store/use-mapped-store";

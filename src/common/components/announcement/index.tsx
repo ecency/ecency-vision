@@ -176,31 +176,29 @@ const Announcement = ({ activeUser }: Props) => {
           return (
             <div className="announcement-container" key={i}>
               <div className="feedback-announcement">
-                <div className="row">
-                  <div className="col center">
-                    <div className="main">
-                      <div className="announcement-title">
-                        <p>{x?.title}</p>
-                      </div>
+                <div className="flex justify-center">
+                  <div className="main">
+                    <div className="announcement-title">
+                      <p>{x?.title}</p>
                     </div>
-                    <div className="announcement-message">
-                      <p>{x?.description}</p>
-                    </div>
-                    <div className="d-flex actions">
-                      <Link to={x?.button_link} onClick={dismissClick}>
-                        <Button>{x?.button_text}</Button>
-                      </Link>
-                      <Button onClick={laterClick} appearance="primary" outline={true}>
-                        {_t("announcements.later")}
+                  </div>
+                  <div className="announcement-message">
+                    <p>{x?.description}</p>
+                  </div>
+                  <div className="flex actions">
+                    <Link to={x?.button_link} onClick={dismissClick}>
+                      <Button>{x?.button_text}</Button>
+                    </Link>
+                    <Button onClick={laterClick} appearance="primary" outline={true}>
+                      {_t("announcements.later")}
+                    </Button>
+                    {list.length > 1 ? (
+                      <Button onClick={upClick} appearance="link">
+                        {_t("announcements.next")}
                       </Button>
-                      {list.length > 1 ? (
-                        <Button onClick={upClick} appearance="link">
-                          {_t("announcements.next")}
-                        </Button>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                   <Button
                     className="close-btn"

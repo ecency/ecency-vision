@@ -95,7 +95,7 @@ export class AddImage extends BaseComponent<Props, State> {
       return (
         <div className="dialog-content">
           <div className="recent-list" />
-          <div className="d-flex justify-content-center">{btnUpload}</div>
+          <div className="flex justify-center">{btnUpload}</div>
         </div>
       );
     }
@@ -129,7 +129,7 @@ export class AddImage extends BaseComponent<Props, State> {
             </>
           )}
         </div>
-        <div className="d-flex justify-content-between">
+        <div className="flex justify-between">
           {btnGallery}
           {btnUpload}
         </div>

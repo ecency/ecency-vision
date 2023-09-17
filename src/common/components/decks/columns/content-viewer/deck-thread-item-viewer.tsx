@@ -92,7 +92,7 @@ export const DeckThreadItemViewer = ({
       className={"deck-post-viewer deck-thread-item-viewer " + (isMounted ? "visible" : "")}
     >
       <div className="deck-post-viewer-header">
-        <div className="actions d-flex pt-3 mr-3">
+        <div className="actions flex pt-3 mr-3">
           <Button
             appearance="link"
             onClick={() => {

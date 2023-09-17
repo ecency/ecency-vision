@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { History } from "history";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
-
 import { CurationDuration, CurationItem, getCuration } from "../../api/private-api";
-
 import { informationVariantSvg } from "../../img/svg";
 import DropDown from "../dropdown";
 import LinearProgress from "../linear-progress";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 import { vestsToHp } from "../../helper/vesting";
 import formattedNumber from "../../util/formatted-number";

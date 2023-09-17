@@ -271,12 +271,11 @@ export class Comment extends Component<Props, State> {
               )}
             </div>
           </div>
-          <div className="comment-buttons d-flex align-items-center mt-3">
+          <div className="comment-buttons flex items-center mt-3">
             {cancellable && (
               <Button
                 className="mr-2"
                 size="sm"
-                appearance="primary"
                 outline={true}
                 disabled={inProgress}
                 onClick={this.cancel}
@@ -287,8 +286,14 @@ export class Comment extends Component<Props, State> {
             {LoginRequired({
               ...this.props,
               children: (
-                <Button size="sm" disabled={inProgress} onClick={this.submit}>
-                  {inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />} {submitText}
+                <Button
+                  size="sm"
+                  disabled={inProgress}
+                  onClick={this.submit}
+                  icon={inProgress && <Spinner className="w-3.5 h-3.5" />}
+                  iconPlacement="left"
+                >
+                  {submitText}
                 </Button>
               )
             })}

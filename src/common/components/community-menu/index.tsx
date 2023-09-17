@@ -1,19 +1,12 @@
-import React, { Component, useEffect, useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import { History, Location } from "history";
-
 import { Link } from "react-router-dom";
 import { match } from "react-router";
-import isEqual from "react-fast-compare";
-
 import { EntryFilter, Global } from "../../store/global/types";
-import { Community } from "../../store/communities/types";
-
+import { Community } from "../../store/communities";
 import ListStyleToggle from "../list-style-toggle/index";
-import DropDown, { MenuItem } from "../dropdown";
-
+import DropDown from "../dropdown";
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 import "./_index.scss";
 
@@ -65,7 +58,7 @@ export const CommunityMenu = (props: Props) => {
         <>
           <span
             className={
-              "d-flex d-lg-none community-menu-item " + (isFilterInItems() ? "selected-item" : "")
+              "flex lg:hidden community-menu-item " + (isFilterInItems() ? "selected-item" : "")
             }
           >
             <DropDown
@@ -79,7 +72,7 @@ export const CommunityMenu = (props: Props) => {
               float="left"
             />
           </span>
-          <div className="d-none d-lg-flex align-items-center">
+          <div className="hidden lg:flex items-center">
             {menuItems
               .map((x) => ({
                 label: _t(`entry-filter.filter-${x}`),

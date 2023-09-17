@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import { History } from "history";
-
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import EntryLink from "../entry-link";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import { error } from "../feedback";
-
 import { Bookmark, Favorite, getBookmarks, getFavorites } from "../../api/private-api";
-
 import { _t } from "../../i18n";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
@@ -211,13 +207,7 @@ class BookmarksDialog extends Component<DialogProps, DialogState> {
     const { section } = this.state;
 
     return (
-      <Modal
-        show={true}
-        centered={true}
-        onHide={this.hide}
-        size="lg"
-        className="bookmarks-modal modal-thin-header"
-      >
+      <Modal show={true} centered={true} onHide={this.hide} size="lg" className="bookmarks-modal">
         <ModalHeader closeButton={true} />
         <ModalBody>
           <div className="dialog-menu">

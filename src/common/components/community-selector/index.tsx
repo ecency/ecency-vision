@@ -1,19 +1,14 @@
 import React from "react";
 import isEqual from "react-fast-compare";
 import { ActiveUser } from "../../store/active-user/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { Global } from "../../store/global/types";
 import { Subscription } from "../../store/subscriptions/types";
-
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar/index";
-
 import { _t } from "../../i18n";
-
 import isCommunity from "../../helper/is-community";
-
 import { getCommunities, getCommunity, getSubscriptions } from "../../api/bridge";
-
 import { menuDownSvg } from "../../img/svg";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";

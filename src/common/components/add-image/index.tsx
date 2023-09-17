@@ -77,7 +77,7 @@ export class AddImage extends Component<Props, State> {
               onInput={handleOnInput}
             />
           </div>
-          <div className="d-flex justify-content-end">
+          <div className="flex justify-end">
             <Button type="submit">{_t("g.add")}</Button>
           </div>
         </Form>

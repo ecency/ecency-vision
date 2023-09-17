@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { upArrowSvg } from "../../../img/svg";
 import "./_deck-floating-toolbar-activator.scss";
 import { classNameObject } from "../../../helper/class-name-object";
+import { Button } from "@ui/button";
 
 interface Props {
   open: boolean;
@@ -12,9 +13,9 @@ export const DeckFloatingToolbarActivator = ({ open, setOpen }: Props) => {
   const [touched, setTouched] = useState(false);
 
   return (
-    <div
+    <Button
       className={classNameObject({
-        "deck-floating-toolbar-activator btn btn-primary": true,
+        "deck-floating-toolbar-activator": true,
         open
       })}
       onTouchStart={() => setTouched(true)}
@@ -29,6 +30,6 @@ export const DeckFloatingToolbarActivator = ({ open, setOpen }: Props) => {
       }}
     >
       {upArrowSvg}
-    </div>
+    </Button>
   );
 };

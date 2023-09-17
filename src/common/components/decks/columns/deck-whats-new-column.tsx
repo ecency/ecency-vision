@@ -70,7 +70,7 @@ export const DeckWhatsNewColumn = ({ id, draggable, settings }: Props) => {
                 <div className="wn-item">
                   {item.name}
                   {item.name === version && (
-                    <div className="bg-primary px-2 py-1 text-xs font-bold text-white rounded">
+                    <div className="bg-blue-dark-sky px-2 py-1 text-xs font-bold text-white rounded">
                       {_t("decks.columns.current")}
                     </div>
                   )}

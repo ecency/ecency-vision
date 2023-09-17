@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
 import { Link } from "react-router-dom";
-
 import { EntryFilter, Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import DropDown, { MenuItem } from "../dropdown";
 import ListStyleToggle from "../list-style-toggle";
-
 import { _t } from "../../i18n";
 import * as ls from "../../util/local-storage";
 import _c from "../../util/fix-class-names";
@@ -449,9 +444,9 @@ export class EntryIndexMenu extends Component<Props, States> {
       <div>
         <div className={introductionOverlayClass} id="overlay" onClick={this.onClosePopup} />
         <div className="entry-index-menu">
-          <div className="the-menu align-items-center">
+          <div className="the-menu items-center">
             {isActive && (
-              <div className="sub-menu mt-3 mt-md-0">
+              <div className="sub-menu mt-3 md:mt-0">
                 <ul
                   className={`flex flex-wrap position-relative mb-0 ${
                     introduction === IntroductionType.NONE
@@ -504,8 +499,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                 </ul>
               </div>
             )}
-            <div className="d-flex align-items-center">
-              <div className="main-menu d-none d-lg-flex">
+            <div className="flex items-center">
+              <div className="main-menu hidden lg:flex">
                 <div className="sm-menu position-relative">
                   <DropDown {...menuConfig} float="left" />
                 </div>
@@ -562,8 +557,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                 </div>
               </div>
 
-              <div className="main-menu d-flex d-lg-none">
-                <div className="sm-menu position-relative">
+              <div className="main-menu flex lg:hidden">
+                <div className="sm-menu relative">
                   <DropDown {...mobileMenuConfig} float="left" />
                   {isMounted && introduction !== IntroductionType.NONE ? (
                     <Introduction
@@ -601,7 +596,7 @@ export class EntryIndexMenu extends Component<Props, States> {
               {filter !== "feed" ? (
                 <>
                   <div className="border-l border-[--border-color] ml-3 dropDown-left-border-height" />
-                  <span id="check-isGlobal" className="d-flex align-items-center pl-3">
+                  <span id="check-isGlobal" className="flex items-center pl-3">
                     <EntryIndexMenuDropdown
                       {...this.props}
                       isGlobal={isGlobal}
@@ -613,7 +608,7 @@ export class EntryIndexMenu extends Component<Props, States> {
               ) : (
                 <>
                   <div className="border-l border-[--border-color] ml-3 dropDown-left-border-height" />
-                  <span id="check-isGlobal" className="d-flex align-items-center pl-3">
+                  <span id="check-isGlobal" className="flex items-center pl-3">
                     <EntryIndexMenuDropdown
                       {...this.props}
                       isGlobal={isGlobal}
@@ -625,7 +620,7 @@ export class EntryIndexMenu extends Component<Props, States> {
               )}
             </div>
           </div>
-          <div className="d-flex align-items-center ml-auto ml-md-0 pl-3">
+          <div className="flex items-center ml-auto ml-md-0 pl-3">
             <span
               className="info-icon mr-0 mr-md-2"
               onClick={() =>

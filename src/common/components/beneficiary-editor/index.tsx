@@ -11,6 +11,7 @@ import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "@ui/moda
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 const THREE_SPEAK_VIDEO_PATTERN = /\[!\[]\(https:\/\/ipfs-3speak.*\)\]\(https:\/\/3speak\.tv.*\)/g;
 
@@ -91,24 +92,24 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
         }}
       >
         <div className="beneficiary-list">
-          <table className="table-auto w-full border-collapse border">
+          <Table className="w-full">
             <thead>
-              <tr>
-                <th className="border p-2">{_t("beneficiary-editor.username")}</th>
-                <th className="border p-2">{_t("beneficiary-editor.reward")}</th>
-                <th className="border p-2" />
-              </tr>
+              <Tr>
+                <Th>{_t("beneficiary-editor.username")}</Th>
+                <Th>{_t("beneficiary-editor.reward")}</Th>
+                <Th />
+              </Tr>
             </thead>
             <tbody>
               {author && available > 0 && (
-                <tr>
-                  <td className="border p-2">{`@${author}`}</td>
-                  <td className="border p-2">{`${available}%`}</td>
-                  <td className="border p-2" />
-                </tr>
+                <Tr>
+                  <Td>{`@${author}`}</Td>
+                  <Td>{`${available}%`}</Td>
+                  <Td />
+                </Tr>
               )}
-              <tr>
-                <td className="border p-2">
+              <Tr>
+                <Td>
                   <InputGroup prepend="@">
                     <FormControl
                       type="text"
@@ -125,8 +126,8 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                       onChange={this.usernameChanged}
                     />
                   </InputGroup>
-                </td>
-                <td className="border p-2">
+                </Td>
+                <Td>
                   <InputGroup append="%">
                     <FormControl
                       disabled={inProgress}
@@ -143,22 +144,22 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                       onInput={handleOnInput}
                     />
                   </InputGroup>
-                </td>
-                <td className="border p-2">
+                </Td>
+                <Td>
                   <Button
                     disabled={inProgress || available < 1}
                     size="sm"
                     type="submit"
                     icon={plusSvg}
                   />
-                </td>
-              </tr>
+                </Td>
+              </Tr>
               {list.map((x) => {
                 return (
-                  <tr key={x.account}>
-                    <td className="border p-2">{`@${x.account}`}</td>
-                    <td className="border p-2">{`${x.weight / 100}%`}</td>
-                    <td className="border p-2">
+                  <Tr key={x.account}>
+                    <Td>{`@${x.account}`}</Td>
+                    <Td>{`${x.weight / 100}%`}</Td>
+                    <Td>
                       {!!this.props.body.match(THREE_SPEAK_VIDEO_PATTERN) &&
                       x.src === "ENCODER_PAY" ? (
                         <></>
@@ -174,12 +175,12 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                           {deleteForeverSvg}
                         </Button>
                       )}
-                    </td>
-                  </tr>
+                    </Td>
+                  </Tr>
                 );
               })}
             </tbody>
-          </table>
+          </Table>
         </div>
       </Form>
     );

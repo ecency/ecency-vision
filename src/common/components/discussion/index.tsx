@@ -4,7 +4,7 @@ import defaults from "../../constants/defaults.json";
 import { renderPostBody, setProxyBase } from "@ecency/render-helper";
 import { Entry, EntryVote } from "../../store/entries/types";
 import { Account, FullAccount } from "../../store/accounts/types";
-import { Community, ROLES } from "../../store/communities/types";
+import { Community, ROLES } from "../../store/communities";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { Global } from "../../store/global/types";
 import { User } from "../../store/users/types";
@@ -293,7 +293,7 @@ export const Item = (props: ItemProps) => {
 
   let normalComponent = (
     <div className={_c(`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`)}>
-      <div className="position-relative">
+      <div className="relative">
         <div className="item-anchor" id={anchorId} />
       </div>
       <div className="item-inner">
@@ -310,7 +310,7 @@ export const Item = (props: ItemProps) => {
         </div>
         <div className="item-content">
           <div className="item-header">
-            <div className="d-flex align-items-center" id={`${entry.author}-${entry.permlink}`}>
+            <div className="flex items-center" id={`${entry.author}-${entry.permlink}`}>
               <ProfilePopover {...props} />
             </div>
             <span className="separator circle-separator" />
@@ -583,7 +583,7 @@ export class List extends Component<ListProps> {
           />
         ))}
         {!isHiddenPermitted && mutedContent.length > 0 && activeUser && activeUser.username && (
-          <div className="hidden-warning d-flex justify-content-between flex-1 align-items-center mt-3">
+          <div className="hidden-warning flex justify-between flex-1 items-center mt-3">
             <div className="flex-1">{_t("discussion.reveal-muted-long-description")}</div>
             <div onClick={() => this.setState({ isHiddenPermitted: true })} className="pointer p-3">
               <b>{_t("g.show")}</b>

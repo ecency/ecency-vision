@@ -1,20 +1,13 @@
 import React, { Component, Fragment } from "react";
-
 import { OverlayTrigger } from "react-bootstrap";
-
 import { Entry } from "../../store/entries/types";
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-
 import FormattedCurrency from "../formatted-currency/index";
-
 import parseAsset from "../../helper/parse-asset";
 import { dateToFullRelative } from "../../helper/parse-date";
-
 import formattedNumber from "../../util/formatted-number";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";

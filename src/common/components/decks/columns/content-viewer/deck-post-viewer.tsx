@@ -69,7 +69,7 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
   return (
     <div className={"deck-post-viewer " + (isMounted ? "visible" : "")}>
       <div className="deck-post-viewer-header">
-        <div className="actions d-flex pt-3 mr-3">
+        <div className="actions flex pt-3 mr-3">
           <Button
             appearance="link"
             onClick={() => {
@@ -85,7 +85,7 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
             {_t("decks.columns.view-full-post")}
           </Button>
         </div>
-        <div className="title p-3 pb-4 d-flex">
+        <div className="title p-3 pb-4 flex">
           <span>{entry.title}</span>
         </div>
       </div>
@@ -107,7 +107,7 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
           }}
         />
         <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
-        <div className="d-flex align-items-center comments">
+        <div className="flex items-center comments">
           <div style={{ paddingRight: 4 }}>{commentSvg}</div>
           {entry.children}
         </div>

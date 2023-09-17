@@ -241,7 +241,7 @@ const FloatingFAQ = () => {
                   </div>
                   <div className="faq-content-list-item contact-us">
                     <Accordion>
-                      <Accordion.Toggle as={Card} eventKey="1">
+                      <AccordionToggle as={Card} eventKey="1">
                         <div
                           className={contactClass}
                           onClick={() => setExpandedContact(!expandedContact)}
@@ -253,7 +253,7 @@ const FloatingFAQ = () => {
                               </div>
                             </div>
                             <Tooltip content={_t("floating-faq.toggle-icon-info")}>
-                              <Accordion.Toggle
+                              <AccordionToggle
                                 as={Button}
                                 appearance="link"
                                 eventKey="1"
@@ -268,8 +268,8 @@ const FloatingFAQ = () => {
                             </Tooltip>
                           </div>
                         </div>
-                      </Accordion.Toggle>
-                      <Accordion.Collapse eventKey="1">
+                      </AccordionToggle>
+                      <AccordionCollapse eventKey="1">
                         <div className="card-body p-3">
                           <Form.Group>
                             <InputGroup className="username" prepend="@">
@@ -305,7 +305,7 @@ const FloatingFAQ = () => {
                             {_t("floating-faq.submit")}
                           </Button>
                         </div>
-                      </Accordion.Collapse>
+                      </AccordionCollapse>
                     </Accordion>
                   </div>
                 </div>

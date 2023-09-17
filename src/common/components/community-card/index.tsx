@@ -308,8 +308,8 @@ export class CommunityCard extends Component<Props, State> {
             )}
             {canEditTeam && (
               <p className="community-control">
-                <Link className="btn btn-sm btn-primary" to={`/roles/${community.name}`}>
-                  {_t("community-card.edit-team")}
+                <Link to={`/roles/${community.name}`}>
+                  <Button size="sm">{_t("community-card.edit-team")}</Button>
                 </Link>
               </p>
             )}

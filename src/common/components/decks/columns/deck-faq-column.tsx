@@ -38,13 +38,11 @@ export const DeckFaqColumn = ({ id, draggable }: Props) => {
     >
       <div className="deck-faq-container">
         <div
-          className={
-            expandedHelp ? "section d-flex flex-column border-b border-[--border-color]" : ""
-          }
+          className={expandedHelp ? "section flex flex-col border-b border-[--border-color]" : ""}
           onClick={() => setExpandedHelp(!expandedHelp)}
         >
           <div className="help-content p-3">
-            <div className="search-bar w-100 mb-4">
+            <div className="search-bar w-full mb-4">
               <FormControl
                 type="text"
                 placeholder={_t("floating-faq.search-placeholder")}

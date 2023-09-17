@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, FormCheck, Row } from "react-bootstrap";
+import { FormCheck } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { Community } from "../../store/communities";
 import { ActiveUser } from "../../store/active-user/types";
@@ -211,11 +211,11 @@ export class CommunitySettings extends BaseComponent<Props, State> {
             this.submit().then();
           }}
         >
-          <Row className="mb-4">
-            <Col sm={2}>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
               <label>{_t("community-settings.title")}</label>
-            </Col>
-            <Col sm="10">
+            </div>
+            <div className="w-full sm:w-10/12">
               <InputGroup>
                 <FormControl
                   type="text"
@@ -230,13 +230,13 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                   onInput={handleOnInput}
                 />
               </InputGroup>
-            </Col>
-          </Row>
-          <Row className="mb-4">
-            <Col sm={2}>
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
               <label>{_t("community-settings.about")}</label>
-            </Col>
-            <Col sm="10">
+            </div>
+            <div className="w-full sm:w-10/12">
               <FormControl
                 type="text"
                 autoComplete="off"
@@ -244,13 +244,13 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                 name="about"
                 onChange={this.onChange}
               />
-            </Col>
-          </Row>
-          <Row className="mb-4">
-            <Col sm={2}>
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
               <label>{_t("community-settings.lang")}</label>
-            </Col>
-            <Col sm="4">
+            </div>
+            <div className="w-full sm:w-4/12">
               <FormControl type="select" value={lang} name="lang" onChange={this.onChange}>
                 {langOpts.map((l, k) => (
                   <option key={k} value={l.id}>
@@ -258,13 +258,13 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                   </option>
                 ))}
               </FormControl>
-            </Col>
-          </Row>
-          <Row className="mb-4">
-            <Col sm={2}>
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
               <label>{_t("community-settings.description")}</label>
-            </Col>
-            <Col sm="10">
+            </div>
+            <div className="w-full sm:w-10/12">
               <InputGroup>
                 <FormControl
                   type="textarea"
@@ -273,13 +273,13 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                   onChange={this.onChange}
                 />
               </InputGroup>
-            </Col>
-          </Row>
-          <Row className="mb-4">
-            <Col sm={2}>
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
               <label>{_t("community-settings.rules")}</label>
-            </Col>
-            <Col sm="10">
+            </div>
+            <div className="w-full sm:w-10/12">
               <InputGroup>
                 <FormControl
                   type="textarea"
@@ -289,10 +289,11 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                 />
               </InputGroup>
               <small>{_t("community-settings.rules-help")}</small>
-            </Col>
-          </Row>
-          <Row className="mb-4">
-            <Col sm={{ span: 10, offset: 2 }}>
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12" />
+            <div className="w-full sm:w-10/12">
               <FormCheck
                 id="check-nsfw"
                 type="checkbox"
@@ -301,8 +302,8 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                 checked={is_nsfw}
                 onChange={this.onChange}
               />
-            </Col>
-          </Row>
+            </div>
+          </div>
           <div className="d-flex justify-content-end">
             <Button type="submit" disabled={inProgress}>
               {_t("g.save")}

@@ -8,7 +8,6 @@ import {
   makeShareUrlReddit,
   makeShareUrlTwitter
 } from "../../helper/url-share";
-
 import { _t } from "../../i18n";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";

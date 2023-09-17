@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Entry } from "../../store/entries/types";
 import { Account } from "../../store/accounts/types";
 import { User } from "../../store/users/types";

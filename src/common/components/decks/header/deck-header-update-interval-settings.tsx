@@ -85,7 +85,7 @@ export const DeckHeaderUpdateIntervalSettings = ({
       );
     } else {
       return (
-        <div className="d-flex w-100">
+        <div className="flex w-full">
           <FormControl
             type="number"
             placeholder={_t("deck.update-custom-interval-in-minutes-placeholder")}
@@ -100,7 +100,7 @@ export const DeckHeaderUpdateIntervalSettings = ({
 
   return (
     <DeckHeaderSettingsItem title={_t("decks.settings")} hasBorderBottom={false}>
-      <div className="d-flex align-items-center w-100 pb-2">
+      <div className="flex items-center w-full pb-2">
         <small className="label mr-3">
           {showInput ? _t("decks.update-interval-min") : _t("decks.update-interval")}
         </small>

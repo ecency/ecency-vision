@@ -93,12 +93,6 @@ export const ThreadItem = ({
     setHasParent(
       !!entry.parent_author && !!entry.parent_permlink && entry.parent_author !== entry.host
     );
-
-    // if (typeof entry.post_id === "string") {
-    //   setStatus("pending");
-    // } else {
-    //   setStatus("default");
-    // }
   }, [entry]);
 
   useEffect(() => {

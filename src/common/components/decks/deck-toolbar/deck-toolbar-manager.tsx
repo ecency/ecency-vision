@@ -21,9 +21,11 @@ export const DeckToolbarManager = ({ isExpanded }: Props) => {
     <div className="deck-toolbar-manager">
       <div className="title">
         <div className="text">{_t("decks.decks")}</div>
-        <div className="add-deck-btn btn" onClick={() => setShowDecksSettings(true)}>
-          {addIconSvg}
-        </div>
+        <Button
+          className="add-deck-btn"
+          onClick={() => setShowDecksSettings(true)}
+          icon={addIconSvg}
+        />
       </div>
       <div className="deck-list">
         {decks.decks.map((deck) => (

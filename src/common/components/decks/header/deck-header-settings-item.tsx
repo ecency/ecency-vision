@@ -32,7 +32,7 @@ export const DeckHeaderSettingsItem = ({ title, children, hasBorderBottom, class
         {title}
       </AccordionToggle>
       <AccordionCollapse eventKey="0">
-        <div className="d-flex justify-content-end p-2">{children}</div>
+        <div className="flex justify-end p-2">{children}</div>
       </AccordionCollapse>
     </Accordion>
   );

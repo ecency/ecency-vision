@@ -37,10 +37,12 @@ export const DeckTopicsContentViewer = ({ onClose, backTitle, topic }: Props) =>
 
   return (
     <div
-      className={"deck-post-viewer deck-topic-content-viewer w-100 " + (isMounted ? "visible" : "")}
+      className={
+        "deck-post-viewer deck-topic-content-viewer w-full " + (isMounted ? "visible" : "")
+      }
     >
       <div className="deck-post-viewer-header">
-        <div className="actions d-flex pt-3 mr-3">
+        <div className="actions flex pt-3 mr-3">
           <Button
             appearance="link"
             onClick={() => {
@@ -53,7 +55,7 @@ export const DeckTopicsContentViewer = ({ onClose, backTitle, topic }: Props) =>
             {backTitle}
           </Button>
         </div>
-        <div className="title p-3 d-flex">
+        <div className="title p-3 flex">
           <span>#{topic}</span>
         </div>
       </div>

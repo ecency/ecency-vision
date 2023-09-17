@@ -126,7 +126,7 @@ export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
       {query !== "" ? (
         <Button
           disabled={!query}
-          className="w-full mt-5 sticky-bottom"
+          className="w-full mt-5 sticky bottom-0"
           onClick={() =>
             add({
               key: deckKey,

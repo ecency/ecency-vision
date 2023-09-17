@@ -185,7 +185,7 @@ export default class CommunityRewardsRegistrationDialog extends Component<Props>
         show={true}
         centered={true}
         onHide={onHide}
-        className="community-rewards-registration-dialog modal-thin-header"
+        className="community-rewards-registration-dialog"
       >
         <ModalHeader closeButton={true} />
         <ModalBody>

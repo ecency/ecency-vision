@@ -58,8 +58,8 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
-        <div className="row">
-          <div className="col">
+        <div className="grid grid-cols-2">
+          <div>
             <FormControl
               type="select"
               value={type}
@@ -72,7 +72,7 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
               ))}
             </FormControl>
           </div>
-          <div className="col">
+          <div>
             <FormControl
               type="text"
               placeholder={_t("search-comment.category-placeholder")}
@@ -87,8 +87,8 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
           value={tags}
           onChange={(e) => setTags(e.target.value)}
         />
-        <div className="row">
-          <div className="col">
+        <div className="grid grid-cols-2">
+          <div>
             <FormControl
               type="select"
               value={date}
@@ -101,7 +101,7 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
               ))}
             </FormControl>
           </div>
-          <div className="col">
+          <div>
             <FormControl
               type="select"
               value={sort}

@@ -149,8 +149,8 @@ export class CrossPost extends BaseComponent<Props, State> {
             placeholder={_t("cross-post.message-placeholder")}
           />
         </div>
-        <p className="small text-muted">{_t("cross-post.info")}</p>
-        <div className="d-flex justify-content-between">
+        <small className="mb-4 block text-muted">{_t("cross-post.info")}</small>
+        <div className="flex justify-between">
           <Button appearance="secondary" outline={true} onClick={this.hide} disabled={posting}>
             {_t("g.cancel")}
           </Button>

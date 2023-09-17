@@ -5,13 +5,10 @@
 @import "./mixins";
 
 @import "./bootstrap_vars";
-@import "./bootstrap_imports";
 @import "./bootstrap_ext";
 
 @import "./base";
 @import "./components";
-
-@import "./bootstrap/scss/utilities";
 
 @import "./theme-day";
 @import "./theme-night";

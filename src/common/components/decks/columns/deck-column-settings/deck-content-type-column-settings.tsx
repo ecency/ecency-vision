@@ -27,9 +27,9 @@ export const DeckContentTypeColumnSettings = ({
 
   return (
     <DeckHeaderSettingsItem title={title} hasBorderBottom={false}>
-      <div className="d-flex align-items-center w-100 pb-2">
+      <div className="flex items-center w-full pb-2">
         <small className="label mr-3">{title}</small>
-        <div className="w-100">
+        <div className="w-full">
           <FormControl type="select" value={settings.contentType} onChange={onSelectChange}>
             {contentTypes.map(({ title, type }) => (
               <option key={type} value={type}>

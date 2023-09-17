@@ -327,7 +327,7 @@ export class EntryVotes extends Component<Props, State> {
             animation={false}
             className="entry-votes-modal px-3"
           >
-            <ModalHeader closeButton={true} className="align-items-center px-0">
+            <ModalHeader closeButton={true} className="items-center px-0">
               <ModalTitle>{title}</ModalTitle>
             </ModalHeader>
             <div className="w-full px-3 mb-4">

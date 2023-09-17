@@ -195,7 +195,7 @@ export const DeckGrid = ({ history }: Props) => {
                 </Draggable>
               ))}
               {provided.placeholder}
-              <div className="d-flex align-items-center">
+              <div className="flex items-center">
                 <Button
                   key={addColumnButtonKey}
                   className={

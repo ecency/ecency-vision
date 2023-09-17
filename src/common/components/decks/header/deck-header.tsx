@@ -60,7 +60,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
           </div>
           {props.icon ? <div className="icon mr-2">{props.icon}</div> : <></>}
 
-          <div className="header-title d-flex flex-column align-items-start">
+          <div className="header-title flex flex-col items-start">
             {"subtitle" in props ? (
               <div className="username">
                 <small className="text-secondary">{props.subtitle}</small>
@@ -97,7 +97,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
             />
             {"additionalSettings" in props && props.additionalSettings}
 
-            <div className="d-flex deck-actions justify-content-end p-2">
+            <div className="flex deck-actions content-end p-2">
               {"updateIntervalMs" in props ? (
                 <DeckHeaderReloading
                   onReload={props.onReload}

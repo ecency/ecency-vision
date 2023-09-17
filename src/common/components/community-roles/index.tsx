@@ -11,6 +11,7 @@ import CommunityRoleEditDialog from "../community-role-edit";
 import { _t } from "../../i18n";
 import "./_index.scss";
 import { Button } from "@ui/button";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 interface Props {
   history: History;
@@ -62,25 +63,21 @@ export class CommunityRoles extends Component<Props, State> {
     return (
       <div className="community-roles">
         <h2>{_t("community.roles-title")}</h2>
-        <table className="table-auto border-collapse border">
+        <Table full={true}>
           <thead>
-            <tr>
-              <th style={{ width: "200px" }} className="border p-3">
-                {_t("community.roles-account")}
-              </th>
-              <th style={{ width: "74px" }} className="border p-3">
-                {_t("community.roles-role")}
-              </th>
-              <th className="border p-3">{_t("community.roles-account-title")}</th>
-            </tr>
+            <Tr>
+              <Th style={{ width: "200px" }}>{_t("community.roles-account")}</Th>
+              <Th style={{ width: "74px" }}>{_t("community.roles-role")}</Th>
+              <Th className="border p-3">{_t("community.roles-account-title")}</Th>
+            </Tr>
           </thead>
           <tbody>
             {community.team.map((t, i) => {
               const [username, role, title] = t;
               const canEdit = roles && roles.includes(role);
               return (
-                <tr key={i} className={i % 2 === 0 ? "bg-gray-100" : ""}>
-                  <td className="border p-3">
+                <Tr key={i}>
+                  <Td>
                     {ProfileLink({
                       ...this.props,
                       username,
@@ -91,8 +88,8 @@ export class CommunityRoles extends Component<Props, State> {
                         </span>
                       )
                     })}
-                  </td>
-                  <td className="border p-3">
+                  </Td>
+                  <Td>
                     {canEdit ? (
                       <a
                         href="#"
@@ -106,13 +103,13 @@ export class CommunityRoles extends Component<Props, State> {
                     ) : (
                       role
                     )}
-                  </td>
-                  <td className="border p-3">{title}</td>
-                </tr>
+                  </Td>
+                  <Td>{title}</Td>
+                </Tr>
               );
             })}
           </tbody>
-        </table>
+        </Table>
         {roles.length > 0 && (
           <Button onClick={() => this.showDialog()}>{_t("community.roles-add")}</Button>
         )}

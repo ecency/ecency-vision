@@ -1,28 +1,20 @@
 import React, { Component, Fragment } from "react";
-
 import { History } from "history";
 import { Link } from "react-router-dom";
-
 import isEqual from "react-fast-compare";
-
 import { Account } from "../../store/accounts/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { Subscription } from "../../store/subscriptions/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { ToggleType, UI } from "../../store/ui/types";
-
 import ProfileLink from "../../components/profile-link";
 import SubscriptionBtn from "../subscription-btn";
 import UserAvatar from "../user-avatar";
 import { Global } from "../../store/global/types";
-
 import { makePath } from "../tag";
-
 import defaults from "../../constants/defaults.json";
-
 import { _t } from "../../i18n";
-
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
 

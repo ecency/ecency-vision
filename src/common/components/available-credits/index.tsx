@@ -17,6 +17,7 @@ import { Location } from "history";
 import "./index.scss";
 import { useMounted } from "../../util/use-mounted";
 import { createPortal } from "react-dom";
+import { Button } from "@ui/button";
 
 interface Props {
   username: string;
@@ -94,11 +95,11 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
 
   return isMounted ? (
     <>
-      <div className="available-credits d-flex align-items-center justify-content-between w-100 pr-2">
+      <div className="available-credits flex items-center justify-between w-full pr-3">
         <div
           ref={setHost}
           className={
-            "available-credits-bar w-100 " +
+            "available-credits-bar w-full " +
             className +
             (rcpFixed <= 10 ? " danger" : rcpFixed <= 25 ? " warning" : "")
           }
@@ -118,9 +119,9 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
           </div>
         </div>
         {commentAmount <= 5 ? (
-          <div className="btn btn-link px-0" onClick={() => setShowPurchaseDialog(true)}>
+          <Button noPadding={true} appearance="link" onClick={() => setShowPurchaseDialog(true)}>
             {_t("rc-info.boost")}
-          </div>
+          </Button>
         ) : (
           <></>
         )}
@@ -133,7 +134,7 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
           {...popper.attributes.popper}
         >
           <div>
-            <div className="p-2">
+            <div className="p-3">
               <span className="opacity-75">{_t("rc-info.resource-credits")}</span>
               <div>
                 {rcFormatter(rcp)}({rcpFixed}%)
@@ -146,8 +147,8 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
                 )}
               </div>
             </div>
-            <div className="delegations d-flex flex-column p-2">
-              <span className="incoming mb-1">
+            <div className="delegations flex flex-col p-3">
+              <span className="incoming mb-2">
                 <div className="opacity-75">{_t("rc-info.received-delegations")}</div>
                 {receivedDelegation}
               </span>
@@ -159,14 +160,14 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
           </div>
 
           <div className="extra-details p-2">
-            <span className="d-block mb-2 opacity-5">{_t("rc-info.extra-details-heading")}</span>
+            <span className="block mb-3 opacity-50">{_t("rc-info.extra-details-heading")}</span>
             <div className="extras">
-              <div className="mb-1">
+              <div className="mb-2">
                 <div className="opacity-75">{_t("rc-info.extra-details-post")}</div>
                 {commentAmount}
               </div>
               <div className="two-col">
-                <div className="mb-1">
+                <div className="mb-2">
                   <div className="opacity-75">{_t("rc-info.extra-details-upvote")}</div>
                   {voteAmount}
                 </div>

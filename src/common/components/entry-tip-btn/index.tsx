@@ -7,14 +7,11 @@ import { Entry } from "../../store/entries/types";
 import { User } from "../../store/users/types";
 import { ToggleType, UI } from "../../store/ui/types";
 import { Transactions } from "../../store/transactions/types";
-
 import LoginRequired from "../login-required";
 import { Transfer } from "../transfer";
 import Tooltip from "../tooltip";
-
 import { _t } from "../../i18n";
 import { useMappedStore } from "../../store/use-mapped-store";
-
 import { giftOutlineSvg } from "../../img/svg";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";

@@ -1,21 +1,16 @@
 import React, { Component } from "react";
-
 import { History, Location } from "history";
-
 import isEqual from "react-fast-compare";
-
 import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
-
 import { Entry, EntryVote } from "../../store/entries/types";
 import { Global } from "../../store/global/types";
 import { Account, FullAccount } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-import { Community, Communities } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Reblogs } from "../../store/reblogs/types";
-import { UI, ToggleType } from "../../store/ui/types";
-
+import { ToggleType, UI } from "../../store/ui/types";
 import ProfileLink from "../profile-link/index";
 import Tag from "../tag";
 import UserAvatar from "../user-avatar/index";
@@ -26,15 +21,12 @@ import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
 import Tooltip from "../tooltip";
 import EntryMenu from "../entry-menu";
-import { dateToRelative, dateToFormatted } from "../../helper/parse-date";
+import { dateToFormatted, dateToRelative } from "../../helper/parse-date";
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
-
 import _c from "../../util/fix-class-names";
 import truncate from "../../util/truncate";
-
-import { repeatSvg, pinSvg, commentSvg, volumeOffSvg } from "../../img/svg";
-
+import { commentSvg, pinSvg, repeatSvg, volumeOffSvg } from "../../img/svg";
 import defaults from "../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
 import { match } from "react-router-dom";
@@ -183,15 +175,7 @@ export default class EntryListItem extends Component<Props, State> {
       global,
       activeUser,
       history,
-      order,
-      addAccount,
-      dynamicProps,
-      users,
-      ui,
-      setActiveUser,
-      updateActiveUser,
-      deleteUser,
-      toggleUIProp
+      order
     } = this.props;
     const { mounted } = this.state;
     // const accountUsername = match?.params.username.replace("@", "");
@@ -327,12 +311,12 @@ export default class EntryListItem extends Component<Props, State> {
         <div className="item-header">
           <div className="item-header-main">
             <div className="author-part" id={`${entry.author}-${entry.permlink}`}>
-              <div className="d-flex align-items-center" id={`${entry.author}-${entry.permlink}`}>
+              <div className="flex items-center" id={`${entry.author}-${entry.permlink}`}>
                 {ProfileLink({
                   ...this.props,
                   username: entry.author,
                   children: (
-                    <span className="author-avatar d-block">
+                    <span className="author-avatar block">
                       <UserAvatar username={entry.author} size="small" />
                     </span>
                   )
@@ -435,7 +419,7 @@ export default class EntryListItem extends Component<Props, State> {
                   </div>
                   <div className="item-summary">
                     <div className="item-nsfw">
-                      <span className="nsfw-badge text-capitalize d-inline-flex align-items-center">
+                      <span className="nsfw-badge text-capitalize inline-flex items-center">
                         <div className="mute-icon">{volumeOffSvg}</div> <div>{_t("g.muted")}</div>
                       </span>
                     </div>
@@ -462,7 +446,7 @@ export default class EntryListItem extends Component<Props, State> {
                   </div>
                   <div className="item-summary">
                     <div className="item-nsfw">
-                      <span className="nsfw-badge text-capitalize d-inline-flex align-items-center">
+                      <span className="nsfw-badge text-capitalize inline-flex items-center">
                         <div className="mute-icon">{volumeOffSvg}</div> <div>{_t("g.muted")}</div>
                       </span>
                     </div>
