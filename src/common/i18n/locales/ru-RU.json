@@ -917,7 +917,11 @@
     "extra-details-transfer": "Переводы",
     "extra-details-post": "Посты/Комментарии",
     "extra-details-upvote": "Голоса",
-    "boost": "Продвинуть"
+    "boost": "Продвинуть",
+    "you-have-claimed-rc": "Already claimed account credits",
+    "claim": "Claim",
+    "you-claiming": "You are claiming {{n}}",
+    "successfully-claimed": "Successfully claimed!"
   },
   "profile-edit": {
     "title": "Профиль",
