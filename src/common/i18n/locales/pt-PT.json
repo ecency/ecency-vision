@@ -917,7 +917,11 @@
     "extra-details-transfer": "Transferências",
     "extra-details-post": "Publicações/Comentários",
     "extra-details-upvote": "Votos",
-    "boost": "Impulso"
+    "boost": "Impulso",
+    "you-have-claimed-rc": "Already claimed account credits",
+    "claim": "Claim",
+    "you-claiming": "You are claiming {{n}}",
+    "successfully-claimed": "Successfully claimed!"
   },
   "profile-edit": {
     "title": "Perfil",
