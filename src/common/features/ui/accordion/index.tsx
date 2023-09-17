@@ -5,8 +5,10 @@ import { classNameObject } from "../../../helper/class-name-object";
 export * from "./accordion-collapse";
 export * from "./accordion-toggle";
 
-export function Accordion(props: HTMLProps<HTMLDivElement>) {
-  const [show, setShow] = useState<Record<string, boolean>>({});
+export function Accordion(props: HTMLProps<HTMLDivElement> & { defaultActiveKey?: string }) {
+  const [show, setShow] = useState<Record<string, boolean>>({
+    ...(props.defaultActiveKey ? { [props.defaultActiveKey]: true } : {})
+  });
 
   return (
     <AccordionContext.Provider value={{ show, setShow }}>

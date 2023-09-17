@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Accordion from "react-bootstrap/Accordion";
 import { Card } from "react-bootstrap";
 import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../img/svg";
 import { _t } from "../../i18n";
 import "./index.scss";
 import Tooltip from "../tooltip";
 import { Button } from "@ui/button";
+import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
 
 interface Props {
   categoryTitle: string;
@@ -19,7 +19,7 @@ const FaqCategory = (props: Props) => {
   return (
     <div className="faq-container section-container">
       <Accordion className={expanded ? "border-b border-[--border-color]" : ""}>
-        <Accordion.Toggle as={Card} eventKey="0">
+        <AccordionToggle as={Card} eventKey="0">
           <div
             className="section d-flex flex-column border-b border-[--border-color]"
             onClick={() => setExpanded(!expanded)}
@@ -31,7 +31,7 @@ const FaqCategory = (props: Props) => {
                 </div>
               </div>
               <Tooltip content={_t("static.faq.toggle-icon-info")}>
-                <Accordion.Toggle
+                <AccordionToggle
                   as={Button}
                   appearance="link"
                   eventKey="0"
@@ -44,8 +44,8 @@ const FaqCategory = (props: Props) => {
               </Tooltip>
             </div>
           </div>
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey="0">
+        </AccordionToggle>
+        <AccordionCollapse eventKey="0">
           <div className="p-0">
             <div className="section-body">
               {contentList.map((x) => (
@@ -55,7 +55,7 @@ const FaqCategory = (props: Props) => {
               ))}
             </div>
           </div>
-        </Accordion.Collapse>
+        </AccordionCollapse>
       </Accordion>
     </div>
   );

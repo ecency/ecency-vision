@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "./_index.scss";
-import { Alert } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../img/svg";
 import { DeckThreadsFormContext } from "./deck-threads-form-manager";
 import { _t } from "../../../i18n";
@@ -19,6 +18,7 @@ import useClickAway from "react-use/lib/useClickAway";
 import { classNameObject } from "../../../helper/class-name-object";
 import usePrevious from "react-use/lib/usePrevious";
 import { Button } from "@ui/button";
+import { Alert } from "@ui/alert";
 
 interface Props {
   className?: string;
@@ -273,12 +273,12 @@ export const DeckThreadsForm = ({
           </div>
         </div>
         {inline && text?.length > 255 && (
-          <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
+          <Alert appearance="warning">{_t("decks.threads-form.max-length")}</Alert>
         )}
         {!inline && (
           <div className="deck-toolbar-threads-form-bottom">
             {text?.length > 255 && (
-              <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
+              <Alert appearance="warning">{_t("decks.threads-form.max-length")}</Alert>
             )}
             <DeckThreadsCreatedRecently
               lastEntry={lastCreatedThreadItem}

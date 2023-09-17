@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Alert } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
@@ -20,6 +19,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../../core";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
+import { Alert } from "@ui/alert";
 
 export interface Props {
   activeUser: ActiveUser | null;
@@ -257,14 +257,14 @@ export const MarketSwapForm = ({
         />
         <div>
           {isInvalidFrom ? (
-            <Alert variant="warning" className="mt-4">
+            <Alert appearance="warning" className="mt-4">
               {_t("market.invalid-amount")}
             </Alert>
           ) : (
             <></>
           )}
           {tooMuchSlippage ? (
-            <Alert variant="warning" className="mt-4">
+            <Alert appearance="warning" className="mt-4">
               {_t("market.too-much-slippage")}
             </Alert>
           ) : (

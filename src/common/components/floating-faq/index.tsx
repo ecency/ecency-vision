@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Card, Form } from "react-bootstrap";
-import Accordion from "react-bootstrap/Accordion";
 import ClickAwayListener from "../clickaway-listener";
 import { faqKeysGeneral } from "../../constants";
 import {
@@ -17,6 +16,7 @@ import Tooltip from "../tooltip";
 import "./index.scss";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
+import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
 
 export interface FaqObject {
   show: boolean;
@@ -120,7 +120,7 @@ const FloatingFAQ = () => {
   const handleRouterChange = () => {
     setShow(false);
     setDisplay(false);
-    setIsSubmitPage(routerLocation.pathname.match("submit") ? true : false);
+    setIsSubmitPage(!!routerLocation.pathname.match("submit"));
     for (const p of data.faqPaths) {
       if (routerLocation.pathname.match(p.path)) {
         setDisplay(true);
@@ -174,7 +174,7 @@ const FloatingFAQ = () => {
                 <div className="faq-content-list">
                   <div className="faq-content-list-item">
                     <Accordion defaultActiveKey="0">
-                      <Accordion.Toggle as={Card} eventKey="0">
+                      <AccordionToggle as={Card} eventKey="0">
                         <div className={helpClass} onClick={() => setExpandedHelp(!expandedHelp)}>
                           <div className="d-flex justify-content-between align-items-center section-card position-relative">
                             <div className="d-flex align-items-center">
@@ -184,7 +184,7 @@ const FloatingFAQ = () => {
                             </div>
 
                             <Tooltip content={_t("floating-faq.toggle-icon-info")}>
-                              <Accordion.Toggle
+                              <AccordionToggle
                                 as={Button}
                                 appearance="link"
                                 noPadding={true}
@@ -199,9 +199,9 @@ const FloatingFAQ = () => {
                             </Tooltip>
                           </div>
                         </div>
-                      </Accordion.Toggle>
+                      </AccordionToggle>
 
-                      <Accordion.Collapse eventKey="0">
+                      <AccordionCollapse eventKey="0">
                         <div className="help-content">
                           <div className="card-body p-3">
                             <Form.Group className="search-bar w-100">
@@ -236,7 +236,7 @@ const FloatingFAQ = () => {
                             })}
                           </div>
                         </div>
-                      </Accordion.Collapse>
+                      </AccordionCollapse>
                     </Accordion>
                   </div>
                   <div className="faq-content-list-item contact-us">

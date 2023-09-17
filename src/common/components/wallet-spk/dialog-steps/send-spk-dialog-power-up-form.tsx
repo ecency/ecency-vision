@@ -1,10 +1,10 @@
 import { WalletSpkGroup } from "../wallet-spk-group";
-import { Alert } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import React from "react";
 import { ActiveUser } from "../../../store/active-user/types";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
+import { Alert } from "@ui/alert";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -60,7 +60,7 @@ export const SendSpkDialogPowerUpForm = ({
         </>
       </WalletSpkGroup>
       {+amount > +balance ? (
-        <Alert className="mt-3" variant={"warning"}>
+        <Alert className="mt-3" appearance="warning">
           {_t("wallet.spk.send.warning")}
         </Alert>
       ) : (

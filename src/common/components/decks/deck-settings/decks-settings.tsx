@@ -1,4 +1,4 @@
-import { Alert, FormCheck } from "react-bootstrap";
+import { FormCheck } from "react-bootstrap";
 import React, { useContext, useEffect, useState } from "react";
 import "./_decks-settings.scss";
 import { DeckGrid } from "../types";
@@ -13,6 +13,7 @@ import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
+import { Alert } from "@ui/alert";
 
 interface Props {
   deck?: DeckGrid;
@@ -146,7 +147,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
               </InputGroup>
             </div>
             <label className="font-weight-bold">{_t("g.settings")}</label>
-            {isLocalStorage && <Alert variant="primary">{_t("decks.use-local-text")}</Alert>}
+            {isLocalStorage && <Alert className="my-3">{_t("decks.use-local-text")}</Alert>}
             <div className="form-section d-flex">
               <div className="mb-4">
                 <FormCheck

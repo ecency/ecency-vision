@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Alert } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { success } from "../feedback";
 import qrcode from "qrcode";
@@ -10,6 +9,7 @@ import { PurchaseQrTypes } from "./purchase-qr-types";
 import { Location } from "history";
 import { SearchByUsername } from "../search-by-username";
 import { InputGroupCopyClipboard } from "@ui/input";
+import { Alert } from "@ui/alert";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -112,9 +112,7 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId, locat
         <></>
       )}
       {type === PurchaseTypes.BOOST && isQrShow ? (
-        <Alert variant={"primary"} className="text-left mt-3 mb-0 text-small">
-          {_t("purchase-qr.boost-info")}
-        </Alert>
+        <Alert className="text-left mt-3 mb-0 text-small">{_t("purchase-qr.boost-info")}</Alert>
       ) : (
         <></>
       )}

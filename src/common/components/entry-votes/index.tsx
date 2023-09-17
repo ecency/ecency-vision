@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Alert } from "react-bootstrap";
 import { History } from "history";
 import { Global } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
@@ -24,6 +23,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
+import { Alert } from "@ui/alert";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   // const totalPayout =
@@ -158,7 +158,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
     return (
       <>
         {totalVotes !== votes.length && (
-          <Alert variant="warning">{_t("entry-votes.pending-message")}</Alert>
+          <Alert appearance="warning">{_t("entry-votes.pending-message")}</Alert>
         )}
         <div className="voters-list">
           <div className="list-body">

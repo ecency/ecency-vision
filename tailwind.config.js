@@ -246,7 +246,14 @@ module.exports = {
       indigo: {
         dark: "#081c36"
       },
-      green: "#69bb85"
+      green: "#69bb85",
+      "green-030": "#bcf3cf",
+      "green-040": "#e3fceb",
+      warning: {
+        default: "#fcc920",
+        "030": "#ffe08a",
+        "040": "#fff0c7"
+      }
     }),
     columns: {
       auto: "auto",
