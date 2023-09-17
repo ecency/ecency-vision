@@ -917,7 +917,11 @@
     "extra-details-transfer": "Siirrot",
     "extra-details-post": "Julkaisut/Kommentit",
     "extra-details-upvote": "Äänet",
-    "boost": "Tehosta"
+    "boost": "Tehosta",
+    "you-have-claimed-rc": "Already claimed account credits",
+    "claim": "Claim",
+    "you-claiming": "You are claiming {{n}}",
+    "successfully-claimed": "Successfully claimed!"
   },
   "profile-edit": {
     "title": "Profiili",
