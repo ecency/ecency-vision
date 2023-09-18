@@ -9,13 +9,14 @@ import ChatsMessagesView from "../chats-messages-view";
 
 import { Channel, ChannelUpdate } from "../../../../managers/message-manager-types";
 import LinearProgress from "../../linear-progress";
-import { formattedUserName, getProfileMetaData } from "../utils";
+import { formattedUserName, getJoinedCommunities, getProfileMetaData } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
 
 import "./index.scss";
 import { CHANNEL } from "../chat-popup/chat-constants";
 import { Button } from "react-bootstrap";
 import { ChatContext } from "../chat-context-provider";
+import { getCommunities } from "../../../api/bridge";
 
 interface MatchParams {
   filter: string;
@@ -39,14 +40,13 @@ interface Props {
 export default function ChatsMessagesBox(props: Props) {
   const { chat } = useMappedStore();
 
-  const { messageServiceInstance } = useContext(ChatContext);
+  const { messageServiceInstance, currentChannel, setCurrentChannel } = useContext(ChatContext);
 
   const { channels, updatedChannel } = chat;
   const { match } = props;
   const username = match.params.username;
 
   const [maxHeight, setMaxHeight] = useState(0);
-  const [currentChannel, setCurrentChannel] = useState<Channel>();
   const [inProgress, setInProgress] = useState(false);
   const [isCommunityChatEnabled, setIsCommunityChatEnabled] = useState(false);
   const [isCommunityJoined, setIsCommunityChatJoined] = useState(false);
@@ -58,6 +58,7 @@ export default function ChatsMessagesBox(props: Props) {
   }, [typeof window !== "undefined"]);
 
   useEffect(() => {
+    checkUserCommunityMembership();
     const handleResize = () => {
       setMaxHeight(window.innerHeight - 68);
     };
@@ -76,14 +77,7 @@ export default function ChatsMessagesBox(props: Props) {
 
   useEffect(() => {
     if (username && !username.startsWith("@")) {
-      getCommunityProfile();
-      const isCommunity = chat.channels.some((channel) => channel.communityName === username);
-      if (!isCommunity) {
-        setIsCommunityChatJoined(false);
-      } else {
-        setIsCommunityChatJoined(true);
-        setIsCommunityChatEnabled(true);
-      }
+      checkUserCommunityMembership();
     } else {
       setIsCommunityChatJoined(false);
       setIsCommunityChatEnabled(true);
@@ -91,7 +85,34 @@ export default function ChatsMessagesBox(props: Props) {
   }, [username]);
 
   useEffect(() => {
+    console.log(
+      "isCommunityChatEnabled",
+      isCommunityChatEnabled,
+      "isCommunityJoined",
+      isCommunityJoined,
+      "hasLeftCommunity",
+      hasLeftCommunity
+    );
+  }, [isCommunityChatEnabled, isCommunityJoined, hasLeftCommunity]);
+
+  const checkUserCommunityMembership = () => {
+    getCommunityProfile();
+    const communities = getJoinedCommunities(chat.channels, chat.leftChannelsList);
+    const isCommunity = chat.channels.some((channel) => channel.communityName === username);
+    if (isCommunity) {
+      setIsCommunityChatEnabled(true);
+      const isJoined = communities.some((channel) => channel.communityName === username);
+      if (isJoined) {
+        setIsCommunityChatJoined(true);
+      }
+    } else {
+      setIsCommunityChatJoined(false);
+    }
+  };
+
+  useEffect(() => {
     fetchCurrentChannel(formattedUserName(username));
+    checkUserCommunityMembership();
   }, [updatedChannel, username, channels]);
 
   const fetchCurrentChannel = (communityName: string) => {
@@ -122,7 +143,7 @@ export default function ChatsMessagesBox(props: Props) {
 
   const getCommunityProfile = async () => {
     const communityProfile = await getProfileMetaData(username);
-    setCurrentCommunity(communityProfile.channel);
+    setCurrentCommunity(communityProfile?.channel);
     const haschannelMetaData = communityProfile && communityProfile.hasOwnProperty(CHANNEL);
     setIsCommunityChatEnabled(haschannelMetaData);
   };
@@ -149,12 +170,7 @@ export default function ChatsMessagesBox(props: Props) {
         <>
           {username.startsWith("@") || (isCommunityChatEnabled && isCommunityJoined) ? (
             <>
-              <ChatsMessagesHeader
-                username={username}
-                {...props}
-                currentChannel={currentChannel!}
-                currentChannelSetter={setCurrentChannel}
-              />
+              <ChatsMessagesHeader username={username} history={props.history} />
               {inProgress && <LinearProgress />}
               <ChatsMessagesView
                 {...props}

@@ -11,6 +11,20 @@
     border-bottom: 1px solid $charcoal-grey;
   }
 
+  a {
+    @include themify(day) {
+      color: $light-black;
+    }
+
+    @include themify(night) {
+      color: $white-two;
+    }
+  }
+
+  a::after {
+    display: none;
+  }
+
   .header-content {
     .user-info {
       display: inline-flex;

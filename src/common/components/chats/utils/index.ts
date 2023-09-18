@@ -15,3 +15,4 @@ export * from "./get-chat-private-key";
 export * from "./get-joined-communities";
 export * from "./copy-to-clipboard";
 export * from "./use-fetch-direct-messages";
+export * from "./check-contiguous-message";

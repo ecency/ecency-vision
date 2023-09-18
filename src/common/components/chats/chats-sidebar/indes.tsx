@@ -22,24 +22,15 @@ import { AccountWithReputation } from "../types";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import { getUserChatPublicKey, formattedUserName } from "../../../components/chats/utils";
-
-interface MatchParams {
-  filter: string;
-  name: string;
-  path: string;
-  url: string;
-  username: string;
-}
 interface Props {
-  match: match<MatchParams>;
+  username: string;
   history: History;
-  resetChat: () => void;
 }
 export default function ChatsSideBar(props: Props) {
-  const { chat } = useMappedStore();
+  const { username } = props;
+  const { chat, resetChat } = useMappedStore();
   const chatContext = useContext(ChatContext);
   const { channels, directContacts, leftChannelsList } = chat;
-  const { match, resetChat } = props;
 
   const {
     activeUserKeys,
@@ -51,7 +42,6 @@ export default function ChatsSideBar(props: Props) {
   } = chatContext;
 
   const chatsSideBarRef = React.createRef<HTMLDivElement>();
-  const username = match.params.username;
 
   const [showDivider, setShowDivider] = useState(false);
   const [searchText, setSearchText] = useState("");

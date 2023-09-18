@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Keys } from "../../../managers/message-manager-types";
+import { Channel, Keys } from "../../../managers/message-manager-types";
 import useDebounce from "react-use/lib/useDebounce";
 import MessageService from "../../helper/message-service";
 import { useMappedStore } from "../../store/use-mapped-store";
@@ -22,6 +22,8 @@ interface Context {
   receiverPubKey: string;
   messageServiceInstance: MessageService | null;
   hasUserJoinedChat: boolean;
+  currentChannel: Channel | null;
+  setCurrentChannel: (channel: Channel) => void;
   setRevealPrivKey: (d: boolean) => void;
   setShowSpinner: (d: boolean) => void;
   setChatPrivKey: (key: string) => void;
@@ -44,6 +46,8 @@ export const ChatContext = React.createContext<Context>({
   receiverPubKey: "",
   messageServiceInstance: null,
   hasUserJoinedChat: false,
+  currentChannel: null,
+  setCurrentChannel: () => {},
   setRevealPrivKey: () => {},
   setShowSpinner: () => {},
   setChatPrivKey: () => {},
@@ -65,6 +69,11 @@ export const ChatContextProvider = (props: Props) => {
   const [messageServiceInstance, setMessageServiceInstance] = useState<MessageService | null>(null);
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
+  const [currentChannel, setCurrentChannel] = useState<Channel | null>(null);
+
+  useEffect(() => {
+    console.log("currentChannel", currentChannel);
+  }, [currentChannel]);
 
   useMount(() => {
     getActiveUserKeys();
@@ -87,13 +96,13 @@ export const ChatContextProvider = (props: Props) => {
     }
   }, [shouldUpdateProfile, messageServiceInstance]);
 
-  // useEffect(() => {
-  //   if (showSpinner) {
-  //     setTimeout(() => {
-  //       setShowSpinner(false);
-  //     }, 3000);
-  //   }
-  // }, [showSpinner]);
+  useEffect(() => {
+    if (showSpinner) {
+      setTimeout(() => {
+        setShowSpinner(false);
+      }, 3000);
+    }
+  }, [showSpinner]);
 
   useDebounce(() => setShowSpinner(false), 3000, [showSpinner]);
 
@@ -142,6 +151,8 @@ export const ChatContextProvider = (props: Props) => {
         chatPrivKey,
         messageServiceInstance,
         hasUserJoinedChat,
+        currentChannel,
+        setCurrentChannel,
         setRevealPrivKey,
         setShowSpinner,
         setChatPrivKey,

@@ -31,15 +31,14 @@ interface Props {
   history: History;
   from?: string;
   username: string;
-  currentChannel: Channel;
-  currentChannelSetter: (channe: Channel) => void;
 }
 
 const roles = [ROLES.ADMIN, ROLES.MOD, ROLES.GUEST];
 
 const ChatsCommunityDropdownMenu = (props: Props) => {
   const { activeUser, chat } = useMappedStore();
-  const { history, currentChannelSetter, from, currentChannel } = props;
+  const { currentChannel, setCurrentChannel } = useContext(ChatContext);
+  const { history, from } = props;
   const [step, setStep] = useState(0);
   const [keyDialog, setKeyDialog] = useState(false);
   const [inProgress, setInProgress] = useState(false);
@@ -115,7 +114,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
       const newUpdatedModerator = { ...newUpdatedChannel?.communityModerators![moderatorIndex!] };
       newUpdatedModerator.role = selectedRole;
       newUpdatedChannel!.communityModerators![moderatorIndex!] = newUpdatedModerator;
-      currentChannelSetter(newUpdatedChannel);
+      setCurrentChannel(newUpdatedChannel);
       messageServiceInstance?.updateChannel(currentChannel, newUpdatedChannel);
       success("Roles updated succesfully");
     }
@@ -485,7 +484,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
     }
     try {
       messageServiceInstance?.updateChannel(currentChannel!, updatedMetaData);
-      currentChannelSetter({ ...currentChannel!, ...updatedMetaData });
+      setCurrentChannel({ ...currentChannel!, ...updatedMetaData });
 
       if (operationType === UNBLOCKUSER) {
         setStep(5);

@@ -3,7 +3,13 @@ import usePrevious from "react-use/lib/usePrevious";
 import mediumZoom, { Zoom } from "medium-zoom";
 import { Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { formatMessageTime, formatMessageDate, isMessageGif, isMessageImage } from "../utils";
+import {
+  formatMessageTime,
+  formatMessageDate,
+  isMessageGif,
+  isMessageImage,
+  checkContiguousMessage
+} from "../utils";
 
 import { Theme } from "../../../store/global/types";
 import { DirectMessage } from "../../../../managers/message-manager-types";
@@ -97,6 +103,16 @@ export default function ChatsDirectMessages(props: Props) {
     return <></>;
   };
 
+  // const getFormattedDate = (msg: DirectMessage, i: number) => {
+  //   const prevMsg = directMessages[i - 1];
+  //   const msgDate = formatMessageDate(msg.created);
+  //   const prevMsgDate = prevMsg ? formatMessageDate(prevMsg.created) : null;
+  //   if (msgDate !== prevMsgDate) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
+
   const handleConfirm = () => {
     switch (step) {
       case 1:
@@ -128,34 +144,51 @@ export default function ChatsDirectMessages(props: Props) {
 
                 const isImage = isMessageImage(msg.content);
 
+                const isSameUser = checkContiguousMessage(msg, i, directMessages);
+
+                // const date = getFormattedDate(msg, i);
+
+                // console.log('date', date, msg)
+
                 return (
                   <React.Fragment key={msg.id}>
                     {dayAndMonth}
                     {msg.creator !== activeUserKeys?.pub ? (
                       <div key={msg.id} className="receiver">
-                        <div className="user-img">
-                          <Link to={`/@${currentUser}`}>
-                            <span>
-                              <UserAvatar username={currentUser} size="medium" />
-                            </span>
-                          </Link>
-                        </div>
-                        <div className="user-info">
-                          <p className="user-msg-time">{formatMessageTime(msg.created)}</p>
+                        {!isSameUser && (
+                          <div className="user-img">
+                            <Link to={`/@${currentUser}`}>
+                              <span>
+                                <UserAvatar username={currentUser} size="medium" />
+                              </span>
+                            </Link>
+                          </div>
+                        )}
+
+                        <div className={`user-info ${isSameUser ? "same-user" : ""}`}>
+                          {/* <p className="user-msg-time">{formatMessageTime(msg.created)}</p> */}
 
                           <div className="receiver-messag">
-                            <div
-                              className={`receiver-message-content ${isGif ? "gif" : ""} ${
-                                isImage ? "chat-image" : ""
-                              }`}
-                              dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                            />
+                            <Tooltip
+                              content={
+                                formatMessageDate(msg.created).split(",")[1] +
+                                " " +
+                                formatMessageTime(msg.created)
+                              }
+                            >
+                              <div
+                                className={`receiver-message-content ${isGif ? "gif" : ""} ${
+                                  isImage ? "chat-image" : ""
+                                }`}
+                                dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                              />
+                            </Tooltip>
                           </div>
                         </div>
                       </div>
                     ) : (
                       <div key={msg.id} className="sender">
-                        <p className="sender-message-time">{formatMessageTime(msg.created)}</p>
+                        {/* <p className="sender-message-time">{formatMessageTime(msg.created)}</p> */}
                         <div
                           className={`sender-message ${
                             msg.sent === 2 ? "failed" : msg.sent === 0 ? "sending" : ""
@@ -174,12 +207,20 @@ export default function ChatsDirectMessages(props: Props) {
                               </span>
                             </Tooltip>
                           )}
-                          <div
-                            className={`sender-message-content ${isGif ? "gif" : ""} ${
-                              isImage ? "chat-image" : ""
-                            }`}
-                            dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                          />
+                          <Tooltip
+                            content={
+                              formatMessageDate(msg.created).split(",")[1] +
+                              " " +
+                              formatMessageTime(msg.created)
+                            }
+                          >
+                            <div
+                              className={`sender-message-content ${isGif ? "gif" : ""} ${
+                                isImage ? "chat-image" : ""
+                              }`}
+                              dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                            />
+                          </Tooltip>
                           {msg.sent === 0 && (
                             <span style={{ margin: "10px 0 0 5px" }}>
                               <Spinner animation="border" variant="primary" size="sm" />

@@ -14,6 +14,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { ChatContext } from "../../components/chats/chat-context-provider";
 import ImportChats from "../../components/chats/import-chats";
 import JoinChat from "../../components/chats/join-chat";
+import { ChatsSideProfile } from "../../components/chats/chats-side-profile";
 
 import "./index.scss";
 
@@ -31,10 +32,12 @@ interface Props extends PageProps {
 
 export const Chats = (props: Props) => {
   const { activeUser, global } = useMappedStore();
+  const { match, history } = props;
   const [marginTop, setMarginTop] = useState(0);
 
-  const chatContext = useContext(ChatContext);
-  const { showSpinner, activeUserKeys, revealPrivKey, chatPrivKey } = chatContext;
+  const username = match.params.username;
+
+  const { showSpinner, activeUserKeys, revealPrivKey, chatPrivKey } = useContext(ChatContext);
 
   console.log("inProgress in chats page", showSpinner);
 
@@ -81,14 +84,20 @@ export const Chats = (props: Props) => {
             {activeUserKeys?.pub ? (
               chatPrivKey ? (
                 <>
-                  <ChatsSideBar {...props} />
+                  <ChatsSideBar history={history} username={username} />
                   {revealPrivKey ? (
                     <div className="chats-messages-box">
                       <ManageChatKey />
                     </div>
                   ) : (
-                    // Handle the case when the user hasn't joined any community here
-                    <ChatsMessagesBox {...props} />
+                    <>
+                      <ChatsMessagesBox {...props} />
+                      {match.url !== "/chats" && (
+                        <div className="d-none d-lg-block">
+                          <ChatsSideProfile username={username} />
+                        </div>
+                      )}
+                    </>
                   )}
                 </>
               ) : (

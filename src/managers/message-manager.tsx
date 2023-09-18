@@ -199,18 +199,18 @@ const MessageManager = () => {
       const { peer, id } = m;
       setReplacedDirectMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
       addDirectMessages(peer, m);
-      const startTimeout = () => {
-        console.log("Start time out called");
-        useTimeoutFn(() => {
-          console.log("Inner called");
-          checkDirectMessageSending(peer, m);
-        }, 2000);
-      };
+      // const startTimeout = () => {
+      //   console.log("Start time out called");
+      //   useTimeoutFn(() => {
+      //     console.log("Inner called");
+      //     checkDirectMessageSending(peer, m);
+      //   }, 2000);
+      // };
 
       // Start the timeout
-      startTimeout();
+      // startTimeout();
       // const [startTimeout] = useTimeoutFn(checkDirectMessageSending(peer, m), 20000);
-      // checkDirectMessageSending(peer, m);
+      checkDirectMessageSending(peer, m);
     });
   };
 
@@ -233,10 +233,10 @@ const MessageManager = () => {
   }, [messageService, chat.directMessages]);
 
   const checkDirectMessageSending = (peer: string, data: DirectMessage) => {
-    // setTimeout(() => {
-    console.log("checkDirectMessageSending called");
-    verifyDirectMessageSending(peer, data);
-    // }, 20000);
+    setTimeout(() => {
+      console.log("checkDirectMessageSending called");
+      verifyDirectMessageSending(peer, data);
+    }, 20000);
   };
 
   // // Direct message handler after sent

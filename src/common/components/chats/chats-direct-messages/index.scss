@@ -11,16 +11,16 @@
   .receiver {
     display: flex;
     .user-img {
-      padding: 18px 8px 8px 16px;
+      padding: 8px 8px 8px 16px;
     }
     .community-user-img {
-      padding: 8px 8px 8px 16px;
+      padding: 8px 8px 0px 16px;
       .user-avatar.medium {
         cursor: pointer;
       }
     }
     .user-info {
-      padding-top: 8px;
+      padding-top: 20px;
       width: 100%;
       .user-msg-time {
         margin: 0;
@@ -65,11 +65,18 @@
           border-radius: 0px 10px 10px;
         }
       }
+      &.same-user {
+        padding-top: 1.5px;
+        margin-left: 4rem;
+        .receiver-message-content {
+          border-radius: 0px 10px 10px 10px;
+        }
+      }
     }
   }
 
   .sender {
-    margin-bottom: 0.17rem;
+    margin-bottom: 1.5px;
     .sender-message-time {
       color: rgb(138, 141, 145);
       display: flex;

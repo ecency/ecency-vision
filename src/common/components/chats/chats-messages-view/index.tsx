@@ -69,8 +69,6 @@ export default function ChatsMessagesView(props: Props) {
   const [removedUsers, setRemovedUsers] = useState<string[]>([]);
   const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
 
-  console.log("Current channel in messages view", props.currentChannel);
-
   useEffect(() => {
     getActiveUserKeys();
     isDirectUserOrCommunity();
@@ -94,6 +92,7 @@ export default function ChatsMessagesView(props: Props) {
   }, [directUser, communityName, currentChannel, chat.directMessages]);
 
   useEffect(() => {
+    setIsScrollToBottom(false);
     setDirectUser("");
     setCommunityName("");
     isDirectUserOrCommunity();
@@ -166,7 +165,8 @@ export default function ChatsMessagesView(props: Props) {
     const user = chat.directContacts.find((item) => item.name === directUser);
     console.log("user", user?.pubkey);
     const messages = user && fetchDirectMessages(user?.pubkey, chat.directMessages);
-    setDirectMessages(messages!);
+    const directMessages = messages?.sort((a, b) => a.created - b.created);
+    setDirectMessages(directMessages!);
     console.log("Messages", messages);
   };
 

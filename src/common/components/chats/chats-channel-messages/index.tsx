@@ -37,7 +37,13 @@ import { error } from "../../feedback";
 import { CHATPAGE } from "../chat-popup/chat-constants";
 import { Theme } from "../../../store/global/types";
 import { NostrKeysType } from "../types";
-import { formatMessageTime, isMessageGif, isMessageImage, formatMessageDate } from "../utils";
+import {
+  formatMessageTime,
+  isMessageGif,
+  isMessageImage,
+  formatMessageDate,
+  checkContiguousMessage
+} from "../utils";
 import { ChatContext } from "../chat-context-provider";
 
 interface Props {
@@ -284,16 +290,6 @@ export default function ChatsChannelMessages(props: Props) {
     return <></>;
   };
 
-  const checkContiguousMessage = (msg: PublicMessage, i: number) => {
-    const prevMsg = publicMessages[i - 1];
-    const msgAuthor = msg.creator;
-    const prevMsgAuthor = prevMsg ? prevMsg.creator : null;
-    if (msgAuthor === prevMsgAuthor) {
-      return true;
-    }
-    return false;
-  };
-
   return (
     <>
       <div className="channel-messages" ref={channelMessagesRef}>
@@ -302,7 +298,7 @@ export default function ChatsChannelMessages(props: Props) {
           publicMessages.map((pMsg, i) => {
             const dayAndMonth = getFormattedDateAndDay(pMsg, i);
 
-            const isSameUserMessage = checkContiguousMessage(pMsg, i);
+            const isSameUserMessage = checkContiguousMessage(pMsg, i, publicMessages);
 
             let renderedPreview = renderPostBody(pMsg.content, false, global.canUseWebp);
 
@@ -435,18 +431,27 @@ export default function ChatsChannelMessages(props: Props) {
                       )}
 
                       <div className="receiver-messag">
-                        <div
-                          className={`receiver-message-wrapper  ${isGif ? "gif" : ""} ${
-                            isImage ? "chat-image" : ""
-                          }`}
+                        <Tooltip
+                          content={
+                            formatMessageDate(pMsg.created).split(",")[1] +
+                            " " +
+                            formatMessageTime(pMsg.created)
+                          }
                         >
                           <div
-                            className="receiver-message-content"
-                            dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                          />
-                          <p className="receiver-msg-time">{formatMessageTime(pMsg.created)}</p>
-                        </div>
-
+                            className={`receiver-message-wrapper  ${isGif ? "gif" : ""} ${
+                              isImage ? "chat-image" : ""
+                            }`}
+                          >
+                            <div
+                              className={`receiver-message-content  ${isGif ? "gif" : ""} ${
+                                isImage ? "chat-image" : ""
+                              }`}
+                              dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                            />
+                            {/* <p className="receiver-msg-time">{formatMessageTime(pMsg.created)}</p> */}
+                          </div>
+                        </Tooltip>
                         {hoveredMessageId === pMsg.id &&
                           privilegedUsers.includes(activeUser?.username!) && (
                             <Tooltip content={"Hide Message"}>
@@ -509,17 +514,25 @@ export default function ChatsChannelMessages(props: Props) {
                         </Tooltip>
                       )}
 
-                      <div
-                        className={`sender-message-wrapper ${isGif ? "gif" : ""} ${
-                          isImage ? "chat-image" : ""
-                        }`}
+                      <Tooltip
+                        content={
+                          formatMessageDate(pMsg.created).split(",")[1] +
+                          " " +
+                          formatMessageTime(pMsg.created)
+                        }
                       >
                         <div
-                          className="sender-message-content"
-                          dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                        />
-                        <p className="sender-message-time">{formatMessageTime(pMsg.created)}</p>
-                      </div>
+                          className={`sender-message-wrapper ${isGif ? "gif" : ""} ${
+                            isImage ? "chat-image" : ""
+                          }`}
+                        >
+                          <div
+                            className="sender-message-content"
+                            dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                          />
+                          {/* <p className="sender-message-time">{formatMessageTime(pMsg.created)}</p> */}
+                        </div>
+                      </Tooltip>
 
                       {pMsg.sent === 0 && (
                         <span style={{ margin: "10px 0 0 5px" }}>

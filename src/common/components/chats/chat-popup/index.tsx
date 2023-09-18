@@ -91,6 +91,8 @@ export const ChatPopUp = (props: Props) => {
     activeUserKeys,
     showSpinner,
     hasUserJoinedChat,
+    currentChannel,
+    setCurrentChannel,
     setRevealPrivKey,
     setShowSpinner,
     joinChat
@@ -115,7 +117,6 @@ export const ChatPopUp = (props: Props) => {
   const [isCommunity, setIsCommunity] = useState(false);
   const [communityName, setCommunityName] = useState("");
   const [currentCommunity, setCurrentCommunity] = useState<Community>();
-  const [currentChannel, setCurrentChannel] = useState<Channel>();
   const [publicMessages, setPublicMessages] = useState<PublicMessage[]>([]);
   const [clickedMessage, setClickedMessage] = useState("");
   const [keyDialog, setKeyDialog] = useState(false);
@@ -652,12 +653,7 @@ export const ChatPopUp = (props: Props) => {
               )}
               {isCommunity && (
                 <div className="community-menu">
-                  <ChatsCommunityDropdownMenu
-                    history={props.history}
-                    username={communityName}
-                    currentChannel={currentChannel!}
-                    currentChannelSetter={setCurrentChannel}
-                  />
+                  <ChatsCommunityDropdownMenu history={props.history} username={communityName} />
                 </div>
               )}{" "}
               {!isCommunity && !isCurrentUser && noStrPrivKey && (
