@@ -1,22 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { QueryIdentifiers } from "../../core";
-import { Picker } from "emoji-mart";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import useClickAway from "react-use/lib/useClickAway";
 import useMountedState from "react-use/lib/useMountedState";
 import "./_index.scss";
+import { v4 } from "uuid";
+import Picker from "@emoji-mart/react";
 import { useMappedStore } from "../../store/use-mapped-store";
-
-export const DEFAULT_EMOJI_DATA = {
-  categories: [],
-  emojis: {},
-  aliases: {},
-  sheet: {
-    cols: 0,
-    rows: 0
-  }
-};
+import useClickAway from "react-use/lib/useClickAway";
 
 interface Props {
   anchor: Element | null;
@@ -37,45 +26,14 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
 
   const [show, setShow] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [pickerInstance, setPickerInstance] = useState<Picker>();
+  // Due to ability to hold multiple dialogs we have to identify them
+  const dialogId = useMemo(() => v4(), []);
 
   useClickAway(ref, () => {
     setShow(false);
   });
 
-  const { data } = useQuery(
-    [QueryIdentifiers.EMOJI_PICKER],
-    async () => {
-      try {
-        const data = await import(/* webpackChunkName: "emojis" */ "@emoji-mart/data");
-        return data.default as typeof DEFAULT_EMOJI_DATA;
-      } catch (e) {
-        console.error("Failed to load emoji data");
-      }
-
-      return DEFAULT_EMOJI_DATA;
-    },
-    {
-      initialData: DEFAULT_EMOJI_DATA
-    }
-  );
-
   const isMounted = useMountedState();
-
-  useEffect(() => {
-    if (data.categories.length > 0) {
-      setPickerInstance(
-        new Picker({
-          dynamicWidth: true,
-          onEmojiSelect: (e: { native: string }) => onSelect(e.native),
-          previewPosition: "none",
-          ref,
-          set: "apple",
-          theme: global.theme === "day" ? "light" : "dark"
-        })
-      );
-    }
-  }, [data, global.theme]);
 
   useEffect(() => {
     if (anchor) {
@@ -90,14 +48,24 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
   return isMounted() ? (
     createPortal(
       <div
-        className="emoji-picker-dialog"
         ref={ref}
+        id={dialogId}
+        key={dialogId}
+        className="emoji-picker-dialog"
         style={{
           top: position.y + 40,
           left: position.x,
           display: show ? "flex" : "none"
         }}
-      />,
+      >
+        <Picker
+          dynamicWidth={true}
+          onEmojiSelect={(e: { native: string }) => onSelect(e.native)}
+          previewPosition="none"
+          set="apple"
+          theme={global.theme === "day" ? "light" : "dark"}
+        />
+      </div>,
       document.querySelector("#root")!!
     )
   ) : (
