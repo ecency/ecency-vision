@@ -73,7 +73,8 @@
     "confirm": "Confirm",
     "username": "Username",
     "past-few-days": "the past few days",
-    "you": "You"
+    "you": "You",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "Are you sure?",

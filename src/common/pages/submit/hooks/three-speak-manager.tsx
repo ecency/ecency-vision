@@ -128,7 +128,7 @@ export function ThreeSpeakManager(props: { children: ReactNode }) {
     for (const group of groups) {
       const match = group[1];
 
-      /// <center>[![](https://ipfs-3speak.b-cdn.net/ipfs/bafkreic3bnsxobtm2va6j3i6v44gc2p2wazi4iuiqqci23tdt7eba5ad5e)](https://3speak.tv/watch?v=demo.com/meohyozpiu)[Source](https://ipfs-3speak.b-cdn.net/ipfs/QmUu28DUQ6wQpH8sFt5pVb3ZDfnvib67BUdtyE8uD4p64j)</center>
+      /// <center>[![](https://ipfs-3speak.b-cdn.net/ipfs/bafkreic3bnsxobtm2va6j3i6v44gc2p2wazi4iuiqqci23tdt7eba5ad5e)](https://3speak.tv/watch?v=demo.com/meohyozpiu)</center>
       // Has unpublished video
       if (`ipfs://${match}` === videoMetadata?.filename && videoMetadata?.status !== "published") {
         body.replace(
@@ -136,7 +136,7 @@ export function ThreeSpeakManager(props: { children: ReactNode }) {
             `\[!\[\]\(https:\/\/ipfs-3speak\.b-cdn\.net\/ipfs\/${videoMetadata?.thumbnail.replace(
               "ipfs://",
               ""
-            )}\)\]\(https:\/\/3speak\.tv\/watch\?.*\)\[Source\]\(https:\/\/ipfs-3speak\.b-cdn\.net\/ipfs\/${match}\)`
+            )}\)\]\(https:\/\/3speak\.tv\/watch\?.*\)`
           ),
           ""
         );
