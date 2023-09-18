@@ -54,29 +54,10 @@ export function VideoGalleryItem({
     setHoveredItem(item);
   };
 
-  const embeddVideo = (video: videoProps) => {
-    const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`;
-
-    const element = `<center>${speakFile}</center>`;
-    const body = insertText("").innerHTML;
-    const hup = manualPublishSpeakVideos
-      .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
-      .some((i) => body.includes(i));
-
-    if (!hup || video.status == "published") {
-      setVideoMetadata?.(
-        manualPublishSpeakVideos.find(
-          (v) => v.permlink === video.permlink && v.owner === video.owner
-        )!!
-      );
-      insertText(element);
-    }
-  };
-
   const insert = async (isNsfw = false) => {
     let nextItem = item;
 
-    embeddVideo(nextItem);
+    setVideoMetadata?.(nextItem);
     const body = insertText("").innerHTML;
     const hup = manualPublishSpeakVideos
       .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
