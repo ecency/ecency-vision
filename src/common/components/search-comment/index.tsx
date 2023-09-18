@@ -70,7 +70,7 @@ const pureState = (props: Props): State => {
   const qs = queryString.parse(location.search);
 
   const q = qs.q as string;
-  const sort = (qs.sort as SearchSort) || SearchSort.POPULARITY;
+  const sort = (qs.sort as SearchSort) || SearchSort.NEWEST;
   const date = (qs.date as DateOpt) || ls.get("recent_date", "month");
   const hideLow = !(qs.hd && qs.hd === "0");
   const advanced = !!(qs.adv && qs.adv === "1");
