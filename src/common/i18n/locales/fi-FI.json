@@ -919,9 +919,9 @@
     "extra-details-upvote": "Äänet",
     "boost": "Tehosta",
     "you-have-claimed-rc": "Already claimed account credits",
-    "claim": "Claim",
-    "you-claiming": "You are claiming {{n}}",
-    "successfully-claimed": "Successfully claimed!"
+    "claim": "Lunasta",
+    "you-claiming": "Olet lunastamassa {{n}}",
+    "successfully-claimed": "Onnistui!"
   },
   "profile-edit": {
     "title": "Profiili",
@@ -1443,7 +1443,7 @@
   },
   "video-upload": {
     "choose-video": "Valitse video",
-    "record-video": "Record a video",
+    "record-video": "Tallenna video",
     "choose-thumbnail": "Aseta pikkukuva(valinnainen)",
     "continue": "Jatka",
     "encode": "Send for encoding",
@@ -1457,9 +1457,9 @@
     "publishing": "Älä päivitä tätä sivua, odota muutama sekunti videon käsittelemiseksi",
     "no-record-permission": "You don't have permission to record video",
     "confirm-and-upload": "Confirm and upload to 3Speak",
-    "uploading": "Uploading..{{n}}/{{total}}",
-    "uploaded": "Uploaded!",
-    "reset": "Reset"
+    "uploading": "Lähetetään..{{n}}/{{total}}",
+    "uploaded": "Lähetetty!",
+    "reset": "Tyhjennä"
   },
   "video-gallery": {
     "all": "Kaikki",
