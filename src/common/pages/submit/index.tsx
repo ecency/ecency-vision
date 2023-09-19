@@ -137,6 +137,9 @@ export function Submit(props: PageProps & MatchProps) {
       threeSpeakManager.setIsEditing(true);
     } else if (editingEntry) {
       setEditingEntry(null);
+      threeSpeakManager.setIsEditing(false);
+    } else {
+      threeSpeakManager.setIsEditing(false);
     }
   });
 
