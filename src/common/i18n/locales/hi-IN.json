@@ -73,7 +73,8 @@
     "confirm": "Confirm",
     "username": "Username",
     "past-few-days": "the past few days",
-    "you": "You"
+    "you": "You",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "क्या आपको यकीन है?",
@@ -1439,7 +1440,8 @@
     "empty-title-alert": "पोस्ट का शीर्षक दर्ज करें",
     "empty-tags-alert": "पोस्ट टैग दर्ज करें",
     "empty-body-alert": "पोस्ट बॉडी दर्ज करें",
-    "description": "संक्षिप्त वर्णन"
+    "description": "संक्षिप्त वर्णन",
+    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
   },
   "video-upload": {
     "choose-video": "Select a video",
