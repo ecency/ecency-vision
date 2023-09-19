@@ -74,7 +74,7 @@
     "username": "Nombre de Usuario",
     "past-few-days": "los últimos días",
     "you": "Tú",
-    "copy-clipboard": "Copy to clipboard"
+    "copy-clipboard": "Copiar al portapapeles"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -1441,7 +1441,7 @@
     "empty-tags-alert": "Introducir etiquetas de la publicación",
     "empty-body-alert": "Introducir cuerpo de la publicación",
     "description": "Descripción breve",
-    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
+    "should-be-only-one-unpublished": "El post debe contener solamente un vídeo sin publicar. Por favor, elimine cualquier otro contenido."
   },
   "video-upload": {
     "choose-video": "Selecciona un vídeo",
