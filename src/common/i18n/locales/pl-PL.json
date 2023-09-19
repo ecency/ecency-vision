@@ -73,7 +73,8 @@
     "confirm": "Confirm",
     "username": "Username",
     "past-few-days": "the past few days",
-    "you": "You"
+    "you": "You",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "Jesteś pewien?",
@@ -1439,7 +1440,8 @@
     "empty-title-alert": "Dodaj tytuł swojego wpisu",
     "empty-tags-alert": "Dodaj tagi do wpisu",
     "empty-body-alert": "Wprowadź treść wpisu",
-    "description": "Short description"
+    "description": "Short description",
+    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
   },
   "video-upload": {
     "choose-video": "Select a video",
