@@ -73,7 +73,8 @@
     "confirm": "Confirm",
     "username": "Username",
     "past-few-days": "the past few days",
-    "you": "You"
+    "you": "You",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "Aminmisiz?",
@@ -1439,7 +1440,8 @@
     "empty-title-alert": "Post sarlavhasini kiriting",
     "empty-tags-alert": "Post teglarini kiriting",
     "empty-body-alert": "Post matnini kiriting",
-    "description": "Qisqa Tasvir"
+    "description": "Qisqa Tasvir",
+    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
   },
   "video-upload": {
     "choose-video": "Select a video",
