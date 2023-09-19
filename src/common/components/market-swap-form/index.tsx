@@ -205,7 +205,7 @@ export const MarketSwapForm = ({
           showBalance={[MarketSwapFormStep.FORM, MarketSwapFormStep.SIGN].includes(step)}
           elementAfterBalance={
             isAmountMoreThanBalance && step === MarketSwapFormStep.FORM ? (
-              <small className="usd-balance bold text-secondary d-block text-danger mt-3">
+              <small className="usd-balance bold text-secondary block text-red mt-3">
                 {_t("market.more-than-balance")}
               </small>
             ) : (
@@ -228,7 +228,7 @@ export const MarketSwapForm = ({
                 <></>
               )}
               {step === MarketSwapFormStep.SUCCESS ? (
-                <Button className="swap-button --border-color text-success" icon={checkSvg} />
+                <Button className="swap-button border[--border-color] text-green" icon={checkSvg} />
               ) : (
                 <></>
               )}

@@ -303,7 +303,7 @@ export const SignUp = (props: PageProps) => {
                       onInput={handleOnInput}
                       onBlur={() => setUsernameTouched(true)}
                     />
-                    <small className="text-danger pl-3">{usernameError}</small>
+                    <small className="text-red pl-3">{usernameError}</small>
                   </div>
                   <div className="mb-4">
                     <FormControl
@@ -316,7 +316,7 @@ export const SignUp = (props: PageProps) => {
                       aria-invalid={emailError !== ""}
                       onInput={handleOnInput}
                     />
-                    <small className="text-danger pl-3">{emailError}</small>
+                    <small className="text-red pl-3">{emailError}</small>
                   </div>
                   <div className="mb-4">
                     <FormControl
@@ -328,7 +328,7 @@ export const SignUp = (props: PageProps) => {
                       aria-invalid={referralError !== ""}
                       onBlur={() => setReferralTouched(true)}
                     />
-                    <small className="text-danger pl-3">{referralError}</small>
+                    <small className="text-red pl-3">{referralError}</small>
                   </div>
                   {!props.global.isElectron && (
                     <div style={{ marginTop: "16px", marginBottom: "16px" }}>
@@ -341,9 +341,9 @@ export const SignUp = (props: PageProps) => {
                   )}
                   {stage === Stage.FORM ? (
                     <>
-                      <div className="d-flex justify-content-center">
+                      <div className="flex justify-center">
                         <Button
-                          className="d-block"
+                          className="block"
                           type="submit"
                           disabled={inProgress || !isVerified || isDisabled}
                           icon={inProgress && <Spinner className="w-3.5 h-3.5" />}
@@ -444,15 +444,15 @@ export const SignUp = (props: PageProps) => {
             )}
 
             {stage === Stage.BUY_ACCOUNT ? (
-              <div className="d-flex align-items-center flex-column justify-content-center">
+              <div className="flex items-center flex-col justify-center">
                 <div className="my-3">{_t("sign-up.qr-desc")}</div>
                 <a href={url}>
                   <img ref={qrCodeRef} />
                 </a>
-                <div className="d-flex flex-column flex-sm-row">
+                <div className="flex flex-col flex-sm-row">
                   <a
                     href="https://ios.ecency.com"
-                    className="btn app-btn mb-2 mb-sm-0 mr-sm-2"
+                    className="btn app-btn mb-2 sm:mb-0 mr-sm-2"
                     target="_blank"
                   >
                     <i className="icon">{appleSvg}</i>

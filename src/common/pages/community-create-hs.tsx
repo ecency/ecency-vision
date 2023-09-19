@@ -152,7 +152,7 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
 
               return (
                 <div>
-                  <p className="text-danger">{_t("g.server-error")}</p>
+                  <p className="text-red">{_t("g.server-error")}</p>
                   <p>
                     <Button onClick={() => this.handle().then()}>{_t("g.try-again")}</Button>
                   </p>

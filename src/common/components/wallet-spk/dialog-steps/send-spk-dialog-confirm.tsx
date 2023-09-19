@@ -36,7 +36,7 @@ export const SendSpkDialogConfirm = ({
       <div className="confirmation">
         <div className="confirm-title">{_t(`transfer.${title}`)}</div>
         <div className="users">
-          <div className="from-user d-flex justify-content-center align-items-center">
+          <div className="from-user flex justify-center items-center">
             <UserAvatar username={activeUser!!.username} size="large" />
           </div>
           {showTo && (
@@ -53,7 +53,7 @@ export const SendSpkDialogConfirm = ({
         </div>
         {memo && <div className="memo">{memo}</div>}
       </div>
-      <div className="d-flex justify-content-center">
+      <div className="flex justify-center">
         <Button appearance="secondary" outline={true} onClick={() => back()}>
           {_t("g.back")}
         </Button>

@@ -154,7 +154,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
           <source src={selectedFile} type="video/mp4" />
         </video>
       </div>
-      <div className="d-flex justify-content-end mt-3">
+      <div className="flex justify-content-end mt-3">
         <Button
           className="bg-dark"
           onClick={() => {
@@ -191,7 +191,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
       className={"cursor-pointer " + props.className}
       onClick={() => (activeUser ? null : toggleUIProp("login"))}
     >
-      <div className="d-flex justify-content-center bg-red">{props.children}</div>
+      <div className="flex justify-center bg-red">{props.children}</div>
       <div>
         <Modal
           animation={false}

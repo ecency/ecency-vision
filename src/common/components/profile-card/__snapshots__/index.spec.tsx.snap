@@ -73,7 +73,7 @@ exports[`(2) Render with loaded data 1`] = `
   <div>
     <div>
       <div
-        className="cursor-pointer d-flex flex-column mb-1"
+        className="cursor-pointer flex flex-col mb-1"
         onClick={[Function]}
       >
         <div
@@ -264,7 +264,7 @@ exports[`(3) Should show profile edits 1`] = `
   <div>
     <div>
       <div
-        className="cursor-pointer d-flex flex-column mb-1"
+        className="cursor-pointer flex flex-col mb-1"
         onClick={[Function]}
       >
         <div

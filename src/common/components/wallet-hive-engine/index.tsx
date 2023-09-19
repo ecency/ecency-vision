@@ -319,7 +319,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                             <div className="tooltip-inner rewards-container">
                               {rewardsToShowInTooltip.map((reward, ind) => (
                                 <div
-                                  className="d-flex py-1 border-b border-[--border-color]"
+                                  className="flex py-1 border-b border-[--border-color]"
                                   key={reward.pending_token + ind}
                                 >
                                   <div className="mr-1 text-lowercase">{reward.symbol}: </div>
@@ -330,9 +330,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                           </Tooltip>
                         }
                       >
-                        <div className="d-flex align-items-center">
-                          {`${rewards.length} tokens`}
-                        </div>
+                        <div className="flex items-center">{`${rewards.length} tokens`}</div>
                       </OverlayTrigger>
                     </span>
                     {isMyPage && (
@@ -430,13 +428,13 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                         </div>
 
                         {!global?.isMobile && (
-                          <div className="d-flex">
+                          <div className="flex">
                             <HiveEngineChart items={b} />
                           </div>
                         )}
 
-                        <div className="ml-auto d-flex flex-column justify-between">
-                          <div className="d-flex mb-1 align-self-end">
+                        <div className="ml-auto flex flex-col justify-between">
+                          <div className="flex mb-1 align-self-end">
                             <div className="entry-body mr-md-2">
                               <span className="item-balance">{b.balanced()}</span>
                             </div>
@@ -470,7 +468,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                   </Tooltip>
                                 }
                               >
-                                <div className="d-flex align-items-center">
+                                <div className="flex items-center">
                                   <span className="info-icon mr-0 mr-md-2">
                                     {informationVariantSvg}
                                   </span>
@@ -485,8 +483,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                               return (
                                 <span
                                   key={i}
-                                  className={`d-flex justify-content-end ${
-                                    changeValue < 0 ? "text-danger" : "text-success"
+                                  className={`flex justify-content-end ${
+                                    changeValue < 0 ? "text-red" : "text-green"
                                   }`}
                                 >
                                   {x?.symbol === b.symbol && (
@@ -501,7 +499,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                           </div>
 
                           {isMyPage && (
-                            <div className="d-flex justify-between ml-auto">
+                            <div className="flex justify-between ml-auto">
                               <div className="mr-1">
                                 <OverlayTrigger
                                   delay={{ show: 0, hide: 500 }}
@@ -517,7 +515,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                     </Tooltip>
                                   }
                                 >
-                                  <div className="d-flex align-items-center flex-justify-center">
+                                  <div className="flex items-center flex-justify-center">
                                     <span
                                       onClick={() =>
                                         this.openTransferDialog("transfer", b.symbol, b.balance)
@@ -546,7 +544,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                       </Tooltip>
                                     }
                                   >
-                                    <div className="d-flex align-items-center flex-justify-center">
+                                    <div className="flex items-center flex-justify-center">
                                       <span
                                         onClick={() =>
                                           this.openTransferDialog(
@@ -579,7 +577,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                       </Tooltip>
                                     }
                                   >
-                                    <div className="d-flex align-items-center flex-justify-center">
+                                    <div className="flex items-center flex-justify-center">
                                       <span
                                         onClick={() =>
                                           this.openTransferDialog(
@@ -613,7 +611,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                       </Tooltip>
                                     }
                                   >
-                                    <div className="d-flex align-items-center flex-justify-center align-center">
+                                    <div className="flex items-center flex-justify-center align-center">
                                       <span
                                         onClick={() =>
                                           this.openTransferDialog("stake", b.symbol, b.balance)
@@ -642,7 +640,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                       </Tooltip>
                                     }
                                   >
-                                    <div className="d-flex align-items-center flex-justify-center align-center">
+                                    <div className="flex items-center flex-justify-center align-center">
                                       <span
                                         onClick={() =>
                                           this.openTransferDialog(

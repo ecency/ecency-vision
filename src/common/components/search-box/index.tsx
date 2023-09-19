@@ -25,7 +25,7 @@ export default class SearchBox extends Component<Props> {
     return (
       <div className="search-box">
         {showcopybutton ? (
-          <div className="d-flex focus-input">
+          <div className="flex focus-input">
             <FormControl
               type="text"
               {...{ ...other, value, username, filter }}

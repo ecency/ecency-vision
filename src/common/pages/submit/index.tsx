@@ -744,7 +744,7 @@ export function Submit(props: PageProps & MatchProps) {
                         <Col sm={3}>
                           <label>{_t("submit.thumbnail")}</label>
                         </Col>
-                        <div className="col-sm-9 d-flex flex-wrap selection-container">
+                        <div className="col-sm-9 flex flex-wrap selection-container">
                           {[...new Set(thumbnails)]!.map((item, i) => {
                             let selectedItem = selectedThumbnail;
                             switch (selectedItem) {
@@ -756,7 +756,7 @@ export function Submit(props: PageProps & MatchProps) {
                               selectedItem = thumbnails[0];
                             }
                             return (
-                              <div className="position-relative" key={item + i}>
+                              <div className="relative" key={item + i}>
                                 <div
                                   className={`selection-item shadow ${
                                     selectedItem === item ? "selected" : ""
@@ -771,7 +771,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   key={item}
                                 />
                                 {selectedItem === item && (
-                                  <div className="text-success check position-absolute bg-white rounded-circle d-flex justify-content-center align-items-center">
+                                  <div className="text-green check absolute bg-white rounded-circle flex justify-center items-center">
                                     {checkSvg}
                                   </div>
                                 )}

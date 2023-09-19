@@ -64,7 +64,7 @@ const Purchase = (props: PageProps) => {
         }
       >
         <div className="flex items-center w-full justify-center">
-          <div className="w-50 border border-[--border-color] rounded-2xl p-4">
+          <div className="w-[50%] border border-[--border-color] rounded-2xl p-4">
             <PurchaseQrBuilder
               activeUser={username ? ({ username } as ActiveUser) : props.activeUser}
               location={props.location}

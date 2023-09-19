@@ -69,9 +69,7 @@ export const OpenOrders = ({
               <Tr key={item.id}>
                 <Td title={dateToFormatted(item.created)}>{dateToFullRelative(item.created)}</Td>
                 <Td
-                  className={
-                    item.sell_price.base.indexOf("HIVE") > 0 ? "text-danger" : "text-success"
-                  }
+                  className={item.sell_price.base.indexOf("HIVE") > 0 ? "text-red" : "text-green"}
                 >
                   {item.sell_price.base.indexOf("HIVE") > 0 ? "Sell" : "Buy"}
                 </Td>

@@ -168,12 +168,12 @@ body {
   border-color: #357ce6;
 }
 
-.d-block {
+.block {
   display: block;
 }
 
 @media (min-width: 768px) {
-  .d-md-none {
+  .d-mhidden {
     display: none;
   }
 }

@@ -37,10 +37,10 @@ export const SwapMode = ({ inline = false }: Props) => {
         setSigningKey={setSigningKey}
       />
       {!activeUser && (
-        <div className="auth-required d-flex justify-content-center align-items-center flex-column">
-          <div className="font-weight-bold mb-3">{_t("market.auth-required-title")}</div>
+        <div className="auth-required flex justify-center items-center flex-col">
+          <div className="font-bold mb-3">{_t("market.auth-required-title")}</div>
           <div className="mb-3">{_t("market.auth-required-desc")}</div>
-          <div className="d-flex">
+          <div className="flex">
             <Button outline={true} className="mr-2" onClick={() => toggleUIProp("login")}>
               {_t("g.login")}
             </Button>
@@ -56,7 +56,7 @@ export const SwapMode = ({ inline = false }: Props) => {
   return inline ? (
     <div className={"swap-form-container " + (inline ? "inline" : "")}>{form}</div>
   ) : (
-    <Row className="justify-content-center pb-5">
+    <Row className="justify-center pb-5">
       <Col xs={12} md={10} lg={8} xl={6}>
         {form}
       </Col>

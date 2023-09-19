@@ -65,7 +65,7 @@ export const SignByKey = ({
           onChange={(e) => setKey(e.target.value)}
         />
       </InputGroup>
-      <div className="d-flex">
+      <div className="flex">
         <Button appearance="link" className="w-full mt-4 flex-1 mr-3" onClick={onBack}>
           {_t("market.back")}
         </Button>

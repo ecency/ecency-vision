@@ -96,7 +96,7 @@ export default class ImageUploadDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        className="image-upload-dialog modal-thin-header"
+        className="image-upload-dialog"
       >
         <ModalHeader closeButton={true} />
         <ModalBody>

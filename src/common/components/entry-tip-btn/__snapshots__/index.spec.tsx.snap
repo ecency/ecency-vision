@@ -136,7 +136,7 @@ exports[`(2) Dialog 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"

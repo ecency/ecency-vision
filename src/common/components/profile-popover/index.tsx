@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Manager, Reference, Popper } from "react-popper";
+import { Manager, Popper, Reference } from "react-popper";
 import { ProfilePreview } from "../profile-preview";
 import { menuDownSvg } from "../../img/svg";
 import "./index.scss";
@@ -42,7 +42,7 @@ export const ProfilePopover = (props: any) => {
   return (
     <>
       <div
-        className="author btn notranslate d-flex d-sm-none align-items-center"
+        className="author btn notranslate flex d-sm-none items-center"
         onClick={handleShowProfile}
         id={`${author}-${entry.permlink}`}
       >
@@ -64,7 +64,7 @@ export const ProfilePopover = (props: any) => {
             {({ ref }) => (
               <div
                 ref={ref}
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                className="author btn notranslate hidden d-sm-flex items-center relative"
                 onMouseEnter={handleShowProfile}
               >
                 <span className="author-name">{author}</span>

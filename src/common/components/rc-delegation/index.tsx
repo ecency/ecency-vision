@@ -190,7 +190,7 @@ export const ResourceCreditsDelegation = (props: any) => {
               <Col sm={2}>
                 <label>{_t("transfer.amount")}</label>
               </Col>
-              <Col sm="10" className="d-flex align-items-center">
+              <Col sm="10" className="flex items-center">
                 <InputGroup prepend="#">
                   <FormControl
                     type="text"

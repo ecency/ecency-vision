@@ -438,8 +438,8 @@ export class EntryIndexMenu extends Component<Props, States> {
     );
     const introductionOverlayClass =
       (isMounted &&
-        (introduction === IntroductionType.NONE ? "d-none" : "overlay-for-introduction")) ||
-      "d-none";
+        (introduction === IntroductionType.NONE ? "hidden" : "overlay-for-introduction")) ||
+      "hidden";
     return isMounted ? (
       <div>
         <div className={introductionOverlayClass} id="overlay" onClick={this.onClosePopup} />
@@ -448,7 +448,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             {isActive && (
               <div className="sub-menu mt-3 md:mt-0">
                 <ul
-                  className={`flex flex-wrap position-relative mb-0 ${
+                  className={`flex flex-wrap relative mb-0 ${
                     introduction === IntroductionType.NONE
                       ? ""
                       : introduction === IntroductionType.FRIENDS
@@ -501,10 +501,10 @@ export class EntryIndexMenu extends Component<Props, States> {
             )}
             <div className="flex items-center">
               <div className="main-menu hidden lg:flex">
-                <div className="sm-menu position-relative">
+                <div className="sm-menu relative">
                   <DropDown {...menuConfig} float="left" />
                 </div>
-                <div className="lg-menu position-relative">
+                <div className="lg-menu relative">
                   <ul className="flex flex-wrap mb-0">
                     {menuConfig.items.map((i, k) => {
                       return (
@@ -572,7 +572,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                     />
                   ) : null}
                 </div>
-                <div className="lg-menu position-relative">
+                <div className="lg-menu relative">
                   <ul className="flex flex-wrap">
                     {mobileMenuConfig.items.map((i, k) => {
                       return (

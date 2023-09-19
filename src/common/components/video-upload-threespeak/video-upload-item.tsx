@@ -15,7 +15,7 @@ export function VideoUploadItem({ onFileChange, type, accept, label, completed }
 
   return (
     <div
-      className="d-flex align-items-center flex-column border rounded p-3 video-upload-item"
+      className="flex items-center flex-col border rounded p-3 video-upload-item"
       onClick={() => fileInput.current?.click()}
     >
       {uploadSvgV}
@@ -30,7 +30,7 @@ export function VideoUploadItem({ onFileChange, type, accept, label, completed }
       />
       {completed ? (
         <ProgressBar
-          className="w-100 mt-3"
+          className="w-full mt-3"
           max={100}
           min={0}
           now={completed}

@@ -179,7 +179,7 @@ export default class FollowControls extends BaseComponent<Props, State> {
     if (fetching) {
       return (
         <>
-          <Button disabled={true} style={{ marginRight: "5px" }}>
+          <Button disabled={true} className="mr-2">
             {followMsg}
           </Button>
           <Button disabled={true}>{muteMsg}</Button>

@@ -33,8 +33,7 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => 
   return (
     <div
       className={
-        "user d-flex align-items-center " +
-        (isExpanded ? "justify-content-start" : "justify-content-center")
+        "user flex items-center " + (isExpanded ? "justify-content-start" : "justify-center")
       }
     >
       {activeUser ? (

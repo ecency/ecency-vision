@@ -41,8 +41,8 @@ const MarketPage = (props: PageProps) => {
     <>
       <Meta title={title} description={description} />
       <Feedback activeUser={props.activeUser} />
-      <div className={"d-flex justify-content-center market-page " + mode}>
-        <div className={mode !== MarketMode.ADVANCED ? "w-sm-75 p-3 p-sm-0" : "w-100"}>
+      <div className={"flex justify-center market-page " + mode}>
+        <div className={mode !== MarketMode.ADVANCED ? "w-sm-75 p-3 p-sm-0" : "w-full"}>
           <div style={{ marginBottom: "6rem" }}>{navbar}</div>
           {mode !== MarketMode.ADVANCED ? (
             <div className="mb-5 text-center">

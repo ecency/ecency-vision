@@ -95,7 +95,7 @@ export const Curation = (props: Props) => {
           <div className="list-body-header">
             <span />
             <Tooltip content={_t("leaderboard.header-votes-tip")}>
-              <div className="d-flex align-items-center">
+              <div className="flex items-center">
                 <span className="info-icon mr-1">{informationVariantSvg}</span>
                 <span className="score">{_t("leaderboard.header-votes")}</span>
               </div>

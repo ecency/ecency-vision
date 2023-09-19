@@ -225,11 +225,11 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
   return (
     <div className="sticky-container" id="sticky-container">
       {floating && smVisible && <div className="nav-bar-rep" />}
-      <div className={`nav-bar-toggle ${"position-fixed"}`} onClick={toggleSmVisible}>
+      <div className={`nav-bar-toggle ${"fixed"}`} onClick={toggleSmVisible}>
         {smVisible ? closeSvg : menuSvg}
       </div>
 
-      <div className={`nav-bar-sm ${"sticky"} ${step === 1 ? "transparent" : ""}`}>
+      <div className={`nav-bar-sm sticky ${step === 1 ? "transparent" : ""}`}>
         <div className="brand">
           {activeUser !== null ? (
             <Link to={logoHref}>
@@ -293,8 +293,8 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
                       {_t("g.login")}
                     </Button>
 
-                    <Link className="btn btn-primary" to="/signup">
-                      {_t("g.signup")}
+                    <Link to="/signup">
+                      <Button outline={true}>{_t("g.signup")}</Button>
                     </Link>
                   </div>
                   <div className="submit-post">
@@ -312,8 +312,8 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
                 <UserNav history={history} />
                 <div className="submit-post">
                   <ToolTip content={_t("navbar.post")}>
-                    <Link className="btn btn-outline-primary" to="/submit">
-                      {pencilOutlineSvg}
+                    <Link to="/submit">
+                      <Button outline={true} icon={pencilOutlineSvg} />
                     </Link>
                   </ToolTip>
                 </div>
@@ -326,15 +326,15 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
         ref={navRef}
         className={_c(
           `nav-bar ${!transparentVerify && step === 1 ? "transparent" : ""} ${
-            smVisible ? "visible-sm" : "d-none"
+            smVisible ? "sm:visible" : "hidden"
           }`
         )}
       >
         <div className="nav-bar-inner">
-          <div className="mt-2 pt-5 w-100">
+          <div className="mt-2 pt-5 w-full">
             {activeUser && (
               <Link to={`/@${activeUser.username}`}>
-                <div className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative">
+                <div className="p-1 menu-item menu-item-profile flex text-white text-15 items-center mt-0 mb-3 relative">
                   <UserAvatar username={activeUser.username} size="large" />
                   <div className="ml-2">
                     <b>@{activeUser.username}</b>
@@ -352,10 +352,10 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
               </Link>
             )}
             <div onClick={() => !showMobileSearch && setShowMobileSearch(true)}>
-              <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+              <div className="p-2 pl-3 w-full mb-2 flex items-center list-item text-dark">
                 {showMobileSearch ? (
                   <>
-                    <Search containerClassName="w-100" history={history} />
+                    <Search containerClassName="w-full" history={history} />
                     <div
                       onClick={() => setShowMobileSearch(false)}
                       className="navbar-icon text-secondary ml-2"
@@ -375,7 +375,7 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
             {!activeUser && (
               <>
                 <div
-                  className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+                  className="p-2 pl-3 w-full mb-2 flex items-center list-item text-dark"
                   onClick={() => {
                     toggleUIProp("login");
                     setSmVisible(false);
@@ -385,7 +385,7 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
                   <div className="ml-3 text-15">{_t("g.login")}</div>
                 </div>
                 <Link to="/signup" onClick={() => !showMobileSearch && setSmVisible(false)}>
-                  <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                  <div className="p-2 pl-3 w-full mb-2 flex items-center list-item text-dark">
                     <div className="navbar-icon">{keySvg}</div>
                     <div className="ml-3 text-15">{_t("g.signup")}</div>
                   </div>
@@ -394,7 +394,7 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
             )}
 
             <Link to="/submit" onClick={() => setSmVisible(false)}>
-              <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+              <div className="p-2 pl-3 w-full mb-2 flex items-center list-item text-dark">
                 <div className="navbar-icon">{pencilOutlinedSvg}</div>
                 <div className="ml-3 text-15">{_t("g.submit")}</div>
               </div>
@@ -403,7 +403,7 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
             <div>
               {activeUser && (
                 <div
-                  className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark"
+                  className="p-2 pl-3 w-full mb-2 flex items-center text-dark"
                   onClick={() => setShowProfileMenu(!showProfileMenu)}
                 >
                   <div className="navbar-icon">{userOutlineSvg}</div>
@@ -415,7 +415,7 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
               )}
 
               {activeUser && showProfileMenu ? (
-                <div className="pl-3 position-relative menu-container">
+                <div className="pl-3 relative menu-container">
                   <div className="menu-container-inner">
                     <div
                       className="p-1 menu-item"
@@ -497,7 +497,7 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
             {activeUser && (
               <>
                 <div
-                  className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+                  className="p-2 pl-3 w-full mb-2 flex items-center list-item text-dark"
                   onClick={() => toggleUIProp("notifications")}
                 >
                   <div className="navbar-icon text-dark">{notificationSvg}</div>
@@ -505,15 +505,15 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
                 </div>
                 <div
                   onClick={() => setShowPurchaseDialog(true)}
-                  className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+                  className="p-2 pl-3 w-full mb-2 flex items-center list-item text-dark"
                 >
                   <div className="navbar-icon text-dark">{rocketSvg}</div>
                   <div className="ml-3 text-15">{_t("user-nav.boost")}</div>
                 </div>
                 <Link to={`/@${activeUser?.username}/wallet`} onClick={() => setSmVisible(false)}>
-                  <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                  <div className="p-2 pl-3 w-full mb-2 flex items-center list-item text-dark">
                     <div className="icon-stroke text-dark">{walletSvg}</div>
-                    <div className="ml-3 text-15 d-flex">
+                    <div className="ml-3 text-15 flex">
                       {_t("user-nav.wallet")} <div className="dot align-self-start ml-1" />
                     </div>
                   </div>
@@ -521,7 +521,7 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
               </>
             )}
 
-            <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative">
+            <div className="p-2 pl-3 w-full mb-2 flex items-center list-item text-dark relative">
               <div className="navbar-icon">{globeSvg}</div>
               <div className="text-15 switch-menu">
                 <SwitchLang label={_t("community-settings.lang")} history={history} />
@@ -529,7 +529,7 @@ export default ({ match, history, setStepOne, setStepTwo, step }: Props) => {
             </div>
 
             <div
-              className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+              className="p-2 pl-3 w-full mb-2 flex items-center list-item text-dark"
               onClick={changeTheme}
             >
               <div className="navbar-icon">{global.theme == Theme.day ? moonSvg : sunSvg}</div>

@@ -91,7 +91,7 @@ exports[`(3) Add 1`] = `
       />
     </div>
     <div
-      className="d-flex justify-content-between"
+      className="flex justify-between"
     >
       <button
         className="btn btn-outline-primary"
@@ -167,7 +167,7 @@ exports[`(4) Edit 1`] = `
     />
   </div>
   <div
-    className="d-flex justify-content-between"
+    className="flex justify-between"
   >
     <div>
       <button

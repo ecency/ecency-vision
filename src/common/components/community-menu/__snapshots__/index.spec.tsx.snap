@@ -8,10 +8,10 @@ exports[`(1) Default render 1`] = `
     className="menu-items"
   >
     <span
-      className="d-flex d-lg-none community-menu-item selected-item"
+      className="flex d-lg-none community-menu-item selected-item"
     />
     <div
-      className="d-none d-lg-flex align-items-center"
+      className="hidden d-lg-flex items-center"
     >
       <a
         className="community-menu-item selected-item"
@@ -82,7 +82,7 @@ exports[`(2) Hot filter 1`] = `
     className="menu-items"
   >
     <span
-      className="d-flex d-lg-none community-menu-item selected-item"
+      className="flex d-lg-none community-menu-item selected-item"
     >
       <div
         className="custom-dropdown float-left"
@@ -114,7 +114,7 @@ exports[`(2) Hot filter 1`] = `
       </div>
     </span>
     <div
-      className="d-none d-lg-flex align-items-center"
+      className="hidden d-lg-flex items-center"
     >
       <a
         className="community-menu-item"
@@ -222,10 +222,10 @@ exports[`(3) In section 1`] = `
     className="menu-items"
   >
     <span
-      className="d-flex d-lg-none community-menu-item selected-item"
+      className="flex d-lg-none community-menu-item selected-item"
     />
     <div
-      className="d-none d-lg-flex align-items-center"
+      className="hidden d-lg-flex items-center"
     >
       <a
         className="community-menu-item"

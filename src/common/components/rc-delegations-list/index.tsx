@@ -224,7 +224,7 @@ export const ConfirmDelete = (props: any) => {
         <h5 className="text" style={{ width: "350px", alignSelf: "center" }}>
           {_t("rc-info.confirm-delete")}
         </h5>
-        <div className="d-flex justify-content-center p-3">
+        <div className="flex justify-center p-3">
           <Button
             className="mr-2"
             appearance="secondary"

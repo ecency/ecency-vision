@@ -244,7 +244,7 @@ export default function AccountRecovery(props: Props) {
                 </>
               </div>
             </div>
-            <div className="d-flex justify-content-center">
+            <div className="flex justify-center">
               <Button appearance="secondary" outline={true} onClick={back}>
                 {_t("g.back")}
               </Button>
@@ -320,7 +320,7 @@ export default function AccountRecovery(props: Props) {
           <div className="recovery-success-dialog-content">
             <span> {_t("account-recovery.success-message")}</span>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             <span className="hr-6px-btn-spacer" />
             <Button onClick={finish}>{_t("g.finish")}</Button>
           </div>
@@ -344,7 +344,7 @@ export default function AccountRecovery(props: Props) {
           <div className="recovery-success-dialog-content">
             <span> {_t("account-recovery.update-success-message")}</span>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             <span className="hr-6px-btn-spacer" />
             <Button onClick={finish}>{_t("g.finish")}</Button>
           </div>

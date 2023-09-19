@@ -13,7 +13,7 @@ Array [
       className="key"
     />
     <td
-      className="d-none d-sm-block"
+      className="hidden d-sm-block"
     >
       <p
         className="action-btns"
@@ -56,7 +56,7 @@ Array [
       className="key"
     />
     <td
-      className="d-none d-sm-block"
+      className="hidden d-sm-block"
     >
       <p
         className="action-btns"
@@ -99,7 +99,7 @@ Array [
       className="key"
     />
     <td
-      className="d-none d-sm-block"
+      className="hidden d-sm-block"
     >
       <p
         className="action-btns"
@@ -142,7 +142,7 @@ Array [
       className="key"
     />
     <td
-      className="d-none d-sm-block"
+      className="hidden d-sm-block"
     >
       <p
         className="action-btns"

@@ -109,9 +109,7 @@ export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
               onClick={() => (onPriceClick ? onPriceClick(item) : {})}
             >
               <Td>{item.key1}</Td>
-              <Td
-                className={type === 3 ? (item.key5 === "bid" ? "text-success" : "text-danger") : ""}
-              >
+              <Td className={type === 3 ? (item.key5 === "bid" ? "text-green" : "text-red") : ""}>
                 {item.key2}
               </Td>
               <Td>{item.key3}</Td>

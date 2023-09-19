@@ -13,9 +13,9 @@ interface Props {
 
 export const GenericOrderItem = ({ from, to, createdAt, onCancel }: Props) => {
   return (
-    <div className="d-flex align-items-center justify-content-between">
+    <div className="flex items-center justify-between">
       <div>
-        <div className="d-flex align-items-center price font-weight-bold">
+        <div className="flex items-center price font-bold">
           {from}
           <i className="mx-1">{arrowRightSvg}</i>
           {to}

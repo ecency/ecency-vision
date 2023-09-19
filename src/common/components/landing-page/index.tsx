@@ -103,7 +103,7 @@ export default (props: any) => {
       <div className="sections first-section">
         <div className="text-container text-center">
           <h1>{_t("landing-page.welcome-text")}</h1>
-          <div className="d-flex flex-wrap justify-content-center align-items-center">
+          <div className="flex flex-wrap justify-center items-center">
             <p className="mb-3 w-88">{_t("landing-page.what-is-ecency")}</p>
           </div>
           <button className="get-started mx-auto" onClick={() => props.setStep(2)}>
@@ -120,10 +120,10 @@ export default (props: any) => {
       <div className="sections second-section" id="earn-money" ref={earnMoneyRef}>
         <div className="part-top">
           <div className="inner">
-            <img src={EarnMoney} alt="earn-money" loading="lazy" className="mx-auto m-sm-0" />
+            <img src={EarnMoney} alt="earn-money" loading="lazy" className="mx-auto sm:m-0" />
             <div className="text-group visible">
               <h2>{_t("landing-page.earn-money")}</h2>
-              <p className="mt-2 w-88 mb-5 mb-sm-0">
+              <p className="mt-2 w-88 mb-5 sm:mb-0">
                 {_t("landing-page.earn-money-block-chain-based")}
                 <span>
                   <Link to="/signup?referral=ecency">{_t("landing-page.join-us")}</Link>
@@ -156,7 +156,7 @@ export default (props: any) => {
       </div>
 
       <div className="sections third-section">
-        <div className="part-top pt-sm-5 pt-lg-0">
+        <div className="part-top sm:pt-5 lg:pt-0">
           <div className="inner">
             <div className="img-wrapper">
               <img
@@ -166,7 +166,7 @@ export default (props: any) => {
                 loading="lazy"
               />
             </div>
-            <div className="text-group visible mw-100">
+            <div className="text-group visible mw-full">
               <h2>{_t("landing-page.decentralization")}</h2>
               <p>
                 <span>
@@ -380,9 +380,9 @@ export default (props: any) => {
       </div>
 
       <div className="sections fifth-section" id="about">
-        <div className="part-top pt-5 pt-sm-0">
+        <div className="part-top pt-5 sm:pt-0">
           <div className="inner">
-            <div className="text-group mt-sm-5 mt-lg-0">
+            <div className="text-group sm:mt-5 lg:mt-0">
               <h2>{_t("landing-page.our-history")}</h2>
               <p>{htmlParse(_t("landing-page.our-history-p-one"))}</p>
               <p>{_t("landing-page.our-history-p-two")}</p>
@@ -394,7 +394,7 @@ export default (props: any) => {
           <div className="inner">
             <img className="our-vision" src={OurVision} alt="Our Vision" loading="lazy" />
 
-            <div className="text-group pb-0 pb-sm-5 pb-md-0">
+            <div className="text-group pb-0 sm:pb-5 md:pb-0">
               <h2>{_t("landing-page.our-vision")}</h2>
               <p>{htmlParse(_t("landing-page.our-vision-p-one"))}</p>
               <p>{htmlParse(_t("landing-page.our-vision-p-two"))}</p>
@@ -423,7 +423,7 @@ export default (props: any) => {
             </div>
           </div>
         </div>
-        <div className="part-bottom pt-sm-5 pt-lg-auto">
+        <div className="part-bottom sm:pt-5 lg:pt-[auto]">
           <span className="left-fishes" />
           <img src={FooterMainFish} alt="Big fish" loading="lazy" className="main-fish" />
           <div className="inner">
@@ -484,8 +484,8 @@ export default (props: any) => {
 
                 <p>{_t("landing-page.subscribe-paragraph")}</p>
 
-                <div className="socials w-100 d-none d-lg-block">
-                  <ul className="p-0 m-0 d-flex justify-content-between w-50">
+                <div className="socials w-full hidden lg:block">
+                  <ul className="p-0 m-0 flex justify-between w-[50%]">
                     <li>
                       <Link to={"https://youtube.com/ecency"} target="_blank">
                         <img src={FooterYoutube} alt="youtube" />

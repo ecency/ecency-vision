@@ -21,12 +21,12 @@ const FaqCategory = (props: Props) => {
       <Accordion className={expanded ? "border-b border-[--border-color]" : ""}>
         <AccordionToggle as={Card} eventKey="0">
           <div
-            className="section d-flex flex-column border-b border-[--border-color]"
+            className="section flex flex-col border-b border-[--border-color]"
             onClick={() => setExpanded(!expanded)}
           >
-            <div className="d-flex justify-content-between align-items-center section-card position-relative">
-              <div className="d-flex align-items-center">
-                <div className="d-flex align-items-center ml-3">
+            <div className="flex justify-between items-center section-card relative">
+              <div className="flex items-center">
+                <div className="flex items-center ml-3">
                   <div className="section-title ml-1">{categoryTitle}</div>
                 </div>
               </div>

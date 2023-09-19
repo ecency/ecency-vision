@@ -73,9 +73,9 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId, locat
   };
 
   return (
-    <div className="d-flex flex-column align-items-center px-3 text-center">
+    <div className="flex flex-col items-center px-3 text-center">
       <h6>{isQrShow ? _t("purchase-qr.scan-code") : _t("purchase-qr.select-user")}</h6>
-      <div className="w-100 mt-4">
+      <div className="w-full mt-4">
         <SearchByUsername
           activeUser={activeUser}
           setUsername={(value: string) => {

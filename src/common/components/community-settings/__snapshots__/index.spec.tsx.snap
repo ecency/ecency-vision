@@ -669,7 +669,7 @@ Hate Speech is not allowed"
       </div>
     </div>
     <div
-      className="d-flex justify-content-end"
+      className="flex justify-content-end"
     >
       <button
         className="btn btn-primary"

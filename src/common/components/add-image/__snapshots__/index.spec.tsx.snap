@@ -40,7 +40,7 @@ exports[`(1) Default render 1`] = `
       />
     </div>
     <div
-      className="d-flex justify-content-end"
+      className="flex justify-content-end"
     >
       <button
         className="btn btn-primary"

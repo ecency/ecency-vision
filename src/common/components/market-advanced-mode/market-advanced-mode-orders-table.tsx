@@ -61,7 +61,7 @@ export const MarketAdvancedModeOrdersTable = ({ data, openOrdersData }: Props) =
                     </Td>
                     <Td
                       className={
-                        item.amount_to_sell?.indexOf("HIVE") > 0 ? "text-danger" : "text-success"
+                        item.amount_to_sell?.indexOf("HIVE") > 0 ? "text-red" : "text-green"
                       }
                     >
                       {item.amount_to_sell?.indexOf("HIVE") > 0 ? "Sell" : "Buy"}

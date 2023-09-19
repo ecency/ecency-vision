@@ -51,7 +51,7 @@ export const GenericDeckColumn = ({
         isReloading={isReloading}
       />
       <div
-        className={`item-container position-relative h-full ${
+        className={`item-container relative h-full ${
           header.title.includes("Wallet") ? "transaction-list" : ""
         }`}
       >

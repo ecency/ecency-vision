@@ -329,7 +329,7 @@ exports[`(1) Default render 1`] = `
           onClick={[Function]}
         >
           <input
-            className="text-primary pointer form-control"
+            className="text-blue-dark-sky pointer form-control"
             disabled={true}
             value="https://ecency.com/signup?referral=foo"
           />

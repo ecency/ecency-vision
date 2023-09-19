@@ -122,7 +122,7 @@ export const ResourceCreditsInfo = (props: any) => {
 
   return (
     <div>
-      <div className="cursor-pointer d-flex flex-column mb-1" onClick={showModal}>
+      <div className="cursor-pointer flex flex-col mb-1" onClick={showModal}>
         <div className="bg-gray-200 h-[1rem] text-white rounded-lg flex overflow-hidden">
           <div
             className="flex duration-300 justify-center overflow-hidden text-xs bg-blue-dark-sky"
@@ -228,7 +228,7 @@ export const ResourceCreditsInfo = (props: any) => {
             </div>
           </div>
 
-          <div className="d-flex justify-content-center mt-3">
+          <div className="flex justify-center mt-3">
             {activeUser && (
               <Button onClick={showDelegation}>{_t("rc-info.delegation-button")}</Button>
             )}

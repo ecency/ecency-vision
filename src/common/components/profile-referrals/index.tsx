@@ -178,7 +178,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                       children: (
                         <span className="flex items-center gap-3">
                           <UserAvatar size="medium" username={row.username} />
-                          <span className="d-block align-self-center ml-2">{row.username}</span>
+                          <span className="block align-self-center ml-2">{row.username}</span>
                         </span>
                       )
                     })}
@@ -220,7 +220,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
       <div className="page-header mt-2 mb-2">
         <div className="header-title text-left">{_t("referral.page-title")}</div>
 
-        <div className="d-flex mt-2">
+        <div className="flex mt-2">
           <div>
             <h5 className="header-title text-left">{this.state.claimed_points}</h5>
             <h6 className=" text-left">{_t("referral.earned-reward")}</h6>

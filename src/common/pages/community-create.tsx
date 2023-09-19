@@ -419,13 +419,13 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         )}
 
         <div className={containerClasses}>
-          <div className="row align-items-center justify-content-center m-0 w-100">
-            <div className="col-6 d-none d-lg-block">
-              <img src={communityImage} className="w-100" />
+          <div className="row items-center justify-center m-0 w-full">
+            <div className="col-6 hidden lg:block">
+              <img src={communityImage} className="w-full" />
             </div>
             <div className="col-12 col-sm-8 col-lg-5 p-0 p-sm-3">
               <div>
-                <h1 className={`community-title ${wif ? "mb-5" : ""} d-none d-lg-block`}>
+                <h1 className={`community-title ${wif ? "mb-5" : ""} hidden lg:block`}>
                   {_t("communities-create.page-title")}
                 </h1>
                 <h1 className={`community-title ${wif ? "mb-5" : ""} d-lg-none`}>
@@ -446,7 +446,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
 
                 {!wif && (
                   <div className="col-12 d-lg-none p-0">
-                    <img src={communityImage} className="w-100" />
+                    <img src={communityImage} className="w-full" />
                   </div>
                 )}
                 <Form
@@ -524,7 +524,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                             return (
                               <>
                                 <div className="mb-4">
-                                  <div className="d-flex align-items-center">
+                                  <div className="flex items-center">
                                     <label className="mb-0 mr-2">
                                       {_t("communities-create.fee")}
                                     </label>
@@ -555,18 +555,18 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                     onChange={this.usernameChanged}
                                   />
                                   {usernameStatus === "ok" && (
-                                    <small className="text-success">
+                                    <small className="text-green">
                                       {checkSvg} {_t("communities-create.username-available")}
                                     </small>
                                   )}
                                   {usernameStatus === "conflict" && (
-                                    <small className="text-danger">
+                                    <small className="text-red">
                                       {alertCircleSvg}{" "}
                                       {_t("communities-create.username-not-available")}
                                     </small>
                                   )}
                                   {usernameStatus === "not-valid" && (
-                                    <small className="text-danger">
+                                    <small className="text-red">
                                       {alertCircleSvg}{" "}
                                       {_t("communities-create.username-wrong-format")}
                                     </small>

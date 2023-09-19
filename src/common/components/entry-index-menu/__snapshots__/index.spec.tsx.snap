@@ -3,7 +3,7 @@
 exports[`(1) No active user. Default filter 1`] = `
 <div>
   <div
-    className="d-none"
+    className="hidden"
     id="overlay"
     onClick={[Function]}
   />
@@ -11,19 +11,19 @@ exports[`(1) No active user. Default filter 1`] = `
     className="entry-index-menu"
   >
     <div
-      className="the-menu align-items-center"
+      className="the-menu items-center"
     >
       <div
-        className="d-flex align-items-center"
+        className="flex items-center"
       >
         <div
-          className="main-menu d-none d-lg-flex"
+          className="main-menu hidden d-lg-flex"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           />
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -83,13 +83,13 @@ exports[`(1) No active user. Default filter 1`] = `
           />
         </div>
         <div
-          className="main-menu d-flex d-lg-none"
+          className="main-menu flex d-lg-none"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           />
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -145,13 +145,13 @@ exports[`(1) No active user. Default filter 1`] = `
           className="border-left ml-3 dropDown-left-border-height"
         />
         <span
-          className="d-flex align-items-center pl-3"
+          className="flex items-center pl-3"
           id="check-isGlobal"
         />
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
+      className="flex items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -177,7 +177,7 @@ exports[`(1) No active user. Default filter 1`] = `
 exports[`(2) No active user. Trending filter 1`] = `
 <div>
   <div
-    className="d-none"
+    className="hidden"
     id="overlay"
     onClick={[Function]}
   />
@@ -185,19 +185,19 @@ exports[`(2) No active user. Trending filter 1`] = `
     className="entry-index-menu"
   >
     <div
-      className="the-menu align-items-center"
+      className="the-menu items-center"
     >
       <div
-        className="d-flex align-items-center"
+        className="flex items-center"
       >
         <div
-          className="main-menu d-none d-lg-flex"
+          className="main-menu hidden d-lg-flex"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           />
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -257,13 +257,13 @@ exports[`(2) No active user. Trending filter 1`] = `
           />
         </div>
         <div
-          className="main-menu d-flex d-lg-none"
+          className="main-menu flex d-lg-none"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           />
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -319,13 +319,13 @@ exports[`(2) No active user. Trending filter 1`] = `
           className="border-left ml-3 dropDown-left-border-height"
         />
         <span
-          className="d-flex align-items-center pl-3"
+          className="flex items-center pl-3"
           id="check-isGlobal"
         />
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
+      className="flex items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -359,13 +359,13 @@ exports[`(3) Active user. Trending filter 1`] = `
     className="entry-index-menu"
   >
     <div
-      className="the-menu align-items-center"
+      className="the-menu items-center"
     >
       <div
         className="sub-menu mt-3 mt-md-0"
       >
         <ul
-          className="nav nav-pills position-relative nav-fill flash"
+          className="nav nav-pills relative nav-fill flash"
         >
           <li
             className="nav-item"
@@ -388,10 +388,10 @@ exports[`(3) Active user. Trending filter 1`] = `
             }
           >
             <div
-              className="h-100 container"
+              className="h-full container"
             >
               <button
-                className="close position-absolute close-btn"
+                className="close absolute close-btn"
                 id="close-btn"
                 onClick={[Function]}
                 type="button"
@@ -403,7 +403,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                 </span>
               </button>
               <div
-                className="justify-content-center h-100 align-items-center mt-4 mt-md-0 row"
+                className="justify-center h-full items-center mt-4 mt-md-0 row"
               >
                 <div
                   className="p-0 px-md-3 col-md-3 col-12"
@@ -419,7 +419,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                   className="p-0 px-md-3 col-md-5 col-12"
                 >
                   <h1
-                    className="mb-2 mb-md-4 text-dark font-weight-bold title"
+                    className="mb-2 mb-md-4 text-dark font-bold title"
                     id="title"
                   >
                     Friends
@@ -444,7 +444,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                     </a>
                   </p>
                   <div
-                    className="d-flex flex-column flex-md-row"
+                    className="flex flex-col flex-md-row"
                   >
                     <button
                       className="mr-0 mr-md-3 w-100 w-md-50 intro-btn mb-3 mb-md-0 btn btn-outline-primary btn-lg"
@@ -470,16 +470,16 @@ exports[`(3) Active user. Trending filter 1`] = `
         </ul>
       </div>
       <div
-        className="d-flex align-items-center"
+        className="flex items-center"
       >
         <div
-          className="main-menu d-none d-lg-flex"
+          className="main-menu hidden d-lg-flex"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           />
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -539,10 +539,10 @@ exports[`(3) Active user. Trending filter 1`] = `
           />
         </div>
         <div
-          className="main-menu d-flex d-lg-none"
+          className="main-menu flex d-lg-none"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           >
             <div
               className="intro-popup p-4 p-lg-0"
@@ -553,10 +553,10 @@ exports[`(3) Active user. Trending filter 1`] = `
               }
             >
               <div
-                className="h-100 container"
+                className="h-full container"
               >
                 <button
-                  className="close position-absolute close-btn"
+                  className="close absolute close-btn"
                   id="close-btn"
                   onClick={[Function]}
                   type="button"
@@ -568,7 +568,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                   </span>
                 </button>
                 <div
-                  className="justify-content-center h-100 align-items-center mt-4 mt-md-0 row"
+                  className="justify-center h-full items-center mt-4 mt-md-0 row"
                 >
                   <div
                     className="p-0 px-md-3 col-md-3 col-12"
@@ -584,7 +584,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                     className="p-0 px-md-3 col-md-5 col-12"
                   >
                     <h1
-                      className="mb-2 mb-md-4 text-dark font-weight-bold title"
+                      className="mb-2 mb-md-4 text-dark font-bold title"
                       id="title"
                     >
                       Friends
@@ -609,7 +609,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                       </a>
                     </p>
                     <div
-                      className="d-flex flex-column flex-md-row"
+                      className="flex flex-col flex-md-row"
                     >
                       <button
                         className="mr-0 mr-md-3 w-100 w-md-50 intro-btn mb-3 mb-md-0 btn btn-outline-primary btn-lg"
@@ -634,7 +634,7 @@ exports[`(3) Active user. Trending filter 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -712,13 +712,13 @@ exports[`(3) Active user. Trending filter 1`] = `
           className="border-left ml-3 dropDown-left-border-height"
         />
         <span
-          className="d-flex align-items-center pl-3"
+          className="flex items-center pl-3"
           id="check-isGlobal"
         />
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
+      className="flex items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -744,7 +744,7 @@ exports[`(3) Active user. Trending filter 1`] = `
 exports[`(4) Active user. Friends 1`] = `
 <div>
   <div
-    className="d-none"
+    className="hidden"
     id="overlay"
     onClick={[Function]}
   />
@@ -752,13 +752,13 @@ exports[`(4) Active user. Friends 1`] = `
     className="entry-index-menu"
   >
     <div
-      className="the-menu align-items-center"
+      className="the-menu items-center"
     >
       <div
         className="sub-menu mt-3 mt-md-0"
       >
         <ul
-          className="nav nav-pills position-relative nav-fill "
+          className="nav nav-pills relative nav-fill "
         >
           <li
             className="nav-item"
@@ -775,16 +775,16 @@ exports[`(4) Active user. Friends 1`] = `
         </ul>
       </div>
       <div
-        className="d-flex align-items-center"
+        className="flex items-center"
       >
         <div
-          className="main-menu d-none d-lg-flex"
+          className="main-menu hidden d-lg-flex"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           />
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -844,13 +844,13 @@ exports[`(4) Active user. Friends 1`] = `
           />
         </div>
         <div
-          className="main-menu d-flex d-lg-none"
+          className="main-menu flex d-lg-none"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           />
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -928,13 +928,13 @@ exports[`(4) Active user. Friends 1`] = `
           className="border-left ml-3 dropDown-left-border-height"
         />
         <span
-          className="d-flex align-items-center pl-3"
+          className="flex items-center pl-3"
           id="check-isGlobal"
         />
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
+      className="flex items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -960,7 +960,7 @@ exports[`(4) Active user. Friends 1`] = `
 exports[`(5) Active user. Communities 1`] = `
 <div>
   <div
-    className="d-none"
+    className="hidden"
     id="overlay"
     onClick={[Function]}
   />
@@ -968,13 +968,13 @@ exports[`(5) Active user. Communities 1`] = `
     className="entry-index-menu"
   >
     <div
-      className="the-menu align-items-center"
+      className="the-menu items-center"
     >
       <div
         className="sub-menu mt-3 mt-md-0"
       >
         <ul
-          className="nav nav-pills position-relative nav-fill "
+          className="nav nav-pills relative nav-fill "
         >
           <li
             className="nav-item"
@@ -991,16 +991,16 @@ exports[`(5) Active user. Communities 1`] = `
         </ul>
       </div>
       <div
-        className="d-flex align-items-center"
+        className="flex items-center"
       >
         <div
-          className="main-menu d-none d-lg-flex"
+          className="main-menu hidden d-lg-flex"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           />
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -1060,13 +1060,13 @@ exports[`(5) Active user. Communities 1`] = `
           />
         </div>
         <div
-          className="main-menu d-flex d-lg-none"
+          className="main-menu flex d-lg-none"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           />
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -1144,13 +1144,13 @@ exports[`(5) Active user. Communities 1`] = `
           className="border-left ml-3 dropDown-left-border-height"
         />
         <span
-          className="d-flex align-items-center pl-3"
+          className="flex items-center pl-3"
           id="check-isGlobal"
         />
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
+      className="flex items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -1176,7 +1176,7 @@ exports[`(5) Active user. Communities 1`] = `
 exports[`(6) No active user. Communities 1`] = `
 <div>
   <div
-    className="d-none"
+    className="hidden"
     id="overlay"
     onClick={[Function]}
   />
@@ -1184,19 +1184,19 @@ exports[`(6) No active user. Communities 1`] = `
     className="entry-index-menu"
   >
     <div
-      className="the-menu align-items-center"
+      className="the-menu items-center"
     >
       <div
-        className="d-flex align-items-center"
+        className="flex items-center"
       >
         <div
-          className="main-menu d-none d-lg-flex"
+          className="main-menu hidden d-lg-flex"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           />
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -1256,13 +1256,13 @@ exports[`(6) No active user. Communities 1`] = `
           />
         </div>
         <div
-          className="main-menu d-flex d-lg-none"
+          className="main-menu flex d-lg-none"
         >
           <div
-            className="sm-menu position-relative"
+            className="sm-menu relative"
           />
           <div
-            className="lg-menu position-relative"
+            className="lg-menu relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -1318,13 +1318,13 @@ exports[`(6) No active user. Communities 1`] = `
           className="border-left ml-3 dropDown-left-border-height"
         />
         <span
-          className="d-flex align-items-center pl-3"
+          className="flex items-center pl-3"
           id="check-isGlobal"
         />
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
+      className="flex items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"

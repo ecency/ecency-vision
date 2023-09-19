@@ -10,10 +10,10 @@ exports[`Introduction component (1) renders successfully with minimal props 1`] 
   }
 >
   <div
-    className="h-100 container"
+    className="h-full container"
   >
     <button
-      className="close position-absolute close-btn"
+      className="close absolute close-btn"
       id="close-btn"
       onClick={[Function]}
       type="button"
@@ -25,7 +25,7 @@ exports[`Introduction component (1) renders successfully with minimal props 1`] 
       </span>
     </button>
     <div
-      className="justify-content-center h-100 align-items-center mt-4 mt-md-0 row"
+      className="justify-center h-full items-center mt-4 mt-md-0 row"
     >
       <div
         className="p-0 px-md-3 col-md-3 col-12"
@@ -41,7 +41,7 @@ exports[`Introduction component (1) renders successfully with minimal props 1`] 
         className="p-0 px-md-3 col-md-5 col-12"
       >
         <h1
-          className="mb-2 mb-md-4 text-dark font-weight-bold title"
+          className="mb-2 mb-md-4 text-dark font-bold title"
           id="title"
         >
           Test Title
@@ -53,7 +53,7 @@ exports[`Introduction component (1) renders successfully with minimal props 1`] 
           Test decription
         </p>
         <div
-          className="d-flex flex-column flex-md-row"
+          className="flex flex-col flex-md-row"
         />
       </div>
     </div>

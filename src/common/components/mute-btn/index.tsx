@@ -148,7 +148,7 @@ export class MuteBtn extends BaseComponent<Props, State> {
             }
             this.toggleDialog();
           }}
-          className="mute-dialog modal-thin-header"
+          className="mute-dialog"
           size="lg"
         >
           <ModalHeader closeButton={true} />

@@ -13,7 +13,7 @@ exports[`(1) Default render - With data. 1`] = `
       Referrals
     </div>
     <div
-      className="d-flex mt-2"
+      className="flex mt-2"
     >
       <div>
         <h5

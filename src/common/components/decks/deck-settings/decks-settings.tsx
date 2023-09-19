@@ -146,7 +146,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                 />
               </InputGroup>
             </div>
-            <label className="font-weight-bold">{_t("g.settings")}</label>
+            <label className="font-bold">{_t("g.settings")}</label>
             {isLocalStorage && <Alert className="my-3">{_t("decks.use-local-text")}</Alert>}
             <div className="form-section flex">
               <div className="mb-4">

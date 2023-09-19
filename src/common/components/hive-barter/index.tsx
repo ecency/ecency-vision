@@ -113,23 +113,21 @@ export const HiveBarter = ({
     <Skeleton className="loading-hive" />
   ) : (
     <div className={"p-2 " + (isInline ? "flex-1" : "border p-3 rounded")}>
-      <div
-        className={"d-flex justify-content-between align-items-center " + (isInline ? "mb-3" : "")}
-      >
+      <div className={"flex justify-between items-center " + (isInline ? "mb-3" : "")}>
         {isInline ? (
-          <span className="font-weight-bold">
+          <span className="font-bold">
             {type === 1 ? _t("market.buy") : _t("market.sell")} HIVE
           </span>
         ) : (
           <h3 className="mb-0">{type === 1 ? _t("market.buy") : _t("market.sell")} HIVE</h3>
         )}
         <div>
-          <small className="d-flex cursor-pointer" onClick={() => prefillFromBalance()}>
-            <div className="mr-1 text-primary">{_t("market.available")}:</div>
+          <small className="flex cursor-pointer" onClick={() => prefillFromBalance()}>
+            <div className="mr-1 text-blue-dark-sky">{_t("market.available")}:</div>
             <div>{available}</div>
           </small>
-          <small className="d-flex">
-            <div className="mr-1 text-primary">
+          <small className="flex">
+            <div className="mr-1 text-blue-dark-sky">
               {type === 1 ? _t("market.lowest-ask") : _t("market.highest-bid")}:
             </div>
             <div onClick={() => onClickPeakValue(basePeakValue.toFixed(3))} className="pointer">

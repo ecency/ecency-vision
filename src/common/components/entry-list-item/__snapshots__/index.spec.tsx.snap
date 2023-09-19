@@ -16,7 +16,7 @@ exports[`(1) Default render 1`] = `
         id="good-karma-awesome-hive"
       >
         <div
-          className="d-flex align-items-center"
+          className="flex items-center"
           id="good-karma-awesome-hive"
         >
           <a
@@ -24,7 +24,7 @@ exports[`(1) Default render 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-block"
+              className="author-avatar block"
             >
               <span
                 className="user-avatar small"
@@ -38,7 +38,7 @@ exports[`(1) Default render 1`] = `
             </span>
           </a>
           <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate flex d-sm-none items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
@@ -67,7 +67,7 @@ exports[`(1) Default render 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              className="author btn notranslate hidden d-sm-flex items-center relative"
               onMouseEnter={[Function]}
             >
               <span
@@ -276,7 +276,7 @@ exports[`(2) Grid view 1`] = `
         id="good-karma-awesome-hive"
       >
         <div
-          className="d-flex align-items-center"
+          className="flex items-center"
           id="good-karma-awesome-hive"
         >
           <a
@@ -284,7 +284,7 @@ exports[`(2) Grid view 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-block"
+              className="author-avatar block"
             >
               <span
                 className="user-avatar small"
@@ -298,7 +298,7 @@ exports[`(2) Grid view 1`] = `
             </span>
           </a>
           <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate flex d-sm-none items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
@@ -327,7 +327,7 @@ exports[`(2) Grid view 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              className="author btn notranslate hidden d-sm-flex items-center relative"
               onMouseEnter={[Function]}
             >
               <span
@@ -535,7 +535,7 @@ exports[`(3) Nsfw 1`] = `
         id="good-karma-awesome-hive"
       >
         <div
-          className="d-flex align-items-center"
+          className="flex items-center"
           id="good-karma-awesome-hive"
         >
           <a
@@ -543,7 +543,7 @@ exports[`(3) Nsfw 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-block"
+              className="author-avatar block"
             >
               <span
                 className="user-avatar small"
@@ -557,7 +557,7 @@ exports[`(3) Nsfw 1`] = `
             </span>
           </a>
           <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate flex d-sm-none items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
@@ -586,7 +586,7 @@ exports[`(3) Nsfw 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              className="author btn notranslate hidden d-sm-flex items-center relative"
               onMouseEnter={[Function]}
             >
               <span
@@ -799,7 +799,7 @@ exports[`(4) Nsfw with active user 1`] = `
         id="good-karma-awesome-hive"
       >
         <div
-          className="d-flex align-items-center"
+          className="flex items-center"
           id="good-karma-awesome-hive"
         >
           <a
@@ -807,7 +807,7 @@ exports[`(4) Nsfw with active user 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-block"
+              className="author-avatar block"
             >
               <span
                 className="user-avatar small"
@@ -821,7 +821,7 @@ exports[`(4) Nsfw with active user 1`] = `
             </span>
           </a>
           <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate flex d-sm-none items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
@@ -850,7 +850,7 @@ exports[`(4) Nsfw with active user 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              className="author btn notranslate hidden d-sm-flex items-center relative"
               onMouseEnter={[Function]}
             >
               <span
@@ -1064,7 +1064,7 @@ exports[`(5) Nsfw but allowed 1`] = `
         id="good-karma-awesome-hive"
       >
         <div
-          className="d-flex align-items-center"
+          className="flex items-center"
           id="good-karma-awesome-hive"
         >
           <a
@@ -1072,7 +1072,7 @@ exports[`(5) Nsfw but allowed 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-block"
+              className="author-avatar block"
             >
               <span
                 className="user-avatar small"
@@ -1086,7 +1086,7 @@ exports[`(5) Nsfw but allowed 1`] = `
             </span>
           </a>
           <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate flex d-sm-none items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
@@ -1115,7 +1115,7 @@ exports[`(5) Nsfw but allowed 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              className="author btn notranslate hidden d-sm-flex items-center relative"
               onMouseEnter={[Function]}
             >
               <span
@@ -1359,7 +1359,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
         id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
       >
         <div
-          className="d-flex align-items-center"
+          className="flex items-center"
           id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
         >
           <a
@@ -1367,7 +1367,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-block"
+              className="author-avatar block"
             >
               <span
                 className="user-avatar small"
@@ -1381,7 +1381,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             </span>
           </a>
           <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate flex d-sm-none items-center"
             id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
             onClick={[Function]}
           >
@@ -1410,7 +1410,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              className="author btn notranslate hidden d-sm-flex items-center relative"
               onMouseEnter={[Function]}
             >
               <span

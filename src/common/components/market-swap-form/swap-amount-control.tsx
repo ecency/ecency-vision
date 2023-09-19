@@ -61,8 +61,8 @@ export const SwapAmountControl = ({
   return (
     <div className={"px-3 pt-3 pb-5 mb-0 border " + className}>
       <label>{_t(labelKey)}</label>
-      <div className="d-flex align-items-center w-100">
-        <div className="w-100">
+      <div className="flex items-center w-full">
+        <div className="w-full">
           <FormControl
             type="text"
             className="amount-control pl-0"
@@ -75,12 +75,12 @@ export const SwapAmountControl = ({
             ${formatValue(+value.replace(/,/gm, "") * usdRate + "")}
           </small>
         </div>
-        <div className="d-flex flex-column align-items-end">
+        <div className="flex flex-col items-end">
           <select
             disabled={disabled}
             value={asset}
             className={
-              "form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 " +
+              "form-control form-control py-2 border-0 h-auto font-bold w-[auto] mb-2 " +
               (hideChevron ? "hide-chevron" : "")
             }
             onChange={(e) => setAsset(e.target.value as MarketAsset)}
@@ -92,10 +92,10 @@ export const SwapAmountControl = ({
             ))}
           </select>
           {balance && showBalance ? (
-            <small className="balance d-block text-secondary text-nowrap">
+            <small className="balance block text-secondary text-nowrap">
               {_t("market.balance")}:
               <span
-                className="text-primary font-weight-bold cursor-pointer ml-1"
+                className="text-blue-dark-sky font-bold cursor-pointer ml-1"
                 onClick={() => (disabled ? null : setValue(balance.split(" ")[0]))}
               >
                 {balance}

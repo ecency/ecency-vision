@@ -309,7 +309,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
         animation={false}
         className="proposal-votes-dialog"
       >
-        <ModalHeader closeButton={true} className="align-items-center px-0">
+        <ModalHeader closeButton={true} className="items-center px-0">
           <ModalTitle>
             {modalTitle + _t("proposals.votes-dialog-title", { n: proposal.id })}
           </ModalTitle>

@@ -31,7 +31,7 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body d-flex flex-column"
+      className="transaction-form-body flex flex-col"
     >
       <div
         className="align-self-center"
@@ -193,7 +193,7 @@ exports[`(2) Insufficient Funds 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body d-flex flex-column"
+      className="transaction-form-body flex flex-col"
     >
       <div
         className="align-self-center"
@@ -359,7 +359,7 @@ exports[`(2) With entry 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body d-flex flex-column"
+      className="transaction-form-body flex flex-col"
     >
       <div
         className="align-self-center"

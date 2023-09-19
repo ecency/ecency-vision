@@ -351,7 +351,7 @@ export class SearchComment extends BaseComponent<Props, State> {
               </FormControl>
             </Col>
           </Row>
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="flex justify-between items-center">
             <FormCheck
               id="hide-low"
               type="checkbox"
@@ -367,7 +367,7 @@ export class SearchComment extends BaseComponent<Props, State> {
 
     return (
       <div className="border bg-white rounded search-comment">
-        <div className="bg-gray-100 border-b p-3 d-flex justify-content-between align-items-center">
+        <div className="bg-gray-100 border-b p-3 flex justify-between items-center">
           <div>
             <strong>{_t("search-comment.title")}</strong>
             {(() => {

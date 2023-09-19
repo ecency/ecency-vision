@@ -68,8 +68,8 @@ export const OpenOrdersWidget = ({
       />
     ) : (
       <div className="market-advanced-mode-trading-form-login-required-widget">
-        <div className="auth-required d-flex justify-content-center align-items-center flex-column">
-          <div className="font-weight-bold mb-3">{_t("market.advanced.empty-open-orders")}</div>
+        <div className="auth-required flex justify-center items-center flex-col">
+          <div className="font-bold mb-3">{_t("market.advanced.empty-open-orders")}</div>
         </div>
       </div>
     );
@@ -79,8 +79,8 @@ export const OpenOrdersWidget = ({
       <MarketAdvancedModeOrdersTable data={allOrders as any} openOrdersData={openOrdersData} />
     ) : (
       <div className="market-advanced-mode-trading-form-login-required-widget">
-        <div className="auth-required d-flex justify-content-center align-items-center flex-column">
-          <div className="font-weight-bold mb-3">{_t("market.advanced.empty-open-orders")}</div>
+        <div className="auth-required flex justify-center items-center flex-col">
+          <div className="font-bold mb-3">{_t("market.advanced.empty-open-orders")}</div>
         </div>
       </div>
     );
@@ -90,8 +90,8 @@ export const OpenOrdersWidget = ({
       <MarketAdvancedModeOrdersTable data={completedOrders} openOrdersData={openOrdersData} />
     ) : (
       <div className="market-advanced-mode-trading-form-login-required-widget">
-        <div className="auth-required d-flex justify-content-center align-items-center flex-column">
-          <div className="font-weight-bold mb-3">{_t("market.advanced.empty-open-orders")}</div>
+        <div className="auth-required flex justify-center items-center flex-col">
+          <div className="font-bold mb-3">{_t("market.advanced.empty-open-orders")}</div>
         </div>
       </div>
     );
@@ -129,10 +129,10 @@ export const OpenOrdersWidget = ({
           </div>
         ) : (
           <div className="market-advanced-mode-trading-form-login-required-widget">
-            <div className="auth-required d-flex justify-content-center align-items-center flex-column">
-              <div className="font-weight-bold mb-3">{_t("market.auth-required-title")}</div>
+            <div className="auth-required flex justify-center items-center flex-col">
+              <div className="font-bold mb-3">{_t("market.auth-required-title")}</div>
               <div className="mb-3">{_t("market.advanced.open-orders-auth-required")}</div>
-              <div className="d-flex">
+              <div className="flex">
                 <Button outline={true} className="mr-2" onClick={() => toggleUIProp("login")}>
                   {_t("g.login")}
                 </Button>

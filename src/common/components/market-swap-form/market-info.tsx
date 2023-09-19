@@ -24,7 +24,7 @@ export const MarketInfo = ({
 
   return (
     <div>
-      <small className={"market-info font-weight-bold d-block mb-4 " + className}>
+      <small className={"market-info font-bold block mb-4 " + className}>
         1 {fromAsset} = {marketRate.toFixed(3)} {toAsset}
         {isError ? (
           <></>
@@ -39,7 +39,7 @@ export const MarketInfo = ({
 
       <div className="rounded-xl border border-[--border-color]">
         <div className="px-4 py-3">
-          <div className="d-flex justify-content-between">
+          <div className="flex justify-between">
             <span>{_t("market.fee")}</span>
             <span className="px-2 py-1 bg-green text-xs font-bold rounded text-white">
               {_t("market.fee-free")}

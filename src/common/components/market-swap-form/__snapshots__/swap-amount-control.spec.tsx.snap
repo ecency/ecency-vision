@@ -10,7 +10,7 @@ exports[`SwapAmountControl should be able to render element after balance 1`] = 
     
   </label>
   <div
-    className="d-flex align-items-center w-100"
+    className="flex items-center w-100"
   >
     <div
       className="w-100"
@@ -33,10 +33,10 @@ exports[`SwapAmountControl should be able to render element after balance 1`] = 
       className="input-group-append"
     >
       <div
-        className="d-flex flex-column align-items-end"
+        className="flex flex-col items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
+          className="form-control form-control py-2 border-0 h-auto font-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"
@@ -48,12 +48,12 @@ exports[`SwapAmountControl should be able to render element after balance 1`] = 
           </option>
         </select>
         <small
-          className="balance d-block text-secondary text-nowrap"
+          className="balance block text-secondary text-nowrap"
         >
           Balance
           :
           <span
-            className="text-primary font-weight-bold cursor-pointer ml-1"
+            className="text-blue-dark-sky font-bold cursor-pointer ml-1"
             onClick={[Function]}
           >
             test
@@ -78,7 +78,7 @@ exports[`SwapAmountControl should be able to show available assets list 1`] = `
     
   </label>
   <div
-    className="d-flex align-items-center w-100"
+    className="flex items-center w-100"
   >
     <div
       className="w-100"
@@ -101,10 +101,10 @@ exports[`SwapAmountControl should be able to show available assets list 1`] = `
       className="input-group-append"
     >
       <div
-        className="d-flex flex-column align-items-end"
+        className="flex flex-col items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
+          className="form-control form-control py-2 border-0 h-auto font-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"
@@ -136,7 +136,7 @@ exports[`SwapAmountControl should render balance showing 1`] = `
     
   </label>
   <div
-    className="d-flex align-items-center w-100"
+    className="flex items-center w-100"
   >
     <div
       className="w-100"
@@ -159,10 +159,10 @@ exports[`SwapAmountControl should render balance showing 1`] = `
       className="input-group-append"
     >
       <div
-        className="d-flex flex-column align-items-end"
+        className="flex flex-col items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
+          className="form-control form-control py-2 border-0 h-auto font-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"
@@ -174,12 +174,12 @@ exports[`SwapAmountControl should render balance showing 1`] = `
           </option>
         </select>
         <small
-          className="balance d-block text-secondary text-nowrap"
+          className="balance block text-secondary text-nowrap"
         >
           Balance
           :
           <span
-            className="text-primary font-weight-bold cursor-pointer ml-1"
+            className="text-blue-dark-sky font-bold cursor-pointer ml-1"
             onClick={[Function]}
           >
             test balance
@@ -201,7 +201,7 @@ exports[`SwapAmountControl should render correctly 1`] = `
     
   </label>
   <div
-    className="d-flex align-items-center w-100"
+    className="flex items-center w-100"
   >
     <div
       className="w-100"
@@ -224,10 +224,10 @@ exports[`SwapAmountControl should render correctly 1`] = `
       className="input-group-append"
     >
       <div
-        className="d-flex flex-column align-items-end"
+        className="flex flex-col items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
+          className="form-control form-control py-2 border-0 h-auto font-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"
@@ -254,7 +254,7 @@ exports[`SwapAmountControl should render disabled state 1`] = `
     
   </label>
   <div
-    className="d-flex align-items-center w-100"
+    className="flex items-center w-100"
   >
     <div
       className="w-100"
@@ -277,10 +277,10 @@ exports[`SwapAmountControl should render disabled state 1`] = `
       className="input-group-append"
     >
       <div
-        className="d-flex flex-column align-items-end"
+        className="flex flex-col items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
+          className="form-control form-control py-2 border-0 h-auto font-bold w-auto mb-2 "
           disabled={true}
           onChange={[Function]}
           value="HIVE"
@@ -307,7 +307,7 @@ exports[`SwapAmountControl should render label 1`] = `
     Test
   </label>
   <div
-    className="d-flex align-items-center w-100"
+    className="flex items-center w-100"
   >
     <div
       className="w-100"
@@ -330,10 +330,10 @@ exports[`SwapAmountControl should render label 1`] = `
       className="input-group-append"
     >
       <div
-        className="d-flex flex-column align-items-end"
+        className="flex flex-col items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
+          className="form-control form-control py-2 border-0 h-auto font-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"
@@ -360,7 +360,7 @@ exports[`SwapAmountControl should set className 1`] = `
     
   </label>
   <div
-    className="d-flex align-items-center w-100"
+    className="flex items-center w-100"
   >
     <div
       className="w-100"
@@ -383,10 +383,10 @@ exports[`SwapAmountControl should set className 1`] = `
       className="input-group-append"
     >
       <div
-        className="d-flex flex-column align-items-end"
+        className="flex flex-col items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
+          className="form-control form-control py-2 border-0 h-auto font-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"

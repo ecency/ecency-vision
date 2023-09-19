@@ -662,7 +662,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 <Col sm={2}>
                   <label>{_t("transfer.amount")}</label>
                 </Col>
-                <Col sm="10" className="d-flex align-items-center">
+                <Col sm="10" className="flex items-center">
                   <InputGroup prepend="#">
                     <FormControl
                       type="text"
@@ -781,7 +781,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 </div>
                 {memo && <div className="memo">{memo}</div>}
               </div>
-              <div className="d-flex justify-content-center">
+              <div className="flex justify-center">
                 <Button
                   appearance="secondary"
                   outline={true}
@@ -837,7 +837,7 @@ export class Transfer extends BaseComponent<Props, State> {
               >
                 <div className="success" />
               </Tsx>
-              <div className="d-flex justify-content-center">
+              <div className="flex justify-center">
                 <Button appearance="secondary" outline={true} onClick={this.reset}>
                   {_t("transfer.reset")}
                 </Button>

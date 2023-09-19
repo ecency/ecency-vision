@@ -112,7 +112,7 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
               maxLength={5000}
             />
           </div>
-          <div className="d-flex justify-content-between">
+          <div className="flex justify-between">
             <Button outline={true} disabled={inProgress} onClick={this.back}>
               {_t("g.back")}
             </Button>
@@ -238,7 +238,7 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
               onInput={handleOnInput}
             />
           </div>
-          <div className="d-flex justify-content-between">
+          <div className="flex justify-between">
             <div>
               <PopoverConfirm
                 onConfirm={() => {

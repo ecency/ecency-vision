@@ -3,7 +3,7 @@
 exports[`should render market rate 1`] = `
 <div>
   <small
-    className="market-info font-weight-bold d-block mb-4 "
+    className="market-info font-bold block mb-4 "
   >
     1 
     HBD
@@ -34,7 +34,7 @@ exports[`should render market rate 1`] = `
       onClick={[Function]}
     >
       <div
-        className="d-flex justify-content-between"
+        className="flex justify-between"
       >
         <span>
           Fee

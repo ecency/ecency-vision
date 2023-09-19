@@ -33,7 +33,7 @@ export const WalletSpkActivePowerDown = ({ headBlock, powerUpList, onStop }: Pro
   return (
     <>
       {when(powerUpList) ? (
-        <div className="font-weight-bold d-flex align-items-center">
+        <div className="font-bold flex items-center">
           <span>
             {_t("wallet.spk.power-down.in-progress", {
               date: when(powerUpList),

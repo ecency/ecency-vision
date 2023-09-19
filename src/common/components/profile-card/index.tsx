@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { History } from "history";
 
@@ -19,11 +19,11 @@ import formattedNumber from "../../util/formatted-number";
 
 import defaults from "../../constants/defaults.json";
 
-import { findRcAccounts, rcPower, votingPower } from "../../api/hive";
+import { findRcAccounts, rcPower } from "../../api/hive";
 
 import { _t } from "../../i18n";
 
-import { nearMeSvg, earthSvg, calendarRangeSvg, rssSvg } from "../../img/svg";
+import { calendarRangeSvg, earthSvg, nearMeSvg, rssSvg } from "../../img/svg";
 
 import { EditPic } from "../community-card";
 import { getRelationshipBetweenAccounts, getSubscriptions } from "../../api/bridge";
@@ -165,7 +165,7 @@ export const ProfileCard = (props: Props) => {
       </h1>
 
       {loggedIn && !isMyProfile && (
-        <div className="d-flex justify-content-center mb-3 d-md-block">
+        <div className="flex justify-center mb-3 d-mblock">
           {followsActiveUserLoading ? (
             <Skeleton className="loading-follows-you" />
           ) : followsActiveUser ? (

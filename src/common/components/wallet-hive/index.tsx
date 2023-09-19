@@ -497,7 +497,7 @@ export class WalletHive extends BaseComponent<Props, State> {
               <div className="balance-info">
                 <div className="title">{_t("wallet.hive-power")}</div>
                 <div className="description">{_t("wallet.hive-power-description")}</div>
-                <div className="description font-weight-bold mt-2">
+                <div className="description font-bold mt-2">
                   {_t("wallet.hive-power-apr-rate", { value: hp })}
                 </div>
               </div>
@@ -736,11 +736,11 @@ export class WalletHive extends BaseComponent<Props, State> {
               <div className="balance-info">
                 <div className="title">{_t("wallet.savings")}</div>
                 <div className="description">{_t("wallet.savings-description")}</div>
-                <div className="description font-weight-bold mt-2">
+                <div className="description font-bold mt-2">
                   {_t("wallet.hive-dollars-apr-rate", { value: hbd })}
                 </div>
                 {estimatedUIn >= 0.001 && (
-                  <div className="description font-weight-bold mt-2">
+                  <div className="description font-bold mt-2">
                     {_t("wallet.hive-dollars-apr-claim", { value: lastIPaymentRelative })}{" "}
                     {estimatedInterest}
                   </div>

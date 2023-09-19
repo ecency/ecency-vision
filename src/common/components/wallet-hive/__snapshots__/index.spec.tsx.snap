@@ -84,7 +84,7 @@ exports[`(1) Default Render 1`] = `
             Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for Hive Power is 2.980%
           </div>
@@ -194,7 +194,7 @@ exports[`(1) Default Render 1`] = `
             Balance subject to 3 day withdraw waiting period.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for HBD($) is 10%
           </div>
@@ -552,7 +552,7 @@ exports[`(2) Render with converting HBD 1`] = `
             Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for Hive Power is 2.980%
           </div>
@@ -688,7 +688,7 @@ exports[`(2) Render with converting HBD 1`] = `
             Balance subject to 3 day withdraw waiting period.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for HBD($) is 10%
           </div>
@@ -1046,7 +1046,7 @@ exports[`(3) usePrivate = false 1`] = `
             Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for Hive Power is 2.980%
           </div>
@@ -1181,7 +1181,7 @@ exports[`(3) usePrivate = false 1`] = `
             Balance subject to 3 day withdraw waiting period.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for HBD($) is 10%
           </div>

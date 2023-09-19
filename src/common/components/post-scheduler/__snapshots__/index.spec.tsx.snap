@@ -2,7 +2,7 @@
 
 exports[`(1) Render with null date 1`] = `
 <button
-  className="d-inline-flex align-items-center btn btn-primary btn-sm"
+  className="d-inline-flex items-center btn btn-primary btn-sm"
   disabled={false}
   onClick={[Function]}
   type="button"

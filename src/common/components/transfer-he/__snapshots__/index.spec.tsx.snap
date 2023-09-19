@@ -114,7 +114,7 @@ exports[`(1) Hive Engine - Transfer (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -330,7 +330,7 @@ exports[`(1) Hive Engine - Transfer (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -520,7 +520,7 @@ exports[`(1) Hive Engine - Transfer (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -661,7 +661,7 @@ exports[`(2) Hive Engine - Delegate (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -848,7 +848,7 @@ exports[`(2) Hive Engine - Delegate (2) Step 2 1`] = `
         </div>
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -917,7 +917,7 @@ exports[`(2) Hive Engine - Delegate (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -1027,7 +1027,7 @@ exports[`(3) Hive Engine - Undelegate (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -1210,7 +1210,7 @@ exports[`(3) Hive Engine - Undelegate (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -1279,7 +1279,7 @@ exports[`(3) Hive Engine - Undelegate (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -1420,7 +1420,7 @@ exports[`(4) Hive Engine - Stake (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -1603,7 +1603,7 @@ exports[`(4) Hive Engine - Stake (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -1672,7 +1672,7 @@ exports[`(4) Hive Engine - Stake (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -1772,7 +1772,7 @@ exports[`(5) Hive Engine - Unstake (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -1930,7 +1930,7 @@ exports[`(5) Hive Engine - Unstake (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -1999,7 +1999,7 @@ exports[`(5) Hive Engine - Unstake (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"

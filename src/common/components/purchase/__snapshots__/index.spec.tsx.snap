@@ -82,7 +82,7 @@ exports[`(1) Purchase 1`] = `
     POINTS
   </div>
   <div
-    className="text-center d-flex flex-column align-items-center"
+    className="text-center flex flex-col items-center"
   >
     <button
       className="btn btn-primary"
@@ -93,7 +93,7 @@ exports[`(1) Purchase 1`] = `
       Purchase
     </button>
     <span
-      className="d-flex text-muted mt-3 align-items-center"
+      className="flex text-muted mt-3 items-center"
     >
       <h4
         className="text-white my-0 mr-1"
@@ -222,7 +222,7 @@ exports[`(2) Should switch to transfer 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"

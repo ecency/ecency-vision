@@ -260,7 +260,7 @@ export class Comment extends Component<Props, State> {
             <div className="editor-toolbar bottom">
               {this.props.activeUser ? (
                 <AvailableCredits
-                  className="p-2 w-100"
+                  className="p-2 w-full"
                   operation="comment_operation"
                   username={this.props.activeUser.username}
                   activeUser={activeUser}

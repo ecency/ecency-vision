@@ -2,15 +2,15 @@
 
 exports[`should render loader on loading 1`] = `
 <div
-  className="market-swap-form-header d-flex align-items-center title mb-4 "
+  className="market-swap-form-header flex items-center title mb-4 "
 >
   <div
-    className="text-primary font-weight-bold"
+    className="text-blue-dark-sky font-bold"
   >
     Swap your funds
   </div>
   <i
-    className="loading-market-svg ml-2 text-primary"
+    className="loading-market-svg ml-2 text-blue-dark-sky"
   >
     <svg
       viewBox="0 0 24 24"
@@ -26,7 +26,7 @@ exports[`should render loader on loading 1`] = `
 
 exports[`should render sign title 1`] = `
 <div
-  className="market-swap-form-header d-flex align-items-center title mb-4 "
+  className="market-swap-form-header flex items-center title mb-4 "
 >
   <button
     className="btn btn-link btn-sm"
@@ -44,7 +44,7 @@ exports[`should render sign title 1`] = `
     </svg>
   </button>
   <div
-    className="text-primary font-weight-bold"
+    className="text-blue-dark-sky font-bold"
   >
     Sign your transaction
   </div>
@@ -53,10 +53,10 @@ exports[`should render sign title 1`] = `
 
 exports[`should render success title 1`] = `
 <div
-  className="market-swap-form-header d-flex align-items-center title mb-4 "
+  className="market-swap-form-header flex items-center title mb-4 "
 >
   <div
-    className="text-primary font-weight-bold"
+    className="text-blue-dark-sky font-bold"
   >
     
   </div>
@@ -65,10 +65,10 @@ exports[`should render success title 1`] = `
 
 exports[`should render swap title 1`] = `
 <div
-  className="market-swap-form-header d-flex align-items-center title mb-4 "
+  className="market-swap-form-header flex items-center title mb-4 "
 >
   <div
-    className="text-primary font-weight-bold"
+    className="text-blue-dark-sky font-bold"
   >
     
   </div>

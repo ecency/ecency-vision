@@ -162,7 +162,7 @@ export const SendSpkDialogSign = ({
   };
 
   return (
-    <div className="d-flex flex-column align-items-center">
+    <div className="flex flex-col items-center">
       <KeyOrHot
         global={global}
         activeUser={activeUser!}

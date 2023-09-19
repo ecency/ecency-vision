@@ -787,7 +787,7 @@ const EntryAmpComponent = (props: Props) => {
                     SimilarEntries({
                       ...props,
                       entry,
-                      display: !props.activeUser ? "" : "d-none"
+                      display: !props.activeUser ? "" : "hidden"
                     })}
 
                   {!originalEntry &&
@@ -795,7 +795,7 @@ const EntryAmpComponent = (props: Props) => {
                     SimilarEntries({
                       ...props,
                       entry,
-                      display: !props.activeUser ? "d-none" : ""
+                      display: !props.activeUser ? "hidden" : ""
                     })}
                 </>
               );

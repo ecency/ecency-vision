@@ -104,9 +104,9 @@ export const DeckHeaderUpdateIntervalSettings = ({
         <small className="label mr-3">
           {showInput ? _t("decks.update-interval-min") : _t("decks.update-interval")}
         </small>
-        <div className="w-100">
+        <div className="w-full">
           {getControl()}
-          {errorMessage ? <div className="text-danger mt-2">{errorMessage}</div> : <></>}
+          {errorMessage ? <div className="text-red mt-2">{errorMessage}</div> : <></>}
         </div>
       </div>
     </DeckHeaderSettingsItem>

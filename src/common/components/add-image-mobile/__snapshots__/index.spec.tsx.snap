@@ -45,7 +45,7 @@ exports[`(1) Default render. 1`] = `
     </div>
   </div>
   <div
-    className="d-flex justify-content-between"
+    className="flex justify-between"
   >
     <button
       className="btn btn-primary"
@@ -75,7 +75,7 @@ exports[`(2) usePrivate = 1 1`] = `
     className="recent-list"
   />
   <div
-    className="d-flex justify-content-center"
+    className="flex justify-center"
   >
     <button
       className="btn btn-primary"
@@ -97,7 +97,7 @@ exports[`(3) Empty gallery. 1`] = `
     className="recent-list"
   />
   <div
-    className="d-flex justify-content-center"
+    className="flex justify-center"
   >
     <button
       className="btn btn-primary"

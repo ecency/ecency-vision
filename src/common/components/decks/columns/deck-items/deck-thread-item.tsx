@@ -110,7 +110,7 @@ export const ThreadItem = ({
         pure,
         "sequence-item": sequenceItem,
         pending: status === "pending",
-        "d-none": !visible
+        hidden: !visible
       })}
       onClick={(event) => {
         if (event.target === ref.current) {
@@ -144,7 +144,7 @@ export const ThreadItem = ({
             />
             <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
             <Button appearance="link" onClick={() => onEntryView()}>
-              <div className="d-flex align-items-center comments">
+              <div className="flex items-center comments">
                 <div style={{ paddingRight: 4 }}>{commentSvg}</div>
                 <div>{commentsSlot ?? entry.children}</div>
               </div>

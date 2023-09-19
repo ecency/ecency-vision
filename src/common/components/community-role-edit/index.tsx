@@ -118,7 +118,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
                   ref={this._input}
                 />
               </InputGroup>
-              {userError && <small className="text-danger">{userError}</small>}
+              {userError && <small className="text-red">{userError}</small>}
             </div>
           </div>
           <div className="flex mb-4">

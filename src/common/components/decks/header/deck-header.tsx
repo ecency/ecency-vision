@@ -52,7 +52,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
       })}
     >
       <Accordion className={expanded ? "border-b border-[--border-color]" : ""}>
-        <div className="deck-header position-relative">
+        <div className="deck-header relative">
           <div className="empty" />
           <div className="prefix">{props.prefix}</div>
           <div className="deck-index" {...props.draggable}>

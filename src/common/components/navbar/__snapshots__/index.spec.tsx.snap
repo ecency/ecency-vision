@@ -6,7 +6,7 @@ exports[`(1) Default render 1`] = `
   id="sticky-container"
 >
   <div
-    className="nav-bar-toggle position-fixed"
+    className="nav-bar-toggle fixed"
     onClick={[Function]}
   >
     <svg
@@ -309,7 +309,7 @@ exports[`(1) Default render 1`] = `
     </div>
   </div>
   <div
-    className="nav-bar d-none"
+    className="nav-bar hidden"
   >
     <div
       className="nav-bar-inner"
@@ -322,7 +322,7 @@ exports[`(1) Default render 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative"
+            className="p-1 menu-item menu-item-profile flex text-white text-15 items-center mt-0 mb-3 relative"
           >
             <span
               className="user-avatar large"
@@ -387,7 +387,7 @@ exports[`(1) Default render 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="navbar-icon"
@@ -413,7 +413,7 @@ exports[`(1) Default render 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="navbar-icon"
@@ -440,7 +440,7 @@ exports[`(1) Default render 1`] = `
         </a>
         <div>
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center text-dark"
             onClick={[Function]}
           >
             <div
@@ -504,7 +504,7 @@ exports[`(1) Default render 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div
@@ -530,7 +530,7 @@ exports[`(1) Default render 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div
@@ -563,7 +563,7 @@ exports[`(1) Default render 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="icon-stroke text-dark"
@@ -593,7 +593,7 @@ exports[`(1) Default render 1`] = `
               </svg>
             </div>
             <div
-              className="ml-3 text-15 d-flex"
+              className="ml-3 text-15 flex"
             >
               Wallet
                
@@ -604,7 +604,7 @@ exports[`(1) Default render 1`] = `
           </div>
         </a>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark relative"
         >
           <div
             className="navbar-icon"
@@ -660,7 +660,7 @@ exports[`(1) Default render 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div
@@ -699,7 +699,7 @@ exports[`(2) Night Theme 1`] = `
   id="sticky-container"
 >
   <div
-    className="nav-bar-toggle position-fixed"
+    className="nav-bar-toggle fixed"
     onClick={[Function]}
   >
     <svg
@@ -1002,7 +1002,7 @@ exports[`(2) Night Theme 1`] = `
     </div>
   </div>
   <div
-    className="nav-bar d-none"
+    className="nav-bar hidden"
   >
     <div
       className="nav-bar-inner"
@@ -1015,7 +1015,7 @@ exports[`(2) Night Theme 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative"
+            className="p-1 menu-item menu-item-profile flex text-white text-15 items-center mt-0 mb-3 relative"
           >
             <span
               className="user-avatar large"
@@ -1080,7 +1080,7 @@ exports[`(2) Night Theme 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="navbar-icon"
@@ -1106,7 +1106,7 @@ exports[`(2) Night Theme 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="navbar-icon"
@@ -1133,7 +1133,7 @@ exports[`(2) Night Theme 1`] = `
         </a>
         <div>
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center text-dark"
             onClick={[Function]}
           >
             <div
@@ -1197,7 +1197,7 @@ exports[`(2) Night Theme 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div
@@ -1223,7 +1223,7 @@ exports[`(2) Night Theme 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div
@@ -1256,7 +1256,7 @@ exports[`(2) Night Theme 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="icon-stroke text-dark"
@@ -1286,7 +1286,7 @@ exports[`(2) Night Theme 1`] = `
               </svg>
             </div>
             <div
-              className="ml-3 text-15 d-flex"
+              className="ml-3 text-15 flex"
             >
               Wallet
                
@@ -1297,7 +1297,7 @@ exports[`(2) Night Theme 1`] = `
           </div>
         </a>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark relative"
         >
           <div
             className="navbar-icon"
@@ -1353,7 +1353,7 @@ exports[`(2) Night Theme 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div
@@ -1392,7 +1392,7 @@ exports[`(3) With active user 1`] = `
   id="sticky-container"
 >
   <div
-    className="nav-bar-toggle position-fixed"
+    className="nav-bar-toggle fixed"
     onClick={[Function]}
   >
     <svg
@@ -1695,7 +1695,7 @@ exports[`(3) With active user 1`] = `
     </div>
   </div>
   <div
-    className="nav-bar d-none"
+    className="nav-bar hidden"
   >
     <div
       className="nav-bar-inner"
@@ -1708,7 +1708,7 @@ exports[`(3) With active user 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative"
+            className="p-1 menu-item menu-item-profile flex text-white text-15 items-center mt-0 mb-3 relative"
           >
             <span
               className="user-avatar large"
@@ -1773,7 +1773,7 @@ exports[`(3) With active user 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="navbar-icon"
@@ -1799,7 +1799,7 @@ exports[`(3) With active user 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="navbar-icon"
@@ -1826,7 +1826,7 @@ exports[`(3) With active user 1`] = `
         </a>
         <div>
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center text-dark"
             onClick={[Function]}
           >
             <div
@@ -1890,7 +1890,7 @@ exports[`(3) With active user 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div
@@ -1916,7 +1916,7 @@ exports[`(3) With active user 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div
@@ -1949,7 +1949,7 @@ exports[`(3) With active user 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="icon-stroke text-dark"
@@ -1979,7 +1979,7 @@ exports[`(3) With active user 1`] = `
               </svg>
             </div>
             <div
-              className="ml-3 text-15 d-flex"
+              className="ml-3 text-15 flex"
             >
               Wallet
                
@@ -1990,7 +1990,7 @@ exports[`(3) With active user 1`] = `
           </div>
         </a>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark relative"
         >
           <div
             className="navbar-icon"
@@ -2046,7 +2046,7 @@ exports[`(3) With active user 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div
@@ -2085,7 +2085,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
   id="sticky-container"
 >
   <div
-    className="nav-bar-toggle position-fixed"
+    className="nav-bar-toggle fixed"
     onClick={[Function]}
   >
     <svg
@@ -2388,7 +2388,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
     </div>
   </div>
   <div
-    className="nav-bar d-none"
+    className="nav-bar hidden"
   >
     <div
       className="nav-bar-inner"
@@ -2401,7 +2401,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative"
+            className="p-1 menu-item menu-item-profile flex text-white text-15 items-center mt-0 mb-3 relative"
           >
             <span
               className="user-avatar large"
@@ -2466,7 +2466,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="navbar-icon"
@@ -2492,7 +2492,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="navbar-icon"
@@ -2519,7 +2519,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
         </a>
         <div>
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center text-dark"
             onClick={[Function]}
           >
             <div
@@ -2583,7 +2583,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div
@@ -2609,7 +2609,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div
@@ -2642,7 +2642,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           onClick={[Function]}
         >
           <div
-            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           >
             <div
               className="icon-stroke text-dark"
@@ -2672,7 +2672,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
               </svg>
             </div>
             <div
-              className="ml-3 text-15 d-flex"
+              className="ml-3 text-15 flex"
             >
               Wallet
                
@@ -2683,7 +2683,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           </div>
         </a>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark relative"
         >
           <div
             className="navbar-icon"
@@ -2739,7 +2739,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           </div>
         </div>
         <div
-          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
           onClick={[Function]}
         >
           <div

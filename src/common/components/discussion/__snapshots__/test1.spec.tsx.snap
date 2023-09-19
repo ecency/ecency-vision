@@ -70,7 +70,7 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -109,11 +109,11 @@ exports[`(1) Full render with active user 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="forykw-re-esteemapp-202067t12246786z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
               >
@@ -142,7 +142,7 @@ exports[`(1) Full render with active user 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -255,7 +255,7 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -294,11 +294,11 @@ exports[`(1) Full render with active user 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="brittandjosie-re-esteemapp-qbi6t3"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
               >
@@ -327,7 +327,7 @@ exports[`(1) Full render with active user 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -442,7 +442,7 @@ exports[`(1) Full render with active user 1`] = `
           className="discussion-item depth-2"
         >
           <div
-            className="position-relative"
+            className="relative"
           >
             <div
               className="item-anchor"
@@ -481,11 +481,11 @@ exports[`(1) Full render with active user 1`] = `
                 className="item-header"
               >
                 <div
-                  className="d-flex align-items-center"
+                  className="flex items-center"
                   id="ardpien-re-brittandjosie-qbjoep"
                 >
                   <div
-                    className="author btn notranslate d-flex d-sm-none align-items-center"
+                    className="author btn notranslate flex d-sm-none items-center"
                     id="ardpien-re-brittandjosie-qbjoep"
                     onClick={[Function]}
                   >
@@ -514,7 +514,7 @@ exports[`(1) Full render with active user 1`] = `
                     onMouseLeave={[Function]}
                   >
                     <div
-                      className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                      className="author btn notranslate hidden d-sm-flex items-center relative"
                       onMouseEnter={[Function]}
                     >
                       <span
@@ -629,7 +629,7 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -668,11 +668,11 @@ exports[`(1) Full render with active user 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="ardpien-qbi303"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="ardpien-qbi303"
                 onClick={[Function]}
               >
@@ -701,7 +701,7 @@ exports[`(1) Full render with active user 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -815,7 +815,7 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -854,11 +854,11 @@ exports[`(1) Full render with active user 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="iliyan90-re-esteemapp-202066t124616772z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="iliyan90-re-esteemapp-202066t124616772z"
                 onClick={[Function]}
               >
@@ -887,7 +887,7 @@ exports[`(1) Full render with active user 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -1001,7 +1001,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -1040,11 +1040,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="trincowski-re-esteemapp-202066t84137915z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="trincowski-re-esteemapp-202066t84137915z"
                 onClick={[Function]}
               >
@@ -1073,7 +1073,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -1187,7 +1187,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -1226,11 +1226,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="foxkoit-re-esteemapp-202066t8590757z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="foxkoit-re-esteemapp-202066t8590757z"
                 onClick={[Function]}
               >
@@ -1259,7 +1259,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -1373,7 +1373,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -1412,11 +1412,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="irisworld-re-esteemapp-202066t14588243z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="irisworld-re-esteemapp-202066t14588243z"
                 onClick={[Function]}
               >
@@ -1445,7 +1445,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -1559,7 +1559,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -1598,11 +1598,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="behiver-re-esteemapp-202066t85739415z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="behiver-re-esteemapp-202066t85739415z"
                 onClick={[Function]}
               >
@@ -1631,7 +1631,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -1851,7 +1851,7 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1 selected-item"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -1890,11 +1890,11 @@ exports[`(3) With selected item 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="forykw-re-esteemapp-202067t12246786z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
               >
@@ -1923,7 +1923,7 @@ exports[`(3) With selected item 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -2036,7 +2036,7 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -2075,11 +2075,11 @@ exports[`(3) With selected item 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="brittandjosie-re-esteemapp-qbi6t3"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
               >
@@ -2108,7 +2108,7 @@ exports[`(3) With selected item 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -2223,7 +2223,7 @@ exports[`(3) With selected item 1`] = `
           className="discussion-item depth-2"
         >
           <div
-            className="position-relative"
+            className="relative"
           >
             <div
               className="item-anchor"
@@ -2262,11 +2262,11 @@ exports[`(3) With selected item 1`] = `
                 className="item-header"
               >
                 <div
-                  className="d-flex align-items-center"
+                  className="flex items-center"
                   id="ardpien-re-brittandjosie-qbjoep"
                 >
                   <div
-                    className="author btn notranslate d-flex d-sm-none align-items-center"
+                    className="author btn notranslate flex d-sm-none items-center"
                     id="ardpien-re-brittandjosie-qbjoep"
                     onClick={[Function]}
                   >
@@ -2295,7 +2295,7 @@ exports[`(3) With selected item 1`] = `
                     onMouseLeave={[Function]}
                   >
                     <div
-                      className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                      className="author btn notranslate hidden d-sm-flex items-center relative"
                       onMouseEnter={[Function]}
                     >
                       <span
@@ -2410,7 +2410,7 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -2449,11 +2449,11 @@ exports[`(3) With selected item 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="ardpien-qbi303"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="ardpien-qbi303"
                 onClick={[Function]}
               >
@@ -2482,7 +2482,7 @@ exports[`(3) With selected item 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -2596,7 +2596,7 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -2635,11 +2635,11 @@ exports[`(3) With selected item 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="iliyan90-re-esteemapp-202066t124616772z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="iliyan90-re-esteemapp-202066t124616772z"
                 onClick={[Function]}
               >
@@ -2668,7 +2668,7 @@ exports[`(3) With selected item 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -2782,7 +2782,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -2821,11 +2821,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="trincowski-re-esteemapp-202066t84137915z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="trincowski-re-esteemapp-202066t84137915z"
                 onClick={[Function]}
               >
@@ -2854,7 +2854,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -2968,7 +2968,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -3007,11 +3007,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="foxkoit-re-esteemapp-202066t8590757z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="foxkoit-re-esteemapp-202066t8590757z"
                 onClick={[Function]}
               >
@@ -3040,7 +3040,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -3154,7 +3154,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -3193,11 +3193,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="irisworld-re-esteemapp-202066t14588243z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="irisworld-re-esteemapp-202066t14588243z"
                 onClick={[Function]}
               >
@@ -3226,7 +3226,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -3340,7 +3340,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -3379,11 +3379,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="behiver-re-esteemapp-202066t85739415z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="behiver-re-esteemapp-202066t85739415z"
                 onClick={[Function]}
               >
@@ -3412,7 +3412,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -3596,7 +3596,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -3635,11 +3635,11 @@ exports[`(4) Show mute button, muted comment 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="forykw-re-esteemapp-202067t12246786z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
               >
@@ -3668,7 +3668,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -3801,7 +3801,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -3840,11 +3840,11 @@ exports[`(4) Show mute button, muted comment 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="brittandjosie-re-esteemapp-qbi6t3"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex d-sm-none items-center"
                 id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
               >
@@ -3873,7 +3873,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden d-sm-flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span

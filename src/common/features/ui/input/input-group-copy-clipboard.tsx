@@ -31,7 +31,7 @@ export function InputGroupCopyClipboard(props: Props & HTMLAttributes<HTMLElemen
         type="text"
         value={props.visibleValue ?? props.value}
         disabled={props.editable ?? true}
-        className="text-primary pointer"
+        className="text-blue-dark-sky pointer"
         onChange={props.onChange}
       />
     </InputGroup>

@@ -148,7 +148,7 @@ export function VideoGalleryItem({
               {informationSvg}
             </div>
           </div>
-          <div className="w-100 text-truncate">{item.title}</div>
+          <div className="w-full text-truncate">{item.title}</div>
           {["publish_manual", "published"].includes(item.status) && (
             <div className="details-actions">
               <Button size="sm" onClick={() => insert()}>

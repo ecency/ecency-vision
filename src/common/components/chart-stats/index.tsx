@@ -66,7 +66,7 @@ export const ChartStats = ({ loading, data }: Props) => {
         <Tr>
           <Td>
             ${data ? parseFloat(data!.latest!).toFixed(6) : null} (
-            <span className="text-success">+0.00%</span>)
+            <span className="text-green">+0.00%</span>)
           </Td>
           <Td>${data ? parseFloat(data!.hbd_volume)!.toFixed(2) : null}</Td>
           <Td>${data ? parseFloat(data!.highest_bid)!.toFixed(6) : null}</Td>

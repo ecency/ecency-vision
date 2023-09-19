@@ -444,7 +444,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
             })}
           </tbody>
         </Table>
-        <div className="d-md-none">
+        <div className="d-mhidden">
           {witnesses.map((row, i) => {
             return (
               <span key={`${row.name}${i}`}>

@@ -96,7 +96,7 @@ export const DeckGrid = ({ history }: Props) => {
                         style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                         id={index + ""}
                       >
-                        <div className="d-flex align-items-center" key={key}>
+                        <div className="flex items-center" key={key}>
                           {type === "ac" && (
                             <DeckAddColumn
                               id={id}

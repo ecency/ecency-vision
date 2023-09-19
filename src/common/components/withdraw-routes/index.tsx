@@ -206,7 +206,7 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
                 <option value="no">{_t("g.no")}</option>
               </FormControl>
             </Col>
-            <Col md={2} className="d-md-flex align-items-end justify-content-center mb-4">
+            <Col md={2} className="d-mflex items-end justify-center mb-4">
               <Button type="submit" size="sm">
                 {_t("g.add")}
               </Button>

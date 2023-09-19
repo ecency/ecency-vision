@@ -37,8 +37,8 @@ const FloatingFAQ = () => {
   const [show, setShow] = useState(false);
   const [display, setDisplay] = useState(false);
   const [expandedHelp, setExpandedHelp] = useState(true);
-  const [helpClass, setHelpClass] = useState("section d-flex flex-column");
-  const [contactClass, setContactClass] = useState("section d-flex flex-column");
+  const [helpClass, setHelpClass] = useState("section flex flex-col");
+  const [contactClass, setContactClass] = useState("section flex flex-col");
   const [expandedContact, setExpandedContact] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [faqKeys, setFaqKeys] = useState<string[]>([]);
@@ -94,10 +94,10 @@ const FloatingFAQ = () => {
 
   useEffect(() => {
     if (expandedHelp) {
-      setHelpClass("section d-flex flex-column border-b border-[--border-color]");
+      setHelpClass("section flex flex-col border-b border-[--border-color]");
     }
     if (expandedContact) {
-      setContactClass("section d-flex flex-column border-b border-[--border-color]");
+      setContactClass("section flex flex-col border-b border-[--border-color]");
     }
   }, [expandedHelp, expandedContact]);
 
@@ -176,9 +176,9 @@ const FloatingFAQ = () => {
                     <Accordion defaultActiveKey="0">
                       <AccordionToggle as={Card} eventKey="0">
                         <div className={helpClass} onClick={() => setExpandedHelp(!expandedHelp)}>
-                          <div className="d-flex justify-content-between align-items-center section-card position-relative">
-                            <div className="d-flex align-items-center">
-                              <div className="d-flex align-items-center ml-3">
+                          <div className="flex justify-between items-center section-card relative">
+                            <div className="flex items-center">
+                              <div className="flex items-center ml-3">
                                 <div className="section-title">{_t("floating-faq.need-help")}</div>
                               </div>
                             </div>
@@ -204,7 +204,7 @@ const FloatingFAQ = () => {
                       <AccordionCollapse eventKey="0">
                         <div className="help-content">
                           <div className="card-body p-3">
-                            <Form.Group className="search-bar w-100">
+                            <Form.Group className="search-bar w-full">
                               <FormControl
                                 type="text"
                                 placeholder={_t("floating-faq.search-placeholder")}
@@ -246,9 +246,9 @@ const FloatingFAQ = () => {
                           className={contactClass}
                           onClick={() => setExpandedContact(!expandedContact)}
                         >
-                          <div className="d-flex justify-content-between align-items-center section-card position-relative">
-                            <div className="d-flex align-items-center">
-                              <div className="d-flex align-items-center ml-3">
+                          <div className="flex justify-between items-center section-card relative">
+                            <div className="flex items-center">
+                              <div className="flex items-center ml-3">
                                 <div className="section-title">{_t("floating-faq.contact")}</div>
                               </div>
                             </div>

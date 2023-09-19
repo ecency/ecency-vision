@@ -1,6 +1,4 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getRelationshipBetweenAccounts } from "../../api/bridge";
 import { getAccount, getFollowCount } from "../../api/hive";
@@ -116,13 +114,13 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                     ? coverFallbackDay
                     : coverFallbackNight
                 }
-                className="w-100 cover-img rounded-t"
+                className="w-full cover-img rounded-t"
                 loading="lazy"
               />
             )
           )}
           <div className="p-3 upper-container">
-            <div className="d-flex align-items-center info-container flex-column text-center">
+            <div className="flex items-center info-container flex-col text-center">
               <div
                 className={`rounded-[50%] mb-3 profile-img-container ${
                   profile && profile.profile.profile_image ? "" : "no-image"
@@ -145,7 +143,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                   )
                 )}
               </div>
-              <div className="d-flex flex-column align-items-center">
+              <div className="flex flex-col items-center">
                 <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>
                   <div>
                     {loading ? (
@@ -170,7 +168,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                   </div>
                 </Link>
                 {username !== activeUser?.username && (
-                  <div className="d-flex mt-3">
+                  <div className="flex mt-3">
                     <>
                       <FollowControls
                         {...props}
@@ -185,8 +183,8 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                 )}
               </div>
             </div>
-            <div className="d-flex justify-content-between flex-wrap">
-              <div className="flex-grow-1 d-flex border-b border-[--border-color]">
+            <div className="flex justify-between flex-wrap">
+              <div className="flex-grow-1 flex border-b border-[--border-color]">
                 <div className="p-3 flex-grow-1">
                   <b>{_t("profile-info.joined")}</b>
                   <div className="text-break-wrap">
@@ -200,7 +198,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
 
                 <div
                   className={`p-3 flex-grow-1 ${
-                    loading ? "" : profile && profile.profile.location ? "" : "d-none"
+                    loading ? "" : profile && profile.profile.location ? "" : "hidden"
                   }`}
                 >
                   <b>{_t("profile-edit.location")}</b>
@@ -214,7 +212,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                 </div>
               </div>
 
-              <div className="flex-grow-1 d-flex border-b border-[--border-color]">
+              <div className="flex-grow-1 flex border-b border-[--border-color]">
                 <div className="p-3 flex-grow-1">
                   <b>{_t("profile.section-posts")}</b>
                   <div className="text-break-wrap">
@@ -242,7 +240,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                 </div>
               </div>
 
-              <div className="flex-grow-1 d-flex border-b border-[--border-color]">
+              <div className="flex-grow-1 flex border-b border-[--border-color]">
                 <div className="p-3 flex-grow-1">
                   <b>{_t("profile.followers")}</b>
                   <div className="text-break-wrap">
@@ -267,7 +265,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
               </div>
             </div>
             <div className={`p-3 about-container`}>
-              <b className={`${loading ? "" : profile && profile.profile.about ? "" : "d-none"}`}>
+              <b className={`${loading ? "" : profile && profile.profile.about ? "" : "hidden"}`}>
                 {_t("profile-edit.about")}
               </b>
               <div className="limited-about-text">

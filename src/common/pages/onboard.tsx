@@ -405,7 +405,7 @@ const Onboard = (props: Props) => {
   const signTransactionModal = (type: string) => {
     return (
       <>
-        <div className="border-b border-[--border-color] d-flex align-items-center">
+        <div className="border-b border-[--border-color] flex items-center">
           <div className="step-no">2</div>
           <div>
             <div>{_t("onboard.sign-header-title")}</div>
@@ -447,7 +447,7 @@ const Onboard = (props: Props) => {
   const successModalBody = () => {
     return (
       <>
-        <div className="create-account-success-dialog-header border-b border-[--border-color] d-flex">
+        <div className="create-account-success-dialog-header border-b border-[--border-color] flex">
           <div className="step-no">2</div>
           <div className="create-account-success-dialog-titles">
             <div className="create-account-main-title">{_t("trx-common.success-title")}</div>
@@ -462,10 +462,10 @@ const Onboard = (props: Props) => {
               <strong>{formatUsername(decodedInfo!.username)}</strong>
             </span>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             <span className="hr-6px-btn-spacer" />
             <Link to={`/@${formatUsername(decodedInfo!.username)}`}>
-              <Button className="mt-3 w-50 align-self-center" onClick={finish}>
+              <Button className="mt-3 w-[50%] align-self-center" onClick={finish}>
                 {_t("g.finish")}
               </Button>
             </Link>
@@ -477,7 +477,7 @@ const Onboard = (props: Props) => {
   const failedModalBody = () => {
     return (
       <>
-        <div className="create-account-success-dialog-header border-b border-[--border-color] d-flex text-danger">
+        <div className="create-account-success-dialog-header border-b border-[--border-color] flex text-red">
           <div className="step-no">❌</div>
           <div className="create-account-success-dialog-titles">
             <div className="create-account-main-title">{_t("onboard.failed-title")}</div>
@@ -487,9 +487,9 @@ const Onboard = (props: Props) => {
 
         <div className="success-dialog-body">
           <div className="success-dialog-content">
-            <span className="text-danger">{_t("onboard.failed-message")}</span>
+            <span className="text-red">{_t("onboard.failed-message")}</span>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             <span className="hr-6px-btn-spacer" />
             <Button onClick={finish}>{_t("onboard.try-again")}</Button>
           </div>
@@ -513,7 +513,7 @@ const Onboard = (props: Props) => {
         <div className="onboard-container">
           <div className="asking">
             <div
-              className={`asking-body d-flex mb-0 d-flex align-self-center flex-column ${
+              className={`asking-body flex mb-0 flex align-self-center flex-col ${
                 innerWidth < 577 ? "p-3" : "p-5"
               }`}
             >
@@ -530,8 +530,8 @@ const Onboard = (props: Props) => {
                 </span>
               </div>
               <span className="mt-3">{_t("onboard.copy-key")}</span>
-              <div className="mt-3 d-flex flex-column align-center">
-                <div className="d-flex">
+              <div className="mt-3 flex flex-col align-center">
+                <div className="flex">
                   <span className="mr-3 mt-1">
                     {innerWidth <= 768 ? shortPassword + "..." : masterPassword}
                   </span>
@@ -562,11 +562,11 @@ const Onboard = (props: Props) => {
                 </Button>
 
                 {fileIsDownloaded && (
-                  <div className="d-flex flex-column align-self-center justify-content-center mt-3">
+                  <div className="flex flex-col align-self-center justify-center mt-3">
                     {!props.activeUser && (
                       <>
                         <h4>{_t("onboard.copy-info-message")}</h4>
-                        <div className="d-flex align-items-center">
+                        <div className="flex items-center">
                           <span className="">{splitUrl(onboardUrl + secret)}...</span>
                           <span
                             style={{ width: "5%" }}
@@ -657,7 +657,7 @@ const Onboard = (props: Props) => {
           </div>
           <Link to={`/@${formatUsername(decodedInfo!.username)}`}>
             <Button
-              className="mt-3 w-50 align-self-center"
+              className="mt-3 w-[50%] align-self-center"
               onClick={() => {
                 const { location } = props;
                 const queryParams = new URLSearchParams(location.search);
@@ -683,7 +683,7 @@ const Onboard = (props: Props) => {
           <ModalTitle />
         </ModalHeader>
         <ModalBody>
-          <div className="d-flex flex-column">
+          <div className="flex flex-col">
             {createOption === createOptions.HIVE && (
               <React.Fragment>
                 {step === "sign" && signTransactionModal(createOptions.HIVE)}

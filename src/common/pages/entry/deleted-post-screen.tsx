@@ -61,7 +61,7 @@ export const DeletedPostScreen = (props: Props & DeletedPostProps) => {
               <div className="p-0 p-lg-5 the-entry">
                 <div className="p-3 bg-danger rounded text-white my-0 mb-4 my-lg-5">
                   {_t("entry.deleted-content-warning")}
-                  <u onClick={props.toggleEditHistory} className="text-primary pointer">
+                  <u onClick={props.toggleEditHistory} className="text-blue-dark-sky pointer">
                     {_t("points.history")}
                   </u>{" "}
                   {_t("g.logs")}.

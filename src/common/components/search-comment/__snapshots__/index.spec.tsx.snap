@@ -5,7 +5,7 @@ exports[`(1) Default render 1`] = `
   className="card search-comment"
 >
   <div
-    className="card-header d-flex justify-content-between align-items-center"
+    className="card-header flex justify-between items-center"
   >
     <div>
       <strong>
@@ -1243,7 +1243,7 @@ exports[`(2) With limit 1`] = `
   className="card search-comment"
 >
   <div
-    className="card-header d-flex justify-content-between align-items-center"
+    className="card-header flex justify-between items-center"
   >
     <div>
       <strong>
@@ -2491,7 +2491,7 @@ exports[`(3) Hide show more button 1`] = `
   className="card search-comment"
 >
   <div
-    className="card-header d-flex justify-content-between align-items-center"
+    className="card-header flex justify-between items-center"
   >
     <div>
       <strong>
@@ -3729,7 +3729,7 @@ exports[`(4) No matches 1`] = `
   className="card search-comment"
 >
   <div
-    className="card-header d-flex justify-content-between align-items-center"
+    className="card-header flex justify-between items-center"
   >
     <div>
       <strong>

@@ -953,7 +953,7 @@ const EntryComponent = (props: Props) => {
                     SimilarEntries({
                       ...props,
                       entry,
-                      display: !props.activeUser ? "" : "d-none"
+                      display: !props.activeUser ? "" : "hidden"
                     })}
 
                   {Comment({
@@ -973,7 +973,7 @@ const EntryComponent = (props: Props) => {
                     SimilarEntries({
                       ...props,
                       entry,
-                      display: !props.activeUser ? "d-none" : ""
+                      display: !props.activeUser ? "hidden" : ""
                     })}
 
                   {props.activeUser && entry.children === 0 && <CommentEngagement />}

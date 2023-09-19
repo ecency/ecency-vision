@@ -159,9 +159,7 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
     if (community.subscribers < 100) {
       return (
         <div className="dialog-content">
-          <p className="text-danger">
-            {_t("community-rewards-registration.min-required-body-text")}
-          </p>
+          <p className="text-red">{_t("community-rewards-registration.min-required-body-text")}</p>
           {btnClose}
         </div>
       );

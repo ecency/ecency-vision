@@ -260,7 +260,7 @@ exports[`(5) transfer 1`] = `
     className="transaction-icon"
   >
     <div
-      className="route d-flex"
+      className="route flex"
     >
       <span
         className="two-user-avatar small"
@@ -334,7 +334,7 @@ exports[`(6) transfer_to_vesting 1`] = `
     className="transaction-icon"
   >
     <div
-      className="route d-flex"
+      className="route flex"
     >
       <span
         className="two-user-avatar small"
@@ -596,7 +596,7 @@ exports[`(11) transfer_to_savings 1`] = `
     className="transaction-icon"
   >
     <div
-      className="route d-flex"
+      className="route flex"
     >
       <span
         className="two-user-avatar small"

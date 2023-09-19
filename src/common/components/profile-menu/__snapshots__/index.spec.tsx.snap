@@ -8,10 +8,10 @@ exports[`(1) Render 1`] = `
     className="profile-menu-items"
   >
     <span
-      className="d-flex d-lg-none selected-item profile-menu-item"
+      className="flex d-lg-none selected-item profile-menu-item"
     />
     <div
-      className="d-none d-lg-flex align-items-center"
+      className="hidden d-lg-flex items-center"
     >
       <a
         className="profile-menu-item"
@@ -50,7 +50,7 @@ exports[`(1) Render 1`] = `
       Wallet
     </a>
     <div
-      className="kebab-icon entry-index-menu the-menu main-menu d-none d-lg-flex "
+      className="kebab-icon entry-index-menu the-menu main-menu hidden d-lg-flex "
     />
   </div>
   <div
@@ -71,7 +71,7 @@ exports[`(2) With active user 1`] = `
     className="profile-menu-items"
   >
     <span
-      className="d-flex d-lg-none selected-item profile-menu-item"
+      className="flex d-lg-none selected-item profile-menu-item"
     >
       <div
         className="custom-dropdown float-left"
@@ -103,7 +103,7 @@ exports[`(2) With active user 1`] = `
       </div>
     </span>
     <div
-      className="d-none d-lg-flex align-items-center"
+      className="hidden d-lg-flex items-center"
     >
       <a
         className="profile-menu-item"
@@ -142,7 +142,7 @@ exports[`(2) With active user 1`] = `
       Settings
     </a>
     <div
-      className="kebab-icon entry-index-menu the-menu main-menu d-none d-lg-flex "
+      className="kebab-icon entry-index-menu the-menu main-menu hidden d-lg-flex "
     >
       <div
         className="custom-dropdown float-left"

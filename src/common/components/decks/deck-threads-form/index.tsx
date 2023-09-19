@@ -258,7 +258,7 @@ export const DeckThreadsForm = ({
               onTextareaFocus={() => setFocused(true)}
             />
             {inline && (
-              <div className="d-flex align-items-center">
+              <div className="flex items-center">
                 {activeUser && (
                   <AvailableCredits
                     username={activeUser.username}

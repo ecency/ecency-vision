@@ -85,7 +85,7 @@ export const LimitMarketMode = (props: PageProps) => {
 
   return mounted ? (
     <>
-      <div className="d-flex justify-content-md-between flex-column">
+      <div className="flex justify-content-md-between flex-col">
         <div className="mb-5">
           <h4 className="mb-3">
             {loading ? <Skeleton className="skeleton-loading" /> : _t("market.stock-info")}
@@ -105,11 +105,11 @@ export const LimitMarketMode = (props: PageProps) => {
           _t("g.loading") + "..."
         )}
       </div>
-      <div className="d-flex justify-content-center">
+      <div className="flex justify-center">
         <div className="container my-5 mx-0">
           <div>
             {activeUser && (
-              <div className="row justify-content-between d-none d-md-flex px-3">
+              <div className="row justify-between hidden d-mflex px-3">
                 <div className="col-12 col-sm-5 p-0">
                   <HiveBarter
                     type={1}
@@ -148,8 +148,8 @@ export const LimitMarketMode = (props: PageProps) => {
             )}
 
             {activeUser && (
-              <div className="d-flex flex-column d-md-none">
-                <div className="d-flex align-items-sm-center justify-content-start justify-content-sm-between flex-column flex-sm-row">
+              <div className="flex flex-col d-mhidden">
+                <div className="flex align-items-sm-center justify-content-start justify-content-sm-between flex-col flex-sm-row">
                   <h3>{_t("market.barter")}</h3>
                   <ButtonGroup
                     className="my-3"
@@ -199,7 +199,7 @@ export const LimitMarketMode = (props: PageProps) => {
               </div>
             )}
 
-            <div className="row mt-5 mx-0 justify-content-between">
+            <div className="row mt-5 mx-0 justify-between">
               {!openOrdersDataLoading && openOrdersdata.length > 0 && activeUser && (
                 <div className="col-12 px-0 mb-5">
                   <OpenOrders
@@ -226,7 +226,7 @@ export const LimitMarketMode = (props: PageProps) => {
                   data={tablesData ? tablesData!.bids : []}
                 />
               </div>
-              <div className="col-12 col-xl-5 px-0 px-sm-auto mt-5 mt-lg-0">
+              <div className="col-12 col-xl-5 px-0 px-sm-auto mt-5 lg:mt-0">
                 <Orders
                   onPriceClick={(value) =>
                     setBidValues({

@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 
 import { History, Location } from "history";
 
-import isEqual from "react-fast-compare";
-
-import { ProfileFilter, Global } from "../../store/global/types";
+import { Global, ProfileFilter } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import DropDown, { MenuItem } from "../dropdown";
@@ -95,9 +93,7 @@ export class ProfileMenu extends Component<Props> {
         <div className="profile-menu-items">
           <>
             <span
-              className={`d-flex d-lg-none ${
-                showDropdown ? "selected-item profile-menu-item" : ""
-              }`}
+              className={`flex d-lg-none ${showDropdown ? "selected-item profile-menu-item" : ""}`}
             >
               {showDropdown ? (
                 <DropDown {...dropDownMenuConfig} float="left" />
@@ -114,7 +110,7 @@ export class ProfileMenu extends Component<Props> {
                 </Link>
               )}
             </span>
-            <div className="d-none d-lg-flex align-items-center">
+            <div className="hidden d-lg-flex items-center">
               {menuConfig.items.map((menuItem) => (
                 <Link
                   className={_c(`profile-menu-item ${menuItem.selected ? "selected-item" : ""}`)}
@@ -157,7 +153,7 @@ export class ProfileMenu extends Component<Props> {
               {_t(`profile.section-settings`)}
             </Link>
           )}
-          <div className="kebab-icon entry-index-menu the-menu main-menu d-none d-lg-flex ">
+          <div className="kebab-icon entry-index-menu the-menu main-menu hidden d-lg-flex ">
             <DropDown {...kebabMenuConfig} float="left" />
           </div>
         </div>

@@ -23,7 +23,7 @@ export const SendSpkSuccess = ({ amount, mode, activeUser, asset, onFinish, to, 
       >
         <div className="success" />
       </Tsx>
-      <div className="d-flex justify-content-center">
+      <div className="flex justify-center">
         <Button appearance="secondary" outline={true} onClick={reset}>
           {_t("transfer.reset")}
         </Button>

@@ -37,7 +37,7 @@ Array [
     Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines.
   </p>,
   <div
-    className="d-flex justify-content-between"
+    className="flex justify-between"
   >
     <button
       className="btn btn-outline-secondary"
@@ -98,7 +98,7 @@ Array [
     Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines.
   </p>,
   <div
-    className="d-flex justify-content-between"
+    className="flex justify-between"
   >
     <button
       className="btn btn-outline-secondary"

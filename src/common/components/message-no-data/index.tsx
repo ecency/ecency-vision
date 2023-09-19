@@ -15,11 +15,11 @@ interface Props {
 const MessageNoData = ({ buttonText, buttonTo, title, description, img, global }: Props) => {
   const writer = global.isElectron ? "./img/writer.png" : require("../../img/writer.png");
   return (
-    <div className="d-flex justify-content-center align-items-center mt-5">
-      <div className="w-25">
-        <img src={img || writer} className="w-100 h-100" />
+    <div className="flex justify-center items-center mt-5">
+      <div className="w-[25%]">
+        <img src={img || writer} className="w-full h-full" />
       </div>
-      <div className="d-flex flex-column w-50 ml-5">
+      <div className="flex flex-col w-[50%] ml-5">
         <h2>{title}</h2>
         <p className="text-muted lead">{description}</p>
         {buttonText && (

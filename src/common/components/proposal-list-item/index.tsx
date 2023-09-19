@@ -8,11 +8,9 @@ import { History, Location } from "history";
 
 import moment from "moment";
 
-import _ from "lodash";
-
 import numeral from "numeral";
 
-import { Proposal, getProposalVotes } from "../../api/hive";
+import { getProposalVotes, Proposal } from "../../api/hive";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
@@ -138,7 +136,7 @@ export class ProposalListItem extends Component<Props, State> {
     const remaining = diff < 0 ? 0 : diff;
 
     return loadingSearchResult ? (
-      <Skeleton className="w-100 loadingSearch mb-3 shadow" />
+      <Skeleton className="w-full loadingSearch mb-3 shadow" />
     ) : (
       <div className={_c(`proposal-list-item ${!!votedByVoter ? "voted-by-voter" : ""}`)}>
         <div className="item-content">

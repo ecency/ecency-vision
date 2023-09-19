@@ -105,9 +105,9 @@ class FaqPage extends Component<PageProps, FAQPageState> {
           itemType="https://schema.org/FAQPage"
         >
           <div className="static-content">
-            <div className="position-relative rounded" style={{ marginBottom: "8%" }}>
+            <div className="relative rounded" style={{ marginBottom: "8%" }}>
               <img src={imgs} className="rounded" />
-              <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded p-3">
+              <div className="absolute search-container flex justify-center items-center flex-col rounded p-3">
                 <h1 className="text-white faq-title text-center mb-3">
                   {_t("static.faq.page-title")}
                 </h1>

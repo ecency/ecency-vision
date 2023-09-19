@@ -149,9 +149,9 @@ export const SearchListItem = ({
         ref={ref}
         className={`p${index === 1 ? "b" : "y"}-${
           json_metadata && json_metadata.image ? "5" : "4"
-        } d-flex flex-column border-b border-[--border-color]`}
+        } flex flex-col border-b border-[--border-color]`}
       >
-        <div className="d-flex">
+        <div className="flex">
           {username && (
             <img
               src={`https://images.ecency.com/${
@@ -163,7 +163,7 @@ export const SearchListItem = ({
           )}
           <div className="ml-3 deck-body">
             <div onClick={() => history && history.push(url)} className="pointer text-dark">
-              <div className="d-flex align-items-start flex-grow-1 hot-item-link">{msg}</div>
+              <div className="flex items-start flex-grow-1 hot-item-link">{msg}</div>
             </div>
           </div>
 

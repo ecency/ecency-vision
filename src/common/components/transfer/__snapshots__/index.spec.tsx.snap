@@ -115,7 +115,7 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -336,7 +336,7 @@ exports[`(1) Transfer HIVE (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -526,7 +526,7 @@ exports[`(1) Transfer HIVE (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -668,7 +668,7 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -893,7 +893,7 @@ exports[`(2) Transfer HBD (2) Step 2 1`] = `
         </div>
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -962,7 +962,7 @@ exports[`(2) Transfer HBD (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -1104,7 +1104,7 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -1325,7 +1325,7 @@ exports[`(3) Transfer POINT (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -1394,7 +1394,7 @@ exports[`(3) Transfer POINT (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -1536,7 +1536,7 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -1751,7 +1751,7 @@ exports[`(4) Transfer to Savings - HBD (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -1820,7 +1820,7 @@ exports[`(4) Transfer to Savings - HBD (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -1962,7 +1962,7 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -2177,7 +2177,7 @@ exports[`(5) Withdraw Savings - HIVE (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -2246,7 +2246,7 @@ exports[`(5) Withdraw Savings - HIVE (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -2346,7 +2346,7 @@ exports[`(6) Convert (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -2487,7 +2487,7 @@ exports[`(6) Convert (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -2556,7 +2556,7 @@ exports[`(6) Convert (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -2698,7 +2698,7 @@ exports[`(7) Power up (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -2864,7 +2864,7 @@ exports[`(7) Power up (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -2933,7 +2933,7 @@ exports[`(7) Power up (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -3075,7 +3075,7 @@ exports[`(8) Delegate (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -3251,7 +3251,7 @@ exports[`(8) Delegate (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -3320,7 +3320,7 @@ exports[`(8) Delegate (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -3420,7 +3420,7 @@ exports[`(9) Power down (1) Step 1 1`] = `
           Amount
         </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="flex items-center col-sm-10"
         >
           <div
             className="input-group"
@@ -3576,7 +3576,7 @@ exports[`(9) Power down (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"
@@ -3645,7 +3645,7 @@ exports[`(9) Power down (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
           className="btn btn-outline-secondary"

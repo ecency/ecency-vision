@@ -281,7 +281,7 @@ export class Boost extends BaseComponent<Props, State> {
                     readOnly={true}
                     value={`${activeUser.points.points} POINTS`}
                   />
-                  {balanceError && <small className="text-danger">{balanceError}</small>}
+                  {balanceError && <small className="text-red">{balanceError}</small>}
                 </div>
               </div>
               <div className="flex mb-4">
@@ -299,7 +299,7 @@ export class Boost extends BaseComponent<Props, State> {
                       disabled={inProgress}
                     />
                   </SuggestionList>
-                  {postError && <small className="text-danger">{postError}</small>}
+                  {postError && <small className="text-red">{postError}</small>}
                   {!postError && (
                     <small className="text-muted">{_t("redeem-common.post-hint")}</small>
                   )}
@@ -377,7 +377,7 @@ export class Boost extends BaseComponent<Props, State> {
             {inProgress && <LinearProgress />}
             <div className="transaction-form-body">
               <p className="flex justify-center items-center">
-                <span className="svg-icon text-success">{checkAllSvg}</span>{" "}
+                <span className="svg-icon text-green">{checkAllSvg}</span>{" "}
                 {_t("redeem-common.success-message")}
               </p>
               <div className="flex justify-center">

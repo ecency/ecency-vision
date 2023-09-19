@@ -108,7 +108,7 @@ export default function FeedbackMessage(props: Props) {
                   );
                 case "error":
                   return (
-                    <div key={x.id} className="feedback-error align-items-start">
+                    <div key={x.id} className="feedback-error items-start">
                       <div className="feedback-body">
                         <div className="feedback-close-btn" onClick={handleCloseBtn}>
                           {closeSvg}
@@ -116,9 +116,9 @@ export default function FeedbackMessage(props: Props) {
                         <div className="error-content">
                           <div className="error-img">{alertCircleSvg}</div>
 
-                          <div className=" d-flex flex-column align-items-start">
+                          <div className=" flex flex-col items-start">
                             {x.message}
-                            <div className="d-flex">
+                            <div className="flex">
                               {errorType(x) !== ErrorTypes.COMMON &&
                               errorType(x) !== ErrorTypes.INFO ? (
                                 <Button

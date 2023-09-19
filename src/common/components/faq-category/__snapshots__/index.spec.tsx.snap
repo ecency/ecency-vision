@@ -12,17 +12,17 @@ exports[`(1) Default render 1`] = `
       onClick={[Function]}
     >
       <div
-        className="section d-flex flex-column border-bottom"
+        className="section flex flex-col border-bottom"
         onClick={[Function]}
       >
         <div
-          className="d-flex justify-content-between align-items-center section-card position-relative"
+          className="flex justify-between items-center section-card relative"
         >
           <div
-            className="d-flex align-items-center"
+            className="flex items-center"
           >
             <div
-              className="d-flex align-items-center ml-3"
+              className="flex items-center ml-3"
             >
               <div
                 className="section-title ml-1"
