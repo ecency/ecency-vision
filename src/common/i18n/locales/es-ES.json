@@ -918,10 +918,10 @@
     "extra-details-post": "Publicaciones/Comentarios",
     "extra-details-upvote": "Votos",
     "boost": "Impulsar",
-    "you-have-claimed-rc": "Already claimed account credits",
-    "claim": "Claim",
-    "you-claiming": "You are claiming {{n}}",
-    "successfully-claimed": "Successfully claimed!"
+    "you-have-claimed-rc": "Créditos de cuenta ya reclamados",
+    "claim": "Reclamar",
+    "you-claiming": "Estás reclamando {{n}}",
+    "successfully-claimed": "¡Reclamado con éxito!"
   },
   "profile-edit": {
     "title": "Perfil",
