@@ -63,6 +63,10 @@
           word-wrap: break-word;
           padding: 10px;
           border-radius: 0px 10px 10px;
+
+          &.same-user-message {
+            border-radius: 10px;
+          }
         }
       }
       &.same-user {
@@ -125,7 +129,7 @@
       }
 
       .sender-message-content {
-        border-radius: 10px 10px 0px;
+        border-radius: 10px 0px 10px 10px;
         max-width: 70%;
         word-wrap: break-word;
         margin-bottom: 0;
@@ -157,6 +161,9 @@
           img {
             max-width: 100%;
           }
+        }
+        &.same-user-message {
+          border-radius: 10px;
         }
       }
     }

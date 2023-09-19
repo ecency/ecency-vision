@@ -92,11 +92,11 @@ export const Chats = (props: Props) => {
                   ) : (
                     <>
                       <ChatsMessagesBox {...props} />
-                      {match.url !== "/chats" && (
-                        <div className="d-none d-lg-block">
+                      {/* {match.url !== "/chats" && (
+                        <div className="d-none d-lg-block mt-2" style={{ background: "red" }}>
                           <ChatsSideProfile username={username} />
                         </div>
-                      )}
+                      )} */}
                     </>
                   )}
                 </>

@@ -2,7 +2,7 @@
 
 .chats-messages-header {
   grid-row: span 1;
-  width: 60vw;
+  width: 100%;
   height: 67px;
   @include themify(day) {
     border-bottom: 1px solid #e7e7e7;

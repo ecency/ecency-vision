@@ -14,7 +14,7 @@
   @include themify(night) {
     box-shadow: 0px -5px 5px $charcoal-grey;
   }
-  width: 60vw;
+  width: 100%;
 
   .no-chat-select {
     height: calc(100vh - 70px);

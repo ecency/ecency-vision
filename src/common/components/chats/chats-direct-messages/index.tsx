@@ -178,7 +178,7 @@ export default function ChatsDirectMessages(props: Props) {
                             >
                               <div
                                 className={`receiver-message-content ${isGif ? "gif" : ""} ${
-                                  isImage ? "chat-image" : ""
+                                  isImage ? "chat-image" : isSameUser ? "same-user-message" : ""
                                 }`}
                                 dangerouslySetInnerHTML={{ __html: renderedPreview }}
                               />
@@ -216,7 +216,7 @@ export default function ChatsDirectMessages(props: Props) {
                           >
                             <div
                               className={`sender-message-content ${isGif ? "gif" : ""} ${
-                                isImage ? "chat-image" : ""
+                                isImage ? "chat-image" : isSameUser ? "same-user-message" : ""
                               }`}
                               dangerouslySetInnerHTML={{ __html: renderedPreview }}
                             />

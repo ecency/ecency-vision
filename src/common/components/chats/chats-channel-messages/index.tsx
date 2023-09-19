@@ -3,7 +3,6 @@ import mediumZoom, { Zoom } from "medium-zoom";
 import {
   Channel,
   communityModerator,
-  DirectMessage,
   Profile,
   PublicMessage
 } from "../../../../managers/message-manager-types";
@@ -22,21 +21,15 @@ import {
 import UserAvatar from "../../user-avatar";
 import FollowControls from "../../follow-controls";
 import { Account } from "../../../store/accounts/types";
-import { ToggleType, UI } from "../../../store/ui/types";
-import { Global } from "../../../store/global/types";
+import { ToggleType } from "../../../store/ui/types";
 import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../i18n";
 import Tooltip from "../../tooltip";
 import { failedMessageSvg, hideSvg, resendMessageSvg } from "../../../img/svg";
-
-import "./index.scss";
-import { User } from "../../../store/users/types";
-import { ActiveUser } from "../../../store/active-user/types";
 import ChatsConfirmationModal from "../chats-confirmation-modal";
 import { error } from "../../feedback";
-import { CHATPAGE } from "../chat-popup/chat-constants";
+import { CHATPAGE, COMMUNITYADMINROLES, PRIVILEGEDROLES } from "../chat-popup/chat-constants";
 import { Theme } from "../../../store/global/types";
-import { NostrKeysType } from "../types";
 import {
   formatMessageTime,
   isMessageGif,
@@ -45,6 +38,9 @@ import {
   checkContiguousMessage
 } from "../utils";
 import { ChatContext } from "../chat-context-provider";
+
+import "./index.scss";
+import { useMount } from "react-use";
 
 interface Props {
   publicMessages: PublicMessage[];
@@ -94,6 +90,15 @@ export default function ChatsChannelMessages(props: Props) {
   const [privilegedUsers, setPrivilegedUsers] = useState<string[]>([]);
   const [hiddenMsgId, setHiddenMsgId] = useState("");
   const [resendMessage, setResendMessage] = useState<PublicMessage>();
+  const [windowWidth, setWindowWidth] = useState(0);
+  const [showMessageActions, setShowMessageActions] = useState(false);
+
+  useMount(() => {
+    setWindowWidth(window.innerWidth);
+    if (window.innerWidth <= 768) {
+      setShowMessageActions(true);
+    }
+  });
 
   useEffect(() => {
     if (prevGlobal?.theme !== global.theme) {
@@ -117,6 +122,14 @@ export default function ChatsChannelMessages(props: Props) {
       getPrivilegedUsers(currentChannel?.communityModerators!);
     }
   }, [currentChannel]);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -160,6 +173,13 @@ export default function ChatsChannelMessages(props: Props) {
     }
   };
 
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+    if (window.innerWidth <= 768) {
+      setShowMessageActions(true);
+    }
+  };
+
   const handleDMChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     setDmMessage(e.target.value);
   };
@@ -190,14 +210,11 @@ export default function ChatsChannelMessages(props: Props) {
   };
 
   const getPrivilegedUsers = (communityModerators: communityModerator[]) => {
-    const privilegedRoles = ["owner", "admin", "mod"];
-    const communityAdminRoles = ["owner", "admin"];
-
     const privilegedUsers = communityModerators.filter((user) =>
-      privilegedRoles.includes(user.role)
+      PRIVILEGEDROLES.includes(user.role)
     );
     const communityAdmins = communityModerators.filter((user) =>
-      communityAdminRoles.includes(user.role)
+      COMMUNITYADMINROLES.includes(user.role)
     );
 
     const privilegedUserNames = privilegedUsers.map((user) => user.name);
@@ -288,6 +305,15 @@ export default function ChatsChannelMessages(props: Props) {
       );
     }
     return <></>;
+  };
+
+  const handelMessageActions = (msgId: string) => {
+    console.log("showMessageActions", showMessageActions, "msgId", msgId);
+    if (showMessageActions && hoveredMessageId !== msgId) {
+      setHoveredMessageId(msgId);
+    } else {
+      setHoveredMessageId("");
+    }
   };
 
   return (
@@ -402,8 +428,8 @@ export default function ChatsChannelMessages(props: Props) {
                   <div
                     key={pMsg.id}
                     className="receiver"
-                    onMouseEnter={() => setHoveredMessageId(pMsg.id)}
-                    onMouseLeave={() => setHoveredMessageId("")}
+                    onMouseEnter={() => !showMessageActions && setHoveredMessageId(pMsg.id)}
+                    onMouseLeave={() => !showMessageActions && setHoveredMessageId("")}
                   >
                     {!isSameUserMessage && (
                       <div className="community-user-img">
@@ -430,7 +456,10 @@ export default function ChatsChannelMessages(props: Props) {
                         </p>
                       )}
 
-                      <div className="receiver-messag">
+                      <div
+                        className="receiver-message"
+                        onClick={() => handelMessageActions(pMsg.id)}
+                      >
                         <Tooltip
                           content={
                             formatMessageDate(pMsg.created).split(",")[1] +
@@ -449,7 +478,9 @@ export default function ChatsChannelMessages(props: Props) {
                               }`}
                               dangerouslySetInnerHTML={{ __html: renderedPreview }}
                             />
-                            {/* <p className="receiver-msg-time">{formatMessageTime(pMsg.created)}</p> */}
+                            {windowWidth <= 768 && (
+                              <p className="receiver-msg-time">{formatMessageTime(pMsg.created)}</p>
+                            )}
                           </div>
                         </Tooltip>
                         {hoveredMessageId === pMsg.id &&
@@ -476,13 +507,14 @@ export default function ChatsChannelMessages(props: Props) {
                   <div
                     key={pMsg.id}
                     className="sender"
-                    onMouseEnter={() => setHoveredMessageId(pMsg.id)}
-                    onMouseLeave={() => setHoveredMessageId("")}
+                    onMouseEnter={() => !showMessageActions && setHoveredMessageId(pMsg.id)}
+                    onMouseLeave={() => !showMessageActions && setHoveredMessageId("")}
                   >
                     <div
                       className={`sender-message ${
                         pMsg.sent === 2 ? "failed" : pMsg.sent === 0 ? "sending" : ""
                       }`}
+                      onClick={() => handelMessageActions(pMsg.id)}
                     >
                       {hoveredMessageId === pMsg.id && !isActveUserRemoved && (
                         <Tooltip content={"Hide Message"}>
@@ -523,14 +555,16 @@ export default function ChatsChannelMessages(props: Props) {
                       >
                         <div
                           className={`sender-message-wrapper ${isGif ? "gif" : ""} ${
-                            isImage ? "chat-image" : ""
+                            isImage ? "chat-image" : isSameUserMessage ? "same-user-message" : ""
                           }`}
                         >
                           <div
                             className="sender-message-content"
                             dangerouslySetInnerHTML={{ __html: renderedPreview }}
                           />
-                          {/* <p className="sender-message-time">{formatMessageTime(pMsg.created)}</p> */}
+                          {windowWidth <= 768 && (
+                            <p className="sender-message-time">{formatMessageTime(pMsg.created)}</p>
+                          )}
                         </div>
                       </Tooltip>
 

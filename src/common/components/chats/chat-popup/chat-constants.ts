@@ -28,6 +28,8 @@ export const GifImagesStyle = {
 };
 
 export const CHAT_FILE_CONTENT_TYPES = ["jpg", "jpeg", "gif", "png"];
+export const PRIVILEGEDROLES = ["owner", "admin", "mod"];
+export const COMMUNITYADMINROLES = ["owner", "admin"];
 
 export const NOSTRKEY = "nsKey";
 export const UPLOADING = "Uploading";

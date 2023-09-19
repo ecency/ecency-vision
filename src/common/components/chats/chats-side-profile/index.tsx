@@ -15,7 +15,7 @@ export const ChatsSideProfile = (props: Props) => {
   console.log("Username in profile sidebar", props.username);
   return (
     <div className="profile-side-bar">
-      <p className="side-profile">
+      <p className="d-flex justify-content-center align-items-center side-profile">
         <UserAvatar username={formattedUserName(username)} size="large" />
       </p>
     </div>
