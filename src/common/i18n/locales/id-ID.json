@@ -73,7 +73,8 @@
     "confirm": "Confirm",
     "username": "Username",
     "past-few-days": "the past few days",
-    "you": "You"
+    "you": "You",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "Apakah anda yakin?",
@@ -1439,7 +1440,8 @@
     "empty-title-alert": "Tambahkan judul postingan",
     "empty-tags-alert": "Tambahkan tagar postingan",
     "empty-body-alert": "Tambahkan isi postingan",
-    "description": "Short description"
+    "description": "Short description",
+    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
   },
   "video-upload": {
     "choose-video": "Select a video",
