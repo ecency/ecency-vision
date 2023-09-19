@@ -73,7 +73,8 @@
     "confirm": "Confirm",
     "username": "Username",
     "past-few-days": "the past few days",
-    "you": "You"
+    "you": "You",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "你确定吗？",
@@ -1439,7 +1440,8 @@
     "empty-title-alert": "输入帖子标题",
     "empty-tags-alert": "输入帖子标签",
     "empty-body-alert": "输入帖子内容",
-    "description": "Short description"
+    "description": "Short description",
+    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
   },
   "video-upload": {
     "choose-video": "Select a video",
