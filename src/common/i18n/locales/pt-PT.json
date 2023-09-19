@@ -73,7 +73,8 @@
     "confirm": "Confirmar",
     "username": "Usuário",
     "past-few-days": "nos últimos dias",
-    "you": "Tu"
+    "you": "Tu",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -1439,7 +1440,8 @@
     "empty-title-alert": "Insira o título da publicação",
     "empty-tags-alert": "Insira as etiquetas da postagem",
     "empty-body-alert": "Insira o corpo da postagem",
-    "description": "Breve descrição"
+    "description": "Breve descrição",
+    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
   },
   "video-upload": {
     "choose-video": "Select a video",
