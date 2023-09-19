@@ -1,4 +1,4 @@
-import { informationSvg } from "../../img/svg";
+import { copyOutlinSvg, informationSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { dateToFullRelative } from "../../helper/parse-date";
 import React, { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import { ThreeSpeakVideo, useThreeSpeakVideo } from "../../api/threespeak";
 import { Button } from "react-bootstrap";
 import { proxifyImageSrc } from "@ecency/render-helper";
 import { useMappedStore } from "../../store/use-mapped-store";
+import useCopyToClipboard from "react-use/lib/useCopyToClipboard";
 
 interface videoProps {
   status: string;
@@ -34,6 +35,7 @@ export function VideoGalleryItem({
 }: Props) {
   const { global } = useMappedStore();
   const { data } = useThreeSpeakVideo("all");
+  const [_, copyToClipboard] = useCopyToClipboard();
 
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<any>(null);
@@ -52,32 +54,10 @@ export function VideoGalleryItem({
     setHoveredItem(item);
   };
 
-  const embeddVideo = (video: videoProps) => {
-    const speakFile = `[![](${video.thumbUrl})](${speakUrl}${video.owner}/${video.permlink})`;
-
-    const element = ` <center>${speakFile}[Source](${video.filename.replace(
-      "ipfs://",
-      "https://ipfs-3speak.b-cdn.net/ipfs/"
-    )})</center>`;
-    const body = insertText("").innerHTML;
-    const hup = manualPublishSpeakVideos
-      .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
-      .some((i) => body.includes(i));
-
-    if (!hup || video.status == "published") {
-      setVideoMetadata?.(
-        manualPublishSpeakVideos.find(
-          (v) => v.permlink === video.permlink && v.owner === video.owner
-        )!!
-      );
-      insertText(element);
-    }
-  };
-
   const insert = async (isNsfw = false) => {
     let nextItem = item;
 
-    embeddVideo(nextItem);
+    setVideoMetadata?.(nextItem);
     const body = insertText("").innerHTML;
     const hup = manualPublishSpeakVideos
       .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
@@ -134,40 +114,51 @@ export function VideoGalleryItem({
         />
       </div>
       <div className="list-details-wrapper">
-        <div className="list-title">
-          <div className="info-status">
-            <div className="status">
-              {statusIcons(item.status)}
-              {toolTipContent(item.status)}{" "}
-              {item.status == "encoding_ipfs" || item.status == "encoding_preparing"
-                ? `${item.encodingProgress.toFixed(2)}%`
-                : ""}
-            </div>
-            <div
-              onMouseOver={() => {
-                getHoveredItem(item);
-                setShowMoreInfo(true);
-              }}
-              onMouseOut={() => setShowMoreInfo(false)}
-              className="info-icon-wrapper"
-            >
-              {informationSvg}
-            </div>
-          </div>
-          <div className="w-100 text-truncate">{item.title}</div>
-          {["publish_manual", "published"].includes(item.status) && (
-            <div className="details-actions">
-              <Button size="sm" onClick={() => insert()}>
-                {_t("video-gallery.insert-video")}
-              </Button>
-              {item.status != "published" && (
-                <Button variant="link" size="sm" onClick={() => insert(true)}>
-                  {_t("video-gallery.insert-nsfw")}
-                </Button>
-              )}
-            </div>
-          )}
+        <div className="list-details-wrapper-status">
+          {statusIcons(item.status)}
+          {toolTipContent(item.status)}{" "}
+          {item.status == "encoding_ipfs" || item.status == "encoding_preparing"
+            ? `${item.encodingProgress.toFixed(2)}%`
+            : ""}
         </div>
+
+        <div
+          onMouseOver={() => {
+            getHoveredItem(item);
+            setShowMoreInfo(true);
+          }}
+          onMouseOut={() => setShowMoreInfo(false)}
+          className="list-details-wrapper-info"
+        >
+          {informationSvg}
+        </div>
+
+        <Button
+          variant="link"
+          title={_t("g.copy-clipboard")}
+          size="sm"
+          className="list-details-wrapper-copy px-0 text-muted"
+          onClick={() =>
+            copyToClipboard(item.filename.replace("ipfs://", "https://ipfs-3speak.b-cdn.net/ipfs/"))
+          }
+        >
+          {copyOutlinSvg}
+        </Button>
+
+        <div className="list-details-wrapper-title w-100 text-truncate">{item.title}</div>
+
+        {["publish_manual", "published"].includes(item.status) && (
+          <div className="list-details-wrapper-actions">
+            <Button size="sm" onClick={() => insert()}>
+              {_t("video-gallery.insert-video")}
+            </Button>
+            {item.status != "published" && (
+              <Button variant="link" size="sm" onClick={() => insert(true)}>
+                {_t("video-gallery.insert-nsfw")}
+              </Button>
+            )}
+          </div>
+        )}
       </div>
       {showMoreInfo && hoveredItem._id === item._id && (
         <div className="more-info">

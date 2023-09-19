@@ -25,7 +25,5 @@ export enum QueryIdentifiers {
   THREE_SPEAK_VIDEO_LIST = "three-speak-video-list",
   THREE_SPEAK_VIDEO_LIST_FILTERED = "three-speak-video-list-filtered",
   DRAFTS = "drafts",
-  BY_DRAFT_ID = "by-draft-id",
-
-  EMOJI_PICKER = "emoji-picker"
+  BY_DRAFT_ID = "by-draft-id"
 }

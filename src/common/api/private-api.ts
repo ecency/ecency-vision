@@ -217,12 +217,7 @@ export const addImage = (username: string, url: string): Promise<any> => {
 export interface DraftMetadata extends MetaData {
   beneficiaries: BeneficiaryRoute[];
   rewardType: RewardType;
-  isThreespeak?: boolean;
-  speakAuthor?: string;
-  speakPermlink?: string;
-  videoId?: string;
-  isNsfw?: boolean;
-  videoMetadata?: ThreeSpeakVideo;
+  videos?: Record<string, ThreeSpeakVideo>;
 }
 
 export interface Draft {

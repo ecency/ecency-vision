@@ -16,6 +16,7 @@
     "@ecency/render-helper": "^2.2.26",
     "@ecency/render-helper-amp": "^1.1.0",
     "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
     "@firebase/analytics": "^0.8.0",
     "@firebase/app": "^0.7.28",
     "@firebase/messaging": "^0.9.16",
