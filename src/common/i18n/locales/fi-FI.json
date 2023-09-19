@@ -73,7 +73,8 @@
     "confirm": "Vahvista",
     "username": "Käyttäjänimi",
     "past-few-days": "viime päivinä",
-    "you": "Sinä"
+    "you": "Sinä",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -1439,7 +1440,8 @@
     "empty-title-alert": "Syötä julkaisun otsikko",
     "empty-tags-alert": "Syötä julkaisun tagit",
     "empty-body-alert": "Syötä julkaisun runko",
-    "description": "Lyhyt kuvaus"
+    "description": "Lyhyt kuvaus",
+    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
   },
   "video-upload": {
     "choose-video": "Valitse video",
