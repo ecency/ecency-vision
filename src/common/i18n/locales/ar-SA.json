@@ -73,7 +73,8 @@
     "confirm": "تأكيد",
     "username": "اسم المستخدم",
     "past-few-days": "الأيام القليلة الماضية",
-    "you": "أنت"
+    "you": "أنت",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "هل أنت متأكد؟",
@@ -1439,7 +1440,8 @@
     "empty-title-alert": "Enter post title",
     "empty-tags-alert": "Enter post tags",
     "empty-body-alert": "Enter post body",
-    "description": "Short description"
+    "description": "Short description",
+    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
   },
   "video-upload": {
     "choose-video": "Select a video",
