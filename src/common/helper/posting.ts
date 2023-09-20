@@ -93,7 +93,7 @@ export const makeCommentOptions = (
 ): CommentOptions => {
   beneficiaries?.forEach((b) => delete b.src);
 
-  beneficiaries?.sort();
+  beneficiaries?.sort((a, b) => a.account.localeCompare(b.account));
   const opt: CommentOptions = {
     allow_curation_rewards: true,
     allow_votes: true,
