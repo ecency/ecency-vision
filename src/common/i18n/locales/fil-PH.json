@@ -73,7 +73,8 @@
     "confirm": "Confirm",
     "username": "Username",
     "past-few-days": "the past few days",
-    "you": "You"
+    "you": "You",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "Sigurado ka ba?",
@@ -917,7 +918,11 @@
     "extra-details-transfer": "Transfers",
     "extra-details-post": "Posts/Comments",
     "extra-details-upvote": "Votes",
-    "boost": "Boost"
+    "boost": "Boost",
+    "you-have-claimed-rc": "Already claimed account credits",
+    "claim": "Claim",
+    "you-claiming": "You are claiming {{n}}",
+    "successfully-claimed": "Successfully claimed!"
   },
   "profile-edit": {
     "title": "Pagkakakilanlan",
@@ -1435,10 +1440,12 @@
     "empty-title-alert": "Enter post title",
     "empty-tags-alert": "Enter post tags",
     "empty-body-alert": "Enter post body",
-    "description": "Short description"
+    "description": "Short description",
+    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
   },
   "video-upload": {
     "choose-video": "Select a video",
+    "record-video": "Record a video",
     "choose-thumbnail": "Set a thumbnail(optional)",
     "continue": "Continue",
     "encode": "Send for encoding",
@@ -1449,7 +1456,12 @@
     "preview": "Preview",
     "to-gallery": "Go to gallery",
     "congrats": "Congratulations",
-    "publishing": "Don't refresh this page, wait for few seconds for video to process"
+    "publishing": "Don't refresh this page, wait for few seconds for video to process",
+    "no-record-permission": "You don't have permission to record video",
+    "confirm-and-upload": "Confirm and upload to 3Speak",
+    "uploading": "Uploading..{{n}}/{{total}}",
+    "uploaded": "Uploaded!",
+    "reset": "Reset"
   },
   "video-gallery": {
     "all": "All",
