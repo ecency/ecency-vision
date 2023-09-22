@@ -33,6 +33,7 @@ export function ThreeSpeakManager(props: { children: ReactNode }) {
     <ThreeSpeakVideoContext.Provider
       value={{
         videos: videos!!,
+        setVideos,
         isNsfw: isNsfw!!,
         setIsNsfw,
         isEditing,
