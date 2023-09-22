@@ -37,9 +37,8 @@ export const Chats = (props: Props) => {
 
   const username = match.params.username;
 
-  const { showSpinner, activeUserKeys, revealPrivKey, chatPrivKey } = useContext(ChatContext);
-
-  console.log("inProgress in chats page", showSpinner);
+  const { showSpinner, activeUserKeys, revealPrivKey, chatPrivKey, windowWidth } =
+    useContext(ChatContext);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -71,48 +70,58 @@ export const Chats = (props: Props) => {
     <>
       <Feedback activeUser={activeUser} />
       {global.isElectron ? <NavBarElectron {...props} /> : <NavBar history={props.history} />}
+
       <div
         style={{ marginTop: marginTop }}
         className={props.global.isElectron ? "chats-page mb-lg-0 pt-6" : "chats-page mb-lg-0"}
       >
-        {showSpinner ? (
-          <div className="d-flex justify-content-center align-items-center full-page">
-            <Spinner animation="border" variant="primary" />
-          </div>
-        ) : (
-          <>
-            {activeUserKeys?.pub ? (
-              chatPrivKey ? (
-                <>
-                  <ChatsSideBar history={history} username={username} />
-                  {revealPrivKey ? (
-                    <div className="chats-messages-box">
-                      <ManageChatKey />
+        {activeUser ? (
+          showSpinner ? (
+            <div className="d-flex justify-content-center align-items-center full-page">
+              <Spinner animation="border" variant="primary" />
+            </div>
+          ) : (
+            <>
+              {activeUserKeys?.pub ? (
+                chatPrivKey ? (
+                  <>
+                    <ChatsSideBar history={history} username={username} />
+                    {revealPrivKey ? (
+                      <div
+                        className="chats-manage-key"
+                        style={{ position: windowWidth < 768 ? "absolute" : "static" }}
+                      >
+                        <ManageChatKey />
+                      </div>
+                    ) : (
+                      <>
+                        <ChatsMessagesBox {...props} />
+                        {/* {match.url !== "/chats" && (
+                          <div className="d-none d-lg-block mt-2" style={{ background: "red" }}>
+                            <ChatsSideProfile username={username} />
+                          </div>
+                        )} */}
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <div className="import-chat">
+                      <ImportChats />
                     </div>
-                  ) : (
-                    <>
-                      <ChatsMessagesBox {...props} />
-                      {/* {match.url !== "/chats" && (
-                        <div className="d-none d-lg-block mt-2" style={{ background: "red" }}>
-                          <ChatsSideProfile username={username} />
-                        </div>
-                      )} */}
-                    </>
-                  )}
-                </>
+                  </>
+                )
               ) : (
-                <>
-                  <div className="import-chat">
-                    <ImportChats />
-                  </div>
-                </>
-              )
-            ) : (
-              <div className="d-flex justify-content-center align-items-center full-page">
-                <JoinChat />
-              </div>
-            )}
-          </>
+                <div className="d-flex justify-content-center align-items-center full-page">
+                  <JoinChat />
+                </div>
+              )}
+            </>
+          )
+        ) : (
+          <h4 className="d-flex justify-content-center align-items-center full-page text-center">
+            Please login to continue the chat
+          </h4>
         )}
       </div>
     </>

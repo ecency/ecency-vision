@@ -12,7 +12,6 @@ import { setNostrkeys } from "../../../../managers/message-manager";
 import "./index.scss";
 import LinearProgress from "../../linear-progress";
 import ChatsConfirmationModal from "../chats-confirmation-modal";
-import { createNoStrAccount, setProfileMetaData } from "../utils";
 
 export default function ImportChats() {
   const { activeUser } = useMappedStore();

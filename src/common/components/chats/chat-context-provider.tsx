@@ -8,7 +8,7 @@ import {
   createNoStrAccount,
   getPrivateKey,
   getUserChatPublicKey,
-  setProfileMetaData
+  uploadChatPublicKey
 } from "./utils";
 import * as ls from "../../util/local-storage";
 import { setNostrkeys } from "../../../managers/message-manager";
@@ -23,6 +23,11 @@ interface Context {
   messageServiceInstance: MessageService | null;
   hasUserJoinedChat: boolean;
   currentChannel: Channel | null;
+  showSideBar: boolean;
+  windowWidth: number;
+  maxHeight: number;
+  isActveUserRemoved: boolean;
+  setShowSideBar: (d: boolean) => void;
   setCurrentChannel: (channel: Channel) => void;
   setRevealPrivKey: (d: boolean) => void;
   setShowSpinner: (d: boolean) => void;
@@ -47,6 +52,11 @@ export const ChatContext = React.createContext<Context>({
   messageServiceInstance: null,
   hasUserJoinedChat: false,
   currentChannel: null,
+  showSideBar: true,
+  windowWidth: 0,
+  maxHeight: 0,
+  isActveUserRemoved: false,
+  setShowSideBar: () => {},
   setCurrentChannel: () => {},
   setRevealPrivKey: () => {},
   setShowSpinner: () => {},
@@ -70,21 +80,58 @@ export const ChatContextProvider = (props: Props) => {
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
   const [currentChannel, setCurrentChannel] = useState<Channel | null>(null);
-
-  useEffect(() => {
-    console.log("currentChannel", currentChannel);
-  }, [currentChannel]);
+  const [showSideBar, setShowSideBar] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(0);
+  const [maxHeight, setMaxHeight] = useState(0);
+  const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
 
   useMount(() => {
     getActiveUserKeys();
+    handleShowSideBar();
+    setWindowWidth(window.innerWidth);
+    setMaxHeight(window.innerHeight - 66);
   });
 
   useEffect(() => {
+    if (currentChannel && currentChannel.removedUserIds) {
+      setIsActiveUserRemoved(currentChannel.removedUserIds?.includes(activeUserKeys?.pub!));
+    }
+  }, [currentChannel]);
+
+  useEffect(() => {
+    console.log("messageServiceInstance", messageServiceInstance);
+  }, [messageServiceInstance]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      setMaxHeight(window.innerHeight - 66);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    getActiveUserKeys();
     if (messageServiceInstance) {
-      getActiveUserKeys();
       setShouldUpdateProfile(false);
     }
   }, [messageServiceInstance]);
+
+  useEffect(() => {
+    console.log("showsidebar", showSideBar);
+  }, [showSideBar]);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleShowSideBar);
+    return () => {
+      window.removeEventListener("resize", handleShowSideBar);
+    };
+  }, []);
 
   useEffect(() => {
     if (shouldUpdateProfile && messageServiceInstance) {
@@ -96,15 +143,16 @@ export const ChatContextProvider = (props: Props) => {
     }
   }, [shouldUpdateProfile, messageServiceInstance]);
 
-  useEffect(() => {
-    if (showSpinner) {
-      setTimeout(() => {
-        setShowSpinner(false);
-      }, 3000);
-    }
-  }, [showSpinner]);
-
   useDebounce(() => setShowSpinner(false), 3000, [showSpinner]);
+
+  const handleShowSideBar = () => {
+    console.log("Function run", window.innerWidth);
+    if (window.innerWidth < 768) {
+      setShowSideBar(false);
+    } else {
+      setShowSideBar(true);
+    }
+  };
 
   const getActiveUserKeys = async () => {
     const pubKey = await getUserChatPublicKey(activeUser?.username!);
@@ -125,7 +173,6 @@ export const ChatContextProvider = (props: Props) => {
       newMessageService = new MessageService(keys.priv, keys.pub);
       setMessageServiceInstance(newMessageService);
     }
-    console.log("newMessageService", newMessageService);
     return newMessageService;
   };
 
@@ -133,7 +180,7 @@ export const ChatContextProvider = (props: Props) => {
     resetChat();
     const keys = createNoStrAccount();
     ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
-    await setProfileMetaData(activeUser, keys.pub);
+    await uploadChatPublicKey(activeUser, keys.pub);
     setHasUserJoinedChat(true);
     setNostrkeys(keys);
     setChatPrivKey(keys.priv);
@@ -152,6 +199,11 @@ export const ChatContextProvider = (props: Props) => {
         messageServiceInstance,
         hasUserJoinedChat,
         currentChannel,
+        showSideBar,
+        windowWidth,
+        maxHeight,
+        isActveUserRemoved,
+        setShowSideBar,
         setCurrentChannel,
         setRevealPrivKey,
         setShowSpinner,

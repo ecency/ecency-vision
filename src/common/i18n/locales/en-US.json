@@ -1861,7 +1861,8 @@
     "join-community-chat": "Join Community Chat",
     "submit": "Submit",
     "chat-priv-key": "Chat Private key",
-    "copy-priv-key": "Copy Private key"
+    "copy-priv-key": "Copy Private key",
+    "extended-view": "Extended View"
   },
   "add-image": {
     "title": "Add Image",

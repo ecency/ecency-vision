@@ -48,10 +48,8 @@ export default function ChatsDirectMessages(props: Props) {
     scrollToBottom
   } = props;
 
-  const { chat, global, activeUser, deleteDirectMessage } = useMappedStore();
+  const { global, activeUser, deleteDirectMessage } = useMappedStore();
   const { activeUserKeys, messageServiceInstance } = useContext(ChatContext);
-
-  console.log("directMessages", directMessages);
 
   let prevGlobal = usePrevious(global);
   const [step, setStep] = useState(0);
@@ -103,16 +101,6 @@ export default function ChatsDirectMessages(props: Props) {
     return <></>;
   };
 
-  // const getFormattedDate = (msg: DirectMessage, i: number) => {
-  //   const prevMsg = directMessages[i - 1];
-  //   const msgDate = formatMessageDate(msg.created);
-  //   const prevMsgDate = prevMsg ? formatMessageDate(prevMsg.created) : null;
-  //   if (msgDate !== prevMsgDate) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
-
   const handleConfirm = () => {
     switch (step) {
       case 1:
@@ -145,10 +133,6 @@ export default function ChatsDirectMessages(props: Props) {
                 const isImage = isMessageImage(msg.content);
 
                 const isSameUser = checkContiguousMessage(msg, i, directMessages);
-
-                // const date = getFormattedDate(msg, i);
-
-                // console.log('date', date, msg)
 
                 return (
                   <React.Fragment key={msg.id}>

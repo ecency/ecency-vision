@@ -26,29 +26,52 @@
   }
 
   .header-content {
-    .user-info {
-      display: inline-flex;
-      padding: 8px 10px;
-      margin: 5px 0 0 9px;
-      cursor: pointer;
+    .user-info-wrapper {
+      .expand-icon {
+        margin-top: 15px;
+        .expand-svg {
+          height: 35px;
+          width: 35px;
+          background: #f4f4f4;
+          margin-left: 10px;
+          border-radius: 10px;
+          cursor: pointer;
+          svg {
+            width: 35px;
+            height: 35px;
+          }
 
-      .username {
-        font-size: 21px;
-        font-family: Helvetica, Arial, sans-serif;
-        font-weight: 700;
-        margin: 7px 0 0 12px;
-      }
-      &:hover {
-        border-radius: 10px;
-        @include themify(day) {
-          background: #eeeeee;
+          &:hover {
+            background: #e4e6eb;
+          }
         }
+      }
 
-        @include themify(night) {
-          background: $dusky-blue;
+      .user-info {
+        display: inline-flex;
+        padding: 8px 10px;
+        margin: 5px 0 0 0;
+        cursor: pointer;
+
+        .username {
+          font-size: 21px;
+          font-family: Helvetica, Arial, sans-serif;
+          font-weight: 700;
+          margin: 7px 0 0 12px;
+        }
+        &:hover {
+          border-radius: 10px;
+          @include themify(day) {
+            background: #eeeeee;
+          }
+
+          @include themify(night) {
+            background: $dusky-blue;
+          }
         }
       }
     }
+
     .community-menu {
       border: none;
       width: 40px;

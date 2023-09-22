@@ -10,7 +10,7 @@ import { getAccountReputations } from "../../../api/hive";
 import accountReputation from "../../../helper/account-reputation";
 import { getCommunityLastMessage, getDirectLastMessage, getJoinedCommunities } from "../utils";
 import { _t } from "../../../i18n";
-import { arrowBackSvg, syncSvg } from "../../../img/svg";
+import { arrowBackSvg, closeSvg, syncSvg } from "../../../img/svg";
 import ChatsScroller from "../chats-scroller";
 import LinearProgress from "../../linear-progress";
 import Tooltip from "../../tooltip";
@@ -36,6 +36,10 @@ export default function ChatsSideBar(props: Props) {
     activeUserKeys,
     revealPrivKey,
     chatPrivKey,
+    showSideBar,
+    windowWidth,
+    maxHeight,
+    setShowSideBar,
     setShowSpinner,
     setRevealPrivKey,
     setReceiverPubKey
@@ -116,144 +120,179 @@ export default function ChatsSideBar(props: Props) {
     }
   };
 
+  const handleSideBar = () => {
+    if (windowWidth < 768 && showSideBar) {
+      setShowSideBar(false);
+    }
+  };
+
   return (
-    <div className="chats-sidebar">
-      <div className="d-flex justify-content-between chats-title">
-        <div className="d-flex chats-content">
-          {revealPrivKey && (
-            <Tooltip content={_t("chat.back")}>
-              <div
-                className="back-arrow-image d-flex justify-content-center align-items-center"
-                onClick={() => setRevealPrivKey(false)}
-              >
-                <span className="back-arrow-svg"> {arrowBackSvg}</span>
-              </div>
-            </Tooltip>
-          )}
-
-          <p className="chats">Chats</p>
-        </div>
-
-        <div className="chat-actions d-flex">
-          <div className="refresh-button">
-            <Tooltip content={_t("chat.refresh")}>
-              <p className="refresh-svg" onClick={handleRefreshChat}>
-                {syncSvg}
-              </p>
-            </Tooltip>
-          </div>
-          {chatPrivKey && (
-            <div className="chat-menu">
-              <ChatsDropdownMenu
-                onManageChatKey={() => {
-                  setRevealPrivKey(!revealPrivKey);
-                }}
-                {...props}
-              />
+    <>
+      {showSideBar && (
+        <div className="chats-sidebar">
+          {windowWidth < 768 && (
+            <div
+              className="close-sidebar d-flex justify-content-end"
+              onClick={() => setShowSideBar(false)}
+            >
+              {closeSvg}
             </div>
           )}
-        </div>
-      </div>
-      <div className="chats-search">
-        <Form.Group className="w-100">
-          <Form.Control
-            type="text"
-            placeholder={_t("chat.search")}
-            value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-              setSearchInProgress(true);
-              if (e.target.value.length === 0) {
-                setSearchInProgress(false);
-                setUserList([]);
-              }
-            }}
-          />
-        </Form.Group>
-      </div>
-      {showDivider && <div className="divider" />}
-      {searchInProgress && <LinearProgress />}
-      <div className="chats-list" onScroll={handleScroll} ref={chatsSideBarRef}>
-        {searchText ? (
-          <div className="searched-users">
-            {userList.map((user) => (
-              <Link
-                to={`/chats/@${user.account}`}
-                onClick={() => {
-                  setSearchText("");
-                  setSearchInProgress(false);
-                }}
-                key={user.account}
-              >
-                <div
-                  className="d-flex user-info"
-                  key={user.account}
-                  onClick={() => {
-                    handleRevealPrivKey();
-                    getReceiverPubKey(user.account);
-                  }}
-                >
-                  <span>
-                    <UserAvatar username={user.account} size="medium" />
-                  </span>
-                  <span className="user-name">{user.account}</span>
-                  <span className="user-reputation">({accountReputation(user.reputation)})</span>
+
+          <div className="d-flex justify-content-between chats-title">
+            <div className="d-flex chats-content">
+              {revealPrivKey && windowWidth > 768 && (
+                <Tooltip content={_t("chat.back")}>
+                  <div
+                    className="back-arrow-image d-flex justify-content-center align-items-center"
+                    onClick={() => setRevealPrivKey(false)}
+                  >
+                    <span className="back-arrow-svg"> {arrowBackSvg}</span>
+                  </div>
+                </Tooltip>
+              )}
+
+              <p className="chats">Chats</p>
+            </div>
+
+            <div className="chat-actions d-flex">
+              <div className="refresh-button">
+                <Tooltip content={_t("chat.refresh")}>
+                  <p className="refresh-svg" onClick={handleRefreshChat}>
+                    {syncSvg}
+                  </p>
+                </Tooltip>
+              </div>
+              {chatPrivKey && (
+                <div className="chat-menu">
+                  <ChatsDropdownMenu
+                    onManageChatKey={() => {
+                      setRevealPrivKey(!revealPrivKey);
+                      if (windowWidth < 768) {
+                        setShowSideBar(false);
+                      }
+                    }}
+                    {...props}
+                  />
                 </div>
-              </Link>
-            ))}
+              )}
+            </div>
           </div>
-        ) : (
-          <>
-            {communities.length !== 0 && <p className="community-title">Communities</p>}
-            {communities.map((channel) => (
-              <Link to={`/chats/${channel.communityName}`} key={channel.id}>
-                <div
-                  className={`community ${username === channel.communityName ? "selected" : ""}`}
-                  key={channel.id}
-                  onClick={handleRevealPrivKey}
-                >
-                  <UserAvatar username={channel.communityName!} size="medium" />
-                  <div className="community-info">
-                    <p className="community-name">{channel.name}</p>
-                    <p className="community-last-message">
-                      {getCommunityLastMessage(channel.id, chat.publicMessages)}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-            {directContacts.length !== 0 && <p className="dm-title">DMs</p>}
-            {directContacts.map((contact) => (
-              <Link
-                to={`/chats/@${contact.name}`}
-                key={contact.pubkey}
-                onClick={() => setReceiverPubKey(contact.pubkey)}
-              >
-                <div
-                  className={`dm ${username && username === `@${contact.name}` ? "selected" : ""}`}
-                  onClick={handleRevealPrivKey}
-                >
-                  <UserAvatar username={contact.name} size="medium" />
-                  <div className="dm-info">
-                    <p className="dm-name">{contact.name}</p>
-                    <p className="dm-last-message">
-                      {getDirectLastMessage(contact.pubkey, chat.directMessages)}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </>
-        )}
-      </div>
-      {isScrollToTop && (
-        <ChatsScroller
-          bodyRef={chatsSideBarRef}
-          isScrollToTop={isScrollToTop}
-          isScrollToBottom={false}
-          marginRight={"5%"}
-        />
+          <div className="chats-search">
+            <Form.Group className="w-100">
+              <Form.Control
+                type="text"
+                placeholder={_t("chat.search")}
+                value={searchText}
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                  setSearchInProgress(true);
+                  if (e.target.value.length === 0) {
+                    setSearchInProgress(false);
+                    setUserList([]);
+                  }
+                }}
+              />
+            </Form.Group>
+          </div>
+          {showDivider && <div className="divider" />}
+          {searchInProgress && <LinearProgress />}
+          <div className="chats-list" onScroll={handleScroll} ref={chatsSideBarRef}>
+            {searchText ? (
+              <div className="searched-users">
+                {userList.map((user) => (
+                  <Link
+                    to={`/chats/@${user.account}`}
+                    onClick={() => {
+                      setSearchText("");
+                      setSearchInProgress(false);
+                    }}
+                    key={user.account}
+                  >
+                    <div
+                      className="d-flex user-info"
+                      key={user.account}
+                      onClick={() => {
+                        setRevealPrivKey(false);
+                        getReceiverPubKey(user.account);
+                        handleSideBar();
+                      }}
+                    >
+                      <span>
+                        <UserAvatar username={user.account} size="medium" />
+                      </span>
+                      <span className="user-name">{user.account}</span>
+                      <span className="user-reputation">
+                        ({accountReputation(user.reputation)})
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <>
+                {communities.length !== 0 && <p className="community-title">Communities</p>}
+                {communities.map((channel) => (
+                  <Link to={`/chats/${channel.communityName}`} key={channel.id}>
+                    <div
+                      className={`community ${
+                        username === channel.communityName ? "selected" : ""
+                      }`}
+                      key={channel.id}
+                      onClick={() => {
+                        setRevealPrivKey(false);
+                        handleSideBar();
+                      }}
+                    >
+                      <UserAvatar username={channel.communityName!} size="medium" />
+                      <div className="community-info">
+                        <p className="community-name">{channel.name}</p>
+                        <p className="community-last-message">
+                          {getCommunityLastMessage(channel.id, chat.publicMessages)}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+                {directContacts.length !== 0 && <p className="dm-title">DMs</p>}
+                {directContacts.map((contact) => (
+                  <Link
+                    to={`/chats/@${contact.name}`}
+                    key={contact.pubkey}
+                    onClick={() => {
+                      setReceiverPubKey(contact.pubkey);
+                      handleSideBar();
+                    }}
+                  >
+                    <div
+                      className={`dm ${
+                        username && username === `@${contact.name}` ? "selected" : ""
+                      }`}
+                      onClick={handleRevealPrivKey}
+                    >
+                      <UserAvatar username={contact.name} size="medium" />
+                      <div className="dm-info">
+                        <p className="dm-name">{contact.name}</p>
+                        <p className="dm-last-message">
+                          {getDirectLastMessage(contact.pubkey, chat.directMessages)}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </>
+            )}
+          </div>
+          {isScrollToTop && (
+            <ChatsScroller
+              bodyRef={chatsSideBarRef}
+              isScrollToTop={isScrollToTop}
+              isScrollToBottom={false}
+              marginRight={"5%"}
+            />
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }

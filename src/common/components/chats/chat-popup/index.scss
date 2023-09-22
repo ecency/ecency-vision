@@ -29,8 +29,8 @@
 
   .chat-header {
     border-bottom: 1px solid $white-four;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 10px;
+    padding-right: 4px;
     cursor: pointer;
     height: 53px;
     display: flex;
@@ -50,6 +50,7 @@
       .back-arrow-svg {
         border-radius: 50%;
         padding: 6px;
+        margin-top: 6px;
       }
     }
 
@@ -59,23 +60,24 @@
     .message-header-title {
       display: flex;
       width: 288px;
-      margin-left: 0.6rem;
+      margin-left: 0.1rem;
       .user-icon {
-        margin: 14px 11px 0 0;
+        margin: 17px 11px 0 0;
       }
     }
 
     .message-header-content {
-      margin: 0.8rem 0;
+      margin: 1rem 0;
       font-weight: 700;
       line-height: 24px;
       font-size: 21px;
       font-family: $font-family-sans-serif;
 
-      max-width: 190px;
+      max-width: 185px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      margin-bottom: 0;
 
       @include themify(day) {
         color: $charcoal-grey;
@@ -91,16 +93,18 @@
       align-items: center;
       justify-content: center;
       margin-top: 1.1rem;
-      .message-image {
+      .message-image,
+      .extended-image {
         margin-top: 2px;
 
-        .message-svg {
-          width: 40px;
-          height: 40px;
+        .message-svg,
+        .extended-svg {
+          width: 35px;
+          height: 35px;
           justify-content: center;
           text-align: center;
           border-radius: 50%;
-          padding-top: 13px;
+          padding-top: 10px;
           display: flex;
 
           svg {
@@ -108,7 +112,11 @@
             width: 20px;
           }
         }
-        .message-svg:hover {
+        .extended-svg {
+          padding-top: 8px;
+        }
+        .message-svg:hover,
+        .extended-svg:hover {
           background: rgba(29, 155, 240, 0.1);
         }
       }
@@ -118,10 +126,11 @@
           display: flex;
           justify-content: center;
           text-align: center;
-          padding-top: 6px;
-          width: 40px;
-          height: 40px;
+          padding-top: 3px;
+          width: 35px;
+          height: 35px;
           border-radius: 50%;
+          margin-bottom: 14px;
         }
 
         .arrow-svg:hover {
@@ -290,76 +299,6 @@
         background: $gunmetal;
       }
     }
-    .user-profile {
-      border-bottom-right-radius: 20px;
-      border-bottom-left-radius: 20px;
-      min-height: 266px;
-
-      @include themify(day) {
-        background: $white-three;
-      }
-      @include themify(night) {
-        background: #172b44;
-      }
-
-      padding: 0 16px 16px 16px;
-      margin: 0 16px 16px 16px;
-
-      .user-logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-top: 16px;
-        cursor: pointer;
-      }
-      .user-name {
-        font-size: 20px;
-        font-weight: 700;
-        @include themify(day) {
-          color: $charcoal-grey;
-        }
-        @include themify(night) {
-          color: $white;
-        }
-      }
-      .about {
-        text-align: center;
-        padding: 4px 0;
-        @include themify(day) {
-          color: $charcoal-grey;
-        }
-        @include themify(night) {
-          color: $white;
-        }
-      }
-      .joining-info {
-        justify-content: space-evenly;
-      }
-      .created-date {
-        padding-top: 8px;
-        font-size: 14px;
-        @include themify(day) {
-          color: $charcoal-grey;
-        }
-        @include themify(night) {
-          color: $white;
-        }
-      }
-      .followers {
-        font-size: 14px;
-        padding-top: 4px !important;
-        font-family: New Century Schoolbook;
-      }
-    }
-
-    .user-profile:hover {
-      @include themify(day) {
-        background: $white-four;
-      }
-      @include themify(night) {
-        background: #0f223a;
-      }
-    }
 
     .scroller {
       position: sticky;
@@ -449,67 +388,4 @@
       grid-row: span 1;
     }
   }
-}
-
-.chats-dialog {
-  .chat-modals-body {
-    padding: 2rem;
-
-    .leave-dialog-body {
-      font-size: 18px;
-      margin-top: 12px;
-    }
-    .leave-confirm-buttons {
-      text-align: right !important;
-      .close-btn,
-      .confirm-btn {
-        margin-right: 20px;
-      }
-    }
-
-    .import-chat-dialog-header {
-      display: flex;
-      .import-chat-dialog-titles {
-        margin-top: 9px;
-      }
-      .import-chat-main-title {
-        font-weight: bold;
-      }
-    }
-    .success-dialog-body {
-      margin: 2rem 0 1.4rem 0;
-      .success-dialog-content {
-        text-align: center;
-        margin-bottom: 1.4rem;
-      }
-    }
-  }
-  .add-dialog-header {
-    margin-bottom: 20px;
-  }
-  .community-chat-role-edit-dialog-content {
-    .add-user-role-form {
-      margin: 15px 0;
-    }
-    .user {
-      display: flex;
-    }
-    .username {
-      margin: 10px 0 0 10px;
-    }
-  }
-}
-
-.chat-button {
-  position: fixed;
-  z-index: 99;
-  right: 6rem;
-  bottom: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50% !important;
-}
-.medium-zoom-overlay,
-.medium-zoom-image--opened {
-  z-index: 999;
 }

@@ -61,16 +61,12 @@ export default function ChatsMessagesView(props: Props) {
   const [publicMessages, setPublicMessages] = useState<PublicMessage[]>([]);
   const [directMessages, setDirectMessages] = useState<DirectMessage[]>([]);
   const [communityName, setCommunityName] = useState("");
-  const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>();
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [removedUsers, setRemovedUsers] = useState<string[]>([]);
-  const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
 
   useEffect(() => {
-    getActiveUserKeys();
     isDirectUserOrCommunity();
   }, []);
 
@@ -87,7 +83,6 @@ export default function ChatsMessagesView(props: Props) {
       getDirectMessages();
     } else if (communityName && currentChannel) {
       getChannelMessages();
-      currentChannel?.removedUserIds && setRemovedUsers(currentChannel.removedUserIds);
     }
   }, [directUser, communityName, currentChannel, chat.directMessages]);
 
@@ -104,13 +99,6 @@ export default function ChatsMessagesView(props: Props) {
     }
   }, [isTop]);
 
-  useEffect(() => {
-    if (removedUsers) {
-      const removed = removedUsers.includes(activeUserKeys?.pub!);
-      setIsActiveUserRemoved(removed);
-    }
-  }, [removedUsers]);
-
   const fetchPrevMessages = () => {
     if (!hasMore || inProgress) return;
 
@@ -118,7 +106,6 @@ export default function ChatsMessagesView(props: Props) {
     messageServiceInstance
       ?.fetchPrevMessages(currentChannel!.id, publicMessages[0].created)
       .then((num) => {
-        console.log("number", num);
         if (num < 25) {
           setHasMore(false);
         }
@@ -127,16 +114,6 @@ export default function ChatsMessagesView(props: Props) {
         setInProgress(false);
         setIsTop(false);
       });
-  };
-
-  const getActiveUserKeys = async () => {
-    const profileData = await getProfileMetaData(activeUser?.username!);
-    const noStrPrivKey = getPrivateKey(activeUser?.username!);
-    const activeUserKeys = {
-      pub: profileData?.nsKey,
-      priv: noStrPrivKey
-    };
-    setActiveUserKeys(activeUserKeys);
   };
 
   const isDirectUserOrCommunity = () => {
@@ -163,15 +140,12 @@ export default function ChatsMessagesView(props: Props) {
 
   const getDirectMessages = () => {
     const user = chat.directContacts.find((item) => item.name === directUser);
-    console.log("user", user?.pubkey);
     const messages = user && fetchDirectMessages(user?.pubkey, chat.directMessages);
     const directMessages = messages?.sort((a, b) => a.created - b.created);
     setDirectMessages(directMessages!);
-    console.log("Messages", messages);
   };
 
   const scrollToBottom = () => {
-    console.log("Scroll to bottom clicked", messagesBoxRef.current?.scrollHeight);
     messagesBoxRef &&
       messagesBoxRef?.current?.scroll({
         top: messagesBoxRef.current?.scrollHeight,
@@ -181,16 +155,11 @@ export default function ChatsMessagesView(props: Props) {
 
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     var element = event.currentTarget;
-    let srollHeight: number = (element.scrollHeight / 100) * 25;
-    // const isScrollToTop = !isCurrentUser && !isCommunity && element.scrollTop >= srollHeight;
     const isScrollToBottom =
       element.scrollTop + messagesBoxRef?.current?.clientHeight! < element.scrollHeight - 200;
     setIsScrollToBottom(isScrollToBottom);
-    // console.log(element.scrollTop, (element.scrollTop / 100) * 98);
     const isScrolled = element.scrollTop + element.clientHeight <= element.scrollHeight - 20;
     setIsScrolled(isScrolled);
-    // const isScrolled = element.scrollHeight/100 *3 - 50;
-    // console.log("isScrolled", isScrolled)
     const scrollerTop = element.scrollTop <= 600 && publicMessages.length > 25;
     if (communityName && scrollerTop) {
       setIsTop(true);
@@ -221,7 +190,6 @@ export default function ChatsMessagesView(props: Props) {
               isScrollToBottom={isScrollToBottom}
               from={CHATPAGE}
               isScrolled={isScrolled}
-              isActveUserRemoved={isActveUserRemoved}
               scrollToBottom={scrollToBottom}
               currentChannelSetter={currentChannelSetter}
             />
@@ -252,7 +220,6 @@ export default function ChatsMessagesView(props: Props) {
         gifPickerStyle={EmojiPickerStyle}
         isCurrentUser={directUser ? true : false}
         isCommunity={communityName ? true : false}
-        isActveUserRemoved={isActveUserRemoved}
         currentUser={directUser}
         currentChannel={currentChannel!}
         isCurrentUserJoined={true}

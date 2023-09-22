@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import useDebounce from "react-use/lib/useDebounce";
 import { useLocation } from "react-router";
-import { History } from "history";
-import { Button, Form, Modal, Spinner } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { history } from "../../../../common/store";
 
 import { Community } from "../../../store/communities/types";
 import { ToggleType } from "../../../store/ui/types";
@@ -18,7 +18,6 @@ import {
 import Tooltip from "../../tooltip";
 import UserAvatar from "../../user-avatar";
 import LinearProgress from "../../linear-progress";
-import { error } from "../../feedback";
 import { setNostrkeys } from "../../../../managers/message-manager";
 import ManageChatKey from "../../manage-chat-key";
 import ChatInput from "../chat-input";
@@ -34,48 +33,36 @@ import {
   arrowBackSvg,
   chevronUpSvg,
   chevronDownSvgForSlider,
-  syncSvg
+  syncSvg,
+  extendedView
 } from "../../../img/svg";
 
-import {
-  NOSTRKEY,
-  NEWCHATACCOUNT,
-  CHATIMPORT,
-  RESENDMESSAGE,
-  EmojiPickerStyle,
-  GifPickerStyle
-} from "./chat-constants";
+import { EmojiPickerStyle, GifPickerStyle } from "./chat-constants";
 
-import * as ls from "../../../util/local-storage";
 import accountReputation from "../../../helper/account-reputation";
 import { _t } from "../../../i18n";
 import { usePrevious } from "../../../util/use-previous";
 
-import { getAccountFull, getAccountReputations } from "../../../api/hive";
+import { getAccountReputations } from "../../../api/hive";
 import { getCommunity } from "../../../api/bridge";
 
 import "./index.scss";
 import ChatsDirectMessages from "../chats-direct-messages";
-import { AccountWithReputation, NostrKeysType } from "../types";
+import { AccountWithReputation } from "../types";
 import {
-  createNoStrAccount,
   deleteChatPublicKey,
   fetchCommunityMessages,
   getCommunityLastMessage,
   getDirectLastMessage,
   getJoinedCommunities,
   getPrivateKey,
-  getProfileMetaData,
-  getUserChatPublicKey,
-  setProfileMetaData
+  getUserChatPublicKey
 } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import ImportChats from "../import-chats";
-import MessageService from "../../../helper/message-service";
 
 interface Props {
-  history: History;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
@@ -92,6 +79,7 @@ export const ChatPopUp = (props: Props) => {
     showSpinner,
     hasUserJoinedChat,
     currentChannel,
+    windowWidth,
     setCurrentChannel,
     setRevealPrivKey,
     setShowSpinner,
@@ -118,19 +106,13 @@ export const ChatPopUp = (props: Props) => {
   const [communityName, setCommunityName] = useState("");
   const [currentCommunity, setCurrentCommunity] = useState<Community>();
   const [publicMessages, setPublicMessages] = useState<PublicMessage[]>([]);
-  const [clickedMessage, setClickedMessage] = useState("");
-  const [keyDialog, setKeyDialog] = useState(false);
-  const [step, setStep] = useState(0);
   const [communities, setCommunities] = useState<Channel[]>([]);
   const [searchtext, setSearchText] = useState("");
   const [userList, setUserList] = useState<AccountWithReputation[]>([]);
-  const [noStrPrivKey, setNoStrPrivKey] = useState("");
-  const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
   const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [removedUsers, setRemovedUsers] = useState<string[]>([]);
-  const [innerWidth, setInnerWidth] = useState(0);
   const [isChatPage, setIsChatPage] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     console.log("chat in store", chat);
@@ -156,10 +138,11 @@ export const ChatPopUp = (props: Props) => {
   useEffect(() => {
     // deleteChatPublicKey(activeUser);
     setShow(!!activeUser?.username && !isChatPage);
-    const noStrPrivKey = getPrivateKey(activeUser?.username!);
-    setNoStrPrivKey(noStrPrivKey);
-    setInnerWidth(window.innerWidth);
   }, []);
+
+  useEffect(() => {
+    console.log("Show", show);
+  }, [show]);
 
   useEffect(() => {
     const updated: ChannelUpdate = chat.updatedChannel
@@ -198,10 +181,10 @@ export const ChatPopUp = (props: Props) => {
   useEffect(() => {
     if (messageServiceInstance) {
       setIsSpinner(false);
-      const noStrPrivKey = getPrivateKey(activeUser?.username!);
-      setNoStrPrivKey(noStrPrivKey);
+    } else {
+      console.log("Else run in chat-popup");
     }
-  }, [typeof window !== "undefined" && messageServiceInstance]);
+  }, [messageServiceInstance]);
 
   useEffect(() => {
     const communities = getJoinedCommunities(chat.channels, chat.leftChannelsList);
@@ -224,10 +207,10 @@ export const ChatPopUp = (props: Props) => {
   }, [global.theme, activeUser]);
 
   useEffect(() => {
-    if (directMessagesList.length !== 0) {
+    if (directMessagesList.length !== 0 && !isScrolled) {
       scrollerClicked();
     }
-    if (!isScrollToBottom && publicMessages.length !== 0 && isCommunity) {
+    if (!isScrolled && publicMessages.length !== 0 && isCommunity) {
       scrollerClicked();
     }
   }, [directMessagesList, publicMessages]);
@@ -240,45 +223,31 @@ export const ChatPopUp = (props: Props) => {
         currentChannel,
         currentChannel.hiddenMessageIds
       );
-      currentChannel?.removedUserIds && setRemovedUsers(currentChannel.removedUserIds);
       const messages = publicMessages.sort((a, b) => a.created - b.created);
       setPublicMessages(messages);
     }
   }, [currentChannel, isCommunity, chat.publicMessages]);
 
   useEffect(() => {
-    scrollerClicked();
-  }, [isCurrentUser, isCommunity]);
-
-  useEffect(() => {
-    if (removedUsers) {
-      const removed = removedUsers.includes(activeUserKeys?.pub!);
-      setIsActiveUserRemoved(removed);
+    if ((isCurrentUser || isCommunity) && show) {
+      scrollerClicked();
     }
-  }, [removedUsers]);
+  }, [isCurrentUser, isCommunity, show]);
 
   useEffect(() => {
     const msgsList = fetchDirectMessages(receiverPubKey!);
     const messages = msgsList.sort((a, b) => a.created - b.created);
     setDirectMessagesList(messages);
-    const noStrPrivKey = getPrivateKey(activeUser?.username!);
-    setNoStrPrivKey(noStrPrivKey);
   }, [activeUser]);
 
   useEffect(() => {
-    if (isCommunity) {
+    if (isCommunity && show) {
       fetchCommunity();
+
       scrollerClicked();
       fetchCurrentChannel(communityName);
     }
-  }, [isCommunity, communityName]);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  }, [isCommunity, communityName, show]);
 
   useEffect(() => {
     if (currentUser) {
@@ -327,7 +296,7 @@ export const ChatPopUp = (props: Props) => {
       setShow(false);
       setIsChatPage(true);
     } else {
-      setShow(true);
+      setShow(!!activeUser?.username);
     }
   };
 
@@ -362,10 +331,6 @@ export const ChatPopUp = (props: Props) => {
     }
   };
 
-  const handleResize = () => {
-    setInnerWidth(window.innerWidth);
-  };
-
   const fetchDirectMessages = (peer: string) => {
     for (const item of chat.directMessages) {
       if (item.peer === peer) {
@@ -376,20 +341,12 @@ export const ChatPopUp = (props: Props) => {
   };
 
   const fetchCurrentUserData = async () => {
-    console.log("Fetch profile run");
-    // const response = await getAccountFull(currentUser);
-    // const { posting_json_metadata } = response;
-    // const profile = JSON.parse(posting_json_metadata!).profile;
-    // const { nsKey } = profile || {};
     const nsKey = await getUserChatPublicKey(currentUser);
-    console.log("nsKey", nsKey);
     if (nsKey) {
       setReceiverPubKey(nsKey);
     } else {
       setReceiverPubKey("");
     }
-
-    console.log("Hello reached");
     setIsCurrentUserJoined(!!nsKey);
     setInProgress(false);
   };
@@ -423,6 +380,8 @@ export const ChatPopUp = (props: Props) => {
     const isScrollToBottom =
       (isCurrentUser || isCommunity) &&
       element.scrollTop + chatBodyDivRef?.current?.clientHeight! < element.scrollHeight - 200;
+    const isScrolled = element.scrollTop + element.clientHeight <= element.scrollHeight - 20;
+    setIsScrolled(isScrolled);
     setIsScrollToTop(isScrollToTop);
     setIsScrollToBottom(isScrollToBottom);
     const scrollerTop = element.scrollTop <= 600 && publicMessages.length > 25;
@@ -459,8 +418,6 @@ export const ChatPopUp = (props: Props) => {
       if (isCommunity && communityName) {
         fetchCurrentChannel(communityName);
       }
-    } else {
-      setNoStrPrivKey("");
     }
   };
 
@@ -473,108 +430,9 @@ export const ChatPopUp = (props: Props) => {
     <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
   );
 
-  const communityClicked = (community: string, name: string) => {
+  const communityClicked = (community: string) => {
     setIsCommunity(true);
     setCommunityName(community);
-  };
-
-  const finish = () => {
-    setStep(0);
-    setKeyDialog(false);
-  };
-
-  const handleConfirmButton = (actionType: string) => {
-    switch (actionType) {
-      case NEWCHATACCOUNT:
-        setInProgress(true);
-        deleteChatPublicKey(activeUser)
-          .then((updatedProfile) => {
-            handleJoinChat();
-            setStep(10);
-            setInProgress(false);
-          })
-          .catch((err) => {
-            error(err);
-          });
-        break;
-      default:
-        break;
-    }
-  };
-
-  const successModal = (message: string) => {
-    return (
-      <>
-        <div className="import-chat-dialog-header border-bottom">
-          <div className="step-no">2</div>
-          <div className="import-chat-dialog-titles">
-            <div className="import-chat-main-title">{_t("manage-authorities.success-title")}</div>
-            <div className="import-chat-sub-title">
-              {_t("manage-authorities.success-sub-title")}
-            </div>
-          </div>
-        </div>
-        <div className="success-dialog-body">
-          <div className="success-dialog-content">
-            <span>
-              {message === CHATIMPORT
-                ? "Chats imported successfully"
-                : message === NEWCHATACCOUNT
-                ? "New Account created successfully"
-                : ""}
-            </span>
-          </div>
-          <div className="d-flex justify-content-center">
-            <span className="hr-6px-btn-spacer" />
-            <Button onClick={finish}>{_t("g.finish")}</Button>
-          </div>
-        </div>
-      </>
-    );
-  };
-
-  const confirmationModal = (actionType: string) => {
-    return (
-      <>
-        <div className="join-community-dialog-header border-bottom">
-          <div className="join-community-dialog-titles">
-            <h2 className="join-community-main-title">
-              {actionType === NEWCHATACCOUNT ? "Warning" : "Confirmation"}
-            </h2>
-          </div>
-        </div>
-        {inProgress && actionType === NEWCHATACCOUNT && <LinearProgress />}
-        <div className="join-community-dialog-body" style={{ fontSize: "18px", marginTop: "12px" }}>
-          {actionType === NEWCHATACCOUNT
-            ? "creating new account will reset your chats"
-            : "Are you sure?"}
-        </div>
-        <p className="join-community-confirm-buttons" style={{ textAlign: "right" }}>
-          <Button
-            variant="outline-primary"
-            className="close-btn"
-            style={{ marginRight: "20px" }}
-            onClick={() => {
-              setStep(0);
-              setKeyDialog(false);
-            }}
-          >
-            {_t("chat.close")}
-          </Button>
-          <Button
-            variant="outline-primary"
-            className="confirm-btn"
-            onClick={() => handleConfirmButton(actionType)}
-          >
-            {_t("chat.confirm")}
-          </Button>
-        </p>
-      </>
-    );
-  };
-
-  const toggleKeyDialog = () => {
-    setKeyDialog(!keyDialog);
   };
 
   const handleBackArrowSvg = () => {
@@ -582,11 +440,20 @@ export const ChatPopUp = (props: Props) => {
     setIsCurrentUser(false);
     setCommunityName("");
     setIsCommunity(false);
-    setClickedMessage("");
     setShowSearchUser(false);
     setSearchText("");
     setHasMore(true);
     setRevealPrivKey(false);
+  };
+
+  const handleExtendedView = () => {
+    if (!isCurrentUser && !isCommunity) {
+      history?.push("/chats");
+    } else if (isCurrentUser) {
+      history?.push(`/chats/@${currentUser}`);
+    } else {
+      history?.push(`/chats/${communityName}`);
+    }
   };
 
   return (
@@ -594,7 +461,7 @@ export const ChatPopUp = (props: Props) => {
       {show && (
         <div
           className={`chatbox-container ${expanded ? "expanded" : ""} ${
-            innerWidth <= 666 ? "small-screen" : ""
+            windowWidth <= 666 ? "small-screen" : ""
           }`}
         >
           <div className="chat-header">
@@ -633,19 +500,28 @@ export const ChatPopUp = (props: Props) => {
               </p>
             </div>
             <div className="actionable-imgs">
-              {!currentUser && hasUserJoinedChat && noStrPrivKey && !isCommunity && !revealPrivKey && (
-                <>
-                  <div className="message-image" onClick={handleMessageSvgClick}>
-                    <Tooltip content={_t("chat.new-message")}>
-                      <p className="message-svg">{addMessageSVG}</p>
-                    </Tooltip>
-                  </div>
-                </>
-              )}
-              {hasUserJoinedChat && noStrPrivKey && !revealPrivKey && (
+              <div className="extended-image" onClick={handleExtendedView}>
+                <Tooltip content={_t("chat.extended-view")}>
+                  <p className="extended-svg">{extendedView}</p>
+                </Tooltip>
+              </div>
+              {!currentUser &&
+                hasUserJoinedChat &&
+                activeUserKeys?.priv &&
+                !isCommunity &&
+                !revealPrivKey && (
+                  <>
+                    <div className="message-image" onClick={handleMessageSvgClick}>
+                      <Tooltip content={_t("chat.new-message")}>
+                        <p className="message-svg">{addMessageSVG}</p>
+                      </Tooltip>
+                    </div>
+                  </>
+                )}
+              {hasUserJoinedChat && activeUserKeys?.priv && !revealPrivKey && (
                 <div className="message-image" onClick={handleRefreshSvgClick}>
                   <Tooltip content={_t("chat.refresh")}>
-                    <p className="message-svg" style={{ paddingTop: "10px" }}>
+                    <p className="message-svg" style={{ paddingTop: "8px" }}>
                       {syncSvg}
                     </p>
                   </Tooltip>
@@ -653,13 +529,13 @@ export const ChatPopUp = (props: Props) => {
               )}
               {isCommunity && (
                 <div className="community-menu">
-                  <ChatsCommunityDropdownMenu history={props.history} username={communityName} />
+                  <ChatsCommunityDropdownMenu history={history!} username={communityName} />
                 </div>
               )}{" "}
-              {!isCommunity && !isCurrentUser && noStrPrivKey && (
+              {!isCommunity && !isCurrentUser && activeUserKeys?.priv && (
                 <div className="simple-menu" onClick={() => setExpanded(true)}>
                   <ChatsDropdownMenu
-                    history={props.history}
+                    history={history!}
                     onManageChatKey={() => {
                       setRevealPrivKey(!revealPrivKey);
                     }}
@@ -685,13 +561,7 @@ export const ChatPopUp = (props: Props) => {
           <div
             className={`chat-body ${
               currentUser ? "current-user" : isCommunity ? "community" : ""
-            } ${
-              !hasUserJoinedChat
-                ? "join-chat"
-                : clickedMessage || (isTop && hasMore)
-                ? "no-scroll"
-                : ""
-            }`}
+            } ${!hasUserJoinedChat ? "join-chat" : isTop && hasMore ? "no-scroll" : ""}`}
             ref={chatBodyDivRef}
             onScroll={handleScroll}
           >
@@ -727,11 +597,11 @@ export const ChatPopUp = (props: Props) => {
                       ) : (
                         <ChatsChannelMessages
                           {...props}
+                          history={history!}
                           username={communityName}
                           publicMessages={publicMessages}
                           currentChannel={currentChannel!}
                           isScrollToBottom={false}
-                          isActveUserRemoved={isActveUserRemoved}
                           currentChannelSetter={setCurrentChannel}
                         />
                       )}
@@ -786,7 +656,7 @@ export const ChatPopUp = (props: Props) => {
                     {(chat.directContacts.length !== 0 ||
                       (chat.channels.length !== 0 && communities.length !== 0)) &&
                     !showSpinner &&
-                    noStrPrivKey ? (
+                    activeUserKeys?.priv ? (
                       <React.Fragment>
                         {chat.channels.length !== 0 && communities.length !== 0 && (
                           <>
@@ -807,9 +677,7 @@ export const ChatPopUp = (props: Props) => {
 
                                   <div
                                     className="user-title"
-                                    onClick={() =>
-                                      communityClicked(channel.communityName!, channel.name)
-                                    }
+                                    onClick={() => communityClicked(channel.communityName!)}
                                   >
                                     <p className="username">{channel.name}</p>
                                     <p className="last-message">
@@ -851,7 +719,7 @@ export const ChatPopUp = (props: Props) => {
                           );
                         })}
                       </React.Fragment>
-                    ) : !noStrPrivKey || noStrPrivKey.length === 0 || noStrPrivKey === null ? (
+                    ) : !activeUserKeys?.priv ? (
                       <>
                         <ImportChats />
                       </>
@@ -897,17 +765,11 @@ export const ChatPopUp = (props: Props) => {
                 </div>
               </Tooltip>
             )}
-            {isActveUserRemoved && isCommunity && (
-              <p className="d-flex justify-content-center mt-4 mb-0">
-                {_t("chat.blocked-user-message")}
-              </p>
-            )}
           </div>
           {(isCurrentUser || isCommunity) && (
             <ChatInput
               isCurrentUser={isCurrentUser}
               isCommunity={isCommunity}
-              isActveUserRemoved={isActveUserRemoved}
               currentUser={currentUser}
               receiverPubKey={receiverPubKey}
               currentChannel={currentChannel!}
@@ -917,25 +779,6 @@ export const ChatPopUp = (props: Props) => {
             />
           )}
         </div>
-      )}
-
-      {keyDialog && (
-        <Modal
-          animation={false}
-          show={true}
-          centered={true}
-          onHide={toggleKeyDialog}
-          keyboard={false}
-          className="chats-dialog modal-thin-header"
-          size="lg"
-        >
-          <Modal.Header closeButton={true} />
-          <Modal.Body className="chat-modals-body">
-            {step === 9 && confirmationModal(NEWCHATACCOUNT)}
-            {step === 11 && confirmationModal(RESENDMESSAGE)}
-            {step === 10 && successModal(NEWCHATACCOUNT)}
-          </Modal.Body>
-        </Modal>
       )}
     </>
   );

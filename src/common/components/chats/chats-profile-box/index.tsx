@@ -6,7 +6,6 @@ import { dateToFormatted } from "../../../helper/parse-date";
 import { _t } from "../../../i18n";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { getAccountFull } from "../../../api/hive";
-import { getCommunity } from "../../../api/bridge";
 import { formattedUserName } from "../utils";
 import { useCommunityCache } from "../../../core/caches/communities-cache";
 
@@ -34,12 +33,6 @@ export default function ChatsProfileBox(props: Props) {
   const [profileData, setProfileData] = useState<profileData>();
 
   const { data: community } = useCommunityCache(username ? username! : communityName!);
-
-  // useEffect(() => {
-  //   if (community) {
-  //     console.log("Community 1st", community);
-  //   }
-  // }, [community, communityName]);
 
   useEffect(() => {
     fetchProfileData();

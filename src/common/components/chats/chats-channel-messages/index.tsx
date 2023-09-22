@@ -50,7 +50,6 @@ interface Props {
   history: History;
   isScrollToBottom: boolean;
   isScrolled?: boolean;
-  isActveUserRemoved: boolean;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
@@ -68,13 +67,13 @@ export default function ChatsChannelMessages(props: Props) {
     from,
     isScrollToBottom,
     isScrolled,
-    isActveUserRemoved,
     scrollToBottom,
     currentChannelSetter
   } = props;
   const { chat, global, activeUser, ui, users, deletePublicMessage } = useMappedStore();
 
-  const { messageServiceInstance, activeUserKeys } = useContext(ChatContext);
+  const { messageServiceInstance, activeUserKeys, windowWidth, isActveUserRemoved } =
+    useContext(ChatContext);
 
   let prevGlobal = usePrevious(global);
 
@@ -90,11 +89,10 @@ export default function ChatsChannelMessages(props: Props) {
   const [privilegedUsers, setPrivilegedUsers] = useState<string[]>([]);
   const [hiddenMsgId, setHiddenMsgId] = useState("");
   const [resendMessage, setResendMessage] = useState<PublicMessage>();
-  const [windowWidth, setWindowWidth] = useState(0);
+
   const [showMessageActions, setShowMessageActions] = useState(false);
 
   useMount(() => {
-    setWindowWidth(window.innerWidth);
     if (window.innerWidth <= 768) {
       setShowMessageActions(true);
     }
@@ -117,19 +115,17 @@ export default function ChatsChannelMessages(props: Props) {
   }, [publicMessages, isScrollToBottom, channelMessagesRef]);
 
   useEffect(() => {
+    if (windowWidth <= 768) {
+      setShowMessageActions(true);
+    }
+  }, [windowWidth]);
+
+  useEffect(() => {
     if (currentChannel) {
       zoomInitializer();
       getPrivilegedUsers(currentChannel?.communityModerators!);
     }
   }, [currentChannel]);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -173,13 +169,6 @@ export default function ChatsChannelMessages(props: Props) {
     }
   };
 
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-    if (window.innerWidth <= 768) {
-      setShowMessageActions(true);
-    }
-  };
-
   const handleDMChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     setDmMessage(e.target.value);
   };
@@ -191,11 +180,11 @@ export default function ChatsChannelMessages(props: Props) {
   };
 
   const setBackground = () => {
-    if (global.theme === Theme.day) {
-      zoom?.update({ background: "#ffffff" });
-    } else {
-      zoom?.update({ background: "#131111" });
-    }
+    // if (global.theme === Theme.day) {
+    //   zoom?.update({ background: "#ffffff" });
+    // } else {
+    //   zoom?.update({ background: "#131111" });
+    // }
   };
 
   const handleImageClick = (msgId: string, pubkey: string) => {
@@ -308,7 +297,6 @@ export default function ChatsChannelMessages(props: Props) {
   };
 
   const handelMessageActions = (msgId: string) => {
-    console.log("showMessageActions", showMessageActions, "msgId", msgId);
     if (showMessageActions && hoveredMessageId !== msgId) {
       setHoveredMessageId(msgId);
     } else {

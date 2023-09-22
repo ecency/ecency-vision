@@ -242,7 +242,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public async updateLeftChannelList(channelIds: string[]) {
-    console.log("Update channel list");
     const tags = [["d", "left-channel-list"]];
     return this.publish(NewKinds.Arbitrary, tags, JSON.stringify(channelIds));
   }
@@ -446,7 +445,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public async updateChannel(channel: Channel, meta: Metadata) {
-    console.log("Update channel Run");
     return this.findHealthyRelay(this.pool.seenOn(channel.id) as string[]).then((relay) => {
       return this.publish(Kind.ChannelMetadata, [["e", channel.id, relay]], JSON.stringify(meta));
     });
@@ -530,7 +528,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public async updateProfile(profile: Metadata) {
-    console.log("Profile update run", profile);
     return this.publish(Kind.Metadata, [], JSON.stringify(profile));
   }
 
@@ -702,7 +699,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
           : null;
       })
       .filter(MessageService.notEmpty);
-    console.log("Channel creation event is emitted", channelCreations);
     if (channelCreations.length > 0) {
       this.emit(MessageEvents.ChannelCreation, channelCreations);
     }

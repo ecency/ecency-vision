@@ -23,15 +23,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    .start-chat {
-      @include themify(day) {
-        color: #65676b;
-      }
-      @include themify(night) {
-        color: $white;
+    .start-chat-wrapper {
+      .start-chat {
+        @include themify(day) {
+          color: #65676b;
+        }
+        @include themify(night) {
+          color: $white;
+        }
       }
     }
+
     .info-message {
       font-size: 16px;
       // font-weight: 100;

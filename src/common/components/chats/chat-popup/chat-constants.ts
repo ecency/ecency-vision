@@ -19,8 +19,8 @@ export const GifPickerStyle = {
 };
 
 export const DropDownStyle = {
-  width: "40px",
-  height: "40px"
+  width: "35px",
+  height: "35px"
 };
 
 export const GifImagesStyle = {

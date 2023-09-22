@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { History } from "history";
 import { _t } from "../../../i18n";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -11,6 +11,8 @@ import { CHATPAGE } from "../chat-popup/chat-constants";
 import { Chat } from "../../../store/chat/types";
 import { formattedUserName } from "../utils";
 import Link from "../../alink";
+import { expandSideBar } from "../../../img/svg";
+import { ChatContext } from "../chat-context-provider";
 
 interface Props {
   username: string;
@@ -20,6 +22,7 @@ interface Props {
 export default function ChatsMessagesHeader(props: Props) {
   const { username } = props;
   const { chat } = useMappedStore();
+  const { setShowSideBar } = useContext(ChatContext);
 
   const isChannel = (username: string) => {
     if (username.startsWith("@")) {
@@ -42,16 +45,24 @@ export default function ChatsMessagesHeader(props: Props) {
   return (
     <div className="chats-messages-header">
       <div className="d-flex justify-content-between header-content">
-        <Link
-          to={username.startsWith("@") ? `/${username}` : `/created/${username}`}
-          target="_blank"
-          style={{ textDecoration: "none" }}
-        >
-          <div className="user-info">
-            <UserAvatar username={formattedUserName(username)} size="medium" />
-            <p className="username">{formattedName(username, chat)}</p>
+        <div className="d-flex user-info-wrapper">
+          <div className="expand-icon d-md-none">
+            <p className="expand-svg" onClick={() => setShowSideBar(true)}>
+              {expandSideBar}
+            </p>
           </div>
-        </Link>
+          <Link
+            to={username.startsWith("@") ? `/${username}` : `/created/${username}`}
+            target="_blank"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="user-info">
+              <UserAvatar username={formattedUserName(username)} size="medium" />
+              <p className="username">{formattedName(username, chat)}</p>
+            </div>
+          </Link>
+        </div>
+
         {isChannel(username) && (
           <div className="community-menu">
             <ChatsCommunityDropdownMenu from={CHATPAGE} {...props} />

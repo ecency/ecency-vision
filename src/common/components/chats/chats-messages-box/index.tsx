@@ -17,6 +17,7 @@ import { CHANNEL } from "../chat-popup/chat-constants";
 import { Button } from "react-bootstrap";
 import { ChatContext } from "../chat-context-provider";
 import { getCommunities } from "../../../api/bridge";
+import { useMount } from "react-use";
 
 interface MatchParams {
   filter: string;
@@ -40,34 +41,37 @@ interface Props {
 export default function ChatsMessagesBox(props: Props) {
   const { chat } = useMappedStore();
 
-  const { messageServiceInstance, currentChannel, setCurrentChannel } = useContext(ChatContext);
+  const {
+    messageServiceInstance,
+    currentChannel,
+    windowWidth,
+    maxHeight,
+    setCurrentChannel,
+    setShowSideBar
+  } = useContext(ChatContext);
 
   const { channels, updatedChannel } = chat;
   const { match } = props;
   const username = match.params.username;
 
-  const [maxHeight, setMaxHeight] = useState(0);
   const [inProgress, setInProgress] = useState(false);
   const [isCommunityChatEnabled, setIsCommunityChatEnabled] = useState(false);
   const [isCommunityJoined, setIsCommunityChatJoined] = useState(false);
   const [currentCommunity, setCurrentCommunity] = useState<Channel>();
   const [hasLeftCommunity, setHasLeftCommunity] = useState(false);
 
-  useEffect(() => {
-    setMaxHeight(window.innerHeight - 68);
-  }, [typeof window !== "undefined"]);
-
-  useEffect(() => {
+  useMount(() => {
     checkUserCommunityMembership();
-    const handleResize = () => {
-      setMaxHeight(window.innerHeight - 68);
-    };
+  });
 
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  useEffect(() => {
+    console.log(
+      "isCommunityChatEnabled",
+      isCommunityChatEnabled,
+      "isCommunityJoined",
+      isCommunityJoined
+    );
+  }, [isCommunityChatEnabled, isCommunityJoined]);
 
   useEffect(() => {
     if (currentCommunity && chat.leftChannelsList.includes(currentCommunity.id)) {
@@ -83,17 +87,6 @@ export default function ChatsMessagesBox(props: Props) {
       setIsCommunityChatEnabled(true);
     }
   }, [username]);
-
-  useEffect(() => {
-    console.log(
-      "isCommunityChatEnabled",
-      isCommunityChatEnabled,
-      "isCommunityJoined",
-      isCommunityJoined,
-      "hasLeftCommunity",
-      hasLeftCommunity
-    );
-  }, [isCommunityChatEnabled, isCommunityJoined, hasLeftCommunity]);
 
   const checkUserCommunityMembership = () => {
     getCommunityProfile();
@@ -161,10 +154,19 @@ export default function ChatsMessagesBox(props: Props) {
   };
 
   return (
-    <div className="chats-messages-box" style={{ maxHeight: maxHeight }}>
+    <div
+      className="chats-messages-box"
+      style={{
+        maxHeight: maxHeight,
+        position: windowWidth < 768 ? "absolute" : "static"
+      }}
+    >
       {match.url === "/chats" ? (
         <div className="no-chat-select">
-          <p className="start-chat text-center">Select a chat or start a new conversation</p>
+          <div className="start-chat-wrapper text-center ">
+            <p className="start-chat ">Select a chat or start a new conversation</p>
+            {windowWidth < 768 && <Button onClick={() => setShowSideBar(true)}>Start Chat</Button>}
+          </div>
         </div>
       ) : (
         <>

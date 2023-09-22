@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { ActiveUser } from "../common/store/active-user/types";
-import { DirectContactsType } from "../common/store/chat/types";
 import { NostrKeysType } from "../common/components/chats/types";
 import {
   DirectMessage,
@@ -20,6 +19,7 @@ import { getProfileMetaData, getPrivateKey } from "../common/components/chats/ut
 import { useMappedStore } from "../common/store/use-mapped-store";
 import { ChatContext } from "../common/components/chats/chat-context-provider";
 import { useTimeoutFn } from "react-use";
+import { usePrevious } from "../common/util/use-previous";
 
 export const setNostrkeys = (keys: NostrKeysType) => {
   const detail: NostrKeysType = {
@@ -45,8 +45,11 @@ const MessageManager = () => {
     verifyPublicMessageSending,
     replaceDirectMessage,
     verifyDirectMessageSending,
-    addPreviousPublicMessages
+    addPreviousPublicMessages,
+    resetChat
   } = useMappedStore();
+
+  const prevActiveUser = usePrevious(activeUser);
 
   const [messageServiceReady, setMessageServiceReady] = useState(false);
   const [since, setSince] = useState(0);
@@ -80,33 +83,32 @@ const MessageManager = () => {
   }, []);
 
   useEffect(() => {
-    if (!messageServiceInstance && keys?.priv) {
+    console.log("active USer", activeUser);
+  }, [activeUser]);
+
+  useEffect(() => {
+    if (keys?.priv) {
       const messageService = initMessageServiceInstance(keys);
-      console.log("messageService", messageService!!);
       setMessageServiceInstance(messageService);
       setMessageService(messageService!);
+    } else {
+      setMessageServiceInstance(null);
     }
   }, [keys]);
-
-  // useEffect(() => {
-  //   if (messageServiceInstance === undefined && keys?.priv) {
-  //     const messageService = initMessageServiceInstance(keys);
-  //     if (messageService) {
-  //       setMessageService(messageService);
-  //     }
-  //   }
-  // }, [keys]);
 
   useEffect(() => {
     if (activeUser) {
       getNostrKeys(activeUser);
+    }
+    if (prevActiveUser?.username !== activeUser?.username) {
+      resetChat();
+      getNostrKeys(activeUser!);
     }
   }, [activeUser]);
 
   const createMSInstance = (e: Event) => {
     const detail = (e as CustomEvent).detail as NostrKeysType;
     const messageService = initMessageServiceInstance(detail);
-    console.log("messageService", messageService!!);
     setMessageServiceInstance(messageService);
     setMessageService(messageService!);
   };
@@ -115,7 +117,7 @@ const MessageManager = () => {
     const profile = await getProfileMetaData(activeUser.username);
     const noStrPrivKey = getPrivateKey(activeUser.username);
     const keys = {
-      pub: profile.nsKey,
+      pub: profile?.nsKey,
       priv: noStrPrivKey
     };
     setKeys(keys);
@@ -199,17 +201,6 @@ const MessageManager = () => {
       const { peer, id } = m;
       setReplacedDirectMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
       addDirectMessages(peer, m);
-      // const startTimeout = () => {
-      //   console.log("Start time out called");
-      //   useTimeoutFn(() => {
-      //     console.log("Inner called");
-      //     checkDirectMessageSending(peer, m);
-      //   }, 2000);
-      // };
-
-      // Start the timeout
-      // startTimeout();
-      // const [startTimeout] = useTimeoutFn(checkDirectMessageSending(peer, m), 20000);
       checkDirectMessageSending(peer, m);
     });
   };
@@ -234,7 +225,6 @@ const MessageManager = () => {
 
   const checkDirectMessageSending = (peer: string, data: DirectMessage) => {
     setTimeout(() => {
-      console.log("checkDirectMessageSending called");
       verifyDirectMessageSending(peer, data);
     }, 20000);
   };
@@ -295,7 +285,6 @@ const MessageManager = () => {
 
   // Channel creation handler
   const handleChannelCreation = (data: Channel[]) => {
-    console.log("handle channel creation run");
     addChannels(data.filter((x) => !chat.channels.find((y) => y.id === x.id)));
   };
 

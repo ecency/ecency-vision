@@ -33,7 +33,6 @@ import { ChatContext } from "../chat-context-provider";
 interface Props {
   isCurrentUser: boolean;
   isCommunity: boolean;
-  isActveUserRemoved: boolean;
   currentChannel: Channel;
   currentUser: string;
   isCurrentUserJoined: boolean;
@@ -52,12 +51,11 @@ export default function ChatInput(props: Props) {
   const [isMessageText, setIsMessageText] = useState(false);
   // const [isMounted, setIsMounted] = useState(false);
 
-  const { messageServiceInstance, chatPrivKey } = useContext(ChatContext);
+  const { messageServiceInstance, chatPrivKey, isActveUserRemoved } = useContext(ChatContext);
 
   const {
     isCommunity,
     isCurrentUser,
-    isActveUserRemoved,
     currentChannel,
     currentUser,
     isCurrentUserJoined,

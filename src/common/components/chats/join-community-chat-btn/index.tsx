@@ -24,14 +24,18 @@ export default function JoinCommunityChatBtn(props: Props) {
   const [inProgress, setInProgress] = useState(false);
   const [isCommunityChatJoined, setIsCommunityChatJoined] = useState(false);
   const [isChatEnabled, setIsChatEnabled] = useState(false);
-  const [currentChannel, setCurrentChannel] = useState<Channel>();
+  const [currentCommunity, setCurrentCommunity] = useState<Channel>();
   const [communityRoles, setCommunityRoles] = useState<communityModerator[]>([]);
   const [loadCommunity, setLoadCommunity] = useState(false);
   const [initiateCommunityChat, setInitiateCommunityChat] = useState(false);
 
   useEffect(() => {
     fetchCommunityProfile();
-  }, [chat.channels, currentChannel, chat.leftChannelsList]);
+  }, [chat.channels, currentCommunity, chat.leftChannelsList]);
+
+  useEffect(() => {
+    console.log("isChatEnabled", isChatEnabled, "isCommunityChatJoined", isCommunityChatJoined);
+  }, [isChatEnabled, isCommunityChatJoined]);
 
   useEffect(() => {
     fetchCommunityProfile();
@@ -44,20 +48,18 @@ export default function JoinCommunityChatBtn(props: Props) {
   }, [activeUserKeys]);
 
   useEffect(() => {
+    fetchCommunityProfile();
+    checkIsChatJoined();
     if (messageServiceInstance) {
       if (loadCommunity) {
-        messageServiceInstance?.loadChannel(currentChannel?.id!);
+        messageServiceInstance?.loadChannel(currentCommunity?.id!);
+        setInProgress(false);
       }
       if (initiateCommunityChat && communityRoles.length !== 0) {
         createCommunityChat();
       }
     }
-  }, [
-    typeof window !== "undefined" && messageServiceInstance,
-    loadCommunity,
-    communityRoles,
-    initiateCommunityChat
-  ]);
+  }, [messageServiceInstance, loadCommunity, communityRoles, initiateCommunityChat]);
 
   useEffect(() => {
     checkIsChatJoined();
@@ -66,26 +68,24 @@ export default function JoinCommunityChatBtn(props: Props) {
   }, [isCommunityChatJoined, props.community, chat.channels, chat.leftChannelsList]);
 
   const fetchCommunityProfile = async () => {
+    console.log("fetch community profile");
     const communityProfile = await getProfileMetaData(props.community?.name);
     const haschannelMetaData = communityProfile && communityProfile.hasOwnProperty(CHANNEL);
     setIsChatEnabled(haschannelMetaData);
 
-    if (!currentChannel) {
-      setCurrentChannel(communityProfile.channel);
+    if (!currentCommunity) {
+      setCurrentCommunity(communityProfile.channel);
     }
   };
 
   const checkIsChatJoined = () => {
-    for (const item of chat.channels) {
-      if (
-        item.communityName === props.community.name &&
-        !chat.leftChannelsList.includes(currentChannel?.id!)
-      ) {
-        setIsCommunityChatJoined(true);
-      } else {
-        setIsCommunityChatJoined(false);
-      }
-    }
+    setIsCommunityChatJoined(
+      chat.channels.some(
+        (item) =>
+          item.communityName === props.community.name &&
+          !chat.leftChannelsList.includes(currentCommunity?.id!)
+      )
+    );
   };
 
   const getCommunityRoles = async () => {
@@ -121,7 +121,6 @@ export default function JoinCommunityChatBtn(props: Props) {
   const createCommunityChat = async () => {
     const { community } = props;
     try {
-      setInProgress(true);
       const data = await messageServiceInstance?.createChannel({
         name: community.title,
         about: community.description,
@@ -132,6 +131,7 @@ export default function JoinCommunityChatBtn(props: Props) {
         removedUserIds: []
       });
 
+      console.log("Community data", data);
       const content = JSON.parse(data?.content!);
       const channelMetaData = {
         id: data?.id as string,
@@ -143,7 +143,7 @@ export default function JoinCommunityChatBtn(props: Props) {
         picture: content.picture
       };
       setChannelMetaData(community.name, channelMetaData).then(() =>
-        setCurrentChannel(channelMetaData)
+        setCurrentCommunity(channelMetaData)
       );
     } finally {
       setInProgress(false);
@@ -153,27 +153,28 @@ export default function JoinCommunityChatBtn(props: Props) {
   };
 
   const joinCommunityChat = () => {
+    setInProgress(true);
     if (!hasUserJoinedChat) {
-      setInProgress(true);
       joinChat();
       setLoadCommunity(true);
-      setIsCommunityChatJoined(true);
       return;
     }
-    if (chat.leftChannelsList.includes(currentChannel?.id!)) {
+    if (chat.leftChannelsList.includes(currentCommunity?.id!)) {
       messageServiceInstance?.updateLeftChannelList(
-        chat.leftChannelsList.filter((x) => x !== currentChannel?.id)
+        chat.leftChannelsList.filter((x) => x !== currentCommunity?.id)
       );
     }
-    messageServiceInstance?.loadChannel(currentChannel?.id!);
+    messageServiceInstance?.loadChannel(currentCommunity?.id!);
     setIsCommunityChatJoined(true);
+    setInProgress(false);
   };
 
   const startCommunityChat = () => {
+    setInProgress(true);
     if (!hasUserJoinedChat) {
       joinChat();
       setInitiateCommunityChat(true);
-      setIsCommunityChatJoined(true);
+
       return;
     } else {
       createCommunityChat();
@@ -183,7 +184,7 @@ export default function JoinCommunityChatBtn(props: Props) {
   const fetchCurrentChannel = () => {
     for (const item of chat.channels) {
       if (item.communityName === props.community.name) {
-        setCurrentChannel(item);
+        setCurrentCommunity(item);
         return item;
       }
     }

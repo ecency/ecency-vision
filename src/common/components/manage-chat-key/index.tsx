@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import { _t } from "../../i18n";
-import { copyContent } from "../../img/svg";
+import { copyContent, expandSideBar } from "../../img/svg";
 import { ChatContext } from "../chats/chat-context-provider";
 import { copyToClipboard } from "../chats/utils";
 import { success } from "../feedback";
@@ -13,9 +13,7 @@ import "./index.scss";
 export default function ManageChatKey() {
   const context = useContext(ChatContext);
 
-  const { chatPrivKey } = context;
-
-  console.log("chatPrivKey in manage chat key", chatPrivKey);
+  const { chatPrivKey, windowWidth, setShowSideBar } = context;
 
   const copyPrivateKey = () => {
     copyToClipboard(chatPrivKey);
@@ -25,8 +23,15 @@ export default function ManageChatKey() {
   return (
     <>
       <div className="manage-chat-key">
-        <div className="private-key">
-          <Form.Group controlId="private-key">
+        <div className="private-key d-flex">
+          {windowWidth < 768 && (
+            <div className="expand-icon d-md-none">
+              <p className="expand-svg" onClick={() => setShowSideBar(true)}>
+                {expandSideBar}
+              </p>
+            </div>
+          )}
+          <Form.Group controlId="private-key" style={{ width: "39vw" }}>
             <Form.Label>{_t("chat.chat-priv-key")}</Form.Label>
             <div className="d-flex private-key-input">
               <Form.Control
@@ -39,7 +44,6 @@ export default function ManageChatKey() {
                 <p
                   className="copy-svg"
                   onClick={() => {
-                    console.log("SVG clicked");
                     copyPrivateKey();
                   }}
                 >
