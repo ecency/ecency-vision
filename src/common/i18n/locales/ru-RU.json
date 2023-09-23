@@ -74,7 +74,7 @@
     "username": "Имя пользователя",
     "past-few-days": "последние несколько дней",
     "you": "Вы",
-    "copy-clipboard": "Copy to clipboard"
+    "copy-clipboard": "Копировать в буфер обмена"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -919,10 +919,10 @@
     "extra-details-post": "Посты/Комментарии",
     "extra-details-upvote": "Голоса",
     "boost": "Продвинуть",
-    "you-have-claimed-rc": "Already claimed account credits",
-    "claim": "Claim",
-    "you-claiming": "You are claiming {{n}}",
-    "successfully-claimed": "Successfully claimed!"
+    "you-have-claimed-rc": "Кредиты аккаунта уже получены",
+    "claim": "Получить",
+    "you-claiming": "Вы получаете {{n}}",
+    "successfully-claimed": "Успешно получено!"
   },
   "profile-edit": {
     "title": "Профиль",
@@ -1441,11 +1441,11 @@
     "empty-tags-alert": "Введите теги поста",
     "empty-body-alert": "Введите содержимое поста",
     "description": "Краткое описание",
-    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
+    "should-be-only-one-unpublished": "Запись должна содержать только одно неопубликованное видео. Пожалуйста, удалите другие."
   },
   "video-upload": {
     "choose-video": "Выбрать видео",
-    "record-video": "Record a video",
+    "record-video": "Записать видео",
     "choose-thumbnail": "Установить миниатюру (необязательно)",
     "continue": "Продолжить",
     "encode": "Отправить для кодирования",
@@ -1457,11 +1457,11 @@
     "to-gallery": "Перейти в галерею",
     "congrats": "Поздравляем",
     "publishing": "Не обновляйте страницу, подождите несколько секунд, пока видео не будет обработано",
-    "no-record-permission": "You don't have permission to record video",
-    "confirm-and-upload": "Confirm and upload to 3Speak",
-    "uploading": "Uploading..{{n}}/{{total}}",
-    "uploaded": "Uploaded!",
-    "reset": "Reset"
+    "no-record-permission": "У вас нет разрешения на запись видео",
+    "confirm-and-upload": "Подтвердить и загрузить в 3Speak",
+    "uploading": "Загрузка...{{n}}/{{total}}",
+    "uploaded": "Загружено!",
+    "reset": "Сбросить"
   },
   "video-gallery": {
     "all": "Все",
@@ -1483,7 +1483,7 @@
     "insert-video": "Вставить",
     "insert-nsfw": "Вставить как NSFW",
     "refresh": "Обновить для получения обновленной информации о статусе",
-    "video-info": "Videos are stored and powered by SPK network, might have some storage and encoding fees."
+    "video-info": "Видео хранится и обрабатывается в сети SPK, возможна некоторая плата за хранение и кодирование."
   },
   "nsfw-content": {
     "title": "NSFW контент",
