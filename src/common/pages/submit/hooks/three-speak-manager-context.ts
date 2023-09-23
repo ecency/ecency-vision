@@ -3,6 +3,7 @@ import { createContext } from "react";
 
 export interface ThreeSpeakManagerContext {
   videos: Record<string, ThreeSpeakVideo>;
+  setVideos: (v: Record<string, ThreeSpeakVideo>) => void;
   isNsfw: boolean;
   setIsNsfw: (v: boolean) => void;
   isEditing: boolean;
@@ -20,6 +21,7 @@ export interface ThreeSpeakManagerContext {
 
 export const ThreeSpeakVideoContext = createContext<ThreeSpeakManagerContext>({
   videos: {},
+  setVideos: () => {},
   isNsfw: false,
   setIsNsfw: () => {},
   clear: () => {},

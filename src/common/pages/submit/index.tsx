@@ -58,6 +58,7 @@ import { SubmitPreviewContent } from "./submit-preview-content";
 import { useUpdateApi } from "./api/update";
 import "./_index.scss";
 import { SubmitVideoAttachments } from "./submit-video-attachments";
+import { useThreeSpeakMigrationAdapter } from "./hooks/three-speak-migration-adapter";
 
 interface MatchProps {
   match: MatchType;
@@ -122,6 +123,11 @@ export function Submit(props: PageProps & MatchProps) {
     hasAdvanced,
     clearAdvanced
   } = useAdvancedManager();
+
+  useThreeSpeakMigrationAdapter({
+    body,
+    setBody
+  });
 
   useCommunityDetector(props.location, (community) => {
     setTags([...tags, community]);
