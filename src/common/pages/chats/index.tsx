@@ -78,6 +78,9 @@ export const Chats = (props: Props) => {
           showSpinner ? (
             <div className="d-flex justify-content-center align-items-center full-page">
               <Spinner animation="border" variant="primary" />
+              <p className="mt-3 ml-2" style={{ fontSize: "26px" }}>
+                Loading...
+              </p>
             </div>
           ) : (
             <>

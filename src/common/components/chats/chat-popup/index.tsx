@@ -721,7 +721,8 @@ export const ChatPopUp = (props: Props) => {
                       </>
                     ) : showSpinner ? (
                       <div className="no-chat">
-                        <Spinner animation="border" variant="primary" />
+                        <Spinner animation="border" variant="primary" size="sm" />
+                        <p className="mt-3 ml-2">Loading...</p>
                       </div>
                     ) : (
                       <>
