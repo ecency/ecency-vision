@@ -141,10 +141,6 @@ export const ChatPopUp = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    console.log("Show", show);
-  }, [show]);
-
-  useEffect(() => {
     const updated: ChannelUpdate = chat.updatedChannel
       .filter((x) => x.channelId === currentChannel?.id!)
       .sort((a, b) => b.created - a.created)[0];
@@ -557,7 +553,7 @@ export const ChatPopUp = (props: Props) => {
             </div>
           </div>
           {inProgress && <LinearProgress />}
-          {inProgress && !isCommunity && !isCurrentUser && <LinearProgress />}
+          {/* {inProgress && !isCommunity && !isCurrentUser && <LinearProgress />} */}
           <div
             className={`chat-body ${
               currentUser ? "current-user" : isCommunity ? "community" : ""
@@ -741,7 +737,7 @@ export const ChatPopUp = (props: Props) => {
                 )}
               </>
             ) : revealPrivKey ? (
-              <ManageChatKey />
+              <ManageChatKey history={history!} />
             ) : (
               <Button className="join-chat-btn" onClick={handleJoinChat}>
                 {isSpinner && chatButtonSpinner}

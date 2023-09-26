@@ -28,7 +28,6 @@ interface Props {
 
 export default function ChatsProfileBox(props: Props) {
   const { username, isCommunity, isCurrentUser, communityName, currentUser } = props;
-  const { chat, activeUser } = useMappedStore();
 
   const [profileData, setProfileData] = useState<profileData>();
 

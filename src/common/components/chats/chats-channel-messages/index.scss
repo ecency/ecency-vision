@@ -116,6 +116,10 @@
           border-radius: 10px;
         }
       }
+      &.date-changed {
+        margin-left: 0;
+        border-radius: 0px 10px 10px 0px;
+      }
     }
   }
 

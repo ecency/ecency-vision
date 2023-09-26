@@ -180,11 +180,11 @@ export default function ChatsChannelMessages(props: Props) {
   };
 
   const setBackground = () => {
-    // if (global.theme === Theme.day) {
-    //   zoom?.update({ background: "#ffffff" });
-    // } else {
-    //   zoom?.update({ background: "#131111" });
-    // }
+    if (global.theme === Theme.day) {
+      zoom?.update({ background: "#ffffff" });
+    } else {
+      zoom?.update({ background: "#131111" });
+    }
   };
 
   const handleImageClick = (msgId: string, pubkey: string) => {
@@ -285,15 +285,9 @@ export default function ChatsChannelMessages(props: Props) {
     const msgDate = formatMessageDate(msg.created);
     const prevMsgDate = prevMsg ? formatMessageDate(prevMsg.created) : null;
     if (msgDate !== prevMsgDate) {
-      return (
-        <div className="custom-divider">
-          <span className="d-flex justify-content-center align-items-center mt-3 custom-divider-text">
-            {msgDate}
-          </span>
-        </div>
-      );
+      return msgDate;
     }
-    return <></>;
+    return null;
   };
 
   const handelMessageActions = (msgId: string) => {
@@ -311,6 +305,7 @@ export default function ChatsChannelMessages(props: Props) {
           activeUserKeys &&
           publicMessages.map((pMsg, i) => {
             const dayAndMonth = getFormattedDateAndDay(pMsg, i);
+            console.log("dayAndMonth", dayAndMonth);
 
             const isSameUserMessage = checkContiguousMessage(pMsg, i, publicMessages);
 
@@ -410,7 +405,13 @@ export default function ChatsChannelMessages(props: Props) {
 
             return (
               <React.Fragment key={pMsg.id}>
-                {dayAndMonth}
+                {dayAndMonth && (
+                  <div className="custom-divider">
+                    <span className="d-flex justify-content-center align-items-center mt-3 custom-divider-text">
+                      {dayAndMonth}
+                    </span>
+                  </div>
+                )}
 
                 {pMsg.creator !== activeUserKeys?.pub ? (
                   <div
@@ -419,7 +420,7 @@ export default function ChatsChannelMessages(props: Props) {
                     onMouseEnter={() => !showMessageActions && setHoveredMessageId(pMsg.id)}
                     onMouseLeave={() => !showMessageActions && setHoveredMessageId("")}
                   >
-                    {!isSameUserMessage && (
+                    {!isSameUserMessage || (isSameUserMessage && dayAndMonth) ? (
                       <div className="community-user-img">
                         <OverlayTrigger
                           trigger="click"
@@ -434,13 +435,22 @@ export default function ChatsChannelMessages(props: Props) {
                           </span>
                         </OverlayTrigger>
                       </div>
+                    ) : (
+                      <></>
                     )}
 
-                    <div className={`user-info ${isSameUserMessage ? "same-user-msg" : ""}`}>
-                      {!isSameUserMessage && (
+                    <div
+                      className={`user-info ${
+                        isSameUserMessage && !dayAndMonth
+                          ? "same-user-msg"
+                          : dayAndMonth
+                          ? "date-changed"
+                          : ""
+                      }`}
+                    >
+                      {(!isSameUserMessage || dayAndMonth) && (
                         <p className="user-msg-time">
                           <span className="username-community">{name}</span>
-                          {/* {formatMessageTime(pMsg.created)} */}
                         </p>
                       )}
 

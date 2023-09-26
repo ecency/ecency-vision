@@ -83,10 +83,6 @@ const MessageManager = () => {
   }, []);
 
   useEffect(() => {
-    console.log("active USer", activeUser);
-  }, [activeUser]);
-
-  useEffect(() => {
     if (keys?.priv) {
       const messageService = initMessageServiceInstance(keys);
       setMessageServiceInstance(messageService);

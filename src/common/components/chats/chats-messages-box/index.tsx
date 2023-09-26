@@ -11,13 +11,12 @@ import { Channel, ChannelUpdate } from "../../../../managers/message-manager-typ
 import LinearProgress from "../../linear-progress";
 import { formattedUserName, getJoinedCommunities, getProfileMetaData } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
-
-import "./index.scss";
 import { CHANNEL } from "../chat-popup/chat-constants";
 import { Button } from "react-bootstrap";
 import { ChatContext } from "../chat-context-provider";
-import { getCommunities } from "../../../api/bridge";
 import { useMount } from "react-use";
+
+import "./index.scss";
 
 interface MatchParams {
   filter: string;
@@ -63,15 +62,6 @@ export default function ChatsMessagesBox(props: Props) {
   useMount(() => {
     checkUserCommunityMembership();
   });
-
-  useEffect(() => {
-    console.log(
-      "isCommunityChatEnabled",
-      isCommunityChatEnabled,
-      "isCommunityJoined",
-      isCommunityJoined
-    );
-  }, [isCommunityChatEnabled, isCommunityJoined]);
 
   useEffect(() => {
     if (currentCommunity && chat.leftChannelsList.includes(currentCommunity.id)) {

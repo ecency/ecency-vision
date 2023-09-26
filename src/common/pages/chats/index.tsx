@@ -14,7 +14,6 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { ChatContext } from "../../components/chats/chat-context-provider";
 import ImportChats from "../../components/chats/import-chats";
 import JoinChat from "../../components/chats/join-chat";
-import { ChatsSideProfile } from "../../components/chats/chats-side-profile";
 
 import "./index.scss";
 
@@ -91,16 +90,11 @@ export const Chats = (props: Props) => {
                         className="chats-manage-key"
                         style={{ position: windowWidth < 768 ? "absolute" : "static" }}
                       >
-                        <ManageChatKey />
+                        <ManageChatKey history={history} />
                       </div>
                     ) : (
                       <>
                         <ChatsMessagesBox {...props} />
-                        {/* {match.url !== "/chats" && (
-                          <div className="d-none d-lg-block mt-2" style={{ background: "red" }}>
-                            <ChatsSideProfile username={username} />
-                          </div>
-                        )} */}
                       </>
                     )}
                   </>

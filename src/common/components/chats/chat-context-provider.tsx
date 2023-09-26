@@ -99,10 +99,6 @@ export const ChatContextProvider = (props: Props) => {
   }, [currentChannel]);
 
   useEffect(() => {
-    console.log("messageServiceInstance", messageServiceInstance);
-  }, [messageServiceInstance]);
-
-  useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
       setMaxHeight(window.innerHeight - 66);
@@ -123,10 +119,6 @@ export const ChatContextProvider = (props: Props) => {
   }, [messageServiceInstance]);
 
   useEffect(() => {
-    console.log("showsidebar", showSideBar);
-  }, [showSideBar]);
-
-  useEffect(() => {
     window.addEventListener("resize", handleShowSideBar);
     return () => {
       window.removeEventListener("resize", handleShowSideBar);
@@ -143,10 +135,9 @@ export const ChatContextProvider = (props: Props) => {
     }
   }, [shouldUpdateProfile, messageServiceInstance]);
 
-  useDebounce(() => setShowSpinner(false), 3000, [showSpinner]);
+  useDebounce(() => setShowSpinner(false), 5000, [showSpinner]);
 
   const handleShowSideBar = () => {
-    console.log("Function run", window.innerWidth);
     if (window.innerWidth < 768) {
       setShowSideBar(false);
     } else {

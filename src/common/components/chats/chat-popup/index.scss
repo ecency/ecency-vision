@@ -344,17 +344,25 @@
     .import-chats {
       margin-top: 20px;
     }
+
+    .manage-chat-key {
+      .private-key {
+        .form-group {
+          width: 90vw !important;
+        }
+      }
+    }
   }
 
   &.small-screen {
     right: 0;
     width: 100vw;
     display: grid;
-    grid-template-rows: repeat(18, 1fr);
+    grid-template-rows: repeat(100, 1fr);
     grid-template-columns: repeat(1, 1fr);
     .chat-header {
-      width: 94vw;
-      grid-row: span 1;
+      width: 100vw;
+      grid-row: span 5;
     }
     .back-arrow-svg {
       padding: 0;
@@ -375,8 +383,13 @@
       margin: 0;
     }
     .chat-body {
-      grid-row: span 16;
+      grid-row: span 95;
       height: 100%;
+
+      &.current-user,
+      .community {
+        grid-row: span 90;
+      }
 
       .chat-content {
         .last-message {
@@ -385,7 +398,7 @@
       }
     }
     .chat {
-      grid-row: span 1;
+      grid-row: span 5;
     }
   }
 }

@@ -1,19 +1,27 @@
 import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import { _t } from "../../i18n";
+import { History } from "history";
 import { copyContent, expandSideBar } from "../../img/svg";
 import { ChatContext } from "../chats/chat-context-provider";
 import { copyToClipboard } from "../chats/utils";
 import { success } from "../feedback";
-import OrDivider from "../or-divider";
 import Tooltip from "../tooltip";
 
 import "./index.scss";
 
-export default function ManageChatKey() {
+interface Props {
+  history: History;
+}
+
+export default function ManageChatKey(props: Props) {
   const context = useContext(ChatContext);
 
+  console.log("Props", props.history);
+
   const { chatPrivKey, windowWidth, setShowSideBar } = context;
+
+  const { history } = props;
 
   const copyPrivateKey = () => {
     copyToClipboard(chatPrivKey);
@@ -24,7 +32,7 @@ export default function ManageChatKey() {
     <>
       <div className="manage-chat-key">
         <div className="private-key d-flex">
-          {windowWidth < 768 && (
+          {windowWidth < 768 && history.location.pathname.includes("/chats") && (
             <div className="expand-icon d-md-none">
               <p className="expand-svg" onClick={() => setShowSideBar(true)}>
                 {expandSideBar}
