@@ -63,8 +63,6 @@ export default function ChatInput(props: Props) {
     receiverPubKey
   } = props;
 
-  console.log("receiverPubKey", receiverPubKey, "isCurrentUser", isCurrentUser);
-
   useEffect(() => {
     if (!isCurrentUser && !isCommunity) {
       setMessage("");
