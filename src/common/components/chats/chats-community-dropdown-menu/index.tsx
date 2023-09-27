@@ -27,6 +27,8 @@ import UserAvatar from "../../user-avatar";
 import { copyToClipboard, getProfileMetaData } from "../utils";
 import { ChatContext } from "../chat-context-provider";
 
+import "./index.scss";
+
 interface Props {
   history: History;
   from?: string;
@@ -249,7 +251,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
   const EditRolesModal = () => {
     return (
       <>
-        <div className="add-dialog-header">
+        <div className="add-dialog-header border-bottom">
           <div className="add-dialog-titles">
             <h4 className="add-main-title">{_t("chat.edit-community-roles")}</h4>
           </div>
@@ -317,9 +319,9 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
                       return (
                         <tr key={i}>
                           <td>
-                            <span className="user">
+                            <span className="d-flex user">
                               <UserAvatar username={moderator.name} size="medium" />{" "}
-                              <span className="username">@{moderator.name}</span>
+                              <span className="mt-2 ml-2 username">@{moderator.name}</span>
                             </span>
                           </td>
                           <td>

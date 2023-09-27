@@ -34,8 +34,8 @@ export default function JoinCommunityChatBtn(props: Props) {
   }, [chat.channels, currentCommunity, chat.leftChannelsList]);
 
   useEffect(() => {
-    console.log("isChatEnabled", isChatEnabled, "isCommunityChatJoined", isCommunityChatJoined);
-  }, [isChatEnabled, isCommunityChatJoined]);
+    console.log("communityRoles", communityRoles);
+  }, [communityRoles]);
 
   useEffect(() => {
     fetchCommunityProfile();
