@@ -14,11 +14,7 @@ import {
   UNBLOCKUSER
 } from "../chat-popup/chat-constants";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import {
-  Channel,
-  ChannelUpdate,
-  communityModerator
-} from "../../../../managers/message-manager-types";
+import { Channel, communityModerator } from "../../../../managers/message-manager-types";
 import { error, success } from "../../feedback";
 import { Button, Form, Modal, Row, Col, InputGroup, FormControl } from "react-bootstrap";
 import LinearProgress from "../../linear-progress";
@@ -171,7 +167,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
       label: _t("chat.invite"),
       onClick: () => {
         copyToClipboard(
-          `http://localhost:3000/created/${currentChannel?.communityName}?communityid=${currentChannel?.id}`
+          `https://ecency.com/created/${currentChannel?.communityName}?communityid=${currentChannel?.id}`
         );
         success("Link copied into clipboard.");
       },

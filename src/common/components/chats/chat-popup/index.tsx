@@ -177,8 +177,6 @@ export const ChatPopUp = (props: Props) => {
   useEffect(() => {
     if (messageServiceInstance) {
       setIsSpinner(false);
-    } else {
-      console.log("Else run in chat-popup");
     }
   }, [messageServiceInstance]);
 
@@ -553,7 +551,6 @@ export const ChatPopUp = (props: Props) => {
             </div>
           </div>
           {inProgress && <LinearProgress />}
-          {/* {inProgress && !isCommunity && !isCurrentUser && <LinearProgress />} */}
           <div
             className={`chat-body ${
               currentUser ? "current-user" : isCommunity ? "community" : ""

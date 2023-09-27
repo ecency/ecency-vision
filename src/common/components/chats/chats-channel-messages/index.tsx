@@ -296,7 +296,6 @@ export default function ChatsChannelMessages(props: Props) {
           activeUserKeys &&
           publicMessages.map((pMsg, i) => {
             const dayAndMonth = formatMessageDateAndDay(pMsg, i, publicMessages);
-            console.log("dayAndMonth", dayAndMonth);
 
             const isSameUserMessage = checkContiguousMessage(pMsg, i, publicMessages);
 

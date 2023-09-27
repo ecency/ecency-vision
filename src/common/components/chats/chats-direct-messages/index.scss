@@ -35,39 +35,7 @@
       }
       .receiver-messag {
         display: flex;
-        // .receiver-message-content {
-        //   @include themify(day) {
-        //     background: #e4e6eb;
-        //   }
-        //   @include themify(night) {
-        //     background: #cee2ff;
-        //   }
 
-        //   &.gif {
-        //     background: none;
-        //     img {
-        //       max-width: 100%;
-        //     }
-        //   }
-
-        //   &.chat-image {
-        //     background: none;
-        //     img {
-        //       max-width: 100%;
-        //     }
-        //   }
-        //   color: #050505;
-        //   // max-width: 290px;
-        //   display: inline-block;
-        //   max-width: 70% !important;
-        //   word-wrap: break-word;
-        //   padding: 10px;
-        //   border-radius: 0px 10px 10px;
-
-        //   &.same-user-message {
-        //     border-radius: 10px;
-        //   }
-        // }
         .receiver-message-wrapper {
           box-sizing: content-box;
           border-radius: 0 10px 10px 10px;
@@ -159,7 +127,6 @@
     margin-bottom: 1.5px;
 
     .sender-message {
-      // max-width: 320px;
       margin-left: auto;
 
       display: flex;
@@ -195,44 +162,6 @@
         margin-right: 7px;
       }
 
-      // .sender-message-content {
-      //   border-radius: 10px 0px 10px 10px;
-      //   max-width: 70%;
-      //   word-wrap: break-word;
-      //   margin-bottom: 0;
-      //   color: $charcoal-grey;
-      //   font-size: 16px;
-      //   font-weight: 400;
-      //   padding: 8px 12px 8px 12px;
-      //   a {
-      //     text-decoration: underline;
-      //     color: white;
-      //   }
-      //   @include themify(day) {
-      //     background-color: rgb(0, 132, 255);
-      //     color: $white;
-      //   }
-      //   @include themify(night) {
-      //     background-color: $charcoal-grey;
-      //     color: $white;
-      //   }
-      //   &.gif {
-      //     background: none;
-      //     img {
-      //       max-width: 100%;
-      //     }
-      //   }
-
-      //   &.chat-image {
-      //     background: none;
-      //     img {
-      //       max-width: 100%;
-      //     }
-      //   }
-      //   &.same-user-message {
-      //     border-radius: 10px;
-      //   }
-      // }
       .sender-message-wrapper {
         box-sizing: content-box;
         border-radius: 10px 0px 10px 10px;

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import UserAvatar from "../../user-avatar";
 
-import "./index.scss";
 import { dateToFormatted } from "../../../helper/parse-date";
 import { _t } from "../../../i18n";
-import { useMappedStore } from "../../../store/use-mapped-store";
 import { getAccountFull } from "../../../api/hive";
 import { formattedUserName } from "../utils";
 import { useCommunityCache } from "../../../core/caches/communities-cache";
+
+import "./index.scss";
 
 export interface profileData {
   joiningData: string;

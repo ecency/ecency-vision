@@ -1,18 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { History } from "history";
 import { _t } from "../../../i18n";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import ChatsCommunityDropdownMenu from "../chats-community-dropdown-menu";
 import UserAvatar from "../../user-avatar";
-
-import "./index.scss";
-import { Channel } from "../../../../managers/message-manager-types";
 import { CHATPAGE } from "../chat-popup/chat-constants";
 import { Chat } from "../../../store/chat/types";
 import { formattedUserName } from "../utils";
 import Link from "../../alink";
 import { expandSideBar } from "../../../img/svg";
 import { ChatContext } from "../chat-context-provider";
+
+import "./index.scss";
 
 interface Props {
   username: string;

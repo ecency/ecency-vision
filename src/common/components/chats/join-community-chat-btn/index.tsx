@@ -34,10 +34,6 @@ export default function JoinCommunityChatBtn(props: Props) {
   }, [chat.channels, currentCommunity, chat.leftChannelsList]);
 
   useEffect(() => {
-    console.log("communityRoles", communityRoles);
-  }, [communityRoles]);
-
-  useEffect(() => {
     fetchCommunityProfile();
   }, [activeUser]);
 
@@ -55,7 +51,10 @@ export default function JoinCommunityChatBtn(props: Props) {
         messageServiceInstance?.loadChannel(currentCommunity?.id!);
         setInProgress(false);
       }
-      if (initiateCommunityChat && communityRoles.length !== 0) {
+      if (
+        initiateCommunityChat &&
+        communityRoles.some((role) => role.pubkey === activeUserKeys.pub)
+      ) {
         createCommunityChat();
       }
     }
@@ -68,7 +67,6 @@ export default function JoinCommunityChatBtn(props: Props) {
   }, [isCommunityChatJoined, props.community, chat.channels, chat.leftChannelsList]);
 
   const fetchCommunityProfile = async () => {
-    console.log("fetch community profile");
     const communityProfile = await getProfileMetaData(props.community?.name);
     const haschannelMetaData = communityProfile && communityProfile.hasOwnProperty(CHANNEL);
     setIsChatEnabled(haschannelMetaData);
@@ -131,7 +129,6 @@ export default function JoinCommunityChatBtn(props: Props) {
         removedUserIds: []
       });
 
-      console.log("Community data", data);
       const content = JSON.parse(data?.content!);
       const channelMetaData = {
         id: data?.id as string,

@@ -49,9 +49,8 @@ export default function ChatInput(props: Props) {
   const [message, setMessage] = useState("");
   const [shGif, setShGif] = useState(false);
   const [isMessageText, setIsMessageText] = useState(false);
-  // const [isMounted, setIsMounted] = useState(false);
 
-  const { messageServiceInstance, chatPrivKey, isActveUserRemoved } = useContext(ChatContext);
+  const { messageServiceInstance, isActveUserRemoved } = useContext(ChatContext);
 
   const {
     isCommunity,
@@ -63,15 +62,6 @@ export default function ChatInput(props: Props) {
     gifPickerStyle,
     receiverPubKey
   } = props;
-
-  // useEffect(() => {
-  //   setIsMounted(true);
-  //   setShowEmojiPicker(true);
-  //   return () => {
-  //     setShowEmojiPicker(false);
-  //     setIsMounted(false);
-  //   };
-  // }, []);
 
   useEffect(() => {
     if (!isCurrentUser && !isCommunity) {
@@ -304,7 +294,6 @@ export default function ChatInput(props: Props) {
               disabled={(isCurrentUser && receiverPubKey?.length === 0) || isActveUserRemoved}
             />
             <InputGroup.Append
-              // className={`msg-svg ${isMessageText || message.length !== 0 ? "active" : ""}`}
               className={classNameObject({
                 "msg-svg": true,
                 active: isMessageText || message.length !== 0

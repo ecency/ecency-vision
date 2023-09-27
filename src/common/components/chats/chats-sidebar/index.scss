@@ -167,8 +167,6 @@
     @include themify(night) {
       background: $dusky-blue;
     }
-
-    // rgba(29, 155, 240, 0.1);
   }
 
   .community,
@@ -178,14 +176,6 @@
     cursor: pointer;
     border-radius: 8px;
     margin: 0px 10px;
-
-    // @include themify(day) {
-    //   border: 1px solid #f5f5f5;
-    // }
-
-    // @include themify(night) {
-    //   border: 1px solid $charcoal-grey;
-    // }
 
     .community-info,
     .dm-info {
@@ -237,45 +227,6 @@
   }
 }
 
-// @include media-breakpoint-down(sm) {
-//   .chats-sidebar {
-//     width: 45%;
-
-//     .chats-title {
-//       margin: 15px 0px 5px 5px;
-//     }
-//     .chats-search {
-//       padding: 0 5px 0 5px;
-//       margin-bottom: 0;
-//     }
-//     .chats-list {
-//       overflow-x: hidden;
-//       .community-title,
-//       .dm-title {
-//         font-size: 1rem;
-//         padding: 15px 0 10px 8px;
-//       }
-//       .community,
-//       .dm {
-//         margin: 0;
-//         padding: 9.5px 0px 9.5px 5px;
-//         .community-info,
-//         .dm-info {
-//           .community-name,
-//           .dm-name {
-//             padding: 3px 0 0 10px;
-//           }
-//           .community-last-message,
-//           .dm-last-message {
-//             padding: 4px 0 0 10px;
-//             max-width: 35vw;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-//handle the width of the sidebar when screen size is less than 330px
 @media (max-width: 320px) {
   .chats-sidebar {
     min-width: 260px;

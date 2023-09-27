@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { History } from "history";
-import { match } from "react-router";
 import useDebounce from "react-use/lib/useDebounce";
 import { setNostrkeys } from "../../../../managers/message-manager";
 import { Channel } from "../../../../managers/message-manager-types";
@@ -16,12 +15,13 @@ import LinearProgress from "../../linear-progress";
 import Tooltip from "../../tooltip";
 import UserAvatar from "../../user-avatar";
 
-import "./index.scss";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
 import { AccountWithReputation } from "../types";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import { getUserChatPublicKey, formattedUserName } from "../../../components/chats/utils";
+
+import "./index.scss";
 interface Props {
   username: string;
   history: History;
@@ -38,7 +38,6 @@ export default function ChatsSideBar(props: Props) {
     chatPrivKey,
     showSideBar,
     windowWidth,
-    maxHeight,
     setShowSideBar,
     setShowSpinner,
     setRevealPrivKey,
