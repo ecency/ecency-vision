@@ -35,7 +35,8 @@ import {
   isMessageGif,
   isMessageImage,
   formatMessageDate,
-  checkContiguousMessage
+  checkContiguousMessage,
+  formatMessageDateAndDay
 } from "../utils";
 import { ChatContext } from "../chat-context-provider";
 
@@ -280,16 +281,6 @@ export default function ChatsChannelMessages(props: Props) {
     }
   };
 
-  const getFormattedDateAndDay = (msg: PublicMessage, i: number) => {
-    const prevMsg = publicMessages[i - 1];
-    const msgDate = formatMessageDate(msg.created);
-    const prevMsgDate = prevMsg ? formatMessageDate(prevMsg.created) : null;
-    if (msgDate !== prevMsgDate) {
-      return msgDate;
-    }
-    return null;
-  };
-
   const handelMessageActions = (msgId: string) => {
     if (showMessageActions && hoveredMessageId !== msgId) {
       setHoveredMessageId(msgId);
@@ -304,7 +295,7 @@ export default function ChatsChannelMessages(props: Props) {
         {publicMessages.length !== 0 &&
           activeUserKeys &&
           publicMessages.map((pMsg, i) => {
-            const dayAndMonth = getFormattedDateAndDay(pMsg, i);
+            const dayAndMonth = formatMessageDateAndDay(pMsg, i, publicMessages);
             console.log("dayAndMonth", dayAndMonth);
 
             const isSameUserMessage = checkContiguousMessage(pMsg, i, publicMessages);

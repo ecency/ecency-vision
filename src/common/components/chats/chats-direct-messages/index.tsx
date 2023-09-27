@@ -8,7 +8,8 @@ import {
   formatMessageDate,
   isMessageGif,
   isMessageImage,
-  checkContiguousMessage
+  checkContiguousMessage,
+  formatMessageDateAndDay
 } from "../utils";
 
 import { Theme } from "../../../store/global/types";
@@ -49,7 +50,7 @@ export default function ChatsDirectMessages(props: Props) {
   } = props;
 
   const { global, activeUser, deleteDirectMessage } = useMappedStore();
-  const { activeUserKeys, messageServiceInstance } = useContext(ChatContext);
+  const { activeUserKeys, messageServiceInstance, windowWidth } = useContext(ChatContext);
 
   let prevGlobal = usePrevious(global);
   const [step, setStep] = useState(0);
@@ -85,22 +86,6 @@ export default function ChatsDirectMessages(props: Props) {
     }
   };
 
-  const getFormattedDateAndDay = (msg: DirectMessage, i: number) => {
-    const prevMsg = directMessages[i - 1];
-    const msgDate = formatMessageDate(msg.created);
-    const prevMsgDate = prevMsg ? formatMessageDate(prevMsg.created) : null;
-    if (msgDate !== prevMsgDate) {
-      return (
-        <div className="custom-divider">
-          <span className="d-flex justify-content-center align-items-center mt-3 custom-divider-text">
-            {msgDate}
-          </span>
-        </div>
-      );
-    }
-    return <></>;
-  };
-
   const handleConfirm = () => {
     switch (step) {
       case 1:
@@ -122,7 +107,7 @@ export default function ChatsDirectMessages(props: Props) {
           <>
             {directMessages &&
               directMessages.map((msg, i) => {
-                const dayAndMonth = getFormattedDateAndDay(msg, i);
+                const dayAndMonth = formatMessageDateAndDay(msg, i, directMessages);
                 let renderedPreview = renderPostBody(msg.content, false, global.canUseWebp);
 
                 renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
@@ -136,10 +121,16 @@ export default function ChatsDirectMessages(props: Props) {
 
                 return (
                   <React.Fragment key={msg.id}>
-                    {dayAndMonth}
+                    {dayAndMonth && (
+                      <div className="custom-divider">
+                        <span className="d-flex justify-content-center align-items-center mt-3 custom-divider-text">
+                          {dayAndMonth}
+                        </span>
+                      </div>
+                    )}
                     {msg.creator !== activeUserKeys?.pub ? (
                       <div key={msg.id} className="receiver">
-                        {!isSameUser && (
+                        {!isSameUser || (isSameUser && dayAndMonth) ? (
                           <div className="user-img">
                             <Link to={`/@${currentUser}`}>
                               <span>
@@ -147,11 +138,19 @@ export default function ChatsDirectMessages(props: Props) {
                               </span>
                             </Link>
                           </div>
+                        ) : (
+                          <></>
                         )}
 
-                        <div className={`user-info ${isSameUser ? "same-user" : ""}`}>
-                          {/* <p className="user-msg-time">{formatMessageTime(msg.created)}</p> */}
-
+                        <div
+                          className={`user-info ${
+                            isSameUser && !dayAndMonth
+                              ? "same-user-msg"
+                              : dayAndMonth
+                              ? "date-changed"
+                              : ""
+                          }`}
+                        >
                           <div className="receiver-messag">
                             <Tooltip
                               content={
@@ -161,18 +160,28 @@ export default function ChatsDirectMessages(props: Props) {
                               }
                             >
                               <div
-                                className={`receiver-message-content ${isGif ? "gif" : ""} ${
-                                  isImage ? "chat-image" : isSameUser ? "same-user-message" : ""
+                                className={`receiver-message-wrapper  ${isGif ? "gif" : ""} ${
+                                  isImage ? "chat-image" : ""
                                 }`}
-                                dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                              />
+                              >
+                                <div
+                                  className={`receiver-message-content  ${isGif ? "gif" : ""} ${
+                                    isImage ? "chat-image" : ""
+                                  }`}
+                                  dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                                />
+                                {windowWidth <= 768 && (
+                                  <p className="receiver-msg-time">
+                                    {formatMessageTime(msg.created)}
+                                  </p>
+                                )}
+                              </div>
                             </Tooltip>
                           </div>
                         </div>
                       </div>
                     ) : (
                       <div key={msg.id} className="sender">
-                        {/* <p className="sender-message-time">{formatMessageTime(msg.created)}</p> */}
                         <div
                           className={`sender-message ${
                             msg.sent === 2 ? "failed" : msg.sent === 0 ? "sending" : ""
@@ -199,11 +208,20 @@ export default function ChatsDirectMessages(props: Props) {
                             }
                           >
                             <div
-                              className={`sender-message-content ${isGif ? "gif" : ""} ${
+                              className={`sender-message-wrapper ${isGif ? "gif" : ""} ${
                                 isImage ? "chat-image" : isSameUser ? "same-user-message" : ""
                               }`}
-                              dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                            />
+                            >
+                              <div
+                                className="sender-message-content"
+                                dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                              />
+                              {windowWidth <= 768 && (
+                                <p className="sender-message-time">
+                                  {formatMessageTime(msg.created)}
+                                </p>
+                              )}
+                            </div>
                           </Tooltip>
                           {msg.sent === 0 && (
                             <span style={{ margin: "10px 0 0 5px" }}>
