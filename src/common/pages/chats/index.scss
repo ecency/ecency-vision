@@ -11,6 +11,12 @@
   .chats-manage-key {
     .private-key {
       margin-top: 4.5rem;
+      @include media-breakpoint-down(md) {
+        width: 95vw;
+      }
+      .form-group {
+        width: 100% !important;
+      }
     }
   }
   .import-chat {

@@ -63,6 +63,8 @@ export default function ChatInput(props: Props) {
     receiverPubKey
   } = props;
 
+  console.log("receiverPubKey", receiverPubKey, "isCurrentUser", isCurrentUser);
+
   useEffect(() => {
     if (!isCurrentUser && !isCommunity) {
       setMessage("");
@@ -181,9 +183,7 @@ export default function ChatInput(props: Props) {
     <>
       <div
         className={`chat ${
-          isActveUserRemoved ||
-          !isCurrentUserJoined ||
-          (isCurrentUser && receiverPubKey?.length === 0)
+          isActveUserRemoved || !isCurrentUserJoined || (isCurrentUser && !receiverPubKey)
             ? "disable"
             : ""
         }`}
@@ -291,7 +291,7 @@ export default function ChatInput(props: Props) {
               placeholder={_t("chat.start-chat-placeholder")}
               autoComplete="off"
               className="chat-input"
-              disabled={(isCurrentUser && receiverPubKey?.length === 0) || isActveUserRemoved}
+              disabled={(isCurrentUser && !receiverPubKey) || isActveUserRemoved}
             />
             <InputGroup.Append
               className={classNameObject({
