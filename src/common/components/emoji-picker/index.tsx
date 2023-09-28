@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import useMountedState from "react-use/lib/useMountedState";
 import "./_index.scss";
 import { v4 } from "uuid";
@@ -8,7 +7,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import useClickAway from "react-use/lib/useClickAway";
 
 interface Props {
-  anchor: Element | null;
+  anchor: HTMLElement | null;
   onSelect: (e: string) => void;
 }
 
@@ -38,36 +37,30 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
   useEffect(() => {
     if (anchor) {
       anchor.addEventListener("click", () => {
-        const { x, y } = anchor.getBoundingClientRect();
-        setPosition({ x: x + window.scrollX, y: y + window.scrollY });
+        anchor.style.position = "relative !important";
         setShow(true);
       });
     }
   }, [anchor]);
 
   return isMounted() ? (
-    createPortal(
-      <div
-        ref={ref}
-        id={dialogId}
-        key={dialogId}
-        className="emoji-picker-dialog"
-        style={{
-          top: position.y + 40,
-          left: position.x,
-          display: show ? "flex" : "none"
-        }}
-      >
-        <Picker
-          dynamicWidth={true}
-          onEmojiSelect={(e: { native: string }) => onSelect(e.native)}
-          previewPosition="none"
-          set="apple"
-          theme={global.theme === "day" ? "light" : "dark"}
-        />
-      </div>,
-      document.querySelector("#root")!!
-    )
+    <div
+      ref={ref}
+      id={dialogId}
+      key={dialogId}
+      className="emoji-picker-dialog"
+      style={{
+        display: show ? "block" : "none"
+      }}
+    >
+      <Picker
+        dynamicWidth={true}
+        onEmojiSelect={(e: { native: string }) => onSelect(e.native)}
+        previewPosition="none"
+        set="apple"
+        theme={global.theme === "day" ? "light" : "dark"}
+      />
+    </div>
   ) : (
     <></>
   );
