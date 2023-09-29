@@ -103,22 +103,19 @@ export function VideoUploadRecorder({
         <></>
       )}
 
-      {!noPermission && !recordedVideoSrc ? (
-        <VideoUploadRecorderActions
-          noPermission={noPermission}
-          mediaRecorder={mediaRecorder}
-          onCameraSelect={(camera) => {
-            stream
-              ?.getTracks()
-              .filter(({ kind }) => kind === "video")
-              .forEach((track) => track.stop());
+      <VideoUploadRecorderActions
+        noPermission={noPermission}
+        mediaRecorder={mediaRecorder}
+        recordButtonShow={!noPermission && !recordedVideoSrc}
+        onCameraSelect={(camera) => {
+          stream
+            ?.getTracks()
+            .filter(({ kind }) => kind === "video")
+            .forEach((track) => track.stop());
 
-            setCurrentCamera(camera);
-          }}
-        />
-      ) : (
-        <></>
-      )}
+          setCurrentCamera(camera);
+        }}
+      />
 
       {noPermission ? (
         <VideoUploadRecorderNoPermission />

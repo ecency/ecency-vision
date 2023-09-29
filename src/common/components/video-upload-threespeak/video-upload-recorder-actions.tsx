@@ -5,10 +5,16 @@ import { useGetCameraList } from "./utils";
 interface Props {
   noPermission: boolean;
   mediaRecorder?: MediaRecorder;
+  recordButtonShow?: boolean;
   onCameraSelect: (camera: MediaDeviceInfo) => void;
 }
 
-export function VideoUploadRecorderActions({ noPermission, mediaRecorder, onCameraSelect }: Props) {
+export function VideoUploadRecorderActions({
+  noPermission,
+  mediaRecorder,
+  onCameraSelect,
+  recordButtonShow
+}: Props) {
   const cameraList = useGetCameraList();
 
   const [currentCameraIndex, setCurrentCameraIndex] = useState(0);
@@ -48,6 +54,9 @@ export function VideoUploadRecorderActions({ noPermission, mediaRecorder, onCame
             {rectSvg}
           </div>
         ) : (
+          <></>
+        )}
+        {!recordStarted && recordButtonShow ? (
           <div
             aria-disabled={noPermission}
             className="record-btn"
@@ -58,6 +67,8 @@ export function VideoUploadRecorderActions({ noPermission, mediaRecorder, onCame
           >
             {circleSvg}
           </div>
+        ) : (
+          <></>
         )}
       </div>
       <div />
