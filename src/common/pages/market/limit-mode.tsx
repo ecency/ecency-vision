@@ -148,7 +148,7 @@ export const LimitMarketMode = (props: PageProps) => {
             )}
 
             {activeUser && (
-              <div className="flex flex-col d-mhidden">
+              <div className="flex flex-col md:hidden">
                 <div className="flex align-items-sm-center justify-content-start justify-content-sm-between flex-col flex-sm-row">
                   <h3>{_t("market.barter")}</h3>
                   <ButtonGroup

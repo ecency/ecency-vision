@@ -146,15 +146,15 @@ export class Purchase extends BaseComponent<Props, State> {
             value={amount}
             onChange={this.sliderChanged}
           />
-          <small className="text-muted">{_t("purchase.slider-hint")}</small>
+          <small className="text-gray-600">{_t("purchase.slider-hint")}</small>
         </div>
         <div className="point-amount">
           {formattedNumber(points, { fractionDigits: 3 })} {"POINTS"}
         </div>
         <div className="text-center flex flex-col items-center">
           <Button onClick={this.submit}>{_t("purchase.submit")}</Button>
-          <span className={"flex text-muted mt-3 items-center"}>
-            <h4 className={"text-white my-0 mr-1"}>&#9432;</h4> {_t("purchase.purchase-message")}
+          <span className="flex text-gray-600 mt-3 items-center">
+            <h4 className="text-white my-0 mr-1">&#9432;</h4> {_t("purchase.purchase-message")}
           </span>
         </div>
       </div>

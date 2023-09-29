@@ -1,34 +1,24 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
-import htmlParse from "html-react-parser";
-import { Element } from "domhandler";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-
 import EntryLink from "../entry-link";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import Tag from "../tag";
-
 import FormattedCurrency from "../formatted-currency";
-
 import defaults from "../../constants/defaults.json";
-
 import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
-
-setProxyBase(defaults.imageServer);
-
 import accountReputation from "../../helper/account-reputation";
 
 import { SearchResult } from "../../api/search-api";
 
-import { peopleSvg, commentSvg } from "../../img/svg";
+import { commentSvg, peopleSvg } from "../../img/svg";
 import { dateToFormatted, dateToRelative } from "../../helper/parse-date";
 import "./_index.scss";
 import { transformMarkedContent } from "../../util/transform-marked-content";
+
+setProxyBase(defaults.imageServer);
 
 interface Props {
   history: History;

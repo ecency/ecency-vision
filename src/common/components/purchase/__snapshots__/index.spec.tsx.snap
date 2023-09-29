@@ -69,7 +69,7 @@ exports[`(1) Purchase 1`] = `
       value={250}
     />
     <small
-      className="text-muted form-text"
+      className="text-gray-600 form-text"
     >
       Drag the slider to adjust the amount.
     </small>
@@ -93,7 +93,7 @@ exports[`(1) Purchase 1`] = `
       Purchase
     </button>
     <span
-      className="flex text-muted mt-3 items-center"
+      className="flex text-gray-600 mt-3 items-center"
     >
       <h4
         className="text-white my-0 mr-1"
@@ -334,7 +334,7 @@ exports[`(2) Should switch to transfer 1`] = `
           className="col-md-10 offset-md-2"
         >
           <small
-            className="text-muted tr-form-text form-text"
+            className="text-gray-600 tr-form-text form-text"
           >
             This memo is public
           </small>

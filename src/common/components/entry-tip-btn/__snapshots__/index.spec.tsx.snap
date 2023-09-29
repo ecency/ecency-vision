@@ -236,7 +236,7 @@ exports[`(2) Dialog 1`] = `
           className="col-md-10 offset-md-2"
         >
           <small
-            className="text-muted tr-form-text form-text"
+            className="text-gray-600 tr-form-text form-text"
           >
             This memo is public
           </small>

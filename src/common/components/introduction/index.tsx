@@ -51,7 +51,7 @@ export const Introduction = ({
               <h1 className="mb-2 mb-md-4 text-dark font-bold title" id="title">
                 {title}
               </h1>
-              <p className="text-muted paragraph mt-2 md:mt-0" id="description">
+              <p className="text-gray-600 paragraph mt-2 md:mt-0" id="description">
                 {description}
               </p>
               <div className="flex flex-col md:flex-row">

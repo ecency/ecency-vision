@@ -301,7 +301,7 @@ export class Boost extends BaseComponent<Props, State> {
                   </SuggestionList>
                   {postError && <small className="text-red">{postError}</small>}
                   {!postError && (
-                    <small className="text-muted">{_t("redeem-common.post-hint")}</small>
+                    <small className="text-gray-600">{_t("redeem-common.post-hint")}</small>
                   )}
                 </div>
               </div>
@@ -326,7 +326,7 @@ export class Boost extends BaseComponent<Props, State> {
                       value={amount}
                       onChange={this.sliderChanged}
                     />
-                    <small className="text-muted">{_t("boost.slider-hint")}</small>
+                    <small className="text-gray-600">{_t("boost.slider-hint")}</small>
                   </div>
                 </div>
               </div>

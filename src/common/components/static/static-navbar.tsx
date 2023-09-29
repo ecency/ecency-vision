@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "@ui/button";
 
 interface Props {
   fullVersionUrl: string;
@@ -56,10 +57,10 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
         </div>
       </div>
 
-      <div className="p-3 w-full fixed-bottom hidden block d-mhidden view-full-version">
-        <a className="btn btn-primary py-2 w-full" href={fullVersionUrl}>
+      <div className="p-3 w-full fixed bottom-0 md:hidden view-full-version">
+        <Button size="sm" full={true} href={fullVersionUrl}>
           View full version
-        </a>
+        </Button>
       </div>
     </>
   );

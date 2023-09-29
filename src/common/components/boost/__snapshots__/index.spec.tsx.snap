@@ -87,7 +87,7 @@ exports[`(1) Default render 1`] = `
           </div>
           
           <small
-            className="text-muted form-text"
+            className="text-gray-600 form-text"
           >
             Autocomplete input
           </small>
@@ -126,7 +126,7 @@ exports[`(1) Default render 1`] = `
               value={150}
             />
             <small
-              className="text-muted form-text"
+              className="text-gray-600 form-text"
             >
               Drag the slider to adjust the amount.
             </small>
@@ -253,7 +253,7 @@ exports[`(2) Insufficient Funds 1`] = `
           </div>
           
           <small
-            className="text-muted form-text"
+            className="text-gray-600 form-text"
           >
             Autocomplete input
           </small>
@@ -292,7 +292,7 @@ exports[`(2) Insufficient Funds 1`] = `
               value={150}
             />
             <small
-              className="text-muted form-text"
+              className="text-gray-600 form-text"
             >
               Drag the slider to adjust the amount.
             </small>
@@ -415,7 +415,7 @@ exports[`(2) With entry 1`] = `
           </div>
           
           <small
-            className="text-muted form-text"
+            className="text-gray-600 form-text"
           >
             Autocomplete input
           </small>
@@ -454,7 +454,7 @@ exports[`(2) With entry 1`] = `
               value={150}
             />
             <small
-              className="text-muted form-text"
+              className="text-gray-600 form-text"
             >
               Drag the slider to adjust the amount.
             </small>

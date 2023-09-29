@@ -83,7 +83,7 @@ export class SearchTopics extends BaseComponent<Props, State> {
             }
 
             if (results.length === 0) {
-              return <span className="text-muted">{_t("g.no-matches")}</span>;
+              return <span className="text-gray-600">{_t("g.no-matches")}</span>;
             }
 
             return (

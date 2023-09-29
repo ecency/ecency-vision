@@ -929,7 +929,7 @@ export class Transfer extends BaseComponent<Props, State> {
                     )}
                   </div>
                   {to.length > 0 && Number(amount) > 0 && toData?.__loaded && mode === "delegate" && (
-                    <div className="text-muted mt-1 override-warning">
+                    <div className="text-gray-600 mt-1 override-warning">
                       {_t("transfer.override-warning-1")}
                       {delegateAccount && (
                         <>

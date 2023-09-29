@@ -500,7 +500,7 @@ export const WalletEcency = (props: Props) => {
                       <TransactionRow history={history} tr={tr} key={tr.id} />
                     ))}
                     {!isLoading && points.transactions.length === 0 && (
-                      <p className="text-muted empty-list">{_t("g.empty-list")}</p>
+                      <p className="text-gray-600 empty-list">{_t("g.empty-list")}</p>
                     )}
                   </div>
                 );

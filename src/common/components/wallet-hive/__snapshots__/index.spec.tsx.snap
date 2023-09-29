@@ -318,7 +318,7 @@ exports[`(1) Default Render 1`] = `
           </select>
         </div>
         <p
-          className="text-muted empty-list"
+          className="text-gray-600 empty-list"
         >
           Nothing here
         </p>
@@ -812,7 +812,7 @@ exports[`(2) Render with converting HBD 1`] = `
           </select>
         </div>
         <p
-          className="text-muted empty-list"
+          className="text-gray-600 empty-list"
         >
           Nothing here
         </p>
@@ -1305,7 +1305,7 @@ exports[`(3) usePrivate = false 1`] = `
           </select>
         </div>
         <p
-          className="text-muted empty-list"
+          className="text-gray-600 empty-list"
         >
           Nothing here
         </p>

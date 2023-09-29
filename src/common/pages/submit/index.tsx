@@ -651,7 +651,7 @@ export function Submit(props: PageProps & MatchProps) {
                               <option value="sp">{_t("submit.reward-sp")}</option>
                               <option value="dp">{_t("submit.reward-dp")}</option>
                             </FormControl>
-                            <small className="text-muted">{_t("submit.reward-hint")}</small>
+                            <small className="text-gray-600">{_t("submit.reward-hint")}</small>
                           </Col>
                         </Row>
                         <Row className="mb-4">
@@ -678,7 +678,9 @@ export function Submit(props: PageProps & MatchProps) {
                                 setBeneficiaries(b);
                               }}
                             />
-                            <small className="text-muted">{_t("submit.beneficiaries-hint")}</small>
+                            <small className="text-gray-600">
+                              {_t("submit.beneficiaries-hint")}
+                            </small>
                           </Col>
                         </Row>
                       </>
@@ -697,7 +699,7 @@ export function Submit(props: PageProps & MatchProps) {
                           rows={3}
                           maxLength={200}
                         />
-                        <small className="text-muted">
+                        <small className="text-gray-600">
                           {description !== "" ? description : postBodySummary(body, 200)}
                         </small>
                       </Col>
@@ -716,7 +718,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   setSchedule(d ? d.toISOString(true) : null);
                                 }}
                               />
-                              <small className="text-muted">{_t("submit.schedule-hint")}</small>
+                              <small className="text-gray-600">{_t("submit.schedule-hint")}</small>
                             </Col>
                           </Row>
                         )}
@@ -735,7 +737,7 @@ export function Submit(props: PageProps & MatchProps) {
                               setReblogSwitch(e.target.checked);
                             }}
                           />
-                          <small className="text-muted">{_t("submit.reblog-hint")}</small>
+                          <small className="text-gray-600">{_t("submit.reblog-hint")}</small>
                         </Col>
                       </Row>
                     )}

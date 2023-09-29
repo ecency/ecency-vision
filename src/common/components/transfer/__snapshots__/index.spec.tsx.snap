@@ -215,7 +215,7 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
           className="col-md-10 offset-md-2"
         >
           <small
-            className="text-muted tr-form-text form-text"
+            className="text-gray-600 tr-form-text form-text"
           >
             This memo is public
           </small>
@@ -768,7 +768,7 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
           className="col-md-10 offset-md-2"
         >
           <small
-            className="text-muted tr-form-text form-text"
+            className="text-gray-600 tr-form-text form-text"
           >
             This memo is public
           </small>
@@ -1204,7 +1204,7 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
           className="col-md-10 offset-md-2"
         >
           <small
-            className="text-muted tr-form-text form-text"
+            className="text-gray-600 tr-form-text form-text"
           >
             This memo is public
           </small>
@@ -1630,7 +1630,7 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
           className="col-md-10 offset-md-2"
         >
           <small
-            className="text-muted tr-form-text form-text"
+            className="text-gray-600 tr-form-text form-text"
           >
             This memo is public
           </small>
@@ -2056,7 +2056,7 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
           className="col-md-10 offset-md-2"
         >
           <small
-            className="text-muted tr-form-text form-text"
+            className="text-gray-600 tr-form-text form-text"
           >
             This memo is public
           </small>

@@ -319,7 +319,7 @@ export class Schedules extends BaseComponent<Props, State> {
                 />
               </div>
 
-              {items.length === 0 && <span className="text-muted">{_t("g.no-matches")}</span>}
+              {items.length === 0 && <span className="text-gray-600">{_t("g.no-matches")}</span>}
 
               {items.length > 0 && (
                 <div className="schedules-list">

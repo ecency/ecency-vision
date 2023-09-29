@@ -639,7 +639,7 @@ const List = (props: Props) => {
         <TransactionRow {...props} key={k} transaction={x} />
       ))}
       {!props.transactions.loading && transactionsList.length === 0 && (
-        <p className="text-muted empty-list">{_t("g.empty-list")}</p>
+        <p className="text-gray-600 empty-list">{_t("g.empty-list")}</p>
       )}
       {!props.transactions.loading &&
         !props.transactions.loading &&

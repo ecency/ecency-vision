@@ -173,7 +173,7 @@ body {
 }
 
 @media (min-width: 768px) {
-  .d-mhidden {
+  .md:hidden {
     display: none;
   }
 }

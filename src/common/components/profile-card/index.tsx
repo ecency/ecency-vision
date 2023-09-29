@@ -33,6 +33,7 @@ import isCommunity from "../../helper/is-community";
 import { Subscription } from "../../store/subscriptions/types";
 import { ResourceCreditsInfo } from "../rc-info";
 import "./_index.scss";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -165,11 +166,11 @@ export const ProfileCard = (props: Props) => {
       </h1>
 
       {loggedIn && !isMyProfile && (
-        <div className="flex justify-center mb-3 d-mblock">
+        <div className="flex justify-center mb-3">
           {followsActiveUserLoading ? (
             <Skeleton className="loading-follows-you" />
           ) : followsActiveUser ? (
-            <div className="follow-pill d-inline text-lowercase">{_t("profile.follows-you")}</div>
+            <div className="follow-pill inline lowercase">{_t("profile.follows-you")}</div>
           ) : null}
         </div>
       )}
@@ -257,22 +258,22 @@ export const ProfileCard = (props: Props) => {
       )}
       <div className="btn-controls">
         {isCommunity(account?.name) && (
-          <Link className="btn btn-sm btn-primary" to={`/created/${account?.name}`}>
-            {_t("profile.go-community")}
+          <Link to={`/created/${account?.name}`}>
+            <Button size="sm">{_t("profile.go-community")}</Button>
           </Link>
         )}
         {isMyProfile && (
           <>
             {global.usePrivate && (
-              <Link className="btn btn-sm btn-primary" to={`/@${account?.name}/referrals`}>
-                {_t("profile.referrals")}
+              <Link to={`/@${account?.name}/referrals`}>
+                <Button size="sm">{_t("profile.referrals")}</Button>
               </Link>
             )}
-            <Link className="btn btn-sm btn-primary" to="/witnesses">
-              {_t("profile.witnesses")}
+            <Link to="/witnesses">
+              <Button size="sm">{_t("profile.witnesses")}</Button>
             </Link>
-            <Link className="btn btn-sm btn-primary" to="/proposals">
-              {_t("profile.proposals")}
+            <Link to="/proposals">
+              <Button size="sm">{_t("profile.proposals")}</Button>
             </Link>
           </>
         )}

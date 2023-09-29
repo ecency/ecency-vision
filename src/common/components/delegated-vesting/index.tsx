@@ -254,7 +254,7 @@ export default class DelegatedVesting extends Component<Props, DelegatedVestingS
             <ModalTitle>
               <div>
                 <div>{_t("delegated-vesting.title")}</div>
-                <div className="text-muted mt-3 text-small">{subtitle}</div>
+                <div className="text-gray-600 mt-3 text-small">{subtitle}</div>
               </div>
             </ModalTitle>
           </ModalHeader>

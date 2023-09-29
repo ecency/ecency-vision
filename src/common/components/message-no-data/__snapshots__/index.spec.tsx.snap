@@ -19,7 +19,7 @@ exports[`Renders a message 1`] = `
       
     </h2>
     <p
-      className="text-muted lead"
+      className="text-gray-600 lead"
     >
       
     </p>

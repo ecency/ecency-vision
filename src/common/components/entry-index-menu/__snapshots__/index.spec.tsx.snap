@@ -425,7 +425,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                     Friends
                   </h1>
                   <p
-                    className="text-muted paragraph mt-2 mt-md-0"
+                    className="text-gray-600 paragraph mt-2 mt-md-0"
                     id="description"
                   >
                     This feed contains 
@@ -590,7 +590,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                       Friends
                     </h1>
                     <p
-                      className="text-muted paragraph mt-2 mt-md-0"
+                      className="text-gray-600 paragraph mt-2 mt-md-0"
                       id="description"
                     >
                       This feed contains 

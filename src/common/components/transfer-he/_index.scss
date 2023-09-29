@@ -211,7 +211,7 @@
     margin-left: 20px;
   }
 
-  .text-muted {
+  .text-gray-600 {
     @apply text-gray-steel;
     @include themify(night) {
       @apply text-blue-metallic;

@@ -340,7 +340,7 @@ exports[`(1) Default Render 1`] = `
           className="transaction-list-body"
         >
           <p
-            className="text-muted empty-list"
+            className="text-gray-600 empty-list"
           >
             Nothing here
           </p>
@@ -834,7 +834,7 @@ exports[`(2) With active user 1`] = `
           className="transaction-list-body"
         >
           <p
-            className="text-muted empty-list"
+            className="text-gray-600 empty-list"
           >
             Nothing here
           </p>
@@ -1328,7 +1328,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
           className="transaction-list-body"
         >
           <p
-            className="text-muted empty-list"
+            className="text-gray-600 empty-list"
           >
             Nothing here
           </p>

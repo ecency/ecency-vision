@@ -322,7 +322,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                   className="flex py-1 border-b border-[--border-color]"
                                   key={reward.pending_token + ind}
                                 >
-                                  <div className="mr-1 text-lowercase">{reward.symbol}: </div>
+                                  <div className="mr-1 lowercase">{reward.symbol}: </div>
                                   <div>{reward.pending_token / Math.pow(10, reward.precision)}</div>
                                 </div>
                               ))}

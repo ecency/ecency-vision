@@ -421,7 +421,7 @@ export class Fragments extends BaseComponent<Props, State> {
                 </div>
               </div>
 
-              {items.length === 0 && <span className="text-muted">{_t("g.no-matches")}</span>}
+              {items.length === 0 && <span className="text-gray-600">{_t("g.no-matches")}</span>}
 
               {items.length > 0 && (
                 <div className="fragments-list">

@@ -47,7 +47,7 @@ exports[`Introduction component (1) renders successfully with minimal props 1`] 
           Test Title
         </h1>
         <p
-          className="text-muted paragraph mt-2 mt-md-0"
+          className="text-gray-600 paragraph mt-2 mt-md-0"
           id="description"
         >
           Test decription

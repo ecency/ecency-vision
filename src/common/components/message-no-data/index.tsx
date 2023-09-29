@@ -21,7 +21,7 @@ const MessageNoData = ({ buttonText, buttonTo, title, description, img, global }
       </div>
       <div className="flex flex-col w-[50%] ml-5">
         <h2>{title}</h2>
-        <p className="text-muted lead">{description}</p>
+        <p className="text-gray-600 lead">{description}</p>
         {buttonText && (
           <Link to={buttonTo}>
             <Button className="align-self-baseline">{buttonText}</Button>
