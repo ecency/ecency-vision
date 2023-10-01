@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import isEqual from "react-fast-compare";
-import { Col, Row } from "react-bootstrap";
 import { PrivateKey } from "@hiveio/dhive";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -254,11 +253,11 @@ export class Promote extends BaseComponent<Props, State> {
               <div className="align-self-center">
                 <a href="/faq#how-promotion-work">{_t("promote.learn-more")}</a>
               </div>
-              <Row className="mb-4">
-                <Col sm={2}>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2">
                   <label>{_t("redeem-common.balance")}</label>
-                </Col>
-                <Col sm="10">
+                </div>
+                <div className="col-span-12 sm:col-span-10">
                   <FormControl
                     type="text"
                     className={_c(`balance-input ${balanceError ? "is-invalid" : ""}`)}
@@ -267,13 +266,13 @@ export class Promote extends BaseComponent<Props, State> {
                     value={`${activeUser.points.points} POINTS`}
                   />
                   {balanceError && <small className="text-red">{balanceError}</small>}
-                </Col>
-              </Row>
-              <Row className="mb-4">
-                <Col sm={2}>
+                </div>
+              </div>
+              <div className="mb-4">
+                <div className="col-span-12 sm:col-span-2">
                   <label>{_t("redeem-common.post")}</label>
-                </Col>
-                <Col sm="10">
+                </div>
+                <div className="col-span-12 sm:col-span-10">
                   <SuggestionList items={paths} renderer={(i) => i} onSelect={this.pathSelected}>
                     <FormControl
                       className={postError ? "is-invalid" : ""}
@@ -288,13 +287,13 @@ export class Promote extends BaseComponent<Props, State> {
                   {!postError && (
                     <small className="text-gray-600">{_t("redeem-common.post-hint")}</small>
                   )}
-                </Col>
-              </Row>
-              <Row className="mb-4">
-                <Col sm={2}>
+                </div>
+              </div>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2">
                   <label>{_t("promote.duration")}</label>
-                </Col>
-                <Col sm="10">
+                </div>
+                <div className="col-span-12 sm:col-span-10">
                   <FormControl
                     type="select"
                     value={duration}
@@ -311,16 +310,16 @@ export class Promote extends BaseComponent<Props, State> {
                       );
                     })}
                   </FormControl>
-                </Col>
-              </Row>
-              <Row className="mb-4">
-                <Col sm={2} />
-                <Col sm="10">
+                </div>
+              </div>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2" />
+                <div className="col-span-12 sm:col-span-10">
                   <Button onClick={this.next} disabled={!canSubmit || inProgress}>
                     {_t("g.next")}
                   </Button>
-                </Col>
-              </Row>
+                </div>
+              </div>
             </div>
           </div>
         )}

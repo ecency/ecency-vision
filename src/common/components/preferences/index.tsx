@@ -1,6 +1,5 @@
 import React from "react";
 import i18n from "i18next";
-import { Col, Row } from "react-bootstrap";
 import { Global, Theme } from "../../store/global/types";
 import BaseComponent from "../base";
 import { success } from "../feedback";
@@ -140,8 +139,8 @@ export class Preferences extends BaseComponent<Props, State> {
         <div className="preferences">
           <div className="preferences-header">{_t("preferences.title")}</div>
 
-          <Row>
-            <Col lg={6} xl={4}>
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
               <div className="mb-4">
                 <label>{_t("preferences.notifications")}</label>
                 <FormControl
@@ -153,8 +152,8 @@ export class Preferences extends BaseComponent<Props, State> {
                   <option value={0}>{_t("g.off")}</option>
                 </FormControl>
               </div>
-            </Col>
-            <Col lg={6} xl={4}>
+            </div>
+            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
               <div className="mb-4">
                 <label>{_t("preferences.currency")}</label>
                 <FormControl
@@ -170,8 +169,8 @@ export class Preferences extends BaseComponent<Props, State> {
                   ))}
                 </FormControl>
               </div>
-            </Col>
-            <Col lg={6} xl={4}>
+            </div>
+            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
               <div className="mb-4">
                 <label>{_t("preferences.language")}</label>
                 <FormControl
@@ -187,10 +186,10 @@ export class Preferences extends BaseComponent<Props, State> {
                   ))}
                 </FormControl>
               </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={6} xl={4}>
+            </div>
+          </div>
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
               <div className="mb-4">
                 <label>{_t("preferences.nsfw")}</label>
                 <FormControl value={global.nsfw ? 1 : 0} type="select" onChange={this.nsfwChanged}>
@@ -198,11 +197,11 @@ export class Preferences extends BaseComponent<Props, State> {
                   <option value={0}>{_t("g.off")}</option>
                 </FormControl>
               </div>
-            </Col>
+            </div>
 
             {activeUser && activeUser.username && (
               <>
-                <Col lg={6} xl={4}>
+                <div className="col-span-12 lg:col-span-6 xl:col-span-4">
                   <div className="mb-4">
                     <label>{_t("preferences.referral-link")}</label>
                     <InputGroupCopyClipboard
@@ -210,8 +209,8 @@ export class Preferences extends BaseComponent<Props, State> {
                       value={`https://ecency.com/signup?referral=${activeUser!.username}`}
                     />
                   </div>
-                </Col>
-                <Col lg={6} xl={4}>
+                </div>
+                <div className="col-span-12 lg:col-span-6 xl:col-span-4">
                   <div className="mb-4">
                     <label>{_t("preferences.theme")}</label>
                     <FormControl
@@ -224,10 +223,10 @@ export class Preferences extends BaseComponent<Props, State> {
                       <option value={Theme.night}>{_t("preferences.theme-night")}</option>
                     </FormControl>
                   </div>
-                </Col>
+                </div>
               </>
             )}
-          </Row>
+          </div>
         </div>
       </>
     );

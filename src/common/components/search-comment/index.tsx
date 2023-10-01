@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Col, FormCheck, Row } from "react-bootstrap";
+import { FormCheck } from "react-bootstrap";
 import { History, Location } from "history";
 import numeral from "numeral";
 import moment, { Moment } from "moment";
@@ -272,9 +272,9 @@ export class SearchComment extends BaseComponent<Props, State> {
 
     const advancedForm =
       advanced || disableResults ? (
-        <Col className="advanced-section">
-          <Row>
-            <Col className="mb-4" sm={4}>
+        <div className="advanced-section">
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 sm:col-span-4 mb-4">
               <label>{_t("search-comment.search")}</label>
               <FormControl
                 type="text"
@@ -283,8 +283,8 @@ export class SearchComment extends BaseComponent<Props, State> {
                 onChange={this.searchChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Col>
-            <Col className="mb-4" sm={4}>
+            </div>
+            <div className="col-span-12 sm:col-span-4 mb-4">
               <label>{_t("search-comment.author")}</label>
               <FormControl
                 type="text"
@@ -293,8 +293,8 @@ export class SearchComment extends BaseComponent<Props, State> {
                 onChange={this.authorChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Col>
-            <Col className="mb-4" sm={2}>
+            </div>
+            <div className="col-span-12 sm:col-span-2 mb-4">
               <label>{_t("search-comment.type")}</label>
               <FormControl type="select" value={type} onChange={this.typeChanged}>
                 {Object.values(SearchType).map((x) => (
@@ -303,8 +303,8 @@ export class SearchComment extends BaseComponent<Props, State> {
                   </option>
                 ))}
               </FormControl>
-            </Col>
-            <Col className="mb-4" sm={2}>
+            </div>
+            <div className="col-span-12 sm:col-span-2 mb-4">
               <label>{_t("search-comment.category")}</label>
               <FormControl
                 type="text"
@@ -313,10 +313,10 @@ export class SearchComment extends BaseComponent<Props, State> {
                 onChange={this.categoryChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Col>
-          </Row>
-          <Row>
-            <Col className="mb-4" sm={8}>
+            </div>
+          </div>
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 sm:col-span-8 mb-4">
               <label>{_t("search-comment.tags")}</label>
               <FormControl
                 type="text"
@@ -325,8 +325,8 @@ export class SearchComment extends BaseComponent<Props, State> {
                 onChange={this.tagsChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Col>
-            <Col className="mb-4" sm={2}>
+            </div>
+            <div className="col-span-12 sm:col-span-2 mb-4">
               <label>{_t("search-comment.date")}</label>
               <FormControl
                 type="select"
@@ -339,8 +339,8 @@ export class SearchComment extends BaseComponent<Props, State> {
                   </option>
                 ))}
               </FormControl>
-            </Col>
-            <Col className="mb-4" sm={2}>
+            </div>
+            <div className="col-span-12 sm:col-span-2 mb-4">
               <label>{_t("search-comment.sort")}</label>
               <FormControl type="select" value={sort} onChange={this.sortChanged}>
                 {Object.values(SearchSort).map((x) => (
@@ -349,8 +349,8 @@ export class SearchComment extends BaseComponent<Props, State> {
                   </option>
                 ))}
               </FormControl>
-            </Col>
-          </Row>
+            </div>
+          </div>
           <div className="flex justify-between items-center">
             <FormCheck
               id="hide-low"
@@ -362,7 +362,7 @@ export class SearchComment extends BaseComponent<Props, State> {
 
             <Button onClick={this.apply}>{_t("g.apply")}</Button>
           </div>
-        </Col>
+        </div>
       ) : null;
 
     return (

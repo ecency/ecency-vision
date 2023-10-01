@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import _ from "lodash";
-import { Col, Row } from "react-bootstrap";
 import badActors from "@hiveio/hivescript/bad-actors.json";
 import LinearProgress from "../linear-progress";
 import UserAvatar from "../user-avatar";
@@ -153,22 +152,22 @@ export const ResourceCreditsDelegation = (props: any) => {
           {formHeader1}
           {inProgress && <LinearProgress />}
           <Form className="transaction-form-body">
-            <Row className="mb-4">
-              <Col sm={2}>
+            <div className="grid grid-cols-12 mb-4">
+              <div className="col-span-12 sm:col-span-2">
                 <label>{_t("transfer.from")}</label>
-              </Col>
-              <Col sm="10">
+              </div>
+              <div className="col-span-12 sm:col-span-2">
                 <InputGroup prepend="@">
                   <FormControl type="text" value={activeUser.username} readOnly={true} />
                 </InputGroup>
-              </Col>
-            </Row>
+              </div>
+            </div>
 
-            <Row className="mb-4">
-              <Col sm={2}>
+            <div className="grid grid-cols-12 mb-4">
+              <div className="col-span-12 sm:col-span-2">
                 <label>{_t("transfer.to")}</label>
-              </Col>
-              <Col sm="10">
+              </div>
+              <div className="col-span-12 sm:col-span-2">
                 {/* <SuggestionList > */}
                 <InputGroup prepend="@">
                   <FormControl
@@ -181,16 +180,16 @@ export const ResourceCreditsDelegation = (props: any) => {
                   />
                 </InputGroup>
                 {/* </SuggestionList> */}
-              </Col>
-            </Row>
+              </div>
+            </div>
             {toWarning && <FormText msg={toWarning} type="danger" />}
             {toError && <FormText msg={toError} type="danger" />}
 
-            <Row className="mb-4">
-              <Col sm={2}>
+            <div className="grid grid-cols-12 mb-4">
+              <div className="col-span-12 sm:col-span-2">
                 <label>{_t("transfer.amount")}</label>
-              </Col>
-              <Col sm="10" className="flex items-center">
+              </div>
+              <div className="col-span-12 sm:col-span-10 flex items-center">
                 <InputGroup prepend="#">
                   <FormControl
                     type="text"
@@ -202,28 +201,28 @@ export const ResourceCreditsDelegation = (props: any) => {
                     }
                   />
                 </InputGroup>
-              </Col>
-            </Row>
+              </div>
+            </div>
 
             {amount < 5000000000 && <FormText msg={amountError} type="danger" />}
             {amount > Number(resourceCredit) && <FormText msg={amountError} type="danger" />}
 
-            <Row>
-              <Col lg={{ span: 10, offset: 2 }}>
+            <div className="grid grid-cols-12">
+              <div className="col-span-12 lg:col-span-10 lg:col-start-2">
                 <div className="balance space-3">
                   <span className="balance-label">{_t("transfer.balance")}</span>
                   <span>{`: ${resourceCredit}`}</span>
                 </div>
-              </Col>
-            </Row>
+              </div>
+            </div>
 
-            <Row className="mb-4">
-              <Col sm={{ span: 10, offset: 2 }}>
+            <div className="grid grid-cols-12 mb-4">
+              <div className="col-span-12 sm:col-span-10 sm:col-start-2">
                 <Button disabled={!canSubmit} onClick={next}>
                   {_t("g.next")}
                 </Button>
-              </Col>
-            </Row>
+              </div>
+            </div>
           </Form>
         </div>
       )}
@@ -268,10 +267,10 @@ export const ResourceCreditsDelegation = (props: any) => {
 const FormText = (props: { msg: any; type: any }) => {
   const { msg, type } = props;
   return (
-    <Row>
-      <Col md={{ span: 10, offset: 2 }}>
+    <div className="grid grid-cols-12">
+      <div className="col-span-12 md:col-span-10 md:col-start-2">
         <small className={`text-${type} tr-form-text`}>{msg}</small>
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 };

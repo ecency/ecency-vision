@@ -109,8 +109,8 @@ export const LimitMarketMode = (props: PageProps) => {
         <div className="container my-5 mx-0">
           <div>
             {activeUser && (
-              <div className="row justify-between hidden d-mflex px-3">
-                <div className="col-12 col-sm-5 p-0">
+              <div className="grid-cols-12 justify-between hidden md:grid px-3">
+                <div className="col-span-12 sm:col-span-5 p-0">
                   <HiveBarter
                     type={1}
                     available={(activeUser && (activeUser.data as FullAccount).hbd_balance) || ""}
@@ -126,7 +126,7 @@ export const LimitMarketMode = (props: PageProps) => {
                     onClickPeakValue={(value: any) => setBidValues({ ...bidValues, lowest: value })}
                   />
                 </div>
-                <div className="col-12 col-sm-5 p-0">
+                <div className="col-span-12 sm:col-5 p-0">
                   <HiveBarter
                     type={2}
                     prefilledTotal={bidValues.total}
@@ -149,7 +149,7 @@ export const LimitMarketMode = (props: PageProps) => {
 
             {activeUser && (
               <div className="flex flex-col md:hidden">
-                <div className="flex align-items-sm-center justify-content-start justify-content-sm-between flex-col flex-sm-row">
+                <div className="flex sm:items-center justify-start sm:justify-between flex-col sm:flex-row">
                   <h3>{_t("market.barter")}</h3>
                   <ButtonGroup
                     className="my-3"
@@ -199,9 +199,9 @@ export const LimitMarketMode = (props: PageProps) => {
               </div>
             )}
 
-            <div className="row mt-5 mx-0 justify-between">
+            <div className="grid grid-cols-12 mt-5 mx-0 justify-between">
               {!openOrdersDataLoading && openOrdersdata.length > 0 && activeUser && (
-                <div className="col-12 px-0 mb-5">
+                <div className="col-span-12 px-0 mb-5">
                   <OpenOrders
                     onTransactionSuccess={updateOpenData}
                     data={openOrdersdata || []}
@@ -211,7 +211,7 @@ export const LimitMarketMode = (props: PageProps) => {
                   />
                 </div>
               )}
-              <div className="col-12 col-xl-5 px-0">
+              <div className="col-span-12 xl:col-5 px-0">
                 <Orders
                   onPriceClick={(value) =>
                     setBidValues({
@@ -226,7 +226,7 @@ export const LimitMarketMode = (props: PageProps) => {
                   data={tablesData ? tablesData!.bids : []}
                 />
               </div>
-              <div className="col-12 col-xl-5 px-0 px-sm-auto mt-5 lg:mt-0">
+              <div className="col-span-12 xl:col-span-5 px-0 sm:px-[auto] mt-5 lg:mt-0">
                 <Orders
                   onPriceClick={(value) =>
                     setBidValues({
@@ -241,7 +241,7 @@ export const LimitMarketMode = (props: PageProps) => {
                   data={tablesData ? tablesData!.asks : []}
                 />
               </div>
-              <div className="col-12 px-0 px-sm-auto mt-5">
+              <div className="col-span-12 px-0 sm:px-[auto] mt-5">
                 <Orders
                   type={3}
                   loading={loadingTablesData}

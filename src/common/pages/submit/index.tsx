@@ -34,7 +34,7 @@ import MdHandler from "../../components/md-handler";
 import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import _c from "../../util/fix-class-names";
-import { Col, FormCheck, Row } from "react-bootstrap";
+import { FormCheck } from "react-bootstrap";
 import TextareaAutocomplete from "../../components/textarea-autocomplete";
 import { AvailableCredits } from "../../components/available-credits";
 import ClickAwayListener from "../../components/clickaway-listener";
@@ -635,11 +635,11 @@ export function Submit(props: PageProps & MatchProps) {
                   <div className="container">
                     {editingEntry === null && (
                       <>
-                        <Row className="mb-4">
-                          <Col sm={3}>
+                        <div className="grid grid-cols-12 mb-4">
+                          <div className="col-span-12 sm:col-span-3">
                             <label>{_t("submit.reward")}</label>
-                          </Col>
-                          <Col sm="9">
+                          </div>
+                          <div className="col-span-12 sm:col-span-9">
                             <FormControl
                               type="select"
                               value={reward}
@@ -652,13 +652,13 @@ export function Submit(props: PageProps & MatchProps) {
                               <option value="dp">{_t("submit.reward-dp")}</option>
                             </FormControl>
                             <small className="text-gray-600">{_t("submit.reward-hint")}</small>
-                          </Col>
-                        </Row>
-                        <Row className="mb-4">
-                          <Col sm={3}>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-12 mb-4">
+                          <div className="col-span-12 sm:col-span-3">
                             <label>{_t("submit.beneficiaries")}</label>
-                          </Col>
-                          <Col sm="9">
+                          </div>
+                          <div className="col-span-12 sm:col-span-9">
                             <BeneficiaryEditor
                               body={body}
                               author={activeUser?.username}
@@ -681,15 +681,15 @@ export function Submit(props: PageProps & MatchProps) {
                             <small className="text-gray-600">
                               {_t("submit.beneficiaries-hint")}
                             </small>
-                          </Col>
-                        </Row>
+                          </div>
+                        </div>
                       </>
                     )}
-                    <Row className="mb-4">
-                      <Col sm={3}>
+                    <div className="grid grid-cols-12 mb-4">
+                      <div className="col-span-12 sm:col-span-3">
                         <label>{_t("submit.description")}</label>
-                      </Col>
-                      <Col sm="9">
+                      </div>
+                      <div className="col-span-12 sm:col-span-9">
                         <FormControl
                           type="textarea"
                           value={description || postBodySummary(body, 200)}
@@ -702,16 +702,16 @@ export function Submit(props: PageProps & MatchProps) {
                         <small className="text-gray-600">
                           {description !== "" ? description : postBodySummary(body, 200)}
                         </small>
-                      </Col>
-                    </Row>
+                      </div>
+                    </div>
                     {editingEntry === null && (
                       <>
                         {props.global.usePrivate && !threeSpeakManager.hasUnpublishedVideo && (
-                          <Row className="mb-4">
-                            <Col sm={2}>
+                          <div className="grid grid-cols-12 mb-4">
+                            <div className="col-span-12 sm:col-span-3">
                               <label>{_t("submit.schedule")}</label>
-                            </Col>
-                            <Col sm="9">
+                            </div>
+                            <div className="col-span-12 sm:col-span-9">
                               <PostScheduler
                                 date={schedule ? moment(schedule) : null}
                                 onChange={(d) => {
@@ -719,15 +719,15 @@ export function Submit(props: PageProps & MatchProps) {
                                 }}
                               />
                               <small className="text-gray-600">{_t("submit.schedule-hint")}</small>
-                            </Col>
-                          </Row>
+                            </div>
+                          </div>
                         )}
                       </>
                     )}
                     {editingEntry === null && tags?.length > 0 && isCommunity(tags[0]) && (
-                      <Row className="mb-4">
-                        <Col sm="3" />
-                        <Col sm="9">
+                      <div className="grid grid-cols-12 mb-4">
+                        <div className="col-span-12 sm:col-span-3" />
+                        <div className="col-span-12 sm:col-span-9">
                           <FormCheck
                             type="switch"
                             id="reblog-switch"
@@ -738,15 +738,15 @@ export function Submit(props: PageProps & MatchProps) {
                             }}
                           />
                           <small className="text-gray-600">{_t("submit.reblog-hint")}</small>
-                        </Col>
-                      </Row>
+                        </div>
+                      </div>
                     )}
                     {thumbnails?.length > 0 && (
-                      <Row className="mb-4">
-                        <Col sm={3}>
+                      <div className="grid grid-cols-12 mb-4">
+                        <div className="col-span-12 sm:col-span-3">
                           <label>{_t("submit.thumbnail")}</label>
-                        </Col>
-                        <div className="col-sm-9 flex flex-wrap selection-container">
+                        </div>
+                        <div className="col-span-12 sm:col-span-9 flex flex-wrap selection-container">
                           {[...new Set(thumbnails)]!.map((item, i) => {
                             let selectedItem = selectedThumbnail;
                             switch (selectedItem) {
@@ -781,7 +781,7 @@ export function Submit(props: PageProps & MatchProps) {
                             );
                           })}
                         </div>
-                      </Row>
+                      </div>
                     )}
                   </div>
                 </div>

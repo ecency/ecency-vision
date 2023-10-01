@@ -1,5 +1,4 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import { Account, FullAccount } from "../../store/accounts/types";
 import BaseComponent from "../base";
@@ -130,8 +129,8 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
     return (
       <div className="profile-edit">
         <div className="profile-edit-header">{_t("profile-edit.title")}</div>
-        <Row>
-          <Col lg={6} xl={4}>
+        <div className="grid grid-cols-12">
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
             <div className="mb-4">
               <label>{_t("profile-edit.name")}</label>
               <FormControl
@@ -143,8 +142,8 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 onChange={this.valueChanged}
               />
             </div>
-          </Col>
-          <Col lg={6} xl={4}>
+          </div>
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
             <div className="mb-4">
               <label>{_t("profile-edit.about")}</label>
               <FormControl
@@ -156,8 +155,8 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 onChange={this.valueChanged}
               />
             </div>
-          </Col>
-          <Col lg={6} xl={4}>
+          </div>
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
             <div className="mb-4">
               <label>{_t("profile-edit.profile-image")}</label>
               <InputGroup
@@ -185,8 +184,8 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 />
               </InputGroup>
             </div>
-          </Col>
-          <Col lg={6} xl={4}>
+          </div>
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
             <div className="mb-4">
               <label>{_t("profile-edit.cover-image")}</label>
               <InputGroup
@@ -214,8 +213,8 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 />
               </InputGroup>
             </div>
-          </Col>
-          <Col lg={6} xl={4}>
+          </div>
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
             <div className="mb-4">
               <label>{_t("profile-edit.website")}</label>
               <FormControl
@@ -228,8 +227,8 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 onChange={this.valueChanged}
               />
             </div>
-          </Col>
-          <Col lg={6} xl={4}>
+          </div>
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
             <div className="mb-4">
               <label>{_t("profile-edit.location")}</label>
               <FormControl
@@ -241,8 +240,8 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 onChange={this.valueChanged}
               />
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
         {changed && (
           <Button
             icon={inProgress && spinner}

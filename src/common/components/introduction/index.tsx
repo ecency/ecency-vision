@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { Col, Container, Row } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./_index.scss";
 import { closeSvg } from "../../img/svg";
@@ -39,15 +38,15 @@ export const Introduction = ({
   return (
     <>
       <div className="intro-popup p-4 lg:p-0" style={{ left: placement }}>
-        <Container className="h-full">
+        <div className="container h-full">
           <button type="button" className="absolute close-btn" onClick={onClose} id="close-btn">
             {closeSvg}
           </button>
-          <Row className="justify-center h-full items-center mt-4 md:mt-0">
-            <Col xs={12} md={3} className="p-0 md:px-3">
+          <div className="grid grid-cols-12 justify-center h-full items-center mt-4 md:mt-0">
+            <div className="col-span-12 md:col-span-3 p-0 md:px-3">
               <img width="100%" src={media} className="media-intro" id="media" />
-            </Col>
-            <Col xs={12} md={5} className="p-0 md:px-3">
+            </div>
+            <div className="col-span-12 md:col-span-5 p-0 md:px-3">
               <h1 className="mb-2 mb-md-4 text-dark font-bold title" id="title">
                 {title}
               </h1>
@@ -80,9 +79,9 @@ export const Introduction = ({
                   </Button>
                 )}
               </div>
-            </Col>
-          </Row>
-        </Container>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

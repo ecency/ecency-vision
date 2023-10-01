@@ -125,12 +125,12 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                       icon={copyContent}
                     />
                   }
-                  className="mb-3 w-75"
+                  className="mb-3 w-[75%]"
                 >
                   <FormControl
                     type="text"
                     placeholder={`${_t("static.faq.search-placeholder")}`}
-                    className="w-75"
+                    className="w-[75%]"
                     onChange={(e) => {
                       this.setState({ search: e.target.value });
                     }}
@@ -139,7 +139,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                   />
                 </InputGroup>
                 {search.length > 0 && (
-                  <small className="text-white mt-2 mt-sm-3 w-[75%] text-center helper-text">
+                  <small className="text-white mt-2 sm:mt-3 w-[75%] text-center helper-text">
                     {searchResult.length > 0 ? (
                       _t("static.faq.search", { search: `"${search}"` })
                     ) : (

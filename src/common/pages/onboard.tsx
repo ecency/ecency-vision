@@ -513,11 +513,11 @@ const Onboard = (props: Props) => {
         <div className="onboard-container">
           <div className="asking">
             <div
-              className={`asking-body flex mb-0 flex align-self-center flex-col ${
+              className={`asking-body flex mb-0 self-center flex-col ${
                 innerWidth < 577 ? "p-3" : "p-5"
               }`}
             >
-              <h3 className="mb-3 align-self-center">{_t("onboard.confirm-details")}</h3>
+              <h3 className="mb-3 self-center">{_t("onboard.confirm-details")}</h3>
               <div className="reg-details">
                 <span style={{ lineHeight: 2 }}>
                   {_t("onboard.username")} <strong>{accountInfo?.username}</strong>
@@ -553,7 +553,7 @@ const Onboard = (props: Props) => {
                   </Tooltip>
                 </div>
                 <Button
-                  className="align-self-center mt-3"
+                  className="self-center mt-3"
                   disabled={!accountInfo?.username || !accountInfo.email}
                   onClick={() => downloadKeys()}
                   icon={downloadSvg}
@@ -562,7 +562,7 @@ const Onboard = (props: Props) => {
                 </Button>
 
                 {fileIsDownloaded && (
-                  <div className="flex flex-col align-self-center justify-center mt-3">
+                  <div className="flex flex-col self-center justify-center mt-3">
                     {!props.activeUser && (
                       <>
                         <h4>{_t("onboard.copy-info-message")}</h4>
@@ -676,7 +676,7 @@ const Onboard = (props: Props) => {
         show={showModal}
         centered={true}
         onHide={() => setShowModal(false)}
-        className="create-account-dialog modal-thin-header"
+        className="create-account-dialog"
         size="lg"
       >
         <ModalHeader closeButton={true}>

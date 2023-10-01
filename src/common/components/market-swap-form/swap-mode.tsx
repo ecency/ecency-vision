@@ -1,6 +1,5 @@
 import React from "react";
 import { MarketSwapForm } from "./index";
-import { Col, Row } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { Link } from "react-router-dom";
 import { MarketSwapActiveOrders } from "./market-swap-active-orders";
@@ -56,10 +55,8 @@ export const SwapMode = ({ inline = false }: Props) => {
   return inline ? (
     <div className={"swap-form-container " + (inline ? "inline" : "")}>{form}</div>
   ) : (
-    <Row className="justify-center pb-5">
-      <Col xs={12} md={10} lg={8} xl={6}>
-        {form}
-      </Col>
-    </Row>
+    <div className="grid grid-cols-12 justify-center pb-5">
+      <div className="col-span-12 md:col-span-10 lg:col-span-8 xl:col-span-6">{form}</div>
+    </div>
   );
 };

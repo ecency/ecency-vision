@@ -419,11 +419,11 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         )}
 
         <div className={containerClasses}>
-          <div className="row items-center justify-center m-0 w-full">
-            <div className="col-6 hidden lg:block">
+          <div className="grid grid-cols-12 items-center justify-center m-0 w-full">
+            <div className="col-span-6 hidden lg:block">
               <img src={communityImage} className="w-full" />
             </div>
-            <div className="col-12 col-sm-8 col-lg-5 p-0 p-sm-3">
+            <div className="col-span-12 sm:col-span-8 lg:col-span-5 p-0 sm:p-3">
               <div>
                 <h1 className={`community-title ${wif ? "mb-5" : ""} hidden lg:block`}>
                   {_t("communities-create.page-title")}
@@ -445,7 +445,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                 )}
 
                 {!wif && (
-                  <div className="col-12 d-lg-none p-0">
+                  <div className="col-span-12 lg:hidden p-0">
                     <img src={communityImage} className="w-full" />
                   </div>
                 )}

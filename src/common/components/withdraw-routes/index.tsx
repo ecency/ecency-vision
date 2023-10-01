@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Col, Row } from "react-bootstrap";
 import { PrivateKey } from "@hiveio/dhive";
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -184,8 +183,8 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
               onInput={handleOnInput}
             />
           </div>
-          <Row>
-            <Col md={3} className="mb-4">
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 md:col-span-3 mb-4">
               <label>{_t("withdraw-routes.percent")}</label>
               <FormControl
                 type="number"
@@ -198,20 +197,20 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
                 onInvalid={(e: any) => handleInvalid(e, "withdraw-routes.", "validation-percent")}
                 onInput={handleOnInput}
               />
-            </Col>
-            <Col md={7} className="mb-4">
+            </div>
+            <div className="col-span-12 md:col-span-7 mb-4">
               <label>{_t("withdraw-routes.auto-power-up")}</label>
               <FormControl type="select" value={auto} name="auto" onChange={this.onInput}>
                 <option value="yes">{_t("g.yes")}</option>
                 <option value="no">{_t("g.no")}</option>
               </FormControl>
-            </Col>
-            <Col md={2} className="d-mflex items-end justify-center mb-4">
+            </div>
+            <div className="col-span-12 md:col-span-2 flex items-end justify-center mb-4">
               <Button type="submit" size="sm">
                 {_t("g.add")}
               </Button>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </Form>
 
         {routes.length > 0 && (

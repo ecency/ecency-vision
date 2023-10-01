@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import numeral from "numeral";
 import isEqual from "react-fast-compare";
-import { Col, Row } from "react-bootstrap";
 import badActors from "@hiveio/hivescript/bad-actors.json";
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
@@ -57,11 +56,11 @@ class FormText extends Component<{
 }> {
   render() {
     return (
-      <Row>
-        <Col md={{ span: 10, offset: 2 }}>
+      <div className="grid grid-cols-12">
+        <div className="col-span-12 md:col-span-10 md:col-start-2">
           <small className={`text-${this.props.type} tr-form-text`}>{this.props.msg}</small>
-        </Col>
-      </Row>
+        </div>
+      </div>
     );
   }
 }
@@ -618,27 +617,27 @@ export class Transfer extends BaseComponent<Props, State> {
             {inProgress && <LinearProgress />}
             <Form className="transaction-form-body">
               {mode !== "undelegate" && (
-                <Row className="mb-4">
-                  <Col sm={2}>
+                <div className="grid grid-cols-12 mb-4">
+                  <div className="col-span-12 sm:col-span-2">
                     <label>{_t("transfer.from")}</label>
-                  </Col>
-                  <Col sm="10">
+                  </div>
+                  <div className="col-span-12 sm:col-span-10">
                     <InputGroup prepend="@">
                       <FormControl type="text" value={activeUser.username} readOnly={true} />
                     </InputGroup>
-                  </Col>
-                </Row>
+                  </div>
+                </div>
               )}
 
               {showTo && (
                 <>
-                  <Row className="mb-4">
-                    <Col sm={2}>
+                  <div className="grid grid-cols-12 mb-4">
+                    <div className="col-span-12 sm:col-span-2">
                       <label>
                         {mode === "undelegate" ? _t("transfer.from") : _t("transfer.to")}
                       </label>
-                    </Col>
-                    <Col sm="10">
+                    </div>
+                    <div className="col-span-12 sm:col-span-10">
                       <SuggestionList items={recent} {...suggestionProps}>
                         <InputGroup prepend="@">
                           <FormControl
@@ -651,18 +650,18 @@ export class Transfer extends BaseComponent<Props, State> {
                           />
                         </InputGroup>
                       </SuggestionList>
-                    </Col>
-                  </Row>
+                    </div>
+                  </div>
                   {toWarning && <FormText msg={toWarning} type="danger" />}
                   {toError && <FormText msg={toError} type="danger" />}
                 </>
               )}
 
-              <Row className="mb-4">
-                <Col sm={2}>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2">
                   <label>{_t("transfer.amount")}</label>
-                </Col>
-                <Col sm="10" className="flex items-center">
+                </div>
+                <div className="col-span-12 sm:col-span-10 flex items-center">
                   <InputGroup prepend="#">
                     <FormControl
                       type="text"
@@ -674,13 +673,13 @@ export class Transfer extends BaseComponent<Props, State> {
                     />
                     <span className="balance-num align-self-center ml-1">{asset}</span>
                   </InputGroup>
-                </Col>
-              </Row>
+                </div>
+              </div>
 
               {amountError && amount > balance && <FormText msg={amountError} type="danger" />}
 
-              <Row>
-                <Col lg={{ span: 10, offset: 2 }}>
+              <div className="grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-10 lg:col-start-2">
                   <div className="balance">
                     <span className="balance-label">
                       {_t("transfer.balance")}
@@ -722,37 +721,37 @@ export class Transfer extends BaseComponent<Props, State> {
                     }
                     return null;
                   })()}
-                </Col>
-              </Row>
+                </div>
+              </div>
 
               {showMemo && (
                 <>
-                  <Row className="mb-4">
-                    <Col sm={2}>
+                  <div className="grid grid-cols-12 mb-4">
+                    <div className="col-span-12 sm:col-span-2">
                       <label>{_t("transfer.memo")}</label>
-                    </Col>
-                    <Col sm="10">
+                    </div>
+                    <div className="col-span-12 sm:col-span-10">
                       <FormControl
                         type="text"
                         placeholder={_t("transfer.memo-placeholder")}
                         value={memo}
                         onChange={this.memoChanged}
                       />
-                    </Col>
-                  </Row>
+                    </div>
+                  </div>
                   <FormText msg={_t("transfer.memo-help")} type="muted" />
                   {memoError && <FormText msg={memoError} type="danger" />}
                 </>
               )}
 
-              <Row className="mb-4">
-                <Col sm={{ span: 10, offset: 2 }}>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-10 sm:col-start-2">
                   {/* Changed && to || since it just allows the form to submit anyway initially */}
                   <Button onClick={this.next} disabled={!this.canSubmit() || amount > balance}>
                     {_t("g.next")}
                   </Button>
-                </Col>
-              </Row>
+                </div>
+              </div>
             </Form>
           </div>
         )}
