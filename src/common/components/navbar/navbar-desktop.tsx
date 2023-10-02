@@ -3,7 +3,6 @@ import ToolTip from "../tooltip";
 import { brightnessSvg, pencilOutlineSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { Button } from "@ui/button";
-import UserNav from "../user-nav";
 import React from "react";
 import { useMappedStore } from "../../store/use-mapped-store";
 import Search from "../search";
@@ -12,6 +11,7 @@ import { History } from "history";
 import * as ls from "../../util/local-storage";
 import { NavbarTextMenu } from "./navbar-text-menu";
 import { classNameObject } from "../../helper/class-name-object";
+import UserNav from "../user-nav";
 
 interface Props {
   step?: number;
@@ -55,22 +55,19 @@ export function NavbarDesktop({
 
   return (
     <div
-      className={`mb-4 hidden md:flex select-none relative py-3 ${
+      className={`hidden md:flex w-full select-none relative ${
         !transparentVerify && step === 1 ? "transparent" : ""
       } `}
     >
       <div
         className={classNameObject({
-          "max-w-[1600px] my-0 mx-auto flex items-center justify-between flex-col p-[21px] pl-0":
+          "max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b":
             true,
-          "h-[100vh] overflow-y-auto overflow-x-hidden": true,
-          "md:h-full md:py-0 md:px-[10px] md:flex-row": true,
-          "lg:px-[20px]": true,
           "bg-light-200 dark:bg-dark-200": true,
           transparent: !transparentVerify && step === 1
         })}
       >
-        <div className="h-[40px] w-[40px] shrink-0 absolute l-[10px] t-[10px] cursor-pointer">
+        <div className="h-[40px] w-[40px] cursor-pointer">
           {activeUser !== null ? (
             <Link to={logoHref}>
               <img src={logo} className="logo" alt="Logo" />
@@ -79,29 +76,28 @@ export function NavbarDesktop({
             <img src={logo} className="logo" alt="Logo" onClick={onLogoClick} />
           )}
         </div>
+        <div className="flex-1" />
         <NavbarTextMenu />
         <div className="flex-spacer" />
         {(step !== 1 || transparentVerify) && (
-          <div className="search-bar">
+          <div className="max-w-[400px] w-full">
             <Search history={history} />
           </div>
         )}
-        <div className="switch-menu">
+        <div className="flex items-center ml-3 gap-3">
           <SwitchLang history={history} />
           {(step !== 1 || transparentVerify) && (
             <ToolTip content={themeText}>
-              <div className="switch-theme" onClick={changeTheme}>
-                {brightnessSvg}
-              </div>
+              <Button outline={true} icon={brightnessSvg} onClick={changeTheme} />
             </ToolTip>
           )}
-          {(step !== 1 || transparentVerify) && (
+          <div>
             <ToolTip content={_t("navbar.post")}>
-              <Link className="switch-theme pencil" to="/submit">
-                {pencilOutlineSvg}
+              <Link to="/submit">
+                <Button outline={true} icon={pencilOutlineSvg} />
               </Link>
             </ToolTip>
-          )}
+          </div>
         </div>
         <div className="btn-menu">
           {!activeUser && (
@@ -130,19 +126,8 @@ export function NavbarDesktop({
               </div>
             </div>
           )}
+          {activeUser && <UserNav history={history} />}
         </div>
-        {activeUser && (
-          <div>
-            <UserNav history={history} />
-            <div className="submit-post">
-              <ToolTip content={_t("navbar.post")}>
-                <Link to="/submit">
-                  <Button outline={true} icon={pencilOutlineSvg} />
-                </Link>
-              </ToolTip>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
