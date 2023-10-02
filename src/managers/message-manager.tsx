@@ -20,6 +20,7 @@ import { useMappedStore } from "../common/store/use-mapped-store";
 import { ChatContext } from "../common/components/chats/chat-context-provider";
 import { useTimeoutFn } from "react-use";
 import { usePrevious } from "../common/util/use-previous";
+import useMessageServiceListener from "../common/components/chats/hooks/use-message-service-listener";
 
 export const setNostrkeys = (keys: NostrKeysType) => {
   const detail: NostrKeysType = {
@@ -52,7 +53,6 @@ const MessageManager = () => {
   const prevActiveUser = usePrevious(activeUser);
 
   const [messageServiceReady, setMessageServiceReady] = useState(false);
-  const [since, setSince] = useState(0);
   const [keys, setKeys] = useState<Keys>();
   const [messageService, setMessageService] = useState<MessageService | undefined>(undefined);
   const [directMessageBuffer, setDirectMessageBuffer] = useState<DirectMessage[]>([]);
@@ -120,24 +120,7 @@ const MessageManager = () => {
   };
 
   //Listen for events in an interval.
-  useEffect(() => {
-    if (!messageServiceReady) return;
-
-    const timer = setTimeout(
-      () => {
-        messageService?.listen(
-          chat.channels.map((x) => x.id),
-          Math.floor((since || Date.now()) / 1000)
-        );
-        setSince(Date.now());
-      },
-      since === 0 ? 500 : 10000
-    );
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [since, messageServiceReady, messageService, chat.channels]);
+  useMessageServiceListener(messageServiceReady, messageService, chat.channels);
 
   // // Ready state handler
   const handleReadyState = () => {
@@ -225,7 +208,7 @@ const MessageManager = () => {
     }, 20000);
   };
 
-  // // Direct message handler after sent
+  // Direct message handler after sent
   const handleDirectMessageAfterSent = (data: DirectMessage[]) => {
     if (isDirectChatCreated) {
       data.forEach((message) => {

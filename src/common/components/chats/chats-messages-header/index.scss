@@ -32,17 +32,25 @@
         .expand-svg {
           height: 35px;
           width: 35px;
-          background: #f4f4f4;
           margin-left: 10px;
           border-radius: 10px;
           cursor: pointer;
+
           svg {
             width: 35px;
             height: 35px;
           }
 
           &:hover {
-            background: #e4e6eb;
+            @include themify(day) {
+              background: #f4f4f4;
+            }
+
+            @include themify(night) {
+              background: $dusky-blue;
+            }
+
+            // background: #e4e6eb;
           }
         }
       }
@@ -50,7 +58,7 @@
       .user-info {
         display: inline-flex;
         padding: 8px 10px;
-        margin: 5px 0 0 0;
+        margin: 5px 0 0 5px;
         cursor: pointer;
 
         .username {
@@ -62,7 +70,7 @@
         &:hover {
           border-radius: 10px;
           @include themify(day) {
-            background: #eeeeee;
+            background: #f4f4f4;
           }
 
           @include themify(night) {

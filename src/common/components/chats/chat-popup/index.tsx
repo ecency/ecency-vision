@@ -115,10 +115,6 @@ export const ChatPopUp = (props: Props) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    console.log("chat in store", chat);
-  }, [chat]);
-
-  useEffect(() => {
     if (currentChannel && chat.leftChannelsList.includes(currentChannel.id)) {
       setIsCommunity(false);
       setCommunityName("");
