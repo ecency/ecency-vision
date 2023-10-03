@@ -528,7 +528,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   public async updateProfile(profile: Metadata) {
-    console.log("Update profile run");
     return this.publish(Kind.Metadata, [], JSON.stringify(profile));
   }
 
@@ -583,10 +582,7 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
           const pub = this.pool.publish(this.writeRelays, event);
           pub.on("ok", () => {
             resolve(event);
-            console.log("Event published", event);
-            // this.pushToEventBuffer(event);
             if (event.kind === Kind.Contacts) {
-              console.log("Direct contacts");
               this.getContacts();
             }
             if (event.kind === Kind.Metadata) {
@@ -617,7 +613,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
   }
 
   pushToEventBuffer(event: Event) {
-    console.log("Push to event buffer run");
     const cacheKey = `${event.id}_emitted`;
     if (this.nameCache[cacheKey] === undefined) {
       if (this.eventQueueFlag) {
