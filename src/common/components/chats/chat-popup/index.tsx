@@ -59,6 +59,7 @@ import {
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import ImportChats from "../import-chats";
+import { useMount } from "react-use";
 
 export const ChatPopUp = () => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
@@ -105,6 +106,11 @@ export const ChatPopUp = () => {
   const [isChatPage, setIsChatPage] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  useMount(() => {
+    // deleteChatPublicKey(activeUser);
+    setShow(!!activeUser?.username && !isChatPage);
+  });
+
   useEffect(() => {
     if (currentChannel && chat.leftChannelsList.includes(currentChannel.id)) {
       setIsCommunity(false);
@@ -121,11 +127,6 @@ export const ChatPopUp = () => {
       setShow(false);
     }
   }, [isChatPage]);
-
-  useEffect(() => {
-    // deleteChatPublicKey(activeUser);
-    setShow(!!activeUser?.username && !isChatPage);
-  }, []);
 
   useEffect(() => {
     const updated: ChannelUpdate = chat.updatedChannel

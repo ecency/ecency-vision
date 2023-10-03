@@ -71,6 +71,12 @@ export default function ChatsMessagesView(props: Props) {
   }, []);
 
   useEffect(() => {
+    if (publicMessages.length < 25) {
+      setHasMore(false);
+    }
+  }, [publicMessages]);
+
+  useEffect(() => {
     isDirectUserOrCommunity();
   }, [chat.channels]);
 
