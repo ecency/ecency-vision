@@ -1,4 +1,5 @@
 import React, { useRef, useState, RefObject, useEffect, useContext } from "react";
+import { useMount } from "react-use";
 import mediumZoom, { Zoom } from "medium-zoom";
 import {
   Channel,
@@ -20,8 +21,6 @@ import {
 } from "react-bootstrap";
 import UserAvatar from "../../user-avatar";
 import FollowControls from "../../follow-controls";
-import { Account } from "../../../store/accounts/types";
-import { ToggleType } from "../../../store/ui/types";
 import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../i18n";
 import Tooltip from "../../tooltip";
@@ -41,7 +40,6 @@ import {
 import { ChatContext } from "../chat-context-provider";
 
 import "./index.scss";
-import { useMount } from "react-use";
 
 interface Props {
   publicMessages: PublicMessage[];
@@ -51,10 +49,6 @@ interface Props {
   history: History;
   isScrollToBottom: boolean;
   isScrolled?: boolean;
-  setActiveUser: (username: string | null) => void;
-  updateActiveUser: (data?: Account) => void;
-  deleteUser: (username: string) => void;
-  toggleUIProp: (what: ToggleType) => void;
   scrollToBottom?: () => void;
   currentChannelSetter: (channel: Channel) => void;
 }
@@ -71,7 +65,18 @@ export default function ChatsChannelMessages(props: Props) {
     scrollToBottom,
     currentChannelSetter
   } = props;
-  const { chat, global, activeUser, ui, users, deletePublicMessage } = useMappedStore();
+  const {
+    chat,
+    global,
+    activeUser,
+    ui,
+    users,
+    deletePublicMessage,
+    setActiveUser,
+    updateActiveUser,
+    deleteUser,
+    toggleUIProp
+  } = useMappedStore();
 
   const { messageServiceInstance, activeUserKeys, windowWidth, isActveUserRemoved } =
     useContext(ChatContext);
@@ -328,7 +333,10 @@ export default function ChatsChannelMessages(props: Props) {
                         }  profile-box-buttons`}
                       >
                         <FollowControls
-                          {...props}
+                          setActiveUser={setActiveUser}
+                          updateActiveUser={updateActiveUser}
+                          deleteUser={deleteUser}
+                          toggleUIProp={toggleUIProp}
                           activeUser={activeUser}
                           targetUsername={name!}
                           where={"chat-box"}

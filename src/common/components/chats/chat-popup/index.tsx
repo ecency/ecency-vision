@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import { history } from "../../../../common/store";
 
 import { Community } from "../../../store/communities/types";
-import { ToggleType } from "../../../store/ui/types";
-import { Account } from "../../../store/accounts/types";
 import {
   Channel,
   ChannelUpdate,
@@ -62,14 +60,7 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import ImportChats from "../import-chats";
 
-interface Props {
-  setActiveUser: (username: string | null) => void;
-  updateActiveUser: (data?: Account) => void;
-  deleteUser: (username: string) => void;
-  toggleUIProp: (what: ToggleType) => void;
-}
-
-export const ChatPopUp = (props: Props) => {
+export const ChatPopUp = () => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
 
   const {
@@ -585,7 +576,6 @@ export const ChatPopUp = (props: Props) => {
                         />
                       ) : (
                         <ChatsChannelMessages
-                          {...props}
                           history={history!}
                           username={communityName}
                           publicMessages={publicMessages}
