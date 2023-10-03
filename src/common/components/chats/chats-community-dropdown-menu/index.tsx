@@ -265,10 +265,10 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
         <div className="add-dialog-header border-bottom">
           <div className="add-dialog-titles">
             <h4 className="add-main-title">{_t("chat.edit-community-roles")}</h4>
+            {inProgress && <LinearProgress />}
           </div>
         </div>
         <div className="community-chat-role-edit-dialog-content">
-          {inProgress && <LinearProgress />}
           <div className={`add-user-role-form ${inProgress ? "in-progress" : ""}`}>
             <Form.Group as={Row}>
               <Form.Label column={true} sm="2">
@@ -317,7 +317,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
           </div>
           {currentChannel?.communityModerators?.length !== 0 ? (
             <>
-              <table className="table table-striped table-bordered table-roles">
+              <table className="table table-striped table-bordered table-roles mt-4">
                 <thead>
                   <tr>
                     <th style={{ width: "50%" }}>{_t("community.roles-account")}</th>
