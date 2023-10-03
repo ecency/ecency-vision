@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Channel } from "../../../../managers/message-manager-types";
 import MessageService from "../../../helper/message-service";
 
@@ -8,12 +8,11 @@ function useMessageServiceListener(
   chatChannels: Channel[]
 ) {
   const [since, setSince] = useState(0);
-  const timerRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     if (!messageServiceReady) return;
 
-    timerRef.current = window.setTimeout(
+    const timer = setTimeout(
       () => {
         messageService?.listen(
           chatChannels.map((x) => x.id),
@@ -25,9 +24,9 @@ function useMessageServiceListener(
     );
 
     return () => {
-      clearTimeout(timerRef.current);
+      clearTimeout(timer);
     };
-  }, [since, messageServiceReady, messageService, chatChannels, setSince]);
+  }, [since, messageServiceReady, messageService, chatChannels]);
 }
 
 export default useMessageServiceListener;
