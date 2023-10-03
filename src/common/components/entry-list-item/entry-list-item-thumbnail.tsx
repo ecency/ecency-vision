@@ -16,8 +16,20 @@ interface Props {
 export function EntryListItemThumbnail({ entry, noImage, isCrossPost, entryProp, history }: Props) {
   const { global } = useMappedStore();
 
-  const { data: imgGrid } = useImageDownloader(entry, noImage, 600, 500);
-  const { data: imgRow } = useImageDownloader(entry, noImage, 260, 200);
+  const { data: imgGrid } = useImageDownloader(
+    entry,
+    noImage,
+    600,
+    500,
+    global.listStyle === "grid"
+  );
+  const { data: imgRow } = useImageDownloader(
+    entry,
+    noImage,
+    260,
+    200,
+    global.listStyle !== "grid"
+  );
 
   return (
     <div className={"item-image " + (imgRow === noImage ? "noImage" : "")}>

@@ -26,7 +26,6 @@ import { getPost } from "../../api/bridge";
 import "./_index.scss";
 import useMountedState from "react-use/lib/useMountedState";
 import { useMappedStore } from "../../store/use-mapped-store";
-import { useLocation } from "react-router";
 import useMount from "react-use/lib/useMount";
 import { useUnmount } from "react-use";
 import { Community } from "../../store/communities";
@@ -67,7 +66,6 @@ export function EntryListItem({
   const [showMuted, setShowMuted] = useState(mutedProp);
   const [showModMuted, setShowModMuted] = useState(false);
 
-  const location = useLocation();
   const { global, activeUser, addAccount, updateEntry } = useMappedStore();
 
   const isMounted = useMountedState();

@@ -39,7 +39,13 @@ export function usePointsQuery(username: string, filter = 0) {
   );
 }
 
-export function useImageDownloader(entry: Entry, noImage: string, width: number, height: number) {
+export function useImageDownloader(
+  entry: Entry,
+  noImage: string,
+  width: number,
+  height: number,
+  enabled: boolean
+) {
   const { global } = useMappedStore();
 
   const blobToBase64 = (blob: Blob) => {
@@ -77,6 +83,7 @@ export function useImageDownloader(entry: Entry, noImage: string, width: number,
       }
     },
     {
+      enabled,
       retryDelay: 3000
     }
   );
