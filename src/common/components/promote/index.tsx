@@ -254,7 +254,7 @@ export class Promote extends BaseComponent<Props, State> {
                 <a href="/faq#how-promotion-work">{_t("promote.learn-more")}</a>
               </div>
               <div className="grid grid-cols-12 mb-4">
-                <div className="col-span-12 sm:col-span-2">
+                <div className="col-span-12 sm:col-span-2 flex items-center">
                   <label>{_t("redeem-common.balance")}</label>
                 </div>
                 <div className="col-span-12 sm:col-span-10">
@@ -269,7 +269,7 @@ export class Promote extends BaseComponent<Props, State> {
                 </div>
               </div>
               <div className="mb-4">
-                <div className="col-span-12 sm:col-span-2">
+                <div className="col-span-12 sm:col-span-2 flex items-center">
                   <label>{_t("redeem-common.post")}</label>
                 </div>
                 <div className="col-span-12 sm:col-span-10">
@@ -290,7 +290,7 @@ export class Promote extends BaseComponent<Props, State> {
                 </div>
               </div>
               <div className="grid grid-cols-12 mb-4">
-                <div className="col-span-12 sm:col-span-2">
+                <div className="col-span-12 sm:col-span-2 flex items-center">
                   <label>{_t("promote.duration")}</label>
                 </div>
                 <div className="col-span-12 sm:col-span-10">
@@ -313,7 +313,7 @@ export class Promote extends BaseComponent<Props, State> {
                 </div>
               </div>
               <div className="grid grid-cols-12 mb-4">
-                <div className="col-span-12 sm:col-span-2" />
+                <div className="col-span-12 sm:col-span-2 flex items-center" />
                 <div className="col-span-12 sm:col-span-10">
                   <Button onClick={this.next} disabled={!canSubmit || inProgress}>
                     {_t("g.next")}
@@ -381,10 +381,10 @@ export default class PromoteDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        className="promote-dialog modal-thin-header"
+        className="promote-dialog"
         size="lg"
       >
-        <ModalHeader closeButton={true} />
+        <ModalHeader thin={true} closeButton={true} />
         <ModalBody>
           <Promote {...this.props} />
         </ModalBody>

@@ -195,7 +195,7 @@ export const SearchListItem = ({
               </div>
             )}
             {community && (
-              <div className="ml-1 grow text-truncate">
+              <div className="ml-1 grow truncate">
                 {" "}
                 {_t("entry.community-in")}{" "}
                 <Link target="_blank" to={`/created/${community}`}>

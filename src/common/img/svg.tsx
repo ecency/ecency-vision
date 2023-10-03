@@ -1361,7 +1361,7 @@ export const upArrowSvg = (
   <svg xmlns="http://www.w3.org/2000/svg" width="13" height="8" viewBox="0 0 13 8" fill="none">
     <path
       d="M11.623 6.59424L6.43483 1.40602L1.24661 6.59424"
-      stroke="#535E65"
+      stroke="currentColor"
       strokeLinecap="square"
     />
   </svg>

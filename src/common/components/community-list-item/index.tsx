@@ -73,7 +73,7 @@ export class CommunityListItem extends Component<Props> {
             </div>
             {this.props.small && this.getItemsControls()}
           </h2>
-          <div className={"item-about " + (this.props.small ? "text-truncate" : "")}>
+          <div className={"item-about " + (this.props.small ? "truncate" : "")}>
             {community.about}
           </div>
           <div className="item-stats">

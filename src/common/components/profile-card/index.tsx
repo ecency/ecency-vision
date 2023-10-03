@@ -256,7 +256,7 @@ export const ProfileCard = (props: Props) => {
           ))}
         </div>
       )}
-      <div className="btn-controls">
+      <div className="btn-controls flex gap-3">
         {isCommunity(account?.name) && (
           <Link to={`/created/${account?.name}`}>
             <Button size="sm">{_t("profile.go-community")}</Button>

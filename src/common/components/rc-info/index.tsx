@@ -272,10 +272,10 @@ export const ResourceCreditsInfo = (props: any) => {
           show={showDelegationModal}
           centered={true}
           onHide={hideDelegation}
-          className="transfer-dialog modal-thin-header"
+          className="transfer-dialog"
           size="lg"
         >
-          <ModalHeader closeButton={true}>
+          <ModalHeader thin={true} closeButton={true}>
             <ModalTitle />
           </ModalHeader>
           <ModalBody>
@@ -296,10 +296,10 @@ export const ResourceCreditsInfo = (props: any) => {
           show={showConfirmDelete}
           centered={true}
           onHide={hideConfirmDelete}
-          className="transfer-dialog modal-thin-header"
+          className="transfer-dialog"
           // size="lg"
         >
-          <ModalHeader closeButton={true}>
+          <ModalHeader thin={true} closeButton={true}>
             <ModalTitle />
           </ModalHeader>
           <ModalBody>

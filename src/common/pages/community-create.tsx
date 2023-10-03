@@ -657,9 +657,9 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                   show={true}
                   centered={true}
                   onHide={this.toggleKeyDialog}
-                  className="community-key-modal modal-thin-header"
+                  className="community-key-modal"
                 >
-                  <ModalHeader closeButton={true} />
+                  <ModalHeader thin={true} closeButton={true} />
                   <ModalBody>
                     {KeyOrHot({
                       ...this.props,

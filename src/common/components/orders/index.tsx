@@ -91,8 +91,8 @@ export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
   return loading ? (
     <Skeleton className="loading-hive" />
   ) : (
-    <div className="rounded">
-      <h5>{title}</h5>
+    <div className="flex flex-col items-center rounded">
+      <h5 className="text-xl self-start my-4">{title}</h5>
       <Table full={true}>
         <thead>
           <Tr>

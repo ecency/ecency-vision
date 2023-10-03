@@ -121,10 +121,10 @@ export class EntryTipBtn extends Component<Props, State> {
             show={true}
             centered={true}
             onHide={this.toggleDialog}
-            className="tipping-dialog modal-thin-header"
+            className="tipping-dialog"
             size="lg"
           >
-            <ModalHeader closeButton={true} />
+            <ModalHeader thin={true} closeButton={true} />
             <ModalBody>
               <TippingDialog {...this.props} onHide={this.toggleDialog} />
             </ModalBody>

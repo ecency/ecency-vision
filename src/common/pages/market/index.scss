@@ -79,7 +79,7 @@ thead, .pagination {
     &.ADVANCED {
         .advanced-mode {
             overflow-x: hidden;
-            margin-top: -2.5rem;
+            margin-top: -1.75rem;
 
             @include media-breakpoint-down(sm) {
                 margin-top: -2rem;

@@ -860,10 +860,10 @@ export default class TransferDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        className="transfer-dialog modal-thin-header"
+        className="transfer-dialog"
         size="lg"
       >
-        <ModalHeader closeButton={true} />
+        <ModalHeader thin={true} closeButton={true} />
         <ModalBody>
           <Transfer {...this.props} />
         </ModalBody>

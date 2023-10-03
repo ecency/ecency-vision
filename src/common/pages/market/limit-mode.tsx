@@ -87,9 +87,9 @@ export const LimitMarketMode = (props: PageProps) => {
     <>
       <div className="flex justify-content-md-between flex-col">
         <div className="mb-5">
-          <h4 className="mb-3">
+          <div className="text-2xl mb-3">
             {loading ? <Skeleton className="skeleton-loading" /> : _t("market.stock-info")}
-          </h4>
+          </div>
           <ChartStats data={data} loading={loading} />
         </div>
 
@@ -126,7 +126,7 @@ export const LimitMarketMode = (props: PageProps) => {
                     onClickPeakValue={(value: any) => setBidValues({ ...bidValues, lowest: value })}
                   />
                 </div>
-                <div className="col-span-12 sm:col-5 p-0">
+                <div className="col-span-12 sm:col-start-8 sm:col-span-5 p-0">
                   <HiveBarter
                     type={2}
                     prefilledTotal={bidValues.total}
@@ -150,7 +150,7 @@ export const LimitMarketMode = (props: PageProps) => {
             {activeUser && (
               <div className="flex flex-col md:hidden">
                 <div className="flex sm:items-center justify-start sm:justify-between flex-col sm:flex-row">
-                  <h3>{_t("market.barter")}</h3>
+                  <div className="text-2xl">{_t("market.barter")}</div>
                   <ButtonGroup
                     className="my-3"
                     labels={[_t("market.buy"), _t("market.sell")]}
@@ -211,7 +211,7 @@ export const LimitMarketMode = (props: PageProps) => {
                   />
                 </div>
               )}
-              <div className="col-span-12 xl:col-5 px-0">
+              <div className="col-span-12 xl:col-span-5 px-0">
                 <Orders
                   onPriceClick={(value) =>
                     setBidValues({
@@ -226,7 +226,7 @@ export const LimitMarketMode = (props: PageProps) => {
                   data={tablesData ? tablesData!.bids : []}
                 />
               </div>
-              <div className="col-span-12 xl:col-span-5 px-0 sm:px-[auto] mt-5 lg:mt-0">
+              <div className="col-span-12 xl:col-start-8 xl:col-span-5 px-0 sm:px-[auto] mt-5 lg:mt-0">
                 <Orders
                   onPriceClick={(value) =>
                     setBidValues({

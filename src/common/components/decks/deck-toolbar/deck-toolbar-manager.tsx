@@ -22,6 +22,7 @@ export const DeckToolbarManager = ({ isExpanded }: Props) => {
       <div className="title">
         <div className="text">{_t("decks.decks")}</div>
         <Button
+          appearance="link"
           className="add-deck-btn"
           onClick={() => setShowDecksSettings(true)}
           icon={addIconSvg}

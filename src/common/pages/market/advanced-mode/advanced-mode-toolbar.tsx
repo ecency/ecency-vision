@@ -82,6 +82,7 @@ export const AdvancedModeToolbar = ({
       <div className="flex items-center">
         <AdvancedModeSettings updateRate={updateRate} setUpdateRate={setUpdateRate} />
         <ModeSelector
+          className="py-1 my-2"
           mode={mode}
           onSelect={(mode) => {
             setMode(mode);

@@ -139,7 +139,7 @@ export class Preferences extends BaseComponent<Props, State> {
         <div className="preferences">
           <div className="preferences-header">{_t("preferences.title")}</div>
 
-          <div className="grid grid-cols-12">
+          <div className="grid grid-cols-12 gap-3">
             <div className="col-span-12 lg:col-span-6 xl:col-span-4">
               <div className="mb-4">
                 <label>{_t("preferences.notifications")}</label>
@@ -188,7 +188,7 @@ export class Preferences extends BaseComponent<Props, State> {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-12">
+          <div className="grid grid-cols-12 gap-3">
             <div className="col-span-12 lg:col-span-6 xl:col-span-4">
               <div className="mb-4">
                 <label>{_t("preferences.nsfw")}</label>

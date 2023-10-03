@@ -15,7 +15,6 @@ import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
-import { FormCheck } from "react-bootstrap";
 
 interface Props {
   activeUser: ActiveUser;
@@ -169,12 +168,13 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
             />
           </div>
           <div className="mb-4">
-            <FormCheck
+            <FormControl
+              checked={false}
               required={true}
               type="checkbox"
               label={_t("password-update.label-check")}
               onInvalid={(e: any) => handleInvalid(e, "password-update.", "validation-label")}
-              onInput={handleOnInput}
+              onChange={handleOnInput}
             />
           </div>
           <Button

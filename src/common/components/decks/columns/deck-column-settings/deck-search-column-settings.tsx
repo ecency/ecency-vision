@@ -9,7 +9,6 @@ import "./_deck-search-column-settings.scss";
 import { DeckGridContext } from "../../deck-manager";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
-import { FormCheck } from "react-bootstrap";
 
 interface Props {
   id: string;
@@ -115,11 +114,12 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
             </FormControl>
           </div>
         </div>
-        <FormCheck
+        <FormControl
+          type="checkbox"
           className="py-2"
           label={_t("search-comment.hide-low")}
           checked={hideLow}
-          onChange={(e) => setHideLow(e.target.checked)}
+          onChange={(v) => setHideLow(v)}
         />
         <Button
           outline={true}

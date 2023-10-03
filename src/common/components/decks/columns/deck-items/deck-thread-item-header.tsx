@@ -20,7 +20,7 @@ export const DeckThreadItemHeader = ({ entry, hasParent, pure, status }: Props) 
   return (
     <div className="thread-item-header">
       <UserAvatar size="deck-item" global={global} username={entry.author} />
-      <div className="username text-truncate">
+      <div className="username truncate">
         <Link to={`/@${entry.author}`}>{entry.author}</Link>
         {activeUser?.username === entry.author && <span className="you">{`(${_t("g.you")})`}</span>}
         {hasParent && !pure && (

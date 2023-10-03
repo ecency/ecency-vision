@@ -37,7 +37,7 @@ export function InputGroup({
       {prepend ? (
         <div
           className={classNameObject({
-            "ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200":
+            "ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600":
               true,
             "px-2.5": typeof prepend === "string" || (prepend as ReactElement)?.type === Spinner,
             "[&>.ecency-spinner]:w-3.5 [&>.ecency-spinner]:h-3.5":
@@ -56,7 +56,7 @@ export function InputGroup({
       {append ? (
         <div
           className={classNameObject({
-            "ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200":
+            "ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600":
               true,
             "flex items-center justify-center px-2.5":
               typeof append === "string" || (prepend as ReactElement)?.type === Spinner,

@@ -1,6 +1,6 @@
 import React, { forwardRef, HTMLProps } from "react";
 import { classNameObject } from "../../../../helper/class-name-object";
-import { INPUT_STYLES, INVALID_INPUT_STYLES } from "./input-styles";
+import { INPUT_DARK_STYLES, INPUT_STYLES, INVALID_INPUT_STYLES } from "./input-styles";
 
 export interface InputProps extends HTMLProps<HTMLInputElement> {
   type: "text" | "password" | "number" | "email" | "range";
@@ -16,6 +16,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       {...props}
       className={classNameObject({
         [INPUT_STYLES]: true,
+        [INPUT_DARK_STYLES]: true,
         [INVALID_INPUT_STYLES]: true,
         [props.className ?? ""]: !!props.className
       })}

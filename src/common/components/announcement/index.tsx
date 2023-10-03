@@ -176,7 +176,7 @@ const Announcement = ({ activeUser }: Props) => {
           return (
             <div className="announcement-container" key={i}>
               <div className="feedback-announcement">
-                <div className="flex justify-center">
+                <div className="flex flex-col gap-3 justify-center">
                   <div className="main">
                     <div className="announcement-title">
                       <p>{x?.title}</p>

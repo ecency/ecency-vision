@@ -130,9 +130,9 @@ export const SendSpkDialog = ({
         clear();
       }}
       size="lg"
-      className="send-spk-dialog modal-thin-header transfer-dialog-content"
+      className="send-spk-dialog transfer-dialog-content"
     >
-      <ModalHeader closeButton={true} />
+      <ModalHeader thin={true} closeButton={true} />
       <ModalBody>
         <WalletSpkSteps steps={steps} stepIndex={stepIndex}>
           <>

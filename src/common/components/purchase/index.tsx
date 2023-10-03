@@ -171,10 +171,10 @@ export default class PurchaseDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        className="purchase-dialog modal-thin-header"
+        className="purchase-dialog"
         size="lg"
       >
-        <ModalHeader closeButton={true} />
+        <ModalHeader thin={true} closeButton={true} />
         <ModalBody>
           <Purchase {...this.props} />
         </ModalBody>

@@ -150,8 +150,6 @@
   }
 
   .add-deck-btn {
-    outline: none;
-    box-shadow: none;
     @apply text-gray-500;
 
     @include padding(0);
@@ -162,7 +160,7 @@
     }
 
     &:hover {
-      color: $primary;
+      @apply text-blue-dark-sky;
     }
   }
 }

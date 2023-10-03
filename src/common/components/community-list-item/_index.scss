@@ -95,6 +95,8 @@
   }
 
   &.small {
+    @apply text-sm;
+
     .item-controls {
       @media (min-width: $md-break) {
         width: 80px;

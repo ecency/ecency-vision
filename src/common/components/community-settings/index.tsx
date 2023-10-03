@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FormCheck } from "react-bootstrap";
 import { Global } from "../../store/global/types";
 import { Community } from "../../store/communities";
 import { ActiveUser } from "../../store/active-user/types";
@@ -294,13 +293,17 @@ export class CommunitySettings extends BaseComponent<Props, State> {
           <div className="flex mb-4">
             <div className="w-full sm:w-2/12" />
             <div className="w-full sm:w-10/12">
-              <FormCheck
+              <FormControl
                 id="check-nsfw"
                 type="checkbox"
                 label="NSFW"
                 name="is_nsfw"
                 checked={is_nsfw}
-                onChange={this.onChange}
+                onChange={(v) =>
+                  this.setState({
+                    is_nsfw: v
+                  })
+                }
               />
             </div>
           </div>

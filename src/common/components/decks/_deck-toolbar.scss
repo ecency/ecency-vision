@@ -159,11 +159,13 @@
 
     .switch-theme {
       cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      @include transition(0.3s);
-      @include padding(0.5rem);
-      @include border-radius(2rem);
-      @include margin-left(auto);
+      @apply duration-300 rounded-full ml-[auto];
 
       &.switched svg {
         transform: rotate(180deg);

@@ -54,7 +54,7 @@ export const OpenOrders = ({
           />
         </>
       ) : null}
-      {compat ? <></> : <h5>{_t("market.open-orders")}</h5>}
+      {compat ? <></> : <h5 className="text-xl my-4">{_t("market.open-orders")}</h5>}
       <Table full={true} rounded={rounded}>
         <thead>
           <Tr>

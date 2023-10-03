@@ -424,10 +424,10 @@ export default function AccountRecovery(props: Props) {
             show={true}
             centered={true}
             onHide={toggleKeyDialog}
-            className="recovery-dialog modal-thin-header"
+            className="recovery-dialog"
             size="lg"
           >
-            <ModalHeader closeButton={true} />
+            <ModalHeader thin={true} closeButton={true} />
             <ModalBody>
               {step === 1 && confirmationModal()}
               {step === 2 && signkeyModal()}

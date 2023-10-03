@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { FormCheck } from "react-bootstrap";
 import { History, Location } from "history";
 import numeral from "numeral";
 import moment, { Moment } from "moment";
@@ -129,10 +128,6 @@ export class SearchComment extends BaseComponent<Props, State> {
 
   sortChanged = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     this.stateSet({ sort: e.target.value as SearchSort });
-  };
-
-  hideLowChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.stateSet({ hideLow: e.target.checked });
   };
 
   textInputDown = (e: React.KeyboardEvent) => {
@@ -352,12 +347,16 @@ export class SearchComment extends BaseComponent<Props, State> {
             </div>
           </div>
           <div className="flex justify-between items-center">
-            <FormCheck
+            <FormControl
               id="hide-low"
               type="checkbox"
               label={_t("search-comment.hide-low")}
               checked={hideLow}
-              onChange={this.hideLowChanged}
+              onChange={(v) =>
+                this.setState({
+                  hideLow: v
+                })
+              }
             />
 
             <Button onClick={this.apply}>{_t("g.apply")}</Button>

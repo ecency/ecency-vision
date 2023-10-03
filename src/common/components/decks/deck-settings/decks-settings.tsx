@@ -1,4 +1,3 @@
-import { FormCheck } from "react-bootstrap";
 import React, { useContext, useEffect, useState } from "react";
 import "./_decks-settings.scss";
 import { DeckGrid } from "../types";
@@ -150,11 +149,11 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
             {isLocalStorage && <Alert className="my-3">{_t("decks.use-local-text")}</Alert>}
             <div className="form-section flex">
               <div className="mb-4">
-                <FormCheck
+                <FormControl
                   checked={isLocalStorage}
                   type="checkbox"
                   label={_t("decks.save-locally")}
-                  onChange={({ target }) => setIsLocalStorage(target.checked)}
+                  onChange={(value) => setIsLocalStorage(value)}
                 />
               </div>
             </div>

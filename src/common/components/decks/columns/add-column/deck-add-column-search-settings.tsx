@@ -8,7 +8,6 @@ import useLocalStorage from "react-use/lib/useLocalStorage";
 import { DateOpt, SearchSort } from "../../consts";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
-import { FormCheck } from "react-bootstrap";
 
 export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
   const [query, setQuery] = useState("");
@@ -115,10 +114,11 @@ export const DeckAddColumnSearchSettings = ({ deckKey }: SettingsProps) => {
             </FormControl>
           </div>
           <div className="mb-4">
-            <FormCheck
+            <FormControl
+              type="checkbox"
               label={_t("search-comment.hide-low")}
               checked={hideLow}
-              onChange={(e) => setHideLow(e.target.checked)}
+              onChange={(v) => setHideLow(v)}
             />
           </div>
         </>

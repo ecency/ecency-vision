@@ -34,7 +34,6 @@ import MdHandler from "../../components/md-handler";
 import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import _c from "../../util/fix-class-names";
-import { FormCheck } from "react-bootstrap";
 import TextareaAutocomplete from "../../components/textarea-autocomplete";
 import { AvailableCredits } from "../../components/available-credits";
 import ClickAwayListener from "../../components/clickaway-listener";
@@ -728,13 +727,13 @@ export function Submit(props: PageProps & MatchProps) {
                       <div className="grid grid-cols-12 mb-4">
                         <div className="col-span-12 sm:col-span-3" />
                         <div className="col-span-12 sm:col-span-9">
-                          <FormCheck
-                            type="switch"
+                          <FormControl
+                            type="checkbox"
                             id="reblog-switch"
                             label={_t("submit.reblog")}
                             checked={reblogSwitch}
-                            onChange={(e) => {
-                              setReblogSwitch(e.target.checked);
+                            onChange={(v) => {
+                              setReblogSwitch(v);
                             }}
                           />
                           <small className="text-gray-600">{_t("submit.reblog-hint")}</small>

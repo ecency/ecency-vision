@@ -48,7 +48,7 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
             className={classNameObject({
               "z-[1050] fixed top-0 py-8 left-0 right-0 bottom-0 overflow-y-auto h-full": true,
               [props.className ?? ""]: true,
-              "grid grid-cols-1 justify-center items-center": props.centered
+              "flex justify-center items-center": props.centered
             })}
             onClick={() => setShow(false)}
           >

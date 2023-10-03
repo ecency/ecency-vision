@@ -82,7 +82,7 @@ export const SendSpkDialogForm = ({
       </WalletSpkGroup>
       <WalletSpkGroup label="wallet.spk.send.amount">
         <>
-          <InputGroup prepend="#">
+          <InputGroup prepend="#" append={asset}>
             <FormControl
               type="text"
               autoFocus={true}
@@ -90,7 +90,6 @@ export const SendSpkDialogForm = ({
               value={amount}
               onChange={(event) => setAmount(event.target.value)}
             />
-            <div className="align-self-center ml-1">{asset}</div>
           </InputGroup>
           <div className="balance">
             <span className="balance-label">

@@ -27,7 +27,7 @@ import "./_index.scss";
 import { useLocation } from "react-router";
 import { Modal, ModalBody } from "@ui/modal";
 import { Button } from "@ui/button";
-import { FormCheck } from "react-bootstrap";
+import { FormControl } from "@ui/input";
 
 export const date2key = (s: string): string => {
   if (s === "Yesterday") {
@@ -312,8 +312,8 @@ export class DialogContent extends Component<NotificationProps, any> {
     const getNotificationSettingsItem = (title: string, type: NotifyTypes) => ({
       label: _t(title),
       content: (
-        <FormCheck
-          type="switch"
+        <FormControl
+          type="checkbox"
           checked={this.state.settings[type]}
           onChange={() => this.saveSettingsWithDebounce(type)}
         />

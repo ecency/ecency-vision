@@ -23,7 +23,7 @@ export const DeckMsfColumn = ({ id, draggable }: Props) => {
       onReload={() => {}}
     >
       <div className="msf-container">
-        <div className="p-3">
+        <div className="pt-5 pb-3 px-3">
           <SwapMode inline={true} />
         </div>
       </div>
