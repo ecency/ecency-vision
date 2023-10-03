@@ -570,7 +570,7 @@ export const ChatPopUp = () => {
                       </Link>
                       {isCurrentUser ? (
                         <ChatsDirectMessages
-                          receiverPubKey={receiverPubKey}
+                          // receiverPubKey={receiverPubKey}
                           directMessages={directMessagesList}
                           currentUser={currentUser}
                           isScrollToBottom={false}
@@ -752,7 +752,6 @@ export const ChatPopUp = () => {
               isCurrentUser={isCurrentUser}
               isCommunity={isCommunity}
               currentUser={currentUser}
-              receiverPubKey={receiverPubKey}
               currentChannel={currentChannel!}
               isCurrentUserJoined={isCurrentUserJoined}
               emojiPickerStyles={EmojiPickerStyle}

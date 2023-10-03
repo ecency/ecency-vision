@@ -1,15 +1,9 @@
-import React, { RefObject, useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Channel, DirectMessage, PublicMessage } from "../../../../managers/message-manager-types";
-import {
-  fetchCommunityMessages,
-  fetchDirectMessages,
-  getPrivateKey,
-  getProfileMetaData
-} from "../utils";
+import { fetchCommunityMessages, fetchDirectMessages } from "../utils";
 import { History } from "history";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { Global } from "../../../store/global/types";
 import ChatsProfileBox from "../chats-profile-box";
 
 import "./index.scss";
@@ -22,7 +16,7 @@ import { User } from "../../../store/users/types";
 import ChatInput from "../chat-input";
 import ChatsScroller from "../chats-scroller";
 import { CHATPAGE } from "../chat-popup/chat-constants";
-import { EmojiPickerStyleProps, NostrKeysType } from "../types";
+import { EmojiPickerStyleProps } from "../types";
 import { ChatContext } from "../chat-context-provider";
 
 const EmojiPickerStyle: EmojiPickerStyleProps = {
@@ -52,11 +46,11 @@ interface Props {
 export default function ChatsMessagesView(props: Props) {
   const { username, currentChannel, inProgress, currentChannelSetter, setInProgress } = props;
 
-  const { messageServiceInstance, receiverPubKey } = useContext(ChatContext);
+  const { messageServiceInstance } = useContext(ChatContext);
 
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 
-  const { chat, activeUser } = useMappedStore();
+  const { chat } = useMappedStore();
   const [directUser, setDirectUser] = useState("");
   const [publicMessages, setPublicMessages] = useState<PublicMessage[]>([]);
   const [directMessages, setDirectMessages] = useState<DirectMessage[]>([]);
@@ -206,7 +200,6 @@ export default function ChatsMessagesView(props: Props) {
             directMessages={directMessages && directMessages}
             currentUser={directUser!}
             isScrolled={isScrolled}
-            receiverPubKey={receiverPubKey}
             isScrollToBottom={isScrollToBottom}
             scrollToBottom={scrollToBottom}
           />
@@ -221,7 +214,6 @@ export default function ChatsMessagesView(props: Props) {
         )}
       </div>
       <ChatInput
-        receiverPubKey={receiverPubKey}
         emojiPickerStyles={EmojiPickerStyle}
         gifPickerStyle={EmojiPickerStyle}
         isCurrentUser={directUser ? true : false}

@@ -34,23 +34,16 @@ interface Props {
   currentUser: string;
   isScrollToBottom: boolean;
   isScrolled?: boolean;
-  receiverPubKey: string;
   scrollToBottom?: () => void;
 }
 
 let zoom: Zoom | null = null;
 export default function ChatsDirectMessages(props: Props) {
-  const {
-    directMessages,
-    currentUser,
-    isScrolled,
-    receiverPubKey,
-    isScrollToBottom,
-    scrollToBottom
-  } = props;
+  const { directMessages, currentUser, isScrolled, isScrollToBottom, scrollToBottom } = props;
 
   const { global, activeUser, deleteDirectMessage } = useMappedStore();
-  const { activeUserKeys, messageServiceInstance, windowWidth } = useContext(ChatContext);
+  const { activeUserKeys, messageServiceInstance, windowWidth, receiverPubKey } =
+    useContext(ChatContext);
 
   let prevGlobal = usePrevious(global);
   const [step, setStep] = useState(0);

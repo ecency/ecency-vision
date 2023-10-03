@@ -36,7 +36,6 @@ interface Props {
   currentChannel: Channel;
   currentUser: string;
   isCurrentUserJoined: boolean;
-  receiverPubKey: string;
   emojiPickerStyles: EmojiPickerStyleProps;
   gifPickerStyle: EmojiPickerStyleProps;
 }
@@ -50,7 +49,7 @@ export default function ChatInput(props: Props) {
   const [shGif, setShGif] = useState(false);
   const [isMessageText, setIsMessageText] = useState(false);
 
-  const { messageServiceInstance, isActveUserRemoved } = useContext(ChatContext);
+  const { messageServiceInstance, isActveUserRemoved, receiverPubKey } = useContext(ChatContext);
 
   const {
     isCommunity,
@@ -59,8 +58,7 @@ export default function ChatInput(props: Props) {
     currentUser,
     isCurrentUserJoined,
     emojiPickerStyles,
-    gifPickerStyle,
-    receiverPubKey
+    gifPickerStyle
   } = props;
 
   useEffect(() => {
