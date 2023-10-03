@@ -198,7 +198,7 @@
   }
 }
 
-.theme-day .tooltip-inner {
+.tooltip-inner {
   max-width: 380px;
   padding: 0.25rem 0.5rem;
   color: #000000;
@@ -207,7 +207,7 @@
   border-radius: 0.25rem;
 }
 
-.theme-day .bs-tooltip-bottom .arrow::before, .theme-day .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+.bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
   bottom: 0;
   border-width: 0 0.4rem 0.4rem;
   border-bottom-color: #c2d4f5;

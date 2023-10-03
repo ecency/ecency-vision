@@ -1,6 +1,10 @@
 @mixin themify($theme) {
-  .theme-#{$theme} & {
+  @if $theme == "day" {
     @content;
+  } @else if $theme == "night" {
+      .dark & {
+        @content;
+      }
   }
 }
 

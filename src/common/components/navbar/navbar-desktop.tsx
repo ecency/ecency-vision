@@ -67,7 +67,7 @@ export function NavbarDesktop({
           transparent: !transparentVerify && step === 1
         })}
       >
-        <div className="h-[40px] w-[40px] cursor-pointer">
+        <div className="h-[40px] min-w-[40px] cursor-pointer">
           {activeUser !== null ? (
             <Link to={logoHref}>
               <img src={logo} className="logo" alt="Logo" />
