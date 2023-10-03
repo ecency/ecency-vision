@@ -91,9 +91,6 @@ export const ChatContextProvider = (props: Props) => {
     setWindowWidth(window.innerWidth);
     setMaxHeight(window.innerHeight - 66);
   });
-  useEffect(() => {
-    console.log("chat in context", chat);
-  }, []);
 
   useEffect(() => {
     if (currentChannel && currentChannel.removedUserIds) {
