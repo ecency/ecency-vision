@@ -139,9 +139,10 @@ export default function JoinCommunityChatBtn(props: Props) {
         about: content.about,
         picture: content.picture
       };
-      setChannelMetaData(community.name, channelMetaData).then(() =>
-        setCurrentCommunity(channelMetaData)
-      );
+      const response = await setChannelMetaData(community.name, channelMetaData);
+      if (response) {
+        setCurrentCommunity(channelMetaData);
+      }
     } finally {
       setInProgress(false);
       setIsCommunityChatJoined(true);

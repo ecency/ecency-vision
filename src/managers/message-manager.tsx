@@ -20,7 +20,7 @@ import { useMappedStore } from "../common/store/use-mapped-store";
 import { ChatContext } from "../common/components/chats/chat-context-provider";
 import { useTimeoutFn } from "react-use";
 import { usePrevious } from "../common/util/use-previous";
-import useMessageServiceListener from "../common/components/chats/hooks/use-message-service-listener";
+import { useMessageServiceListener } from "../common/components/chats/hooks/use-message-service-listener";
 
 export const setNostrkeys = (keys: NostrKeysType) => {
   const detail: NostrKeysType = {

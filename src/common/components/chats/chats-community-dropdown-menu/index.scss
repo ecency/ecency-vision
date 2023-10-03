@@ -1,7 +1,17 @@
 @import "../../../../style/vars_mixins";
 
-.chats-dialog{
-  .add-dialog-header{
-    margin-bottom: 2rem;
+.chats-dialog {
+  .chat-modals-body {
+    .add-dialog-header {
+      margin-bottom: 2rem;
+    }
+    .success-dialog-header {
+      .success-dialog-titles {
+        margin-top: 10px;
+      }
+    }
+    .success-dialog-body {
+      padding: 10px 20px 20px 10px;
+    }
   }
 }

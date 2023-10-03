@@ -128,6 +128,10 @@ export const ChatPopUp = () => {
   }, []);
 
   useEffect(() => {
+    console.log("Chat in store", chat);
+  }, [chat]);
+
+  useEffect(() => {
     const updated: ChannelUpdate = chat.updatedChannel
       .filter((x) => x.channelId === currentChannel?.id!)
       .sort((a, b) => b.created - a.created)[0];

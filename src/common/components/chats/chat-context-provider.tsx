@@ -69,7 +69,7 @@ export const ChatContext = React.createContext<Context>({
 });
 
 export const ChatContextProvider = (props: Props) => {
-  const { activeUser, resetChat } = useMappedStore();
+  const { activeUser, chat, resetChat } = useMappedStore();
 
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>({ pub: " ", priv: "" });
   const [showSpinner, setShowSpinner] = useState(true);
@@ -91,6 +91,9 @@ export const ChatContextProvider = (props: Props) => {
     setWindowWidth(window.innerWidth);
     setMaxHeight(window.innerHeight - 66);
   });
+  useEffect(() => {
+    console.log("chat in context", chat);
+  }, []);
 
   useEffect(() => {
     if (currentChannel && currentChannel.removedUserIds) {
@@ -113,10 +116,13 @@ export const ChatContextProvider = (props: Props) => {
 
   useEffect(() => {
     getActiveUserKeys();
-    if (messageServiceInstance) {
+    if (
+      messageServiceInstance &&
+      chat.profiles.some((profile) => profile.name === activeUser?.username)
+    ) {
       setShouldUpdateProfile(false);
     }
-  }, [messageServiceInstance]);
+  }, [messageServiceInstance, chat.profiles]);
 
   useEffect(() => {
     window.addEventListener("resize", handleShowSideBar);

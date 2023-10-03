@@ -24,6 +24,7 @@ import { copyToClipboard, getProfileMetaData } from "../utils";
 import { ChatContext } from "../chat-context-provider";
 
 import "./index.scss";
+import { getAccountFull } from "../../../api/hive";
 
 interface Props {
   history: History;
@@ -130,33 +131,47 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
         setInProgress(false);
         return;
       }
-
       try {
-        const profileData = await getProfileMetaData(user);
-        if (profileData && profileData.hasOwnProperty(NOSTRKEY)) {
-          const alreadyExists = currentChannel?.communityModerators?.some(
-            (moderator) => moderator.name === profileData.name
-          );
-          if (alreadyExists) {
-            setAddRoleError("You have already assigned some rule to this user.");
-            setInProgress(false);
-            return;
-          }
+        const response = await getAccountFull(user);
+        if (!response) {
+          setAddRoleError("Account does not exist");
+          return;
+        }
+
+        if (!response.posting_json_metadata) {
+          setAddRoleError("This user hasn't joined the chat yet.");
+          return;
+        }
+
+        const { posting_json_metadata } = response;
+        const profile = JSON.parse(posting_json_metadata).profile;
+
+        if (!profile || !profile.hasOwnProperty(NOSTRKEY)) {
+          setAddRoleError("You cannot set this user because this user hasn't joined the chat yet.");
+          return;
+        }
+
+        const alreadyExists = currentChannel?.communityModerators?.some(
+          (moderator) => moderator.name === response.name
+        );
+
+        if (alreadyExists) {
+          setAddRoleError("You have already assigned some rule to this user.");
+          setInProgress(false);
+        } else {
           const moderator = {
             name: user,
-            pubkey: profileData.nsKey,
+            pubkey: profile.nsKey,
             role: role
           };
           setModerator(moderator);
           setAddRoleError("");
-        } else {
-          setAddRoleError("You cannot set this user because this user hasn't joined the chat yet.");
         }
       } catch (err) {
         error(err as string);
+      } finally {
+        setInProgress(false);
       }
-
-      setInProgress(false);
     },
     200,
     [user, role]
@@ -414,20 +429,18 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
   const successModal = (message: string) => {
     return (
       <>
-        <div className="import-chat-dialog-header border-bottom">
+        <div className="success-dialog-header d-flex border-bottom">
           <div className="step-no">2</div>
-          <div className="import-chat-dialog-titles">
-            <div className="import-chat-main-title">{_t("manage-authorities.success-title")}</div>
-            <div className="import-chat-sub-title">
-              {_t("manage-authorities.success-sub-title")}
-            </div>
+          <div className="success-dialog-titles">
+            <div className="success-main-title">{_t("manage-authorities.success-title")}</div>
+            <div className="success-sub-title">{_t("manage-authorities.success-sub-title")}</div>
           </div>
         </div>
         <div className="success-dialog-body">
-          <div className="success-dialog-content">
+          <div className="success-dialog-content text-center">
             <span>{message === UNBLOCKUSER ? "User unblock successfully" : ""}</span>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center mt-3">
             <span className="hr-6px-btn-spacer" />
             <Button onClick={finish}>{_t("g.finish")}</Button>
           </div>
@@ -488,6 +501,9 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
         setStep(5);
         setKeyDialog(true);
         setRemovedUserID("");
+      }
+      if (operationType === ADDROLE) {
+        setUser("");
       }
     } catch (err) {
       error(_t("chat.error-updating-community"));

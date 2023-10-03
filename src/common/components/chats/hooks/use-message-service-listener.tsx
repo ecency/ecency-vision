@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Channel } from "../../../../managers/message-manager-types";
 import MessageService from "../../../helper/message-service";
 
-function useMessageServiceListener(
+export const useMessageServiceListener = (
   messageServiceReady: boolean,
   messageService: MessageService | undefined,
   chatChannels: Channel[]
-) {
+) => {
   const [since, setSince] = useState(0);
 
   useEffect(() => {
@@ -27,6 +27,4 @@ function useMessageServiceListener(
       clearTimeout(timer);
     };
   }, [since, messageServiceReady, messageService, chatChannels]);
-}
-
-export default useMessageServiceListener;
+};

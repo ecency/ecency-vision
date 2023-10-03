@@ -57,11 +57,11 @@ let zoom: Zoom | null = null;
 export default function ChatsChannelMessages(props: Props) {
   const {
     publicMessages,
-    currentChannel,
     history,
     from,
     isScrollToBottom,
     isScrolled,
+    currentChannel,
     scrollToBottom,
     currentChannelSetter
   } = props;
@@ -327,7 +327,8 @@ export default function ChatsChannelMessages(props: Props) {
                       <p className="d-flex justify-content-center profile-name">{`@${name!}`}</p>
                       <div
                         className={`d-flex mb-3 ${
-                          communityAdmins.includes(activeUser?.username!)
+                          communityAdmins.includes(activeUser?.username!) &&
+                          name !== currentChannel.communityName
                             ? "justify-content-between"
                             : "justify-content-center"
                         }  profile-box-buttons`}
@@ -344,35 +345,36 @@ export default function ChatsChannelMessages(props: Props) {
                           users={users}
                         />
 
-                        {communityAdmins.includes(activeUser?.username!) && (
-                          <>
-                            {currentChannel?.removedUserIds?.includes(pMsg.creator) ? (
-                              <>
-                                <Button
-                                  variant="primary"
-                                  onClick={() => {
-                                    setStep(3);
-                                    setClickedMessage("");
-                                  }}
-                                >
-                                  {_t("chat.unblock")}
-                                </Button>
-                              </>
-                            ) : (
-                              <>
-                                <Button
-                                  variant="primary"
-                                  onClick={() => {
-                                    setStep(2);
-                                    setClickedMessage("");
-                                  }}
-                                >
-                                  {_t("chat.block")}
-                                </Button>
-                              </>
-                            )}
-                          </>
-                        )}
+                        {communityAdmins.includes(activeUser?.username!) &&
+                          name !== currentChannel.communityName && (
+                            <>
+                              {currentChannel?.removedUserIds?.includes(pMsg.creator) ? (
+                                <>
+                                  <Button
+                                    variant="primary"
+                                    onClick={() => {
+                                      setStep(3);
+                                      setClickedMessage("");
+                                    }}
+                                  >
+                                    {_t("chat.unblock")}
+                                  </Button>
+                                </>
+                              ) : (
+                                <>
+                                  <Button
+                                    variant="primary"
+                                    onClick={() => {
+                                      setStep(2);
+                                      setClickedMessage("");
+                                    }}
+                                  >
+                                    {_t("chat.block")}
+                                  </Button>
+                                </>
+                              )}
+                            </>
+                          )}
                       </div>
 
                       <Form
