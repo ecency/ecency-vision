@@ -155,7 +155,6 @@ interface State {
   to: string;
   toData: Account | null;
   toError: string;
-  toExchangeWarning: string;
   exchangeWarning: string;
   memoError: string;
   toWarning: string;
@@ -190,7 +189,6 @@ const pureState = (props: Props): State => {
     to: props.to || _to,
     toData: props.to ? { name: props.to } : _toData,
     toError: "",
-    toExchangeWarning: "",
     exchangeWarning: "",
     memoError: "",
     toWarning: "",
@@ -232,16 +230,17 @@ export class Transfer extends BaseComponent<Props, State> {
 
   exchangeHandler = (to: string, memo: string) => {
     const { asset } = this.state;
-    
-    if (exchangeAccounts.includes(to) && asset !== "HIVE") {
-      this.stateSet({ exchangeWarning: _t("transfer.invalid-asset"), toExchangeWarning: ""})
-    } else if (exchangeAccounts.includes(to) && asset === "HIVE" && !memo) {
-        this.stateSet({ toExchangeWarning: _t("transfer.memo-required"), exchangeWarning: "" });
-    } else{
-        this.stateSet({ toExchangeWarning: "", exchangeWarning: "" });
+
+    if (exchangeAccounts.includes(to)) {
+      if (asset !== "HIVE") {
+        this.stateSet({ exchangeWarning: _t("transfer.invalid-asset") });
+      } else if (asset === "HIVE" && !memo) {
+        this.stateSet({ exchangeWarning: _t("transfer.memo-required") });
+      } else {
+        this.stateSet({ exchangeWarning: "" });
+      }
     }
-    
-  }
+  };
 
   toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { value: to } = e.target;
@@ -433,11 +432,10 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   canSubmit = () => {
-    const { toData, toError, amountError, memoError, inProgress, amount, toExchangeWarning, exchangeWarning } =
+    const { toData, toError, amountError, memoError, inProgress, amount, exchangeWarning } =
       this.state;
     return (
       toData &&
-      !toExchangeWarning &&
       !toError &&
       !amountError &&
       !memoError &&
@@ -680,7 +678,6 @@ export class Transfer extends BaseComponent<Props, State> {
       asset,
       to,
       toError,
-      toExchangeWarning,
       exchangeWarning,
       toWarning,
       amount,
@@ -904,7 +901,6 @@ export class Transfer extends BaseComponent<Props, State> {
                   </Form.Group>
                   {toWarning && <FormText msg={toWarning} type="danger" />}
                   {toError && <FormText msg={toError} type="danger" />}
-                  {toExchangeWarning && <FormText msg={toExchangeWarning} type="danger" />}
                   {exchangeWarning && <FormText msg={exchangeWarning} type="danger" />}
                 </>
               )}
