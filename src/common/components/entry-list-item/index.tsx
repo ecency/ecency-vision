@@ -118,6 +118,7 @@ export default class EntryListItem extends Component<Props, State> {
       updateEntry({
         ..._entry,
         active_votes: votes,
+        stats: { ..._entry.stats, total_votes: votes.length },
         payout: newPayout,
         pending_payout_value: String(newPayout)
       });
@@ -128,6 +129,7 @@ export default class EntryListItem extends Component<Props, State> {
             return updateEntry({
               ..._entry,
               active_votes: [...entry.active_votes, ...votes],
+              stats: { ...entry.stats, total_votes: votes.length },
               payout: newPayout,
               pending_payout_value: String(newPayout)
             });

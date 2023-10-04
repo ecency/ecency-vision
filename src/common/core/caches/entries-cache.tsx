@@ -83,6 +83,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
       {
         ...cache.get(makePath("", entry.author, entry.permlink))!!,
         active_votes: votes,
+        stats: entry.stats,
         total_votes: votes.length,
         payout,
         pending_payout_value: String(payout)

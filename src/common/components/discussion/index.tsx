@@ -159,6 +159,7 @@ export const Item = (props: ItemProps) => {
     updateReply({
       ...entry,
       active_votes: votes,
+      stats: { ...entry.stats, total_votes: votes.length },
       payout: newPayout,
       pending_payout_value: String(newPayout)
     });
