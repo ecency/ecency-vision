@@ -16,14 +16,14 @@ interface Props {
 export function EntryListItemThumbnail({ entry, noImage, isCrossPost, entryProp, history }: Props) {
   const { global } = useMappedStore();
 
-  const { data: imgGrid } = useImageDownloader(
+  const { data: imgGrid, isLoading: isGridLoading } = useImageDownloader(
     entry,
     noImage,
     600,
     500,
     global.listStyle === "grid"
   );
-  const { data: imgRow } = useImageDownloader(
+  const { data: imgRow, isLoading: isRowLoading } = useImageDownloader(
     entry,
     noImage,
     260,
@@ -38,7 +38,7 @@ export function EntryListItemThumbnail({ entry, noImage, isCrossPost, entryProp,
           {global.listStyle === "grid" ? (
             <img
               src={imgGrid}
-              alt={entry.title}
+              alt={isGridLoading ? "" : entry.title}
               style={{ width: imgGrid === noImage ? "172px" : "auto" }}
               onError={(e: React.SyntheticEvent) => {
                 const target = e.target as HTMLImageElement;
@@ -51,8 +51,8 @@ export function EntryListItemThumbnail({ entry, noImage, isCrossPost, entryProp,
             <picture>
               <source srcSet={imgRow} media="(min-width: 576px)" />
               <img
-                srcSet={imgGrid}
-                alt={entry.title}
+                srcSet={imgRow}
+                alt={isRowLoading ? "" : entry.title}
                 onError={(e: React.SyntheticEvent) => {
                   const target = e.target as HTMLImageElement;
                   target.src = global.isElectron
