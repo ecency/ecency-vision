@@ -40,26 +40,11 @@ export function EntryListItemThumbnail({ entry, noImage, isCrossPost, entryProp,
               src={imgGrid}
               alt={isGridLoading ? "" : entry.title}
               style={{ width: imgGrid === noImage ? "172px" : "auto" }}
-              onError={(e: React.SyntheticEvent) => {
-                const target = e.target as HTMLImageElement;
-                target.src = global.isElectron
-                  ? "./img/fallback.png"
-                  : require("../../img/fallback.png");
-              }}
             />
           ) : (
             <picture>
               <source srcSet={imgRow} media="(min-width: 576px)" />
-              <img
-                srcSet={imgRow}
-                alt={isRowLoading ? "" : entry.title}
-                onError={(e: React.SyntheticEvent) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = global.isElectron
-                    ? "./img/fallback.png"
-                    : require("../../img/fallback.png");
-                }}
-              />
+              <img srcSet={imgRow} alt={isRowLoading ? "" : entry.title} />
             </picture>
           )}
         </div>
