@@ -144,7 +144,7 @@ export function EntryListItem({
     [entry]
   );
 
-  return isMounted() ? (
+  return (
     <div
       className={_c(`entry-list-item ${promoted ? "promoted-item" : ""} ${global.filter}`)}
       id={(entry.author + entry.permlink).replace(/[0-9]/g, "")}
@@ -358,7 +358,7 @@ export function EntryListItem({
         </div>
       </div>
     </div>
-  ) : null;
+  );
 }
 
 export default EntryListItem;
