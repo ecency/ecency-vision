@@ -79,7 +79,7 @@ export function useImageDownloader(
 
         return (await blobToBase64(response.data)) as string;
       } catch (e) {
-        return "";
+        return noImage;
       }
     },
     {
