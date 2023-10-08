@@ -11,7 +11,7 @@ import { History } from "history";
 import * as ls from "../../util/local-storage";
 import { NavbarTextMenu } from "./navbar-text-menu";
 import { classNameObject } from "../../helper/class-name-object";
-import UserNav from "../user-nav";
+import { UserNav } from "../user-nav";
 
 interface Props {
   step?: number;

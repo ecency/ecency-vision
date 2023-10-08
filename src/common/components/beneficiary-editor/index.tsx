@@ -11,6 +11,7 @@ import { Button } from "@ui/button";
 import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "@ui/modal";
 import { Form } from "@ui/form";
 import { FormControl, InputGroup } from "@ui/input";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 interface Props {
   body: string;
@@ -33,11 +34,10 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
 
   return (
     <>
-      <Button size="sm" onClick={() => setVisible(!visible)}>
+      <Button icon={accountMultipleSvg} size="sm" onClick={() => setVisible(!visible)}>
         {list.length > 0
           ? _t("beneficiary-editor.btn-label-n", { n: list.length })
           : _t("beneficiary-editor.btn-label")}
-        <span style={{ marginLeft: "6px" }}>{accountMultipleSvg}</span>
       </Button>
 
       {visible && (
@@ -87,24 +87,24 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
               }}
             >
               <div className="beneficiary-list">
-                <table className="table table-bordered">
+                <Table full={true}>
                   <thead>
-                    <tr>
-                      <th>{_t("beneficiary-editor.username")}</th>
-                      <th>{_t("beneficiary-editor.reward")}</th>
-                      <th />
-                    </tr>
+                    <Tr>
+                      <Th>{_t("beneficiary-editor.username")}</Th>
+                      <Th>{_t("beneficiary-editor.reward")}</Th>
+                      <Th />
+                    </Tr>
                   </thead>
                   <tbody>
                     {author && 100 - used > 0 && (
-                      <tr>
-                        <td>{`@${author}`}</td>
-                        <td>{`${100 - used}%`}</td>
-                        <td />
-                      </tr>
+                      <Tr>
+                        <Td>{`@${author}`}</Td>
+                        <Td>{`${100 - used}%`}</Td>
+                        <Td />
+                      </Tr>
                     )}
-                    <tr>
-                      <td>
+                    <Tr>
+                      <Td>
                         <InputGroup prepend="@">
                           <FormControl
                             type="text"
@@ -123,8 +123,8 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
                             }
                           />
                         </InputGroup>
-                      </td>
-                      <td>
+                      </Td>
+                      <Td>
                         <InputGroup append="%">
                           <FormControl
                             disabled={inProgress}
@@ -141,19 +141,22 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
                             onInput={handleOnInput}
                           />
                         </InputGroup>
-                      </td>
-                      <td>
-                        <Button disabled={inProgress || 100 - used < 1} size="sm" type="submit">
-                          {plusSvg}
-                        </Button>
-                      </td>
-                    </tr>
+                      </Td>
+                      <Td>
+                        <Button
+                          disabled={inProgress || 100 - used < 1}
+                          size="sm"
+                          type="submit"
+                          icon={plusSvg}
+                        />
+                      </Td>
+                    </Tr>
                     {list.map((x) => {
                       return (
-                        <tr key={x.account}>
-                          <td>{`@${x.account}`}</td>
-                          <td>{`${x.weight / 100}%`}</td>
-                          <td>
+                        <Tr key={x.account}>
+                          <Td>{`@${x.account}`}</Td>
+                          <Td>{`${x.weight / 100}%`}</Td>
+                          <Td>
                             {Object.values(videos).length > 0 && x.src === "ENCODER_PAY" ? (
                               <></>
                             ) : (
@@ -163,16 +166,15 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
                                 }}
                                 appearance="danger"
                                 size="sm"
-                              >
-                                {deleteForeverSvg}
-                              </Button>
+                                icon={deleteForeverSvg}
+                              />
                             )}
-                          </td>
-                        </tr>
+                          </Td>
+                        </Tr>
                       );
                     })}
                   </tbody>
-                </table>
+                </Table>
               </div>
             </Form>
           </ModalBody>

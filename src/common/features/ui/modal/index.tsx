@@ -55,7 +55,8 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
             <div
               onClick={(e) => e.stopPropagation()}
               className={classNameObject({
-                "bg-white rounded-xl w-full ecency-modal-content": true,
+                "bg-white rounded-xl w-[calc(100%-2rem)] ecency-modal-content overflow-x-hidden overflow-y-auto max-h-[calc(100vh-3rem)] my-[3rem] mx-3":
+                  true,
                 "max-w-[500px]": !props.size || props.size === "md",
                 "max-w-[800px]": props.size === "lg",
                 [props.dialogClassName ?? ""]: true

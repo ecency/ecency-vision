@@ -645,7 +645,7 @@ export function Submit(props: PageProps & MatchProps) {
                   <h2 className="panel-header-title">{_t("submit.advanced")}</h2>
                 </div>
                 <div className="panel-body">
-                  <div className="container">
+                  <div className="container px-3">
                     {editingEntry === null && (
                       <>
                         <div className="grid grid-cols-12 mb-4">
@@ -731,7 +731,9 @@ export function Submit(props: PageProps & MatchProps) {
                                   setSchedule(d ? d.toISOString(true) : null);
                                 }}
                               />
-                              <small className="text-gray-600">{_t("submit.schedule-hint")}</small>
+                              <div className="text-sm text-gray-600">
+                                {_t("submit.schedule-hint")}
+                              </div>
                             </div>
                           </div>
                         )}

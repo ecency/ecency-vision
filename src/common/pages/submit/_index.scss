@@ -239,8 +239,8 @@
 
         .type {
           position: absolute;
-          background-color: $dark-sky-blue;
-          color: $white;
+          @apply bg-blue-dark-sky;
+          @apply text-white;
           rotate: -45deg;
           padding: 0.125rem;
           text-align: center;
@@ -253,7 +253,7 @@
 
         .title {
           padding: 0.5rem;
-          background-color: $white;
+          @apply bg-white;
           border-radius: 0.75rem;
           border: 1px solid var(--border-color);
         }
@@ -262,7 +262,7 @@
           position: absolute;
           top: 0.5rem;
           right: 0.5rem;
-          background-color: $white;
+          @apply bg-white;
           display: flex;
           align-items: center;
           justify-content: center;

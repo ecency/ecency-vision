@@ -181,9 +181,9 @@ export function EntryListItem({
       <div className="item-header">
         <div className="item-header-main">
           <div className="author-part" id={`${entry.author}-${entry.permlink}`}>
-            <div className="d-flex align-items-center" id={`${entry.author}-${entry.permlink}`}>
+            <div className="flex items-center" id={`${entry.author}-${entry.permlink}`}>
               <ProfileLink username={entry.author} history={history} addAccount={addAccount}>
-                <span className="author-avatar d-block">
+                <span className="author-avatar block">
                   <UserAvatar username={entry.author} size="small" />
                 </span>
               </ProfileLink>

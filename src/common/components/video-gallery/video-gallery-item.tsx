@@ -134,7 +134,7 @@ export function VideoGalleryItem({
         </div>
 
         <Button
-          variant="link"
+          appearance="link"
           title={_t("g.copy-clipboard")}
           size="sm"
           className="list-details-wrapper-copy px-0 text-muted"

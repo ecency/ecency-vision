@@ -15,7 +15,7 @@ export function ModalHeader(props: HTMLProps<HTMLDivElement> & Props) {
     <div
       {...props}
       className={classNameObject({
-        "flex relative items-center": true,
+        "flex sticky bg-white z-10 top-0 items-center": true,
         "justify-between": !!props.children,
         "justify-end": !props.children,
         [props.className ?? ""]: true,
@@ -26,7 +26,7 @@ export function ModalHeader(props: HTMLProps<HTMLDivElement> & Props) {
       {props.children}
       {props.closeButton && (
         <button
-          className="w-5 h-5 opacity-50 absolute top-5 right-3 hover:opacity-100"
+          className="w-5 h-5 opacity-50 absolute top-3 right-3 hover:opacity-100"
           onClick={() => context.setShow(false)}
         >
           {closeSvg}

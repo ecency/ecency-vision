@@ -138,7 +138,7 @@ export function VideoUploadRecorder({
             id="videoLive"
           />
           {recordedVideoSrc ? (
-            <div className="d-flex align-items-center justify-content-center mt-3">
+            <div className="flex items-center justify-center mt-3">
               {recordedBlob && isSuccess ? (
                 <div className="bg-success text-white p-3 text-sm rounded-pill w-100">
                   {_t("video-upload.uploaded")}

@@ -5,7 +5,7 @@ export const BUTTON_STYLES: Record<ButtonAppearance, string> = {
     "bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky",
   secondary: "bg-gray-600 hover:bg-gray-700 focus:bg-gray-800 text-white",
   link: "text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active",
-  danger: "",
+  danger: "bg-red hover:bg-red-020 focus:bg-red-030 text-white",
   success: "",
   warning: "",
   info: "bg-info-default hover:info-hover focus:bg-info-focus text-white disabled:opacity-50 disabled:hover:bg-info-default disabled:focus:bg-info-default"

@@ -130,7 +130,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
           <div className="video-source">
             {isMounted() && !selectedFile && "MediaRecorder" in window ? (
               <div
-                className="d-flex align-items-center flex-column border rounded p-3 video-upload-item"
+                className="flex items-center flex-col border rounded p-3 video-upload-item"
                 onClick={() => setShowRecorder(true)}
               >
                 {recordVideoSvg}
@@ -223,7 +223,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
       className={"cursor-pointer " + props.className}
       onClick={() => (activeUser ? null : toggleUIProp("login"))}
     >
-      <div className="flex justify-center bg-red">{props.children}</div>
+      <div className="flex justify-center">{props.children}</div>
       <div>
         <Modal
           animation={false}
