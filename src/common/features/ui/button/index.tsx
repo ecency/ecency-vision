@@ -32,19 +32,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     ) : (
       <></>
     );
-    const children = props.children ? (
-      <div
-        className={classNameObject({
-          // Clean up visual composition when icon placed in right side
-          "pl-1.5": !!props.icon && !!props.children && props.iconPlacement === "right",
-          "pr-1.5": !!props.icon && !!props.children && props.iconPlacement !== "right"
-        })}
-      >
-        {props.children}
-      </div>
-    ) : (
-      <></>
-    );
+    const children = props.children ? <div>{props.children}</div> : <></>;
 
     return "href" in props ? (
       <a {...props} className={className} ref={ref as any}>

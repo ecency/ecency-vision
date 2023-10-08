@@ -293,7 +293,14 @@ export const DeckThreadsForm = ({
                   location={location}
                 />
               )}
-              <Button href="/submit" target="_blank" appearance="primary" outline={true} size="sm">
+              <Button
+                className="whitespace-nowrap flex items-center"
+                href="/submit"
+                target="_blank"
+                appearance="primary"
+                outline={true}
+                size="sm"
+              >
                 {_t("decks.threads-form.create-regular-post")}
               </Button>
             </div>
