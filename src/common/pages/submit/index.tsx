@@ -500,7 +500,16 @@ export function Submit(props: PageProps & MatchProps) {
                       return;
                     }
 
-                    doSchedule({ title, tags, body, schedule });
+                    doSchedule({
+                      title,
+                      tags,
+                      body,
+                      reward,
+                      reblogSwitch,
+                      beneficiaries,
+                      schedule,
+                      description
+                    });
                   }}
                   disabled={posting || publishing}
                 >
