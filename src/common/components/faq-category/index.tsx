@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Card } from "react-bootstrap";
 import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../img/svg";
 import { _t } from "../../i18n";
 import "./index.scss";
@@ -19,7 +18,7 @@ const FaqCategory = (props: Props) => {
   return (
     <div className="faq-container section-container">
       <Accordion className={expanded ? "border-b border-[--border-color]" : ""}>
-        <AccordionToggle as={Card} eventKey="0">
+        <AccordionToggle eventKey="0">
           <div
             className="section flex flex-col border-b border-[--border-color]"
             onClick={() => setExpanded(!expanded)}

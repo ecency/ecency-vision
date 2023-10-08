@@ -11,7 +11,7 @@ import Tooltip from "../tooltip";
 import "./index.scss";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
-import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { List, ListItem } from "@ui/list";
 
 interface Props {
   addAccount: (data: Account) => void;
@@ -90,7 +90,7 @@ export const RcDelegationsList = (props: any) => {
         {listMode === "out" && (
           <>
             {outGoingList.length > 0 ? (
-              <ListGroup>
+              <List>
                 {outGoingList
                   ?.slice(0, loadList)
                   .filter(
@@ -100,7 +100,7 @@ export const RcDelegationsList = (props: any) => {
                   )
                   .map((list: any, i: any) => {
                     return (
-                      <ListGroupItem key={list.to}>
+                      <ListItem key={list.to}>
                         <div className="item-main">
                           {ProfileLink({
                             ...props,
@@ -146,10 +146,10 @@ export const RcDelegationsList = (props: any) => {
                             </>
                           )}
                         </div>
-                      </ListGroupItem>
+                      </ListItem>
                     );
                   })}
-              </ListGroup>
+              </List>
             ) : (
               <p>{_t("rc-info.no-outgoing")}</p>
             )}
