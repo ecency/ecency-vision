@@ -312,11 +312,7 @@ export class DialogContent extends Component<NotificationProps, any> {
     const getNotificationSettingsItem = (title: string, type: NotifyTypes) => ({
       label: _t(title),
       content: (
-        <FormControl
-          type="checkbox"
-          checked={this.state.settings[type]}
-          onChange={() => this.saveSettingsWithDebounce(type)}
-        />
+        <FormControl type="checkbox" checked={this.state.settings[type]} onChange={() => {}} />
       ),
       onClick: () => this.saveSettingsWithDebounce(type)
     });
@@ -436,14 +432,12 @@ export class DialogContent extends Component<NotificationProps, any> {
         </div>
 
         <div className="status-button-container">
-          <div className="status-btn">
+          <div className="flex gap-2 px-3">
             {Object.values(NotificationViewType).map((status: string, k: number) => {
               return (
                 <Button
-                  className={`status-button ${
-                    this.state.currentStatus === status ? "active" : ""
-                  } shadow-none`}
-                  outline={true}
+                  size="sm"
+                  outline={this.state.currentStatus !== status}
                   key={k}
                   tabIndex={-1}
                   onClick={() => this.statusClicked(status)}
@@ -549,7 +543,6 @@ class NotificationsDialog extends Component<NotificationProps> {
     return (
       <Modal
         show={true}
-        centered={true}
         onHide={this.hide}
         className={"notifications-modal drawer " + this.props.className}
       >

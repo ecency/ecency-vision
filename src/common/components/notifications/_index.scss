@@ -1,7 +1,19 @@
 @import "src/style/vars_mixins";
 
 .notifications-modal {
-  .modal-body {
+  display: flex;
+  justify-content: end;
+  padding: 0 !important;
+
+  .ecency-modal-content {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-height: 100% !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+
+  .ecency-modal-body {
     padding: 0 !important;
   }
 }
