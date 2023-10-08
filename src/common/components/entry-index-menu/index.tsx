@@ -507,7 +507,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             )}
             <div className="flex items-center">
               <div className="main-menu justify-center hidden lg:flex md:mb-0 md:items-center">
-                <div className="sm-menu relative">
+                <div className="block md:hidden relative">
                   <DropDown {...menuConfig} float="left" />
                 </div>
                 <div className="hidden lg:block">

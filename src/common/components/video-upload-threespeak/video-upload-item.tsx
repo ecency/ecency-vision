@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { uploadSvgV } from "../../img/svg";
-import { ProgressBar } from "react-bootstrap";
 
 interface Props {
   onFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -29,13 +28,15 @@ export function VideoUploadItem({ onFileChange, type, accept, label, completed }
         onChange={onFileChange}
       />
       {completed ? (
-        <ProgressBar
-          className="w-full mt-3"
-          max={100}
-          min={0}
-          now={completed}
-          label={`${completed}%`}
-        />
+        <div className="bg-gray-200 h-[1rem] mt-3 w-full text-white rounded-lg flex overflow-hidden">
+          <div
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-blue-dark-sky"
+            role="progressbar"
+            style={{ width: `${completed}%` }}
+          >
+            {completed}%
+          </div>
+        </div>
       ) : (
         <></>
       )}

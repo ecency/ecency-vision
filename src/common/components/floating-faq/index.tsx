@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { Card, Form } from "react-bootstrap";
 import ClickAwayListener from "../clickaway-listener";
 import { faqKeysGeneral } from "../../constants";
 import {
@@ -174,7 +173,7 @@ const FloatingFAQ = () => {
                 <div className="faq-content-list">
                   <div className="faq-content-list-item">
                     <Accordion defaultActiveKey="0">
-                      <AccordionToggle as={Card} eventKey="0">
+                      <AccordionToggle eventKey="0">
                         <div className={helpClass} onClick={() => setExpandedHelp(!expandedHelp)}>
                           <div className="flex justify-between items-center section-card relative">
                             <div className="flex items-center">
@@ -204,7 +203,7 @@ const FloatingFAQ = () => {
                       <AccordionCollapse eventKey="0">
                         <div className="help-content">
                           <div className="card-body p-3">
-                            <Form.Group className="search-bar w-full">
+                            <div className="mb-3 search-bar w-full">
                               <FormControl
                                 type="text"
                                 placeholder={_t("floating-faq.search-placeholder")}
@@ -213,7 +212,7 @@ const FloatingFAQ = () => {
                                   setSearchText(e.target.value);
                                 }}
                               />
-                            </Form.Group>
+                            </div>
                             {!searchText ? (
                               <p className="user-info">{_t("floating-faq.suggestion")}</p>
                             ) : !datatoShow.length ? (
@@ -241,7 +240,7 @@ const FloatingFAQ = () => {
                   </div>
                   <div className="faq-content-list-item contact-us">
                     <Accordion>
-                      <AccordionToggle as={Card} eventKey="1">
+                      <AccordionToggle eventKey="1">
                         <div
                           className={contactClass}
                           onClick={() => setExpandedContact(!expandedContact)}
@@ -271,7 +270,7 @@ const FloatingFAQ = () => {
                       </AccordionToggle>
                       <AccordionCollapse eventKey="1">
                         <div className="card-body p-3">
-                          <Form.Group>
+                          <div className="mb-3">
                             <InputGroup className="username" prepend="@">
                               <FormControl
                                 type="text"
@@ -280,8 +279,8 @@ const FloatingFAQ = () => {
                                 placeholder={_t("floating-faq.username")}
                               />
                             </InputGroup>
-                          </Form.Group>
-                          <Form.Group>
+                          </div>
+                          <div className="mb-3">
                             <InputGroup className="message">
                               <FormControl
                                 type="textarea"
@@ -291,7 +290,7 @@ const FloatingFAQ = () => {
                                 placeholder={_t("floating-faq.message")}
                               />
                             </InputGroup>
-                          </Form.Group>
+                          </div>
                           <Button
                             className="submit-btn"
                             type="submit"
