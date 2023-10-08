@@ -73,7 +73,8 @@
     "confirm": "Vahvista",
     "username": "Käyttäjänimi",
     "past-few-days": "viime päivinä",
-    "you": "Sinä"
+    "you": "Sinä",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -917,7 +918,11 @@
     "extra-details-transfer": "Siirrot",
     "extra-details-post": "Julkaisut/Kommentit",
     "extra-details-upvote": "Äänet",
-    "boost": "Tehosta"
+    "boost": "Tehosta",
+    "you-have-claimed-rc": "Already claimed account credits",
+    "claim": "Lunasta",
+    "you-claiming": "Olet lunastamassa {{n}}",
+    "successfully-claimed": "Onnistui!"
   },
   "profile-edit": {
     "title": "Profiili",
@@ -1435,10 +1440,12 @@
     "empty-title-alert": "Syötä julkaisun otsikko",
     "empty-tags-alert": "Syötä julkaisun tagit",
     "empty-body-alert": "Syötä julkaisun runko",
-    "description": "Lyhyt kuvaus"
+    "description": "Lyhyt kuvaus",
+    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
   },
   "video-upload": {
     "choose-video": "Valitse video",
+    "record-video": "Tallenna video",
     "choose-thumbnail": "Aseta pikkukuva(valinnainen)",
     "continue": "Jatka",
     "encode": "Send for encoding",
@@ -1449,7 +1456,12 @@
     "preview": "Esikatselu",
     "to-gallery": "Siirry galleriaan",
     "congrats": "Onnittelut",
-    "publishing": "Älä päivitä tätä sivua, odota muutama sekunti videon käsittelemiseksi"
+    "publishing": "Älä päivitä tätä sivua, odota muutama sekunti videon käsittelemiseksi",
+    "no-record-permission": "You don't have permission to record video",
+    "confirm-and-upload": "Confirm and upload to 3Speak",
+    "uploading": "Lähetetään..{{n}}/{{total}}",
+    "uploaded": "Lähetetty!",
+    "reset": "Tyhjennä"
   },
   "video-gallery": {
     "all": "Kaikki",
@@ -1471,7 +1483,7 @@
     "insert-video": "Lisää",
     "insert-nsfw": "Lisää NSFW",
     "refresh": "Refresh to get updated status",
-    "video-info": "Videos are stored and powered by SPK network, might have some storage and encoding fees."
+    "video-info": "Videot on tallennettu toimivaksi SPK-verkossa, jossa voi olla joitakin tallennus- ja koodauskuluja."
   },
   "nsfw-content": {
     "title": "NSFW-sisältö",

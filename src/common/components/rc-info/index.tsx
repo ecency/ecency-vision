@@ -8,6 +8,8 @@ import RcProgressCircle from "../rc-progress-circle";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Button } from "@ui/button";
+import { List, ListItem } from "@ui/list";
+import ClaimAccountCredit from "../claim-account-credit";
 
 export const ResourceCreditsInfo = (props: any) => {
   const { rcPercent, account, activeUser } = props;
@@ -215,15 +217,27 @@ export const ResourceCreditsInfo = (props: any) => {
 
               <div className="extra-details">
                 <p>{_t("rc-info.extra-details-heading")}</p>
-                <div className="extras">
-                  <ul>
-                    <li>{`${_t("rc-info.comments-posts")} ${commentAmount}`}</li>
-                    <li>{`${_t("rc-info.votes")} ${voteAmount}`}</li>
-                    <li>{`${_t("rc-info.transfers")} ${transferAmount}`}</li>
-                    <li>{`${_t("rc-info.reblogs-follows")} ${customJsonAmount}`}</li>
-                    <li>{`${_t("rc-info.claim-accounts")} ${claimAccountAmount}`}</li>
-                  </ul>
-                </div>
+                <List className="rc-info-extras">
+                  <ListItem>
+                    {_t("rc-info.comments-posts")}
+                    <span>{commentAmount}</span>
+                  </ListItem>
+                  <ListItem>
+                    {_t("rc-info.votes")}
+                    <span>{voteAmount}</span>
+                  </ListItem>
+                  <ListItem>
+                    {_t("rc-info.transfers")}
+                    <span>{transferAmount}</span>
+                  </ListItem>
+                  <ListItem>
+                    {_t("rc-info.reblogs-follows")}
+                    <span>{customJsonAmount}</span>
+                  </ListItem>
+                  <ListItem>
+                    <ClaimAccountCredit claimAccountAmount={claimAccountAmount} account={account} />
+                  </ListItem>
+                </List>
               </div>
             </div>
           </div>

@@ -38,7 +38,7 @@ import TextareaAutocomplete from "../../components/textarea-autocomplete";
 import { AvailableCredits } from "../../components/available-credits";
 import ClickAwayListener from "../../components/clickaway-listener";
 import { checkSvg, contentLoadSvg, contentSaveSvg, helpIconSvg } from "../../img/svg";
-import BeneficiaryEditor from "../../components/beneficiary-editor";
+import { BeneficiaryEditorDialog } from "../../components/beneficiary-editor";
 import PostScheduler from "../../components/post-scheduler";
 import moment from "moment/moment";
 import isCommunity from "../../helper/is-community";
@@ -55,6 +55,8 @@ import { RewardType } from "../../api/operations";
 import { SubmitPreviewContent } from "./submit-preview-content";
 import { useUpdateApi } from "./api/update";
 import "./_index.scss";
+import { SubmitVideoAttachments } from "./submit-video-attachments";
+import { useThreeSpeakMigrationAdapter } from "./hooks/three-speak-migration-adapter";
 import ModalConfirm from "@ui/modal-confirm";
 import { Button } from "@ui/button";
 import { dotsMenuIconSvg } from "../../components/decks/icons";
@@ -126,6 +128,11 @@ export function Submit(props: PageProps & MatchProps) {
     getHasAdvanced
   } = useAdvancedManager();
 
+  useThreeSpeakMigrationAdapter({
+    body,
+    setBody
+  });
+
   useCommunityDetector(props.location, (community) => {
     setTags([...tags, community]);
   });
@@ -140,6 +147,9 @@ export function Submit(props: PageProps & MatchProps) {
       threeSpeakManager.setIsEditing(true);
     } else if (editingEntry) {
       setEditingEntry(null);
+      threeSpeakManager.setIsEditing(false);
+    } else {
+      threeSpeakManager.setIsEditing(false);
     }
   });
 
@@ -161,14 +171,9 @@ export function Submit(props: PageProps & MatchProps) {
       setSelectedThumbnail(draft.meta?.image?.[0]);
       setDescription(draft.meta?.description ?? "");
 
-      if (draft.meta?.isThreespeak) {
-        threeSpeakManager.setIs3Speak(draft.meta?.isThreespeak ?? false);
-        threeSpeakManager.setSpeakAuthor(draft.meta?.speakAuthor ?? "");
-        threeSpeakManager.setSpeakPermlink(draft.meta?.speakPermlink ?? "");
-        threeSpeakManager.setVideoId(draft.meta?.videoId ?? "");
-        threeSpeakManager.setIsNsfw(draft.meta?.isNsfw ?? false);
-        threeSpeakManager.setVideoMetadata(draft.meta?.videoMetadata);
-      }
+      [...Object.values(draft.meta?.videos ?? {})].forEach((item) =>
+        threeSpeakManager.attach(item)
+      );
 
       setTimeout(() => setIsDraftEmpty(false), 100);
     },
@@ -208,12 +213,12 @@ export function Submit(props: PageProps & MatchProps) {
   }, [postBodyRef]);
 
   useEffect(() => {
-    if (activeUser?.username !== previousActiveUser?.username && activeUser) {
+    if (activeUser?.username !== previousActiveUser?.username && activeUser && previousActiveUser) {
       // delete active user from beneficiaries list
       setBeneficiaries(beneficiaries.filter((x) => x.account !== activeUser.username));
 
       // clear not current user videos
-      threeSpeakManager.findAndClearUnpublished3SpeakVideo(body);
+      threeSpeakManager.clear();
     }
   }, [activeUser]);
 
@@ -230,10 +235,7 @@ export function Submit(props: PageProps & MatchProps) {
   }, [title, body, tags]);
 
   useEffect(() => {
-    if (!threeSpeakManager.has3SpeakVideo(body) && !!previousBody) {
-      threeSpeakManager.clear();
-      console.log("clearing 3speak");
-    }
+    threeSpeakManager.checkBodyForVideos(body);
   }, [body]);
 
   const updatePreview = (): void => {
@@ -317,10 +319,6 @@ export function Submit(props: PageProps & MatchProps) {
     ];
     const joinedBeneficiary = [...videoBeneficiary, ...videoEncoders];
     setBeneficiaries(joinedBeneficiary);
-    threeSpeakManager.setVideoId(video._id);
-    threeSpeakManager.setIs3Speak(true);
-    threeSpeakManager.setSpeakPermlink(video.permlink);
-    threeSpeakManager.setSpeakAuthor(video.owner);
   };
 
   const cancelUpdate = () => {
@@ -359,6 +357,11 @@ export function Submit(props: PageProps & MatchProps) {
     if (body.trim() === "") {
       focusInput(".body-input");
       error(_t("submit.empty-body-alert"));
+      return false;
+    }
+
+    if (threeSpeakManager.hasMultipleUnpublishedVideo) {
+      error(_t("submit.should-be-only-one-unpublished"));
       return false;
     }
 
@@ -409,7 +412,9 @@ export function Submit(props: PageProps & MatchProps) {
             }}
             comment={false}
             setVideoMetadata={(v) => {
-              threeSpeakManager.setVideoMetadata(v);
+              threeSpeakManager.attach(v);
+              // Attach videos as special token in a body and render it in a preview
+              setBody(`${body}\n[3speak](${v._id})`);
             }}
           />
           <div className="title-input">
@@ -450,6 +455,7 @@ export function Submit(props: PageProps & MatchProps) {
               activeUser={(activeUser && activeUser.username) || ""}
             />
           </div>
+          <SubmitVideoAttachments />
           {activeUser ? (
             <AvailableCredits
               className="mr-2"
@@ -491,7 +497,16 @@ export function Submit(props: PageProps & MatchProps) {
                       return;
                     }
 
-                    doSchedule({ title, tags, body, schedule });
+                    doSchedule({
+                      title,
+                      tags,
+                      body,
+                      reward,
+                      reblogSwitch,
+                      beneficiaries,
+                      schedule,
+                      description
+                    });
                   }}
                   disabled={posting || publishing}
                 >
@@ -547,8 +562,7 @@ export function Submit(props: PageProps & MatchProps) {
                               selectionTouched,
                               editingDraft,
                               beneficiaries,
-                              reward,
-                              videoMetadata: threeSpeakManager.videoMetadata ?? undefined
+                              reward
                             });
                           }}
                           disabled={disabled || saving || posting || publishing}
@@ -658,7 +672,7 @@ export function Submit(props: PageProps & MatchProps) {
                             <label>{_t("submit.beneficiaries")}</label>
                           </div>
                           <div className="col-span-12 sm:col-span-9">
-                            <BeneficiaryEditor
+                            <BeneficiaryEditorDialog
                               body={body}
                               author={activeUser?.username}
                               list={beneficiaries}

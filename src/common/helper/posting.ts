@@ -2,11 +2,9 @@ import getSlug from "speakingurl";
 
 import { diff_match_patch } from "diff-match-patch";
 
-import { MetaData, CommentOptions, RewardType } from "../api/operations";
+import { BeneficiaryRoute, CommentOptions, MetaData, RewardType } from "../api/operations";
 
 import isElectron from "../util/is-electron";
-
-import { BeneficiaryRoute } from "../api/operations";
 
 const permlinkRnd = () => (Math.random() + 1).toString(16).substring(2);
 
@@ -95,6 +93,7 @@ export const makeCommentOptions = (
 ): CommentOptions => {
   beneficiaries?.forEach((b) => delete b.src);
 
+  beneficiaries?.sort((a, b) => a.account.localeCompare(b.account));
   const opt: CommentOptions = {
     allow_curation_rewards: true,
     allow_votes: true,

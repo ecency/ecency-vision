@@ -6,30 +6,29 @@ import accountReputation from "../../helper/account-reputation";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { _t } from "../../i18n";
 import { closeSvg } from "../../img/svg";
-import { Account } from "../../store/accounts/types";
-import { ActiveUser } from "../../store/active-user/types";
-import { Global } from "../../store/global/types";
-import { ToggleType, UI } from "../../store/ui/types";
-import { User } from "../../store/users/types";
 import { FavoriteBtn } from "../favorite-btn";
 import FollowControls from "../follow-controls";
 import { Skeleton } from "../skeleton";
 import "./index.scss";
+import { useMappedStore } from "../../store/use-mapped-store";
 
 interface Props {
   username: string;
-  global: Global;
-  users: User[];
-  activeUser: ActiveUser | null;
-  ui: UI;
-  setActiveUser: (username: string | null) => void;
-  updateActiveUser: (data?: Account) => void;
-  deleteUser: (username: string) => void;
-  toggleUIProp: (what: ToggleType) => void;
   onClose: (e: any, donotSetState?: boolean) => void;
 }
 
-export const ProfilePreview = ({ username, global, onClose, activeUser, ...props }: Props) => {
+export const ProfilePreview = ({ username, onClose }: Props) => {
+  const {
+    global,
+    users,
+    activeUser,
+    ui,
+    setActiveUser,
+    updateActiveUser,
+    deleteUser,
+    toggleUIProp
+  } = useMappedStore();
+
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [followCount, setFollowCount] = useState<any>(null);
@@ -171,12 +170,26 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                   <div className="flex mt-3">
                     <>
                       <FollowControls
-                        {...props}
+                        ui={ui}
+                        updateActiveUser={updateActiveUser}
+                        users={users}
+                        deleteUser={deleteUser}
+                        setActiveUser={setActiveUser}
+                        toggleUIProp={toggleUIProp}
                         targetUsername={username}
                         activeUser={activeUser}
                       />
                       {global.usePrivate && (
-                        <FavoriteBtn {...props} targetUsername={username} activeUser={activeUser} />
+                        <FavoriteBtn
+                          ui={ui}
+                          updateActiveUser={updateActiveUser}
+                          users={users}
+                          deleteUser={deleteUser}
+                          setActiveUser={setActiveUser}
+                          toggleUIProp={toggleUIProp}
+                          activeUser={activeUser}
+                          targetUsername={username}
+                        />
                       )}
                     </>
                   </div>

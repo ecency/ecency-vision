@@ -73,7 +73,8 @@
     "confirm": "Confirmar",
     "username": "Nombre de Usuario",
     "past-few-days": "los últimos días",
-    "you": "Tú"
+    "you": "Tú",
+    "copy-clipboard": "Copiar al portapapeles"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -917,7 +918,11 @@
     "extra-details-transfer": "Transacciones",
     "extra-details-post": "Publicaciones/Comentarios",
     "extra-details-upvote": "Votos",
-    "boost": "Impulsar"
+    "boost": "Impulsar",
+    "you-have-claimed-rc": "Créditos de cuenta ya reclamados",
+    "claim": "Reclamar",
+    "you-claiming": "Estás reclamando {{n}}",
+    "successfully-claimed": "¡Reclamado con éxito!"
   },
   "profile-edit": {
     "title": "Perfil",
@@ -1435,10 +1440,12 @@
     "empty-title-alert": "Introduce título de la publicación",
     "empty-tags-alert": "Introducir etiquetas de la publicación",
     "empty-body-alert": "Introducir cuerpo de la publicación",
-    "description": "Descripción breve"
+    "description": "Descripción breve",
+    "should-be-only-one-unpublished": "El post debe contener solamente un vídeo sin publicar. Por favor, elimine cualquier otro contenido."
   },
   "video-upload": {
     "choose-video": "Selecciona un vídeo",
+    "record-video": "Graba un vídeo",
     "choose-thumbnail": "Establece una miniatura (opcional)",
     "continue": "Continuar",
     "encode": "Enviar para la codificación",
@@ -1449,7 +1456,12 @@
     "preview": "Vista previa",
     "to-gallery": "Ir a la galería",
     "congrats": "Felicidades",
-    "publishing": "No actualizar esta página, espera unos segundos para que el vídeo se procese"
+    "publishing": "No actualizar esta página, espera unos segundos para que el vídeo se procese",
+    "no-record-permission": "No tiene permiso para grabar vídeo",
+    "confirm-and-upload": "Confirmar y subir a 3Speak",
+    "uploading": "Subiendo...{{n}}/{{total}}",
+    "uploaded": "¡Vídeo subido!",
+    "reset": "Reiniciar"
   },
   "video-gallery": {
     "all": "Todos",
@@ -1471,7 +1483,7 @@
     "insert-video": "Insertar",
     "insert-nsfw": "Insertar como NSFW",
     "refresh": "Refrescar para obtener el estado actualizado",
-    "video-info": "Videos are stored and powered by SPK network, might have some storage and encoding fees."
+    "video-info": "Los videos son almacenados y mantenidos por la red SPK, puede tener algunos cargos de almacenamiento y codificación."
   },
   "nsfw-content": {
     "title": "Contenido NSFW",

@@ -36,7 +36,7 @@ export const DeckToolbarBaseActions = ({
             </div>
           )}
           {global.usePrivate && <div onClick={() => setShowPurchaseDialog(true)}>{rocketSvg}</div>}
-          <WalletBadge icon={walletIconSvg} activeUser={activeUser} dynamicProps={dynamicProps} />
+          <WalletBadge icon={walletIconSvg} />
         </>
       )}
       {isExpanded || !activeUser ? (

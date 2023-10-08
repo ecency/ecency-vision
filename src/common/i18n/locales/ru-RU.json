@@ -73,7 +73,8 @@
     "confirm": "Подтвердить",
     "username": "Имя пользователя",
     "past-few-days": "последние несколько дней",
-    "you": "Вы"
+    "you": "Вы",
+    "copy-clipboard": "Copy to clipboard"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -917,7 +918,11 @@
     "extra-details-transfer": "Переводы",
     "extra-details-post": "Посты/Комментарии",
     "extra-details-upvote": "Голоса",
-    "boost": "Продвинуть"
+    "boost": "Продвинуть",
+    "you-have-claimed-rc": "Already claimed account credits",
+    "claim": "Claim",
+    "you-claiming": "You are claiming {{n}}",
+    "successfully-claimed": "Successfully claimed!"
   },
   "profile-edit": {
     "title": "Профиль",
@@ -1435,10 +1440,12 @@
     "empty-title-alert": "Введите название поста",
     "empty-tags-alert": "Введите теги поста",
     "empty-body-alert": "Введите содержимое поста",
-    "description": "Краткое описание"
+    "description": "Краткое описание",
+    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
   },
   "video-upload": {
     "choose-video": "Выбрать видео",
+    "record-video": "Record a video",
     "choose-thumbnail": "Установить миниатюру (необязательно)",
     "continue": "Продолжить",
     "encode": "Отправить для кодирования",
@@ -1449,7 +1456,12 @@
     "preview": "Предварительный просмотр",
     "to-gallery": "Перейти в галерею",
     "congrats": "Поздравляем",
-    "publishing": "Не обновляйте страницу, подождите несколько секунд, пока видео не будет обработано"
+    "publishing": "Не обновляйте страницу, подождите несколько секунд, пока видео не будет обработано",
+    "no-record-permission": "You don't have permission to record video",
+    "confirm-and-upload": "Confirm and upload to 3Speak",
+    "uploading": "Uploading..{{n}}/{{total}}",
+    "uploaded": "Uploaded!",
+    "reset": "Reset"
   },
   "video-gallery": {
     "all": "Все",

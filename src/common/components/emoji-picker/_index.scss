@@ -3,6 +3,7 @@
 .emoji-picker-dialog {
   position: absolute;
   z-index: 201;
+  top: 100%;
 
   em-emoji-picker {
     width: 300px;
@@ -19,12 +20,16 @@
     border-top: 1px solid var(--border-color);
     position: fixed;
 
-    @include themify(night) {
-      background-color: rgba(21, 22, 23);
-    }
-
     em-emoji-picker {
       width: 100%;
     }
+
+    > div {
+      width: 100%;
+    }
+  }
+
+  @include themify(night) {
+    background-color: rgba(21, 22, 23);
   }
 }

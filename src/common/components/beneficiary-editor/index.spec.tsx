@@ -1,6 +1,6 @@
 import React from "react";
 
-import BeneficiaryEditorDialog, { DialogBody } from "./index";
+import { BeneficiaryEditorDialog } from "./index";
 
 import TestRenderer from "react-test-renderer";
 
@@ -31,7 +31,7 @@ it("(2) Default render with author", () => {
 });
 
 it("(3) DialogBody", () => {
-  const renderer = TestRenderer.create(<DialogBody {...defProps} />);
+  const renderer = TestRenderer.create(<BeneficiaryEditorDialog {...defProps} />);
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
@@ -40,6 +40,6 @@ it("(4) DialogBody with author", () => {
     ...defProps,
     author: "bar"
   };
-  const renderer = TestRenderer.create(<DialogBody {...props} />);
+  const renderer = TestRenderer.create(<BeneficiaryEditorDialog {...props} />);
   expect(renderer.toJSON()).toMatchSnapshot();
 });

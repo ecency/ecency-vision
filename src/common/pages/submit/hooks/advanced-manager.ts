@@ -43,12 +43,7 @@ export function useAdvancedManager() {
       setSchedule(localAdvanced.schedule);
       setReblogSwitch(localAdvanced.reblogSwitch);
       setDescription(localAdvanced.description);
-      threeSpeakManager.setIs3Speak(localAdvanced.isThreespeak);
-      threeSpeakManager.setSpeakAuthor(localAdvanced.speakAuthor);
-      threeSpeakManager.setSpeakPermlink(localAdvanced.speakPermlink);
-      threeSpeakManager.setVideoId(localAdvanced.videoId);
       threeSpeakManager.setIsNsfw(localAdvanced.isNsfw);
-      threeSpeakManager.setVideoMetadata(localAdvanced.videoMetadata);
 
       removeLocalAdvanced();
     }

@@ -17,7 +17,6 @@ interface Props {
   insertText: (before: string, after?: string) => any;
   setVideoEncoderBeneficiary?: (video: any) => void;
   toggleNsfwC?: () => void;
-  preFilter?: string;
   setVideoMetadata?: (v: ThreeSpeakVideo) => void;
 }
 
@@ -27,7 +26,6 @@ const VideoGallery = ({
   insertText,
   setVideoEncoderBeneficiary,
   toggleNsfwC,
-  preFilter,
   setVideoMetadata
 }: Props) => {
   const { activeUser } = useMappedStore();
@@ -35,19 +33,17 @@ const VideoGallery = ({
 
   const [label, setLabel] = useState("All");
   const [filterStatus, setFilterStatus] = useState<ThreeSpeakVideo["status"] | "all">(
-    preFilter ?? "all"
+    isEditing ? "published" : "all"
   );
 
   const { data: items, isFetching, refresh } = useThreeSpeakVideo(filterStatus, showGallery);
 
   useEffect(() => {
-    if (isEditing) {
-      setFilterStatus("published");
-    }
+    setFilterStatus(isEditing ? "published" : "all");
   }, [isEditing]);
 
   useEffect(() => {
-    setFilterStatus(preFilter ?? "all");
+    setFilterStatus(isEditing ? "published" : "all");
   }, [activeUser]);
 
   return (
@@ -64,7 +60,7 @@ const VideoGallery = ({
         </ModalHeader>
         <ModalBody>
           <div className="video-status-picker">
-            {!preFilter && !isEditing ? (
+            {!isEditing ? (
               <DropDown
                 float="left"
                 label={label?.toUpperCase()}
@@ -124,7 +120,7 @@ const VideoGallery = ({
               noPadding={true}
               className="refresh-gallery"
               onClick={() => {
-                setFilterStatus(isEditing ? filterStatus : preFilter ?? "all");
+                setFilterStatus(isEditing ? filterStatus : "all");
                 setLabel(_t("video-gallery.all"));
                 refresh();
               }}

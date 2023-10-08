@@ -1915,7 +1915,7 @@ export const copyOutlinSvg = (
     height="30"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="#357ce6"
+    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="square"
     strokeLinejoin="round"
@@ -2048,5 +2048,58 @@ export const uploadSvgV = (
       d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z"
     />
     <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
+  </svg>
+);
+
+export const recordVideoSvg = (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M18.5002 12C18.5002 13.3807 17.381 14.5 16.0002 14.5C14.6195 14.5 13.5002 13.3807 13.5002 12C13.5002 10.6193 14.6195 9.5 16.0002 9.5C17.381 9.5 18.5002 10.6193 18.5002 12Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path
+      d="M10.5 12C10.5 13.3807 9.38071 14.5 8 14.5C6.61929 14.5 5.5 13.3807 5.5 12C5.5 10.6193 6.61929 9.5 8 9.5C9.38071 9.5 10.5 10.6193 10.5 12Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path d="M8 14.5H16" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round" />
+    <path
+      d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+export const circleSvg = (
+  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <circle r="12" cx="12" cy="12" fill="currentColor" />
+  </svg>
+);
+
+export const rectSvg = (
+  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <rect x={6} y={6} fill="currentColor" width={12} height={12} />
+  </svg>
+);
+
+export const switchCameraSvg = (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M11 19H4a2 2 0 01-2-2V7a2 2 0 012-2h5" />
+    <path d="M13 5h7a2 2 0 012 2v10a2 2 0 01-2 2h-5" />
+    <circle cx="12" cy="12" r="3" />
+    <path d="M18 22l-3-3 3-3" />
+    <path d="M6 2l3 3-3 3" />
   </svg>
 );

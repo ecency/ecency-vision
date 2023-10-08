@@ -1,8 +1,9 @@
 import Tag from "../../components/tag";
 import { PostBodyLazyRenderer } from "../../components/post-body-lazy-renderer";
-import React from "react";
+import React, { useMemo } from "react";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { History } from "history";
+import { useThreeSpeakManager } from "./hooks";
 
 interface Props {
   title: string;
@@ -13,6 +14,9 @@ interface Props {
 
 export function SubmitPreviewContent({ title, tags, body, history }: Props) {
   const { global } = useMappedStore();
+  const { buildBody } = useThreeSpeakManager();
+
+  const modifiedBody = useMemo(() => buildBody(body), [body]);
 
   return (
     <>
@@ -30,7 +34,7 @@ export function SubmitPreviewContent({ title, tags, body, history }: Props) {
         })}
       </div>
 
-      <PostBodyLazyRenderer className="preview-body markdown-view" rawBody={body} />
+      <PostBodyLazyRenderer className="preview-body markdown-view" rawBody={modifiedBody} />
     </>
   );
 }

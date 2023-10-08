@@ -1,9 +1,6 @@
-import { history } from "../store";
 import { setActiveUser } from "../store/active-user";
 import { User } from "../store/users/types";
-
 import { decodeObj } from "../util/encoder";
-
 import * as ls from "../util/local-storage";
 
 export const getUser = (username: string): User | undefined => {

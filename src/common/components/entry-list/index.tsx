@@ -10,7 +10,7 @@ import { ActiveUser } from "../../store/active-user/types";
 import { Reblogs } from "../../store/reblogs/types";
 import { ToggleType, UI } from "../../store/ui/types";
 
-import EntryListItem from "../entry-list-item/index";
+import { EntryListItem } from "../entry-list-item";
 import MessageNoData from "../message-no-data";
 import { _t } from "../../i18n";
 import LinearProgress from "../linear-progress";

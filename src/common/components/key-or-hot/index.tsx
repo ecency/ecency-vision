@@ -20,6 +20,7 @@ interface Props {
   onKey: (key: PrivateKey) => void;
   onHot?: () => void;
   onKc?: () => void;
+  keyOnly?: boolean;
 }
 
 interface State {
@@ -112,21 +113,27 @@ export class KeyOrHot extends Component<Props, State> {
               />
             </InputGroup>
           </Form>
-          <OrDivider />
-          <div className="hs-sign">
-            <Button outline={true} onClick={this.hotClicked}>
-              <img src={hsLogo} className="hs-logo" alt="hivesigner" />{" "}
-              {_t("key-or-hot.with-hivesigner")}
-            </Button>
-          </div>
+          {this.props.keyOnly ? (
+            <></>
+          ) : (
+            <>
+              <OrDivider />
+              <div className="hs-sign">
+                <Button outline={true} onClick={this.hotClicked}>
+                  <img src={hsLogo} className="hs-logo" alt="hivesigner" />{" "}
+                  {_t("key-or-hot.with-hivesigner")}
+                </Button>
+              </div>
 
-          {global.hasKeyChain && (
-            <div className="kc-sign">
-              <Button outline={true} onClick={this.kcClicked}>
-                <img src={keyChainLogo} className="kc-logo" alt="keychain" />{" "}
-                {_t("key-or-hot.with-keychain")}
-              </Button>
-            </div>
+              {global.hasKeyChain && (
+                <div className="kc-sign">
+                  <Button outline={true} onClick={this.kcClicked}>
+                    <img src={keyChainLogo} className="kc-logo" alt="keychain" />{" "}
+                    {_t("key-or-hot.with-keychain")}
+                  </Button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </>
@@ -143,7 +150,8 @@ export default (p: Props) => {
     inProgress: p.inProgress,
     onKey: p.onKey,
     onHot: p.onHot,
-    onKc: p.onKc
+    onKc: p.onKc,
+    keyOnly: p.keyOnly
   };
 
   return <KeyOrHot {...props} />;

@@ -37,12 +37,44 @@
     }
 
     .list-details-wrapper {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr min-content min-content;
+      gap: 0.5rem;
+      grid-template-areas:
+        "status info copy"
+        "title title title"
+        "actions actions actions";
       width: 100%;
       padding: 0.75rem;
 
-      .details-actions {
+      &-title {
+        grid-area: title;
+      }
+
+      &-info, &-copy {
+        grid-area: info;
+        opacity: 0.5;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        svg {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+
+      &-copy {
+        grid-area: copy;
+      }
+
+      &-actions {
+        grid-area: actions;
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -50,31 +82,23 @@
         margin-top: 1.5rem;
       }
 
-      .list-title {
 
-        .info-status {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 0.5rem;
+      &-status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        color: $gray-600;
 
-          .status {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            color: $gray-600;
+        .status-icon-wrapper {
+
+          .status-icon-encoded {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: $green;
           }
-
-          .status-icon-wrapper {
-
-            .status-icon-encoded {
-              width: 0.5rem;
-              height: 0.5rem;
-              border-radius: 50%;
-              cursor: pointer;
-              background-color: $green;
-            }
 
             .status-icon-published {
               width: 0.5rem;
@@ -83,48 +107,30 @@
               cursor: pointer;
 
               @apply bg-blue-dark-sky;
-            }
-
-            .status-icon-failed {
-              width: 0.5rem;
-              height: 0.5rem;
-              border-radius: 50%;
-              cursor: pointer;
-              background-color: rgb(199, 94, 94);
-            }
-
-            .status-icon-encoding {
-              width: 0.5rem;
-              height: 0.5rem;
-              border-radius: 50%;
-              cursor: pointer;
-              background-color: rgb(228, 144, 42);
-            }
-
-            .status-icon-deleted {
-              width: 0.5rem;
-              height: 0.5rem;
-              border-radius: 50%;
-              cursor: pointer;
-              background-color: $gray-400;
-            }
           }
 
-          .info-icon-wrapper {
-            opacity: 0.5;
+          .status-icon-failed {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-items: center;
+            background-color: rgb(199, 94, 94);
+          }
 
-            &:hover {
-              opacity: 0.8;
-            }
+          .status-icon-encoding {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: rgb(228, 144, 42);
+          }
 
-            svg {
-              width: 1rem;
-              height: 1rem;
-            }
+          .status-icon-deleted {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: $gray-400;
           }
         }
       }
@@ -158,12 +164,14 @@
   .custom-dropdown .dropdown-btn .label {
     font-size: 0.875rem;
   }
+
   .hint {
     border-radius: 1.15rem;
     line-height: 1.25;
     padding: 0.4rem .575rem;
     margin-left: auto;
   }
+
   .refresh-gallery svg {
     width: 1.25rem;
     height: 1.25rem;

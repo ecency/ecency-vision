@@ -583,7 +583,7 @@ export class EditorToolbar extends Component<Props> {
               {emoticonHappyOutlineSvg}
               {showEmoji && this.state.isMounted && (
                 <EmojiPicker
-                  anchor={document.querySelector("#editor-tool-emoji-picker")!!}
+                  anchor={document.querySelector("#editor-tool-emoji-picker")!! as HTMLElement}
                   onSelect={(e) => this.insertText(e, "")}
                 />
               )}

@@ -213,6 +213,73 @@
       }
     }
   }
+
+  .submit-video-attachments {
+
+    .alert {
+      font-size: 0.875rem;
+    }
+
+    .submit-video-attachments-list {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-start;
+      overflow-x: auto;
+
+      .attachment-item {
+        transition: .3s;
+        border-radius: 1rem;
+        border: 1px solid var(--border-color);
+        background-size: cover;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 0.5rem;
+
+        .type {
+          position: absolute;
+          background-color: $dark-sky-blue;
+          color: $white;
+          rotate: -45deg;
+          padding: 0.125rem;
+          text-align: center;
+          width: 100px;
+          top: 0.75rem;
+          left: -1.75rem;
+          font-size: 0.675rem;
+          text-transform: uppercase;
+        }
+
+        .title {
+          padding: 0.5rem;
+          background-color: $white;
+          border-radius: 0.75rem;
+          border: 1px solid var(--border-color);
+        }
+
+        .remove {
+          position: absolute;
+          top: 0.5rem;
+          right: 0.5rem;
+          background-color: $white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+
+          @include button-variant(rgba($primary, 0.35), rgba($primary, 0.35));
+          @include padding(0.5rem);
+          @include border-radius(0.75rem);
+
+          svg {
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+      }
+    }
+  }
 }
 
 .selection-item {
@@ -246,6 +313,7 @@
     font-size: 14px;
     top: 9px;
     right: 25px;
+
     svg {
       width: 25px;
     }

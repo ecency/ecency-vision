@@ -9,11 +9,11 @@ import {
   TransactionConfirmation
 } from "@hiveio/dhive";
 
-import { Parameters } from "hive-uri";
+import { encodeOp, Parameters } from "hive-uri";
 
 import { client as hiveClient } from "./hive";
 
-import { Account } from "../store/accounts/types";
+import { Account, FullAccount } from "../store/accounts/types";
 
 import { usrActivity } from "./private-api";
 
@@ -40,6 +40,7 @@ export interface MetaData {
   community?: string;
   description?: string;
   video?: any;
+  type?: string;
 }
 
 export interface BeneficiaryRoute {
@@ -2278,3 +2279,64 @@ export const createAccountWithCreditKey = async (
     return err;
   }
 };
+
+export const claimAccount = async (account: FullAccount, key: PrivateKey) => {
+  if (!key) {
+    throw new Error("[Account claiming] Active/owner key is not provided");
+  }
+
+  return hiveClient.broadcast.sendOperations(
+    [
+      [
+        "claim_account",
+        {
+          fee: {
+            amount: "0",
+            precision: 3,
+            nai: "@@000000021"
+          },
+          creator: account.name,
+          extensions: []
+        }
+      ]
+    ],
+    key
+  );
+};
+
+export const claimAccountByHiveSigner = (account: FullAccount) =>
+  hotSign(
+    encodeOp(
+      [
+        "claim_account",
+        {
+          fee: "0.000 HIVE",
+          creator: account.name,
+          extensions: []
+        }
+      ],
+      {}
+    ).replace("hive://sign/", ""),
+    {
+      authority: "active",
+      required_auths: `["${account.name}"]`,
+      required_posting_auths: "[]"
+    },
+    `@${account.name}/wallet`
+  );
+
+export const claimAccountByKeychain = (account: FullAccount) =>
+  keychain.broadcast(
+    account.name,
+    [
+      [
+        "claim_account",
+        {
+          creator: account.name,
+          extensions: [],
+          fee: "0.000 HIVE"
+        }
+      ]
+    ],
+    "Active"
+  );
