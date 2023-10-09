@@ -13,6 +13,7 @@ import { menuDownSvg } from "../../img/svg";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl } from "@ui/input";
+import { CommunitySelectorItem } from "./community-selector-item";
 
 interface BrowserProps {
   global: Global;
@@ -96,27 +97,17 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
           {search}
 
           <div className="browser-list">
-            <div className="list-body">
+            <div className="flex flex-wrap py-3 gap-3">
               {results?.length > 0 && (
                 <>
                   {results.map((x) => (
-                    <a
-                      key={x.name}
-                      href="#"
-                      className="list-item"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        onSelect(x.name);
-                        onHide();
-                      }}
-                    >
-                      <div className="item-main">
-                        <UserAvatar username={x.name} size="small" />
-                        <div className="item-info">
-                          <span className="item-name notranslate">{x.title}</span>
-                        </div>
-                      </div>
-                    </a>
+                    <CommunitySelectorItem
+                      key={x.id}
+                      name={x.name}
+                      title={x.title}
+                      onSelect={onSelect}
+                      onHide={onHide}
+                    />
                   ))}
                 </>
               )}
@@ -132,44 +123,24 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
         {search}
 
         <div className="browser-list">
-          <div className="list-body">
-            <a
-              href="#"
-              className="list-item"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelect(null);
-                onHide();
-              }}
-            >
-              <div className="item-main">
-                <UserAvatar username={activeUser.username} size="small" />
-                <div className="item-info">
-                  <span className="item-name notranslate">{_t("community-selector.my-blog")}</span>
-                </div>
-              </div>
-            </a>
+          <div className="flex flex-wrap py-3 gap-3">
+            <CommunitySelectorItem
+              name={null}
+              title={_t("community-selector.my-blog")}
+              onSelect={onSelect}
+              onHide={onHide}
+            />
 
             {subscriptions?.length > 0 && (
               <>
                 {subscriptions.map((x) => (
-                  <a
-                    href="#"
+                  <CommunitySelectorItem
                     key={x[0]}
-                    className="list-item"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onSelect(x[0]);
-                      onHide();
-                    }}
-                  >
-                    <div className="item-main">
-                      <UserAvatar username={x[0]} size="small" />
-                      <div className="item-info">
-                        <span className="item-name notranslate">{x[1]}</span>
-                      </div>
-                    </div>
-                  </a>
+                    name={x[0]}
+                    title={x[1]}
+                    onSelect={onSelect}
+                    onHide={onHide}
+                  />
                 ))}
               </>
             )}
