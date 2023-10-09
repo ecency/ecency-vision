@@ -157,6 +157,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
       })
       .slice(start, end);
     const totalVotes =
+      this.props.entry.stats?.total_votes ||
       (this.props.entry.active_votes && this.props.entry.active_votes?.length) ||
       this.props.entry.total_votes ||
       0;
@@ -287,7 +288,11 @@ export class EntryVotes extends Component<Props, State> {
   render() {
     const { entry } = this.props;
     const { visible, searchText, searchTextDisabled, vote } = this.state;
-    const totalVotes = (entry.active_votes && entry.active_votes?.length) || entry.total_votes || 0;
+    const totalVotes =
+      entry.stats?.total_votes ||
+      (entry.active_votes && entry.active_votes?.length) ||
+      entry.total_votes ||
+      0;
     const { voted } = this.isVoted();
     let cls = _c(`heart-icon ${voted ? "voted" : ""} ${vote ? "vote-done" : ""} `);
 

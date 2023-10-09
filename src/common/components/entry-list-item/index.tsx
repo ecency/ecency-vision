@@ -98,6 +98,7 @@ export function EntryListItem({
       updateEntry({
         ..._entry,
         active_votes: votes,
+        stats: { ..._entry.stats, total_votes: votes.length },
         payout: newPayout,
         pending_payout_value: String(newPayout)
       });
