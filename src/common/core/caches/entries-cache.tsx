@@ -163,7 +163,9 @@ export function useEntryCache<T extends Entry>(
 
       if (!entry) {
         entry = getExistingEntryFromStore() as T;
-        updateCache([entry]);
+        if (entry) {
+          updateCache([entry]);
+        }
       }
 
       if (!entry && typeof initialOrPath === "string") {
