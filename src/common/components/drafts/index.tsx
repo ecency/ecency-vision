@@ -2,168 +2,21 @@ import React, { Component } from "react";
 import { History, Location } from "history";
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { FullAccount } from "../../store/accounts/types";
 import BaseComponent from "../base";
-import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
-import PopoverConfirm from "@ui/popover-confirm";
-import Tooltip from "../tooltip";
-import Tag from "../tag";
 import { error, success } from "../feedback";
 import { _t } from "../../i18n";
 import { addDraft, deleteDraft, Draft, DraftMetadata, getDrafts } from "../../api/private-api";
-import accountReputation from "../../helper/account-reputation";
 import defaults from "../../constants/defaults.json";
-import { cloneOutlineSvg, deleteForeverSvg, pencilOutlineSvg } from "../../img/svg";
-import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
-import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
+import { setProxyBase } from "@ecency/render-helper";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl } from "@ui/input";
+import { DraftListItem } from "./draft-list-item";
 
 setProxyBase(defaults.imageServer);
-
-interface ItemProps {
-  history: History;
-  global: Global;
-  draft: Draft;
-  activeUser: ActiveUser;
-  editFn: (item: Draft) => void;
-  deleteFn: (item: Draft) => void;
-  cloneFn: (item: Draft) => void;
-}
-
-export class DListItem extends Component<ItemProps> {
-  render() {
-    const { activeUser, draft, editFn, deleteFn, cloneFn, global } = this.props;
-    if (!activeUser.data.__loaded) {
-      return null;
-    }
-    const fallbackImage = global.isElectron
-      ? "./img/fallback.png"
-      : require("../../img/fallback.png");
-    const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
-
-    const account = activeUser.data as FullAccount;
-
-    const author = account.name;
-    const reputation = account.reputation;
-
-    const tags = draft.tags ? draft.tags.split(/[ ,]+/) : [];
-    const tag = tags[0] || "";
-    const img =
-      catchPostImage(draft.body, 600, 500, global.canUseWebp ? "webp" : "match") || noImage;
-    const summary = postBodySummary(draft.body, 200);
-
-    const dateRelative = dateToFullRelative(draft.created);
-    const dateFormatted = dateToFormatted(draft.created);
-
-    return (
-      <div className="drafts-list-item">
-        <div className="item-header">
-          <div className="item-header-main">
-            <div className="author-part">
-              <a className="author-avatar">
-                <UserAvatar username={author} size="medium" />
-              </a>
-              <a className="author">
-                {author}
-                <span className="author-reputation">{accountReputation(reputation)}</span>
-              </a>
-            </div>
-            {Tag({
-              ...this.props,
-              tag,
-              type: "span",
-              children: <a className="category">{tag}</a>
-            })}
-            <span className="date" title={dateFormatted}>
-              {dateRelative}
-            </span>
-          </div>
-        </div>
-        <div className="item-body">
-          <div
-            className="item-image"
-            onClick={() => {
-              editFn(draft);
-            }}
-          >
-            <div>
-              <img
-                alt={draft.title}
-                src={img}
-                onError={(e: React.SyntheticEvent) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = fallbackImage;
-                }}
-                className={img === noImage ? "no-img" : ""}
-              />
-            </div>
-          </div>
-          <div className="item-summary">
-            <div className="item-title">
-              <a
-                onClick={() => {
-                  editFn(draft);
-                }}
-              >
-                {draft.title}
-              </a>
-            </div>
-            <div className="item-body">
-              <a
-                onClick={() => {
-                  editFn(draft);
-                }}
-              >
-                {summary}
-              </a>
-            </div>
-          </div>
-          <div className="item-controls">
-            <span />
-            <div className="btn-controls">
-              <a
-                className="btn-clone"
-                onClick={() => {
-                  cloneFn(draft);
-                }}
-              >
-                <Tooltip content={_t("g.clone")}>
-                  <span>{cloneOutlineSvg}</span>
-                </Tooltip>
-              </a>
-              <a
-                className="btn-edit"
-                onClick={() => {
-                  editFn(draft);
-                }}
-              >
-                <Tooltip content={_t("g.edit")}>
-                  <span>{pencilOutlineSvg}</span>
-                </Tooltip>
-              </a>
-              <PopoverConfirm
-                onConfirm={() => {
-                  deleteFn(draft);
-                }}
-              >
-                <a className="btn-delete">
-                  <Tooltip content={_t("g.delete")}>
-                    <span>{deleteForeverSvg}</span>
-                  </Tooltip>
-                </a>
-              </PopoverConfirm>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
 
 interface Props {
   global: Global;
@@ -314,9 +167,9 @@ export class Drafts extends BaseComponent<Props, State> {
 
               {items.length > 0 && (
                 <div className="drafts-list">
-                  <div className="drafts-list-body" ref={this.state.listRef}>
+                  <div className="flex flex-col gap-4 my-4" ref={this.state.listRef}>
                     {items.map((item) => (
-                      <DListItem
+                      <DraftListItem
                         key={item._id}
                         {...this.props}
                         draft={item}

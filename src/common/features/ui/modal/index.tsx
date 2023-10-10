@@ -38,7 +38,7 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
     <ModalContext.Provider value={{ show, setShow }}>
       {show &&
         createPortal(
-          <div className="bg-black opacity-[50%] z-[1040] fixed top-0 left-0 right-0 bottom-0" />,
+          <div className="bg-black dark:bg-white opacity-[50%] dark:opacity-[25%] z-[1040] fixed top-0 left-0 right-0 bottom-0" />,
           document.querySelector("#modal-overlay-container")!!
         )}
       {show &&

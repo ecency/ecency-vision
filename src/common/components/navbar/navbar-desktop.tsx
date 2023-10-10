@@ -61,7 +61,7 @@ export function NavbarDesktop({
     >
       <div
         className={classNameObject({
-          "max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b":
+          "max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-dark-200":
             true,
           "bg-light-200 dark:bg-dark-200": true,
           transparent: !transparentVerify && step === 1
