@@ -253,7 +253,8 @@ module.exports = {
         default: "#fcc920",
         "030": "#ffe08a",
         "040": "#fff0c7"
-      }
+      },
+      orange: "#fd7e14"
     }),
     columns: {
       auto: "auto",
