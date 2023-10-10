@@ -119,16 +119,24 @@ export class KeyOrHot extends Component<Props, State> {
             <>
               <OrDivider />
               <div className="hs-sign">
-                <Button outline={true} onClick={this.hotClicked}>
-                  <img src={hsLogo} className="hs-logo" alt="hivesigner" />{" "}
+                <Button
+                  outline={true}
+                  onClick={this.hotClicked}
+                  icon={<img src={hsLogo} className="hs-logo" alt="hivesigner" />}
+                  iconPlacement="left"
+                >
                   {_t("key-or-hot.with-hivesigner")}
                 </Button>
               </div>
 
               {global.hasKeyChain && (
                 <div className="kc-sign">
-                  <Button outline={true} onClick={this.kcClicked}>
-                    <img src={keyChainLogo} className="kc-logo" alt="keychain" />{" "}
+                  <Button
+                    outline={true}
+                    onClick={this.kcClicked}
+                    icon={<img src={keyChainLogo} className="kc-logo" alt="keychain" />}
+                    iconPlacement="left"
+                  >
                     {_t("key-or-hot.with-keychain")}
                   </Button>
                 </div>

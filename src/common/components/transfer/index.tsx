@@ -852,7 +852,7 @@ export class Transfer extends BaseComponent<Props, State> {
             {formHeader1}
             {inProgress && <LinearProgress />}
             <Form className="transaction-form-body">
-              <div className="grid grid-cols-12 mb-4">
+              <div className="grid items-center grid-cols-12 mb-4">
                 <div className="col-span-12 sm:col-span-2">
                   <label>{_t("transfer.from")}</label>
                 </div>
@@ -865,7 +865,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
               {showTo && (
                 <>
-                  <div className="grid grid-cols-12 mb-4">
+                  <div className="grid items-center grid-cols-12 mb-4">
                     <div className="col-span-12 sm:col-span-2">
                       <label>{_t("transfer.to")}</label>
                     </div>
@@ -890,7 +890,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 </>
               )}
 
-              <div className="grid grid-cols-12 mb-4">
+              <div className="grid items-center grid-cols-12">
                 <div className="col-span-12 sm:col-span-2">
                   <label>{_t("transfer.amount")}</label>
                 </div>
@@ -913,8 +913,8 @@ export class Transfer extends BaseComponent<Props, State> {
 
               {amountError && amount > balance && <FormText msg={amountError} type="danger" />}
 
-              <div className="grid grid-cols-12">
-                <div className="col-span-12 lg:col-span-10 lg:col-start-2">
+              <div className="grid items-center grid-cols-12">
+                <div className="col-span-12 lg:col-span-10 lg:col-start-3">
                   <div className="balance">
                     <span className="balance-label">
                       {_t("transfer.balance")}
@@ -961,7 +961,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
               {showMemo && (
                 <>
-                  <div className="grid grid-cols-12 mb-4">
+                  <div className="grid items-center grid-cols-12 mb-4">
                     <div className="col-span-12 sm:col-span-2">
                       <label>{_t("transfer.memo")}</label>
                     </div>
@@ -972,15 +972,15 @@ export class Transfer extends BaseComponent<Props, State> {
                         value={memo}
                         onChange={this.memoChanged}
                       />
+                      <FormText msg={_t("transfer.memo-help")} type="muted" />
+                      {memoError && <FormText msg={memoError} type="danger" />}
                     </div>
                   </div>
-                  <FormText msg={_t("transfer.memo-help")} type="muted" />
-                  {memoError && <FormText msg={memoError} type="danger" />}
                 </>
               )}
 
-              <div className="grid grid-cols-12 mb-4">
-                <div className="col-span-12 sm:col-span-10 sm:col-start-2">
+              <div className="grid items-center grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-10 sm:col-start-3">
                   <Button onClick={this.next} disabled={!this.canSubmit()}>
                     {_t("g.next")}
                   </Button>

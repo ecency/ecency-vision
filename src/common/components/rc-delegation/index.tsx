@@ -185,7 +185,7 @@ export const ResourceCreditsDelegation = (props: any) => {
             {toWarning && <FormText msg={toWarning} type="danger" />}
             {toError && <FormText msg={toError} type="danger" />}
 
-            <div className="grid grid-cols-12 mb-4">
+            <div className="grid grid-cols-12">
               <div className="col-span-12 sm:col-span-2">
                 <label>{_t("transfer.amount")}</label>
               </div>
@@ -208,7 +208,7 @@ export const ResourceCreditsDelegation = (props: any) => {
             {amount > Number(resourceCredit) && <FormText msg={amountError} type="danger" />}
 
             <div className="grid grid-cols-12">
-              <div className="col-span-12 lg:col-span-10 lg:col-start-2">
+              <div className="col-span-12 lg:col-span-10 lg:col-start-3">
                 <div className="balance space-3">
                   <span className="balance-label">{_t("transfer.balance")}</span>
                   <span>{`: ${resourceCredit}`}</span>

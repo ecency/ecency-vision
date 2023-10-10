@@ -369,5 +369,9 @@ a {
 }
 
 .list-item {
-  display: block !important;
+  ::marker {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
 }
