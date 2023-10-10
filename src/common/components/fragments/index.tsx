@@ -407,7 +407,7 @@ export class Fragments extends BaseComponent<Props, State> {
 
           return (
             <>
-              <div className="dialog-controls">
+              <div className="flex gap-3">
                 <FormControl
                   ref={innerRef}
                   type="text"
@@ -417,20 +417,22 @@ export class Fragments extends BaseComponent<Props, State> {
                   style={{ marginRight: "6px" }}
                 />
                 <div>
-                  <Button onClick={() => this.stateSet({ mode: "add" })}>{_t("g.add")}</Button>
+                  <Button className="h-full" onClick={() => this.stateSet({ mode: "add" })}>
+                    {_t("g.add")}
+                  </Button>
                 </div>
               </div>
 
               {items.length === 0 && <span className="text-gray-600">{_t("g.no-matches")}</span>}
 
               {items.length > 0 && (
-                <div className="fragments-list">
+                <div className="flex flex-col gap-3 my-4">
                   {items.map((item) => {
                     const summary = postBodySummary(item.body, 200);
 
                     return (
                       <div
-                        className="fragment-list-item"
+                        className="flex flex-col border dark:border-dark-400 rounded-3xl overflow-hidden cursor-pointer hover:opacity-75 duration-300"
                         key={item.id}
                         onClick={() => {
                           const { onPick } = this.props;
@@ -442,8 +444,12 @@ export class Fragments extends BaseComponent<Props, State> {
                           this.setState({ editingItem: item, mode: "edit" });
                         }}
                       >
-                        <div className="item-title">{item.title}</div>
-                        <div className="item-summary">{summary}</div>
+                        <div className="flex items-center gap-3 border-b dark:border-dark-300 px-3 py-2 bg-gray-100 dark:bg-dark-500">
+                          {item.title}
+                        </div>
+                        <div className="text-gray-steel dark:text-white-075 px-3 py-2">
+                          {summary}
+                        </div>
                       </div>
                     );
                   })}
