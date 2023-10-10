@@ -37,7 +37,10 @@ export const Introduction = ({
 
   return (
     <>
-      <div className="intro-popup p-4 lg:p-0" style={{ left: placement }}>
+      <div
+        className="intro-popup p-4 lg:p-0"
+        style={{ left: placement, top: placement ? 200 : 100 }}
+      >
         <div className="container h-full">
           <button type="button" className="absolute close-btn" onClick={onClose} id="close-btn">
             {closeSvg}

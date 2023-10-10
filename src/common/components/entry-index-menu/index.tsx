@@ -544,10 +544,10 @@ export class EntryIndexMenu extends Component<Props, States> {
                         media={OurVision}
                         placement={
                           introduction === IntroductionType.TRENDING
-                            ? "25%"
+                            ? "20%"
                             : introduction === IntroductionType.HOT
-                            ? "50%"
-                            : "75%"
+                            ? "25%"
+                            : "30%"
                         }
                         onNext={this.onNextWeb}
                         onPrevious={this.onPreviousWeb}
