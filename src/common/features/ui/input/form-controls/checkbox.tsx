@@ -4,6 +4,7 @@ import { classNameObject } from "../../../../helper/class-name-object";
 
 export interface CheckboxProps extends Omit<HTMLProps<HTMLElement>, "onChange"> {
   type: "checkbox";
+  isToggle?: boolean;
   checked: boolean;
   onChange: (e: boolean) => void;
   label?: string;

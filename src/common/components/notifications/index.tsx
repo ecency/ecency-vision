@@ -310,9 +310,15 @@ export class DialogContent extends Component<NotificationProps, any> {
     ];
 
     const getNotificationSettingsItem = (title: string, type: NotifyTypes) => ({
-      label: _t(title),
+      label: "",
       content: (
-        <FormControl type="checkbox" checked={this.state.settings[type]} onChange={() => {}} />
+        <FormControl
+          label={_t(title)}
+          type="checkbox"
+          isToggle={true}
+          checked={this.state.settings[type]}
+          onChange={() => {}}
+        />
       ),
       onClick: () => this.saveSettingsWithDebounce(type)
     });

@@ -217,6 +217,8 @@ export class TagSelector extends Component<Props, State> {
           >
             <FormControl
               type="text"
+              noStyles={true}
+              className="form-control px-3 py-1 w-full outline-none shadow-0"
               onFocus={this.onFocus}
               onBlur={this.onBlur}
               onKeyDown={this.onKeyDown}

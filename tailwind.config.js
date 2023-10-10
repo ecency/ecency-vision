@@ -252,7 +252,8 @@ module.exports = {
       warning: {
         default: "#fcc920",
         "030": "#ffe08a",
-        "040": "#fff0c7"
+        "040": "#fff0c7",
+        "046": "#fffcf2"
       },
       orange: "#fd7e14"
     }),

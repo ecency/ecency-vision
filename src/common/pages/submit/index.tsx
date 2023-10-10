@@ -419,8 +419,9 @@ export function Submit(props: PageProps & MatchProps) {
           />
           <div className="title-input">
             <FormControl
+              noStyles={true}
               type="text"
-              className="accepts-emoji"
+              className="accepts-emoji form-control px-3 py-1 w-full outline-none shadow-0"
               placeholder={_t("submit.title-placeholder")}
               autoFocus={true}
               value={title}
@@ -745,6 +746,7 @@ export function Submit(props: PageProps & MatchProps) {
                         <div className="col-span-12 sm:col-span-9">
                           <FormControl
                             type="checkbox"
+                            isToggle={true}
                             id="reblog-switch"
                             label={_t("submit.reblog")}
                             checked={reblogSwitch}

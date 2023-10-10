@@ -365,8 +365,8 @@ export class SearchComment extends BaseComponent<Props, State> {
       ) : null;
 
     return (
-      <div className="border bg-white rounded search-comment">
-        <div className="bg-gray-100 border-b p-3 flex justify-between items-center">
+      <div className="border dark:border-dark-400 overflow-hidden bg-white rounded search-comment">
+        <div className="bg-gray-100 dark:bg-dark-200 border-b dark:border-dark-400 p-3 flex justify-between items-center">
           <div>
             <strong>{_t("search-comment.title")}</strong>
             {(() => {
@@ -377,7 +377,9 @@ export class SearchComment extends BaseComponent<Props, State> {
               if (hits > 1) {
                 const strHits = numeral(hits).format("0,0");
                 return (
-                  <span className="matches">{_t("search-comment.matches", { n: strHits })}</span>
+                  <span className="text-sm text-gray-600 pl-3">
+                    {_t("search-comment.matches", { n: strHits })}
+                  </span>
                 );
               }
 
@@ -394,7 +396,7 @@ export class SearchComment extends BaseComponent<Props, State> {
             {advanced ? _t("g.close") : _t("search-comment.advanced")}
           </a>
         </div>
-        <div className="card-body">
+        <div className="p-4">
           {advancedForm}
           {(() => {
             if (results.length > 0 && !disableResults) {

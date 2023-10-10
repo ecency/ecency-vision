@@ -357,3 +357,17 @@ label.font-small {
 svg {
   display: inline-block;
 }
+
+a {
+  @apply text-blue-dark-sky;
+  text-decoration: none;
+  background-color: transparent;
+
+  &:hover {
+    @apply text-blue-dark-sky-active;
+  }
+}
+
+.list-item {
+  display: block !important;
+}

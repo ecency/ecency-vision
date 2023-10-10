@@ -26,21 +26,24 @@ export default class SearchBox extends Component<Props> {
       <div className="search-box">
         {showcopybutton ? (
           <div className="flex focus-input">
-            <FormControl
-              type="text"
-              {...{ ...other, value, username, filter }}
-              className={"input-with-copy rounded-r"}
-            />
-            <Button
-              size="sm"
-              className="copy-to-clipboard rounded-l"
-              disabled={value.length === 0}
-              onClick={() => {
-                this.copyToClipboard(`https://ecency.com/${username}/${filter}?q=${value}`);
-              }}
+            <InputGroup
+              append={
+                <Button
+                  disabled={value.length === 0}
+                  onClick={() =>
+                    this.copyToClipboard(`https://ecency.com/${username}/${filter}?q=${value}`)
+                  }
+                >
+                  <div className="w-4 flex">{copyContent}</div>
+                </Button>
+              }
             >
-              {copyContent}
-            </Button>
+              <FormControl
+                type="text"
+                {...{ ...other, value, username, filter }}
+                className={"input-with-copy rounded-r"}
+              />
+            </InputGroup>
           </div>
         ) : (
           <InputGroup prepend={searchIconSvg}>
