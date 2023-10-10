@@ -8,7 +8,6 @@ import {
   magnifyResponsibleSvg,
   moonSvg,
   notificationSvg,
-  pencilOutlinedSvg,
   rocketSvg,
   sunSvg,
   upArrowSvg,
@@ -28,7 +27,6 @@ import * as ls from "../../util/local-storage";
 import NotificationHandler from "../notification-handler";
 import UserNotifications from "../notifications";
 import { PurchaseQrDialog } from "../purchase-qr";
-import Login from "../login";
 import Gallery from "../gallery";
 import Drafts from "../drafts";
 import Bookmarks from "../bookmarks";
@@ -131,13 +129,6 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
               </Link>
             </>
           )}
-
-          <Link to="/submit" onClick={() => setSmVisible(false)}>
-            <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark">
-              <div className="navbar-icon">{pencilOutlinedSvg}</div>
-              <div className="ml-3 text-15">{_t("g.submit")}</div>
-            </div>
-          </Link>
 
           <div>
             {activeUser && (
@@ -274,7 +265,6 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
           </div>
         </div>
       </div>
-      {ui.login && <Login history={history} />}
       {global.usePrivate && <NotificationHandler />}
       {gallery && <Gallery onHide={() => setGallery(!gallery)} />}
       {ui.notifications && activeUser && <UserNotifications history={history} />}

@@ -13,7 +13,7 @@ import { _t } from "../../i18n";
 import { vestsToHp } from "../../helper/vesting";
 import parseAsset from "../../helper/parse-asset";
 import formattedNumber from "../../util/formatted-number";
-import MyPagination from "../pagination";
+import MyPagination from "@ui/pagination";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl } from "@ui/input";

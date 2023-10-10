@@ -369,7 +369,8 @@ a {
 }
 
 .list-item {
-  ::marker {
+  &::marker {
+    content: '';
     display: none;
     opacity: 0;
     visibility: hidden;

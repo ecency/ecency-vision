@@ -52,6 +52,10 @@ thead, .pagination {
             @apply bg-blue-duck-egg;
         }
 
+        @include themify(night) {
+            @apply bg-transparent;
+        }
+
         .list-group {
             border-radius: 1rem;
         }

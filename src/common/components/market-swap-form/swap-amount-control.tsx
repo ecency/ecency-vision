@@ -59,7 +59,9 @@ export const SwapAmountControl = ({
   };
 
   return (
-    <div className={"px-3 pt-3 pb-5 mb-0 border " + className}>
+    <div
+      className={"px-3 pt-3 pb-5 mb-0 border dark:border-[--border-color] rounded-2xl " + className}
+    >
       <label>{_t(labelKey)}</label>
       <div className="flex items-center w-full">
         <div className="w-full">

@@ -8,7 +8,7 @@ import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
-import Pagination from "../pagination";
+import Pagination from "@ui/pagination";
 import { getAccounts, getProposalVotes, Proposal } from "../../api/hive";
 import parseAsset from "../../helper/parse-asset";
 import accountReputation from "../../helper/account-reputation";

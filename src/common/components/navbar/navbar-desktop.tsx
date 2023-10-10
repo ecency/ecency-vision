@@ -101,29 +101,20 @@ export function NavbarDesktop({
         </div>
         <div className="btn-menu">
           {!activeUser && (
-            <div>
-              <div className="login-required">
-                <Button
-                  className="btn-login"
-                  onClick={() => {
-                    toggleUIProp("login");
-                    setSmVisible(false);
-                  }}
-                >
-                  {_t("g.login")}
-                </Button>
+            <div className="login-required flex ml-2 gap-2">
+              <Button
+                className="btn-login"
+                onClick={() => {
+                  toggleUIProp("login");
+                  setSmVisible(false);
+                }}
+              >
+                {_t("g.login")}
+              </Button>
 
-                <Link to="/signup">
-                  <Button outline={true}>{_t("g.signup")}</Button>
-                </Link>
-              </div>
-              <div className="submit-post">
-                <ToolTip content={_t("navbar.post")}>
-                  <Link className="btn btn-outline-primary" to="/submit">
-                    {pencilOutlineSvg}
-                  </Link>
-                </ToolTip>
-              </div>
+              <Link to="/signup">
+                <Button outline={true}>{_t("g.signup")}</Button>
+              </Link>
             </div>
           )}
           {activeUser && <UserNav history={history} />}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { OrdersDataItem, TradeDataItem } from "../../api/hive";
 import { Skeleton } from "../skeleton";
-import Pagination from "../pagination";
+import Pagination from "@ui/pagination";
 import moment from "moment";
 import { _t } from "../../i18n";
 import { Table, Td, Th, Tr } from "@ui/table";

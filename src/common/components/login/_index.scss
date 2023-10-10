@@ -1,8 +1,7 @@
 @import "src/style/vars_mixins";
 
 .login-modal {
-  overflow-y: scroll !important;
-  .modal-body {
+  .ecency-modal-body {
     width: 100%;
     max-width: 390px;
     margin: auto;
@@ -31,8 +30,6 @@
     .user-list {
       position: relative;
       min-height: 100px;
-      max-height: 216px;
-      overflow-y: auto;
 
       .user-list-header {
         font-size: 18px;

@@ -8,3 +8,4 @@ export * from "./button";
 export * from "./table";
 export * from "./alert";
 export * from "./badge";
+export * from "./pagination";

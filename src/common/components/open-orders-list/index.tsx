@@ -7,7 +7,7 @@ import Tooltip from "../tooltip";
 import LinearProgress from "../linear-progress";
 import { _t } from "../../i18n";
 import formattedNumber from "../../util/formatted-number";
-import MyPagination from "../pagination";
+import MyPagination from "@ui/pagination";
 import { getOpenOrder, OpenOrdersData } from "../../api/hive";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { AssetSymbol } from "@hiveio/dhive";

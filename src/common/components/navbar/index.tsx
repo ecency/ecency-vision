@@ -13,6 +13,7 @@ import useMount from "react-use/lib/useMount";
 import "./_index.scss";
 import { NavbarMobile } from "./navbar-mobile";
 import { NavbarDesktop } from "./navbar-desktop";
+import Login from "../login";
 
 interface Props {
   match?: any;
@@ -144,6 +145,7 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
         history={history}
         setSmVisible={setSmVisible}
       />
+      {ui.login && <Login history={history} />}
     </div>
   );
 }

@@ -13,7 +13,7 @@ export const ButtonGroup = ({ labels, selected, className, setSelected }: Props)
   return (
     <div
       className={classNameObject({
-        "grid gap-4 rounded-[1rem] p-2 bg-gray-100": true,
+        "grid gap-4 rounded-[1rem] p-2 bg-gray-100 dark:bg-dark-200": true,
         [className ?? ""]: !!className
       })}
       style={{

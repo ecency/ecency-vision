@@ -104,6 +104,9 @@
 
   .proposal-list {
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
     @include themify(night) {
       @apply bg-dark-600;

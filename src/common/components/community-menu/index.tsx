@@ -58,7 +58,7 @@ export const CommunityMenu = (props: Props) => {
         <>
           <span
             className={
-              "flex lg:hidden community-menu-item " + (isFilterInItems() ? "selected-item" : "")
+              "flex community-menu-item lg:hidden " + (isFilterInItems() ? "selected-item" : "")
             }
           >
             <DropDown
@@ -81,7 +81,9 @@ export const CommunityMenu = (props: Props) => {
               }))
               .map((menuItem) => (
                 <Link
-                  className={_c(`community-menu-item ${menuItem.selected ? "selected-item" : ""}`)}
+                  className={_c(
+                    `community-menu-item flex ${menuItem.selected ? "selected-item" : ""}`
+                  )}
                   to={menuItem.href!}
                   key={`community-menu-item-${menuItem.label}`}
                 >
@@ -94,7 +96,7 @@ export const CommunityMenu = (props: Props) => {
         <Link
           to={`/subscribers/${props.match.params.name}`}
           className={_c(
-            `community-menu-item ${
+            `community-menu-item flex ${
               props.match.params.filter === "subscribers" ? "selected-item" : ""
             }`
           )}
@@ -104,7 +106,7 @@ export const CommunityMenu = (props: Props) => {
         <Link
           to={`/activities/${props.match.params.name}`}
           className={_c(
-            `community-menu-item ${
+            `community-menu-item flex ${
               props.match.params.filter === "activities" ? "selected-item" : ""
             }`
           )}

@@ -7,7 +7,10 @@ export function Tr(
     React.HTMLAttributes<HTMLTableRowElement>
 ) {
   return (
-    <tr {...props} className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200" />
+    <tr
+      {...props}
+      className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+    />
   );
 }
 
@@ -20,7 +23,7 @@ export function Td(
     <td
       {...props}
       className={classNameObject({
-        "border-b border-r last:border-r-0 p-1 sm:p-2": true,
+        "border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2": true,
         [props.className ?? ""]: true
       })}
     />
@@ -37,7 +40,7 @@ export function Th(
       {...props}
       className={classNameObject({
         //Basic
-        "border-b text-left font-[500] bg-gray-100 text-sm text-gray-700 border-r last:border-r-0 p-2":
+        "border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2":
           true,
 
         // Responsive
@@ -59,7 +62,7 @@ export function Table(
   return (
     <div
       className={classNameObject({
-        "border overflow-hidden": true,
+        "border dark:border-gray-700 overflow-hidden": true,
         "rounded-xl": props.rounded ?? true,
         "w-full": props.full
       })}

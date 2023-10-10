@@ -16,7 +16,7 @@ import WitnessVoteBtn from "../components/witness-vote-btn";
 import WitnessesExtra from "../components/witnesses-extra";
 import WitnessesProxy from "../components/witnesses-proxy";
 import WitnessesActiveProxy from "../components/witnesses-active-proxy";
-import Pagination from "../components/pagination";
+import Pagination from "@ui/pagination";
 import routes from "../../common/routes";
 import { getAccount, getAccounts, getWitnessesByVote, Witness } from "../api/hive";
 import { _t } from "../i18n";

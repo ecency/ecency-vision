@@ -11,7 +11,7 @@ import { OperationGroup, Transactions } from "../../store/transactions/types";
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
-import MyPagination from "../pagination";
+import MyPagination from "@ui/pagination";
 import Transfer, { TransferAsset, TransferMode } from "../transfer";
 import LinearProgress from "../linear-progress";
 import { shareVariantSvg } from "../../img/svg";

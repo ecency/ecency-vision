@@ -220,12 +220,6 @@
     .login-required {
       margin-right: 18px;
       display: flex;
-
-      .btn {
-        &:not(:last-child) {
-          margin-right: 6px;
-        }
-      }
     }
   }
 

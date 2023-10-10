@@ -603,7 +603,7 @@ export class Login extends BaseComponent<LoginProps, State> {
             e.preventDefault();
           }}
         >
-          <p className="login-form-text">{_t("login.with-user-pass")}</p>
+          <p className="login-form-text mb-4">{_t("login.with-user-pass")}</p>
           <div className="mb-4">
             <FormControl
               type="text"
@@ -633,7 +633,7 @@ export class Login extends BaseComponent<LoginProps, State> {
               />
             </div>
           )}
-          <p className="login-form-text">
+          <p className="login-form-text my-3">
             {_t("login.login-info-1")}{" "}
             <a
               onClick={(e) => {
@@ -651,26 +651,43 @@ export class Login extends BaseComponent<LoginProps, State> {
               {_t("login.login-info-2")}
             </a>
           </p>
-          <Button disabled={inProgress || !isVerified} className="block" onClick={this.login}>
+          <Button
+            full={true}
+            disabled={inProgress || !isVerified}
+            className="block"
+            onClick={this.login}
+          >
             {inProgress && username && key && spinner}
             {_t("g.login")}
           </Button>
         </Form>
         <OrDivider />
         <div className="hs-login">
-          <Button outline={true} onClick={this.hsLogin} disabled={inProgress}>
-            <img
-              src={global.isElectron ? "./img/hive-signer.svg" : hsLogo}
-              className="hs-logo"
-              alt="hivesigner"
-            />{" "}
+          <Button
+            outline={true}
+            onClick={this.hsLogin}
+            disabled={inProgress}
+            icon={
+              <img
+                src={global.isElectron ? "./img/hive-signer.svg" : hsLogo}
+                className="hs-logo"
+                alt="hivesigner"
+              />
+            }
+            iconPlacement="left"
+          >
             {_t("login.with-hive-signer")}
           </Button>
         </div>
         {global.hasKeyChain && (
           <div className="kc-login">
-            <Button outline={true} onClick={this.kcLogin} disabled={inProgress}>
-              <img src={keyChainLogo} className="kc-logo" alt="keychain" />{" "}
+            <Button
+              outline={true}
+              onClick={this.kcLogin}
+              disabled={inProgress}
+              icon={<img src={keyChainLogo} className="kc-logo" alt="keychain" />}
+              iconPlacement="left"
+            >
               {_t("login.with-keychain")}
             </Button>
           </div>

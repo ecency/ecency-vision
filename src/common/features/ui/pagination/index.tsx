@@ -5,11 +5,11 @@ import React, {
   useEffect,
   useState
 } from "react";
-import { isMobile } from "../../util/is-mobile";
-import { classNameObject } from "../../helper/class-name-object";
-import { arrowLeftSvg, arrowRightSvg } from "../../img/svg";
+import { isMobile } from "../../../util/is-mobile";
+import { classNameObject } from "../../../helper/class-name-object";
+import { arrowLeftSvg, arrowRightSvg } from "../../../img/svg";
 import "./index.css";
-import { _t } from "../../i18n";
+import { _t } from "../../../i18n";
 
 function PageButton(
   props: Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, any>, "className"> & {
@@ -21,7 +21,7 @@ function PageButton(
     <button
       {...props}
       className={classNameObject({
-        "pagination border-r border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600":
+        "pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600":
           true,
         "text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800": !props.active,
         "border-blue-dark-sky bg-blue-dark-sky text-white": props.active

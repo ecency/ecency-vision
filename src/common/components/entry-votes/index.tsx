@@ -9,7 +9,7 @@ import UserAvatar from "../user-avatar/index";
 import FormattedCurrency from "../formatted-currency";
 import ProfileLink from "../profile-link/index";
 import Tooltip from "../tooltip";
-import Pagination from "../pagination";
+import Pagination from "@ui/pagination";
 import { getActiveVotes, Vote } from "../../api/hive";
 import parseAsset from "../../helper/parse-asset";
 import parseDate, { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
