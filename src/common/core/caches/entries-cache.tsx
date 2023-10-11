@@ -161,12 +161,9 @@ export function useEntryCache<T extends Entry>(
     async () => {
       let entry = getByLink(queryKey) as T;
 
-      console.log("Entry by link", entry);
-
       if (!entry) {
         entry = getExistingEntryFromStore() as T;
         if (entry) {
-          console.log("Entry from store", entry);
           updateCache([entry]);
         }
       }
@@ -176,7 +173,6 @@ export function useEntryCache<T extends Entry>(
 
         // update cache value to getting from there next time
         if (response) {
-          console.log("entry from api", response);
           updateCache([response]);
         }
         return response;
@@ -192,13 +188,10 @@ export function useEntryCache<T extends Entry>(
   );
 
   useEffect(() => {
-    console.log("Query returned that entry", query.data);
     if (query.data) {
       if (getExistingEntryFromStore()) {
         updateEntry(query.data);
-        console.log("Update entry in store", query.data);
       } else {
-        console.log("Add entry in store", query.data);
         addEntry(query.data);
       }
     }
