@@ -425,20 +425,26 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
             </div>
             <div className="col-span-12 sm:col-span-8 lg:col-span-5 p-0 sm:p-3">
               <div>
-                <h1 className={`community-title ${wif ? "mb-5" : ""} hidden lg:block`}>
+                <h1
+                  className={`text-[2.5rem] font-bold community-title ${
+                    wif ? "mb-5" : ""
+                  } hidden lg:block`}
+                >
                   {_t("communities-create.page-title")}
                 </h1>
-                <h1 className={`community-title ${wif ? "mb-5" : ""} d-lg-none`}>
+                <h1
+                  className={`community-title ${wif ? "mb-5" : ""} lg:hidden text-[2rem] font-bold`}
+                >
                   {_t("communities-create.page-title")}
                 </h1>
                 {(!wif || !activeUser) && (
                   <>
-                    <ul className="descriptive-list">
+                    <ul className="descriptive-list list-disc ml-6">
                       <li>{_t("communities-create.reason-one")}</li>
                       <li>{_t("communities-create.reason-two")}</li>
                       <li>{_t("communities-create.reason-three")}</li>
                     </ul>
-                    <div className="learn-more mb-4">
+                    <div className="learn-more mt-2 mb-4">
                       {_t("g.learn-more")} <Link to="/faq">{_t("g.faq")}</Link>
                     </div>
                   </>
@@ -598,6 +604,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                 <div className="mb-4">
                                   <Button
                                     appearance="link"
+                                    size="lg"
                                     full={true}
                                     onClick={() => this.setState({ wif: "" })}
                                     id="black-on-night"
@@ -609,6 +616,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                   <Button
                                     type="submit"
                                     disabled={inProgress}
+                                    size="lg"
                                     full={true}
                                     icon={inProgress && <Spinner className="w-3.5 h-3.5" />}
                                     iconPlacement="left"
@@ -624,7 +632,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                           if (!wif && activeUser) {
                             return (
                               <div className="mb-4">
-                                <Button type="submit" full={true}>
+                                <Button type="submit" size="lg" full={true}>
                                   {_t("g.next")}
                                 </Button>
                               </div>

@@ -57,7 +57,7 @@ export class InfoContent extends BaseComponent<ContentProps> {
     const rcpRechargeDate = moment().add(rcpRecharge, "seconds");
 
     return (
-      <div className="profile-info-tooltip-content">
+      <div className="profile-info-tooltip-content [&>p]:mb-0 text-sm">
         <p>{_t("profile-info.joined", { n: created })}</p>
         <p>
           {_t("profile-info.post-count", {

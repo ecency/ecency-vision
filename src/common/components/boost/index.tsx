@@ -266,14 +266,14 @@ export class Boost extends BaseComponent<Props, State> {
             </div>
             {inProgress && <LinearProgress />}
             <div className="transaction-form-body flex flex-col">
-              <div className="self-center">
+              <div className="self-center mb-4">
                 <a href="/faq#how-boosting-work">{_t("boost.learn-more")}</a>
               </div>
-              <div className="flex mb-4">
-                <div className="w-full sm:w-2/12">
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2 flex items-center">
                   <label>{_t("redeem-common.balance")}</label>
                 </div>
-                <div className="w-full sm:w-10/12">
+                <div className="col-span-12 sm:col-span-10">
                   <FormControl
                     type="text"
                     className={_c(`balance-input ${balanceError ? "is-invalid" : ""}`)}
@@ -284,11 +284,11 @@ export class Boost extends BaseComponent<Props, State> {
                   {balanceError && <small className="text-red">{balanceError}</small>}
                 </div>
               </div>
-              <div className="flex mb-4">
-                <div className="w-full sm:w-2/12">
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2 sm:mt-3">
                   <label>{_t("redeem-common.post")}</label>
                 </div>
-                <div className="w-full sm:w-10/12">
+                <div className="col-span-12 sm:col-span-10">
                   <SuggestionList items={paths} renderer={(i) => i} onSelect={this.pathSelected}>
                     <FormControl
                       className={postError ? "is-invalid" : ""}
@@ -305,11 +305,11 @@ export class Boost extends BaseComponent<Props, State> {
                   )}
                 </div>
               </div>
-              <div className="flex mb-4">
-                <div className="w-full sm:w-2/12">
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2 sm:mt-3">
                   <label>{_t("boost.amount")}</label>
                 </div>
-                <div className="w-full sm:w-10/12">
+                <div className="col-span-12 sm:col-span-10">
                   <div className="slider-area">
                     <div className="slider-price">
                       {formattedNumber(this.pointsToSbd(amount), {
@@ -336,7 +336,7 @@ export class Boost extends BaseComponent<Props, State> {
                   <Button type="button" onClick={this.next} disabled={!canSubmit || inProgress}>
                     {_t("g.next")}
                   </Button>
-                  <small className="text-warning font-italic">{_t("boost.hint")}</small>
+                  <div className="text-sm text-warning-default italic mt-1">{_t("boost.hint")}</div>
                 </div>
               </div>
             </div>

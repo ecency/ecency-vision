@@ -7,6 +7,7 @@ import { INPUT_DARK_STYLES, INPUT_STYLES } from "@ui/input/form-controls/input-s
 export interface SelectProps extends HTMLProps<HTMLSelectElement> {
   type: "select";
   children: ReactNode;
+  full?: boolean;
 }
 
 export function Select(props: SelectProps) {
@@ -16,7 +17,8 @@ export function Select(props: SelectProps) {
       className={classNameObject({
         [INPUT_STYLES]: true,
         [INPUT_DARK_STYLES]: true,
-        [props.className ?? ""]: true
+        [props.className ?? ""]: true,
+        "!w-auto": props.full === false
       })}
     >
       {props.children}

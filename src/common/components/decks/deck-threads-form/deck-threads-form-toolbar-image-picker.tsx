@@ -10,6 +10,7 @@ import { error } from "../../feedback";
 import axios from "axios";
 import Gallery from "../../gallery";
 import { PopperDropdown } from "../../popper-dropdown";
+import { Button } from "@ui/button";
 
 interface Props {
   onAddImage: (link: string, name: string) => void;
@@ -79,7 +80,7 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
     <div className="deck-threads-form-toolbar-image-picker">
       {activeUser && (
         <Tooltip content={_t("editor-toolbar.image")}>
-          <PopperDropdown toggle={imageSvg}>
+          <PopperDropdown toggle={<Button icon={imageSvg} appearance="link" noPadding={true} />}>
             <div className="dropdown-menu">
               <div
                 className="dropdown-item"

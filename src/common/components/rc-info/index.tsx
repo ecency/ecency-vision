@@ -211,13 +211,13 @@ export const ResourceCreditsInfo = (props: any) => {
                 </span>
               </div>
 
-              <div className="line-break">
+              <div className="line-break my-5">
                 <hr />
               </div>
 
               <div className="extra-details">
                 <p>{_t("rc-info.extra-details-heading")}</p>
-                <List className="rc-info-extras">
+                <List className="rc-info-extras mt-4">
                   <ListItem>
                     {_t("rc-info.comments-posts")}
                     <span>{commentAmount}</span>

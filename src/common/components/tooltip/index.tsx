@@ -41,7 +41,7 @@ export function StyledTooltip({ children, content }: StyledProps) {
       {createPortal(
         <div
           className={
-            "bg-blue-powder z-10 p-3 rounded-lg duration-300 " +
+            "bg-blue-powder dark:bg-dark-200 z-10 p-3 rounded-lg duration-300 " +
             (show ? "opacity-100" : "opacity-0")
           }
           ref={setPopperElement}

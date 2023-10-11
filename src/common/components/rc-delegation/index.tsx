@@ -153,10 +153,10 @@ export const ResourceCreditsDelegation = (props: any) => {
           {inProgress && <LinearProgress />}
           <Form className="transaction-form-body">
             <div className="grid grid-cols-12 mb-4">
-              <div className="col-span-12 sm:col-span-2">
+              <div className="col-span-12 sm:col-span-2 mt-3">
                 <label>{_t("transfer.from")}</label>
               </div>
-              <div className="col-span-12 sm:col-span-2">
+              <div className="col-span-12 sm:col-span-10">
                 <InputGroup prepend="@">
                   <FormControl type="text" value={activeUser.username} readOnly={true} />
                 </InputGroup>
@@ -164,10 +164,10 @@ export const ResourceCreditsDelegation = (props: any) => {
             </div>
 
             <div className="grid grid-cols-12 mb-4">
-              <div className="col-span-12 sm:col-span-2">
+              <div className="col-span-12 sm:col-span-2 mt-3">
                 <label>{_t("transfer.to")}</label>
               </div>
-              <div className="col-span-12 sm:col-span-2">
+              <div className="col-span-12 sm:col-span-10">
                 {/* <SuggestionList > */}
                 <InputGroup prepend="@">
                   <FormControl
@@ -180,16 +180,19 @@ export const ResourceCreditsDelegation = (props: any) => {
                   />
                 </InputGroup>
                 {/* </SuggestionList> */}
+
+                {toWarning && (
+                  <small className="text-warning-default tr-form-text">{toWarning}</small>
+                )}
+                {toError && <small className="text-red tr-form-text">{toError}</small>}
               </div>
             </div>
-            {toWarning && <FormText msg={toWarning} type="danger" />}
-            {toError && <FormText msg={toError} type="danger" />}
 
             <div className="grid grid-cols-12">
-              <div className="col-span-12 sm:col-span-2">
+              <div className="col-span-12 sm:col-span-2 mt-3">
                 <label>{_t("transfer.amount")}</label>
               </div>
-              <div className="col-span-12 sm:col-span-10 flex items-center">
+              <div className="col-span-12 sm:col-span-10">
                 <InputGroup prepend="#">
                   <FormControl
                     type="text"
@@ -204,8 +207,10 @@ export const ResourceCreditsDelegation = (props: any) => {
               </div>
             </div>
 
-            {amount < 5000000000 && <FormText msg={amountError} type="danger" />}
-            {amount > Number(resourceCredit) && <FormText msg={amountError} type="danger" />}
+            {amount < 5000000000 && <small className="text-red tr-form-text">{amountError}</small>}
+            {amount > Number(resourceCredit) && (
+              <small className="text-red tr-form-text">{amountError}</small>
+            )}
 
             <div className="grid grid-cols-12">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
@@ -217,7 +222,7 @@ export const ResourceCreditsDelegation = (props: any) => {
             </div>
 
             <div className="grid grid-cols-12 mb-4">
-              <div className="col-span-12 sm:col-span-10 sm:col-start-2">
+              <div className="col-span-12 sm:col-span-10 sm:col-start-3">
                 <Button disabled={!canSubmit} onClick={next}>
                   {_t("g.next")}
                 </Button>
@@ -260,17 +265,6 @@ export const ResourceCreditsDelegation = (props: any) => {
           </div>
         </div>
       )}
-    </div>
-  );
-};
-
-const FormText = (props: { msg: any; type: any }) => {
-  const { msg, type } = props;
-  return (
-    <div className="grid grid-cols-12">
-      <div className="col-span-12 md:col-span-10 md:col-start-2">
-        <small className={`text-${type} tr-form-text`}>{msg}</small>
-      </div>
     </div>
   );
 };

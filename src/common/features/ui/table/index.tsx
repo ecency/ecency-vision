@@ -9,7 +9,11 @@ export function Tr(
   return (
     <tr
       {...props}
-      className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+      className={classNameObject({
+        "[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300":
+          true,
+        [props.className ?? ""]: !!props.className
+      })}
     />
   );
 }

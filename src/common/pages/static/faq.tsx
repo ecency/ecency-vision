@@ -201,7 +201,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                     itemType="https://schema.org/Question"
                   >
                     <span className="anchor" id={x} />
-                    <h4 className="faq-item-header" itemProp="name">
+                    <h4 className="faq-item-header text-[1.5rem] font-semibold" itemProp="name">
                       {_t(`static.faq.${x}-header`)}
                     </h4>
                     <div

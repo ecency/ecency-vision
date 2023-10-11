@@ -250,7 +250,7 @@ export class Promote extends BaseComponent<Props, State> {
             </div>
             {inProgress && <LinearProgress />}
             <div className="transaction-form-body flex flex-col">
-              <div className="align-self-center">
+              <div className="self-center mb-4">
                 <a href="/faq#how-promotion-work">{_t("promote.learn-more")}</a>
               </div>
               <div className="grid grid-cols-12 mb-4">
@@ -265,10 +265,10 @@ export class Promote extends BaseComponent<Props, State> {
                     readOnly={true}
                     value={`${activeUser.points.points} POINTS`}
                   />
-                  {balanceError && <small className="text-red">{balanceError}</small>}
+                  {balanceError && <small className="pl-3 text-red">{balanceError}</small>}
                 </div>
               </div>
-              <div className="mb-4">
+              <div className="grid grid-cols-12 mb-4">
                 <div className="col-span-12 sm:col-span-2 flex items-center">
                   <label>{_t("redeem-common.post")}</label>
                 </div>
@@ -283,7 +283,7 @@ export class Promote extends BaseComponent<Props, State> {
                       disabled={inProgress}
                     />
                   </SuggestionList>
-                  {postError && <small className="text-red">{postError}</small>}
+                  {postError && <small className="pl-3 text-red">{postError}</small>}
                   {!postError && (
                     <small className="text-gray-600">{_t("redeem-common.post-hint")}</small>
                   )}

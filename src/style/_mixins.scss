@@ -67,7 +67,9 @@
         .author {
           font-weight: 700;
           word-break: keep-all;
-          padding: 2px;
+          padding: 0.25rem 0.125rem;
+          border-radius: 1rem;
+          cursor: pointer;
 
           .author-name {
             font-weight: 700;

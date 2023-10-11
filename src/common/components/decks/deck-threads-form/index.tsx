@@ -228,9 +228,7 @@ export const DeckThreadsForm = ({
     >
       {!inline && (
         <div className="deck-toolbar-threads-form-header">
-          <Button appearance="link" onClick={() => setShow(false)}>
-            {arrowLeftSvg}
-          </Button>
+          <Button appearance="link" onClick={() => setShow(false)} icon={arrowLeftSvg} />
           {getSubmitButton()}
         </div>
       )}

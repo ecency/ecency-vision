@@ -1,24 +1,47 @@
 import React, { HTMLProps } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
+import { useFilteredProps } from "../../../util/props-filter";
 
-export function List(props: HTMLProps<HTMLDivElement>) {
+interface Props {
+  defer?: boolean;
+  inline?: boolean;
+}
+
+export function List(props: HTMLProps<HTMLDivElement> & Props) {
+  const nativeProps = useFilteredProps(props, ["defer", "inline"]);
+
   return (
     <div
-      {...props}
+      {...nativeProps}
       className={classNameObject({
-        "flex flex-col rounded-xl": true,
+        "flex overflow-hidden": true,
+        "gap-3": props.defer ?? false,
+        "flex-row flex-wrap": props.inline ?? false,
+        "flex-col rounded-xl border border-[--border-color] bg-gray-100 dark:bg-gray-900":
+          !props.inline,
         [props.className ?? ""]: !!props.className
       })}
     />
   );
 }
 
-export function ListItem(props: HTMLProps<HTMLDivElement>) {
+interface ListItemProps extends HTMLProps<HTMLDivElement> {
+  small?: boolean;
+  styledDefer?: boolean;
+}
+
+export function ListItem(props: ListItemProps) {
+  const nativeProps = useFilteredProps(props, ["small", "styledDefer"]);
+
   return (
     <div
-      {...props}
+      {...nativeProps}
       className={classNameObject({
-        "text-sm bg-gray-100 text-gray-600 border px-3 py-4": true,
+        "ececny-list-item text-sm text-gray-600 border-b border-[--border-color] last:border-b-0":
+          true,
+        "px-2 py-3": props.small ?? false,
+        "px-3 py-4": !props.small,
+        "rounded-xl border border-[--border-color] bg-gray-100 dark:bg-gray-900": props.styledDefer,
         [props.className ?? ""]: !!props.className
       })}
     />

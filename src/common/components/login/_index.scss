@@ -47,6 +47,9 @@
       }
 
       .user-list-body {
+        overflow-y: auto;
+        max-height: 300px;
+        
         .user-list-item {
           align-items: center;
           border-radius: 25px;

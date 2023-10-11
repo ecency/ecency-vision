@@ -78,7 +78,7 @@ export const RcDelegationsList = (props: any) => {
         </div>
       )}
       <div className="list-container">
-        <div className="search-box">
+        <div className="search-box mb-4">
           <FormControl
             type="text"
             value={search}
@@ -90,7 +90,7 @@ export const RcDelegationsList = (props: any) => {
         {listMode === "out" && (
           <>
             {outGoingList.length > 0 ? (
-              <List>
+              <List defer={true} inline={true}>
                 {outGoingList
                   ?.slice(0, loadList)
                   .filter(
@@ -98,57 +98,55 @@ export const RcDelegationsList = (props: any) => {
                       list.to.toLowerCase().startsWith(search) ||
                       list.to.toLowerCase().includes(search)
                   )
-                  .map((list: any, i: any) => {
-                    return (
-                      <ListItem key={list.to}>
-                        <div className="item-main">
+                  .map((list: any, i: any) => (
+                    <ListItem styledDefer={true} key={list.to}>
+                      <div className="flex items-center gap-2">
+                        {ProfileLink({
+                          ...props,
+                          username: list.to,
+                          children: <UserAvatar username={list.to} size="small" />
+                        })}
+                        <div className="item-info">
                           {ProfileLink({
                             ...props,
                             username: list.to,
-                            children: <UserAvatar username={list.to} size="small" />
+                            children: <span className="item-name notranslate">{list.to}</span>
                           })}
-                          <div className="item-info">
-                            {ProfileLink({
-                              ...props,
-                              username: list.to,
-                              children: <span className="item-name notranslate">{list.to}</span>
-                            })}
-                          </div>
                         </div>
-                        <div className="item-extra">
-                          <Tooltip content={list.delegated_rc}>
-                            <span>{rcFormatter(list.delegated_rc)}</span>
-                          </Tooltip>
-                          {activeUser && otherUser == activeUser.username && (
-                            <>
-                              <a
-                                href="#"
-                                onClick={async () => {
-                                  showDelegation();
-                                  setShowDelegationsList(false);
-                                  setAmountFromList(list.delegated_rc);
-                                  setToFromList(list.to);
-                                  const data = await getToData(list.to);
-                                  setDelegateeData(data);
-                                }}
-                              >
-                                {_t("rc-info.update")}
-                              </a>
-                              <a
-                                href="#"
-                                onClick={() => {
-                                  confirmDelete();
-                                  setToFromList(list.to);
-                                }}
-                              >
-                                {_t("rc-info.delete")}
-                              </a>
-                            </>
-                          )}
-                        </div>
-                      </ListItem>
-                    );
-                  })}
+                      </div>
+                      <div className="flex items-center gap-3 mt-3">
+                        <Tooltip content={list.delegated_rc}>
+                          <span>{rcFormatter(list.delegated_rc)}</span>
+                        </Tooltip>
+                        {activeUser && otherUser == activeUser.username && (
+                          <>
+                            <a
+                              href="#"
+                              onClick={async () => {
+                                showDelegation();
+                                setShowDelegationsList(false);
+                                setAmountFromList(list.delegated_rc);
+                                setToFromList(list.to);
+                                const data = await getToData(list.to);
+                                setDelegateeData(data);
+                              }}
+                            >
+                              {_t("rc-info.update")}
+                            </a>
+                            <a
+                              href="#"
+                              onClick={() => {
+                                confirmDelete();
+                                setToFromList(list.to);
+                              }}
+                            >
+                              {_t("rc-info.delete")}
+                            </a>
+                          </>
+                        )}
+                      </div>
+                    </ListItem>
+                  ))}
               </List>
             ) : (
               <p>{_t("rc-info.no-outgoing")}</p>

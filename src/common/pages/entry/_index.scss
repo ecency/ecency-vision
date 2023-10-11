@@ -354,6 +354,10 @@
         @apply text-tundora;
       }
 
+      @include themify(night) {
+        @apply text-white;
+      }
+
       .twitter-tweet {
         margin-left: auto;
         margin-right: auto;

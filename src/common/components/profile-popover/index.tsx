@@ -45,7 +45,7 @@ export const ProfilePopover = ({ entry }: { entry: Entry }) => {
   return (
     <>
       <div
-        className="author btn notranslate flex d-sm-none items-center"
+        className="author btn notranslate flex sm:hidden items-center"
         onClick={handleShowProfile}
         id={`${author}-${entry.permlink}`}
       >
@@ -67,7 +67,7 @@ export const ProfilePopover = ({ entry }: { entry: Entry }) => {
             {({ ref }) => (
               <div
                 ref={ref}
-                className="author btn notranslate hidden d-sm-flex items-center relative"
+                className="author btn notranslate hidden sm:flex items-center relative"
                 onMouseEnter={handleShowProfile}
               >
                 <span className="author-name">{author}</span>

@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import { _t } from "../../i18n";
 import { allStakeSvg, buyStakeSvg, sellStakeSvg } from "../../img/svg";
 import { Button } from "@ui/button";
+import { FormControl } from "@ui/input";
 
 export enum StakeWidgetViewType {
   All = "all",
@@ -50,9 +51,10 @@ export const StakeWidgetHeaderOptions = ({
         />
       </div>
 
-      <select
+      <FormControl
+        type="select"
         placeholder={_t("wallet.spk.delegate.node-operator-placeholder")}
-        className="form-control"
+        className="text-xs"
         value={fractionValue}
         onChange={(event: ChangeEvent<any>) => {
           setFractionValue(+event.target.value);
@@ -64,7 +66,7 @@ export const StakeWidgetHeaderOptions = ({
         <option value="0.001">0.001</option>
         <option value="0.01">0.01</option>
         <option value="0.1">0.1</option>
-      </select>
+      </FormControl>
     </div>
   );
 };

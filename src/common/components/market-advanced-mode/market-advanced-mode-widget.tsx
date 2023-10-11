@@ -60,7 +60,7 @@ export const MarketAdvancedModeWidget = ({
   return (
     <div
       className={
-        "market-advanced-mode-widget border " +
+        "market-advanced-mode-widget border border-[--border-color] " +
         (expandedHeader ? "expanded-header " : "") +
         className
       }

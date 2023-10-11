@@ -220,7 +220,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
   return (
     <MarketAdvancedModeWidget
       history={history}
-      className="market-advanced-mode-tv-widget"
+      className="market-advanced-mode-tv-widget pb-4"
       type={Widget.TradingView}
       title={
         <>

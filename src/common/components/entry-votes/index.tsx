@@ -327,7 +327,7 @@ export class EntryVotes extends Component<Props, State> {
             animation={false}
             className="entry-votes-modal px-3"
           >
-            <ModalHeader closeButton={true} className="items-center px-0">
+            <ModalHeader closeButton={true} className="items-center">
               <ModalTitle>{title}</ModalTitle>
             </ModalHeader>
             <div className="w-full px-3 mb-4">
@@ -339,7 +339,7 @@ export class EntryVotes extends Component<Props, State> {
                 disabled={searchTextDisabled}
               />
             </div>
-            <ModalBody className="px-0">
+            <ModalBody>
               <EntryVotesDetail
                 {...this.props}
                 entry={entry}

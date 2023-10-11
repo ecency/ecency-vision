@@ -1,5 +1,5 @@
 import { _t } from "../../i18n";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { MarketAsset } from "./market-pair";
 import numeral from "numeral";
 import { FormControl } from "@ui/input";
@@ -78,23 +78,23 @@ export const SwapAmountControl = ({
           </small>
         </div>
         <div className="flex flex-col items-end">
-          <select
+          <FormControl
+            type="select"
             disabled={disabled}
             value={asset}
-            className={
-              "form-control form-control py-2 border-0 h-auto font-bold w-[auto] mb-2 " +
-              (hideChevron ? "hide-chevron" : "")
+            full={false}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+              setAsset(e.target.value as MarketAsset)
             }
-            onChange={(e) => setAsset(e.target.value as MarketAsset)}
           >
             {availableAssets.map((pairAsset) => (
               <option key={pairAsset} value={pairAsset}>
                 {pairAsset}
               </option>
             ))}
-          </select>
+          </FormControl>
           {balance && showBalance ? (
-            <small className="balance block text-secondary text-nowrap">
+            <small className="balance block text-secondary whitespace-nowrap">
               {_t("market.balance")}:
               <span
                 className="text-blue-dark-sky font-bold cursor-pointer ml-1"
