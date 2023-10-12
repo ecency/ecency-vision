@@ -77,7 +77,7 @@ export class EntryIndexMenu extends Component<Props, States> {
       showInitialIntroductionJourney = true;
       ls.set(`${activeUser.username}HadTutorial`, "true");
     }
-    if (showInitialIntroductionJourney) {
+    if (showInitialIntroductionJourney === true) {
       showInitialIntroductionJourney = IntroductionType.FRIENDS;
     } else {
       showInitialIntroductionJourney = IntroductionType.NONE;
