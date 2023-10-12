@@ -22,11 +22,30 @@ import { useThreeSpeakManager } from "../hooks";
 import { buildMetadata, getDimensionsFromDataUrl } from "../functions";
 import { useContext } from "react";
 import { EntriesCacheContext } from "../../../core";
+import { usePointsQuery } from "../../../api/queries";
 
 export function usePublishApi(history: History, onClear: () => void) {
   const { activeUser } = useMappedStore();
   const { videos, isNsfw, buildBody } = useThreeSpeakManager();
   const { updateCache } = useContext(EntriesCacheContext);
+
+  const pointsQuery = usePointsQuery(activeUser!!.username);
+
+  const waitForPoints = () =>
+    new Promise((resolve, reject) => {
+      const scheduler = () =>
+        setTimeout(() => {
+          if (pointsQuery.isSuccess) {
+            resolve(true);
+          } else if (pointsQuery.isLoading) {
+            scheduler();
+          } else if (pointsQuery.isError) {
+            reject(new Error("Failed to get points"));
+          }
+        }, 1000);
+
+      scheduler();
+    });
 
   return useMutation(
     ["publish"],
@@ -119,6 +138,7 @@ export function usePublishApi(history: History, onClear: () => void) {
       const options = makeCommentOptions(author, permlink, reward, beneficiaries);
 
       try {
+        await waitForPoints();
         await comment(
           author,
           "",
