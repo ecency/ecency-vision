@@ -1227,6 +1227,7 @@
     "memo-help": "Тази бележка е публична",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "memo-required": "Transfer to an exchange must have a memo.",
+    "invalid-asset": "You can only send HIVE to an exchange account.",
     "available-hp-hint": "* налична hive стойност на гласа",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
