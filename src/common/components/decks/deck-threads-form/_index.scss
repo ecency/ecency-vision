@@ -21,7 +21,8 @@
     min-height: 4.5rem;
     box-shadow: none;
     cursor: pointer;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
     border-bottom: 1px solid $border-color;
 
     .editor .editor-control {
@@ -135,6 +136,10 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
+  }
+
+  &.inline &-content {
+    overflow-y: visible;
   }
 
   &-body {
@@ -359,20 +364,11 @@
   }
 }
 
-.emoji-picker-container {
-  width: 200px;
+.deck-threads-form-emoji-picker {
+  position: relative;
+  z-index: 202;
 
-  .emoji-picker {
-    border: 1px solid $border-color;
-
-    @include border-radius(1rem);
-
-    @include themify(day) {
-      @apply bg-white;
-    }
-
-    @include themify(night) {
-      @apply bg-dark-200;
-    }
+  .emoji-picker-dialog {
+    left: -50%;
   }
 }

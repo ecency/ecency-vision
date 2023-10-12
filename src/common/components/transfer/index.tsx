@@ -147,7 +147,7 @@ interface State {
   to: string;
   toData: Account | null;
   toError: string;
-  toExchangeError: string;
+  exchangeWarning: string;
   memoError: string;
   toWarning: string;
   amount: string;
@@ -181,7 +181,7 @@ const pureState = (props: Props): State => {
     to: props.to || _to,
     toData: props.to ? { name: props.to } : _toData,
     toError: "",
-    toExchangeError: "",
+    exchangeWarning: "",
     memoError: "",
     toWarning: "",
     amount: props.amount || "0.001",
@@ -213,30 +213,38 @@ export class Transfer extends BaseComponent<Props, State> {
   }
 
   assetChanged = (asset: TransferAsset) => {
+    const { to, memo } = this.state;
     this.stateSet({ asset }, () => {
       this.checkAmount();
+      this.exchangeHandler(to, memo);
     });
+  };
+
+  exchangeHandler = (to: string, memo: string) => {
+    const { asset } = this.state;
+
+    if (exchangeAccounts.includes(to)) {
+      if (asset !== "HIVE") {
+        this.stateSet({ exchangeWarning: _t("transfer.invalid-asset") });
+      } else if (asset === "HIVE" && !memo) {
+        this.stateSet({ exchangeWarning: _t("transfer.memo-required") });
+      } else {
+        this.stateSet({ exchangeWarning: "" });
+      }
+    }
   };
 
   toChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: to } = e.target;
+    const { memo } = this.state;
     this.stateSet({ to }, this.handleTo);
-    // Check memo if to is an exchange account
-    if (exchangeAccounts.includes(to)) {
-      this.stateSet({ toExchangeError: _t("transfer.memo-required") });
-    } else {
-      this.stateSet({ toExchangeError: "" });
-    }
+    this.exchangeHandler(to, memo);
   };
 
   toSelected = (to: string) => {
     this.stateSet({ to }, this.handleTo);
-    // Check memo if selected is an exchange account
-    if (exchangeAccounts.includes(to)) {
-      this.stateSet({ toExchangeError: _t("transfer.memo-required") });
-    } else {
-      this.stateSet({ toExchangeError: "" });
-    }
+    const { memo } = this.state;
+    this.exchangeHandler(to, memo);
   };
 
   amountChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -248,18 +256,11 @@ export class Transfer extends BaseComponent<Props, State> {
 
   memoChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: memo } = e.target;
+    const { to } = this.state;
     const mError = cryptoUtils.isWif(memo.trim());
     if (mError) this.setState({ memoError: _t("transfer.memo-error").toUpperCase() });
     this.stateSet({ memo });
-    if (memo) {
-      {
-        this.stateSet({ toExchangeError: "" });
-      }
-    } else {
-      {
-        this.stateSet({ toExchangeError: _t("transfer.memo-required") });
-      }
-    }
+    this.exchangeHandler(to, memo);
   };
 
   handleTo = () => {
@@ -423,15 +424,15 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   canSubmit = () => {
-    const { toData, toError, amountError, memoError, inProgress, amount, toExchangeError } =
+    const { toData, toError, amountError, memoError, inProgress, amount, exchangeWarning } =
       this.state;
     return (
       toData &&
-      !toExchangeError &&
       !toError &&
       !amountError &&
       !memoError &&
       !inProgress &&
+      !exchangeWarning &&
       parseFloat(amount) > 0
     );
   };
@@ -669,7 +670,7 @@ export class Transfer extends BaseComponent<Props, State> {
       asset,
       to,
       toError,
-      toExchangeError,
+      exchangeWarning,
       toWarning,
       amount,
       amountError,
@@ -886,7 +887,7 @@ export class Transfer extends BaseComponent<Props, State> {
                   </div>
                   {toWarning && <FormText msg={toWarning} type="danger" />}
                   {toError && <FormText msg={toError} type="danger" />}
-                  {toExchangeError && <FormText msg={toExchangeError} type="danger" />}
+                  {exchangeWarning && <FormText msg={exchangeWarning} type="danger" />}
                 </>
               )}
 

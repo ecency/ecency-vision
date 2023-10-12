@@ -3758,8 +3758,9 @@ exports[`(4) Show mute button, muted comment 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn no-data"
-                title="No Votes"
+                className="inner-btn"
+                onClick={[Function]}
+                title="180 Votes"
               >
                 <div
                   className="heart-icon"
@@ -3777,7 +3778,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
                     />
                   </svg>
                 </div>
-                0
+                180
               </span>
             </div>
             <a
