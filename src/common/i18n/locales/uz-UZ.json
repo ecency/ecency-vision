@@ -1227,6 +1227,7 @@
     "memo-help": "Ushbu eslatma hammaga ko'rinarli",
     "memo-error": "Hech qachon shaxsiy kalitlarni xabarlar oynasiga qo'ymang, u hamma uchun ochiq.",
     "memo-required": "Transfer to an exchange must have a memo.",
+    "invalid-asset": "You can only send HIVE to an exchange account.",
     "available-hp-hint": "* mavjud hive kuch",
     "override-warning-1": "Yangi miqdor avvalgisini bekor qiladi.",
     "override-warning-2": "Hisob ({{account}}) allaqachon {{previousAmount}} bilan delegatsiyalangan.",
