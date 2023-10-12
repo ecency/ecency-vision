@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import React, { createContext, HTMLProps, useEffect, useState } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
+import { useFilteredProps } from "../../../util/props-filter";
 
 interface Props {
   show: boolean;
@@ -21,6 +22,15 @@ export const ModalContext = createContext<{
 
 export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
   const [show, setShow] = useState<boolean>();
+
+  const nativeProps = useFilteredProps(props, [
+    "size",
+    "animation",
+    "show",
+    "onHide",
+    "centered",
+    "dialogClassName"
+  ]);
 
   useEffect(() => {
     setShow(props.show);
@@ -44,7 +54,7 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
       {show &&
         createPortal(
           <div
-            {...props}
+            {...nativeProps}
             className={classNameObject({
               "z-[1050] fixed top-0 py-8 left-0 right-0 bottom-0 overflow-y-auto h-full": true,
               [props.className ?? ""]: true,

@@ -1,6 +1,7 @@
 import React, { forwardRef, HTMLProps } from "react";
 import { classNameObject } from "../../../../helper/class-name-object";
 import { INPUT_DARK_STYLES, INPUT_STYLES, INVALID_INPUT_STYLES } from "./input-styles";
+import { useFilteredProps } from "../../../../util/props-filter";
 
 export interface InputProps extends HTMLProps<HTMLInputElement> {
   type: "text" | "password" | "number" | "email" | "range";
@@ -11,10 +12,12 @@ export interface InputProps extends HTMLProps<HTMLInputElement> {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const nativeProps = useFilteredProps(props, ["noStyles", "plaintext"]);
+
   return (
     <input
       ref={ref}
-      {...props}
+      {...nativeProps}
       className={classNameObject({
         [INPUT_STYLES]: !(props.noStyles ?? false),
         [INPUT_DARK_STYLES]: !(props.noStyles ?? false),

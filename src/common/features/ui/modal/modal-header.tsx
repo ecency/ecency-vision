@@ -2,6 +2,7 @@ import React, { HTMLProps, useContext } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
 import { closeSvg } from "../../../img/svg";
 import { ModalContext } from "./index";
+import { useFilteredProps } from "../../../util/props-filter";
 
 interface Props {
   closeButton: boolean;
@@ -10,10 +11,11 @@ interface Props {
 
 export function ModalHeader(props: HTMLProps<HTMLDivElement> & Props) {
   const context = useContext(ModalContext);
+  const nativeProps = useFilteredProps(props, ["closeButton", "thin"]);
 
   return (
     <div
-      {...props}
+      {...nativeProps}
       className={classNameObject({
         "flex sticky bg-white z-10 top-0 items-center": true,
         "justify-between": !!props.children,

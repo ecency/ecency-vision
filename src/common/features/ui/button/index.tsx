@@ -2,11 +2,21 @@ import React, { forwardRef } from "react";
 import { ButtonProps } from "./props";
 import { classNameObject } from "../../../helper/class-name-object";
 import { BUTTON_OUTLINE_STYLES, BUTTON_SIZES, BUTTON_STYLES } from "./styles";
+import { useFilteredProps } from "../../../util/props-filter";
 
 export * from "./props";
 
 export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   (props, ref) => {
+    const nativeProps = useFilteredProps<typeof props, Required<ButtonProps>>(props, [
+      "appearance",
+      "outline",
+      "icon",
+      "iconPlacement",
+      "noPadding",
+      "full"
+    ]);
+
     const className = classNameObject({
       // Basic
       "cursor-pointer rounded-full duration-300 no-wrap": true,
@@ -35,13 +45,13 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     const children = props.children ? <div>{props.children}</div> : <></>;
 
     return "href" in props ? (
-      <a {...props} className={className} ref={ref as any}>
+      <a {...nativeProps} className={className} ref={ref as any}>
         {children}
         {icon}
       </a>
     ) : (
       <button
-        {...props}
+        {...nativeProps}
         style={{
           ...props.style,
           outline: "none"

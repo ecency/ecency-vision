@@ -5,7 +5,6 @@ import { Account } from "../../store/accounts/types";
 import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
-import LinearProgress from "../linear-progress";
 import { getAccounts, getFollowers, getFollowing } from "../../api/hive";
 import { FriendSearchResult, searchFollower, searchFollowing } from "../../api/search-api";
 import { _t } from "../../i18n";
@@ -13,12 +12,13 @@ import accountReputation from "../../helper/account-reputation";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
-import { FormControl } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 import { FilterFriends } from "../friends-filter";
 import moment from "moment";
 import { FilterFriendsType } from "../../enums";
 import { formatTimeDIfference } from "../../helper/parse-date";
 import { Button } from "@ui/button";
+import { Spinner } from "@ui/spinner";
 
 interface Friend {
   name: string;
@@ -366,25 +366,21 @@ export class List extends BaseComponent<ListProps, ListState> {
     return (
       <>
         <div className="friends-content">
-          {loading && (
-            <div className="loading">
-              <LinearProgress />
-            </div>
-          )}
-
           <div>
             <FilterFriends filterList={this.filterList} updateFilterType={this.updateFilterType} />
           </div>
 
           <div className="friends-list">
             <div className="friend-search-box">
-              <FormControl
-                type="text"
-                value={search}
-                placeholder={_t("friends.search-placeholder")}
-                onChange={this.searchChanged}
-                onKeyDown={this.searchKeyDown}
-              />
+              <InputGroup prepend={loading ? <Spinner className="w-3.5 h-3.5" /> : "@"}>
+                <FormControl
+                  type="text"
+                  value={search}
+                  placeholder={_t("friends.search-placeholder")}
+                  onChange={this.searchChanged}
+                  onKeyDown={this.searchKeyDown}
+                />
+              </InputGroup>
             </div>
 
             <div className="list-body">

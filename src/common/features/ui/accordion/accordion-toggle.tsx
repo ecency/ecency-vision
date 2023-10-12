@@ -1,5 +1,6 @@
 import { createElement, PropsWithChildren, useContext } from "react";
 import { AccordionContext } from "./accordion-context";
+import { useFilteredProps } from "../../../util/props-filter";
 
 interface Props extends PropsWithChildren<any> {
   as?: any;
@@ -8,11 +9,12 @@ interface Props extends PropsWithChildren<any> {
 
 export function AccordionToggle(props: Props) {
   const { show, setShow } = useContext(AccordionContext);
+  const nativeProps = useFilteredProps(props, ["eventKey", "as"]);
 
   return createElement(
     props.as ?? "div",
     {
-      ...props,
+      ...nativeProps,
       onClick: () =>
         setShow({
           ...show,

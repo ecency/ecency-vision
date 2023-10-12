@@ -1,5 +1,6 @@
 import React, { DetailedHTMLProps, TableHTMLAttributes } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
+import { useFilteredProps } from "../../../util/props-filter";
 
 export function Tr(
   props: JSX.IntrinsicAttributes &
@@ -63,6 +64,8 @@ export function Table(
     rounded?: boolean;
   }
 ) {
+  const nativeProps = useFilteredProps(props, ["full", "rounded"]);
+
   return (
     <div
       className={classNameObject({
@@ -72,7 +75,7 @@ export function Table(
       })}
     >
       <table
-        {...props}
+        {...nativeProps}
         className={classNameObject({
           // Basic
           "table-auto border-collapse": true,
