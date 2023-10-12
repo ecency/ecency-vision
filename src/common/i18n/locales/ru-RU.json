@@ -1227,6 +1227,7 @@
     "memo-help": "Это примечание видно всем",
     "memo-error": "Никогда не помещайте приватные ключи в мемо-поле, оно открыто для всех.",
     "memo-required": "Для перевода на биржу заполните мемо.",
+    "invalid-asset": "You can only send HIVE to an exchange account.",
     "available-hp-hint": "* доступно",
     "override-warning-1": "Новая сумма отменяет предыдущую.",
     "override-warning-2": "Аккаунту ({{account}}) уже было делегировано {{previousAmount}}.",
