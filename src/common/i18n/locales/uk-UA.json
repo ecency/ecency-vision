@@ -1227,7 +1227,7 @@
     "memo-help": "Ця примітка є публічною",
     "memo-error": "Ніколи не вводьте приватні ключі у поле для приміток, воно є публічно доступним для всіх.",
     "memo-required": "Переказ на біржу повинен мати примітку (memo).",
-    "invalid-asset": "You can only send HIVE to an exchange account.",
+    "invalid-asset": "Ви можете відправити HIVE тільки на рахунок для обміну.",
     "available-hp-hint": "* вільна Hive сила",
     "override-warning-1": "Нова сума замінює попередню.",
     "override-warning-2": "Обліковий запис ({{account}}) вже делегований з {{previousAmount}}.",
