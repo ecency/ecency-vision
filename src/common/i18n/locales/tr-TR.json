@@ -1227,6 +1227,7 @@
     "memo-help": "Bu notlar herkese açıktır",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "memo-required": "Transfer to an exchange must have a memo.",
+    "invalid-asset": "You can only send HIVE to an exchange account.",
     "available-hp-hint": "* mevcut hive power",
     "override-warning-1": "Yeni miktar öncekini geçersiz kılar.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",

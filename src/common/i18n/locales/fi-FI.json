@@ -1227,6 +1227,7 @@
     "memo-help": "Tämä muistio on julkinen",
     "memo-error": "Älä koskaan kopioi yksityisiä avaimia muistikenttään, se on julkisesti kaikkien nähtävissä.",
     "memo-required": "Siirrolla vaihtoalustalle on oltava muistio.",
+    "invalid-asset": "You can only send HIVE to an exchange account.",
     "available-hp-hint": "* hive power saatavilla",
     "override-warning-1": "Uusi määrä ohittaa edellisen määrän.",
     "override-warning-2": "Tili ({{account}}) on jo valtuutettu {{previousAmount}}.",
