@@ -446,5 +446,49 @@
   {
     "name": "acgalarza",
     "contributes": ["Discord Live show host"]
+  },
+    {
+    "name": "mikezillo",
+    "contributes": ["Guest Curator"]
+  },
+    {
+    "name": "emeka4",
+    "contributes": ["Guest Curator"]
+  },
+    {
+    "name": "fcarva",
+    "contributes": ["Guest Curator"]
+  },
+    {
+    "name": "buggedout",
+    "contributes": ["Guest Curator"]
+  },
+    {
+    "name": "allentaylor ",
+    "contributes": ["Guest Curator"]
+  },
+    {
+    "name": "manclar",
+    "contributes": ["Guest Curator"]
+  },
+    {
+    "name": "djbravo",
+    "contributes": ["Guest Curator"]
+  },
+    {
+    "name": "etorobong",
+    "contributes": ["Guest Curator"]
+  },
+   {
+    "name": "Itwithsm",
+    "contributes": ["Guest Curator"]
+  },
+   {
+    "name": "rabihfarhat",
+    "contributes": ["Translation (Arabian)"]
+  },
+   {
+    "name": "mypathtofire ",
+    "contributes": ["Thought Leader", "Discord Moderator"]
   }
 ]
