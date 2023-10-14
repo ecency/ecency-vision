@@ -851,6 +851,7 @@
     "section-blog": "Blog",
     "section-posts": "Posts",
     "section-trail": "Likes",
+    "section-activities": "Activites",
     "section-comments": "Comments",
     "section-replies": "Replies",
     "section-communities": "Communities",
@@ -2178,5 +2179,21 @@
     "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
     "insufficient-resource-wait": "Wait few hours for RC refill",
     "report": "Report"
+  },
+  "profile-activities": {
+    "by": "by",
+    "comment": "commented on",
+    "replied": "replied to",
+    "voted": "voted on",
+    "received": "received {{n}} from",
+    "follow": "started following",
+    "unfollow": "unfollowed",
+    "subscribed": "subscribed to community",
+    "unsubscribed": "unsubscribed from community",
+    "witness-vote": "voted witness",
+    "witness-unvote": "unvoted witness",
+    "approved": "approved",
+    "unapproved": "unapproved",
+    "update": "updated thier account"
   }
 }

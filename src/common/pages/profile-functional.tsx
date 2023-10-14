@@ -52,6 +52,7 @@ import WalletSpk from "../components/wallet-spk";
 import "./profile.scss";
 import { useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../core";
+import { ProfileActivites } from "../components/profile-activities";
 
 interface MatchParams {
   username: string;
@@ -437,7 +438,7 @@ export const Profile = (props: Props) => {
         <div className="content-side">
           {ProfileMenu({ ...props, username, section })}
 
-          {[...Object.keys(ProfileFilter), "communities"].includes(section) &&
+          {[...Object.keys(ProfileFilter), "communities"].includes(section) && section !== "activities" &&
             ProfileCover({ ...props, account })}
 
           {data &&
@@ -580,6 +581,23 @@ export const Profile = (props: Props) => {
                               section
                             }}
                           />
+                        </div>
+                      </div>
+                    </>
+                  );
+                }
+                if (section === "activities") {
+                  return (
+                    <>
+                      <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
+                        <div
+                          className={_c(
+                            `entry-list-body ${
+                              props.global.listStyle === ListStyle.grid ? "grid-view" : ""
+                            }`
+                          )}
+                        >
+                          <ProfileActivites account={account} global={props.global}/>
                         </div>
                       </div>
                     </>

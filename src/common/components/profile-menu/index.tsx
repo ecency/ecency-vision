@@ -32,7 +32,7 @@ export class ProfileMenu extends Component<Props> {
   render() {
     const { username, section, activeUser } = this.props;
 
-    const kebabMenuItems: MenuItem[] = ["trail", "replies", "communities"].map((x) => {
+    const kebabMenuItems: MenuItem[] = ["trail", "replies", "communities", "comments"].map((x) => {
       return {
         label: _t(`profile.section-${x}`),
         href: `/@${username}/${x}`,
@@ -49,7 +49,7 @@ export class ProfileMenu extends Component<Props> {
     };
 
     const menuItems: MenuItem[] = [
-      ...[ProfileFilter.blog, ProfileFilter.posts, ProfileFilter.comments].map((x) => {
+      ...[ProfileFilter.blog, ProfileFilter.posts, ProfileFilter.activities].map((x) => {
         return {
           label: _t(`profile.section-${x}`),
           href: `/@${username}/${x}`,
@@ -66,7 +66,8 @@ export class ProfileMenu extends Component<Props> {
     } = {
       history: this.props.history,
       label: ProfileFilter[section] ? _t(`profile.section-${section}`) : "",
-      items: [...menuItems, ...kebabMenuItems.filter((item) => item.selected)]
+      items: [...menuItems]
+      // items: [...menuItems, ...kebabMenuItems.filter((item) => item.selected)]
     };
 
     const dropDownMenuItems: MenuItem[] = [
@@ -157,9 +158,9 @@ export class ProfileMenu extends Component<Props> {
               {_t(`profile.section-settings`)}
             </Link>
           )}
-          <div className="kebab-icon entry-index-menu the-menu main-menu d-none d-lg-flex ">
+          {/* <div className="kebab-icon entry-index-menu the-menu main-menu d-none d-lg-flex ">
             <DropDown {...kebabMenuConfig} float="left" />
-          </div>
+          </div> */}
         </div>
 
         <div className="page-tools">
