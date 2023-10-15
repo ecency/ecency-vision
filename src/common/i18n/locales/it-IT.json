@@ -74,7 +74,9 @@
     "username": "Username",
     "past-few-days": "the past few days",
     "you": "You",
-    "copy-clipboard": "Copy to clipboard"
+    "copy-clipboard": "Copy to clipboard",
+    "first": "First",
+    "last": "Last"
   },
   "confirm": {
     "title": "Sei sicuro?",
