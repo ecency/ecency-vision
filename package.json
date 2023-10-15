@@ -24,6 +24,7 @@
     "@hiveio/hivescript": "^1.2.7",
     "@loadable/component": "^5.15.2",
     "@loadable/server": "^5.15.2",
+    "@popperjs/core": "^2.11.8",
     "@tanstack/react-query": "^4.29.7",
     "@tanstack/react-query-devtools": "^4.29.7",
     "@types/tus-js-client": "^2.1.0",
@@ -187,6 +188,9 @@
     ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}"
-    ]
+    ],
+    "moduleNameMapper": {
+      "@ui/(.*)": "<rootDir>/src/common/features/ui/$1"
+    }
   }
 }

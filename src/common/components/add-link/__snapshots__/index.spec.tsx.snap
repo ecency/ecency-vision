@@ -5,16 +5,16 @@ exports[`(1) Default render 1`] = `
   className="dialog-content"
 >
   <form
-    className=""
+    className="block "
     onSubmit={[Function]}
   >
     <div
-      className="form-group"
+      className="mb-4"
     >
       <input
         autoComplete="off"
         autoFocus={true}
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onInput={[Function]}
         onInvalid={[Function]}
@@ -25,11 +25,11 @@ exports[`(1) Default render 1`] = `
       />
     </div>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <input
         autoComplete="off"
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onInput={[Function]}
         onInvalid={[Function]}
@@ -40,14 +40,20 @@ exports[`(1) Default render 1`] = `
       />
     </div>
     <div
-      className="flex justify-content-end"
+      className="flex justify-end"
     >
       <button
-        className="btn btn-primary"
-        disabled={false}
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
         type="submit"
       >
-        Add
+        <div>
+          Add
+        </div>
       </button>
     </div>
   </form>

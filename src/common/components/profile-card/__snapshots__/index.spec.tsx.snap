@@ -77,10 +77,10 @@ exports[`(2) Render with loaded data 1`] = `
         onClick={[Function]}
       >
         <div
-          className="progress"
+          className="bg-gray-200 h-[1rem] text-white rounded-lg flex overflow-hidden"
         >
           <div
-            className="progress-bar progress-bar-success"
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-blue-dark-sky"
             role="progressbar"
             style={
               Object {
@@ -91,7 +91,7 @@ exports[`(2) Render with loaded data 1`] = `
             Available
           </div>
           <div
-            className="progress-bar used"
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-[#F0706A]"
             role="progressbar"
             style={
               Object {
@@ -213,7 +213,7 @@ exports[`(2) Render with loaded data 1`] = `
     </div>
   </div>
   <div
-    className="btn-controls"
+    className="btn-controls flex gap-3"
   />
 </div>
 `;
@@ -268,10 +268,10 @@ exports[`(3) Should show profile edits 1`] = `
         onClick={[Function]}
       >
         <div
-          className="progress"
+          className="bg-gray-200 h-[1rem] text-white rounded-lg flex overflow-hidden"
         >
           <div
-            className="progress-bar progress-bar-success"
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-blue-dark-sky"
             role="progressbar"
             style={
               Object {
@@ -282,7 +282,7 @@ exports[`(3) Should show profile edits 1`] = `
             Available
           </div>
           <div
-            className="progress-bar used"
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-[#F0706A]"
             role="progressbar"
             style={
               Object {
@@ -404,28 +404,64 @@ exports[`(3) Should show profile edits 1`] = `
     </div>
   </div>
   <div
-    className="btn-controls"
+    className="btn-controls flex gap-3"
   >
     <a
-      className="btn btn-sm btn-primary"
       href="/@user1/referrals"
       onClick={[Function]}
     >
-      Referrals
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        size="sm"
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        type="button"
+      >
+        <div>
+          Referrals
+        </div>
+      </button>
     </a>
     <a
-      className="btn btn-sm btn-primary"
       href="/witnesses"
       onClick={[Function]}
     >
-      Witnesses
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        size="sm"
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        type="button"
+      >
+        <div>
+          Witnesses
+        </div>
+      </button>
     </a>
     <a
-      className="btn btn-sm btn-primary"
       href="/proposals"
       onClick={[Function]}
     >
-      Proposals
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        size="sm"
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        type="button"
+      >
+        <div>
+          Proposals
+        </div>
+      </button>
     </a>
   </div>
 </div>

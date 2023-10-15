@@ -8,41 +8,41 @@ exports[`(1) Default render 1`] = `
     className="menu-items"
   >
     <span
-      className="flex d-lg-none community-menu-item selected-item"
+      className="flex community-menu-item lg:hidden selected-item"
     />
     <div
-      className="hidden d-lg-flex items-center"
+      className="hidden lg:flex items-center"
     >
       <a
-        className="community-menu-item selected-item"
+        className="community-menu-item flex selected-item"
         href="/trending/hive-148441"
         onClick={[Function]}
       >
         Trending
       </a>
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/hot/hive-148441"
         onClick={[Function]}
       >
         Hot
       </a>
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/created/hive-148441"
         onClick={[Function]}
       >
         New
       </a>
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/payout/hive-148441"
         onClick={[Function]}
       >
         Payouts
       </a>
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/muted/hive-148441"
         onClick={[Function]}
       >
@@ -50,14 +50,14 @@ exports[`(1) Default render 1`] = `
       </a>
     </div>
     <a
-      className="community-menu-item"
+      className="community-menu-item flex"
       href="/subscribers/hive-125125"
       onClick={[Function]}
     >
       Members
     </a>
     <a
-      className="community-menu-item"
+      className="community-menu-item flex"
       href="/activities/hive-125125"
       onClick={[Function]}
     >
@@ -82,7 +82,7 @@ exports[`(2) Hot filter 1`] = `
     className="menu-items"
   >
     <span
-      className="flex d-lg-none community-menu-item selected-item"
+      className="flex community-menu-item lg:hidden selected-item"
     >
       <div
         className="custom-dropdown float-left"
@@ -114,38 +114,38 @@ exports[`(2) Hot filter 1`] = `
       </div>
     </span>
     <div
-      className="hidden d-lg-flex items-center"
+      className="hidden lg:flex items-center"
     >
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/trending/hive-148441"
         onClick={[Function]}
       >
         Trending
       </a>
       <a
-        className="community-menu-item selected-item"
+        className="community-menu-item flex selected-item"
         href="/hot/hive-148441"
         onClick={[Function]}
       >
         Hot
       </a>
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/created/hive-148441"
         onClick={[Function]}
       >
         New
       </a>
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/payout/hive-148441"
         onClick={[Function]}
       >
         Payouts
       </a>
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/muted/hive-148441"
         onClick={[Function]}
       >
@@ -153,14 +153,14 @@ exports[`(2) Hot filter 1`] = `
       </a>
     </div>
     <a
-      className="community-menu-item"
+      className="community-menu-item flex"
       href="/subscribers/hive-125125"
       onClick={[Function]}
     >
       Members
     </a>
     <a
-      className="community-menu-item"
+      className="community-menu-item flex"
       href="/activities/hive-125125"
       onClick={[Function]}
     >
@@ -222,41 +222,41 @@ exports[`(3) In section 1`] = `
     className="menu-items"
   >
     <span
-      className="flex d-lg-none community-menu-item selected-item"
+      className="flex community-menu-item lg:hidden selected-item"
     />
     <div
-      className="hidden d-lg-flex items-center"
+      className="hidden lg:flex items-center"
     >
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/trending/hive-148441"
         onClick={[Function]}
       >
         Trending
       </a>
       <a
-        className="community-menu-item selected-item"
+        className="community-menu-item flex selected-item"
         href="/hot/hive-148441"
         onClick={[Function]}
       >
         Hot
       </a>
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/created/hive-148441"
         onClick={[Function]}
       >
         New
       </a>
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/payout/hive-148441"
         onClick={[Function]}
       >
         Payouts
       </a>
       <a
-        className="community-menu-item"
+        className="community-menu-item flex"
         href="/muted/hive-148441"
         onClick={[Function]}
       >
@@ -264,14 +264,14 @@ exports[`(3) In section 1`] = `
       </a>
     </div>
     <a
-      className="community-menu-item"
+      className="community-menu-item flex"
       href="/subscribers/hive-125125"
       onClick={[Function]}
     >
       Members
     </a>
     <a
-      className="community-menu-item"
+      className="community-menu-item flex"
       href="/activities/hive-125125"
       onClick={[Function]}
     >

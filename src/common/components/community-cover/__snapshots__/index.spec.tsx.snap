@@ -78,20 +78,32 @@ exports[`(1) Render with loaded account object 1`] = `
     className="controls-holder"
   >
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Join
+      <div>
+        Join
+      </div>
     </button>
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      New Post
+      <div>
+        New Post
+      </div>
     </button>
   </div>
 </div>
@@ -175,20 +187,32 @@ exports[`(2) Render with not loaded account object 1`] = `
     className="controls-holder"
   >
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Join
+      <div>
+        Join
+      </div>
     </button>
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      New Post
+      <div>
+        New Post
+      </div>
     </button>
   </div>
 </div>
@@ -272,20 +296,32 @@ exports[`(3) No bg image - Day theme 1`] = `
     className="controls-holder"
   >
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Join
+      <div>
+        Join
+      </div>
     </button>
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      New Post
+      <div>
+        New Post
+      </div>
     </button>
   </div>
 </div>
@@ -369,20 +405,32 @@ exports[`(4) No bg image - Night theme 1`] = `
     className="controls-holder"
   >
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Join
+      <div>
+        Join
+      </div>
     </button>
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      New Post
+      <div>
+        New Post
+      </div>
     </button>
   </div>
 </div>

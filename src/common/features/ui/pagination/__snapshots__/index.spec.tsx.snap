@@ -1,147 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(1) Default render 1`] = `
-<ul
-  className="pagination"
->
-  <li
-    className="page-item disabled"
+<div>
+  <button
+    className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+    disabled={true}
+    onClick={[Function]}
   >
-    <span
-      className="page-link"
-      disabled={true}
-      onClick={[Function]}
-    >
-      <span
-        aria-hidden="true"
-      >
-        «
-      </span>
-      <span
-        className="sr-only"
-      >
-        First
-      </span>
-    </span>
-  </li>
-  <li
-    className="page-item disabled"
+    First
+  </button>
+  <button
+    className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+    disabled={true}
+    onClick={[Function]}
   >
-    <span
-      className="page-link"
-      disabled={true}
-      onClick={[Function]}
+    <svg
+      viewBox="0 0 24 24"
     >
-      <span
-        aria-hidden="true"
-      >
-        ‹
-      </span>
-      <span
-        className="sr-only"
-      >
-        Previous
-      </span>
-    </span>
-  </li>
-  <li
-    className="page-item active"
+      <path
+        d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+  <button
+    active={true}
+    className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 border-blue-dark-sky bg-blue-dark-sky text-white"
+    onClick={[Function]}
   >
-    <span
-      className="page-link"
-      disabled={false}
-      onClick={[Function]}
-    >
-      1
-      <span
-        className="sr-only"
-      >
-        (current)
-      </span>
-    </span>
-  </li>
-  <li
-    className="page-item"
+    1
+  </button>
+  <button
+    active={false}
+    className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+    onClick={[Function]}
   >
-    <a
-      className="page-link"
-      href="#"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="button"
-    >
-      2
-    </a>
-  </li>
-  <li
-    className="page-item"
+    2
+  </button>
+  <button
+    active={false}
+    className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+    onClick={[Function]}
   >
-    <a
-      className="page-link"
-      href="#"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="button"
-    >
-      3
-    </a>
-  </li>
-  <li
-    className="page-item"
+    3
+  </button>
+  <button
+    active={false}
+    className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+    onClick={[Function]}
   >
-    <a
-      className="page-link"
-      href="#"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="button"
-    >
-      4
-    </a>
-  </li>
-  <li
-    className="page-item"
+    4
+  </button>
+  <button
+    className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+    disabled={false}
+    onClick={[Function]}
   >
-    <a
-      className="page-link"
-      href="#"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="button"
+    <svg
+      viewBox="0 0 24 24"
     >
-      <span
-        aria-hidden="true"
-      >
-        ›
-      </span>
-      <span
-        className="sr-only"
-      >
-        Next
-      </span>
-    </a>
-  </li>
-  <li
-    className="page-item"
+      <path
+        d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+  <button
+    className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+    disabled={false}
+    onClick={[Function]}
   >
-    <a
-      className="page-link"
-      href="#"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="button"
-    >
-      <span
-        aria-hidden="true"
-      >
-        »
-      </span>
-      <span
-        className="sr-only"
-      >
-        Last
-      </span>
-    </a>
-  </li>
-</ul>
+    Last
+  </button>
+</div>
 `;

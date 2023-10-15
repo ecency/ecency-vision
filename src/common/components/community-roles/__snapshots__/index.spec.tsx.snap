@@ -7,105 +7,131 @@ exports[`(1) Default render 1`] = `
   <h2>
     User Roles
   </h2>
-  <table
-    className="table table-striped table-bordered table-roles"
+  <div
+    className="border dark:border-gray-700 overflow-hidden rounded-xl w-full"
   >
-    <thead>
-      <tr>
-        <th
-          style={
-            Object {
-              "width": "200px",
-            }
-          }
+    <table
+      className="table-auto border-collapse text-xs sm:text-sm md:text-md w-full"
+    >
+      <thead>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
         >
-          Account
-        </th>
-        <th
-          style={
-            Object {
-              "width": "74px",
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            style={
+              Object {
+                "width": "200px",
+              }
             }
-          }
-        >
-          Role
-        </th>
-        <th>
-          Title
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <a
-            href="/@hive-148441"
-            onClick={[Function]}
           >
-            <span
-              className="user"
+            Account
+          </th>
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            style={
+              Object {
+                "width": "74px",
+              }
+            }
+          >
+            Role
+          </th>
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-3"
+          >
+            Title
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+        >
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            <a
+              href="/@hive-148441"
+              onClick={[Function]}
             >
               <span
-                className="user-avatar medium"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
-                  }
-                }
-              />
-               
-              <span
-                className="username"
+                className="user flex gap-3 items-center"
               >
-                hive-148441
+                <span
+                  className="user-avatar medium"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
+                    }
+                  }
+                />
+                 
+                <span
+                  className="username"
+                >
+                  hive-148441
+                </span>
               </span>
-            </span>
-          </a>
-        </td>
-        <td>
-          owner
-        </td>
-        <td>
-          
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a
-            href="/@bluemist"
-            onClick={[Function]}
+            </a>
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
           >
-            <span
-              className="user"
+            owner
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            
+          </td>
+        </tr>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+        >
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            <a
+              href="/@bluemist"
+              onClick={[Function]}
             >
               <span
-                className="user-avatar medium"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
-                  }
-                }
-              />
-               
-              <span
-                className="username"
+                className="user flex gap-3 items-center"
               >
-                bluemist
+                <span
+                  className="user-avatar medium"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
+                    }
+                  }
+                />
+                 
+                <span
+                  className="username"
+                >
+                  bluemist
+                </span>
               </span>
-            </span>
-          </a>
-        </td>
-        <td>
-          admin
-        </td>
-        <td>
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+            </a>
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            admin
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 `;
 
@@ -116,105 +142,131 @@ exports[`(2) Should not show add user button 1`] = `
   <h2>
     User Roles
   </h2>
-  <table
-    className="table table-striped table-bordered table-roles"
+  <div
+    className="border dark:border-gray-700 overflow-hidden rounded-xl w-full"
   >
-    <thead>
-      <tr>
-        <th
-          style={
-            Object {
-              "width": "200px",
-            }
-          }
+    <table
+      className="table-auto border-collapse text-xs sm:text-sm md:text-md w-full"
+    >
+      <thead>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
         >
-          Account
-        </th>
-        <th
-          style={
-            Object {
-              "width": "74px",
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            style={
+              Object {
+                "width": "200px",
+              }
             }
-          }
-        >
-          Role
-        </th>
-        <th>
-          Title
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <a
-            href="/@hive-148441"
-            onClick={[Function]}
           >
-            <span
-              className="user"
+            Account
+          </th>
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            style={
+              Object {
+                "width": "74px",
+              }
+            }
+          >
+            Role
+          </th>
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-3"
+          >
+            Title
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+        >
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            <a
+              href="/@hive-148441"
+              onClick={[Function]}
             >
               <span
-                className="user-avatar medium"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
-                  }
-                }
-              />
-               
-              <span
-                className="username"
+                className="user flex gap-3 items-center"
               >
-                hive-148441
+                <span
+                  className="user-avatar medium"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
+                    }
+                  }
+                />
+                 
+                <span
+                  className="username"
+                >
+                  hive-148441
+                </span>
               </span>
-            </span>
-          </a>
-        </td>
-        <td>
-          owner
-        </td>
-        <td>
-          
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a
-            href="/@bluemist"
-            onClick={[Function]}
+            </a>
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
           >
-            <span
-              className="user"
+            owner
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            
+          </td>
+        </tr>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+        >
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            <a
+              href="/@bluemist"
+              onClick={[Function]}
             >
               <span
-                className="user-avatar medium"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
-                  }
-                }
-              />
-               
-              <span
-                className="username"
+                className="user flex gap-3 items-center"
               >
-                bluemist
+                <span
+                  className="user-avatar medium"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
+                    }
+                  }
+                />
+                 
+                <span
+                  className="username"
+                >
+                  bluemist
+                </span>
               </span>
-            </span>
-          </a>
-        </td>
-        <td>
-          admin
-        </td>
-        <td>
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+            </a>
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            admin
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 `;
 
@@ -225,117 +277,149 @@ exports[`(3) Should show add user button 1`] = `
   <h2>
     User Roles
   </h2>
-  <table
-    className="table table-striped table-bordered table-roles"
+  <div
+    className="border dark:border-gray-700 overflow-hidden rounded-xl w-full"
   >
-    <thead>
-      <tr>
-        <th
-          style={
-            Object {
-              "width": "200px",
-            }
-          }
+    <table
+      className="table-auto border-collapse text-xs sm:text-sm md:text-md w-full"
+    >
+      <thead>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
         >
-          Account
-        </th>
-        <th
-          style={
-            Object {
-              "width": "74px",
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            style={
+              Object {
+                "width": "200px",
+              }
             }
-          }
-        >
-          Role
-        </th>
-        <th>
-          Title
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <a
-            href="/@hive-148441"
-            onClick={[Function]}
           >
-            <span
-              className="user"
+            Account
+          </th>
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            style={
+              Object {
+                "width": "74px",
+              }
+            }
+          >
+            Role
+          </th>
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-3"
+          >
+            Title
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+        >
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            <a
+              href="/@hive-148441"
+              onClick={[Function]}
             >
               <span
-                className="user-avatar medium"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
-                  }
-                }
-              />
-               
-              <span
-                className="username"
+                className="user flex gap-3 items-center"
               >
-                hive-148441
+                <span
+                  className="user-avatar medium"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
+                    }
+                  }
+                />
+                 
+                <span
+                  className="username"
+                >
+                  hive-148441
+                </span>
               </span>
-            </span>
-          </a>
-        </td>
-        <td>
-          owner
-        </td>
-        <td>
-          
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a
-            href="/@bluemist"
-            onClick={[Function]}
+            </a>
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
           >
-            <span
-              className="user"
+            owner
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            
+          </td>
+        </tr>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+        >
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            <a
+              href="/@bluemist"
+              onClick={[Function]}
             >
               <span
-                className="user-avatar medium"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
-                  }
-                }
-              />
-               
-              <span
-                className="username"
+                className="user flex gap-3 items-center"
               >
-                bluemist
+                <span
+                  className="user-avatar medium"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
+                    }
+                  }
+                />
+                 
+                <span
+                  className="username"
+                >
+                  bluemist
+                </span>
               </span>
-            </span>
-          </a>
-        </td>
-        <td>
-          <a
-            href="#"
-            onClick={[Function]}
+            </a>
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
           >
-            admin
-          </a>
-        </td>
-        <td>
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+            <a
+              href="#"
+              onClick={[Function]}
+            >
+              admin
+            </a>
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 "
+          >
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <button
-    className="btn btn-primary"
-    disabled={false}
+    className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
     onClick={[Function]}
+    style={
+      Object {
+        "outline": "none",
+      }
+    }
     type="button"
   >
-    Add User
+    <div>
+      Add User
+    </div>
   </button>
 </div>
 `;

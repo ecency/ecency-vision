@@ -2,174 +2,230 @@
 
 exports[`(1) Default render 1`] = `
 Array [
-  <tr>
+  <tr
+    className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+  >
     <td
-      className="col-type-content"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 col-type-content"
     >
        
       owner
     </td>
     <td
-      className="key"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 key"
     />
     <td
-      className="hidden d-sm-block"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 hidden sm:table-cell"
     >
       <p
         className="action-btns"
       >
         <button
-          className="copy-btn btn btn-outline-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 copy-btn"
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Copy
+          <div>
+            Copy
+          </div>
         </button>
         <button
-          className="import-btn btn btn-outline-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 import-btn"
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Import private key
+          <div>
+            Import private key
+          </div>
         </button>
       </p>
     </td>
     <td
-      className="d-sm-none"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 sm:hidden"
     />
     <td
-      className="col-weight-content"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 col-weight-content"
     >
       1
     </td>
   </tr>,
-  <tr>
+  <tr
+    className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+  >
     <td
-      className="col-type-content"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 col-type-content"
     >
        
       active
     </td>
     <td
-      className="key"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 key"
     />
     <td
-      className="hidden d-sm-block"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 hidden sm:table-cell"
     >
       <p
         className="action-btns"
       >
         <button
-          className="copy-btn btn btn-outline-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 copy-btn"
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Copy
+          <div>
+            Copy
+          </div>
         </button>
         <button
-          className="import-btn btn btn-outline-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 import-btn"
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Import private key
+          <div>
+            Import private key
+          </div>
         </button>
       </p>
     </td>
     <td
-      className="d-sm-none"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 sm:hidden"
     />
     <td
-      className="col-weight-content"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 col-weight-content"
     >
       1
     </td>
   </tr>,
-  <tr>
+  <tr
+    className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+  >
     <td
-      className="col-type-content"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 col-type-content"
     >
        
       posting
     </td>
     <td
-      className="key"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 key"
     />
     <td
-      className="hidden d-sm-block"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 hidden sm:table-cell"
     >
       <p
         className="action-btns"
       >
         <button
-          className="copy-btn btn btn-outline-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 copy-btn"
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Copy
+          <div>
+            Copy
+          </div>
         </button>
         <button
-          className="import-btn btn btn-outline-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 import-btn"
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Import private key
+          <div>
+            Import private key
+          </div>
         </button>
       </p>
     </td>
     <td
-      className="d-sm-none"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 sm:hidden"
     />
     <td
-      className="col-weight-content"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 col-weight-content"
     >
       1
     </td>
   </tr>,
-  <tr>
+  <tr
+    className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+  >
     <td
-      className="col-type-content"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 col-type-content"
     >
        
       memo
     </td>
     <td
-      className="key"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 key"
     />
     <td
-      className="hidden d-sm-block"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 hidden sm:table-cell"
     >
       <p
         className="action-btns"
       >
         <button
-          className="copy-btn btn btn-outline-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 copy-btn"
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Copy
+          <div>
+            Copy
+          </div>
         </button>
         <button
-          className="import-btn btn btn-outline-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 import-btn"
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Import private key
+          <div>
+            Import private key
+          </div>
         </button>
       </p>
     </td>
     <td
-      className="d-sm-none"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 sm:hidden"
     />
     <td
-      className="col-weight-content"
+      className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 col-weight-content"
     >
       1
     </td>

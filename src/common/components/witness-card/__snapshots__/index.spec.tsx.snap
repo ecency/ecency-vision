@@ -2,7 +2,7 @@
 
 exports[`(1) renders witness card successfully 1`] = `
 <div
-  className="witnesses-card p-3 mb-3 border rounded"
+  className="witnesses-card p-3 mb-3 border border-[--border-color] rounded"
 >
   <div
     className="flex items-center justify-between"
@@ -20,7 +20,7 @@ exports[`(1) renders witness card successfully 1`] = `
     <div>
       <img
         alt=""
-        className="rounded-circle avatar mr-3"
+        className="rounded-[50%] avatar mr-3"
         src="https://images.ecency.com/u/undefined/avatar/medium"
       />
     </div>

@@ -5,15 +5,15 @@ exports[`Renders a message 1`] = `
   className="flex justify-center items-center mt-5"
 >
   <div
-    className="w-25"
+    className="w-[25%]"
   >
     <img
-      className="w-100 h-full"
+      className="w-full h-full"
       src="writer.png"
     />
   </div>
   <div
-    className="flex flex-col w-50 ml-5"
+    className="flex flex-col w-[50%] ml-5"
   >
     <h2>
       

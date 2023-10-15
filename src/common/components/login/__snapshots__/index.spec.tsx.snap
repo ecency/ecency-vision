@@ -14,20 +14,20 @@ Array [
     </h2>
   </div>,
   <form
-    className="login-form"
+    className="block login-form"
     onSubmit={[Function]}
   >
     <p
-      className="login-form-text"
+      className="login-form-text mb-4"
     >
       Login with your username and private key.
     </p>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <input
         autoFocus={true}
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder="username"
@@ -36,11 +36,11 @@ Array [
       />
     </div>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <input
         autoComplete="off"
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder="password / private key"
@@ -54,7 +54,7 @@ Array [
       <div />
     </div>
     <p
-      className="login-form-text"
+      className="login-form-text my-3"
     >
       We don't store your private keys.
        
@@ -66,12 +66,19 @@ Array [
       </a>
     </p>
     <button
-      className="btn btn-primary btn-block"
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 block w-full"
       disabled={true}
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Login
+      <div>
+        Login
+      </div>
     </button>
   </form>,
   <div
@@ -82,18 +89,30 @@ Array [
   <div
     className="hs-login"
   >
-    <a
-      className="btn btn-outline-primary"
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      disabled={false}
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
     >
-      <img
-        alt="hivesigner"
-        className="hs-logo"
-        src="hive-signer.svg"
-      />
-       
-      Login with hivesigner
-    </a>
+      <div>
+        Login with hivesigner
+      </div>
+      <div
+        className="flex items-center w-5 h-5 undefined"
+      >
+        <img
+          alt="hivesigner"
+          className="hs-logo"
+          src="hive-signer.svg"
+        />
+      </div>
+    </button>
   </div>,
   <p>
     Don't have an account?
@@ -209,20 +228,20 @@ Array [
     OR
   </div>,
   <form
-    className="login-form"
+    className="block login-form"
     onSubmit={[Function]}
   >
     <p
-      className="login-form-text"
+      className="login-form-text mb-4"
     >
       Login with your username and private key.
     </p>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <input
         autoFocus={true}
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder="username"
@@ -231,11 +250,11 @@ Array [
       />
     </div>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <input
         autoComplete="off"
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder="password / private key"
@@ -249,7 +268,7 @@ Array [
       <div />
     </div>
     <p
-      className="login-form-text"
+      className="login-form-text my-3"
     >
       We don't store your private keys.
        
@@ -261,12 +280,19 @@ Array [
       </a>
     </p>
     <button
-      className="btn btn-primary btn-block"
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 block w-full"
       disabled={true}
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Login
+      <div>
+        Login
+      </div>
     </button>
   </form>,
   <div
@@ -277,18 +303,30 @@ Array [
   <div
     className="hs-login"
   >
-    <a
-      className="btn btn-outline-primary"
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      disabled={false}
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
     >
-      <img
-        alt="hivesigner"
-        className="hs-logo"
-        src="hive-signer.svg"
-      />
-       
-      Login with hivesigner
-    </a>
+      <div>
+        Login with hivesigner
+      </div>
+      <div
+        className="flex items-center w-5 h-5 undefined"
+      >
+        <img
+          alt="hivesigner"
+          className="hs-logo"
+          src="hive-signer.svg"
+        />
+      </div>
+    </button>
   </div>,
   <p>
     Don't have an account?
@@ -407,20 +445,20 @@ Array [
     OR
   </div>,
   <form
-    className="login-form"
+    className="block login-form"
     onSubmit={[Function]}
   >
     <p
-      className="login-form-text"
+      className="login-form-text mb-4"
     >
       Login with your username and private key.
     </p>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <input
         autoFocus={true}
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder="username"
@@ -429,11 +467,11 @@ Array [
       />
     </div>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <input
         autoComplete="off"
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder="password / private key"
@@ -447,7 +485,7 @@ Array [
       <div />
     </div>
     <p
-      className="login-form-text"
+      className="login-form-text my-3"
     >
       We don't store your private keys.
        
@@ -459,12 +497,19 @@ Array [
       </a>
     </p>
     <button
-      className="btn btn-primary btn-block"
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 block w-full"
       disabled={true}
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Login
+      <div>
+        Login
+      </div>
     </button>
   </form>,
   <div
@@ -475,18 +520,30 @@ Array [
   <div
     className="hs-login"
   >
-    <a
-      className="btn btn-outline-primary"
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      disabled={false}
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
     >
-      <img
-        alt="hivesigner"
-        className="hs-logo"
-        src="hive-signer.svg"
-      />
-       
-      Login with hivesigner
-    </a>
+      <div>
+        Login with hivesigner
+      </div>
+      <div
+        className="flex items-center w-5 h-5 undefined"
+      >
+        <img
+          alt="hivesigner"
+          className="hs-logo"
+          src="hive-signer.svg"
+        />
+      </div>
+    </button>
   </div>,
 ]
 `;
@@ -505,20 +562,20 @@ Array [
     </h2>
   </div>,
   <form
-    className="login-form"
+    className="block login-form"
     onSubmit={[Function]}
   >
     <p
-      className="login-form-text"
+      className="login-form-text mb-4"
     >
       Login with your username and private key.
     </p>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <input
         autoFocus={true}
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder="username"
@@ -527,11 +584,11 @@ Array [
       />
     </div>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <input
         autoComplete="off"
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder="password / private key"
@@ -545,7 +602,7 @@ Array [
       <div />
     </div>
     <p
-      className="login-form-text"
+      className="login-form-text my-3"
     >
       We don't store your private keys.
        
@@ -557,12 +614,19 @@ Array [
       </a>
     </p>
     <button
-      className="btn btn-primary btn-block"
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 block w-full"
       disabled={true}
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Login
+      <div>
+        Login
+      </div>
     </button>
   </form>,
   <div
@@ -573,34 +637,58 @@ Array [
   <div
     className="hs-login"
   >
-    <a
-      className="btn btn-outline-primary"
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      disabled={false}
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
     >
-      <img
-        alt="hivesigner"
-        className="hs-logo"
-        src="hive-signer.svg"
-      />
-       
-      Login with hivesigner
-    </a>
+      <div>
+        Login with hivesigner
+      </div>
+      <div
+        className="flex items-center w-5 h-5 undefined"
+      >
+        <img
+          alt="hivesigner"
+          className="hs-logo"
+          src="hive-signer.svg"
+        />
+      </div>
+    </button>
   </div>,
   <div
     className="kc-login"
   >
-    <a
-      className="btn btn-outline-primary"
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      disabled={false}
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
     >
-      <img
-        alt="keychain"
-        className="kc-logo"
-        src="keychain.png"
-      />
-       
-      Login with keychain
-    </a>
+      <div>
+        Login with keychain
+      </div>
+      <div
+        className="flex items-center w-5 h-5 undefined"
+      >
+        <img
+          alt="keychain"
+          className="kc-logo"
+          src="keychain.png"
+        />
+      </div>
+    </button>
   </div>,
   <p>
     Don't have an account?

@@ -284,12 +284,9 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                 <div
                   className="ml-1"
                 >
+                  <div />
                   <div
                     className="flex items-center"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"
@@ -343,12 +340,9 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                 <div
                   className="ml-1"
                 >
+                  <div />
                   <div
                     className="flex items-center"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"
@@ -606,12 +600,9 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
                 <div
                   className="ml-1"
                 >
+                  <div />
                   <div
                     className="flex items-center"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"
@@ -665,12 +656,9 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
                 <div
                   className="ml-1"
                 >
+                  <div />
                   <div
                     className="flex items-center"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"

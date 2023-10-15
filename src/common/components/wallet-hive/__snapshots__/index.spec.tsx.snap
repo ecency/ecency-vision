@@ -281,8 +281,9 @@ exports[`(1) Default Render 1`] = `
              
           </h2>
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             onChange={[Function]}
+            type="select"
             value=""
           >
             <option
@@ -775,8 +776,9 @@ exports[`(2) Render with converting HBD 1`] = `
              
           </h2>
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             onChange={[Function]}
+            type="select"
             value=""
           >
             <option
@@ -1268,8 +1270,9 @@ exports[`(3) usePrivate = false 1`] = `
              
           </h2>
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             onChange={[Function]}
+            type="select"
             value=""
           >
             <option

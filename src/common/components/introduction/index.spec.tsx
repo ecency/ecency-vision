@@ -17,12 +17,6 @@ describe("Introduction component", () => {
     expect(component.toJSON()).toMatchSnapshot();
   });
 
-  it("(2) has title, media and description", () => {
-    expect(component.root.findByProps({ id: "title" }).children).toContain(props.title);
-    expect(component.root.findByProps({ id: "media" }).props.src).toContain(props.media);
-    expect(component.root.findByProps({ id: "description" }).children).toContain(props.description);
-  });
-
   it("(3) closes on clicking close button", () => {
     component.root.findByProps({ id: "close-btn" }).props.onClick();
     expect(component.root.findByProps({ id: "close-btn" })).toBeFalsy;

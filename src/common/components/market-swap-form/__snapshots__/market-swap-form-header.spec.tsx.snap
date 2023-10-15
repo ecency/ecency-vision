@@ -29,19 +29,29 @@ exports[`should render sign title 1`] = `
   className="market-swap-form-header flex items-center title mb-4 "
 >
   <button
-    className="btn btn-link btn-sm"
+    className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active  h-[2rem] text-sm font-[500] px-2"
     disabled={false}
     onClick={[Function]}
+    size="sm"
+    style={
+      Object {
+        "outline": "none",
+      }
+    }
     type="button"
   >
-    <svg
-      viewBox="0 0 24 24"
+    <div
+      className="flex items-center w-5 h-5 undefined"
     >
-      <path
-        d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
-        fill="currentColor"
-      />
-    </svg>
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
   </button>
   <div
     className="text-blue-dark-sky font-bold"

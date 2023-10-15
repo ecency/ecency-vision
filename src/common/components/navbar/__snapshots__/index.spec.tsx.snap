@@ -2,76 +2,77 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="sticky-container"
+  className="fixed z-10 top-0 left-0 right-0 flex flex-col justify-start"
   id="sticky-container"
 >
   <div
-    className="nav-bar-toggle fixed"
-    onClick={[Function]}
-  >
-    <svg
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
-        fill="currentColor"
-      />
-    </svg>
-  </div>
-  <div
-    className="nav-bar-sm sticky "
+    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b px-3"
   >
     <div
-      className="brand"
+      className="h-[40px] w-[40px] shrink-0 cursor-pointer"
     >
       <a
-        href="/hot"
+        href="/"
         onClick={[Function]}
       >
         <img
           alt="Logo"
-          className="logo"
+          className="h-[40px] w-[40px]"
           src="logo-circle.svg"
         />
       </a>
     </div>
     <div
-      className="text-menu"
+      className="text-menu flex items-center justify-center h-full md:mr-2"
     >
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/discover"
         onClick={[Function]}
       >
         Discover
       </a>
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/communities"
         onClick={[Function]}
       >
         Communities
       </a>
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/decks"
         onClick={[Function]}
       >
         Decks
       </a>
     </div>
+    <div
+      className="navbar-toggle flex w-[1.5rem] h-[1.5rem] justify-center flex-col gap-1"
+      onClick={[Function]}
+    >
+      <span
+        className="bg-gray-500"
+      />
+      <span
+        className="bg-gray-500"
+      />
+      <span
+        className="bg-gray-500"
+      />
+    </div>
   </div>
   <div
-    className="nav-bar  "
+    className="hidden md:flex w-full select-none relative  "
   >
     <div
-      className="nav-bar-inner "
+      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-dark-200 bg-light-200 dark:bg-dark-200"
     >
       <div
-        className="brand"
+        className="h-[40px] min-w-[40px] cursor-pointer"
       >
         <a
-          href="/hot"
+          href="/"
           onClick={[Function]}
         >
           <img
@@ -82,24 +83,27 @@ exports[`(1) Default render 1`] = `
         </a>
       </div>
       <div
-        className="text-menu"
+        className="flex-1"
+      />
+      <div
+        className="text-menu flex items-center justify-center h-full md:mr-2"
       >
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/discover"
           onClick={[Function]}
         >
           Discover
         </a>
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/communities"
           onClick={[Function]}
         >
           Communities
         </a>
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/decks"
           onClick={[Function]}
         >
@@ -110,108 +114,137 @@ exports[`(1) Default render 1`] = `
         className="flex-spacer"
       />
       <div
-        className="search-bar"
+        className="max-w-[400px] w-full"
       >
         <div
-          className="suggestion"
+          className="suggestion relative"
         >
           <div
             className="search-box"
           >
-            <span
-              className="prepend"
+            <div
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
-              <svg
-                viewBox="0 0 24 24"
+              <div
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <path
-                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-            <input
-              autoComplete="off"
-              className="form-control"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder="Search 10,000,000 posts"
-              type="text"
-              value=""
-            />
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M14 5H20"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M14 8H17"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M22 22L20 20"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </div>
+              <input
+                autoComplete="off"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Search 10,000,000 posts"
+                type="text"
+                value=""
+              />
+            </div>
           </div>
           <div />
         </div>
       </div>
       <div
-        className="switch-menu"
+        className="flex items-center ml-3 gap-3"
       >
         <div
           className="switch-language"
+        />
+        <button
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+          onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
+          title=""
+          type="button"
         >
           <div
-            className="custom-dropdown float-right"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
+            className="flex items-center w-5 h-5 undefined"
           >
-            <div
-              className="dropdown-btn"
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </button>
+        <div>
+          <a
+            href="/submit"
+            onClick={[Function]}
+            title="Create Post"
+          >
+            <button
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              style={
+                Object {
+                  "outline": "none",
+                }
+              }
+              type="button"
             >
               <div
-                className="label"
-              >
-                EN
-              </div>
-              <div
-                className="menu-down"
+                className="flex items-center w-5 h-5 undefined"
               >
                 <svg
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M7,10L12,15L17,10H7Z"
+                    d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
                     fill="currentColor"
                   />
                 </svg>
               </div>
-            </div>
-          </div>
+            </button>
+          </a>
         </div>
-        <div
-          className="switch-theme"
-          onClick={[Function]}
-          title="Night Theme"
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-              fill="currentColor"
-            />
-          </svg>
-        </div>
-        <a
-          className="switch-theme pencil"
-          href="/submit"
-          onClick={[Function]}
-          title="Create Post"
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-              fill="currentColor"
-            />
-          </svg>
-        </a>
       </div>
       <div
         className="btn-menu"
-      />
-      <div>
+      >
         <div
           className="user-nav"
         >
@@ -269,423 +302,6 @@ exports[`(1) Default render 1`] = `
               />
             </svg>
           </span>
-          <div
-            className="custom-dropdown float-right"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <span
-              className="user-avatar medium"
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-          </div>
-        </div>
-        <div
-          className="submit-post"
-        >
-          <a
-            className="btn btn-outline-primary"
-            href="/submit"
-            onClick={[Function]}
-            title="Create Post"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    className="nav-bar hidden"
-  >
-    <div
-      className="nav-bar-inner"
-    >
-      <div
-        className="mt-2 pt-5 w-100"
-      >
-        <a
-          href="/@foo"
-          onClick={[Function]}
-        >
-          <div
-            className="p-1 menu-item menu-item-profile flex text-white text-15 items-center mt-0 mb-3 relative"
-          >
-            <span
-              className="user-avatar large"
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-            <div
-              className="ml-2"
-            >
-              <b>
-                @
-                foo
-              </b>
-              <div
-                className="mt-1 text-white"
-              >
-                Vote Power:
-                 
-                <span>
-                  <svg
-                    fill="none"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    width="13"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11.623 6.59424L6.43483 1.40602L1.24661 6.59424"
-                      stroke="#535E65"
-                      strokeLinecap="square"
-                    />
-                  </svg>
-                </span>
-                 
-                % 
-                <span>
-                  <svg
-                    fill="none"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    width="13"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
-                      stroke="#535E65"
-                      strokeLinecap="square"
-                    />
-                  </svg>
-                </span>
-                 
-                %
-              </div>
-            </div>
-          </div>
-        </a>
-        <div
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Search
-            </div>
-          </div>
-        </div>
-        <a
-          href="/submit"
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                fill="none"
-                height="20"
-                viewBox="0 0 20 20"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.8494 3.51574L16.3082 1.97442C15.604 1.27023 14.4583 1.27026 13.7541 1.97442C13.0911 2.63749 2.96437 12.765 2.28761 13.4418C2.21553 13.5139 2.16723 13.6097 2.15002 13.7034L1.37943 17.865C1.34957 18.0263 1.40099 18.192 1.51702 18.3081C1.63318 18.4242 1.79894 18.4756 1.96008 18.4457L6.12129 17.675C6.21746 17.6571 6.312 17.6083 6.38288 17.5374L17.8494 6.06999C18.5552 5.36417 18.5553 4.22166 17.8494 3.51574ZM2.49124 17.3337L2.95739 14.8163L5.00848 16.8676L2.49124 17.3337ZM6.03057 16.4803L3.34458 13.7942L13.1509 3.98708L15.8369 6.67327L6.03057 16.4803ZM17.1447 5.36533L16.5415 5.96861L13.8555 3.28242L14.4588 2.67914C14.7744 2.36351 15.2879 2.36347 15.6036 2.67914L17.1447 4.22047C17.4612 4.53687 17.4612 5.0489 17.1447 5.36533Z"
-                  fill="black"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Write a post
-            </div>
-          </div>
-        </a>
-        <div>
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center text-dark"
-            onClick={[Function]}
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                fill="none"
-                height="18"
-                viewBox="0 0 18 18"
-                width="18"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  clipPath="url(#clip0)"
-                >
-                  <path
-                    d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
-                    fill="#202020"
-                  />
-                  <path
-                    d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
-                    fill="#202020"
-                  />
-                </g>
-                <defs>
-                  <clipPath
-                    id="clip0"
-                  >
-                    <rect
-                      fill="white"
-                      height="17.343"
-                      transform="translate(0.203125 0.328613)"
-                      width="17.343"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Profile menu
-            </div>
-            <div
-              className="ml-3 text-15 icon-stroke"
-            >
-              <svg
-                fill="none"
-                height="8"
-                viewBox="0 0 13 8"
-                width="13"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
-                  stroke="#535E65"
-                  strokeLinecap="square"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon text-dark"
-          >
-            <svg
-              fill="none"
-              height="21"
-              viewBox="0 0 17 21"
-              width="17"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.4616 16.4474C16.4028 16.4092 15.9603 16.0993 15.5173 15.1616C14.7037 13.4396 14.5329 11.0139 14.5329 9.28223C14.5329 9.27469 14.5327 9.26723 14.5325 9.25973C14.5236 6.97109 13.1532 4.9982 11.1921 4.11301V2.75922C11.1921 1.5307 10.1943 0.53125 8.96777 0.53125H8.78343C7.55695 0.53125 6.55913 1.5307 6.55913 2.75922V4.11293C4.59148 5.00098 3.21831 6.98394 3.21831 9.28223C3.21831 11.0139 3.04753 13.4396 2.2339 15.1616C1.79089 16.0992 1.34843 16.4092 1.2896 16.4474C1.04187 16.562 0.919721 16.8269 0.976713 17.0953C1.03425 17.3663 1.28761 17.5532 1.56429 17.5532H5.8591C5.88308 19.1993 7.2266 20.5312 8.87562 20.5312C10.5246 20.5312 11.8682 19.1993 11.8921 17.5532H16.1869C16.4636 17.5532 16.717 17.3663 16.7745 17.0953C16.8314 16.8269 16.7093 16.562 16.4616 16.4474ZM7.73105 2.75922C7.73105 2.17793 8.20316 1.70504 8.78347 1.70504H8.96781C9.54812 1.70504 10.0202 2.17793 10.0202 2.75922V3.73254C9.65038 3.65609 9.26753 3.61586 8.87546 3.61586C8.48351 3.61586 8.10078 3.65605 7.73109 3.73242V2.75922H7.73105ZM8.87562 19.3575C7.87277 19.3575 7.05476 18.5521 7.03097 17.5532H10.7202C10.6965 18.5521 9.87847 19.3575 8.87562 19.3575ZM11.235 16.3794C11.2349 16.3794 2.89964 16.3794 2.89964 16.3794C3.00101 16.2214 3.10417 16.0425 3.20671 15.8404C3.99203 14.2918 4.39023 12.0854 4.39023 9.28223C4.39023 6.805 6.4023 4.78965 8.87542 4.78965C11.3485 4.78965 13.3606 6.805 13.3606 9.28418C13.3606 9.29141 13.3607 9.29859 13.361 9.30578C13.3632 12.0977 13.7614 14.2962 14.5445 15.8404C14.6471 16.0426 14.7503 16.2214 14.8516 16.3794H11.235Z"
-                fill="#202020"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Notifications
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon text-dark"
-          >
-            <svg
-              height="16px"
-              version="1.1"
-              viewBox="0 0 512 512"
-              width="16px"
-            >
-              <path
-                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
-                fill="currentColor"
-              />
-              <path
-                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Boost
-          </div>
-        </div>
-        <a
-          href="/@foo/wallet"
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="icon-stroke text-dark"
-            >
-              <svg
-                fill="none"
-                height="15"
-                viewBox="0 0 20 15"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  height="12.3505"
-                  rx="1.5"
-                  stroke="#202020"
-                  width="18.3451"
-                  x="0.703125"
-                  y="1.3623"
-                />
-                <path
-                  d="M1.85352 4.93359L17.8971 4.93359"
-                  stroke="#202020"
-                  strokeLinecap="square"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15 flex"
-            >
-              Wallet
-               
-              <div
-                className="dot align-self-start ml-1"
-              />
-            </div>
-          </div>
-        </a>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark relative"
-        >
-          <div
-            className="navbar-icon"
-          >
-            <svg
-              fill="none"
-              height="19"
-              viewBox="0 0 19 19"
-              width="19"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.875 0.53125C14.8374 0.53125 18.875 4.56888 18.875 9.53125C18.875 14.4936 14.8374 18.5312 9.875 18.5312C4.91263 18.5312 0.875 14.4936 0.875 9.53125C0.875 4.56888 4.91263 0.53125 9.875 0.53125ZM3.503 4.92213C4.47275 5.30688 5.4695 5.61175 6.49212 5.812C6.92638 4.38212 7.616 3.013 8.56325 1.77437C6.48875 2.12538 4.691 3.28525 3.503 4.92213ZM7.328 11.9838C9.01775 11.752 10.7334 11.752 12.4231 11.9838C12.7696 10.3705 12.7708 8.701 12.4254 7.08663C11.5861 7.20138 10.7379 7.28125 9.875 7.28125C9.01213 7.28125 8.165 7.20138 7.32575 7.08663C6.98038 8.701 6.9815 10.3705 7.328 11.9838ZM7.61938 5.98637C9.11675 6.17987 10.6344 6.17987 12.1318 5.98637C11.6705 4.53963 10.9167 3.16825 9.875 1.95325C8.83325 3.16825 8.08062 4.53963 7.61938 5.98637ZM11.189 1.77437C12.1363 3.013 12.8247 4.38212 13.259 5.812C14.2805 5.61175 15.2773 5.30688 16.247 4.92213C15.0601 3.28525 13.2624 2.12538 11.189 1.77437ZM17.75 9.53125C17.75 8.2195 17.4226 6.98425 16.8534 5.89525C15.7779 6.33738 14.6743 6.685 13.5391 6.91337C13.9002 8.6425 13.9002 10.4279 13.538 12.1581C14.672 12.3842 15.7801 12.7296 16.8534 13.1706C17.4226 12.0794 17.75 10.8441 17.75 9.53125ZM16.247 14.1404C15.2773 13.7556 14.2805 13.4507 13.259 13.2505C12.8247 14.6804 12.1351 16.0495 11.1879 17.2881C13.2624 16.9371 15.0601 15.7773 16.247 14.1404ZM12.1306 13.0761C10.6344 12.8826 9.11675 12.8826 7.61938 13.0761C8.08062 14.5229 8.83438 15.8942 9.875 17.1092C10.9167 15.8942 11.6694 14.5229 12.1306 13.0761ZM8.56325 17.2881C7.616 16.0495 6.92638 14.6804 6.49212 13.2505C5.47062 13.4507 4.47275 13.7568 3.503 14.1404C4.691 15.7773 6.48875 16.9371 8.56325 17.2881ZM6.21313 12.1559C5.85087 10.4268 5.84975 8.64137 6.212 6.91225C5.07688 6.68388 3.97213 6.33738 2.89662 5.89412C2.32738 6.98425 2 8.2195 2 9.53125C2 10.8441 2.32738 12.0794 2.89662 13.1684C3.96988 12.7285 5.078 12.3831 6.21313 12.1559Z"
-                fill="#202020"
-              />
-            </svg>
-          </div>
-          <div
-            className="text-15 switch-menu"
-          >
-            <div
-              className="switch-language"
-            >
-              <div
-                className="custom-dropdown float-left"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              >
-                <div
-                  className="dropdown-btn"
-                >
-                  <div
-                    className="label"
-                  >
-                    Language
-                  </div>
-                  <div
-                    className="menu-down"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M7,10L12,15L17,10H7Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon"
-          >
-            <svg
-              fill="none"
-              height="16"
-              viewBox="0 0 17 16"
-              width="17"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.5982 9.10563C16.4244 9.06459 16.2506 9.10563 16.0985 9.20822C15.5336 9.65964 14.8819 10.029 14.1649 10.2752C13.4914 10.5214 12.7528 10.6446 11.9707 10.6446C10.2109 10.6446 8.60323 9.96742 7.45179 8.87992C6.30035 7.79241 5.58341 6.27401 5.58341 4.61197C5.58341 3.91433 5.71376 3.2372 5.93102 2.62163C6.17 1.96503 6.5176 1.36998 6.97383 0.857004C7.16936 0.631295 7.12591 0.302991 6.88693 0.118321C6.73486 0.0157259 6.56105 -0.0253121 6.38725 0.0157259C4.5406 0.487662 2.93292 1.53413 1.78148 2.92942C0.673485 4.30419 0 6.00726 0 7.87449C0 10.1111 0.955915 12.1424 2.52014 13.6198C4.08436 15.0972 6.23517 16 8.60323 16C10.602 16 12.4486 15.3434 13.9259 14.2559C15.425 13.1479 16.5113 11.5679 16.9675 9.76223C17.0761 9.45445 16.9023 9.16718 16.5982 9.10563ZM13.2742 13.3941C12.0141 14.338 10.4064 14.9125 8.64668 14.9125C6.58278 14.9125 4.7144 14.1123 3.36743 12.8401C2.02046 11.5679 1.17317 9.80327 1.17317 7.85397C1.17317 6.23297 1.73803 4.75561 2.71567 3.56551C3.38915 2.74475 4.23644 2.06762 5.21408 1.59569C5.10545 1.82139 4.99683 2.0471 4.90993 2.29333C4.6275 3.03201 4.49715 3.81173 4.49715 4.63249C4.49715 6.58179 5.34443 8.36695 6.6914 9.63912C8.03837 10.9113 9.92848 11.7115 11.9924 11.7115C12.9049 11.7115 13.7739 11.5679 14.5777 11.2806C14.8601 11.178 15.1426 11.0754 15.4033 10.9523C14.8819 11.8962 14.1649 12.7375 13.2742 13.3941Z"
-                fill="black"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Switch
-             
-            dark
-          </div>
         </div>
       </div>
     </div>
@@ -695,27 +311,14 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) Night Theme 1`] = `
 <div
-  className="sticky-container"
+  className="fixed z-10 top-0 left-0 right-0 flex flex-col justify-start"
   id="sticky-container"
 >
   <div
-    className="nav-bar-toggle fixed"
-    onClick={[Function]}
-  >
-    <svg
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
-        fill="currentColor"
-      />
-    </svg>
-  </div>
-  <div
-    className="nav-bar-sm sticky "
+    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b px-3"
   >
     <div
-      className="brand"
+      className="h-[40px] w-[40px] shrink-0 cursor-pointer"
     >
       <a
         href="/hot"
@@ -723,45 +326,59 @@ exports[`(2) Night Theme 1`] = `
       >
         <img
           alt="Logo"
-          className="logo"
+          className="h-[40px] w-[40px]"
           src="logo-circle.svg"
         />
       </a>
     </div>
     <div
-      className="text-menu"
+      className="text-menu flex items-center justify-center h-full md:mr-2"
     >
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/discover"
         onClick={[Function]}
       >
         Discover
       </a>
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/communities"
         onClick={[Function]}
       >
         Communities
       </a>
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/decks"
         onClick={[Function]}
       >
         Decks
       </a>
     </div>
+    <div
+      className="navbar-toggle flex w-[1.5rem] h-[1.5rem] justify-center flex-col gap-1"
+      onClick={[Function]}
+    >
+      <span
+        className="bg-gray-500"
+      />
+      <span
+        className="bg-gray-500"
+      />
+      <span
+        className="bg-gray-500"
+      />
+    </div>
   </div>
   <div
-    className="nav-bar  "
+    className="hidden md:flex w-full select-none relative  "
   >
     <div
-      className="nav-bar-inner "
+      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-dark-200 bg-light-200 dark:bg-dark-200"
     >
       <div
-        className="brand"
+        className="h-[40px] min-w-[40px] cursor-pointer"
       >
         <a
           href="/hot"
@@ -775,24 +392,27 @@ exports[`(2) Night Theme 1`] = `
         </a>
       </div>
       <div
-        className="text-menu"
+        className="flex-1"
+      />
+      <div
+        className="text-menu flex items-center justify-center h-full md:mr-2"
       >
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/discover"
           onClick={[Function]}
         >
           Discover
         </a>
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/communities"
           onClick={[Function]}
         >
           Communities
         </a>
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/decks"
           onClick={[Function]}
         >
@@ -803,41 +423,75 @@ exports[`(2) Night Theme 1`] = `
         className="flex-spacer"
       />
       <div
-        className="search-bar"
+        className="max-w-[400px] w-full"
       >
         <div
-          className="suggestion"
+          className="suggestion relative"
         >
           <div
             className="search-box"
           >
-            <span
-              className="prepend"
+            <div
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
-              <svg
-                viewBox="0 0 24 24"
+              <div
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <path
-                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-            <input
-              autoComplete="off"
-              className="form-control"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder="Search 10,000,000 posts"
-              type="text"
-              value=""
-            />
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M14 5H20"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M14 8H17"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M22 22L20 20"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </div>
+              <input
+                autoComplete="off"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Search 10,000,000 posts"
+                type="text"
+                value=""
+              />
+            </div>
           </div>
           <div />
         </div>
       </div>
       <div
-        className="switch-menu"
+        className="flex items-center ml-3 gap-3"
       >
         <div
           className="switch-language"
@@ -871,40 +525,64 @@ exports[`(2) Night Theme 1`] = `
             </div>
           </div>
         </div>
-        <div
-          className="switch-theme"
+        <button
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           title="Night Theme"
+          type="button"
         >
-          <svg
-            viewBox="0 0 24 24"
+          <div
+            className="flex items-center w-5 h-5 undefined"
           >
-            <path
-              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-              fill="currentColor"
-            />
-          </svg>
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </button>
+        <div>
+          <a
+            href="/submit"
+            onClick={[Function]}
+            title="Create Post"
+          >
+            <button
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              style={
+                Object {
+                  "outline": "none",
+                }
+              }
+              type="button"
+            >
+              <div
+                className="flex items-center w-5 h-5 undefined"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </button>
+          </a>
         </div>
-        <a
-          className="switch-theme pencil"
-          href="/submit"
-          onClick={[Function]}
-          title="Create Post"
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-              fill="currentColor"
-            />
-          </svg>
-        </a>
       </div>
       <div
         className="btn-menu"
-      />
-      <div>
+      >
         <div
           className="user-nav"
         >
@@ -977,407 +655,6 @@ exports[`(2) Night Theme 1`] = `
                 }
               }
             />
-          </div>
-        </div>
-        <div
-          className="submit-post"
-        >
-          <a
-            className="btn btn-outline-primary"
-            href="/submit"
-            onClick={[Function]}
-            title="Create Post"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    className="nav-bar hidden"
-  >
-    <div
-      className="nav-bar-inner"
-    >
-      <div
-        className="mt-2 pt-5 w-100"
-      >
-        <a
-          href="/@foo"
-          onClick={[Function]}
-        >
-          <div
-            className="p-1 menu-item menu-item-profile flex text-white text-15 items-center mt-0 mb-3 relative"
-          >
-            <span
-              className="user-avatar large"
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-            <div
-              className="ml-2"
-            >
-              <b>
-                @
-                foo
-              </b>
-              <div
-                className="mt-1 text-white"
-              >
-                Vote Power:
-                 
-                <span>
-                  <svg
-                    fill="none"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    width="13"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11.623 6.59424L6.43483 1.40602L1.24661 6.59424"
-                      stroke="#535E65"
-                      strokeLinecap="square"
-                    />
-                  </svg>
-                </span>
-                 
-                % 
-                <span>
-                  <svg
-                    fill="none"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    width="13"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
-                      stroke="#535E65"
-                      strokeLinecap="square"
-                    />
-                  </svg>
-                </span>
-                 
-                %
-              </div>
-            </div>
-          </div>
-        </a>
-        <div
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Search
-            </div>
-          </div>
-        </div>
-        <a
-          href="/submit"
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                fill="none"
-                height="20"
-                viewBox="0 0 20 20"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.8494 3.51574L16.3082 1.97442C15.604 1.27023 14.4583 1.27026 13.7541 1.97442C13.0911 2.63749 2.96437 12.765 2.28761 13.4418C2.21553 13.5139 2.16723 13.6097 2.15002 13.7034L1.37943 17.865C1.34957 18.0263 1.40099 18.192 1.51702 18.3081C1.63318 18.4242 1.79894 18.4756 1.96008 18.4457L6.12129 17.675C6.21746 17.6571 6.312 17.6083 6.38288 17.5374L17.8494 6.06999C18.5552 5.36417 18.5553 4.22166 17.8494 3.51574ZM2.49124 17.3337L2.95739 14.8163L5.00848 16.8676L2.49124 17.3337ZM6.03057 16.4803L3.34458 13.7942L13.1509 3.98708L15.8369 6.67327L6.03057 16.4803ZM17.1447 5.36533L16.5415 5.96861L13.8555 3.28242L14.4588 2.67914C14.7744 2.36351 15.2879 2.36347 15.6036 2.67914L17.1447 4.22047C17.4612 4.53687 17.4612 5.0489 17.1447 5.36533Z"
-                  fill="black"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Write a post
-            </div>
-          </div>
-        </a>
-        <div>
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center text-dark"
-            onClick={[Function]}
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                fill="none"
-                height="18"
-                viewBox="0 0 18 18"
-                width="18"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  clipPath="url(#clip0)"
-                >
-                  <path
-                    d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
-                    fill="#202020"
-                  />
-                  <path
-                    d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
-                    fill="#202020"
-                  />
-                </g>
-                <defs>
-                  <clipPath
-                    id="clip0"
-                  >
-                    <rect
-                      fill="white"
-                      height="17.343"
-                      transform="translate(0.203125 0.328613)"
-                      width="17.343"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Profile menu
-            </div>
-            <div
-              className="ml-3 text-15 icon-stroke"
-            >
-              <svg
-                fill="none"
-                height="8"
-                viewBox="0 0 13 8"
-                width="13"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
-                  stroke="#535E65"
-                  strokeLinecap="square"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon text-dark"
-          >
-            <svg
-              fill="none"
-              height="21"
-              viewBox="0 0 17 21"
-              width="17"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.4616 16.4474C16.4028 16.4092 15.9603 16.0993 15.5173 15.1616C14.7037 13.4396 14.5329 11.0139 14.5329 9.28223C14.5329 9.27469 14.5327 9.26723 14.5325 9.25973C14.5236 6.97109 13.1532 4.9982 11.1921 4.11301V2.75922C11.1921 1.5307 10.1943 0.53125 8.96777 0.53125H8.78343C7.55695 0.53125 6.55913 1.5307 6.55913 2.75922V4.11293C4.59148 5.00098 3.21831 6.98394 3.21831 9.28223C3.21831 11.0139 3.04753 13.4396 2.2339 15.1616C1.79089 16.0992 1.34843 16.4092 1.2896 16.4474C1.04187 16.562 0.919721 16.8269 0.976713 17.0953C1.03425 17.3663 1.28761 17.5532 1.56429 17.5532H5.8591C5.88308 19.1993 7.2266 20.5312 8.87562 20.5312C10.5246 20.5312 11.8682 19.1993 11.8921 17.5532H16.1869C16.4636 17.5532 16.717 17.3663 16.7745 17.0953C16.8314 16.8269 16.7093 16.562 16.4616 16.4474ZM7.73105 2.75922C7.73105 2.17793 8.20316 1.70504 8.78347 1.70504H8.96781C9.54812 1.70504 10.0202 2.17793 10.0202 2.75922V3.73254C9.65038 3.65609 9.26753 3.61586 8.87546 3.61586C8.48351 3.61586 8.10078 3.65605 7.73109 3.73242V2.75922H7.73105ZM8.87562 19.3575C7.87277 19.3575 7.05476 18.5521 7.03097 17.5532H10.7202C10.6965 18.5521 9.87847 19.3575 8.87562 19.3575ZM11.235 16.3794C11.2349 16.3794 2.89964 16.3794 2.89964 16.3794C3.00101 16.2214 3.10417 16.0425 3.20671 15.8404C3.99203 14.2918 4.39023 12.0854 4.39023 9.28223C4.39023 6.805 6.4023 4.78965 8.87542 4.78965C11.3485 4.78965 13.3606 6.805 13.3606 9.28418C13.3606 9.29141 13.3607 9.29859 13.361 9.30578C13.3632 12.0977 13.7614 14.2962 14.5445 15.8404C14.6471 16.0426 14.7503 16.2214 14.8516 16.3794H11.235Z"
-                fill="#202020"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Notifications
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon text-dark"
-          >
-            <svg
-              height="16px"
-              version="1.1"
-              viewBox="0 0 512 512"
-              width="16px"
-            >
-              <path
-                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
-                fill="currentColor"
-              />
-              <path
-                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Boost
-          </div>
-        </div>
-        <a
-          href="/@foo/wallet"
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="icon-stroke text-dark"
-            >
-              <svg
-                fill="none"
-                height="15"
-                viewBox="0 0 20 15"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  height="12.3505"
-                  rx="1.5"
-                  stroke="#202020"
-                  width="18.3451"
-                  x="0.703125"
-                  y="1.3623"
-                />
-                <path
-                  d="M1.85352 4.93359L17.8971 4.93359"
-                  stroke="#202020"
-                  strokeLinecap="square"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15 flex"
-            >
-              Wallet
-               
-              <div
-                className="dot align-self-start ml-1"
-              />
-            </div>
-          </div>
-        </a>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark relative"
-        >
-          <div
-            className="navbar-icon"
-          >
-            <svg
-              fill="none"
-              height="19"
-              viewBox="0 0 19 19"
-              width="19"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.875 0.53125C14.8374 0.53125 18.875 4.56888 18.875 9.53125C18.875 14.4936 14.8374 18.5312 9.875 18.5312C4.91263 18.5312 0.875 14.4936 0.875 9.53125C0.875 4.56888 4.91263 0.53125 9.875 0.53125ZM3.503 4.92213C4.47275 5.30688 5.4695 5.61175 6.49212 5.812C6.92638 4.38212 7.616 3.013 8.56325 1.77437C6.48875 2.12538 4.691 3.28525 3.503 4.92213ZM7.328 11.9838C9.01775 11.752 10.7334 11.752 12.4231 11.9838C12.7696 10.3705 12.7708 8.701 12.4254 7.08663C11.5861 7.20138 10.7379 7.28125 9.875 7.28125C9.01213 7.28125 8.165 7.20138 7.32575 7.08663C6.98038 8.701 6.9815 10.3705 7.328 11.9838ZM7.61938 5.98637C9.11675 6.17987 10.6344 6.17987 12.1318 5.98637C11.6705 4.53963 10.9167 3.16825 9.875 1.95325C8.83325 3.16825 8.08062 4.53963 7.61938 5.98637ZM11.189 1.77437C12.1363 3.013 12.8247 4.38212 13.259 5.812C14.2805 5.61175 15.2773 5.30688 16.247 4.92213C15.0601 3.28525 13.2624 2.12538 11.189 1.77437ZM17.75 9.53125C17.75 8.2195 17.4226 6.98425 16.8534 5.89525C15.7779 6.33738 14.6743 6.685 13.5391 6.91337C13.9002 8.6425 13.9002 10.4279 13.538 12.1581C14.672 12.3842 15.7801 12.7296 16.8534 13.1706C17.4226 12.0794 17.75 10.8441 17.75 9.53125ZM16.247 14.1404C15.2773 13.7556 14.2805 13.4507 13.259 13.2505C12.8247 14.6804 12.1351 16.0495 11.1879 17.2881C13.2624 16.9371 15.0601 15.7773 16.247 14.1404ZM12.1306 13.0761C10.6344 12.8826 9.11675 12.8826 7.61938 13.0761C8.08062 14.5229 8.83438 15.8942 9.875 17.1092C10.9167 15.8942 11.6694 14.5229 12.1306 13.0761ZM8.56325 17.2881C7.616 16.0495 6.92638 14.6804 6.49212 13.2505C5.47062 13.4507 4.47275 13.7568 3.503 14.1404C4.691 15.7773 6.48875 16.9371 8.56325 17.2881ZM6.21313 12.1559C5.85087 10.4268 5.84975 8.64137 6.212 6.91225C5.07688 6.68388 3.97213 6.33738 2.89662 5.89412C2.32738 6.98425 2 8.2195 2 9.53125C2 10.8441 2.32738 12.0794 2.89662 13.1684C3.96988 12.7285 5.078 12.3831 6.21313 12.1559Z"
-                fill="#202020"
-              />
-            </svg>
-          </div>
-          <div
-            className="text-15 switch-menu"
-          >
-            <div
-              className="switch-language"
-            >
-              <div
-                className="custom-dropdown float-left"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              >
-                <div
-                  className="dropdown-btn"
-                >
-                  <div
-                    className="label"
-                  >
-                    Language
-                  </div>
-                  <div
-                    className="menu-down"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M7,10L12,15L17,10H7Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon"
-          >
-            <svg
-              fill="none"
-              height="16"
-              viewBox="0 0 17 16"
-              width="17"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.5982 9.10563C16.4244 9.06459 16.2506 9.10563 16.0985 9.20822C15.5336 9.65964 14.8819 10.029 14.1649 10.2752C13.4914 10.5214 12.7528 10.6446 11.9707 10.6446C10.2109 10.6446 8.60323 9.96742 7.45179 8.87992C6.30035 7.79241 5.58341 6.27401 5.58341 4.61197C5.58341 3.91433 5.71376 3.2372 5.93102 2.62163C6.17 1.96503 6.5176 1.36998 6.97383 0.857004C7.16936 0.631295 7.12591 0.302991 6.88693 0.118321C6.73486 0.0157259 6.56105 -0.0253121 6.38725 0.0157259C4.5406 0.487662 2.93292 1.53413 1.78148 2.92942C0.673485 4.30419 0 6.00726 0 7.87449C0 10.1111 0.955915 12.1424 2.52014 13.6198C4.08436 15.0972 6.23517 16 8.60323 16C10.602 16 12.4486 15.3434 13.9259 14.2559C15.425 13.1479 16.5113 11.5679 16.9675 9.76223C17.0761 9.45445 16.9023 9.16718 16.5982 9.10563ZM13.2742 13.3941C12.0141 14.338 10.4064 14.9125 8.64668 14.9125C6.58278 14.9125 4.7144 14.1123 3.36743 12.8401C2.02046 11.5679 1.17317 9.80327 1.17317 7.85397C1.17317 6.23297 1.73803 4.75561 2.71567 3.56551C3.38915 2.74475 4.23644 2.06762 5.21408 1.59569C5.10545 1.82139 4.99683 2.0471 4.90993 2.29333C4.6275 3.03201 4.49715 3.81173 4.49715 4.63249C4.49715 6.58179 5.34443 8.36695 6.6914 9.63912C8.03837 10.9113 9.92848 11.7115 11.9924 11.7115C12.9049 11.7115 13.7739 11.5679 14.5777 11.2806C14.8601 11.178 15.1426 11.0754 15.4033 10.9523C14.8819 11.8962 14.1649 12.7375 13.2742 13.3941Z"
-                fill="black"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Switch
-             
-            dark
           </div>
         </div>
       </div>
@@ -1388,76 +665,77 @@ exports[`(2) Night Theme 1`] = `
 
 exports[`(3) With active user 1`] = `
 <div
-  className="sticky-container"
+  className="fixed z-10 top-0 left-0 right-0 flex flex-col justify-start"
   id="sticky-container"
 >
   <div
-    className="nav-bar-toggle fixed"
-    onClick={[Function]}
-  >
-    <svg
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
-        fill="currentColor"
-      />
-    </svg>
-  </div>
-  <div
-    className="nav-bar-sm sticky "
+    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b px-3"
   >
     <div
-      className="brand"
+      className="h-[40px] w-[40px] shrink-0 cursor-pointer"
     >
       <a
-        href="/hot"
+        href="/"
         onClick={[Function]}
       >
         <img
           alt="Logo"
-          className="logo"
+          className="h-[40px] w-[40px]"
           src="logo-circle.svg"
         />
       </a>
     </div>
     <div
-      className="text-menu"
+      className="text-menu flex items-center justify-center h-full md:mr-2"
     >
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/discover"
         onClick={[Function]}
       >
         Discover
       </a>
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/communities"
         onClick={[Function]}
       >
         Communities
       </a>
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/decks"
         onClick={[Function]}
       >
         Decks
       </a>
     </div>
+    <div
+      className="navbar-toggle flex w-[1.5rem] h-[1.5rem] justify-center flex-col gap-1"
+      onClick={[Function]}
+    >
+      <span
+        className="bg-gray-500"
+      />
+      <span
+        className="bg-gray-500"
+      />
+      <span
+        className="bg-gray-500"
+      />
+    </div>
   </div>
   <div
-    className="nav-bar  "
+    className="hidden md:flex w-full select-none relative  "
   >
     <div
-      className="nav-bar-inner "
+      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-dark-200 bg-light-200 dark:bg-dark-200"
     >
       <div
-        className="brand"
+        className="h-[40px] min-w-[40px] cursor-pointer"
       >
         <a
-          href="/hot"
+          href="/"
           onClick={[Function]}
         >
           <img
@@ -1468,24 +746,27 @@ exports[`(3) With active user 1`] = `
         </a>
       </div>
       <div
-        className="text-menu"
+        className="flex-1"
+      />
+      <div
+        className="text-menu flex items-center justify-center h-full md:mr-2"
       >
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/discover"
           onClick={[Function]}
         >
           Discover
         </a>
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/communities"
           onClick={[Function]}
         >
           Communities
         </a>
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/decks"
           onClick={[Function]}
         >
@@ -1496,108 +777,137 @@ exports[`(3) With active user 1`] = `
         className="flex-spacer"
       />
       <div
-        className="search-bar"
+        className="max-w-[400px] w-full"
       >
         <div
-          className="suggestion"
+          className="suggestion relative"
         >
           <div
             className="search-box"
           >
-            <span
-              className="prepend"
+            <div
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
-              <svg
-                viewBox="0 0 24 24"
+              <div
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <path
-                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-            <input
-              autoComplete="off"
-              className="form-control"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder="Search 10,000,000 posts"
-              type="text"
-              value=""
-            />
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M14 5H20"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M14 8H17"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M22 22L20 20"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </div>
+              <input
+                autoComplete="off"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Search 10,000,000 posts"
+                type="text"
+                value=""
+              />
+            </div>
           </div>
           <div />
         </div>
       </div>
       <div
-        className="switch-menu"
+        className="flex items-center ml-3 gap-3"
       >
         <div
           className="switch-language"
+        />
+        <button
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+          onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
+          title=""
+          type="button"
         >
           <div
-            className="custom-dropdown float-right"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
+            className="flex items-center w-5 h-5 undefined"
           >
-            <div
-              className="dropdown-btn"
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </button>
+        <div>
+          <a
+            href="/submit"
+            onClick={[Function]}
+            title="Create Post"
+          >
+            <button
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              style={
+                Object {
+                  "outline": "none",
+                }
+              }
+              type="button"
             >
               <div
-                className="label"
-              >
-                EN
-              </div>
-              <div
-                className="menu-down"
+                className="flex items-center w-5 h-5 undefined"
               >
                 <svg
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M7,10L12,15L17,10H7Z"
+                    d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
                     fill="currentColor"
                   />
                 </svg>
               </div>
-            </div>
-          </div>
+            </button>
+          </a>
         </div>
-        <div
-          className="switch-theme"
-          onClick={[Function]}
-          title="Night Theme"
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-              fill="currentColor"
-            />
-          </svg>
-        </div>
-        <a
-          className="switch-theme pencil"
-          href="/submit"
-          onClick={[Function]}
-          title="Create Post"
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-              fill="currentColor"
-            />
-          </svg>
-        </a>
       </div>
       <div
         className="btn-menu"
-      />
-      <div>
+      >
         <div
           className="user-nav"
         >
@@ -1655,423 +965,6 @@ exports[`(3) With active user 1`] = `
               />
             </svg>
           </span>
-          <div
-            className="custom-dropdown float-right"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <span
-              className="user-avatar medium"
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-          </div>
-        </div>
-        <div
-          className="submit-post"
-        >
-          <a
-            className="btn btn-outline-primary"
-            href="/submit"
-            onClick={[Function]}
-            title="Create Post"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    className="nav-bar hidden"
-  >
-    <div
-      className="nav-bar-inner"
-    >
-      <div
-        className="mt-2 pt-5 w-100"
-      >
-        <a
-          href="/@foo"
-          onClick={[Function]}
-        >
-          <div
-            className="p-1 menu-item menu-item-profile flex text-white text-15 items-center mt-0 mb-3 relative"
-          >
-            <span
-              className="user-avatar large"
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-            <div
-              className="ml-2"
-            >
-              <b>
-                @
-                foo
-              </b>
-              <div
-                className="mt-1 text-white"
-              >
-                Vote Power:
-                 
-                <span>
-                  <svg
-                    fill="none"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    width="13"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11.623 6.59424L6.43483 1.40602L1.24661 6.59424"
-                      stroke="#535E65"
-                      strokeLinecap="square"
-                    />
-                  </svg>
-                </span>
-                 
-                % 
-                <span>
-                  <svg
-                    fill="none"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    width="13"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
-                      stroke="#535E65"
-                      strokeLinecap="square"
-                    />
-                  </svg>
-                </span>
-                 
-                %
-              </div>
-            </div>
-          </div>
-        </a>
-        <div
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Search
-            </div>
-          </div>
-        </div>
-        <a
-          href="/submit"
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                fill="none"
-                height="20"
-                viewBox="0 0 20 20"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.8494 3.51574L16.3082 1.97442C15.604 1.27023 14.4583 1.27026 13.7541 1.97442C13.0911 2.63749 2.96437 12.765 2.28761 13.4418C2.21553 13.5139 2.16723 13.6097 2.15002 13.7034L1.37943 17.865C1.34957 18.0263 1.40099 18.192 1.51702 18.3081C1.63318 18.4242 1.79894 18.4756 1.96008 18.4457L6.12129 17.675C6.21746 17.6571 6.312 17.6083 6.38288 17.5374L17.8494 6.06999C18.5552 5.36417 18.5553 4.22166 17.8494 3.51574ZM2.49124 17.3337L2.95739 14.8163L5.00848 16.8676L2.49124 17.3337ZM6.03057 16.4803L3.34458 13.7942L13.1509 3.98708L15.8369 6.67327L6.03057 16.4803ZM17.1447 5.36533L16.5415 5.96861L13.8555 3.28242L14.4588 2.67914C14.7744 2.36351 15.2879 2.36347 15.6036 2.67914L17.1447 4.22047C17.4612 4.53687 17.4612 5.0489 17.1447 5.36533Z"
-                  fill="black"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Write a post
-            </div>
-          </div>
-        </a>
-        <div>
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center text-dark"
-            onClick={[Function]}
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                fill="none"
-                height="18"
-                viewBox="0 0 18 18"
-                width="18"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  clipPath="url(#clip0)"
-                >
-                  <path
-                    d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
-                    fill="#202020"
-                  />
-                  <path
-                    d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
-                    fill="#202020"
-                  />
-                </g>
-                <defs>
-                  <clipPath
-                    id="clip0"
-                  >
-                    <rect
-                      fill="white"
-                      height="17.343"
-                      transform="translate(0.203125 0.328613)"
-                      width="17.343"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Profile menu
-            </div>
-            <div
-              className="ml-3 text-15 icon-stroke"
-            >
-              <svg
-                fill="none"
-                height="8"
-                viewBox="0 0 13 8"
-                width="13"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
-                  stroke="#535E65"
-                  strokeLinecap="square"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon text-dark"
-          >
-            <svg
-              fill="none"
-              height="21"
-              viewBox="0 0 17 21"
-              width="17"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.4616 16.4474C16.4028 16.4092 15.9603 16.0993 15.5173 15.1616C14.7037 13.4396 14.5329 11.0139 14.5329 9.28223C14.5329 9.27469 14.5327 9.26723 14.5325 9.25973C14.5236 6.97109 13.1532 4.9982 11.1921 4.11301V2.75922C11.1921 1.5307 10.1943 0.53125 8.96777 0.53125H8.78343C7.55695 0.53125 6.55913 1.5307 6.55913 2.75922V4.11293C4.59148 5.00098 3.21831 6.98394 3.21831 9.28223C3.21831 11.0139 3.04753 13.4396 2.2339 15.1616C1.79089 16.0992 1.34843 16.4092 1.2896 16.4474C1.04187 16.562 0.919721 16.8269 0.976713 17.0953C1.03425 17.3663 1.28761 17.5532 1.56429 17.5532H5.8591C5.88308 19.1993 7.2266 20.5312 8.87562 20.5312C10.5246 20.5312 11.8682 19.1993 11.8921 17.5532H16.1869C16.4636 17.5532 16.717 17.3663 16.7745 17.0953C16.8314 16.8269 16.7093 16.562 16.4616 16.4474ZM7.73105 2.75922C7.73105 2.17793 8.20316 1.70504 8.78347 1.70504H8.96781C9.54812 1.70504 10.0202 2.17793 10.0202 2.75922V3.73254C9.65038 3.65609 9.26753 3.61586 8.87546 3.61586C8.48351 3.61586 8.10078 3.65605 7.73109 3.73242V2.75922H7.73105ZM8.87562 19.3575C7.87277 19.3575 7.05476 18.5521 7.03097 17.5532H10.7202C10.6965 18.5521 9.87847 19.3575 8.87562 19.3575ZM11.235 16.3794C11.2349 16.3794 2.89964 16.3794 2.89964 16.3794C3.00101 16.2214 3.10417 16.0425 3.20671 15.8404C3.99203 14.2918 4.39023 12.0854 4.39023 9.28223C4.39023 6.805 6.4023 4.78965 8.87542 4.78965C11.3485 4.78965 13.3606 6.805 13.3606 9.28418C13.3606 9.29141 13.3607 9.29859 13.361 9.30578C13.3632 12.0977 13.7614 14.2962 14.5445 15.8404C14.6471 16.0426 14.7503 16.2214 14.8516 16.3794H11.235Z"
-                fill="#202020"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Notifications
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon text-dark"
-          >
-            <svg
-              height="16px"
-              version="1.1"
-              viewBox="0 0 512 512"
-              width="16px"
-            >
-              <path
-                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
-                fill="currentColor"
-              />
-              <path
-                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Boost
-          </div>
-        </div>
-        <a
-          href="/@foo/wallet"
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="icon-stroke text-dark"
-            >
-              <svg
-                fill="none"
-                height="15"
-                viewBox="0 0 20 15"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  height="12.3505"
-                  rx="1.5"
-                  stroke="#202020"
-                  width="18.3451"
-                  x="0.703125"
-                  y="1.3623"
-                />
-                <path
-                  d="M1.85352 4.93359L17.8971 4.93359"
-                  stroke="#202020"
-                  strokeLinecap="square"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15 flex"
-            >
-              Wallet
-               
-              <div
-                className="dot align-self-start ml-1"
-              />
-            </div>
-          </div>
-        </a>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark relative"
-        >
-          <div
-            className="navbar-icon"
-          >
-            <svg
-              fill="none"
-              height="19"
-              viewBox="0 0 19 19"
-              width="19"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.875 0.53125C14.8374 0.53125 18.875 4.56888 18.875 9.53125C18.875 14.4936 14.8374 18.5312 9.875 18.5312C4.91263 18.5312 0.875 14.4936 0.875 9.53125C0.875 4.56888 4.91263 0.53125 9.875 0.53125ZM3.503 4.92213C4.47275 5.30688 5.4695 5.61175 6.49212 5.812C6.92638 4.38212 7.616 3.013 8.56325 1.77437C6.48875 2.12538 4.691 3.28525 3.503 4.92213ZM7.328 11.9838C9.01775 11.752 10.7334 11.752 12.4231 11.9838C12.7696 10.3705 12.7708 8.701 12.4254 7.08663C11.5861 7.20138 10.7379 7.28125 9.875 7.28125C9.01213 7.28125 8.165 7.20138 7.32575 7.08663C6.98038 8.701 6.9815 10.3705 7.328 11.9838ZM7.61938 5.98637C9.11675 6.17987 10.6344 6.17987 12.1318 5.98637C11.6705 4.53963 10.9167 3.16825 9.875 1.95325C8.83325 3.16825 8.08062 4.53963 7.61938 5.98637ZM11.189 1.77437C12.1363 3.013 12.8247 4.38212 13.259 5.812C14.2805 5.61175 15.2773 5.30688 16.247 4.92213C15.0601 3.28525 13.2624 2.12538 11.189 1.77437ZM17.75 9.53125C17.75 8.2195 17.4226 6.98425 16.8534 5.89525C15.7779 6.33738 14.6743 6.685 13.5391 6.91337C13.9002 8.6425 13.9002 10.4279 13.538 12.1581C14.672 12.3842 15.7801 12.7296 16.8534 13.1706C17.4226 12.0794 17.75 10.8441 17.75 9.53125ZM16.247 14.1404C15.2773 13.7556 14.2805 13.4507 13.259 13.2505C12.8247 14.6804 12.1351 16.0495 11.1879 17.2881C13.2624 16.9371 15.0601 15.7773 16.247 14.1404ZM12.1306 13.0761C10.6344 12.8826 9.11675 12.8826 7.61938 13.0761C8.08062 14.5229 8.83438 15.8942 9.875 17.1092C10.9167 15.8942 11.6694 14.5229 12.1306 13.0761ZM8.56325 17.2881C7.616 16.0495 6.92638 14.6804 6.49212 13.2505C5.47062 13.4507 4.47275 13.7568 3.503 14.1404C4.691 15.7773 6.48875 16.9371 8.56325 17.2881ZM6.21313 12.1559C5.85087 10.4268 5.84975 8.64137 6.212 6.91225C5.07688 6.68388 3.97213 6.33738 2.89662 5.89412C2.32738 6.98425 2 8.2195 2 9.53125C2 10.8441 2.32738 12.0794 2.89662 13.1684C3.96988 12.7285 5.078 12.3831 6.21313 12.1559Z"
-                fill="#202020"
-              />
-            </svg>
-          </div>
-          <div
-            className="text-15 switch-menu"
-          >
-            <div
-              className="switch-language"
-            >
-              <div
-                className="custom-dropdown float-left"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              >
-                <div
-                  className="dropdown-btn"
-                >
-                  <div
-                    className="label"
-                  >
-                    Language
-                  </div>
-                  <div
-                    className="menu-down"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M7,10L12,15L17,10H7Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon"
-          >
-            <svg
-              fill="none"
-              height="16"
-              viewBox="0 0 17 16"
-              width="17"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.5982 9.10563C16.4244 9.06459 16.2506 9.10563 16.0985 9.20822C15.5336 9.65964 14.8819 10.029 14.1649 10.2752C13.4914 10.5214 12.7528 10.6446 11.9707 10.6446C10.2109 10.6446 8.60323 9.96742 7.45179 8.87992C6.30035 7.79241 5.58341 6.27401 5.58341 4.61197C5.58341 3.91433 5.71376 3.2372 5.93102 2.62163C6.17 1.96503 6.5176 1.36998 6.97383 0.857004C7.16936 0.631295 7.12591 0.302991 6.88693 0.118321C6.73486 0.0157259 6.56105 -0.0253121 6.38725 0.0157259C4.5406 0.487662 2.93292 1.53413 1.78148 2.92942C0.673485 4.30419 0 6.00726 0 7.87449C0 10.1111 0.955915 12.1424 2.52014 13.6198C4.08436 15.0972 6.23517 16 8.60323 16C10.602 16 12.4486 15.3434 13.9259 14.2559C15.425 13.1479 16.5113 11.5679 16.9675 9.76223C17.0761 9.45445 16.9023 9.16718 16.5982 9.10563ZM13.2742 13.3941C12.0141 14.338 10.4064 14.9125 8.64668 14.9125C6.58278 14.9125 4.7144 14.1123 3.36743 12.8401C2.02046 11.5679 1.17317 9.80327 1.17317 7.85397C1.17317 6.23297 1.73803 4.75561 2.71567 3.56551C3.38915 2.74475 4.23644 2.06762 5.21408 1.59569C5.10545 1.82139 4.99683 2.0471 4.90993 2.29333C4.6275 3.03201 4.49715 3.81173 4.49715 4.63249C4.49715 6.58179 5.34443 8.36695 6.6914 9.63912C8.03837 10.9113 9.92848 11.7115 11.9924 11.7115C12.9049 11.7115 13.7739 11.5679 14.5777 11.2806C14.8601 11.178 15.1426 11.0754 15.4033 10.9523C14.8819 11.8962 14.1649 12.7375 13.2742 13.3941Z"
-                fill="black"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Switch
-             
-            dark
-          </div>
         </div>
       </div>
     </div>
@@ -2081,27 +974,14 @@ exports[`(3) With active user 1`] = `
 
 exports[`(4) With active user && usePrivate = false 1`] = `
 <div
-  className="sticky-container"
+  className="fixed z-10 top-0 left-0 right-0 flex flex-col justify-start"
   id="sticky-container"
 >
   <div
-    className="nav-bar-toggle fixed"
-    onClick={[Function]}
-  >
-    <svg
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
-        fill="currentColor"
-      />
-    </svg>
-  </div>
-  <div
-    className="nav-bar-sm sticky "
+    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b px-3"
   >
     <div
-      className="brand"
+      className="h-[40px] w-[40px] shrink-0 cursor-pointer"
     >
       <a
         href="/hot"
@@ -2109,45 +989,59 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       >
         <img
           alt="Logo"
-          className="logo"
+          className="h-[40px] w-[40px]"
           src="logo-circle.svg"
         />
       </a>
     </div>
     <div
-      className="text-menu"
+      className="text-menu flex items-center justify-center h-full md:mr-2"
     >
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/discover"
         onClick={[Function]}
       >
         Discover
       </a>
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/communities"
         onClick={[Function]}
       >
         Communities
       </a>
       <a
-        className="menu-item mt-0"
+        className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         href="/decks"
         onClick={[Function]}
       >
         Decks
       </a>
     </div>
+    <div
+      className="navbar-toggle flex w-[1.5rem] h-[1.5rem] justify-center flex-col gap-1"
+      onClick={[Function]}
+    >
+      <span
+        className="bg-gray-500"
+      />
+      <span
+        className="bg-gray-500"
+      />
+      <span
+        className="bg-gray-500"
+      />
+    </div>
   </div>
   <div
-    className="nav-bar  "
+    className="hidden md:flex w-full select-none relative  "
   >
     <div
-      className="nav-bar-inner "
+      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-dark-200 bg-light-200 dark:bg-dark-200"
     >
       <div
-        className="brand"
+        className="h-[40px] min-w-[40px] cursor-pointer"
       >
         <a
           href="/hot"
@@ -2161,24 +1055,27 @@ exports[`(4) With active user && usePrivate = false 1`] = `
         </a>
       </div>
       <div
-        className="text-menu"
+        className="flex-1"
+      />
+      <div
+        className="text-menu flex items-center justify-center h-full md:mr-2"
       >
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/discover"
           onClick={[Function]}
         >
           Discover
         </a>
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/communities"
           onClick={[Function]}
         >
           Communities
         </a>
         <a
-          className="menu-item mt-0"
+          className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
           href="/decks"
           onClick={[Function]}
         >
@@ -2189,41 +1086,75 @@ exports[`(4) With active user && usePrivate = false 1`] = `
         className="flex-spacer"
       />
       <div
-        className="search-bar"
+        className="max-w-[400px] w-full"
       >
         <div
-          className="suggestion"
+          className="suggestion relative"
         >
           <div
             className="search-box"
           >
-            <span
-              className="prepend"
+            <div
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
-              <svg
-                viewBox="0 0 24 24"
+              <div
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <path
-                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-            <input
-              autoComplete="off"
-              className="form-control"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder="Search 10,000,000 posts"
-              type="text"
-              value=""
-            />
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M14 5H20"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M14 8H17"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M22 22L20 20"
+                    opacity="0.4"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </div>
+              <input
+                autoComplete="off"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Search 10,000,000 posts"
+                type="text"
+                value=""
+              />
+            </div>
           </div>
           <div />
         </div>
       </div>
       <div
-        className="switch-menu"
+        className="flex items-center ml-3 gap-3"
       >
         <div
           className="switch-language"
@@ -2257,40 +1188,64 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             </div>
           </div>
         </div>
-        <div
-          className="switch-theme"
+        <button
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           title="Night Theme"
+          type="button"
         >
-          <svg
-            viewBox="0 0 24 24"
+          <div
+            className="flex items-center w-5 h-5 undefined"
           >
-            <path
-              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-              fill="currentColor"
-            />
-          </svg>
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </button>
+        <div>
+          <a
+            href="/submit"
+            onClick={[Function]}
+            title="Create Post"
+          >
+            <button
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              style={
+                Object {
+                  "outline": "none",
+                }
+              }
+              type="button"
+            >
+              <div
+                className="flex items-center w-5 h-5 undefined"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </button>
+          </a>
         </div>
-        <a
-          className="switch-theme pencil"
-          href="/submit"
-          onClick={[Function]}
-          title="Create Post"
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-              fill="currentColor"
-            />
-          </svg>
-        </a>
       </div>
       <div
         className="btn-menu"
-      />
-      <div>
+      >
         <div
           className="user-nav"
         >
@@ -2363,407 +1318,6 @@ exports[`(4) With active user && usePrivate = false 1`] = `
                 }
               }
             />
-          </div>
-        </div>
-        <div
-          className="submit-post"
-        >
-          <a
-            className="btn btn-outline-primary"
-            href="/submit"
-            onClick={[Function]}
-            title="Create Post"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    className="nav-bar hidden"
-  >
-    <div
-      className="nav-bar-inner"
-    >
-      <div
-        className="mt-2 pt-5 w-100"
-      >
-        <a
-          href="/@foo"
-          onClick={[Function]}
-        >
-          <div
-            className="p-1 menu-item menu-item-profile flex text-white text-15 items-center mt-0 mb-3 relative"
-          >
-            <span
-              className="user-avatar large"
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-            <div
-              className="ml-2"
-            >
-              <b>
-                @
-                foo
-              </b>
-              <div
-                className="mt-1 text-white"
-              >
-                Vote Power:
-                 
-                <span>
-                  <svg
-                    fill="none"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    width="13"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11.623 6.59424L6.43483 1.40602L1.24661 6.59424"
-                      stroke="#535E65"
-                      strokeLinecap="square"
-                    />
-                  </svg>
-                </span>
-                 
-                % 
-                <span>
-                  <svg
-                    fill="none"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    width="13"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
-                      stroke="#535E65"
-                      strokeLinecap="square"
-                    />
-                  </svg>
-                </span>
-                 
-                %
-              </div>
-            </div>
-          </div>
-        </a>
-        <div
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Search
-            </div>
-          </div>
-        </div>
-        <a
-          href="/submit"
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                fill="none"
-                height="20"
-                viewBox="0 0 20 20"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.8494 3.51574L16.3082 1.97442C15.604 1.27023 14.4583 1.27026 13.7541 1.97442C13.0911 2.63749 2.96437 12.765 2.28761 13.4418C2.21553 13.5139 2.16723 13.6097 2.15002 13.7034L1.37943 17.865C1.34957 18.0263 1.40099 18.192 1.51702 18.3081C1.63318 18.4242 1.79894 18.4756 1.96008 18.4457L6.12129 17.675C6.21746 17.6571 6.312 17.6083 6.38288 17.5374L17.8494 6.06999C18.5552 5.36417 18.5553 4.22166 17.8494 3.51574ZM2.49124 17.3337L2.95739 14.8163L5.00848 16.8676L2.49124 17.3337ZM6.03057 16.4803L3.34458 13.7942L13.1509 3.98708L15.8369 6.67327L6.03057 16.4803ZM17.1447 5.36533L16.5415 5.96861L13.8555 3.28242L14.4588 2.67914C14.7744 2.36351 15.2879 2.36347 15.6036 2.67914L17.1447 4.22047C17.4612 4.53687 17.4612 5.0489 17.1447 5.36533Z"
-                  fill="black"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Write a post
-            </div>
-          </div>
-        </a>
-        <div>
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center text-dark"
-            onClick={[Function]}
-          >
-            <div
-              className="navbar-icon"
-            >
-              <svg
-                fill="none"
-                height="18"
-                viewBox="0 0 18 18"
-                width="18"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  clipPath="url(#clip0)"
-                >
-                  <path
-                    d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
-                    fill="#202020"
-                  />
-                  <path
-                    d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
-                    fill="#202020"
-                  />
-                </g>
-                <defs>
-                  <clipPath
-                    id="clip0"
-                  >
-                    <rect
-                      fill="white"
-                      height="17.343"
-                      transform="translate(0.203125 0.328613)"
-                      width="17.343"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15"
-            >
-              Profile menu
-            </div>
-            <div
-              className="ml-3 text-15 icon-stroke"
-            >
-              <svg
-                fill="none"
-                height="8"
-                viewBox="0 0 13 8"
-                width="13"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
-                  stroke="#535E65"
-                  strokeLinecap="square"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon text-dark"
-          >
-            <svg
-              fill="none"
-              height="21"
-              viewBox="0 0 17 21"
-              width="17"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.4616 16.4474C16.4028 16.4092 15.9603 16.0993 15.5173 15.1616C14.7037 13.4396 14.5329 11.0139 14.5329 9.28223C14.5329 9.27469 14.5327 9.26723 14.5325 9.25973C14.5236 6.97109 13.1532 4.9982 11.1921 4.11301V2.75922C11.1921 1.5307 10.1943 0.53125 8.96777 0.53125H8.78343C7.55695 0.53125 6.55913 1.5307 6.55913 2.75922V4.11293C4.59148 5.00098 3.21831 6.98394 3.21831 9.28223C3.21831 11.0139 3.04753 13.4396 2.2339 15.1616C1.79089 16.0992 1.34843 16.4092 1.2896 16.4474C1.04187 16.562 0.919721 16.8269 0.976713 17.0953C1.03425 17.3663 1.28761 17.5532 1.56429 17.5532H5.8591C5.88308 19.1993 7.2266 20.5312 8.87562 20.5312C10.5246 20.5312 11.8682 19.1993 11.8921 17.5532H16.1869C16.4636 17.5532 16.717 17.3663 16.7745 17.0953C16.8314 16.8269 16.7093 16.562 16.4616 16.4474ZM7.73105 2.75922C7.73105 2.17793 8.20316 1.70504 8.78347 1.70504H8.96781C9.54812 1.70504 10.0202 2.17793 10.0202 2.75922V3.73254C9.65038 3.65609 9.26753 3.61586 8.87546 3.61586C8.48351 3.61586 8.10078 3.65605 7.73109 3.73242V2.75922H7.73105ZM8.87562 19.3575C7.87277 19.3575 7.05476 18.5521 7.03097 17.5532H10.7202C10.6965 18.5521 9.87847 19.3575 8.87562 19.3575ZM11.235 16.3794C11.2349 16.3794 2.89964 16.3794 2.89964 16.3794C3.00101 16.2214 3.10417 16.0425 3.20671 15.8404C3.99203 14.2918 4.39023 12.0854 4.39023 9.28223C4.39023 6.805 6.4023 4.78965 8.87542 4.78965C11.3485 4.78965 13.3606 6.805 13.3606 9.28418C13.3606 9.29141 13.3607 9.29859 13.361 9.30578C13.3632 12.0977 13.7614 14.2962 14.5445 15.8404C14.6471 16.0426 14.7503 16.2214 14.8516 16.3794H11.235Z"
-                fill="#202020"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Notifications
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon text-dark"
-          >
-            <svg
-              height="16px"
-              version="1.1"
-              viewBox="0 0 512 512"
-              width="16px"
-            >
-              <path
-                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
-                fill="currentColor"
-              />
-              <path
-                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Boost
-          </div>
-        </div>
-        <a
-          href="/@foo/wallet"
-          onClick={[Function]}
-        >
-          <div
-            className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          >
-            <div
-              className="icon-stroke text-dark"
-            >
-              <svg
-                fill="none"
-                height="15"
-                viewBox="0 0 20 15"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  height="12.3505"
-                  rx="1.5"
-                  stroke="#202020"
-                  width="18.3451"
-                  x="0.703125"
-                  y="1.3623"
-                />
-                <path
-                  d="M1.85352 4.93359L17.8971 4.93359"
-                  stroke="#202020"
-                  strokeLinecap="square"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />
-              </svg>
-            </div>
-            <div
-              className="ml-3 text-15 flex"
-            >
-              Wallet
-               
-              <div
-                className="dot align-self-start ml-1"
-              />
-            </div>
-          </div>
-        </a>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark relative"
-        >
-          <div
-            className="navbar-icon"
-          >
-            <svg
-              fill="none"
-              height="19"
-              viewBox="0 0 19 19"
-              width="19"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.875 0.53125C14.8374 0.53125 18.875 4.56888 18.875 9.53125C18.875 14.4936 14.8374 18.5312 9.875 18.5312C4.91263 18.5312 0.875 14.4936 0.875 9.53125C0.875 4.56888 4.91263 0.53125 9.875 0.53125ZM3.503 4.92213C4.47275 5.30688 5.4695 5.61175 6.49212 5.812C6.92638 4.38212 7.616 3.013 8.56325 1.77437C6.48875 2.12538 4.691 3.28525 3.503 4.92213ZM7.328 11.9838C9.01775 11.752 10.7334 11.752 12.4231 11.9838C12.7696 10.3705 12.7708 8.701 12.4254 7.08663C11.5861 7.20138 10.7379 7.28125 9.875 7.28125C9.01213 7.28125 8.165 7.20138 7.32575 7.08663C6.98038 8.701 6.9815 10.3705 7.328 11.9838ZM7.61938 5.98637C9.11675 6.17987 10.6344 6.17987 12.1318 5.98637C11.6705 4.53963 10.9167 3.16825 9.875 1.95325C8.83325 3.16825 8.08062 4.53963 7.61938 5.98637ZM11.189 1.77437C12.1363 3.013 12.8247 4.38212 13.259 5.812C14.2805 5.61175 15.2773 5.30688 16.247 4.92213C15.0601 3.28525 13.2624 2.12538 11.189 1.77437ZM17.75 9.53125C17.75 8.2195 17.4226 6.98425 16.8534 5.89525C15.7779 6.33738 14.6743 6.685 13.5391 6.91337C13.9002 8.6425 13.9002 10.4279 13.538 12.1581C14.672 12.3842 15.7801 12.7296 16.8534 13.1706C17.4226 12.0794 17.75 10.8441 17.75 9.53125ZM16.247 14.1404C15.2773 13.7556 14.2805 13.4507 13.259 13.2505C12.8247 14.6804 12.1351 16.0495 11.1879 17.2881C13.2624 16.9371 15.0601 15.7773 16.247 14.1404ZM12.1306 13.0761C10.6344 12.8826 9.11675 12.8826 7.61938 13.0761C8.08062 14.5229 8.83438 15.8942 9.875 17.1092C10.9167 15.8942 11.6694 14.5229 12.1306 13.0761ZM8.56325 17.2881C7.616 16.0495 6.92638 14.6804 6.49212 13.2505C5.47062 13.4507 4.47275 13.7568 3.503 14.1404C4.691 15.7773 6.48875 16.9371 8.56325 17.2881ZM6.21313 12.1559C5.85087 10.4268 5.84975 8.64137 6.212 6.91225C5.07688 6.68388 3.97213 6.33738 2.89662 5.89412C2.32738 6.98425 2 8.2195 2 9.53125C2 10.8441 2.32738 12.0794 2.89662 13.1684C3.96988 12.7285 5.078 12.3831 6.21313 12.1559Z"
-                fill="#202020"
-              />
-            </svg>
-          </div>
-          <div
-            className="text-15 switch-menu"
-          >
-            <div
-              className="switch-language"
-            >
-              <div
-                className="custom-dropdown float-left"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              >
-                <div
-                  className="dropdown-btn"
-                >
-                  <div
-                    className="label"
-                  >
-                    Language
-                  </div>
-                  <div
-                    className="menu-down"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M7,10L12,15L17,10H7Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="p-2 pl-3 w-100 mb-2 flex items-center list-item text-dark"
-          onClick={[Function]}
-        >
-          <div
-            className="navbar-icon"
-          >
-            <svg
-              fill="none"
-              height="16"
-              viewBox="0 0 17 16"
-              width="17"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.5982 9.10563C16.4244 9.06459 16.2506 9.10563 16.0985 9.20822C15.5336 9.65964 14.8819 10.029 14.1649 10.2752C13.4914 10.5214 12.7528 10.6446 11.9707 10.6446C10.2109 10.6446 8.60323 9.96742 7.45179 8.87992C6.30035 7.79241 5.58341 6.27401 5.58341 4.61197C5.58341 3.91433 5.71376 3.2372 5.93102 2.62163C6.17 1.96503 6.5176 1.36998 6.97383 0.857004C7.16936 0.631295 7.12591 0.302991 6.88693 0.118321C6.73486 0.0157259 6.56105 -0.0253121 6.38725 0.0157259C4.5406 0.487662 2.93292 1.53413 1.78148 2.92942C0.673485 4.30419 0 6.00726 0 7.87449C0 10.1111 0.955915 12.1424 2.52014 13.6198C4.08436 15.0972 6.23517 16 8.60323 16C10.602 16 12.4486 15.3434 13.9259 14.2559C15.425 13.1479 16.5113 11.5679 16.9675 9.76223C17.0761 9.45445 16.9023 9.16718 16.5982 9.10563ZM13.2742 13.3941C12.0141 14.338 10.4064 14.9125 8.64668 14.9125C6.58278 14.9125 4.7144 14.1123 3.36743 12.8401C2.02046 11.5679 1.17317 9.80327 1.17317 7.85397C1.17317 6.23297 1.73803 4.75561 2.71567 3.56551C3.38915 2.74475 4.23644 2.06762 5.21408 1.59569C5.10545 1.82139 4.99683 2.0471 4.90993 2.29333C4.6275 3.03201 4.49715 3.81173 4.49715 4.63249C4.49715 6.58179 5.34443 8.36695 6.6914 9.63912C8.03837 10.9113 9.92848 11.7115 11.9924 11.7115C12.9049 11.7115 13.7739 11.5679 14.5777 11.2806C14.8601 11.178 15.1426 11.0754 15.4033 10.9523C14.8819 11.8962 14.1649 12.7375 13.2742 13.3941Z"
-                fill="black"
-              />
-            </svg>
-          </div>
-          <div
-            className="ml-3 text-15"
-          >
-            Switch
-             
-            dark
           </div>
         </div>
       </div>
