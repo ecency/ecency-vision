@@ -74,7 +74,9 @@
     "username": "Имя пользователя",
     "past-few-days": "последние несколько дней",
     "you": "Вы",
-    "copy-clipboard": "Копировать в буфер обмена"
+    "copy-clipboard": "Копировать в буфер обмена",
+    "first": "First",
+    "last": "Last"
   },
   "confirm": {
     "title": "Вы уверены?",
