@@ -74,7 +74,9 @@
     "username": "اسم المستخدم",
     "past-few-days": "الأيام القليلة الماضية",
     "you": "أنت",
-    "copy-clipboard": "Copy to clipboard"
+    "copy-clipboard": "Copy to clipboard",
+    "first": "First",
+    "last": "Last"
   },
   "confirm": {
     "title": "هل أنت متأكد؟",
