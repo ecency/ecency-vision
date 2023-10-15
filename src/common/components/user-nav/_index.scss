@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .user-nav {
   align-items: center;
@@ -29,11 +26,11 @@
   }
 
   @include themify(day) {
-    background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
+    @apply bg-gradient-primary-day;
   }
 
   @include themify(night) {
-    background-image: linear-gradient(to left, $dark-indigo, $dusky-blue);
+    @apply bg-gradient-primary-night;
   }
 
   .user-wallet,
@@ -41,7 +38,7 @@
   .notifications,
   .chats,
   .points {
-    color: $white;
+    @apply text-white;
     display: flex;
     align-items: center;
     margin-right: 12px;
@@ -56,7 +53,7 @@
     position: relative;
 
     .reward-badge {
-      background: $red4;
+      @apply bg-red-040;
       border-radius: 50%;
       height: 5px;
       position: absolute;
@@ -84,9 +81,9 @@
     }
 
     .notifications-badge {
-      background: $red4;
+      @apply bg-red-040;
       border-radius: 50%;
-      color: $white;
+      @apply text-white;
       font-size: 10px;
       height: 14px;
       position: absolute;
@@ -111,11 +108,11 @@
     font-weight: 300;
 
     @include themify(day) {
-      background: $white-three;
+      @apply bg-light-300;
     }
 
     @include themify(night) {
-      background: $dark-two;
+      @apply bg-dark-200;
     }
 
     .power {
@@ -134,11 +131,11 @@
 
       .voting {
         margin-right: 6px;
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
       }
 
       .downVoting {
-        color: $red2;
+        @apply text-red-020;
 
         svg {
           transform: rotate(180deg);

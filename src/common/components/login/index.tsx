@@ -1,55 +1,45 @@
 import React, { Component } from "react";
-
-import { Modal, Form, Button, FormControl, Spinner } from "react-bootstrap";
-
 import isEqual from "react-fast-compare";
-
-import { PrivateKey, PublicKey, cryptoUtils } from "@hiveio/dhive";
-
+import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 import { History, Location } from "history";
 import * as ls from "../../util/local-storage";
 import { decodeObj } from "../../util/encoder";
-
 import { AppWindow } from "../../../client/window";
-
 import { Global } from "../../store/global/types";
-import { UI } from "../../store/ui/types";
+import { ToggleType, UI } from "../../store/ui/types";
 import { User, UserKeys } from "../../store/users/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { ToggleType } from "../../store/ui/types";
-
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
-import PopoverConfirm from "../popover-confirm";
+import PopoverConfirm from "@ui/popover-confirm";
 import OrDivider from "../or-divider";
 import { error } from "../feedback";
-
 import { getAuthUrl, makeHsCode } from "../../helper/hive-signer";
 import { hsLogin } from "../../../desktop/app/helper/hive-signer";
 import { generateKeys } from "../../helper/generate-private-keys";
-
 import { getAccount } from "../../api/hive";
 import { usrActivity } from "../../api/private-api";
 import { hsTokenRenew } from "../../api/auth-api";
-import { formatError, grantPostingPermission, revokePostingPermission } from "../../api/operations";
-
+import { formatError, grantPostingPermission } from "../../api/operations";
 import { getRefreshToken } from "../../helper/user-token";
 import { getPrivateKey, getProfileMetaData } from "../../components/chats/utils";
 
 import ReCAPTCHA from "react-google-recaptcha";
-
-import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
+import { addAccountAuthority, signBuffer } from "../../helper/keychain";
 import { setNostrkeys } from "../../../managers/message-manager";
-
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
-
 import { deleteForeverSvg } from "../../img/svg";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 declare var window: AppWindow;
 
@@ -74,7 +64,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     inProgress: false
   };
 
-  usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  usernameChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: username } = e.target;
     this.stateSet({ username: username.trim().toLowerCase() });
   };
@@ -173,9 +163,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
       ? "./img/keychain.png"
       : require("../../img/keychain.png");
 
-    const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-    );
+    const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
     return (
       <>
@@ -190,8 +178,8 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
             e.preventDefault();
           }}
         >
-          <Form.Group>
-            <Form.Control
+          <div className="mb-4">
+            <FormControl
               type="text"
               value={username}
               onChange={this.usernameChanged}
@@ -199,12 +187,12 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
               autoFocus={true}
               onKeyDown={this.inputKeyDown}
             />
-          </Form.Group>
-          <Button disabled={inProgress} block={true} onClick={this.login}>
+          </div>
+          <Button disabled={inProgress} className="block" onClick={this.login}>
             {inProgress && spinner}
             {_t("g.login")}
           </Button>
-          <Button variant="outline-primary" disabled={inProgress} block={true} onClick={this.back}>
+          <Button outline={true} className="block" disabled={inProgress} onClick={this.back}>
             {_t("g.back")}
           </Button>
         </Form>
@@ -356,12 +344,12 @@ export class Login extends BaseComponent<LoginProps, State> {
     }
   };
 
-  usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  usernameChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: username } = e.target;
     this.stateSet({ username: username.trim().toLowerCase() });
   };
 
-  keyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  keyChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: key } = e.target;
     this.stateSet({ key: key.trim() });
   };
@@ -577,9 +565,7 @@ export class Login extends BaseComponent<LoginProps, State> {
       ? "./img/keychain.png"
       : require("../../img/keychain.png");
 
-    const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-    );
+    const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
     return (
       <>
@@ -620,9 +606,9 @@ export class Login extends BaseComponent<LoginProps, State> {
             e.preventDefault();
           }}
         >
-          <p className="login-form-text">{_t("login.with-user-pass")}</p>
-          <Form.Group>
-            <Form.Control
+          <p className="login-form-text mb-4">{_t("login.with-user-pass")}</p>
+          <div className="mb-4">
+            <FormControl
               type="text"
               value={username}
               onChange={this.usernameChanged}
@@ -630,9 +616,9 @@ export class Login extends BaseComponent<LoginProps, State> {
               autoFocus={true}
               onKeyDown={this.inputKeyDown}
             />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control
+          </div>
+          <div className="mb-4">
+            <FormControl
               type="password"
               value={key}
               autoComplete="off"
@@ -640,7 +626,7 @@ export class Login extends BaseComponent<LoginProps, State> {
               placeholder={_t("login.key-placeholder")}
               onKeyDown={this.inputKeyDown}
             />
-          </Form.Group>
+          </div>
           {!global.isElectron && (
             <div className="google-recaptcha">
               <ReCAPTCHA
@@ -650,7 +636,7 @@ export class Login extends BaseComponent<LoginProps, State> {
               />
             </div>
           )}
-          <p className="login-form-text">
+          <p className="login-form-text my-3">
             {_t("login.login-info-1")}{" "}
             <a
               onClick={(e) => {
@@ -668,34 +654,45 @@ export class Login extends BaseComponent<LoginProps, State> {
               {_t("login.login-info-2")}
             </a>
           </p>
-          <Button disabled={inProgress || !isVerified} block={true} onClick={this.login}>
+          <Button
+            full={true}
+            disabled={inProgress || !isVerified}
+            className="block"
+            onClick={this.login}
+          >
             {inProgress && username && key && spinner}
             {_t("g.login")}
           </Button>
         </Form>
         <OrDivider />
         <div className="hs-login">
-          <a
-            className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)}
+          <Button
+            outline={true}
             onClick={this.hsLogin}
+            disabled={inProgress}
+            icon={
+              <img
+                src={global.isElectron ? "./img/hive-signer.svg" : hsLogo}
+                className="hs-logo"
+                alt="hivesigner"
+              />
+            }
+            iconPlacement="left"
           >
-            <img
-              src={global.isElectron ? "./img/hive-signer.svg" : hsLogo}
-              className="hs-logo"
-              alt="hivesigner"
-            />{" "}
             {_t("login.with-hive-signer")}
-          </a>
+          </Button>
         </div>
         {global.hasKeyChain && (
           <div className="kc-login">
-            <a
-              className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)}
+            <Button
+              outline={true}
               onClick={this.kcLogin}
+              disabled={inProgress}
+              icon={<img src={keyChainLogo} className="kc-logo" alt="keychain" />}
+              iconPlacement="left"
             >
-              <img src={keyChainLogo} className="kc-logo" alt="keychain" />{" "}
               {_t("login.with-keychain")}
-            </a>
+            </Button>
           </div>
         )}
         {activeUser === null && (
@@ -808,16 +805,16 @@ class LoginDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={this.hide}
-        className="login-modal modal-thin-header"
+        className="login-modal"
         animation={false}
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader thin={true} closeButton={true} />
+        <ModalBody>
           {!ui.loginKc && (
             <Login {...this.props} doLogin={this.doLogin} userListRef={this.userListRef} />
           )}
           {ui.loginKc && <LoginKc {...this.props} doLogin={this.doLogin} />}
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

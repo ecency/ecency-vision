@@ -1,10 +1,12 @@
 import { WalletSpkGroup } from "../wallet-spk-group";
-import { Alert, Button, Form, InputGroup } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { ActiveUser } from "../../../store/active-user/types";
 import { Transactions } from "../../../store/transactions/types";
 import { getSpkWallet, Market } from "../../../api/spk-api";
+import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
+import { Alert } from "@ui/alert";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -65,11 +67,8 @@ export const SendSpkDialogDelegateForm = ({
   return (
     <>
       <WalletSpkGroup label="wallet.spk.send.from">
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text>@</InputGroup.Text>
-          </InputGroup.Prepend>
-          <Form.Control
+        <InputGroup prepend="@">
+          <FormControl
             type="text"
             autoFocus={true}
             placeholder=""
@@ -79,32 +78,27 @@ export const SendSpkDialogDelegateForm = ({
         </InputGroup>
       </WalletSpkGroup>
       <WalletSpkGroup label="wallet.spk.send.to">
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text>@</InputGroup.Text>
-          </InputGroup.Prepend>
-          <select
+        <InputGroup prepend="@">
+          <FormControl
+            type="select"
             ref={selectRef}
             placeholder={_t("wallet.spk.delegate.node-operator-placeholder")}
             className="form-control"
             value={username}
-            onChange={(event: ChangeEvent<any>) => setUsername(event.target.value)}
+            onChange={(event: ChangeEvent<HTMLSelectElement>) => setUsername(event.target.value)}
           >
             {markets.map((market) => (
               <option key={market.name} value={market.name}>
                 {market.status} {market.name}
               </option>
             ))}
-          </select>
+          </FormControl>
         </InputGroup>
       </WalletSpkGroup>
       <WalletSpkGroup label="wallet.spk.send.amount">
         <>
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text>#</InputGroup.Text>
-            </InputGroup.Prepend>
-            <Form.Control
+          <InputGroup prepend="#">
+            <FormControl
               type="text"
               autoFocus={true}
               placeholder=""
@@ -125,14 +119,14 @@ export const SendSpkDialogDelegateForm = ({
         </>
       </WalletSpkGroup>
       {+amount > +getBalance() ? (
-        <Alert className="mt-3" variant={"warning"}>
+        <Alert className="mt-3" appearance="warning">
           {_t("wallet.spk.send.warning")}
         </Alert>
       ) : (
         <></>
       )}
       <WalletSpkGroup label="">
-        <Button disabled={!amount || !username} variant={"primary"} onClick={() => submit()}>
+        <Button disabled={!amount || !username} onClick={() => submit()}>
           {_t("wallet.spk.send.next")}
         </Button>
       </WalletSpkGroup>

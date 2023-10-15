@@ -15,9 +15,9 @@ import { ChartStats } from "../../components/chart-stats";
 import SSRSuspense from "../../components/ssr-suspense";
 import { HiveBarter } from "../../components/hive-barter";
 import { FullAccount } from "../../store/accounts/types";
-import { Button, ButtonGroup } from "react-bootstrap";
 import { OpenOrders } from "../../components/open-orders";
 import { Orders } from "../../components/orders";
+import { ButtonGroup } from "@ui/button-group";
 
 const MarketChart = React.lazy(() => import("../../components/market-chart"));
 
@@ -85,11 +85,11 @@ export const LimitMarketMode = (props: PageProps) => {
 
   return mounted ? (
     <>
-      <div className="d-flex justify-content-md-between flex-column">
+      <div className="flex justify-content-md-between flex-col">
         <div className="mb-5">
-          <h4 className="mb-3">
+          <div className="text-2xl mb-3">
             {loading ? <Skeleton className="skeleton-loading" /> : _t("market.stock-info")}
-          </h4>
+          </div>
           <ChartStats data={data} loading={loading} />
         </div>
 
@@ -105,12 +105,12 @@ export const LimitMarketMode = (props: PageProps) => {
           _t("g.loading") + "..."
         )}
       </div>
-      <div className="d-flex justify-content-center">
+      <div className="flex justify-center">
         <div className="container my-5 mx-0">
           <div>
             {activeUser && (
-              <div className="row justify-content-between d-none d-md-flex px-3">
-                <div className="col-12 col-sm-5 p-0">
+              <div className="grid-cols-12 justify-between hidden md:grid px-3">
+                <div className="col-span-12 sm:col-span-5 p-0">
                   <HiveBarter
                     type={1}
                     available={(activeUser && (activeUser.data as FullAccount).hbd_balance) || ""}
@@ -126,7 +126,7 @@ export const LimitMarketMode = (props: PageProps) => {
                     onClickPeakValue={(value: any) => setBidValues({ ...bidValues, lowest: value })}
                   />
                 </div>
-                <div className="col-12 col-sm-5 p-0">
+                <div className="col-span-12 sm:col-start-8 sm:col-span-5 p-0">
                   <HiveBarter
                     type={2}
                     prefilledTotal={bidValues.total}
@@ -148,33 +148,15 @@ export const LimitMarketMode = (props: PageProps) => {
             )}
 
             {activeUser && (
-              <div className="d-flex flex-column d-md-none">
-                <div className="d-flex align-items-sm-center justify-content-start justify-content-sm-between flex-column flex-sm-row">
-                  <h3>{_t("market.barter")}</h3>
-                  <ButtonGroup size="lg" className="my-3">
-                    <Button
-                      className="rounded-right"
-                      variant={exchangeType === 1 ? "primary" : "secondary"}
-                      onClick={() => setExchangeType(1)}
-                      style={{
-                        borderTopRightRadius: "0px !important",
-                        borderBottomRightRadius: "0px !important"
-                      }}
-                    >
-                      {_t("market.buy")}
-                    </Button>
-                    <Button
-                      variant={exchangeType === 2 ? "primary" : "secondary"}
-                      className="rounded-left"
-                      onClick={() => setExchangeType(2)}
-                      style={{
-                        borderTopLeftRadius: "0px !important",
-                        borderBottomLeftRadius: "0px !important"
-                      }}
-                    >
-                      {_t("market.sell")}
-                    </Button>
-                  </ButtonGroup>
+              <div className="flex flex-col md:hidden">
+                <div className="flex sm:items-center justify-start sm:justify-between flex-col sm:flex-row">
+                  <div className="text-2xl">{_t("market.barter")}</div>
+                  <ButtonGroup
+                    className="my-3"
+                    labels={[_t("market.buy"), _t("market.sell")]}
+                    selected={exchangeType === 1 ? 0 : 1}
+                    setSelected={(v) => setExchangeType(v + 1)}
+                  />
                 </div>
 
                 {exchangeType === 1 ? (
@@ -217,9 +199,9 @@ export const LimitMarketMode = (props: PageProps) => {
               </div>
             )}
 
-            <div className="row mt-5 mx-0 justify-content-between">
+            <div className="grid grid-cols-12 mt-5 mx-0 justify-between">
               {!openOrdersDataLoading && openOrdersdata.length > 0 && activeUser && (
-                <div className="col-12 px-0 mb-5">
+                <div className="col-span-12 px-0 mb-5">
                   <OpenOrders
                     onTransactionSuccess={updateOpenData}
                     data={openOrdersdata || []}
@@ -229,7 +211,7 @@ export const LimitMarketMode = (props: PageProps) => {
                   />
                 </div>
               )}
-              <div className="col-12 col-xl-5 px-0">
+              <div className="col-span-12 xl:col-span-5 px-0">
                 <Orders
                   onPriceClick={(value) =>
                     setBidValues({
@@ -244,7 +226,7 @@ export const LimitMarketMode = (props: PageProps) => {
                   data={tablesData ? tablesData!.bids : []}
                 />
               </div>
-              <div className="col-12 col-xl-5 px-0 px-sm-auto mt-5 mt-lg-0">
+              <div className="col-span-12 xl:col-start-8 xl:col-span-5 px-0 sm:px-[auto] mt-5 lg:mt-0">
                 <Orders
                   onPriceClick={(value) =>
                     setBidValues({
@@ -259,7 +241,7 @@ export const LimitMarketMode = (props: PageProps) => {
                   data={tablesData ? tablesData!.asks : []}
                 />
               </div>
-              <div className="col-12 px-0 px-sm-auto mt-5">
+              <div className="col-span-12 px-0 sm:px-[auto] mt-5">
                 <Orders
                   type={3}
                   loading={loadingTablesData}

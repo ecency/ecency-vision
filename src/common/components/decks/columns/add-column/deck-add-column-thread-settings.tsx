@@ -1,6 +1,5 @@
 import { _t } from "../../../../i18n";
 import { UserAvatar } from "../../../user-avatar";
-import { Button, Dropdown } from "react-bootstrap";
 import React, { useContext, useState } from "react";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import useLocalStorage from "react-use/lib/useLocalStorage";
@@ -8,6 +7,8 @@ import { SettingsProps } from "./common";
 import { PREFIX } from "../../../../util/local-storage";
 import { DeckGridContext } from "../../deck-manager";
 import { AVAILABLE_THREAD_HOSTS } from "../../consts";
+import { Button } from "@ui/button";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 
 export const DeckAddColumnThreadSettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -20,7 +21,7 @@ export const DeckAddColumnThreadSettings = ({ deckKey }: SettingsProps) => {
     <div className="deck-add-column-user-settings p-3">
       <div className="helper-text mb-3">{_t("decks.columns.add-thread-host-text")}</div>
       <Dropdown>
-        <Dropdown.Toggle as="div">
+        <DropdownToggle>
           <div className="selected-user">
             <UserAvatar
               size="medium"
@@ -32,21 +33,20 @@ export const DeckAddColumnThreadSettings = ({ deckKey }: SettingsProps) => {
             </div>
             <div className="click-to-change">{_t("decks.columns.click-to-change")}</div>
           </div>
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
+        </DropdownToggle>
+        <DropdownMenu>
           {["all", ...AVAILABLE_THREAD_HOSTS].map((v) => (
-            <Dropdown.Item key={v} onClick={() => setHost(v)} className="thread-host-item">
+            <DropdownItem key={v} onClick={() => setHost(v)} className="thread-host-item">
               <UserAvatar size="small" global={global} username={v === "all" ? "ecency" : v} />
               {v === "all" ? _t("decks.columns.all-thread-hosts") : v}
-            </Dropdown.Item>
+            </DropdownItem>
           ))}
-        </Dropdown.Menu>
+        </DropdownMenu>
       </Dropdown>
       {host !== "" ? (
         <Button
           disabled={!host}
-          className="w-100 mt-5 py-3 sticky-bottom"
-          variant="primary"
+          className="w-full mt-5 sticky bottom-0"
           onClick={() =>
             add({
               key: deckKey,

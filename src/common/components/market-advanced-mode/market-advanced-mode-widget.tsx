@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MarketAdvancedModeWidgetHeader } from "./market-advanced-mode-widget-header";
-import Dropdown, { MenuItem } from "../dropdown";
+import { MenuItem } from "../dropdown";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
 import { History } from "history";
 import { _t } from "../../i18n";
@@ -60,7 +60,7 @@ export const MarketAdvancedModeWidget = ({
   return (
     <div
       className={
-        "market-advanced-mode-widget border " +
+        "market-advanced-mode-widget border border-[--border-color] " +
         (expandedHeader ? "expanded-header " : "") +
         className
       }

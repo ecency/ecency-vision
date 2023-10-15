@@ -1,23 +1,15 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
 import isEqual from "react-fast-compare";
-
 import { Global } from "../../store/global/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Account, FullAccount } from "../../store/accounts/types";
-import { UI, ToggleType } from "../../store/ui/types";
-import { Community } from "../../store/communities/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { Community } from "../../store/communities";
 import { Subscription } from "../../store/subscriptions/types";
-
 import defaults from "../../constants/defaults.json";
-
-import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
-
-setProxyBase(defaults.imageServer);
-
+import { setProxyBase } from "@ecency/render-helper";
 import BaseComponent from "../base";
 import SubscriptionBtn from "../subscription-btn";
 import CommunityPostBtn from "../community-post-btn";
@@ -35,6 +27,8 @@ import { _t } from "../../i18n";
 
 import { pencilOutlineSvg } from "../../img/svg";
 import "./_index.scss";
+
+setProxyBase(defaults.imageServer);
 
 const coverFallbackDay = require("../../img/cover-fallback-day.png");
 const coverFallbackNight = require("../../img/cover-fallback-night.png");

@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .wallet-menu {
   display: flex;
@@ -42,13 +39,15 @@
     }
 
     @include themify(day) {
-      background: darken($white-two, 1);
-      border: 2px solid $white-three;
+      @apply bg-light-200;
+      border: 2px solid;
+      @apply border-light-300;
     }
 
     @include themify(night) {
-      background: $dark-two;
-      border: 2px solid lighten($dark-six, 4);
+      @apply bg-dark-200;
+      border: 2px solid;
+      @apply border-dark-600;
     }
 
     .title {
@@ -64,7 +63,7 @@
       display: flex;
       align-items: center;
       opacity: 0.4;
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
 
       img, svg {
         width: 32px;
@@ -72,19 +71,19 @@
     }
 
     &.hive {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     &.ecency {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     &.spk {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     &.active, &:hover {
-      border-color: $dark-sky-blue;
+      @apply border-blue-dark-sky;
 
       .platform-logo {
         opacity: 1;

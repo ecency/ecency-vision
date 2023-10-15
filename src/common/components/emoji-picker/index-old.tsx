@@ -1,5 +1,4 @@
 import React from "react";
-import { FormControl } from "react-bootstrap";
 import BaseComponent from "../base";
 import SearchBox from "../search-box";
 import { _t } from "../../i18n";
@@ -88,7 +87,7 @@ export default class EmojiPicker extends BaseComponent<Props> {
     this.stateSet({ data, cache });
   };
 
-  filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  filterChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ filter: e.target.value });
   };
 

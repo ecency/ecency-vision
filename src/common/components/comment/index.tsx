@@ -1,31 +1,24 @@
 import React, { Component, Ref } from "react";
-
-import { FormControl, Button, Spinner } from "react-bootstrap";
-
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Account } from "../../store/accounts/types";
-import { UI, ToggleType } from "../../store/ui/types";
+import { ToggleType, UI } from "../../store/ui/types";
 import { Entry } from "../../store/entries/types";
-
-import EditorToolbar from "../editor-toolbar";
+import EditorToolbar, { detectEvent, toolbarEventListener } from "../editor-toolbar";
 import LoginRequired from "../login-required";
-import { detectEvent, toolbarEventListener } from "../../components/editor-toolbar";
-
 import defaults from "../../constants/defaults.json";
-
 import { renderPostBody, setProxyBase } from "@ecency/render-helper";
-
-setProxyBase(defaults.imageServer);
-
 import { _t } from "../../i18n";
 import { Global } from "../../store/global/types";
 import * as ss from "../../util/session-storage";
-
 import TextareaAutocomplete from "../textarea-autocomplete";
 import { AvailableCredits } from "../available-credits";
 import { Location } from "history";
 import "./_index.scss";
+import { Spinner } from "@ui/spinner";
+import { Button } from "@ui/button";
+
+setProxyBase(defaults.imageServer);
 
 interface PreviewProps {
   text: string;
@@ -134,7 +127,7 @@ export class Comment extends Component<Props, State> {
     ss.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
   };
 
-  textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  textChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: text } = e.target;
     let scHeight: number = e.target.scrollHeight;
     let reduceScHeight: number = scHeight - 20 || scHeight - 24;
@@ -267,7 +260,7 @@ export class Comment extends Component<Props, State> {
             <div className="editor-toolbar bottom">
               {this.props.activeUser ? (
                 <AvailableCredits
-                  className="p-2 w-100"
+                  className="p-2 w-full"
                   operation="comment_operation"
                   username={this.props.activeUser.username}
                   activeUser={activeUser}
@@ -278,12 +271,12 @@ export class Comment extends Component<Props, State> {
               )}
             </div>
           </div>
-          <div className="comment-buttons d-flex align-items-center mt-3">
+          <div className="comment-buttons flex items-center mt-3">
             {cancellable && (
               <Button
-                className="btn-cancel"
+                className="mr-2"
                 size="sm"
-                variant="outline-primary"
+                outline={true}
                 disabled={inProgress}
                 onClick={this.cancel}
               >
@@ -294,19 +287,12 @@ export class Comment extends Component<Props, State> {
               ...this.props,
               children: (
                 <Button
-                  className="btn-submit"
                   size="sm"
                   disabled={inProgress}
                   onClick={this.submit}
+                  icon={inProgress && <Spinner className="w-3.5 h-3.5" />}
+                  iconPlacement="left"
                 >
-                  {inProgress && (
-                    <Spinner
-                      animation="grow"
-                      variant="light"
-                      size="sm"
-                      style={{ marginRight: "6px" }}
-                    />
-                  )}{" "}
                   {submitText}
                 </Button>
               )

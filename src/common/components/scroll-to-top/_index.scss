@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .scroll-to-top {
   position: fixed;
@@ -9,8 +6,8 @@
   bottom: 20px;
   width: 40px;
   height: 40px;
-  background: $dark-sky-blue;
-  color: $white;
+  @apply bg-blue-dark-sky;
+  @apply text-white;
   border-radius: 50%;
   box-shadow: $box-shadow;
   z-index: 10;

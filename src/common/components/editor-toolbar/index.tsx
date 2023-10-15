@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import isEqual from "react-fast-compare";
 import axios from "axios";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { User } from "../../store/users/types";
 import { Global } from "../../store/global/types";
-
 import Tooltip from "../tooltip";
 import { EmojiPicker } from "../emoji-picker";
 import GifPicker from "../gif-picker";
@@ -585,7 +583,7 @@ export class EditorToolbar extends Component<Props> {
               {emoticonHappyOutlineSvg}
               {showEmoji && this.state.isMounted && (
                 <EmojiPicker
-                  anchor={document.querySelector("#editor-tool-emoji-picker")!!}
+                  anchor={document.querySelector("#editor-tool-emoji-picker")!! as HTMLElement}
                   onSelect={(e) => this.insertText(e, "")}
                 />
               )}

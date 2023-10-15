@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .avatar-fixed {
     position: fixed;
@@ -97,7 +94,8 @@
       }
     }
     .second-line {
-      border-bottom: 1px solid $white-four;
+      border-bottom: 1px solid;
+      @apply border-light-400;
     }
     
    .social-wrapper{

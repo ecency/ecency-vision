@@ -2,7 +2,7 @@ import React from "react";
 
 export const ListItemSkeleton = () => {
   return (
-    <div className="list-item-skeleton border-bottom p-3">
+    <div className="list-item-skeleton border-b border-[--border-color] p-3">
       <div className="avatar" />
       <div className="username" />
       <div className="date" />
@@ -16,7 +16,7 @@ export const ListItemSkeleton = () => {
 
 export const ShortListItemSkeleton = () => {
   return (
-    <div className="list-item-skeleton wallet-list-item-skeleton border-bottom p-3">
+    <div className="list-item-skeleton wallet-list-item-skeleton border-b border-[--border-color] p-3">
       <div className="avatar" />
       <div className="username" />
       <div className="date" />
@@ -27,7 +27,7 @@ export const ShortListItemSkeleton = () => {
 
 export const DeckThreadItemSkeleton = () => {
   return (
-    <div className="list-item-skeleton thread-item-skeleton border-bottom p-3">
+    <div className="list-item-skeleton thread-item-skeleton border-b border-[--border-color] p-3">
       <div className="avatar" />
       <div className="username" />
       <div className="date" />

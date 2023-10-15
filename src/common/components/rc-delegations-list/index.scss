@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .delgations-list {
   @include user-grid-list(1, 2, 2);
@@ -24,9 +21,7 @@
     height: 80vh;
 
     .search-box {
-      padding: 0;
       max-width: 300px;
-      margin: 0 auto 5px auto;
       align-self: center;
     }
     @include user-grid-list(1, 2, 3);

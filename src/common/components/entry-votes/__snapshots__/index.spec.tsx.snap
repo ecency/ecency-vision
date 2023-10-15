@@ -35,8 +35,9 @@ exports[`(2) No votes 1`] = `
   className="entry-votes notranslate"
 >
   <span
-    className="inner-btn no-data"
-    title="No Votes"
+    className="inner-btn"
+    onClick={[Function]}
+    title="10 Votes"
   >
     <div
       className="heart-icon"
@@ -54,7 +55,7 @@ exports[`(2) No votes 1`] = `
         />
       </svg>
     </div>
-    0
+    10
   </span>
 </div>
 `;
@@ -62,8 +63,7 @@ exports[`(2) No votes 1`] = `
 exports[`(3) Render of detail with votes 1`] = `
 Array [
   <div
-    className="fade alert alert-warning show"
-    role="alert"
+    className="text-sm p-3 rounded-[1rem] bg-warning-040 border border-warning-030 text-warning-default"
   >
     Content has pending votes. Please, wait a minute and refresh this dialog to see new votes.
   </div>,
@@ -206,8 +206,9 @@ Array [
         Sort
       </span>
       <select
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
         onChange={[Function]}
+        type="select"
         value="reward"
       >
         <option

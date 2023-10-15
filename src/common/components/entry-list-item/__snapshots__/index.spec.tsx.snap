@@ -16,7 +16,7 @@ exports[`(1) Default render 1`] = `
         id="good-karma-awesome-hive"
       >
         <div
-          className="d-flex align-items-center"
+          className="flex items-center"
           id="good-karma-awesome-hive"
         >
           <a
@@ -24,7 +24,7 @@ exports[`(1) Default render 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-block"
+              className="author-avatar block"
             >
               <span
                 className="user-avatar small"
@@ -38,7 +38,7 @@ exports[`(1) Default render 1`] = `
             </span>
           </a>
           <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate flex sm:hidden items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
@@ -67,7 +67,7 @@ exports[`(1) Default render 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              className="author btn notranslate hidden sm:flex items-center relative"
               onMouseEnter={[Function]}
             >
               <span
@@ -114,12 +114,9 @@ exports[`(1) Default render 1`] = `
         <picture>
           <source
             media="(min-width: 576px)"
-            srcSet="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4.png?format=match&mode=fit&width=260&height=200"
           />
           <img
-            alt="Awesome Hive"
-            onError={[Function]}
-            srcSet="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4.png?format=match&mode=fit&width=600&height=500"
+            alt=""
           />
         </picture>
       </a>
@@ -177,14 +174,15 @@ exports[`(1) Default render 1`] = `
           </div>
         </div>
       </div>
-      <div
-        className="entry-payout notranslate"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        $ 125.10
+      <div>
+        <div />
+        <div
+          className="entry-payout notranslate"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          $ 125.10
+        </div>
       </div>
       <div
         className="entry-votes notranslate"
@@ -254,7 +252,32 @@ exports[`(1) Default render 1`] = `
       </div>
       <div
         className="entry-menu"
-      />
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn"
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -276,7 +299,7 @@ exports[`(2) Grid view 1`] = `
         id="good-karma-awesome-hive"
       >
         <div
-          className="d-flex align-items-center"
+          className="flex items-center"
           id="good-karma-awesome-hive"
         >
           <a
@@ -284,7 +307,7 @@ exports[`(2) Grid view 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-block"
+              className="author-avatar block"
             >
               <span
                 className="user-avatar small"
@@ -298,7 +321,7 @@ exports[`(2) Grid view 1`] = `
             </span>
           </a>
           <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate flex sm:hidden items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
@@ -327,7 +350,7 @@ exports[`(2) Grid view 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              className="author btn notranslate hidden sm:flex items-center relative"
               onMouseEnter={[Function]}
             >
               <span
@@ -371,16 +394,14 @@ exports[`(2) Grid view 1`] = `
         href="/hive/@good-karma/awesome-hive"
         onClick={[Function]}
       >
-        <img
-          alt="Awesome Hive"
-          onError={[Function]}
-          src="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4.png?format=match&mode=fit&width=600&height=500"
-          style={
-            Object {
-              "width": "auto",
-            }
-          }
-        />
+        <picture>
+          <source
+            media="(min-width: 576px)"
+          />
+          <img
+            alt=""
+          />
+        </picture>
       </a>
     </div>
     <div
@@ -436,14 +457,15 @@ exports[`(2) Grid view 1`] = `
           </div>
         </div>
       </div>
-      <div
-        className="entry-payout notranslate"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        $ 125.10
+      <div>
+        <div />
+        <div
+          className="entry-payout notranslate"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          $ 125.10
+        </div>
       </div>
       <div
         className="entry-votes notranslate"
@@ -513,7 +535,32 @@ exports[`(2) Grid view 1`] = `
       </div>
       <div
         className="entry-menu"
-      />
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn"
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -535,7 +582,7 @@ exports[`(3) Nsfw 1`] = `
         id="good-karma-awesome-hive"
       >
         <div
-          className="d-flex align-items-center"
+          className="flex items-center"
           id="good-karma-awesome-hive"
         >
           <a
@@ -543,7 +590,7 @@ exports[`(3) Nsfw 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-block"
+              className="author-avatar block"
             >
               <span
                 className="user-avatar small"
@@ -557,7 +604,7 @@ exports[`(3) Nsfw 1`] = `
             </span>
           </a>
           <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate flex sm:hidden items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
@@ -586,7 +633,7 @@ exports[`(3) Nsfw 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              className="author btn notranslate hidden sm:flex items-center relative"
               onMouseEnter={[Function]}
             >
               <span
@@ -666,6 +713,41 @@ exports[`(3) Nsfw 1`] = `
       </div>
     </div>
     <div
+      className="item-image "
+    >
+      <a
+        href="/hive/@good-karma/awesome-hive"
+        onClick={[Function]}
+      >
+        <picture>
+          <source
+            media="(min-width: 576px)"
+          />
+          <img
+            alt=""
+          />
+        </picture>
+      </a>
+    </div>
+    <div
+      className="item-summary"
+    >
+      <a
+        className="item-title"
+        href="/hive/@good-karma/awesome-hive"
+        onClick={[Function]}
+      >
+        Awesome Hive
+      </a>
+      <a
+        className="item-body"
+        href="/hive/@good-karma/awesome-hive"
+        onClick={[Function]}
+      >
+        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various tools
+      </a>
+    </div>
+    <div
       className="item-controls"
     >
       <div
@@ -700,14 +782,15 @@ exports[`(3) Nsfw 1`] = `
           </div>
         </div>
       </div>
-      <div
-        className="entry-payout notranslate"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        $ 125.10
+      <div>
+        <div />
+        <div
+          className="entry-payout notranslate"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          $ 125.10
+        </div>
       </div>
       <div
         className="entry-votes notranslate"
@@ -777,7 +860,32 @@ exports[`(3) Nsfw 1`] = `
       </div>
       <div
         className="entry-menu"
-      />
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn"
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -799,7 +907,7 @@ exports[`(4) Nsfw with active user 1`] = `
         id="good-karma-awesome-hive"
       >
         <div
-          className="d-flex align-items-center"
+          className="flex items-center"
           id="good-karma-awesome-hive"
         >
           <a
@@ -807,7 +915,7 @@ exports[`(4) Nsfw with active user 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-block"
+              className="author-avatar block"
             >
               <span
                 className="user-avatar small"
@@ -821,7 +929,7 @@ exports[`(4) Nsfw with active user 1`] = `
             </span>
           </a>
           <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate flex sm:hidden items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
@@ -850,7 +958,7 @@ exports[`(4) Nsfw with active user 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              className="author btn notranslate hidden sm:flex items-center relative"
               onMouseEnter={[Function]}
             >
               <span
@@ -919,239 +1027,16 @@ exports[`(4) Nsfw with active user 1`] = `
          
         or
          
-        adjust your
-         
-        <a
-          href="#"
-          onClick={[Function]}
-        >
-          display preferences
-        </a>
+        <span
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<a href=\\"/signup\\" class=\\"push-link\\">create an account</a> to save your preferences",
+            }
+          }
+        />
         .
       </div>
     </div>
-    <div
-      className="item-controls"
-    >
-      <div
-        onClick={[Function]}
-      >
-        <div>
-          <div
-            className="entry-vote-btn"
-            onClick={[Function]}
-          >
-            <div
-              className="btn-vote btn-up-vote"
-            >
-              <div
-                className=""
-              >
-                <span
-                  className="btn-inner "
-                >
-                  <svg
-                    className="vote-svg"
-                    viewBox="6 8 12 7.41"
-                  >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="entry-payout notranslate"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        $ 125.10
-      </div>
-      <div
-        className="entry-votes notranslate"
-      >
-        <span
-          className="inner-btn"
-          onClick={[Function]}
-          title="10 Votes"
-        >
-          <div
-            className="heart-icon"
-          >
-            <svg
-              fill="currentColor"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                fillRule="evenodd"
-              />
-            </svg>
-          </div>
-          10
-        </span>
-      </div>
-      <a
-        className="replies notranslate"
-        href="/hive/@good-karma/awesome-hive"
-        onClick={[Function]}
-      >
-        <span
-          className="inner"
-          title="31 responses. Click to respond."
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-              fill="currentColor"
-            />
-          </svg>
-           
-          31
-        </span>
-      </a>
-      <div
-        className="entry-reblog-btn"
-        onClick={[Function]}
-      >
-        <a
-          className="inner-btn"
-          title="Reblog"
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z"
-              fill="currentColor"
-            />
-          </svg>
-        </a>
-      </div>
-      <div
-        className="entry-menu"
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`(5) Nsfw but allowed 1`] = `
-<div
-  className="entry-list-item hot"
-  id="good-karmaawesome-hive"
->
-  <div
-    className="item-header"
-  >
-    <div
-      className="item-header-main"
-    >
-      <div
-        className="author-part"
-        id="good-karma-awesome-hive"
-      >
-        <div
-          className="d-flex align-items-center"
-          id="good-karma-awesome-hive"
-        >
-          <a
-            href="/@good-karma"
-            onClick={[Function]}
-          >
-            <span
-              className="author-avatar d-block"
-            >
-              <span
-                className="user-avatar small"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                  }
-                }
-              />
-            </span>
-          </a>
-          <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
-            id="good-karma-awesome-hive"
-            onClick={[Function]}
-          >
-            <span
-              className="author-name"
-            >
-              good-karma
-            </span>
-          </div>
-          <span
-            className="author-down-arrow mx-1"
-            id="good-karma-awesome-hive"
-            onClick={[Function]}
-            role="button"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7,10L12,15L17,10H7Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-          <div
-            onMouseLeave={[Function]}
-          >
-            <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-              onMouseEnter={[Function]}
-            >
-              <span
-                className="author-name"
-              >
-                good-karma
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a
-        className="category"
-        href="/hot/hive"
-        onClick={[Function]}
-        title="Unmoderated topics"
-      >
-        hive
-      </a>
-      <span
-        className="read-mark"
-      />
-      <span
-        className="date"
-        title="Monday, June 1, 2020 5:53 AM"
-      >
-        5d
-      </span>
-    </div>
-    <div
-      className="item-header-features"
-    />
-  </div>
-  <div
-    className="item-body"
-  >
     <div
       className="item-image "
     >
@@ -1162,12 +1047,9 @@ exports[`(5) Nsfw but allowed 1`] = `
         <picture>
           <source
             media="(min-width: 576px)"
-            srcSet="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4.png?format=match&mode=fit&width=260&height=200"
           />
           <img
-            alt="Awesome Hive"
-            onError={[Function]}
-            srcSet="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4.png?format=match&mode=fit&width=600&height=500"
+            alt=""
           />
         </picture>
       </a>
@@ -1225,14 +1107,15 @@ exports[`(5) Nsfw but allowed 1`] = `
           </div>
         </div>
       </div>
-      <div
-        className="entry-payout notranslate"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        $ 125.10
+      <div>
+        <div />
+        <div
+          className="entry-payout notranslate"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          $ 125.10
+        </div>
       </div>
       <div
         className="entry-votes notranslate"
@@ -1302,7 +1185,357 @@ exports[`(5) Nsfw but allowed 1`] = `
       </div>
       <div
         className="entry-menu"
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn"
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(5) Nsfw but allowed 1`] = `
+<div
+  className="entry-list-item hot"
+  id="good-karmaawesome-hive"
+>
+  <div
+    className="item-header"
+  >
+    <div
+      className="item-header-main"
+    >
+      <div
+        className="author-part"
+        id="good-karma-awesome-hive"
+      >
+        <div
+          className="flex items-center"
+          id="good-karma-awesome-hive"
+        >
+          <a
+            href="/@good-karma"
+            onClick={[Function]}
+          >
+            <span
+              className="author-avatar block"
+            >
+              <span
+                className="user-avatar small"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                  }
+                }
+              />
+            </span>
+          </a>
+          <div
+            className="author btn notranslate flex sm:hidden items-center"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
+          >
+            <span
+              className="author-name"
+            >
+              good-karma
+            </span>
+          </div>
+          <span
+            className="author-down-arrow mx-1"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
+            role="button"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <div
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="author btn notranslate hidden sm:flex items-center relative"
+              onMouseEnter={[Function]}
+            >
+              <span
+                className="author-name"
+              >
+                good-karma
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        className="category"
+        href="/hot/hive"
+        onClick={[Function]}
+        title="Unmoderated topics"
+      >
+        hive
+      </a>
+      <span
+        className="read-mark"
       />
+      <span
+        className="date"
+        title="Monday, June 1, 2020 5:53 AM"
+      >
+        5d
+      </span>
+    </div>
+    <div
+      className="item-header-features"
+    />
+  </div>
+  <div
+    className="item-body"
+  >
+    <div
+      className="item-image item-image-nsfw"
+    >
+      <img
+        alt="Awesome Hive"
+        src="nsfw.png"
+      />
+    </div>
+    <div
+      className="item-summary"
+    >
+      <div
+        className="item-nsfw"
+      >
+        <span
+          className="nsfw-badge"
+        >
+          NSFW
+        </span>
+      </div>
+      <div
+        className="item-nsfw-options"
+      >
+        <a
+          href="#"
+          onClick={[Function]}
+        >
+          Reveal this post
+        </a>
+         
+        or
+         
+        <span
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<a href=\\"/signup\\" class=\\"push-link\\">create an account</a> to save your preferences",
+            }
+          }
+        />
+        .
+      </div>
+    </div>
+    <div
+      className="item-image "
+    >
+      <a
+        href="/hive/@good-karma/awesome-hive"
+        onClick={[Function]}
+      >
+        <picture>
+          <source
+            media="(min-width: 576px)"
+          />
+          <img
+            alt=""
+          />
+        </picture>
+      </a>
+    </div>
+    <div
+      className="item-summary"
+    >
+      <a
+        className="item-title"
+        href="/hive/@good-karma/awesome-hive"
+        onClick={[Function]}
+      >
+        Awesome Hive
+      </a>
+      <a
+        className="item-body"
+        href="/hive/@good-karma/awesome-hive"
+        onClick={[Function]}
+      >
+        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various tools
+      </a>
+    </div>
+    <div
+      className="item-controls"
+    >
+      <div
+        onClick={[Function]}
+      >
+        <div>
+          <div
+            className="entry-vote-btn"
+            onClick={[Function]}
+          >
+            <div
+              className="btn-vote btn-up-vote"
+            >
+              <div
+                className=""
+              >
+                <span
+                  className="btn-inner "
+                >
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div />
+        <div
+          className="entry-payout notranslate"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          $ 125.10
+        </div>
+      </div>
+      <div
+        className="entry-votes notranslate"
+      >
+        <span
+          className="inner-btn"
+          onClick={[Function]}
+          title="10 Votes"
+        >
+          <div
+            className="heart-icon"
+          >
+            <svg
+              fill="currentColor"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
+          10
+        </span>
+      </div>
+      <a
+        className="replies notranslate"
+        href="/hive/@good-karma/awesome-hive"
+        onClick={[Function]}
+      >
+        <span
+          className="inner"
+          title="31 responses. Click to respond."
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
+              fill="currentColor"
+            />
+          </svg>
+           
+          31
+        </span>
+      </a>
+      <div
+        className="entry-reblog-btn"
+        onClick={[Function]}
+      >
+        <a
+          className="inner-btn"
+          title="Reblog"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+      </div>
+      <div
+        className="entry-menu"
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn"
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -1359,7 +1592,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
         id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
       >
         <div
-          className="d-flex align-items-center"
+          className="flex items-center"
           id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
         >
           <a
@@ -1367,7 +1600,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             onClick={[Function]}
           >
             <span
-              className="author-avatar d-block"
+              className="author-avatar block"
             >
               <span
                 className="user-avatar small"
@@ -1381,8 +1614,8 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             </span>
           </a>
           <div
-            className="author btn notranslate d-flex d-sm-none align-items-center"
-            id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
+            className="author btn notranslate flex sm:hidden items-center"
+            id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
             onClick={[Function]}
           >
             <span
@@ -1393,7 +1626,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
           </div>
           <span
             className="author-down-arrow mx-1"
-            id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
+            id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
             onClick={[Function]}
             role="button"
           >
@@ -1410,7 +1643,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              className="author btn notranslate hidden sm:flex items-center relative"
               onMouseEnter={[Function]}
             >
               <span
@@ -1457,12 +1690,9 @@ exports[`(6) Cross post. Bottom menu 1`] = `
         <picture>
           <source
             media="(min-width: 576px)"
-            srcSet="https://images.ecency.com/p/9vWp6aU4y8kx949aDJ3YMzVLdPdgysaSmkB2s8acZPD2wLP9kmCfwvS7WXuviKVy7E4FQ9wVh4WA5pjURA85T8j9DcDS9aEKz33L2pEvgMVY6NyQE6wbedsZUqtk4KWeEB65eM5jx2qshJNei.png?format=match&mode=fit&width=260&height=200"
           />
           <img
-            alt="WE NEED EACH ONE OF YOU - SOS Financial Advice For Hive Newcomers "
-            onError={[Function]}
-            srcSet="https://images.ecency.com/p/9vWp6aU4y8kx949aDJ3YMzVLdPdgysaSmkB2s8acZPD2wLP9kmCfwvS7WXuviKVy7E4FQ9wVh4WA5pjURA85T8j9DcDS9aEKz33L2pEvgMVY6NyQE6wbedsZUqtk4KWeEB65eM5jx2qshJNei.png?format=match&mode=fit&width=600&height=500"
+            alt=""
           />
         </picture>
       </a>
@@ -1520,14 +1750,15 @@ exports[`(6) Cross post. Bottom menu 1`] = `
           </div>
         </div>
       </div>
-      <div
-        className="entry-payout notranslate"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        $ 5.95
+      <div>
+        <div />
+        <div
+          className="entry-payout notranslate"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          $ 5.95
+        </div>
       </div>
       <div
         className="entry-votes notranslate"
@@ -1597,7 +1828,32 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       </div>
       <div
         className="entry-menu"
-      />
+      >
+        <div
+          className="custom-dropdown float-right align-bottom"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn"
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

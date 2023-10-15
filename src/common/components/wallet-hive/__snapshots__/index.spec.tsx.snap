@@ -84,7 +84,7 @@ exports[`(1) Default Render 1`] = `
             Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for Hive Power is 2.980%
           </div>
@@ -194,7 +194,7 @@ exports[`(1) Default Render 1`] = `
             Balance subject to 3 day withdraw waiting period.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for HBD($) is 10%
           </div>
@@ -281,8 +281,9 @@ exports[`(1) Default Render 1`] = `
              
           </h2>
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             onChange={[Function]}
+            type="select"
             value=""
           >
             <option
@@ -318,7 +319,7 @@ exports[`(1) Default Render 1`] = `
           </select>
         </div>
         <p
-          className="text-muted empty-list"
+          className="text-gray-600 empty-list"
         >
           Nothing here
         </p>
@@ -552,7 +553,7 @@ exports[`(2) Render with converting HBD 1`] = `
             Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for Hive Power is 2.980%
           </div>
@@ -688,7 +689,7 @@ exports[`(2) Render with converting HBD 1`] = `
             Balance subject to 3 day withdraw waiting period.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for HBD($) is 10%
           </div>
@@ -775,8 +776,9 @@ exports[`(2) Render with converting HBD 1`] = `
              
           </h2>
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             onChange={[Function]}
+            type="select"
             value=""
           >
             <option
@@ -812,7 +814,7 @@ exports[`(2) Render with converting HBD 1`] = `
           </select>
         </div>
         <p
-          className="text-muted empty-list"
+          className="text-gray-600 empty-list"
         >
           Nothing here
         </p>
@@ -1046,7 +1048,7 @@ exports[`(3) usePrivate = false 1`] = `
             Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for Hive Power is 2.980%
           </div>
@@ -1181,7 +1183,7 @@ exports[`(3) usePrivate = false 1`] = `
             Balance subject to 3 day withdraw waiting period.
           </div>
           <div
-            className="description font-weight-bold mt-2"
+            className="description font-bold mt-2"
           >
             APR interest rate for HBD($) is 10%
           </div>
@@ -1268,8 +1270,9 @@ exports[`(3) usePrivate = false 1`] = `
              
           </h2>
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             onChange={[Function]}
+            type="select"
             value=""
           >
             <option
@@ -1305,7 +1308,7 @@ exports[`(3) usePrivate = false 1`] = `
           </select>
         </div>
         <p
-          className="text-muted empty-list"
+          className="text-gray-600 empty-list"
         >
           Nothing here
         </p>

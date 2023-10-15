@@ -74,7 +74,7 @@ export const TopCommunitiesWidget = (props: Props) => {
   return (
     <div className="top-communities-widget">
       <div className="top-communities-widget-header">
-        <div className="title d-flex align-items-center">{_t("top-communities.title")}</div>
+        <div className="title flex items-center">{_t("top-communities.title")}</div>
         {loading && <LinearProgress />}
         <div className="list-items">
           {list.length === 0 && !loading && (

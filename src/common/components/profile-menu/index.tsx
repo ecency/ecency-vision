@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 
 import { History, Location } from "history";
 
-import isEqual from "react-fast-compare";
-
-import { ProfileFilter, Global } from "../../store/global/types";
+import { Global, ProfileFilter } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import DropDown, { MenuItem } from "../dropdown";
@@ -95,9 +93,7 @@ export class ProfileMenu extends Component<Props> {
         <div className="profile-menu-items">
           <>
             <span
-              className={`d-flex d-lg-none ${
-                showDropdown ? "selected-item profile-menu-item" : ""
-              }`}
+              className={`flex lg:hidden ${showDropdown ? "selected-item profile-menu-item" : ""}`}
             >
               {showDropdown ? (
                 <DropDown {...dropDownMenuConfig} float="left" />
@@ -114,10 +110,12 @@ export class ProfileMenu extends Component<Props> {
                 </Link>
               )}
             </span>
-            <div className="d-none d-lg-flex align-items-center">
+            <div className="hidden lg:flex items-center">
               {menuConfig.items.map((menuItem) => (
                 <Link
-                  className={_c(`profile-menu-item ${menuItem.selected ? "selected-item" : ""}`)}
+                  className={_c(
+                    `profile-menu-item flex ${menuItem.selected ? "selected-item" : ""}`
+                  )}
                   to={menuItem.href!}
                   key={`profile-menu-item-${menuItem.label}`}
                 >
@@ -130,7 +128,9 @@ export class ProfileMenu extends Component<Props> {
           {username !== activeUser?.username && (
             <Link
               className={_c(
-                `profile-menu-item d-lg-none ${section === "communities" ? "selected-item" : ""}`
+                `profile-menu-item flex lg:hidden ${
+                  section === "communities" ? "selected-item" : ""
+                }`
               )}
               to={`/@${username}/communities`}
             >
@@ -140,7 +140,7 @@ export class ProfileMenu extends Component<Props> {
 
           <Link
             className={_c(
-              `profile-menu-item ${
+              `profile-menu-item flex ${
                 ["wallet", "points", "engine", "spk"].includes(section) ? "selected-item" : ""
               }`
             )}
@@ -151,13 +151,15 @@ export class ProfileMenu extends Component<Props> {
 
           {activeUser && activeUser.username === username && (
             <Link
-              className={_c(`profile-menu-item ${section === "settings" ? "selected-item" : ""}`)}
+              className={_c(
+                `profile-menu-item flex ${section === "settings" ? "selected-item" : ""}`
+              )}
               to={`/@${username}/settings`}
             >
               {_t(`profile.section-settings`)}
             </Link>
           )}
-          <div className="kebab-icon entry-index-menu the-menu main-menu d-none d-lg-flex ">
+          <div className="kebab-icon entry-index-menu the-menu main-menu hidden lg:flex">
             <DropDown {...kebabMenuConfig} float="left" />
           </div>
         </div>

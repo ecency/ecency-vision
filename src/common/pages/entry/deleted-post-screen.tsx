@@ -44,8 +44,8 @@ export const DeletedPostScreen = (props: Props & DeletedPostProps) => {
         <div className="container overflow-x-hidden">
           <ScrollToTop />
           <Theme global={props.global} />
-          <div className="row">
-            <div className="col-0 col-lg-2 mt-5">
+          <div className="grid grid-cols-12">
+            <div className="w-0 lg:w-auto lg:col-span-2 mt-5">
               <div className="mb-4 mt-5">
                 <div id="avatar-fixed-container" className="invisible">
                   {!props.global.isMobile && props.showProfileBox && (
@@ -57,11 +57,11 @@ export const DeletedPostScreen = (props: Props & DeletedPostProps) => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-9">
+            <div className="col-span-12 lg:col-span-9">
               <div className="p-0 p-lg-5 the-entry">
                 <div className="p-3 bg-danger rounded text-white my-0 mb-4 my-lg-5">
                   {_t("entry.deleted-content-warning")}
-                  <u onClick={props.toggleEditHistory} className="text-primary pointer">
+                  <u onClick={props.toggleEditHistory} className="text-blue-dark-sky pointer">
                     {_t("points.history")}
                   </u>{" "}
                   {_t("g.logs")}.

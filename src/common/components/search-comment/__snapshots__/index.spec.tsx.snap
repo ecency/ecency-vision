@@ -2,17 +2,17 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="card search-comment"
+  className="border dark:border-dark-400 overflow-hidden bg-white rounded search-comment"
 >
   <div
-    className="card-header d-flex justify-content-between align-items-center"
+    className="bg-gray-100 dark:bg-dark-200 border-b dark:border-dark-400 p-3 flex justify-between items-center"
   >
     <div>
       <strong>
         Results
       </strong>
       <span
-        className="matches"
+        className="text-sm text-gray-600 pl-3"
       >
         20 matches
       </span>
@@ -25,7 +25,7 @@ exports[`(1) Default render 1`] = `
     </a>
   </div>
   <div
-    className="card-body"
+    className="p-4"
   >
     <div
       className="search-list"
@@ -1240,17 +1240,17 @@ Better onboarding, delegation request for new accounts, new accounts who run out
 
 exports[`(2) With limit 1`] = `
 <div
-  className="card search-comment"
+  className="border dark:border-dark-400 overflow-hidden bg-white rounded search-comment"
 >
   <div
-    className="card-header d-flex justify-content-between align-items-center"
+    className="bg-gray-100 dark:bg-dark-200 border-b dark:border-dark-400 p-3 flex justify-between items-center"
   >
     <div>
       <strong>
         Results
       </strong>
       <span
-        className="matches"
+        className="text-sm text-gray-600 pl-3"
       >
         20 matches
       </span>
@@ -1263,7 +1263,7 @@ exports[`(2) With limit 1`] = `
     </a>
   </div>
   <div
-    className="card-body"
+    className="p-4"
   >
     <div
       className="search-list"
@@ -2488,17 +2488,17 @@ Better onboarding, delegation request for new accounts, new accounts who run out
 
 exports[`(3) Hide show more button 1`] = `
 <div
-  className="card search-comment"
+  className="border dark:border-dark-400 overflow-hidden bg-white rounded search-comment"
 >
   <div
-    className="card-header d-flex justify-content-between align-items-center"
+    className="bg-gray-100 dark:bg-dark-200 border-b dark:border-dark-400 p-3 flex justify-between items-center"
   >
     <div>
       <strong>
         Results
       </strong>
       <span
-        className="matches"
+        className="text-sm text-gray-600 pl-3"
       >
         4 matches
       </span>
@@ -2511,7 +2511,7 @@ exports[`(3) Hide show more button 1`] = `
     </a>
   </div>
   <div
-    className="card-body"
+    className="p-4"
   >
     <div
       className="search-list"
@@ -3726,10 +3726,10 @@ Better onboarding, delegation request for new accounts, new accounts who run out
 
 exports[`(4) No matches 1`] = `
 <div
-  className="card search-comment"
+  className="border dark:border-dark-400 overflow-hidden bg-white rounded search-comment"
 >
   <div
-    className="card-header d-flex justify-content-between align-items-center"
+    className="bg-gray-100 dark:bg-dark-200 border-b dark:border-dark-400 p-3 flex justify-between items-center"
   >
     <div>
       <strong>
@@ -3744,7 +3744,7 @@ exports[`(4) No matches 1`] = `
     </a>
   </div>
   <div
-    className="card-body"
+    className="p-4"
   >
     <div
       className="linear-progress"

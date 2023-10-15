@@ -1,21 +1,17 @@
 import React from "react";
-
-import { Button, Spinner, ButtonProps } from "react-bootstrap";
-
 import { Subscription } from "../../store/subscriptions/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { ToggleType, UI } from "../../store/ui/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import LoginRequired from "../login-required";
 import { error } from "../feedback";
-
 import { formatError, subscribe, unSubscribe } from "../../api/operations";
-
 import { _t } from "../../i18n";
+import { Spinner } from "@ui/spinner";
+import { Button, ButtonProps } from "@ui/button";
 
 interface Props {
   users: User[];
@@ -85,7 +81,7 @@ export default class SubscriptionBtn extends BaseComponent<Props, State> {
     if (inProgress) {
       return (
         <Button disabled={true} {...buttonProps}>
-          <Spinner animation="grow" variant="light" size="sm" />
+          <Spinner className="w-3.5 h-3.5" />
         </Button>
       );
     }
@@ -96,7 +92,8 @@ export default class SubscriptionBtn extends BaseComponent<Props, State> {
           onMouseEnter={this.toggleHover}
           onMouseLeave={this.toggleHover}
           onClick={this.unSubscribe}
-          variant={hover ? "outline-danger" : "outline-primary"}
+          outline={true}
+          appearance={hover ? "danger" : "primary"}
           {...buttonProps}
         >
           {hover ? _t("community.unsubscribe") : _t("community.subscribed")}

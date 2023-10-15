@@ -25,14 +25,7 @@ import { EntriesCacheContext } from "../../../core";
 
 export function usePublishApi(history: History, onClear: () => void) {
   const { activeUser } = useMappedStore();
-  const {
-    videoId,
-    is3Speak: isThreespeak,
-    speakPermlink,
-    speakAuthor,
-    isNsfw,
-    videoMetadata
-  } = useThreeSpeakManager();
+  const { videos, isNsfw, buildBody } = useThreeSpeakManager();
   const { updateCache } = useContext(EntriesCacheContext);
 
   return useMutation(
@@ -58,6 +51,9 @@ export function usePublishApi(history: History, onClear: () => void) {
       selectedThumbnail?: string;
       selectionTouched: boolean;
     }) => {
+      const unpublished3SpeakVideo = Object.values(videos).find(
+        (v) => v.status === "publish_manual"
+      );
       // clean body
       const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, "");
 
@@ -88,7 +84,7 @@ export function usePublishApi(history: History, onClear: () => void) {
         body,
         tags,
         description,
-        videoMetadata,
+        videoMetadata: unpublished3SpeakVideo,
         selectionTouched,
         selectedThumbnail
       });
@@ -101,11 +97,20 @@ export function usePublishApi(history: History, onClear: () => void) {
         );
       }
 
-      if (isThreespeak && speakPermlink !== "") {
-        permlink = speakPermlink;
+      // If post have one unpublished video need to modify
+      //    json metadata which matches to 3Speak
+      if (unpublished3SpeakVideo) {
+        // Permlink should be got from 3speak video metadata
+        permlink = unpublished3SpeakVideo.permlink;
         // update speak video with title, body and tags
-        await updateSpeakVideoInfo(activeUser.username, body, videoId, title, tags, isNsfw);
-
+        await updateSpeakVideoInfo(
+          activeUser.username,
+          buildBody(body),
+          unpublished3SpeakVideo._id,
+          title,
+          tags,
+          isNsfw
+        );
         // set specific metadata for 3speak
         jsonMeta.app = "3speak/0.3.0";
         jsonMeta.type = "video";
@@ -114,9 +119,19 @@ export function usePublishApi(history: History, onClear: () => void) {
       const options = makeCommentOptions(author, permlink, reward, beneficiaries);
 
       try {
-        await comment(author, "", parentPermlink, permlink, title, cbody, jsonMeta, options, true);
+        await comment(
+          author,
+          "",
+          parentPermlink,
+          permlink,
+          title,
+          buildBody(cbody),
+          jsonMeta,
+          options,
+          true
+        );
 
-        // Create entry object in store
+        // Create entry object in store and cache
         const entry = {
           ...tempEntry({
             author: authorData!,
@@ -124,7 +139,7 @@ export function usePublishApi(history: History, onClear: () => void) {
             parentAuthor: "",
             parentPermlink,
             title,
-            body,
+            body: buildBody(body),
             tags,
             description
           }),
@@ -139,10 +154,10 @@ export function usePublishApi(history: History, onClear: () => void) {
         history.push(newLoc);
 
         //Mark speak video as published
-        if (isThreespeak && activeUser.username === speakAuthor) {
-          success(_t("vidoe-upload.publishing"));
+        if (!!unpublished3SpeakVideo && activeUser.username === unpublished3SpeakVideo.owner) {
+          success(_t("video-upload.publishing"));
           setTimeout(() => {
-            markAsPublished(activeUser!.username, videoId);
+            markAsPublished(activeUser!.username, unpublished3SpeakVideo._id);
           }, 10000);
         }
         if (isCommunity(tags[0]) && reblogSwitch) {

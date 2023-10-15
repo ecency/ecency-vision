@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .transaction-list {
   .transaction-list-header {
@@ -26,11 +23,11 @@
       }
 
       @include themify(day) {
-        color: $charcoal-grey;
+        @apply text-gray-charcoal;
       }
 
       @include themify(night) {
-        color: $powder-blue;
+       @apply text-blue-powder;
       }
     }
 
@@ -72,11 +69,11 @@
       }
 
       @include themify(day) {
-        color: $steel-grey;
+        @apply text-gray-steel;
       }
 
       @include themify(night) {
-        color: lighten($metallic-blue, 40);
+        @apply text-blue-metallic-40-light;
       }
     }
 
@@ -88,11 +85,11 @@
 
       .transaction-name {
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
-          color: $metallic-blue;
+          @apply text-blue-metallic;
         }
       }
 
@@ -100,17 +97,17 @@
         font-size: 12px;
 
         @include themify(day) {
-          color: $silver;
+          @apply text-silver;
         }
 
         @include themify(night) {
-          color: $warm-grey;
+          @apply text-gray-warm;
         }
       }
     }
 
     .transaction-numbers {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       flex-grow: 1;
       font-weight: 500;
       text-align: right;
@@ -135,7 +132,7 @@
     }
 
     .transaction-details {
-      color: $steel-grey;
+      @apply text-gray-steel;
       width: 30%;
       word-break: break-all;
       display: none;
@@ -147,11 +144,11 @@
 
     &:nth-child(even) {
       @include themify(day) {
-        background: $white-three;
+        @apply bg-light-300;
       }
 
       @include themify(night) {
-        background: lighten($dark-six, 4);
+        @apply bg-dark-600;
       }
     }
 
@@ -159,7 +156,7 @@
 
   .transaction-list-item-raw {
     .raw-code {
-      color: $warm-grey;
+      @apply text-gray-warm;
       word-break: break-all;
       line-height: 150%;
     }

@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { FormControl } from "react-bootstrap";
 import { Community } from "../store/communities/types";
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
@@ -15,8 +14,9 @@ import ScrollToTop from "../components/scroll-to-top";
 import { _t } from "../i18n";
 import { getCommunities, getSubscriptions } from "../api/bridge";
 import defaults from "../constants/defaults.json";
-import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import "./communities.scss";
+import { FormControl } from "@ui/input";
 
 interface State {
   list: Community[];
@@ -73,7 +73,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
       });
   };
 
-  queryChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  queryChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (this._timer) {
       clearTimeout(this._timer);
       this._timer = null;
@@ -86,7 +86,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
     });
   };
 
-  sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  sortChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.stateSet({ sort: e.target.value }, (): void => {
       this.fetch();
     });
@@ -142,7 +142,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
               </div>
               <div className="sort">
                 <FormControl
-                  as="select"
+                  type="select"
                   value={sort}
                   onChange={this.sortChanged}
                   disabled={loading}

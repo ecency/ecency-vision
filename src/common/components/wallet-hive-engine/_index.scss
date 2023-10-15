@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 @import "src/common/components/entry-index-menu";
 
 .wallet-hive-engine {
@@ -26,7 +23,7 @@
       height: 40px;
       width: 40px;
       border-radius: 50%;
-      background: $pinkish-grey;
+      @apply bg-gray-pinkish;
       background-position: 50% 50%;
       background-repeat: no-repeat;
       background-size: cover;
@@ -39,8 +36,8 @@
       border-radius: 12px;
       padding: 15px 10px;
       font-weight: 500;
-      background: $light-powder-blue;
-      color: $dark-two;
+      @apply bg-blue-light-powder;
+      @apply text-dark-200;
 
       .entry-header {
         margin-left: 10px;
@@ -48,21 +45,21 @@
 
       .entry-body {
         font-weight: 600;
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
 
         .item-conversion {
-          color: $green1;
+          @apply text-green;
         }
       }
 
       @include themify(night) {
         background: #283241;
-        color: $pinkish-grey;
+        @apply text-gray-pinkish;
       }
     }
   }
 }
 
-.text-lowercase::first-letter {
+.lowercase::first-letter {
   text-transform: uppercase;
 }

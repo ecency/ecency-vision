@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import moment from "moment";
 import { match } from "react-router-dom";
 import { History } from "history";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { Entry, EntryVote } from "../../store/entries/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-import { UI, ToggleType } from "../../store/ui/types";
+import { ToggleType, UI } from "../../store/ui/types";
 import BaseComponent from "../base";
 import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
@@ -18,9 +17,8 @@ import { getAccountFull, getActiveVotes, votingPower } from "../../api/hive";
 import { prepareVotes } from "../entry-votes";
 import VotingSlider from "../entry-vote-slider";
 import EntryTipBtn from "../entry-tip-btn";
-
 import parseAsset from "../../helper/parse-asset";
-import { vote, formatError } from "../../api/operations";
+import { formatError, vote } from "../../api/operations";
 import * as ss from "../../util/session-storage";
 import * as ls from "../../util/local-storage";
 import _c from "../../util/fix-class-names";

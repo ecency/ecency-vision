@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .discover-contributors-list {
   height: 100%;
@@ -13,15 +10,17 @@
     justify-content: space-between;
 
     @include themify(day) {
-      border-bottom: 1px solid lighten($dark-sky-blue, 28);
+      border-bottom: 1px solid;
+      @apply border-blue-dark-sky-030;
     }
 
     @include themify(night) {
-      border-bottom: 1px solid lighten($dark, 10);
+      border-bottom: 1px solid;
+      @apply border-dark-default-010-light;
     }
 
     .list-title {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-weight: 500;
       font-size: 18px;
       display: flex;
@@ -29,13 +28,13 @@
     }
 
     .list-refresh {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       cursor: pointer;
       padding: 2px;
       border-radius: 4px;
 
       &:hover {
-        background: lighten($dark-sky-blue, 38);
+        @apply bg-blue-dark-sky-040;
       }
 
       &.disabled {
@@ -82,11 +81,11 @@
       display: flex;
 
       @include themify(day) {
-        background: $white-three;
+        @apply bg-light-300;
       }
 
       @include themify(night) {
-        background: lighten($dark-six, 6);
+        @apply bg-dark-600-010-light;
       }
 
       .user-avatar {
@@ -103,11 +102,11 @@
           font-size: 18px;
 
           @include themify(day) {
-            color: lighten($charcoal-grey, 10)
+            @apply text-gray-charcoal-010;
           }
 
           @include themify(night) {
-            color: $silver;
+            @apply text-silver;
           }
         }
 

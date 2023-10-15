@@ -4,7 +4,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserAvatar } from "../../../user-avatar";
 import EntryVoteBtn from "../../../entry-vote-btn";
 import { History } from "history";
-import { Button } from "react-bootstrap";
 import { _t } from "../../../../i18n";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { commentSvg, voteSvg } from "../../icons";
@@ -18,6 +17,7 @@ import { Entry } from "../../../../store/entries/types";
 import { DeckThreadItemHeader } from "./deck-thread-item-header";
 import { dateToRelative } from "../../../../helper/parse-date";
 import EntryMenu from "../../../entry-menu";
+import { Button } from "@ui/button";
 
 export interface ThreadItemProps {
   initialEntry: IdentifiableEntry;
@@ -93,12 +93,6 @@ export const ThreadItem = ({
     setHasParent(
       !!entry.parent_author && !!entry.parent_permlink && entry.parent_author !== entry.host
     );
-
-    // if (typeof entry.post_id === "string") {
-    //   setStatus("pending");
-    // } else {
-    //   setStatus("default");
-    // }
   }, [entry]);
 
   useEffect(() => {
@@ -111,12 +105,12 @@ export const ThreadItem = ({
     <div
       ref={ref}
       className={classNameObject({
-        "thread-item border-bottom": true,
+        "thread-item border-b border-[--border-color]": true,
         "has-parent": hasParent && !pure,
         pure,
         "sequence-item": sequenceItem,
         pending: status === "pending",
-        "d-none": !visible
+        hidden: !visible
       })}
       onClick={(event) => {
         if (event.target === ref.current) {
@@ -149,8 +143,8 @@ export const ThreadItem = ({
               }}
             />
             <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
-            <Button variant="link" onClick={() => onEntryView()}>
-              <div className="d-flex align-items-center comments">
+            <Button appearance="link" onClick={() => onEntryView()}>
+              <div className="flex items-center comments">
                 <div style={{ paddingRight: 4 }}>{commentSvg}</div>
                 <div>{commentsSlot ?? entry.children}</div>
               </div>
@@ -159,7 +153,7 @@ export const ThreadItem = ({
           <div>
             <EntryMenu history={history} entry={entry} />
             {activeUser?.username === entry.author && (
-              <Button className="edit-btn" variant="link" onClick={() => onEdit(entry)}>
+              <Button className="edit-btn" appearance="link" onClick={() => onEdit(entry)}>
                 {_t("decks.columns.edit-wave")}
               </Button>
             )}
@@ -169,7 +163,7 @@ export const ThreadItem = ({
       {hasParent && !pure && (
         <div className="thread-item-parent">
           <UserAvatar size="small" global={global} username={entry.parent_author!!} />
-          <Button variant="link" className="host" onClick={onSeeFullThread}>
+          <Button appearance="link" className="host" onClick={onSeeFullThread}>
             {_t("decks.columns.see-full-thread")}
           </Button>
         </div>

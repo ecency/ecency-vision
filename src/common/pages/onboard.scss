@@ -18,11 +18,11 @@
   }
 
   @include themify(day) {
-    background: lighten($steel-grey, 40);
+    @apply bg-gray-steel-light-040;
   }
 
   @include themify(night) {
-    background: $dark-grey-blue;
+    @apply bg-blue-dark-grey;
   }
 
   .asking {

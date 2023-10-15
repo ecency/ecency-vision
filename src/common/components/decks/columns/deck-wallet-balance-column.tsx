@@ -6,7 +6,6 @@ import { History } from "history";
 import { UserDeckGridItem } from "../types";
 import "./_deck-wallet-balance-column.scss";
 import { getCurrencyTokenRate } from "../../../api/private-api";
-import { Spinner } from "react-bootstrap";
 import FormattedCurrency from "../../formatted-currency";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { getAccount, getConversionRequests } from "../../../api/hive";
@@ -20,6 +19,7 @@ import { getSpkWallet } from "../../../api/spk-api";
 import { getEstimatedBalance } from "../../wallet-spk/util";
 import { DeckGridContext } from "../deck-manager";
 import { usePointsQuery } from "../../../api/queries";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   id: string;
@@ -43,7 +43,7 @@ const Card = ({ title, description, isLoading, value }: CardProps) => (
     <div className="title">{title}</div>
     <div className="description">{description}</div>
     <div className={"value " + (isLoading ? "" : "loaded")}>
-      {isLoading ? <Spinner animation="border" /> : value}
+      {isLoading ? <Spinner className="w-4 h-4" /> : value}
     </div>
   </div>
 );

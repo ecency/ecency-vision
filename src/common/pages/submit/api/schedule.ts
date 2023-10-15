@@ -12,9 +12,11 @@ import { error } from "../../../components/feedback";
 import { _t } from "../../../i18n";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { version } from "../../../../../package.json";
+import { useThreeSpeakManager } from "../hooks";
 
 export function useScheduleApi(onClear: () => void) {
   const { activeUser } = useMappedStore();
+  const { buildBody } = useThreeSpeakManager();
 
   return useMutation(
     ["schedule"],
@@ -55,7 +57,16 @@ export function useScheduleApi(onClear: () => void) {
       const reblog = isCommunity(tags[0]) && reblogSwitch;
 
       try {
-        await addSchedule(author, permlink, title, body, jsonMeta, options, schedule, reblog);
+        await addSchedule(
+          author,
+          permlink,
+          title,
+          buildBody(body),
+          jsonMeta,
+          options,
+          schedule,
+          reblog
+        );
         onClear();
       } catch (e) {
         if (e.response?.data?.message) {

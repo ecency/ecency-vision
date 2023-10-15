@@ -13,9 +13,13 @@
     padding: 16px;
     border-radius: 10px;
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
 
     .header-title {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-size: 26px;
       font-weight: 500;
       text-align: center;
@@ -61,8 +65,8 @@
         }
 
         .value {
-          background: $dark-sky-blue;
-          color: $white;
+          @apply bg-blue-dark-sky;
+          @apply text-white;
           padding: 6px;
           border-radius: 12px;
           font-weight: 500;
@@ -82,7 +86,7 @@
       justify-content: center;
 
       .menu-item {
-        color: darken($silver, 10);
+        @apply text-silver-010;
         font-weight: 500;
 
         @media (min-width: $sm-break) {
@@ -90,8 +94,9 @@
         }
 
         &.active-item {
-          color: $dark-sky-blue;
-          border-bottom: 2px solid $dark-sky-blue;
+          @apply text-blue-dark-sky;
+          border-bottom: 2px solid;
+          @apply border-blue-dark-sky;
         }
 
         &:not(:last-child) {
@@ -103,9 +108,12 @@
 
   .proposal-list {
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
     @include themify(night) {
-      background: $dark-six;
+      @apply bg-dark-600;
     }
 
     .proposal-list-header {
@@ -114,7 +122,7 @@
       padding: 16px 0;
 
       @include themify(day) {
-        color: $steel-grey;
+        @apply text-gray-steel;
       }
     }
   }
@@ -150,12 +158,12 @@
         width: 26px;
         height: 26px;
         border-radius: 50%;
-        background: $metallic-blue;
+        @apply bg-blue-metallic;
         display: flex;
         align-items: center;
         justify-content: center;
         box-shadow: $box-shadow-alt;
-        color: $white;
+        @apply text-white;
 
         svg {
           height: 14px;

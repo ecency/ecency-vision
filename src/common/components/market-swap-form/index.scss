@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .market-swap-form {
   border-radius: calc(1rem + 8px);
@@ -11,11 +8,11 @@
   }
 
   @include themify(day) {
-    background-color: $white;
+    @apply bg-white;
   }
 
   @include themify(night) {
-    background-color: $dark-two;
+    @apply bg-dark-200;
   }
 
   .form-group {
@@ -33,7 +30,7 @@
     }
 
     @include themify(night) {
-      color: $white;
+      @apply text-white;
     }
 
     @media (max-width: $md-break) {
@@ -55,11 +52,11 @@
       justify-content: center;
 
       @include themify(day) {
-        background-color: $white;
+        @apply bg-white;
       }
 
       @include themify(night) {
-        background-color: $dark-two;
+        @apply bg-dark-200;
       }
     }
   }
@@ -113,15 +110,15 @@
   }
 
   .hs-button {
-    color: $white;
+    @apply text-white;
 
-    @include button-variant($hs-color, $hs-color);
+    @include button-variant(#E31337, #E31337);
   }
 
   .kc-button {
-    color: $white;
+    @apply text-white;
 
-    @include button-variant($kc-color, $kc-color);
+    @include button-variant(#202020, #202020);
   }
 
   .success-message {

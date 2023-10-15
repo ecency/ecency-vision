@@ -165,7 +165,7 @@ export const StakeWidget = ({
                           className="history-widget-row-progress"
                           style={{ width: (sell.amount / maxSell) * 100 + "%" }}
                         />
-                        <div className="text-danger price" onClick={() => onPriceClick(sell.price)}>
+                        <div className="text-red price" onClick={() => onPriceClick(sell.price)}>
                           {sell.price}
                         </div>
                         <div className="amount" onClick={() => onAmountClick(sell.amount)}>
@@ -195,7 +195,7 @@ export const StakeWidget = ({
                           className="history-widget-row-progress"
                           style={{ width: (buy.amount / maxBuy) * 100 + "%" }}
                         />
-                        <div className="text-success price" onClick={() => onPriceClick(buy.price)}>
+                        <div className="text-green price" onClick={() => onPriceClick(buy.price)}>
                           {buy.price}
                         </div>
                         <div className="amount" onClick={() => onAmountClick(buy.amount)}>

@@ -1,12 +1,9 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .promote-dialog {
   .promote-dialog-content {
     .balance-input {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-weight: 500;
       cursor: default;
 

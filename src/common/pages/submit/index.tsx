@@ -29,18 +29,16 @@ import Meta from "../../components/meta";
 import FullHeight from "../../components/full-height";
 import Theme from "../../components/theme";
 import Feedback, { error } from "../../components/feedback";
-import ModalConfirm from "../../components/modal-confirm";
 import { _t } from "../../i18n";
 import MdHandler from "../../components/md-handler";
 import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import _c from "../../util/fix-class-names";
-import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import TextareaAutocomplete from "../../components/textarea-autocomplete";
 import { AvailableCredits } from "../../components/available-credits";
 import ClickAwayListener from "../../components/clickaway-listener";
 import { checkSvg, contentLoadSvg, contentSaveSvg, helpIconSvg } from "../../img/svg";
-import BeneficiaryEditor from "../../components/beneficiary-editor";
+import { BeneficiaryEditorDialog } from "../../components/beneficiary-editor";
 import PostScheduler from "../../components/post-scheduler";
 import moment from "moment/moment";
 import isCommunity from "../../helper/is-community";
@@ -57,6 +55,13 @@ import { RewardType } from "../../api/operations";
 import { SubmitPreviewContent } from "./submit-preview-content";
 import { useUpdateApi } from "./api/update";
 import "./_index.scss";
+import { SubmitVideoAttachments } from "./submit-video-attachments";
+import { useThreeSpeakMigrationAdapter } from "./hooks/three-speak-migration-adapter";
+import ModalConfirm from "@ui/modal-confirm";
+import { Button } from "@ui/button";
+import { dotsMenuIconSvg } from "../../components/decks/icons";
+import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
 
 interface MatchProps {
   match: MatchType;
@@ -119,8 +124,14 @@ export function Submit(props: PageProps & MatchProps) {
     schedule,
     setSchedule,
     hasAdvanced,
-    clearAdvanced
+    clearAdvanced,
+    getHasAdvanced
   } = useAdvancedManager();
+
+  useThreeSpeakMigrationAdapter({
+    body,
+    setBody
+  });
 
   useCommunityDetector(props.location, (community) => {
     setTags([...tags, community]);
@@ -136,6 +147,9 @@ export function Submit(props: PageProps & MatchProps) {
       threeSpeakManager.setIsEditing(true);
     } else if (editingEntry) {
       setEditingEntry(null);
+      threeSpeakManager.setIsEditing(false);
+    } else {
+      threeSpeakManager.setIsEditing(false);
     }
   });
 
@@ -157,14 +171,9 @@ export function Submit(props: PageProps & MatchProps) {
       setSelectedThumbnail(draft.meta?.image?.[0]);
       setDescription(draft.meta?.description ?? "");
 
-      if (draft.meta?.isThreespeak) {
-        threeSpeakManager.setIs3Speak(draft.meta?.isThreespeak ?? false);
-        threeSpeakManager.setSpeakAuthor(draft.meta?.speakAuthor ?? "");
-        threeSpeakManager.setSpeakPermlink(draft.meta?.speakPermlink ?? "");
-        threeSpeakManager.setVideoId(draft.meta?.videoId ?? "");
-        threeSpeakManager.setIsNsfw(draft.meta?.isNsfw ?? false);
-        threeSpeakManager.setVideoMetadata(draft.meta?.videoMetadata);
-      }
+      [...Object.values(draft.meta?.videos ?? {})].forEach((item) =>
+        threeSpeakManager.attach(item)
+      );
 
       setTimeout(() => setIsDraftEmpty(false), 100);
     },
@@ -204,12 +213,12 @@ export function Submit(props: PageProps & MatchProps) {
   }, [postBodyRef]);
 
   useEffect(() => {
-    if (activeUser?.username !== previousActiveUser?.username && activeUser) {
+    if (activeUser?.username !== previousActiveUser?.username && activeUser && previousActiveUser) {
       // delete active user from beneficiaries list
       setBeneficiaries(beneficiaries.filter((x) => x.account !== activeUser.username));
 
       // clear not current user videos
-      threeSpeakManager.findAndClearUnpublished3SpeakVideo(body);
+      threeSpeakManager.clear();
     }
   }, [activeUser]);
 
@@ -226,10 +235,7 @@ export function Submit(props: PageProps & MatchProps) {
   }, [title, body, tags]);
 
   useEffect(() => {
-    if (!threeSpeakManager.has3SpeakVideo(body) && !!previousBody) {
-      threeSpeakManager.clear();
-      console.log("clearing 3speak");
-    }
+    threeSpeakManager.checkBodyForVideos(body);
   }, [body]);
 
   const updatePreview = (): void => {
@@ -313,10 +319,6 @@ export function Submit(props: PageProps & MatchProps) {
     ];
     const joinedBeneficiary = [...videoBeneficiary, ...videoEncoders];
     setBeneficiaries(joinedBeneficiary);
-    threeSpeakManager.setVideoId(video._id);
-    threeSpeakManager.setIs3Speak(true);
-    threeSpeakManager.setSpeakPermlink(video.permlink);
-    threeSpeakManager.setSpeakAuthor(video.owner);
   };
 
   const cancelUpdate = () => {
@@ -355,6 +357,11 @@ export function Submit(props: PageProps & MatchProps) {
     if (body.trim() === "") {
       focusInput(".body-input");
       error(_t("submit.empty-body-alert"));
+      return false;
+    }
+
+    if (threeSpeakManager.hasMultipleUnpublishedVideo) {
+      error(_t("submit.should-be-only-one-unpublished"));
       return false;
     }
 
@@ -405,12 +412,16 @@ export function Submit(props: PageProps & MatchProps) {
             }}
             comment={false}
             setVideoMetadata={(v) => {
-              threeSpeakManager.setVideoMetadata(v);
+              threeSpeakManager.attach(v);
+              // Attach videos as special token in a body and render it in a preview
+              setBody(`${body}\n[3speak](${v._id})`);
             }}
           />
           <div className="title-input">
-            <Form.Control
-              className="accepts-emoji"
+            <FormControl
+              noStyles={true}
+              type="text"
+              className="accepts-emoji form-control px-3 py-1 w-full outline-none shadow-0"
               placeholder={_t("submit.title-placeholder")}
               autoFocus={true}
               value={title}
@@ -445,6 +456,7 @@ export function Submit(props: PageProps & MatchProps) {
               activeUser={(activeUser && activeUser.username) || ""}
             />
           </div>
+          <SubmitVideoAttachments />
           {activeUser ? (
             <AvailableCredits
               className="mr-2"
@@ -458,27 +470,18 @@ export function Submit(props: PageProps & MatchProps) {
           )}
           <div className="bottom-toolbar">
             {editingEntry === null && editingDraft === null && (
-              <Button variant="outline-info" onClick={() => setClearModal(true)}>
+              <Button appearance="info" outline={true} onClick={() => setClearModal(true)}>
                 {_t("submit.clear")}
               </Button>
             )}
 
-            <div className="d-flex align-items-center">
-              <Button
-                variant="outline-primary"
-                onClick={(e) => setAdvanced(!advanced)}
-                className="ml-auto"
-              >
-                {advanced ? (
-                  _t("submit.preview")
-                ) : (
-                  <>
-                    {_t("submit.advanced")}
-                    {hasAdvanced() ? " •••" : null}
-                  </>
-                )}
-              </Button>
-            </div>
+            <Button
+              outline={true}
+              onClick={() => setAdvanced(!advanced)}
+              icon={getHasAdvanced && dotsMenuIconSvg}
+            >
+              {advanced ? _t("submit.preview") : _t("submit.advanced")}
+            </Button>
           </div>
         </div>
         <div className="flex-spacer" />
@@ -488,24 +491,26 @@ export function Submit(props: PageProps & MatchProps) {
               <span />
               <LoginRequired {...props}>
                 <Button
-                  className="d-inline-flex align-items-center"
+                  icon={(posting || publishing) && <Spinner className="w-3.5 h-3.5" />}
+                  iconPlacement="left"
                   onClick={() => {
                     if (!validate()) {
                       return;
                     }
 
-                    doSchedule({ title, tags, body, schedule });
+                    doSchedule({
+                      title,
+                      tags,
+                      body,
+                      reward,
+                      reblogSwitch,
+                      beneficiaries,
+                      schedule,
+                      description
+                    });
                   }}
                   disabled={posting || publishing}
                 >
-                  {(posting || publishing) && (
-                    <Spinner
-                      animation="grow"
-                      variant="light"
-                      size="sm"
-                      style={{ marginRight: "6px" }}
-                    />
-                  )}
                   {_t("submit.schedule")}
                 </Button>
               </LoginRequired>
@@ -518,28 +523,33 @@ export function Submit(props: PageProps & MatchProps) {
                   <div className="action-buttons">
                     <ClickAwayListener onClickAway={() => setShowHelp(false)}>
                       <Button
-                        className="help-button"
-                        style={{ marginRight: "6px" }}
+                        className="help-button mr-[6px]"
                         onClick={() => setShowHelp(!showHelp)}
+                        icon={helpIconSvg}
+                        iconPlacement="left"
                       >
-                        {helpIconSvg} {_t("floating-faq.help")}
+                        {_t("floating-faq.help")}
                       </Button>
                     </ClickAwayListener>
                     {props.global.usePrivate && isDraftEmpty ? (
                       <LoginRequired {...props}>
                         <Button
-                          variant="outline-primary"
-                          style={{ marginRight: "6px" }}
+                          outline={true}
+                          className="mr-[6px]"
                           onClick={() => setDrafts(!drafts)}
+                          icon={contentLoadSvg}
+                          iconPlacement="left"
                         >
-                          {contentLoadSvg} {_t("submit.load-draft")}
+                          {_t("submit.load-draft")}
                         </Button>
                       </LoginRequired>
                     ) : (
                       <LoginRequired {...props}>
                         <Button
-                          variant="outline-primary"
-                          style={{ marginRight: "6px" }}
+                          outline={true}
+                          className="mr-[6px]"
+                          icon={contentSaveSvg}
+                          iconPlacement="left"
                           onClick={() => {
                             if (!validate()) {
                               return;
@@ -553,13 +563,11 @@ export function Submit(props: PageProps & MatchProps) {
                               selectionTouched,
                               editingDraft,
                               beneficiaries,
-                              reward,
-                              videoMetadata: threeSpeakManager.videoMetadata ?? undefined
+                              reward
                             });
                           }}
                           disabled={disabled || saving || posting || publishing}
                         >
-                          {contentSaveSvg}{" "}
                           {editingDraft === null
                             ? _t("submit.save-draft")
                             : _t("submit.update-draft")}
@@ -568,7 +576,8 @@ export function Submit(props: PageProps & MatchProps) {
                     )}
                     <LoginRequired {...props}>
                       <Button
-                        className="d-inline-flex align-items-center"
+                        icon={(posting || publishing) && <Spinner className="w-3.5 h-3.5" />}
+                        iconPlacement="left"
                         onClick={() => {
                           if (!validate()) {
                             return;
@@ -588,14 +597,6 @@ export function Submit(props: PageProps & MatchProps) {
                         }}
                         disabled={disabled || posting || saving || publishing}
                       >
-                        {(posting || publishing) && (
-                          <Spinner
-                            animation="grow"
-                            variant="light"
-                            size="sm"
-                            style={{ marginRight: "6px" }}
-                          />
-                        )}
                         {_t("submit.publish")}
                       </Button>
                     </LoginRequired>
@@ -606,12 +607,13 @@ export function Submit(props: PageProps & MatchProps) {
 
               {editingEntry !== null && (
                 <>
-                  <Button variant="outline-secondary" onClick={cancelUpdate}>
+                  <Button appearance="secondary" outline={true} onClick={cancelUpdate}>
                     {_t("submit.cancel-update")}
                   </Button>
                   <LoginRequired {...props}>
                     <Button
-                      className="d-inline-flex align-items-center"
+                      icon={(posting || publishing) && <Spinner className="w-3.5 h-3.5" />}
+                      iconPlacement="left"
                       onClick={() => {
                         if (!validate()) {
                           return;
@@ -629,14 +631,6 @@ export function Submit(props: PageProps & MatchProps) {
                       }}
                       disabled={posting || publishing}
                     >
-                      {(posting || publishing) && (
-                        <Spinner
-                          animation="grow"
-                          variant="light"
-                          size="sm"
-                          style={{ marginRight: "6px" }}
-                        />
-                      )}
                       {_t("submit.update")}
                     </Button>
                   </LoginRequired>
@@ -652,34 +646,34 @@ export function Submit(props: PageProps & MatchProps) {
                   <h2 className="panel-header-title">{_t("submit.advanced")}</h2>
                 </div>
                 <div className="panel-body">
-                  <div className="container">
+                  <div className="container px-3">
                     {editingEntry === null && (
                       <>
-                        <Form.Group as={Row}>
-                          <Form.Label column={true} sm="3">
-                            {_t("submit.reward")}
-                          </Form.Label>
-                          <Col sm="9">
-                            <Form.Control
-                              as="select"
+                        <div className="grid grid-cols-12 mb-4">
+                          <div className="col-span-12 sm:col-span-3">
+                            <label>{_t("submit.reward")}</label>
+                          </div>
+                          <div className="col-span-12 sm:col-span-9">
+                            <FormControl
+                              type="select"
                               value={reward}
-                              onChange={(e) => {
+                              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                                 setReward(e.target.value as RewardType);
                               }}
                             >
                               <option value="default">{_t("submit.reward-default")}</option>
                               <option value="sp">{_t("submit.reward-sp")}</option>
                               <option value="dp">{_t("submit.reward-dp")}</option>
-                            </Form.Control>
-                            <Form.Text muted={true}>{_t("submit.reward-hint")}</Form.Text>
-                          </Col>
-                        </Form.Group>
-                        <Form.Group as={Row}>
-                          <Form.Label column={true} sm="3">
-                            {_t("submit.beneficiaries")}
-                          </Form.Label>
-                          <Col sm="9">
-                            <BeneficiaryEditor
+                            </FormControl>
+                            <small className="text-gray-600">{_t("submit.reward-hint")}</small>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-12 mb-4">
+                          <div className="col-span-12 sm:col-span-3">
+                            <label>{_t("submit.beneficiaries")}</label>
+                          </div>
+                          <div className="col-span-12 sm:col-span-9">
+                            <BeneficiaryEditorDialog
                               body={body}
                               author={activeUser?.username}
                               list={beneficiaries}
@@ -698,73 +692,78 @@ export function Submit(props: PageProps & MatchProps) {
                                 setBeneficiaries(b);
                               }}
                             />
-                            <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
-                          </Col>
-                        </Form.Group>
+                            <small className="text-gray-600">
+                              {_t("submit.beneficiaries-hint")}
+                            </small>
+                          </div>
+                        </div>
                       </>
                     )}
-                    <Form.Group as={Row}>
-                      <Form.Label column={true} sm="3">
-                        {_t("submit.description")}
-                      </Form.Label>
-                      <Col sm="9">
-                        <Form.Control
-                          as="textarea"
+                    <div className="grid grid-cols-12 mb-4">
+                      <div className="col-span-12 sm:col-span-3">
+                        <label>{_t("submit.description")}</label>
+                      </div>
+                      <div className="col-span-12 sm:col-span-9">
+                        <FormControl
+                          type="textarea"
                           value={description || postBodySummary(body, 200)}
-                          onChange={(e) => {
+                          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             setDescription(e.target.value);
                           }}
                           rows={3}
                           maxLength={200}
                         />
-                        <Form.Text muted={true}>
+                        <small className="text-gray-600">
                           {description !== "" ? description : postBodySummary(body, 200)}
-                        </Form.Text>
-                      </Col>
-                    </Form.Group>
+                        </small>
+                      </div>
+                    </div>
                     {editingEntry === null && (
                       <>
                         {props.global.usePrivate && !threeSpeakManager.hasUnpublishedVideo && (
-                          <Form.Group as={Row}>
-                            <Form.Label column={true} sm="3">
-                              {_t("submit.schedule")}
-                            </Form.Label>
-                            <Col sm="9">
+                          <div className="grid grid-cols-12 mb-4">
+                            <div className="col-span-12 sm:col-span-3">
+                              <label>{_t("submit.schedule")}</label>
+                            </div>
+                            <div className="col-span-12 sm:col-span-9">
                               <PostScheduler
                                 date={schedule ? moment(schedule) : null}
                                 onChange={(d) => {
                                   setSchedule(d ? d.toISOString(true) : null);
                                 }}
                               />
-                              <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
-                            </Col>
-                          </Form.Group>
+                              <div className="text-sm text-gray-600">
+                                {_t("submit.schedule-hint")}
+                              </div>
+                            </div>
+                          </div>
                         )}
                       </>
                     )}
                     {editingEntry === null && tags?.length > 0 && isCommunity(tags[0]) && (
-                      <Form.Group as={Row}>
-                        <Col sm="3" />
-                        <Col sm="9">
-                          <Form.Check
-                            type="switch"
+                      <div className="grid grid-cols-12 mb-4">
+                        <div className="col-span-12 sm:col-span-3" />
+                        <div className="col-span-12 sm:col-span-9">
+                          <FormControl
+                            type="checkbox"
+                            isToggle={true}
                             id="reblog-switch"
                             label={_t("submit.reblog")}
                             checked={reblogSwitch}
-                            onChange={(e) => {
-                              setReblogSwitch(e.target.checked);
+                            onChange={(v) => {
+                              setReblogSwitch(v);
                             }}
                           />
-                          <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
-                        </Col>
-                      </Form.Group>
+                          <small className="text-gray-600">{_t("submit.reblog-hint")}</small>
+                        </div>
+                      </div>
                     )}
                     {thumbnails?.length > 0 && (
-                      <Form.Group as={Row}>
-                        <Form.Label column={true} sm="3">
-                          {_t("submit.thumbnail")}
-                        </Form.Label>
-                        <div className="col-sm-9 d-flex flex-wrap selection-container">
+                      <div className="grid grid-cols-12 mb-4">
+                        <div className="col-span-12 sm:col-span-3">
+                          <label>{_t("submit.thumbnail")}</label>
+                        </div>
+                        <div className="col-span-12 sm:col-span-9 flex flex-wrap selection-container">
                           {[...new Set(thumbnails)]!.map((item, i) => {
                             let selectedItem = selectedThumbnail;
                             switch (selectedItem) {
@@ -776,7 +775,7 @@ export function Submit(props: PageProps & MatchProps) {
                               selectedItem = thumbnails[0];
                             }
                             return (
-                              <div className="position-relative" key={item + i}>
+                              <div className="relative" key={item + i}>
                                 <div
                                   className={`selection-item shadow ${
                                     selectedItem === item ? "selected" : ""
@@ -791,7 +790,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   key={item}
                                 />
                                 {selectedItem === item && (
-                                  <div className="text-success check position-absolute bg-white rounded-circle d-flex justify-content-center align-items-center">
+                                  <div className="text-green check absolute bg-white rounded-circle flex justify-center items-center">
                                     {checkSvg}
                                   </div>
                                 )}
@@ -799,7 +798,7 @@ export function Submit(props: PageProps & MatchProps) {
                             );
                           })}
                         </div>
-                      </Form.Group>
+                      </div>
                     )}
                   </div>
                 </div>

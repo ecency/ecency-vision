@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .tag-selector {
   .tag-list {
@@ -32,7 +29,7 @@
         cursor: move;
         // TagLink
         a {
-          color: $white;
+          @apply text-white;
           pointer-events: none;
         }
       }
@@ -76,7 +73,7 @@
     }
   }
   .warning {
-    color: $red3;
+    @apply text-red-030;
     font-size: 12px;
     font-family: $font-family-base;
     padding: 0.375rem 0.75rem;

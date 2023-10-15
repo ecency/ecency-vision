@@ -11,16 +11,14 @@ import { makePath as makePathEntry } from "../../../components/entry-link";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { History } from "history";
 import { buildMetadata, getDimensionsFromDataUrl } from "../functions";
-import { useThreeSpeakManager } from "../hooks";
 import { useContext } from "react";
 import { EntriesCacheContext } from "../../../core";
+import { useThreeSpeakManager } from "../hooks";
 
 export function useUpdateApi(history: History, onClear: () => void) {
   const { activeUser } = useMappedStore();
-
-  const { videoMetadata } = useThreeSpeakManager();
-
   const { updateCache } = useContext(EntriesCacheContext);
+  const { buildBody } = useThreeSpeakManager();
 
   return useMutation(
     ["update"],
@@ -61,7 +59,6 @@ export function useUpdateApi(history: History, onClear: () => void) {
           body,
           tags,
           description,
-          videoMetadata,
           selectionTouched,
           selectedThumbnail
         }),
@@ -84,7 +81,7 @@ export function useUpdateApi(history: History, onClear: () => void) {
           category,
           permlink,
           title,
-          newBody,
+          buildBody(newBody),
           jsonMeta,
           null
         );
@@ -93,7 +90,7 @@ export function useUpdateApi(history: History, onClear: () => void) {
         const entry: Entry = {
           ...editingEntry,
           title,
-          body,
+          body: buildBody(body),
           category: tags[0],
           json_metadata: jsonMeta,
           updated: correctIsoDate(moment().toISOString())

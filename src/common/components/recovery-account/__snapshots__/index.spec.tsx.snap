@@ -5,21 +5,17 @@ exports[`(1) Default render 1`] = `
   className="account-recovery-form"
 >
   <form
-    className=""
+    className="block "
     onSubmit={[Function]}
   >
     <div
-      className="form-group"
+      className="mb-4"
     >
-      <label
-        className="form-label"
-        htmlFor="account-name"
-      >
+      <label>
         Current Recovery Agent
       </label>
       <input
-        className="form-control"
-        id="account-name"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         readOnly={true}
         type="text"
         value=""
@@ -27,19 +23,15 @@ exports[`(1) Default render 1`] = `
     </div>
     
     <div
-      className="form-group"
+      className="mb-4"
     >
-      <label
-        className="form-label"
-        htmlFor="cur-pass"
-      >
+      <label>
         New Recovery Agent
       </label>
       <input
         autoComplete="off"
         autoFocus={true}
-        className="form-control"
-        id="cur-pass"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         required={true}
         type="text"
@@ -48,11 +40,18 @@ exports[`(1) Default render 1`] = `
     </div>
     
     <button
-      className="update-btn btn btn-primary"
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 update-btn"
       disabled={true}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="submit"
     >
-      Update
+      <div>
+        Update
+      </div>
     </button>
   </form>
 </div>

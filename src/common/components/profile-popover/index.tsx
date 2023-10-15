@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Manager, Reference, Popper } from "react-popper";
+import { Manager, Popper, Reference } from "react-popper";
 import { ProfilePreview } from "../profile-preview";
 import { menuDownSvg } from "../../img/svg";
 import "./index.scss";
+import { Entry } from "../../store/entries/types";
+import { useMappedStore } from "../../store/use-mapped-store";
 
-export const ProfilePopover = (props: any) => {
-  const { global, entry } = props;
+export const ProfilePopover = ({ entry }: { entry: Entry }) => {
+  const { global } = useMappedStore();
+
   const [showProfile, setShowProfile] = useState(false);
   const [delayHandler, setDelayHandler] = useState<any>(null);
   const author = entry.original_entry ? entry.original_entry.author : entry.author;
@@ -42,7 +45,7 @@ export const ProfilePopover = (props: any) => {
   return (
     <>
       <div
-        className="author btn notranslate d-flex d-sm-none align-items-center"
+        className="author btn notranslate flex sm:hidden items-center"
         onClick={handleShowProfile}
         id={`${author}-${entry.permlink}`}
       >
@@ -64,7 +67,7 @@ export const ProfilePopover = (props: any) => {
             {({ ref }) => (
               <div
                 ref={ref}
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                className="author btn notranslate hidden sm:flex items-center relative"
                 onMouseEnter={handleShowProfile}
               >
                 <span className="author-name">{author}</span>
@@ -93,7 +96,6 @@ export const ProfilePopover = (props: any) => {
                 >
                   <ProfilePreview
                     username={author}
-                    {...props}
                     onClose={(e, doNotSetState) => handleHideProfile(e, doNotSetState)}
                   />
                 </div>

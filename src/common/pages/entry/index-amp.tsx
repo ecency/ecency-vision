@@ -45,6 +45,7 @@ import { DeletedPostScreen } from "./deleted-post-screen";
 import { NotFound } from "../../components/404";
 import { makeJsonMetaDataReply } from "../../helper/posting";
 import { LoadingScreen } from "./loading-screen";
+import { Button } from "@ui/button";
 
 const EntryAmpComponent = (props: Props) => {
   const [loading, setLoading] = useState(false);
@@ -776,7 +777,7 @@ const EntryAmpComponent = (props: Props) => {
                       {EntryLink({
                         ...props,
                         entry: originalEntry,
-                        children: <a className="btn btn-primary">{_t("entry.browse-original")}</a>
+                        children: <Button>{_t("entry.browse-original")}</Button>
                       })}
                     </div>
                   )}
@@ -786,7 +787,7 @@ const EntryAmpComponent = (props: Props) => {
                     SimilarEntries({
                       ...props,
                       entry,
-                      display: !props.activeUser ? "" : "d-none"
+                      display: !props.activeUser ? "" : "hidden"
                     })}
 
                   {!originalEntry &&
@@ -794,7 +795,7 @@ const EntryAmpComponent = (props: Props) => {
                     SimilarEntries({
                       ...props,
                       entry,
-                      display: !props.activeUser ? "d-none" : ""
+                      display: !props.activeUser ? "hidden" : ""
                     })}
                 </>
               );

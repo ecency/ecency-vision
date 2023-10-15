@@ -1,22 +1,16 @@
 import React, { Component } from "react";
-
-import { Button, Modal } from "react-bootstrap";
-
 import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
-
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
-
 import { getImages, UserImage } from "../../api/private-api";
-
 import { error } from "../feedback";
-
 import { _t } from "../../i18n";
 import defaults from "../../constants/defaults.json";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Button } from "@ui/button";
 
 setProxyBase(defaults.imageServer);
 
@@ -101,7 +95,7 @@ export class AddImage extends BaseComponent<Props, State> {
       return (
         <div className="dialog-content">
           <div className="recent-list" />
-          <div className="d-flex justify-content-center">{btnUpload}</div>
+          <div className="flex justify-center">{btnUpload}</div>
         </div>
       );
     }
@@ -135,7 +129,7 @@ export class AddImage extends BaseComponent<Props, State> {
             </>
           )}
         </div>
-        <div className="d-flex justify-content-between">
+        <div className="flex justify-between">
           {btnGallery}
           {btnUpload}
         </div>
@@ -159,12 +153,12 @@ export default class AddImageDialog extends Component<Props> {
         className="add-image-mobile-modal"
         animation={false}
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("add-image-mobile.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("add-image-mobile.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <AddImage {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

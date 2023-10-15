@@ -6,7 +6,6 @@ import { DeckGridItem } from "../../types";
 import { arrowLeftSvg } from "../../../../img/svg";
 import "./_deck-add-column.scss";
 import { DeckAddColumnTypeSettings } from "./deck-add-column-type-settings";
-import { Button } from "react-bootstrap";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../../deck-manager";
 import {
@@ -22,6 +21,7 @@ import {
   walletIconSvg,
   whatsNewIconSvg
 } from "../../icons";
+import { Button } from "@ui/button";
 
 interface Props {
   id: string;
@@ -130,15 +130,14 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
         prefix={
           selectedType ? (
             <Button
-              variant="link"
-              className="p-0"
+              appearance="link"
+              className="px-0"
               onClick={() => {
                 setStep("select");
                 setSelectedType(null);
               }}
-            >
-              {arrowLeftSvg}
-            </Button>
+              icon={arrowLeftSvg}
+            />
           ) : (
             <></>
           )

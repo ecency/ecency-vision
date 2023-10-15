@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .community-card {
   position: relative;
@@ -27,8 +24,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: $dark-sky-blue;
-      color: $white;
+      @apply bg-blue-dark-sky;
+      @apply text-white;
       position: absolute;
       z-index: 1;
       bottom: 10px;
@@ -46,10 +43,10 @@
     }
 
     .user-avatar {
-      border: 3px solid $duck-egg-blue;
       height: 160px;
       width: 160px;
       background-color: transparent;
+      @apply border-blue-duck-egg;
     }
   }
 
@@ -65,19 +62,20 @@
       font-size: 22px;
       font-weight: 600;
       margin-bottom: 18px;
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     .about {
       font-weight: 300;
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     .nsfw {
       display: inline-flex;
       margin-top: 10px;
-      border: 1px solid $red2;
-      color: $red2;
+      border: 1px solid;
+      @apply border-red-020;
+      @apply text-red-020;
       border-radius: 6px;
       padding: 1px 4px;
       font-size: 90%;
@@ -110,13 +108,13 @@
         margin-bottom: 10px;
 
         @include themify(day) {
-          background: $white-three;
-          color: $steel-grey;
+          @apply bg-light-300;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
-          background: $dark-two;
-          color: $silver;
+          @apply bg-dark-200;
+          @apply text-silver;
         }
 
         svg {
@@ -147,7 +145,7 @@
         }
 
         font-size: 90%;
-        color: $steel-grey;
+        @apply text-gray-steel;
         max-width: 95%;
         p {
           word-break: break-all;
@@ -164,11 +162,13 @@
       justify-content: flex-start;
       padding-top: 16px;
       @include themify(day) {
-        border-top: 1px solid $white-three;
+        border-top: 1px solid;
+        @apply border-light-300;
       }
 
       @include themify(night) {
-        border-top: 1px solid $dark-two;
+        border-top: 1px solid;
+        @apply border-dark-200;
       }
     }
 
@@ -194,7 +194,7 @@
     font-size: 14px;
     overflow: hidden;
     white-space: nowrap;
-    color: $steel-grey;
+    @apply text-gray-steel;
     margin-bottom: 6px;
     display: flex;
     flex-wrap: wrap;
@@ -209,7 +209,8 @@
     }
 
     .extra {
-      border: 1px solid lighten($green1, 1);
+      border: 1px solid;
+      @apply border-green;
       padding: 0 2px;
       border-radius: 6px;
       word-break: break-all;

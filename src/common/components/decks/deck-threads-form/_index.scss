@@ -21,7 +21,8 @@
     min-height: 4.5rem;
     box-shadow: none;
     cursor: pointer;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
     border-bottom: 1px solid $border-color;
 
     .editor .editor-control {
@@ -81,7 +82,7 @@
     border-bottom: 1px solid var(--border-color);
 
     @include themify(night) {
-      background-color: $dark-two;
+      @apply bg-dark-200;
     }
 
     @include padding-right(1rem);
@@ -98,7 +99,7 @@
   }
 
   &-header, &-bottom {
-    background-color: $white;
+    @apply bg-white;
     position: sticky;
     z-index: 9;
   }
@@ -137,6 +138,10 @@
     overflow: hidden;
   }
 
+  &.inline &-content {
+    overflow-y: visible;
+  }
+
   &-body {
     display: grid;
     grid-template-columns: min-content 1fr;
@@ -167,11 +172,11 @@
         background-color: transparent;
 
         @include themify(day) {
-          color: $dark-two;
+          @apply text-dark-200;
         }
 
         @include themify(night) {
-          color: $white;
+          @apply text-white;
         }
       }
     }
@@ -189,7 +194,7 @@
     .btn.btn-link {
       width: 2.5rem;
       height: 2.5rem;
-      color: $gray-400;
+      @apply text-gray-400;
       box-shadow: none;
 
       @include padding(0);
@@ -236,7 +241,7 @@
       position: absolute;
       top: 0.5rem;
       right: 0.5rem;
-      background-color: $white;
+      @apply bg-white;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -254,7 +259,6 @@
 
     .type {
       position: absolute;
-      background-color: $dark-sky-blue;
       color: $white;
       rotate: -45deg;
       padding: 0.125rem;
@@ -264,6 +268,8 @@
       left: -1.75rem;
       font-size: 0.675rem;
       text-transform: uppercase;
+
+      @apply bg-blue-dark-sky;
     }
   }
 
@@ -312,13 +318,13 @@
 
     &.alert-secondary {
       @include themify(day) {
-        color: $gray-600;
-        background-color: $gray-200;
+        @apply text-gray-600;
+        @apply bg-gray-200;
       }
 
       @include themify(night) {
-        color: $gray-200;
-        background-color: $gray-800;
+        @apply text-gray-200;
+        @apply bg-gray-800;
       }
     }
 
@@ -334,14 +340,9 @@
       }
     }
 
-    .icon, .spinner-border {
+    .icon {
       width: 24px;
       height: 24px;
-    }
-
-    .spinner-border {
-      opacity: 0.5;
-      border-width: 0.125rem;
     }
 
     svg path {
@@ -363,20 +364,11 @@
   }
 }
 
-.emoji-picker-container {
-  width: 200px;
+.deck-threads-form-emoji-picker {
+  position: relative;
+  z-index: 202;
 
-  .emoji-picker {
-    border: 1px solid $border-color;
-
-    @include border-radius(1rem);
-
-    @include themify(day) {
-      background-color: $white;
-    }
-
-    @include themify(night) {
-      background-color: $dark-two;
-    }
+  .emoji-picker-dialog {
+    left: -50%;
   }
 }

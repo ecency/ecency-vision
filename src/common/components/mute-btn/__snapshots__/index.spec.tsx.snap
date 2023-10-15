@@ -25,7 +25,7 @@ exports[`(3) Dialog body for 'mute' 1`] = `
   className="mute-form"
 >
   <div
-    className="form-group"
+    className="mb-4"
   >
     <div
       className="entry-title"
@@ -36,12 +36,12 @@ exports[`(3) Dialog body for 'mute' 1`] = `
       awesome-hive
     </div>
     <div
-      className="input-group"
+      className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
     >
       <input
         autoComplete="off"
         autoFocus={true}
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         maxLength={120}
         onChange={[Function]}
         placeholder="Notes"
@@ -49,20 +49,25 @@ exports[`(3) Dialog body for 'mute' 1`] = `
         value=""
       />
     </div>
-    <small
-      className="form-text"
-    >
+    <small>
       Provide a note regarding your decision to mute this content.
     </small>
   </div>
   <div>
     <button
-      className="btn btn-primary"
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       disabled={true}
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Mute
+      <div>
+        Mute
+      </div>
     </button>
   </div>
 </div>
@@ -73,7 +78,7 @@ exports[`(4) Dialog body for 'unmute' 1`] = `
   className="mute-form"
 >
   <div
-    className="form-group"
+    className="mb-4"
   >
     <div
       className="entry-title"
@@ -84,12 +89,12 @@ exports[`(4) Dialog body for 'unmute' 1`] = `
       awesome-hive
     </div>
     <div
-      className="input-group"
+      className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
     >
       <input
         autoComplete="off"
         autoFocus={true}
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         maxLength={120}
         onChange={[Function]}
         placeholder="Notes"
@@ -97,20 +102,25 @@ exports[`(4) Dialog body for 'unmute' 1`] = `
         value=""
       />
     </div>
-    <small
-      className="form-text"
-    >
+    <small>
       Provide a note regarding your decision to unmute this content.
     </small>
   </div>
   <div>
     <button
-      className="btn btn-primary"
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       disabled={true}
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Unmute
+      <div>
+        Unmute
+      </div>
     </button>
   </div>
 </div>

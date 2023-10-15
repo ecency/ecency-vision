@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { _t } from "../../../i18n";
-import Accordion from "react-bootstrap/Accordion";
 import {
   chevronDownSvgForSlider,
   chevronUpSvgForSlider,
   deleteForeverSvg,
-  dragSvg,
-  hot
+  dragSvg
 } from "../../../img/svg";
 import { DeckHeaderSettings } from "./deck-header-settings";
 import { DeckHeaderReloading } from "./deck-header-reloading";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { classNameObject } from "../../../helper/class-name-object";
+import Tooltip from "../../tooltip";
+import { Button } from "@ui/button";
+import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
 
 export interface Props {
   title: string;
@@ -42,12 +42,6 @@ export type AllProps = Props & WithDeletionProps & WithIntervalProps;
 export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps | AllProps) => {
   const [expanded, setExpanded] = useState(false);
 
-  let tooltip = (
-    <Tooltip id="profile-tooltip" style={{ zIndex: 10 }}>
-      {_t("decks.header-info")}
-    </Tooltip>
-  );
-
   return (
     <div
       className={classNameObject({
@@ -57,8 +51,8 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
         expanded
       })}
     >
-      <Accordion className={expanded ? "border-bottom" : ""}>
-        <div className="deck-header position-relative">
+      <Accordion className={expanded ? "border-b border-[--border-color]" : ""}>
+        <div className="deck-header relative">
           <div className="empty" />
           <div className="prefix">{props.prefix}</div>
           <div className="deck-index" {...props.draggable}>
@@ -66,7 +60,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
           </div>
           {props.icon ? <div className="icon mr-2">{props.icon}</div> : <></>}
 
-          <div className="header-title d-flex flex-column align-items-start">
+          <div className="header-title flex flex-col items-start">
             {"subtitle" in props ? (
               <div className="username">
                 <small className="text-secondary">{props.subtitle}</small>
@@ -76,26 +70,23 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
             )}
             <div className="title">{props.title}</div>
           </div>
-          <OverlayTrigger placement="bottom" overlay={tooltip}>
-            <Accordion.Toggle
+          <Tooltip content={_t("decks.header-info")}>
+            <AccordionToggle
               as={Button}
-              variant="link"
+              appearance="link"
               eventKey="0"
-              className="p-0 accordion-toggle"
-            >
-              <div
-                className={`pointer`}
-                onClick={() => {
-                  setExpanded(!expanded);
-                }}
-              >
-                <span>{expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}</span>
-              </div>
-            </Accordion.Toggle>
-          </OverlayTrigger>
+              noPadding={true}
+              className="accordion-toggle"
+              iconClassName="justify-end"
+              onClick={() => {
+                setExpanded(!expanded);
+              }}
+              icon={expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}
+            />
+          </Tooltip>
         </div>
-        <Accordion.Collapse eventKey="0">
-          <Card.Body className="p-0">
+        <AccordionCollapse className="border-b border-[--border-color]" eventKey="0">
+          <div className="p-0">
             <DeckHeaderSettings
               updateInterval={"updateIntervalMs" in props ? props.updateIntervalMs : undefined}
               setDeckUpdateInterval={
@@ -106,7 +97,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
             />
             {"additionalSettings" in props && props.additionalSettings}
 
-            <div className="d-flex deck-actions justify-content-end p-2">
+            <div className="flex deck-actions content-end p-2">
               {"updateIntervalMs" in props ? (
                 <DeckHeaderReloading
                   onReload={props.onReload}
@@ -120,19 +111,20 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
               {"onRemove" in props ? (
                 <Button
                   size="sm"
-                  className="d-flex align-items-center pr-0"
-                  variant="link"
+                  className="pr-0"
+                  appearance="link"
                   onClick={() => props.onRemove()}
+                  icon={deleteForeverSvg}
+                  iconPlacement="left"
                 >
-                  <div className="deck-options-icon d-flex mr-1">{deleteForeverSvg}</div>
-                  <span>{_t("decks.remove")}</span>
+                  {_t("decks.remove")}
                 </Button>
               ) : (
                 <></>
               )}
             </div>
-          </Card.Body>
-        </Accordion.Collapse>
+          </div>
+        </AccordionCollapse>
       </Accordion>
     </div>
   );

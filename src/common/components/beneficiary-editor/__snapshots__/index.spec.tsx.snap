@@ -2,18 +2,21 @@
 
 exports[`(1) Default render 1`] = `
 <button
-  className="btn btn-primary btn-sm"
-  disabled={false}
+  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
   onClick={[Function]}
+  size="sm"
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
   type="button"
 >
-  Set Beneficiaries
-  <span
-    style={
-      Object {
-        "marginLeft": "6px",
-      }
-    }
+  <div>
+    Set Beneficiaries
+  </div>
+  <div
+    className="flex items-center w-5 h-5 undefined"
   >
     <svg
       viewBox="0 0 24 24"
@@ -23,24 +26,27 @@ exports[`(1) Default render 1`] = `
         fill="currentColor"
       />
     </svg>
-  </span>
+  </div>
 </button>
 `;
 
 exports[`(2) Default render with author 1`] = `
 <button
-  className="btn btn-primary btn-sm"
-  disabled={false}
+  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
   onClick={[Function]}
+  size="sm"
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
   type="button"
 >
-  Set Beneficiaries (1)
-  <span
-    style={
-      Object {
-        "marginLeft": "6px",
-      }
-    }
+  <div>
+    Set Beneficiaries (1)
+  </div>
+  <div
+    className="flex items-center w-5 h-5 undefined"
   >
     <svg
       viewBox="0 0 24 24"
@@ -50,269 +56,66 @@ exports[`(2) Default render with author 1`] = `
         fill="currentColor"
       />
     </svg>
-  </span>
+  </div>
 </button>
 `;
 
 exports[`(3) DialogBody 1`] = `
-<form
-  className=""
-  onSubmit={[Function]}
+<button
+  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+  onClick={[Function]}
+  size="sm"
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  type="button"
 >
-  <div
-    className="beneficiary-list"
-  >
-    <table
-      className="table table-bordered"
-    >
-      <thead>
-        <tr>
-          <th>
-            Username
-          </th>
-          <th>
-            Reward
-          </th>
-          <th />
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <div
-              className="input-group input-group-sm"
-            >
-              <div
-                className="input-group-prepend"
-              >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
-              </div>
-              <input
-                autoFocus={true}
-                className="form-control"
-                disabled={false}
-                maxLength={20}
-                minLength={3}
-                onChange={[Function]}
-                onInput={[Function]}
-                onInvalid={[Function]}
-                required={true}
-                value=""
-              />
-            </div>
-          </td>
-          <td>
-            <div
-              className="input-group input-group-sm"
-            >
-              <input
-                className="form-control form-control-sm"
-                disabled={false}
-                max={90}
-                min={1}
-                onChange={[Function]}
-                onInput={[Function]}
-                onInvalid={[Function]}
-                required={true}
-                step={1}
-                type="number"
-                value=""
-              />
-              <div
-                className="input-group-append"
-              >
-                <span
-                  className="input-group-text"
-                >
-                  %
-                </span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <button
-              className="btn btn-primary btn-sm"
-              disabled={false}
-              type="submit"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            @foo
-          </td>
-          <td>
-            10%
-          </td>
-          <td>
-            <button
-              className="btn btn-danger btn-sm"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div>
+    Set Beneficiaries (1)
   </div>
-</form>
+  <div
+    className="flex items-center w-5 h-5 undefined"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+</button>
 `;
 
 exports[`(4) DialogBody with author 1`] = `
-<form
-  className=""
-  onSubmit={[Function]}
+<button
+  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+  onClick={[Function]}
+  size="sm"
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  type="button"
 >
-  <div
-    className="beneficiary-list"
-  >
-    <table
-      className="table table-bordered"
-    >
-      <thead>
-        <tr>
-          <th>
-            Username
-          </th>
-          <th>
-            Reward
-          </th>
-          <th />
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            @bar
-          </td>
-          <td>
-            90%
-          </td>
-          <td />
-        </tr>
-        <tr>
-          <td>
-            <div
-              className="input-group input-group-sm"
-            >
-              <div
-                className="input-group-prepend"
-              >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
-              </div>
-              <input
-                autoFocus={true}
-                className="form-control"
-                disabled={false}
-                maxLength={20}
-                minLength={3}
-                onChange={[Function]}
-                onInput={[Function]}
-                onInvalid={[Function]}
-                required={true}
-                value=""
-              />
-            </div>
-          </td>
-          <td>
-            <div
-              className="input-group input-group-sm"
-            >
-              <input
-                className="form-control form-control-sm"
-                disabled={false}
-                max={90}
-                min={1}
-                onChange={[Function]}
-                onInput={[Function]}
-                onInvalid={[Function]}
-                required={true}
-                step={1}
-                type="number"
-                value=""
-              />
-              <div
-                className="input-group-append"
-              >
-                <span
-                  className="input-group-text"
-                >
-                  %
-                </span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <button
-              className="btn btn-primary btn-sm"
-              disabled={false}
-              type="submit"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            @foo
-          </td>
-          <td>
-            10%
-          </td>
-          <td>
-            <button
-              className="btn btn-danger btn-sm"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div>
+    Set Beneficiaries (1)
   </div>
-</form>
+  <div
+    className="flex items-center w-5 h-5 undefined"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+</button>
 `;

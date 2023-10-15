@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import KeyOrHot from "../../key-or-hot";
 import { Global } from "../../../store/global/types";
 import { ActiveUser } from "../../../store/active-user/types";
-import { Button } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import { formatError } from "../../../api/operations";
 import { getAccountFull } from "../../../api/hive";
@@ -21,6 +20,7 @@ import {
   transferByKey
 } from "./util";
 import { lockByHs, lockByKc, lockByKey } from "./util/lock";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -162,7 +162,7 @@ export const SendSpkDialogSign = ({
   };
 
   return (
-    <div className="d-flex flex-column align-items-center">
+    <div className="flex flex-col items-center">
       <KeyOrHot
         global={global}
         activeUser={activeUser!}
@@ -174,7 +174,7 @@ export const SendSpkDialogSign = ({
         onKc={signKs}
       />
 
-      <Button variant="outline-secondary" disabled={inProgress} onClick={() => onBack()}>
+      <Button appearance="secondary" outline={true} disabled={inProgress} onClick={() => onBack()}>
         {_t("g.back")}
       </Button>
     </div>

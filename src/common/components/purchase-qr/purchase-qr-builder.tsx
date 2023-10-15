@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Alert, Button, Form, InputGroup } from "react-bootstrap";
 import { _t } from "../../i18n";
-import { error, success } from "../feedback";
+import { success } from "../feedback";
 import qrcode from "qrcode";
-import { copyContent } from "../../img/svg";
 import { ActiveUser } from "../../store/active-user/types";
 import defaults from "../../constants/defaults.json";
 import { PurchaseTypes } from "./purchase-types";
 import { PurchaseQrTypes } from "./purchase-qr-types";
 import { Location } from "history";
 import { SearchByUsername } from "../search-by-username";
+import { InputGroupCopyClipboard } from "@ui/input";
+import { Alert } from "@ui/alert";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -73,9 +73,9 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId, locat
   };
 
   return (
-    <div className="d-flex flex-column align-items-center px-3 text-center">
+    <div className="flex flex-col items-center px-3 text-center">
       <h6>{isQrShow ? _t("purchase-qr.scan-code") : _t("purchase-qr.select-user")}</h6>
-      <div className="w-100 mt-4">
+      <div className="w-full mt-4">
         <SearchByUsername
           activeUser={activeUser}
           setUsername={(value: string) => {
@@ -105,28 +105,14 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId, locat
         style={{ display: isQrShow ? "block" : "none" }}
       />
       {isQrShow ? (
-        <Form.Group className="w-100">
-          <InputGroup onClick={() => copyToClipboard(getURL())}>
-            <Form.Control value={getURL()} disabled={true} className="text-primary pointer" />
-            <InputGroup.Append>
-              <Button
-                variant="primary"
-                size="sm"
-                className="copy-to-clipboard"
-                onClick={() => copyToClipboard(getURL())}
-              >
-                {copyContent}
-              </Button>
-            </InputGroup.Append>
-          </InputGroup>
-        </Form.Group>
+        <div className="w-full mb-4">
+          <InputGroupCopyClipboard value={getURL()} />
+        </div>
       ) : (
         <></>
       )}
       {type === PurchaseTypes.BOOST && isQrShow ? (
-        <Alert variant={"primary"} className="text-left mt-3 mb-0 text-small">
-          {_t("purchase-qr.boost-info")}
-        </Alert>
+        <Alert className="text-left mt-3 mb-0 text-small">{_t("purchase-qr.boost-info")}</Alert>
       ) : (
         <></>
       )}

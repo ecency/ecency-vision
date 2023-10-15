@@ -11,6 +11,7 @@ import DownloadTrigger from "../download-trigger";
 import SSRSuspense from "../ssr-suspense";
 import { Global } from "../../store/global/types";
 import "./_index.scss";
+
 const Market = React.lazy(() => import("./market"));
 
 interface MarketDataProps {
@@ -40,7 +41,7 @@ export default class MarketData extends Component<MarketDataProps, MarketDataSta
     return (
       <div className="market-data">
         <div className="market-data-header">
-          <span className="title d-flex align-items-center">
+          <span className="title flex items-center">
             {_t("market-data.title")}
             <div className="pointer ml-2" onClick={() => this.setState({ visible: !visible })}>
               {visible ? eyeSvg : eyeBoldSvg}
@@ -116,7 +117,7 @@ export default class MarketData extends Component<MarketDataProps, MarketDataSta
             </div>
           </SSRSuspense>
         ) : (
-          <div className="p-3 border-left">
+          <div className="p-3 border-l border-[--border-color]">
             <div>
               <Link to="/faq">FAQ</Link>
             </div>

@@ -1,14 +1,10 @@
 import React, { Component, Fragment } from "react";
-
-import { Modal } from "react-bootstrap";
-
 import BaseComponent from "../base";
-
 import { geLatestDesktopTag } from "../../api/misc";
-
 import platform from "../../util/platform";
 import { history } from "../../store";
 import "./_index.scss";
+import { Modal, ModalBody } from "@ui/modal";
 
 interface ContentState {
   desktopTag: string;
@@ -155,9 +151,9 @@ export default class DownloadTrigger extends Component<Props, State> {
               this.toggle();
             }}
           >
-            <Modal.Body className="download-dialog-content">
+            <ModalBody className="download-dialog-content">
               <DialogContent />
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </Fragment>

@@ -1,8 +1,8 @@
 import React from "react";
 import { commentSvg } from "../../img/svg";
-import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { Button } from "@ui/button";
 
 function CommentEngagement() {
   const scrollToCommentInput = () => {

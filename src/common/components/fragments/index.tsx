@@ -1,29 +1,26 @@
 import React, { Component } from "react";
-
-import { Button, Form, FormControl, Modal, Spinner } from "react-bootstrap";
-
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import { error } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import { postBodySummary } from "@ecency/render-helper";
-
 import {
-  getFragments,
-  Fragment,
   addFragment,
   deleteFragment,
+  Fragment,
+  getFragments,
   updateFragment
 } from "../../api/private-api";
-
-import PopoverConfirm from "../popover-confirm";
+import PopoverConfirm from "@ui/popover-confirm";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 // ADD
 interface AddProps {
@@ -47,11 +44,11 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
 
   form = React.createRef<HTMLFormElement>();
 
-  titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  titleChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ title: e.target.value });
   };
 
-  bodyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  bodyChanged = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.stateSet({ body: e.target.value });
   };
 
@@ -89,9 +86,9 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
               });
           }}
         >
-          <Form.Group controlId="title">
-            <Form.Label>{_t("fragments.form-title")}</Form.Label>
-            <Form.Control
+          <div className="mb-4">
+            <label>{_t("fragments.form-title")}</label>
+            <FormControl
               value={title}
               onChange={this.titleChanged}
               required={true}
@@ -101,39 +98,31 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
               onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-title")}
               onInput={handleOnInput}
             />
-          </Form.Group>
-          <Form.Group controlId="body">
-            <Form.Label>{_t("fragments.form-body")}</Form.Label>
-            <Form.Control
+          </div>
+          <div className="mb-4">
+            <label>{_t("fragments.form-body")}</label>
+            <FormControl
               onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-value")}
               onInput={handleOnInput}
-              as="textarea"
+              type="textarea"
               style={{ height: "300px" }}
               value={body}
               onChange={this.bodyChanged}
               required={true}
-              type="text"
               maxLength={5000}
             />
-          </Form.Group>
-          <div className="d-flex justify-content-between">
-            <Button
-              variant="outline-primary"
-              type="button"
-              disabled={inProgress}
-              onClick={this.back}
-            >
+          </div>
+          <div className="flex justify-between">
+            <Button outline={true} disabled={inProgress} onClick={this.back}>
               {_t("g.back")}
             </Button>
-            <Button variant="primary" type="submit" disabled={inProgress}>
-              {inProgress && (
-                <Spinner
-                  animation="grow"
-                  variant="light"
-                  size="sm"
-                  style={{ marginRight: "6px" }}
-                />
-              )}
+            <Button
+              type="submit"
+              disabled={inProgress}
+              icon={inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
+              iconPlacement="left"
+            >
+              {}
               {_t("g.add")}
             </Button>
           </div>
@@ -166,11 +155,11 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
 
   form = React.createRef<HTMLFormElement>();
 
-  titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  titleChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ title: e.target.value });
   };
 
-  bodyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  bodyChanged = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.stateSet({ body: e.target.value });
   };
 
@@ -223,9 +212,9 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
               });
           }}
         >
-          <Form.Group controlId="title">
-            <Form.Label>{_t("fragments.form-title")}</Form.Label>
-            <Form.Control
+          <div className="mb-4">
+            <label>{_t("fragments.form-title")}</label>
+            <FormControl
               value={title}
               onChange={this.titleChanged}
               required={true}
@@ -235,22 +224,21 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
               onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-title")}
               onInput={handleOnInput}
             />
-          </Form.Group>
-          <Form.Group controlId="body">
-            <Form.Label>{_t("fragments.form-body")}</Form.Label>
-            <Form.Control
-              as="textarea"
+          </div>
+          <div className="mb-4">
+            <label>{_t("fragments.form-body")}</label>
+            <FormControl
+              type="textarea"
               style={{ height: "300px" }}
               value={body}
               onChange={this.bodyChanged}
               required={true}
-              type="text"
               maxLength={5000}
               onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-body")}
               onInput={handleOnInput}
             />
-          </Form.Group>
-          <div className="d-flex justify-content-between">
+          </div>
+          <div className="flex justify-between">
             <div>
               <PopoverConfirm
                 onConfirm={() => {
@@ -258,7 +246,8 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
                 }}
               >
                 <Button
-                  variant="outline-danger"
+                  appearance="danger"
+                  outline={true}
                   type="button"
                   disabled={inProgress}
                   style={{ marginRight: "6px" }}
@@ -266,24 +255,16 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
                   {_t("g.delete")}
                 </Button>
               </PopoverConfirm>
-              <Button
-                variant="outline-primary"
-                type="button"
-                disabled={inProgress}
-                onClick={this.back}
-              >
+              <Button outline={true} type="button" disabled={inProgress} onClick={this.back}>
                 {_t("g.back")}
               </Button>
             </div>
-            <Button variant="primary" type="submit" disabled={inProgress}>
-              {inProgress && (
-                <Spinner
-                  animation="grow"
-                  variant="light"
-                  size="sm"
-                  style={{ marginRight: "6px" }}
-                />
-              )}
+            <Button
+              type="submit"
+              disabled={inProgress}
+              icon={inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
+              iconPlacement="left"
+            >
               {_t("g.update")}
             </Button>
           </div>
@@ -353,7 +334,7 @@ export class Fragments extends BaseComponent<Props, State> {
       return new Date(b.created).getTime() > new Date(a.created).getTime() ? 1 : -1;
     });
 
-  filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  filterChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     this.stateSet({ filter: value });
   };
@@ -426,8 +407,8 @@ export class Fragments extends BaseComponent<Props, State> {
 
           return (
             <>
-              <div className="dialog-controls">
-                <Form.Control
+              <div className="flex gap-3">
+                <FormControl
                   ref={innerRef}
                   type="text"
                   placeholder={_t("fragments.filter")}
@@ -436,26 +417,22 @@ export class Fragments extends BaseComponent<Props, State> {
                   style={{ marginRight: "6px" }}
                 />
                 <div>
-                  <Button
-                    onClick={() => {
-                      this.stateSet({ mode: "add" });
-                    }}
-                  >
+                  <Button className="h-full" onClick={() => this.stateSet({ mode: "add" })}>
                     {_t("g.add")}
                   </Button>
                 </div>
               </div>
 
-              {items.length === 0 && <span className="text-muted">{_t("g.no-matches")}</span>}
+              {items.length === 0 && <span className="text-gray-600">{_t("g.no-matches")}</span>}
 
               {items.length > 0 && (
-                <div className="fragments-list">
+                <div className="flex flex-col gap-3 my-4">
                   {items.map((item) => {
                     const summary = postBodySummary(item.body, 200);
 
                     return (
                       <div
-                        className="fragment-list-item"
+                        className="flex flex-col border dark:border-dark-400 rounded-3xl overflow-hidden cursor-pointer hover:opacity-75 duration-300"
                         key={item.id}
                         onClick={() => {
                           const { onPick } = this.props;
@@ -467,8 +444,12 @@ export class Fragments extends BaseComponent<Props, State> {
                           this.setState({ editingItem: item, mode: "edit" });
                         }}
                       >
-                        <div className="item-title">{item.title}</div>
-                        <div className="item-summary">{summary}</div>
+                        <div className="flex items-center gap-3 border-b dark:border-dark-300 px-3 py-2 bg-gray-100 dark:bg-dark-500">
+                          {item.title}
+                        </div>
+                        <div className="text-gray-steel dark:text-white-075 px-3 py-2">
+                          {summary}
+                        </div>
                       </div>
                     );
                   })}
@@ -491,12 +472,12 @@ class FragmentsDialog extends Component<Props> {
   render() {
     return (
       <Modal show={true} centered={true} onHide={this.hide} size="lg" className="fragments-modal">
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("fragments.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("fragments.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <Fragments {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

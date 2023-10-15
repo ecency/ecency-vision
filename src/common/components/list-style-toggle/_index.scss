@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .list-style-toggle {
   cursor: pointer;
@@ -18,21 +15,21 @@
   }
 
   @include themify(day) {
-    color: $light-periwinkle;
+    @apply text-light-periwinkle;
   }
 
   @include themify(night) {
-    color: $metallic-blue;
+    @apply text-blue-metallic;
   }
 
   &.toggled {
     border-radius: 5px;
     @include themify(day) {
-      background: lighten($light-periwinkle, 10);
+      @apply bg-light-periwinkle-100;
     }
 
     @include themify(night) {
-      background: darken($metallic-blue, 10);
+      @apply bg-blue-metallic-10;
     }
   }
 }
@@ -52,11 +49,11 @@
     padding: 0;
 
     @include themify(day) {
-      color: $light-periwinkle;
+      @apply text-light-periwinkle;
     }
 
     @include themify(night) {
-      color: $metallic-blue;
+      @apply text-blue-metallic;
     }
 
     &:hover {
@@ -69,11 +66,11 @@
     top: 10px !important;
 
     @include themify(day) {
-      background: lighten($light-periwinkle, 10);
+      @apply bg-light-periwinkle-100;
     }
 
     @include themify(night) {
-      background: darken($metallic-blue, 10);
+      @apply bg-blue-metallic-10;
     }
 
     .dropdown-item {
@@ -92,11 +89,11 @@
   border-bottom: 1px solid #ddd;
 
   @include themify(day) {
-    border-color: $light-periwinkle;
+    @apply border-light-periwinkle;
   }
 
   @include themify(night) {
-    border-color: $metallic-blue;
+    @apply border-blue-metallic;
   }
 }
 

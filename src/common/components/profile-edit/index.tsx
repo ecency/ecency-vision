@@ -1,19 +1,16 @@
 import React from "react";
-
-import { Form, FormControl, InputGroup, Button, Spinner, Col } from "react-bootstrap";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { Account, FullAccount } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import UploadButton from "../image-upload-button";
 import { error, success } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import { updateProfile } from "../../api/operations";
 import { getAccount } from "../../api/hive";
 import "./index.scss";
+import { FormControl, InputGroup } from "@ui/input";
+import { Spinner } from "@ui/spinner";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser;
@@ -58,7 +55,7 @@ const pureState = (props: Props): State => {
 export default class ProfileEdit extends BaseComponent<Props, State> {
   state: State = pureState(this.props);
 
-  valueChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  valueChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const id = e.target.getAttribute("data-var") as string;
     const { value } = e.target;
 
@@ -127,18 +124,16 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
       changed
     } = this.state;
 
-    const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-    );
+    const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
     return (
       <div className="profile-edit">
         <div className="profile-edit-header">{_t("profile-edit.title")}</div>
-        <Form.Row>
-          <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.name")}</Form.Label>
-              <Form.Control
+        <div className="grid grid-cols-12 gap-3">
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+            <div className="mb-4">
+              <label>{_t("profile-edit.name")}</label>
+              <FormControl
                 type="text"
                 disabled={inProgress}
                 value={name}
@@ -146,12 +141,12 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 data-var="name"
                 onChange={this.valueChanged}
               />
-            </Form.Group>
-          </Col>
-          <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.about")}</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+            <div className="mb-4">
+              <label>{_t("profile-edit.about")}</label>
+              <FormControl
                 type="text"
                 disabled={inProgress}
                 value={about}
@@ -159,22 +154,14 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 data-var="about"
                 onChange={this.valueChanged}
               />
-            </Form.Group>
-          </Col>
-          <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.profile-image")}</Form.Label>
-              <InputGroup className="mb-3">
-                <Form.Control
-                  type="text"
-                  disabled={inProgress}
-                  placeholder="https://"
-                  value={profileImage}
-                  maxLength={500}
-                  data-var="profileImage"
-                  onChange={this.valueChanged}
-                />
-                <InputGroup.Append>
+            </div>
+          </div>
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+            <div className="mb-4">
+              <label>{_t("profile-edit.profile-image")}</label>
+              <InputGroup
+                className="mb-3"
+                append={
                   <UploadButton
                     {...this.props}
                     onBegin={() => {
@@ -184,24 +171,26 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                       this.stateSet({ profileImage: url, uploading: false, changed: true });
                     }}
                   />
-                </InputGroup.Append>
-              </InputGroup>
-            </Form.Group>
-          </Col>
-          <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.cover-image")}</Form.Label>
-              <InputGroup className="mb-3">
-                <Form.Control
+                }
+              >
+                <FormControl
                   type="text"
                   disabled={inProgress}
                   placeholder="https://"
-                  value={coverImage}
+                  value={profileImage}
                   maxLength={500}
-                  data-var="coverImage"
+                  data-var="profileImage"
                   onChange={this.valueChanged}
                 />
-                <InputGroup.Append>
+              </InputGroup>
+            </div>
+          </div>
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+            <div className="mb-4">
+              <label>{_t("profile-edit.cover-image")}</label>
+              <InputGroup
+                className="mb-3"
+                append={
                   <UploadButton
                     {...this.props}
                     onBegin={() => {
@@ -211,14 +200,24 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                       this.stateSet({ coverImage: url, uploading: false, changed: true });
                     }}
                   />
-                </InputGroup.Append>
+                }
+              >
+                <FormControl
+                  type="text"
+                  disabled={inProgress}
+                  placeholder="https://"
+                  value={coverImage}
+                  maxLength={500}
+                  data-var="coverImage"
+                  onChange={this.valueChanged}
+                />
               </InputGroup>
-            </Form.Group>
-          </Col>
-          <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.website")}</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+            <div className="mb-4">
+              <label>{_t("profile-edit.website")}</label>
+              <FormControl
                 type="text"
                 disabled={inProgress}
                 placeholder="https://"
@@ -227,12 +226,12 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 data-var="website"
                 onChange={this.valueChanged}
               />
-            </Form.Group>
-          </Col>
-          <Col lg={6} xl={4}>
-            <Form.Group>
-              <Form.Label>{_t("profile-edit.location")}</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+          <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+            <div className="mb-4">
+              <label>{_t("profile-edit.location")}</label>
+              <FormControl
                 type="text"
                 disabled={inProgress}
                 value={location}
@@ -240,12 +239,16 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
                 data-var="location"
                 onChange={this.valueChanged}
               />
-            </Form.Group>
-          </Col>
-        </Form.Row>
+            </div>
+          </div>
+        </div>
         {changed && (
-          <Button onClick={this.update} disabled={inProgress || uploading}>
-            {inProgress && spinner} {_t("g.update")}
+          <Button
+            icon={inProgress && spinner}
+            onClick={this.update}
+            disabled={inProgress || uploading}
+          >
+            {_t("g.update")}
           </Button>
         )}
       </div>

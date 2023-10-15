@@ -193,6 +193,15 @@ export const brightnessSvg = (
 );
 
 export const magnifySvg = (
+  <svg viewBox="0 0 24 24" width={16} height={16}>
+    <path
+      fill="currentColor"
+      d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+    />
+  </svg>
+);
+
+export const magnifyResponsibleSvg = (
   <svg viewBox="0 0 24 24">
     <path
       fill="currentColor"
@@ -1192,7 +1201,6 @@ export const copyContent = (
     width="24px"
     fill="currentColor"
   >
-    <path d="M0 0h24v24H0V0z" fill="none" />
     <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
   </svg>
 );
@@ -1340,7 +1348,7 @@ export const downArrowSvg = (
   <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
-      stroke="#535E65"
+      stroke="currentColor"
       strokeLinecap="square"
     />
   </svg>
@@ -1350,7 +1358,7 @@ export const upArrowSvg = (
   <svg xmlns="http://www.w3.org/2000/svg" width="13" height="8" viewBox="0 0 13 8" fill="none">
     <path
       d="M11.623 6.59424L6.43483 1.40602L1.24661 6.59424"
-      stroke="#535E65"
+      stroke="currentColor"
       strokeLinecap="square"
     />
   </svg>
@@ -1905,7 +1913,7 @@ export const copyOutlinSvg = (
     height="30"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="#357ce6"
+    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="square"
     strokeLinejoin="round"

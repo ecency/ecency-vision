@@ -29,11 +29,11 @@
     flex-shrink: 0;
 
     @include themify(day) {
-      background: lighten($dark-sky-blue, 40);
+      @apply bg-blue-dark-sky-040;
     }
 
     @include themify(night) {
-      background: $dark;
+      @apply bg-dark-default;
     }
   }
 
@@ -42,11 +42,11 @@
     flex-shrink: 0;
 
     @include themify(day) {
-      background: lighten($dark-sky-blue, 40);
+      @apply bg-blue-dark-sky-040;
     }
 
     @include themify(night) {
-      background: $dark;
+      @apply bg-dark-default;
     }
     @media (min-width: $lg-break) {
       margin-left: 10px;

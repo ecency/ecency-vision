@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { _t } from "../../../i18n";
 import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from "react-virtualized";
-import { Button } from "react-bootstrap";
 import { upArrowSvg } from "../../../img/svg";
 import { DeckProps, GenericDeckColumn } from "./generic-deck-column";
 import { noContentSvg } from "../icons";
+import { Button } from "@ui/button";
 
 type DataItem = Omit<any, "id"> & Required<{ id: string | number }>;
 
@@ -123,14 +123,14 @@ export const GenericDeckWithDataColumn = ({
     >
       <div className={"new-coming-data " + (newComingData.length > 0 ? "active" : "")}>
         <Button
-          variant="primary"
+          size="xs"
+          icon={upArrowSvg}
           onClick={() => {
             setVisibleData([...newComingData, ...visibleData]);
             setNewComingData([]);
             scrollContentRef.current?.scrollTo(0, 0);
           }}
         >
-          {upArrowSvg}
           {_t("decks.columns.new-data-available")}
         </Button>
       </div>

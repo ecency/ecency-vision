@@ -1,7 +1,5 @@
 import React from "react";
 import i18n from "i18next";
-import { Col, Form, FormControl, InputGroup, Button } from "react-bootstrap";
-
 import { Global, Theme } from "../../store/global/types";
 import BaseComponent from "../base";
 import { success } from "../feedback";
@@ -10,11 +8,11 @@ import { getCurrencyRate } from "../../api/misc";
 import currencySymbol from "../../helper/currency-symbol";
 import currencies from "../../constants/currencies.json";
 import { ActiveUser } from "../../store/active-user/types";
-import { copyContent } from "../../img/svg";
 import * as ls from "../../util/local-storage";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
-import { NotifyTypes } from "../../enums/notify-types";
+import { NotifyTypes } from "../../enums";
+import { FormControl, InputGroupCopyClipboard } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -40,7 +38,7 @@ export class Preferences extends BaseComponent<Props, State> {
     defaultTheme: ""
   };
 
-  notificationsChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  notificationsChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const {
       muteNotifications,
       unMuteNotifications,
@@ -64,7 +62,7 @@ export class Preferences extends BaseComponent<Props, State> {
     success(_t("preferences.updated"));
   };
 
-  themeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  themeChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { toggleTheme } = this.props;
     const { value } = e.target;
     if (value === "system") {
@@ -78,7 +76,7 @@ export class Preferences extends BaseComponent<Props, State> {
     success(_t("preferences.updated"));
   };
 
-  currencyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  currencyChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value: currency } = e.target;
 
     this.stateSet({ inProgress: true });
@@ -95,7 +93,7 @@ export class Preferences extends BaseComponent<Props, State> {
       });
   };
 
-  languageChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  languageChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { setLang } = this.props;
     const { value: code } = e.target;
 
@@ -105,7 +103,7 @@ export class Preferences extends BaseComponent<Props, State> {
     });
   };
 
-  nsfwChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  nsfwChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { setNsfw } = this.props;
     const { value } = e.target;
 
@@ -141,28 +139,26 @@ export class Preferences extends BaseComponent<Props, State> {
         <div className="preferences">
           <div className="preferences-header">{_t("preferences.title")}</div>
 
-          <Form.Row>
-            <Col lg={6} xl={4}>
-              <Form.Group>
-                <Form.Label>{_t("preferences.notifications")}</Form.Label>
-                <Form.Control
-                  type="text"
+          <div className="grid grid-cols-12 gap-3">
+            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+              <div className="mb-4">
+                <label>{_t("preferences.notifications")}</label>
+                <FormControl
                   value={global.notifications ? 1 : 0}
-                  as="select"
+                  type="select"
                   onChange={this.notificationsChanged}
                 >
                   <option value={1}>{_t("g.on")}</option>
                   <option value={0}>{_t("g.off")}</option>
-                </Form.Control>
-              </Form.Group>
-            </Col>
-            <Col lg={6} xl={4}>
-              <Form.Group>
-                <Form.Label>{_t("preferences.currency")}</Form.Label>
-                <Form.Control
-                  type="text"
+                </FormControl>
+              </div>
+            </div>
+            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+              <div className="mb-4">
+                <label>{_t("preferences.currency")}</label>
+                <FormControl
                   value={global.currency}
-                  as="select"
+                  type="select"
                   onChange={this.currencyChanged}
                   disabled={inProgress}
                 >
@@ -171,16 +167,15 @@ export class Preferences extends BaseComponent<Props, State> {
                       {x.name}
                     </option>
                   ))}
-                </Form.Control>
-              </Form.Group>
-            </Col>
-            <Col lg={6} xl={4}>
-              <Form.Group>
-                <Form.Label>{_t("preferences.language")}</Form.Label>
-                <Form.Control
-                  type="text"
+                </FormControl>
+              </div>
+            </div>
+            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+              <div className="mb-4">
+                <label>{_t("preferences.language")}</label>
+                <FormControl
                   value={global.lang}
-                  as="select"
+                  type="select"
                   onChange={this.languageChanged}
                   disabled={inProgress}
                 >
@@ -189,79 +184,49 @@ export class Preferences extends BaseComponent<Props, State> {
                       {x.name}
                     </option>
                   ))}
-                </Form.Control>
-              </Form.Group>
-            </Col>
-          </Form.Row>
-          <Form.Row>
-            <Col lg={6} xl={4}>
-              <Form.Group>
-                <Form.Label>{_t("preferences.nsfw")}</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={global.nsfw ? 1 : 0}
-                  as="select"
-                  onChange={this.nsfwChanged}
-                >
+                </FormControl>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-12 gap-3">
+            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+              <div className="mb-4">
+                <label>{_t("preferences.nsfw")}</label>
+                <FormControl value={global.nsfw ? 1 : 0} type="select" onChange={this.nsfwChanged}>
                   <option value={1}>{_t("g.on")}</option>
                   <option value={0}>{_t("g.off")}</option>
-                </Form.Control>
-              </Form.Group>
-            </Col>
+                </FormControl>
+              </div>
+            </div>
 
             {activeUser && activeUser.username && (
               <>
-                <Col lg={6} xl={4}>
-                  <Form.Group>
-                    <Form.Label>{_t("preferences.referral-link")}</Form.Label>
-                    <InputGroup
+                <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+                  <div className="mb-4">
+                    <label>{_t("preferences.referral-link")}</label>
+                    <InputGroupCopyClipboard
                       className="mb-3"
-                      onClick={() =>
-                        this.copyToClipboard(
-                          `https://ecency.com/signup?referral=${activeUser!.username}`
-                        )
-                      }
-                    >
-                      <Form.Control
-                        value={`https://ecency.com/signup?referral=${activeUser!.username}`}
-                        disabled={true}
-                        className="text-primary pointer"
-                      />
-                      <InputGroup.Append>
-                        <Button
-                          variant="primary"
-                          size="sm"
-                          className="copy-to-clipboard"
-                          onClick={() =>
-                            this.copyToClipboard(
-                              `https://ecency.com/signup?referral=${activeUser!.username}`
-                            )
-                          }
-                        >
-                          {copyContent}
-                        </Button>
-                      </InputGroup.Append>
-                    </InputGroup>
-                  </Form.Group>
-                </Col>
-                <Col lg={6} xl={4}>
-                  <Form.Group>
-                    <Form.Label>{_t("preferences.theme")}</Form.Label>
-                    <Form.Control
-                      type="text"
+                      value={`https://ecency.com/signup?referral=${activeUser!.username}`}
+                    />
+                  </div>
+                </div>
+                <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+                  <div className="mb-4">
+                    <label>{_t("preferences.theme")}</label>
+                    <FormControl
                       value={Theme[this.state.defaultTheme]}
-                      as="select"
+                      type="select"
                       onChange={this.themeChanged}
                     >
                       <option value={Theme.system}>{_t("preferences.theme-system-default")}</option>
                       <option value={Theme.day}>{_t("preferences.theme-day")}</option>
                       <option value={Theme.night}>{_t("preferences.theme-night")}</option>
-                    </Form.Control>
-                  </Form.Group>
-                </Col>
+                    </FormControl>
+                  </div>
+                </div>
               </>
             )}
-          </Form.Row>
+          </div>
         </div>
       </>
     );

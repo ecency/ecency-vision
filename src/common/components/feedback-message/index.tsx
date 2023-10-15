@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Button } from "react-bootstrap";
+import React, { useEffect, useRef, useState } from "react";
 import { ErrorTypes } from "../../enums";
 import { alertCircleSvg, checkSvg, closeSvg, informationSvg } from "../../img/svg";
 import { FeedbackModal } from "../feedback-modal";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
+import { Button } from "@ui/button";
 
 interface Props {
   feedback: FeedbackObject;
@@ -108,7 +108,7 @@ export default function FeedbackMessage(props: Props) {
                   );
                 case "error":
                   return (
-                    <div key={x.id} className="feedback-error align-items-start">
+                    <div key={x.id} className="feedback-error items-start">
                       <div className="feedback-body">
                         <div className="feedback-close-btn" onClick={handleCloseBtn}>
                           {closeSvg}
@@ -116,14 +116,15 @@ export default function FeedbackMessage(props: Props) {
                         <div className="error-content">
                           <div className="error-img">{alertCircleSvg}</div>
 
-                          <div className=" d-flex flex-column align-items-start">
+                          <div className=" flex flex-col items-start">
                             {x.message}
-                            <div className="d-flex">
+                            <div className="flex">
                               {errorType(x) !== ErrorTypes.COMMON &&
                               errorType(x) !== ErrorTypes.INFO ? (
                                 <Button
-                                  className="mt-2 details-button px-0 mr-3"
-                                  variant="link"
+                                  className="mt-2 details-button mr-3"
+                                  noPadding={true}
+                                  appearance="link"
                                   onClick={() => {
                                     setShowDialog(true);
                                     setDetailedObject(x);
@@ -136,8 +137,9 @@ export default function FeedbackMessage(props: Props) {
                               )}
                               {!ErrorTypes.INFO && (
                                 <Button
-                                  className="mt-2 details-button px-0"
-                                  variant="link"
+                                  className="mt-2 details-button"
+                                  noPadding={true}
+                                  appearance="link"
                                   onClick={() =>
                                     window.open(
                                       "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",

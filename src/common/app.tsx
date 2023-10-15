@@ -200,6 +200,8 @@ const App = (props: any) => {
         <MessageManager />
         <ChatPopUp {...props} />
       </ChatContextProvider>
+      <div id="modal-overlay-container" />
+      <div id="modal-dialog-container" />
     </EntriesCacheManager>
   );
 };

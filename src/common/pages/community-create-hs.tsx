@@ -9,10 +9,10 @@ import { formatError, setUserRole, updateCommunity } from "../api/operations";
 import Meta from "../components/meta";
 import Theme from "../components/theme";
 import NavBarElectron from "../../desktop/app/components/navbar";
-import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import React from "react";
 import NavBar from "../components/navbar";
+import { Button } from "@ui/button";
 
 interface CreateHsState {
   username: string;
@@ -152,16 +152,9 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
 
               return (
                 <div>
-                  <p className="text-danger">{_t("g.server-error")}</p>
+                  <p className="text-red">{_t("g.server-error")}</p>
                   <p>
-                    <Button
-                      size="sm"
-                      onClick={() => {
-                        this.handle().then();
-                      }}
-                    >
-                      {_t("g.try-again")}
-                    </Button>
+                    <Button onClick={() => this.handle().then()}>{_t("g.try-again")}</Button>
                   </p>
                 </div>
               );

@@ -11,7 +11,7 @@ import { OperationGroup, Transactions } from "../../store/transactions/types";
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
-import MyPagination from "../pagination";
+import MyPagination from "@ui/pagination";
 import Transfer, { TransferAsset, TransferMode } from "../transfer";
 import LinearProgress from "../linear-progress";
 import { shareVariantSvg } from "../../img/svg";
@@ -22,6 +22,8 @@ import { success } from "../feedback";
 import { Tsx } from "../../i18n/helper";
 
 import "./index.scss";
+import { Table, Td, Th, Tr } from "@ui/table";
+import { Button } from "@ui/button";
 
 interface Props {
   history: History;
@@ -148,15 +150,15 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
     const sliced = referrals.slice(start, end);
 
     const table = (
-      <>
-        <table className="table d-none d-sm-block d-flex flex-column">
+      <div className="flex">
+        <Table>
           <thead>
-            <tr>
-              <th className="col-rank">{_t("referral.created")}</th>
-              <th>{_t("referral.list-referral")}</th>
-              <th className="col-version">{_t("referral.rewarded")}</th>
-              <th className="col-version" />
-            </tr>
+            <Tr>
+              <Th className="border p-3 col-rank">{_t("referral.created")}</Th>
+              <Th>{_t("referral.list-referral")}</Th>
+              <Th className="border p-3 col-version">{_t("referral.rewarded")}</Th>
+              <Th className="border p-3 col-version" />
+            </Tr>
           </thead>
           <tbody>
             {sliced.map((row, i) => {
@@ -164,44 +166,44 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
               var momentObj = moment(dateObj);
               var createdAt = momentObj.format("YYYY/MM/DD");
               return (
-                <tr key={i}>
-                  <td className="align-middle">
+                <Tr key={i}>
+                  <Td className="border p-3">
                     <div className="witness-rank">
                       <span className="rank-number">{createdAt}</span>
                     </div>
-                  </td>
-                  <td>
+                  </Td>
+                  <Td className="border p-3">
                     {ProfileLink({
                       history: this.props.history,
                       addAccount: () => {},
                       username: row.username,
                       children: (
-                        <span className="d-flex align-center gap-2">
+                        <span className="flex items-center gap-3">
                           <UserAvatar size="medium" username={row.username} />
-                          <span className="d-block align-self-center ml-2">{row.username}</span>
+                          <span className="block align-self-center ml-2">{row.username}</span>
                         </span>
                       )
                     })}
-                  </td>
+                  </Td>
 
-                  <td className="align-middle">
-                    <span className="bg-primary text-white reward-wrapper py-1 px-3 circle">
+                  <Td className="border p-3">
+                    <span className="bg-blue-dark-sky text-white py-1 px-3 rounded-2xl">
                       {row.rewarded === 0 ? _t("g.no") : _t("g.yes")}
                     </span>
-                  </td>
-                  <td className="delegate-button">
+                  </Td>
+                  <Td className="border p-3 delegate-button">
                     <button
                       className="btn btn-sm btn-primary"
                       onClick={() => this.openTransferDialog("delegate", "HP", row.username)}
                     >
                       {_t("referral.delegate-hp")}
                     </button>
-                  </td>
-                </tr>
+                  </Td>
+                </Tr>
               );
             })}
           </tbody>
-        </table>
+        </Table>
 
         {this.state.transfer && (
           <Transfer
@@ -213,35 +215,35 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
             onHide={this.closeTransferDialog}
           />
         )}
-      </>
+      </div>
     );
 
     const header = (
       <div className="page-header mt-2 mb-2">
-        <div className="header-title text-left">{_t("referral.page-title")}</div>
+        <div className="header-title !text-left">{_t("referral.page-title")}</div>
 
-        <div className="d-flex mt-2">
+        <div className="flex mt-2">
           <div>
-            <h5 className="header-title text-left">{this.state.claimed_points}</h5>
+            <h5 className="header-title !text-left">{this.state.claimed_points}</h5>
             <h6 className=" text-left">{_t("referral.earned-reward")}</h6>
           </div>
           <div>
-            <h5 className="header-title text-left ml-3">{this.state.pending_points}</h5>
+            <h5 className="header-title !text-left ml-3">{this.state.pending_points}</h5>
             <h6 className=" text-left ml-3">{_t("referral.pending-reward")}</h6>
           </div>
           <div className="ml-5">
-            <button
+            <Button
+              icon={shareVariantSvg}
               onClick={() =>
                 this.copyToClipboard(`https://ecency.com/signup?referral=${account.name}`)
               }
-              className="btn btn-primary"
             >
-              {_t("entry.address-copy")} {shareVariantSvg}
-            </button>
+              {_t("entry.address-copy")}
+            </Button>
           </div>
         </div>
         <Tsx k="referral.page-description-long">
-          <div className="header-description text-left" />
+          <div className="header-description !text-left" />
         </Tsx>
       </div>
     );
@@ -261,7 +263,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
           return (
             <>
               {header}
-              <div className="table-responsive">
+              <div className="w-full overflow-x-auto">
                 {table}
 
                 {referrals.length >= pageSize && (

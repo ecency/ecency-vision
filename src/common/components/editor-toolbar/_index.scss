@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .editor-toolbar {
   align-items: center;
@@ -13,11 +10,11 @@
   }
 
   @include themify(day) {
-    background: $white-three;
+    @apply bg-light-300;
   }
 
   @include themify(night) {
-    background: $dark-two;
+    @apply bg-dark-200;
   }
 
   .editor-tool {
@@ -35,18 +32,18 @@
     }
 
     @include themify(day) {
-      color: $steel-grey;
+      @apply text-gray-steel;
 
       &:hover {
-        background: darken($white-three, 5);
+        @apply bg-light-305;
       }
     }
 
     @include themify(night) {
-      color: $pinkish-grey;
+      @apply text-gray-pinkish;
 
       &:hover {
-        background: darken($dark-two, 8);
+        @apply bg-dark-200-010-light;
       }
     }
 
@@ -63,16 +60,16 @@
       top: 100%;
       white-space: nowrap;
       width: auto;
-      z-index: 2;
+      z-index: 100;
       min-width: 100%;
       overflow: hidden;
 
       @include themify(day) {
-        background: darken($white-three, 5);
+        @apply bg-light-305;
       }
 
       @include themify(night) {
-        background: $dark-two;
+        @apply bg-dark-200;
       }
 
       .sub-tool-menu-item {
@@ -80,11 +77,11 @@
 
         &:hover {
           @include themify(day) {
-            background: $white-three;
+            @apply bg-light-300;
           }
 
           @include themify(night) {
-            background: darken($dark-two, 8);
+            @apply bg-dark-200-010-light;
           }
         }
       }
@@ -112,11 +109,11 @@
     width: 1px;
 
     @include themify(day) {
-      background: $white-four;
+      @apply bg-light-400;
     }
 
     @include themify(night) {
-      background: lighten($dark-two, 6);
+      @apply bg-dark-200-010-light;
     }
   }
 

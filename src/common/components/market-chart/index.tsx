@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { _t } from "../../i18n";
 import { Theme } from "../../store/global/types";
 import "./_index.scss";
+
 const ReactHighcharts = require("react-highcharts/dist/ReactHighstock");
 const power = 100;
 const precision = 1000;
@@ -18,12 +19,11 @@ const MarketChart = ({ bids, asks, theme }: any) => {
       // many pages that will be hard to detect. It works fine here.
       // We can refactor it later in toggleTheme()
 
-      let body: any = document.getElementsByTagName("body");
-      if (!body) return;
-      body = body[0];
-      body.classList.remove(`theme-night`);
-      body.classList.remove(`theme-day`);
-      body.classList.add(`theme-${theme}`);
+      if (theme === "night") {
+        document.body.classList.add(`dark`);
+      } else {
+        document.body.classList.remove("dark");
+      }
     }
   }, [theme]);
 

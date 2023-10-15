@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-
-import { Modal } from "react-bootstrap";
-
 import { PrivateKey } from "@hiveio/dhive";
 
 import { Global } from "../../store/global/types";
@@ -9,8 +6,9 @@ import { ActiveUser } from "../../store/active-user/types";
 
 import KeyOrHot from "../key-or-hot";
 
-import PopoverConfirm from "../popover-confirm";
+import PopoverConfirm from "@ui/popover-confirm";
 import "./index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   global: Global;
@@ -77,11 +75,10 @@ export class KeyOrHotDialog extends Component<Props, State> {
             show={true}
             centered={true}
             onHide={this.toggleKeyDialog}
-            keyboard={false}
-            className="key-or-hot-modal modal-thin-header"
+            className="key-or-hot-modal"
           >
-            <Modal.Header closeButton={true} />
-            <Modal.Body>
+            <ModalHeader closeButton={true} />
+            <ModalBody>
               {KeyOrHot({
                 ...this.props,
                 inProgress: false,
@@ -102,7 +99,7 @@ export class KeyOrHotDialog extends Component<Props, State> {
                   }
                 }
               })}
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </>

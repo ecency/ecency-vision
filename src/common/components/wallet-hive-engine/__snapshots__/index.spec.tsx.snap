@@ -267,10 +267,10 @@ exports[`(2) Render with some hive engine tokens 1`] = `
               PIZZA
             </div>
             <div
-              className="ml-auto d-flex flex-column justify-between"
+              className="ml-auto flex flex-col justify-between"
             >
               <div
-                className="d-flex mb-1 align-self-end"
+                className="flex mb-1 align-self-end"
               >
                 <div
                   className="entry-body mr-md-2"
@@ -284,12 +284,9 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                 <div
                   className="ml-1"
                 >
+                  <div />
                   <div
-                    className="d-flex align-items-center"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
+                    className="flex items-center"
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"
@@ -326,10 +323,10 @@ exports[`(2) Render with some hive engine tokens 1`] = `
               POB
             </div>
             <div
-              className="ml-auto d-flex flex-column justify-between"
+              className="ml-auto flex flex-col justify-between"
             >
               <div
-                className="d-flex mb-1 align-self-end"
+                className="flex mb-1 align-self-end"
               >
                 <div
                   className="entry-body mr-md-2"
@@ -343,12 +340,9 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                 <div
                   className="ml-1"
                 >
+                  <div />
                   <div
-                    className="d-flex align-items-center"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
+                    className="flex items-center"
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"
@@ -589,10 +583,10 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
               PIZZA
             </div>
             <div
-              className="ml-auto d-flex flex-column justify-between"
+              className="ml-auto flex flex-col justify-between"
             >
               <div
-                className="d-flex mb-1 align-self-end"
+                className="flex mb-1 align-self-end"
               >
                 <div
                   className="entry-body mr-md-2"
@@ -606,12 +600,9 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
                 <div
                   className="ml-1"
                 >
+                  <div />
                   <div
-                    className="d-flex align-items-center"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
+                    className="flex items-center"
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"
@@ -648,10 +639,10 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
               POB
             </div>
             <div
-              className="ml-auto d-flex flex-column justify-between"
+              className="ml-auto flex flex-col justify-between"
             >
               <div
-                className="d-flex mb-1 align-self-end"
+                className="flex mb-1 align-self-end"
               >
                 <div
                   className="entry-body mr-md-2"
@@ -665,12 +656,9 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
                 <div
                   className="ml-1"
                 >
+                  <div />
                   <div
-                    className="d-flex align-items-center"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
+                    className="flex items-center"
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"

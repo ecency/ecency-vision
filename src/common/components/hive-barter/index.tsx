@@ -1,13 +1,13 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { _t } from "../../i18n";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 import BuySellHiveDialog, { TransactionType } from "../buy-sell-hive";
 import { error } from "../feedback";
 import { Skeleton } from "../skeleton";
+import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   type: 1 | 2;
@@ -113,23 +113,21 @@ export const HiveBarter = ({
     <Skeleton className="loading-hive" />
   ) : (
     <div className={"p-2 " + (isInline ? "flex-1" : "border p-3 rounded")}>
-      <div
-        className={"d-flex justify-content-between align-items-center " + (isInline ? "mb-3" : "")}
-      >
+      <div className={"flex justify-between items-center " + (isInline ? "mb-3" : "")}>
         {isInline ? (
-          <span className="font-weight-bold">
+          <span className="font-bold">
             {type === 1 ? _t("market.buy") : _t("market.sell")} HIVE
           </span>
         ) : (
           <h3 className="mb-0">{type === 1 ? _t("market.buy") : _t("market.sell")} HIVE</h3>
         )}
         <div>
-          <small className="d-flex cursor-pointer" onClick={() => prefillFromBalance()}>
-            <div className="mr-1 text-primary">{_t("market.available")}:</div>
+          <small className="flex cursor-pointer" onClick={() => prefillFromBalance()}>
+            <div className="mr-1 text-blue-dark-sky">{_t("market.available")}:</div>
             <div>{available}</div>
           </small>
-          <small className="d-flex">
-            <div className="mr-1 text-primary">
+          <small className="flex">
+            <div className="mr-1 text-blue-dark-sky">
               {type === 1 ? _t("market.lowest-ask") : _t("market.highest-bid")}:
             </div>
             <div onClick={() => onClickPeakValue(basePeakValue.toFixed(3))} className="pointer">
@@ -145,42 +143,42 @@ export const HiveBarter = ({
           setTransaction(type === 1 ? TransactionType.Buy : TransactionType.Sell);
         }}
       >
-        <Form.Group>
-          <Form.Label className={isInline ? "font-small" : ""}>{_t("market.price")}</Form.Label>
-          <InputGroup>
-            <Form.Control
+        <div className="mb-4">
+          <label className={isInline ? "font-small" : ""}>{_t("market.price")}</label>
+          <InputGroup append="HBD/HIVE">
+            <FormControl
+              type="text"
               value={price}
               placeholder="0.0"
               onChange={(e) => setPriceValue(e.target.value)}
             />
-            <InputGroup.Text className="rounded-left">HBD/HIVE</InputGroup.Text>
           </InputGroup>
-        </Form.Group>
+        </div>
 
-        <Form.Group>
-          <Form.Label className={isInline ? "font-small" : ""}>{_t("market.amount")}</Form.Label>
-          <InputGroup>
-            <Form.Control
+        <div className="mb-4">
+          <label className={isInline ? "font-small" : ""}>{_t("market.amount")}</label>
+          <InputGroup append="HIVE">
+            <FormControl
+              type="text"
               placeholder="0.0"
               value={isNaN(amount) ? 0 : amount}
               onChange={(e) => setAmountValue(e.target.value)}
             />
-            <InputGroup.Text className="rounded-left">HIVE</InputGroup.Text>
           </InputGroup>
-        </Form.Group>
+        </div>
 
-        <Form.Group className="mb-4">
-          <Form.Label className={isInline ? "font-small" : ""}>{_t("market.total")}</Form.Label>
-          <InputGroup>
-            <Form.Control
+        <div className="mb-4">
+          <label className={isInline ? "font-small" : ""}>{_t("market.total")}</label>
+          <InputGroup append="HBD">
+            <FormControl
+              type="text"
               placeholder="0.0"
               value={isNaN(total) ? 0 : total}
               onChange={(e) => setTotalValue(e.target.value)}
             />
-            <InputGroup.Text className="rounded-left">HBD</InputGroup.Text>
           </InputGroup>
-        </Form.Group>
-        <Button block={true} type="submit" disabled={disabled}>
+        </div>
+        <Button className="block" type="submit" disabled={disabled}>
           {type === 1 ? _t("market.buy") : _t("market.sell")}
         </Button>
       </Form>

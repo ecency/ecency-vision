@@ -31,68 +31,67 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transaction-form-body"
+      className="block transaction-form-body"
     >
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          From
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            From
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                @
-              </span>
+              @
             </div>
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               readOnly={true}
+              type="text"
               value="bar"
             />
           </div>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          To
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            To
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <div
-              className="input-group"
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="input-group-prepend"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
+                @
               </div>
               <input
                 autoFocus={true}
-                className="form-control"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
@@ -107,31 +106,30 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
       
       
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10 flex items-center"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                #
-              </span>
+              #
             </div>
             <input
               autoFocus={false}
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               onChange={[Function]}
               placeholder="amount"
               type="text"
@@ -164,10 +162,10 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
       </div>
       
       <div
-        className="row"
+        className="grid items-center grid-cols-12"
       >
         <div
-          className="col-lg-10 offset-lg-2"
+          className="col-span-12 lg:col-span-10 lg:col-start-3"
         >
           <div
             className="balance"
@@ -190,51 +188,61 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Memo
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Memo
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
             onChange={[Function]}
             placeholder="enter your notes here"
+            type="text"
             value=""
           />
-        </div>
-      </div>
-      <div
-        className="row"
-      >
-        <div
-          className="col-md-10 offset-md-2"
-        >
-          <small
-            className="text-muted tr-form-text form-text"
+          <div
+            className="grid grid-cols-12"
           >
-            This memo is public
-          </small>
+            <div
+              className="col-span-12 md:col-span-10 col-start-2"
+            >
+              <small
+                className="text-muted tr-form-text"
+              >
+                This memo is public
+              </small>
+            </div>
+          </div>
+          
         </div>
       </div>
-      
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
         <div
-          className="col-sm-10 offset-sm-2"
+          className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>
@@ -336,26 +344,40 @@ exports[`(1) Transfer HIVE (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Back
+          <div>
+            Back
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Confirm
+          <div>
+            Confirm
+          </div>
         </button>
       </div>
     </div>
@@ -400,47 +422,52 @@ exports[`(1) Transfer HIVE (3) Step 3 1`] = `
         className="key-or-hot"
       >
         <form
-          className=""
+          className="block "
           onSubmit={[Function]}
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
+              <svg
+                viewBox="0 0 24 24"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                <path
+                  d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
+                  fill="currentColor"
+                />
+              </svg>
             </div>
             <input
               autoComplete="off"
               autoFocus={true}
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               onChange={[Function]}
               placeholder="Enter active/owner/master key"
               type="password"
               value=""
             />
             <div
-              className="input-group-append"
+              className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600"
+              onClick={[Function]}
             >
               <button
-                className="btn btn-primary"
+                className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
                 disabled={false}
                 onClick={[Function]}
+                style={
+                  Object {
+                    "outline": "none",
+                  }
+                }
                 type="button"
               >
-                Sign
+                <div>
+                  Sign
+                </div>
               </button>
             </div>
           </div>
@@ -454,18 +481,27 @@ exports[`(1) Transfer HIVE (3) Step 3 1`] = `
           className="hs-sign"
         >
           <button
-            className="btn btn-outline-primary"
-            disabled={false}
+            className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            <img
-              alt="hivesigner"
-              className="hs-logo"
-              src="hive-signer.svg"
-            />
-             
-            Sign with hivesigner
+            <div>
+              Sign with hivesigner
+            </div>
+            <div
+              className="flex items-center w-5 h-5 undefined"
+            >
+              <img
+                alt="hivesigner"
+                className="hs-logo"
+                src="hive-signer.svg"
+              />
+            </div>
           </button>
         </div>
       </div>
@@ -526,26 +562,38 @@ exports[`(1) Transfer HIVE (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Reset
+          <div>
+            Reset
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Finish
+          <div>
+            Finish
+          </div>
         </button>
       </div>
     </div>
@@ -584,68 +632,67 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transaction-form-body"
+      className="block transaction-form-body"
     >
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          From
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            From
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                @
-              </span>
+              @
             </div>
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               readOnly={true}
+              type="text"
               value="bar"
             />
           </div>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          To
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            To
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <div
-              className="input-group"
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="input-group-prepend"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
+                @
               </div>
               <input
                 autoFocus={true}
-                className="form-control"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
@@ -660,31 +707,30 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
       
       
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10 flex items-center"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                #
-              </span>
+              #
             </div>
             <input
               autoFocus={false}
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               onChange={[Function]}
               placeholder="amount"
               type="text"
@@ -717,10 +763,10 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
       </div>
       
       <div
-        className="row"
+        className="grid items-center grid-cols-12"
       >
         <div
-          className="col-lg-10 offset-lg-2"
+          className="col-span-12 lg:col-span-10 lg:col-start-3"
         >
           <div
             className="balance"
@@ -743,51 +789,61 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Memo
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Memo
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
             onChange={[Function]}
             placeholder="enter your notes here"
+            type="text"
             value=""
           />
-        </div>
-      </div>
-      <div
-        className="row"
-      >
-        <div
-          className="col-md-10 offset-md-2"
-        >
-          <small
-            className="text-muted tr-form-text form-text"
+          <div
+            className="grid grid-cols-12"
           >
-            This memo is public
-          </small>
+            <div
+              className="col-span-12 md:col-span-10 col-start-2"
+            >
+              <small
+                className="text-muted tr-form-text"
+              >
+                This memo is public
+              </small>
+            </div>
+          </div>
+          
         </div>
       </div>
-      
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
         <div
-          className="col-sm-10 offset-sm-2"
+          className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>
@@ -893,26 +949,40 @@ exports[`(2) Transfer HBD (2) Step 2 1`] = `
         </div>
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Back
+          <div>
+            Back
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Confirm
+          <div>
+            Confirm
+          </div>
         </button>
       </div>
     </div>
@@ -962,26 +1032,38 @@ exports[`(2) Transfer HBD (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Reset
+          <div>
+            Reset
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Finish
+          <div>
+            Finish
+          </div>
         </button>
       </div>
     </div>
@@ -1020,68 +1102,67 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transaction-form-body"
+      className="block transaction-form-body"
     >
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          From
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            From
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                @
-              </span>
+              @
             </div>
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               readOnly={true}
+              type="text"
               value="bar"
             />
           </div>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          To
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            To
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <div
-              className="input-group"
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="input-group-prepend"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
+                @
               </div>
               <input
                 autoFocus={true}
-                className="form-control"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
@@ -1096,31 +1177,30 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
       
       
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10 flex items-center"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                #
-              </span>
+              #
             </div>
             <input
               autoFocus={false}
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               onChange={[Function]}
               placeholder="amount"
               type="text"
@@ -1153,10 +1233,10 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
       </div>
       
       <div
-        className="row"
+        className="grid items-center grid-cols-12"
       >
         <div
-          className="col-lg-10 offset-lg-2"
+          className="col-span-12 lg:col-span-10 lg:col-start-3"
         >
           <div
             className="balance"
@@ -1179,51 +1259,61 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Memo
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Memo
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
             onChange={[Function]}
             placeholder="enter your notes here"
+            type="text"
             value=""
           />
-        </div>
-      </div>
-      <div
-        className="row"
-      >
-        <div
-          className="col-md-10 offset-md-2"
-        >
-          <small
-            className="text-muted tr-form-text form-text"
+          <div
+            className="grid grid-cols-12"
           >
-            This memo is public
-          </small>
+            <div
+              className="col-span-12 md:col-span-10 col-start-2"
+            >
+              <small
+                className="text-muted tr-form-text"
+              >
+                This memo is public
+              </small>
+            </div>
+          </div>
+          
         </div>
       </div>
-      
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
         <div
-          className="col-sm-10 offset-sm-2"
+          className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>
@@ -1325,26 +1415,40 @@ exports[`(3) Transfer POINT (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Back
+          <div>
+            Back
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Confirm
+          <div>
+            Confirm
+          </div>
         </button>
       </div>
     </div>
@@ -1394,26 +1498,38 @@ exports[`(3) Transfer POINT (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Reset
+          <div>
+            Reset
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Finish
+          <div>
+            Finish
+          </div>
         </button>
       </div>
     </div>
@@ -1452,68 +1568,67 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transaction-form-body"
+      className="block transaction-form-body"
     >
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          From
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            From
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                @
-              </span>
+              @
             </div>
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               readOnly={true}
+              type="text"
               value="bar"
             />
           </div>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          To
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            To
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <div
-              className="input-group"
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="input-group-prepend"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
+                @
               </div>
               <input
                 autoFocus={false}
-                className="form-control"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
@@ -1528,31 +1643,30 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
       
       
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10 flex items-center"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                #
-              </span>
+              #
             </div>
             <input
               autoFocus={true}
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               onChange={[Function]}
               placeholder="amount"
               type="text"
@@ -1579,10 +1693,10 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
       </div>
       
       <div
-        className="row"
+        className="grid items-center grid-cols-12"
       >
         <div
-          className="col-lg-10 offset-lg-2"
+          className="col-span-12 lg:col-span-10 lg:col-start-3"
         >
           <div
             className="balance"
@@ -1605,51 +1719,61 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Memo
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Memo
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
             onChange={[Function]}
             placeholder="enter your notes here"
+            type="text"
             value=""
           />
-        </div>
-      </div>
-      <div
-        className="row"
-      >
-        <div
-          className="col-md-10 offset-md-2"
-        >
-          <small
-            className="text-muted tr-form-text form-text"
+          <div
+            className="grid grid-cols-12"
           >
-            This memo is public
-          </small>
+            <div
+              className="col-span-12 md:col-span-10 col-start-2"
+            >
+              <small
+                className="text-muted tr-form-text"
+              >
+                This memo is public
+              </small>
+            </div>
+          </div>
+          
         </div>
       </div>
-      
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
         <div
-          className="col-sm-10 offset-sm-2"
+          className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={false}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>
@@ -1751,26 +1875,40 @@ exports[`(4) Transfer to Savings - HBD (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Back
+          <div>
+            Back
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Confirm
+          <div>
+            Confirm
+          </div>
         </button>
       </div>
     </div>
@@ -1820,26 +1958,38 @@ exports[`(4) Transfer to Savings - HBD (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Reset
+          <div>
+            Reset
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Finish
+          <div>
+            Finish
+          </div>
         </button>
       </div>
     </div>
@@ -1878,68 +2028,67 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transaction-form-body"
+      className="block transaction-form-body"
     >
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          From
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            From
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                @
-              </span>
+              @
             </div>
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               readOnly={true}
+              type="text"
               value="bar"
             />
           </div>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          To
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            To
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <div
-              className="input-group"
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="input-group-prepend"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
+                @
               </div>
               <input
                 autoFocus={false}
-                className="form-control"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
@@ -1954,31 +2103,30 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
       
       
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10 flex items-center"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                #
-              </span>
+              #
             </div>
             <input
               autoFocus={true}
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               onChange={[Function]}
               placeholder="amount"
               type="text"
@@ -2005,10 +2153,10 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
       </div>
       
       <div
-        className="row"
+        className="grid items-center grid-cols-12"
       >
         <div
-          className="col-lg-10 offset-lg-2"
+          className="col-span-12 lg:col-span-10 lg:col-start-3"
         >
           <div
             className="balance"
@@ -2031,51 +2179,61 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Memo
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Memo
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
             onChange={[Function]}
             placeholder="enter your notes here"
+            type="text"
             value=""
           />
-        </div>
-      </div>
-      <div
-        className="row"
-      >
-        <div
-          className="col-md-10 offset-md-2"
-        >
-          <small
-            className="text-muted tr-form-text form-text"
+          <div
+            className="grid grid-cols-12"
           >
-            This memo is public
-          </small>
+            <div
+              className="col-span-12 md:col-span-10 col-start-2"
+            >
+              <small
+                className="text-muted tr-form-text"
+              >
+                This memo is public
+              </small>
+            </div>
+          </div>
+          
         </div>
       </div>
-      
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
         <div
-          className="col-sm-10 offset-sm-2"
+          className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={false}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>
@@ -2177,26 +2335,40 @@ exports[`(5) Withdraw Savings - HIVE (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Back
+          <div>
+            Back
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Confirm
+          <div>
+            Confirm
+          </div>
         </button>
       </div>
     </div>
@@ -2246,26 +2418,38 @@ exports[`(5) Withdraw Savings - HIVE (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Reset
+          <div>
+            Reset
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Finish
+          <div>
+            Finish
+          </div>
         </button>
       </div>
     </div>
@@ -2304,65 +2488,64 @@ exports[`(6) Convert (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transaction-form-body"
+      className="block transaction-form-body"
     >
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          From
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            From
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                @
-              </span>
+              @
             </div>
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               readOnly={true}
+              type="text"
               value="bar"
             />
           </div>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10 flex items-center"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                #
-              </span>
+              #
             </div>
             <input
               autoFocus={true}
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               onChange={[Function]}
               placeholder="amount"
               type="text"
@@ -2373,10 +2556,10 @@ exports[`(6) Convert (1) Step 1 1`] = `
       </div>
       
       <div
-        className="row"
+        className="grid items-center grid-cols-12"
       >
         <div
-          className="col-lg-10 offset-lg-2"
+          className="col-span-12 lg:col-span-10 lg:col-start-3"
         >
           <div
             className="balance"
@@ -2399,18 +2582,25 @@ exports[`(6) Convert (1) Step 1 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
         <div
-          className="col-sm-10 offset-sm-2"
+          className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={false}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>
@@ -2487,26 +2677,40 @@ exports[`(6) Convert (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Back
+          <div>
+            Back
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Confirm
+          <div>
+            Confirm
+          </div>
         </button>
       </div>
     </div>
@@ -2556,26 +2760,38 @@ exports[`(6) Convert (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Reset
+          <div>
+            Reset
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Finish
+          <div>
+            Finish
+          </div>
         </button>
       </div>
     </div>
@@ -2614,68 +2830,67 @@ exports[`(7) Power up (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transaction-form-body"
+      className="block transaction-form-body"
     >
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          From
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            From
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                @
-              </span>
+              @
             </div>
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               readOnly={true}
+              type="text"
               value="bar"
             />
           </div>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          To
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            To
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <div
-              className="input-group"
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="input-group-prepend"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
+                @
               </div>
               <input
                 autoFocus={false}
-                className="form-control"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
@@ -2690,31 +2905,30 @@ exports[`(7) Power up (1) Step 1 1`] = `
       
       
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10 flex items-center"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                #
-              </span>
+              #
             </div>
             <input
               autoFocus={true}
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               onChange={[Function]}
               placeholder="amount"
               type="text"
@@ -2725,10 +2939,10 @@ exports[`(7) Power up (1) Step 1 1`] = `
       </div>
       
       <div
-        className="row"
+        className="grid items-center grid-cols-12"
       >
         <div
-          className="col-lg-10 offset-lg-2"
+          className="col-span-12 lg:col-span-10 lg:col-start-3"
         >
           <div
             className="balance"
@@ -2751,18 +2965,25 @@ exports[`(7) Power up (1) Step 1 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
         <div
-          className="col-sm-10 offset-sm-2"
+          className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={false}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>
@@ -2864,26 +3085,40 @@ exports[`(7) Power up (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Back
+          <div>
+            Back
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Confirm
+          <div>
+            Confirm
+          </div>
         </button>
       </div>
     </div>
@@ -2933,26 +3168,38 @@ exports[`(7) Power up (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Reset
+          <div>
+            Reset
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Finish
+          <div>
+            Finish
+          </div>
         </button>
       </div>
     </div>
@@ -2991,68 +3238,67 @@ exports[`(8) Delegate (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transaction-form-body"
+      className="block transaction-form-body"
     >
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          From
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            From
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                @
-              </span>
+              @
             </div>
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               readOnly={true}
+              type="text"
               value="bar"
             />
           </div>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          To
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            To
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <div
-              className="input-group"
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="input-group-prepend"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
+                @
               </div>
               <input
                 autoFocus={true}
-                className="form-control"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
@@ -3067,31 +3313,30 @@ exports[`(8) Delegate (1) Step 1 1`] = `
       
       
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10 flex items-center"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                #
-              </span>
+              #
             </div>
             <input
               autoFocus={true}
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               onChange={[Function]}
               placeholder="amount"
               type="text"
@@ -3102,10 +3347,10 @@ exports[`(8) Delegate (1) Step 1 1`] = `
       </div>
       
       <div
-        className="row"
+        className="grid items-center grid-cols-12"
       >
         <div
-          className="col-lg-10 offset-lg-2"
+          className="col-span-12 lg:col-span-10 lg:col-start-3"
         >
           <div
             className="balance"
@@ -3133,18 +3378,25 @@ exports[`(8) Delegate (1) Step 1 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
         <div
-          className="col-sm-10 offset-sm-2"
+          className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>
@@ -3251,26 +3503,40 @@ exports[`(8) Delegate (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Back
+          <div>
+            Back
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Confirm
+          <div>
+            Confirm
+          </div>
         </button>
       </div>
     </div>
@@ -3320,26 +3586,38 @@ exports[`(8) Delegate (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Reset
+          <div>
+            Reset
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Finish
+          <div>
+            Finish
+          </div>
         </button>
       </div>
     </div>
@@ -3378,65 +3656,64 @@ exports[`(9) Power down (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transaction-form-body"
+      className="block transaction-form-body"
     >
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          From
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            From
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                @
-              </span>
+              @
             </div>
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               readOnly={true}
+              type="text"
               value="bar"
             />
           </div>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10 flex items-center"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                #
-              </span>
+              #
             </div>
             <input
               autoFocus={true}
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               onChange={[Function]}
               placeholder="amount"
               type="text"
@@ -3447,10 +3724,10 @@ exports[`(9) Power down (1) Step 1 1`] = `
       </div>
       
       <div
-        className="row"
+        className="grid items-center grid-cols-12"
       >
         <div
-          className="col-lg-10 offset-lg-2"
+          className="col-span-12 lg:col-span-10 lg:col-start-3"
         >
           <div
             className="balance"
@@ -3483,18 +3760,25 @@ exports[`(9) Power down (1) Step 1 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
         <div
-          className="col-sm-10 offset-sm-2"
+          className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={false}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>
@@ -3576,26 +3860,40 @@ exports[`(9) Power down (2) Step 2 1`] = `
         
       </div>
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Back
+          <div>
+            Back
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Confirm
+          <div>
+            Confirm
+          </div>
         </button>
       </div>
     </div>
@@ -3645,26 +3943,38 @@ exports[`(9) Power down (4) Step 4 1`] = `
         }
       />
       <div
-        className="d-flex justify-content-center"
+        className="flex justify-center"
       >
         <button
-          className="btn btn-outline-secondary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Reset
+          <div>
+            Reset
+          </div>
         </button>
         <span
           className="hr-6px-btn-spacer"
         />
         <button
-          className="btn btn-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Finish
+          <div>
+            Finish
+          </div>
         </button>
       </div>
     </div>
@@ -3714,12 +4024,18 @@ exports[`(10) Powering down (1) Step 1 1`] = `
       </p>
       <p>
         <button
-          className="btn btn-danger"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-red hover:bg-red-020 focus:bg-red-030 text-white h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Stop
+          <div>
+            Stop
+          </div>
         </button>
       </p>
     </div>

@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .linear-progress {
   width: 100%;
@@ -12,11 +9,11 @@
   animation: start 0.3s ease-in;
 
   @include themify(day) {
-    background: $white-four;
+    @apply bg-light-400;
   }
 
   @include themify(night) {
-    background: $dark-two;
+    @apply bg-dark-200;
   }
 
   .bar {
@@ -28,11 +25,11 @@
     width: 100%;
 
     @include themify(day) {
-      background: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
     }
 
     @include themify(night) {
-      background: $pastel-blue;
+      @apply bg-blue-pastel;
     }
   }
 

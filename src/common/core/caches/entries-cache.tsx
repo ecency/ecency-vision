@@ -83,6 +83,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
       {
         ...cache.get(makePath("", entry.author, entry.permlink))!!,
         active_votes: votes,
+        stats: { ...entry.stats, total_votes: votes.length, flag_weight: entry.stats.flag_weight },
         total_votes: votes.length,
         payout,
         pending_payout_value: String(payout)
@@ -162,6 +163,9 @@ export function useEntryCache<T extends Entry>(
 
       if (!entry) {
         entry = getExistingEntryFromStore() as T;
+        if (entry) {
+          updateCache([entry]);
+        }
       }
 
       if (!entry && typeof initialOrPath === "string") {

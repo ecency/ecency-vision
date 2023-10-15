@@ -4,13 +4,13 @@ import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { Entry } from "../../store/entries/types";
-import { Community, Communities } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Reblogs } from "../../store/reblogs/types";
-import { UI, ToggleType } from "../../store/ui/types";
+import { ToggleType, UI } from "../../store/ui/types";
 
-import EntryListItem from "../entry-list-item/index";
+import { EntryListItem } from "../entry-list-item";
 import MessageNoData from "../message-no-data";
 import { _t } from "../../i18n";
 import LinearProgress from "../linear-progress";

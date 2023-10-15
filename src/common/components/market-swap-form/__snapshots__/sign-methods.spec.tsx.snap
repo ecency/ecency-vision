@@ -3,36 +3,50 @@
 exports[`SignMethods should render sign methods 1`] = `
 <div>
   <button
-    className="py-3 mt-4 btn btn-outline-primary btn-block"
+    className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 w-full mt-4"
     disabled={false}
     onClick={[Function]}
+    style={
+      Object {
+        "outline": "none",
+      }
+    }
     type="button"
   >
-    Sign by key
+    <div>
+      Sign by key
+    </div>
   </button>
   <button
-    className="py-3 mt-4 hs-button btn btn-primary btn-block"
+    className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 w-full mt-4 hs-button"
     disabled={false}
     onClick={[Function]}
+    style={
+      Object {
+        "outline": "none",
+      }
+    }
     type="button"
   >
-    <i
-      className="sign-logo mr-3"
-    >
-      <svg
-        fill="none"
-        height="18"
-        viewBox="0 0 65 75"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+    <div>
+      <i
+        className="sign-logo mr-3"
       >
-        <path
-          d="M57.4774 40.1845V26.6067H0.144043V0.685791H64.144V13.6462H57.4774V7.16602H6.81071V20.1265H64.144V41.2196C64.0363 51.5228 58.1035 59.9743 48.2911 66.6987C44.8255 69.0737 41.1078 71.0633 37.3811 72.6845C36.0675 73.256 34.8427 73.7417 33.7381 74.1431C33.0572 74.3906 32.513 74.5727 32.2704 74.6463L32.1405 74.6858L32.0108 74.6458C31.739 74.5621 31.2245 74.3898 30.5455 74.1429C29.4408 73.7412 28.2165 73.2556 26.9034 72.6842C23.1772 71.0627 19.4603 69.0733 15.9952 66.6984C6.27684 60.0376 0.365082 51.6825 0.150114 41.5112H0.144043V33.0869H6.81071V40.1845C6.81071 47.9967 11.0121 54.5315 18.2191 59.8741C20.8805 61.847 23.8111 63.5472 26.8494 64.9836C28.8637 65.9358 30.6774 66.6589 32.1449 67.1623C33.6109 66.6596 35.4255 65.9362 37.4399 64.9839C40.478 63.5476 43.4086 61.8474 46.0699 59.8744C53.2768 54.5317 57.4774 47.9967 57.4774 40.1845Z"
-          fill="currentColor"
-        />
-      </svg>
-    </i>
-    Sign by Hivesigner
+        <svg
+          fill="none"
+          height="18"
+          viewBox="0 0 65 75"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M57.4774 40.1845V26.6067H0.144043V0.685791H64.144V13.6462H57.4774V7.16602H6.81071V20.1265H64.144V41.2196C64.0363 51.5228 58.1035 59.9743 48.2911 66.6987C44.8255 69.0737 41.1078 71.0633 37.3811 72.6845C36.0675 73.256 34.8427 73.7417 33.7381 74.1431C33.0572 74.3906 32.513 74.5727 32.2704 74.6463L32.1405 74.6858L32.0108 74.6458C31.739 74.5621 31.2245 74.3898 30.5455 74.1429C29.4408 73.7412 28.2165 73.2556 26.9034 72.6842C23.1772 71.0627 19.4603 69.0733 15.9952 66.6984C6.27684 60.0376 0.365082 51.6825 0.150114 41.5112H0.144043V33.0869H6.81071V40.1845C6.81071 47.9967 11.0121 54.5315 18.2191 59.8741C20.8805 61.847 23.8111 63.5472 26.8494 64.9836C28.8637 65.9358 30.6774 66.6589 32.1449 67.1623C33.6109 66.6596 35.4255 65.9362 37.4399 64.9839C40.478 63.5476 43.4086 61.8474 46.0699 59.8744C53.2768 54.5317 57.4774 47.9967 57.4774 40.1845Z"
+            fill="currentColor"
+          />
+        </svg>
+      </i>
+      Sign by Hivesigner
+    </div>
   </button>
 </div>
 `;

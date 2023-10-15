@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
 import { History } from "history";
-
 import { PrivateKey } from "@hiveio/dhive";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 import { AccountDataType, actionType } from "./types";
-
 import UserAvatar from "../user-avatar/index";
 import { error } from "../feedback";
 import keyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
 import ManageAuthIcon from "../manage-auth-icon";
 import ManageKeys from "../manage-keys";
-
 import { formatError, Revoke, RevokeHot, RevokeKc } from "../../api/operations";
 import { getAccounts } from "../../api/hive";
-
 import { _t } from "../../i18n";
 import "./index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { Button } from "@ui/button";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 interface Props {
   global: Global;
@@ -125,7 +122,7 @@ export default function ManageAuthorities(props: Props) {
   const signkeyModal = () => {
     return (
       <>
-        <div className="sign-dialog-header border-bottom">
+        <div className="sign-dialog-header border-b border-[--border-color]">
           <div className="step-no">1</div>
           <div className="sign-dialog-titles">
             <div className="authority-main-title">{_t("manage-authorities.sign-title")}</div>
@@ -173,7 +170,7 @@ export default function ManageAuthorities(props: Props) {
   const successModal = () => {
     return (
       <>
-        <div className="success-dialog-header border-bottom">
+        <div className="success-dialog-header border-b border-[--border-color]">
           <div className="step-no">2</div>
           <div className="success-dialog-titles">
             <div className="authority-main-title">{_t("trx-common.success-title")}</div>
@@ -191,7 +188,7 @@ export default function ManageAuthorities(props: Props) {
               </a>{" "}
             </span>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             <span className="hr-6px-btn-spacer" />
             <Button onClick={finish}>{_t("g.finish")}</Button>
           </div>
@@ -202,15 +199,15 @@ export default function ManageAuthorities(props: Props) {
 
   const table = () => {
     return (
-      <table className="table">
+      <Table full={true}>
         <thead>
-          <tr>
-            <th>{_t("manage-authorities.type")}</th>
-            <th>{_t("manage-authorities.key")}</th>
-            <th className="d-none d-sm-block border-bottom-0" />
-            <th className="d-sm-none col-action">{_t("manage-authorities.actions")}</th>
-            <th className="col-weight-content">{_t("manage-authorities.weight")}</th>
-          </tr>
+          <Tr>
+            <Th>{_t("manage-authorities.type")}</Th>
+            <Th>{_t("manage-authorities.key")}</Th>
+            <Th className="hidden sm:table-cell" />
+            <Th className="sm:hidden col-action">{_t("manage-authorities.actions")}</Th>
+            <Th className="col-weight-content p-2">{_t("manage-authorities.weight")}</Th>
+          </Tr>
         </thead>
         <tbody>
           {accountData!.postingsAuthority && accountData!.postingsAuthority.length > 0 && (
@@ -218,11 +215,11 @@ export default function ManageAuthorities(props: Props) {
               {accountData!.postingsAuthority.map((account, i) => {
                 return (
                   <>
-                    <tr key={i} className="tabl-row">
-                      <td className="col-type-content">{_t("manage-authorities.posting")}</td>
+                    <Tr key={i} className="tabl-row">
+                      <Td className="col-type-content">{_t("manage-authorities.posting")}</Td>
                       {
                         <>
-                          <td>
+                          <Td>
                             <p className="col-key-content">
                               <a
                                 className="username"
@@ -236,17 +233,14 @@ export default function ManageAuthorities(props: Props) {
                                 {account[0]}
                               </a>
                             </p>
-                          </td>
-                          <td className="d-none d-sm-block">
+                          </Td>
+                          <Td className="hidden sm:table-cell">
                             {" "}
-                            <Button
-                              onClick={() => handleRevoke(account[0])}
-                              variant="outline-primary"
-                            >
+                            <Button onClick={() => handleRevoke(account[0])} outline={true}>
                               {_t("manage-authorities.revoke")}
                             </Button>
-                          </td>
-                          <td className="d-sm-none">
+                          </Td>
+                          <Td className="sm:hidden">
                             {
                               <ManageAuthIcon
                                 history={props.history}
@@ -257,11 +251,11 @@ export default function ManageAuthorities(props: Props) {
                                 }}
                               />
                             }
-                          </td>
-                          <td className="col-weight-content">{account[1]}</td>
+                          </Td>
+                          <Td className="col-weight-content">{account[1]}</Td>
                         </>
                       }
-                    </tr>
+                    </Tr>
                   </>
                 );
               })}
@@ -274,7 +268,7 @@ export default function ManageAuthorities(props: Props) {
             activeUser={props.activeUser!}
           />
         </tbody>
-      </table>
+      </Table>
     );
   };
 
@@ -288,15 +282,14 @@ export default function ManageAuthorities(props: Props) {
           show={true}
           centered={true}
           onHide={toggleKeyDialog}
-          keyboard={false}
-          className="authorities-dialog modal-thin-header"
+          className="authorities-dialog"
           size="lg"
         >
-          <Modal.Header closeButton={true} />
-          <Modal.Body>
+          <ModalHeader closeButton={true} />
+          <ModalBody>
             {step === 1 && signkeyModal()}
             {step === 2 && successModal()}
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       )}
     </>

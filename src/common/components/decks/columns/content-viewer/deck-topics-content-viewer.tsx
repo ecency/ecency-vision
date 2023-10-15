@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import useMount from "react-use/lib/useMount";
-import { Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../../img/svg";
 import { Entry } from "../../../../store/entries/types";
 import { getPostsRanked } from "../../../../api/bridge";
 import { ListItemSkeleton, SearchListItem } from "../deck-items";
 import { makePath } from "../../../entry-link";
+import { Button } from "@ui/button";
 
 interface Props {
   topic: string;
@@ -37,22 +37,25 @@ export const DeckTopicsContentViewer = ({ onClose, backTitle, topic }: Props) =>
 
   return (
     <div
-      className={"deck-post-viewer deck-topic-content-viewer w-100 " + (isMounted ? "visible" : "")}
+      className={
+        "deck-post-viewer deck-topic-content-viewer w-full " + (isMounted ? "visible" : "")
+      }
     >
       <div className="deck-post-viewer-header">
-        <div className="actions d-flex pt-3 mr-3">
+        <div className="actions flex pt-3 mr-3">
           <Button
-            variant="link"
+            appearance="link"
             onClick={() => {
               setIsMounted(false);
               setTimeout(() => onClose(), 300);
             }}
+            icon={arrowLeftSvg}
+            iconPlacement="left"
           >
-            {arrowLeftSvg}
             {backTitle}
           </Button>
         </div>
-        <div className="title p-3 d-flex">
+        <div className="title p-3 flex">
           <span>#{topic}</span>
         </div>
       </div>

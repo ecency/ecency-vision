@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
 import { Link } from "react-router-dom";
-
 import { EntryFilter, Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import DropDown, { MenuItem } from "../dropdown";
 import ListStyleToggle from "../list-style-toggle";
-
 import { _t } from "../../i18n";
 import * as ls from "../../util/local-storage";
 import _c from "../../util/fix-class-names";
@@ -428,7 +423,10 @@ export class EntryIndexMenu extends Component<Props, States> {
         <span className="text-capitalize">{_t(`${this.getPopupTitle()}`)}</span>
         {introduction === IntroductionType.FRIENDS && _t("entry-filter.filter-global-part4")}
         {introduction === IntroductionType.FRIENDS && (
-          <Link to="/discover"> {_t("entry-filter.filter-global-discover")}</Link>
+          <Link className="text-blue-dark-sky" to="/discover">
+            {" "}
+            {_t("entry-filter.filter-global-discover")}
+          </Link>
         )}
         {isGlobal &&
           introduction !== IntroductionType.FRIENDS &&
@@ -437,23 +435,26 @@ export class EntryIndexMenu extends Component<Props, States> {
           introduction !== IntroductionType.FRIENDS &&
           _t("entry-filter.filter-global-part3")}
         {!isGlobal && introduction !== IntroductionType.FRIENDS && (
-          <Link to="/communities"> {_t("entry-filter.filter-global-join-communities")}</Link>
+          <Link className="text-blue-dark-sky" to="/communities">
+            {" "}
+            {_t("entry-filter.filter-global-join-communities")}
+          </Link>
         )}
       </>
     );
     const introductionOverlayClass =
       (isMounted &&
-        (introduction === IntroductionType.NONE ? "d-none" : "overlay-for-introduction")) ||
-      "d-none";
+        (introduction === IntroductionType.NONE ? "hidden" : "overlay-for-introduction")) ||
+      "hidden";
     return isMounted ? (
       <div>
         <div className={introductionOverlayClass} id="overlay" onClick={this.onClosePopup} />
-        <div className="entry-index-menu">
-          <div className="the-menu align-items-center">
+        <div className="entry-index-menu flex items-center justify-center md:justify-between p-[10px] border-b dark:border-dark-200">
+          <div className="the-menu flex flex-col-reverse items-center md:flex-row">
             {isActive && (
-              <div className="sub-menu mt-3 mt-md-0">
+              <div className="hidden lg:flex items-center mt-3 md:mt-0 md:mr-4 lg:mr-0">
                 <ul
-                  className={`nav nav-pills position-relative nav-fill ${
+                  className={`flex flex-wrap relative mb-0 ${
                     introduction === IntroductionType.NONE
                       ? ""
                       : introduction === IntroductionType.FRIENDS
@@ -461,11 +462,11 @@ export class EntryIndexMenu extends Component<Props, States> {
                       : ""
                   }`}
                 >
-                  <li className={`nav-item`}>
+                  <li>
                     <Link
                       to={`/@${activeUser?.username}/feed`}
                       className={_c(
-                        `nav-link my-link ${
+                        `rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 ${
                           filter === "feed" &&
                           (introduction === IntroductionType.NONE ||
                             introduction === IntroductionType.FRIENDS)
@@ -504,34 +505,34 @@ export class EntryIndexMenu extends Component<Props, States> {
                 </ul>
               </div>
             )}
-            <div className="d-flex align-items-center">
-              <div className="main-menu d-none d-lg-flex">
-                <div className="sm-menu position-relative">
+            <div className="flex items-center">
+              <div className="main-menu justify-center hidden lg:flex md:mb-0 md:items-center">
+                <div className="block md:hidden relative">
                   <DropDown {...menuConfig} float="left" />
                 </div>
-                <div className="lg-menu position-relative">
-                  <ul className={`nav nav-pills nav-fill`}>
-                    {menuConfig.items.map((i, k) => {
-                      return (
-                        <li key={k} className={`nav-item ${i.flash ? "flash" : ""}`}>
-                          <Link
-                            to={i.href!}
-                            className={_c(
-                              `nav-link link-${i.id} ${
-                                introduction !== IntroductionType.NONE && !i.flash && i.selected
-                                  ? ""
-                                  : i.selected || i.flash
-                                  ? "active"
-                                  : ""
-                              }`
-                            )}
-                            id={i.id}
-                          >
-                            {i.label}
-                          </Link>
-                        </li>
-                      );
-                    })}
+                <div className="hidden lg:block">
+                  <ul className="flex flex-wrap mb-0">
+                    {menuConfig.items.map((i, k) => (
+                      <li key={k} className={`${i.flash ? "flash" : ""}`}>
+                        <Link
+                          to={i.href!}
+                          className={_c(
+                            `text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-${
+                              i.id
+                            } ${
+                              introduction !== IntroductionType.NONE && !i.flash && i.selected
+                                ? ""
+                                : i.selected || i.flash
+                                ? "bg-blue-dark-sky text-white hover:text-white"
+                                : ""
+                            }`
+                          )}
+                          id={i.id}
+                        >
+                          {i.label}
+                        </Link>
+                      </li>
+                    ))}
                     {isMounted &&
                     introduction !== IntroductionType.NONE &&
                     introduction !== IntroductionType.FRIENDS &&
@@ -543,10 +544,10 @@ export class EntryIndexMenu extends Component<Props, States> {
                         media={OurVision}
                         placement={
                           introduction === IntroductionType.TRENDING
-                            ? "25%"
+                            ? "20%"
                             : introduction === IntroductionType.HOT
-                            ? "50%"
-                            : "75%"
+                            ? "25%"
+                            : "30%"
                         }
                         onNext={this.onNextWeb}
                         onPrevious={this.onPreviousWeb}
@@ -562,8 +563,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                 </div>
               </div>
 
-              <div className="main-menu d-flex d-lg-none">
-                <div className="sm-menu position-relative">
+              <div className="main-menu justify-center flex lg:hidden md:mb-0 md:items-center">
+                <div className="lg:hidden relative">
                   <DropDown {...mobileMenuConfig} float="left" />
                   {isMounted && introduction !== IntroductionType.NONE ? (
                     <Introduction
@@ -577,27 +578,29 @@ export class EntryIndexMenu extends Component<Props, States> {
                     />
                   ) : null}
                 </div>
-                <div className="lg-menu position-relative">
-                  <ul className="nav nav-pills nav-fill">
-                    {mobileMenuConfig.items.map((i, k) => {
-                      return (
-                        <li key={k} className="nav-item">
-                          <Link
-                            to={i.href!}
-                            className={_c(`nav-link link-${i.id} ${i.selected ? "active" : ""}`)}
-                          >
-                            {i.label}
-                          </Link>
-                        </li>
-                      );
-                    })}
+                <div className="hidden lg:block">
+                  <ul className="flex flex-wrap">
+                    {mobileMenuConfig.items.map((i, k) => (
+                      <li key={k}>
+                        <Link
+                          to={i.href!}
+                          className={_c(
+                            `text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-${
+                              i.id
+                            } ${i.selected ? "active" : ""}`
+                          )}
+                        >
+                          {i.label}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
               {filter !== "feed" ? (
                 <>
-                  <div className="border-left ml-3 dropDown-left-border-height" />
-                  <span id="check-isGlobal" className="d-flex align-items-center pl-3">
+                  <div className="border-l border-[--border-color] ml-3 dropDown-left-border-height" />
+                  <span id="check-isGlobal" className="flex items-center pl-3">
                     <EntryIndexMenuDropdown
                       {...this.props}
                       isGlobal={isGlobal}
@@ -608,8 +611,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                 </>
               ) : (
                 <>
-                  <div className="border-left ml-3 dropDown-left-border-height" />
-                  <span id="check-isGlobal" className="d-flex align-items-center pl-3">
+                  <div className="border-l border-[--border-color] ml-3 dropDown-left-border-height" />
+                  <span id="check-isGlobal" className="flex items-center pl-3">
                     <EntryIndexMenuDropdown
                       {...this.props}
                       isGlobal={isGlobal}
@@ -621,9 +624,9 @@ export class EntryIndexMenu extends Component<Props, States> {
               )}
             </div>
           </div>
-          <div className="d-flex align-items-center ml-auto ml-md-0 pl-3">
+          <div className="flex items-center ml-auto md:ml-0 pl-3">
             <span
-              className="info-icon mr-0 mr-md-2"
+              className="info-icon mr-0 md:mr-2"
               onClick={() =>
                 this.setState({
                   introduction:

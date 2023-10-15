@@ -1,5 +1,4 @@
 import React from "react";
-import { FormControl } from "react-bootstrap";
 import BaseComponent from "../base";
 import SearchBox from "../search-box";
 import { _t } from "../../i18n";
@@ -178,7 +177,7 @@ export default class GifPicker extends BaseComponent<Props> {
   delayedSearch = _.debounce(this.getSearchedData, 2000);
   delayedSearchOnScroll = _.debounce(this.getSearchedDataOnScroll, 2000);
 
-  filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  filterChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ filter: e.target.value });
     if (e.target.value === "") {
       this.getGifsData(null, this.state.limit, this.state.offset);
@@ -249,7 +248,7 @@ export default class GifPicker extends BaseComponent<Props> {
             );
           }
         })()}
-        <span className="d-flex justify-content-end">{_t("gif-picker.credits")}</span>
+        <span className="flex justify-content-end">{_t("gif-picker.credits")}</span>
       </div>
     );
   }

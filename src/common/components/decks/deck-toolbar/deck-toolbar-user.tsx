@@ -2,11 +2,12 @@ import { UserAvatar } from "../../user-avatar";
 import { FullAccount } from "../../../store/accounts/types";
 import React from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { Button, Dropdown } from "react-bootstrap";
 import { brightnessSvg } from "../../../img/svg";
 import { Theme } from "../../../store/global/types";
 import { _t } from "../../../i18n";
 import { Link } from "react-router-dom";
+import { Button } from "@ui/button";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 
 interface Props {
   isExpanded: boolean;
@@ -32,22 +33,21 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => 
   return (
     <div
       className={
-        "user d-flex align-items-center " +
-        (isExpanded ? "justify-content-start" : "justify-content-center")
+        "user flex items-center " + (isExpanded ? "justify-content-start" : "justify-center")
       }
     >
       {activeUser ? (
         <Dropdown onClick={() => setIsExpanded(true)}>
-          <Dropdown.Toggle variant="link">
+          <DropdownToggle>
             <UserAvatar size="medium" global={global} username={activeUser?.username} />
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
+          </DropdownToggle>
+          <DropdownMenu>
             {items.map(({ label, onClick }) => (
-              <Dropdown.Item onClick={() => onClick()} key={label}>
+              <DropdownItem onClick={() => onClick()} key={label}>
                 {label}
-              </Dropdown.Item>
+              </DropdownItem>
             ))}
-          </Dropdown.Menu>
+          </DropdownMenu>
         </Dropdown>
       ) : (
         <Link to="/">
@@ -70,11 +70,7 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => 
           </>
         ) : (
           <>
-            <Button
-              className="w-100"
-              variant="outline-primary"
-              onClick={() => toggleUIProp("login")}
-            >
+            <Button className="w-full" outline={true} onClick={() => toggleUIProp("login")}>
               {_t("g.login")}
             </Button>
             {getThemeSwitcher()}

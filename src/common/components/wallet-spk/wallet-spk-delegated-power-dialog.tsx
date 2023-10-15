@@ -1,4 +1,3 @@
-import { Form, Modal } from "react-bootstrap";
 import React, { useState } from "react";
 import { _t } from "../../i18n";
 import Tooltip from "../tooltip";
@@ -8,6 +7,8 @@ import UserAvatar from "../user-avatar";
 import { History } from "history";
 import { Global } from "../../store/global/types";
 import "./wallet-spk-delegated-power-dialog.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   show: boolean;
@@ -40,21 +41,20 @@ export const WalletSpkDelegatedPowerDialog = ({
         setShow(false);
         clear();
       }}
-      keyboard={false}
       className="spk-delegation-power-dialog"
     >
-      <Modal.Header closeButton={true}>
-        <Modal.Title>{_t("wallet.spk.delegate.delegated-larynx-power.title")}</Modal.Title>
-      </Modal.Header>
-      <Form.Group className="w-100 px-3">
-        <Form.Control
+      <ModalHeader closeButton={true}>
+        <ModalTitle>{_t("wallet.spk.delegate.delegated-larynx-power.title")}</ModalTitle>
+      </ModalHeader>
+      <div className="w-full pb-4 px-3">
+        <FormControl
           type="text"
           placeholder={_t("friends.search-placeholder")}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-      </Form.Group>
-      <Modal.Body>
+      </div>
+      <ModalBody>
         <div className="delegated-vesting-content">
           <div className="user-list">
             <div className="list-body">
@@ -82,7 +82,7 @@ export const WalletSpkDelegatedPowerDialog = ({
             </div>
           </div>
         </div>
-      </Modal.Body>
+      </ModalBody>
     </Modal>
   );
 };

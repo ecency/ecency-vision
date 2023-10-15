@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-
-import { Modal } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -10,16 +7,14 @@ import { Entry } from "../../store/entries/types";
 import { User } from "../../store/users/types";
 import { ToggleType, UI } from "../../store/ui/types";
 import { Transactions } from "../../store/transactions/types";
-
 import LoginRequired from "../login-required";
 import { Transfer } from "../transfer";
 import Tooltip from "../tooltip";
-
 import { _t } from "../../i18n";
 import { useMappedStore } from "../../store/use-mapped-store";
-
 import { giftOutlineSvg } from "../../img/svg";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   global: Global;
@@ -126,14 +121,13 @@ export class EntryTipBtn extends Component<Props, State> {
             show={true}
             centered={true}
             onHide={this.toggleDialog}
-            keyboard={false}
-            className="tipping-dialog modal-thin-header"
+            className="tipping-dialog"
             size="lg"
           >
-            <Modal.Header closeButton={true} />
-            <Modal.Body>
+            <ModalHeader thin={true} closeButton={true} />
+            <ModalBody>
               <TippingDialog {...this.props} onHide={this.toggleDialog} />
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </>

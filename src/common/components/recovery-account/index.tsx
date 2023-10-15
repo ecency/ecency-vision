@@ -1,31 +1,29 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { Button, Form, FormControl, Modal } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import useDebounce from "react-use/lib/useDebounce";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 import { PrivateKey } from "@hiveio/dhive";
-
 import keyOrHot from "../key-or-hot";
 import UserAvatar from "../user-avatar";
 import { error } from "../feedback";
-import PopoverConfirm from "../popover-confirm";
+import PopoverConfirm from "@ui/popover-confirm";
 import LinearProgress from "../linear-progress";
-
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
-import { getAccount, findAccountRecoveryRequest } from "../../api/hive";
+import { findAccountRecoveryRequest, getAccount } from "../../api/hive";
 import {
   changeRecoveryAccount,
-  formatError,
   changeRecoveryAccountHot,
-  changeRecoveryAccountKc
+  changeRecoveryAccountKc,
+  formatError
 } from "../../api/operations";
-
 import "./index.scss";
 import { addRecoveries, getRecoveries } from "../../api/private-api";
 import { FullAccount } from "../../store/accounts/types";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   global: Global;
@@ -119,9 +117,7 @@ export default function AccountRecovery(props: Props) {
     [newRecoveryAccount]
   );
 
-  const newRecoveryAccountChange = async (
-    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
-  ) => {
+  const newRecoveryAccountChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.persist();
     setIsEcency(e.target.value === ECENCY);
     setNewCurrRecoveryAccount(e.target.value);
@@ -216,7 +212,7 @@ export default function AccountRecovery(props: Props) {
     setStep(1);
   };
 
-  const handleRecoveryEmail = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  const handleRecoveryEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRecoveryEmail(e.target.value);
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     setDisabled(!emailRegex.test(e.target.value));
@@ -248,8 +244,8 @@ export default function AccountRecovery(props: Props) {
                 </>
               </div>
             </div>
-            <div className="d-flex justify-content-center">
-              <Button variant="outline-secondary" onClick={back}>
+            <div className="flex justify-center">
+              <Button appearance="secondary" outline={true} onClick={back}>
                 {_t("g.back")}
               </Button>
               <span className="hr-6px-btn-spacer" />
@@ -264,7 +260,7 @@ export default function AccountRecovery(props: Props) {
   const signkeyModal = () => {
     return (
       <>
-        <div className="recovery-sign-dialog-header border-bottom">
+        <div className="recovery-sign-dialog-header border-b border-[--border-color]">
           <div className="step-no">2</div>
           <div className="recovery-sign-dialog-titles">
             <div className="recovery-main-title">{_t("account-recovery.sign-title")}</div>
@@ -312,7 +308,7 @@ export default function AccountRecovery(props: Props) {
   const successModal = () => {
     return (
       <>
-        <div className="recovery-success-dialog-header border-bottom">
+        <div className="recovery-success-dialog-header border-b border-[--border-color]">
           <div className="step-no">3</div>
           <div className="recovery-success-dialog-titles">
             <div className="recovery-main-title">{_t("trx-common.success-title")}</div>
@@ -324,7 +320,7 @@ export default function AccountRecovery(props: Props) {
           <div className="recovery-success-dialog-content">
             <span> {_t("account-recovery.success-message")}</span>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             <span className="hr-6px-btn-spacer" />
             <Button onClick={finish}>{_t("g.finish")}</Button>
           </div>
@@ -336,7 +332,7 @@ export default function AccountRecovery(props: Props) {
   const emailUpdateModal = () => {
     return (
       <>
-        <div className="recovery-success-dialog-header border-bottom">
+        <div className="recovery-success-dialog-header border-b border-[--border-color]">
           <div className="step-no">1</div>
           <div className="recovery-success-dialog-titles">
             <div className="recovery-main-title">{_t("trx-common.success-title")}</div>
@@ -348,7 +344,7 @@ export default function AccountRecovery(props: Props) {
           <div className="recovery-success-dialog-content">
             <span> {_t("account-recovery.update-success-message")}</span>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             <span className="hr-6px-btn-spacer" />
             <Button onClick={finish}>{_t("g.finish")}</Button>
           </div>
@@ -367,28 +363,28 @@ export default function AccountRecovery(props: Props) {
             update();
           }}
         >
-          <Form.Group controlId="account-name">
-            <Form.Label>{_t("account-recovery.curr-recovery-acc")}</Form.Label>
-            <Form.Control type="text" readOnly={true} value={currRecoveryAccount} />
-          </Form.Group>
+          <div className="mb-4">
+            <label>{_t("account-recovery.curr-recovery-acc")}</label>
+            <FormControl type="text" readOnly={true} value={currRecoveryAccount} />
+          </div>
           {toWarning && <small className="suggestion-info">{toWarning}</small>}
-          <Form.Group controlId="cur-pass">
-            <Form.Label>{_t("account-recovery.new-recovery-acc")}</Form.Label>
-            <Form.Control
+          <div className="mb-4">
+            <label>{_t("account-recovery.new-recovery-acc")}</label>
+            <FormControl
               value={newRecoveryAccount}
               onChange={newRecoveryAccountChange}
-              required={!isEcency ? true : false}
+              required={!isEcency}
               type="text"
               autoFocus={true}
               autoComplete="off"
               className={toError ? "is-invalid" : ""}
             />
-          </Form.Group>
+          </div>
           {toError && <small className="error-info">{toError}</small>}
           {isEcency && (
-            <Form.Group controlId="recovery-email">
-              <Form.Label>{_t("account-recovery.new-recovery-email")}</Form.Label>
-              <Form.Control
+            <div className="mb-4">
+              <label>{_t("account-recovery.new-recovery-email")}</label>
+              <FormControl
                 value={recoveryEmail}
                 onChange={handleRecoveryEmail}
                 required={true}
@@ -396,7 +392,7 @@ export default function AccountRecovery(props: Props) {
                 placeholder={_t("account-recovery.email-placeholder")}
                 autoComplete="off"
               />
-            </Form.Group>
+            </div>
           )}
           {inProgress && <LinearProgress />}
 
@@ -409,14 +405,14 @@ export default function AccountRecovery(props: Props) {
                 titleText={_t("account-recovery.info-message", { n: pendingRecoveryAccount })}
               >
                 <div onClick={(e) => e.stopPropagation()}>
-                  <Button disabled={disabled} variant="primary" type="submit">
+                  <Button disabled={disabled} type="submit">
                     {_t("g.update")}
                   </Button>
                 </div>
               </PopoverConfirm>
             </div>
           ) : (
-            <Button className="update-btn" disabled={disabled} variant="primary" type="submit">
+            <Button className="update-btn" disabled={disabled} type="submit">
               {_t("g.update")}
             </Button>
           )}
@@ -428,17 +424,16 @@ export default function AccountRecovery(props: Props) {
             show={true}
             centered={true}
             onHide={toggleKeyDialog}
-            keyboard={false}
-            className="recovery-dialog modal-thin-header"
+            className="recovery-dialog"
             size="lg"
           >
-            <Modal.Header closeButton={true} />
-            <Modal.Body>
+            <ModalHeader thin={true} closeButton={true} />
+            <ModalBody>
               {step === 1 && confirmationModal()}
               {step === 2 && signkeyModal()}
               {step === 3 && successModal()}
               {step === 4 && emailUpdateModal()}
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </div>

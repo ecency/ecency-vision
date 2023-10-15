@@ -516,7 +516,9 @@ export const Profile = (props: Props) => {
                           <div className="permission-menu-items">
                             <h6
                               className={
-                                tabState === 1 ? "border-bottom pb-3 tab current-tab" : "tab"
+                                tabState === 1
+                                  ? "border-b border-[--border-color] pb-3 tab current-tab"
+                                  : "tab"
                               }
                               onClick={() => setTabState(1)}
                             >
@@ -526,7 +528,9 @@ export const Profile = (props: Props) => {
                           <div className="permission-menu-items">
                             <h6
                               className={
-                                tabState === 2 ? "border-bottom pb-3 tab current-tab" : "tab"
+                                tabState === 2
+                                  ? "border-b border-[--border-color] pb-3 tab current-tab"
+                                  : "tab"
                               }
                               onClick={() => setTabState(2)}
                             >
@@ -536,7 +540,9 @@ export const Profile = (props: Props) => {
                           <div className="permission-menu-items">
                             <h6
                               className={
-                                tabState === 3 ? "border-bottom pb-3 tab current-tab" : "tab"
+                                tabState === 3
+                                  ? "border-b border-[--border-color] pb-3 tab current-tab"
+                                  : "tab"
                               }
                               onClick={() => setTabState(3)}
                             >
@@ -546,8 +552,8 @@ export const Profile = (props: Props) => {
                         </div>
                         <div className="container-fluid">
                           {tabState === 1 && <ManageAuthorities {...props} />}
-                          <div className="row pb-4">
-                            <div className="col-lg-6 col-md-6 col-sm-6">
+                          <div className="grid grid-cols-12 pb-4">
+                            <div className="col-span-12 sm:col-span-6">
                               {tabState === 2 && <AccountRecovery {...props} />}
                               {tabState === 3 && <PasswordUpdate activeUser={props.activeUser} />}
                             </div>

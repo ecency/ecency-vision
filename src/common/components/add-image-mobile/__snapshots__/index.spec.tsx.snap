@@ -45,23 +45,35 @@ exports[`(1) Default render. 1`] = `
     </div>
   </div>
   <div
-    className="d-flex justify-content-between"
+    className="flex justify-between"
   >
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Gallery
+      <div>
+        Gallery
+      </div>
     </button>
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Upload image
+      <div>
+        Upload image
+      </div>
     </button>
   </div>
 </div>
@@ -75,15 +87,21 @@ exports[`(2) usePrivate = 1 1`] = `
     className="recent-list"
   />
   <div
-    className="d-flex justify-content-center"
+    className="flex justify-center"
   >
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Upload image
+      <div>
+        Upload image
+      </div>
     </button>
   </div>
 </div>
@@ -97,15 +115,21 @@ exports[`(3) Empty gallery. 1`] = `
     className="recent-list"
   />
   <div
-    className="d-flex justify-content-center"
+    className="flex justify-center"
   >
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Upload image
+      <div>
+        Upload image
+      </div>
     </button>
   </div>
 </div>

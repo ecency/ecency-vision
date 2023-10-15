@@ -1,23 +1,18 @@
 import BaseComponent from "../base";
 import React, { Component } from "react";
-
-import { Button, Form, FormControl, Modal } from "react-bootstrap";
-
 import { Entry } from "../../store/entries/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import { error, success } from "../feedback";
 import SuggestionList from "../suggestion-list";
-
 import { comment, formatError } from "../../api/operations";
 import { getSubscriptions } from "../../api/bridge";
-
-import { makeCommentOptions, makeApp } from "../../helper/posting";
+import { makeApp, makeCommentOptions } from "../../helper/posting";
 import { makeCrossPostMessage } from "../../helper/cross-post";
-
 import { _t } from "../../i18n";
-
 import { version } from "../../../../package.json";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser;
@@ -64,11 +59,11 @@ export class CrossPost extends BaseComponent<Props, State> {
     this.props.onHide();
   };
 
-  communityChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  communityChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ community: e.target.value });
   };
 
-  messageChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  messageChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ message: e.target.value });
   };
 
@@ -131,34 +126,35 @@ export class CrossPost extends BaseComponent<Props, State> {
 
     return (
       <>
-        <Form.Group controlId="community">
+        <div className="mb-4">
           <SuggestionList
             items={suggestions}
             onSelect={this.communitySelected}
             renderer={(x) => x.name}
           >
-            <Form.Control
+            <FormControl
               value={community}
               onChange={this.communityChanged}
               type="text"
               placeholder={_t("cross-post.community-placeholder")}
             />
           </SuggestionList>
-        </Form.Group>
-        <Form.Group controlId="message">
-          <Form.Control
+        </div>
+        <div className="mb-4">
+          <FormControl
+            type="text"
             value={message}
             onChange={this.messageChanged}
             maxLength={200}
             placeholder={_t("cross-post.message-placeholder")}
           />
-        </Form.Group>
-        <p className="small text-muted">{_t("cross-post.info")}</p>
-        <div className="d-flex justify-content-between">
-          <Button variant="outline-secondary" onClick={this.hide} disabled={posting}>
+        </div>
+        <small className="mb-4 block text-gray-600">{_t("cross-post.info")}</small>
+        <div className="flex justify-between">
+          <Button appearance="secondary" outline={true} onClick={this.hide} disabled={posting}>
             {_t("g.cancel")}
           </Button>
-          <Button variant="primary" disabled={!canSubmit || posting} onClick={this.submit}>
+          <Button disabled={!canSubmit || posting} onClick={this.submit}>
             {_t("cross-post.submit-label")} {posting ? "..." : ""}
           </Button>
         </div>
@@ -177,15 +173,14 @@ export default class CrossPostDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="cross-post-dialog"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("cross-post.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("cross-post.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <CrossPost {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

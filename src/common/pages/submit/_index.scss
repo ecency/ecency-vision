@@ -28,11 +28,11 @@
     }
 
     @include themify(day) {
-      background: $white-two;
+      @apply bg-light-200;
     }
 
     @include themify(night) {
-      background: lighten($dark-six, 4);
+      @apply bg-dark-600;
     }
 
     .bottom-toolbar {
@@ -78,12 +78,12 @@
           }
 
           @include themify(night) {
-            background: lighten($dark-six, 10);
+            @apply bg-dark-600-010-light;
           }
         }
 
         @include themify(night) {
-          color: $silver;
+          @apply text-silver;
         }
       }
     }
@@ -126,14 +126,14 @@
       flex-shrink: 0;
 
       .panel-header-title {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 18px;
         font-weight: 500;
         margin: 0;
       }
 
       .words-count {
-        color: lighten($steel-grey, 10);
+        @apply text-gray-steel-010;
         margin-right: 20px;
 
         .words {
@@ -152,7 +152,7 @@
       font-size: 21px;
 
       @include themify(day) {
-        color: $tundora;
+        @apply text-tundora;
       }
     }
 
@@ -165,11 +165,11 @@
       flex-shrink: 0;
 
       @include themify(day) {
-        color: $charcoal-grey;
+        @apply text-gray-charcoal;
       }
 
       @include themify(night) {
-        color: $pinkish-grey;
+        @apply text-gray-pinkish;
       }
     }
 
@@ -213,23 +213,92 @@
       }
     }
   }
+
+  .submit-video-attachments {
+
+    .alert {
+      font-size: 0.875rem;
+    }
+
+    .submit-video-attachments-list {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-start;
+      overflow-x: auto;
+
+      .attachment-item {
+        transition: .3s;
+        border-radius: 1rem;
+        border: 1px solid var(--border-color);
+        background-size: cover;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 0.5rem;
+
+        .type {
+          position: absolute;
+          @apply bg-blue-dark-sky;
+          @apply text-white;
+          rotate: -45deg;
+          padding: 0.125rem;
+          text-align: center;
+          width: 100px;
+          top: 0.75rem;
+          left: -1.75rem;
+          font-size: 0.675rem;
+          text-transform: uppercase;
+        }
+
+        .title {
+          padding: 0.5rem;
+          @apply bg-white;
+          border-radius: 0.75rem;
+          border: 1px solid var(--border-color);
+        }
+
+        .remove {
+          position: absolute;
+          top: 0.5rem;
+          right: 0.5rem;
+          @apply bg-white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+
+          @include button-variant(rgba($primary, 0.35), rgba($primary, 0.35));
+          @include padding(0.5rem);
+          @include border-radius(0.75rem);
+
+          svg {
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+      }
+    }
+  }
 }
 
 .selection-item {
   width: 100px;
   height: 100px;
-  background-color: $light-periwinkle;
-  border-radius: 10px;
   background-repeat: no-repeat;
   background-size: cover;
-  border: 5px solid $light-periwinkle;
+  border-width: 5px;
+  border-style: solid;
   border-radius: 1.25rem;
   cursor: pointer;
+  @apply bg-light-periwinkle;
+  @apply border-light-periwinkle;
 }
 
 .selected {
-  border: 5px solid $dark-sky-blue;
-  background-color: $dark-sky-blue;
+  border: 5px solid;
+  @apply border-blue-dark-sky;
+  @apply bg-blue-dark-sky;
 }
 
 .selection-container {
@@ -244,6 +313,7 @@
     font-size: 14px;
     top: 9px;
     right: 25px;
+
     svg {
       width: 25px;
     }

@@ -1,11 +1,12 @@
 import React, { ChangeEvent, ReactNode, useEffect, useRef, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { useThreeSpeakVideoUpload, useUploadVideoInfo } from "../../api/threespeak";
 import "./index.scss";
 import { VideoUploadItem } from "./video-upload-item";
 import { createFile } from "../../util/create-file";
 import { useMappedStore } from "../../store/use-mapped-store";
+import { Button } from "@ui/button";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { recordVideoSvg } from "../../img/svg";
 import { VideoUploadRecorder } from "./video-upload-recorder";
 import useMountedState from "react-use/lib/useMountedState";
@@ -129,7 +130,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
           <div className="video-source">
             {isMounted() && !selectedFile && "MediaRecorder" in window ? (
               <div
-                className="d-flex align-items-center flex-column border rounded p-3 video-upload-item"
+                className="flex items-center flex-col border rounded p-3 video-upload-item"
                 onClick={() => setShowRecorder(true)}
               >
                 {recordVideoSvg}
@@ -185,7 +186,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
           <source src={selectedFile} type="video/mp4" />
         </video>
       </div>
-      <div className="d-flex justify-content-end mt-3">
+      <div className="flex justify-content-end mt-3">
         <Button
           className="bg-dark"
           onClick={() => {
@@ -222,26 +223,25 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
       className={"cursor-pointer " + props.className}
       onClick={() => (activeUser ? null : toggleUIProp("login"))}
     >
-      <div className="d-flex justify-content-center bg-red">{props.children}</div>
+      <div className="flex justify-center">{props.children}</div>
       <div>
         <Modal
           animation={false}
           show={props.show}
           centered={true}
           onHide={() => props.setShow(false)}
-          keyboard={false}
           className="add-image-modal"
         >
-          <Modal.Header closeButton={true}>
-            <Modal.Title>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>
               {step === "upload" && <p>{_t("video-upload.upload-video")}</p>}
               {step === "preview" && <p>{_t("video-upload.preview")}</p>}
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+            </ModalTitle>
+          </ModalHeader>
+          <ModalBody>
             {step === "upload" && uploadVideoModal}
             {step === "preview" && previewVideo}
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </div>
     </div>

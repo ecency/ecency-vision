@@ -12,13 +12,7 @@ import { QueryIdentifiers } from "../../../core";
 
 export function useSaveDraftApi(history: History) {
   const { activeUser } = useMappedStore();
-  const {
-    isNsfw,
-    videoId,
-    speakAuthor,
-    is3Speak: isThreespeak,
-    speakPermlink
-  } = useThreeSpeakManager();
+  const { videos } = useThreeSpeakManager();
 
   const queryClient = useQueryClient();
 
@@ -62,11 +56,7 @@ export function useSaveDraftApi(history: History) {
         ...meta,
         beneficiaries,
         rewardType: reward,
-        isNsfw,
-        videoId,
-        speakAuthor,
-        isThreespeak,
-        speakPermlink
+        videos
       };
 
       try {

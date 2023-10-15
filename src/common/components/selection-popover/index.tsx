@@ -60,7 +60,7 @@ export const SelectionPopover = ({ children, onQuotesClick, postUrl }: any) => {
                   <div
                     ref={ref}
                     style={{ ...style, ...tooltipStyle }}
-                    className="p-2 d-flex icons-container align-items-center"
+                    className="p-2 flex icons-container items-center"
                   >
                     <div onClick={() => copyToClipboard(selectedText)} className="pointer">
                       {copyContent}

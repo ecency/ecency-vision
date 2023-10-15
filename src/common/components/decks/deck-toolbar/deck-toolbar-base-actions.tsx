@@ -2,11 +2,11 @@ import { bellSvg, rocketSvg } from "../../../img/svg";
 import React from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { WalletBadge } from "../../user-nav";
-import { Dropdown } from "react-bootstrap";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
 import { dotsMenuIconSvg, walletIconSvg } from "../icons";
 import { _t } from "../../../i18n";
 import Link from "../../alink";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
+import { Button } from "@ui/button";
 
 interface Props {
   isExpanded: boolean;
@@ -40,23 +40,25 @@ export const DeckToolbarBaseActions = ({
         </>
       )}
       {isExpanded || !activeUser ? (
-        <Dropdown onToggle={() => setIsExpanded(true)}>
-          <DropdownToggle variant="link">{dotsMenuIconSvg}</DropdownToggle>
-          <Dropdown.Menu alignRight={true}>
-            <Dropdown.Item>
+        <Dropdown>
+          <DropdownToggle onClick={() => setIsExpanded(true)}>
+            <Button appearance="link">{dotsMenuIconSvg}</Button>
+          </DropdownToggle>
+          <DropdownMenu align="right">
+            <DropdownItem>
               <Link to="/">{_t("decks.back-to-feed")}</Link>
-            </Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item>
+            </DropdownItem>
+            <hr />
+            <DropdownItem>
               <Link to="/fq">{_t("decks.faq")}</Link>
-            </Dropdown.Item>
-            <Dropdown.Item>
+            </DropdownItem>
+            <DropdownItem>
               <Link to="/terms-of-service">{_t("decks.terms")}</Link>
-            </Dropdown.Item>
-            <Dropdown.Item>
+            </DropdownItem>
+            <DropdownItem>
               <Link to="/market">{_t("decks.market")}</Link>
-            </Dropdown.Item>
-          </Dropdown.Menu>
+            </DropdownItem>
+          </DropdownMenu>
         </Dropdown>
       ) : (
         <></>

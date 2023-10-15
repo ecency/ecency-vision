@@ -3,10 +3,7 @@ import React, { Component } from "react";
 import { History } from "history";
 
 import isEqual from "react-fast-compare";
-
-import { FormControl } from "react-bootstrap";
-
-import { ReactSortable, ItemInterface } from "react-sortablejs";
+import { ItemInterface, ReactSortable } from "react-sortablejs";
 
 import { Global } from "../../store/global/types";
 import { TrendingTags } from "../../store/trending-tags/types";
@@ -20,6 +17,7 @@ import _c from "../../util/fix-class-names";
 
 import { closeSvg, poundSvg } from "../../img/svg";
 import "./_index.scss";
+import { FormControl } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -87,7 +85,7 @@ export class TagSelector extends Component<Props, State> {
     this.add(value);
   };
 
-  onChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLocaleLowerCase().trim().replace(/,/g, " ").replace(/#/g, "");
     let cats = value.split(" ");
     if (cats.length > 0) {
@@ -219,6 +217,8 @@ export class TagSelector extends Component<Props, State> {
           >
             <FormControl
               type="text"
+              noStyles={true}
+              className="form-control px-3 py-1 w-full outline-none shadow-0"
               onFocus={this.onFocus}
               onBlur={this.onBlur}
               onKeyDown={this.onKeyDown}

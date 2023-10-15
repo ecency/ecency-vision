@@ -4,8 +4,8 @@ import "./_deck-toolbar-manager.scss";
 import { addIconSvg, settingsIconSvg } from "../icons";
 import { DecksSettings } from "../deck-settings/decks-settings";
 import { DeckGrid } from "../types";
-import { Button } from "react-bootstrap";
 import { _t } from "../../../i18n";
+import { Button } from "@ui/button";
 
 interface Props {
   isExpanded: boolean;
@@ -21,9 +21,12 @@ export const DeckToolbarManager = ({ isExpanded }: Props) => {
     <div className="deck-toolbar-manager">
       <div className="title">
         <div className="text">{_t("decks.decks")}</div>
-        <div className="add-deck-btn btn" onClick={() => setShowDecksSettings(true)}>
-          {addIconSvg}
-        </div>
+        <Button
+          appearance="link"
+          className="add-deck-btn"
+          onClick={() => setShowDecksSettings(true)}
+          icon={addIconSvg}
+        />
       </div>
       <div className="deck-list">
         {decks.decks.map((deck) => (
@@ -47,15 +50,14 @@ export const DeckToolbarManager = ({ isExpanded }: Props) => {
             )}
             {isExpanded ? (
               <Button
-                variant="link"
-                onClick={(e) => {
+                appearance="link"
+                onClick={(e: { stopPropagation: () => void }) => {
                   e.stopPropagation();
                   setEditingDeck(deck);
                   setShowDecksSettings(true);
                 }}
-              >
-                {settingsIconSvg}
-              </Button>
+                icon={settingsIconSvg}
+              />
             ) : (
               <></>
             )}
