@@ -1,21 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { match } from "react-router";
-import { Spinner } from "react-bootstrap";
 import NavBar from "../../components/navbar";
 import NavBarElectron from "../../../desktop/app/components/navbar";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../common";
-import ChatsSideBar from "../../components/chats/chats-sidebar/indes";
-import ChatsMessagesBox from "../../components/chats/chats-messages-box";
+import ChatsSideBar from "../../features/chats/chats-sidebar/indes";
+import ChatsMessagesBox from "../../features/chats/chats-messages-box";
 
-import ManageChatKey from "../../components/manage-chat-key";
+import ManageChatKey from "../../features/chats/manage-chat-key";
 import Feedback from "../../components/feedback";
 import { useMappedStore } from "../../store/use-mapped-store";
-import { ChatContext } from "../../components/chats/chat-context-provider";
-import ImportChats from "../../components/chats/import-chats";
-import JoinChat from "../../components/chats/join-chat";
+import { ChatContext } from "../../features/chats/chat-context-provider";
+import ImportChats from "../../features/chats/import-chats";
+import JoinChat from "../../features/chats/join-chat";
 
 import "./index.scss";
+import { Spinner } from "@ui/spinner";
 
 interface MatchParams {
   filter: string;
@@ -77,7 +77,7 @@ export const Chats = (props: Props) => {
         {activeUser ? (
           showSpinner ? (
             <div className="d-flex justify-content-center align-items-center full-page">
-              <Spinner animation="border" variant="primary" />
+              <Spinner />
               <p className="mt-3 ml-2" style={{ fontSize: "26px" }}>
                 Loading...
               </p>

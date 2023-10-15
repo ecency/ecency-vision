@@ -76,7 +76,9 @@
     "you": "You",
     "copy-clipboard": "Copy to clipboard",
     "first": "First",
-    "last": "Last"
+    "last": "Last",
+    "ok": "OK",
+    "join": "Join"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -751,7 +753,8 @@
     "roles-role": "Role",
     "roles-account-title": "Title",
     "roles-add": "Add User",
-    "join-community-chat": "Join Community Chat"
+    "join-community-chat": "Join Community Chat",
+    "already-joined-community": "You have already joined this community"
   },
   "community-cover": {
     "rewards": "rewards",
@@ -1871,7 +1874,8 @@
     "submit": "Submit",
     "chat-priv-key": "Chat Private key",
     "copy-priv-key": "Copy Private key",
-    "extended-view": "Extended View"
+    "extended-view": "Extended View",
+    "you-haven-t-joined": "You haven't joined the chat yet. Please join the chat to start chatting."
   },
   "add-image": {
     "title": "Add Image",

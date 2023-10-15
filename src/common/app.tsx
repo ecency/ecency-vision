@@ -29,8 +29,8 @@ import { useMappedStore } from "./store/use-mapped-store";
 import { EntriesCacheManager } from "./core";
 
 import { UserActivityRecorder } from "./components/user-activity-recorder";
-import { ChatContextProvider } from "./components/chats/chat-context-provider";
-import { ChatPopUp } from "./components/chats/chat-popup";
+import { ChatContextProvider } from "./features/chats/chat-context-provider";
+import { ChatPopUp } from "./features/chats/chat-popup";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));

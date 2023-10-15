@@ -1852,7 +1852,7 @@ export const sellStakeSvg = (
   </svg>
 );
 
-export const KebabMenu = (
+export const kebabMenuSvg = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -2020,23 +2020,31 @@ export const dragSvg = (
   </svg>
 );
 
-export const addMessageSVG = (
-  <svg
-    width="24px"
-    height="24px"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    mirror-in-rtl="true"
-  >
+export const addMessageSvg = (
+  <svg viewBox="0 0 24 24" fill="none">
     <path
-      fill="currentColor"
-      fillRule="evenodd"
-      d="M24 3v4a1 1 0 0 1 -2 0V3a1 1 0 0 0 -0.9 -0.99c-0.05 0 -0.08 -0.01 -0.11 -0.01H3a1.016 1.016 0 0 0 -1 1v10a1.016 1.016 0 0 0 1 1h2v2.81l2.69 -2.32 0.57 -0.49h6.74a1 1 0 0 1 0 2h-6l-4.35 3.76a0.969 0.969 0 0 1 -0.65 0.241 1.059 1.059 0 0 1 -0.42 -0.09 1 1 0 0 1 -0.58 -0.91v-3A3.009 3.009 0 0 1 0 13V3A3.009 3.009 0 0 1 3 0h18a2.832 2.832 0 0 1 0.3 0.02A3 3 0 0 1 24 3z"
+      opacity="0.4"
+      d="M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
-      fill="currentColor"
-      fillRule="evenodd"
-      d="M24 11a1 1 0 0 1 -1 1h-3v3a1 1 0 0 1 -2 0V12h-3a1 1 0 0 1 0 -2h3V7a1 1 0 0 1 2 0v3h3A1 1 0 0 1 24 10.999z"
+      d="M8.5 12H15.5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M12 15.5V8.5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -2054,22 +2062,6 @@ export const expandArrow = (
     strokeLinejoin="round"
   >
     <path d="M6 9l6 6 6-6" />
-  </svg>
-);
-
-export const collapseArrow = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="30"
-    height="30"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="square"
-    strokeLinejoin="round"
-  >
-    <path d="M18 15l-6-6-6 6" />
   </svg>
 );
 
@@ -2333,20 +2325,47 @@ export const messangerSvg = (
 );
 
 export const extendedView = (
-  <svg
-    fill="none"
-    stroke="currentColor"
-    width="24"
-    height="24"
-    strokeWidth="2"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
+  <svg viewBox="0 0 24 24" fill="none">
     <path
+      d="M17.98 10.79V14.79C17.98 15.05 17.97 15.3 17.94 15.54C17.71 18.24 16.12 19.58 13.19 19.58H12.79C12.54 19.58 12.3 19.7 12.15 19.9L10.95 21.5C10.42 22.21 9.56 22.21 9.03 21.5L7.82999 19.9C7.69999 19.73 7.41 19.58 7.19 19.58H6.79001C3.60001 19.58 2 18.79 2 14.79V10.79C2 7.86001 3.35001 6.27001 6.04001 6.04001C6.28001 6.01001 6.53001 6 6.79001 6H13.19C16.38 6 17.98 7.60001 17.98 10.79Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
       strokeLinecap="round"
       strokeLinejoin="round"
-      d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"
+    />
+    <path
+      opacity="0.4"
+      d="M21.9791 6.79001V10.79C21.9791 13.73 20.6291 15.31 17.9391 15.54C17.9691 15.3 17.9791 15.05 17.9791 14.79V10.79C17.9791 7.60001 16.3791 6 13.1891 6H6.78906C6.52906 6 6.27906 6.01001 6.03906 6.04001C6.26906 3.35001 7.85906 2 10.7891 2H17.1891C20.3791 2 21.9791 3.60001 21.9791 6.79001Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M13.4955 13.25H13.5045"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M9.9955 13.25H10.0045"
+      stroke="#292D32"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M6.4955 13.25H6.5045"
+      stroke="#292D32"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -2364,5 +2383,25 @@ export const expandSideBar = (
     strokeLinejoin="round"
   >
     <path d="M15 18l-6-6 6-6" />
+  </svg>
+);
+
+export const duotoneRefreshSvg = (
+  <svg viewBox="0 0 24 24" fill="none">
+    <path
+      d="M2 12C2 6.48 6.44 2 12 2C18.67 2 22 7.56 22 7.56M22 7.56V2.56M22 7.56H17.56"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M21.89 12C21.89 17.52 17.41 22 11.89 22C6.37 22 3 16.44 3 16.44M3 16.44H7.52M3 16.44V21.44"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );

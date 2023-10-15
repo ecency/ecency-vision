@@ -1,0 +1,267 @@
+@import "src/style/vars_mixins";
+
+.chats-sidebar {
+  @include themify(day) {
+    @apply bg-light-200;
+    box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.1);
+  }
+  @include themify(night) {
+    @apply bg-dark-200;
+    box-shadow: 0px -5px 5px rgb(60, 68, 58);
+  }
+  z-index: 10;
+  min-width: 330px;
+  height: 100%;
+  margin-top: 10px;
+
+  .close-sidebar {
+    margin: 10px 5px 0 0;
+    svg {
+      width: 30px;
+      height: 30px;
+      @apply text-gray-steel;
+      cursor: pointer;
+    }
+  }
+
+  .chats-title {
+    margin: 30px 16px 12px 16px;
+
+    .chats-content {
+      .back-arrow-image {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-top: 1px;
+
+        &:hover {
+          @include themify(day) {
+            background: rgba(29, 155, 240, 0.1);
+          }
+          @include themify(night) {
+            @apply bg-blue-dark-grey;
+          }
+        }
+      }
+    }
+
+    .chats {
+      @include themify(day) {
+        color: #050505;
+      }
+      @include themify(night) {
+        @apply text-white;
+      }
+
+      color: #050505;
+      font-weight: 700;
+      font-size: 24px;
+      padding-top: 8px;
+      margin-left: 6px;
+    }
+
+    .chat-actions {
+      .refresh-button {
+        margin-top: 2px;
+        .refresh-svg {
+          width: 40px;
+          height: 40px;
+          justify-content: center;
+          text-align: center;
+          border-radius: 50%;
+          padding-top: 10px;
+          display: flex;
+          cursor: pointer;
+
+          svg {
+            height: 20px;
+            width: 20px;
+          }
+          &:hover {
+            @include themify(day) {
+              background: rgba(29, 155, 240, 0.1);
+            }
+            @include themify(night) {
+              @apply bg-blue-dark-grey
+            }
+          }
+        }
+      }
+      .chat-menu {
+        border: none;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        text-align: center;
+        display: flex;
+        margin-top: 3px;
+        cursor: pointer;
+        border-radius: 50%;
+        svg {
+          @include themify(day) {
+            @apply text-gray-charcoal;
+          }
+
+          @include themify(night) {
+            @apply text-light-200;
+          }
+        }
+        &:hover {
+          @include themify(day) {
+            background: rgba(29, 155, 240, 0.1);
+          }
+          @include themify(night) {
+            @apply bg-blue-dark-grey;
+          }
+        }
+      }
+    }
+  }
+
+  .chats-search {
+    padding: 0 8px 0 15px;
+    margin-bottom: 20px;
+  }
+
+  .divider {
+    @include themify(day) {
+      border-bottom: 1px solid #ced0d4;
+    }
+    @include themify(night) {
+      @apply border-b border-gray-charcoal
+    }
+  }
+
+  .searched-users {
+    .user-info {
+      cursor: pointer;
+      padding: 15px 3px 15px 25px;
+    }
+    .user-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 7px 5px 0 15px;
+    }
+    .user-reputation {
+      margin: 9px 5px 0 5px;
+    }
+  }
+
+  .community-title,
+  .dm-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: Faktum, sans-serif;
+    margin-bottom: 0;
+    padding: 15px 0 10px 15px;
+  }
+
+  .community:hover,
+  .dm:hover,
+  .user-info:hover {
+    @include themify(day) {
+      background: #eeeeee;
+    }
+
+    @include themify(night) {
+      @apply bg-blue-dusky;
+    }
+  }
+
+  .community,
+  .dm {
+    display: flex;
+    padding: 12.5px 5px 12.5px 13px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 0px 10px;
+
+    .community-info,
+    .dm-info {
+      .community-name,
+      .dm-name {
+        padding: 3px 0 0 25px;
+        margin-bottom: 0;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .dm-last-message,
+      .community-last-message {
+        max-width: 255px;
+        padding: 4px 0 0 25px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0;
+        font-size: 13px;
+      }
+    }
+    &.selected {
+      @include themify(day) {
+        background: #ecf3ff;
+      }
+
+      @include themify(night) {
+        @apply border-gray-charcoal;
+      }
+
+      &:hover {
+        @include themify(day) {
+          background: #ecf3ff;
+        }
+
+        @include themify(night) {
+          @apply bg-gray-charcoal
+        }
+      }
+    }
+  }
+
+  .chats-list {
+    height: calc(100vh - 220px);
+    overflow: auto;
+    a {
+      color: inherit;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .chats-sidebar {
+    min-width: 260px;
+
+    .chats-title {
+      margin: 15px 0px 5px 5px;
+    }
+    .chats-search {
+      padding: 0 5px 0 5px;
+      margin-bottom: 0;
+    }
+    .chats-list {
+      overflow-x: hidden;
+      .community-title,
+      .dm-title {
+        font-size: 1rem;
+        padding: 15px 0 10px 8px;
+      }
+      .community,
+      .dm {
+        margin: 0;
+        padding: 9.5px 0px 9.5px 5px;
+        .community-info,
+        .dm-info {
+          .community-name,
+          .dm-name {
+            padding: 3px 0 0 10px;
+          }
+          .community-last-message,
+          .dm-last-message {
+            padding: 4px 0 0 10px;
+            max-width: 35vw;
+          }
+        }
+      }
+    }
+  }
+}

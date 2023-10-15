@@ -7,7 +7,7 @@ import { EntryFilter, ListStyle } from "../store/global/types";
 import { Channel } from "../../managers/message-manager-types";
 import { usePrevious } from "../util/use-previous";
 
-import { getJoinedCommunities } from "../components/chats/utils";
+import { getJoinedCommunities } from "../features/chats/utils";
 import { makeGroupKey } from "../store/entries";
 import _ from "lodash";
 import Meta from "../components/meta";
@@ -37,12 +37,13 @@ import { EntryListContent } from "../components/entry-list";
 import { connect } from "react-redux";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
 import "./community.scss";
-import { Button, Modal } from "react-bootstrap";
 import LoginRequired from "../components/login-required";
 import { useMappedStore } from "../store/use-mapped-store";
 import { QueryIdentifiers, useCommunityCache } from "../core";
 import { useQueryClient } from "@tanstack/react-query";
-import { ChatContext } from "../components/chats/chat-context-provider";
+import { ChatContext } from "../features/chats/chat-context-provider";
+import { Button } from "@ui/button";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface MatchParams {
   filter: string;
@@ -252,18 +253,12 @@ export const CommunityPage = (props: Props) => {
     if (isCommunityAlreadyJoined) {
       return (
         <>
-          <div className="join-chat-header border-bottom">
-            <div className="join-chat-titles">
-              <h4 className="join-chat-main-title"> You have already joined this community</h4>
-            </div>
+          <div>
+            <h4>{_t("community.already-joined-community")}</h4>
           </div>
-          <p className="join-chat-btn" style={{ marginTop: "30px", textAlign: "right" }}>
-            <Button
-              variant="outline-primary"
-              className="join-btn"
-              onClick={() => setIsJoinCommunity(false)}
-            >
-              Ok
+          <p className="mt-5 text-right">
+            <Button outline={true} onClick={() => setIsJoinCommunity(false)}>
+              {_t("g.ok")}
             </Button>
           </p>
         </>
@@ -271,7 +266,7 @@ export const CommunityPage = (props: Props) => {
     } else {
       return (
         <>
-          <div className="join-community-dialog-header border-bottom">
+          <div className="border-bottom">
             <div className="join-community-dialog-titles">
               <h2 className="join-community-main-title">Confirmaton</h2>
             </div>
@@ -281,21 +276,14 @@ export const CommunityPage = (props: Props) => {
             className="join-community-dialog-body"
             style={{ fontSize: "18px", marginTop: "12px" }}
           >
-            Are you sure?
+            {_t("confirm.title")}
           </div>
           <p className="join-community-confirm-buttons" style={{ textAlign: "right" }}>
-            <Button
-              variant="outline-primary"
-              className="close-btn"
-              style={{ marginRight: "20px" }}
-              onClick={() => {
-                setIsJoinCommunity(false);
-              }}
-            >
-              Close
+            <Button outline={true} className="mr-4" onClick={() => setIsJoinCommunity(false)}>
+              {_t("g.close")}
             </Button>
-            <Button variant="outline-primary" className="confirm-btn" onClick={joinCommunityChat}>
-              Join
+            <Button outline={true} className="confirm-btn" onClick={() => joinCommunityChat()}>
+              {_t("g.join")}
             </Button>
           </p>
         </>
@@ -312,12 +300,11 @@ export const CommunityPage = (props: Props) => {
             show={true}
             centered={true}
             onHide={() => setIsJoinCommunity(false)}
-            keyboard={false}
-            className="authorities-dialog modal-thin-header"
+            className="authorities-dialog"
             size="lg"
           >
-            <Modal.Header closeButton={true} />
-            <Modal.Body>{joinCommunityModal()}</Modal.Body>
+            <ModalHeader thin={true} closeButton={true} />
+            <ModalBody>{joinCommunityModal()}</ModalBody>
           </Modal>
         </LoginRequired>
       )}

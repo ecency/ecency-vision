@@ -24,7 +24,7 @@ import { usrActivity } from "../../api/private-api";
 import { hsTokenRenew } from "../../api/auth-api";
 import { formatError, grantPostingPermission } from "../../api/operations";
 import { getRefreshToken } from "../../helper/user-token";
-import { getPrivateKey, getProfileMetaData } from "../../components/chats/utils";
+import { getPrivateKey, getProfileMetaData } from "../../features/chats/utils";
 
 import ReCAPTCHA from "react-google-recaptcha";
 import { addAccountAuthority, signBuffer } from "../../helper/keychain";

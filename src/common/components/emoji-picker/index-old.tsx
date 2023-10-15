@@ -5,7 +5,7 @@ import { _t } from "../../i18n";
 import { getEmojiData } from "../../api/misc";
 import * as ls from "../../util/local-storage";
 import { insertOrReplace } from "../../util/input-util";
-import { EmojiPickerStyleProps } from "../chats/types/chat-types";
+import { EmojiPickerStyleProps } from "../../features/chats/types/chat-types";
 import "./_index-old.scss";
 
 interface Emoji {
