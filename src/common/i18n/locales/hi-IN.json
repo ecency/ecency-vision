@@ -74,7 +74,9 @@
     "username": "उपयोगकर्ता नाम",
     "past-few-days": "पिछले कुछ दिन",
     "you": "आप",
-    "copy-clipboard": "क्लिपबोर्ड पर कॉपी करें"
+    "copy-clipboard": "क्लिपबोर्ड पर कॉपी करें",
+    "first": "First",
+    "last": "Last"
   },
   "confirm": {
     "title": "क्या आपको यकीन है?",
