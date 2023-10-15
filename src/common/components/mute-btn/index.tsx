@@ -1,23 +1,18 @@
 import React from "react";
-
-import { Button, Form, FormControl, InputGroup, Modal } from "react-bootstrap";
-
 import isEqual from "react-fast-compare";
-
 import { Entry, EntryStat } from "../../store/entries/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { ActiveUser } from "../../store/active-user/types";
 import { clone } from "../../store/util";
-
 import BaseComponent from "../base";
-
 import { formatError, mutePost } from "../../api/operations";
 import { error } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface DialogProps {
   entry: Entry;
@@ -34,7 +29,7 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
     value: ""
   };
 
-  valueChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  valueChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     this.setState({ value });
   };
@@ -47,12 +42,12 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
 
     return (
       <div className="mute-form">
-        <Form.Group>
+        <div className="mb-4">
           <div className="entry-title">
             @{entry.author}/{entry.permlink}
           </div>
           <InputGroup>
-            <Form.Control
+            <FormControl
               type="text"
               autoComplete="off"
               autoFocus={true}
@@ -62,11 +57,11 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
               maxLength={120}
             />
           </InputGroup>
-          <Form.Text>
+          <small>
             {!isMuted && _t("mute-btn.note-placeholder-mute")}
             {isMuted && "unmute" && _t("mute-btn.note-placeholder-unmute")}
-          </Form.Text>
-        </Form.Group>
+          </small>
+        </div>
         <div>
           <Button
             disabled={value.trim().length === 0 || inProgress}
@@ -153,12 +148,11 @@ export class MuteBtn extends BaseComponent<Props, State> {
             }
             this.toggleDialog();
           }}
-          keyboard={false}
-          className="mute-dialog modal-thin-header"
+          className="mute-dialog"
           size="lg"
         >
-          <Modal.Header closeButton={true} />
-          <Modal.Body>
+          <ModalHeader closeButton={true} />
+          <ModalBody>
             <DialogBody
               entry={entry}
               inProgress={inProgress}
@@ -167,7 +161,7 @@ export class MuteBtn extends BaseComponent<Props, State> {
                 this.mute(!isMuted, value);
               }}
             />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       ) : null;
 

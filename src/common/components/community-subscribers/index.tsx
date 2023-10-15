@@ -1,29 +1,21 @@
 import React from "react";
-
 import isEqual from "react-fast-compare";
-
 import { History } from "history";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-import { Community, roleMap } from "../../store/communities/types";
+import { Community, roleMap } from "../../store/communities";
 import { Subscription } from "../../store/subscriptions/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import CommunityRoleEditDialog from "../community-role-edit";
 import { error } from "../feedback";
-
 import accountReputation from "../../helper/account-reputation";
-
 import { getAccounts } from "../../api/hive";
 import { getSubscribers } from "../../api/bridge";
-
 import { _t } from "../../i18n";
-
 import { pencilOutlineSvg } from "../../img/svg";
 import "./_index.scss";
 

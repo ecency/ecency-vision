@@ -105,7 +105,7 @@ export const HistoryWidget = ({
                     key={key}
                     onClick={() => onItemClick(items[index].price / items[index].amount)}
                   >
-                    <div className={items[index].action === "buy" ? "text-success" : "text-danger"}>
+                    <div className={items[index].action === "buy" ? "text-green" : "text-red"}>
                       {(items[index].price / items[index].amount).toFixed(5)}
                     </div>
                     <div>{items[index].amount}</div>

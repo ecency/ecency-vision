@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { Button, Card, OverlayTrigger, Tooltip, Form, InputGroup } from "react-bootstrap";
-import Accordion from "react-bootstrap/Accordion";
-
 import ClickAwayListener from "../clickaway-listener";
 import { faqKeysGeneral } from "../../constants";
-
 import {
-  helpIconSvg,
+  articleSvg,
   chevronDownSvgForSlider,
   chevronUpSvgForSlider,
   closeSvg,
-  articleSvg
+  helpIconSvg
 } from "../../img/svg";
 import data from "./path.json";
-
 import { _t } from "../../i18n";
-
+import Tooltip from "../tooltip";
 import "./index.scss";
+import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
+import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
 
 export interface FaqObject {
   show: boolean;
@@ -38,8 +36,8 @@ const FloatingFAQ = () => {
   const [show, setShow] = useState(false);
   const [display, setDisplay] = useState(false);
   const [expandedHelp, setExpandedHelp] = useState(true);
-  const [helpClass, setHelpClass] = useState("section d-flex flex-column");
-  const [contactClass, setContactClass] = useState("section d-flex flex-column");
+  const [helpClass, setHelpClass] = useState("section flex flex-col");
+  const [contactClass, setContactClass] = useState("section flex flex-col");
   const [expandedContact, setExpandedContact] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [faqKeys, setFaqKeys] = useState<string[]>([]);
@@ -48,12 +46,6 @@ const FloatingFAQ = () => {
   const [innerWidth, setInnerWidth] = useState(0);
   const [isSubmitPage, setIsSubmitPage] = useState(false);
   const [className, setClassName] = useState("");
-
-  const tooltip = (
-    <Tooltip id="floating-faq-tooltip" style={{ zIndex: 10000 }}>
-      {_t("floating-faq.toggle-icon-info")}
-    </Tooltip>
-  );
 
   useEffect(() => {
     window.addEventListener("handleShow", onHandleShow);
@@ -101,10 +93,10 @@ const FloatingFAQ = () => {
 
   useEffect(() => {
     if (expandedHelp) {
-      setHelpClass("section d-flex flex-column border-bottom");
+      setHelpClass("section flex flex-col border-b border-[--border-color]");
     }
     if (expandedContact) {
-      setContactClass("section d-flex flex-column border-bottom");
+      setContactClass("section flex flex-col border-b border-[--border-color]");
     }
   }, [expandedHelp, expandedContact]);
 
@@ -127,7 +119,7 @@ const FloatingFAQ = () => {
   const handleRouterChange = () => {
     setShow(false);
     setDisplay(false);
-    setIsSubmitPage(routerLocation.pathname.match("submit") ? true : false);
+    setIsSubmitPage(!!routerLocation.pathname.match("submit"));
     for (const p of data.faqPaths) {
       if (routerLocation.pathname.match(p.path)) {
         setDisplay(true);
@@ -154,10 +146,14 @@ const FloatingFAQ = () => {
             onClickAway={() => show && setShow(false)}
           >
             {display && !isSubmitPage && (
-              <Button className="help-btn" variant="primary" onClick={handleShow}>
-                {helpIconSvg}
-
-                {innerWidth >= 792 && <div className="help">{_t("floating-faq.help")}</div>}
+              <Button
+                className="help-btn"
+                onClick={handleShow}
+                icon={helpIconSvg}
+                iconPlacement="left"
+                size="sm"
+              >
+                {innerWidth >= 792 ? _t("floating-faq.help") : ""}
               </Button>
             )}
 
@@ -166,54 +162,49 @@ const FloatingFAQ = () => {
                 <div className="faq-welcome">
                   <h3 className="faq-welcome-message">{_t("floating-faq.welcome")}</h3>
                   <Button
+                    appearance="link"
                     className="close-btn"
                     onClick={() => {
                       setShow(false);
                     }}
-                  >
-                    {closeSvg}
-                  </Button>
+                    icon={closeSvg}
+                  />
                 </div>
                 <div className="faq-content-list">
                   <div className="faq-content-list-item">
                     <Accordion defaultActiveKey="0">
-                      <Accordion.Toggle as={Card} eventKey="0">
+                      <AccordionToggle eventKey="0">
                         <div className={helpClass} onClick={() => setExpandedHelp(!expandedHelp)}>
-                          <div className="d-flex justify-content-between align-items-center section-card position-relative">
-                            <div className="d-flex align-items-center">
-                              <div className="d-flex align-items-center ml-3">
+                          <div className="flex justify-between items-center section-card relative">
+                            <div className="flex items-center">
+                              <div className="flex items-center ml-3">
                                 <div className="section-title">{_t("floating-faq.need-help")}</div>
                               </div>
                             </div>
 
-                            <OverlayTrigger placement="bottom" overlay={tooltip}>
-                              <Accordion.Toggle
+                            <Tooltip content={_t("floating-faq.toggle-icon-info")}>
+                              <AccordionToggle
                                 as={Button}
-                                variant="link"
+                                appearance="link"
+                                noPadding={true}
                                 eventKey="0"
-                                className="p-0"
-                              >
-                                <div
-                                  className={`pointer`}
-                                  onClick={() => {
-                                    setExpandedHelp(!expandedHelp);
-                                  }}
-                                >
-                                  <span>
-                                    {expandedHelp ? chevronUpSvgForSlider : chevronDownSvgForSlider}
-                                  </span>
-                                </div>
-                              </Accordion.Toggle>
-                            </OverlayTrigger>
+                                onClick={() => {
+                                  setExpandedHelp(!expandedHelp);
+                                }}
+                                icon={
+                                  expandedHelp ? chevronUpSvgForSlider : chevronDownSvgForSlider
+                                }
+                              />
+                            </Tooltip>
                           </div>
                         </div>
-                      </Accordion.Toggle>
+                      </AccordionToggle>
 
-                      <Accordion.Collapse eventKey="0">
+                      <AccordionCollapse eventKey="0">
                         <div className="help-content">
-                          <Card.Body>
-                            <Form.Group className="search-bar w-100">
-                              <Form.Control
+                          <div className="card-body p-3">
+                            <div className="mb-3 search-bar w-full">
+                              <FormControl
                                 type="text"
                                 placeholder={_t("floating-faq.search-placeholder")}
                                 value={searchText}
@@ -221,7 +212,7 @@ const FloatingFAQ = () => {
                                   setSearchText(e.target.value);
                                 }}
                               />
-                            </Form.Group>
+                            </div>
                             {!searchText ? (
                               <p className="user-info">{_t("floating-faq.suggestion")}</p>
                             ) : !datatoShow.length ? (
@@ -242,77 +233,66 @@ const FloatingFAQ = () => {
                                 </a>
                               );
                             })}
-                          </Card.Body>
+                          </div>
                         </div>
-                      </Accordion.Collapse>
+                      </AccordionCollapse>
                     </Accordion>
                   </div>
                   <div className="faq-content-list-item contact-us">
                     <Accordion>
-                      <Accordion.Toggle as={Card} eventKey="1">
+                      <AccordionToggle eventKey="1">
                         <div
                           className={contactClass}
                           onClick={() => setExpandedContact(!expandedContact)}
                         >
-                          <div className="d-flex justify-content-between align-items-center section-card position-relative">
-                            <div className="d-flex align-items-center">
-                              <div className="d-flex align-items-center ml-3">
+                          <div className="flex justify-between items-center section-card relative">
+                            <div className="flex items-center">
+                              <div className="flex items-center ml-3">
                                 <div className="section-title">{_t("floating-faq.contact")}</div>
                               </div>
                             </div>
-                            <OverlayTrigger placement="bottom" overlay={tooltip}>
-                              <Accordion.Toggle
+                            <Tooltip content={_t("floating-faq.toggle-icon-info")}>
+                              <AccordionToggle
                                 as={Button}
-                                variant="link"
+                                appearance="link"
                                 eventKey="1"
-                                className="p-0"
-                              >
-                                <div
-                                  className={`pointer`}
-                                  onClick={() => {
-                                    setExpandedContact(!expandedContact);
-                                  }}
-                                >
-                                  <span>
-                                    {expandedContact
-                                      ? chevronUpSvgForSlider
-                                      : chevronDownSvgForSlider}
-                                  </span>
-                                </div>
-                              </Accordion.Toggle>
-                            </OverlayTrigger>
+                                noPadding={true}
+                                onClick={() => {
+                                  setExpandedContact(!expandedContact);
+                                }}
+                                icon={
+                                  expandedContact ? chevronUpSvgForSlider : chevronDownSvgForSlider
+                                }
+                              />
+                            </Tooltip>
                           </div>
                         </div>
-                      </Accordion.Toggle>
-                      <Accordion.Collapse eventKey="1">
-                        <Card.Body className="p-3">
-                          <Form.Group>
-                            <InputGroup size="sm" className="username">
-                              <InputGroup.Prepend>
-                                <InputGroup.Text>@</InputGroup.Text>
-                              </InputGroup.Prepend>
-                              <Form.Control
+                      </AccordionToggle>
+                      <AccordionCollapse eventKey="1">
+                        <div className="card-body p-3">
+                          <div className="mb-3">
+                            <InputGroup className="username" prepend="@">
+                              <FormControl
+                                type="text"
                                 autoFocus={true}
                                 required={true}
                                 placeholder={_t("floating-faq.username")}
                               />
                             </InputGroup>
-                          </Form.Group>
-                          <Form.Group>
-                            <InputGroup size="sm" className="message">
-                              <Form.Control
-                                as="textarea"
-                                type="text"
+                          </div>
+                          <div className="mb-3">
+                            <InputGroup className="message">
+                              <FormControl
+                                type="textarea"
                                 autoFocus={true}
                                 required={true}
                                 maxLength={1000}
                                 placeholder={_t("floating-faq.message")}
                               />
                             </InputGroup>
-                          </Form.Group>
+                          </div>
                           <Button
                             className="submit-btn"
-                            variant="primary"
                             type="submit"
                             onClick={() =>
                               window.open(
@@ -323,8 +303,8 @@ const FloatingFAQ = () => {
                           >
                             {_t("floating-faq.submit")}
                           </Button>
-                        </Card.Body>
-                      </Accordion.Collapse>
+                        </div>
+                      </AccordionCollapse>
                     </Accordion>
                   </div>
                 </div>

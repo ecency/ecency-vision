@@ -1,21 +1,16 @@
 import React from "react";
 import { Entry } from "../../store/entries/types";
 import { ActiveUser } from "../../store/active-user/types";
-
-import { getBookmarks, addBookmark, deleteBookmark } from "../../api/private-api";
-
+import { addBookmark, deleteBookmark, getBookmarks } from "../../api/private-api";
 import BaseComponent from "../base";
 import LoginRequired from "../login-required";
 import { User } from "../../store/users/types";
 import { ToggleType, UI } from "../../store/ui/types";
 import { Account } from "../../store/accounts/types";
 import Tooltip from "../tooltip";
-import { success, error } from "../feedback";
-
+import { error, success } from "../feedback";
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
-
 import { bookmarkOutlineSvg, bookmarkSvg } from "../../img/svg";
 import "./_index.scss";
 

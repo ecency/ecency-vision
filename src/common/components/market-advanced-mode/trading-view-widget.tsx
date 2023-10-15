@@ -220,7 +220,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
   return (
     <MarketAdvancedModeWidget
       history={history}
-      className="market-advanced-mode-tv-widget"
+      className="market-advanced-mode-tv-widget pb-4"
       type={Widget.TradingView}
       title={
         <>
@@ -230,7 +230,7 @@ export const TradingViewWidget = ({ history, widgetTypeChanged, global }: Props)
       }
       children={<div className="market-advanced-mode-trading-view-widget" ref={chartRef} />}
       widgetTypeChanged={widgetTypeChanged}
-      settingsClassName="d-flex"
+      settingsClassName="flex"
       additionalSettings={
         <>
           <Dropdown

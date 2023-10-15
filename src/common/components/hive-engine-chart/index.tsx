@@ -127,7 +127,7 @@ export const HiveEngineChart = (props: any) => {
     ]
   };
   return (
-    <div className="market-graph d-flex justify-items-center ml-5">
+    <div className="market-graph flex justify-center ml-5">
       <div className="graph">
         <ReactHighcharts config={config} />
       </div>

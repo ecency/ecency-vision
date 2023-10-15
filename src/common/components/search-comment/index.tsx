@@ -1,31 +1,21 @@
 import React, { Fragment } from "react";
-
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
-
 import { History, Location } from "history";
-
 import numeral from "numeral";
-
 import moment, { Moment } from "moment";
-
 import queryString from "query-string";
-
 import * as ls from "../../util/local-storage";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import SearchListItem from "../search-list-item";
 import LinearProgress from "../linear-progress";
 import DetectBottom from "../detect-bottom";
-
 import SearchQuery, { SearchType } from "../../helper/search-query";
-
 import { search, SearchResult } from "../../api/search-api";
-
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 enum SearchSort {
   POPULARITY = "popularity",
@@ -111,37 +101,33 @@ export class SearchComment extends BaseComponent<Props, State> {
     this.stateSet({ advanced: !advanced });
   };
 
-  searchChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  searchChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.stateSet({ search: e.target.value });
   };
 
-  authorChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  authorChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.stateSet({ author: e.target.value.trim() });
   };
 
-  typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  typeChanged = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     this.stateSet({ type: e.target.value as SearchType });
   };
 
-  categoryChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  categoryChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.stateSet({ category: e.target.value.trim() });
   };
 
-  tagsChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  tagsChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.stateSet({ tags: e.target.value.trim() });
   };
 
-  dateChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  dateChanged = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     ls.set("recent_date", e.target.value);
     this.stateSet({ date: e.target.value as DateOpt });
   };
 
-  sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  sortChanged = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     this.stateSet({ sort: e.target.value as SearchSort });
-  };
-
-  hideLowChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
-    this.stateSet({ hideLow: e.target.checked });
   };
 
   textInputDown = (e: React.KeyboardEvent) => {
@@ -282,63 +268,63 @@ export class SearchComment extends BaseComponent<Props, State> {
     const advancedForm =
       advanced || disableResults ? (
         <div className="advanced-section">
-          <Row>
-            <Form.Group as={Col} sm="4" controlId="form-search">
-              <Form.Label>{_t("search-comment.search")}</Form.Label>
-              <Form.Control
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 sm:col-span-4 mb-4">
+              <label>{_t("search-comment.search")}</label>
+              <FormControl
                 type="text"
                 placeholder={_t("search-comment.search-placeholder")}
                 value={search}
                 onChange={this.searchChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Form.Group>
-            <Form.Group as={Col} sm="4" controlId="form-author">
-              <Form.Label>{_t("search-comment.author")}</Form.Label>
-              <Form.Control
+            </div>
+            <div className="col-span-12 sm:col-span-4 mb-4">
+              <label>{_t("search-comment.author")}</label>
+              <FormControl
                 type="text"
                 placeholder={_t("search-comment.author-placeholder")}
                 value={author}
                 onChange={this.authorChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Form.Group>
-            <Form.Group as={Col} sm="2" controlId="form-type">
-              <Form.Label>{_t("search-comment.type")}</Form.Label>
-              <Form.Control as="select" value={type} onChange={this.typeChanged}>
+            </div>
+            <div className="col-span-12 sm:col-span-2 mb-4">
+              <label>{_t("search-comment.type")}</label>
+              <FormControl type="select" value={type} onChange={this.typeChanged}>
                 {Object.values(SearchType).map((x) => (
                   <option value={x} key={x}>
                     {_t(`search-comment.type-${x}`)}
                   </option>
                 ))}
-              </Form.Control>
-            </Form.Group>
-            <Form.Group as={Col} sm="2" controlId="form-category">
-              <Form.Label>{_t("search-comment.category")}</Form.Label>
-              <Form.Control
+              </FormControl>
+            </div>
+            <div className="col-span-12 sm:col-span-2 mb-4">
+              <label>{_t("search-comment.category")}</label>
+              <FormControl
                 type="text"
                 placeholder={_t("search-comment.category-placeholder")}
                 value={category}
                 onChange={this.categoryChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Form.Group>
-          </Row>
-          <Row>
-            <Form.Group as={Col} sm="8" controlId="form-tag">
-              <Form.Label>{_t("search-comment.tags")}</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 sm:col-span-8 mb-4">
+              <label>{_t("search-comment.tags")}</label>
+              <FormControl
                 type="text"
                 placeholder={_t("search-comment.tags-placeholder")}
                 value={tags}
                 onChange={this.tagsChanged}
                 onKeyDown={this.textInputDown}
               />
-            </Form.Group>
-            <Form.Group as={Col} sm="2" controlId="form-date">
-              <Form.Label>{_t("search-comment.date")}</Form.Label>
-              <Form.Control
-                as="select"
+            </div>
+            <div className="col-span-12 sm:col-span-2 mb-4">
+              <label>{_t("search-comment.date")}</label>
+              <FormControl
+                type="select"
                 value={ls.get("recent_date", "month")}
                 onChange={this.dateChanged}
               >
@@ -347,38 +333,40 @@ export class SearchComment extends BaseComponent<Props, State> {
                     {_t(`search-comment.date-${x}`)}
                   </option>
                 ))}
-              </Form.Control>
-            </Form.Group>
-            <Form.Group as={Col} sm="2" controlId="form-sort">
-              <Form.Label>{_t("search-comment.sort")}</Form.Label>
-              <Form.Control as="select" value={sort} onChange={this.sortChanged}>
+              </FormControl>
+            </div>
+            <div className="col-span-12 sm:col-span-2 mb-4">
+              <label>{_t("search-comment.sort")}</label>
+              <FormControl type="select" value={sort} onChange={this.sortChanged}>
                 {Object.values(SearchSort).map((x) => (
                   <option value={x} key={x}>
                     {_t(`search-comment.sort-${x}`)}
                   </option>
                 ))}
-              </Form.Control>
-            </Form.Group>
-          </Row>
-          <div className="d-flex justify-content-between align-items-center">
-            <Form.Check
+              </FormControl>
+            </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <FormControl
               id="hide-low"
               type="checkbox"
               label={_t("search-comment.hide-low")}
               checked={hideLow}
-              onChange={this.hideLowChanged}
+              onChange={(v) =>
+                this.setState({
+                  hideLow: v
+                })
+              }
             />
 
-            <Button type="button" onClick={this.apply}>
-              {_t("g.apply")}
-            </Button>
+            <Button onClick={this.apply}>{_t("g.apply")}</Button>
           </div>
         </div>
       ) : null;
 
     return (
-      <div className="card search-comment">
-        <div className="card-header d-flex justify-content-between align-items-center">
+      <div className="border dark:border-dark-400 overflow-hidden bg-white rounded search-comment">
+        <div className="bg-gray-100 dark:bg-dark-200 border-b dark:border-dark-400 p-3 flex justify-between items-center">
           <div>
             <strong>{_t("search-comment.title")}</strong>
             {(() => {
@@ -389,7 +377,9 @@ export class SearchComment extends BaseComponent<Props, State> {
               if (hits > 1) {
                 const strHits = numeral(hits).format("0,0");
                 return (
-                  <span className="matches">{_t("search-comment.matches", { n: strHits })}</span>
+                  <span className="text-sm text-gray-600 pl-3">
+                    {_t("search-comment.matches", { n: strHits })}
+                  </span>
                 );
               }
 
@@ -406,7 +396,7 @@ export class SearchComment extends BaseComponent<Props, State> {
             {advanced ? _t("g.close") : _t("search-comment.advanced")}
           </a>
         </div>
-        <div className="card-body">
+        <div className="p-4">
           {advancedForm}
           {(() => {
             if (results.length > 0 && !disableResults) {

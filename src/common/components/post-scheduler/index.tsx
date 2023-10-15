@@ -1,17 +1,11 @@
-import React, { Component, useEffect, useState } from "react";
-
+import React, { useState } from "react";
 import Datetime from "react-datetime";
-
 import moment, { Moment } from "moment";
-
-import { Button, Modal } from "react-bootstrap";
-
-import BaseComponent from "../base";
-
 import { _t } from "../../i18n";
-
 import { closeSvg, timeSvg } from "../../img/svg";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Button } from "@ui/button";
 
 interface Props {
   date: Moment | null;
@@ -100,9 +94,8 @@ export const PostSchedulerDialog = (props: Props) => {
           </span>
         </div>
       ) : (
-        <Button className="d-inline-flex align-items-center" size="sm" onClick={toggle}>
+        <Button className="inline-flex items-center" size="sm" onClick={toggle} icon={timeSvg}>
           {_t("post-scheduler.btn-label")}
-          <span style={{ marginLeft: "6px" }}>{timeSvg}</span>
         </Button>
       )}
       {visible && (
@@ -113,12 +106,12 @@ export const PostSchedulerDialog = (props: Props) => {
           animation={false}
           className="post-scheduler-dialog"
         >
-          <Modal.Header closeButton={true}>
-            <Modal.Title>{_t("post-scheduler.title")}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>{_t("post-scheduler.title")}</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
             <DialogBody {...props} onHide={toggle} />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       )}
     </>

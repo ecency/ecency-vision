@@ -306,22 +306,41 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
       onClick={[Function]}
     >
       <button
-        className="btn btn-primary btn-sm"
-        disabled={false}
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        size="sm"
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
         type="button"
       >
-        Edit settings
+        <div>
+          Edit settings
+        </div>
       </button>
     </p>
     <p
       className="community-control"
     >
       <a
-        className="btn btn-sm btn-primary"
         href="/roles/hive-148441"
         onClick={[Function]}
       >
-        Edit roles
+        <button
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+          size="sm"
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
+          type="button"
+        >
+          <div>
+            Edit roles
+          </div>
+        </button>
       </a>
     </p>
   </div>
@@ -496,22 +515,41 @@ exports[`(3) usePrivate = false 1`] = `
       onClick={[Function]}
     >
       <button
-        className="btn btn-primary btn-sm"
-        disabled={false}
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        size="sm"
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
         type="button"
       >
-        Edit settings
+        <div>
+          Edit settings
+        </div>
       </button>
     </p>
     <p
       className="community-control"
     >
       <a
-        className="btn btn-sm btn-primary"
         href="/roles/hive-148441"
         onClick={[Function]}
       >
-        Edit roles
+        <button
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+          size="sm"
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
+          type="button"
+        >
+          <div>
+            Edit roles
+          </div>
+        </button>
       </a>
     </p>
   </div>

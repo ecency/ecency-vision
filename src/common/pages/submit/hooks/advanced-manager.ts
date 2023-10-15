@@ -1,7 +1,7 @@
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
 import { BeneficiaryRoute, RewardType } from "../../../api/operations";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Advanced } from "../types";
 import useMount from "react-use/lib/useMount";
 import { useThreeSpeakManager } from "./three-speak-manager";
@@ -23,6 +23,18 @@ export function useAdvancedManager() {
   const [reblogSwitch, setReblogSwitch] = useLocalStorage(PREFIX + "_sa_rb", false);
 
   const threeSpeakManager = useThreeSpeakManager();
+
+  const hasAdvanced = () =>
+    reward !== "default" ||
+    (beneficiaries ?? []).length > 0 ||
+    schedule !== null ||
+    reblogSwitch ||
+    (description !== "" && typeof description === "string");
+
+  const getHasAdvanced = useMemo(
+    () => hasAdvanced(),
+    [reward, beneficiaries, schedule, reblogSwitch, description]
+  );
 
   useMount(() => {
     if (localAdvanced) {
@@ -51,12 +63,8 @@ export function useAdvancedManager() {
     reblogSwitch: reblogSwitch!!,
     setReblogSwitch,
 
-    hasAdvanced: () =>
-      reward !== "default" ||
-      (beneficiaries ?? []).length > 0 ||
-      schedule !== null ||
-      reblogSwitch ||
-      (description !== "" && typeof description === "string"),
+    hasAdvanced,
+    getHasAdvanced,
 
     clearAdvanced: () => {
       setAdvanced(false);

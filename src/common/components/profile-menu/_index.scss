@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .profile-menu {
   display: flex;
@@ -9,11 +6,13 @@
   margin-bottom: 10px;
 
   @include themify(day) {
-    border-bottom: 1px solid $white-four;
+    border-bottom: 1px solid;
+    @apply border-light-400;
   }
 
   @include themify(night) {
-    border-bottom: 1px solid $dark-two;
+    border-bottom: 1px solid;
+    @apply border-dark-200;
   }
 
   .profile-menu-items {
@@ -31,8 +30,7 @@
 
     .profile-menu-item {
       align-items: center;
-      color: $steel-grey;
-      display: flex;
+      @apply text-gray-steel;
       font-size: 14px;
       height: 50px;
       padding: 0 8px;
@@ -60,8 +58,9 @@
       }
 
       &.selected-item {
-        border-bottom: 2px solid $dark-sky-blue;
-        color: $dark-sky-blue;
+        border-bottom: 2px solid;
+        @apply border-blue-dark-sky;
+        @apply text-blue-dark-sky;
         font-weight: 700;
 
         .dropdown-btn {

@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .rc-infocontainer {
   display: grid;
@@ -152,20 +149,12 @@
       }
 
       .rc-info-extras {
-        border-radius: 1rem;
-
-        .list-group-item {
+        .ececny-list-item {
           font-size: 0.875rem;
-          background-color: $gray-100;
-          color: $gray-600;
 
           > span {
             color: $primary;
             margin-left: 0.5rem;
-          }
-
-          @include themify(night) {
-            background-color: $gray-900;
           }
         }
       }

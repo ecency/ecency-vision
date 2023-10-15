@@ -1,25 +1,22 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .available-credits {
   .available-credits-bar {
     position: relative;
     overflow: hidden;
 
-    .progress {
-      background-color: $gray-200;
+    .available-credits-progress {
+      @apply bg-gray-200;
       height: 8px;
       width: 100%;
       border-radius: 4px;
       padding: 2px;
 
       @include themify(night) {
-        stroke: $gray-700;
+        @apply stroke-gray-700;
       }
 
-      .indicator {
+      .available-credits-indicator {
         height: 4px;
         border-radius: 2px;
         background-color: $primary;
@@ -58,8 +55,8 @@
   visibility: hidden;
   transition: .3s ease-in-out;
   z-index: 202;
-  background: $gray-800;
-  color: $white;
+  @apply bg-gray-800;
+  @apply text-white;
   font-weight: bold;
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
@@ -106,7 +103,8 @@
   }
 
   .extra-details {
-    border-left: 1px solid $gray-700;
+    @apply border-l;
+    @apply border-gray-700;
 
     @include media-breakpoint-down(md) {
       border-left: 0;

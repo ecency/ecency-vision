@@ -1,7 +1,8 @@
 @import "src/style/vars_mixins";
 
 .updater {
-  border-top: 3px solid $dark-sky-blue;
+  border-top: 3px solid;
+  @apply border-blue-dark-sky;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   bottom: 0;
@@ -17,15 +18,11 @@
   z-index: 6000;
 
   @include themify(day) {
-    background-color: $light-periwinkle;
+    @apply bg-light-periwinkle;
   }
 
   @include themify(night) {
-    background-color: lighten($dark-six, 10);
-  }
-
-  .btn-update {
-    margin-right: 10px;
+    @apply bg-dark-600-010-light;
   }
 
   .info-text {

@@ -33,7 +33,7 @@
       @include transition(0.3s);
 
       path {
-        stroke: $white;
+        @apply stroke-white;
       }
     }
 
@@ -69,11 +69,11 @@
     @include transition(0.3s);
 
     @include themify(day) {
-      background-color: rgba($white, 0.75);
+      @apply bg-white-075;
     }
 
     @include themify(night) {
-      background-color: rgba($dark-two, 0.75);
+      @apply bg-dark-200-075;
     }
 
     @include media-breakpoint-down(sm) {
@@ -122,11 +122,11 @@
 
     &:hover {
       @include themify(day) {
-        background-color: $duck-egg-blue;
+        @apply bg-blue-duck-egg;
       }
 
       @include themify(night) {
-        background-color: $dark;
+        @apply bg-dark-default;
       }
     }
 
@@ -151,7 +151,7 @@
       min-height: 1.5rem;
       max-width: 1.5rem;
       max-height: 1.5rem;
-      color: $gray-500;
+      @apply text-gray-500;
 
       @include margin-right(1rem);
     }
@@ -168,17 +168,15 @@
     }
   }
 
-  .btn:not(.dropdown-toggle) {
+  button:not(.dropdown-toggle) {
     white-space: nowrap;
-
-    @include margin-right(1rem);
+    margin-right: 1rem;
 
     @include media-breakpoint-down(sm) {
       width: calc(100% - 2rem);
-
-      @include margin-bottom(1rem);
-      @include margin-left(1rem);
-      @include margin-right(1rem);
+      margin-bottom: 1rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
     }
   }
 

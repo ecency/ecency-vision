@@ -1,6 +1,5 @@
 import { History } from "history";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
 import useMount from "react-use/lib/useMount";
@@ -8,11 +7,11 @@ import { DeckThreadItemSkeleton, ThreadItem } from "../deck-items";
 import { getDiscussion } from "../../../../api/bridge";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { DeckThreadsForm } from "../../deck-threads-form";
-import moment from "moment";
 import { DeckThreadItemViewerReply } from "./deck-thread-item-viewer-reply";
 import { EntriesCacheContext, useEntryCache } from "../../../../core";
 import { repliesIconSvg } from "../../icons";
 import { Entry } from "../../../../store/entries/types";
+import { Button } from "@ui/button";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -93,18 +92,19 @@ export const DeckThreadItemViewer = ({
       className={"deck-post-viewer deck-thread-item-viewer " + (isMounted ? "visible" : "")}
     >
       <div className="deck-post-viewer-header">
-        <div className="actions d-flex pt-3 mr-3">
+        <div className="actions flex pt-3 mr-3">
           <Button
-            variant="link"
+            appearance="link"
             onClick={() => {
               setIsMounted(false);
               onClose();
             }}
+            icon={arrowLeftSvg}
+            iconPlacement="left"
           >
-            {arrowLeftSvg}
             {backTitle}
           </Button>
-          <Button variant="outline-primary" href={entry.url} target="_blank" size="sm">
+          <Button outline={true} href={entry.url} target="_blank" size="sm">
             {_t("decks.columns.view-full-post")}
           </Button>
         </div>
@@ -149,7 +149,7 @@ export const DeckThreadItemViewer = ({
                 {repliesIconSvg}
                 <p>{_t("decks.columns.no-replies")}</p>
                 <Button
-                  variant="outline-primary"
+                  outline={true}
                   size="sm"
                   onClick={() =>
                     (

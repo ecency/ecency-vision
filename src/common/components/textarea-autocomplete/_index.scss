@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .rta {
   width: 100%;
@@ -22,10 +19,10 @@
 
       overflow-x: auto;
       @include themify(day) {
-        background: $white-two;
+        @apply bg-light-200;
       }
       @include themify(night) {
-        background: $dark;
+        @apply bg-dark-default;
       }
       .rta__item {
         border-bottom: none;
@@ -43,15 +40,15 @@
           }
 
           @include themify(day) {
-            color: $warm-grey;
-            background: $white-two;
+            @apply text-gray-warm;
+            @apply bg-light-200;
 
             &.rta__item--selected,
             &.rta__entity--selected,
             &:hover,
             &:focus {
-              background: lighten($dark-sky-blue, 10);
-              color: $white;
+              @apply bg-blue-dark-sky-010;
+              @apply text-white;
               border-radius: 0;
               border-top-right-radius: 25px;
               border-bottom-right-radius: 25px;
@@ -59,15 +56,15 @@
           }
 
           @include themify(night) {
-            color: $white-four;
-            background: $dark;
+            @apply text-light-400;
+            @apply bg-dark-default;
 
             &.rta__item--selected,
             &.rta__entity--selected,
             &:hover,
             &:focus {
-              background: $metallic-blue;
-              color: $white;
+              @apply bg-blue-metallic;
+              @apply text-white;
               border-radius: 0;
               border-top-right-radius: 25px;
               border-bottom-right-radius: 25px;

@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .custom-dropdown {
   display: inline-flex;
@@ -36,22 +33,22 @@
     }
 
     @include themify(day) {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     @include themify(night) {
-      color: $pastel-blue;
+      @apply text-blue-pastel;
     }
 
     &.hover,
     &:hover {
       .menu-down {
         @include themify(day) {
-          background: $duck-egg-blue;
+          @apply bg-blue-duck-egg;
         }
 
         @include themify(night) {
-          background: $dark-grey-blue;
+          @apply bg-blue-dark-grey;
         }
       }
     }
@@ -95,11 +92,11 @@
     border-radius: $border-radius;
 
     @include themify(day) {
-      background: $white;
+      @apply bg-white;
     }
 
     @include themify(night) {
-      background: lighten($dark-six, 5);
+      @apply bg-dark-600-010-light;
     }
 
     z-index: 3;
@@ -107,8 +104,8 @@
     .menu-header {
       padding: 8px 20px;
       font-weight: 500;
-      background: $dark-sky-blue;
-      color: $white;
+      @apply bg-blue-dark-sky;
+      @apply text-white;
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
     }
@@ -124,11 +121,11 @@
       border-bottom-right-radius: 25px;
 
       @include themify(day) {
-        color: $warm-grey;
+        @apply text-gray-warm;
       }
 
       @include themify(night) {
-        color: $silver;
+        @apply text-silver;
       }
 
       &:not(:last-child) {
@@ -155,14 +152,14 @@
 
       &.active {
         .item-inner {
-          color: $white;
+          @apply text-white;
 
           @include themify(day) {
-            background: $dark-sky-blue;
+            @apply bg-blue-dark-sky;
           }
 
           @include themify(night) {
-            background: $metallic-blue;
+            @apply bg-blue-metallic;
           }
         }
       }
@@ -173,12 +170,12 @@
 
       &:hover:not(.active, .static) {
         @include themify(day) {
-          background: lighten($dark-sky-blue, 40);
-          color: $dark-sky-blue;
+          @apply bg-blue-dark-sky-040;
+          @apply text-blue-dark-sky;
         }
 
         @include themify(night) {
-          background: lighten($dark-six, 12);
+          @apply bg-dark-600-010-light;
         }
       }
     }

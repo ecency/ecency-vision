@@ -41,12 +41,12 @@ const MarketPage = (props: PageProps) => {
     <>
       <Meta title={title} description={description} />
       <Feedback activeUser={props.activeUser} />
-      <div className={"d-flex justify-content-center market-page " + mode}>
-        <div className={mode !== MarketMode.ADVANCED ? "w-sm-75 p-3 p-sm-0" : "w-100"}>
+      <div className={"flex justify-center market-page " + mode}>
+        <div className={mode !== MarketMode.ADVANCED ? "sm:w-[75%] p-3 sm:p-0" : "w-full"}>
           <div style={{ marginBottom: "6rem" }}>{navbar}</div>
           {mode !== MarketMode.ADVANCED ? (
-            <div className="mb-5 text-center">
-              <h2>{_t("market.title")}</h2>
+            <div className="mb-5 flex flex-col gap-3 text-center">
+              <h2 className="text-3xl font-bold">{_t("market.title")}</h2>
               <Tsx k="market.description">
                 <div className="header-description" />
               </Tsx>
@@ -56,7 +56,7 @@ const MarketPage = (props: PageProps) => {
           )}
           {mode !== MarketMode.ADVANCED ? (
             <ModeSelector
-              className="mb-5 mx-auto equal-widths"
+              className="mb-5 mx-auto equal-widths max-w-[600px]"
               mode={mode}
               onSelect={(mode) => {
                 setMode(mode);

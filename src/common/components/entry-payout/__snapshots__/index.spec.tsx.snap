@@ -1,14 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(1) Default render 1`] = `
-<div
-  className="entry-payout notranslate"
-  onBlur={[Function]}
-  onFocus={[Function]}
-  onMouseOut={[Function]}
-  onMouseOver={[Function]}
->
-  $ 14.26
+<div>
+  <div />
+  <div
+    className="entry-payout notranslate"
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+  >
+    $ 14.26
+  </div>
 </div>
 `;
 
@@ -235,13 +236,14 @@ exports[`(4) Detail render with max payout 1`] = `
 `;
 
 exports[`(5) Default with max payout 1`] = `
-<div
-  className="entry-payout payout-limit-hit notranslate"
-  onBlur={[Function]}
-  onFocus={[Function]}
-  onMouseOut={[Function]}
-  onMouseOver={[Function]}
->
-  $ 10.00
+<div>
+  <div />
+  <div
+    className="entry-payout payout-limit-hit notranslate"
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+  >
+    $ 10.00
+  </div>
 </div>
 `;

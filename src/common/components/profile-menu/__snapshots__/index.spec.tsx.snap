@@ -8,27 +8,27 @@ exports[`(1) Render 1`] = `
     className="profile-menu-items"
   >
     <span
-      className="d-flex d-lg-none selected-item profile-menu-item"
+      className="flex lg:hidden selected-item profile-menu-item"
     />
     <div
-      className="d-none d-lg-flex align-items-center"
+      className="hidden lg:flex items-center"
     >
       <a
-        className="profile-menu-item"
+        className="profile-menu-item flex"
         href="/@username/blog"
         onClick={[Function]}
       >
         Blog
       </a>
       <a
-        className="profile-menu-item selected-item"
+        className="profile-menu-item flex selected-item"
         href="/@username/posts"
         onClick={[Function]}
       >
         Posts
       </a>
       <a
-        className="profile-menu-item"
+        className="profile-menu-item flex"
         href="/@username/comments"
         onClick={[Function]}
       >
@@ -36,21 +36,21 @@ exports[`(1) Render 1`] = `
       </a>
     </div>
     <a
-      className="profile-menu-item d-lg-none"
+      className="profile-menu-item flex lg:hidden"
       href="/@username/communities"
       onClick={[Function]}
     >
       Communities
     </a>
     <a
-      className="profile-menu-item"
+      className="profile-menu-item flex"
       href="/@username/wallet"
       onClick={[Function]}
     >
       Wallet
     </a>
     <div
-      className="kebab-icon entry-index-menu the-menu main-menu d-none d-lg-flex "
+      className="kebab-icon entry-index-menu the-menu main-menu hidden lg:flex"
     />
   </div>
   <div
@@ -71,7 +71,7 @@ exports[`(2) With active user 1`] = `
     className="profile-menu-items"
   >
     <span
-      className="d-flex d-lg-none selected-item profile-menu-item"
+      className="flex lg:hidden selected-item profile-menu-item"
     >
       <div
         className="custom-dropdown float-left"
@@ -103,24 +103,24 @@ exports[`(2) With active user 1`] = `
       </div>
     </span>
     <div
-      className="d-none d-lg-flex align-items-center"
+      className="hidden lg:flex items-center"
     >
       <a
-        className="profile-menu-item"
+        className="profile-menu-item flex"
         href="/@username/blog"
         onClick={[Function]}
       >
         Blog
       </a>
       <a
-        className="profile-menu-item selected-item"
+        className="profile-menu-item flex selected-item"
         href="/@username/posts"
         onClick={[Function]}
       >
         Posts
       </a>
       <a
-        className="profile-menu-item"
+        className="profile-menu-item flex"
         href="/@username/comments"
         onClick={[Function]}
       >
@@ -128,21 +128,21 @@ exports[`(2) With active user 1`] = `
       </a>
     </div>
     <a
-      className="profile-menu-item"
+      className="profile-menu-item flex"
       href="/@username/wallet"
       onClick={[Function]}
     >
       Wallet
     </a>
     <a
-      className="profile-menu-item"
+      className="profile-menu-item flex"
       href="/@username/settings"
       onClick={[Function]}
     >
       Settings
     </a>
     <div
-      className="kebab-icon entry-index-menu the-menu main-menu d-none d-lg-flex "
+      className="kebab-icon entry-index-menu the-menu main-menu hidden lg:flex"
     >
       <div
         className="custom-dropdown float-left"

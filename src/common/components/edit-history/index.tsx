@@ -1,31 +1,21 @@
 import React, { Component } from "react";
-
 import { diff_match_patch } from "diff-match-patch";
-
-import { Modal, Form, FormControl } from "react-bootstrap";
-
 import defaults from "../../constants/defaults.json";
-
 import { renderPostBody, setProxyBase } from "@ecency/render-helper";
-
-setProxyBase(defaults.imageServer);
-
 import { Entry } from "../../store/entries/types";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
-
 import { error } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
-
 import { commentHistory, CommentHistoryListItem } from "../../api/private-api";
-
 import { historySvg, tagSvg } from "../../img/svg";
 import { dateToFormatted } from "../../helper/parse-date";
 import "./index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
+
+setProxyBase(defaults.imageServer);
 
 const dmp = new diff_match_patch();
 
@@ -122,11 +112,11 @@ export class EditHistory extends BaseComponent<Props, State> {
     this.setState({ selected: i.v });
   };
 
-  versionChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  versionChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ selected: Number(e.target.value) });
   };
 
-  diffChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  diffChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ showDiff: e.target.checked });
   };
 
@@ -159,7 +149,7 @@ export class EditHistory extends BaseComponent<Props, State> {
               {_t("edit-history.show-diff")}
             </label>
           </div>
-          <Form.Control as="select" value={selected} onChange={this.versionChanged}>
+          <FormControl type="select" value={selected} onChange={this.versionChanged}>
             {history.map((i) => {
               return (
                 <option value={i.v} key={i.v}>
@@ -168,7 +158,7 @@ export class EditHistory extends BaseComponent<Props, State> {
                 </option>
               );
             })}
-          </Form.Control>
+          </FormControl>
         </div>
         <div className="version-list-lg">
           <div className="diff-select">
@@ -214,16 +204,15 @@ export default class EditHistoryDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="edit-history-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("edit-history.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("edit-history.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <EditHistory {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

@@ -22,7 +22,10 @@
     "pretty": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@ui/*": ["./src/common/features/ui/*"]
+    }
   },
   "exclude": [
     "node_modules",

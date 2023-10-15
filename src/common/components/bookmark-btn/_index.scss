@@ -1,11 +1,8 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .bookmark-btn {
   cursor: pointer;
-  color: lighten($steel-grey, 4);
+  @apply text-gray-steel-light-005;
   margin-right: 14px;
 
   @media (min-width: $sm-break) {
@@ -17,7 +14,7 @@
   }
 
   &.bookmarked {
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
   }
 
   &.in-progress {

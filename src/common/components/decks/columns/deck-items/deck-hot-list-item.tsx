@@ -1,6 +1,5 @@
 import { TrendingTag } from "../../../../store/trending-tags/types";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { _t } from "../../../../i18n";
 
 export interface HotListItemProps {
@@ -16,9 +15,9 @@ export const HotListItem = ({ index, entry, onMounted, onClick }: HotListItemPro
   }, []);
 
   return (
-    <div className="p-3 border-bottom d-flex align-items-center">
+    <div className="p-3 border-b border-[--border-color] flex items-center">
       <div className="hot-item-index">{index}</div>
-      <div className="flex-grow-1 ml-3 hot-item-link">
+      <div className="grow ml-3 hot-item-link">
         <a role="button" href="#" onClick={onClick}>
           #{entry.name}
         </a>

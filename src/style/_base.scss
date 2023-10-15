@@ -114,15 +114,17 @@ a[target="_blank"] {
     display: flex;
 
     @include themify(day) {
-      border-bottom: 1px solid $white-four;
+      border-bottom: 1px solid;
+      @apply border-light-400;
     }
 
     @include themify(night) {
-      border-bottom: 1px solid $dusky-blue-two;
+      border-bottom: 1px solid;
+      @apply border-blue-dusky-2;
     }
 
     .step-no {
-      color: $silver;
+      @apply text-silver;
       flex-grow: 0;
       flex-shrink: 0;
       font-size: 48px;
@@ -139,11 +141,11 @@ a[target="_blank"] {
         margin-bottom: 4px;
 
         @include themify(day) {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
       }
 
@@ -155,11 +157,11 @@ a[target="_blank"] {
         text-overflow: ellipsis;
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
-          color: $metallic-blue;
+          @apply text-blue-metallic;
         }
       }
     }
@@ -200,8 +202,9 @@ a[target="_blank"] {
 // dark theme
 .theme-night {
   .rdtPicker {
-    background: $metallic-blue;
-    border: 1px solid $dark;
+    @apply bg-blue-metallic;
+    border: 1px solid;
+    @apply border-dark-default;
   }
 
   .rdtPicker td.rdtDay:hover,
@@ -209,12 +212,12 @@ a[target="_blank"] {
   .rdtPicker td.rdtMinute:hover,
   .rdtPicker td.rdtSecond:hover,
   .rdtPicker .rdtTimeToggle:hover {
-    background: $dusky-blue;
+    @apply bg-blue-dusky;
   }
 
   .rdtPicker td.rdtOld,
   .rdtPicker td.rdtNew {
-    color: $silver;
+    @apply text-silver;
   }
 
   .rdtPicker td.rdtToday:before {
@@ -223,41 +226,43 @@ a[target="_blank"] {
 
   .rdtPicker td.rdtActive,
   .rdtPicker td.rdtActive:hover {
-    color: $metallic-blue;
+    @apply text-blue-metallic;
   }
 
   .rdtPicker td.rdtActive.rdtToday:before {
-    border-bottom-color: $metallic-blue;
+    @apply border-b-blue-metallic;
   }
 
   .rdtPicker td.rdtDisabled,
   .rdtPicker td.rdtDisabled:hover {
-    color: $steel-grey;
+    @apply text-gray-steel;
   }
 
   .rdtPicker th {
-    border-bottom: 1px solid $dark;
+    border-bottom: 1px solid;
+    @apply border-dark-default;
   }
 
   .rdtPicker thead tr:first-of-type th:hover {
-    background: $dusky-blue;
+    @apply bg-blue-dusky;
   }
 
   .rdtPicker tfoot {
-    border-top: 1px solid $dark;
+    border-top: 1px solid;
+    @apply border-dark-default;
   }
 
   .rdtPicker button:hover {
-    background-color: $dusky-blue;
+    @apply bg-blue-dusky;
   }
 
   td.rdtMonth:hover,
   td.rdtYear:hover {
-    background: $dusky-blue;
+    @apply bg-blue-dusky;
   }
 
   .rdtCounter .rdtBtn:hover {
-    background: $dusky-blue;
+    @apply bg-blue-dusky;
   }
 }
 
@@ -269,8 +274,8 @@ a[target="_blank"] {
     cursor: auto;
 
     @include themify(night) {
-      background-color: $dusky-blue;
-      border-color: $dusky-blue;
+      @apply bg-blue-dusky;
+      @apply border-blue-dusky;
 
     }
     border-color: $pagination-disabled-border-color;
@@ -291,13 +296,13 @@ a[target="_blank"] {
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background-color: $dark-sky-blue;
+  @apply bg-blue-dark-sky;
   @include themify(day) {
-    background-color: $dark-sky-blue;
+    @apply bg-blue-dark-sky;
   }
 
   @include themify(night) {
-    background-color: $dark-sky-blue;
+    @apply bg-blue-dark-sky;
   }
   border-radius: 10px;
 }
@@ -306,11 +311,11 @@ a[target="_blank"] {
 ::-webkit-scrollbar-thumb:hover {
 
   @include themify(day) {
-    background-color: $dusk-blue;
+    @apply bg-blue-dusk;
   }
 
   @include themify(night) {
-    background-color: $dusk-blue;
+    @apply bg-blue-dusk;
   }
 }
 
@@ -343,4 +348,31 @@ label.font-small {
   left: 0;
   right: 0;
   z-index: 9;
+}
+
+.show {
+  visibility: visible !important;
+}
+
+svg {
+  display: inline-block;
+}
+
+a {
+  @apply text-blue-dark-sky;
+  text-decoration: none;
+  background-color: transparent;
+
+  &:hover {
+    @apply text-blue-dark-sky-active;
+  }
+}
+
+.list-item {
+  &::marker {
+    content: '';
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
 }

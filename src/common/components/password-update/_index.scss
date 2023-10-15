@@ -1,13 +1,10 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .password-update-modal {
   .pass-generated {
     font-size: 14px;
     font-weight: 500;
-    color: $red2;
+    @apply text-red-020;
     word-break: break-all;
   }
 }

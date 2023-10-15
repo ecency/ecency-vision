@@ -95,12 +95,12 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
   return isMounted ? (
     <div className="profile-parent">
       <div className="shadow bg-white profile-container rounded">
-        <div className="close-icon rounded-circle" onClick={onClose}>
+        <div className="close-icon rounded-[50%]" onClick={onClose}>
           {closeSvg}
         </div>
         <>
           {loading ? (
-            <Skeleton className="cover-img-placeholder rounded-top" />
+            <Skeleton className="cover-img-placeholder rounded-t" />
           ) : (
             profile && (
               <img
@@ -113,20 +113,20 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
                     ? coverFallbackDay
                     : coverFallbackNight
                 }
-                className="w-100 cover-img rounded-top"
+                className="w-full cover-img rounded-t"
                 loading="lazy"
               />
             )
           )}
           <div className="p-3 upper-container">
-            <div className="d-flex align-items-center info-container flex-column text-center">
+            <div className="flex items-center info-container flex-col text-center">
               <div
-                className={`rounded-circle mb-3 profile-img-container ${
+                className={`rounded-[50%] mb-3 profile-img-container ${
                   profile && profile.profile.profile_image ? "" : "no-image"
                 }`}
               >
                 {loading ? (
-                  <Skeleton className="profile-img rounded-circle" />
+                  <Skeleton className="profile-img rounded-[50%]" />
                 ) : (
                   profile && (
                     <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>
@@ -135,14 +135,14 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
                           global.canUseWebp ? "webp/" : ""
                         }u/${username}/avatar/medium`}
                         alt="img"
-                        className="profile-img rounded-circle bg-primary"
+                        className="profile-img rounded-[50%] bg-primary"
                         loading="lazy"
                       />
                     </Link>
                   )
                 )}
               </div>
-              <div className="d-flex flex-column align-items-center">
+              <div className="flex flex-col items-center">
                 <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>
                   <div>
                     {loading ? (
@@ -167,7 +167,7 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
                   </div>
                 </Link>
                 {username !== activeUser?.username && (
-                  <div className="d-flex mt-3">
+                  <div className="flex mt-3">
                     <>
                       <FollowControls
                         ui={ui}
@@ -196,8 +196,8 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
                 )}
               </div>
             </div>
-            <div className="d-flex justify-content-between flex-wrap">
-              <div className="flex-grow-1 d-flex border-bottom">
+            <div className="flex justify-between flex-wrap">
+              <div className="flex-grow-1 flex border-b border-[--border-color]">
                 <div className="p-3 flex-grow-1">
                   <b>{_t("profile-info.joined")}</b>
                   <div className="text-break-wrap">
@@ -211,7 +211,7 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
 
                 <div
                   className={`p-3 flex-grow-1 ${
-                    loading ? "" : profile && profile.profile.location ? "" : "d-none"
+                    loading ? "" : profile && profile.profile.location ? "" : "hidden"
                   }`}
                 >
                   <b>{_t("profile-edit.location")}</b>
@@ -225,7 +225,7 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
                 </div>
               </div>
 
-              <div className="flex-grow-1 d-flex border-bottom">
+              <div className="flex-grow-1 flex border-b border-[--border-color]">
                 <div className="p-3 flex-grow-1">
                   <b>{_t("profile.section-posts")}</b>
                   <div className="text-break-wrap">
@@ -253,7 +253,7 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
                 </div>
               </div>
 
-              <div className="flex-grow-1 d-flex border-bottom">
+              <div className="flex-grow-1 flex border-b border-[--border-color]">
                 <div className="p-3 flex-grow-1">
                   <b>{_t("profile.followers")}</b>
                   <div className="text-break-wrap">
@@ -278,7 +278,7 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
               </div>
             </div>
             <div className={`p-3 about-container`}>
-              <b className={`${loading ? "" : profile && profile.profile.about ? "" : "d-none"}`}>
+              <b className={`${loading ? "" : profile && profile.profile.about ? "" : "hidden"}`}>
                 {_t("profile-edit.about")}
               </b>
               <div className="limited-about-text">

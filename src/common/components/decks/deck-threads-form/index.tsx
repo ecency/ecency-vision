@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "./_index.scss";
-import { Alert, Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../../img/svg";
 import { DeckThreadsFormContext } from "./deck-threads-form-manager";
 import { _t } from "../../../i18n";
@@ -18,6 +17,8 @@ import { IdentifiableEntry, ThreadItemEntry } from "../columns/deck-threads-mana
 import useClickAway from "react-use/lib/useClickAway";
 import { classNameObject } from "../../../helper/class-name-object";
 import usePrevious from "react-use/lib/usePrevious";
+import { Button } from "@ui/button";
+import { Alert } from "@ui/alert";
 
 interface Props {
   className?: string;
@@ -227,9 +228,7 @@ export const DeckThreadsForm = ({
     >
       {!inline && (
         <div className="deck-toolbar-threads-form-header">
-          <Button variant="link" onClick={() => setShow(false)}>
-            {arrowLeftSvg}
-          </Button>
+          <Button appearance="link" onClick={() => setShow(false)} icon={arrowLeftSvg} />
           {getSubmitButton()}
         </div>
       )}
@@ -257,7 +256,7 @@ export const DeckThreadsForm = ({
               onTextareaFocus={() => setFocused(true)}
             />
             {inline && (
-              <div className="d-flex align-items-center">
+              <div className="flex items-center">
                 {activeUser && (
                   <AvailableCredits
                     username={activeUser.username}
@@ -272,12 +271,12 @@ export const DeckThreadsForm = ({
           </div>
         </div>
         {inline && text?.length > 255 && (
-          <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
+          <Alert appearance="warning">{_t("decks.threads-form.max-length")}</Alert>
         )}
         {!inline && (
           <div className="deck-toolbar-threads-form-bottom">
             {text?.length > 255 && (
-              <Alert variant="warning">{_t("decks.threads-form.max-length")}</Alert>
+              <Alert appearance="warning">{_t("decks.threads-form.max-length")}</Alert>
             )}
             <DeckThreadsCreatedRecently
               lastEntry={lastCreatedThreadItem}
@@ -292,7 +291,14 @@ export const DeckThreadsForm = ({
                   location={location}
                 />
               )}
-              <Button href="/submit" target="_blank" variant="outline-primary" size="sm">
+              <Button
+                className="whitespace-nowrap flex items-center"
+                href="/submit"
+                target="_blank"
+                appearance="primary"
+                outline={true}
+                size="sm"
+              >
                 {_t("decks.threads-form.create-regular-post")}
               </Button>
             </div>

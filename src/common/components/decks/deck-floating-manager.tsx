@@ -5,6 +5,7 @@ import { upArrowSvg } from "../../img/svg";
 import { getColumnTitle, ICONS } from "./consts";
 import { _t } from "../../i18n";
 import { classNameObject } from "../../helper/class-name-object";
+import { Button } from "@ui/button";
 
 export const DeckFloatingManager = () => {
   const columnsRef = useRef<HTMLDivElement | null>(null);
@@ -21,16 +22,15 @@ export const DeckFloatingManager = () => {
         dragging: mobileOffset > 0
       })}
     >
-      <div
+      <Button
         draggable="true"
-        className="btn btn-primary dropdown-toggle"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
         onTouchEnd={() => {
           setShow(mobileOffset <= 75);
           setMobileOffset(0);
         }}
-        onTouchMove={(e) => {
+        onTouchMove={(e: React.TouchEvent) => {
           const touchY = e.touches.item(0).clientY;
           const windowHeight = window.innerHeight;
           const resultInPercentage = (touchY / windowHeight) * 100;
@@ -39,9 +39,9 @@ export const DeckFloatingManager = () => {
 
           setMobileOffset(resultInPercentage);
         }}
-      >
-        {upArrowSvg}
-      </div>
+        icon={upArrowSvg}
+        iconClassName="ml-2"
+      />
       <div
         ref={columnsRef}
         className={classNameObject({
@@ -99,8 +99,8 @@ export const DeckFloatingManager = () => {
             </div>
           ))}
         </div>
-        <div
-          className="btn btn-outline-primary"
+        <Button
+          outline={true}
           onClick={() =>
             add({
               key: getNextKey(),
@@ -110,7 +110,7 @@ export const DeckFloatingManager = () => {
           }
         >
           {_t("decks.add-column")}
-        </div>
+        </Button>
       </div>
     </div>
   ) : (

@@ -100,12 +100,13 @@
             background-color: $green;
           }
 
-          .status-icon-published {
-            width: 0.5rem;
-            height: 0.5rem;
-            border-radius: 50%;
-            cursor: pointer;
-            background-color: $dark-sky-blue;
+            .status-icon-published {
+              width: 0.5rem;
+              height: 0.5rem;
+              border-radius: 50%;
+              cursor: pointer;
+
+              @apply bg-blue-dark-sky;
           }
 
           .status-icon-failed {
@@ -194,14 +195,17 @@
 
   @include themify(night) {
     background: #283241;
-    color: $pinkish-grey;
-    border: 1px solid $dark;
+    border: 1px solid;
+    @apply text-gray-pinkish;
+    @apply border-dark-default;
   }
 
   @include themify(day) {
     background: $white;
-    color: $charcoal-grey;
-    border: 1px solid $white-five;
+    border: 1px solid;
+    @apply bg-white;
+    @apply text-gray-charcoal;
+    @apply border-white-500;
   }
 }
 

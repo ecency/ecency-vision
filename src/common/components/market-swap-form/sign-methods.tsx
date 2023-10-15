@@ -6,7 +6,6 @@ import {
   SwappingMethod
 } from "./api/swapping";
 import { _t } from "../../i18n";
-import { Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { MarketAsset } from "./market-pair";
 import { Global } from "../../store/global/types";
@@ -18,6 +17,7 @@ import { error } from "../feedback";
 import { SignByKey } from "./sign-by-key";
 import { PrivateKey } from "@hiveio/dhive";
 import { HiveMarket } from "./api/hive";
+import { Button } from "@ui/button";
 
 export interface Props {
   global: Global;
@@ -127,10 +127,9 @@ export const SignMethods = ({
         <>
           {MarketSwappingMethods[asset].includes(SwappingMethod.KEY) ? (
             <Button
-              block={true}
               disabled={disabled}
-              variant="outline-primary"
-              className="py-3 mt-4"
+              outline={true}
+              className="w-full mt-4"
               onClick={() => setShowSignByKey(true)}
             >
               {_t("market.swap-by", { method: "key" })}
@@ -139,12 +138,7 @@ export const SignMethods = ({
             <></>
           )}
           {MarketSwappingMethods[asset].includes(SwappingMethod.HS) ? (
-            <Button
-              block={true}
-              disabled={disabled}
-              className="py-3 mt-4 hs-button"
-              onClick={onSwapByHs}
-            >
+            <Button disabled={disabled} className="w-full mt-4 hs-button" onClick={onSwapByHs}>
               <i className="sign-logo mr-3">{hsLogoSvg}</i>
               {_t("market.swap-by", { method: "Hivesigner" })}
             </Button>
@@ -152,12 +146,7 @@ export const SignMethods = ({
             <></>
           )}
           {global.hasKeyChain && MarketSwappingMethods[asset].includes(SwappingMethod.KC) ? (
-            <Button
-              block={true}
-              disabled={disabled}
-              className="py-3 mt-4 kc-button"
-              onClick={onSwapByKc}
-            >
+            <Button disabled={disabled} className="w-full mt-4 kc-button" onClick={onSwapByKc}>
               <i className="sign-logo mr-3">{kcLogoSvg}</i>
               {isSignByHsLoading
                 ? _t("market.signing")

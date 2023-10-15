@@ -1,15 +1,10 @@
 import React, { Component, useEffect, useState } from "react";
-
 import { History, Location } from "history";
-
-import { Button, Form, FormControl } from "react-bootstrap";
-
 import defaults from "../../constants/defaults.json";
-
 import { renderPostBody, setProxyBase } from "@ecency/render-helper";
 import { Entry, EntryVote } from "../../store/entries/types";
 import { Account, FullAccount } from "../../store/accounts/types";
-import { Community, ROLES } from "../../store/communities/types";
+import { Community, ROLES } from "../../store/communities";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { Global } from "../../store/global/types";
 import { User } from "../../store/users/types";
@@ -27,31 +22,25 @@ import Comment from "../comment";
 import EntryDeleteBtn from "../entry-delete-btn";
 import MuteBtn from "../mute-btn";
 import LoginRequired from "../login-required";
-
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
-
 import { _t } from "../../i18n";
-
 import { comment, formatError } from "../../api/operations";
-
 import * as ss from "../../util/session-storage";
-
 import { createReplyPermlink, makeJsonMetaDataReply } from "../../helper/posting";
 import tempEntry from "../../helper/temp-entry";
-
 import { error } from "../feedback";
-
 import _c from "../../util/fix-class-names";
-
 import { commentSvg, deleteForeverSvg, dotsHorizontal, pencilOutlineSvg } from "../../img/svg";
-
 import { version } from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
-
 import { Tsx } from "../../i18n/helper";
 import MyDropDown from "../dropdown";
 import { ProfilePopover } from "../profile-popover";
 import "./_index.scss";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
+
+setProxyBase(defaults.imageServer);
 
 setProxyBase(defaults.imageServer);
 
@@ -307,7 +296,7 @@ export const Item = (props: ItemProps) => {
 
   let normalComponent = (
     <div className={_c(`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`)}>
-      <div className="position-relative">
+      <div className="relative">
         <div className="item-anchor" id={anchorId} />
       </div>
       <div className="item-inner">
@@ -324,7 +313,7 @@ export const Item = (props: ItemProps) => {
         </div>
         <div className="item-content">
           <div className="item-header">
-            <div className="d-flex align-items-center" id={`${entry.author}-${entry.permlink}`}>
+            <div className="flex items-center" id={`${entry.author}-${entry.permlink}`}>
               <ProfilePopover {...props} />
             </div>
             <span className="separator circle-separator" />
@@ -597,7 +586,7 @@ export class List extends Component<ListProps> {
           />
         ))}
         {!isHiddenPermitted && mutedContent.length > 0 && activeUser && activeUser.username && (
-          <div className="hidden-warning d-flex justify-content-between flex-1 align-items-center mt-3">
+          <div className="hidden-warning flex justify-between flex-1 items-center mt-3">
             <div className="flex-1">{_t("discussion.reveal-muted-long-description")}</div>
             <div onClick={() => this.setState({ isHiddenPermitted: true })} className="pointer p-3">
               <b>{_t("g.show")}</b>
@@ -690,7 +679,7 @@ export class Discussion extends Component<Props, State> {
     fetchDiscussion(author, permlink);
   };
 
-  orderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  orderChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const order = e.target.value as SortOrder;
     const { sortDiscussion } = this.props;
     sortDiscussion(SortOrder[order]);
@@ -763,9 +752,8 @@ export class Discussion extends Component<Props, State> {
           ) : (
             <div className="order">
               <span className="order-label">{_t("discussion.order")}</span>
-              <Form.Control
-                as="select"
-                size="sm"
+              <FormControl
+                type="select"
                 value={order}
                 onChange={this.orderChanged}
                 disabled={loading}
@@ -774,7 +762,7 @@ export class Discussion extends Component<Props, State> {
                 <option value="author_reputation">{_t("discussion.order-reputation")}</option>
                 <option value="votes">{_t("discussion.order-votes")}</option>
                 <option value="created">{_t("discussion.order-created")}</option>
-              </Form.Control>
+              </FormControl>
             </div>
           )}
         </div>

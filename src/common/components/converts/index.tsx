@@ -1,23 +1,18 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
-import { Table, Modal } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import Tooltip from "../tooltip";
 import LinearProgress from "../linear-progress";
-
 import { _t } from "../../i18n";
-
 import formattedNumber from "../../util/formatted-number";
-import MyPagination from "../pagination";
+import MyPagination from "@ui/pagination";
 import { ConversionRequest, getConversionRequests } from "../../api/hive";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 interface Props {
   global: Global;
@@ -82,31 +77,31 @@ export class List extends BaseComponent<Props, State> {
       <div className="conversion-content">
         <div className="list-body">
           {sliced.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
-          <Table striped={true} bordered={true} hover={true}>
+          <Table>
             <thead>
-              <tr>
-                <th>{_t("conversion-requests.request-id")}</th>
-                <th>{_t("conversion-requests.amount")}</th>
-                <th>{_t("conversion-requests.pending")}</th>
-              </tr>
+              <Tr>
+                <Th>{_t("conversion-requests.request-id")}</Th>
+                <Th>{_t("conversion-requests.amount")}</Th>
+                <Th>{_t("conversion-requests.pending")}</Th>
+              </Tr>
             </thead>
             <tbody>
               {sliced.map((x) => {
                 const { requestid } = x;
                 return (
-                  <tr key={requestid}>
-                    <td>{requestid}</td>
-                    <td>
+                  <Tr key={requestid}>
+                    <Td>{requestid}</Td>
+                    <Td>
                       <Tooltip content={x.amount}>
                         <span>{formattedNumber(x.amount, { prefix: "$" })}</span>
                       </Tooltip>
-                    </td>
-                    <td>
+                    </Td>
+                    <Td>
                       <div className="date" title={dateToFormatted(x.conversion_date)}>
                         {dateToFullRelative(x.conversion_date)}
                       </div>
-                    </td>
-                  </tr>
+                    </Td>
+                  </Tr>
                 );
               })}
             </tbody>
@@ -135,12 +130,12 @@ export default class ConversionRequests extends Component<Props> {
     return (
       <>
         <Modal onHide={onHide} show={true} centered={true} animation={false}>
-          <Modal.Header closeButton={true}>
-            <Modal.Title>{_t("conversion-requests.title")}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>{_t("conversion-requests.title")}</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
             <List {...this.props} />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </>
     );

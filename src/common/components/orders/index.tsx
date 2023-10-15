@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-import { Table } from "react-bootstrap";
+import React, { useState } from "react";
 import { OrdersDataItem, TradeDataItem } from "../../api/hive";
 import { Skeleton } from "../skeleton";
-import Pagination from "../pagination";
-import { useState } from "react";
+import Pagination from "@ui/pagination";
 import moment from "moment";
 import { _t } from "../../i18n";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 const buyColumns = [`${_t("market.price")}`, `HIVE`, `${_t("market.total")} HBD ($)`];
 
@@ -92,38 +91,36 @@ export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
   return loading ? (
     <Skeleton className="loading-hive" />
   ) : (
-    <div className="rounded">
-      <h5>{title}</h5>
-      <Table striped={true} bordered={true} hover={true} size="sm">
+    <div className="flex flex-col items-center rounded">
+      <h5 className="text-xl self-start my-4">{title}</h5>
+      <Table full={true}>
         <thead>
-          <tr>
+          <Tr>
             {columns.map((item) => (
-              <th key={item}>{item}</th>
+              <Th key={item}>{item}</Th>
             ))}
-          </tr>
+          </Tr>
         </thead>
         <tbody>
           {sliced.map((item, index) => (
-            <tr
+            <Tr
               key={`${item.key1}-${index}`}
               className={type === 1 || type === 2 ? "pointer" : ""}
               onClick={() => (onPriceClick ? onPriceClick(item) : {})}
             >
-              <td>{item.key1}</td>
-              <td
-                className={type === 3 ? (item.key5 === "bid" ? "text-success" : "text-danger") : ""}
-              >
+              <Td>{item.key1}</Td>
+              <Td className={type === 3 ? (item.key5 === "bid" ? "text-green" : "text-red") : ""}>
                 {item.key2}
-              </td>
-              <td>{item.key3}</td>
-              {item.key4 && <td>{item.key4}</td>}
-            </tr>
+              </Td>
+              <Td>{item.key3}</Td>
+              {item.key4 && <Td>{item.key4}</Td>}
+            </Tr>
           ))}
         </tbody>
       </Table>
       {data.length > pageSize && (
         <Pagination
-          className="justify-content-center flex-wrap"
+          className="justify-center mt-4 flex-wrap"
           dataLength={data.length}
           pageSize={pageSize}
           maxItems={8}

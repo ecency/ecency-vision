@@ -5,10 +5,10 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "./_deck-whats-new-column.scss";
 import { markdownToHTML } from "@ecency/render-helper/lib/methods";
-import { Accordion, Badge } from "react-bootstrap";
 import { version } from "../../../../../package.json";
 import { DeckGridContext } from "../deck-manager";
 import { ReloadableDeckGridItem } from "../types";
+import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
 
 interface Props {
   id: string;
@@ -66,20 +66,22 @@ export const DeckWhatsNewColumn = ({ id, draggable, settings }: Props) => {
         {!isLoading &&
           releasesList.map((item) => (
             <Accordion key={item.name}>
-              <Accordion.Toggle as="div" eventKey="1">
+              <AccordionToggle as="div" eventKey="1">
                 <div className="wn-item">
                   {item.name}
                   {item.name === version && (
-                    <Badge variant="primary">{_t("decks.columns.current")}</Badge>
+                    <div className="bg-blue-dark-sky px-2 py-1 text-xs font-bold text-white rounded">
+                      {_t("decks.columns.current")}
+                    </div>
                   )}
                 </div>
-              </Accordion.Toggle>
-              <Accordion.Collapse eventKey="1">
+              </AccordionToggle>
+              <AccordionCollapse eventKey="1">
                 <div
                   className="wn-item-content"
                   dangerouslySetInnerHTML={{ __html: markdownToHTML(item.body, false, true) }}
                 />
-              </Accordion.Collapse>
+              </AccordionCollapse>
             </Accordion>
           ))}
         {isLoading && (

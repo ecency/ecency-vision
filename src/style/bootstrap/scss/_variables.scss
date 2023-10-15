@@ -292,8 +292,8 @@ $font-size-sm:                $font-size-base * .875 !default;
 $font-weight-lighter:         lighter !default;
 $font-weight-light:           300 !default;
 $font-weight-normal:          400 !default;
-$font-weight-bold:            700 !default;
-$font-weight-bolder:          bolder !default;
+$font-bold:            700 !default;
+$font-bolder:          bolder !default;
 
 $font-weight-base:            $font-weight-normal !default;
 $line-height-base:            1.5 !default;
@@ -338,10 +338,10 @@ $hr-border-width:             $border-width !default;
 
 $mark-padding:                .2em !default;
 
-$dt-font-weight:              $font-weight-bold !default;
+$dt-font-weight:              $font-bold !default;
 
 $kbd-box-shadow:              inset 0 -.1rem 0 rgba($black, .25) !default;
-$nested-kbd-font-weight:      $font-weight-bold !default;
+$nested-kbd-font-weight:      $font-bold !default;
 
 $list-inline-padding:         .5rem !default;
 
@@ -926,7 +926,7 @@ $toast-header-border-color:         rgba(0, 0, 0, .05) !default;
 // Badges
 
 $badge-font-size:                   75% !default;
-$badge-font-weight:                 $font-weight-bold !default;
+$badge-font-weight:                 $font-bold !default;
 $badge-padding-y:                   .25em !default;
 $badge-padding-x:                   .4em !default;
 $badge-border-radius:               $border-radius !default;
@@ -991,7 +991,7 @@ $alert-padding-y:                   .75rem !default;
 $alert-padding-x:                   1.25rem !default;
 $alert-margin-bottom:               1rem !default;
 $alert-border-radius:               $border-radius !default;
-$alert-link-font-weight:            $font-weight-bold !default;
+$alert-link-font-weight:            $font-bold !default;
 $alert-border-width:                $border-width !default;
 
 $alert-bg-level:                    -10 !default;
@@ -1113,7 +1113,7 @@ $spinner-border-width-sm: .2em !default;
 // Close
 
 $close-font-size:                   $font-size-base * 1.5 !default;
-$close-font-weight:                 $font-weight-bold !default;
+$close-font-weight:                 $font-bold !default;
 $close-color:                       $black !default;
 $close-text-shadow:                 0 1px 0 $white !default;
 

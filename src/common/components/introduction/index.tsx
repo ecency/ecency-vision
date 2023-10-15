@@ -1,9 +1,8 @@
-import React from "react";
-import { useRef } from "react";
-import { useEffect } from "react";
-import { Col, Container, Row, Button } from "react-bootstrap";
+import React, { useEffect, useRef } from "react";
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { closeSvg } from "../../img/svg";
+import { Button } from "@ui/button";
 
 export interface Props {
   title: string;
@@ -38,34 +37,30 @@ export const Introduction = ({
 
   return (
     <>
-      <div className="intro-popup p-4 p-lg-0" style={{ left: placement }}>
-        <Container className="h-100">
-          <button
-            type="button"
-            className="close position-absolute close-btn"
-            onClick={onClose}
-            id="close-btn"
-          >
-            <span aria-hidden="true">&times;</span>
+      <div
+        className="intro-popup p-4 lg:p-0"
+        style={{ left: placement, top: placement ? 200 : 100 }}
+      >
+        <div className="container h-full">
+          <button type="button" className="absolute close-btn" onClick={onClose} id="close-btn">
+            {closeSvg}
           </button>
-          <Row className="justify-content-center h-100 align-items-center mt-4 mt-md-0">
-            <Col xs={12} md={3} className="p-0 px-md-3">
+          <div className="grid grid-cols-12 gap-4 h-full items-center mt-4 md:mt-0">
+            <div className="col-span-12 md:col-start-3 md:col-span-3 p-0 md:px-3">
               <img width="100%" src={media} className="media-intro" id="media" />
-            </Col>
-            <Col xs={12} md={5} className="p-0 px-md-3">
-              <h1 className="mb-2 mb-md-4 text-dark font-weight-bold title" id="title">
-                {title}
-              </h1>
-              <p className="text-muted paragraph mt-2 mt-md-0" id="description">
+            </div>
+            <div className="col-span-12 md:col-span-5 p-0 md:px-3">
+              <div className="text-4xl mb-2 md:mb-4 text-dark font-bold">{title}</div>
+              <p className="text-gray-600 paragraph mt-2 md:mt-0" id="description">
                 {description}
               </p>
-              <div className="d-flex flex-column flex-md-row">
+              <div className="flex flex-col md:flex-row">
                 {onPrevious && (
                   <Button
                     ref={prevButton}
                     size="lg"
-                    variant="outline-primary"
-                    className="mr-0 mr-md-3 w-100 w-md-50 intro-btn mb-3 mb-md-0"
+                    outline={true}
+                    className="mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
                     onClick={() => {
                       onPrevious();
                     }}
@@ -76,8 +71,7 @@ export const Introduction = ({
                 {onNext && (
                   <Button
                     size="lg"
-                    variant="primary"
-                    className="w-50 w-100 w-md-50 intro-btn"
+                    className="w-full md:w-[50%] intro-btn"
                     onClick={() => {
                       onNext();
                     }}
@@ -86,9 +80,9 @@ export const Introduction = ({
                   </Button>
                 )}
               </div>
-            </Col>
-          </Row>
-        </Container>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

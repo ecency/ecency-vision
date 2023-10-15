@@ -1,29 +1,24 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
-import { Modal, Button, FormControl } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
-import LinearProgress from "../linear-progress";
-
-import { getFollowing, getFollowers, getAccounts, getAccount } from "../../api/hive";
-import { searchFollowing, searchFollower, FriendSearchResult } from "../../api/search-api";
-
+import { getAccounts, getFollowers, getFollowing } from "../../api/hive";
+import { FriendSearchResult, searchFollower, searchFollowing } from "../../api/search-api";
 import { _t } from "../../i18n";
-
 import accountReputation from "../../helper/account-reputation";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl, InputGroup } from "@ui/input";
 import { FilterFriends } from "../friends-filter";
 import moment from "moment";
 import { FilterFriendsType } from "../../enums";
 import { formatTimeDIfference } from "../../helper/parse-date";
+import { Button } from "@ui/button";
+import { Spinner } from "@ui/spinner";
 
 interface Friend {
   name: string;
@@ -219,7 +214,7 @@ export class List extends BaseComponent<ListProps, ListState> {
     });
   };
 
-  searchChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  searchChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(this._timer);
 
     this.stateSet({ search: e.target.value.trim(), loading: true }, () => {
@@ -371,24 +366,21 @@ export class List extends BaseComponent<ListProps, ListState> {
     return (
       <>
         <div className="friends-content">
-          {loading && (
-            <div className="loading">
-              <LinearProgress />
-            </div>
-          )}
-
           <div>
             <FilterFriends filterList={this.filterList} updateFilterType={this.updateFilterType} />
           </div>
 
           <div className="friends-list">
             <div className="friend-search-box">
-              <FormControl
-                value={search}
-                placeholder={_t("friends.search-placeholder")}
-                onChange={this.searchChanged}
-                onKeyDown={this.searchKeyDown}
-              />
+              <InputGroup prepend={loading ? <Spinner className="w-3.5 h-3.5" /> : "@"}>
+                <FormControl
+                  type="text"
+                  value={search}
+                  placeholder={_t("friends.search-placeholder")}
+                  onChange={this.searchChanged}
+                  onKeyDown={this.searchKeyDown}
+                />
+              </InputGroup>
             </div>
 
             <div className="list-body">
@@ -437,12 +429,12 @@ export class Followers extends Component<Props> {
     return (
       <>
         <Modal onHide={onHide} show={true} centered={true} animation={false} size="lg">
-          <Modal.Header closeButton={true}>
-            <Modal.Title>{title}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>{title}</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
             <List {...this.props} mode="follower" />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </>
     );
@@ -462,12 +454,12 @@ export class Following extends Component<Props> {
     return (
       <>
         <Modal onHide={onHide} show={true} centered={true} animation={false} size="lg">
-          <Modal.Header closeButton={true}>
-            <Modal.Title>{title}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>{title}</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
             <List {...this.props} mode="following" />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </>
     );

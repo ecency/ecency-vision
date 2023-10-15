@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .entry-share-dialog {
   .entry-share-modal-body {
@@ -23,7 +20,7 @@
     .share-button {
       width: 60px;
       height: 60px;
-      background: $dark-sky-blue;
+      @apply bg-blue-dark-sky;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -31,13 +28,13 @@
       cursor: pointer;
 
       &:hover {
-        background: lighten($dark-sky-blue, 10);
+        @apply bg-blue-dark-sky-010;
       }
 
       svg {
         width: 28px;
         height: 28px;
-        color: $white;
+        @apply text-white;
       }
     }
   }

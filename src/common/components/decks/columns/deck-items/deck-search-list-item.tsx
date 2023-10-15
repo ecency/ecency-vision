@@ -149,21 +149,21 @@ export const SearchListItem = ({
         ref={ref}
         className={`p${index === 1 ? "b" : "y"}-${
           json_metadata && json_metadata.image ? "5" : "4"
-        } d-flex flex-column border-bottom`}
+        } flex flex-col border-b border-[--border-color]`}
       >
-        <div className="d-flex">
+        <div className="flex">
           {username && (
             <img
               src={`https://images.ecency.com/${
                 global.canUseWebp ? "webp/" : ""
               }u/${username}/avatar/medium`}
               alt={username}
-              className="rounded-circle search-item-avatar"
+              className="rounded-[50%] search-item-avatar"
             />
           )}
           <div className="ml-3 deck-body">
             <div onClick={() => history && history.push(url)} className="pointer text-dark">
-              <div className="d-flex align-items-start flex-grow-1 hot-item-link">{msg}</div>
+              <div className="flex items-start flex-grow-1 hot-item-link">{msg}</div>
             </div>
           </div>
 
@@ -174,17 +174,17 @@ export const SearchListItem = ({
   }
 
   return (
-    <div ref={ref} className="d-flex flex-column border-bottom p-3">
-      <div className="deck-body d-flex flex-column w-100">
-        <div className="text-dark d-flex flex-column">
-          <div className="d-flex align-items-center flex-grow-1 hot-item-link">
+    <div ref={ref} className="flex flex-col border-b border-[--border-color] p-3">
+      <div className="deck-body flex flex-col w-full">
+        <div className="text-dark flex flex-col">
+          <div className="flex items-center grow hot-item-link">
             {author && (
               <img
                 src={`https://images.ecency.com/${
                   global.canUseWebp ? "webp/" : ""
                 }u/${author}/avatar/medium`}
                 alt={title}
-                className="rounded-circle search-item-avatar mr-3"
+                className="rounded-[50%] search-item-avatar mr-3"
               />
             )}
             {author && (
@@ -195,7 +195,7 @@ export const SearchListItem = ({
               </div>
             )}
             {community && (
-              <div className="ml-1 flex-grow-1 text-truncate">
+              <div className="ml-1 grow truncate">
                 {" "}
                 {_t("entry.community-in")}{" "}
                 <Link target="_blank" to={`/created/${community}`}>
@@ -205,7 +205,7 @@ export const SearchListItem = ({
               </div>
             )}
             {!community && (
-              <div className="ml-2 flex-grow-1">
+              <div className="ml-2 grow">
                 {" "}
                 {_t("entry.community-in")} <Link to={`/created/${category}`}> #{category} </Link>
               </div>
@@ -223,14 +223,14 @@ export const SearchListItem = ({
           </div>
           <div onClick={() => onEntryView()} className="pointer">
             {title && (
-              <div className="d-flex">
-                <div className="hot-item-link font-weight-bold mt-3">{title}</div>
+              <div className="flex">
+                <div className="hot-item-link font-bold mt-3">{title}</div>
               </div>
             )}
 
             {image && (
               <div
-                className="search-post-image d-flex align-self-center mt-3"
+                className="search-post-image flex self-center mt-3"
                 style={{
                   backgroundImage: `url(${proxifyImageSrc(image)})`
                 }}
@@ -239,7 +239,7 @@ export const SearchListItem = ({
             <div className="mt-3 hot-item-post-count deck-item-body text-secondary">{body}</div>
           </div>
         </div>
-        <div className="item-controls mt-3 d-flex align-items-center">
+        <div className="item-controls mt-3 flex items-center">
           <EntryVoteBtn
             entry={entry}
             isPostSlider={false}
@@ -251,7 +251,7 @@ export const SearchListItem = ({
           <EntryPayout entry={entry} />
           <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
           <Link to={`${url}#discussion`} className="text-secondary">
-            <div className="d-flex align-items-center comments">
+            <div className="flex items-center comments">
               <div style={{ paddingRight: 4 }}>{commentSvg}</div>
               <div>{entry.children}</div>
             </div>

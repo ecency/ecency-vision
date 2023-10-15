@@ -1,5 +1,3 @@
-@import "colors";
-
 // Bootstrap overrides
 $font-family-base: -apple-system, BlinkMacSystemFont, sans-serif;
 $link-hover-decoration: none;
@@ -15,9 +13,9 @@ $alert-padding-x: 0.6rem;
 $card-bg: transparent;
 $form-check-input-margin-y: 0.15rem;
 $tooltip-max-width: 380px;
-$primary: $dark-sky-blue;
-$success: $green1;
-$danger: $red2;
+$primary: #357ce6;
+//$success: $green1;
+//$danger: $red2;
 
 // Themed variables
 $input-bg: var(--input-bg);

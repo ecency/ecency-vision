@@ -1,24 +1,21 @@
 import React, { Component } from "react";
-
-import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { ActiveUser } from "../../store/active-user/types";
-
 import { clone } from "../../store/util";
 import cleanString from "../../util/clean-string";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import { error } from "../feedback";
-
-import { updateCommunity, formatError } from "../../api/operations";
-
+import { formatError, updateCommunity } from "../../api/operations";
 import { _t } from "../../i18n";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { queryClient, QueryIdentifiers } from "../../core";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 const langOpts = [
   { id: "af", name: "Afrikaans" },
@@ -158,7 +155,7 @@ export class CommunitySettings extends BaseComponent<Props, State> {
 
   form = React.createRef<HTMLFormElement>();
 
-  onChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  onChange = (e: React.ChangeEvent<any>): void => {
     const { target: el } = e;
     const key = el.name;
     const val = el.hasOwnProperty("checked") ? el.checked : el.value;
@@ -213,13 +210,13 @@ export class CommunitySettings extends BaseComponent<Props, State> {
             this.submit().then();
           }}
         >
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-settings.title")}
-            </Form.Label>
-            <Col sm="10">
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
+              <label>{_t("community-settings.title")}</label>
+            </div>
+            <div className="w-full sm:w-10/12">
               <InputGroup>
-                <Form.Control
+                <FormControl
                   type="text"
                   autoComplete="off"
                   value={title}
@@ -232,84 +229,85 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                   onInput={handleOnInput}
                 />
               </InputGroup>
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-settings.about")}
-            </Form.Label>
-            <Col sm="10">
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
+              <label>{_t("community-settings.about")}</label>
+            </div>
+            <div className="w-full sm:w-10/12">
+              <FormControl
+                type="text"
+                autoComplete="off"
+                value={about}
+                name="about"
+                onChange={this.onChange}
+              />
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
+              <label>{_t("community-settings.lang")}</label>
+            </div>
+            <div className="w-full sm:w-4/12">
+              <FormControl type="select" value={lang} name="lang" onChange={this.onChange}>
+                {langOpts.map((l, k) => (
+                  <option key={k} value={l.id}>
+                    {l.name}
+                  </option>
+                ))}
+              </FormControl>
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
+              <label>{_t("community-settings.description")}</label>
+            </div>
+            <div className="w-full sm:w-10/12">
               <InputGroup>
-                <Form.Control
-                  type="text"
-                  autoComplete="off"
-                  value={about}
-                  name="about"
-                  onChange={this.onChange}
-                />
-              </InputGroup>
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-settings.lang")}
-            </Form.Label>
-            <Col sm="4">
-              <InputGroup>
-                <Form.Control as={"select"} value={lang} name="lang" onChange={this.onChange}>
-                  {langOpts.map((l, k) => (
-                    <option key={k} value={l.id}>
-                      {l.name}
-                    </option>
-                  ))}
-                </Form.Control>
-              </InputGroup>
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-settings.description")}
-            </Form.Label>
-            <Col sm="10">
-              <InputGroup>
-                <Form.Control
-                  as="textarea"
+                <FormControl
+                  type="textarea"
                   value={description}
                   name="description"
                   onChange={this.onChange}
                 />
               </InputGroup>
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-settings.rules")}
-            </Form.Label>
-            <Col sm="10">
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
+              <label>{_t("community-settings.rules")}</label>
+            </div>
+            <div className="w-full sm:w-10/12">
               <InputGroup>
-                <Form.Control
-                  as="textarea"
+                <FormControl
+                  type="textarea"
                   value={flag_text}
                   name="flag_text"
                   onChange={this.onChange}
                 />
               </InputGroup>
-              <Form.Text>{_t("community-settings.rules-help")}</Form.Text>
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Col sm={{ span: 10, offset: 2 }}>
-              <Form.Check
+              <small>{_t("community-settings.rules-help")}</small>
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12" />
+            <div className="w-full sm:w-10/12">
+              <FormControl
                 id="check-nsfw"
                 type="checkbox"
                 label="NSFW"
                 name="is_nsfw"
                 checked={is_nsfw}
-                onChange={this.onChange}
+                onChange={(v) =>
+                  this.setState({
+                    is_nsfw: v
+                  })
+                }
               />
-            </Col>
-          </Form.Group>
-          <div className="d-flex justify-content-end">
+            </div>
+          </div>
+          <div className="flex justify-content-end">
             <Button type="submit" disabled={inProgress}>
               {_t("g.save")}
             </Button>
@@ -329,16 +327,15 @@ export default class CommunitySettingsDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="community-settings-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("community-settings.dialog-title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("community-settings.dialog-title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <CommunitySettings {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

@@ -1,33 +1,6 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .entry-index-menu {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 70px;
-
-
-  @media (max-width: $md-break) {
-    padding: 10px;
-  }
-
-   
-  @include themify(day) {
-    border-bottom: 1px solid $white-three;
-  }
-
-  @include themify(night) {
-    border-bottom: 1px solid $dark-two;
-  }
-
-  @media (min-width: $md-break) {
-    height: 50px;
-    padding: 0;
-  }
-
   .tagDropDown {
       border-radius: 25px;
       cursor: pointer;
@@ -51,83 +24,13 @@
   }
 
   .the-menu {
-    display: flex;
-    flex-direction: column-reverse;
-
-    @media (min-width: $md-break) {
-      flex-direction: row;
-    }
 
     .main-menu {
-      display: flex;
-      justify-content: center;
-
-      @media (min-width: $md-break) {
-        margin-bottom: 0;
-        align-items: center;
-      }
-
-      .lg-menu {
-        display: none;
-
-        .nav-link {
-          border-radius: 24px;
-          display: flex;
-          align-items: center;
-          font-weight: 500;
-          padding: 0.2rem 0.75rem !important;
-          text-decoration: if($link-decoration == none, null, none);
-          white-space: nowrap;
-        }
-
-        @media (max-width: ($xl-break + 100)) {
-          .nav-pills {
-            flex-wrap: nowrap;
-            max-width: 350px;
-            overflow-x: auto;
-            padding: 0.5rem 0;
-          }
-        }
-      }
-
-      @media (min-width: $lg-break) {
-        .sm-menu {
-          display: none;
-        }
-
-        .lg-menu {
-          display: block;
-        }
-      }
+      
       .kebab-icon {
         padding: 0.2rem 0.75rem;
       }
     }
-
-    .sub-menu {
-      display: none;
-      @media (min-width: $lg-break) {
-        display: flex;
-        align-items: center;
-      }
-
-      @media (min-width: $md-break) and (max-width: $lg-break) {
-        margin-right: 1em;
-      }
-
-      .nav-link {
-        border-radius: 24px;
-        display: flex;
-        align-items: center;
-        font-weight: 500;
-        padding: 6px 12px;
-        font-size: 90%;
-      }
-    }
-  }
-
-  @media (min-width: $md-break) {
-    justify-content: space-between;
   }
 }
 
@@ -159,16 +62,16 @@
   }
   @include themify(day) {
     svg {
-      color: $dark-six;
-      border-color: $dark-six;
+      @apply text-dark-600;
+      @apply border-dark-600;
       height: 100%;
     }
   }
   @include themify(night) {
     svg {
-      color: $duck-egg-blue;
-      border-color: $duck-egg-blue;
       height: 100%;
+      @apply text-blue-duck-egg;
+      @apply border-blue-duck-egg;
     }
   }
 }
@@ -186,20 +89,20 @@
   }
   @include themify(day) {
     svg {
-      color: $charcoal-grey;
+      @apply text-gray-charcoal;
       height: 100%;
     }
   }
 
   @include themify(night) {
     svg {
-      color: $warm-grey;
+      @apply text-gray-warm;
       height: 100%;
     }
   }
 }
 
-.theme-day .tooltip-inner {
+.tooltip-inner {
   max-width: 380px;
   padding: 0.25rem 0.5rem;
   color: #000000;
@@ -208,7 +111,7 @@
   border-radius: 0.25rem;
 }
 
-.theme-day .bs-tooltip-bottom .arrow::before, .theme-day .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+.bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
   bottom: 0;
   border-width: 0 0.4rem 0.4rem;
   border-bottom-color: #c2d4f5;
@@ -235,14 +138,14 @@ $breakpoint-tablet: 768px;
     }
     @include themify(day) {
       svg {
-        color: $charcoal-grey;
+        @apply text-gray-charcoal;
         height: 100%;
       }
     }
   
     @include themify(night) {
       svg {
-        color: $warm-grey;
+        @apply text-gray-warm;
         height: 100%;
       }
     }

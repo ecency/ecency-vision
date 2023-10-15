@@ -119,7 +119,7 @@
       @include padding-right(1rem);
       @include padding-bottom(1rem);
 
-      .btn, .entry-votes, .entry-vote-btn {
+      button, .entry-votes, .entry-vote-btn {
         color: $secondary;
 
         @include padding(0);
@@ -297,7 +297,7 @@
           height: 200px;
           width: 100%;
           background-size: cover;
-          background-color: $white;
+          @apply bg-white;
           background-image: url(../../../../img/noimage.png);
           background-position: center;
 
@@ -328,7 +328,7 @@
         }
 
         .description {
-          color: $gray-600;
+          @apply text-gray-600;
 
           @include font-size(0.75rem);
 
@@ -350,17 +350,10 @@
     }
 
     &.pending {
-      background-color: $gray-100;
+      @apply bg-gray-100;
 
       @include themify(night) {
-        background-color: $gray-800;
-      }
-
-      .spinner-border {
-        width: 1rem;
-        height: 1rem;
-        border-width: 0.125rem;
-        opacity: 0.5;
+        @apply bg-gray-800;
       }
     }
 
@@ -427,30 +420,5 @@
     object-fit: contain;
     transition: 0.4s;
     position: fixed;
-  }
-}
-
-.deck-thread-image-view-dialog {
-  > .modal-dialog {
-    width: auto;
-    max-width: unset;
-    display: flex;
-    justify-content: center;
-  }
-
-  .modal-body {
-    padding: 0;
-  }
-
-  .modal-content {
-    width: auto;
-  }
-
-  .close {
-  }
-
-  img {
-    width: 100%;
-    height: min(calc(100vh - 3.5rem - 56px), 768px);
   }
 }

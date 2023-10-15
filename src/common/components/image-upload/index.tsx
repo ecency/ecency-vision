@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-
-import { Form, FormControl, InputGroup, Modal, Button, Spinner } from "react-bootstrap";
-
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import UploadButton from "../image-upload-button";
-
 import { _t } from "../../i18n";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl, InputGroup } from "@ui/input";
+import { Spinner } from "@ui/spinner";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser;
@@ -29,7 +28,7 @@ export class ImageUpload extends BaseComponent<Props, State> {
     uploading: false
   };
 
-  imageChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  imageChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: image } = e.target;
 
     this.stateSet({ image });
@@ -45,24 +44,15 @@ export class ImageUpload extends BaseComponent<Props, State> {
     const { title, inProgress } = this.props;
     const { image, uploading } = this.state;
 
-    const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-    );
+    const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
     return (
       <div className="image-upload-dialog-content">
-        <Form.Group>
-          <Form.Label>{title}</Form.Label>
-          <InputGroup className="mb-3">
-            <Form.Control
-              type="text"
-              disabled={inProgress}
-              placeholder="https://"
-              value={image}
-              maxLength={500}
-              onChange={this.imageChanged}
-            />
-            <InputGroup.Append>
+        <div className="mb-4">
+          <label>{title}</label>
+          <InputGroup
+            className="mb-3"
+            append={
               <UploadButton
                 {...this.props}
                 onBegin={() => {
@@ -72,11 +62,25 @@ export class ImageUpload extends BaseComponent<Props, State> {
                   this.stateSet({ image: url, uploading: false });
                 }}
               />
-            </InputGroup.Append>
+            }
+          >
+            <FormControl
+              type="text"
+              disabled={inProgress}
+              placeholder="https://"
+              value={image}
+              maxLength={500}
+              onChange={this.imageChanged}
+            />
           </InputGroup>
-        </Form.Group>
-        <Button onClick={this.done} disabled={inProgress || uploading}>
-          {inProgress && spinner} {_t("g.save")}
+        </div>
+        <Button
+          onClick={this.done}
+          disabled={inProgress || uploading}
+          icon={inProgress && spinner}
+          iconPlacement="left"
+        >
+          {_t("g.save")}
         </Button>
       </div>
     );
@@ -92,13 +96,12 @@ export default class ImageUploadDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
-        className="image-upload-dialog modal-thin-header"
+        className="image-upload-dialog"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader closeButton={true} />
+        <ModalBody>
           <ImageUpload {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

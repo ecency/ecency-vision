@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-
 import contributors from "../../constants/contributors.json";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
-
 import { History } from "history";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import _ from "lodash";

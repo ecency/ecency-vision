@@ -1,30 +1,22 @@
 import React from "react";
-
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
-
 import moment from "moment";
-
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
-
 import { Account, FullAccount } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-
 import BaseComponent from "../base";
-
 import {
-  findRcAccounts,
-  votingPower,
   downVotingPower,
-  votingValue,
+  findRcAccounts,
   powerRechargeTime,
-  rcPower
+  rcPower,
+  votingPower,
+  votingValue
 } from "../../api/hive";
-
 import { _t } from "../../i18n";
-
-import { informationVariantSvg, hiveSvg } from "../../img/svg";
+import { hiveSvg, informationVariantSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
+import { StyledTooltip } from "../tooltip";
 
 interface ContentProps {
   account: FullAccount;
@@ -65,7 +57,7 @@ export class InfoContent extends BaseComponent<ContentProps> {
     const rcpRechargeDate = moment().add(rcpRecharge, "seconds");
 
     return (
-      <div className="profile-info-tooltip-content">
+      <div className="profile-info-tooltip-content [&>p]:mb-0 text-sm">
         <p>{_t("profile-info.joined", { n: created })}</p>
         <p>
           {_t("profile-info.post-count", {
@@ -124,17 +116,13 @@ export class ProfileInfo extends BaseComponent<Props, State> {
     const { account } = this.props;
     const { rcAccount } = this.state;
     if (account?.__loaded && rcAccount) {
-      const tooltip = (
-        <Tooltip id="profile-tooltip" style={{ zIndex: 10 }}>
-          <InfoContent {...this.props} account={account} rcAccount={rcAccount} />
-        </Tooltip>
-      );
-
       return (
         <span className="profile-info">
-          <OverlayTrigger placement="bottom" overlay={tooltip}>
+          <StyledTooltip
+            content={<InfoContent {...this.props} account={account} rcAccount={rcAccount} />}
+          >
             {informationVariantSvg}
-          </OverlayTrigger>
+          </StyledTooltip>
         </span>
       );
     }

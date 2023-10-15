@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .slide {
   height: 50px;
@@ -18,11 +15,11 @@
   top: 5.5px;
   cursor: pointer;
   @include themify(day) {
-    background-color: $white-three;
+    @apply bg-light-300;
   }
 
   @include themify(night) {
-    background-color: $gunmetal;
+    @apply bg-gunmetal;
   }
 }
 

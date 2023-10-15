@@ -1,14 +1,11 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .post-scheduler-scheduled {
   display: flex;
   align-items: center;
 
   .date, .reset-date {
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
     cursor: pointer;
 
     &:hover {
@@ -43,7 +40,7 @@
   padding: 12px 30px;
   justify-content: center;
   .error-info {
-    color: $red2;
+    @apply text-red-020;
     font-size: 93%;
     font-weight: 400;
   }

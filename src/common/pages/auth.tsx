@@ -2,17 +2,13 @@ import { Component } from "react";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History, Location } from "history";
-
 import queryString from "query-string";
-
 import { AppState } from "../store";
 import { Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
 import { User } from "../store/users/types";
-
 import { addUser } from "../store/users";
 import { setActiveUser, updateActiveUser } from "../store/active-user";
-
 import { getAccount } from "../api/hive";
 import { usrActivity } from "../api/private-api";
 import { hsTokenRenew } from "../api/auth-api";

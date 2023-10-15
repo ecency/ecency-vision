@@ -1,7 +1,7 @@
-import { chevronDownSvgForSlider, chevronUpSvgForSlider, hot } from "../../img/svg";
-import { Button, Card } from "react-bootstrap";
-import Accordion from "react-bootstrap/Accordion";
-import React, { useState } from "react";
+import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../img/svg";
+import React from "react";
+import { Button } from "@ui/button";
+import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
 
 interface Props {
   title?: string | JSX.Element;
@@ -21,14 +21,14 @@ export const MarketAdvancedModeWidgetHeader = ({
   setExpandedHeader
 }: Props) => {
   return (
-    <Accordion className={expandedHeader ? "border-bottom" : ""}>
-      <div className="d-flex flex-column border-bottom">
-        <div className="d-flex justify-content-between align-items-center deck-header position-relative">
-          <div className="d-flex align-items-center w-100">
+    <Accordion className={expandedHeader ? "border-b border-[--border-color]" : ""}>
+      <div className="flex flex-col border-b border-[--border-color]">
+        <div className="flex justify-between items-center deck-header relative">
+          <div className="flex items-center w-full">
             <div className="cursor-drag deck-index" />
             {headerOptions}
             {title ? (
-              <div className="d-flex align-items-center ml-3">
+              <div className="flex items-center ml-3">
                 {typeof title === "string" ? (
                   <>
                     {icon ? <div className="icon mr-2">{icon}</div> : <></>}
@@ -43,20 +43,23 @@ export const MarketAdvancedModeWidgetHeader = ({
             )}
           </div>
           {settings ? (
-            <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
-              <div className={`pointer`} onClick={() => setExpandedHeader(!expandedHeader)}>
-                <span>{expandedHeader ? chevronUpSvgForSlider : chevronDownSvgForSlider}</span>
-              </div>
-            </Accordion.Toggle>
+            <AccordionToggle
+              as={Button}
+              appearance="link"
+              eventKey="0"
+              noPadding={true}
+              onClick={() => setExpandedHeader(!expandedHeader)}
+              icon={expandedHeader ? chevronUpSvgForSlider : chevronDownSvgForSlider}
+            />
           ) : (
             <></>
           )}
         </div>
       </div>
       {settings ? (
-        <Accordion.Collapse eventKey="0">
-          <Card.Body className="p-0 market-advanced-mode-widget-settings">{settings}</Card.Body>
-        </Accordion.Collapse>
+        <AccordionCollapse eventKey="0">
+          <div className="p-0 market-advanced-mode-widget-settings">{settings}</div>
+        </AccordionCollapse>
       ) : (
         <></>
       )}

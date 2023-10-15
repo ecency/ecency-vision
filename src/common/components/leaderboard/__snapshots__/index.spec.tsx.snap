@@ -51,11 +51,8 @@ exports[`(1) Render with data. 1`] = `
     >
       <span />
       <div
-        className="d-flex align-items-center"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+        className="flex items-center"
+        title="Post + comments made by a user for selected period"
       >
         <span
           className="info-icon mr-1"

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
 import { match } from "react-router";
 import { PrivateKey } from "@hiveio/dhive";
 import { Link } from "react-router-dom";
@@ -8,8 +7,7 @@ import Meta from "../components/meta";
 import { connect } from "react-redux";
 import Theme from "../components/theme";
 import NavBar from "../components/navbar";
-import Feedback from "../components/feedback";
-import { success, error } from "../components/feedback";
+import Feedback, { error, success } from "../components/feedback";
 import Tooltip from "../components/tooltip";
 import LinearProgress from "../components/linear-progress";
 import keyOrHot from "../components/key-or-hot";
@@ -17,11 +15,11 @@ import keyOrHot from "../components/key-or-hot";
 import { FullAccount } from "../store/accounts/types";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import {
-  createAccountKc,
   createAccountHs,
+  createAccountKc,
   createAccountKey,
-  createAccountWithCreditKc,
   createAccountWithCreditHs,
+  createAccountWithCreditKc,
   createAccountWithCreditKey
 } from "../api/operations";
 import { onboardEmail } from "../api/private-api";
@@ -32,6 +30,8 @@ import clipboard from "../util/clipboard";
 import { copyContent, downloadSvg, regenerateSvg } from "../img/svg";
 import { _t } from "../i18n";
 import "./onboard.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Button } from "@ui/button";
 
 export interface AccountInfo {
   email: string;
@@ -405,7 +405,7 @@ const Onboard = (props: Props) => {
   const signTransactionModal = (type: string) => {
     return (
       <>
-        <div className="border-bottom d-flex align-items-center">
+        <div className="border-b border-[--border-color] flex items-center">
           <div className="step-no">2</div>
           <div>
             <div>{_t("onboard.sign-header-title")}</div>
@@ -447,7 +447,7 @@ const Onboard = (props: Props) => {
   const successModalBody = () => {
     return (
       <>
-        <div className="create-account-success-dialog-header border-bottom d-flex">
+        <div className="create-account-success-dialog-header border-b border-[--border-color] flex">
           <div className="step-no">2</div>
           <div className="create-account-success-dialog-titles">
             <div className="create-account-main-title">{_t("trx-common.success-title")}</div>
@@ -462,16 +462,13 @@ const Onboard = (props: Props) => {
               <strong>{formatUsername(decodedInfo!.username)}</strong>
             </span>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             <span className="hr-6px-btn-spacer" />
-            <Button
-              as={Link}
-              to={`/@${formatUsername(decodedInfo!.username)}`}
-              className="mt-3 w-50 align-self-center"
-              onClick={finish}
-            >
-              {_t("g.finish")}
-            </Button>
+            <Link to={`/@${formatUsername(decodedInfo!.username)}`}>
+              <Button className="mt-3 w-[50%] align-self-center" onClick={finish}>
+                {_t("g.finish")}
+              </Button>
+            </Link>
           </div>
         </div>
       </>
@@ -480,7 +477,7 @@ const Onboard = (props: Props) => {
   const failedModalBody = () => {
     return (
       <>
-        <div className="create-account-success-dialog-header border-bottom d-flex text-danger">
+        <div className="create-account-success-dialog-header border-b border-[--border-color] flex text-red">
           <div className="step-no">❌</div>
           <div className="create-account-success-dialog-titles">
             <div className="create-account-main-title">{_t("onboard.failed-title")}</div>
@@ -490,9 +487,9 @@ const Onboard = (props: Props) => {
 
         <div className="success-dialog-body">
           <div className="success-dialog-content">
-            <span className="text-danger">{_t("onboard.failed-message")}</span>
+            <span className="text-red">{_t("onboard.failed-message")}</span>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             <span className="hr-6px-btn-spacer" />
             <Button onClick={finish}>{_t("onboard.try-again")}</Button>
           </div>
@@ -516,11 +513,11 @@ const Onboard = (props: Props) => {
         <div className="onboard-container">
           <div className="asking">
             <div
-              className={`asking-body d-flex mb-0 d-flex align-self-center flex-column ${
+              className={`asking-body flex mb-0 self-center flex-col ${
                 innerWidth < 577 ? "p-3" : "p-5"
               }`}
             >
-              <h3 className="mb-3 align-self-center">{_t("onboard.confirm-details")}</h3>
+              <h3 className="mb-3 self-center">{_t("onboard.confirm-details")}</h3>
               <div className="reg-details">
                 <span style={{ lineHeight: 2 }}>
                   {_t("onboard.username")} <strong>{accountInfo?.username}</strong>
@@ -533,8 +530,8 @@ const Onboard = (props: Props) => {
                 </span>
               </div>
               <span className="mt-3">{_t("onboard.copy-key")}</span>
-              <div className="mt-3 d-flex flex-column align-center">
-                <div className="d-flex">
+              <div className="mt-3 flex flex-col align-center">
+                <div className="flex">
                   <span className="mr-3 mt-1">
                     {innerWidth <= 768 ? shortPassword + "..." : masterPassword}
                   </span>
@@ -556,22 +553,20 @@ const Onboard = (props: Props) => {
                   </Tooltip>
                 </div>
                 <Button
-                  className="d-flex align-self-center justify-content-center mt-3"
+                  className="self-center mt-3"
                   disabled={!accountInfo?.username || !accountInfo.email}
-                  onClick={() => {
-                    downloadKeys();
-                  }}
+                  onClick={() => downloadKeys()}
+                  icon={downloadSvg}
                 >
-                  <span>{_t("onboard.download-keys")}</span>
-                  <span className="ml-2">{downloadSvg}</span>
+                  {_t("onboard.download-keys")}
                 </Button>
 
                 {fileIsDownloaded && (
-                  <div className="d-flex flex-column align-self-center justify-content-center mt-3">
+                  <div className="flex flex-col self-center justify-center mt-3">
                     {!props.activeUser && (
                       <>
                         <h4>{_t("onboard.copy-info-message")}</h4>
-                        <div className="d-flex align-items-center">
+                        <div className="flex items-center">
                           <span className="">{splitUrl(onboardUrl + secret)}...</span>
                           <span
                             style={{ width: "5%" }}
@@ -660,20 +655,20 @@ const Onboard = (props: Props) => {
               <strong>@{formatUsername(decodedInfo!.username)}</strong>
             </span>
           </div>
-          <Button
-            as={Link}
-            to={`/@${formatUsername(decodedInfo!.username)}`}
-            className="mt-3 w-50 align-self-center"
-            onClick={() => {
-              const { location } = props;
-              const queryParams = new URLSearchParams(location.search);
-              if (queryParams.has("tid")) {
-                sendMail();
-              }
-            }}
-          >
-            {_t("g.finish")}
-          </Button>
+          <Link to={`/@${formatUsername(decodedInfo!.username)}`}>
+            <Button
+              className="mt-3 w-[50%] align-self-center"
+              onClick={() => {
+                const { location } = props;
+                const queryParams = new URLSearchParams(location.search);
+                if (queryParams.has("tid")) {
+                  sendMail();
+                }
+              }}
+            >
+              {_t("g.finish")}
+            </Button>
+          </Link>
         </div>
       )}
       <Modal
@@ -681,15 +676,14 @@ const Onboard = (props: Props) => {
         show={showModal}
         centered={true}
         onHide={() => setShowModal(false)}
-        keyboard={false}
-        className="create-account-dialog modal-thin-header"
+        className="create-account-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title />
-        </Modal.Header>
-        <Modal.Body>
-          <div className="d-flex flex-column">
+        <ModalHeader closeButton={true}>
+          <ModalTitle />
+        </ModalHeader>
+        <ModalBody>
+          <div className="flex flex-col">
             {createOption === createOptions.HIVE && (
               <React.Fragment>
                 {step === "sign" && signTransactionModal(createOptions.HIVE)}
@@ -706,7 +700,7 @@ const Onboard = (props: Props) => {
               </React.Fragment>
             )}
           </div>
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     </>
   );

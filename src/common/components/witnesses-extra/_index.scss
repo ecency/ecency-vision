@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .extra-witnesses {
   margin-bottom: 30px;
@@ -15,11 +12,11 @@
     margin-bottom: 6px;
 
     @include themify(day) {
-      color: $steel-grey;
+      @apply text-gray-steel;
     }
 
     @include themify(night) {
-      color: $powder-blue;
+     @apply text-blue-powder;
     }
   }
 
@@ -47,11 +44,11 @@
       border-radius: 8px;
 
       @include themify(day) {
-        background: $white-three;
+        @apply bg-light-300;
       }
 
       @include themify(night) {
-        background: $dark-two;
+        @apply bg-dark-200;
       }
 
       .username {
@@ -60,11 +57,11 @@
         width: 220px;
 
         @include themify(day) {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
 
         @include themify(night) {
-          color: $powder-blue;
+          @apply text-blue-powder;
         }
       }
     }

@@ -1,4 +1,3 @@
-import { Form, InputGroup } from "react-bootstrap";
 import { _t } from "../../i18n";
 import SuggestionList from "../suggestion-list";
 import React, { useEffect, useState } from "react";
@@ -7,6 +6,8 @@ import { lookupAccounts } from "../../api/hive";
 import { error } from "../feedback";
 import { formatError } from "../../api/operations";
 import { ActiveUser } from "../../store/active-user/types";
+import { FormControl, InputGroup } from "@ui/input";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   username?: string;
@@ -102,19 +103,8 @@ export const SearchByUsername = ({
       {...suggestionProps}
       header={!usernameInput ? _t("transfer.recent-transfers") : ""}
     >
-      <InputGroup>
-        <InputGroup.Prepend>
-          <InputGroup.Text>
-            {isUsernameDataLoading ? (
-              <div className="spinner-border text-primary spinner-border-sm" role="status">
-                <span className="sr-only">{_t("g.loading")}</span>
-              </div>
-            ) : (
-              "@"
-            )}
-          </InputGroup.Text>
-        </InputGroup.Prepend>
-        <Form.Control
+      <InputGroup prepend={isUsernameDataLoading ? <Spinner /> : "@"}>
+        <FormControl
           type="text"
           autoFocus={true}
           placeholder=""

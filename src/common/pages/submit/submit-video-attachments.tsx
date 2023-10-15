@@ -3,8 +3,8 @@ import React, { useMemo, useState } from "react";
 import { proxifyImageSrc } from "@ecency/render-helper";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { closeSvg } from "../../img/svg";
-import { Alert } from "react-bootstrap";
 import { _t } from "../../i18n";
+import { Alert } from "@ui/alert";
 
 export function SubmitVideoAttachments() {
   const { global } = useMappedStore();
@@ -21,7 +21,7 @@ export function SubmitVideoAttachments() {
     >
       {videoList.length > 0 ? <p className="text-muted">Attached 3Speak videos</p> : <></>}
       {hasMultipleUnpublishedVideo && (
-        <Alert variant="danger">{_t("submit.should-be-only-one-unpublished")}</Alert>
+        <Alert appearance="danger">{_t("submit.should-be-only-one-unpublished")}</Alert>
       )}
       <div className="submit-video-attachments-list">
         {videoList.map((item) => (

@@ -174,6 +174,8 @@ const App = (props: any) => {
       <Announcement activeUser={props.activeUser} />
       <FloatingFAQ />
       <div id="popper-container" />
+      <div id="modal-overlay-container" />
+      <div id="modal-dialog-container" />
     </EntriesCacheManager>
   );
 };

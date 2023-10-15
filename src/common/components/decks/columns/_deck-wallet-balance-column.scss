@@ -15,11 +15,11 @@
     backdrop-filter: blur(1rem);
 
     @include themify(day) {
-      background-color: rgba($white, 0.75);
+      @apply bg-white-075;
     }
 
     @include themify(night) {
-      background-color: rgba($dark-two, 0.75);
+      @apply bg-dark-200-075;
 
     }
 
@@ -79,7 +79,7 @@
 
     .title {
       grid-area: title;
-      color: $dark-two;
+      @apply text-dark-200;
     }
 
     .description {
@@ -96,19 +96,12 @@
 
       &.loaded {
         background-color: $primary;
-        color: $white;
+        @apply text-white;
       }
 
       @include padding(0.5rem);
       @include border-radius(0.5rem);
       @include font-size(0.875rem);
-
-      .spinner-border {
-        width: 1rem;
-        height: 1rem;
-        opacity: 0.5;
-        border-width: 2px;
-      }
     }
 
     @include padding(1rem);

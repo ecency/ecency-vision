@@ -2,7 +2,7 @@
 
 exports[`UserAvatar (1) Should render small size 1`] = `
 <div
-  className="route d-flex"
+  className="route flex"
 >
   <span
     className="two-user-avatar small"
@@ -25,7 +25,7 @@ exports[`UserAvatar (1) Should render small size 1`] = `
 
 exports[`UserAvatar (2) Should render normal size 1`] = `
 <div
-  className="route d-flex"
+  className="route flex"
 >
   <span
     className="two-user-avatar normal"
@@ -48,7 +48,7 @@ exports[`UserAvatar (2) Should render normal size 1`] = `
 
 exports[`UserAvatar (3) Should render medium size 1`] = `
 <div
-  className="route d-flex"
+  className="route flex"
 >
   <span
     className="two-user-avatar medium"
@@ -71,7 +71,7 @@ exports[`UserAvatar (3) Should render medium size 1`] = `
 
 exports[`UserAvatar (4) Should render large size 1`] = `
 <div
-  className="route d-flex"
+  className="route flex"
 >
   <span
     className="two-user-avatar large"
@@ -94,7 +94,7 @@ exports[`UserAvatar (4) Should render large size 1`] = `
 
 exports[`UserAvatar (5) Should render xlarge size 1`] = `
 <div
-  className="route d-flex"
+  className="route flex"
 >
   <span
     className="two-user-avatar xLarge"

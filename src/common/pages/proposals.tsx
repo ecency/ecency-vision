@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { match } from "react-router";
 import numeral from "numeral";
-// import { debounce } from 'lodash';
 import _ from "lodash";
 
 import defaults from "../constants/defaults.json";
 
-import { renderPostBody, setProxyBase, catchPostImage } from "@ecency/render-helper";
-setProxyBase(defaults.imageServer);
+import { catchPostImage, renderPostBody, setProxyBase } from "@ecency/render-helper";
 import { Entry } from "../store/entries/types";
 
 import BaseComponent from "../components/base";
@@ -27,16 +25,17 @@ import SearchBox from "../components/search-box";
 import { _t } from "../i18n";
 import { Tsx } from "../i18n/helper";
 
-import { getProposals, Proposal, getPost, getAccount } from "../api/hive";
+import { getAccount, getPost, getProposals, Proposal } from "../api/hive";
 
-import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 
 import parseAsset from "../helper/parse-asset";
 import parseDate from "../helper/parse-date";
 
 import { closeSvg } from "../img/svg";
-import moment from "moment";
 import "./proposals.scss";
+
+setProxyBase(defaults.imageServer);
 
 enum Filter {
   ALL = "all",

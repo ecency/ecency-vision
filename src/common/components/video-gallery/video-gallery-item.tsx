@@ -3,7 +3,7 @@ import { _t } from "../../i18n";
 import { dateToFullRelative } from "../../helper/parse-date";
 import React, { useEffect, useState } from "react";
 import { ThreeSpeakVideo, useThreeSpeakVideo } from "../../api/threespeak";
-import { Button } from "react-bootstrap";
+import { Button } from "@ui/button";
 import { proxifyImageSrc } from "@ecency/render-helper";
 import { useMappedStore } from "../../store/use-mapped-store";
 import useCopyToClipboard from "react-use/lib/useCopyToClipboard";
@@ -134,7 +134,7 @@ export function VideoGalleryItem({
         </div>
 
         <Button
-          variant="link"
+          appearance="link"
           title={_t("g.copy-clipboard")}
           size="sm"
           className="list-details-wrapper-copy px-0 text-muted"
@@ -145,7 +145,7 @@ export function VideoGalleryItem({
           {copyOutlinSvg}
         </Button>
 
-        <div className="list-details-wrapper-title w-100 text-truncate">{item.title}</div>
+        <div className="list-details-wrapper-title w-full truncate">{item.title}</div>
 
         {["publish_manual", "published"].includes(item.status) && (
           <div className="list-details-wrapper-actions">
@@ -153,7 +153,7 @@ export function VideoGalleryItem({
               {_t("video-gallery.insert-video")}
             </Button>
             {item.status != "published" && (
-              <Button variant="link" size="sm" onClick={() => insert(true)}>
+              <Button appearance="link" size="sm" onClick={() => insert(true)}>
                 {_t("video-gallery.insert-nsfw")}
               </Button>
             )}

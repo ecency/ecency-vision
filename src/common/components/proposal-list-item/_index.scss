@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .proposal-list-item {
   padding: 16px;
@@ -10,24 +7,24 @@
   box-shadow: $box-shadow-alt;
 
   @include themify(day) {
-    color: $steel-grey;
+    @apply text-gray-steel;
   }
 
   @include themify(day) {
-    background: lighten($white-three, 2);
+    @apply bg-light-300;
   }
 
   @include themify(night) {
-    background: lighten($dark-six, 4);
+    @apply bg-dark-600;
   }
 
   &.voted-by-voter {
     @include themify(day) {
-      background-color: $faded-blue;
+      @apply bg-blue-faded;
     }
   
     @include themify(night) {
-      background-color: $tundora;
+      @apply bg-tundora;
     }
   }
 
@@ -65,11 +62,11 @@
 
         a {
           @include themify(day) {
-            color: $charcoal-grey;
+            @apply text-gray-charcoal;
           }
 
           @include themify(night) {
-            color: $silver;
+            @apply text-silver;
           }
         }
 
@@ -89,18 +86,18 @@
         }
 
         .proposal-status {
-          color: $white;
+          @apply text-white;
           border-radius: 12px;
           padding: 4px 6px 5px 6px;
           display: inline-flex;
           font-weight: 300;
 
           &.active {
-            background-color: $green1;
+            @apply bg-green;
           }
 
           &.expired {
-            background-color: lighten($red, 20);
+            @apply text-red-light-020;
           }
 
           &.inactive {
@@ -118,7 +115,7 @@
 
         .proposal-payment {
           .all-pay {
-            color: $dark-sky-blue;
+            @apply text-blue-dark-sky;
             font-weight: 500;
             margin-right: 4px;
           }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
@@ -18,6 +17,9 @@ import { classNameObject } from "../../helper/class-name-object";
 import { useCurrencyRateQuery } from "./api/currency-rate-query";
 import { useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../../core";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
+import { Alert } from "@ui/alert";
 
 export interface Props {
   activeUser: ActiveUser | null;
@@ -203,7 +205,7 @@ export const MarketSwapForm = ({
           showBalance={[MarketSwapFormStep.FORM, MarketSwapFormStep.SIGN].includes(step)}
           elementAfterBalance={
             isAmountMoreThanBalance && step === MarketSwapFormStep.FORM ? (
-              <small className="usd-balance bold text-secondary d-block text-danger mt-3">
+              <small className="usd-balance bold text-secondary block text-red mt-3">
                 {_t("market.more-than-balance")}
               </small>
             ) : (
@@ -216,20 +218,20 @@ export const MarketSwapForm = ({
             <div className="overlay">
               {step === MarketSwapFormStep.FORM ? (
                 <Button
+                  outline={true}
                   disabled={disabled || loading}
-                  variant=""
-                  className="swap-button border"
+                  className="swap-button !border"
                   onClick={swap}
-                >
-                  {swapSvg}
-                </Button>
+                  icon={swapSvg}
+                />
               ) : (
                 <></>
               )}
               {step === MarketSwapFormStep.SUCCESS ? (
-                <Button variant="" className="swap-button border text-success">
-                  {checkSvg}
-                </Button>
+                <Button
+                  className="swap-button border dark:border-dark-200 text-green"
+                  icon={checkSvg}
+                />
               ) : (
                 <></>
               )}
@@ -258,14 +260,14 @@ export const MarketSwapForm = ({
         />
         <div>
           {isInvalidFrom ? (
-            <Alert variant="warning" className="mt-4">
+            <Alert appearance="warning" className="mt-4">
               {_t("market.invalid-amount")}
             </Alert>
           ) : (
             <></>
           )}
           {tooMuchSlippage ? (
-            <Alert variant="warning" className="mt-4">
+            <Alert appearance="warning" className="mt-4">
               {_t("market.too-much-slippage")}
             </Alert>
           ) : (
@@ -273,9 +275,8 @@ export const MarketSwapForm = ({
           )}
           {step === MarketSwapFormStep.FORM ? (
             <Button
-              block={true}
               disabled={disabled || loading || numberAmount(from) === 0 || isAmountMoreThanBalance}
-              className="py-3 mt-4"
+              className="w-full mt-4"
               onClick={() => submit()}
             >
               {_t("market.continue")}

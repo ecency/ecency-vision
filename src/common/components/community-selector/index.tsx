@@ -1,27 +1,19 @@
 import React from "react";
-
-import { Modal } from "react-bootstrap";
-
-import { FormControl } from "react-bootstrap";
-
 import isEqual from "react-fast-compare";
-
 import { ActiveUser } from "../../store/active-user/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { Global } from "../../store/global/types";
 import { Subscription } from "../../store/subscriptions/types";
-
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar/index";
-
 import { _t } from "../../i18n";
-
 import isCommunity from "../../helper/is-community";
-
 import { getCommunities, getCommunity, getSubscriptions } from "../../api/bridge";
-
 import { menuDownSvg } from "../../img/svg";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
+import { CommunitySelectorItem } from "./community-selector-item";
 
 interface BrowserProps {
   global: Global;
@@ -59,7 +51,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
     });
   };
 
-  queryChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  queryChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (this._timer) {
       clearTimeout(this._timer);
       this._timer = null;
@@ -90,7 +82,6 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
       <div className="search">
         <FormControl
           type="text"
-          size="sm"
           placeholder={_t("community-selector.search-placeholder")}
           value={query}
           onChange={this.queryChanged}
@@ -106,27 +97,17 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
           {search}
 
           <div className="browser-list">
-            <div className="list-body">
+            <div className="flex flex-wrap py-3 gap-3">
               {results?.length > 0 && (
                 <>
                   {results.map((x) => (
-                    <a
-                      key={x.name}
-                      href="#"
-                      className="list-item"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        onSelect(x.name);
-                        onHide();
-                      }}
-                    >
-                      <div className="item-main">
-                        <UserAvatar username={x.name} size="small" />
-                        <div className="item-info">
-                          <span className="item-name notranslate">{x.title}</span>
-                        </div>
-                      </div>
-                    </a>
+                    <CommunitySelectorItem
+                      key={x.id}
+                      name={x.name}
+                      title={x.title}
+                      onSelect={onSelect}
+                      onHide={onHide}
+                    />
                   ))}
                 </>
               )}
@@ -142,44 +123,24 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
         {search}
 
         <div className="browser-list">
-          <div className="list-body">
-            <a
-              href="#"
-              className="list-item"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelect(null);
-                onHide();
-              }}
-            >
-              <div className="item-main">
-                <UserAvatar username={activeUser.username} size="small" />
-                <div className="item-info">
-                  <span className="item-name notranslate">{_t("community-selector.my-blog")}</span>
-                </div>
-              </div>
-            </a>
+          <div className="flex flex-wrap py-3 gap-3">
+            <CommunitySelectorItem
+              name={null}
+              title={_t("community-selector.my-blog")}
+              onSelect={onSelect}
+              onHide={onHide}
+            />
 
             {subscriptions?.length > 0 && (
               <>
                 {subscriptions.map((x) => (
-                  <a
-                    href="#"
+                  <CommunitySelectorItem
                     key={x[0]}
-                    className="list-item"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onSelect(x[0]);
-                      onHide();
-                    }}
-                  >
-                    <div className="item-main">
-                      <UserAvatar username={x[0]} size="small" />
-                      <div className="item-info">
-                        <span className="item-name notranslate">{x[1]}</span>
-                      </div>
-                    </div>
-                  </a>
+                    name={x[0]}
+                    title={x[1]}
+                    onSelect={onSelect}
+                    onHide={onHide}
+                  />
                 ))}
               </>
             )}
@@ -312,9 +273,9 @@ export class CommunitySelector extends BaseComponent<Props, State> {
             animation={false}
             className="community-selector-modal"
           >
-            <Modal.Header closeButton={true} />
+            <ModalHeader closeButton={true} />
 
-            <Modal.Body>
+            <ModalBody>
               <Browser
                 {...this.props}
                 onHide={this.toggle}
@@ -324,7 +285,7 @@ export class CommunitySelector extends BaseComponent<Props, State> {
                   this.stateSet({ picked: true });
                 }}
               />
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </>

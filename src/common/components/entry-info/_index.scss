@@ -16,11 +16,11 @@
   }
 
   @include themify(day) {
-    color: $steel-grey;
+    @apply text-gray-steel;
   }
 
   @include themify(night) {
-    color: $pinkish-grey;
+    @apply text-gray-pinkish;
   }
 
   .author-avatar {
@@ -48,15 +48,15 @@
         }
 
         @include themify(day) {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
 
         .author-reputation {
-          color: $steel-grey;
+          @apply text-gray-steel;
           font-size: 14px;
           font-weight: 500;
 
@@ -98,15 +98,15 @@
           font-weight: 500;
 
           @include themify(day) {
-            color: $steel-grey;
+            @apply text-gray-steel;
           }
 
           @include themify(night) {
-            color: $pinkish-grey;
+            @apply text-gray-pinkish;
           }
 
           &:hover {
-            color: $dark-sky-blue;
+            @apply text-blue-dark-sky;
           }
         }
       }

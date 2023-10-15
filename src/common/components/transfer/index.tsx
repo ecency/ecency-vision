@@ -1,33 +1,23 @@
 import React, { Component } from "react";
-
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
-
 import isEqual from "react-fast-compare";
-
-import { Button, Col, Form, FormControl, InputGroup, Modal, Row } from "react-bootstrap";
-
 import badActors from "@hiveio/hivescript/bad-actors.json";
-
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { DelegateVestingShares, Transactions } from "../../store/transactions/types";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import UserAvatar from "../user-avatar";
 import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import { error } from "../feedback";
-
 import HiveWallet from "../../helper/hive-wallet";
 import amountFormatCheck from "../../helper/amount-format-check";
 import parseAsset from "../../helper/parse-asset";
 import { hpToVests, vestsToHp } from "../../helper/vesting";
-
 import { getAccount, getAccountFull, getVestingDelegations } from "../../api/hive";
-
 import {
   claimInterest,
   claimInterestHot,
@@ -58,17 +48,19 @@ import {
   withdrawVestingHot,
   withdrawVestingKc
 } from "../../api/operations";
-
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
-
 import { arrowRightSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { formatNumber } from "../../helper/format-number";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl, InputGroup } from "@ui/input";
 import exchangeAccounts from "../../constants/exchanges";
 import { queryClient, QueryIdentifiers } from "../../core";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 export type TransferMode =
   | "transfer"
@@ -119,11 +111,11 @@ class FormText extends Component<{
 }> {
   render() {
     return (
-      <Row>
-        <Col md={{ span: 10, offset: 2 }}>
-          <Form.Text className={`text-${this.props.type} tr-form-text`}>{this.props.msg}</Form.Text>
-        </Col>
-      </Row>
+      <div className="grid grid-cols-12">
+        <div className="col-span-12 md:col-span-10 col-start-2">
+          <small className={`text-${this.props.type} tr-form-text`}>{this.props.msg}</small>
+        </div>
+      </div>
     );
   }
 }
@@ -242,7 +234,7 @@ export class Transfer extends BaseComponent<Props, State> {
     }
   };
 
-  toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  toChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: to } = e.target;
     const { memo } = this.state;
     this.stateSet({ to }, this.handleTo);
@@ -255,14 +247,14 @@ export class Transfer extends BaseComponent<Props, State> {
     this.exchangeHandler(to, memo);
   };
 
-  amountChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  amountChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: amount } = e.target;
     this.stateSet({ amount }, () => {
       this.checkAmount();
     });
   };
 
-  memoChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  memoChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: memo } = e.target;
     const { to } = this.state;
     const mError = cryptoUtils.isWif(memo.trim());
@@ -843,7 +835,7 @@ export class Transfer extends BaseComponent<Props, State> {
                   })}
                 </p>
                 <p>
-                  <Button onClick={this.nextPowerDown} variant="danger">
+                  <Button onClick={this.nextPowerDown} appearance="danger">
                     {_t("transfer.stop-power-down")}
                   </Button>
                 </p>
@@ -861,33 +853,27 @@ export class Transfer extends BaseComponent<Props, State> {
             {formHeader1}
             {inProgress && <LinearProgress />}
             <Form className="transaction-form-body">
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("transfer.from")}
-                </Form.Label>
-                <Col sm="10">
-                  <InputGroup>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text>@</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <Form.Control value={activeUser.username} readOnly={true} />
+              <div className="grid items-center grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2">
+                  <label>{_t("transfer.from")}</label>
+                </div>
+                <div className="col-span-12 sm:col-span-10">
+                  <InputGroup prepend="@">
+                    <FormControl type="text" value={activeUser.username} readOnly={true} />
                   </InputGroup>
-                </Col>
-              </Form.Group>
+                </div>
+              </div>
 
               {showTo && (
                 <>
-                  <Form.Group as={Row}>
-                    <Form.Label column={true} sm="2">
-                      {_t("transfer.to")}
-                    </Form.Label>
-                    <Col sm="10">
+                  <div className="grid items-center grid-cols-12 mb-4">
+                    <div className="col-span-12 sm:col-span-2">
+                      <label>{_t("transfer.to")}</label>
+                    </div>
+                    <div className="col-span-12 sm:col-span-10">
                       <SuggestionList items={recent} {...suggestionProps}>
-                        <InputGroup>
-                          <InputGroup.Prepend>
-                            <InputGroup.Text>@</InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <Form.Control
+                        <InputGroup prepend="@">
+                          <FormControl
                             type="text"
                             autoFocus={to === ""}
                             placeholder={_t("transfer.to-placeholder")}
@@ -897,24 +883,21 @@ export class Transfer extends BaseComponent<Props, State> {
                           />
                         </InputGroup>
                       </SuggestionList>
-                    </Col>
-                  </Form.Group>
+                    </div>
+                  </div>
                   {toWarning && <FormText msg={toWarning} type="danger" />}
                   {toError && <FormText msg={toError} type="danger" />}
                   {exchangeWarning && <FormText msg={exchangeWarning} type="danger" />}
                 </>
               )}
 
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("transfer.amount")}
-                </Form.Label>
-                <Col sm="10" className="d-flex align-items-center">
-                  <InputGroup>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text>#</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <Form.Control
+              <div className="grid items-center grid-cols-12">
+                <div className="col-span-12 sm:col-span-2">
+                  <label>{_t("transfer.amount")}</label>
+                </div>
+                <div className="col-span-12 sm:col-span-10 flex items-center">
+                  <InputGroup prepend="#">
+                    <FormControl
                       type="text"
                       placeholder={_t("transfer.amount-placeholder")}
                       value={amount}
@@ -926,13 +909,13 @@ export class Transfer extends BaseComponent<Props, State> {
                   {assets.length > 1 && (
                     <AssetSwitch options={assets} selected={asset} onChange={this.assetChanged} />
                   )}
-                </Col>
-              </Form.Group>
+                </div>
+              </div>
 
               {amountError && amount > balance && <FormText msg={amountError} type="danger" />}
 
-              <Row>
-                <Col lg={{ span: 10, offset: 2 }}>
+              <div className="grid items-center grid-cols-12">
+                <div className="col-span-12 lg:col-span-10 lg:col-start-3">
                   <div className="balance">
                     <span className="balance-label">
                       {_t("transfer.balance")}
@@ -946,7 +929,7 @@ export class Transfer extends BaseComponent<Props, State> {
                     )}
                   </div>
                   {to.length > 0 && Number(amount) > 0 && toData?.__loaded && mode === "delegate" && (
-                    <div className="text-muted mt-1 override-warning">
+                    <div className="text-gray-600 mt-1 override-warning">
                       {_t("transfer.override-warning-1")}
                       {delegateAccount && (
                         <>
@@ -974,35 +957,36 @@ export class Transfer extends BaseComponent<Props, State> {
                     }
                     return null;
                   })()}
-                </Col>
-              </Row>
+                </div>
+              </div>
 
               {showMemo && (
                 <>
-                  <Form.Group as={Row}>
-                    <Form.Label column={true} sm="2">
-                      {_t("transfer.memo")}
-                    </Form.Label>
-                    <Col sm="10">
-                      <Form.Control
+                  <div className="grid items-center grid-cols-12 mb-4">
+                    <div className="col-span-12 sm:col-span-2">
+                      <label>{_t("transfer.memo")}</label>
+                    </div>
+                    <div className="col-span-12 sm:col-span-10">
+                      <FormControl
+                        type="text"
                         placeholder={_t("transfer.memo-placeholder")}
                         value={memo}
                         onChange={this.memoChanged}
                       />
-                    </Col>
-                  </Form.Group>
-                  <FormText msg={_t("transfer.memo-help")} type="muted" />
-                  {memoError && <FormText msg={memoError} type="danger" />}
+                      <FormText msg={_t("transfer.memo-help")} type="muted" />
+                      {memoError && <FormText msg={memoError} type="danger" />}
+                    </div>
+                  </div>
                 </>
               )}
 
-              <Form.Group as={Row}>
-                <Col sm={{ span: 10, offset: 2 }}>
+              <div className="grid items-center grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-10 sm:col-start-3">
                   <Button onClick={this.next} disabled={!this.canSubmit()}>
                     {_t("g.next")}
                   </Button>
-                </Col>
-              </Form.Group>
+                </div>
+              </div>
             </Form>
           </div>
         )}
@@ -1034,13 +1018,17 @@ export class Transfer extends BaseComponent<Props, State> {
                 )}
                 {memo && <div className="memo">{memo}</div>}
               </div>
-              <div className="d-flex justify-content-center">
-                <Button variant="outline-secondary" disabled={inProgress} onClick={this.back}>
+              <div className="flex justify-center">
+                <Button
+                  appearance="secondary"
+                  outline={true}
+                  disabled={inProgress}
+                  onClick={this.back}
+                >
                   {_t("g.back")}
                 </Button>
                 <span className="hr-6px-btn-spacer" />
                 <Button disabled={inProgress} onClick={this.confirm}>
-                  {inProgress && <span>spinner</span>}
                   {_t("transfer.confirm")}
                 </Button>
               </div>
@@ -1086,8 +1074,8 @@ export class Transfer extends BaseComponent<Props, State> {
               >
                 <div className="success" />
               </Tsx>
-              <div className="d-flex justify-content-center">
-                <Button variant="outline-secondary" onClick={this.reset}>
+              <div className="flex justify-center">
+                <Button appearance="secondary" outline={true} onClick={this.reset}>
                   {_t("transfer.reset")}
                 </Button>
                 <span className="hr-6px-btn-spacer" />
@@ -1110,14 +1098,13 @@ export default class TransferDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
-        className="transfer-dialog modal-thin-header"
+        className="transfer-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader thin={true} closeButton={true} />
+        <ModalBody>
           <Transfer {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

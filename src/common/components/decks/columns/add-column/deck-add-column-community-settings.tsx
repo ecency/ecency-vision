@@ -3,13 +3,12 @@ import React, { useContext, useState } from "react";
 import { DeckGridContext } from "../../deck-manager";
 import { UserAvatar } from "../../../user-avatar";
 import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
-import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
-import { ICONS } from "../../consts";
+import { COMMUNITY_CONTENT_TYPES, ICONS } from "../../consts";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../../util/local-storage";
 import { _t } from "../../../../i18n";
-import { COMMUNITY_CONTENT_TYPES } from "../../consts";
+import { Button } from "@ui/button";
 
 export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -67,8 +66,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
       {username !== "" && contentType !== null ? (
         <Button
           disabled={!username || !contentType}
-          className="w-100 mt-5 py-3 sticky-bottom"
-          variant="primary"
+          className="w-full mt-5 sticky-bottom"
           onClick={() =>
             add({
               key: deckKey,

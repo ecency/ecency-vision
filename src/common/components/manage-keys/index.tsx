@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { History } from "history";
-import { Button, Form, InputGroup, Modal } from "react-bootstrap";
-
 import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 import { decodeObj, encodeObj } from "../../util/encoder";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { User, UserKeys } from "../../store/users/types";
 import { AccountDataType, actionType, Keytype, PublicKeys } from "../manage-authority/types";
 import ManageAuthIcon from "../manage-auth-icon";
 import { error, success } from "../feedback";
 import { generateKeys } from "../../helper/generate-private-keys";
-
 import * as ls from "../../util/local-storage";
 import { _t } from "../../i18n";
 import { keySvg } from "../../img/svg";
 import "./index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
+import { Td, Tr } from "@ui/table";
+
 interface Props {
   accountData: AccountDataType;
   activeUser: ActiveUser;
@@ -253,7 +255,7 @@ export default function ManageKeys(props: Props) {
   const passwordModal = () => {
     return (
       <>
-        <div className="sign-dialog-header border-bottom">
+        <div className="sign-dialog-header border-b border-[--border-color]">
           <div className="step-no">1</div>
           <div className="sign-dialog-titles">
             <div className="authority-main-title">{_t("manage-authorities.password-title")}</div>
@@ -266,11 +268,11 @@ export default function ManageKeys(props: Props) {
               e.preventDefault();
             }}
           >
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text>{keySvg}</InputGroup.Text>
-              </InputGroup.Prepend>
-              <Form.Control
+            <InputGroup
+              prepend={keySvg}
+              append={<Button onClick={handleSubmit}>{_t("key-or-hot.sign")}</Button>}
+            >
+              <FormControl
                 value={key}
                 type="password"
                 autoFocus={true}
@@ -278,9 +280,6 @@ export default function ManageKeys(props: Props) {
                 placeholder={_t("manage-authorities.placeholder")}
                 onChange={(e) => setKey(e.target.value)}
               />
-              <InputGroup.Append>
-                <Button onClick={handleSubmit}>{_t("key-or-hot.sign")}</Button>
-              </InputGroup.Append>
             </InputGroup>
           </Form>
         </div>
@@ -291,7 +290,7 @@ export default function ManageKeys(props: Props) {
   const keySuccessModal = () => {
     return (
       <>
-        <div className="sign-dialog-header border-bottom">
+        <div className="sign-dialog-header border-b border-[--border-color]">
           <div className="step-no">2</div>
           <div className="sign-dialog-titles">
             <div className="authority-main-title">{_t("manage-authorities.success-title")}</div>
@@ -302,7 +301,7 @@ export default function ManageKeys(props: Props) {
           <div className="success-dialog-content">
             <span>{_t("manage-authorities.keys-success-message")} </span>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             <span className="hr-6px-btn-spacer" />
             <Button onClick={finish}>{_t("g.finish")}</Button>
           </div>
@@ -313,9 +312,9 @@ export default function ManageKeys(props: Props) {
 
   return (
     <>
-      <tr>
-        <td className="col-type-content"> {_t("manage-authorities.owner")}</td>
-        <td className="key">
+      <Tr>
+        <Td className="col-type-content"> {_t("manage-authorities.owner")}</Td>
+        <Td className="key">
           {ownerReveal
             ? isMobile
               ? formattedPublicKeys.publicOwnerKey
@@ -323,12 +322,12 @@ export default function ManageKeys(props: Props) {
             : isMobile
             ? formattedPrivateKeys.owner
             : privateKeys?.owner!}
-        </td>
-        <td className="d-none d-sm-block">
+        </Td>
+        <Td className="hidden sm:table-cell">
           <p className="action-btns">
             <Button
               className="copy-btn"
-              variant="outline-primary"
+              outline={true}
               onClick={() =>
                 ownerReveal
                   ? copyToClipboard(props.accountData!.publicKeys.publicOwnerKey.toString())
@@ -338,7 +337,7 @@ export default function ManageKeys(props: Props) {
               {_t("manage-authorities.copy")}
             </Button>
             {privateKeys?.owner! ? (
-              <Button className="reveal-btn" variant="outline-primary" onClick={handleOwnerReveal}>
+              <Button className="reveal-btn" outline={true} onClick={handleOwnerReveal}>
                 {ownerReveal
                   ? _t("manage-authorities.reveal-private-key")
                   : _t("manage-authorities.reveal-public-key")}
@@ -346,16 +345,16 @@ export default function ManageKeys(props: Props) {
             ) : (
               <Button
                 className="import-btn"
-                variant="outline-primary"
+                outline={true}
                 onClick={() => handleImportBtn(Keytype.Owner)}
               >
                 {_t("manage-authorities.import")}
               </Button>
             )}
           </p>
-        </td>
+        </Td>
 
-        <td className="d-sm-none">
+        <Td className="sm:hidden">
           {
             <ManageAuthIcon
               history={props.history}
@@ -383,13 +382,13 @@ export default function ManageKeys(props: Props) {
               }}
             />
           }
-        </td>
-        <td className="col-weight-content">{props.accountData!.owner[1]}</td>
-      </tr>
+        </Td>
+        <Td className="col-weight-content">{props.accountData!.owner[1]}</Td>
+      </Tr>
 
-      <tr>
-        <td className="col-type-content"> {_t("manage-authorities.active")}</td>
-        <td className="key">
+      <Tr>
+        <Td className="col-type-content"> {_t("manage-authorities.active")}</Td>
+        <Td className="key">
           {activeReveal
             ? isMobile
               ? formattedPublicKeys.publicActiveKey
@@ -397,12 +396,12 @@ export default function ManageKeys(props: Props) {
             : isMobile
             ? formattedPrivateKeys.active
             : privateKeys?.active!}
-        </td>
-        <td className="d-none d-sm-block">
+        </Td>
+        <Td className="hidden sm:table-cell">
           <p className="action-btns">
             <Button
               className="copy-btn"
-              variant="outline-primary"
+              outline={true}
               onClick={() => {
                 activeReveal
                   ? copyToClipboard(props.accountData!.publicKeys.publicActiveKey.toString())
@@ -412,7 +411,7 @@ export default function ManageKeys(props: Props) {
               {_t("manage-authorities.copy")}
             </Button>
             {privateKeys?.active! ? (
-              <Button className="reveal-btn" variant="outline-primary" onClick={handleActiveReveal}>
+              <Button className="reveal-btn" outline={true} onClick={handleActiveReveal}>
                 {activeReveal
                   ? _t("manage-authorities.reveal-private-key")
                   : _t("manage-authorities.reveal-public-key")}
@@ -420,15 +419,15 @@ export default function ManageKeys(props: Props) {
             ) : (
               <Button
                 className="import-btn"
-                variant="outline-primary"
+                outline={true}
                 onClick={() => handleImportBtn(Keytype.Active)}
               >
                 {_t("manage-authorities.import")}
               </Button>
             )}
           </p>
-        </td>
-        <td className="d-sm-none">
+        </Td>
+        <Td className="sm:hidden">
           {
             <ManageAuthIcon
               history={props.history}
@@ -456,13 +455,13 @@ export default function ManageKeys(props: Props) {
               }}
             />
           }
-        </td>
+        </Td>
 
-        <td className="col-weight-content">{props.accountData!.active[1]}</td>
-      </tr>
-      <tr>
-        <td className="col-type-content"> {_t("manage-authorities.posting")}</td>
-        <td className="key">
+        <Td className="col-weight-content">{props.accountData!.active[1]}</Td>
+      </Tr>
+      <Tr>
+        <Td className="col-type-content"> {_t("manage-authorities.posting")}</Td>
+        <Td className="key">
           {postingReveal
             ? isMobile
               ? formattedPublicKeys.publicPostingKey
@@ -470,12 +469,12 @@ export default function ManageKeys(props: Props) {
             : isMobile
             ? formattedPrivateKeys.posting
             : privateKeys?.posting!}
-        </td>
-        <td className="d-none d-sm-block">
+        </Td>
+        <Td className="hidden sm:table-cell">
           <p className="action-btns">
             <Button
               className="copy-btn"
-              variant="outline-primary"
+              outline={true}
               onClick={() =>
                 postingReveal
                   ? copyToClipboard(props.accountData!.publicKeys.publicPostingKey.toString())
@@ -485,11 +484,7 @@ export default function ManageKeys(props: Props) {
               {_t("manage-authorities.copy")}
             </Button>
             {privateKeys?.posting! ? (
-              <Button
-                className="reveal-btn"
-                variant="outline-primary"
-                onClick={handlePostingReveal}
-              >
+              <Button className="reveal-btn" outline={true} onClick={handlePostingReveal}>
                 {postingReveal
                   ? _t("manage-authorities.reveal-private-key")
                   : _t("manage-authorities.reveal-public-key")}
@@ -497,15 +492,15 @@ export default function ManageKeys(props: Props) {
             ) : (
               <Button
                 className="import-btn"
-                variant="outline-primary"
+                outline={true}
                 onClick={() => handleImportBtn(Keytype.Posting)}
               >
                 {_t("manage-authorities.import")}
               </Button>
             )}
           </p>
-        </td>
-        <td className="d-sm-none">
+        </Td>
+        <Td className="sm:hidden">
           {
             <ManageAuthIcon
               history={props.history}
@@ -535,14 +530,14 @@ export default function ManageKeys(props: Props) {
               }}
             />
           }
-        </td>
+        </Td>
 
-        <td className="col-weight-content">{props.accountData!.posting[1]}</td>
-      </tr>
+        <Td className="col-weight-content">{props.accountData!.posting[1]}</Td>
+      </Tr>
 
-      <tr>
-        <td className="col-type-content"> {_t("manage-authorities.memo")}</td>
-        <td className="key">
+      <Tr>
+        <Td className="col-type-content"> {_t("manage-authorities.memo")}</Td>
+        <Td className="key">
           {memoReveal
             ? isMobile
               ? formattedPublicKeys.publicMemoKey
@@ -550,12 +545,12 @@ export default function ManageKeys(props: Props) {
             : isMobile
             ? formattedPrivateKeys.memo
             : privateKeys?.memo!}
-        </td>
-        <td className="d-none d-sm-block">
+        </Td>
+        <Td className="hidden sm:table-cell">
           <p className="action-btns">
             <Button
               className="copy-btn"
-              variant="outline-primary"
+              outline={true}
               onClick={() =>
                 memoReveal
                   ? copyToClipboard(props.accountData!.publicKeys.publicMemoKey)
@@ -565,7 +560,7 @@ export default function ManageKeys(props: Props) {
               {_t("manage-authorities.copy")}
             </Button>
             {privateKeys?.memo! ? (
-              <Button className="reveal-btn" variant="outline-primary" onClick={handleMemoReveal}>
+              <Button className="reveal-btn" outline={true} onClick={handleMemoReveal}>
                 {memoReveal
                   ? _t("manage-authorities.reveal-private-key")
                   : _t("manage-authorities.reveal-public-key")}
@@ -573,16 +568,16 @@ export default function ManageKeys(props: Props) {
             ) : (
               <Button
                 className="import-btn"
-                variant="outline-primary"
+                outline={true}
                 onClick={() => handleImportBtn(Keytype.Memo)}
               >
                 {_t("manage-authorities.import")}
               </Button>
             )}
           </p>
-        </td>
+        </Td>
 
-        <td className="d-sm-none">
+        <Td className="sm:hidden">
           {
             <ManageAuthIcon
               history={props.history}
@@ -608,9 +603,9 @@ export default function ManageKeys(props: Props) {
               }}
             />
           }
-        </td>
-        <td className="col-weight-content">{props.accountData!.owner[1]}</td>
-      </tr>
+        </Td>
+        <Td className="col-weight-content">{props.accountData!.owner[1]}</Td>
+      </Tr>
 
       {keyDialog && (
         <Modal
@@ -618,15 +613,14 @@ export default function ManageKeys(props: Props) {
           show={true}
           centered={true}
           onHide={toggleKeyDialog}
-          keyboard={false}
-          className="manage-keys modal-thin-header"
+          className="manage-keys"
           size="lg"
         >
-          <Modal.Header closeButton={true} />
-          <Modal.Body>
+          <ModalHeader closeButton={true} />
+          <ModalBody>
             {step === 1 && passwordModal()}
             {step === 2 && keySuccessModal()}
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       )}
     </>

@@ -13,13 +13,9 @@ import FullHeight from "../components/full-height";
 import ScrollToTop from "../components/scroll-to-top";
 import "./discover.scss";
 import { _t } from "../i18n";
-import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 
 class DiscoverPage extends Component<PageProps> {
-  // componentDidMount() {
-  //   console.log('IMOUNTED')
-  // }
-
   render() {
     //  Meta config
     const metaProps = {

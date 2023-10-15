@@ -3,27 +3,20 @@ import { addUser } from "../../store/users";
 import { setActiveUser, updateActiveUser } from "../../store/active-user";
 import { setSigningKey } from "../../store/signing-key";
 import { addAccount } from "../../store/accounts";
-
-import { Modal, Button } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import { error } from "../feedback";
-
 import { getAccountFull } from "../../api/hive";
-
 import {
   formatError,
-  limitOrderCreateHot,
-  limitOrderCreateKc,
-  limitOrderCreate,
-  limitOrderCancelKc,
+  limitOrderCancel,
   limitOrderCancelHot,
-  limitOrderCancel
+  limitOrderCancelKc,
+  limitOrderCreate,
+  limitOrderCreateHot,
+  limitOrderCreateKc
 } from "../../api/operations";
-
 import { _t } from "../../i18n";
 import KeyOrHot from "../key-or-hot";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
@@ -31,6 +24,8 @@ import { connect } from "react-redux";
 import { AppState } from "../../store";
 import { PrivateKey } from "@hiveio/dhive";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { Button } from "@ui/button";
 
 export enum TransactionType {
   None = 0,
@@ -154,9 +149,9 @@ export class BuySellHive extends BaseComponent<any, State> {
     } = this.props;
 
     const formHeader1 = (
-      <div className="d-flex align-items-center border-bottom pb-3">
+      <div className="flex items-center border-b border-[--border-color] pb-3">
         <div className="step-no ml-3">{step}</div>
-        <div className="flex-grow-1">
+        <div className="grow">
           <div className="main-title">{_t("transfer.confirm-title")}</div>
           <div className="sub-title">{_t("transfer.confirm-sub-title")}</div>
         </div>
@@ -167,13 +162,13 @@ export class BuySellHive extends BaseComponent<any, State> {
       return (
         <div className="mb-3">
           {formHeader1}
-          <div className="d-flex justify-content-center">
+          <div className="flex justify-center">
             {Ttype === TransactionType.Cancel ? (
-              <div className="mt-5 w-75 text-center sub-title text-wrap">
+              <div className="mt-5 w-75 text-center sub-title whitespace-pre-wrap">
                 {_t("market.confirm-cancel", { orderid: orderid })}
               </div>
             ) : (
-              <div className="mt-5 w-75 text-center sub-title text-wrap">
+              <div className="mt-5 w-75 text-center sub-title whitespace-pre-wrap">
                 {available < (Ttype === TransactionType.Buy ? total : amount)
                   ? _t("market.transaction-low")
                   : _t("market.confirm-buy", {
@@ -188,14 +183,14 @@ export class BuySellHive extends BaseComponent<any, State> {
           {available < (Ttype === TransactionType.Buy ? total : amount) ? (
             <></>
           ) : (
-            <div className="d-flex justify-content-end mt-5">
-              <div className="d-flex">
-                <Button variant="secondary" className="mr-3" onClick={onHide}>
+            <div className="flex justify-end mt-5">
+              <div className="flex">
+                <Button appearance="secondary" className="mr-3" onClick={onHide}>
                   {_t("g.cancel")}
                 </Button>
                 <Button
                   onClick={() => this.setState({ step: 2 })}
-                  variant={Ttype === TransactionType.Cancel ? "danger" : "primary"}
+                  appearance={Ttype === TransactionType.Cancel ? "danger" : "primary"}
                 >
                   {_t("g.continue")}
                 </Button>
@@ -251,11 +246,11 @@ export class BuySellHive extends BaseComponent<any, State> {
       return (
         <div className="transaction-form">
           {formHeader4}
-          <div className="transaction-form-body d-flex flex-column align-items-center">
-            <div className="my-5 w-75 text-center sub-title text-wrap">
+          <div className="transaction-form-body flex flex-col items-center">
+            <div className="my-5 w-75 text-center sub-title whitespace-pre-wrap">
               {_t("market.transaction-succeeded")}
             </div>
-            <div className="d-flex justify-content-center">
+            <div className="flex justify-center">
               <span className="hr-6px-btn-spacer" />
               <Button onClick={this.finish}>{_t("g.finish")}</Button>
             </div>
@@ -277,14 +272,13 @@ class BuySellHiveDialog extends Component<any> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
-        className="transfer-dialog modal-thin-header"
+        className="transfer-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader closeButton={true} />
+        <ModalBody>
           <BuySellHive {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

@@ -4,12 +4,13 @@ import { error } from "../../../feedback";
 import { formatError } from "../../../../api/operations";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import useDebounce from "react-use/lib/useDebounce";
-import { Button, Form, InputGroup } from "react-bootstrap";
-import { _t } from "../../../../i18n";
 import { UserAvatar } from "../../../user-avatar";
 import { getCommunities } from "../../../../api/bridge";
 import { UsernameDataItem } from "./common";
 import { closeSvg } from "../../../../img/svg";
+import { FormControl, InputGroup } from "@ui/input";
+import { Spinner } from "@ui/spinner";
+import { Button } from "@ui/button";
 
 interface Props {
   isCommunity?: boolean;
@@ -101,19 +102,8 @@ export const DeckAddColumnSearchBox = ({
 
   return (
     <div className="deck-add-column-search-box">
-      <InputGroup>
-        <InputGroup.Prepend>
-          <InputGroup.Text>
-            {isUsernameDataLoading ? (
-              <div className="spinner-border text-primary spinner-border-sm" role="status">
-                <span className="sr-only">{_t("g.loading")}</span>
-              </div>
-            ) : (
-              "@"
-            )}
-          </InputGroup.Text>
-        </InputGroup.Prepend>
-        <Form.Control
+      <InputGroup prepend={isUsernameDataLoading ? <Spinner /> : "@"}>
+        <FormControl
           type="text"
           autoFocus={true}
           placeholder=""
@@ -142,14 +132,14 @@ export const DeckAddColumnSearchBox = ({
             }}
           >
             <UserAvatar size="medium" global={global} username={i.tag || i.name} />
-            <div className="d-flex w-100 flex-column">
+            <div className="flex w-full flex-col">
               <div className="username">{i.name}</div>
               <div className="description">{i.description}</div>
             </div>
             {isRecent && !!recentList?.length && (
               <Button
-                variant="link"
-                onClick={(e) => {
+                appearance="link"
+                onClick={(e: { stopPropagation: () => void }) => {
                   e.stopPropagation();
                   const nextData = recentList?.filter((it) => it.name !== i.name) ?? [];
                   setRecentList(nextData);

@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-
-import { Button, ProgressBar } from "react-bootstrap";
-
 import { Global } from "../../../../common/store/global/types";
-
 import { _t } from "../../../../common/i18n";
-
 import { getOperatingSystem } from "../../../../common/util/platform";
 import "./_index.scss";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -96,7 +92,7 @@ export default class Updater extends Component<Props, State> {
             {_t("updater.new-version-available")}{" "}
             <span className="release-name">{global.newVersion}</span>
           </p>
-          <Button className="btn-update" onClick={this.begin}>
+          <Button className="mr-[10px]" onClick={this.begin}>
             {_t("updater.download")}
           </Button>
 
@@ -118,7 +114,7 @@ export default class Updater extends Component<Props, State> {
               {_t("updater.new-version-available")}{" "}
               <span className="release-name">{global.newVersion}</span>
             </p>
-            <Button className="btn-update" onClick={this.begin}>
+            <Button className="mr-[10px]" onClick={this.begin}>
               {_t("updater.update")}
             </Button>
 
@@ -130,8 +126,14 @@ export default class Updater extends Component<Props, State> {
         {downloading && (
           <>
             <p className="info-text">{_t("updater.downloading")}</p>
-            <div className="progress">
-              <ProgressBar max={100} min={0} now={percent} label={`${percent}%`} />
+            <div className="bg-gray-200 h-[1rem] text-white rounded-lg flex overflow-hidden">
+              <div
+                className="flex duration-300 justify-center overflow-hidden text-xs bg-blue-dark-sky"
+                role="progressbar"
+                style={{ width: `${percent}%` }}
+              >
+                {percent}%
+              </div>
             </div>
           </>
         )}

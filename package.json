@@ -24,6 +24,7 @@
     "@hiveio/hivescript": "^1.2.7",
     "@loadable/component": "^5.15.2",
     "@loadable/server": "^5.15.2",
+    "@popperjs/core": "^2.11.8",
     "@tanstack/react-query": "^4.29.7",
     "@tanstack/react-query-devtools": "^4.29.7",
     "@types/tus-js-client": "^2.1.0",
@@ -61,7 +62,6 @@
     "query-string": "^6.13.1",
     "react": "^16.8.6",
     "react-beautiful-dnd": "^13.1.0",
-    "react-bootstrap": "^1.0.1",
     "react-datetime": "^3.0.4",
     "react-dom": "^16.8.6",
     "react-fast-compare": "^3.2.0",
@@ -97,6 +97,7 @@
   },
   "devDependencies": {
     "@loadable/webpack-plugin": "^5.15.2",
+    "@thoughtbot/tailwindcss-aria-attributes": "^0.2.0",
     "@types/bs58": "^4.0.1",
     "@types/bytebuffer": "^5.0.41",
     "@types/cookie-parser": "^1.4.2",
@@ -133,6 +134,7 @@
     "@types/uuid": "^9.0.0",
     "@types/webpack-env": "^1.14.0",
     "@types/webscopeio__react-textarea-autocomplete": "^4.7.2",
+    "autoprefixer": "^10.4.14",
     "babel-preset-razzle": "^4.0.5",
     "html-webpack-plugin": "4.5.2",
     "husky": "^8.0.1",
@@ -141,12 +143,14 @@
     "mini-css-extract-plugin": "0.9.0",
     "mockdate": "^3.0.2",
     "postcss": "8.2.13",
+    "postcss-cli": "^10.1.0",
     "prettier": "^2.7.1",
     "razzle": "^4.0.5",
     "razzle-dev-utils": "^4.0.5",
     "razzle-plugin-scss": "^4.0.5",
     "razzle-plugin-typescript": "^3.0.0",
     "react-test-renderer": "^16.13.1",
+    "tailwindcss": "^3.3.2",
     "timers": "^0.1.1",
     "ts-jest": "^26.4.2",
     "tslint": "^5.18.0",
@@ -184,6 +188,9 @@
     ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}"
-    ]
+    ],
+    "moduleNameMapper": {
+      "@ui/(.*)": "<rootDir>/src/common/features/ui/$1"
+    }
   }
 }

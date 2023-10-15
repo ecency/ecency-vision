@@ -52,68 +52,67 @@ exports[`(2) Dialog 1`] = `
       </div>
     </div>
     <form
-      className="transaction-form-body"
+      className="block transaction-form-body"
     >
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          From
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            From
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                @
-              </span>
+              @
             </div>
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               readOnly={true}
+              type="text"
               value="foo"
             />
           </div>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          To
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            To
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <div
-              className="input-group"
+              className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="input-group-prepend"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                onClick={[Function]}
               >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
+                @
               </div>
               <input
                 autoFocus={false}
-                className="form-control"
+                className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
@@ -128,31 +127,30 @@ exports[`(2) Dialog 1`] = `
       
       
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="d-flex align-items-center col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10 flex items-center"
         >
           <div
-            className="input-group"
+            className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="input-group-prepend"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              onClick={[Function]}
             >
-              <span
-                className="input-group-text"
-              >
-                #
-              </span>
+              #
             </div>
             <input
               autoFocus={false}
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               onChange={[Function]}
               placeholder="amount"
               type="text"
@@ -185,10 +183,10 @@ exports[`(2) Dialog 1`] = `
       </div>
       
       <div
-        className="row"
+        className="grid items-center grid-cols-12"
       >
         <div
-          className="col-lg-10 offset-lg-2"
+          className="col-span-12 lg:col-span-10 lg:col-start-3"
         >
           <div
             className="balance"
@@ -211,51 +209,61 @@ exports[`(2) Dialog 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Memo
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2"
+        >
+          <label>
+            Memo
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
             onChange={[Function]}
             placeholder="enter your notes here"
+            type="text"
             value="Tip for @good-karma/awesome-hive"
           />
-        </div>
-      </div>
-      <div
-        className="row"
-      >
-        <div
-          className="col-md-10 offset-md-2"
-        >
-          <small
-            className="text-muted tr-form-text form-text"
+          <div
+            className="grid grid-cols-12"
           >
-            This memo is public
-          </small>
+            <div
+              className="col-span-12 md:col-span-10 col-start-2"
+            >
+              <small
+                className="text-muted tr-form-text"
+              >
+                This memo is public
+              </small>
+            </div>
+          </div>
+          
         </div>
       </div>
-      
       <div
-        className="form-group row"
+        className="grid items-center grid-cols-12 mb-4"
       >
         <div
-          className="col-sm-10 offset-sm-2"
+          className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={false}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>

@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .entry-list-item {
 
@@ -18,12 +15,12 @@
     margin-bottom: 10px;
 
     @include themify(day) {
-      background: lighten($dark-sky-blue, 42);
-      color: $charcoal-grey;
+      @apply bg-blue-dark-sky-040;
+      @apply text-gray-charcoal;
     }
 
     @include themify(night) {
-      background: $dark-grey-blue;
+      @apply bg-blue-dark-grey;
     }
 
     .cross-item-link {

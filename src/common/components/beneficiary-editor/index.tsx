@@ -1,5 +1,4 @@
 import React, { useMemo, useRef, useState } from "react";
-import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { error } from "../feedback";
 import { BeneficiaryRoute } from "../../api/operations";
 import { getAccount } from "../../api/hive";
@@ -8,6 +7,11 @@ import { accountMultipleSvg, deleteForeverSvg, plusSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
 import { useThreeSpeakManager } from "../../pages/submit/hooks";
+import { Button } from "@ui/button";
+import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "@ui/modal";
+import { Form } from "@ui/form";
+import { FormControl, InputGroup } from "@ui/input";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 interface Props {
   body: string;
@@ -30,11 +34,10 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
 
   return (
     <>
-      <Button size="sm" onClick={() => setVisible(!visible)}>
+      <Button icon={accountMultipleSvg} size="sm" onClick={() => setVisible(!visible)}>
         {list.length > 0
           ? _t("beneficiary-editor.btn-label-n", { n: list.length })
           : _t("beneficiary-editor.btn-label")}
-        <span style={{ marginLeft: "6px" }}>{accountMultipleSvg}</span>
       </Button>
 
       {visible && (
@@ -45,10 +48,10 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
           animation={false}
           className="beneficiary-editor-dialog"
         >
-          <Modal.Header closeButton={true}>
-            <Modal.Title>{_t("beneficiary-editor.title")}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader closeButton={true}>
+            <ModalTitle>{_t("beneficiary-editor.title")}</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
             <Form
               ref={formRef}
               onSubmit={(e: React.FormEvent) => {
@@ -84,29 +87,27 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
               }}
             >
               <div className="beneficiary-list">
-                <table className="table table-bordered">
+                <Table full={true}>
                   <thead>
-                    <tr>
-                      <th>{_t("beneficiary-editor.username")}</th>
-                      <th>{_t("beneficiary-editor.reward")}</th>
-                      <th />
-                    </tr>
+                    <Tr>
+                      <Th>{_t("beneficiary-editor.username")}</Th>
+                      <Th>{_t("beneficiary-editor.reward")}</Th>
+                      <Th />
+                    </Tr>
                   </thead>
                   <tbody>
                     {author && 100 - used > 0 && (
-                      <tr>
-                        <td>{`@${author}`}</td>
-                        <td>{`${100 - used}%`}</td>
-                        <td />
-                      </tr>
+                      <Tr>
+                        <Td>{`@${author}`}</Td>
+                        <Td>{`${100 - used}%`}</Td>
+                        <Td />
+                      </Tr>
                     )}
-                    <tr>
-                      <td>
-                        <InputGroup size="sm">
-                          <InputGroup.Prepend>
-                            <InputGroup.Text>@</InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <Form.Control
+                    <Tr>
+                      <Td>
+                        <InputGroup prepend="@">
+                          <FormControl
+                            type="text"
                             disabled={inProgress}
                             autoFocus={true}
                             required={true}
@@ -117,17 +118,18 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
                               handleInvalid(e, "beneficiary-editor.", "validation-username")
                             }
                             onInput={handleOnInput}
-                            onChange={(e) => setUsername(e.target.value.trim().toLowerCase())}
+                            onChange={(e: { target: { value: string } }) =>
+                              setUsername(e.target.value.trim().toLowerCase())
+                            }
                           />
                         </InputGroup>
-                      </td>
-                      <td>
-                        <InputGroup size="sm">
-                          <Form.Control
+                      </Td>
+                      <Td>
+                        <InputGroup append="%">
+                          <FormControl
                             disabled={inProgress}
                             required={true}
                             type="number"
-                            size="sm"
                             min={1}
                             max={100 - used}
                             step={1}
@@ -138,23 +140,23 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
                             }
                             onInput={handleOnInput}
                           />
-                          <InputGroup.Append>
-                            <InputGroup.Text>%</InputGroup.Text>
-                          </InputGroup.Append>
                         </InputGroup>
-                      </td>
-                      <td>
-                        <Button disabled={inProgress || 100 - used < 1} size="sm" type="submit">
-                          {plusSvg}
-                        </Button>
-                      </td>
-                    </tr>
+                      </Td>
+                      <Td>
+                        <Button
+                          disabled={inProgress || 100 - used < 1}
+                          size="sm"
+                          type="submit"
+                          icon={plusSvg}
+                        />
+                      </Td>
+                    </Tr>
                     {list.map((x) => {
                       return (
-                        <tr key={x.account}>
-                          <td>{`@${x.account}`}</td>
-                          <td>{`${x.weight / 100}%`}</td>
-                          <td>
+                        <Tr key={x.account}>
+                          <Td>{`@${x.account}`}</Td>
+                          <Td>{`${x.weight / 100}%`}</Td>
+                          <Td>
                             {Object.values(videos).length > 0 && x.src === "ENCODER_PAY" ? (
                               <></>
                             ) : (
@@ -162,26 +164,23 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
                                 onClick={() => {
                                   onDelete(x.account);
                                 }}
-                                variant="danger"
+                                appearance="danger"
                                 size="sm"
-                              >
-                                {deleteForeverSvg}
-                              </Button>
+                                icon={deleteForeverSvg}
+                              />
                             )}
-                          </td>
-                        </tr>
+                          </Td>
+                        </Tr>
                       );
                     })}
                   </tbody>
-                </table>
+                </Table>
               </div>
             </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={() => setVisible(!visible)}>
-              {_t("g.done")}
-            </Button>
-          </Modal.Footer>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={() => setVisible(!visible)}>{_t("g.done")}</Button>
+          </ModalFooter>
         </Modal>
       )}
     </>

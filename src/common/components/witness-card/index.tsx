@@ -8,8 +8,8 @@ import "./_index.scss";
 
 export const WitnessCard = ({ voted, row, witness, onSuccess, ...other }: any) => {
   return (
-    <div className="witnesses-card p-3 mb-3 border rounded">
-      <div className="d-flex align-items-center justify-content-between">
+    <div className="witnesses-card p-3 mb-3 border border-[--border-color] rounded">
+      <div className="flex items-center justify-between">
         <div>
           <h3>
             <Link to={`/@${row.name}`}>
@@ -28,12 +28,12 @@ export const WitnessCard = ({ voted, row, witness, onSuccess, ...other }: any) =
               row.name
             }/avatar/medium`}
             alt=""
-            className="rounded-circle avatar mr-3"
+            className="rounded-[50%] avatar mr-3"
           />
         </div>
       </div>
-      <div className="d-flex">
-        <div className="mr-3 d-flex">
+      <div className="flex">
+        <div className="mr-3 flex">
           <div className="mr-2">
             <b>{_t("witnesses.list-rank")} :</b>
           </div>
@@ -49,7 +49,7 @@ export const WitnessCard = ({ voted, row, witness, onSuccess, ...other }: any) =
           })}
         </div>
       </div>
-      <div className="d-flex align-items-center">
+      <div className="flex items-center">
         <b>{_t("witnesses.list-miss")}: </b>
         <div className="ml-2">{row.miss}</div>{" "}
         <div>
@@ -58,17 +58,17 @@ export const WitnessCard = ({ voted, row, witness, onSuccess, ...other }: any) =
           </a>
         </div>
       </div>
-      <div className="d-flex align-items-center">
+      <div className="flex items-center">
         <b>{_t("witnesses.list-miss")}: </b>
         <div className="ml-2">{row.fee}</div>
       </div>
-      <div className="d-flex align-items-center my-2 justify-content-between">
+      <div className="flex items-center my-2 justify-between">
         <div className="witness-feed">
           <span className="inner">
             ${row.feed.replace(" HBD", "")} | {dateToRelative(row.priceAge)}
           </span>
         </div>
-        <div className="d-flex align-items-center">
+        <div className="flex items-center">
           <div className="witness-version">
             <span className="inner">{row.version}</span>
           </div>

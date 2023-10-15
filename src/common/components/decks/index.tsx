@@ -44,10 +44,11 @@ export const Decks = ({ history }: Props) => {
               {({ show: showThreadsForm }) => (
                 <div
                   className={classNameObject({
-                    decks: true,
-                    "w-100": true,
+                    "decks grid grid-cols-deck items-center duration-300": true,
+                    "w-full": !isCollapsed,
                     expanded: isExpanded,
-                    "toolbar-collapsed": isCollapsed,
+                    "toolbar-collapsed translate-x-[-72px] w-[calc(100%+72px)] sm:translate-x-0 sm:w-[auto]":
+                      isCollapsed,
                     "thread-form-showed": showThreadsForm
                   })}
                 >
@@ -65,7 +66,7 @@ export const Decks = ({ history }: Props) => {
                     <DeckLoader />
                   ) : (
                     <>
-                      <div className="decks-container w-100">
+                      <div className="decks-container w-full overflow-hidden">
                         {/*<DeckSmoothScroller>*/}
                         <DeckGrid history={history} />
                         {/*</DeckSmoothScroller>*/}

@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .wallet-hive {
   @include wallet;
@@ -20,11 +17,11 @@
     }
 
     @include themify(day) {
-      color: $steel-grey;
+      @apply text-gray-steel;
     }
 
     @include themify(night) {
-      color: $metallic-blue;
+      @apply text-blue-metallic;
     }
   }
 }

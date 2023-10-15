@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import useMount from "react-use/lib/useMount";
 import { VideoUploadRecorderActions } from "./video-upload-recorder-actions";
 import { VideoUploadRecorderNoPermission } from "./video-upload-recorder-no-permission";
-import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { useThreeSpeakVideoUpload } from "../../api/threespeak";
 import { error } from "../feedback";
 import { v4 } from "uuid";
 import { useUnmount } from "react-use";
+import { Button } from "@ui/button";
 
 interface Props {
   setVideoUrl: (v: string) => void;
@@ -96,7 +96,7 @@ export function VideoUploadRecorder({
   return (
     <div className="video-upload-recorder">
       {recordedBlob ? (
-        <Button className="reset-btn" variant="link" onClick={() => onReset()}>
+        <Button className="reset-btn" appearance="link" size="sm" onClick={() => onReset()}>
           {_t("video-upload.reset")}
         </Button>
       ) : (
@@ -138,7 +138,7 @@ export function VideoUploadRecorder({
             id="videoLive"
           />
           {recordedVideoSrc ? (
-            <div className="d-flex align-items-center justify-content-center mt-3">
+            <div className="flex items-center justify-center mt-3">
               {recordedBlob && isSuccess ? (
                 <div className="bg-success text-white p-3 text-sm rounded-pill w-100">
                   {_t("video-upload.uploaded")}

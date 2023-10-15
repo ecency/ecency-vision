@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .community-selector {
   display: inline-flex;
@@ -18,12 +15,12 @@
 
   svg {
     height: 22px;
-    color: $silver;
+    @apply text-silver;
   }
 
   &:hover {
     svg {
-      color: $warm-grey;
+      @apply text-gray-warm;
     }
   }
 }
@@ -37,12 +34,12 @@
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      background: $metallic-blue;
+      @apply bg-blue-metallic;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: $box-shadow-alt;
-      color: $white;
+      @apply text-white;
       outline: none;
       border: none;
       opacity: 1;
@@ -87,7 +84,7 @@
         @include user-grid-list(1, 1, 2);
 
         .list-body .list-item:hover .item-main .item-info .item-name {
-          color: $dark-sky-blue !important;
+          @apply text-blue-dark-sky;
           height: fit-content;
         }
         .list-body {

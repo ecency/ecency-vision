@@ -2,33 +2,37 @@
 
 exports[`Introduction component (1) renders successfully with minimal props 1`] = `
 <div
-  className="intro-popup p-4 p-lg-0"
+  className="intro-popup p-4 lg:p-0"
   style={
     Object {
       "left": undefined,
+      "top": 100,
     }
   }
 >
   <div
-    className="h-100 container"
+    className="container h-full"
   >
     <button
-      className="close position-absolute close-btn"
+      className="absolute close-btn"
       id="close-btn"
       onClick={[Function]}
       type="button"
     >
-      <span
-        aria-hidden="true"
+      <svg
+        viewBox="0 0 24 24"
       >
-        ×
-      </span>
+        <path
+          d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+          fill="currentColor"
+        />
+      </svg>
     </button>
     <div
-      className="justify-content-center h-100 align-items-center mt-4 mt-md-0 row"
+      className="grid grid-cols-12 gap-4 h-full items-center mt-4 md:mt-0"
     >
       <div
-        className="p-0 px-md-3 col-md-3 col-12"
+        className="col-span-12 md:col-start-3 md:col-span-3 p-0 md:px-3"
       >
         <img
           className="media-intro"
@@ -38,22 +42,21 @@ exports[`Introduction component (1) renders successfully with minimal props 1`] 
         />
       </div>
       <div
-        className="p-0 px-md-3 col-md-5 col-12"
+        className="col-span-12 md:col-span-5 p-0 md:px-3"
       >
-        <h1
-          className="mb-2 mb-md-4 text-dark font-weight-bold title"
-          id="title"
+        <div
+          className="text-4xl mb-2 md:mb-4 text-dark font-bold"
         >
           Test Title
-        </h1>
+        </div>
         <p
-          className="text-muted paragraph mt-2 mt-md-0"
+          className="text-gray-600 paragraph mt-2 md:mt-0"
           id="description"
         >
           Test decription
         </p>
         <div
-          className="d-flex flex-column flex-md-row"
+          className="flex flex-col md:flex-row"
         />
       </div>
     </div>

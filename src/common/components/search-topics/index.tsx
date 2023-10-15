@@ -72,18 +72,18 @@ export class SearchTopics extends BaseComponent<Props, State> {
     const { results, loading } = this.state;
 
     return (
-      <div className="card search-topics">
-        <div className="card-header">
+      <div className="border bg-white rounded  search-topics">
+        <div className="bg-gray-100 border-b p-3">
           <strong>{_t("search-topics.title")}</strong>
         </div>
-        <div className="card-body">
+        <div className="p-3">
           {(() => {
             if (loading) {
               return <LinearProgress />;
             }
 
             if (results.length === 0) {
-              return <span className="text-muted">{_t("g.no-matches")}</span>;
+              return <span className="text-gray-600">{_t("g.no-matches")}</span>;
             }
 
             return (

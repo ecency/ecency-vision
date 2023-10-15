@@ -2,10 +2,10 @@ import { UserAvatar } from "../../../user-avatar";
 import { Link } from "react-router-dom";
 import { _t } from "../../../../i18n";
 import { dateToRelative } from "../../../../helper/parse-date";
-import { Spinner } from "react-bootstrap";
 import React from "react";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ThreadItemEntry } from "../deck-threads-manager";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   entry: ThreadItemEntry;
@@ -20,7 +20,7 @@ export const DeckThreadItemHeader = ({ entry, hasParent, pure, status }: Props) 
   return (
     <div className="thread-item-header">
       <UserAvatar size="deck-item" global={global} username={entry.author} />
-      <div className="username text-truncate">
+      <div className="username truncate">
         <Link to={`/@${entry.author}`}>{entry.author}</Link>
         {activeUser?.username === entry.author && <span className="you">{`(${_t("g.you")})`}</span>}
         {hasParent && !pure && (
@@ -42,7 +42,7 @@ export const DeckThreadItemHeader = ({ entry, hasParent, pure, status }: Props) 
             {`${dateToRelative(entry.created)}`}
           </Link>
         )}
-        {status === "pending" && <Spinner animation="border" />}
+        {status === "pending" && <Spinner className="w-4 h-4" />}
       </div>
     </div>
   );

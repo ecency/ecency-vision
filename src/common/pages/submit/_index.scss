@@ -28,11 +28,11 @@
     }
 
     @include themify(day) {
-      background: $white-two;
+      @apply bg-light-200;
     }
 
     @include themify(night) {
-      background: lighten($dark-six, 4);
+      @apply bg-dark-600;
     }
 
     .bottom-toolbar {
@@ -78,12 +78,12 @@
           }
 
           @include themify(night) {
-            background: lighten($dark-six, 10);
+            @apply bg-dark-600-010-light;
           }
         }
 
         @include themify(night) {
-          color: $silver;
+          @apply text-silver;
         }
       }
     }
@@ -126,14 +126,14 @@
       flex-shrink: 0;
 
       .panel-header-title {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 18px;
         font-weight: 500;
         margin: 0;
       }
 
       .words-count {
-        color: lighten($steel-grey, 10);
+        @apply text-gray-steel-010;
         margin-right: 20px;
 
         .words {
@@ -152,7 +152,7 @@
       font-size: 21px;
 
       @include themify(day) {
-        color: $tundora;
+        @apply text-tundora;
       }
     }
 
@@ -165,11 +165,11 @@
       flex-shrink: 0;
 
       @include themify(day) {
-        color: $charcoal-grey;
+        @apply text-gray-charcoal;
       }
 
       @include themify(night) {
-        color: $pinkish-grey;
+        @apply text-gray-pinkish;
       }
     }
 
@@ -239,8 +239,8 @@
 
         .type {
           position: absolute;
-          background-color: $dark-sky-blue;
-          color: $white;
+          @apply bg-blue-dark-sky;
+          @apply text-white;
           rotate: -45deg;
           padding: 0.125rem;
           text-align: center;
@@ -253,7 +253,7 @@
 
         .title {
           padding: 0.5rem;
-          background-color: $white;
+          @apply bg-white;
           border-radius: 0.75rem;
           border: 1px solid var(--border-color);
         }
@@ -262,7 +262,7 @@
           position: absolute;
           top: 0.5rem;
           right: 0.5rem;
-          background-color: $white;
+          @apply bg-white;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -285,18 +285,20 @@
 .selection-item {
   width: 100px;
   height: 100px;
-  background-color: $light-periwinkle;
-  border-radius: 10px;
   background-repeat: no-repeat;
   background-size: cover;
-  border: 5px solid $light-periwinkle;
+  border-width: 5px;
+  border-style: solid;
   border-radius: 1.25rem;
   cursor: pointer;
+  @apply bg-light-periwinkle;
+  @apply border-light-periwinkle;
 }
 
 .selected {
-  border: 5px solid $dark-sky-blue;
-  background-color: $dark-sky-blue;
+  border: 5px solid;
+  @apply border-blue-dark-sky;
+  @apply bg-blue-dark-sky;
 }
 
 .selection-container {

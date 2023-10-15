@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .purchase-dialog {
   .purchase-dialog-content {
@@ -20,11 +17,11 @@
         font-size: 1.2em;
 
         @include themify(day) {
-          color: darken($silver, 10);
+          @apply text-silver-010;
         }
 
         @include themify(night) {
-          color: $metallic-blue;
+          @apply text-blue-metallic;
         }
       }
     }
@@ -34,7 +31,7 @@
       margin-bottom: 20px;
 
       .asset-amount {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 1.4em;
         margin-bottom: 6px;
       }
@@ -50,7 +47,7 @@
     }
 
     .point-amount {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       text-align: center;
       font-size: 1.6em;
       margin-bottom: 30px;

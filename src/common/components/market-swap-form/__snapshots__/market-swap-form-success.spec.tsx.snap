@@ -5,12 +5,12 @@ exports[`MarkSwapFormSuccess should render hbd -> hive 1`] = `
   className="market-swap-form-success"
 >
   <div
-    className="title text-primary"
+    className="title text-blue-dark-sky"
   >
     Successfully swapped!
   </div>
   <div
-    className="amount d-flex flex-column align-items-center text-center my-4"
+    className="amount flex flex-col items-center text-center my-4"
   >
     <span>
       1
@@ -36,12 +36,18 @@ exports[`MarkSwapFormSuccess should render hbd -> hive 1`] = `
     </span>
   </div>
   <button
-    className="btn btn-primary py-3 px-5 mt-4"
-    disabled={false}
+    className="cursor-pointer rounded-full duration-300 no-wrap text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
     onClick={[Function]}
+    style={
+      Object {
+        "outline": "none",
+      }
+    }
     type="button"
   >
-    Start new Swap
+    <div>
+      Start new Swap
+    </div>
   </button>
 </div>
 `;
@@ -51,12 +57,12 @@ exports[`MarkSwapFormSuccess should render hive -> hbd 1`] = `
   className="market-swap-form-success"
 >
   <div
-    className="title text-primary"
+    className="title text-blue-dark-sky"
   >
     Successfully swapped!
   </div>
   <div
-    className="amount d-flex flex-column align-items-center text-center my-4"
+    className="amount flex flex-col items-center text-center my-4"
   >
     <span>
       1
@@ -82,12 +88,18 @@ exports[`MarkSwapFormSuccess should render hive -> hbd 1`] = `
     </span>
   </div>
   <button
-    className="btn btn-primary py-3 px-5 mt-4"
-    disabled={false}
+    className="cursor-pointer rounded-full duration-300 no-wrap text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
     onClick={[Function]}
+    style={
+      Object {
+        "outline": "none",
+      }
+    }
     type="button"
   >
-    Start new Swap
+    <div>
+      Start new Swap
+    </div>
   </button>
 </div>
 `;

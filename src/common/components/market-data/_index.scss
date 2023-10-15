@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .market-data {
   margin: 0 auto 24px 10px;
@@ -49,11 +46,11 @@
     }
 
     @include themify(day) {
-      background: $white-two;
+      @apply bg-light-200;
     }
 
     @include themify(night) {
-      background: $dark-two;
+      @apply bg-dark-200;
     }
 
     .info {
@@ -67,12 +64,12 @@
         flex-grow: 1;
 
         .value {
-          color: lighten($dark-sky-blue, 10);
+          @apply text-blue-dark-sky-010;
         }
       }
 
       .tooltip {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         border-radius: 6px;
         font-size: 10px;
         visibility: hidden;
@@ -81,16 +78,16 @@
 
     .ct-series-a {
       .ct-line {
-        stroke: lighten($dark-sky-blue, 10);
+        @apply stroke-blue-dark-sky-010;
         stroke-width: 3px;
       }
 
       .ct-area {
-        fill: lighten($dark-sky-blue, 20);
+        @apply fill-blue-dark-sky-020;
       }
 
       .ct-point {
-        stroke: lighten($dark-sky-blue, 10);
+        @apply stroke-blue-dark-sky-010;
         stroke-width: 8px;
         opacity: 0;
       }

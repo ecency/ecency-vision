@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .fragments-modal {
   .modal-body {
@@ -23,11 +20,13 @@
 
           &:not(:last-child) {
             @include themify(day) {
-              border-bottom: 1px solid $white-three;
+              border-bottom: 1px solid;
+              @apply border-light-300;
             }
 
             @include themify(night) {
-              border-bottom: solid 1px $dark-two;
+              border-bottom: solid 1px;
+              @apply border-dark-200;
             }
 
             padding-bottom: 16px;
@@ -39,21 +38,21 @@
             margin-bottom: 12px;
 
             @include themify(day) {
-              color: $charcoal-grey;
+              @apply text-gray-charcoal;
             }
 
             @include themify(night) {
-              color: $silver;
+              @apply text-silver;
             }
           }
 
           .item-summary {
             @include themify(day) {
-              color: $steel-grey;
+              @apply text-gray-steel;
             }
 
             @include themify(night) {
-              color: $silver;
+              @apply text-silver;
             }
           }
 

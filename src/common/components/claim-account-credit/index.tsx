@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import { arrowLeftSvg } from "../../img/svg";
 import "./index.scss";
 import { FullAccount } from "../../store/accounts/types";
@@ -8,6 +7,7 @@ import { _t } from "../../i18n";
 import KeyOrHot from "../key-or-hot";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { claimAccountByHiveSigner } from "../../api/operations";
+import { Button } from "@ui/button";
 
 interface Props {
   account: FullAccount;

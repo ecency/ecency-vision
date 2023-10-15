@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-
-import { Button, Form, FormControl, Modal } from "react-bootstrap";
-
 import { _t } from "../../i18n";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   onHide: () => void;
@@ -23,11 +24,11 @@ export class AddImage extends Component<Props, State> {
 
   form = React.createRef<HTMLFormElement>();
 
-  textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  textChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({ text: e.target.value });
   };
 
-  linkChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  linkChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({ link: e.target.value });
   };
 
@@ -51,8 +52,8 @@ export class AddImage extends Component<Props, State> {
             onSubmit(text, link);
           }}
         >
-          <Form.Group>
-            <Form.Control
+          <div className="mb-4">
+            <FormControl
               type="text"
               autoComplete="off"
               value={text}
@@ -63,9 +64,9 @@ export class AddImage extends Component<Props, State> {
               onInvalid={(e: any) => handleInvalid(e, "add-image.", "validation-text")}
               onInput={handleOnInput}
             />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control
+          </div>
+          <div className="mb-4">
+            <FormControl
               type="text"
               autoComplete="off"
               value={link}
@@ -75,8 +76,8 @@ export class AddImage extends Component<Props, State> {
               onInvalid={(e: any) => handleInvalid(e, "add-image.", "validation-image")}
               onInput={handleOnInput}
             />
-          </Form.Group>
-          <div className="d-flex justify-content-end">
+          </div>
+          <div className="flex justify-end">
             <Button type="submit">{_t("g.add")}</Button>
           </div>
         </Form>
@@ -100,12 +101,12 @@ export default class AddImageDialog extends Component<Props> {
         className="add-image-modal"
         animation={false}
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("add-image.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("add-image.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <AddImage {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

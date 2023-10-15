@@ -16,7 +16,7 @@ exports[`(1) Default render 1`] = `
       className="txt-username"
     >
       <input
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         disabled={false}
         maxLength={20}
         onChange={[Function]}
@@ -27,12 +27,19 @@ exports[`(1) Default render 1`] = `
     </div>
     <div>
       <button
-        className="btn btn-primary"
+        className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
         disabled={false}
         onClick={[Function]}
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
         type="button"
       >
-        Set Proxy
+        <div>
+          Set Proxy
+        </div>
       </button>
     </div>
   </div>

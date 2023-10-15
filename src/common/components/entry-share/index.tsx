@@ -1,22 +1,16 @@
 import React from "react";
-
-import { Modal } from "react-bootstrap";
-
 import BaseComponent from "../base";
-
 import { Entry } from "../../store/entries/types";
-
-import { redditSvg, twitterSvg, facebookSvg, linkedinSvg } from "../../img/svg";
-
+import { facebookSvg, linkedinSvg, redditSvg, twitterSvg } from "../../img/svg";
 import {
   makeShareUrlFacebook,
+  makeShareUrlLinkedin,
   makeShareUrlReddit,
-  makeShareUrlTwitter,
-  makeShareUrlLinkedin
+  makeShareUrlTwitter
 } from "../../helper/url-share";
-
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 
 interface Props {
   entry: Entry;
@@ -70,10 +64,10 @@ export default class EntryShare extends BaseComponent<Props> {
         onHide={onHide}
         className="entry-share-dialog"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("entry-share.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="entry-share-modal-body">
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("entry-share.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody className="entry-share-modal-body">
           <div className="share-buttons">
             <div className="share-button" onClick={this.reddit}>
               {redditSvg}
@@ -88,7 +82,7 @@ export default class EntryShare extends BaseComponent<Props> {
               {linkedinSvg}
             </div>
           </div>
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button, ListGroup, ListGroupItem, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { findRcAccounts, getRcOperationStats } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation";
@@ -7,6 +6,9 @@ import { ConfirmDelete, RcDelegationsList } from "../rc-delegations-list";
 import { rcFormatter } from "../../util/formatted-number";
 import RcProgressCircle from "../rc-progress-circle";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Button } from "@ui/button";
+import { List, ListItem } from "@ui/list";
 import ClaimAccountCredit from "../claim-account-credit";
 
 export const ResourceCreditsInfo = (props: any) => {
@@ -122,17 +124,17 @@ export const ResourceCreditsInfo = (props: any) => {
 
   return (
     <div>
-      <div className="cursor-pointer d-flex flex-column mb-1" onClick={showModal}>
-        <div className="progress">
+      <div className="cursor-pointer flex flex-col mb-1" onClick={showModal}>
+        <div className="bg-gray-200 h-[1rem] text-white rounded-lg flex overflow-hidden">
           <div
-            className="progress-bar progress-bar-success"
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-blue-dark-sky"
             role="progressbar"
             style={{ width: `${rcPercent}%` }}
           >
             {_t("rc-info.available")}
           </div>
           <div
-            className="progress-bar used"
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-[#F0706A]"
             role="progressbar"
             style={{ width: `${100 - rcPercent}%` }}
           >
@@ -150,12 +152,11 @@ export const ResourceCreditsInfo = (props: any) => {
         show={showRcInfo}
         centered={true}
         onHide={hideModal}
-        keyboard={false}
         className="purchase-qr-dialog"
         dialogClassName="modal-90w"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>
             <div className="rc-header">
               <span>{_t("rc-info.resource-credits")}</span>
               <div className="about-rc">
@@ -163,13 +164,13 @@ export const ResourceCreditsInfo = (props: any) => {
                 <a href={_t("rc-info.learn-more")}>{_t("rc-info.faq-link")}</a>
               </div>
             </div>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+          </ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <div className="rc-infocontainer">
             <div className="percent">
               <div className="circle">
-                <div className="outer-circle progress">
+                <div className="outer-circle">
                   <div className="inner-circle">
                     <span>{`${rcPercent}%`}</span>
                   </div>
@@ -210,43 +211,43 @@ export const ResourceCreditsInfo = (props: any) => {
                 </span>
               </div>
 
-              <div className="line-break">
+              <div className="line-break my-5">
                 <hr />
               </div>
 
               <div className="extra-details">
                 <p>{_t("rc-info.extra-details-heading")}</p>
-                <ListGroup className="rc-info-extras">
-                  <ListGroupItem>
+                <List className="rc-info-extras mt-4">
+                  <ListItem>
                     {_t("rc-info.comments-posts")}
                     <span>{commentAmount}</span>
-                  </ListGroupItem>
-                  <ListGroupItem>
+                  </ListItem>
+                  <ListItem>
                     {_t("rc-info.votes")}
                     <span>{voteAmount}</span>
-                  </ListGroupItem>
-                  <ListGroupItem>
+                  </ListItem>
+                  <ListItem>
                     {_t("rc-info.transfers")}
                     <span>{transferAmount}</span>
-                  </ListGroupItem>
-                  <ListGroupItem>
+                  </ListItem>
+                  <ListItem>
                     {_t("rc-info.reblogs-follows")}
                     <span>{customJsonAmount}</span>
-                  </ListGroupItem>
-                  <ListGroupItem>
+                  </ListItem>
+                  <ListItem>
                     <ClaimAccountCredit claimAccountAmount={claimAccountAmount} account={account} />
-                  </ListGroupItem>
-                </ListGroup>
+                  </ListItem>
+                </List>
               </div>
             </div>
           </div>
 
-          <div className="d-flex justify-content-center mt-3">
+          <div className="flex justify-center mt-3">
             {activeUser && (
               <Button onClick={showDelegation}>{_t("rc-info.delegation-button")}</Button>
             )}
           </div>
-        </Modal.Body>
+        </ModalBody>
       </Modal>
 
       <Modal
@@ -256,12 +257,12 @@ export const ResourceCreditsInfo = (props: any) => {
         animation={false}
         size="lg"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>
             {listMode === "in" ? _t("rc-info.incoming") : _t("rc-info.outgoing")}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+          </ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <RcDelegationsList
             {...props}
             activeUser={activeUser}
@@ -276,7 +277,7 @@ export const ResourceCreditsInfo = (props: any) => {
             setDelegateeData={setDelegateeData}
             setShowDelegationsList={setShowDelegationsList}
           />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
 
       <div>
@@ -285,14 +286,13 @@ export const ResourceCreditsInfo = (props: any) => {
           show={showDelegationModal}
           centered={true}
           onHide={hideDelegation}
-          keyboard={false}
-          className="transfer-dialog modal-thin-header"
+          className="transfer-dialog"
           size="lg"
         >
-          <Modal.Header closeButton={true}>
-            <Modal.Title />
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader thin={true} closeButton={true}>
+            <ModalTitle />
+          </ModalHeader>
+          <ModalBody>
             <ResourceCreditsDelegation
               {...props}
               activeUser={activeUser}
@@ -302,7 +302,7 @@ export const ResourceCreditsInfo = (props: any) => {
               amountFromList={amountFromList}
               delegateeData={delegateeData}
             />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
 
         <Modal
@@ -310,20 +310,19 @@ export const ResourceCreditsInfo = (props: any) => {
           show={showConfirmDelete}
           centered={true}
           onHide={hideConfirmDelete}
-          keyboard={false}
-          className="transfer-dialog modal-thin-header"
+          className="transfer-dialog"
           // size="lg"
         >
-          <Modal.Header closeButton={true}>
-            <Modal.Title />
-          </Modal.Header>
-          <Modal.Body>
+          <ModalHeader thin={true} closeButton={true}>
+            <ModalTitle />
+          </ModalHeader>
+          <ModalBody>
             <ConfirmDelete
               activeUser={activeUser}
               to={toFromList}
               hideConfirmDelete={hideConfirmDelete}
             />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </div>
     </div>

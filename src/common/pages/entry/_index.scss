@@ -11,11 +11,11 @@
   }
 
   @include themify(day) {
-    background: lighten($steel-grey, 40);
+    @apply bg-gray-steel-light-040;
   }
 
   @include themify(night) {
-    background: $dark-grey-blue;
+    @apply bg-blue-dark-grey;
   }
 }
 
@@ -26,15 +26,15 @@
   cursor: pointer;
 
   @include themify(day) {
-    color: $steel-grey;
+    @apply text-gray-steel;
   }
 
   @include themify(night) {
-    color: lighten($steel-grey, 4);
+    @apply text-gray-steel-light-005;
   }
 
   &:hover {
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
   }
 }
 
@@ -67,11 +67,11 @@
       border-radius: 6px;
 
       @include themify(day) {
-        background: lighten($dark-sky-blue, 42);
+        @apply bg-blue-dark-sky-040;
       }
 
       @include themify(night) {
-        background: $dark-grey-blue;
+        @apply bg-blue-dark-grey;
       }
 
       .cross-post-info {
@@ -117,13 +117,13 @@
       margin-bottom: 1rem;
 
       @include themify(day) {
-        background-color: $white-three;
-        color: $charcoal-grey;
+        @apply bg-light-300;
+        @apply text-gray-charcoal;
       }
 
       @include themify(night) {
-        background-color: $dark-grey-blue;
-        color: $white-five;
+        @apply bg-blue-dark-grey;
+        @apply text-light-500;
       }
     }
 
@@ -133,8 +133,9 @@
         text-align: center;
 
         .nsfw-badge {
-          color: $red2;
-          border: 1px solid $red2;
+          @apply text-red-020;
+          border: 1px solid;
+          @apply border-red-020;
           padding: 2px 4px;
           border-radius: 6px;
           font-size: 32px;
@@ -152,13 +153,13 @@
       padding: 20px;
 
       @include themify(day) {
-        background-color: $white-three;
-        color: $charcoal-grey;
+        @apply bg-light-300;
+        @apply text-gray-charcoal;
       }
 
       @include themify(night) {
-        background-color: $dark-grey-blue;
-        color: $white-five;
+        @apply bg-blue-dark-grey;
+        @apply text-light-500;
       }
 
       .comment-entry-header-title {
@@ -196,11 +197,13 @@
       margin-bottom: 15px;
 
       @include themify(day) {
-        border-bottom: 1px solid $white-four;
+        border-bottom: 1px solid;
+        @apply border-light-400;
       }
 
       @include themify(night) {
-        border-bottom: 1px solid $dark-two;
+        border-bottom: 1px solid;
+        @apply border-dark-200;
       }
 
       h1.entry-title {
@@ -213,11 +216,11 @@
         }
 
         @include themify(day) {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
       }
 
@@ -237,11 +240,11 @@
         }
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
 
         .author-avatar {
@@ -269,15 +272,15 @@
               }
 
               @include themify(day) {
-                color: $charcoal-grey;
+                @apply text-gray-charcoal;
               }
 
               @include themify(night) {
-                color: $pinkish-grey;
+                @apply text-gray-pinkish;
               }
 
               .author-reputation {
-                color: $steel-grey;
+                @apply text-gray-steel;
                 font-size: 14px;
                 font-weight: 500;
 
@@ -319,15 +322,15 @@
                 font-weight: 500;
 
                 @include themify(day) {
-                  color: $steel-grey;
+                  @apply text-gray-steel;
                 }
 
                 @include themify(night) {
-                  color: $pinkish-grey;
+                  @apply text-gray-pinkish;
                 }
 
                 &:hover {
-                  color: $dark-sky-blue;
+                  @apply text-blue-dark-sky;
                 }
               }
             }
@@ -348,7 +351,11 @@
       font-size: 21px;
 
       @include themify(day) {
-        color: $tundora;
+        @apply text-tundora;
+      }
+
+      @include themify(night) {
+        @apply text-white;
       }
 
       .twitter-tweet {
@@ -392,7 +399,7 @@
 
       .entry-info {
         @include clearfix();
-        color: $steel-grey;
+        @apply text-gray-steel;
         margin-bottom: 30px;
         align-items: center;
         display: flex;
@@ -404,11 +411,11 @@
         }
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
 
         .separator {
@@ -436,15 +443,15 @@
           }
 
           @include themify(day) {
-            color: $charcoal-grey;
+            @apply text-gray-charcoal;
           }
 
           @include themify(night) {
-            color: $pinkish-grey;
+            @apply text-gray-pinkish;
           }
 
           .author-reputation {
-            color: $steel-grey;
+            @apply text-gray-steel;
             font-weight: 500;
 
             &::before {
@@ -462,7 +469,7 @@
 
           a {
             text-decoration: none;
-            color: $steel-grey;
+            @apply text-gray-steel;
           }
 
           .app-name {

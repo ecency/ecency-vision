@@ -1,46 +1,37 @@
-import React, { Component, useEffect, useState, useCallback } from "react";
-
+import React, { Component, useEffect, useState } from "react";
 import { History } from "history";
-
-import { FormControl, Button } from "react-bootstrap";
-
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { OperationGroup, Transaction, Transactions } from "../../store/transactions/types";
 import { Account } from "../../store/accounts/types";
-
 import LinearProgress from "../linear-progress";
 import EntryLink from "../entry-link";
 import UserAvatar from "../user-avatar";
 import TwoUserAvatar from "../two-user-avatar";
-
 import parseAsset from "../../helper/parse-asset";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { vestsToHp } from "../../helper/vesting";
-
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
-
 import {
-  ticketSvg,
-  compareHorizontalSvg,
+  cashCoinSvg,
   cashMultiple,
-  reOrderHorizontalSvg,
-  pickAxeSvg,
+  chevronDownSvgForSlider,
+  chevronUpSvgForVote,
   closeSvg,
   exchangeSvg,
-  cashCoinSvg,
+  pickAxeSvg,
   powerDownSvg,
   powerUpSvg,
+  reOrderHorizontalSvg,
   starsSvg,
-  chevronUpSvgForVote,
-  chevronDownSvgForSlider,
-  starSvg
+  ticketSvg
 } from "../../img/svg";
-
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import { usePrevious } from "../../util/use-previous";
 import { Global } from "../../store/global/types";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface RowProps {
   history: History;
@@ -608,7 +599,7 @@ const List = (props: Props) => {
     }
   }, [props.transactions]);
 
-  const typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  const typeChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { account, fetchTransactions } = props;
     const group = e.target.value;
 
@@ -634,7 +625,7 @@ const List = (props: Props) => {
     <div className="transaction-list">
       <div className="transaction-list-header">
         <h2>{_t("transactions.title")} </h2>
-        <FormControl as="select" value={props.transactions.group} onChange={typeChanged}>
+        <FormControl type="select" value={props.transactions.group} onChange={typeChanged}>
           <option value="">{_t("transactions.group-all")}</option>
           {["transfers", "market-orders", "interests", "stake-operations", "rewards"].map((x) => (
             <option key={x} value={x}>
@@ -648,13 +639,13 @@ const List = (props: Props) => {
         <TransactionRow {...props} key={k} transaction={x} />
       ))}
       {!props.transactions.loading && transactionsList.length === 0 && (
-        <p className="text-muted empty-list">{_t("g.empty-list")}</p>
+        <p className="text-gray-600 empty-list">{_t("g.empty-list")}</p>
       )}
       {!props.transactions.loading &&
         !props.transactions.loading &&
         props.transactions.list.length > 0 &&
         transactionsList.length > 0 && (
-          <Button disabled={loadingLoadMore} block={true} onClick={loadMore} className="mt-2">
+          <Button disabled={loadingLoadMore} onClick={loadMore} className="w-full mt-2">
             {_t("g.load-more")}
           </Button>
         )}

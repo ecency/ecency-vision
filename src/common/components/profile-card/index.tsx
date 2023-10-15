@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { History } from "history";
 
@@ -19,11 +19,11 @@ import formattedNumber from "../../util/formatted-number";
 
 import defaults from "../../constants/defaults.json";
 
-import { findRcAccounts, rcPower, votingPower } from "../../api/hive";
+import { findRcAccounts, rcPower } from "../../api/hive";
 
 import { _t } from "../../i18n";
 
-import { nearMeSvg, earthSvg, calendarRangeSvg, rssSvg } from "../../img/svg";
+import { calendarRangeSvg, earthSvg, nearMeSvg, rssSvg } from "../../img/svg";
 
 import { EditPic } from "../community-card";
 import { getRelationshipBetweenAccounts, getSubscriptions } from "../../api/bridge";
@@ -33,6 +33,7 @@ import isCommunity from "../../helper/is-community";
 import { Subscription } from "../../store/subscriptions/types";
 import { ResourceCreditsInfo } from "../rc-info";
 import "./_index.scss";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -165,11 +166,11 @@ export const ProfileCard = (props: Props) => {
       </h1>
 
       {loggedIn && !isMyProfile && (
-        <div className="d-flex justify-content-center mb-3 d-md-block">
+        <div className="flex justify-center mb-3">
           {followsActiveUserLoading ? (
             <Skeleton className="loading-follows-you" />
           ) : followsActiveUser ? (
-            <div className="follow-pill d-inline text-lowercase">{_t("profile.follows-you")}</div>
+            <div className="follow-pill inline lowercase">{_t("profile.follows-you")}</div>
           ) : null}
         </div>
       )}
@@ -255,24 +256,24 @@ export const ProfileCard = (props: Props) => {
           ))}
         </div>
       )}
-      <div className="btn-controls">
+      <div className="btn-controls flex gap-3">
         {isCommunity(account?.name) && (
-          <Link className="btn btn-sm btn-primary" to={`/created/${account?.name}`}>
-            {_t("profile.go-community")}
+          <Link to={`/created/${account?.name}`}>
+            <Button size="sm">{_t("profile.go-community")}</Button>
           </Link>
         )}
         {isMyProfile && (
           <>
             {global.usePrivate && (
-              <Link className="btn btn-sm btn-primary" to={`/@${account?.name}/referrals`}>
-                {_t("profile.referrals")}
+              <Link to={`/@${account?.name}/referrals`}>
+                <Button size="sm">{_t("profile.referrals")}</Button>
               </Link>
             )}
-            <Link className="btn btn-sm btn-primary" to="/witnesses">
-              {_t("profile.witnesses")}
+            <Link to="/witnesses">
+              <Button size="sm">{_t("profile.witnesses")}</Button>
             </Link>
-            <Link className="btn btn-sm btn-primary" to="/proposals">
-              {_t("profile.proposals")}
+            <Link to="/proposals">
+              <Button size="sm">{_t("profile.proposals")}</Button>
             </Link>
           </>
         )}

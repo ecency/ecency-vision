@@ -1,8 +1,5 @@
 @use "sass:math";
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .switch-toggler {
   $width: 48px;
@@ -35,11 +32,11 @@
     transition: .2s ease-in-out;
 
     @include themify(day) {
-      background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
+      @apply bg-gradient-primary-day;
     }
 
     @include themify(night) {
-      background-image: linear-gradient(to left, $dark-indigo, $dusky-blue);
+      @apply bg-gradient-primary-night;
     }
   }
 
@@ -52,11 +49,11 @@
     z-index: 9;
 
     @include themify(day) {
-      background-color: $white;
+      @apply bg-white;
     }
 
     @include themify(night) {
-      background-color: $dark-six;
+      @apply bg-dark-600;
     }
   }
 
@@ -83,7 +80,7 @@
       transform: translateX($height + 4px);
 
       @include themify(night) {
-        background-color: $faded-blue;
+        @apply bg-blue-faded;
       }
     }
   }

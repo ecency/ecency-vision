@@ -1,11 +1,11 @@
 import React from "react";
 import { MarketSwapForm } from "./index";
-import { Button, Col, Row } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { Link } from "react-router-dom";
 import { MarketSwapActiveOrders } from "./market-swap-active-orders";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_swap-mode.scss";
+import { Button } from "@ui/button";
 
 interface Props {
   inline?: boolean;
@@ -36,19 +36,15 @@ export const SwapMode = ({ inline = false }: Props) => {
         setSigningKey={setSigningKey}
       />
       {!activeUser && (
-        <div className="auth-required d-flex justify-content-center align-items-center flex-column">
-          <div className="font-weight-bold mb-3">{_t("market.auth-required-title")}</div>
+        <div className="auth-required flex justify-center items-center flex-col">
+          <div className="font-bold mb-3">{_t("market.auth-required-title")}</div>
           <div className="mb-3">{_t("market.auth-required-desc")}</div>
-          <div className="d-flex">
-            <Button
-              variant="outline-primary"
-              className="mr-2"
-              onClick={() => toggleUIProp("login")}
-            >
+          <div className="flex">
+            <Button outline={true} className="mr-2" onClick={() => toggleUIProp("login")}>
               {_t("g.login")}
             </Button>
             <Link to="/signup">
-              <Button variant="primary">{_t("g.signup")}</Button>
+              <Button>{_t("g.signup")}</Button>
             </Link>
           </div>
         </div>
@@ -59,10 +55,10 @@ export const SwapMode = ({ inline = false }: Props) => {
   return inline ? (
     <div className={"swap-form-container " + (inline ? "inline" : "")}>{form}</div>
   ) : (
-    <Row className="justify-content-center pb-5">
-      <Col xs={12} md={10} lg={8} xl={6}>
+    <div className="grid grid-cols-12 pb-5">
+      <div className="col-span-12 md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-6">
         {form}
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 };

@@ -1,7 +1,4 @@
 import React from "react";
-
-import { FormControl } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -13,6 +10,7 @@ import WitnessVoteBtn from "../witness-vote-btn";
 
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { FormControl } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -41,7 +39,7 @@ export class WitnessesExtra extends BaseComponent<Props, State> {
     inProgress: false
   };
 
-  usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  usernameChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ username: e.target.value.trim() });
   };
 
