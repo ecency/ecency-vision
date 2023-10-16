@@ -1,6 +1,98 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(1) Render with loaded account object 1`] = `null`;
+exports[`(1) Render with loaded account object 1`] = `
+<div
+  className="profile-cover"
+>
+  <div
+    className="cover-image"
+    style={
+      Object {
+        "backgroundImage": "url('https://images.ecency.com/p/Y2iXpRRkNSnseh3NuL6KUBitJTXrc5K3Kfvsq9JK3SkbY.png?format=match&mode=fit')",
+      }
+    }
+  />
+  <div
+    className="follow-controls-holder"
+  >
+    <span
+      className="profile-info"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Follow
+      </div>
+    </button>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Mute
+      </div>
+    </button>
+    <span
+      className="favorite-btn"
+      onClick={[Function]}
+    >
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        title="Add to favorites"
+        type="button"
+      >
+        <div
+          className="flex items-center w-5 h-5 undefined"
+        >
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M5,15L4.4,14.5C2.4,12.6 1,11.4 1,9.9C1,8.7 2,7.7 3.2,7.7C3.9,7.7 4.6,8 5,8.5C5.4,8 6.1,7.7 6.8,7.7C8,7.7 9,8.6 9,9.9C9,11.4 7.6,12.6 5.6,14.5L5,15M15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4M15,10.1A2.1,2.1 0 0,1 12.9,8A2.1,2.1 0 0,1 15,5.9C16.16,5.9 17.1,6.84 17.1,8C17.1,9.16 16.16,10.1 15,10.1M15,13C12.33,13 7,14.33 7,17V20H23V17C23,14.33 17.67,13 15,13M21.1,18.1H8.9V17C8.9,16.36 12,14.9 15,14.9C17.97,14.9 21.1,16.36 21.1,17V18.1Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </button>
+    </span>
+  </div>
+</div>
+`;
 
 exports[`(2) Render with mot loaded account object 1`] = `
 <div
@@ -92,8 +184,252 @@ exports[`(2) Render with mot loaded account object 1`] = `
 </div>
 `;
 
-exports[`(3) No bg image - Day theme 1`] = `null`;
+exports[`(3) No bg image - Day theme 1`] = `
+<div
+  className="profile-cover"
+>
+  <div
+    className="cover-image"
+    style={
+      Object {
+        "backgroundImage": "url('cover-fallback-day.png')",
+      }
+    }
+  />
+  <div
+    className="follow-controls-holder"
+  >
+    <span
+      className="profile-info"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Follow
+      </div>
+    </button>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Mute
+      </div>
+    </button>
+    <span
+      className="favorite-btn"
+      onClick={[Function]}
+    >
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        title="Add to favorites"
+        type="button"
+      >
+        <div
+          className="flex items-center w-5 h-5 undefined"
+        >
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M5,15L4.4,14.5C2.4,12.6 1,11.4 1,9.9C1,8.7 2,7.7 3.2,7.7C3.9,7.7 4.6,8 5,8.5C5.4,8 6.1,7.7 6.8,7.7C8,7.7 9,8.6 9,9.9C9,11.4 7.6,12.6 5.6,14.5L5,15M15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4M15,10.1A2.1,2.1 0 0,1 12.9,8A2.1,2.1 0 0,1 15,5.9C16.16,5.9 17.1,6.84 17.1,8C17.1,9.16 16.16,10.1 15,10.1M15,13C12.33,13 7,14.33 7,17V20H23V17C23,14.33 17.67,13 15,13M21.1,18.1H8.9V17C8.9,16.36 12,14.9 15,14.9C17.97,14.9 21.1,16.36 21.1,17V18.1Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </button>
+    </span>
+  </div>
+</div>
+`;
 
-exports[`(4) No bg image - Night theme 1`] = `null`;
+exports[`(4) No bg image - Night theme 1`] = `
+<div
+  className="profile-cover"
+>
+  <div
+    className="cover-image"
+    style={
+      Object {
+        "backgroundImage": "url('cover-fallback-night.png')",
+      }
+    }
+  />
+  <div
+    className="follow-controls-holder"
+  >
+    <span
+      className="profile-info"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Follow
+      </div>
+    </button>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Mute
+      </div>
+    </button>
+    <span
+      className="favorite-btn"
+      onClick={[Function]}
+    >
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        title="Add to favorites"
+        type="button"
+      >
+        <div
+          className="flex items-center w-5 h-5 undefined"
+        >
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M5,15L4.4,14.5C2.4,12.6 1,11.4 1,9.9C1,8.7 2,7.7 3.2,7.7C3.9,7.7 4.6,8 5,8.5C5.4,8 6.1,7.7 6.8,7.7C8,7.7 9,8.6 9,9.9C9,11.4 7.6,12.6 5.6,14.5L5,15M15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4M15,10.1A2.1,2.1 0 0,1 12.9,8A2.1,2.1 0 0,1 15,5.9C16.16,5.9 17.1,6.84 17.1,8C17.1,9.16 16.16,10.1 15,10.1M15,13C12.33,13 7,14.33 7,17V20H23V17C23,14.33 17.67,13 15,13M21.1,18.1H8.9V17C8.9,16.36 12,14.9 15,14.9C17.97,14.9 21.1,16.36 21.1,17V18.1Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </button>
+    </span>
+  </div>
+</div>
+`;
 
-exports[`(5) usePrivate = false 1`] = `null`;
+exports[`(5) usePrivate = false 1`] = `
+<div
+  className="profile-cover"
+>
+  <div
+    className="cover-image"
+    style={
+      Object {
+        "backgroundImage": "url('https://images.ecency.com/p/Y2iXpRRkNSnseh3NuL6KUBitJTXrc5K3Kfvsq9JK3SkbY.png?format=match&mode=fit')",
+      }
+    }
+  />
+  <div
+    className="follow-controls-holder"
+  >
+    <span
+      className="profile-info"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Follow
+      </div>
+    </button>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Mute
+      </div>
+    </button>
+  </div>
+</div>
+`;
