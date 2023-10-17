@@ -50,7 +50,7 @@ export function StyledTooltip({ children, content }: StyledProps) {
         >
           {content}
         </div>,
-        document.querySelector("#popper-container")!!
+        document.querySelector("#popper-container") ?? document.createElement("div")
       )}
     </div>
   );
