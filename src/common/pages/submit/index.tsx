@@ -143,6 +143,7 @@ export function Submit(props: PageProps & MatchProps) {
       setTags([...new Set(entry.json_metadata?.tags ?? [])]);
       setBody(entry.body);
       setDescription(entry.json_metadata?.description ?? postBodySummary(body, 200));
+      entry?.json_metadata?.image && setSelectedThumbnail(entry?.json_metadata?.image[0]);
       setEditingEntry(entry);
       threeSpeakManager.setIsEditing(true);
     } else if (editingEntry) {
@@ -248,7 +249,9 @@ export function Submit(props: PageProps & MatchProps) {
     _updateTimer = setTimeout(() => {
       const { thumbnails } = extractMetaData(body);
       setPreview({ title, tags, body, description });
-      setThumbnails(thumbnails ?? []);
+      const existingImages = editingEntry?.json_metadata.image ?? [];
+      const newThumbnails = thumbnails ? [...existingImages, ...thumbnails] : existingImages;
+      setThumbnails([...new Set(newThumbnails)]);
       if (editingEntry === null) {
         setLocalDraft({ title, tags, body, description });
       }

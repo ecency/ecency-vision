@@ -60,7 +60,8 @@ export function useUpdateApi(history: History, onClear: () => void) {
           tags,
           description,
           selectionTouched,
-          selectedThumbnail
+          selectedThumbnail,
+          images: json_metadata.image
         }),
         { tags },
         { description }
