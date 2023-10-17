@@ -59,7 +59,6 @@ import { useUpdateApi } from "./api/update";
 import "./_index.scss";
 import { SubmitVideoAttachments } from "./submit-video-attachments";
 import { useThreeSpeakMigrationAdapter } from "./hooks/three-speak-migration-adapter";
-import { useEntryCache } from "../../core/caches/entries-cache";
 
 interface MatchProps {
   match: MatchType;
@@ -134,19 +133,13 @@ export function Submit(props: PageProps & MatchProps) {
     setTags([...tags, community]);
   });
 
-  const { data } = useEntryCache(
-    "",
-    props.match.params.username?.replace("@", ""),
-    props.match.params.permlink
-  );
-
   useEntryDetector(props.match, props.history, (entry) => {
     if (entry) {
       setTitle(entry.title);
       setTags([...new Set(entry.json_metadata?.tags ?? [])]);
       setBody(entry.body);
       setDescription(entry.json_metadata?.description ?? postBodySummary(body, 200));
-      data?.json_metadata?.image && setSelectedThumbnail(data?.json_metadata?.image[0]);
+      entry?.json_metadata?.image && setSelectedThumbnail(entry?.json_metadata?.image[0]);
       setEditingEntry(entry);
       threeSpeakManager.setIsEditing(true);
     } else if (editingEntry) {
@@ -252,7 +245,7 @@ export function Submit(props: PageProps & MatchProps) {
     _updateTimer = setTimeout(() => {
       const { thumbnails } = extractMetaData(body);
       setPreview({ title, tags, body, description });
-      const existingImages = data.json_metadata.image ?? [];
+      const existingImages = editingEntry?.json_metadata.image ?? [];
       const newThumbnails = thumbnails ? [...existingImages, ...thumbnails] : existingImages;
       setThumbnails([...new Set(newThumbnails)]);
       if (editingEntry === null) {
