@@ -17,7 +17,6 @@ import { hsTokenRenew } from "../api/auth-api";
 import hs from "hivesigner";
 import Meta from "../components/meta";
 import Theme from "../components/theme";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import { Link } from "react-router-dom";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import { alertCircleSvg, checkSvg, informationVariantSvg } from "../img/svg";
@@ -385,9 +384,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     };
 
     const { activeUser, global } = this.props;
-    let communityImage = global.isElectron
-      ? "./img/community-img.svg"
-      : require("../img/community-img.svg");
+    let communityImage = require("../img/community-img.svg");
 
     const {
       fee,
@@ -401,24 +398,15 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
       inProgress,
       progress
     } = this.state;
-    let containerClasses = global.isElectron
-      ? "app-content container-fluid mt-0 pt-6"
-      : "app-content container-fluid";
 
     return (
       <>
         <Meta {...metaProps} />
         <Theme global={global} />
         <Feedback activeUser={activeUser} />
-        {global.isElectron ? (
-          NavBarElectron({
-            ...this.props
-          })
-        ) : (
-          <NavBar history={this.props.history} />
-        )}
+        <NavBar history={this.props.history} />
 
-        <div className={containerClasses}>
+        <div className="app-content container-fluid">
           <div className="grid grid-cols-12 items-center justify-center m-0 w-full">
             <div className="col-span-6 hidden lg:block">
               <img src={communityImage} className="w-full" />

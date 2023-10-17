@@ -9,7 +9,6 @@ import Link from "../alink";
 
 import { apiBase } from "../../api/helper";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
-import isElectron from "../../util/is-electron";
 import "./_index.scss";
 
 export default (props: any) => {
@@ -71,9 +70,7 @@ export default (props: any) => {
   const DevopsImg = apiBase(`/assets/talhasch.${global.canUseWebp ? "webp" : "jpeg"}`);
   const DesignGuru = apiBase(`/assets/dunsky.${global.canUseWebp ? "webp" : "jpeg"}`);
 
-  const LogoCircle = global.isElectron
-    ? "./img/logo-circle.svg"
-    : require("../../img/logo-circle.svg");
+  const LogoCircle = require("../../img/logo-circle.svg");
   const earnMoneyRef = useRef<HTMLDivElement>(null);
 
   const handleSubsccribe = async (e: FormEvent<HTMLDivElement>) => {
@@ -93,10 +90,7 @@ export default (props: any) => {
   };
 
   return (
-    <div
-      className={global.isElectron ? "landing-wrapper pt-5" : "landing-wrapper"}
-      id="landing-wrapper"
-    >
+    <div className="landing-wrapper" id="landing-wrapper">
       <div className="top-bg" />
       <div className="tob-bg-algae" />
       <div className="tob-bg-fishes" />
@@ -174,7 +168,6 @@ export default (props: any) => {
                     to={"https://hive.io"}
                     target="_blank"
                     onClick={() =>
-                      isElectron() &&
                       window.open(
                         "https://hive.io",
                         "_blank",
@@ -324,7 +317,6 @@ export default (props: any) => {
                 className="windows"
                 target="blank"
                 onClick={() =>
-                  isElectron() &&
                   window.open(
                     "https://desktop.ecency.com/",
                     "_blank",
@@ -342,7 +334,6 @@ export default (props: any) => {
                 to={"https://ios.ecency.com/"}
                 target="blank"
                 onClick={() =>
-                  isElectron() &&
                   window.open(
                     "https://ios.ecency.com/",
                     "_blank",
@@ -360,7 +351,6 @@ export default (props: any) => {
                 to={"https://android.ecency.com/"}
                 target="blank"
                 onClick={() =>
-                  isElectron() &&
                   window.open(
                     "https://android.ecency.com/",
                     "_blank",
@@ -496,7 +486,6 @@ export default (props: any) => {
                         to={"https://twitter.com/ecency_official"}
                         target="_blank"
                         onClick={() =>
-                          isElectron() &&
                           window.open(
                             "https://twitter.com/ecency_official",
                             "_blank",
@@ -512,7 +501,6 @@ export default (props: any) => {
                         to={"https://t.me/ecency"}
                         target="_blank"
                         onClick={() =>
-                          isElectron() &&
                           window.open(
                             "https://t.me/ecency",
                             "_blank",
@@ -528,7 +516,6 @@ export default (props: any) => {
                         to={"https://discord.me/ecency"}
                         target="_blank"
                         onClick={() =>
-                          isElectron() &&
                           window.open(
                             "https://discord.me/ecency",
                             "_blank",

@@ -42,7 +42,6 @@ export const initialState: Global = {
   searchIndexCount: 0,
   canUseWebp: false,
   hasKeyChain: false,
-  isElectron: false,
   newVersion: null,
   notifications: true,
   nsfw: false,

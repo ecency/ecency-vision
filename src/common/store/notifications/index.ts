@@ -31,7 +31,6 @@ import {
   saveNotificationsSettings
 } from "../../api/private-api";
 import { NotifyTypes } from "../../enums";
-import isElectron from "../../util/is-electron";
 import * as ls from "../../util/local-storage";
 import { getFcmToken, initFirebase, listenFCM } from "../../api/firebase";
 import { isSupported } from "@firebase/messaging";
@@ -262,7 +261,7 @@ export const updateNotificationsSettings =
       username,
       notifyTypes,
       getState().notifications.settings?.allows_notify === 1,
-      token || ls.get("fb-notifications-token") || username + (isElectron() ? "-desktop" : "-web")
+      token || ls.get("fb-notifications-token") || username + "-web"
     );
     dispatch(setSettingsAct(settings));
   };
@@ -275,9 +274,9 @@ export const updateNotificationsSettings =
  */
 export const fetchNotificationsSettings =
   (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
-    let isFbMessagingSupported = (await isSupported()) && !isElectron();
+    let isFbMessagingSupported = await isSupported();
     initFirebase(isFbMessagingSupported);
-    let token = username + (isElectron() ? "-desktop" : "-web");
+    let token = username + "-web";
     let oldToken = ls.get("fb-notifications-token");
     if ("Notification" in window) {
       const permission = await Notification.requestPermission();
@@ -326,7 +325,7 @@ export const fetchNotificationsSettings =
 
         if (isFbMessagingSupported) {
           listenFCM(() => {
-            playNotificationSound(getState().global.isElectron);
+            playNotificationSound();
             // @ts-ignore
             dispatch(fetchUnreadNotificationCount());
 

@@ -4,7 +4,6 @@ import { _t } from "../../i18n";
 import Meta from "../../components/meta";
 import ScrollToTop from "../../components/scroll-to-top";
 import Theme from "../../components/theme";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import { Tsx } from "../../i18n/helper";
 import { Link } from "react-router-dom";
 import {
@@ -28,22 +27,15 @@ class AboutPage extends Component<PageProps> {
     };
 
     const { global } = this.props;
-    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
       <>
         <Meta {...metaProps} />
         <ScrollToTop />
         <Theme global={this.props.global} />
-        {global.isElectron ? (
-          NavBarElectron({
-            ...this.props
-          })
-        ) : (
-          <NavBar history={this.props.history} />
-        )}
+        <NavBar history={this.props.history} />
 
-        <div className={"app-content static-page about-page" + containerClasses}>
+        <div className={"app-content static-page about-page"}>
           <div className="about-cloud">
             <div className="up-cloud" />
             <div className="about-inner">

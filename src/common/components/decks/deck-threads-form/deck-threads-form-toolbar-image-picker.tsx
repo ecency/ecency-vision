@@ -41,7 +41,7 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
       e.preventDefault();
     }
 
-    if (files.length > 1 && global.isElectron) {
+    if (files.length > 1) {
       let isWindows = process.platform === "win32";
       if (isWindows) {
         files = files.reverse();

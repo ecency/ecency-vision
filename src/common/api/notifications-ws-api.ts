@@ -12,7 +12,6 @@ declare var window: Window & {
 
 export class NotificationsWebSocket {
   private activeUser: ActiveUser | null = null;
-  private isElectron = false;
   private hasNotifications = false;
   private hasUiNotifications = false;
   private onSuccessCallbacks: Function[] = [];
@@ -55,11 +54,11 @@ export class NotificationsWebSocket {
     const permission = await requestNotificationPermission();
     if (permission !== "granted") return;
 
-    playNotificationSound(this.isElectron);
+    playNotificationSound();
   }
 
   private async onMessageReceive(evt: MessageEvent) {
-    const logo = this.isElectron ? "./img/logo-circle.svg" : require("../img/logo-circle.svg");
+    const logo = require("../img/logo-circle.svg");
 
     const data = JSON.parse(evt.data);
     const msg = NotificationsWebSocket.getBody(data);
@@ -139,8 +138,7 @@ export class NotificationsWebSocket {
     return this;
   }
 
-  public withElectron(isElectron: boolean) {
-    this.isElectron = isElectron;
+  public withElectron() {
     return this;
   }
 

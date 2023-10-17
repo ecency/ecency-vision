@@ -116,14 +116,10 @@ export function EntryListItem({
   };
 
   const pinned = useMemo(() => pageAccount?.profile?.pinned, [pageAccount]);
-  const noImage = useMemo(
-    () => (global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg")),
-    []
-  );
-  const nsfwImage = useMemo(
-    () => (global.isElectron ? "./img/nsfw.png" : require("../../img/nsfw.png")),
-    []
-  );
+  const noImage = require("../../img/noimage.svg");
+
+  const nsfwImage = require("../../img/nsfw.png");
+
   const isCrossPost = useMemo(() => !!entryProp.original_entry, [entryProp]);
   const entry = useMemo(() => entryProp.original_entry || entryProp, [entryProp]);
   const dateRelative = useMemo(() => dateToRelative(entry.created), [entry]);

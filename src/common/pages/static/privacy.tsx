@@ -3,7 +3,6 @@ import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../commo
 import Meta from "../../components/meta";
 import ScrollToTop from "../../components/scroll-to-top";
 import Theme from "../../components/theme";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import { connect } from "react-redux";
 
@@ -14,23 +13,14 @@ class PrivacyPage extends Component<PageProps> {
       title: "Privacy Policy"
     };
 
-    const { global } = this.props;
-    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
-
     return (
       <>
         <Meta {...metaProps} />
         <ScrollToTop />
         <Theme global={this.props.global} />
-        {global.isElectron ? (
-          NavBarElectron({
-            ...this.props
-          })
-        ) : (
-          <NavBar history={this.props.history} />
-        )}
+        <NavBar history={this.props.history} />
 
-        <div className={"app-content static-page privacy-page" + containerClasses}>
+        <div className={"app-content static-page privacy-page"}>
           <div className="static-content">
             <h1 className="page-title">Privacy Policy</h1>
             <p className="static-last-updated">Effective: August 20, 2020</p>

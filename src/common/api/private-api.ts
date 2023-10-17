@@ -12,7 +12,6 @@ import { getAccessToken } from "../helper/user-token";
 
 import { apiBase } from "./helper";
 import { AppWindow } from "../../client/window";
-import isElectron from "../util/is-electron";
 import { NotifyTypes } from "../enums";
 import { BeneficiaryRoute, MetaData, RewardType } from "./operations";
 import { ThreeSpeakVideo } from "./threespeak";
@@ -528,7 +527,7 @@ export const saveNotificationsSettings = (
 ) => {
   return saveNotificationSetting(
     username,
-    isElectron() ? "desktop" : "web",
+    "web",
     Number(isEnabled),
     notifyTypes as number[],
     token

@@ -83,12 +83,8 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
     return () => {};
   }, []);
 
-  const coverFallbackDay = global.isElectron
-    ? "./img/cover-fallback-day.png"
-    : require("../../img/cover-fallback-day.png");
-  const coverFallbackNight = global.isElectron
-    ? "./img/cover-fallback-night.png"
-    : require("../../img/cover-fallback-night.png");
+  const coverFallbackDay = require("../../img/cover-fallback-day.png");
+  const coverFallbackNight = require("../../img/cover-fallback-night.png");
   const reputation = profile && accountReputation(profile.reputation);
   const loggedIn = activeUser && activeUser.username;
 

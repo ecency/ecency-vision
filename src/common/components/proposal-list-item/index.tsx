@@ -31,7 +31,6 @@ import _c from "../../util/fix-class-names";
 import { _t } from "../../i18n";
 
 import { linkSvg } from "../../img/svg";
-import isElectron from "../../util/is-electron";
 import { Skeleton } from "../skeleton";
 import "./_index.scss";
 
@@ -95,10 +94,8 @@ export class ProposalListItem extends Component<Props, State> {
   loadProposalByVoter = () => {
     const { proposal, location } = this.props;
 
-    const params = isElectron()
-      ? location.search.replace("?voter=", "")
-      : new URLSearchParams(location.search);
-    const voterParams = isElectron() ? params || "" : (params as URLSearchParams).get("voter");
+    const params = new URLSearchParams(location.search);
+    const voterParams = (params as URLSearchParams).get("voter");
 
     if (!!voterParams) {
       getProposalVotes(proposal.id, voterParams as string, 1)

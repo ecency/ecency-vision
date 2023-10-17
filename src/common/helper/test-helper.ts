@@ -152,7 +152,6 @@ export const globalInstance: Global = {
   searchIndexCount: 10000000,
   canUseWebp: false,
   hasKeyChain: false,
-  isElectron: false,
   isMobile: false,
   notifications: true,
   nsfw: false,

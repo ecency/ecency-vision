@@ -7,7 +7,6 @@ import * as ls from "../../util/local-storage";
 import Feedback from "../../components/feedback";
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import Meta from "../../components/meta";
 import { ModeSelector } from "./mode-selector";
@@ -27,15 +26,7 @@ const MarketPage = (props: PageProps) => {
     if (hash === "#advanced") setMode(MarketMode.ADVANCED);
   }, []);
 
-  const navbar = props.global.isElectron ? (
-    NavBarElectron({
-      ...props,
-      reloadFn: () => {},
-      reloading: false
-    })
-  ) : (
-    <NavBar {...props} />
-  );
+  const navbar = <NavBar {...props} />;
 
   return (
     <>

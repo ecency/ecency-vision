@@ -3,7 +3,6 @@ import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../commo
 import Meta from "../../components/meta";
 import ScrollToTop from "../../components/scroll-to-top";
 import Theme from "../../components/theme";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import { connect } from "react-redux";
 
@@ -14,23 +13,14 @@ class GuestPostPage extends Component<PageProps> {
       title: "Guest Posts"
     };
 
-    const { global } = this.props;
-    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
-
     return (
       <>
         <Meta {...metaProps} />
         <ScrollToTop />
         <Theme global={this.props.global} />
-        {global.isElectron ? (
-          NavBarElectron({
-            ...this.props
-          })
-        ) : (
-          <NavBar history={this.props.history} />
-        )}
+        <NavBar history={this.props.history} />
 
-        <div className={"app-content static-page guest-post-page" + containerClasses}>
+        <div className={"app-content static-page guest-post-page"}>
           <iframe
             title="Esteem contribution form"
             src="https://docs.google.com/forms/d/e/1FAIpQLSf3Pt8DQ79edkQK7XHrlIZkZYcueJvgJso6OXz2pgGCplLbaA/viewform?embedded=true"

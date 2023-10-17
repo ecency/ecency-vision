@@ -4,8 +4,6 @@ import { diff_match_patch } from "diff-match-patch";
 
 import { BeneficiaryRoute, CommentOptions, MetaData, RewardType } from "../api/operations";
 
-import isElectron from "../util/is-electron";
-
 const permlinkRnd = () => (Math.random() + 1).toString(16).substring(2);
 
 export const createPermlink = (title: string, random: boolean = false): string => {
@@ -64,7 +62,7 @@ export const extractMetaData = (body: string): MetaData => {
   return out;
 };
 
-export const makeApp = (appVer: string) => `ecency/${appVer}-${isElectron() ? "surfer" : "vision"}`;
+export const makeApp = (appVer: string) => `ecency/${appVer}-vision`;
 
 export const makeJsonMetaData = (
   meta: MetaData,

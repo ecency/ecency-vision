@@ -18,7 +18,6 @@ import moment from "moment/moment";
 import parseDate from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 import defaults from "../../constants/defaults.json";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import EditHistory from "../../components/edit-history";
 import EntryBodyExtra from "../../components/entry-body-extra";
@@ -404,19 +403,11 @@ const EntryComponent = (props: Props) => {
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
       <MdHandler global={props.global} history={props.history} />
-      {props.global.isElectron ? (
-        NavBarElectron({
-          ...props,
-          reloadFn: reload,
-          reloading: loading
-        })
-      ) : (
-        <NavBar history={props.history} match={props.match} />
-      )}
+      <NavBar history={props.history} match={props.match} />
+
       <div
         className={classNameObject({
-          "app-content entry-page": true,
-          "mt-0 pt-6": props.global.isElectron
+          "app-content entry-page": true
         })}
       >
         <ReadTime global={props.global} entry={entry} isVisible={showWordCount} />

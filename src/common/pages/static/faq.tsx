@@ -10,7 +10,6 @@ import { apiBase } from "../../api/helper";
 import Meta from "../../components/meta";
 import ScrollToTop from "../../components/scroll-to-top";
 import Theme from "../../components/theme";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import { copyContent } from "../../img/svg";
 import { Link } from "react-router-dom";
 import { Tsx } from "../../i18n/helper";
@@ -70,7 +69,6 @@ class FaqPage extends Component<PageProps, FAQPageState> {
 
     const { global } = this.props;
     const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? "webp" : "jpg"}`);
-    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
     let faqKeys = [...faqKeysGeneral];
     let searchResult: string[] = [];
     if (search && search.length > 0) {
@@ -91,16 +89,10 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         <ScrollToTop />
         <Feedback activeUser={this.props.activeUser} />
         <Theme global={this.props.global} />
-        {global.isElectron ? (
-          NavBarElectron({
-            ...this.props
-          })
-        ) : (
-          <NavBar history={this.props.history} />
-        )}
+        <NavBar history={this.props.history} />
 
         <div
-          className={"app-content static-page faq-page" + containerClasses}
+          className={"app-content static-page faq-page"}
           itemScope={true}
           itemType="https://schema.org/FAQPage"
         >

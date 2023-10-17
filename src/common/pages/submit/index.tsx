@@ -30,8 +30,6 @@ import FullHeight from "../../components/full-height";
 import Theme from "../../components/theme";
 import Feedback, { error } from "../../components/feedback";
 import { _t } from "../../i18n";
-import MdHandler from "../../components/md-handler";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import _c from "../../util/fix-class-names";
 import TextareaAutocomplete from "../../components/textarea-autocomplete";
@@ -378,15 +376,8 @@ export function Submit(props: PageProps & MatchProps) {
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
       {clearModal && <ModalConfirm onConfirm={clear} onCancel={() => setClearModal(false)} />}
-      {props.global.isElectron && <MdHandler global={props.global} history={props.history} />}
-      {props.global.isElectron ? <NavBarElectron {...props} /> : <NavBar history={props.history} />}
-      <div
-        className={_c(
-          `app-content submit-page ${editingEntry !== null ? "editing" : ""} ${
-            props.global.isElectron ? " mt-0 pt-6" : ""
-          }`
-        )}
-      >
+      <NavBar history={props.history} />
+      <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
         <div className="editor-panel">
           {editingEntry === null && activeUser && (
             <div className="community-input">
