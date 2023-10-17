@@ -74,9 +74,9 @@
     "username": "Käyttäjänimi",
     "past-few-days": "viime päivinä",
     "you": "Sinä",
-    "copy-clipboard": "Copy to clipboard",
-    "first": "First",
-    "last": "Last"
+    "copy-clipboard": "Kopioi leikepöydälle",
+    "first": "Ensimmäinen",
+    "last": "Viimeinen"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -921,7 +921,7 @@
     "extra-details-post": "Julkaisut/Kommentit",
     "extra-details-upvote": "Äänet",
     "boost": "Tehosta",
-    "you-have-claimed-rc": "Already claimed account credits",
+    "you-have-claimed-rc": "Tilihyvitykset lunastettu aiemmin",
     "claim": "Lunasta",
     "you-claiming": "Olet lunastamassa {{n}}",
     "successfully-claimed": "Onnistui!"
@@ -1167,7 +1167,7 @@
     "title": "Korosta",
     "sub-title": "Korosta julkaisuasi",
     "duration": "Kesto",
-    "learn-more": "Learn more about promotion"
+    "learn-more": "Lue lisää korostamisesta"
   },
   "boost": {
     "title": "Tehosta",
@@ -1175,7 +1175,7 @@
     "amount": "Määrä",
     "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää.",
     "hint": "Antamasi äänen todellinen arvo voi vaihdella",
-    "learn-more": "Learn more about boosting"
+    "learn-more": "Lue lisää korostamisesta"
   },
   "redeem-common": {
     "balance": "Saldo",
@@ -1229,7 +1229,7 @@
     "memo-help": "Tämä muistio on julkinen",
     "memo-error": "Älä koskaan kopioi yksityisiä avaimia muistikenttään, se on julkisesti kaikkien nähtävissä.",
     "memo-required": "Siirrolla vaihtoalustalle on oltava muistio.",
-    "invalid-asset": "You can only send HIVE to an exchange account.",
+    "invalid-asset": "Voit lähettää HIVE:ä vain vaihtotilille.",
     "available-hp-hint": "* hive power saatavilla",
     "override-warning-1": "Uusi määrä ohittaa edellisen määrän.",
     "override-warning-2": "Tili ({{account}}) on jo valtuutettu {{previousAmount}}.",
@@ -1444,7 +1444,7 @@
     "empty-tags-alert": "Syötä julkaisun tagit",
     "empty-body-alert": "Syötä julkaisun runko",
     "description": "Lyhyt kuvaus",
-    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
+    "should-be-only-one-unpublished": "Julkaisun tulee sisältää vain yksi julkaisematon video. Poista muut videot."
   },
   "video-upload": {
     "choose-video": "Valitse video",
@@ -1460,8 +1460,8 @@
     "to-gallery": "Siirry galleriaan",
     "congrats": "Onnittelut",
     "publishing": "Älä päivitä tätä sivua, odota muutama sekunti videon käsittelemiseksi",
-    "no-record-permission": "You don't have permission to record video",
-    "confirm-and-upload": "Confirm and upload to 3Speak",
+    "no-record-permission": "Sinulla ei ole oikeuksia tallentaa videota",
+    "confirm-and-upload": "Vahvista ja lataa 3Speak:n",
     "uploading": "Lähetetään..{{n}}/{{total}}",
     "uploaded": "Lähetetty!",
     "reset": "Tyhjennä"
@@ -1485,7 +1485,7 @@
     "info-size": "Tiedostokoko:",
     "insert-video": "Lisää",
     "insert-nsfw": "Lisää NSFW",
-    "refresh": "Refresh to get updated status",
+    "refresh": "Päivitä saadaksesi päivitetyn tilan",
     "video-info": "Videot on tallennettu toimivaksi SPK-verkossa, jossa voi olla joitakin tallennus- ja koodauskuluja."
   },
   "nsfw-content": {
