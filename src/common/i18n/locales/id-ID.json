@@ -1227,6 +1227,7 @@
     "memo-help": "Memo ini adalah Publik",
     "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "memo-required": "Transfer to an exchange must have a memo.",
+    "invalid-asset": "You can only send HIVE to an exchange account.",
     "available-hp-hint": "* hive power yang tersedia",
     "override-warning-1": "Jumlah baru menggantikan yang sebelumnya.",
     "override-warning-2": "Akun {{account}} sudah didelegasikan dengan {{previousAmount}}.",

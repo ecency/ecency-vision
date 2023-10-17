@@ -1227,6 +1227,7 @@
     "memo-help": "Este memo é público",
     "memo-error": "Nunca coloque chaves privadas em um campo de nota. Ele é publicamente visível para todos.",
     "memo-required": "Transfer to an exchange must have a memo.",
+    "invalid-asset": "You can only send HIVE to an exchange account.",
     "available-hp-hint": "* poder de hive disponível",
     "override-warning-1": "O novo valor sobrepõe o anterior.",
     "override-warning-2": "A conta ({{account}}) contém {{previousAmount}} em delegações.",

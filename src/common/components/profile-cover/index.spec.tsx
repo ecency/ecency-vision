@@ -7,27 +7,15 @@ import { Theme } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 
 import {
-  globalInstance,
-  UiInstance,
-  fullAccountInstance,
+  allOver,
   dynamicPropsIntance1,
-  RcAccountInstance,
-  allOver
+  fullAccountInstance,
+  globalInstance,
+  UiInstance
 } from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
   imageServer: "https://images.ecency.com"
-}));
-
-jest.mock("../../api/hive", () => ({
-  getFollowing: () =>
-    new Promise((resolve) => {
-      resolve([]);
-    }),
-
-  votingPower: () => 0,
-  votingValue: () => 0,
-  findRcAccounts: () => new Promise((resolve) => resolve([RcAccountInstance]))
 }));
 
 const defProps = {
