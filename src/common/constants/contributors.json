@@ -480,7 +480,7 @@
     "contributes": ["Guest Curator"]
   },
    {
-    "name": "Itwithsm",
+    "name": "itwithsm",
     "contributes": ["Guest Curator"]
   },
    {
@@ -490,5 +490,9 @@
    {
     "name": "mypathtofire ",
     "contributes": ["Thought Leader", "Discord Moderator"]
-  }
+  },
+   {
+    "name": "gamingumar",
+    "contributes": ["Developer (Mobile)"]
+  }  
 ]
