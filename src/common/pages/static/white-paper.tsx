@@ -22,7 +22,7 @@ class WhitePaperPage extends Component<PageProps> {
         <Theme global={this.props.global} />
         <NavBar history={this.props.history} />
 
-        <div className={"app-content static-page white-paper-page"}>
+        <div className="app-content static-page white-paper-page">
           <div className="static-content">
             <h1 className="page-title">Whitepaper</h1>
 

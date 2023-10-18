@@ -183,15 +183,13 @@ export const CommunityPage = (props: Props) => {
     return { title, description, url, rss, image, canonical };
   };
 
-  const navBar = <NavBar {...props} />;
-
   return community && account ? (
     <>
       <Meta {...getMetaProps()} />
       <ScrollToTop />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
-      {navBar}
+      <NavBar {...props} />
       <div className="app-content community-page">
         <div className="profile-side">
           <CommunityCard {...props} account={account} community={community} />
@@ -294,7 +292,7 @@ export const CommunityPage = (props: Props) => {
     </>
   ) : isLoading ? (
     <>
-      {navBar}
+      <NavBar {...props} />
       <LinearProgress />
     </>
   ) : (

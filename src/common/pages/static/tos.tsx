@@ -22,7 +22,7 @@ class TosPage extends Component<PageProps> {
         <Theme global={this.props.global} />
         <NavBar history={this.props.history} />
 
-        <div className={"app-content static-page tos-page"}>
+        <div className="app-content static-page tos-page">
           <div className="static-content">
             <h1 className="page-title">Terms Of Service</h1>
             <p className="static-last-updated">Last Updated August 20, 2020</p>

@@ -20,7 +20,7 @@ class ContributePage extends Component<PageProps> {
         <Theme global={this.props.global} />
         <NavBar history={this.props.history} />
 
-        <div className={"app-content static-page contribute-page"}>
+        <div className="app-content static-page contribute-page">
           <div className="static-content">
             <h1 className="page-title">Contribute to Esteem</h1>
             <p>

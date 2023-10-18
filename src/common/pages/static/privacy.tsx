@@ -20,7 +20,7 @@ class PrivacyPage extends Component<PageProps> {
         <Theme global={this.props.global} />
         <NavBar history={this.props.history} />
 
-        <div className={"app-content static-page privacy-page"}>
+        <div className="app-content static-page privacy-page">
           <div className="static-content">
             <h1 className="page-title">Privacy Policy</h1>
             <p className="static-last-updated">Effective: August 20, 2020</p>

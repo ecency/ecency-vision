@@ -26,15 +26,15 @@ const MarketPage = (props: PageProps) => {
     if (hash === "#advanced") setMode(MarketMode.ADVANCED);
   }, []);
 
-  const navbar = <NavBar {...props} />;
-
   return (
     <>
       <Meta title={title} description={description} />
       <Feedback activeUser={props.activeUser} />
       <div className={"flex justify-center market-page " + mode}>
         <div className={mode !== MarketMode.ADVANCED ? "sm:w-[75%] p-3 sm:p-0" : "w-full"}>
-          <div style={{ marginBottom: "6rem" }}>{navbar}</div>
+          <div style={{ marginBottom: "6rem" }}>
+            <NavBar {...props} />
+          </div>
           {mode !== MarketMode.ADVANCED ? (
             <div className="mb-5 flex flex-col gap-3 text-center">
               <h2 className="text-3xl font-bold">{_t("market.title")}</h2>

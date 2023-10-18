@@ -20,7 +20,7 @@ class GuestPostPage extends Component<PageProps> {
         <Theme global={this.props.global} />
         <NavBar history={this.props.history} />
 
-        <div className={"app-content static-page guest-post-page"}>
+        <div className="app-content static-page guest-post-page">
           <iframe
             title="Esteem contribution form"
             src="https://docs.google.com/forms/d/e/1FAIpQLSf3Pt8DQ79edkQK7XHrlIZkZYcueJvgJso6OXz2pgGCplLbaA/viewform?embedded=true"

@@ -248,7 +248,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
       </div>
     );
     return (
-      <div className={"app-content witnesses-page mt-0 mx-0"}>
+      <div className="app-content witnesses-page mt-0 mx-0">
         {(() => {
           if (loading) {
             return (

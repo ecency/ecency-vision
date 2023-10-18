@@ -25,13 +25,13 @@ interface DeletedPostProps {
 }
 
 export const DeletedPostScreen = (props: Props & DeletedPostProps) => {
-  const nav = <NavBar history={props.history} match={props.match} />;
-
-  const staticNav = <StaticNavbar fullVersionUrl="" />;
-
   return (
     <div>
-      {props.staticNav ? staticNav : nav}
+      {props.staticNav ? (
+        <StaticNavbar fullVersionUrl="" />
+      ) : (
+        <NavBar history={props.history} match={props.match} />
+      )}
       {props.deletedEntry && (
         <div className="container overflow-x-hidden">
           <ScrollToTop />

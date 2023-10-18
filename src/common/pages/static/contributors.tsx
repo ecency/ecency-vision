@@ -22,7 +22,7 @@ class ContributorsPage extends Component<PageProps> {
         <Theme global={this.props.global} />
         <NavBar history={this.props.history} />
 
-        <div className={"app-content static-page contributors-page"}>
+        <div className="app-content static-page contributors-page">
           {Contributors({ ...this.props })}
         </div>
       </>

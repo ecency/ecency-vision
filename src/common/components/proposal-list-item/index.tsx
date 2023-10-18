@@ -95,7 +95,7 @@ export class ProposalListItem extends Component<Props, State> {
     const { proposal, location } = this.props;
 
     const params = new URLSearchParams(location.search);
-    const voterParams = (params as URLSearchParams).get("voter");
+    const voterParams = params.get("voter");
 
     if (!!voterParams) {
       getProposalVotes(proposal.id, voterParams as string, 1)

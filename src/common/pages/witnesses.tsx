@@ -507,7 +507,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         <Feedback activeUser={this.props.activeUser} />
         <NavBar history={this.props.history} />
 
-        <div className={"app-content witnesses-page"}>
+        <div className="app-content witnesses-page">
           {(() => {
             if (loading && !originalWitnesses.length) {
               return (

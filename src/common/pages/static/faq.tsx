@@ -92,7 +92,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         <NavBar history={this.props.history} />
 
         <div
-          className={"app-content static-page faq-page"}
+          className="app-content static-page faq-page"
           itemScope={true}
           itemType="https://schema.org/FAQPage"
         >

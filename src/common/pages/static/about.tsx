@@ -35,7 +35,7 @@ class AboutPage extends Component<PageProps> {
         <Theme global={this.props.global} />
         <NavBar history={this.props.history} />
 
-        <div className={"app-content static-page about-page"}>
+        <div className="app-content static-page about-page">
           <div className="about-cloud">
             <div className="up-cloud" />
             <div className="about-inner">
