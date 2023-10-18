@@ -138,10 +138,6 @@ export class NotificationsWebSocket {
     return this;
   }
 
-  public withElectron() {
-    return this;
-  }
-
   public withToggleUi(toggle: Function) {
     this.toggleUiProp = toggle;
     return this;
