@@ -1872,7 +1872,7 @@
     "start-community-chat": "Start Community Chat",
     "join-community-chat": "Join Community Chat",
     "submit": "Submit",
-    "chat-priv-key": "Chat Private key",
+    "chat-priv-key": "Please, copy this key or save QR code to your device for joining to same account in another devices",
     "copy-priv-key": "Copy Private key",
     "extended-view": "Extended View",
     "you-haven-t-joined": "You haven't joined the chat yet. Please join the chat to start chatting."

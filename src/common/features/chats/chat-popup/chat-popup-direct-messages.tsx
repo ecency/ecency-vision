@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { _t } from "../../../i18n";
-import { Link } from "react-router-dom";
 import { getCommunityLastMessage, getDirectLastMessage, getJoinedCommunities } from "../utils";
 import ImportChats from "../import-chats";
 import { Spinner } from "@ui/spinner";
@@ -8,7 +7,7 @@ import { Button } from "@ui/button";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import { Channel } from "../../../../managers/message-manager-types";
-import UserAvatar from "../../../components/user-avatar";
+import { ChatDirectMessage } from "./chat-direct-message";
 
 interface Props {
   communityClicked: (v: string) => void;
@@ -39,30 +38,17 @@ export function ChatPopupDirectMessages({
         (chat.channels.length !== 0 && communities.length !== 0)) &&
       !showSpinner &&
       activeUserKeys?.priv ? (
-        <React.Fragment>
+        <>
           {chat.channels.length !== 0 && communities.length !== 0 && (
             <>
               <div className="community-header">{_t("chat.communities")}</div>
               {communities.map((channel) => (
-                <div key={channel.id} className="chat-content">
-                  <Link to={`/created/${channel.communityName}`}>
-                    <div className="user-img">
-                      <span>
-                        <UserAvatar username={channel.communityName!} size="medium" />
-                      </span>
-                    </div>
-                  </Link>
-
-                  <div
-                    className="user-title"
-                    onClick={() => communityClicked(channel.communityName!)}
-                  >
-                    <p className="username">{channel.name}</p>
-                    <p className="last-message">
-                      {getCommunityLastMessage(channel.id, chat.publicMessages)}
-                    </p>
-                  </div>
-                </div>
+                <ChatDirectMessage
+                  key={channel.id}
+                  username={channel.communityName!!}
+                  lastMessage={getCommunityLastMessage(channel.id, chat.publicMessages)}
+                  userClicked={() => communityClicked(channel.communityName!)}
+                />
               ))}
               {chat.directContacts.length !== 0 && (
                 <div className="dm-header">{_t("chat.dms")}</div>
@@ -70,30 +56,17 @@ export function ChatPopupDirectMessages({
             </>
           )}
           {chat.directContacts.map((user) => (
-            <div key={user.pubkey} className="chat-content">
-              <Link to={`/@${user.name}`}>
-                <div className="user-img">
-                  <span>
-                    <UserAvatar username={user.name} size="medium" />
-                  </span>
-                </div>
-              </Link>
-
-              <div
-                className="user-title"
-                onClick={() => {
-                  userClicked(user.name);
-                  setReceiverPubKey(user.pubkey);
-                }}
-              >
-                <p className="username">{user.name}</p>
-                <p className="last-message">
-                  {getDirectLastMessage(user.pubkey, chat.directMessages)}
-                </p>
-              </div>
-            </div>
+            <ChatDirectMessage
+              username={user.name}
+              userClicked={(v) => {
+                setReceiverPubKey(user.pubkey);
+                userClicked(v);
+              }}
+              key={user.pubkey}
+              lastMessage={getDirectLastMessage(user.pubkey, chat.directMessages)}
+            />
           ))}
-        </React.Fragment>
+        </>
       ) : !activeUserKeys?.priv ? (
         <ImportChats />
       ) : showSpinner ? (

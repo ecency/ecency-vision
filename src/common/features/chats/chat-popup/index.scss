@@ -5,7 +5,7 @@
   z-index: 99;
   right: 13rem;
   bottom: 0rem;
-  height: 53px;
+  height: 50px;
   width: 410px;
 
   border-top-right-radius: 16px;
@@ -133,45 +133,6 @@
       }
     }
 
-    .chat-content {
-      display: flex;
-      cursor: pointer;
-      border-bottom: 0.5px solid rgba(134, 150, 160, 0.15);
-
-      .user-img {
-        padding: 13px 16px;
-      }
-
-      .user-title {
-        padding-top: 6px;
-        width: -webkit-fill-available;
-
-        .username {
-          padding-top: 8px;
-          @include themify(day) {
-            @apply text-gray-charcoal;
-          }
-
-          @include themify(night) {
-            @apply text-light-200;
-          }
-
-          font-size: 18px;
-          font-weight: 700;
-          margin-bottom: 0.2rem !important;
-        }
-
-        .last-message {
-          max-width: 320px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          margin-bottom: 0;
-          font-size: 14px;
-        }
-      }
-    }
-
     .chat-content:hover {
       @include themify(day) {
         background: #eeeeee;
@@ -228,10 +189,10 @@
     }
 
     .manage-chat-key {
+      @apply p-4;
+
       .private-key {
-        .form-group {
-          width: 90vw !important;
-        }
+        margin: 0;
       }
     }
   }
