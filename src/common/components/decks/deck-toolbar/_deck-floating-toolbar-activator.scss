@@ -1,0 +1,38 @@
+@import "src/style/vars_mixins";
+
+.deck-floating-toolbar-activator {
+  position: fixed;
+  z-index: 199;
+  width: 1.5rem;
+  height: 5rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 0.75;
+  display: none;
+  transition: 0.3s;
+  left: 72px;
+  top: calc(50% - 2.5rem);
+
+  @include media-breakpoint-down(sm) {
+    display: flex;
+  }
+
+  svg {
+    transform: rotate(90deg);
+
+    path {
+      @apply stroke-white;
+    }
+  }
+}
+
+.decks:not(.toolbar-collapsed) {
+  .deck-floating-toolbar-activator {
+    svg {
+      transform: rotate(-90deg);
+    }
+  }
+}

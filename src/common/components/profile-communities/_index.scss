@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .profile-communities {
   margin-top: 10px;
@@ -20,7 +17,7 @@
       .user-role {
         margin-left: 6px;
         text-transform: uppercase;
-        color: $silver;
+        @apply text-silver;
         font-size: 90%;
       }
     }

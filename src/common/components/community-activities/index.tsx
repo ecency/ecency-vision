@@ -1,26 +1,19 @@
 import React, { Component, Fragment } from "react";
-
-import { Button } from "react-bootstrap";
-
 import { History } from "history";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-import { Community } from "../../store/communities/types";
-
+import { Community } from "../../store/communities";
 import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import EntryLink from "../entry-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import { error } from "../feedback";
-
-import { getAccountNotifications, AccountNotification } from "../../api/bridge";
-
+import { AccountNotification, getAccountNotifications } from "../../api/bridge";
 import { _t } from "../../i18n";
-
 import { dateToFullRelative } from "../../helper/parse-date";
 import "./_index.scss";
+import { Button } from "@ui/button";
 
 interface ListItemProps {
   history: History;

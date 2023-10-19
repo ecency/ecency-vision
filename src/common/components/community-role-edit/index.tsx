@@ -1,25 +1,21 @@
 import React, { Component } from "react";
-
-import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
-import { Community, CommunityTeam } from "../../store/communities/types";
+import { Community, CommunityTeam } from "../../store/communities";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import { error } from "../feedback";
-
 import { getAccount } from "../../api/hive";
-
 import { clone } from "../../store/util";
-
-import { setUserRole, formatError } from "../../api/operations";
-
+import { formatError, setUserRole } from "../../api/operations";
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
 import "./_index.scss";
+import { queryClient, QueryIdentifiers } from "../../core";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -28,7 +24,6 @@ interface Props {
   user: string;
   role: string;
   roles: string[];
-  addCommunity: (data: Community) => void;
   onHide: () => void;
 }
 
@@ -49,19 +44,19 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
 
   _input = React.createRef<HTMLInputElement>();
 
-  userChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  userChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: user } = e.target;
     this.stateSet({ user });
   };
 
-  roleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  roleChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value: role } = e.target;
     this.stateSet({ role });
   };
 
   submit = async () => {
     const { user, role } = this.state;
-    const { community, activeUser, addCommunity, onHide } = this.props;
+    const { community, activeUser, onHide } = this.props;
 
     if (user.trim() === "") {
       this._input.current?.focus();
@@ -89,8 +84,10 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
           team.find((x) => x[0] === user) === undefined
             ? [...team, [user, role, ""]]
             : team.map((x) => (x[0] === user ? [x[0], role, x[2]] : x));
-        const nCom: Community = { ...clone(community), team: nTeam };
-        addCommunity(nCom);
+        queryClient.setQueryData([QueryIdentifiers.COMMUNITY, community.name], {
+          ...clone(community),
+          ...{ ...clone(community), team: nTeam }
+        });
         onHide();
       })
       .catch((err) => error(...formatError(err)))
@@ -105,16 +102,13 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
       <div className="community-role-edit-dialog-content">
         {inProgress && <LinearProgress />}
         <div className={`user-role-form ${inProgress ? "in-progress" : ""}`}>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-role-edit.username")}
-            </Form.Label>
-            <Col sm="10">
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Text>@</InputGroup.Text>
-                </InputGroup.Prepend>
-                <Form.Control
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
+              <label>{_t("community-role-edit.username")}</label>
+            </div>
+            <div className="w-full sm:w-10/12">
+              <InputGroup prepend="@">
+                <FormControl
                   type="text"
                   autoFocus={user === ""}
                   placeholder={_t("community-role-edit.username").toLowerCase()}
@@ -124,24 +118,24 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
                   ref={this._input}
                 />
               </InputGroup>
-              {userError && <Form.Text className="text-danger">{userError}</Form.Text>}
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column={true} sm="2">
-              {_t("community-role-edit.role")}
-            </Form.Label>
-            <Col sm="10">
-              <Form.Control as="select" value={role} onChange={this.roleChanged}>
+              {userError && <small className="text-red">{userError}</small>}
+            </div>
+          </div>
+          <div className="flex mb-4">
+            <div className="w-full sm:w-2/12">
+              <label>{_t("community-role-edit.role")}</label>
+            </div>
+            <div className="w-full sm:w-10/12">
+              <FormControl type="select" value={role} onChange={this.roleChanged}>
                 {roles.map((r, i) => (
                   <option key={i} value={r}>
                     {r}
                   </option>
                 ))}
-              </Form.Control>
-            </Col>
-          </Form.Group>
-          <div className="d-flex justify-content-end">
+              </FormControl>
+            </div>
+          </div>
+          <div className="flex justify-end">
             <Button type="button" onClick={this.submit} disabled={inProgress}>
               {_t("g.save")}
             </Button>
@@ -164,16 +158,15 @@ export default class CommunityRoleEditDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
         className="community-role-edit-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("community-role-edit.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader closeButton={true}>
+          <ModalTitle>{_t("community-role-edit.title")}</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
           <CommunityRoleEdit {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

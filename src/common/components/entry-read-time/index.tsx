@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { getActiveVotes } from "../../api/hive";
-
-import { prepareVotes } from "../entry-votes";
-
+import Tooltip from "../tooltip";
 import { _t } from "../../i18n";
 import { informationVariantSvg } from "../../img/svg";
 import UserAvatar from "../user-avatar";
-import Mytooltip from "../tooltip";
 
 export interface ActiveVotes {
   rshares: number;
@@ -28,10 +23,14 @@ export const ReadTime = (props: any) => {
   }, [entry]);
 
   const getTopCurator = async () => {
-    const curator = props.entry.active_votes.reduce((prev: ActiveVotes, curr: ActiveVotes) => {
-      return prev.rshares! > curr.rshares! ? prev : curr;
-    });
-    setTopCurator(curator.voter);
+    if (entry.active_votes?.length > 0) {
+      const curator =
+        entry.active_votes &&
+        entry.active_votes.reduce((prev: ActiveVotes, curr: ActiveVotes) => {
+          return prev.rshares! > curr.rshares! ? prev : curr;
+        });
+      setTopCurator(curator.voter);
+    }
   };
 
   const calculateExtras = async () => {
@@ -52,29 +51,23 @@ export const ReadTime = (props: any) => {
 
   return toolTip ? (
     <div className="post-info">
-      <OverlayTrigger
-        delay={{ show: 0, hide: 300 }}
-        key={"bottom"}
-        placement={"bottom"}
-        overlay={
-          <Tooltip id={`tooltip-word-count`}>
-            <div className="tooltip-inner">
-              <div className="profile-info-tooltip-content">
-                <p>
-                  {_t("entry.post-word-count")} {wordCount}
-                </p>
-                <p>
-                  {_t("entry.post-read-time")} {readTime} {_t("entry.post-read-minuites")}
-                </p>
-              </div>
-            </div>
-          </Tooltip>
+      <Tooltip
+        content={
+          _t("entry.post-word-count") +
+          " " +
+          wordCount +
+          "\n" +
+          _t("entry.post-read-time") +
+          " " +
+          readTime +
+          " " +
+          _t("entry.post-read-minuites")
         }
       >
-        <div className="d-flex align-items-center">
-          <span className="info-icon mr-0 mr-md-2">{informationVariantSvg}</span>
-        </div>
-      </OverlayTrigger>
+        <span className="flex items-center">
+          <span className="info-icon w-[24px] mr-0 mr-md-2">{informationVariantSvg}</span>
+        </span>
+      </Tooltip>
     </div>
   ) : (
     <>
@@ -87,16 +80,16 @@ export const ReadTime = (props: any) => {
             {_t("entry.post-read-time")} {readTime} {_t("entry.post-read-minuites")}
           </p>
           {topCurator && (
-            <p className="top-curator">
+            <div className="top-curator">
               {_t("entry.post-top-curator")}
-              <Mytooltip content={topCurator}>
+              <Tooltip content={topCurator}>
                 <Link to={`/@${topCurator}`}>
                   <div className="curator">
                     <UserAvatar username={topCurator} size="small" />
                   </div>
                 </Link>
-              </Mytooltip>
-            </p>
+              </Tooltip>
+            </div>
           )}
         </div>
       )}

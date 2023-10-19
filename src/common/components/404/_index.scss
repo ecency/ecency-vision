@@ -1,4 +1,4 @@
-@import "src/style/colors";
+@import "src/style/vars_mixins";
 
 .not-found-404 {
   position: absolute;
@@ -32,7 +32,7 @@
         &:after {
           margin-left: 6px;
           content: "|";
-          color: $silver;
+          @apply text-silver;
         }
       }
     }

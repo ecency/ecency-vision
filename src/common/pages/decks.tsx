@@ -18,10 +18,11 @@ const DecksPageComponent = ({ history }: Props) => {
   const store = useMappedStore();
 
   return (
-    <div className="p-0 m-0 mw-100">
+    <div className="p-0 m-0 mw-full">
       <Meta {...getMetaProps(store)} title={_t("decks.title")} />
       <Theme global={store.global} />
       <Feedback activeUser={store.activeUser} />
+      <div id="deck-media-view-container" />
       <Decks history={history} />
     </div>
   );

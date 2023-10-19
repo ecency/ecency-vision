@@ -1,7 +1,21 @@
 interface BaseDeckGridItem {
   id: string;
   key: number;
-  type: "u" | "ac" | "co" | "w" | "n" | "tr" | "to" | "s" | "cu";
+  type:
+    | "u"
+    | "ac"
+    | "co"
+    | "w"
+    | "n"
+    | "tr"
+    | "to"
+    | "s"
+    | "cu"
+    | "th"
+    | "msf"
+    | "faq"
+    | "wb"
+    | "wn";
   settings: Record<string, any>;
 }
 
@@ -30,6 +44,20 @@ export interface SearchDeckGridItem extends ReloadableDeckGridItem {
   type: "s";
   settings: ReloadableDeckGridItem["settings"] & {
     query: string;
+    author?: string;
+    type?: string;
+    category?: string;
+    tags?: string;
+    date?: string;
+    sort?: string;
+    hideLow?: boolean;
+  };
+}
+
+export interface WavesDeckGridItem extends ReloadableDeckGridItem {
+  type: "th";
+  settings: ReloadableDeckGridItem["settings"] & {
+    host: string;
   };
 }
 
@@ -37,4 +65,5 @@ export type DeckGridItem =
   | BaseDeckGridItem
   | UserDeckGridItem
   | CommunityDeckGridItem
-  | SearchDeckGridItem;
+  | SearchDeckGridItem
+  | WavesDeckGridItem;

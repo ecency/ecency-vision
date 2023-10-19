@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .entry-tip-btn {
   margin-top: -1px;
@@ -14,7 +11,7 @@
   .inner-btn {
     cursor: pointer;
     align-items: center;
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
     display: flex;
 
     svg {

@@ -1046,3 +1046,340 @@ export const settingsIconSvg = (
     <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
   </svg>
 );
+
+export const commentSvg = (
+  <svg fill="currentColor" viewBox="0 0 32 32" version="1.1">
+    <path d="M16.5 1.853c-8.133 0-14.75 5.663-14.75 12.624 0.045 2.863 1.132 5.465 2.896 7.45l-0.010-0.012c-0.608 2.418-1.844 4.491-3.525 6.104l-0.004 0.004c-0.22 0.225-0.355 0.534-0.355 0.873 0 0.691 0.56 1.252 1.252 1.252 0.089 0 0.175-0.009 0.259-0.027l-0.008 0.001c3.458-0.576 6.524-1.93 9.121-3.877l-0.054 0.039c1.547 0.517 3.328 0.816 5.179 0.817h0c8.133 0 14.75-5.664 14.75-12.625s-6.617-12.624-14.75-12.624zM16.5 24.602c-0.015 0-0.034 0-0.052 0-1.77 0-3.465-0.321-5.030-0.908l0.099 0.032c-0.045-0.011-0.1-0.020-0.155-0.025l-0.005-0c-0.085-0.025-0.182-0.041-0.283-0.045l-0.002-0c-0.074 0.005-0.142 0.016-0.207 0.033l0.008-0.002c-0.1 0.013-0.19 0.035-0.275 0.068l0.008-0.003c-0.079 0.039-0.146 0.081-0.209 0.129l0.003-0.002c-0.064 0.033-0.118 0.067-0.169 0.105l0.003-0.002c-1.371 1.186-3 2.115-4.789 2.69l-0.098 0.027c0.896-1.391 1.555-3.025 1.872-4.778l0.012-0.082c0.005-0.031-0.005-0.060-0.002-0.092 0.002-0.028 0.003-0.060 0.003-0.093 0-0.311-0.107-0.597-0.286-0.824l0.002 0.003c-0.019-0.023-0.025-0.051-0.046-0.073-1.617-1.608-2.626-3.826-2.652-6.28l-0-0.005c0-5.582 5.495-10.124 12.25-10.124s12.25 4.542 12.25 10.124-5.496 10.125-12.25 10.125zM25 10.75h-16c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h16c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0zM16 16.75h-7c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h7c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z" />
+  </svg>
+);
+
+export const voteSvg = (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const threadSvg = (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M7.5 4H16.5C17.12 4 17.67 4.02 18.16 4.09C20.79 4.38 21.5 5.62 21.5 9V15C21.5 18.38 20.79 19.62 18.16 19.91C17.67 19.98 17.12 20 16.5 20H7.5C6.88 20 6.33 19.98 5.84 19.91C3.21 19.62 2.5 18.38 2.5 15V9C2.5 5.62 3.21 4.38 5.84 4.09C6.33 4.02 6.88 4 7.5 4Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      opacity="0.4"
+    />
+    <path
+      d="M13.5 10H17"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M7 15.5H7.02H17"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10.0941 10H10.1031"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M7.09412 10H7.1031"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const swapFormSvg = (
+  <svg viewBox="0 0 800 800">
+    <g id="Group" opacity="0.4">
+      <path
+        id="Path"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="50"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M 316.666656 458.339996 C 316.666656 490.673309 341.666656 516.67334 372.333344 516.67334 L 435 516.67334 C 461.666687 516.67334 483.333344 494.006653 483.333344 465.673309 C 483.333344 435.339996 470 424.339996 450.333344 417.339996 L 350 382.339996 C 330.333313 375.339996 317.000336 364.67334 317.000336 334.006653 C 317.000336 306.00766 338.666656 283.007629 365.333344 283.007629 L 428 283.007629 C 458.666687 283.007629 483.666687 309.00769 483.666687 341.339996"
+      />
+      <path
+        id="path1"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="50"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M 400 250 L 400 550"
+      />
+    </g>
+    <path
+      id="path2"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="50"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M 733.333313 400 C 733.333313 584 584 733.333313 400 733.333313 C 216 733.333313 66.666664 584 66.666664 400 C 66.666664 216 216 66.666687 400 66.666687"
+    />
+    <path
+      id="path3"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="50"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M 733.333313 200 L 733.333313 66.666687 L 600 66.666687"
+    />
+    <path
+      id="Path-copy"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="50"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M 529 138.666687 L 529 272 L 662.333313 272"
+    />
+    <path
+      id="path4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="50"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M 566.666687 233.333313 L 733.333313 66.666687"
+    />
+  </svg>
+);
+
+export const faqIconSvg = (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M17 18.4302H13L8.54999 21.3902C7.88999 21.8302 7 21.3602 7 20.5602V18.4302C4 18.4302 2 16.4302 2 13.4302V7.43018C2 4.43018 4 2.43018 7 2.43018H17C20 2.43018 22 4.43018 22 7.43018V13.4302C22 16.4302 20 18.4302 17 18.4302Z"
+      opacity="0.4"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M11.9998 11.3599V11.1499C11.9998 10.4699 12.4198 10.1099 12.8398 9.81989C13.2498 9.53989 13.6598 9.1799 13.6598 8.5199C13.6598 7.5999 12.9198 6.85986 11.9998 6.85986C11.0798 6.85986 10.3398 7.5999 10.3398 8.5199"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M11.9955 13.75H12.0045"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const noContentSvg = (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M2 8.5H15.24"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M6 16.5H7.29"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M11 16.5H14.5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M7.98047 20.5001H17.5605C21.1205 20.5001 22.0005 19.6201 22.0005 16.1101V6.89014"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M19.99 3.75C19.37 3.57 18.57 3.5 17.56 3.5H6.44C2.89 3.5 2 4.38 2 7.89V16.1C2 18.44 2.39 19.61 3.71 20.13"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M22 2L2 22"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const balanceIconSvg = (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M19.3009 7.91998V13.07C19.3009 16.15 17.5409 17.47 14.9009 17.47H6.11093C5.66093 17.47 5.23093 17.43 4.83093 17.34C4.58093 17.3 4.34094 17.23 4.12094 17.15C2.62094 16.59 1.71094 15.29 1.71094 13.07V7.91998C1.71094 4.83998 3.47093 3.52002 6.11093 3.52002H14.9009C17.1409 3.52002 18.7509 4.47001 19.1809 6.64001C19.2509 7.04001 19.3009 7.44998 19.3009 7.91998Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M22.3001 10.9201V16.0701C22.3001 19.1501 20.5401 20.4701 17.9001 20.4701H9.11008C8.37008 20.4701 7.70009 20.3701 7.12009 20.1501C5.93009 19.7101 5.12008 18.8001 4.83008 17.3401C5.23008 17.4301 5.66008 17.4701 6.11008 17.4701H14.9001C17.5401 17.4701 19.3001 16.1501 19.3001 13.0701V7.9201C19.3001 7.4501 19.2601 7.03014 19.1801 6.64014C21.0801 7.04014 22.3001 8.38011 22.3001 10.9201Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10.4994 13.1399C11.9574 13.1399 13.1394 11.9579 13.1394 10.4999C13.1394 9.04185 11.9574 7.85986 10.4994 7.85986C9.04136 7.85986 7.85938 9.04185 7.85938 10.4999C7.85938 11.9579 9.04136 13.1399 10.4994 13.1399Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M4.7793 8.2998V12.6998"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M16.2207 8.2998V12.6998"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const whatsNewIconSvg = (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M8 2V5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16 2V5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M3.5 9.08984H20.5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M22 19C22 19.75 21.79 20.46 21.42 21.06C20.73 22.22 19.46 23 18 23C16.99 23 16.07 22.63 15.37 22C15.06 21.74 14.79 21.42 14.58 21.06C14.21 20.46 14 19.75 14 19C14 16.79 15.79 15 18 15C19.2 15 20.27 15.53 21 16.36C21.62 17.07 22 17.99 22 19Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16.4404 19L17.4304 19.99L19.5604 18.02"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M21 8.5V16.36C20.27 15.53 19.2 15 18 15C15.79 15 14 16.79 14 19C14 19.75 14.21 20.46 14.58 21.06C14.79 21.42 15.06 21.74 15.37 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M11.9955 13.7002H12.0045"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M8.29431 13.7002H8.30329"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      opacity="0.4"
+      d="M8.29492 16.7002H8.3039"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const emojiIconSvg = (
+  <svg width={16} height={16} viewBox="0 0 668 668" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M667.357 334C667.357 518.093 518.12 667.333 334.023 667.333C149.929 667.333 0.690002 518.093 0.690002 334C0.690002 149.905 149.929 0.666687 334.023 0.666687C518.12 0.666687 667.357 149.905 667.357 334ZM195.89 425.061C188.008 413.725 172.428 410.925 161.092 418.808C149.756 426.69 146.957 442.27 154.839 453.606C194.34 510.412 260.547 547.667 335.03 547.667C409.579 547.667 475.381 510.361 515.158 453.697C523.091 442.396 520.361 426.805 509.06 418.872C497.76 410.939 482.168 413.669 474.235 424.969C443.346 468.972 392.481 497.667 335.03 497.667C277.513 497.667 226.389 468.922 195.89 425.061ZM282 231C282 264.137 255.137 291 222 291C188.863 291 162 264.137 162 231C162 197.863 188.863 171 222 171C255.137 171 282 197.863 282 231ZM449 291C482.137 291 509 264.137 509 231C509 197.863 482.137 171 449 171C415.863 171 389 197.863 389 231C389 264.137 415.863 291 449 291Z"
+      fill="currentColor"
+    />
+  </svg>
+);

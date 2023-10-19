@@ -1,0 +1,14 @@
+@import "src/style/vars_mixins";
+
+.deck-search-column-settings {
+  .form-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.5rem;
+    width: 100%;
+
+    .form-control {
+      @include font-size(0.875rem)
+    }
+  }
+}

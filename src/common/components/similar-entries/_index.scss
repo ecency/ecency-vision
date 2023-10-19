@@ -1,18 +1,17 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .similar-entries-list {
   margin: 20px 0;
   padding-top: 15px;
 
   @include themify(day) {
-    border-top: 1px solid $white-three;
+    border-top: 1px solid;
+    @apply border-light-300;
   }
 
   @include themify(night) {
-    border-top: 1px solid $dark-two;
+    border-top: 1px solid;
+    @apply border-dark-200;
   }
 
   .similar-entries-list-header {
@@ -20,11 +19,11 @@
 
     .list-header-text {
       @include themify(day) {
-        color: $charcoal-grey;
+        @apply text-gray-charcoal;
       }
 
       @include themify(night) {
-        color: $pinkish-grey;
+        @apply text-gray-pinkish;
       }
 
       font-weight: 500;
@@ -60,11 +59,11 @@
         width: 100%;
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
-          color: $pinkish-grey;
+          @apply text-gray-pinkish;
         }
       }
 
@@ -80,11 +79,11 @@
         border-radius: 8px;
 
         @include themify(day) {
-          background: $white-six;
+          @apply bg-light-600;
         }
 
         @include themify(night) {
-          background: lighten($dark-six, 4);
+          @apply bg-dark-600;
         }
 
         img {
@@ -97,12 +96,12 @@
         font-size: 13px;
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
           opacity: 0.7;
         }
 
         @include themify(night) {
-          color: lighten($steel-grey, 16);
+          @apply text-gray-steel-light-015;
         }
 
         .item-footer-date {

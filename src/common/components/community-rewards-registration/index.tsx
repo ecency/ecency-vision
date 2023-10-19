@@ -1,18 +1,12 @@
 import React, { Component } from "react";
-
-import { Modal, Button } from "react-bootstrap";
-
 import { PrivateKey } from "@hiveio/dhive";
-
 import { Global } from "../../store/global/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import { error } from "../feedback";
 import KeyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
-
 import {
   communityRewardsRegister,
   communityRewardsRegisterHot,
@@ -20,9 +14,11 @@ import {
   formatError
 } from "../../api/operations";
 import { getRewardedCommunities } from "../../api/private-api";
-
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { Button } from "@ui/button";
+
 interface Props {
   global: Global;
   community: Community;
@@ -163,9 +159,7 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
     if (community.subscribers < 100) {
       return (
         <div className="dialog-content">
-          <p className="text-danger">
-            {_t("community-rewards-registration.min-required-body-text")}
-          </p>
+          <p className="text-red">{_t("community-rewards-registration.min-required-body-text")}</p>
           {btnClose}
         </div>
       );
@@ -189,13 +183,12 @@ export default class CommunityRewardsRegistrationDialog extends Component<Props>
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
-        className="community-rewards-registration-dialog modal-thin-header"
+        className="community-rewards-registration-dialog"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader closeButton={true} />
+        <ModalBody>
           <CommunityRewardsRegistration {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

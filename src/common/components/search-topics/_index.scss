@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .search-topics {
   .topic-list {
@@ -21,24 +18,26 @@
       }
 
       @include themify(day) {
-        background: $white;
-        color: darken($silver, 35);
-        border: solid 1px $white-four;
+        @apply bg-white;
+        @apply text-silver-035;
+        border: solid 1px;
+        @apply border-light-400;
       }
 
       @include themify(night) {
-        background: $dark-grey-blue;
-        color: darken($silver, 10);
-        border: solid 1px $dark-two;
+        @apply bg-blue-dark-grey;
+        @apply text-silver-010;
+        border: solid 1px;
+        @apply border-dark-200;
       }
 
       &:hover {
         @include themify(day) {
-          background: darken($white, 4);
+          @apply bg-white-500;
         }
 
         @include themify(night) {
-          background: darken($dark-grey-blue, 4);
+          @apply bg-blue-dark-grey;
         }
       }
     }

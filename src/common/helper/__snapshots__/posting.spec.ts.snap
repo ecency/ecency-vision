@@ -99,12 +99,12 @@ Object {
       Object {
         "beneficiaries": Array [
           Object {
-            "account": "foo",
-            "weight": 300,
-          },
-          Object {
             "account": "bar",
             "weight": 200,
+          },
+          Object {
+            "account": "foo",
+            "weight": 300,
           },
         ],
       },

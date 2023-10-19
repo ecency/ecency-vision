@@ -1,12 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from "react-redux";
 import qrcode from "qrcode";
 import axios from "axios";
 import queryString from "query-string";
 import useLocalStorage from "react-use/lib/useLocalStorage";
-import { Button, Form, FormControl, Spinner } from "react-bootstrap";
-
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { PREFIX } from "../util/local-storage";
 import { signUp } from "../api/private-api";
@@ -22,8 +20,12 @@ import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import { getAccount } from "../api/hive";
 import "./sign-up.scss";
-
-type FormChangeEvent = React.ChangeEvent<typeof FormControl & HTMLInputElement>;
+import { Link } from "react-router-dom";
+import { b64uEnc } from "../util/b64";
+import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 enum Stage {
   FORM = "form",
@@ -38,9 +40,12 @@ export const SignUp = (props: PageProps) => {
 
   const [username, setUsername] = useState("");
   const [usernameError, setUsernameError] = useState("");
+  const [referralError, setReferralError] = useState("");
   const [usernameTouched, setUsernameTouched] = useState(false);
+  const [referralTouched, setReferralTouched] = useState(false);
 
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [referral, setReferral] = useState("");
   const [lockReferral, setLockReferral] = useState(false);
   const [inProgress, setInProgress] = useState(false);
@@ -50,6 +55,7 @@ export const SignUp = (props: PageProps) => {
   const [url, setUrl] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [registrationError, setRegistrationError] = useState("");
+  const [urlHash, setUrlHash] = useState("");
 
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
@@ -121,6 +127,34 @@ export const SignUp = (props: PageProps) => {
     }
   }, [username, usernameTouched]);
 
+  useEffect(() => {
+    if (email.length > 72) {
+      setEmailError(_t("sign-up.email-max-length-error"));
+    } else {
+      setEmailError("");
+    }
+  }, [email]);
+
+  useEffect(() => {
+    setReferralError("");
+    setIsDisabled(false);
+
+    if (!referral) {
+      return;
+    }
+    if (referral.length > 16) {
+      setReferralError(_t("sign-up.referral-max-length-error"));
+      setIsDisabled(true);
+    } else {
+      referral.split(".").some((item) => {
+        if (item.length < 3) {
+          setReferralError(_t("sign-up.referral-min-length-error"));
+          setIsDisabled(true);
+        }
+      });
+    }
+  }, [referral, referralTouched]);
+
   const regularRegister = async () => {
     setInProgress(true);
     try {
@@ -187,6 +221,21 @@ export const SignUp = (props: PageProps) => {
     client.requestAccessToken();
   };
 
+  const encodeUrlInfo = (username: string, email: string, referral: string) => {
+    const accInfo = {
+      username,
+      email,
+      referral
+    };
+    try {
+      const stringifiedInfo = JSON.stringify(accInfo);
+      const hashedInfo = b64uEnc(stringifiedInfo);
+      setUrlHash(hashedInfo);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <Meta title={_t("sign-up.header")} />
@@ -249,7 +298,7 @@ export const SignUp = (props: PageProps) => {
                       return;
                     }
 
-                    if (usernameError) {
+                    if (usernameError || referralError || emailError) {
                       return;
                     }
 
@@ -259,46 +308,61 @@ export const SignUp = (props: PageProps) => {
                       return;
                     }
 
+                    const referralIsValid = await getAccount(referral);
+                    if (!referralIsValid && referral !== "") {
+                      setReferralError(_t("sign-up.referral-invalid"));
+                      return;
+                    }
+
                     if (stage === Stage.FORM) {
                       setStage(Stage.REGISTER_TYPE);
                     }
+
+                    if ((username && email) || referral) {
+                      encodeUrlInfo(username, email, referral);
+                    }
                   }}
                 >
-                  <Form.Group>
-                    <Form.Control
+                  <div className="mb-4">
+                    <FormControl
                       type="text"
                       placeholder={_t("sign-up.username")}
                       value={username}
-                      onChange={(e: FormChangeEvent) => setUsername(e.target.value.toLowerCase())}
+                      onChange={(e) => setUsername(e.target.value.toLowerCase())}
                       autoFocus={true}
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-username")}
-                      isInvalid={usernameError !== ""}
+                      aria-invalid={usernameError !== ""}
                       onInput={handleOnInput}
                       onBlur={() => setUsernameTouched(true)}
                     />
-                    <Form.Text className="text-danger pl-3">{usernameError}</Form.Text>
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Control
+                    <small className="text-red pl-3">{usernameError}</small>
+                  </div>
+                  <div className="mb-4">
+                    <FormControl
                       type="email"
                       placeholder={_t("sign-up.email")}
                       value={email}
-                      onChange={(e: FormChangeEvent) => setEmail(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value)}
                       required={true}
                       onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-email")}
+                      aria-invalid={emailError !== ""}
                       onInput={handleOnInput}
                     />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Control
+                    <small className="text-red pl-3">{emailError}</small>
+                  </div>
+                  <div className="mb-4">
+                    <FormControl
                       type="text"
                       placeholder={_t("sign-up.ref")}
                       value={referral}
-                      onChange={(e: FormChangeEvent) => setReferral(e.target.value.toLowerCase())}
+                      onChange={(e) => setReferral(e.target.value.toLowerCase())}
                       disabled={lockReferral}
+                      aria-invalid={referralError !== ""}
+                      onBlur={() => setReferralTouched(true)}
                     />
-                  </Form.Group>
+                    <small className="text-red pl-3">{referralError}</small>
+                  </div>
                   {!props.global.isElectron && (
                     <div style={{ marginTop: "16px", marginBottom: "16px" }}>
                       <ReCAPTCHA
@@ -310,21 +374,14 @@ export const SignUp = (props: PageProps) => {
                   )}
                   {stage === Stage.FORM ? (
                     <>
-                      <div className="d-flex justify-content-center">
+                      <div className="flex justify-center">
                         <Button
-                          variant="primary"
-                          block={true}
+                          className="block"
                           type="submit"
                           disabled={inProgress || !isVerified || isDisabled}
+                          icon={inProgress && <Spinner className="w-3.5 h-3.5" />}
+                          iconPlacement="left"
                         >
-                          {inProgress && (
-                            <Spinner
-                              animation="grow"
-                              variant="light"
-                              size="sm"
-                              style={{ marginRight: "6px" }}
-                            />
-                          )}
                           {_t("sign-up.submit")}
                         </Button>
                       </div>
@@ -360,15 +417,15 @@ export const SignUp = (props: PageProps) => {
 
             {stage === Stage.REGISTER_TYPE ? (
               <div className="form-content">
-                <div className="card mb-3">
-                  <div className="card-header">
+                <div className="card border bg-white rounded mb-3 mt-5">
+                  <div className="bg-gray-100 border-b p-3">
                     <b>{_t("sign-up.free-account")}</b>
                   </div>
-                  <div className="card-body">
+                  <div className="p-3">
                     <div>{_t("sign-up.free-account-desc")}</div>
                   </div>
-                  <div className="card-footer">
-                    <Button variant="primary" className="w-100" onClick={regularRegister}>
+                  <div className="bg-gray-100 border-t py-2 px-3">
+                    <Button className="w-full" onClick={regularRegister}>
                       {_t("sign-up.register-free")}
                     </Button>
                   </div>
@@ -378,11 +435,11 @@ export const SignUp = (props: PageProps) => {
                     </div>
                   )}
                 </div>
-                <div className="card">
-                  <div className="card-header">
+                <div className="card border bg-white rounded mb-3">
+                  <div className="bg-gray-100 border-b p-3">
                     <b>{_t("sign-up.buy-account")}</b>
                   </div>
-                  <div className="card-body">
+                  <div className="p-3">
                     <p>{_t("sign-up.buy-account-desc")}</p>
                     <ul>
                       <li>{_t("sign-up.buy-account-li-1")}</li>
@@ -390,14 +447,38 @@ export const SignUp = (props: PageProps) => {
                       <li>{_t("sign-up.buy-account-li-3")}</li>
                     </ul>
                   </div>
-                  <div className="card-footer">
-                    <Button
-                      className="w-100"
-                      variant="primary"
-                      onClick={() => setStage(Stage.BUY_ACCOUNT)}
-                    >
+                  <div className="bg-gray-100 border-t py-2 px-3">
+                    <Button className="w-full" onClick={() => setStage(Stage.BUY_ACCOUNT)}>
                       {_t("sign-up.buy-account")} – $2.99
                     </Button>
+                  </div>
+                </div>
+
+                <div className="card border bg-white rounded mb-3">
+                  <div className="bg-gray-100 border-b p-3">
+                    <b>
+                      {props.activeUser
+                        ? _t("onboard.title-active-user")
+                        : _t("onboard.title-visitor")}
+                    </b>
+                  </div>
+                  <div className="p-3">
+                    <p>
+                      {props.activeUser
+                        ? _t("onboard.description-active-user")
+                        : _t("onboard.description-visitor")}
+                    </p>
+                    <ul>
+                      {props.activeUser && <li>{_t("onboard.creating-description")}</li>}
+                      {!props.activeUser && <li>{_t("onboard.asking-description")}</li>}
+                    </ul>
+                  </div>
+                  <div className="bg-gray-100 border-t py-2 px-3">
+                    <Link to={`/onboard-friend/asking/${urlHash}`}>
+                      <Button className="w-full">
+                        {props.activeUser ? _t("onboard.creating") : _t("onboard.asking")}
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -406,15 +487,15 @@ export const SignUp = (props: PageProps) => {
             )}
 
             {stage === Stage.BUY_ACCOUNT ? (
-              <div className="d-flex align-items-center flex-column justify-content-center">
+              <div className="flex items-center flex-col justify-center">
                 <div className="my-3">{_t("sign-up.qr-desc")}</div>
                 <a href={url}>
                   <img ref={qrCodeRef} />
                 </a>
-                <div className="d-flex flex-column flex-sm-row">
+                <div className="flex flex-col flex-sm-row">
                   <a
                     href="https://ios.ecency.com"
-                    className="btn app-btn mb-2 mb-sm-0 mr-sm-2"
+                    className="btn app-btn mb-2 sm:mb-0 mr-sm-2"
                     target="_blank"
                   >
                     <i className="icon">{appleSvg}</i>

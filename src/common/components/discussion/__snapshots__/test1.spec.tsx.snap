@@ -35,9 +35,10 @@ exports[`(1) Full render with active user 1`] = `
         Sort Order
       </span>
       <select
-        className="form-control form-control-sm"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
         disabled={false}
         onChange={[Function]}
+        type="select"
         value="trending"
       >
         <option
@@ -70,7 +71,7 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -109,11 +110,11 @@ exports[`(1) Full render with active user 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="forykw-re-esteemapp-202067t12246786z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
               >
@@ -142,7 +143,7 @@ exports[`(1) Full render with active user 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -206,14 +207,15 @@ exports[`(1) Full render with active user 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.00
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.00
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -255,7 +257,7 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -294,11 +296,11 @@ exports[`(1) Full render with active user 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="brittandjosie-re-esteemapp-qbi6t3"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
               >
@@ -327,7 +329,7 @@ exports[`(1) Full render with active user 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -391,14 +393,15 @@ exports[`(1) Full render with active user 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.00
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.00
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -442,7 +445,7 @@ exports[`(1) Full render with active user 1`] = `
           className="discussion-item depth-2"
         >
           <div
-            className="position-relative"
+            className="relative"
           >
             <div
               className="item-anchor"
@@ -481,11 +484,11 @@ exports[`(1) Full render with active user 1`] = `
                 className="item-header"
               >
                 <div
-                  className="d-flex align-items-center"
+                  className="flex items-center"
                   id="ardpien-re-brittandjosie-qbjoep"
                 >
                   <div
-                    className="author btn notranslate d-flex d-sm-none align-items-center"
+                    className="author btn notranslate flex sm:hidden items-center"
                     id="ardpien-re-brittandjosie-qbjoep"
                     onClick={[Function]}
                   >
@@ -514,7 +517,7 @@ exports[`(1) Full render with active user 1`] = `
                     onMouseLeave={[Function]}
                   >
                     <div
-                      className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                      className="author btn notranslate hidden sm:flex items-center relative"
                       onMouseEnter={[Function]}
                     >
                       <span
@@ -578,14 +581,15 @@ exports[`(1) Full render with active user 1`] = `
                     </div>
                   </div>
                 </div>
-                <div
-                  className="entry-payout notranslate"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                  onMouseOut={[Function]}
-                  onMouseOver={[Function]}
-                >
-                  $ 0.00
+                <div>
+                  <div />
+                  <div
+                    className="entry-payout notranslate"
+                    onMouseLeave={[Function]}
+                    onMouseOver={[Function]}
+                  >
+                    $ 0.00
+                  </div>
                 </div>
                 <div
                   className="entry-votes notranslate"
@@ -629,7 +633,7 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -668,11 +672,11 @@ exports[`(1) Full render with active user 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="ardpien-qbi303"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="ardpien-qbi303"
                 onClick={[Function]}
               >
@@ -701,7 +705,7 @@ exports[`(1) Full render with active user 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -765,14 +769,15 @@ exports[`(1) Full render with active user 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.03
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.03
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -815,7 +820,7 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -854,11 +859,11 @@ exports[`(1) Full render with active user 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="iliyan90-re-esteemapp-202066t124616772z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="iliyan90-re-esteemapp-202066t124616772z"
                 onClick={[Function]}
               >
@@ -887,7 +892,7 @@ exports[`(1) Full render with active user 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -915,7 +920,7 @@ exports[`(1) Full render with active user 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><span><a class=\\"markdown-author-link\\" href=\\"/@esteemapp\\">@esteemapp</a></span><br />
-Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"markdown-post-link\\">click here</a></p>",
+Bug report <a href=\\"https://esteem.app/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"markdown-external-link\\" target=\\"_blank\\" rel=\\"noopener\\">click here</a></p>",
               }
             }
           />
@@ -952,14 +957,15 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.00
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.00
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -1001,7 +1007,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -1040,11 +1046,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="trincowski-re-esteemapp-202066t84137915z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="trincowski-re-esteemapp-202066t84137915z"
                 onClick={[Function]}
               >
@@ -1073,7 +1079,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -1137,14 +1143,15 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.03
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.03
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -1187,7 +1194,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -1226,11 +1233,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="foxkoit-re-esteemapp-202066t8590757z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="foxkoit-re-esteemapp-202066t8590757z"
                 onClick={[Function]}
               >
@@ -1259,7 +1266,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -1323,14 +1330,15 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.03
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.03
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -1373,7 +1381,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -1412,11 +1420,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="irisworld-re-esteemapp-202066t14588243z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="irisworld-re-esteemapp-202066t14588243z"
                 onClick={[Function]}
               >
@@ -1445,7 +1453,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -1509,14 +1517,15 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.08
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.08
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -1559,7 +1568,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -1598,11 +1607,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="behiver-re-esteemapp-202066t85739415z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="behiver-re-esteemapp-202066t85739415z"
                 onClick={[Function]}
               >
@@ -1631,7 +1640,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -1695,14 +1704,15 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.08
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.08
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -1770,12 +1780,18 @@ exports[`(2) Full render with no active user 1`] = `
       9 Comments
     </div>
     <button
-      className="btn btn-primary"
-      disabled={false}
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="button"
     >
-      Show
+      <div>
+        Show
+      </div>
     </button>
   </div>
 </div>
@@ -1816,9 +1832,10 @@ exports[`(3) With selected item 1`] = `
         Sort Order
       </span>
       <select
-        className="form-control form-control-sm"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
         disabled={false}
         onChange={[Function]}
+        type="select"
         value="trending"
       >
         <option
@@ -1851,7 +1868,7 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1 selected-item"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -1890,11 +1907,11 @@ exports[`(3) With selected item 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="forykw-re-esteemapp-202067t12246786z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
               >
@@ -1923,7 +1940,7 @@ exports[`(3) With selected item 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -1987,14 +2004,15 @@ exports[`(3) With selected item 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.00
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.00
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -2036,7 +2054,7 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -2075,11 +2093,11 @@ exports[`(3) With selected item 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="brittandjosie-re-esteemapp-qbi6t3"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
               >
@@ -2108,7 +2126,7 @@ exports[`(3) With selected item 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -2172,14 +2190,15 @@ exports[`(3) With selected item 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.00
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.00
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -2223,7 +2242,7 @@ exports[`(3) With selected item 1`] = `
           className="discussion-item depth-2"
         >
           <div
-            className="position-relative"
+            className="relative"
           >
             <div
               className="item-anchor"
@@ -2262,11 +2281,11 @@ exports[`(3) With selected item 1`] = `
                 className="item-header"
               >
                 <div
-                  className="d-flex align-items-center"
+                  className="flex items-center"
                   id="ardpien-re-brittandjosie-qbjoep"
                 >
                   <div
-                    className="author btn notranslate d-flex d-sm-none align-items-center"
+                    className="author btn notranslate flex sm:hidden items-center"
                     id="ardpien-re-brittandjosie-qbjoep"
                     onClick={[Function]}
                   >
@@ -2295,7 +2314,7 @@ exports[`(3) With selected item 1`] = `
                     onMouseLeave={[Function]}
                   >
                     <div
-                      className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                      className="author btn notranslate hidden sm:flex items-center relative"
                       onMouseEnter={[Function]}
                     >
                       <span
@@ -2359,14 +2378,15 @@ exports[`(3) With selected item 1`] = `
                     </div>
                   </div>
                 </div>
-                <div
-                  className="entry-payout notranslate"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                  onMouseOut={[Function]}
-                  onMouseOver={[Function]}
-                >
-                  $ 0.00
+                <div>
+                  <div />
+                  <div
+                    className="entry-payout notranslate"
+                    onMouseLeave={[Function]}
+                    onMouseOver={[Function]}
+                  >
+                    $ 0.00
+                  </div>
                 </div>
                 <div
                   className="entry-votes notranslate"
@@ -2410,7 +2430,7 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -2449,11 +2469,11 @@ exports[`(3) With selected item 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="ardpien-qbi303"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="ardpien-qbi303"
                 onClick={[Function]}
               >
@@ -2482,7 +2502,7 @@ exports[`(3) With selected item 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -2546,14 +2566,15 @@ exports[`(3) With selected item 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.03
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.03
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -2596,7 +2617,7 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -2635,11 +2656,11 @@ exports[`(3) With selected item 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="iliyan90-re-esteemapp-202066t124616772z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="iliyan90-re-esteemapp-202066t124616772z"
                 onClick={[Function]}
               >
@@ -2668,7 +2689,7 @@ exports[`(3) With selected item 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -2696,7 +2717,7 @@ exports[`(3) With selected item 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><span><a class=\\"markdown-author-link\\" href=\\"/@esteemapp\\">@esteemapp</a></span><br />
-Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"markdown-post-link\\">click here</a></p>",
+Bug report <a href=\\"https://esteem.app/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"markdown-external-link\\" target=\\"_blank\\" rel=\\"noopener\\">click here</a></p>",
               }
             }
           />
@@ -2733,14 +2754,15 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.00
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.00
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -2782,7 +2804,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -2821,11 +2843,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="trincowski-re-esteemapp-202066t84137915z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="trincowski-re-esteemapp-202066t84137915z"
                 onClick={[Function]}
               >
@@ -2854,7 +2876,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -2918,14 +2940,15 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.03
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.03
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -2968,7 +2991,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -3007,11 +3030,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="foxkoit-re-esteemapp-202066t8590757z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="foxkoit-re-esteemapp-202066t8590757z"
                 onClick={[Function]}
               >
@@ -3040,7 +3063,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -3104,14 +3127,15 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.03
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.03
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -3154,7 +3178,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -3193,11 +3217,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="irisworld-re-esteemapp-202066t14588243z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="irisworld-re-esteemapp-202066t14588243z"
                 onClick={[Function]}
               >
@@ -3226,7 +3250,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -3290,14 +3314,15 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.08
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.08
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -3340,7 +3365,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -3379,11 +3404,11 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="behiver-re-esteemapp-202066t85739415z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="behiver-re-esteemapp-202066t85739415z"
                 onClick={[Function]}
               >
@@ -3412,7 +3437,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -3476,14 +3501,15 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.08
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.08
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
@@ -3561,9 +3587,10 @@ exports[`(4) Show mute button, muted comment 1`] = `
         Sort Order
       </span>
       <select
-        className="form-control form-control-sm"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
         disabled={false}
         onChange={[Function]}
+        type="select"
         value="trending"
       >
         <option
@@ -3596,7 +3623,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -3635,11 +3662,11 @@ exports[`(4) Show mute button, muted comment 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="forykw-re-esteemapp-202067t12246786z"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
               >
@@ -3668,7 +3695,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -3745,21 +3772,23 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.00
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.00
+              </div>
             </div>
             <div
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn no-data"
-                title="No Votes"
+                className="inner-btn"
+                onClick={[Function]}
+                title="180 Votes"
               >
                 <div
                   className="heart-icon"
@@ -3777,7 +3806,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
                     />
                   </svg>
                 </div>
-                0
+                180
               </span>
             </div>
             <a
@@ -3801,7 +3830,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="position-relative"
+        className="relative"
       >
         <div
           className="item-anchor"
@@ -3840,11 +3869,11 @@ exports[`(4) Show mute button, muted comment 1`] = `
             className="item-header"
           >
             <div
-              className="d-flex align-items-center"
+              className="flex items-center"
               id="brittandjosie-re-esteemapp-qbi6t3"
             >
               <div
-                className="author btn notranslate d-flex d-sm-none align-items-center"
+                className="author btn notranslate flex sm:hidden items-center"
                 id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
               >
@@ -3873,7 +3902,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  className="author btn notranslate hidden sm:flex items-center relative"
                   onMouseEnter={[Function]}
                 >
                   <span
@@ -3937,14 +3966,15 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="entry-payout notranslate"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              $ 0.00
+            <div>
+              <div />
+              <div
+                className="entry-payout notranslate"
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+              >
+                $ 0.00
+              </div>
             </div>
             <div
               className="entry-votes notranslate"

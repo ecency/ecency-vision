@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
 import moment from "moment";
 import { History } from "history";
 import { hiveNotifySetLastRead } from "../../api/operations";
@@ -15,8 +14,8 @@ import DropDown from "../dropdown";
 import Tooltip from "../tooltip";
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
-import { checkSvg, settingsSvg, syncSvg, playListAddCheck } from "../../img/svg";
-import { NotifyTypes, NotificationViewType } from "../../enums";
+import { checkSvg, playListAddCheck, settingsSvg, syncSvg } from "../../img/svg";
+import { NotificationViewType, NotifyTypes } from "../../enums";
 import NotificationListItem from "./notification-list-item";
 import {
   fetchNotifications,
@@ -26,6 +25,9 @@ import {
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
 import { useLocation } from "react-router";
+import { Modal, ModalBody } from "@ui/modal";
+import { Button } from "@ui/button";
+import { FormControl } from "@ui/input";
 
 export const date2key = (s: string): string => {
   if (s === "Yesterday") {
@@ -66,6 +68,7 @@ interface NotificationProps {
   updateNotificationsSettings: typeof updateNotificationsSettings;
   setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
   className: string;
+  openLinksInNewTab?: boolean;
 }
 
 export class DialogContent extends Component<NotificationProps, any> {
@@ -307,12 +310,14 @@ export class DialogContent extends Component<NotificationProps, any> {
     ];
 
     const getNotificationSettingsItem = (title: string, type: NotifyTypes) => ({
-      label: _t(title),
+      label: "",
       content: (
-        <Form.Check
-          type="switch"
+        <FormControl
+          label={_t(title)}
+          type="checkbox"
+          isToggle={true}
           checked={this.state.settings[type]}
-          onChange={() => this.saveSettingsWithDebounce(type)}
+          onChange={() => {}}
         />
       ),
       onClick: () => this.saveSettingsWithDebounce(type)
@@ -433,16 +438,13 @@ export class DialogContent extends Component<NotificationProps, any> {
         </div>
 
         <div className="status-button-container">
-          <div className="status-btn">
+          <div className="flex gap-2 px-3">
             {Object.values(NotificationViewType).map((status: string, k: number) => {
               return (
                 <Button
-                  className={`status-button ${
-                    this.state.currentStatus === status ? "active" : ""
-                  } shadow-none`}
-                  variant="outline-primary"
+                  size="sm"
+                  outline={this.state.currentStatus !== status}
                   key={k}
-                  type="button"
                   tabIndex={-1}
                   onClick={() => this.statusClicked(status)}
                 >
@@ -497,6 +499,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                       isSelect={select}
                       currentStatus={currentStatus}
                       setSelectedNotifications={this.setSelectedNotifications}
+                      openLinksInNewTab={this.props.openLinksInNewTab}
                     />
                   </>
                 )}
@@ -509,6 +512,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                       isSelect={select}
                       currentStatus={currentStatus}
                       setSelectedNotifications={this.setSelectedNotifications}
+                      openLinksInNewTab={this.props.openLinksInNewTab}
                     />
                   </>
                 )}
@@ -521,6 +525,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                       isSelect={select}
                       currentStatus={currentStatus}
                       setSelectedNotifications={this.setSelectedNotifications}
+                      openLinksInNewTab={this.props.openLinksInNewTab}
                     />
                   </>
                 )}
@@ -544,19 +549,21 @@ class NotificationsDialog extends Component<NotificationProps> {
     return (
       <Modal
         show={true}
-        centered={true}
         onHide={this.hide}
         className={"notifications-modal drawer " + this.props.className}
       >
-        <Modal.Body>
+        <ModalBody>
           <DialogContent {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }
 }
 
-export default ({ history }: Pick<NotificationProps, "history">) => {
+export default ({
+  history,
+  openLinksInNewTab
+}: Pick<NotificationProps, "history" | "openLinksInNewTab">) => {
   const {
     global,
     activeUser,
@@ -593,6 +600,7 @@ export default ({ history }: Pick<NotificationProps, "history">) => {
       unMuteNotifications={unMuteNotifications}
       updateNotificationsSettings={updateNotificationsSettings}
       setNotificationsSettingsItem={setNotificationsSettingsItem}
+      openLinksInNewTab={openLinksInNewTab}
     />
   );
 };

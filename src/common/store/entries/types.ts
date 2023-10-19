@@ -27,6 +27,7 @@ export interface JsonMetadata {
   format?: string;
   original_author?: string;
   original_permlink?: string;
+  image?: string[];
 }
 
 export interface Entry {
@@ -58,16 +59,24 @@ export interface Entry {
   pending_payout_value: string;
   percent_hbd: number;
   permlink: string;
-  post_id: number;
+  post_id: any;
   id?: number;
+  num?: number;
   promoted: string;
   reblogged_by?: string[] | any;
   replies: any[];
-  stats?: EntryStat;
+  stats: EntryStat;
   title: string;
   updated: string;
   url: string;
   original_entry?: Entry;
+}
+
+export interface EntryHeader {
+  author: string;
+  category: string;
+  permlink: string;
+  depth: number;
 }
 
 export interface EntryGroup {

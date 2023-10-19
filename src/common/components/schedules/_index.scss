@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .schedules-modal {
   .modal-body {
@@ -15,107 +12,6 @@
       .schedules-list {
         height: 520px;
         overflow: auto;
-
-        .schedules-list-body {
-          .schedules-list-item {
-            @include entry-list-item;
-            margin: 0;
-            padding: 0 0 16px 0 !important;
-
-            &:not(:last-child) {
-              margin: 0 0 20px 0;
-            }
-
-            .item-body {
-              .item-image {
-                cursor: default;
-              }
-
-              .item-summary {
-                .item-title, .item-body {
-                  cursor: default;
-                }
-              }
-            }
-
-            .item-controls {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-
-              .btn-controls {
-                .btn-move {
-                  margin-right: 20px;
-                }
-
-                .btn-delete {
-                  margin-right: 10px;
-                }
-
-                .btn-move, .btn-delete {
-                  cursor: pointer;
-
-                  svg {
-                    height: 18px !important;
-                  }
-
-                  @include themify(day) {
-                    color: $silver;
-                  }
-
-                  @include themify(night) {
-                    color: $gunmetal;
-                  }
-
-                  &:hover {
-                    opacity: 0.7;
-                  }
-                }
-              }
-
-              .post-status {
-                display: flex;
-                align-items: center;
-
-                svg {
-                  margin-right: 4px;
-                }
-
-                @include themify(day) {
-                  color: lighten($steel-grey, 6);
-                }
-
-                @include themify(night) {
-                  color: $metallic-blue;
-                }
-
-                &.status-postponed {
-                  color: $orange !important;
-                }
-
-                &.status-published {
-                  color: $green1 !important;
-                }
-
-                &.status-error {
-                  color: $red2 !important;
-                }
-              }
-            }
-
-            .message-error, .message-warning {
-              font-size: 90%;
-            }
-
-            .message-error {
-              color: $red2;
-            }
-
-            .message-warning {
-              color: $orange;
-            }
-          }
-        }
       }
     }
   }

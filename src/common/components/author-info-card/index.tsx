@@ -12,6 +12,7 @@ import ProfileLink from "../profile-link";
 import { Skeleton } from "../skeleton";
 import UserAvatar from "../user-avatar";
 import "./_index.scss";
+
 interface MatchParams {
   category: string;
   permlink: string;
@@ -58,11 +59,11 @@ const AuthorInfoCard = (props: Props) => {
 
   return loading ? (
     <div className="avatar-fixed">
-      <div className="d-flex align-items-center mb-3">
-        <Skeleton className="avatar-skeleton rounded-circle" />
-        <Skeleton className=" ml-2 text-skeleton" />
+      <div className="flex items-center mb-4">
+        <Skeleton className="avatar-skeleton rounded-[50%]" />
+        <Skeleton className=" ml-3 text-skeleton" />
       </div>
-      <Skeleton className="text-skeleton mb-2" />
+      <Skeleton className="text-skeleton mb-3" />
       <Skeleton className="text-skeleton" />
     </div>
   ) : (
@@ -101,7 +102,7 @@ const AuthorInfoCard = (props: Props) => {
       <div className="second-line">
         <div className="entry-tag">
           <div className="name">{authorInfo?.name}</div>
-          {authorInfo?.about && null !== authorInfo?.about && (
+          {!!authorInfo?.about && (
             <p className="description">{`${truncate(authorInfo?.about, 130)}`}</p>
           )}
         </div>

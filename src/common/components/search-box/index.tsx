@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-
-import { Button, FormControl, InputGroup } from "react-bootstrap";
 import { _t } from "../../i18n";
-
-import { copyContent, magnifySvg } from "../../img/svg";
+import { copyContent } from "../../img/svg";
 import { success } from "../feedback";
 import "./_index.scss";
+import { FormControl, InputGroup } from "@ui/input";
+import { searchIconSvg } from "../decks/icons";
+import { Button } from "@ui/button";
 
 type Props = any;
 
@@ -25,31 +25,30 @@ export default class SearchBox extends Component<Props> {
     return (
       <div className="search-box">
         {showcopybutton ? (
-          <div className="d-flex focus-input">
-            <FormControl
-              type="text"
-              {...{ ...other, value, username, filter }}
-              className={"input-with-copy rounded-right"}
-            />
-            <InputGroup.Append>
-              <Button
-                variant="primary"
-                size="sm"
-                className="copy-to-clipboard rounded-left"
-                disabled={value.length === 0}
-                onClick={() => {
-                  this.copyToClipboard(`https://ecency.com/${username}/${filter}?q=${value}`);
-                }}
-              >
-                {copyContent}
-              </Button>
-            </InputGroup.Append>
+          <div className="flex focus-input">
+            <InputGroup
+              append={
+                <Button
+                  disabled={value.length === 0}
+                  onClick={() =>
+                    this.copyToClipboard(`https://ecency.com/${username}/${filter}?q=${value}`)
+                  }
+                >
+                  <div className="w-4 flex">{copyContent}</div>
+                </Button>
+              }
+            >
+              <FormControl
+                type="text"
+                {...{ ...other, value, username, filter }}
+                className={"input-with-copy rounded-r"}
+              />
+            </InputGroup>
           </div>
         ) : (
-          <>
-            <span className="prepend">{magnifySvg}</span>
+          <InputGroup prepend={searchIconSvg}>
             <FormControl type="text" {...{ ...other, value, username, filter }} />
-          </>
+          </InputGroup>
         )}
       </div>
     );

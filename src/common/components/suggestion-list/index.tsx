@@ -3,6 +3,7 @@ import { History, Location } from "history";
 import { _t } from "../../i18n";
 import ClickAwayListener from "../clickaway-listener";
 import "./_index.scss";
+import { classNameObject } from "../../helper/class-name-object";
 
 interface Props {
   history?: History;
@@ -200,15 +201,22 @@ export default class SuggestionList extends Component<Props> {
     return (
       <>
         <div
-          className={containerClassName ? `suggestion ${containerClassName}` : "suggestion"}
+          className={classNameObject({
+            "suggestion relative": true,
+            [containerClassName ?? ""]: !!containerClassName
+          })}
           ref={this.parent}
         >
           {children}
           <ClickAwayListener onClickAway={() => this.setState({ showList: false })}>
             {showList && modeItems && modeItems?.length > 0 ? modeItemsUI : <></>}
             {showList && !modeItems && items.length > 0 ? (
-              <div className="suggestion-list">
-                {header && <div className="list-header">{header}</div>}
+              <div className="modal-suggestion-list rounded-3xl -top-[44px] absolute">
+                {header && (
+                  <div className="list-header bg-gray-100 dark:bg-gray-700 text-sm font-semibold text-gray-600 px-2 pb-2 pt-12">
+                    {header}
+                  </div>
+                )}
                 <div className="list-body">
                   {items.map((x, i) => {
                     const content = renderer ? renderer(x) : x;

@@ -3,12 +3,12 @@ import React, { useContext, useState } from "react";
 import { DeckGridContext } from "../../deck-manager";
 import { UserAvatar } from "../../../user-avatar";
 import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
-import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
-import { ICONS } from "../../consts";
+import { COMMUNITY_CONTENT_TYPES, ICONS } from "../../consts";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../../util/local-storage";
 import { _t } from "../../../../i18n";
+import { Button } from "@ui/button";
 
 export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -19,25 +19,6 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
   const [tag, setTag] = useState("");
   const [contentType, setContentType] = useState<string | null>(null);
   const [recent, setRecent] = useLocalStorage<UsernameDataItem[]>(PREFIX + "_dcr", []);
-
-  const contentTypes = [
-    { title: _t("decks.columns.trending"), type: "trending" },
-    { title: _t("decks.columns.hot"), type: "hot" },
-    {
-      title: _t("decks.columns.new"),
-      type: "created"
-    },
-    {
-      title: _t("decks.columns.payouts"),
-      type: "payout"
-    },
-    {
-      title: _t("decks.columns.muted"),
-      type: "muted"
-    }
-  ];
-
-  const updateRecent = (name?: string, tag?: string) => {};
 
   return (
     <div className="deck-add-column-user-settings p-3">
@@ -57,6 +38,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
             setUsername(v);
           }}
           recentList={recent ?? []}
+          setRecentList={setRecent}
           setItem={({ tag }) => {
             setTag(tag ?? "");
           }}
@@ -64,9 +46,9 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
       )}
       {username !== "" ? (
         <>
-          <div className="subtitle py-3 mt-3">Content type</div>
+          <div className="subtitle py-3 mt-3">{_t("decks.content-type")}</div>
           <div className="content-type-list">
-            {contentTypes.map(({ title, type }) => (
+            {COMMUNITY_CONTENT_TYPES.map(({ title, type }) => (
               <div
                 className={"content-type-item " + (contentType === type ? "selected" : "")}
                 key={title}
@@ -84,8 +66,7 @@ export const DeckAddColumnCommunitySettings = ({ deckKey }: SettingsProps) => {
       {username !== "" && contentType !== null ? (
         <Button
           disabled={!username || !contentType}
-          className="w-100 mt-5 py-3 sticky-bottom"
-          variant="primary"
+          className="w-full mt-5 sticky-bottom"
           onClick={() =>
             add({
               key: deckKey,

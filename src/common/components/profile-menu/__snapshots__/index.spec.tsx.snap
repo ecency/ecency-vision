@@ -8,54 +8,50 @@ exports[`(1) Render 1`] = `
     className="profile-menu-items"
   >
     <span
-      className="d-flex d-lg-none selected-item profile-menu-item"
+      className="flex lg:hidden selected-item profile-menu-item"
     />
     <div
-      className="d-none d-lg-flex align-items-center"
+      className="hidden lg:flex items-center"
     >
       <a
-        className="profile-menu-item"
+        className="profile-menu-item flex"
         href="/@username/blog"
         onClick={[Function]}
       >
         Blog
       </a>
       <a
-        className="profile-menu-item selected-item"
+        className="profile-menu-item flex selected-item"
         href="/@username/posts"
         onClick={[Function]}
       >
         Posts
       </a>
       <a
-        className="profile-menu-item"
+        className="profile-menu-item flex"
         href="/@username/comments"
         onClick={[Function]}
       >
         Comments
       </a>
-      <a
-        className="profile-menu-item"
-        href="/@username/replies"
-        onClick={[Function]}
-      >
-        Replies
-      </a>
     </div>
     <a
-      className="profile-menu-item"
+      className="profile-menu-item flex lg:hidden"
       href="/@username/communities"
       onClick={[Function]}
     >
       Communities
     </a>
     <a
-      className="profile-menu-item"
+      className="profile-menu-item flex"
       href="/@username/wallet"
       onClick={[Function]}
     >
       Wallet
     </a>
+    <div
+      className="kebab-icon entry-index-menu the-menu main-menu hidden lg:flex"
+    />
   </div>
   <div
     className="page-tools"
@@ -75,7 +71,7 @@ exports[`(2) With active user 1`] = `
     className="profile-menu-items"
   >
     <span
-      className="d-flex d-lg-none selected-item profile-menu-item"
+      className="flex lg:hidden selected-item profile-menu-item"
     >
       <div
         className="custom-dropdown float-left"
@@ -107,58 +103,91 @@ exports[`(2) With active user 1`] = `
       </div>
     </span>
     <div
-      className="d-none d-lg-flex align-items-center"
+      className="hidden lg:flex items-center"
     >
       <a
-        className="profile-menu-item"
+        className="profile-menu-item flex"
         href="/@username/blog"
         onClick={[Function]}
       >
         Blog
       </a>
       <a
-        className="profile-menu-item selected-item"
+        className="profile-menu-item flex selected-item"
         href="/@username/posts"
         onClick={[Function]}
       >
         Posts
       </a>
       <a
-        className="profile-menu-item"
+        className="profile-menu-item flex"
         href="/@username/comments"
         onClick={[Function]}
       >
         Comments
       </a>
-      <a
-        className="profile-menu-item"
-        href="/@username/replies"
-        onClick={[Function]}
-      >
-        Replies
-      </a>
     </div>
     <a
-      className="profile-menu-item"
-      href="/@username/communities"
-      onClick={[Function]}
-    >
-      Communities
-    </a>
-    <a
-      className="profile-menu-item"
+      className="profile-menu-item flex"
       href="/@username/wallet"
       onClick={[Function]}
     >
       Wallet
     </a>
     <a
-      className="profile-menu-item"
+      className="profile-menu-item flex"
       href="/@username/settings"
       onClick={[Function]}
     >
       Settings
     </a>
+    <div
+      className="kebab-icon entry-index-menu the-menu main-menu hidden lg:flex"
+    >
+      <div
+        className="custom-dropdown float-left"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn"
+        >
+          
+          <div
+            className="menu-down"
+          >
+            <svg
+              fill="none"
+              height="30"
+              stroke="#357ce6"
+              strokeLinecap="square"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="30"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="1"
+              />
+              <circle
+                cx="19"
+                cy="12"
+                r="1"
+              />
+              <circle
+                cx="5"
+                cy="12"
+                r="1"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div
     className="page-tools"

@@ -37,11 +37,11 @@
 
       &:hover {
         @include themify(day) {
-          background-color: lighten($faded-blue, 3);
+          @apply bg-blue-faded;
         }
 
         @include themify(night) {
-          background-color: $dark;
+          @apply bg-dark-default;
         }
       }
 
@@ -85,32 +85,32 @@
         @include border-radius(1rem);
 
         @include themify(day) {
-          background-color: $gray-100;
+          @apply bg-gray-100;
         }
 
         @include themify(night) {
-          background-color: $dark;
+          @apply bg-dark-default;
         }
 
         &.selected {
           border-color: $primary;
 
           @include themify(day) {
-            background-color: $duck-egg-blue;
+            @apply bg-blue-duck-egg;
           }
 
           @include themify(night) {
-            background-color: lighten($dark, 6);
+            @apply bg-dark-default-010-light;
           }
         }
 
         &:hover {
           @include themify(day) {
-            background-color: $gray-200;
+            @apply bg-gray-200;
           }
 
           @include themify(night) {
-            background-color: lighten($dark, 3);
+            @apply bg-dark-default;
           }
         }
 
@@ -135,9 +135,10 @@
       @include padding-top(1rem);
 
       .users-list-item {
-        display: flex;
+        display: grid;
         align-items: center;
-        gap: 1rem;
+        grid-template-columns: min-content 1fr min-content;
+        grid-gap: 1rem;
         cursor: pointer;
 
         @include padding-top(0.5rem);
@@ -148,11 +149,11 @@
 
         &:hover {
           @include themify(day) {
-            background-color: $duck-egg-blue;
+            @apply bg-blue-duck-egg;
           }
 
           @include themify(night) {
-            background-color: lighten($dark, 3);
+            @apply bg-dark-default;
           }
         }
 
@@ -178,16 +179,16 @@
       @include padding(1rem);
 
       @include themify(day) {
-        background-color: $gray-100;
+        @apply bg-gray-100;
       }
 
       @include themify(night) {
-        background-color: lighten($dark, 3);
+        @apply bg-dark-default;
       }
 
       &:hover {
         @include themify(day) {
-          background-color: $duck-egg-blue;
+          @apply bg-blue-duck-egg;
 
           .click-to-change {
             color: $primary;
@@ -195,7 +196,7 @@
         }
 
         @include themify(night) {
-          background-color: lighten($dark, 6);
+          @apply bg-dark-default-010-light;
         }
       }
 
@@ -210,18 +211,45 @@
         @include padding(1rem);
         @include border-radius(1rem);
 
-        @include themify(day) {
-          background-color: $duck-egg-blue;
-        }
+        @apply bg-blue-duck-egg;
+      }
 
-        @include themify(night) {
-          background-color: lighten($dark, 6);
-        }
+      @include themify(night) {
+        @apply bg-dark-default-010-light;
       }
     }
   }
 
   .sticky-bottom {
     z-index: 201;
+  }
+
+  .dropdown .dropdown-menu {
+    min-width: 250px;
+  }
+
+  .thread-host-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 500;
+  }
+
+  .deck-add-column-search-settings {
+    .form-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      opacity: 0.5;
+    }
+  }
+
+  .recent-label {
+    font-weight: bold;
+    color: $secondary;
+
+    @include padding-top(1rem);
+    @include padding-left(1rem);
+    @include padding-right(1rem);
+    @include font-size(0.875rem);
   }
 }

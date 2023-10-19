@@ -4,7 +4,7 @@ import { History } from "history";
 
 import { Entry } from "../../store/entries/types";
 
-import { getPost } from "../../api/bridge";
+import { getPostHeader } from "../../api/bridge";
 
 import { history as historyFromStore } from "../../store";
 
@@ -22,10 +22,11 @@ export interface PartialEntry {
 }
 
 interface Props {
-  history: History;
+  history?: History;
   children: JSX.Element;
   entry: Entry | PartialEntry;
   afterClick?: () => void;
+  target?: string;
 }
 
 export class EntryLink extends Component<Props> {
@@ -41,7 +42,7 @@ export class EntryLink extends Component<Props> {
     if (!("title" in _entry)) {
       // Get full content if the "entry" passed is "PartialEntry"
       try {
-        const resp = await getPost(_entry.author, _entry.permlink);
+        const resp = await getPostHeader(_entry.author, _entry.permlink);
         if (resp) {
           _entry = resp;
         }
@@ -52,7 +53,9 @@ export class EntryLink extends Component<Props> {
 
     const { category, author, permlink } = _entry;
 
-    history!.push(makePath(category, author, permlink));
+    if (history && this.props.target !== "_blank") {
+      history.push(makePath(category, author, permlink));
+    }
   };
 
   render() {
@@ -61,6 +64,15 @@ export class EntryLink extends Component<Props> {
     const href = makePath(entry.category, entry.author, entry.permlink);
 
     const props = Object.assign({}, children.props, { href, onClick: this.clicked });
+
+    if (this.props.target === "_blank") {
+      props.href = "#";
+      props.onClick = (e: React.MouseEvent<HTMLElement>) => {
+        this.clicked(e);
+
+        window.open(href, "_blank");
+      };
+    }
 
     return React.createElement("a", props);
   }
@@ -71,7 +83,8 @@ export default (p: Props) => {
     history: p.history,
     children: p.children,
     entry: p.entry,
-    afterClick: p.afterClick
+    afterClick: p.afterClick,
+    target: p.target
   };
 
   return <EntryLink {...props} />;

@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 // do not wrap this. transfer also works in other dialogs.
 
@@ -10,11 +7,11 @@
   .transaction-form-body.powering-down {
     text-align: center;
     @include themify(day) {
-      color: $steel-grey;
+      @apply text-gray-steel;
     }
 
     @include themify(night) {
-      color: $metallic-blue;
+      @apply text-blue-metallic;
     }
   }
 
@@ -25,7 +22,7 @@
   }
 
   .balance {
-    margin-top: 16px;
+    margin: 1rem 0;
     font-weight: 300;
     padding-left: 20px;
 
@@ -35,15 +32,15 @@
     }
 
     @include themify(day) {
-      color: $charcoal-grey;
+      @apply text-gray-charcoal;
     }
 
     @include themify(night) {
-      color: $pinkish-grey;
+      @apply text-gray-pinkish;
     }
 
     .balance-num {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       cursor: pointer;
       margin-left: 2px;
     }
@@ -61,14 +58,14 @@
   }
 
   .power-down-estimation {
-    color: $green1;
+    @apply text-green;
   }
 
   .confirmation {
     margin-bottom: 30px;
 
     .confirm-title {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-size: 20px;
       font-weight: 500;
       margin: 10px 0;
@@ -99,7 +96,7 @@
 
       .arrow {
         align-items: center;
-        color: $silver;
+        @apply text-silver;
         display: flex;
         justify-content: center;
         opacity: 0.4;
@@ -112,7 +109,7 @@
     }
 
     .amount {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-size: 22px;
       font-weight: 500;
       margin-bottom: 20px;
@@ -120,13 +117,13 @@
     }
 
     .amount-vests {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       text-align: center;
       margin-bottom: 20px;
     }
 
     .memo {
-      color: $warm-grey;
+      @apply text-gray-warm;
       font-size: 16px;
       text-align: center;
       word-break: break-all;
@@ -139,15 +136,15 @@
     text-align: center;
 
     @include themify(day) {
-      color: $charcoal-grey;
+      @apply text-gray-charcoal;
     }
 
     @include themify(night) {
-      color: $pinkish-grey;
+      @apply text-gray-pinkish;
     }
 
     .amount {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
 
     .from-user,
@@ -176,11 +173,11 @@
       }
 
       @include themify(day) {
-        color: $steel-grey;
+        @apply text-gray-steel;
       }
 
       @include themify(night) {
-        color: $silver;
+        @apply text-silver;
       }
 
       &:not(:last-child) {
@@ -192,14 +189,14 @@
       }
 
       &.selected {
-        background-color: $silver;
+        @apply bg-silver;
 
         @include themify(day) {
-          color: $white;
+          @apply text-white;
         }
 
         @include themify(night) {
-          color: $dark;
+          @apply text-dark-default;
         }
       }
     }
@@ -214,10 +211,10 @@
     margin-left: 20px;
   }
 
-  .text-muted {
-    color: $steel-grey !important;
+  .text-gray-600 {
+    @apply text-gray-steel;
     @include themify(night) {
-      color: $metallic-blue !important;
+      @apply text-blue-metallic;
     }
   }
 }

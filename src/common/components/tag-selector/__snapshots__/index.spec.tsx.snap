@@ -5,11 +5,11 @@ exports[`(1) No tags 1`] = `
   className="tag-selector"
 >
   <div
-    className="suggestion"
+    className="suggestion relative"
   >
     <input
       autoComplete="off"
-      className="form-control"
+      className="form-control px-3 py-1 w-full outline-none shadow-0"
       id="the-tag-input"
       maxLength={24}
       onBlur={[Function]}
@@ -34,11 +34,11 @@ exports[`(2) With tags 1`] = `
   className="tag-selector has-tags"
 >
   <div
-    className="suggestion"
+    className="suggestion relative"
   >
     <input
       autoComplete="off"
-      className="form-control"
+      className="form-control px-3 py-1 w-full outline-none shadow-0"
       id="the-tag-input"
       maxLength={24}
       onBlur={[Function]}
@@ -117,11 +117,11 @@ exports[`(3) No tags with focus 1`] = `
   className="tag-selector"
 >
   <div
-    className="suggestion"
+    className="suggestion relative"
   >
     <input
       autoComplete="off"
-      className="form-control"
+      className="form-control px-3 py-1 w-full outline-none shadow-0"
       id="the-tag-input"
       maxLength={24}
       onBlur={[Function]}

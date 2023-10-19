@@ -1,4 +1,5 @@
 @import "src/style/vars_mixins";
+@import "../helpers/helpers";
 
 .deck-post-viewer {
   position: absolute;
@@ -15,11 +16,11 @@
   @include transition(0.4s);
 
   @include themify(day) {
-    background-color: $white;
+    @apply bg-white;
   }
 
   @include themify(night){
-    background-color: $dark-two;
+    @apply bg-dark-200;
   }
 
   @include media-breakpoint-down(sm) {
@@ -72,6 +73,8 @@
 
     .markdown-video-link {
       width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
     }
   }
 
@@ -84,11 +87,11 @@
     backdrop-filter: blur(1rem);
 
     @include themify(day) {
-      background-color: rgba($white, 0.75);
+      @apply bg-white-075;
     }
 
     @include themify(night) {
-      background-color: rgba($dark-two, 0.75);
+      @apply bg-dark-200-075;
     }
 
     .btn-link {
@@ -99,6 +102,41 @@
 
       @include font-size(0.875rem);
     }
+  }
+
+  .bottom-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    background-color: rgba($primary, 0.05);
+
+    .btn, .entry-votes, .entry-vote-btn, .comments {
+      color: $secondary;
+
+      @include padding(0);
+      @include font-size(0.75rem);
+      @include margin(0);
+
+      &:hover, &:active {
+        color: $primary;
+      }
+    }
+
+    .entry-votes svg, .comments svg {
+      opacity: 1;
+
+      @include margin(0);
+      @include margin-right(0.25rem);
+    }
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    @include compact_vote_slider();
   }
 
   .discussion {
@@ -123,5 +161,53 @@
       @include margin-top(0.25rem);
       @include margin-bottom(0.5rem);
     }
+  }
+
+  .deck-toolbar-threads-form {
+    background-color: rgba($primary, 0.05);
+  }
+
+
+  .deck-thread-item-viewer-replies {
+    .skeleton-list {
+      @include padding-top(0);
+    }
+  }
+}
+
+.deck-thread-item-viewer {
+  .deck-post-viewer-header {
+    @include padding-bottom(1rem);
+  }
+
+  .no-replies-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    @include padding(2rem);
+
+    svg {
+      width: 4rem;
+      height: 4rem;
+      color: $secondary;
+      opacity: 0.5;
+    }
+
+    p {
+      opacity: 0.5;
+      color: $secondary;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.deck-topic-content-viewer {
+
+  .deck-post-viewer-header {
+    border-bottom: 1px solid $border-color;
   }
 }

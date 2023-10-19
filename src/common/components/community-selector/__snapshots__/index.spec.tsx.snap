@@ -159,7 +159,7 @@ exports[`(6) Browser 1`] = `
     className="search"
   >
     <input
-      className="form-control form-control-sm"
+      className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
       id="search-communities-input"
       onChange={[Function]}
       placeholder="Search Communities"
@@ -172,15 +172,15 @@ exports[`(6) Browser 1`] = `
     className="browser-list"
   >
     <div
-      className="list-body"
+      className="flex flex-wrap py-3 gap-3"
     >
       <a
-        className="list-item"
+        className="flex"
         href="#"
         onClick={[Function]}
       >
         <div
-          className="item-main"
+          className="flex bg-light-600 hover:bg-blue-dark-sky-040 dark:bg-blue-metallic-20 dark:hover:bg-blue-metallic-10 rounded-md px-2 py-1.5 text-sm items-center gap-2 hover:text-blue-dark-sky dark:hover:text-white cursor-pointer"
         >
           <span
             className="user-avatar small"
@@ -203,12 +203,12 @@ exports[`(6) Browser 1`] = `
         </div>
       </a>
       <a
-        className="list-item"
+        className="flex"
         href="#"
         onClick={[Function]}
       >
         <div
-          className="item-main"
+          className="flex bg-light-600 hover:bg-blue-dark-sky-040 dark:bg-blue-metallic-20 dark:hover:bg-blue-metallic-10 rounded-md px-2 py-1.5 text-sm items-center gap-2 hover:text-blue-dark-sky dark:hover:text-white cursor-pointer"
         >
           <span
             className="user-avatar small"
@@ -231,12 +231,12 @@ exports[`(6) Browser 1`] = `
         </div>
       </a>
       <a
-        className="list-item"
+        className="flex"
         href="#"
         onClick={[Function]}
       >
         <div
-          className="item-main"
+          className="flex bg-light-600 hover:bg-blue-dark-sky-040 dark:bg-blue-metallic-20 dark:hover:bg-blue-metallic-10 rounded-md px-2 py-1.5 text-sm items-center gap-2 hover:text-blue-dark-sky dark:hover:text-white cursor-pointer"
         >
           <span
             className="user-avatar small"
@@ -259,12 +259,12 @@ exports[`(6) Browser 1`] = `
         </div>
       </a>
       <a
-        className="list-item"
+        className="flex"
         href="#"
         onClick={[Function]}
       >
         <div
-          className="item-main"
+          className="flex bg-light-600 hover:bg-blue-dark-sky-040 dark:bg-blue-metallic-20 dark:hover:bg-blue-metallic-10 rounded-md px-2 py-1.5 text-sm items-center gap-2 hover:text-blue-dark-sky dark:hover:text-white cursor-pointer"
         >
           <span
             className="user-avatar small"

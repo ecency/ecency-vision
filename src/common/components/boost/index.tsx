@@ -1,35 +1,28 @@
 import React, { Component } from "react";
-
 import isEqual from "react-fast-compare";
-
-import { Button, Col, Form, FormControl, Modal, Row } from "react-bootstrap";
-
 import { PrivateKey } from "@hiveio/dhive";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { Entry } from "../../store/entries/types";
-
+import { Entry, EntryHeader } from "../../store/entries/types";
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import { error } from "../feedback";
-
-import { getPost } from "../../api/bridge";
-import { getBoostOptions, getBoostedPost } from "../../api/private-api";
+import { getPostHeader } from "../../api/bridge";
+import { getBoostedPost, getBoostOptions } from "../../api/private-api";
 import { searchPath } from "../../api/search-api";
 import { boost, boostHot, boostKc, formatError } from "../../api/operations";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 import formattedNumber from "../../util/formatted-number";
-
 import { checkAllSvg } from "../../img/svg";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -104,7 +97,7 @@ export class Boost extends BaseComponent<Props, State> {
       });
   };
 
-  pathChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  pathChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const path = e.target.value;
     this.stateSet({ path, postError: "" });
 
@@ -149,7 +142,7 @@ export class Boost extends BaseComponent<Props, State> {
     return author.length >= 3 && permlink.length >= 3;
   };
 
-  sliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  sliderChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const amount = Number(e.target.value);
     this.stateSet({ amount }, () => {
       this.checkBalance();
@@ -165,9 +158,9 @@ export class Boost extends BaseComponent<Props, State> {
     this.stateSet({ inProgress: true });
 
     // Check if post is valid
-    let post: Entry | null;
+    let post: EntryHeader | null;
     try {
-      post = await getPost(author, permlink);
+      post = await getPostHeader(author, permlink);
     } catch (e) {
       post = null;
     }
@@ -180,7 +173,7 @@ export class Boost extends BaseComponent<Props, State> {
     // Check if the post already boosted
     const boosted = await getBoostedPost(activeUser.username, author, permlink);
     if (boosted) {
-      this.stateSet({ postError: _t("redeem-common.post-error-exists"), inProgress: false });
+      this.stateSet({ postError: _t("redeem-common.post-boosted-exists"), inProgress: false });
       return;
     }
 
@@ -272,28 +265,32 @@ export class Boost extends BaseComponent<Props, State> {
               </div>
             </div>
             {inProgress && <LinearProgress />}
-            <div className="transaction-form-body">
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("redeem-common.balance")}
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control
+            <div className="transaction-form-body flex flex-col">
+              <div className="self-center mb-4">
+                <a href="/faq#how-boosting-work">{_t("boost.learn-more")}</a>
+              </div>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2 flex items-center">
+                  <label>{_t("redeem-common.balance")}</label>
+                </div>
+                <div className="col-span-12 sm:col-span-10">
+                  <FormControl
+                    type="text"
                     className={_c(`balance-input ${balanceError ? "is-invalid" : ""}`)}
                     plaintext={true}
                     readOnly={true}
                     value={`${activeUser.points.points} POINTS`}
                   />
-                  {balanceError && <Form.Text className="text-danger">{balanceError}</Form.Text>}
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("redeem-common.post")}
-                </Form.Label>
-                <Col sm="10">
+                  {balanceError && <small className="text-red">{balanceError}</small>}
+                </div>
+              </div>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2 sm:mt-3">
+                  <label>{_t("redeem-common.post")}</label>
+                </div>
+                <div className="col-span-12 sm:col-span-10">
                   <SuggestionList items={paths} renderer={(i) => i} onSelect={this.pathSelected}>
-                    <Form.Control
+                    <FormControl
                       className={postError ? "is-invalid" : ""}
                       type="text"
                       value={path}
@@ -302,17 +299,17 @@ export class Boost extends BaseComponent<Props, State> {
                       disabled={inProgress}
                     />
                   </SuggestionList>
-                  {postError && <Form.Text className="text-danger">{postError}</Form.Text>}
+                  {postError && <small className="text-red">{postError}</small>}
                   {!postError && (
-                    <Form.Text className="text-muted">{_t("redeem-common.post-hint")}</Form.Text>
+                    <small className="text-gray-600">{_t("redeem-common.post-hint")}</small>
                   )}
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("boost.amount")}
-                </Form.Label>
-                <Col sm="10">
+                </div>
+              </div>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2 sm:mt-3">
+                  <label>{_t("boost.amount")}</label>
+                </div>
+                <div className="col-span-12 sm:col-span-10">
                   <div className="slider-area">
                     <div className="slider-price">
                       {formattedNumber(this.pointsToSbd(amount), {
@@ -321,33 +318,27 @@ export class Boost extends BaseComponent<Props, State> {
                       })}
                       <small>{amount} POINTS</small>
                     </div>
-                    <Form.Control
+                    <FormControl
                       type="range"
-                      custom={true}
                       step={sliderStep}
                       min={sliderMin}
                       max={sliderMax}
                       value={amount}
                       onChange={this.sliderChanged}
                     />
-                    <Form.Text className="text-muted">{_t("boost.slider-hint")}</Form.Text>
+                    <small className="text-gray-600">{_t("boost.slider-hint")}</small>
                   </div>
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2" />
-                <Col sm="10">
-                  <Button
-                    type="button"
-                    onClick={this.next}
-                    disabled={!canSubmit || inProgress}
-                    variant="primary"
-                  >
+                </div>
+              </div>
+              <div className="flex mb-4">
+                <div className="w-full sm:w-2/12" />
+                <div className="w-full sm:w-10/12">
+                  <Button type="button" onClick={this.next} disabled={!canSubmit || inProgress}>
                     {_t("g.next")}
                   </Button>
-                  <Form.Text className="text-warning font-italic">{_t("boost.hint")}</Form.Text>
-                </Col>
-              </Form.Group>
+                  <div className="text-sm text-warning-default italic mt-1">{_t("boost.hint")}</div>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -385,11 +376,11 @@ export class Boost extends BaseComponent<Props, State> {
             </div>
             {inProgress && <LinearProgress />}
             <div className="transaction-form-body">
-              <p className="d-flex justify-content-center align-content-center">
-                <span className="svg-icon text-success">{checkAllSvg}</span>{" "}
+              <p className="flex justify-center items-center">
+                <span className="svg-icon text-green">{checkAllSvg}</span>{" "}
                 {_t("redeem-common.success-message")}
               </p>
-              <div className="d-flex justify-content-center">
+              <div className="flex justify-center">
                 <Button onClick={this.finish}>{_t("g.finish")}</Button>
               </div>
             </div>
@@ -409,14 +400,13 @@ export default class BoostDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
-        className="boost-dialog modal-thin-header"
+        className="boost-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader thin={true} closeButton={true} />
+        <ModalBody>
           <Boost {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

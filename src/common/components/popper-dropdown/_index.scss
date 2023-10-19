@@ -1,0 +1,66 @@
+@import "src/style/vars_mixins";
+
+.popper-dropdown {
+  display: inline-flex !important;
+}
+
+.popper-dropdown-menu {
+  z-index: $zindex-dropdown;
+
+  .dropdown-menu {
+    z-index: $zindex-dropdown;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $border-color;
+    min-width: 200px;
+    //backdrop-filter: blur(1rem);
+    //box-shadow: 0 6px 20px -10px rgba(0, 0, 0, 0.25);
+
+    @include padding-top(0.5rem);
+    @include padding-bottom(0.5rem);
+    @include border-radius(0.25rem);
+
+    @include themify(day) {
+      @apply bg-white;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-default;
+    }
+
+    .dropdown-item {
+      width: 80%;
+      cursor: pointer;
+
+      @include margin-top(0.25rem);
+      @include margin-bottom(0.25rem);
+      @include padding-left(1rem);
+      @include padding-right(1rem);
+      @include padding-top(0.5rem);
+      @include padding-bottom(0.5rem);
+
+      @include themify(day) {
+        @apply text-gray-800;
+      }
+
+      @include themify(night) {
+        @apply text-gray-300;
+      }
+
+      &:hover {
+        color: $primary;
+
+        @include border-top-right-radius(1rem);
+        @include border-bottom-right-radius(1rem);
+
+        @include themify(day) {
+          @apply bg-blue-duck-egg;
+        }
+
+        @include themify(night) {
+          @apply bg-gray-900;
+        }
+      }
+    }
+  }
+}

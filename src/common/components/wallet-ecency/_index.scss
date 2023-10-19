@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .wallet-ecency {
   @include wallet;
@@ -14,11 +11,11 @@
     flex-direction: column;
 
     @include themify(day) {
-      background: darken($white-two, 1);
+      @apply bg-light-200;
     }
 
     @include themify(night) {
-      background: $dark-two;
+      @apply bg-dark-200;
     }
 
     @media (min-width: $lg-break) {
@@ -36,11 +33,11 @@
         }
 
         @include themify(day) {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
 
         @include themify(night) {
-          color: $powder-blue;
+          @apply text-blue-powder;
         }
       }
 
@@ -66,7 +63,7 @@
           height: 40px;
           justify-content: center;
           width: 40px;
-          color: $warm-grey;
+          @apply text-gray-warm;
           position: relative;
           display: inline-flex;
           margin-bottom: 20px;
@@ -88,21 +85,21 @@
           }
 
           @include themify(day) {
-            background: $white;
-            color: $steel-grey;
+            @apply bg-white;
+            @apply text-gray-steel;
           }
 
           @include themify(night) {
-            background: $metallic-blue;
-            color: lighten($metallic-blue, 40);
+            @apply bg-blue-metallic;
+            @apply text-blue-metallic-40-light;
           }
 
           .reward-num {
-            background: $dark-sky-blue;
+            @apply bg-blue-dark-sky;
             position: absolute;
             right: -30%;
             bottom: 0;
-            color: $white;
+            @apply text-white;
             font-size: 10px;
             border-radius: 24px;
             width: 24px;
@@ -160,11 +157,11 @@
         }
 
         @include themify(day) {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
 
         @include themify(night) {
-          color: $powder-blue;
+          @apply text-blue-powder;
         }
       }
 
@@ -195,13 +192,13 @@
         }
 
         @include themify(day) {
-          background: $white;
-          color: $steel-grey;
+          @apply bg-white;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
-          background: $metallic-blue;
-          color: lighten($metallic-blue, 40);
+          @apply bg-blue-metallic;
+          @apply text-blue-metallic-40-light;
         }
       }
 
@@ -213,11 +210,11 @@
 
         .transaction-name {
           @include themify(day) {
-            color: $steel-grey;
+            @apply text-gray-steel;
           }
 
           @include themify(night) {
-            color: $metallic-blue;
+            @apply text-blue-metallic;
           }
         }
 
@@ -225,17 +222,17 @@
           font-size: 12px;
 
           @include themify(day) {
-            color: $silver;
+            @apply text-silver;
           }
 
           @include themify(night) {
-            color: $warm-grey;
+            @apply text-gray-warm;
           }
         }
       }
 
       .transaction-numbers {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         flex-grow: 1;
 
         font-weight: 500;
@@ -248,25 +245,25 @@
       }
 
       .transaction-details {
-        color: $steel-grey;
+        @apply text-gray-steel;
         width: 30%;
         word-break: break-all;
       }
 
       &:nth-child(odd) {
         @include themify(day) {
-          background: $white-three;
+          @apply bg-light-300;
         }
 
         @include themify(night) {
-          background: lighten($dark-six, 4);
+          @apply bg-dark-600;
         }
       }
 
       @include themify(day) {
         &:nth-child(even) {
           .transaction-icon {
-            background-color: $white-three;
+            @apply bg-light-300;
           }
         }
       }

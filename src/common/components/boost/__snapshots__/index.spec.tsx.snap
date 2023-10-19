@@ -31,43 +31,57 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body"
+      className="transaction-form-body flex flex-col"
     >
       <div
-        className="form-group row"
+        className="self-center mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <a
+          href="/faq#how-boosting-work"
         >
-          Balance
-        </label>
+          Learn more about boosting
+        </a>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Balance
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="balance-input form-control-plaintext"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red balance-input"
             readOnly={true}
+            type="text"
             value="500.000 POINTS"
           />
           
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Post
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 sm:mt-3"
+        >
+          <label>
+            Post
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               disabled={false}
               onChange={[Function]}
               placeholder="username/permlink"
@@ -78,22 +92,24 @@ exports[`(1) Default render 1`] = `
           </div>
           
           <small
-            className="text-muted form-text"
+            className="text-gray-600"
           >
             Autocomplete input
           </small>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 sm:mt-3"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
             className="slider-area"
@@ -108,7 +124,7 @@ exports[`(1) Default render 1`] = `
               </small>
             </div>
             <input
-              className="custom-range"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               max={550}
               min={150}
               onChange={[Function]}
@@ -117,7 +133,7 @@ exports[`(1) Default render 1`] = `
               value={150}
             />
             <small
-              className="text-muted form-text"
+              className="text-gray-600"
             >
               Drag the slider to adjust the amount.
             </small>
@@ -125,27 +141,34 @@ exports[`(1) Default render 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="flex mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <div
+          className="w-full sm:w-2/12"
         />
         <div
-          className="col-sm-10"
+          className="w-full sm:w-10/12"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
-          <small
-            className="text-warning font-italic form-text"
+          <div
+            className="text-sm text-warning-default italic mt-1"
           >
             Actual value of vote you receive may vary
-          </small>
+          </div>
         </div>
       </div>
     </div>
@@ -184,47 +207,61 @@ exports[`(2) Insufficient Funds 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body"
+      className="transaction-form-body flex flex-col"
     >
       <div
-        className="form-group row"
+        className="self-center mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <a
+          href="/faq#how-boosting-work"
         >
-          Balance
-        </label>
+          Learn more about boosting
+        </a>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Balance
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="balance-input is-invalid form-control-plaintext"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red balance-input is-invalid"
             readOnly={true}
+            type="text"
             value="10.000 POINTS"
           />
           <small
-            className="text-danger form-text"
+            className="text-red"
           >
             Insufficient funds
           </small>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Post
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 sm:mt-3"
+        >
+          <label>
+            Post
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               disabled={false}
               onChange={[Function]}
               placeholder="username/permlink"
@@ -235,22 +272,24 @@ exports[`(2) Insufficient Funds 1`] = `
           </div>
           
           <small
-            className="text-muted form-text"
+            className="text-gray-600"
           >
             Autocomplete input
           </small>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 sm:mt-3"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
             className="slider-area"
@@ -265,7 +304,7 @@ exports[`(2) Insufficient Funds 1`] = `
               </small>
             </div>
             <input
-              className="custom-range"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               max={550}
               min={150}
               onChange={[Function]}
@@ -274,7 +313,7 @@ exports[`(2) Insufficient Funds 1`] = `
               value={150}
             />
             <small
-              className="text-muted form-text"
+              className="text-gray-600"
             >
               Drag the slider to adjust the amount.
             </small>
@@ -282,27 +321,34 @@ exports[`(2) Insufficient Funds 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="flex mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <div
+          className="w-full sm:w-2/12"
         />
         <div
-          className="col-sm-10"
+          className="w-full sm:w-10/12"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
-          <small
-            className="text-warning font-italic form-text"
+          <div
+            className="text-sm text-warning-default italic mt-1"
           >
             Actual value of vote you receive may vary
-          </small>
+          </div>
         </div>
       </div>
     </div>
@@ -341,43 +387,57 @@ exports[`(2) With entry 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body"
+      className="transaction-form-body flex flex-col"
     >
       <div
-        className="form-group row"
+        className="self-center mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <a
+          href="/faq#how-boosting-work"
         >
-          Balance
-        </label>
+          Learn more about boosting
+        </a>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Balance
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="balance-input form-control-plaintext"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red balance-input"
             readOnly={true}
+            type="text"
             value="500.000 POINTS"
           />
           
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Post
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 sm:mt-3"
+        >
+          <label>
+            Post
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               disabled={false}
               onChange={[Function]}
               placeholder="username/permlink"
@@ -388,22 +448,24 @@ exports[`(2) With entry 1`] = `
           </div>
           
           <small
-            className="text-muted form-text"
+            className="text-gray-600"
           >
             Autocomplete input
           </small>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Amount
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 sm:mt-3"
+        >
+          <label>
+            Amount
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
             className="slider-area"
@@ -418,7 +480,7 @@ exports[`(2) With entry 1`] = `
               </small>
             </div>
             <input
-              className="custom-range"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               max={550}
               min={150}
               onChange={[Function]}
@@ -427,7 +489,7 @@ exports[`(2) With entry 1`] = `
               value={150}
             />
             <small
-              className="text-muted form-text"
+              className="text-gray-600"
             >
               Drag the slider to adjust the amount.
             </small>
@@ -435,27 +497,34 @@ exports[`(2) With entry 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="flex mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <div
+          className="w-full sm:w-2/12"
         />
         <div
-          className="col-sm-10"
+          className="w-full sm:w-10/12"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
-          <small
-            className="text-warning font-italic form-text"
+          <div
+            className="text-sm text-warning-default italic mt-1"
           >
             Actual value of vote you receive may vary
-          </small>
+          </div>
         </div>
       </div>
     </div>

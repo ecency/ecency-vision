@@ -1,0 +1,73 @@
+@import "src/style/vars_mixins";
+
+.emoji-picker {
+  width: 280px;
+  position: absolute;
+  right: 0;
+  z-index: 100;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  padding: 14px 6px;
+
+  @media (max-width: $sm-break) {
+    width: 160px !important;
+  }
+
+  @include themify(day) {
+    @apply bg-white-075;
+  }
+
+  @include themify(night) {
+    @apply bg-dark-200;
+  }
+
+  .emoji-cat-list {
+    height: 160px;
+    overflow: auto;
+
+    .emoji-cat {
+      .cat-title {
+        font-weight: 500;
+        font-size: 14px;
+        margin: 4px 0 6px 0;
+
+        @include themify(day) {
+          @apply text-gray-charcoal;
+        }
+
+        @include themify(night) {
+          @apply text-gray-pinkish;
+        }
+      }
+
+      .emoji-list {
+        @include clearfix();
+        display: flex;
+        flex-wrap: wrap;
+
+        .emoji {
+          cursor: pointer;
+          font-size: 18px;
+          margin: 3px 3px 1px 3px;
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji";
+          border-bottom: 2px solid transparent;
+
+          &:hover {
+            @include themify(day) {
+              border-bottom: 2px solid;
+              @apply border-white-500;
+            }
+
+            @include themify(night) {
+              border-bottom: 2px solid;
+              @apply border-dark-600-010-light;
+            }
+          }
+        }
+      }
+    }
+  }
+}

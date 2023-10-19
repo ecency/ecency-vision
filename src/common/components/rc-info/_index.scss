@@ -1,188 +1,197 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .rc-infocontainer {
-    display: flex;
-    justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 
-    @media (max-width: 500px) {
-        gap: 15px;
-        flex-direction: column;
-    }
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr;
+  }
+
+  .percent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
 
     @media (max-width: 991px) {
-        gap: 15px;
+      flex-direction: column;
+      width: 300px;
     }
 
-    .percent{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        gap: 15px;
-        
-        @media (max-width: 991px) {
-            flex-direction: column;
-            width: 300px;
-        }
-
-        @media (max-width: 500px) {
-            flex-direction: column;
-        }
-        
-        .circle{
-            width: 160px;
-            height: 160px;
-            position: relative;
-    
-            .outer-circle{
-                width: 160px;
-                height: 160px;
-                background-color: transparent;
-                border-radius: 50%;
-                padding: 20px;
-                
-                .inner-circle{
-                    width: 120px;
-                    height: 120px;
-                    border-radius: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                   
-                                span{
-                                    font-size: 16px;
-                                    font-weight: 500px;
-                                }
-                }
-            }
-    
-            svg{
-                position: absolute;
-                 top: 0;
-                 left: 0;
-                 right: 0;
-                 bottom: 0;
-                 margin: auto;
-            }
-        }
-        .percentage-info{
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            gap: 10px;
-
-            @media (max-width: 991px) {
-                flex-direction: column;
-            }
-
-            .unused{
-                display: flex;
-                align-items: center;
-                flex-direction: row;
-                gap: 10px;
-               
-                .unused-box{
-                    width: 15px;
-                    height: 15px;
-                    background-color: #357ce6;
-                }
-
-            }
-            .used{
-                display: flex;
-                align-items: center;
-                flex-direction: row;
-                gap: 10px;
-
-                .used-box{
-                    width: 15px;
-                    height: 15px;
-                    background-color: #F0706A;
-                }
-
-            }
-          
-        }
-
+    @media (max-width: 500px) {
+      flex-direction: column;
     }
 
-    .rc-details{
-        display: flex;
-        flex-direction: column;
-        
-        .delegations{
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            color: rgb(80, 134, 211);
-            font-weight: 600px;
-            text-decoration: underline;
+    .circle {
+      width: 160px;
+      height: 160px;
+      position: relative;
 
-            .outgoing{
-                cursor: pointer;
-                font-size: 16px;
-            }
-            .incoming{
-                cursor: pointer;
-                font-size: 16px;
-            }
-            
-        }
-
-        .line-break{
-
-            hr{
-                background-color: gray;
-            }
-        }
-
-        .extra-details{
-            p{
-                font-size: 16px;
-            }
-            ul{
-                line-height: 30px;
-                li{
-                    font-size: 13px;
-                }
-            }
-        }
-    }
-
-    svg{
+      .outer-circle {
         width: 160px;
         height: 160px;
+        background-color: transparent;
+        border-radius: 50%;
+        padding: 20px;
 
-        circle{
-            fill: none;
-            stroke-width: 20px;
-            // stroke-linecap: round;
+        .inner-circle {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          span {
+            font-size: 16px;
+            font-weight: 500px;
+          }
         }
+      }
+
+      svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
     }
-    
-}
 
-.rc-header{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    .percentage-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 10px;
 
-    .about-rc{
+      @media (max-width: 991px) {
+        flex-direction: column;
+      }
+
+      .unused {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
         gap: 10px;
 
-        span{
-            font-size: 16px;
+        .unused-box {
+          width: 15px;
+          height: 15px;
+          background-color: #357ce6;
         }
 
-        a{
-         font-size: 16px;
+      }
+
+      .used {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 10px;
+
+        .used-box {
+          width: 15px;
+          height: 15px;
+          background-color: #F0706A;
         }
+
+      }
+
     }
+
+  }
+
+  .rc-details {
+    display: flex;
+    flex-direction: column;
+
+    .delegations {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: rgb(80, 134, 211);
+      font-weight: 600px;
+      text-decoration: underline;
+
+      .outgoing {
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .incoming {
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+    }
+
+    .line-break {
+
+      hr {
+        background-color: gray;
+      }
+    }
+
+    .extra-details {
+      p {
+        font-size: 16px;
+      }
+
+      ul {
+        line-height: 30px;
+
+        li {
+          font-size: 13px;
+        }
+      }
+
+      .rc-info-extras {
+        .ececny-list-item {
+          font-size: 0.875rem;
+
+          > span {
+            color: $primary;
+            margin-left: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  svg {
+    width: 160px;
+    height: 160px;
+
+    circle {
+      fill: none;
+      stroke-width: 20px;
+      // stroke-linecap: round;
+    }
+  }
+
+}
+
+.rc-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .about-rc {
+    gap: 10px;
+
+    span {
+      font-size: 16px;
+    }
+
+    a {
+      font-size: 16px;
+    }
+  }
 }
 
 .progress-bar.used {
-    background-color: #F0706A;
+  background-color: #F0706A;
 }

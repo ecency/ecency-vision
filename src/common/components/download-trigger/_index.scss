@@ -1,14 +1,11 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .download-dialog-content {
   padding: 20px;
 
 
   .downloads-title {
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
     font-size: 42px;
     font-weight: 400;
     margin-bottom: 16px;
@@ -16,7 +13,7 @@
   }
 
   .downloads-text {
-    color: $steel-grey;
+    @apply text-gray-steel;
     font-weight: 300;
     margin-bottom: 22px;
     text-align: center;
@@ -49,7 +46,7 @@
       }
 
       &.btn-desktop {
-        background: $dark-sky-blue;
+        @apply bg-blue-dark-sky;
       }
 
       &.btn-ios {

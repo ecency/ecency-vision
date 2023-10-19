@@ -1,8 +1,9 @@
-import { Button, Form } from "react-bootstrap";
 import { _t } from "../../../i18n";
 import { checkSvg } from "../../../img/svg";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { DeckHeaderSettingsItem } from "./deck-header-settings-item";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   updateInterval: number;
@@ -54,9 +55,12 @@ export const DeckHeaderUpdateIntervalSettings = ({
   const getSubmitButton = () => {
     if (updateInterval !== inputValue * 1000 * 60) {
       return (
-        <Button variant="link" size="sm" onClick={() => saveInterval(`${inputValue * 1000 * 60}`)}>
-          {checkSvg}
-        </Button>
+        <Button
+          appearance="link"
+          size="sm"
+          onClick={() => saveInterval(`${inputValue * 1000 * 60}`)}
+          icon={checkSvg}
+        />
       );
     }
     return <></>;
@@ -66,9 +70,8 @@ export const DeckHeaderUpdateIntervalSettings = ({
     const isPreDefinedValue = deckUpdateOptions.some(({ value }) => updateInterval === value);
     if (isPreDefinedValue && !showInput) {
       return (
-        <Form.Control
-          as={"select"}
-          size="sm"
+        <FormControl
+          type="select"
           placeholder={_t("decks.update-interval-placeholder")}
           value={updateInterval}
           onChange={onSelectChange}
@@ -78,14 +81,13 @@ export const DeckHeaderUpdateIntervalSettings = ({
               {label}
             </option>
           ))}
-        </Form.Control>
+        </FormControl>
       );
     } else {
       return (
-        <div className="d-flex w-100">
-          <Form.Control
+        <div className="flex w-full">
+          <FormControl
             type="number"
-            size="sm"
             placeholder={_t("deck.update-custom-interval-in-minutes-placeholder")}
             value={inputValue}
             onChange={(event) => setInputValue(+event.target.value)}
@@ -98,13 +100,13 @@ export const DeckHeaderUpdateIntervalSettings = ({
 
   return (
     <DeckHeaderSettingsItem title={_t("decks.settings")} hasBorderBottom={false}>
-      <div className="d-flex align-items-center w-100 pb-2">
-        <Form.Text className="label mr-3">
+      <div className="flex items-center w-full pb-2">
+        <small className="label mr-3">
           {showInput ? _t("decks.update-interval-min") : _t("decks.update-interval")}
-        </Form.Text>
-        <div className="w-100">
+        </small>
+        <div className="w-full">
           {getControl()}
-          {errorMessage ? <div className="text-danger mt-2">{errorMessage}</div> : <></>}
+          {errorMessage ? <div className="text-red mt-2">{errorMessage}</div> : <></>}
         </div>
       </div>
     </DeckHeaderSettingsItem>

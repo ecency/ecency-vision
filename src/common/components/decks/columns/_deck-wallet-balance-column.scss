@@ -1,0 +1,109 @@
+@import "src/style/vars_mixins";
+
+.wb-container {
+  overflow-y: auto;
+  height: 100%;
+
+  .wb-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid $border-color;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(1rem);
+
+    @include themify(day) {
+      @apply bg-white-075;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-200-075;
+
+    }
+
+    .wb-tab {
+      text-align: center;
+      text-transform: capitalize;
+      color: $secondary;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+
+      @include font-size(0.875rem);
+      @include padding(1rem);
+
+      &::after {
+        content: '';
+        height: 2px;
+        width: 100%;
+        background-color: $primary;
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translateY(100%);
+        transition: 0.3s;
+      }
+
+      &:not(.active):hover::after {
+        background-color: $secondary;
+        opacity: 0.5;
+        transform: translateY(0);
+      }
+
+      &.active::after {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .wb-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .wb-card {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    grid-template-areas:
+      "title value"
+      "description description";
+    grid-gap: 1rem;
+    align-items: center;
+    background-color: rgba($primary, 0.05);
+
+    @include border-radius(1rem);
+
+    .title {
+      grid-area: title;
+      @apply text-dark-200;
+    }
+
+    .description {
+      grid-area: description;
+      color: $secondary;
+
+      @include font-size(0.875rem);
+    }
+
+    .value {
+      white-space: nowrap;
+      grid-area: value;
+      font-weight: bold;
+
+      &.loaded {
+        background-color: $primary;
+        @apply text-white;
+      }
+
+      @include padding(0.5rem);
+      @include border-radius(0.5rem);
+      @include font-size(0.875rem);
+    }
+
+    @include padding(1rem);
+  }
+}

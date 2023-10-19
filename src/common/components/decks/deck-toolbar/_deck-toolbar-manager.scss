@@ -37,11 +37,11 @@
 
       &:hover {
         @include themify(day) {
-          background-color: $gray-100;
+          @apply bg-gray-100;
         }
 
         @include themify(night) {
-          background-color: lighten($dark, 3);
+          @apply bg-dark-default;
         }
       }
 
@@ -63,7 +63,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: $gray-600;
+        @apply text-gray-600;
         text-transform: uppercase;
         font-weight: bold;
         line-height: 1;
@@ -76,11 +76,11 @@
         @include border-radius(1rem);
 
         @include themify(day) {
-          background-color: $gray-200;
+          @apply bg-gray-200;
         }
 
         @include themify(night) {
-          background-color: lighten($dark, 3);
+          @apply bg-dark-default;
         }
       }
 
@@ -92,18 +92,18 @@
         text-align: center;
         line-height: 1;
         font-weight: bold;
-        color: $gray-500;
+        @apply text-gray-500;
         text-transform: uppercase;
         justify-self: center;
 
         @include font-size(1.25rem);
 
         @include themify(day) {
-          color: $gray-500;
+          @apply text-gray-500;
         }
 
         @include themify(night) {
-          color: lighten($dark, 12);
+          @apply text-dark-default-010-light;
         }
       }
 
@@ -118,8 +118,8 @@
         @include font-size(0.875rem);
       }
 
-      .btn {
-        color: $gray-400;
+      button {
+        @apply text-gray-400;
         box-shadow: none;
         outline: none;
 
@@ -127,7 +127,7 @@
         @include padding-right(0.125rem);
 
         &:hover {
-          color: $gray-600;
+          @apply text-gray-600;
         }
       }
 
@@ -135,11 +135,11 @@
         cursor: unset;
 
         @include themify(day) {
-          background-color: $duck-egg-blue;
+          @apply bg-blue-duck-egg;
         }
 
         @include themify(night) {
-          background-color: $dark;
+          @apply bg-dark-default;
         }
 
         &::before {
@@ -150,9 +150,7 @@
   }
 
   .add-deck-btn {
-    outline: none;
-    box-shadow: none;
-    color: $gray-500;
+    @apply text-gray-500;
 
     @include padding(0);
 
@@ -162,7 +160,7 @@
     }
 
     &:hover {
-      color: $primary;
+      @apply text-blue-dark-sky;
     }
   }
 }

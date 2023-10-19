@@ -26,7 +26,7 @@ export class TwoUserAvatar extends Component<Props> {
     }/u/${to}/avatar/${imgSize}`;
 
     return (
-      <div className="route d-flex">
+      <div className="route flex">
         <span className={cls} style={{ backgroundImage: `url(${imageSrc1})` }} />
         <span className={cls} style={{ backgroundImage: `url(${imageSrc2})` }} />
       </div>

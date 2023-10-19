@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Button, FormControl } from "react-bootstrap";
-import { getOutgoingRc, getIncomingRc } from "../../api/hive";
+import { getAccount, getIncomingRc, getOutgoingRc } from "../../api/hive";
 import { delegateRC } from "../../api/operations";
 import { _t } from "../../i18n";
 import LinearProgress from "../linear-progress";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import { useParams } from "react-router";
-import { getAccount } from "../../api/hive";
 import { Account } from "../../store/accounts/types";
 import Tooltip from "../tooltip";
 import "./index.scss";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
+import { List, ListItem } from "@ui/list";
 
 interface Props {
   addAccount: (data: Account) => void;
@@ -77,8 +78,9 @@ export const RcDelegationsList = (props: any) => {
         </div>
       )}
       <div className="list-container">
-        <div className="search-box">
+        <div className="search-box mb-4">
           <FormControl
+            type="text"
             value={search}
             placeholder="search list"
             onChange={(e) => setsearch(e.target.value)}
@@ -88,7 +90,7 @@ export const RcDelegationsList = (props: any) => {
         {listMode === "out" && (
           <>
             {outGoingList.length > 0 ? (
-              <div className="list-body">
+              <List defer={true} inline={true}>
                 {outGoingList
                   ?.slice(0, loadList)
                   .filter(
@@ -96,58 +98,56 @@ export const RcDelegationsList = (props: any) => {
                       list.to.toLowerCase().startsWith(search) ||
                       list.to.toLowerCase().includes(search)
                   )
-                  .map((list: any, i: any) => {
-                    return (
-                      <div className="list-item" key={list.to}>
-                        <div className="item-main">
+                  .map((list: any, i: any) => (
+                    <ListItem styledDefer={true} key={list.to}>
+                      <div className="flex items-center gap-2">
+                        {ProfileLink({
+                          ...props,
+                          username: list.to,
+                          children: <UserAvatar username={list.to} size="small" />
+                        })}
+                        <div className="item-info">
                           {ProfileLink({
                             ...props,
                             username: list.to,
-                            children: <UserAvatar username={list.to} size="small" />
+                            children: <span className="item-name notranslate">{list.to}</span>
                           })}
-                          <div className="item-info">
-                            {ProfileLink({
-                              ...props,
-                              username: list.to,
-                              children: <span className="item-name notranslate">{list.to}</span>
-                            })}
-                          </div>
-                        </div>
-                        <div className="item-extra">
-                          <Tooltip content={list.delegated_rc}>
-                            <span>{rcFormatter(list.delegated_rc)}</span>
-                          </Tooltip>
-                          {activeUser && otherUser == activeUser.username && (
-                            <>
-                              <a
-                                href="#"
-                                onClick={async () => {
-                                  showDelegation();
-                                  setShowDelegationsList(false);
-                                  setAmountFromList(list.delegated_rc);
-                                  setToFromList(list.to);
-                                  const data = await getToData(list.to);
-                                  setDelegateeData(data);
-                                }}
-                              >
-                                {_t("rc-info.update")}
-                              </a>
-                              <a
-                                href="#"
-                                onClick={() => {
-                                  confirmDelete();
-                                  setToFromList(list.to);
-                                }}
-                              >
-                                {_t("rc-info.delete")}
-                              </a>
-                            </>
-                          )}
                         </div>
                       </div>
-                    );
-                  })}
-              </div>
+                      <div className="flex items-center gap-3 mt-3">
+                        <Tooltip content={list.delegated_rc}>
+                          <span>{rcFormatter(list.delegated_rc)}</span>
+                        </Tooltip>
+                        {activeUser && otherUser == activeUser.username && (
+                          <>
+                            <a
+                              href="#"
+                              onClick={async () => {
+                                showDelegation();
+                                setShowDelegationsList(false);
+                                setAmountFromList(list.delegated_rc);
+                                setToFromList(list.to);
+                                const data = await getToData(list.to);
+                                setDelegateeData(data);
+                              }}
+                            >
+                              {_t("rc-info.update")}
+                            </a>
+                            <a
+                              href="#"
+                              onClick={() => {
+                                confirmDelete();
+                                setToFromList(list.to);
+                              }}
+                            >
+                              {_t("rc-info.delete")}
+                            </a>
+                          </>
+                        )}
+                      </div>
+                    </ListItem>
+                  ))}
+              </List>
             ) : (
               <p>{_t("rc-info.no-outgoing")}</p>
             )}
@@ -223,8 +223,13 @@ export const ConfirmDelete = (props: any) => {
         <h5 className="text" style={{ width: "350px", alignSelf: "center" }}>
           {_t("rc-info.confirm-delete")}
         </h5>
-        <div className="d-flex justify-content-center p-3">
-          <Button className="mr-2" variant="outline-secondary" onClick={hideConfirmDelete}>
+        <div className="flex justify-center p-3">
+          <Button
+            className="mr-2"
+            appearance="secondary"
+            outline={true}
+            onClick={hideConfirmDelete}
+          >
             {_t("rc-info.cancel")}
           </Button>
           <Button

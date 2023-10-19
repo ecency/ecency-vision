@@ -10,7 +10,6 @@ import TrendingTagsCard from "../components/trending-tags-card";
 import MarketData from "../components/market-data";
 import _c from "../util/fix-class-names";
 import { PageProps } from "./common";
-import { Decks } from "../components/decks";
 import { Entry } from "../store/entries/types";
 import { TopCommunitiesWidget } from "../components/top-communities-widget";
 import * as ls from "../util/local-storage";

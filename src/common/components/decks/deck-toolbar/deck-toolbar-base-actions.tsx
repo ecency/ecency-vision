@@ -2,17 +2,23 @@ import { bellSvg, rocketSvg } from "../../../img/svg";
 import React from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { WalletBadge } from "../../user-nav";
-import { Dropdown } from "react-bootstrap";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import { dotsMenuIconSvg, notificationsIconSvg, walletIconSvg } from "../icons";
+import { dotsMenuIconSvg, walletIconSvg } from "../icons";
 import { _t } from "../../../i18n";
+import Link from "../../alink";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
+import { Button } from "@ui/button";
 
 interface Props {
   isExpanded: boolean;
   setShowPurchaseDialog: (v: boolean) => void;
+  setIsExpanded: (v: boolean) => void;
 }
 
-export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Props) => {
+export const DeckToolbarBaseActions = ({
+  setShowPurchaseDialog,
+  isExpanded,
+  setIsExpanded
+}: Props) => {
   const { activeUser, global, toggleUIProp, notifications, dynamicProps } = useMappedStore();
 
   return (
@@ -30,19 +36,29 @@ export const DeckToolbarBaseActions = ({ setShowPurchaseDialog, isExpanded }: Pr
             </div>
           )}
           {global.usePrivate && <div onClick={() => setShowPurchaseDialog(true)}>{rocketSvg}</div>}
-          <WalletBadge icon={walletIconSvg} activeUser={activeUser} dynamicProps={dynamicProps} />
+          <WalletBadge icon={walletIconSvg} />
         </>
       )}
       {isExpanded || !activeUser ? (
         <Dropdown>
-          <DropdownToggle variant="link">{dotsMenuIconSvg}</DropdownToggle>
-          <Dropdown.Menu alignRight={true}>
-            <Dropdown.Item href="/">{_t("decks.back-to-feed")}</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item href="/faq">{_t("decks.faq")}</Dropdown.Item>
-            <Dropdown.Item href="/terms-of-service">{_t("decks.terms")}</Dropdown.Item>
-            <Dropdown.Item href="/market">{_t("decks.market")}</Dropdown.Item>
-          </Dropdown.Menu>
+          <DropdownToggle onClick={() => setIsExpanded(true)}>
+            <Button appearance="link">{dotsMenuIconSvg}</Button>
+          </DropdownToggle>
+          <DropdownMenu align="right">
+            <DropdownItem>
+              <Link to="/">{_t("decks.back-to-feed")}</Link>
+            </DropdownItem>
+            <hr />
+            <DropdownItem>
+              <Link to="/fq">{_t("decks.faq")}</Link>
+            </DropdownItem>
+            <DropdownItem>
+              <Link to="/terms-of-service">{_t("decks.terms")}</Link>
+            </DropdownItem>
+            <DropdownItem>
+              <Link to="/market">{_t("decks.market")}</Link>
+            </DropdownItem>
+          </DropdownMenu>
         </Dropdown>
       ) : (
         <></>

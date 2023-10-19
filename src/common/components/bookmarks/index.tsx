@@ -1,24 +1,19 @@
 import React, { Component } from "react";
-import { Modal } from "react-bootstrap";
-
 import { History } from "history";
-
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import EntryLink from "../entry-link";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import { error } from "../feedback";
-
-import { getBookmarks, Bookmark, getFavorites, Favorite } from "../../api/private-api";
-
+import { Bookmark, Favorite, getBookmarks, getFavorites } from "../../api/private-api";
 import { _t } from "../../i18n";
 import { useMappedStore } from "../../store/use-mapped-store";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface BookmarksProps {
   history: History;
@@ -212,15 +207,9 @@ class BookmarksDialog extends Component<DialogProps, DialogState> {
     const { section } = this.state;
 
     return (
-      <Modal
-        show={true}
-        centered={true}
-        onHide={this.hide}
-        size="lg"
-        className="bookmarks-modal modal-thin-header"
-      >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+      <Modal show={true} centered={true} onHide={this.hide} size="lg" className="bookmarks-modal">
+        <ModalHeader closeButton={true} />
+        <ModalBody>
           <div className="dialog-menu">
             <div
               className={`menu-item ${section === "bookmarks" ? "active" : ""}`}
@@ -241,7 +230,7 @@ class BookmarksDialog extends Component<DialogProps, DialogState> {
           </div>
           {section === "bookmarks" && <Bookmarks {...this.props} />}
           {section === "favorites" && <Favorites {...this.props} />}
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

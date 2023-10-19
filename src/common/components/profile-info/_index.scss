@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .profile-info {
   height: 28px;
@@ -10,11 +7,12 @@
   align-items: center;
   justify-content: center;
   margin-right: 5px;
-  background: $dark-two;
+  @apply bg-dark-200;
   opacity: 0.8;
   border-radius: 50%;
   margin-top: 2px;
-  border: 1px solid $warm-grey;
+  border: 1px solid;
+  @apply border-gray-warm;
 
   &:hover {
     opacity: 1;
@@ -22,7 +20,8 @@
 
   svg {
     height: 20px;
-    color: $white;
+    margin-bottom: 2px;
+    @apply text-white;
   }
 }
 
@@ -38,7 +37,7 @@
     svg {
       height: 12px;
       margin-left: 4px;
-      color: $white;
+      @apply text-white;
     }
 
     small {

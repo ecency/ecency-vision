@@ -4,13 +4,12 @@ import { proxifyImageSrc } from "@ecency/render-helper";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-import { OperationGroup, Transactions } from "../../store/transactions/types";
+import { Transactions } from "../../store/transactions/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
 import HiveEngineToken from "../../helper/hive-engine-wallet";
 import LinearProgress from "../linear-progress";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
 import { SortEngineTokens } from "../sort-hive-engine-tokens";
 import { EngineTokensEstimated } from "../engine-tokens-estimated";
@@ -21,27 +20,29 @@ import "./_index.scss";
 import {
   claimRewards,
   getHiveEngineTokenBalances,
+  getMetrics,
   getUnclaimedRewards,
-  TokenStatus,
-  getMetrics
+  TokenStatus
 } from "../../api/hive-engine";
 
 import {
-  informationVariantSvg,
-  plusCircle,
-  transferOutlineSvg,
-  lockOutlineSvg,
-  unlockOutlineSvg,
   delegateOutlineSvg,
-  undelegateOutlineSvg,
+  informationVariantSvg,
+  lockOutlineSvg,
+  plusCircle,
+  priceDownSvg,
   priceUpSvg,
-  priceDownSvg
+  transferOutlineSvg,
+  undelegateOutlineSvg,
+  unlockOutlineSvg
 } from "../../img/svg";
 
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
 import { _t } from "../../i18n";
 import { HiveEngineChart } from "../hive-engine-chart";
+import { Popover, PopoverContent } from "@ui/popover";
+import Tooltip from "../tooltip";
 
 interface Props {
   global: Global;
@@ -53,7 +54,6 @@ interface Props {
   addAccount: (data: Account) => void;
   updateActiveUser: (data?: Account) => void;
   setSigningKey: (key: string) => void;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
 }
 
@@ -311,30 +311,22 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 {hasMultipleUnclaimedRewards ? (
                   <div className="rewards">
                     <span className="reward-type">
-                      <OverlayTrigger
-                        delay={{ show: 0, hide: 500 }}
-                        key={"bottom"}
-                        placement={"bottom"}
-                        overlay={
-                          <Tooltip id={`tooltip-token`}>
-                            <div className="tooltip-inner rewards-container">
-                              {rewardsToShowInTooltip.map((reward, ind) => (
-                                <div
-                                  className="d-flex py-1 border-bottom"
-                                  key={reward.pending_token + ind}
-                                >
-                                  <div className="mr-1 text-lowercase">{reward.symbol}: </div>
-                                  <div>{reward.pending_token / Math.pow(10, reward.precision)}</div>
-                                </div>
-                              ))}
-                            </div>
-                          </Tooltip>
-                        }
-                      >
-                        <div className="d-flex align-items-center">
-                          {`${rewards.length} tokens`}
-                        </div>
-                      </OverlayTrigger>
+                      <Popover>
+                        <PopoverContent>
+                          <div className="tooltip-inner rewards-container">
+                            {rewardsToShowInTooltip.map((reward, ind) => (
+                              <div
+                                className="flex py-1 border-b border-[--border-color]"
+                                key={reward.pending_token + ind}
+                              >
+                                <div className="mr-1 lowercase">{reward.symbol}:</div>
+                                <div>{reward.pending_token / Math.pow(10, reward.precision)}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                      <div className="flex items-center">{`${rewards.length} tokens`}</div>
                     </span>
                     {isMyPage && (
                       <a
@@ -431,52 +423,44 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                         </div>
 
                         {!global?.isMobile && (
-                          <div className="d-flex">
+                          <div className="flex">
                             <HiveEngineChart items={b} />
                           </div>
                         )}
 
-                        <div className="ml-auto d-flex flex-column justify-between">
-                          <div className="d-flex mb-1 align-self-end">
+                        <div className="ml-auto flex flex-col justify-between">
+                          <div className="flex mb-1 align-self-end">
                             <div className="entry-body mr-md-2">
                               <span className="item-balance">{b.balanced()}</span>
                             </div>
 
                             <div className="ml-1">
-                              <OverlayTrigger
-                                delay={{ show: 0, hide: 300 }}
-                                key={"bottom"}
-                                placement={"bottom"}
-                                overlay={
-                                  <Tooltip id={`tooltip-${b.symbol}`}>
-                                    <div className="tooltip-inner">
-                                      <div className="profile-info-tooltip-content">
-                                        <p>
-                                          {_t("wallet-engine.token")}: {b.name}
-                                        </p>
-                                        <p>
-                                          {_t("wallet-engine.balance")}: {b.balanced()}
-                                        </p>
-                                        <p>
-                                          {_t("wallet-engine.staked")}: {b.staked()}
-                                        </p>
-                                        {b.delegationEnabled && (
-                                          <>
-                                            <p>In: {b.delegationsIn}</p>
-                                            <p>Out: {b.delegationsOut}</p>
-                                          </>
-                                        )}
-                                      </div>
-                                    </div>
-                                  </Tooltip>
-                                }
-                              >
-                                <div className="d-flex align-items-center">
-                                  <span className="info-icon mr-0 mr-md-2">
-                                    {informationVariantSvg}
-                                  </span>
+                              <Popover anchorParent={true}>
+                                <div className="tooltip-inner">
+                                  <div className="profile-info-tooltip-content">
+                                    <p>
+                                      {_t("wallet-engine.token")}: {b.name}
+                                    </p>
+                                    <p>
+                                      {_t("wallet-engine.balance")}: {b.balanced()}
+                                    </p>
+                                    <p>
+                                      {_t("wallet-engine.staked")}: {b.staked()}
+                                    </p>
+                                    {b.delegationEnabled && (
+                                      <>
+                                        <p>In: {b.delegationsIn}</p>
+                                        <p>Out: {b.delegationsOut}</p>
+                                      </>
+                                    )}
+                                  </div>
                                 </div>
-                              </OverlayTrigger>
+                              </Popover>
+                              <div className="flex items-center">
+                                <span className="info-icon mr-0 mr-md-2">
+                                  {informationVariantSvg}
+                                </span>
+                              </div>
                             </div>
                           </div>
 
@@ -486,8 +470,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                               return (
                                 <span
                                   key={i}
-                                  className={`d-flex justify-content-end ${
-                                    changeValue < 0 ? "text-danger" : "text-success"
+                                  className={`flex justify-content-end ${
+                                    changeValue < 0 ? "text-red" : "text-green"
                                   }`}
                                 >
                                   {x?.symbol === b.symbol && (
@@ -502,23 +486,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                           </div>
 
                           {isMyPage && (
-                            <div className="d-flex justify-between ml-auto">
+                            <div className="flex justify-between ml-auto">
                               <div className="mr-1">
-                                <OverlayTrigger
-                                  delay={{ show: 0, hide: 500 }}
-                                  key={"bottom"}
-                                  placement={"bottom"}
-                                  overlay={
-                                    <Tooltip id={`tooltip-${b.symbol}`}>
-                                      <div className="tooltip-inner">
-                                        <div className="profile-info-tooltip-content">
-                                          <p>Transfer</p>
-                                        </div>
-                                      </div>
-                                    </Tooltip>
-                                  }
-                                >
-                                  <div className="d-flex align-items-center flex-justify-center">
+                                <Tooltip content="Transfer">
+                                  <div className="flex items-center flex-justify-center">
                                     <span
                                       onClick={() =>
                                         this.openTransferDialog("transfer", b.symbol, b.balance)
@@ -528,26 +499,13 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                       {transferOutlineSvg}
                                     </span>
                                   </div>
-                                </OverlayTrigger>
+                                </Tooltip>
                               </div>
 
                               {b.delegationEnabled && b.delegationsOut !== b.balance && (
                                 <div className="mr-1">
-                                  <OverlayTrigger
-                                    delay={{ show: 0, hide: 500 }}
-                                    key={"bottom"}
-                                    placement={"bottom"}
-                                    overlay={
-                                      <Tooltip id={`tooltip-${b.symbol}`}>
-                                        <div className="tooltip-inner">
-                                          <div className="profile-info-tooltip-content">
-                                            <p>Delegate</p>
-                                          </div>
-                                        </div>
-                                      </Tooltip>
-                                    }
-                                  >
-                                    <div className="d-flex align-items-center flex-justify-center">
+                                  <Tooltip content="Delegate">
+                                    <div className="flex items-center flex-justify-center">
                                       <span
                                         onClick={() =>
                                           this.openTransferDialog(
@@ -561,26 +519,13 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                         {delegateOutlineSvg}
                                       </span>
                                     </div>
-                                  </OverlayTrigger>
+                                  </Tooltip>
                                 </div>
                               )}
                               {b.delegationEnabled && b.delegationsOut > 0 && (
                                 <div className="mr-1">
-                                  <OverlayTrigger
-                                    delay={{ show: 0, hide: 500 }}
-                                    key={"bottom"}
-                                    placement={"bottom"}
-                                    overlay={
-                                      <Tooltip id={`tooltip-${b.symbol}`}>
-                                        <div className="tooltip-inner">
-                                          <div className="profile-info-tooltip-content">
-                                            <p>Undelegate</p>
-                                          </div>
-                                        </div>
-                                      </Tooltip>
-                                    }
-                                  >
-                                    <div className="d-flex align-items-center flex-justify-center">
+                                  <Tooltip content="Undelegate">
+                                    <div className="flex items-center flex-justify-center">
                                       <span
                                         onClick={() =>
                                           this.openTransferDialog(
@@ -594,27 +539,14 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                         {undelegateOutlineSvg}
                                       </span>
                                     </div>
-                                  </OverlayTrigger>
+                                  </Tooltip>
                                 </div>
                               )}
 
                               {b.stakingEnabled && (
                                 <div className="mr-1">
-                                  <OverlayTrigger
-                                    delay={{ show: 0, hide: 500 }}
-                                    key={"bottom"}
-                                    placement={"bottom"}
-                                    overlay={
-                                      <Tooltip id={`tooltip-${b.symbol}`}>
-                                        <div className="tooltip-inner">
-                                          <div className="profile-info-tooltip-content">
-                                            <p>Stake</p>
-                                          </div>
-                                        </div>
-                                      </Tooltip>
-                                    }
-                                  >
-                                    <div className="d-flex align-items-center flex-justify-center align-center">
+                                  <Tooltip content="Stake">
+                                    <div className="flex items-center flex-justify-center align-center">
                                       <span
                                         onClick={() =>
                                           this.openTransferDialog("stake", b.symbol, b.balance)
@@ -624,26 +556,13 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                         {lockOutlineSvg}
                                       </span>
                                     </div>
-                                  </OverlayTrigger>
+                                  </Tooltip>
                                 </div>
                               )}
                               {b.stake > 0 && (
                                 <div className="mr-1">
-                                  <OverlayTrigger
-                                    delay={{ show: 0, hide: 500 }}
-                                    key={"bottom"}
-                                    placement={"bottom"}
-                                    overlay={
-                                      <Tooltip id={`tooltip-${b.symbol}`}>
-                                        <div className="tooltip-inner">
-                                          <div className="profile-info-tooltip-content">
-                                            <p>Unstake</p>
-                                          </div>
-                                        </div>
-                                      </Tooltip>
-                                    }
-                                  >
-                                    <div className="d-flex align-items-center flex-justify-center align-center">
+                                  <Tooltip content="Unstake">
+                                    <div className="flex items-center flex-justify-center align-center">
                                       <span
                                         onClick={() =>
                                           this.openTransferDialog(
@@ -657,7 +576,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                         {unlockOutlineSvg}
                                       </span>
                                     </div>
-                                  </OverlayTrigger>
+                                  </Tooltip>
                                 </div>
                               )}
                             </div>
@@ -699,8 +618,7 @@ export default (p: Props) => {
     addAccount: p.addAccount,
     updateActiveUser: p.updateActiveUser,
     setSigningKey: p.setSigningKey,
-    updateWalletValues: p.updateWalletValues,
-    fetchPoints: p.fetchPoints
+    updateWalletValues: p.updateWalletValues
   };
 
   return <WalletHiveEngine {...props} />;

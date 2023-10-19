@@ -1,30 +1,22 @@
 import React, { Component } from "react";
-
 import { History } from "history";
-
-import { Form, Modal } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-
 import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
 import LinearProgress from "../linear-progress";
-
-import { ReceivedVestingShare, getReceivedVestingShares } from "../../api/private-api";
-
+import { getReceivedVestingShares, ReceivedVestingShare } from "../../api/private-api";
 import { _t } from "../../i18n";
-
 import { vestsToHp } from "../../helper/vesting";
-
 import parseAsset from "../../helper/parse-asset";
-
 import formattedNumber from "../../util/formatted-number";
-import MyPagination from "../pagination";
+import MyPagination from "@ui/pagination";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { FormControl } from "@ui/input";
 
 interface Props {
   global: Global;
@@ -178,15 +170,15 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
     return (
       <>
         <Modal onHide={onHide} show={true} centered={true} animation={false}>
-          <Modal.Header closeButton={true}>
-            <Modal.Title>{_t("received-vesting.title")}</Modal.Title>
-          </Modal.Header>
-          <Form.Group className="w-100 px-3">
-            <Form.Control
+          <ModalHeader closeButton={true}>
+            <ModalTitle>{_t("received-vesting.title")}</ModalTitle>
+          </ModalHeader>
+          <div className="w-full px-3 pb-4">
+            <FormControl
               type="text"
               placeholder={_t("friends.search-placeholder")}
               value={searchText}
-              onChange={(e: any) => {
+              onChange={(e) => {
                 let text = e.target.value;
                 this.setState({
                   searchText: e.target.value,
@@ -194,10 +186,10 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
                 });
               }}
             />
-          </Form.Group>
-          <Modal.Body>
+          </div>
+          <ModalBody>
             <List {...this.props} searchText={searchText} />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </>
     );

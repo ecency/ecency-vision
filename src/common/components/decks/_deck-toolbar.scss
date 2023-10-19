@@ -6,22 +6,21 @@
   align-items: center;
   justify-content: space-between;
   height: 100vh;
-  background-color: $white;
+  height: 100dvh;
+  @apply bg-white;
   position: relative;
   border-right: 4px solid;
-  z-index: 9;
+  z-index: 201;
   overflow-y: auto;
 
   @include padding-top(0.75rem);
 
   @include themify(day) {
-    background-color: $white;
-    border-color: $gray-300;
+    @apply bg-white border-gray-300;
   }
 
   @include themify(night) {
-    background-color: $dark-two;
-    border-color: $gray-800;
+    @apply bg-dark-200 border-gray-800;
   }
 
   &::-webkit-scrollbar {
@@ -58,11 +57,11 @@
 
         &:hover {
           @include themify(day) {
-            background-color: $gray-100;
+            @apply bg-gray-100;
           }
 
           @include themify(night) {
-            background-color: $dark;
+            @apply bg-dark-default;
           }
 
           svg {
@@ -75,7 +74,7 @@
         svg {
           width: 1.5rem;
           height: 1.5rem;
-          color: $gray-500;
+          @apply text-gray-500;
         }
       }
 
@@ -90,7 +89,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          color: $white;
+          @apply text-white;
           font-weight: bold;
 
           @include padding(0.2rem);
@@ -112,26 +111,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $gray-400;
+    @apply text-gray-400;
     min-height: 65px;
 
     @include themify(day) {
-      background-color: $white;
+      @apply bg-white;
     }
 
     @include themify(night) {
-      background-color: $dark-two;
+      @apply bg-dark-200;
     }
 
     &:hover {
       @include themify(day) {
-        background-color: $gray-100;
-        color: $gray-600;
+        @apply bg-gray-100 text-gray-600;
       }
 
       @include themify(night) {
-        background-color: $dark;
-        color: $gray-500;
+        @apply bg-dark-default text-gray-500;
       }
     }
 
@@ -158,18 +155,20 @@
 
     .switch-theme {
       cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      @include transition(0.3s);
-      @include padding(0.5rem);
-      @include border-radius(2rem);
-      @include margin-left(auto);
+      @apply duration-300 ml-[auto] rounded-full;
 
       &.switched svg {
         transform: rotate(180deg);
       }
 
       svg {
-        color: $gray-500;
+        @apply text-gray-500;
         width: 1.25rem;
         height: 1.25rem;
 
@@ -179,11 +178,11 @@
       &:hover {
 
         @include themify(day) {
-          background-color: $duck-egg-blue;
+          @apply bg-blue-duck-egg;
         }
 
         @include themify(night) {
-          background-color: $dark;
+          @apply bg-dark-default;
         }
 
         svg {
@@ -193,78 +192,13 @@
     }
   }
 
-  .dropdown {
-    position: relative;
-
-    .dropdown-menu {
-      z-index: $zindex-dropdown;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid $border-color;
-      min-width: 200px;
-
-      @include padding-top(0.5rem);
-      @include padding-bottom(0.5rem);
-      @include border-radius(0.25rem);
-
-      @include themify(day) {
-        background-color: $white;
-      }
-
-      @include themify(night) {
-        background-color: $dark;
-      }
-
-      .dropdown-item {
-        width: 80%;
-
-        @include margin-top(0.25rem);
-        @include margin-bottom(0.25rem);
-        @include padding-left(1rem);
-        @include padding-right(1rem);
-        @include padding-top(0.5rem);
-        @include padding-bottom(0.5rem);
-
-        @include themify(day) {
-          color: $gray-800;
-        }
-
-        @include themify(night) {
-          color: $gray-300;
-        }
-
-        &:hover {
-          color: $primary;
-
-          @include border-top-right-radius(1rem);
-          @include border-bottom-right-radius(1rem);
-
-          @include themify(day) {
-            background-color: $duck-egg-blue;
-          }
-
-          @include themify(night) {
-            background-color: $gray-900;
-          }
-        }
-      }
-    }
-
-    .dropdown-toggle {
-      padding: 0;
-    }
-  }
-
   .deck-toolbar-create {
     @include padding-top(1rem);
     @include padding-bottom(1rem);
     @include padding-left(0.6rem);
     @include padding-right(0.6rem);
 
-    > .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    > button {
       width: 3rem;
       height: 3rem;
     }
@@ -274,7 +208,7 @@
     .base-actions {
       flex-wrap: nowrap;
 
-      > *, .btn {
+      > *, button {
         border-bottom: 0 !important;
         border-right: 1px solid $border-color;
 
@@ -288,7 +222,7 @@
       @include padding-left(1rem);
       @include padding-right(1rem);
 
-      > .btn {
+      > button {
         width: 100%;
         height: 3rem;
 

@@ -1,17 +1,11 @@
-import React, { Component } from "react";
-
+import React, { useState } from "react";
 import Datetime from "react-datetime";
-
 import moment, { Moment } from "moment";
-
-import { Button, Modal } from "react-bootstrap";
-
-import BaseComponent from "../base";
-
 import { _t } from "../../i18n";
-
 import { closeSvg, timeSvg } from "../../img/svg";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Button } from "@ui/button";
 
 interface Props {
   date: Moment | null;
@@ -22,40 +16,48 @@ interface DialogBodyProps extends Props {
   onHide: () => void;
 }
 
-interface DialogBodyState {
-  date: Moment;
-}
+export const DialogBody = (props: DialogBodyProps) => {
+  const [date, setDate] = useState<Moment>(
+    props.date || moment(moment().add(2, "hour").toISOString(true))
+  );
+  const [error, setError] = useState(false);
+  const todayTs = moment().hour(0).minute(0).second(0).milliseconds(0).format("x");
 
-export class DialogBody extends BaseComponent<DialogBodyProps, DialogBodyState> {
-  state: DialogBodyState = {
-    date: this.props.date || moment().add(2, "hour")
-  };
-
-  render() {
-    const { date } = this.state;
-    const todayTs = moment().hour(0).minute(0).second(0).milliseconds(0).format("x");
-
+  const rend = () => {
     return (
       <>
         <div className="picker">
           <Datetime
             open={true}
             input={false}
-            value={date}
+            initialValue={date}
             timeFormat="HH:mm"
             isValidDate={(d) => {
               return d.format("x") >= todayTs;
             }}
             onChange={(date) => {
-              this.setState({ date: date as Moment });
+              if ((date as Moment).format("x") <= moment().format("x")) {
+                setError(true);
+              } else {
+                setError(false);
+                setDate(date as Moment);
+              }
             }}
           />
         </div>
+        {error && (
+          <div className="error">
+            <small className="error-info">{_t("post-scheduler.error-message")}</small>
+          </div>
+        )}
         <div className="text-center">
           <Button
+            disabled={error}
             onClick={() => {
-              const { date } = this.state;
-              const { onChange, onHide } = this.props;
+              if (error) {
+                return;
+              }
+              const { onChange, onHide } = props;
               onChange(date);
               onHide();
             }}
@@ -65,75 +67,56 @@ export class DialogBody extends BaseComponent<DialogBodyProps, DialogBodyState> 
         </div>
       </>
     );
-  }
-}
-
-interface State {
-  visible: boolean;
-}
-
-export class PostSchedulerDialog extends Component<Props, State> {
-  state: State = {
-    visible: false
   };
 
-  toggle = () => {
-    const { visible } = this.state;
-    this.setState({ visible: !visible });
+  return rend();
+};
+
+export const PostSchedulerDialog = (props: Props) => {
+  const [visible, setVisible] = useState<boolean>(false);
+  const toggle = () => {
+    setVisible((visible) => !visible);
   };
 
-  reset = () => {
-    this.props.onChange(null);
+  const reset = () => {
+    props.onChange(null);
   };
 
-  render() {
-    const { visible } = this.state;
-    const { date } = this.props;
-
-    const dialog = visible ? (
-      <Modal
-        onHide={this.toggle}
-        show={true}
-        centered={true}
-        animation={false}
-        className="post-scheduler-dialog"
-      >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>{_t("post-scheduler.title")}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <DialogBody {...this.props} onHide={this.toggle} />
-        </Modal.Body>
-      </Modal>
-    ) : null;
-
-    if (date) {
-      return (
-        <>
-          <div className="post-scheduler-scheduled">
-            <span className="date" onClick={this.toggle}>
-              {date.format("YYYY-MM-DD HH:mm")}
-            </span>
-            <span className="reset-date" onClick={this.reset}>
-              {closeSvg}
-            </span>
-          </div>
-          {dialog}
-        </>
-      );
-    }
-
-    return (
-      <>
-        <Button className="d-inline-flex align-items-center" size="sm" onClick={this.toggle}>
+  return (
+    <>
+      {props.date ? (
+        <div className="post-scheduler-scheduled">
+          <span className="date" onClick={toggle}>
+            {props.date.format("YYYY-MM-DD HH:mm")}
+          </span>
+          <span className="reset-date" onClick={reset}>
+            {closeSvg}
+          </span>
+        </div>
+      ) : (
+        <Button className="inline-flex items-center" size="sm" onClick={toggle} icon={timeSvg}>
           {_t("post-scheduler.btn-label")}
-          <span style={{ marginLeft: "6px" }}>{timeSvg}</span>
         </Button>
-        {dialog}
-      </>
-    );
-  }
-}
+      )}
+      {visible && (
+        <Modal
+          onHide={toggle}
+          show={true}
+          centered={true}
+          animation={false}
+          className="post-scheduler-dialog"
+        >
+          <ModalHeader closeButton={true}>
+            <ModalTitle>{_t("post-scheduler.title")}</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
+            <DialogBody {...props} onHide={toggle} />
+          </ModalBody>
+        </Modal>
+      )}
+    </>
+  );
+};
 
 export default (p: Props) => {
   const props: Props = {

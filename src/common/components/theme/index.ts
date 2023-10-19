@@ -9,10 +9,11 @@ export default (props: Props) => {
   useEffect(() => {
     if (["day", "night"].includes(props.global.theme)) {
       if (!props.global.isMobile) {
-        const body = document.querySelector("body");
-        if (!body) return;
-
-        body.className = `theme-${props.global.theme}`;
+        if (props.global.theme === "day") {
+          document.body.classList.remove("dark");
+        } else {
+          document.body.classList.add("dark");
+        }
       }
     }
   }, [props.global.theme]);

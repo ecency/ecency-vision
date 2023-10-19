@@ -89,6 +89,7 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
         />
         <DeckToolbarBaseActions
           isExpanded={isExpanded}
+          setIsExpanded={setIsExpanded}
           setShowPurchaseDialog={setShowPurchaseDialog}
         />
         <DeckToolbarCreate isExpanded={isExpanded} />
@@ -101,7 +102,9 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
       {schedules && <Schedules history={history} onHide={() => setSchedules(false)} />}
       {fragments && <Fragments onHide={() => setFragments(false)} />}
       {global.usePrivate && <NotificationHandler />}
-      {ui.notifications && activeUser && <UserNotifications history={history} />}
+      {ui.notifications && activeUser && (
+        <UserNotifications history={history} openLinksInNewTab={true} />
+      )}
       {ui.login && <Login history={history} />}
       <PurchaseQrDialog
         show={showPurchaseDialog}

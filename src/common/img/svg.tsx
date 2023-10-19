@@ -193,6 +193,15 @@ export const brightnessSvg = (
 );
 
 export const magnifySvg = (
+  <svg viewBox="0 0 24 24" width={16} height={16}>
+    <path
+      fill="currentColor"
+      d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+    />
+  </svg>
+);
+
+export const magnifyResponsibleSvg = (
   <svg viewBox="0 0 24 24">
     <path
       fill="currentColor"
@@ -1193,9 +1202,8 @@ export const copyContent = (
     height="24px"
     viewBox="0 0 24 24"
     width="24px"
-    fill="#FFFFFF"
+    fill="currentColor"
   >
-    <path d="M0 0h24v24H0V0z" fill="none" />
     <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
   </svg>
 );
@@ -1343,7 +1351,7 @@ export const downArrowSvg = (
   <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
-      stroke="#535E65"
+      stroke="currentColor"
       strokeLinecap="square"
     />
   </svg>
@@ -1353,7 +1361,7 @@ export const upArrowSvg = (
   <svg xmlns="http://www.w3.org/2000/svg" width="13" height="8" viewBox="0 0 13 8" fill="none">
     <path
       d="M11.623 6.59424L6.43483 1.40602L1.24661 6.59424"
-      stroke="#535E65"
+      stroke="currentColor"
       strokeLinecap="square"
     />
   </svg>
@@ -1907,7 +1915,7 @@ export const copyOutlinSvg = (
     height="30"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="#357ce6"
+    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="square"
     strokeLinejoin="round"
@@ -1963,6 +1971,36 @@ export const linkedinSvg = (
   </svg>
 );
 
+export const downloadSvg = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    className="bi bi-download"
+    viewBox="0 0 16 16"
+  >
+    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+  </svg>
+);
+
+export const regenerateSvg = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="square"
+    strokeLinejoin="round"
+  >
+    <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
+  </svg>
+);
+
 export const playListAddCheck = (
   <svg viewBox="0 0 24 24">
     <path
@@ -1981,5 +2019,87 @@ export const dragSvg = (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
+  </svg>
+);
+
+export const videoSvg = (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M16 10L18.5768 8.45392C19.3699 7.97803 19.7665 7.74009 20.0928 7.77051C20.3773 7.79703 20.6369 7.944 20.806 8.17433C21 8.43848 21 8.90095 21 9.8259V14.1741C21 15.099 21 15.5615 20.806 15.8257C20.6369 16.056 20.3773 16.203 20.0928 16.2295C19.7665 16.2599 19.3699 16.022 18.5768 15.5461L16 14M6.2 18H12.8C13.9201 18 14.4802 18 14.908 17.782C15.2843 17.5903 15.5903 17.2843 15.782 16.908C16 16.4802 16 15.9201 16 14.8V9.2C16 8.0799 16 7.51984 15.782 7.09202C15.5903 6.71569 15.2843 6.40973 14.908 6.21799C14.4802 6 13.9201 6 12.8 6H6.2C5.0799 6 4.51984 6 4.09202 6.21799C3.71569 6.40973 3.40973 6.71569 3.21799 7.09202C3 7.51984 3 8.07989 3 9.2V14.8C3 15.9201 3 16.4802 3.21799 16.908C3.40973 17.2843 3.71569 17.5903 4.09202 17.782C4.51984 18 5.07989 18 6.2 18Z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const uploadSvgV = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="currentColor"
+    className="bi bi-cloud-arrow-up"
+    viewBox="0 0 16 16"
+  >
+    <path
+      fillRule="evenodd"
+      d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z"
+    />
+    <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
+  </svg>
+);
+
+export const recordVideoSvg = (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M18.5002 12C18.5002 13.3807 17.381 14.5 16.0002 14.5C14.6195 14.5 13.5002 13.3807 13.5002 12C13.5002 10.6193 14.6195 9.5 16.0002 9.5C17.381 9.5 18.5002 10.6193 18.5002 12Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path
+      d="M10.5 12C10.5 13.3807 9.38071 14.5 8 14.5C6.61929 14.5 5.5 13.3807 5.5 12C5.5 10.6193 6.61929 9.5 8 9.5C9.38071 9.5 10.5 10.6193 10.5 12Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path d="M8 14.5H16" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round" />
+    <path
+      d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+export const circleSvg = (
+  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <circle r="12" cx="12" cy="12" fill="currentColor" />
+  </svg>
+);
+
+export const rectSvg = (
+  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <rect x={6} y={6} fill="currentColor" width={12} height={12} />
+  </svg>
+);
+
+export const switchCameraSvg = (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M11 19H4a2 2 0 01-2-2V7a2 2 0 012-2h5" />
+    <path d="M13 5h7a2 2 0 012 2v10a2 2 0 01-2 2h-5" />
+    <circle cx="12" cy="12" r="3" />
+    <path d="M18 22l-3-3 3-3" />
+    <path d="M6 2l3 3-3 3" />
   </svg>
 );

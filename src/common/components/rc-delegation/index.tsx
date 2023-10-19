@@ -1,17 +1,16 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import _ from "lodash";
-import { Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
 import badActors from "@hiveio/hivescript/bad-actors.json";
-
 import LinearProgress from "../linear-progress";
 import UserAvatar from "../user-avatar";
 import { error } from "../feedback";
-
 import { delegateRC, formatError } from "../../api/operations";
 import { getAccount } from "../../api/hive";
-
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
+import { FormControl, InputGroup } from "@ui/input";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 export const ResourceCreditsDelegation = (props: any) => {
   const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList, delegateeData } =
@@ -26,19 +25,20 @@ export const ResourceCreditsDelegation = (props: any) => {
   const [toWarning, setToWarning] = useState<string>("");
   const [toData, setToData] = useState<any>(delegateeData || "");
 
-  const toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  const toChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setInProgress(true);
     setTo(value);
     delayedSearch(value);
   };
 
-  const amountChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+  const amountChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value: amount } = e.target;
     setAmount(amount);
     if (
       amount === "" ||
-      (Number(amount) >= 5000000000 && Number(amount) < Number(resourceCredit))
+      (Number(amount) >= 5000000000 && Number(amount) < Number(resourceCredit)) ||
+      amount === "0"
     ) {
       setAmountError("");
     } else if (Number(amount) < 5000000000) {
@@ -80,7 +80,7 @@ export const ResourceCreditsDelegation = (props: any) => {
     !inProgress &&
     !amountError &&
     !!amount &&
-    Number(amount) >= 5000000000 &&
+    (Number(amount) === 0 || Number(amount) >= 5000000000) &&
     Number(amount) < Number(resourceCredit);
 
   const handleTo = async (value: string) => {
@@ -98,23 +98,29 @@ export const ResourceCreditsDelegation = (props: any) => {
       setToWarning("");
     }
     setToData(null);
-
-    return getAccount(value)
-      .then((resp) => {
-        if (resp) {
-          setToError("");
-          setToData(resp);
-        } else {
-          setToError(_t("transfer.to-not-found"));
-        }
-        return resp;
-      })
-      .catch((err) => {
-        error(...formatError(err));
-      })
-      .finally(() => {
-        setInProgress(false);
-      });
+    if (value.includes(",")) {
+      setToData(value);
+      setToError("");
+      setInProgress(false);
+      return true;
+    } else {
+      return getAccount(value)
+        .then((resp) => {
+          if (resp) {
+            setToError("");
+            setToData(resp);
+          } else {
+            setToError(_t("transfer.to-not-found"));
+          }
+          return resp;
+        })
+        .catch((err) => {
+          error(...formatError(err));
+        })
+        .finally(() => {
+          setInProgress(false);
+        });
+    }
   };
 
   const delayedSearch = useCallback(_.debounce(handleTo, 3000, { leading: true }), []);
@@ -146,57 +152,49 @@ export const ResourceCreditsDelegation = (props: any) => {
           {formHeader1}
           {inProgress && <LinearProgress />}
           <Form className="transaction-form-body">
-            <Form.Group as={Row}>
-              <Form.Label column={true} sm="2">
-                {_t("transfer.from")}
-              </Form.Label>
-              <Col sm="10">
-                <InputGroup>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text>@</InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <Form.Control value={activeUser.username} readOnly={true} />
+            <div className="grid grid-cols-12 mb-4">
+              <div className="col-span-12 sm:col-span-2 mt-3">
+                <label>{_t("transfer.from")}</label>
+              </div>
+              <div className="col-span-12 sm:col-span-10">
+                <InputGroup prepend="@">
+                  <FormControl type="text" value={activeUser.username} readOnly={true} />
                 </InputGroup>
-              </Col>
-            </Form.Group>
+              </div>
+            </div>
 
-            <>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("transfer.to")}
-                </Form.Label>
-                <Col sm="10">
-                  {/* <SuggestionList > */}
-                  <InputGroup>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text>@</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <Form.Control
-                      type="text"
-                      autoFocus={to === ""}
-                      placeholder={_t("transfer.to-placeholder")}
-                      value={to}
-                      onChange={toChanged}
-                      className={toError ? "is-invalid" : ""}
-                    />
-                  </InputGroup>
-                  {/* </SuggestionList> */}
-                </Col>
-              </Form.Group>
-              {toWarning && <FormText msg={toWarning} type="danger" />}
-              {toError && <FormText msg={toError} type="danger" />}
-            </>
+            <div className="grid grid-cols-12 mb-4">
+              <div className="col-span-12 sm:col-span-2 mt-3">
+                <label>{_t("transfer.to")}</label>
+              </div>
+              <div className="col-span-12 sm:col-span-10">
+                {/* <SuggestionList > */}
+                <InputGroup prepend="@">
+                  <FormControl
+                    type="text"
+                    autoFocus={to === ""}
+                    placeholder={_t("transfer.to-placeholder")}
+                    value={to}
+                    onChange={toChanged}
+                    className={toError ? "is-invalid" : ""}
+                  />
+                </InputGroup>
+                {/* </SuggestionList> */}
 
-            <Form.Group as={Row}>
-              <Form.Label column={true} sm="2">
-                {_t("transfer.amount")}
-              </Form.Label>
-              <Col sm="10" className="d-flex align-items-center">
-                <InputGroup>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text>#</InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <Form.Control
+                {toWarning && (
+                  <small className="text-warning-default tr-form-text">{toWarning}</small>
+                )}
+                {toError && <small className="text-red tr-form-text">{toError}</small>}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-12">
+              <div className="col-span-12 sm:col-span-2 mt-3">
+                <label>{_t("transfer.amount")}</label>
+              </div>
+              <div className="col-span-12 sm:col-span-10">
+                <InputGroup prepend="#">
+                  <FormControl
                     type="text"
                     placeholder={_t("transfer.amount-placeholder")}
                     value={amount}
@@ -206,28 +204,30 @@ export const ResourceCreditsDelegation = (props: any) => {
                     }
                   />
                 </InputGroup>
-              </Col>
-            </Form.Group>
+              </div>
+            </div>
 
-            {amount < 5000000000 && <FormText msg={amountError} type="danger" />}
-            {amount > Number(resourceCredit) && <FormText msg={amountError} type="danger" />}
+            {amount < 5000000000 && <small className="text-red tr-form-text">{amountError}</small>}
+            {amount > Number(resourceCredit) && (
+              <small className="text-red tr-form-text">{amountError}</small>
+            )}
 
-            <Row>
-              <Col lg={{ span: 10, offset: 2 }}>
+            <div className="grid grid-cols-12">
+              <div className="col-span-12 lg:col-span-10 lg:col-start-3">
                 <div className="balance space-3">
                   <span className="balance-label">{_t("transfer.balance")}</span>
                   <span>{`: ${resourceCredit}`}</span>
                 </div>
-              </Col>
-            </Row>
+              </div>
+            </div>
 
-            <Form.Group as={Row}>
-              <Col sm={{ span: 10, offset: 2 }}>
+            <div className="grid grid-cols-12 mb-4">
+              <div className="col-span-12 sm:col-span-10 sm:col-start-3">
                 <Button disabled={!canSubmit} onClick={next}>
                   {_t("g.next")}
                 </Button>
-              </Col>
-            </Form.Group>
+              </div>
+            </div>
           </Form>
         </div>
       )}
@@ -253,13 +253,12 @@ export const ResourceCreditsDelegation = (props: any) => {
               </div>
               <div className="amount">{amount} RC</div>
             </div>
-            <div className="d-flex justify-content-center">
-              <Button variant="outline-secondary" disabled={inProgress} onClick={back}>
+            <div className="flex justify-center">
+              <Button appearance="secondary" outline={true} disabled={inProgress} onClick={back}>
                 {_t("g.back")}
               </Button>
               <span className="hr-6px-btn-spacer" />
               <Button disabled={inProgress} onClick={signTransaction}>
-                {inProgress && <span>spinner</span>}
                 {_t("transfer.confirm")}
               </Button>
             </div>
@@ -267,16 +266,5 @@ export const ResourceCreditsDelegation = (props: any) => {
         </div>
       )}
     </div>
-  );
-};
-
-const FormText = (props: { msg: any; type: any }) => {
-  const { msg, type } = props;
-  return (
-    <Row>
-      <Col md={{ span: 10, offset: 2 }}>
-        <Form.Text className={`text-${type} tr-form-text`}>{msg}</Form.Text>
-      </Col>
-    </Row>
   );
 };

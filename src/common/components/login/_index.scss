@@ -1,11 +1,7 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .login-modal {
-  overflow-y: scroll !important;
-  .modal-body {
+  .ecency-modal-body {
     width: 100%;
     max-width: 390px;
     margin: auto;
@@ -27,15 +23,13 @@
     }
 
     p {
-      color: $steel-grey;
+      @apply text-gray-steel;
       text-align: center;
     }
 
     .user-list {
       position: relative;
       min-height: 100px;
-      max-height: 216px;
-      overflow-y: auto;
 
       .user-list-header {
         font-size: 18px;
@@ -44,15 +38,18 @@
         text-align: center;
 
         @include themify(day) {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
 
         @include themify(night) {
-          color: $metallic-blue;
+          @apply text-blue-metallic;
         }
       }
 
       .user-list-body {
+        overflow-y: auto;
+        max-height: 300px;
+        
         .user-list-item {
           align-items: center;
           border-radius: 25px;
@@ -68,22 +65,22 @@
           }
 
           @include themify(day) {
-            background: $duck-egg-blue;
-            color: $dark-sky-blue;
+            @apply text-blue-dark-sky;
+            @apply bg-blue-duck-egg;
           }
 
           @include themify(night) {
-            background: $metallic-blue;
-            color: $powder-blue;
+            @apply bg-blue-metallic;
+            @apply text-blue-powder;
           }
 
           &:hover {
             @include themify(day) {
-              background: lighten($dark-sky-blue, 30);
+              @apply bg-blue-dark-sky-030;
             }
 
             @include themify(night) {
-              background: darken($metallic-blue, 16);
+              @apply bg-blue-metallic-20;
             }
           }
 
@@ -100,7 +97,7 @@
           }
 
           .check-mark {
-            background: $dark-sky-blue;
+            @apply bg-blue-dark-sky;
             border-radius: 50%;
             height: 5px;
             left: -14px;
@@ -119,29 +116,29 @@
             width: 24px;
 
             svg {
-              color: $white;
+              @apply text-white;
               height: 16px;
             }
 
             &:hover {
               svg {
-                color: lighten($red2, 10);
+                @apply text-red-light-020;
               }
             }
 
             @include themify(day) {
-              background: darken($duck-egg-blue, 20);
+              @apply bg-blue-duck-egg-200;
 
               &:hover {
-                background: $duck-egg-blue;
+                @apply bg-blue-duck-egg;
               }
             }
 
             @include themify(night) {
-              background: darken($metallic-blue, 3);
+              @apply bg-blue-metallic-10;
 
               &:hover {
-                background: $metallic-blue;
+                @apply bg-blue-metallic;
               }
             }
           }

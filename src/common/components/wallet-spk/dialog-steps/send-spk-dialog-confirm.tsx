@@ -1,10 +1,10 @@
 import { _t } from "../../../i18n";
 import { arrowRightSvg } from "../../../img/svg";
-import { Button } from "react-bootstrap";
 import React from "react";
 import UserAvatar from "../../user-avatar";
 import { ActiveUser } from "../../../store/active-user/types";
 import { Global } from "../../../store/global/types";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -36,7 +36,7 @@ export const SendSpkDialogConfirm = ({
       <div className="confirmation">
         <div className="confirm-title">{_t(`transfer.${title}`)}</div>
         <div className="users">
-          <div className="from-user d-flex justify-content-center align-items-center">
+          <div className="from-user flex justify-center items-center">
             <UserAvatar username={activeUser!!.username} size="large" />
           </div>
           {showTo && (
@@ -53,8 +53,8 @@ export const SendSpkDialogConfirm = ({
         </div>
         {memo && <div className="memo">{memo}</div>}
       </div>
-      <div className="d-flex justify-content-center">
-        <Button variant="outline-secondary" onClick={() => back()}>
+      <div className="flex justify-center">
+        <Button appearance="secondary" outline={true} onClick={() => back()}>
           {_t("g.back")}
         </Button>
         <span className="hr-6px-btn-spacer" />

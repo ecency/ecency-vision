@@ -1,37 +1,29 @@
 import React, { Component } from "react";
-
-import { Form, FormControl } from "react-bootstrap";
-
 import { History } from "history";
-
-import { Modal, Spinner } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar/index";
 import FormattedCurrency from "../formatted-currency";
 import ProfileLink from "../profile-link/index";
 import Tooltip from "../tooltip";
-import Pagination from "../pagination";
-
-import { Vote, getActiveVotes } from "../../api/hive";
-
+import Pagination from "@ui/pagination";
+import { getActiveVotes, Vote } from "../../api/hive";
 import parseAsset from "../../helper/parse-asset";
 import parseDate, { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import accountReputation from "../../helper/account-reputation";
-
 import formattedNumber from "../../util/formatted-number";
 import _c from "../../util/fix-class-names";
-
 import { _t } from "../../i18n";
-
 import { heartSvg } from "../../img/svg";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
+import { Alert } from "@ui/alert";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   // const totalPayout =
@@ -118,7 +110,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
     });
   };
 
-  sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  sortChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.stateSet({ sort: e.target.value as SortOption });
   };
 
@@ -139,7 +131,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
     if (loading) {
       return (
         <div className="dialog-loading">
-          <Spinner animation="grow" variant="primary" />
+          <Spinner className="w-4 h-4" />
         </div>
       );
     }
@@ -158,9 +150,17 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
         return 0;
       })
       .slice(start, end);
+    const totalVotes =
+      this.props.entry.stats?.total_votes ||
+      (this.props.entry.active_votes && this.props.entry.active_votes?.length) ||
+      this.props.entry.total_votes ||
+      0;
 
     return (
       <>
+        {totalVotes !== votes.length && (
+          <Alert appearance="warning">{_t("entry-votes.pending-message")}</Alert>
+        )}
         <div className="voters-list">
           <div className="list-body">
             {sliced && sliced.length > 0
@@ -213,12 +213,12 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
           </div>
           <div className="sorter">
             <span className="label">{_t("entry-votes.sort")}</span>
-            <Form.Control as="select" onChange={this.sortChanged} value={sort}>
+            <FormControl type="select" onChange={this.sortChanged} value={sort}>
               <option value="reward">{_t("entry-votes.sort-reward")}</option>
               <option value="timestamp">{_t("entry-votes.sort-timestamp")}</option>
               <option value="reputation">{_t("entry-votes.sort-reputation")}</option>
               <option value="percent">{_t("entry-votes.sort-percent")}</option>
-            </Form.Control>
+            </FormControl>
           </div>
         </div>
       </>
@@ -232,6 +232,7 @@ interface Props {
   activeUser: ActiveUser | null;
   entry: Entry;
   addAccount: (data: Account) => void;
+  icon?: JSX.Element;
 }
 
 interface State {
@@ -255,7 +256,12 @@ export class EntryVotes extends Component<Props, State> {
   };
 
   componentDidUpdate(prevProps: Readonly<Props>) {
-    if (prevProps.entry?.active_votes?.length !== this.props.entry?.active_votes?.length) {
+    const hasDifferentVotes =
+      prevProps.entry?.active_votes?.length !== this.props.entry?.active_votes?.length;
+    const hasCurrentUserVote = this.props.entry?.active_votes?.find(
+      ({ voter }) => voter === this.props.activeUser?.username
+    );
+    if (hasCurrentUserVote && hasDifferentVotes) {
       this.setState({ vote: true });
     }
   }
@@ -276,7 +282,11 @@ export class EntryVotes extends Component<Props, State> {
   render() {
     const { entry } = this.props;
     const { visible, searchText, searchTextDisabled, vote } = this.state;
-    const totalVotes = (entry.active_votes && entry.active_votes.length) || entry.total_votes || 0;
+    const totalVotes =
+      entry.stats?.total_votes ||
+      (entry.active_votes && entry.active_votes?.length) ||
+      entry.total_votes ||
+      0;
     const { voted } = this.isVoted();
     let cls = _c(`heart-icon ${voted ? "voted" : ""} ${vote ? "vote-done" : ""} `);
 
@@ -289,7 +299,7 @@ export class EntryVotes extends Component<Props, State> {
 
     const child = (
       <>
-        <div className={cls}>{heartSvg}</div>
+        <div className={cls}>{this.props.icon ?? heartSvg}</div>
         {totalVotes}
       </>
     );
@@ -322,21 +332,19 @@ export class EntryVotes extends Component<Props, State> {
             animation={false}
             className="entry-votes-modal px-3"
           >
-            <Modal.Header closeButton={true} className="align-items-center px-0">
-              <Modal.Title>{title}</Modal.Title>
-            </Modal.Header>
-            <Form.Group className="w-100 mb-3">
-              <Form.Control
+            <ModalHeader closeButton={true} className="items-center">
+              <ModalTitle>{title}</ModalTitle>
+            </ModalHeader>
+            <div className="w-full px-3 mb-4">
+              <FormControl
                 type="text"
                 placeholder={_t("friends.search-placeholder")}
                 value={searchText}
-                onChange={(e) => {
-                  this.setState({ searchText: e.target.value });
-                }}
+                onChange={(e) => this.setState({ searchText: e.target.value })}
                 disabled={searchTextDisabled}
               />
-            </Form.Group>
-            <Modal.Body className="px-0">
+            </div>
+            <ModalBody>
               <EntryVotesDetail
                 {...this.props}
                 entry={entry}
@@ -345,7 +353,7 @@ export class EntryVotes extends Component<Props, State> {
                   this.setState({ searchTextDisabled: value })
                 }
               />
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </>
@@ -353,7 +361,7 @@ export class EntryVotes extends Component<Props, State> {
   }
 }
 
-export default (p: Pick<Props, "entry" | "history">) => {
+export default (p: Pick<Props, "entry" | "history" | "icon">) => {
   const { global, activeUser, addAccount } = useMappedStore();
 
   const props = {
@@ -361,7 +369,8 @@ export default (p: Pick<Props, "entry" | "history">) => {
     global,
     entry: p.entry,
     activeUser,
-    addAccount
+    addAccount,
+    icon: p.icon
   };
 
   return <EntryVotes {...props} />;

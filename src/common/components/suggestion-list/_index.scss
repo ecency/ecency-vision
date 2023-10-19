@@ -1,10 +1,12 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .suggestion {
   position: relative;
+
+  :first-child {
+    position: relative;
+    z-index: 10;
+  }
 
   .suggestion-list-parent {
     position: absolute;
@@ -25,18 +27,18 @@
     min-width: 200px;
 
     @include themify(day) {
-      background: $white;
+      @apply bg-white;
     }
 
     @include themify(night) {
-      background: lighten($dark-six, 5);
+      @apply bg-dark-600-010-light;
     }
 
     .list-header {
       padding: 8px 20px;
       font-weight: 500;
-      background: $dark-sky-blue;
-      color: $white;
+      @apply bg-blue-dark-sky;
+      @apply text-white;
       border-top-left-radius: $border-radius;
       border-top-right-radius: $border-radius;
     }
@@ -58,22 +60,21 @@
         }
 
         @include themify(day) {
-          color: $warm-grey;
+          @apply text-gray-warm;
 
           &:hover,
           &:focus {
-            background: lighten($dark-sky-blue, 10);
-            color: $white;
+            @apply bg-blue-dark-sky-010;
+            @apply text-white;
           }
         }
 
         @include themify(night) {
-          color: $silver;
+          @apply text-silver;
 
           &:hover,
           &:focus {
-            background: $metallic-blue;
-            color: $white;
+            @apply text-white;
           }
         }
       }
@@ -82,23 +83,79 @@
   .more-result {
     .list-item {
       @include themify(day) {
-        background: $white-four !important;
+        @apply bg-light-400;
 
         &:hover,
         &:focus {
-          color: $dark !important;
+          @apply text-dark-default;
         }
       }
 
       @include themify(night) {
-        color: $white !important;
-        background: $dark-indigo !important;
+        @apply text-white;
+        @apply bg-indigo-dark;
       }
     }
 
     .list-item {
       &:last-child {
         border-radius: 0 !important;
+      }
+    }
+  }
+
+  .modal-suggestion-list {
+    width: 100%;
+    box-shadow: $box-shadow;
+    z-index: 9;
+    min-width: 200px;
+    overflow: hidden;
+
+    @include themify(day) {
+      @apply bg-white;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-600-010-light;
+    }
+
+    .list-body {
+      max-height: 200px;
+      overflow-x: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      .list-item {
+        padding: 8px 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+
+        &:last-child {
+          border-bottom-left-radius: $border-radius;
+          border-bottom-right-radius: $border-radius;
+        }
+
+        @include themify(day) {
+          @apply text-gray-warm;
+
+          &:hover,
+          &:focus {
+            @apply bg-blue-dark-sky-040;
+            @apply text-blue-dark-sky;
+          }
+        }
+
+        @include themify(night) {
+          @apply text-silver;
+
+          &:hover,
+          &:focus {
+            @apply text-white;
+          }
+        }
       }
     }
   }

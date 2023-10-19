@@ -41,8 +41,8 @@ export const AdvancedModeToolbar = ({
   };
 
   return (
-    <div className="advanced-mode-toolbar d-flex border-bottom border-top px-3">
-      <div className="trading-pair py-3 pl-2 pr-3 border-right">
+    <div className="advanced-mode-toolbar flex border-b border-t border-[--border-color] px-3">
+      <div className="trading-pair py-3 pl-2 pr-4 border-r border-[--border-color]">
         <b>
           {fromAsset}/{toAsset}
         </b>
@@ -52,16 +52,14 @@ export const AdvancedModeToolbar = ({
       ) : (
         <div className="pair-info px-3 flex-1">
           <div className="price">
-            <div className={"amount " + (dayChange.percent > 0 ? "text-success" : "text-danger")}>
+            <div className={"amount " + (dayChange.percent > 0 ? "text-green" : "text-red")}>
               {formattedNumber(dayChange.price)}
             </div>
             <div className="usd-value">${usdPrice.toFixed(2)}</div>
           </div>
           <div className="day-change-price change-price">
             <label>24h change</label>
-            <div className={dayChange.percent > 0 ? "text-success" : "text-danger"}>
-              {getPercent()}%
-            </div>
+            <div className={dayChange.percent > 0 ? "text-green" : "text-red"}>{getPercent()}%</div>
           </div>
           <div className="day-high-price change-price">
             <label>24h high</label>
@@ -81,9 +79,10 @@ export const AdvancedModeToolbar = ({
           </div>
         </div>
       )}
-      <div className="d-flex align-items-center">
+      <div className="flex items-center">
         <AdvancedModeSettings updateRate={updateRate} setUpdateRate={setUpdateRate} />
         <ModeSelector
+          className="py-1 my-2"
           mode={mode}
           onSelect={(mode) => {
             setMode(mode);

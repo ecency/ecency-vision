@@ -1,11 +1,8 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .faq-container.section-container {
   @include themify(night) {
-    background: $dark;
+    @apply bg-dark-default;
   }
 }
 
@@ -15,11 +12,11 @@
   }
   .section :hover {
     @include themify(day) {
-      background: $light-powder-blue;
+      @apply bg-blue-light-powder;
     }
 
     @include themify(night) {
-      background: $gunmetal;
+      @apply bg-gunmetal;
     }
   }
   .section-body {
@@ -31,11 +28,11 @@
     font-size: 1rem;
 
     @include themify(day) {
-      color: $light-black;
+      @apply text-gray-charcoal-010;
     }
 
     @include themify(night) {
-      color: $white;
+      @apply text-white;
     }
   }
 
@@ -44,7 +41,7 @@
   }
 
   .section-content:hover {
-    background: $white-four;
+    @apply bg-light-400;
   }
 
   .section-content {

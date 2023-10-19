@@ -5,7 +5,7 @@ exports[`(1) Buying render 1`] = `
   className="p-2 border p-3 rounded"
 >
   <div
-    className="d-flex justify-content-between align-items-center "
+    className="flex justify-between items-center "
   >
     <h3
       className="mb-0"
@@ -15,11 +15,11 @@ exports[`(1) Buying render 1`] = `
     </h3>
     <div>
       <small
-        className="d-flex cursor-pointer"
+        className="flex cursor-pointer"
         onClick={[Function]}
       >
         <div
-          className="mr-1 text-primary"
+          className="mr-1 text-blue-dark-sky"
         >
           Available
           :
@@ -29,10 +29,10 @@ exports[`(1) Buying render 1`] = `
         </div>
       </small>
       <small
-        className="d-flex"
+        className="flex"
       >
         <div
-          className="mr-1 text-primary"
+          className="mr-1 text-blue-dark-sky"
         >
           Lowest ask
           :
@@ -48,87 +48,100 @@ exports[`(1) Buying render 1`] = `
   </div>
   <hr />
   <form
-    className=""
+    className="block "
     onSubmit={[Function]}
   >
     <div
-      className="form-group"
+      className="mb-4"
     >
       <label
-        className="form-label"
+        className=""
       >
         Price
       </label>
       <div
-        className="input-group"
+        className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
       >
         <input
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
           onChange={[Function]}
           placeholder="0.0"
+          type="text"
           value="6.900000"
         />
-        <span
-          className="rounded-left input-group-text"
+        <div
+          className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 flex items-center justify-center px-2.5 border-2"
+          onClick={[Function]}
         >
           HBD/HIVE
-        </span>
+        </div>
       </div>
     </div>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <label
-        className="form-label"
+        className=""
       >
         Amount
       </label>
       <div
-        className="input-group"
+        className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
       >
         <input
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
           onChange={[Function]}
           placeholder="0.0"
+          type="text"
           value={0}
         />
-        <span
-          className="rounded-left input-group-text"
+        <div
+          className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 flex items-center justify-center px-2.5 border-2"
+          onClick={[Function]}
         >
           HIVE
-        </span>
+        </div>
       </div>
     </div>
     <div
-      className="mb-4 form-group"
+      className="mb-4"
     >
       <label
-        className="form-label"
+        className=""
       >
         Total
       </label>
       <div
-        className="input-group"
+        className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
       >
         <input
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
           onChange={[Function]}
           placeholder="0.0"
+          type="text"
           value={0}
         />
-        <span
-          className="rounded-left input-group-text"
+        <div
+          className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 flex items-center justify-center px-2.5 border-2"
+          onClick={[Function]}
         >
           HBD
-        </span>
+        </div>
       </div>
     </div>
     <button
-      className="btn btn-primary btn-block"
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 block"
       disabled={true}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="submit"
     >
-      Buy
+      <div>
+        Buy
+      </div>
     </button>
   </form>
 </div>
@@ -139,7 +152,7 @@ exports[`(1) Selling render 1`] = `
   className="p-2 border p-3 rounded"
 >
   <div
-    className="d-flex justify-content-between align-items-center "
+    className="flex justify-between items-center "
   >
     <h3
       className="mb-0"
@@ -149,11 +162,11 @@ exports[`(1) Selling render 1`] = `
     </h3>
     <div>
       <small
-        className="d-flex cursor-pointer"
+        className="flex cursor-pointer"
         onClick={[Function]}
       >
         <div
-          className="mr-1 text-primary"
+          className="mr-1 text-blue-dark-sky"
         >
           Available
           :
@@ -163,10 +176,10 @@ exports[`(1) Selling render 1`] = `
         </div>
       </small>
       <small
-        className="d-flex"
+        className="flex"
       >
         <div
-          className="mr-1 text-primary"
+          className="mr-1 text-blue-dark-sky"
         >
           Highest bid
           :
@@ -182,87 +195,100 @@ exports[`(1) Selling render 1`] = `
   </div>
   <hr />
   <form
-    className=""
+    className="block "
     onSubmit={[Function]}
   >
     <div
-      className="form-group"
+      className="mb-4"
     >
       <label
-        className="form-label"
+        className=""
       >
         Price
       </label>
       <div
-        className="input-group"
+        className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
       >
         <input
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
           onChange={[Function]}
           placeholder="0.0"
+          type="text"
           value="6.900000"
         />
-        <span
-          className="rounded-left input-group-text"
+        <div
+          className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 flex items-center justify-center px-2.5 border-2"
+          onClick={[Function]}
         >
           HBD/HIVE
-        </span>
+        </div>
       </div>
     </div>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <label
-        className="form-label"
+        className=""
       >
         Amount
       </label>
       <div
-        className="input-group"
+        className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
       >
         <input
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
           onChange={[Function]}
           placeholder="0.0"
+          type="text"
           value={0}
         />
-        <span
-          className="rounded-left input-group-text"
+        <div
+          className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 flex items-center justify-center px-2.5 border-2"
+          onClick={[Function]}
         >
           HIVE
-        </span>
+        </div>
       </div>
     </div>
     <div
-      className="mb-4 form-group"
+      className="mb-4"
     >
       <label
-        className="form-label"
+        className=""
       >
         Total
       </label>
       <div
-        className="input-group"
+        className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
       >
         <input
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
           onChange={[Function]}
           placeholder="0.0"
+          type="text"
           value={0}
         />
-        <span
-          className="rounded-left input-group-text"
+        <div
+          className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 flex items-center justify-center px-2.5 border-2"
+          onClick={[Function]}
         >
           HBD
-        </span>
+        </div>
       </div>
     </div>
     <button
-      className="btn btn-primary btn-block"
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 block"
       disabled={true}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="submit"
     >
-      Sell
+      <div>
+        Sell
+      </div>
     </button>
   </form>
 </div>

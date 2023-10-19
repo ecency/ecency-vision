@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .entry-list-loading-item {
   @include clearfix();
@@ -15,11 +12,13 @@
   }
 
   @include themify(day) {
-    border-bottom: 1px solid lighten($white-four, 4);
+    border-bottom: 1px solid;
+    @apply border-light-300;
   }
 
   @include themify(night) {
-    border-bottom: 1px solid $dark;
+    border-bottom: 1px solid;
+    @apply border-dark-default;
   }
 
   .item-header,
@@ -29,11 +28,11 @@
     border-radius: 10px;
 
     @include themify(day) {
-      background: lighten($white-four, 4);
+      @apply bg-light-light-405;
     }
 
     @include themify(night) {
-      background: $dark;
+      @apply bg-dark-default;
     }
   }
 

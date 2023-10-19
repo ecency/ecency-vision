@@ -1,10 +1,11 @@
-import { Client, RCAPI } from "@hiveio/dhive";
+import { Client, RCAPI, utils } from "@hiveio/dhive";
 
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
 import { TrendingTag } from "../store/trending-tags/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { FullAccount, AccountProfile, AccountFollowStats } from "../store/accounts/types";
+import { Entry } from "../store/entries/types";
 
 import parseAsset from "../helper/parse-asset";
 import { vestsToRshares } from "../helper/vesting";
@@ -46,6 +47,14 @@ export interface FeedHistory {
     base: string;
     quote: string;
   };
+}
+
+export interface ChainProps {
+  account_creation_fee: string;
+  maximum_block_size: number;
+  hbd_interest_rate: number;
+  account_subsidy_budget: number;
+  account_subsidy_decay: number;
 }
 
 export interface RewardFund {
@@ -134,6 +143,10 @@ export interface OrdersData {
   trading: OrdersDataItem[];
 }
 
+export interface Reputations {
+  account: string;
+  reputation: number;
+}
 interface ApiError {
   error: string;
   data: any;
@@ -197,6 +210,9 @@ export const getAllTrendingTags = (
 export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
   client.database.call("lookup_accounts", [q, limit]);
 
+export const getAccountReputations = (q: string, limit = 50): Promise<Reputations[]> =>
+  client.call("condenser_api", "get_account_reputations", [q, limit]);
+
 export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
   return client.database.getAccounts(usernames).then((resp: any[]): FullAccount[] =>
     resp.map((x) => {
@@ -225,6 +241,7 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
         savings_hbd_seconds_last_update: x.savings_hbd_seconds_last_update,
         savings_hbd_seconds: x.savings_hbd_seconds,
         next_vesting_withdrawal: x.next_vesting_withdrawal,
+        pending_claimed_accounts: x.pending_claimed_accounts,
         vesting_shares: x.vesting_shares,
         delegated_vesting_shares: x.delegated_vesting_shares,
         received_vesting_shares: x.received_vesting_shares,
@@ -338,9 +355,13 @@ export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("
 export const getRewardFund = (): Promise<RewardFund> =>
   client.database.call("get_reward_fund", ["post"]);
 
+export const getChainProps = (): Promise<ChainProps> =>
+  client.database.call("get_chain_properties");
+
 export const getDynamicProps = async (): Promise<DynamicProps> => {
   const globalDynamic = await getDynamicGlobalProperties();
   const feedHistory = await getFeedHistory();
+  const chainProps = await getChainProps();
   const rewardFund = await getRewardFund();
 
   const hivePerMVests =
@@ -358,6 +379,7 @@ export const getDynamicProps = async (): Promise<DynamicProps> => {
   const totalVestingShares = parseAsset(globalDynamic.total_vesting_shares).amount;
   const virtualSupply = parseAsset(globalDynamic.virtual_supply).amount;
   const vestingRewardPercent = globalDynamic.vesting_reward_percent;
+  const accountCreationFee = chainProps.account_creation_fee;
 
   return {
     hivePerMVests,
@@ -371,7 +393,8 @@ export const getDynamicProps = async (): Promise<DynamicProps> => {
     totalVestingFund,
     totalVestingShares,
     virtualSupply,
-    vestingRewardPercent
+    vestingRewardPercent,
+    accountCreationFee
   };
 };
 
@@ -586,9 +609,12 @@ export const getSavingsWithdrawFrom = (account: string): Promise<SavingsWithdraw
 export interface BlogEntry {
   blog: string;
   entry_id: number;
+  post_id?: number;
+  num?: number;
   author: string;
   permlink: string;
   reblogged_on: string;
+  created?: string;
 }
 
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
@@ -634,3 +660,6 @@ export interface RcOperationStats {
 }
 
 export const getRcOperationStats = (): Promise<any> => client.call("rc_api", "get_rc_stats", {});
+
+export const getContentReplies = (author: string, permlink: string): Promise<Entry[] | null> =>
+  client.call("condenser_api", "get_content_replies", { author, permlink });

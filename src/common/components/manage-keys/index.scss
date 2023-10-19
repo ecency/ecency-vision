@@ -1,10 +1,7 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .key {
-  color: $light-black;
+  @apply text-gray-charcoal-010;
 }
 
 .copy-btn {

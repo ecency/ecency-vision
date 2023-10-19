@@ -1,10 +1,7 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .entry-payout {
-  color: $steel-grey;
+  @apply text-gray-steel;
   margin-right: 15px;
   cursor: default;
 
@@ -20,40 +17,34 @@
   }
 
   &.payout-declined {
-    color: lighten($steel-grey, 15);
+    @apply text-gray-steel-light-015;
     text-decoration: line-through;
   }
 
   &.payout-limit-hit {
-    color: lighten($steel-grey, 15);
+    @apply text-gray-steel-light-015;
     opacity: .8;
   }
 }
 
-.payout-popover {
-  max-width: none !important;
-  font-size: .92em !important;
-  .popover-body {
-    max-width: none !important;
+.payout-popover-content {
+  @apply text-sm;
 
-    .payout-popover-content {
-      p {
-        margin: 0 0 8px 0;
-        display: flex;
+  p {
+    margin: 0 0 8px 0;
+    display: flex;
 
-        &:last-of-type {
-          margin-bottom: 0;
-        }
+    &:last-of-type {
+      margin-bottom: 0;
+    }
 
-        .label {
-          display: inline-block;
-          font-weight: 500;
-          width: 130px;
-        }
+    .label {
+      display: inline-block;
+      font-weight: 500;
+      width: 130px;
+    }
 
-        .value {
-        }
-      }
+    .value {
     }
   }
 }

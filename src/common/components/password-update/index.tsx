@@ -1,25 +1,20 @@
 import React from "react";
-
-import { Button, Form, FormControl, Modal, Spinner } from "react-bootstrap";
-
-import { PrivateKey, KeyRole, cryptoUtils } from "@hiveio/dhive";
-
+import { cryptoUtils, KeyRole, PrivateKey } from "@hiveio/dhive";
 import base58 from "bs58";
-
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import { error, success } from "../feedback";
-
-import { updatePassword, formatError } from "../../api/operations";
-
+import { formatError, updatePassword } from "../../api/operations";
 import random from "../../util/rnd";
-
 import { _t } from "../../i18n";
-
 import { keySvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Spinner } from "@ui/spinner";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   activeUser: ActiveUser;
@@ -48,11 +43,11 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
     this.stateSet({ newPass });
   };
 
-  curPassChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  curPassChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ curPass: e.target.value });
   };
 
-  newPass2Changed = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  newPass2Changed = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ newPass2: e.target.value });
   };
 
@@ -132,13 +127,13 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
             this.update();
           }}
         >
-          <Form.Group controlId="account-name">
-            <Form.Label>{_t("password-update.account")}</Form.Label>
-            <Form.Control type="text" readOnly={true} value={activeUser.username} />
-          </Form.Group>
-          <Form.Group controlId="cur-pass">
-            <Form.Label>{_t("password-update.cur-pass")}</Form.Label>
-            <Form.Control
+          <div className="mb-4">
+            <label>{_t("password-update.account")}</label>
+            <FormControl type="text" readOnly={true} value={activeUser.username} />
+          </div>
+          <div className="mb-4">
+            <label>{_t("password-update.cur-pass")}</label>
+            <FormControl
               value={curPass}
               onChange={this.curPassChanged}
               required={true}
@@ -148,21 +143,21 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
               autoFocus={true}
               autoComplete="off"
             />
-          </Form.Group>
-          <Form.Group controlId="new-pass">
-            <Form.Label>{_t("password-update.new-pass")}</Form.Label>
+          </div>
+          <div className="mb-4">
+            <label>{_t("password-update.new-pass")}</label>
             <div>
               {!newPass && (
-                <Button variant="outline-primary" onClick={this.genWif}>
+                <Button outline={true} onClick={this.genWif}>
                   {_t("password-update.pass-gen")}
                 </Button>
               )}
               {newPass && <code className="pass-generated">{newPass}</code>}
             </div>
-          </Form.Group>
-          <Form.Group controlId="re-new-pass">
-            <Form.Label>{_t("password-update.new-pass2")}</Form.Label>
-            <Form.Control
+          </div>
+          <div className="mb-4">
+            <label>{_t("password-update.new-pass2")}</label>
+            <FormControl
               value={newPass2}
               onChange={this.newPass2Changed}
               required={true}
@@ -171,20 +166,23 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
               onInvalid={(e: any) => handleInvalid(e, "password-update.", "validation-password")}
               onInput={handleOnInput}
             />
-          </Form.Group>
-          <Form.Group controlId="accept">
-            <Form.Check
+          </div>
+          <div className="mb-4">
+            <FormControl
+              checked={false}
               required={true}
               type="checkbox"
               label={_t("password-update.label-check")}
               onInvalid={(e: any) => handleInvalid(e, "password-update.", "validation-label")}
-              onInput={handleOnInput}
+              onChange={handleOnInput}
             />
-          </Form.Group>
-          <Button variant="primary" type="submit" disabled={inProgress}>
-            {inProgress && (
-              <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
-            )}
+          </div>
+          <Button
+            type="submit"
+            disabled={inProgress}
+            icon={inProgress && <Spinner className="mr-[6px] w-3.5 h-3.5" />}
+            iconPlacement="left"
+          >
             {_t("g.update")}
           </Button>
         </Form>
@@ -226,16 +224,14 @@ export default class PasswordUpdateDialog extends BaseComponent<DialogProps, Dia
             centered={true}
             onHide={this.toggleDialog}
             animation={false}
-            backdrop="static"
-            keyboard={false}
             className="password-update-modal"
           >
-            <Modal.Header closeButton={true}>
-              <Modal.Title>{_t("password-update.title")}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
+            <ModalHeader closeButton={true}>
+              <ModalTitle>{_t("password-update.title")}</ModalTitle>
+            </ModalHeader>
+            <ModalBody>
               <PasswordUpdate {...this.props} onUpdate={this.toggleDialog} />
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
       </>

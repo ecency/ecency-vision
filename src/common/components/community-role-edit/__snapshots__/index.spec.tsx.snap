@@ -8,31 +8,30 @@ exports[`(1) Render 1`] = `
     className="user-role-form "
   >
     <div
-      className="form-group row"
+      className="flex mb-4"
     >
-      <label
-        className="form-label col-form-label col-sm-2"
-      >
-        Username
-      </label>
       <div
-        className="col-sm-10"
+        className="w-full sm:w-2/12"
+      >
+        <label>
+          Username
+        </label>
+      </div>
+      <div
+        className="w-full sm:w-10/12"
       >
         <div
-          className="input-group"
+          className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
         >
           <div
-            className="input-group-prepend"
+            className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+            onClick={[Function]}
           >
-            <span
-              className="input-group-text"
-            >
-              @
-            </span>
+            @
           </div>
           <input
             autoFocus={false}
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
             onChange={[Function]}
             placeholder="username"
             type="text"
@@ -43,19 +42,22 @@ exports[`(1) Render 1`] = `
       </div>
     </div>
     <div
-      className="form-group row"
+      className="flex mb-4"
     >
-      <label
-        className="form-label col-form-label col-sm-2"
-      >
-        Role
-      </label>
       <div
-        className="col-sm-10"
+        className="w-full sm:w-2/12"
+      >
+        <label>
+          Role
+        </label>
+      </div>
+      <div
+        className="w-full sm:w-10/12"
       >
         <select
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
           onChange={[Function]}
+          type="select"
           value="mod"
         >
           <option
@@ -87,15 +89,22 @@ exports[`(1) Render 1`] = `
       </div>
     </div>
     <div
-      className="d-flex justify-content-end"
+      className="flex justify-end"
     >
       <button
-        className="btn btn-primary"
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
         disabled={false}
         onClick={[Function]}
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
         type="button"
       >
-        Save
+        <div>
+          Save
+        </div>
       </button>
     </div>
   </div>

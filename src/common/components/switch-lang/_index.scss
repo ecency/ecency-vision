@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .switch-language {
   .menu-list {
@@ -13,11 +10,11 @@
     text-align: center;
 
     @include themify(day) {
-      background: $white-three;
+      @apply bg-light-300;
     }
 
     @include themify(night) {
-      background: $dark-two;
+      @apply bg-dark-200;
     }
   }
 }

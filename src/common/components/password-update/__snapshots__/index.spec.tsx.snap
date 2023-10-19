@@ -2,21 +2,28 @@
 
 exports[`(1) Default render 1`] = `
 <button
-  className="btn btn-primary btn-sm"
-  disabled={false}
+  className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
   onClick={[Function]}
+  size="sm"
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
   type="button"
 >
-  <svg
-    viewBox="0 0 24 24"
-  >
-    <path
-      d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
-      fill="currentColor"
-    />
-  </svg>
-   
-  Change Password
+  <div>
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
+        fill="currentColor"
+      />
+    </svg>
+     
+    Change Password
+  </div>
 </button>
 `;
 
@@ -25,40 +32,32 @@ exports[`(2) Dialog content 1`] = `
   className="dialog-content"
 >
   <form
-    className=""
+    className="block "
     onSubmit={[Function]}
   >
     <div
-      className="form-group"
+      className="mb-4"
     >
-      <label
-        className="form-label"
-        htmlFor="account-name"
-      >
+      <label>
         Account
       </label>
       <input
-        className="form-control"
-        id="account-name"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         readOnly={true}
         type="text"
         value="foo"
       />
     </div>
     <div
-      className="form-group"
+      className="mb-4"
     >
-      <label
-        className="form-label"
-        htmlFor="cur-pass"
-      >
+      <label>
         Current password
       </label>
       <input
         autoComplete="off"
         autoFocus={true}
-        className="form-control"
-        id="cur-pass"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onInput={[Function]}
         onInvalid={[Function]}
@@ -68,39 +67,38 @@ exports[`(2) Dialog content 1`] = `
       />
     </div>
     <div
-      className="form-group"
+      className="mb-4"
     >
-      <label
-        className="form-label"
-        htmlFor="new-pass"
-      >
+      <label>
         New password
       </label>
       <div>
         <button
-          className="btn btn-outline-primary"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
           onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         >
-          Click to generate password
+          <div>
+            Click to generate password
+          </div>
         </button>
         
       </div>
     </div>
     <div
-      className="form-group"
+      className="mb-4"
     >
-      <label
-        className="form-label"
-        htmlFor="re-new-pass"
-      >
+      <label>
         Confirm new password
       </label>
       <input
         autoComplete="off"
-        className="form-control"
-        id="re-new-pass"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         onChange={[Function]}
         onInput={[Function]}
         onInvalid={[Function]}
@@ -110,35 +108,33 @@ exports[`(2) Dialog content 1`] = `
       />
     </div>
     <div
-      className="form-group"
+      className="mb-4"
     >
       <div
-        className="form-check"
+        className="ecency-checkbox cursor-pointer flex items-center justify-center gap-3"
+        onClick={[Function]}
       >
-        <input
-          className="form-check-input"
-          disabled={false}
-          id="accept"
-          onInput={[Function]}
-          onInvalid={[Function]}
-          required={true}
-          type="checkbox"
+        <div
+          className="border-2 rounded-md w-[1.25rem] h-[1.25rem] flex items-center justify-center duration-300 hover:border-gray-400"
         />
-        <label
-          className="form-check-label"
-          htmlFor="accept"
-          title=""
-        >
+        <div>
           I have securely saved my generated password
-        </label>
+        </div>
       </div>
     </div>
     <button
-      className="btn btn-primary"
+      className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       disabled={false}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
       type="submit"
     >
-      Update
+      <div>
+        Update
+      </div>
     </button>
   </form>
 </div>

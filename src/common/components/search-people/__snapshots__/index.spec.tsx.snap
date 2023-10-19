@@ -2,17 +2,17 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="card search-people"
+  className="border bg-white rounded  search-people"
 >
   <div
-    className="card-header"
+    className="bg-gray-100 border-b p-3"
   >
     <strong>
       People
     </strong>
   </div>
   <div
-    className="card-body"
+    className="p-3"
   >
     <div
       className="linear-progress"
@@ -30,17 +30,17 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) No matches 1`] = `
 <div
-  className="card search-people"
+  className="border bg-white rounded  search-people"
 >
   <div
-    className="card-header"
+    className="bg-gray-100 border-b p-3"
   >
     <strong>
       People
     </strong>
   </div>
   <div
-    className="card-body"
+    className="p-3"
   >
     <div
       className="linear-progress"

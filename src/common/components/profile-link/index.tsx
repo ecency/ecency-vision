@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { History } from "history";
 import { history as historyFromStore } from "../../store";
 import { Account } from "../../store/accounts/types";
@@ -11,6 +11,8 @@ interface Props {
   username: string;
   addAccount: (data: Account) => void;
   afterClick?: () => void;
+  target?: string;
+  className?: string;
 }
 
 export default (p: Props) => {
@@ -21,13 +23,21 @@ export default (p: Props) => {
 
     addAccount({ name: username });
 
-    history!.push(makePath(username));
+    if (p.target !== "_blank") {
+      history!.push(makePath(username));
+    } else {
+      window.open(makePath(p.username), "_blank");
+    }
 
     if (afterClick) afterClick();
   };
 
   return (
-    <a href={makePath(p.username)} onClick={clicked}>
+    <a
+      href={p.target === "_blank" ? "#" : makePath(p.username)}
+      className={p.className}
+      onClick={clicked}
+    >
       {p.children}
     </a>
   );

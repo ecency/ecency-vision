@@ -10,21 +10,19 @@ exports[`(1) Default render 1`] = `
     Profile
   </div>
   <div
-    className="form-row"
+    className="grid grid-cols-12 gap-3"
   >
     <div
-      className="col-xl-4 col-lg-6"
+      className="col-span-12 lg:col-span-6 xl:col-span-4"
     >
       <div
-        className="form-group"
+        className="mb-4"
       >
-        <label
-          className="form-label"
-        >
+        <label>
           Display Name
         </label>
         <input
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
           data-var="name"
           disabled={false}
           maxLength={30}
@@ -35,18 +33,16 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
     <div
-      className="col-xl-4 col-lg-6"
+      className="col-span-12 lg:col-span-6 xl:col-span-4"
     >
       <div
-        className="form-group"
+        className="mb-4"
       >
-        <label
-          className="form-label"
-        >
+        <label>
           About
         </label>
         <input
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
           data-var="about"
           disabled={false}
           maxLength={160}
@@ -57,21 +53,19 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
     <div
-      className="col-xl-4 col-lg-6"
+      className="col-span-12 lg:col-span-6 xl:col-span-4"
     >
       <div
-        className="form-group"
+        className="mb-4"
       >
-        <label
-          className="form-label"
-        >
+        <label>
           Profile Image
         </label>
         <div
-          className="mb-3 input-group"
+          className="ecency-input-group flex items-stretch w-full mb-3 [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
         >
           <input
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
             data-var="profileImage"
             disabled={false}
             maxLength={500}
@@ -81,53 +75,62 @@ exports[`(1) Default render 1`] = `
             value="https://www.imgur.com/profile-image.jpg"
           />
           <div
-            className="input-group-append"
+            className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 border-2"
+            onClick={[Function]}
           >
             <button
-              className="btn btn-primary btn-sm"
+              className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
               disabled={false}
               onClick={[Function]}
+              size="sm"
+              style={
+                Object {
+                  "outline": "none",
+                }
+              }
               type="button"
             >
-              <svg
-                viewBox="0 0 24 24"
+              <div
+                className="flex items-center w-5 h-5 undefined"
               >
-                <path
-                  d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"
-                  fill="currentColor"
-                />
-              </svg>
-              <input
-                accept="image/*"
-                onChange={[Function]}
-                style={
-                  Object {
-                    "display": "none",
-                  }
-                }
-                type="file"
-              />
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
             </button>
+            <input
+              accept="image/*"
+              onChange={[Function]}
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+              type="file"
+            />
           </div>
         </div>
       </div>
     </div>
     <div
-      className="col-xl-4 col-lg-6"
+      className="col-span-12 lg:col-span-6 xl:col-span-4"
     >
       <div
-        className="form-group"
+        className="mb-4"
       >
-        <label
-          className="form-label"
-        >
+        <label>
           Cover Image
         </label>
         <div
-          className="mb-3 input-group"
+          className="ecency-input-group flex items-stretch w-full mb-3 [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
         >
           <input
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
             data-var="coverImage"
             disabled={false}
             maxLength={500}
@@ -137,50 +140,59 @@ exports[`(1) Default render 1`] = `
             value="https://www.imgur.com/cover-image.jpg"
           />
           <div
-            className="input-group-append"
+            className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 border-2"
+            onClick={[Function]}
           >
             <button
-              className="btn btn-primary btn-sm"
+              className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
               disabled={false}
               onClick={[Function]}
+              size="sm"
+              style={
+                Object {
+                  "outline": "none",
+                }
+              }
               type="button"
             >
-              <svg
-                viewBox="0 0 24 24"
+              <div
+                className="flex items-center w-5 h-5 undefined"
               >
-                <path
-                  d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"
-                  fill="currentColor"
-                />
-              </svg>
-              <input
-                accept="image/*"
-                onChange={[Function]}
-                style={
-                  Object {
-                    "display": "none",
-                  }
-                }
-                type="file"
-              />
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
             </button>
+            <input
+              accept="image/*"
+              onChange={[Function]}
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+              type="file"
+            />
           </div>
         </div>
       </div>
     </div>
     <div
-      className="col-xl-4 col-lg-6"
+      className="col-span-12 lg:col-span-6 xl:col-span-4"
     >
       <div
-        className="form-group"
+        className="mb-4"
       >
-        <label
-          className="form-label"
-        >
+        <label>
           Website
         </label>
         <input
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
           data-var="website"
           disabled={false}
           maxLength={100}
@@ -192,18 +204,16 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
     <div
-      className="col-xl-4 col-lg-6"
+      className="col-span-12 lg:col-span-6 xl:col-span-4"
     >
       <div
-        className="form-group"
+        className="mb-4"
       >
-        <label
-          className="form-label"
-        >
+        <label>
           Location
         </label>
         <input
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
           data-var="location"
           disabled={false}
           maxLength={30}

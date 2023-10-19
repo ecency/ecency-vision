@@ -63,8 +63,8 @@ const Purchase = (props: PageProps) => {
           props.global.isElectron ? "app-content container mt-0 pt-6" : "app-content container"
         }
       >
-        <div className="d-flex align-items-center w-100 justify-content-center row">
-          <div className="col-12 col-sm-10 col-md-8 col-lg-6 border rounded">
+        <div className="flex items-center w-full justify-center">
+          <div className="w-[50%] border border-[--border-color] rounded-2xl p-4">
             <PurchaseQrBuilder
               activeUser={username ? ({ username } as ActiveUser) : props.activeUser}
               location={props.location}

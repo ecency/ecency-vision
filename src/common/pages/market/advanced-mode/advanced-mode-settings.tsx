@@ -1,7 +1,9 @@
-import { Button, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
 import React, { useState } from "react";
 import { settingsSvg } from "../../../img/svg";
 import { _t } from "../../../i18n";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   updateRate: number;
@@ -14,24 +16,16 @@ export const AdvancedModeSettings = ({ updateRate, setUpdateRate }: Props) => {
 
   return (
     <>
-      <Button variant="link" onClick={() => setShow(true)}>
-        {settingsSvg}
-      </Button>
-      <Modal
-        animation={true}
-        show={show}
-        centered={true}
-        onHide={() => setShow(false)}
-        keyboard={false}
-      >
-        <Modal.Header closeButton={true}>
+      <Button appearance="link" onClick={() => setShow(true)} icon={settingsSvg} />
+      <Modal animation={true} show={show} centered={true} onHide={() => setShow(false)}>
+        <ModalHeader closeButton={true}>
           <b>{_t("g.settings")}</b>
-        </Modal.Header>
-        <Modal.Body>
-          <FormGroup>
-            <FormLabel>
+        </ModalHeader>
+        <ModalBody>
+          <div className="mb-4">
+            <label>
               <small>Update rate(seconds)</small>
-            </FormLabel>
+            </label>
             <FormControl
               type="number"
               value={rate}
@@ -39,11 +33,10 @@ export const AdvancedModeSettings = ({ updateRate, setUpdateRate }: Props) => {
               min={5}
               max={300}
             />
-          </FormGroup>
-        </Modal.Body>
-        <Modal.Footer>
+          </div>
+        </ModalBody>
+        <ModalFooter>
           <Button
-            variant="primary"
             disabled={rate < 5 || rate >= 300}
             onClick={() => {
               if (rate < 5 || rate >= 300) {
@@ -56,7 +49,7 @@ export const AdvancedModeSettings = ({ updateRate, setUpdateRate }: Props) => {
           >
             {_t("g.save")}
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );

@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .profile-cover {
   height: 134px;
@@ -19,11 +16,11 @@
     z-index: 1;
 
     @include themify(day) {
-      background-color: $white-three;
+      @apply bg-light-300;
     }
 
     @include themify(night) {
-      background-color: $dark;
+      @apply bg-dark-default;
     }
   }
 

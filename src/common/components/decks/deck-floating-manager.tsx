@@ -1,26 +1,56 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./_deck-floating-manager.scss";
 import { DeckGridContext } from "./deck-manager";
 import { upArrowSvg } from "../../img/svg";
 import { getColumnTitle, ICONS } from "./consts";
 import { _t } from "../../i18n";
+import { classNameObject } from "../../helper/class-name-object";
+import { Button } from "@ui/button";
 
 export const DeckFloatingManager = () => {
+  const columnsRef = useRef<HTMLDivElement | null>(null);
+
   const { layout, add, scrollTo, getNextKey } = useContext(DeckGridContext);
   const [show, setShow] = useState(false);
+  const [mobileOffset, setMobileOffset] = useState(0);
 
   return layout.columns.length > 0 ? (
-    <div className={"deck-floating-manager " + (show ? "show" : "")}>
-      <div
-        className="btn btn-primary dropdown-toggle"
+    <div
+      className={classNameObject({
+        "deck-floating-manager": true,
+        show,
+        dragging: mobileOffset > 0
+      })}
+    >
+      <Button
+        draggable="true"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
-        onTouchEnd={() => setShow(true)}
-      >
-        {upArrowSvg}
-      </div>
+        onTouchEnd={() => {
+          setShow(mobileOffset <= 75);
+          setMobileOffset(0);
+        }}
+        onTouchMove={(e: React.TouchEvent) => {
+          const touchY = e.touches.item(0).clientY;
+          const windowHeight = window.innerHeight;
+          const resultInPercentage = (touchY / windowHeight) * 100;
+
+          e.stopPropagation();
+
+          setMobileOffset(resultInPercentage);
+        }}
+        icon={upArrowSvg}
+        iconClassName="ml-2"
+      />
       <div
-        className="columns"
+        ref={columnsRef}
+        className={classNameObject({
+          columns: true,
+          "columns-dragging": mobileOffset > 0
+        })}
+        style={{
+          ...(mobileOffset > 0 && { transform: `translateY(${mobileOffset}%)` })
+        }}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
         onTouchEnd={() => setShow(false)}
@@ -52,16 +82,25 @@ export const DeckFloatingManager = () => {
                   ) : (
                     <></>
                   )}
+                  {settings && "host" in settings && ["th"].includes(type) ? (
+                    <div className="text-capitalize">{settings.host}</div>
+                  ) : (
+                    <></>
+                  )}
                   {type === "ac" ? _t("decks.columns.new-column") : ""}
                   {type === "to" ? _t("decks.columns.topics") : ""}
                   {type === "tr" ? _t("decks.columns.trending") : ""}
+                  {type === "msf" ? _t("decks.columns.market-swap-form") : ""}
+                  {type === "faq" ? _t("decks.columns.faq") : ""}
+                  {type === "wb" ? _t("decks.columns.balance") : ""}
+                  {type === "wn" ? _t("decks.columns.whats-new") : ""}
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <div
-          className="btn btn-outline-primary"
+        <Button
+          outline={true}
           onClick={() =>
             add({
               key: getNextKey(),
@@ -71,7 +110,7 @@ export const DeckFloatingManager = () => {
           }
         >
           {_t("decks.add-column")}
-        </div>
+        </Button>
       </div>
     </div>
   ) : (

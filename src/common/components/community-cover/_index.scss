@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .community-cover {
   height: 134px;
@@ -20,11 +17,11 @@
     z-index: 1;
 
     @include themify(day) {
-      background-color: $white-three;
+      @apply bg-light-300;
     }
 
     @include themify(night) {
-      background-color: $dark;
+      @apply bg-dark-default;
     }
   }
 
@@ -57,7 +54,7 @@
     .community-stat {
       display: flex;
       align-items: center;
-      color: $white-three;
+      @apply text-light-300;
       padding: 7px 10px;
 
       @media (min-width: $md-break) {
@@ -67,7 +64,8 @@
         flex-direction: column;
 
         &:not(:last-child) {
-          border-right: 2px solid $white-three;
+          border-right: 2px solid;
+          @apply border-light-300;
         }
       }
 
@@ -97,8 +95,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $dark-sky-blue;
-    color: $white;
+    @apply bg-blue-dark-sky;
+    @apply text-white;
     position: absolute;
     z-index: 3;
     left: 10px;

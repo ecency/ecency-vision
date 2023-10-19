@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .announcement-container {
   position: fixed;
@@ -32,11 +29,11 @@
   position: relative;
 
   @include themify(day) {
-    background: $white;
+    @apply bg-white;
   }
 
   @include themify(night) {
-    background: $dark-two;
+    @apply bg-dark-200;
   }
 }
 
@@ -44,14 +41,14 @@
   font-size: 1.5rem;
   font-weight: bold;
 
-  color: $charcoal-grey;
+  @apply text-gray-charcoal;
 
   @include themify(day) {
-    color: $charcoal-grey;
+    @apply text-gray-charcoal;
   }
 
   @include themify(night) {
-    color: darken($silver, 10);
+    @apply text-silver-010;
   }
 
   @media (max-width: 580px) {
@@ -68,11 +65,11 @@
 
   p {
     @include themify(day) {
-      color: darken($silver, 35);
+      @apply text-silver-035;
     }
 
     @include themify(night) {
-      color: darken($silver, 10);
+      @apply text-silver-010;
     }
 
   }
@@ -100,7 +97,7 @@
 
   .close-btn {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 7px;
+    right: 3px;
   }
 }

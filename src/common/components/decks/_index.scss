@@ -1,50 +1,45 @@
 @import "src/style/vars_mixins";
 
-.decks {
-  display: grid;
-  grid-template-columns: 72px 1fr min-content;
-  align-items: center;
-  transition: 0.3s;
+html, body {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
+.decks.expanded {
+  grid-template-columns: 280px 0 1fr;
+}
+
+.decks.thread-form-showed {
+  grid-template-columns: 72px 400px 1fr;
+}
+
+.decks.expanded.thread-form-showed {
+  grid-template-columns: 280px 400px 1fr;
+}
+
+.decks .decks-container::-webkit-scrollbar {
+  display: none;
+}
+
+.decks *[data-rbd-droppable-id] {
+  height: 100vh;
+  height: 100dvh;
+}
+
+.decks *[data-rbd-draggable-id]:first-child .deck {
+  border-left: 0;
+}
+
+.decks {
   @include themify(day) {
-    color: $black;
-    background-color: $gray-300;
+    @apply bg-gray-300;
+    @apply text-black;
   }
 
   @include themify(night) {
-    color: $white;
-    background-color: $gray-900;
-  }
-
-  &.expanded {
-    grid-template-columns: 280px 1fr min-content;
-  }
-
-  .decks-container {
-    overflow: hidden;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-  .decks-container, *[data-rbd-droppable-id] {
-    height: 100vh;
-  }
-
-  *[data-rbd-draggable-id]:first-child .deck {
-    border-left: 0;
-  }
-
-  #draggable-container {
-    display: flex;
-    scroll-behavior: smooth;
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    @apply text-white;
+    @apply bg-gray-900;
   }
 
   .add-new-column-button {
@@ -53,8 +48,8 @@
     visibility: hidden;
     transform: scale(0);
     height: 3rem;
-
-    @include transition(0.3s);
+    @apply whitespace-nowrap;
+    @apply duration-300;
 
     &.visible {
       opacity: 1;
@@ -69,10 +64,82 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    color: $gray-500;
+    @apply text-gray-500;
   }
 
   .deck-smooth-scroller {
     @include transition(0.5s);
+  }
+
+  .dropdown {
+    position: relative;
+
+    .dropdown-menu {
+      z-index: $zindex-dropdown;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid $border-color;
+      min-width: 200px;
+      //backdrop-filter: blur(1rem);
+      //box-shadow: 0 6px 20px -10px rgba(0, 0, 0, 0.25);
+
+      @include padding-top(0.5rem);
+      @include padding-bottom(0.5rem);
+      @include border-radius(0.25rem);
+
+      @include themify(day) {
+        @apply bg-white;
+      }
+
+      @include themify(night) {
+        @apply bg-dark-default;
+      }
+
+      .dropdown-item {
+        width: 80%;
+
+        @include margin-top(0.25rem);
+        @include margin-bottom(0.25rem);
+        @include padding-left(1rem);
+        @include padding-right(1rem);
+        @include padding-top(0.5rem);
+        @include padding-bottom(0.5rem);
+
+        @include themify(day) {
+          @apply text-gray-800;
+        }
+
+        @include themify(night) {
+          @apply text-gray-300;
+        }
+
+        &:hover {
+          color: $primary;
+
+          @include border-top-right-radius(1rem);
+          @include border-bottom-right-radius(1rem);
+
+          @include themify(day) {
+            @apply bg-blue-duck-egg;
+          }
+
+          @include themify(night) {
+            @apply bg-gray-900;
+          }
+        }
+      }
+    }
+
+    .dropdown-toggle {
+      padding: 0;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    overflow-y: hidden;
+
+    *::-webkit-scrollbar {
+      display: none;
+    }
   }
 }

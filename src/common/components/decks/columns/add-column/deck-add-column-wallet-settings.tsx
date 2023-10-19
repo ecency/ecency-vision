@@ -3,10 +3,12 @@ import React, { useContext, useState } from "react";
 import { DeckGridContext } from "../../deck-manager";
 import { UserAvatar } from "../../../user-avatar";
 import { DeckAddColumnSearchBox } from "./deck-add-column-search-box";
-import { Button } from "react-bootstrap";
 import { SettingsProps, UsernameDataItem } from "./common";
-import { ICONS } from "../../consts";
+import { ICONS, WALLET_CONTENT_TYPES } from "../../consts";
 import { _t } from "../../../../i18n";
+import useLocalStorage from "react-use/lib/useLocalStorage";
+import { PREFIX } from "../../../../util/local-storage";
+import { Button } from "@ui/button";
 
 export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
   const { global } = useMappedStore();
@@ -15,28 +17,7 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
 
   const [username, setUsername] = useState("");
   const [contentType, setContentType] = useState<string | null>(null);
-  const [recent, setRecent] = useState<UsernameDataItem[]>([]);
-
-  const contentTypes = [
-    { title: _t("decks.columns.all-history"), type: "all" },
-    { title: _t("decks.columns.transfers"), type: "transfers" },
-    {
-      title: _t("decks.columns.market-orders"),
-      type: "market-orders"
-    },
-    {
-      title: _t("decks.columns.interests"),
-      type: "interests"
-    },
-    {
-      title: _t("decks.columns.stake-operations"),
-      type: "stake-operations"
-    },
-    {
-      title: _t("decks.columns.rewards"),
-      type: "rewards"
-    }
-  ];
+  const [recent, setRecent] = useLocalStorage<UsernameDataItem[]>(PREFIX + "_dwr", []);
 
   return (
     <div className="deck-add-column-user-settings p-3">
@@ -49,13 +30,18 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
           <div className="click-to-change">{_t("decks.columns.click-to-change")}</div>
         </div>
       ) : (
-        <DeckAddColumnSearchBox username={username} setUsername={setUsername} recentList={recent} />
+        <DeckAddColumnSearchBox
+          username={username}
+          setUsername={setUsername}
+          recentList={recent}
+          setRecentList={setRecent}
+        />
       )}
       {username !== "" ? (
         <>
-          <div className="subtitle py-3 mt-3">Filters</div>
+          <div className="subtitle py-3 mt-3">{_t("decks.columns.filters")}</div>
           <div className="content-type-list">
-            {contentTypes.map(({ title, type }) => (
+            {WALLET_CONTENT_TYPES.map(({ title, type }) => (
               <div
                 className={"content-type-item " + (contentType === type ? "selected" : "")}
                 key={title}
@@ -73,15 +59,14 @@ export const DeckAddColumnWalletSettings = ({ deckKey }: SettingsProps) => {
       {username !== "" && contentType !== null ? (
         <Button
           disabled={!username || !contentType}
-          className="w-100 mt-5 py-3 sticky-bottom"
-          variant="primary"
+          className="w-full mt-5 sticky bottom-0"
           onClick={() =>
             add({
               key: deckKey,
-              type: "w",
+              type: contentType === "balance" ? "wb" : "w",
               settings: {
                 username,
-                contentType,
+                ...(contentType !== "balance" ? { contentType } : {}),
                 updateIntervalMs: 60000
               }
             })

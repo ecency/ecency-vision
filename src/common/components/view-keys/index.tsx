@@ -1,16 +1,14 @@
 import React from "react";
-
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
-
 import BaseComponent from "../base";
 import { success } from "../feedback";
 import { generateKeys } from "../../helper/generate-private-keys";
 import { _t } from "../../i18n";
-
-import { copyContent } from "../../img/svg";
 import truncate from "../../util/truncate";
 import "./_index.scss";
+import { FormControl, InputGroupCopyClipboard } from "@ui/input";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 interface Props {
   activeUser: ActiveUser;
@@ -32,7 +30,7 @@ export default class ViewKeys extends BaseComponent<Props, State> {
 
   form = React.createRef<HTMLFormElement>();
 
-  curPassChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  curPassChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.stateSet({ curPass: e.target.value });
   };
 
@@ -72,13 +70,13 @@ export default class ViewKeys extends BaseComponent<Props, State> {
             this.getKeys();
           }}
         >
-          <Form.Group controlId="account-name">
-            <Form.Label>{_t("view-keys.account")}</Form.Label>
-            <Form.Control type="text" readOnly={true} value={activeUser.username} />
-          </Form.Group>
-          <Form.Group controlId="cur-pass">
-            <Form.Label>{_t("view-keys.cur-pass")}</Form.Label>
-            <Form.Control
+          <div className="mb-4">
+            <label>{_t("view-keys.account")}</label>
+            <FormControl type="text" readOnly={true} value={activeUser.username} />
+          </div>
+          <div className="mb-4">
+            <label>{_t("view-keys.cur-pass")}</label>
+            <FormControl
               value={curPass}
               onChange={this.curPassChanged}
               required={true}
@@ -86,100 +84,48 @@ export default class ViewKeys extends BaseComponent<Props, State> {
               autoFocus={true}
               autoComplete="off"
             />
-          </Form.Group>
-          <Form.Group controlId="keys-view">
+          </div>
+          <div className="mb-4">
             <div>
               {!keys.memo && (
-                <Button variant="outline-primary" onClick={this.getKeys}>
+                <Button outline={true} onClick={this.getKeys}>
                   {_t("view-keys.view-keys")}
                 </Button>
               )}
               {keys.memo && (
                 <div>
-                  <Form.Group>
-                    <Form.Label>{_t("view-keys.owner")}</Form.Label>
-                    <InputGroup onClick={() => this.copyToClipboard(keys.owner)}>
-                      <Form.Control
-                        value={truncate(keys.owner, 30)}
-                        disabled={true}
-                        className="text-primary pointer"
-                      />
-                      <InputGroup.Append>
-                        <Button
-                          variant="primary"
-                          size="sm"
-                          className="copy-to-clipboard"
-                          onClick={() => this.copyToClipboard(keys.owner)}
-                        >
-                          {copyContent}
-                        </Button>
-                      </InputGroup.Append>
-                    </InputGroup>
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>{_t("view-keys.active")}</Form.Label>
-                    <InputGroup onClick={() => this.copyToClipboard(keys.active)}>
-                      <Form.Control
-                        value={truncate(keys.active, 30)}
-                        disabled={true}
-                        className="text-primary pointer"
-                      />
-                      <InputGroup.Append>
-                        <Button
-                          variant="primary"
-                          size="sm"
-                          className="copy-to-clipboard"
-                          onClick={() => this.copyToClipboard(keys.active)}
-                        >
-                          {copyContent}
-                        </Button>
-                      </InputGroup.Append>
-                    </InputGroup>
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>{_t("view-keys.posting")}</Form.Label>
-                    <InputGroup onClick={() => this.copyToClipboard(keys.posting)}>
-                      <Form.Control
-                        value={truncate(keys.posting, 30)}
-                        disabled={true}
-                        className="text-primary pointer"
-                      />
-                      <InputGroup.Append>
-                        <Button
-                          variant="primary"
-                          size="sm"
-                          className="copy-to-clipboard"
-                          onClick={() => this.copyToClipboard(keys.posting)}
-                        >
-                          {copyContent}
-                        </Button>
-                      </InputGroup.Append>
-                    </InputGroup>
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>{_t("view-keys.memo")}</Form.Label>
-                    <InputGroup onClick={() => this.copyToClipboard(keys.memo)}>
-                      <Form.Control
-                        value={truncate(keys.memo, 30)}
-                        disabled={true}
-                        className="text-primary pointer"
-                      />
-                      <InputGroup.Append>
-                        <Button
-                          variant="primary"
-                          size="sm"
-                          className="copy-to-clipboard"
-                          onClick={() => this.copyToClipboard(keys.memo)}
-                        >
-                          {copyContent}
-                        </Button>
-                      </InputGroup.Append>
-                    </InputGroup>
-                  </Form.Group>
+                  <div className="mb-4">
+                    <label>{_t("view-keys.owner")}</label>
+                    <InputGroupCopyClipboard
+                      value={keys.owner}
+                      visibleValue={truncate(keys.owner, 30)}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label>{_t("view-keys.active")}</label>
+                    <InputGroupCopyClipboard
+                      value={keys.active}
+                      visibleValue={truncate(keys.active, 30)}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label>{_t("view-keys.posting")}</label>
+                    <InputGroupCopyClipboard
+                      value={keys.posting}
+                      visibleValue={truncate(keys.posting, 30)}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label>{_t("view-keys.memo")}</label>
+                    <InputGroupCopyClipboard
+                      value={keys.memo}
+                      visibleValue={truncate(keys.memo, 30)}
+                    />
+                  </div>
                 </div>
               )}
             </div>
-          </Form.Group>
+          </div>
         </Form>
       </div>
     );

@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { usePopper } from "react-popper";
 import {
   client,
   findRcAccounts,
-  powerRechargeTime,
-  rcPower,
   getRcOperationStats,
-  RcOperation
+  powerRechargeTime,
+  RcOperation,
+  rcPower
 } from "../../api/hive";
 import { _t } from "../../i18n";
 import moment, { Moment } from "moment";
@@ -15,6 +15,9 @@ import { PurchaseQrDialog } from "../purchase-qr";
 import { ActiveUser } from "../../store/active-user/types";
 import { Location } from "history";
 import "./index.scss";
+import { useMounted } from "../../util/use-mounted";
+import { createPortal } from "react-dom";
+import { Button } from "@ui/button";
 
 interface Props {
   username: string;
@@ -40,6 +43,8 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
   const [isShow, setIsShow] = useState(false);
 
   const popper = usePopper(host, popperElement);
+
+  const isMounted = useMounted();
 
   useEffect(() => {
     fetchRc();
@@ -88,13 +93,13 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
     popper.update?.();
   };
 
-  return (
+  return isMounted ? (
     <>
-      <div className="available-credits d-flex align-items-center justify-content-between w-100 pr-2">
+      <div className="available-credits flex items-center justify-between w-full pr-3">
         <div
           ref={setHost}
           className={
-            "available-credits-bar w-100 " +
+            "available-credits-bar w-full " +
             className +
             (rcpFixed <= 10 ? " danger" : rcpFixed <= 25 ? " warning" : "")
           }
@@ -103,73 +108,79 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
           onFocus={show}
           onBlur={hide}
         >
-          <div className="progress">
+          <div className="available-credits-progress">
             <div
               className={
-                "indicator " + (rcpFixed <= 10 ? "danger" : rcpFixed <= 25 ? "warning" : "")
+                "available-credits-indicator " +
+                (rcpFixed <= 10 ? "danger" : rcpFixed <= 25 ? "warning" : "")
               }
               style={{ width: `${rcpFixed}%` }}
             />
           </div>
         </div>
         {commentAmount <= 5 ? (
-          <div className="btn btn-link px-0" onClick={() => setShowPurchaseDialog(true)}>
+          <Button noPadding={true} appearance="link" onClick={() => setShowPurchaseDialog(true)}>
             {_t("rc-info.boost")}
-          </div>
+          </Button>
         ) : (
           <></>
         )}
       </div>
-      <div
-        ref={setPopperElement}
-        className={"available-credits-bar-popper " + (isShow ? "show" : "")}
-        style={popper.styles.popper}
-        {...popper.attributes.popper}
-      >
-        <div>
-          <div className="p-2">
-            <span className="opacity-75">{_t("rc-info.resource-credits")}</span>
-            <div>
-              {rcFormatter(rcp)}({rcpFixed}%)
-            </div>
-            <div>
-              {rcpFixed !== 100 && (
-                <small>{_t("profile-info.recharge-time", { n: rcpRechargeDate.fromNow() })}</small>
-              )}
-            </div>
-          </div>
-          <div className="delegations d-flex flex-column p-2">
-            <span className="incoming mb-1">
-              <div className="opacity-75">{_t("rc-info.received-delegations")}</div>
-              {receivedDelegation}
-            </span>
-            <span className="outgoing">
-              <div className="opacity-75">{_t("rc-info.delegated")}</div>
-              {delegated}
-            </span>
-          </div>
-        </div>
-
-        <div className="extra-details p-2">
-          <span className="d-block mb-2 opacity-5">{_t("rc-info.extra-details-heading")}</span>
-          <div className="extras">
-            <div className="mb-1">
-              <div className="opacity-75">{_t("rc-info.extra-details-post")}</div>
-              {commentAmount}
-            </div>
-            <div className="two-col">
-              <div className="mb-1">
-                <div className="opacity-75">{_t("rc-info.extra-details-upvote")}</div>
-                {voteAmount}
+      {createPortal(
+        <div
+          ref={setPopperElement}
+          className={"available-credits-bar-popper " + (isShow ? "show" : "")}
+          style={popper.styles.popper}
+          {...popper.attributes.popper}
+        >
+          <div>
+            <div className="p-3">
+              <span className="opacity-75">{_t("rc-info.resource-credits")}</span>
+              <div>
+                {rcFormatter(rcp)}({rcpFixed}%)
               </div>
               <div>
-                <div className="opacity-75">{_t("rc-info.extra-details-transfer")}</div>
-                {transferAmount}
+                {rcpFixed !== 100 && (
+                  <small>
+                    {_t("profile-info.recharge-time", { n: rcpRechargeDate.fromNow() })}
+                  </small>
+                )}
+              </div>
+            </div>
+            <div className="delegations flex flex-col p-3">
+              <span className="incoming mb-2">
+                <div className="opacity-75">{_t("rc-info.received-delegations")}</div>
+                {receivedDelegation}
+              </span>
+              <span className="outgoing">
+                <div className="opacity-75">{_t("rc-info.delegated")}</div>
+                {delegated}
+              </span>
+            </div>
+          </div>
+
+          <div className="extra-details p-2">
+            <span className="block mb-3 opacity-50">{_t("rc-info.extra-details-heading")}</span>
+            <div className="extras">
+              <div className="mb-2">
+                <div className="opacity-75">{_t("rc-info.extra-details-post")}</div>
+                {commentAmount}
+              </div>
+              <div className="two-col">
+                <div className="mb-2">
+                  <div className="opacity-75">{_t("rc-info.extra-details-upvote")}</div>
+                  {voteAmount}
+                </div>
+                <div>
+                  <div className="opacity-75">{_t("rc-info.extra-details-transfer")}</div>
+                  {transferAmount}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div>,
+        document.querySelector("#popper-container")!!
+      )}
       <PurchaseQrDialog
         show={showPurchaseDialog}
         setShow={(v) => setShowPurchaseDialog(v)}
@@ -177,5 +188,7 @@ export const AvailableCredits = ({ username, className, activeUser, location }: 
         location={location}
       />
     </>
+  ) : (
+    <></>
   );
 };

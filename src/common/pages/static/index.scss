@@ -1,7 +1,4 @@
-@import "src/style/bootstrap_vars";
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .static-page {
   &.about-page {
@@ -33,7 +30,7 @@
             font-weight: 400;
 
             span {
-              color: $dusk-blue;
+              @apply text-blue-dusk;
               font-weight: 600;
             }
 
@@ -168,7 +165,7 @@
       max-width: 600px;
 
       .downloads-title {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 42px;
         font-weight: 400;
         margin-bottom: 16px;
@@ -176,7 +173,7 @@
       }
 
       .downloads-text {
-        color: $steel-grey;
+        @apply text-gray-steel;
         font-weight: 300;
         margin-bottom: 22px;
         text-align: center;
@@ -209,7 +206,7 @@
           }
 
           &.btn-desktop {
-            background: $dark-sky-blue;
+            @apply bg-blue-dark-sky;
           }
 
           &.btn-ios {
@@ -227,7 +224,7 @@
       margin: 90px auto 40px auto;
 
       .faq-title {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 42px;
         font-weight: 400;
         margin-bottom: 24px;
@@ -238,7 +235,7 @@
         text-align: center;
 
         .faq-link {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
           font-size: 20px;
         }
       }
@@ -252,7 +249,7 @@
       }
 
       .contacts-title {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         font-size: 42px;
         font-weight: 400;
         margin-bottom: 26px;
@@ -271,7 +268,7 @@
 
         .contacts-link {
           align-items: center;
-          color: $steel-grey !important;
+          @apply text-gray-steel;
           display: flex;
           font-size: 20px;
           justify-content: center;
@@ -290,7 +287,7 @@
           svg {
             height: 12px;
             margin-right: 4px;
-            color: $steel-grey;
+            @apply text-gray-steel;
           }
 
           &:not(:last-child) {
@@ -356,7 +353,7 @@
 
   
     .page-title {
-      color: $dark-sky-blue !important;
+      @apply text-blue-dark-sky;
     }
 
     .static-last-updated {
@@ -465,7 +462,7 @@
   }
 
   @include themify(night) {
-    border: 1px solid $dark;
-
- }
+    border: 1px solid;
+    @apply border-dark-default;
+  }
 }

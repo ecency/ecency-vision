@@ -15,7 +15,7 @@ export const dataLimit = typeof window !== "undefined" && window.screen.width < 
 const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> =>
   bridgeServer.call("bridge", endpoint, params);
 
-const resolvePost = (post: Entry, observer: string): Promise<Entry> => {
+export const resolvePost = (post: Entry, observer: string, num?: number): Promise<Entry> => {
   const { json_metadata: json } = post;
 
   if (
@@ -24,12 +24,13 @@ const resolvePost = (post: Entry, observer: string): Promise<Entry> => {
     json.tags &&
     json.tags[0] === "cross-post"
   ) {
-    return getPost(json.original_author, json.original_permlink, observer)
+    return getPost(json.original_author, json.original_permlink, observer, num)
       .then((resp) => {
         if (resp) {
           return {
             ...post,
-            original_entry: resp
+            original_entry: resp,
+            num
           };
         }
 
@@ -41,7 +42,7 @@ const resolvePost = (post: Entry, observer: string): Promise<Entry> => {
   }
 
   return new Promise((resolve) => {
-    resolve(post);
+    resolve({ ...post, num });
   });
 };
 
@@ -102,7 +103,8 @@ export const getAccountPosts = (
 export const getPost = (
   author: string = "",
   permlink: string = "",
-  observer: string = ""
+  observer: string = "",
+  num?: number
 ): Promise<Entry | null> => {
   return bridgeApiCall<Entry | null>("get_post", {
     author,
@@ -110,9 +112,21 @@ export const getPost = (
     observer
   }).then((resp) => {
     if (resp) {
-      return resolvePost(resp, observer);
+      return resolvePost(resp, observer, num);
     }
 
+    return resp;
+  });
+};
+
+export const getPostHeader = (
+  author: string = "",
+  permlink: string = ""
+): Promise<Entry | null> => {
+  return bridgeApiCall<Entry | null>("get_post_header", {
+    author,
+    permlink
+  }).then((resp) => {
     return resp;
   });
 };

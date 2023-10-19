@@ -1,22 +1,17 @@
 import React, { Component } from "react";
-
 import { History, Location } from "history";
-
 import isEqual from "react-fast-compare";
-
-import { Button } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
-import { Community, roleMap } from "../../store/communities/types";
+import { Community, roleMap } from "../../store/communities";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import CommunityRoleEditDialog from "../community-role-edit";
-
 import { _t } from "../../i18n";
 import "./_index.scss";
+import { Button } from "@ui/button";
+import { Table, Td, Th, Tr } from "@ui/table";
 
 interface Props {
   history: History;
@@ -25,7 +20,6 @@ interface Props {
   community: Community;
   activeUser: ActiveUser | null;
   addAccount: (data: Account) => void;
-  addCommunity: (data: Community) => void;
 }
 
 interface State {
@@ -69,33 +63,33 @@ export class CommunityRoles extends Component<Props, State> {
     return (
       <div className="community-roles">
         <h2>{_t("community.roles-title")}</h2>
-        <table className="table table-striped table-bordered table-roles">
+        <Table full={true}>
           <thead>
-            <tr>
-              <th style={{ width: "200px" }}>{_t("community.roles-account")}</th>
-              <th style={{ width: "74px" }}>{_t("community.roles-role")}</th>
-              <th>{_t("community.roles-account-title")}</th>
-            </tr>
+            <Tr>
+              <Th style={{ width: "200px" }}>{_t("community.roles-account")}</Th>
+              <Th style={{ width: "74px" }}>{_t("community.roles-role")}</Th>
+              <Th className="border p-3">{_t("community.roles-account-title")}</Th>
+            </Tr>
           </thead>
           <tbody>
             {community.team.map((t, i) => {
               const [username, role, title] = t;
               const canEdit = roles && roles.includes(role);
               return (
-                <tr key={i}>
-                  <td>
+                <Tr key={i}>
+                  <Td>
                     {ProfileLink({
                       ...this.props,
                       username,
                       children: (
-                        <span className="user">
+                        <span className="user flex gap-3 items-center">
                           <UserAvatar username={username} size="medium" />{" "}
                           <span className="username">{username}</span>
                         </span>
                       )
                     })}
-                  </td>
-                  <td>
+                  </Td>
+                  <Td>
                     {canEdit ? (
                       <a
                         href="#"
@@ -109,21 +103,15 @@ export class CommunityRoles extends Component<Props, State> {
                     ) : (
                       role
                     )}
-                  </td>
-                  <td>{title}</td>
-                </tr>
+                  </Td>
+                  <Td>{title}</Td>
+                </Tr>
               );
             })}
           </tbody>
-        </table>
+        </Table>
         {roles.length > 0 && (
-          <Button
-            onClick={() => {
-              this.showDialog();
-            }}
-          >
-            {_t("community.roles-add")}
-          </Button>
+          <Button onClick={() => this.showDialog()}>{_t("community.roles-add")}</Button>
         )}
 
         {dialog && (
@@ -148,8 +136,7 @@ export default (p: Props) => {
     global: p.global,
     community: p.community,
     activeUser: p.activeUser,
-    addAccount: p.addAccount,
-    addCommunity: p.addCommunity
+    addAccount: p.addAccount
   };
 
   return <CommunityRoles {...props} />;

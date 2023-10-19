@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .profile-container {
     z-index: 4;
@@ -26,9 +23,9 @@
     min-height: 90px;
     min-width: 90px;
     border: 5px solid #81acef;
-    background-color: $white;
+    @apply bg-white;
     @include themify(night) {
-        background-color: $gunmetal;
+      @apply bg-gunmetal;
     }
 
     @media (max-width: $sm-break) {
@@ -73,7 +70,7 @@
 
 .bg-white {
     @include themify(night) {
-        background-color: $dark-two !important;
+      @apply bg-dark-200;
       }
 }
 
@@ -110,8 +107,8 @@
   @media (max-width: $sm-break) {
     width: 30px;
     padding: 5px;
-    background-color: $white;
-    color: $dark-two;
+    @apply bg-white;
+    @apply text-dark-200;
     position: absolute;
     left: 20px;
     top: 13px;
@@ -167,7 +164,7 @@
     .mt-3 {
       margin-top: 0.5rem !important;
     }
-    .border-bottom {
+    .border-b {
       padding-bottom: 1rem !important;
     }
   }

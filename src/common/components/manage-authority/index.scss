@@ -1,19 +1,19 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .authority-table {
-  .table {
+  table {
     .table-head {
-      background: $white-six;
+      @apply bg-light-600;
     }
+
     .col-type-content {
-      color: $warm-grey;
+      @apply text-gray-warm;
     }
+
     .col-action {
       text-align: right;
     }
+
     .col-weight-content {
       text-align: center;
       @media (max-width: 1280px) {

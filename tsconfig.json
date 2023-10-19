@@ -21,7 +21,11 @@
     "strict": true,
     "pretty": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "es5"
+    "target": "es5",
+    "skipLibCheck": true,
+    "paths": {
+      "@ui/*": ["./src/common/features/ui/*"]
+    }
   },
   "exclude": [
     "node_modules",

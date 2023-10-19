@@ -1,21 +1,16 @@
 import React from "react";
-
-import { Button } from "react-bootstrap";
-
 import { Account } from "../../store/accounts/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { UI, ToggleType } from "../../store/ui/types";
-
+import { ToggleType, UI } from "../../store/ui/types";
 import BaseComponent from "../base";
 import LoginRequired from "../login-required";
 import { error } from "../feedback";
-
 import { getRelationshipBetweenAccounts } from "../../api/bridge";
-import { follow, unFollow, ignore, formatError } from "../../api/operations";
-
+import { follow, formatError, ignore, unFollow } from "../../api/operations";
 import { _t } from "../../i18n";
 import * as ls from "../../util/local-storage";
+import { Button } from "@ui/button";
 
 interface Props {
   users: User[];
@@ -148,12 +143,7 @@ export default class FollowControls extends BaseComponent<Props, State> {
     const btnFollow = LoginRequired({
       ...this.props,
       children: (
-        <Button
-          variant="primary"
-          style={{ marginRight: "5px" }}
-          disabled={inProgress}
-          onClick={this.follow}
-        >
+        <Button style={{ marginRight: "5px" }} disabled={inProgress} onClick={this.follow}>
           {followMsg}
         </Button>
       )
@@ -162,12 +152,7 @@ export default class FollowControls extends BaseComponent<Props, State> {
     const btnUnfollow = LoginRequired({
       ...this.props,
       children: (
-        <Button
-          variant="primary"
-          style={{ marginRight: "5px" }}
-          disabled={inProgress}
-          onClick={this.unFollow}
-        >
+        <Button style={{ marginRight: "5px" }} disabled={inProgress} onClick={this.unFollow}>
           {unFollowMsg}
         </Button>
       )
@@ -194,7 +179,7 @@ export default class FollowControls extends BaseComponent<Props, State> {
     if (fetching) {
       return (
         <>
-          <Button variant="primary" disabled={true} style={{ marginRight: "5px" }}>
+          <Button disabled={true} className="mr-2">
             {followMsg}
           </Button>
           <Button disabled={true}>{muteMsg}</Button>

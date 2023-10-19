@@ -43,6 +43,15 @@ module.exports = {
       );
     }
 
+    // Enable TS aliases
+    const tsAliases = {
+      "@ui": path.join(__dirname, "src/common/features/ui/")
+    };
+    webpackConfig.resolve.alias = {
+      ...webpackConfig.resolve.alias,
+      ...tsAliases
+    };
+
     // Enable SSR lazy-loading
     const tsLoader = webpackConfig.module.rules.find(
       (rule) => !(rule.test instanceof Array) && rule.test && rule.test.test(".tsx")

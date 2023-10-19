@@ -11,13 +11,13 @@ import {
 } from "./active-user";
 
 import { getAccount, getDynamicProps } from "../api/hive";
-import { getPoints, usrActivity, getPromotedEntries } from "../api/private-api";
+import { getPoints, getPromotedEntries } from "../api/private-api";
 import { reloadAct as reloadUsers } from "./users";
 import { fetchedAct as loadDynamicProps } from "./dynamic-props";
 import { fetchedAct as entriesFetchedAct } from "./entries";
 import {
-  setCurrencyAct as setCurrency,
   muteNotificationsAct as muteNotifications,
+  setCurrencyAct as setCurrency,
   setLangAct as setLang,
   setNsfwAct as setNsfw
 } from "./global";
@@ -126,26 +126,13 @@ export const clientStoreTasks = (store: Store<AppState>) => {
     syncActiveUser(store);
   }, 2000);
 
-  // Do check-in in interval
-  const checkIn = () => {
-    const state = store.getState();
-    if (state.activeUser) {
-      usrActivity(state.activeUser?.username!, 10).then();
-    }
-  };
-
-  // wait for initial user sync
-  setTimeout(() => {
-    checkIn();
-  }, 5000);
-  setInterval(checkIn, 1000 * 60 * 15 + 8);
-
   // Inject / update promoted entries to store
   const promotedEntries = () => {
     getPromotedEntries().then((r) => {
       store.dispatch(entriesFetchedAct("__promoted__", r, "", false));
     });
   };
+
   promotedEntries();
   setInterval(promotedEntries, 1000 * 60 * 5);
 

@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .search-comment {
   margin-bottom: 20px;
@@ -11,7 +8,8 @@
     padding-bottom: 20px;
 
     @include themify(day) {
-      border-bottom: 1px solid $white-three;
+      border-bottom: 1px solid;
+      @apply border-light-300;
     }
   }
 

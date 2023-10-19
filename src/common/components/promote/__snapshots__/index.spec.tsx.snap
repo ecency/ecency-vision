@@ -31,43 +31,57 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body"
+      className="transaction-form-body flex flex-col"
     >
       <div
-        className="form-group row"
+        className="self-center mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <a
+          href="/faq#how-promotion-work"
         >
-          Balance
-        </label>
+          Learn more about promotion
+        </a>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Balance
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="balance-input form-control-plaintext"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red balance-input"
             readOnly={true}
+            type="text"
             value="500.000 POINTS"
           />
           
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Post
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Post
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               disabled={false}
               onChange={[Function]}
               placeholder="username/permlink"
@@ -78,27 +92,30 @@ exports[`(1) Default render 1`] = `
           </div>
           
           <small
-            className="text-muted form-text"
+            className="text-gray-600"
           >
             Autocomplete input
           </small>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Duration
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Duration
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             disabled={false}
             onChange={[Function]}
+            type="select"
             value={2}
           >
             <option
@@ -130,21 +147,28 @@ exports[`(1) Default render 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
         />
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-10"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>
@@ -184,47 +208,61 @@ exports[`(2) Insufficient Funds 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body"
+      className="transaction-form-body flex flex-col"
     >
       <div
-        className="form-group row"
+        className="self-center mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <a
+          href="/faq#how-promotion-work"
         >
-          Balance
-        </label>
+          Learn more about promotion
+        </a>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Balance
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="balance-input is-invalid form-control-plaintext"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red balance-input is-invalid"
             readOnly={true}
+            type="text"
             value="10.000 POINTS"
           />
           <small
-            className="text-danger form-text"
+            className="pl-3 text-red"
           >
             Insufficient funds
           </small>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Post
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Post
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               disabled={false}
               onChange={[Function]}
               placeholder="username/permlink"
@@ -235,27 +273,30 @@ exports[`(2) Insufficient Funds 1`] = `
           </div>
           
           <small
-            className="text-muted form-text"
+            className="text-gray-600"
           >
             Autocomplete input
           </small>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Duration
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Duration
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             disabled={false}
             onChange={[Function]}
+            type="select"
             value={2}
           >
             <option
@@ -287,21 +328,28 @@ exports[`(2) Insufficient Funds 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
         />
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-10"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>
@@ -341,43 +389,57 @@ exports[`(3) With entry 1`] = `
       </div>
     </div>
     <div
-      className="transaction-form-body"
+      className="transaction-form-body flex flex-col"
     >
       <div
-        className="form-group row"
+        className="self-center mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <a
+          href="/faq#how-promotion-work"
         >
-          Balance
-        </label>
+          Learn more about promotion
+        </a>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Balance
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <input
-            className="balance-input form-control-plaintext"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red balance-input"
             readOnly={true}
+            type="text"
             value="500.000 POINTS"
           />
           
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Post
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Post
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion"
+            className="suggestion relative"
           >
             <input
-              className="form-control"
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
               disabled={false}
               onChange={[Function]}
               placeholder="username/permlink"
@@ -388,27 +450,30 @@ exports[`(3) With entry 1`] = `
           </div>
           
           <small
-            className="text-muted form-text"
+            className="text-gray-600"
           >
             Autocomplete input
           </small>
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
-        >
-          Duration
-        </label>
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Duration
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
         >
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             disabled={false}
             onChange={[Function]}
+            type="select"
             value={2}
           >
             <option
@@ -440,21 +505,28 @@ exports[`(3) With entry 1`] = `
         </div>
       </div>
       <div
-        className="form-group row"
+        className="grid grid-cols-12 mb-4"
       >
-        <label
-          className="form-label col-form-label col-sm-2"
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
         />
         <div
-          className="col-sm-10"
+          className="col-span-12 sm:col-span-10"
         >
           <button
-            className="btn btn-primary"
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
             type="button"
           >
-            Next
+            <div>
+              Next
+            </div>
           </button>
         </div>
       </div>

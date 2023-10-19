@@ -23,14 +23,14 @@ export const handshake = (): Promise<void> =>
 export const signBuffer = (
   account: string,
   message: string,
-  key: AuthorityTypes,
+  authType: AuthorityTypes = "Active",
   rpc: string | null = null
 ): Promise<TxResponse> =>
   new Promise<TxResponse>((resolve, reject) => {
     window.hive_keychain?.requestSignBuffer(
       account,
       message,
-      "Active",
+      authType,
       (resp) => {
         if (!resp.success) {
           reject({ message: "Operation cancelled" });
@@ -45,7 +45,7 @@ export const signBuffer = (
 export const addAccountAuthority = (
   account: string,
   authorizedUsername: string,
-  role: AuthorityTypes,
+  role: AuthorityTypes = "Posting",
   weight: number,
   rpc: string | null = null
 ): Promise<TxResponse> =>
@@ -53,7 +53,7 @@ export const addAccountAuthority = (
     window.hive_keychain?.requestAddAccountAuthority(
       account,
       authorizedUsername,
-      "Posting",
+      role,
       weight,
       (resp) => {
         if (!resp.success) {

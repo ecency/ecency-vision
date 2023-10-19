@@ -1,22 +1,23 @@
 import React from "react";
 
-import { create, act } from "react-test-renderer";
-
 import { StaticRouter } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
 
-import { WalletEcency, formatMemo } from "./index";
+import { formatMemo, WalletEcency } from "./index";
 
 import { initialState as transactionsInitialState } from "../../store/transactions/index";
 
 import {
-  globalInstance,
-  pointTransactionsInstance,
   activeUserMaker,
+  allOver,
   dynamicPropsIntance1,
-  allOver
+  globalInstance,
+  pointTransactionsInstance
 } from "../../helper/test-helper";
+import { withStore } from "../../tests/with-store";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "../../core";
 
 jest.mock("moment", () => () => ({
   fromNow: () => "5 days ago"
@@ -39,7 +40,6 @@ const defProps = {
   },
   signingKey: "",
   transactions: transactionsInitialState,
-  fetchPoints: () => {},
   addAccount: () => {},
   updateActiveUser: () => {},
   updateWalletValues: () => {},
@@ -51,10 +51,12 @@ it("(1) Default Render", async () => {
     ...defProps
   };
 
-  const container = create(
-    <StaticRouter location="/" context={{}}>
-      <WalletEcency {...props} />
-    </StaticRouter>
+  const container = withStore(
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <WalletEcency {...props} />
+      </StaticRouter>
+    </QueryClientProvider>
   );
   await allOver();
   expect(container.toJSON()).toMatchSnapshot();
@@ -65,10 +67,12 @@ it("(2) With active user", async () => {
     ...defProps,
     activeUser: activeUserMaker("user1")
   };
-  const container = create(
-    <StaticRouter location="/" context={{}}>
-      <WalletEcency {...props} />
-    </StaticRouter>
+  const container = withStore(
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <WalletEcency {...props} />
+      </StaticRouter>
+    </QueryClientProvider>
   );
   await allOver();
   expect(container.toJSON()).toMatchSnapshot();
@@ -86,10 +90,12 @@ it("(3) Active user with unclaimed points", async () => {
       filter: 0
     }
   };
-  const container = create(
-    <StaticRouter location="/" context={{}}>
-      <WalletEcency {...props} />
-    </StaticRouter>
+  const container = withStore(
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <WalletEcency {...props} />
+      </StaticRouter>
+    </QueryClientProvider>
   );
   await allOver();
   expect(container.toJSON()).toMatchSnapshot();
@@ -121,10 +127,12 @@ it("(5) usePrivate = false", async () => {
       usePrivate: false
     }
   };
-  const container = create(
-    <StaticRouter location="/" context={{}}>
-      <WalletEcency {...props} />
-    </StaticRouter>
+  const container = withStore(
+    <QueryClientProvider client={queryClient}>
+      <StaticRouter location="/" context={{}}>
+        <WalletEcency {...props} />
+      </StaticRouter>
+    </QueryClientProvider>
   );
   await allOver();
   expect(container.toJSON()).toMatchSnapshot();

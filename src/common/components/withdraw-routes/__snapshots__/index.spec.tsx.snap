@@ -2,50 +2,43 @@
 
 exports[`(1) Default render 1`] = `
 <form
-  className=""
+  className="block "
   onSubmit={[Function]}
 >
   <div
-    className="form-row"
+    className="mb-4"
   >
-    <div
-      className="form-group col"
-    >
-      <label
-        className="form-label"
-      >
-        Account
-      </label>
-      <input
-        autoCapitalize="off"
-        autoComplete="off"
-        autoCorrect="off"
-        className="form-control"
-        maxLength={20}
-        minLength={3}
-        name="account"
-        onChange={[Function]}
-        onInput={[Function]}
-        onInvalid={[Function]}
-        required={true}
-        spellCheck="false"
-        value=""
-      />
-    </div>
+    <label>
+      Account
+    </label>
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+      maxLength={20}
+      minLength={3}
+      name="account"
+      onChange={[Function]}
+      onInput={[Function]}
+      onInvalid={[Function]}
+      required={true}
+      spellCheck="false"
+      type="text"
+      value=""
+    />
   </div>
   <div
-    className="form-row"
+    className="grid grid-cols-12"
   >
     <div
-      className="form-group col-md-3"
+      className="col-span-12 md:col-span-3 mb-4"
     >
-      <label
-        className="form-label"
-      >
+      <label>
         Percent
       </label>
       <input
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
         max={100}
         min={0}
         name="percent"
@@ -58,17 +51,16 @@ exports[`(1) Default render 1`] = `
       />
     </div>
     <div
-      className="form-group col-md-7"
+      className="col-span-12 md:col-span-7 mb-4"
     >
-      <label
-        className="form-label"
-      >
+      <label>
         Automatically power up
       </label>
       <select
-        className="form-control"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
         name="auto"
         onChange={[Function]}
+        type="select"
         value="yes"
       >
         <option
@@ -84,14 +76,21 @@ exports[`(1) Default render 1`] = `
       </select>
     </div>
     <div
-      className="d-md-flex align-items-end justify-content-center form-group col-md-2"
+      className="col-span-12 md:col-span-2 flex items-end justify-center mb-4"
     >
       <button
-        className="btn btn-primary btn-sm"
-        disabled={false}
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        size="sm"
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
         type="submit"
       >
-        Add
+        <div>
+          Add
+        </div>
       </button>
     </div>
   </div>
@@ -101,50 +100,43 @@ exports[`(1) Default render 1`] = `
 exports[`(2) With table 1`] = `
 Array [
   <form
-    className=""
+    className="block "
     onSubmit={[Function]}
   >
     <div
-      className="form-row"
+      className="mb-4"
     >
-      <div
-        className="form-group col"
-      >
-        <label
-          className="form-label"
-        >
-          Account
-        </label>
-        <input
-          autoCapitalize="off"
-          autoComplete="off"
-          autoCorrect="off"
-          className="form-control"
-          maxLength={20}
-          minLength={3}
-          name="account"
-          onChange={[Function]}
-          onInput={[Function]}
-          onInvalid={[Function]}
-          required={true}
-          spellCheck="false"
-          value=""
-        />
-      </div>
+      <label>
+        Account
+      </label>
+      <input
+        autoCapitalize="off"
+        autoComplete="off"
+        autoCorrect="off"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        maxLength={20}
+        minLength={3}
+        name="account"
+        onChange={[Function]}
+        onInput={[Function]}
+        onInvalid={[Function]}
+        required={true}
+        spellCheck="false"
+        type="text"
+        value=""
+      />
     </div>
     <div
-      className="form-row"
+      className="grid grid-cols-12"
     >
       <div
-        className="form-group col-md-3"
+        className="col-span-12 md:col-span-3 mb-4"
       >
-        <label
-          className="form-label"
-        >
+        <label>
           Percent
         </label>
         <input
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
           max={100}
           min={0}
           name="percent"
@@ -157,17 +149,16 @@ Array [
         />
       </div>
       <div
-        className="form-group col-md-7"
+        className="col-span-12 md:col-span-7 mb-4"
       >
-        <label
-          className="form-label"
-        >
+        <label>
           Automatically power up
         </label>
         <select
-          className="form-control"
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
           name="auto"
           onChange={[Function]}
+          type="select"
           value="yes"
         >
           <option
@@ -183,91 +174,132 @@ Array [
         </select>
       </div>
       <div
-        className="d-md-flex align-items-end justify-content-center form-group col-md-2"
+        className="col-span-12 md:col-span-2 flex items-end justify-center mb-4"
       >
         <button
-          className="btn btn-primary btn-sm"
-          disabled={false}
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+          size="sm"
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="submit"
         >
-          Add
+          <div>
+            Add
+          </div>
         </button>
       </div>
     </div>
   </form>,
-  <table
-    className="table route-table"
+  <div
+    className="border dark:border-gray-700 overflow-hidden rounded-xl w-full"
   >
-    <thead>
-      <tr>
-        <th>
-          Account
-        </th>
-        <th>
-          Percent
-        </th>
-        <th>
-          Automatically power up
-        </th>
-        <th />
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          bar
-        </td>
-        <td>
-          24%
-        </td>
-        <td>
-          Yes
-        </td>
-        <td>
-          <a
-            href="#"
-            onClick={[Function]}
-            title="Delete"
+    <table
+      className="table-auto border-collapse text-xs sm:text-sm md:text-md w-full route-table"
+    >
+      <thead>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+        >
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-2"
           >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          baz
-        </td>
-        <td>
-          38%
-        </td>
-        <td>
-          No
-        </td>
-        <td>
-          <a
-            href="#"
-            onClick={[Function]}
-            title="Delete"
+            Account
+          </th>
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-2"
           >
-            <svg
-              viewBox="0 0 24 24"
+            Percent
+          </th>
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-2"
+          >
+            Automatically power up
+          </th>
+          <th
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-2"
+          />
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+        >
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 border p-2"
+          >
+            bar
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 border p-2"
+          >
+            24%
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 border p-2"
+          >
+            Yes
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 border p-2"
+          >
+            <a
+              href="#"
+              onClick={[Function]}
+              title="Delete"
             >
-              <path
-                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>,
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </a>
+          </td>
+        </tr>
+        <tr
+          className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
+        >
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 border p-2"
+          >
+            baz
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 border p-2"
+          >
+            38%
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 border p-2"
+          >
+            No
+          </td>
+          <td
+            className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 border p-2"
+          >
+            <a
+              href="#"
+              onClick={[Function]}
+              title="Delete"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>,
 ]
 `;

@@ -97,7 +97,7 @@ export class ProfileCommunities extends BaseComponent<Props, State> {
             return (
               <>
                 <h2>{_t("profile.communities-title")}</h2>
-                <p className="text-muted">{_t("g.empty-list")}</p>
+                <p className="text-gray-600">{_t("g.empty-list")}</p>
                 {showCreateLink && (
                   <p>
                     <Link to="/communities/create" className="create-link">

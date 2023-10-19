@@ -1,15 +1,11 @@
 import React, { Component, Fragment, useEffect, useState } from "react";
-
 import { History } from "history";
-
-import { FormControl } from "react-bootstrap";
-
 import { ActiveUser } from "../../store/active-user/types";
 import { Account } from "../../store/accounts/types";
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { Transactions } from "../../store/transactions/types";
-import { Points, PointTransaction, TransactionType } from "../../store/points/types";
+import { PointTransaction, TransactionType } from "../../store/points/types";
 import DropDown from "../dropdown";
 import Transfer from "../transfer";
 import Tooltip from "../tooltip";
@@ -47,6 +43,10 @@ import FormattedCurrency from "../formatted-currency";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { PurchaseQrDialog } from "../purchase-qr";
 import { PurchaseTypes } from "../purchase-qr/purchase-types";
+import { FormControl } from "@ui/input";
+import { usePointsQuery } from "../../api/queries";
+import { useQueryClient } from "@tanstack/react-query";
+import { QueryIdentifiers } from "../../core";
 
 export const formatMemo = (memo: string, history: History) => {
   return memo.split(" ").map((x) => {
@@ -169,10 +169,8 @@ interface Props {
   history: History;
   activeUser: ActiveUser | null;
   account: Account;
-  points: Points;
   signingKey: string;
   transactions: Transactions;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
   addAccount: (data: Account) => void;
   updateActiveUser: (data?: Account) => void;
@@ -196,24 +194,21 @@ export const WalletEcency = (props: Props) => {
   const [transfer, setTransfer] = useState(false);
   const [estimatedPointsValue, setEstimatedPointsValue] = useState(0);
   const [estimatedPointsValueLoading, setEstimatedPointsValueLoading] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
+  const [filter, setFilter] = useState(0);
 
-  const { global, activeUser, account, points, history, fetchPoints, updateActiveUser } = props;
+  const { global, activeUser, account, history, updateActiveUser } = props;
+  const { data: points, isLoading } = usePointsQuery(account.name, filter);
+
+  const queryClient = useQueryClient();
 
   useEffect(() => {
-    setIsMounted(true);
     if (!global.usePrivate) {
       history.push("/");
     }
     let user = history.location.pathname.split("/")[1];
     user = user.replace("@", "");
-    global.isElectron && initiateOnElectron(user);
     getEstimatedPointsValue();
-
-    return () => {
-      setIsMounted(false);
-    };
   }, []);
 
   const getEstimatedPointsValue = () => {
@@ -232,20 +227,6 @@ export const WalletEcency = (props: Props) => {
       });
   };
 
-  const initiateOnElectron = (username: string) => {
-    if (!isMounted && global.isElectron) {
-      let getPoints = new Promise((res) => fetchPoints(username));
-      username &&
-        getPoints
-          .then((res) => {
-            setIsMounted(true);
-          })
-          .catch((error) => {
-            console.error("getPoints", error);
-          });
-    }
-  };
-
   const claim = (e?: React.MouseEvent<HTMLAnchorElement>) => {
     if (e) e.preventDefault();
 
@@ -254,7 +235,7 @@ export const WalletEcency = (props: Props) => {
     claimPoints(username)
       .then(() => {
         success(_t("points.claim-ok"));
-        fetchPoints(username);
+        queryClient.invalidateQueries([QueryIdentifiers.POINTS, account.name, filter]);
         updateActiveUser();
       })
       .catch(() => {
@@ -282,10 +263,8 @@ export const WalletEcency = (props: Props) => {
     setBoost(!boost);
   };
 
-  const filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    const filter = Number(e.target.value);
-    const { fetchPoints, account } = props;
-    fetchPoints(account.name, filter);
+  const filterChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilter(Number(e.target.value));
   };
 
   if (!global.usePrivate) {
@@ -500,7 +479,7 @@ export const WalletEcency = (props: Props) => {
             <div className="p-transaction-list">
               <div className="transaction-list-header">
                 <h2>{_t("points.history")}</h2>
-                <FormControl as="select" value={points.filter} onChange={filterChanged}>
+                <FormControl type="select" value={filter} onChange={filterChanged}>
                   <option value="0">{_t("points.filter-all")}</option>
                   {txFilters.map((x) => (
                     <option key={x} value={x}>
@@ -511,7 +490,7 @@ export const WalletEcency = (props: Props) => {
               </div>
 
               {(() => {
-                if (points.loading) {
+                if (isLoading) {
                   return <LinearProgress />;
                 }
 
@@ -520,8 +499,8 @@ export const WalletEcency = (props: Props) => {
                     {points.transactions.map((tr) => (
                       <TransactionRow history={history} tr={tr} key={tr.id} />
                     ))}
-                    {!points.loading && points.transactions.length === 0 && (
-                      <p className="text-muted empty-list">{_t("g.empty-list")}</p>
+                    {!isLoading && points.transactions.length === 0 && (
+                      <p className="text-gray-600 empty-list">{_t("g.empty-list")}</p>
                     )}
                   </div>
                 );
@@ -564,10 +543,8 @@ export default (p: Props) => {
     history: p.history,
     activeUser: p.activeUser,
     account: p.account,
-    points: p.points,
     signingKey: p.signingKey,
     transactions: p.transactions,
-    fetchPoints: p.fetchPoints,
     updateWalletValues: p.updateWalletValues,
     addAccount: p.addAccount,
     updateActiveUser: p.updateActiveUser,

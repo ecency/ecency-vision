@@ -1,0 +1,122 @@
+@import "src/style/vars_mixins";
+
+.discover-contributors-list {
+  height: 100%;
+
+  .list-header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include themify(day) {
+      border-bottom: 1px solid;
+      @apply border-blue-dark-sky-030;
+    }
+
+    @include themify(night) {
+      border-bottom: 1px solid;
+      @apply border-dark-default-010-light;
+    }
+
+    .list-title {
+      @apply text-blue-dark-sky;
+      font-weight: 500;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    .list-refresh {
+      @apply text-blue-dark-sky;
+      cursor: pointer;
+      padding: 2px;
+      border-radius: 4px;
+
+      &:hover {
+        @apply bg-blue-dark-sky-040;
+      }
+
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.4;
+      }
+
+      svg {
+        height: 22px;
+      }
+    }
+  }
+
+  &.loading {
+    .list-header {
+      border-bottom-color: transparent;
+    }
+  }
+
+  .list-body {
+    height: calc(100% - 50px);
+    padding: 20px 0 14px 0;
+    overflow-x: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+
+    @media (min-width: $md-break) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg-break) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: $xl-break) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .list-item {
+      padding: 10px;
+      border-radius: 6px;
+      display: flex;
+
+      @include themify(day) {
+        @apply bg-light-300;
+      }
+
+      @include themify(night) {
+        @apply bg-dark-600-010-light;
+      }
+
+      .user-avatar {
+        width: 40px;
+        display: block;
+        margin-right: 10px;
+      }
+
+      .user-info {
+        flex-grow: 1;
+        display: grid;
+
+        .display-name {
+          font-size: 18px;
+
+          @include themify(day) {
+            @apply text-gray-charcoal-010;
+          }
+
+          @include themify(night) {
+            @apply text-silver;
+          }
+        }
+
+        .about {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+}

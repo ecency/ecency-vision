@@ -1,14 +1,7 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .entry-votes-modal {
-  .modal-content {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-  .modal-body {
+  .ecency-modal-body {
     padding-top: 0;
     padding-bottom: 10px;
 
@@ -34,11 +27,12 @@
               font-size: 14px;
 
               @include themify(day) {
-                background: $silver;
+                @apply bg-silver;
+              ;
               }
 
               @include themify(night) {
-                background: $metallic-blue;
+                @apply bg-blue-metallic;
               }
             }
           }
@@ -75,7 +69,7 @@
 .entry-votes {
   margin-right: 15px;
   align-items: center;
-  color: $steel-grey;
+  @apply text-gray-steel;
   display: flex;
 
   @media (min-width: $sm-break) {
@@ -87,7 +81,7 @@
   }
 
   &:hover {
-    color: $dark-sky-blue;
+    @apply text-blue-dark-sky;
   }
 
   svg {
@@ -115,14 +109,16 @@
     .heart-icon {
       &.voted {
         svg {
-          fill: $dark-sky-blue;
+          @apply fill-blue-dark-sky;
+          @apply text-blue-dark-sky;
         }
       }
 
       &.vote-done {
         animation: heartbeat 1s ease-in-out forwards;
         svg {
-          fill: $dark-sky-blue;
+          @apply fill-blue-dark-sky;
+          @apply text-blue-dark-sky;
         }
       }
     }

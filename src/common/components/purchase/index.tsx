@@ -1,23 +1,19 @@
 import React, { Component } from "react";
-
-import { Form, FormControl, Modal, Button } from "react-bootstrap";
-
 import { Global } from "../../store/global/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { Transactions } from "../../store/transactions/types";
 import { Account } from "../../store/accounts/types";
-
 import BaseComponent from "../base";
 import { Transfer, TransferAsset } from "../transfer";
-
 import { calcPoints } from "../../api/private-api";
-
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 import formattedNumber from "../../util/formatted-number";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -26,7 +22,6 @@ interface Props {
   transactions: Transactions;
   signingKey: string;
   account: Account;
-  fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
   addAccount: (data: Account) => void;
   updateActiveUser: (data?: Account) => void;
@@ -63,7 +58,7 @@ export class Purchase extends BaseComponent<Props, State> {
     });
   };
 
-  sliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  sliderChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const amount = Number(e.target.value);
     this.stateSet({ amount });
 
@@ -142,25 +137,24 @@ export class Purchase extends BaseComponent<Props, State> {
           </div>
         </div>
         <div className="slider-area">
-          <Form.Control
+          <FormControl
             type="range"
             autoFocus={true}
-            custom={true}
             step={0.001}
             min={1}
             max={10000}
             value={amount}
             onChange={this.sliderChanged}
           />
-          <Form.Text className="text-muted">{_t("purchase.slider-hint")}</Form.Text>
+          <small className="text-gray-600">{_t("purchase.slider-hint")}</small>
         </div>
         <div className="point-amount">
           {formattedNumber(points, { fractionDigits: 3 })} {"POINTS"}
         </div>
-        <div className="text-center d-flex flex-column align-items-center">
+        <div className="text-center flex flex-col items-center">
           <Button onClick={this.submit}>{_t("purchase.submit")}</Button>
-          <span className={"d-flex text-muted mt-3 align-items-center"}>
-            <h4 className={"text-white my-0 mr-1"}>&#9432;</h4> {_t("purchase.purchase-message")}
+          <span className="flex text-gray-600 mt-3 items-center">
+            <h4 className="text-white my-0 mr-1">&#9432;</h4> {_t("purchase.purchase-message")}
           </span>
         </div>
       </div>
@@ -177,14 +171,13 @@ export default class PurchaseDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
-        className="purchase-dialog modal-thin-header"
+        className="purchase-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader thin={true} closeButton={true} />
+        <ModalBody>
           <Purchase {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

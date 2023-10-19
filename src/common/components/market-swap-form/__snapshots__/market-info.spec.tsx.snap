@@ -3,7 +3,7 @@
 exports[`should render market rate 1`] = `
 <div>
   <small
-    className="market-info font-weight-bold d-block mb-4 "
+    className="market-info font-bold block mb-4 "
   >
     1 
     HBD
@@ -14,29 +14,29 @@ exports[`should render market rate 1`] = `
     <span
       className="text-secondary ml-1"
     >
-      ($
-      12.000
+      (
+      Calculating in
+      <span
+        className="pl-1"
+      />
+      USD
       )
     </span>
   </small>
   <div
-    className="list-group"
-    onKeyDown={[Function]}
+    className="rounded-xl border border-[--border-color]"
   >
     <div
-      className="list-group-item"
-      data-rb-event-key={null}
-      disabled={false}
-      onClick={[Function]}
+      className="px-4 py-3"
     >
       <div
-        className="d-flex justify-content-between"
+        className="flex justify-between"
       >
         <span>
           Fee
         </span>
         <span
-          className="badge badge-success text-white"
+          className="px-2 py-1 bg-green text-xs font-bold rounded text-white"
         >
           Free
         </span>

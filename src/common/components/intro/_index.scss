@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 @keyframes shake0 {
   10%, 90% {
@@ -45,13 +42,13 @@
   position: relative;
   max-width: 1190px;
   @include themify(day) {
-    background-color: $white;
-    color: $white;
+    @apply bg-white;
+    @apply text-white;
   }
 
   @include themify(night) {
-    background-color: $dark-grey-blue;
-    color: $silver;
+    @apply bg-blue-dark-grey;
+    @apply text-silver;
   }
   height: 200px;
 
@@ -74,7 +71,7 @@
     top: 10px;
     width: 30px;
     height: 30px;
-    background: $silver;
+    @apply bg-silver;
     border-radius: 50%;
     position: absolute;
     z-index: 10;
@@ -84,12 +81,12 @@
     cursor: pointer;
 
     svg {
-      color: $white;
+      @apply text-white;
       width: 22px;
     }
 
     &:hover {
-      background: darken($silver, 6);
+      @apply bg-silver-005;
     }
   }
 
@@ -154,7 +151,7 @@
     }
 
     .intro-sub-header {
-      color: $steel-grey;
+      @apply text-gray-steel;
       font-size: 18px;
       margin-bottom: 6px;
       display: flex;

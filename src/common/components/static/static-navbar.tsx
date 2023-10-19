@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from "@ui/button";
+
 interface Props {
   fullVersionUrl: string;
 }
@@ -11,7 +13,7 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
           <div className="brand">
             <a href="/">
               <img
-                src="https://ecency.com/logo192.png"
+                src={require("../../img/logo-circle.svg")}
                 className="logo"
                 style={{ width: "40px", height: "40px" }}
                 alt="Logo"
@@ -32,7 +34,7 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
             <div className="brand">
               <a href="/">
                 <img
-                  src="https://ecency.com/logo192.png"
+                  src={require("../../img/logo-circle.svg")}
                   className="logo"
                   style={{ width: "40px", height: "40px" }}
                   alt="Logo"
@@ -55,10 +57,10 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
         </div>
       </div>
 
-      <div className="p-3 w-100 fixed-bottom hidden d-block d-md-none view-full-version">
-        <a className="btn btn-primary py-2 w-100" href={fullVersionUrl}>
+      <div className="p-3 w-full fixed bottom-0 md:hidden view-full-version">
+        <Button size="sm" full={true} href={fullVersionUrl}>
           View full version
-        </a>
+        </Button>
       </div>
     </>
   );

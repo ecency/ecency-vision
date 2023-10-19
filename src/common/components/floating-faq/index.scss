@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .help-btn {
   position: fixed;
@@ -10,16 +7,13 @@
   bottom: 1rem;
   border-radius: 20px 2px 20px 20px !important;
   height: 40px;
+}
 
-  .help {
-    display: inline-block;
-    margin-left: 0.4rem;
-    position: relative;
-    top: 1px;
-  }
-
-  .help-button-content {
-    margin-top: -3px;
+@media (max-width: 791px) {
+  .help-btn {
+    width: 40px;
+    border-radius: 50% !important;
+    padding: 0 !important;
   }
 }
 
@@ -33,12 +27,27 @@
   border-radius: 18px;
   overflow: hidden;
 
+  &.submit {
+    position: fixed;
+    right: 23.7rem !important;
+    bottom: 4.1rem !important;
+
+    @media (max-width: 1597px) {
+      right: 16rem !important;
+    }
+
+    @media (max-width: 590px) {
+      right: 2.1rem !important;
+      bottom: 4.1rem !important;
+    }
+  }
+
   @include themify(day) {
-    background: $white-four;
+    @apply bg-light-400;
   }
 
   @include themify(night) {
-    background: $dark-two;
+    @apply bg-dark-200;
   }
 
   .faq-welcome {
@@ -46,14 +55,14 @@
     height: 22%;
     border-radius: 18px 18px 0 0;
     z-index: 999;
-    color: $white;
+    @apply text-white;
 
     @include themify(day) {
-      background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
+      @apply bg-gradient-primary-day;
     }
 
     @include themify(night) {
-      background-image: linear-gradient(to left, $dark-indigo, $dusk-blue);
+      @apply bg-gradient-primary-night;
     }
 
     .faq-welcome-message {
@@ -66,12 +75,11 @@
       right: 1rem;
 
       @include themify(day) {
-        background: $dusk-blue;
+        @apply bg-blue-dusk;
         border: none;
       }
 
       @include themify(night) {
-        background: $dark-indigo;
         border: none;
       }
     }
@@ -96,11 +104,11 @@
     overflow-y: auto;
 
     @include themify(day) {
-      background: $white-two;
+      @apply bg-light-200;
     }
 
     @include themify(night) {
-      background: $dark;
+      @apply bg-dark-default;
     }
   }
 
@@ -114,11 +122,11 @@
     padding: 1rem 0.7rem;
 
     @include themify(day) {
-      color: $light-black;
+      @apply text-gray-charcoal-010;
     }
 
     @include themify(night) {
-      color: $white-six;
+      @apply text-light-600;
     }
   }
   .section {
@@ -133,15 +141,15 @@
 
   .user-info {
     padding-left: 4px;
-    color: $steel-grey;
+    @apply text-gray-steel;
     font-size: 14px;
 
     @include themify(day) {
-      color: $steel-grey;
+      @apply text-gray-steel;
     }
 
     @include themify(night) {
-      color: $light-grey;
+      @apply text-gray-light;
     }
   }
 
@@ -160,13 +168,13 @@
     font-size: 14px;
 
     @include themify(day) {
-      background: $white-three;
-      color: $dark-six;
+      @apply bg-light-300;
+      @apply text-dark-600;
     }
 
     @include themify(night) {
-      color: $white-five;
-      background: $dark-two;
+      @apply text-light-500;
+      @apply bg-dark-200;
     }
 
     .faq-image {

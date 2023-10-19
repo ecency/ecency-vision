@@ -3,19 +3,20 @@
 .deck-floating-manager {
   position: fixed;
   bottom: 0;
-  left: 72px;
-  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0.75;
   z-index: 199;
+  right: unset;
+  left: calc(50% - 32px + 36px);
 
   @include margin-right(auto);
   @include margin-left(auto);
-  @include transition(0.3s);
 
-  &:hover {
+  &:hover, &.show, &.dragging {
+    left: 72px;
+    right: 0;
     opacity: 1;
   }
 
@@ -32,14 +33,22 @@
       @include transition(0.3s);
 
       path {
-        stroke: $white;
+        @apply stroke-white;
       }
+    }
+
+    @include media-breakpoint-down(xs) {
+      margin-bottom: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      height: 1.5rem;
+      width: 5rem;
     }
   }
 
   .columns {
-    opacity: 0;
-    visibility: hidden;
+    //opacity: 0;
+    //visibility: hidden;
     backdrop-filter: blur(1rem);
     border-top: 1px solid $border-color;
     position: absolute;
@@ -52,20 +61,26 @@
     gap: 1rem;
     overflow: hidden;
 
+    &.columns-dragging {
+      border-top-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+
     @include transition(0.3s);
 
     @include themify(day) {
-      background-color: rgba($white, 0.75);
+      @apply bg-white-075;
     }
 
     @include themify(night) {
-      background-color: rgba($dark-two, 0.75);
+      @apply bg-dark-200-075;
     }
 
     @include media-breakpoint-down(sm) {
       flex-direction: column;
       align-items: flex-start;
       height: 100vh;
+      height: 100dvh;
       overflow-x: hidden;
       overflow-y: auto;
       justify-content: space-between;
@@ -107,11 +122,11 @@
 
     &:hover {
       @include themify(day) {
-        background-color: $duck-egg-blue;
+        @apply bg-blue-duck-egg;
       }
 
       @include themify(night) {
-        background-color: $dark;
+        @apply bg-dark-default;
       }
     }
 
@@ -136,7 +151,7 @@
       min-height: 1.5rem;
       max-width: 1.5rem;
       max-height: 1.5rem;
-      color: $gray-500;
+      @apply text-gray-500;
 
       @include margin-right(1rem);
     }
@@ -153,17 +168,15 @@
     }
   }
 
-  .btn:not(.dropdown-toggle) {
+  button:not(.dropdown-toggle) {
     white-space: nowrap;
-
-    @include margin-right(1rem);
+    margin-right: 1rem;
 
     @include media-breakpoint-down(sm) {
       width: calc(100% - 2rem);
-
-      @include margin-bottom(1rem);
-      @include margin-left(1rem);
-      @include margin-right(1rem);
+      margin-bottom: 1rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
     }
   }
 
@@ -171,8 +184,8 @@
     z-index: 202;
 
     .columns {
-      opacity: 1;
-      visibility: visible;
+      //opacity: 1;
+      //visibility: visible;
       transform: translateY(0%);
     }
 
@@ -184,6 +197,16 @@
   }
 }
 
-.decks.expanded .deck-floating-manager {
-  left: 280px;
+.decks {
+  .toolbar-collapsed {
+    .deck-floating-manager {
+      & {
+        left: calc(50% - 2.5rem);
+      }
+
+      &:hover, &.show, &.dragging {
+        left: 0;
+      }
+    }
+  }
 }

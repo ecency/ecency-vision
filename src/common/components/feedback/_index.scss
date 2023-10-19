@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 @keyframes feedback-anim {
   0% {
@@ -17,7 +14,7 @@
 .feedback-container {
   display: block;
   position: fixed;
-  z-index: 100;
+  z-index: 203;
   right: 20px;
   bottom: 60px;
   width: 260px;
@@ -39,21 +36,20 @@
     animation: feedback-anim 0.5s;
 
     @include themify(day) {
-      background: $white-three;
-      color: $dark;
+      @apply bg-light-300;
+      @apply text-dark-default;
     }
 
     @include themify(night) {
-      background: $dark-indigo;
-      color: $white-four;
+      @apply text-light-400;
+      @apply bg-indigo-dark;
     }
 
     svg {
       height: 20px;
-      // margin-right: 6px;
     }
     .feedback-body {
-      padding: 24px 6px 0px 6px;
+      padding: 30px 6px 0px 6px;
     }
 
     .feedback-content {
@@ -66,23 +62,32 @@
         margin-left: 0.5rem;
         border-radius: 50%;
         &.success-img {
-          background: $green1;
+          @apply bg-green;
         }
       }
     }
     .feedback-close-btn {
       position: absolute;
-      right: 6px;
-      margin-top: -19px;
+      right: 8px;
+      margin-top: -22px;
       cursor: pointer;
+
+      @media (max-width: $md-break) {
+        svg {
+          display: block;
+          width: 15px;
+          height: 15px;
+        }
+      }
+
       @include themify(day) {
         svg {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
       }
       @include themify(night) {
         svg {
-          color: $white-three;
+          @apply text-light-300;
         }
       }
     }
@@ -94,24 +99,24 @@
       border-radius: 0 0 6px 6px;
 
       @include themify(day) {
-        background: $white-four;
+        @apply bg-light-400;
       }
 
       @include themify(night) {
-        background: $dark-two;
+        @apply bg-dark-200;
       }
 
       .filler {
         height: 100%;
         transition: width 0.125s linear;
         &.success {
-          background-color: $green1;
+          @apply bg-green;
         }
         &.error {
-          background-color: $red2;
+          @apply bg-red-020;
         }
         &.info {
-          background-color: $dark-sky-blue;
+          @apply bg-blue-dark-sky;
         }
       }
     }
@@ -131,24 +136,24 @@
 
   .feedback-success {
     svg {
-      color: $white;
+      @apply text-white;
     }
   }
 
   .feedback-error {
     svg {
-      color: $red2;
+      @apply text-red-020;
     }
   }
 
   .feedback-info {
     svg {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
     }
   }
 }
 
-.theme-day .details-button {
+.details-button {
   color: #fff;
   opacity: 0.5;
 

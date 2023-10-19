@@ -36,8 +36,7 @@ it("(2) Subscribed", () => {
 it("(3) With button props", () => {
   const props = {
     ...defProps,
-    subscriptions: [["hive-148441", "GEMS", "quest"]],
-    buttonProps: { block: true }
+    subscriptions: [["hive-148441", "GEMS", "quest"]]
   };
   const component = renderer.create(<SubscriptionBtn {...props} />);
   expect(component.toJSON()).toMatchSnapshot();

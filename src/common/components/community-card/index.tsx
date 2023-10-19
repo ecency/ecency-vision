@@ -1,19 +1,12 @@
 import React, { Component } from "react";
-
-import { Button, Modal } from "react-bootstrap";
-
 import { History } from "history";
-
 import { Link } from "react-router-dom";
-
 import isEqual from "react-fast-compare";
-
 import { Global } from "../../store/global/types";
 import { Account, FullAccount } from "../../store/accounts/types";
-import { Community, roleMap, ROLES } from "../../store/communities/types";
+import { Community, roleMap, ROLES } from "../../store/communities";
 import { ActiveUser } from "../../store/active-user/types";
 import { User } from "../../store/users/types";
-
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
@@ -22,22 +15,20 @@ import CommunityRewardsRegistrationDialog from "../community-rewards-registratio
 import ImageUploadDialog from "../image-upload";
 import Tooltip from "../tooltip";
 import { error, success } from "../feedback";
-
 import { _t } from "../../i18n";
-
 import { getAccount } from "../../api/hive";
 import { updateProfile } from "../../api/operations";
-
 import ln2list from "../../util/nl2list";
-
 import {
   accountGroupSvg,
   informationOutlineSvg,
-  scriptTextOutlineSvg,
-  pencilOutlineSvg
+  pencilOutlineSvg,
+  scriptTextOutlineSvg
 } from "../../img/svg";
 import { renderPostBody } from "@ecency/render-helper";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
+import { Button } from "@ui/button";
 
 interface EditPicProps {
   activeUser: ActiveUser;
@@ -138,7 +129,6 @@ interface Props {
   signingKey: string;
   setSigningKey: (key: string) => void;
   addAccount: (data: Account) => void;
-  addCommunity: (data: Community) => void;
 }
 
 interface DialogInfo {
@@ -318,8 +308,8 @@ export class CommunityCard extends Component<Props, State> {
             )}
             {canEditTeam && (
               <p className="community-control">
-                <Link className="btn btn-sm btn-primary" to={`/roles/${community.name}`}>
-                  {_t("community-card.edit-team")}
+                <Link to={`/roles/${community.name}`}>
+                  <Button size="sm">{_t("community-card.edit-team")}</Button>
                 </Link>
               </p>
             )}
@@ -348,12 +338,12 @@ export class CommunityCard extends Component<Props, State> {
             animation={false}
             className="community-info-dialog"
           >
-            <Modal.Header closeButton={true}>
-              <Modal.Title>{info.title}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
+            <ModalHeader closeButton={true}>
+              <ModalTitle>{info.title}</ModalTitle>
+            </ModalHeader>
+            <ModalBody>
               <div className="description-wrapper">{info.content}</div>
-            </Modal.Body>
+            </ModalBody>
           </Modal>
         )}
 
@@ -389,8 +379,7 @@ export default (p: Props) => {
     signingKey: p.signingKey,
     setSigningKey: p.setSigningKey,
     activeUser: p.activeUser,
-    addAccount: p.addAccount,
-    addCommunity: p.addCommunity
+    addAccount: p.addAccount
   };
 
   return <CommunityCard {...props} />;

@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
-
 import * as ls from "../../util/local-storage";
 import { closeSvg } from "../../img/svg";
-import { getAnnouncementsData, Announcement as AnnouncementApiData } from "../../api/private-api";
+import { Announcement as AnnouncementApiData, getAnnouncementsData } from "../../api/private-api";
 import { Announcement, LaterAnnouncement } from "./types";
 import { useLocation } from "react-router";
-import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { ActiveUser } from "../../store/active-user/types";
 import "./index.scss";
+import { Button } from "@ui/button";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -178,35 +176,33 @@ const Announcement = ({ activeUser }: Props) => {
           return (
             <div className="announcement-container" key={i}>
               <div className="feedback-announcement">
-                <div className="row">
-                  <div className="col center">
-                    <div className="main">
-                      <div className="announcement-title">
-                        <p>{x?.title}</p>
-                      </div>
+                <div className="flex flex-col gap-3 justify-center">
+                  <div className="main">
+                    <div className="announcement-title">
+                      <p>{x?.title}</p>
                     </div>
-                    <div className="announcement-message">
-                      <p>{x?.description}</p>
-                    </div>
-                    <div className="d-flex actions">
-                      <Link to={x?.button_link} onClick={dismissClick}>
-                        <Button variant="primary">{x?.button_text}</Button>
-                      </Link>
-                      <Button onClick={laterClick} variant="outline-primary">
-                        {_t("announcements.later")}
+                  </div>
+                  <div className="announcement-message">
+                    <p>{x?.description}</p>
+                  </div>
+                  <div className="flex actions">
+                    <Link to={x?.button_link} onClick={dismissClick}>
+                      <Button>{x?.button_text}</Button>
+                    </Link>
+                    <Button onClick={laterClick} appearance="primary" outline={true}>
+                      {_t("announcements.later")}
+                    </Button>
+                    {list.length > 1 ? (
+                      <Button onClick={upClick} appearance="link">
+                        {_t("announcements.next")}
                       </Button>
-                      {list.length > 1 ? (
-                        <Button onClick={upClick} variant="link">
-                          {_t("announcements.next")}
-                        </Button>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                   <Button
                     className="close-btn"
-                    variant="link"
+                    appearance="link"
                     onClick={() => {
                       closeClick();
                       dismissClick();

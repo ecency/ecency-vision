@@ -1,11 +1,8 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .flash {
-  -webkit-box-shadow: 0 2px 24px $white;
-  box-shadow: 0px 2px 24px $white;
+  -webkit-box-shadow: 0 2px 24px #fff;
+  box-shadow: 0 2px 24px #fff;
   z-index: 5;
   border-radius: 24px;
 }
@@ -14,9 +11,9 @@
   position: absolute;
   height: 55vh;
   width: 55vw;
-  background-color: $white;
+  @apply bg-white;
   @include themify(night){
-    background-color: $dark;
+    @apply bg-dark-default;
   }
   left: 50%;
   top: 100px;
@@ -49,11 +46,14 @@
 }
 
 .intro-popup:before {
-  border-left: 0px solid $transparent;
-  border-right: 43px solid $transparent;
-  border-bottom: 83px solid $white;
-  @include themify(night){
-    border-bottom-color: $dark;
+  border-left: 0px solid;
+  border-right: 43px solid;
+  border-bottom: 83px solid;
+  @apply border-l-transparent;
+  @apply border-r-transparent;
+  @apply border-b-white;
+  @include themify(night) {
+    @apply border-b-dark-default;
   }
   content: "";
   position: absolute;
@@ -64,9 +64,10 @@
   @media screen and (max-width: $sm-break) {
     border-left: 0px solid transparent;
     border-right: 30px solid transparent;
-    border-bottom: 40px solid $white;
-    @include themify(night){
-      border-bottom-color: $dark;
+    border-bottom: 40px solid;
+    @apply border-white;
+    @include themify(night) {
+      @apply border-b-dark-default;
     }
     content: "";
     position: absolute;
@@ -95,8 +96,15 @@
 }
 
 .close-btn {
-  right: 14px;
-  top: 7px;
+  right: 1rem;
+  top: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .intro-btn {

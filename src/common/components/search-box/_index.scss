@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .search-box {
   position: relative;
@@ -35,14 +32,14 @@
     align-items: center;
     justify-content: center;
     width: 44px;
-    color: $warm-grey;
+    @apply text-gray-warm;
 
     @include themify(day) {
-      color: $warm-grey;
+      @apply text-gray-warm;
     }
 
     @include themify(night) {
-      color: $dark-six;
+      @apply text-dark-600;
     }
 
     svg {

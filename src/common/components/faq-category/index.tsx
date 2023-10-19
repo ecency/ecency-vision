@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import Accordion from "react-bootstrap/Accordion";
-import { Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../img/svg";
 import { _t } from "../../i18n";
 import "./index.scss";
+import Tooltip from "../tooltip";
+import { Button } from "@ui/button";
+import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
 
 interface Props {
   categoryTitle: string;
@@ -12,44 +13,39 @@ interface Props {
 
 const FaqCategory = (props: Props) => {
   const [expanded, setExpanded] = useState(false);
-  const tooltip = (
-    <Tooltip id="faq-toggleIcon-tooltip" style={{ zIndex: 10 }}>
-      {_t("static.faq.toggle-icon-info")}
-    </Tooltip>
-  );
 
   const { contentList, categoryTitle } = props;
   return (
     <div className="faq-container section-container">
-      <Accordion className={expanded ? "border-bottom" : ""}>
-        <Accordion.Toggle as={Card} eventKey="0">
+      <Accordion className={expanded ? "border-b border-[--border-color]" : ""}>
+        <AccordionToggle eventKey="0">
           <div
-            className="section d-flex flex-column border-bottom"
+            className="section flex flex-col border-b border-[--border-color]"
             onClick={() => setExpanded(!expanded)}
           >
-            <div className="d-flex justify-content-between align-items-center section-card position-relative">
-              <div className="d-flex align-items-center">
-                <div className="d-flex align-items-center ml-3">
+            <div className="flex justify-between items-center section-card relative">
+              <div className="flex items-center">
+                <div className="flex items-center ml-3">
                   <div className="section-title ml-1">{categoryTitle}</div>
                 </div>
               </div>
-              <OverlayTrigger placement="bottom" overlay={tooltip}>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
-                  <div
-                    className={`pointer`}
-                    onClick={() => {
-                      setExpanded(!expanded);
-                    }}
-                  >
-                    <span>{expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}</span>
-                  </div>
-                </Accordion.Toggle>
-              </OverlayTrigger>
+              <Tooltip content={_t("static.faq.toggle-icon-info")}>
+                <AccordionToggle
+                  as={Button}
+                  appearance="link"
+                  eventKey="0"
+                  noPadding={true}
+                  onClick={() => {
+                    setExpanded(!expanded);
+                  }}
+                  icon={expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}
+                />
+              </Tooltip>
             </div>
           </div>
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey="0">
-          <Card.Body className="p-0">
+        </AccordionToggle>
+        <AccordionCollapse eventKey="0">
+          <div className="p-0">
             <div className="section-body">
               {contentList.map((x) => (
                 <a key={x} className="section-content" href={`#${x}`}>
@@ -57,8 +53,8 @@ const FaqCategory = (props: Props) => {
                 </a>
               ))}
             </div>
-          </Card.Body>
-        </Accordion.Collapse>
+          </div>
+        </AccordionCollapse>
       </Accordion>
     </div>
   );

@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .discussion {
   margin: 10px 0 30px 0;
@@ -9,11 +6,13 @@
   min-height: 200px;
 
   @include themify(day) {
-    border-top: 1px solid $white-three;
+    border-top: 1px solid;
+    @apply border-light-300;
   }
 
   @include themify(night) {
-    border-top: 1px solid $dark-two;
+    border-top: 1px solid;
+    @apply border-dark-200;
   }
 
   &.empty {
@@ -41,8 +40,9 @@
       padding: 14px;
       border-radius: 50%;
       margin-bottom: 20px;
-      color: $dark-sky-blue;
-      border: 2px solid $dark-sky-blue;
+      @apply text-blue-dark-sky;
+      border: 2px solid;
+      @apply border-blue-dark-sky;
       width: 54px;
       height: 54px;
 
@@ -60,7 +60,7 @@
 
   .discussion-header {
     align-items: center;
-    color: $steel-grey;
+    @apply text-gray-steel;
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
@@ -101,12 +101,13 @@
     .discussion-item {
 
       &.selected-item > .item-inner {
-        background: lighten($dark-sky-blue, 42);
-        border: 1px solid $dark-sky-blue;
+        @apply bg-blue-dark-sky-040;
+        border: 1px solid;
+        @apply border-blue-dark-sky;
         padding-left: 4px;
         @include themify(night) {
-          background: lighten($dark-two, 10);
-      }
+          @apply bg-dark-200-010-light;
+        }
       }
 
       .item-anchor {
@@ -168,15 +169,15 @@
               }
 
               @include themify(day) {
-                color: $charcoal-grey;
+                @apply text-gray-charcoal;
               }
 
               @include themify(night) {
-                color: $pinkish-grey;
+                @apply text-gray-pinkish;
               }
 
               .author-reputation {
-                color: $steel-grey;
+                @apply text-gray-steel;
                 font-weight: 500;
 
                 &::before {
@@ -189,10 +190,10 @@
               }
               &:hover {
                 @include themify(day) {
-                  background: $duck-egg-blue;
+                  @apply bg-blue-duck-egg;
                 }
                 @include themify(night) {
-                  background: $metallic-blue;
+                  @apply bg-blue-metallic;
                 }
               }
             }
@@ -217,7 +218,7 @@
             margin: 10px 0 14px 0;
 
             @include themify(day) {
-              color: $tundora;
+              @apply text-tundora;
             }
           }
 
@@ -227,11 +228,11 @@
             width: 100%;
 
             .reply-btn, .edit-btn, .delete-btn, .mute-btn {
-              color: lighten($steel-grey, 10);
+              @apply text-gray-steel-010;
               cursor: pointer;
 
               &:hover {
-                color: $steel-grey;
+                @apply text-gray-steel;
               }
 
               &.disabled {
@@ -242,7 +243,7 @@
 
             .edit-btn, .delete-btn, .mute-btn {
               margin-left: 10px;
-              color: lighten($steel-grey, 10);
+              @apply text-gray-steel-010;
 
               @media (min-width: $md-break) {
                 margin-left: 16px;
@@ -300,10 +301,10 @@
             }
 
             @include themify(day) {
-              border-color: lighten($white-four, 0);
+              @apply border-light-400;
             }
             @include themify(night) {
-              border-color: lighten($dark-six, 12);
+              @apply border-dark-600-010-light;
             }
           }
         }

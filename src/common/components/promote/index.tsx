@@ -1,33 +1,26 @@
 import React, { Component } from "react";
-
 import isEqual from "react-fast-compare";
-
-import { Form, FormControl, Modal, Button, Col, Row } from "react-bootstrap";
-
 import { PrivateKey } from "@hiveio/dhive";
-
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { Entry } from "../../store/entries/types";
-
+import { Entry, EntryHeader } from "../../store/entries/types";
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import { error } from "../feedback";
-
-import { getPromotePrice, PromotePrice, getPromotedPost } from "../../api/private-api";
+import { getPromotedPost, getPromotePrice, PromotePrice } from "../../api/private-api";
 import { searchPath } from "../../api/search-api";
-import { getPost } from "../../api/bridge";
-import { promote, promoteHot, promoteKc, formatError } from "../../api/operations";
-
+import { getPostHeader } from "../../api/bridge";
+import { formatError, promote, promoteHot, promoteKc } from "../../api/operations";
 import { _t } from "../../i18n";
-
 import _c from "../../util/fix-class-names";
-
 import { checkAllSvg } from "../../img/svg";
 import "./_index.scss";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { FormControl } from "@ui/input";
+import { Button } from "@ui/button";
 
 interface Props {
   global: Global;
@@ -102,14 +95,14 @@ export class Promote extends BaseComponent<Props, State> {
       });
   };
 
-  durationChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  durationChanged = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const duration = Number(e.target.value);
     this.stateSet({ duration }, () => {
       this.checkBalance();
     });
   };
 
-  pathChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  pathChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const path = e.target.value;
     this.stateSet({ path, postError: "" });
 
@@ -140,7 +133,7 @@ export class Promote extends BaseComponent<Props, State> {
     const { duration } = this.state;
 
     const { prices } = this.state;
-    const { price } = prices.find((x) => x.duration === duration)!;
+    const { price } = prices?.find((x) => x.duration === duration)!;
 
     const balanceError =
       parseFloat(activeUser.points.points) < price ? _t("trx-common.insufficient-funds") : "";
@@ -166,9 +159,9 @@ export class Promote extends BaseComponent<Props, State> {
     this.stateSet({ inProgress: true });
 
     // Check if post is valid
-    let post: Entry | null;
+    let post: EntryHeader | null;
     try {
-      post = await getPost(author, permlink);
+      post = await getPostHeader(author, permlink);
     } catch (e) {
       post = null;
     }
@@ -181,7 +174,7 @@ export class Promote extends BaseComponent<Props, State> {
     // Check if the post already promoted
     const promoted = await getPromotedPost(activeUser.username, author, permlink);
     if (promoted) {
-      this.stateSet({ postError: _t("redeem-common.post-error-exists"), inProgress: false });
+      this.stateSet({ postError: _t("redeem-common.post-promoted-exists"), inProgress: false });
       return;
     }
 
@@ -256,28 +249,32 @@ export class Promote extends BaseComponent<Props, State> {
               </div>
             </div>
             {inProgress && <LinearProgress />}
-            <div className="transaction-form-body">
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("redeem-common.balance")}
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control
+            <div className="transaction-form-body flex flex-col">
+              <div className="self-center mb-4">
+                <a href="/faq#how-promotion-work">{_t("promote.learn-more")}</a>
+              </div>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2 flex items-center">
+                  <label>{_t("redeem-common.balance")}</label>
+                </div>
+                <div className="col-span-12 sm:col-span-10">
+                  <FormControl
+                    type="text"
                     className={_c(`balance-input ${balanceError ? "is-invalid" : ""}`)}
                     plaintext={true}
                     readOnly={true}
                     value={`${activeUser.points.points} POINTS`}
                   />
-                  {balanceError && <Form.Text className="text-danger">{balanceError}</Form.Text>}
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("redeem-common.post")}
-                </Form.Label>
-                <Col sm="10">
+                  {balanceError && <small className="pl-3 text-red">{balanceError}</small>}
+                </div>
+              </div>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2 flex items-center">
+                  <label>{_t("redeem-common.post")}</label>
+                </div>
+                <div className="col-span-12 sm:col-span-10">
                   <SuggestionList items={paths} renderer={(i) => i} onSelect={this.pathSelected}>
-                    <Form.Control
+                    <FormControl
                       className={postError ? "is-invalid" : ""}
                       type="text"
                       value={path}
@@ -286,19 +283,19 @@ export class Promote extends BaseComponent<Props, State> {
                       disabled={inProgress}
                     />
                   </SuggestionList>
-                  {postError && <Form.Text className="text-danger">{postError}</Form.Text>}
+                  {postError && <small className="pl-3 text-red">{postError}</small>}
                   {!postError && (
-                    <Form.Text className="text-muted">{_t("redeem-common.post-hint")}</Form.Text>
+                    <small className="text-gray-600">{_t("redeem-common.post-hint")}</small>
                   )}
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">
-                  {_t("promote.duration")}
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control
-                    as="select"
+                </div>
+              </div>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2 flex items-center">
+                  <label>{_t("promote.duration")}</label>
+                </div>
+                <div className="col-span-12 sm:col-span-10">
+                  <FormControl
+                    type="select"
                     value={duration}
                     onChange={this.durationChanged}
                     disabled={inProgress}
@@ -312,22 +309,17 @@ export class Promote extends BaseComponent<Props, State> {
                         </option>
                       );
                     })}
-                  </Form.Control>
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label column={true} sm="2" />
-                <Col sm="10">
-                  <Button
-                    type="button"
-                    onClick={this.next}
-                    disabled={!canSubmit || inProgress}
-                    variant="primary"
-                  >
+                  </FormControl>
+                </div>
+              </div>
+              <div className="grid grid-cols-12 mb-4">
+                <div className="col-span-12 sm:col-span-2 flex items-center" />
+                <div className="col-span-12 sm:col-span-10">
+                  <Button onClick={this.next} disabled={!canSubmit || inProgress}>
                     {_t("g.next")}
                   </Button>
-                </Col>
-              </Form.Group>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -365,11 +357,11 @@ export class Promote extends BaseComponent<Props, State> {
             </div>
             {inProgress && <LinearProgress />}
             <div className="transaction-form-body">
-              <p className="d-flex justify-content-center align-content-center">
-                <span className="svg-icon text-success">{checkAllSvg}</span>{" "}
+              <p className="flex justify-center align-content-center">
+                <span className="svg-icon text-green">{checkAllSvg}</span>{" "}
                 {_t("redeem-common.success-message")}
               </p>
-              <div className="d-flex justify-content-center">
+              <div className="flex justify-center">
                 <Button onClick={this.finish}>{_t("g.finish")}</Button>
               </div>
             </div>
@@ -389,14 +381,13 @@ export default class PromoteDialog extends Component<Props> {
         show={true}
         centered={true}
         onHide={onHide}
-        keyboard={false}
-        className="promote-dialog modal-thin-header"
+        className="promote-dialog"
         size="lg"
       >
-        <Modal.Header closeButton={true} />
-        <Modal.Body>
+        <ModalHeader thin={true} closeButton={true} />
+        <ModalBody>
           <Promote {...this.props} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     );
   }

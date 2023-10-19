@@ -5,24 +5,23 @@ exports[`(1) Default render 1`] = `
   className="faq-container section-container"
 >
   <div
-    className="accordion"
+    className="ecency-accordion"
   >
     <div
-      className="card"
       onClick={[Function]}
     >
       <div
-        className="section d-flex flex-column border-bottom"
+        className="section flex flex-col border-b border-[--border-color]"
         onClick={[Function]}
       >
         <div
-          className="d-flex justify-content-between align-items-center section-card position-relative"
+          className="flex justify-between items-center section-card relative"
         >
           <div
-            className="d-flex align-items-center"
+            className="flex items-center"
           >
             <div
-              className="d-flex align-items-center ml-3"
+              className="flex items-center ml-3"
             >
               <div
                 className="section-title ml-1"
@@ -32,49 +31,48 @@ exports[`(1) Default render 1`] = `
             </div>
           </div>
           <button
-            className="p-0 btn btn-link"
-            disabled={false}
-            onBlur={[Function]}
+            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active  h-[2.125rem] px-3 !p-0"
             onClick={[Function]}
-            onFocus={[Function]}
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
+            title="Tap on me to toggle"
             type="button"
           >
             <div
-              className="pointer"
-              onClick={[Function]}
+              className="flex items-center w-5 h-5 undefined"
             >
-              <span>
-                <svg
-                  className="slider-svg-down"
-                  viewBox="6 8.59 12 7.41"
-                >
-                  <path
-                    d="M0 0h24v24H0V0z"
-                    fill="none"
-                  />
-                  <path
-                    d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+              <svg
+                className="slider-svg-down"
+                viewBox="6 8.59 12 7.41"
+              >
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+                  fill="currentColor"
+                />
+              </svg>
             </div>
           </button>
         </div>
       </div>
     </div>
     <div
-      aria-expanded={null}
-      className="collapse"
+      className="overflow-hidden hidden"
     >
-      <div
-        className="p-0 card-body"
-      >
+      <div>
         <div
-          className="section-body"
-        />
+          className="p-0"
+        >
+          <div
+            className="section-body"
+          />
+        </div>
       </div>
     </div>
   </div>

@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .leaderboard-list {
   height: 100%;
@@ -13,15 +10,16 @@
     justify-content: space-between;
 
     @include themify(day) {
-      border-bottom: 1px solid lighten($dark-sky-blue, 28);
+      border-bottom: 1px solid;
+      @apply border-blue-dark-sky-030;
     }
 
     @include themify(night) {
-      border-bottom: 1px solid lighten($dark, 10);
+      @apply border-dark-default-010-light;
     }
 
     .list-filter {
-      color: $dark-sky-blue;
+      @apply text-blue-dark-sky;
       font-weight: 500;
       font-size: 18px;
       display: flex;
@@ -29,7 +27,7 @@
     }
 
     .list-title {
-      color: $steel-grey;
+      @apply text-gray-steel;
       font-weight: 500;
     }
   }
@@ -73,13 +71,13 @@
         svg {
           height: 15px;
           margin-right: 4px;
-          color: $silver
+          @apply text-silver;
         }
       }
 
       .points {
         text-align: right;
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
       }
     }
 
@@ -94,18 +92,18 @@
 
 
       @include themify(day) {
-        color: $charcoal-grey;
+        @apply text-gray-charcoal;
 
         a {
-          color: $charcoal-grey;
+          @apply text-gray-charcoal;
         }
       }
 
       @include themify(night) {
-        color: $steel-grey;
+        @apply text-gray-steel;
 
         a {
-          color: $steel-grey;
+          @apply text-gray-steel;
         }
       }
 
@@ -144,18 +142,18 @@
       }
 
       .points {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         text-align: right;
 
       }
 
       &:nth-child(even) {
         @include themify(day) {
-          background: lighten($dark-sky-blue, 42);
+          @apply bg-blue-dark-sky-040;
         }
 
         @include themify(night) {
-          background: lighten($dark-six, 2);
+          @apply bg-dark-600;
         }
       }
     }
@@ -169,21 +167,24 @@
   justify-content: center;
   opacity: 0.8;
   border-radius: 50%;
-  border: 1px solid $warm-grey;
+  border: 1px solid;
+  @apply border-gray-warm;
   cursor: pointer;
+
   &:hover {
     opacity: 1;
   }
+
   @include themify(day) {
     svg {
-      color: $charcoal-grey;
+      @apply text-gray-charcoal;
       height: 100%;
     }
   }
 
   @include themify(night) {
     svg {
-      color: $warm-grey;
+      @apply text-gray-warm;
       height: 100%;
     }
   }

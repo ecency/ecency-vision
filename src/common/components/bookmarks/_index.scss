@@ -1,7 +1,4 @@
-@import "src/style/colors";
-@import "src/style/variables";
-@import "src/style/bootstrap_vars";
-@import "src/style/mixins";
+@import "src/style/vars_mixins";
 
 .bookmarks-modal {
 
@@ -15,7 +12,7 @@
       margin-right: 20px;
       cursor: pointer;
       &:not(.active) {
-        color: $dark-sky-blue;
+        @apply text-blue-dark-sky;
         text-decoration: underline;
       }
     }
@@ -36,20 +33,20 @@
           padding: 3px;
 
           @include themify(day) {
-            color: $dark-sky-blue;
+            @apply text-blue-dark-sky;
           }
 
           @include themify(night) {
-            color: $powder-blue;
+            @apply text-blue-powder;
           }
 
           &:hover {
             @include themify(day) {
-              background: $duck-egg-blue;
+              @apply bg-blue-duck-egg;
             }
 
             @include themify(night) {
-              background: $metallic-blue;
+              @apply bg-blue-metallic;
             }
           }
 

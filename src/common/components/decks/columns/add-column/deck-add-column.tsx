@@ -6,18 +6,22 @@ import { DeckGridItem } from "../../types";
 import { arrowLeftSvg } from "../../../../img/svg";
 import "./_deck-add-column.scss";
 import { DeckAddColumnTypeSettings } from "./deck-add-column-type-settings";
-import { Button } from "react-bootstrap";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../../deck-manager";
 import {
   communityIconSvg,
+  faqIconSvg,
   notificationsIconSvg,
   searchIconSvg,
+  swapFormSvg,
+  threadSvg,
   topicsIconSvg,
   trendingIconSvg,
   userIconSvg,
-  walletIconSvg
+  walletIconSvg,
+  whatsNewIconSvg
 } from "../../icons";
+import { Button } from "@ui/button";
 
 interface Props {
   id: string;
@@ -31,6 +35,8 @@ interface AvailableColumn {
   icon: JSX.Element;
   description: string;
 }
+
+const CurrentThreadsDescriptionIndex = Math.floor(Math.random() * 3) + 1;
 
 export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
   const { activeUser } = useMappedStore();
@@ -48,6 +54,12 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       title: _t("decks.columns.community"),
       icon: communityIconSvg,
       description: _t("decks.columns.community-description")
+    },
+    {
+      type: "th",
+      title: _t("decks.columns.threads"),
+      icon: threadSvg,
+      description: _t(`decks.columns.threads-description${CurrentThreadsDescriptionIndex}`)
     },
     {
       type: "w",
@@ -74,13 +86,31 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       description: _t("decks.columns.topics-description")
     },
     {
+      type: "msf",
+      title: _t("decks.columns.market-swap-form"),
+      icon: swapFormSvg,
+      description: _t("decks.columns.msf-description")
+    },
+    {
       type: "s",
       title: _t("decks.columns.search"),
       icon: searchIconSvg,
       description: _t("decks.columns.search-description")
+    },
+    {
+      type: "faq",
+      title: _t("decks.columns.faq"),
+      icon: faqIconSvg,
+      description: _t("decks.columns.faq-description")
+    },
+    {
+      type: "wn",
+      title: _t("decks.columns.whats-new"),
+      icon: whatsNewIconSvg,
+      description: _t("decks.columns.whats-new-description")
     }
   ];
-  const typesWithoutSettings = ["tr", "to"];
+  const typesWithoutSettings = ["tr", "to", "msf", "faq", "wn"];
 
   const [step, setStep] = useState<"select" | "setup">("select");
   const [selectedType, setSelectedType] = useState<DeckGridItem["type"] | null>(null);
@@ -100,15 +130,14 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
         prefix={
           selectedType ? (
             <Button
-              variant="link"
-              className="p-0"
+              appearance="link"
+              className="px-0"
               onClick={() => {
                 setStep("select");
                 setSelectedType(null);
               }}
-            >
-              {arrowLeftSvg}
-            </Button>
+              icon={arrowLeftSvg}
+            />
           ) : (
             <></>
           )
@@ -117,7 +146,7 @@ export const DeckAddColumn = ({ id, draggable, deckKey }: Props) => {
       <div className="deck-content">
         {step === "select" ? (
           <>
-            <div className="subtitle p-3">Choose one</div>
+            <div className="subtitle p-3">{_t("decks.choose-one")}</div>
             {availableColumns.map(({ icon, title, type, description }) => (
               <div
                 key={type}

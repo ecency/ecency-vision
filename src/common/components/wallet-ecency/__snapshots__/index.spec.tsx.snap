@@ -35,15 +35,8 @@ exports[`(1) Default Render 1`] = `
           >
             <div
               className="amount-actions"
-            >
-              <div
-                className="custom-dropdown float-right"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              />
-            </div>
-            12.010
+            />
+            0.000
              
             POINTS
           </div>
@@ -72,7 +65,7 @@ exports[`(1) Default Render 1`] = `
           <div
             className="amount amount-bold"
           >
-            Calculating...
+            $ 0.000
           </div>
         </div>
       </div>
@@ -265,8 +258,9 @@ exports[`(1) Default Render 1`] = `
             History
           </h2>
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             onChange={[Function]}
+            type="select"
             value={0}
           >
             <option
@@ -339,76 +333,11 @@ exports[`(1) Default Render 1`] = `
         <div
           className="transaction-list-body"
         >
-          <div
-            className="transaction-list-item"
+          <p
+            className="text-gray-600 empty-list"
           >
-            <div
-              className="transaction-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="transaction-title"
-            >
-              <div
-                className="transaction-name"
-              >
-                Points for heartbeat
-              </div>
-              <div
-                className="transaction-date"
-              >
-                5 days ago
-              </div>
-            </div>
-            <div
-              className="transaction-numbers"
-            >
-              0.250
-            </div>
-          </div>
-          <div
-            className="transaction-list-item"
-          >
-            <div
-              className="transaction-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="transaction-title"
-            >
-              <div
-                className="transaction-name"
-              >
-                Points for vote
-              </div>
-              <div
-                className="transaction-date"
-              >
-                5 days ago
-              </div>
-            </div>
-            <div
-              className="transaction-numbers"
-            >
-              0.750
-            </div>
-          </div>
+            Nothing here
+          </p>
         </div>
       </div>
     </div>
@@ -591,7 +520,7 @@ exports[`(2) With active user 1`] = `
                 </div>
               </div>
             </div>
-            12.010
+            0.000
              
             POINTS
           </div>
@@ -824,8 +753,9 @@ exports[`(2) With active user 1`] = `
             History
           </h2>
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             onChange={[Function]}
+            type="select"
             value={0}
           >
             <option
@@ -898,76 +828,11 @@ exports[`(2) With active user 1`] = `
         <div
           className="transaction-list-body"
         >
-          <div
-            className="transaction-list-item"
+          <p
+            className="text-gray-600 empty-list"
           >
-            <div
-              className="transaction-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="transaction-title"
-            >
-              <div
-                className="transaction-name"
-              >
-                Points for heartbeat
-              </div>
-              <div
-                className="transaction-date"
-              >
-                5 days ago
-              </div>
-            </div>
-            <div
-              className="transaction-numbers"
-            >
-              0.250
-            </div>
-          </div>
-          <div
-            className="transaction-list-item"
-          >
-            <div
-              className="transaction-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="transaction-title"
-            >
-              <div
-                className="transaction-name"
-              >
-                Points for vote
-              </div>
-              <div
-                className="transaction-date"
-              >
-                5 days ago
-              </div>
-            </div>
-            <div
-              className="transaction-numbers"
-            >
-              0.750
-            </div>
-          </div>
+            Nothing here
+          </p>
         </div>
       </div>
     </div>
@@ -1100,38 +965,6 @@ exports[`(3) Active user with unclaimed points 1`] = `
       className="wallet-info"
     >
       <div
-        className="unclaimed-rewards"
-      >
-        <div
-          className="title"
-        >
-          Unclaimed points
-        </div>
-        <div
-          className="rewards"
-        >
-          <span
-            className="reward-type"
-          >
-            6.200
-          </span>
-          <a
-            className="claim-btn "
-            onClick={[Function]}
-            title="Claim reward points"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-      <div
         className="balance-row alternative"
       >
         <div
@@ -1156,33 +989,8 @@ exports[`(3) Active user with unclaimed points 1`] = `
           >
             <div
               className="amount-actions"
-            >
-              <div
-                className="custom-dropdown float-right"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              >
-                <div
-                  className="dropdown-btn"
-                >
-                  
-                  <div
-                    className="menu-down"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M7,10L12,15L17,10H7Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-            12.010
+            />
+            0.000
              
             POINTS
           </div>
@@ -1211,7 +1019,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
           <div
             className="amount amount-bold"
           >
-            Calculating...
+            $ 0.000
           </div>
         </div>
       </div>
@@ -1415,8 +1223,9 @@ exports[`(3) Active user with unclaimed points 1`] = `
             History
           </h2>
           <select
-            className="form-control"
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
             onChange={[Function]}
+            type="select"
             value={0}
           >
             <option
@@ -1489,76 +1298,11 @@ exports[`(3) Active user with unclaimed points 1`] = `
         <div
           className="transaction-list-body"
         >
-          <div
-            className="transaction-list-item"
+          <p
+            className="text-gray-600 empty-list"
           >
-            <div
-              className="transaction-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="transaction-title"
-            >
-              <div
-                className="transaction-name"
-              >
-                Points for heartbeat
-              </div>
-              <div
-                className="transaction-date"
-              >
-                5 days ago
-              </div>
-            </div>
-            <div
-              className="transaction-numbers"
-            >
-              0.250
-            </div>
-          </div>
-          <div
-            className="transaction-list-item"
-          >
-            <div
-              className="transaction-icon"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <div
-              className="transaction-title"
-            >
-              <div
-                className="transaction-name"
-              >
-                Points for vote
-              </div>
-              <div
-                className="transaction-date"
-              >
-                5 days ago
-              </div>
-            </div>
-            <div
-              className="transaction-numbers"
-            >
-              0.750
-            </div>
-          </div>
+            Nothing here
+          </p>
         </div>
       </div>
     </div>

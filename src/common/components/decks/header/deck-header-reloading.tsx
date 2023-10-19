@@ -1,7 +1,8 @@
 import { _t } from "../../../i18n";
 import { refreshSvg } from "../../../img/svg";
-import { Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
+import { Spinner } from "@ui/spinner";
+import { Button } from "@ui/button";
 
 interface Props {
   onReload: () => void;
@@ -21,20 +22,14 @@ export const DeckHeaderReloading = ({ isReloading, onReload, updateDataInterval 
 
   return (
     <Button
-      variant="link"
+      appearance="link"
       size="sm"
-      className="d-flex align-items-center"
       onClick={onReload}
       disabled={isReloading}
+      icon={isReloading ? <Spinner className="w-4 h-4" /> : refreshSvg}
+      iconPlacement="left"
     >
-      {isReloading ? (
-        <div className="spinner-border spinner-border-sm text-secondary mr-1" role="status">
-          <span className="sr-only">{_t("g.loading")}</span>
-        </div>
-      ) : (
-        <div className="deck-options-icon d-flex mr-1">{refreshSvg}</div>
-      )}
-      <span>{_t("decks.reload")}</span>
+      {_t("decks.reload")}
     </Button>
   );
 };

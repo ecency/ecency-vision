@@ -1,20 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(1) Default render 1`] = `
-<button
-  className="btn btn-primary btn-sm"
-  disabled={false}
-  onClick={[Function]}
-  type="button"
->
-  <svg
-    viewBox="0 0 24 24"
+Array [
+  <button
+    className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+    disabled={false}
+    onClick={[Function]}
+    size="sm"
+    style={
+      Object {
+        "outline": "none",
+      }
+    }
+    type="button"
   >
-    <path
-      d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"
-      fill="currentColor"
-    />
-  </svg>
+    <div
+      className="flex items-center w-5 h-5 undefined"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </button>,
   <input
     accept="image/*"
     onChange={[Function]}
@@ -24,6 +36,6 @@ exports[`(1) Default render 1`] = `
       }
     }
     type="file"
-  />
-</button>
+  />,
+]
 `;
