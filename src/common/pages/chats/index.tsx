@@ -4,15 +4,15 @@ import { match } from "react-router";
 import NavBar from "../../components/navbar";
 import NavBarElectron from "../../../desktop/app/components/navbar";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../common";
-import ChatsSideBar from "../../features/chats/chats-sidebar/indes";
-import ChatsMessagesBox from "../../features/chats/chats-messages-box";
+import ChatsSideBar from "../../features/chats/components/chats-sidebar/indes";
+import ChatsMessagesBox from "../../features/chats/components/chats-messages-box";
 
-import ManageChatKey from "../../features/chats/manage-chat-key";
+import ManageChatKey from "../../features/chats/components/manage-chat-key";
 import Feedback from "../../components/feedback";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { ChatContext } from "../../features/chats/chat-context-provider";
-import ImportChats from "../../features/chats/import-chats";
-import JoinChat from "../../features/chats/join-chat";
+import ImportChats from "../../features/chats/components/import-chats";
+import JoinChat from "../../features/chats/components/join-chat";
 
 import "./index.scss";
 import { Spinner } from "@ui/spinner";

@@ -30,7 +30,7 @@ import { EntriesCacheManager } from "./core";
 
 import { UserActivityRecorder } from "./components/user-activity-recorder";
 import { ChatContextProvider } from "./features/chats/chat-context-provider";
-import { ChatPopUp } from "./features/chats/chat-popup";
+import { ChatPopUp } from "./features/chats/components/chat-popup";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));

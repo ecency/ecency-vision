@@ -1,0 +1,19 @@
+@import "src/style/vars_mixins";
+
+.chats-dialog {
+  .chat-modals-body {
+    .community-chat-role-edit-dialog-content {
+      margin-top: 2rem;
+    }
+
+    .success-dialog-header {
+      .success-dialog-titles {
+        margin-top: 10px;
+      }
+    }
+
+    .success-dialog-body {
+      padding: 10px 20px 20px 10px;
+    }
+  }
+}
