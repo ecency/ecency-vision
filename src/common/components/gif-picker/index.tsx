@@ -6,6 +6,7 @@ import { insertOrReplace } from "../../util/input-util";
 import _ from "lodash";
 import { fetchGif } from "../../api/misc";
 import "./_index.scss";
+
 interface Props {
   fallback?: (e: string) => void;
   shGif: boolean;
@@ -60,6 +61,7 @@ export default class GifPicker extends BaseComponent<Props> {
       this.delayedSearchOnScroll(filter, limit, offset + 50);
     }
   };
+
   componentDidMount() {
     const gifWrapper = document.querySelector(".emoji-picker");
     gifWrapper?.addEventListener("scroll", this.handleScroll);
@@ -111,6 +113,9 @@ export default class GifPicker extends BaseComponent<Props> {
     };
     this.stateSet(_data);
   };
+
+  delayedSearch = _.debounce(this.getSearchedData, 2000);
+
   getSearchedDataOnScroll = async (_filter: string | null, limit: string, offset: string) => {
     const { data } = await fetchGif(_filter, limit, offset);
     if (_filter?.length) {
@@ -126,6 +131,8 @@ export default class GifPicker extends BaseComponent<Props> {
     }
   };
 
+  delayedSearchOnScroll = _.debounce(this.getSearchedDataOnScroll, 2000);
+
   getGifsData = async (_filter: string | null, limit: string, offset: string) => {
     const { data } = await fetchGif(_filter, limit, offset);
     let _data: State = {
@@ -138,6 +145,7 @@ export default class GifPicker extends BaseComponent<Props> {
     };
     this.stateSet(_data);
   };
+
   getGifsDataOnScroll = async (_filter: string | null, limit: string, offset: string) => {
     const { data } = await fetchGif(_filter, limit, offset);
     let _data: State = {
@@ -173,9 +181,6 @@ export default class GifPicker extends BaseComponent<Props> {
     }
     this.props.changeState(!this.props.shGif);
   };
-
-  delayedSearch = _.debounce(this.getSearchedData, 2000);
-  delayedSearchOnScroll = _.debounce(this.getSearchedDataOnScroll, 2000);
 
   filterChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ filter: e.target.value });
@@ -248,7 +253,7 @@ export default class GifPicker extends BaseComponent<Props> {
             );
           }
         })()}
-        <span className="flex justify-content-end">{_t("gif-picker.credits")}</span>
+        <span className="flex justify-end">{_t("gif-picker.credits")}</span>
       </div>
     );
   }

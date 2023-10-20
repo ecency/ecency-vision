@@ -1827,8 +1827,10 @@
     "update-success-message": "Your Recovery email has been updated successfully"
   },
   "chat": {
+    "title": "Chats",
     "messages": "Messages",
     "new-message": "New Message",
+    "direct-messages": "Direct messages",
     "collapse": "Collapse",
     "expand": "Expand",
     "scroll-to-bottom": "scroll to Bottom",

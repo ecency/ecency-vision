@@ -62,7 +62,7 @@ export default function ImportChats() {
     <>
       <div className="import-chats">
         <div className="import-chats-container">
-          <div className="d-flex justify-content-center import-chat-btn">
+          <div className="flex justify-center import-chat-btn">
             <Button onClick={() => setImportPrivKey(!importPrivKey)}>
               {_t("chat.import-chat")}
             </Button>

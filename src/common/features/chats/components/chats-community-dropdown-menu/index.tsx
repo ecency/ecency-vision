@@ -293,7 +293,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
                 </FormControl>
               </div>
             </div>
-            <div className="d-flex justify-content-end">
+            <div className="flex justify-end">
               <Button
                 type="button"
                 onClick={() => handleChannelUpdate(ADDROLE)}
@@ -318,7 +318,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
                       return (
                         <tr key={i}>
                           <td>
-                            <span className="d-flex user">
+                            <span className="flex user">
                               <UserAvatar username={moderator.name} size="medium" />{" "}
                               <span className="mt-2 ml-2 username">@{moderator.name}</span>
                             </span>
@@ -380,7 +380,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
                     return (
                       <tr key={i}>
                         <td>
-                          <span className="d-flex user">
+                          <span className="flex user">
                             <UserAvatar username={user.name} size="medium" />{" "}
                             <span className="username" style={{ margin: "10px 0 0 10px" }}>
                               @{user.name}
@@ -417,7 +417,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
   const successModal = (message: string) => {
     return (
       <>
-        <div className="success-dialog-header d-flex border-bottom">
+        <div className="success-dialog-header flex border-bottom">
           <div className="step-no">2</div>
           <div className="success-dialog-titles">
             <div className="success-main-title">{_t("manage-authorities.success-title")}</div>
@@ -428,7 +428,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
           <div className="success-dialog-content text-center">
             <span>{message === UNBLOCKUSER ? "User unblock successfully" : ""}</span>
           </div>
-          <div className="d-flex justify-content-center mt-3">
+          <div className="flex justify-center mt-3">
             <span className="hr-6px-btn-spacer" />
             <Button onClick={finish}>{_t("g.finish")}</Button>
           </div>

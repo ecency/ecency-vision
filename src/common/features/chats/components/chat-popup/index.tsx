@@ -13,7 +13,7 @@ import { setNostrkeys } from "../../../../../managers/message-manager";
 import ManageChatKey from "../manage-chat-key";
 import ChatInput from "../chat-input";
 import { chevronDownSvgForSlider, chevronUpSvg } from "../../../../img/svg";
-import { EmojiPickerStyle, GifPickerStyle } from "./chat-constants";
+import { GifPickerStyle } from "./chat-constants";
 import { _t } from "../../../../i18n";
 import { usePrevious } from "../../../../util/use-previous";
 import { getCommunity } from "../../../../api/bridge";
@@ -472,17 +472,18 @@ export const ChatPopUp = () => {
               </Tooltip>
             )}
           </div>
-          {(isCurrentUser || isCommunity) && (
-            <ChatInput
-              isCurrentUser={isCurrentUser}
-              isCommunity={isCommunity}
-              currentUser={currentUser}
-              currentChannel={currentChannel!}
-              isCurrentUserJoined={isCurrentUserJoined}
-              emojiPickerStyles={EmojiPickerStyle}
-              gifPickerStyle={GifPickerStyle}
-            />
-          )}
+          <div className="px-3">
+            {(isCurrentUser || isCommunity) && (
+              <ChatInput
+                isCurrentUser={isCurrentUser}
+                isCommunity={isCommunity}
+                currentUser={currentUser}
+                currentChannel={currentChannel!}
+                isCurrentUserJoined={isCurrentUserJoined}
+                gifPickerStyle={GifPickerStyle}
+              />
+            )}
+          </div>
         </div>
       )}
     </>

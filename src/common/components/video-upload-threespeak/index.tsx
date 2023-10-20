@@ -186,7 +186,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
           <source src={selectedFile} type="video/mp4" />
         </video>
       </div>
-      <div className="flex justify-content-end mt-3">
+      <div className="flex justify-end mt-3">
         <Button
           className="bg-dark"
           onClick={() => {

@@ -41,8 +41,8 @@ export default function ChatsMessagesHeader(props: Props) {
 
   return (
     <div className="chats-messages-header">
-      <div className="d-flex justify-content-between header-content">
-        <div className="d-flex user-info-wrapper">
+      <div className="flex justify-between header-content">
+        <div className="flex user-info-wrapper">
           <div className="expand-icon d-md-none">
             <p className="expand-svg" onClick={() => setShowSideBar(true)}>
               {expandSideBar}

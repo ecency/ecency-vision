@@ -307,7 +307,7 @@ export class CommunitySettings extends BaseComponent<Props, State> {
               />
             </div>
           </div>
-          <div className="flex justify-content-end">
+          <div className="flex justify-end">
             <Button type="submit" disabled={inProgress}>
               {_t("g.save")}
             </Button>

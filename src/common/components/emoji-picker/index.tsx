@@ -5,10 +5,12 @@ import { v4 } from "uuid";
 import Picker from "@emoji-mart/react";
 import { useMappedStore } from "../../store/use-mapped-store";
 import useClickAway from "react-use/lib/useClickAway";
+import { classNameObject } from "../../helper/class-name-object";
 
 interface Props {
-  anchor: HTMLElement | null;
+  anchor: Element | null;
   onSelect: (e: string) => void;
+  position?: "top" | "bottom";
 }
 
 /**
@@ -16,15 +18,16 @@ interface Props {
  *
  * @param {Props} anchor - The anchor element to position the picker relative to.
  * @param {function} onSelect - The callback function to be called when an emoji is selected.
+ * @param position
  * @return The rendered emoji picker dialog.
  */
-export function EmojiPicker({ anchor, onSelect }: Props) {
+export function EmojiPicker({ anchor, onSelect, position }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   const { global } = useMappedStore();
 
   const [show, setShow] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+
   // Due to ability to hold multiple dialogs we have to identify them
   const dialogId = useMemo(() => v4(), []);
 
@@ -37,7 +40,7 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
   useEffect(() => {
     if (anchor) {
       anchor.addEventListener("click", () => {
-        anchor.style.position = "relative !important";
+        (anchor as HTMLElement).style.position = "relative !important";
         setShow(true);
       });
     }
@@ -48,7 +51,11 @@ export function EmojiPicker({ anchor, onSelect }: Props) {
       ref={ref}
       id={dialogId}
       key={dialogId}
-      className="emoji-picker-dialog"
+      className={classNameObject({
+        "emoji-picker-dialog": true,
+        "top-[100%]": (position ?? "bottom") === "bottom",
+        "bottom-[100%] right-0": position === "top"
+      })}
       style={{
         display: show ? "block" : "none"
       }}

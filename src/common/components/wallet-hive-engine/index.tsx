@@ -470,7 +470,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                               return (
                                 <span
                                   key={i}
-                                  className={`flex justify-content-end ${
+                                  className={`flex justify-end ${
                                     changeValue < 0 ? "text-red" : "text-green"
                                   }`}
                                 >
@@ -546,7 +546,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                               {b.stakingEnabled && (
                                 <div className="mr-1">
                                   <Tooltip content="Stake">
-                                    <div className="flex items-center flex-justify-center align-center">
+                                    <div className="flex items-center flex-justify-center items-center">
                                       <span
                                         onClick={() =>
                                           this.openTransferDialog("stake", b.symbol, b.balance)
@@ -562,7 +562,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                               {b.stake > 0 && (
                                 <div className="mr-1">
                                   <Tooltip content="Unstake">
-                                    <div className="flex items-center flex-justify-center align-center">
+                                    <div className="flex items-center flex-justify-center items-center">
                                       <span
                                         onClick={() =>
                                           this.openTransferDialog(

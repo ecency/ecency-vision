@@ -116,7 +116,7 @@ export default function ChatsDirectMessages(props: Props) {
                   <React.Fragment key={msg.id}>
                     {dayAndMonth && (
                       <div className="custom-divider">
-                        <span className="d-flex justify-content-center align-items-center mt-3 custom-divider-text">
+                        <span className="flex justify-center items-center mt-3 custom-divider-text">
                           {dayAndMonth}
                         </span>
                       </div>

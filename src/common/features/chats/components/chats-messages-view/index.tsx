@@ -221,7 +221,6 @@ export default function ChatsMessagesView(props: Props) {
         )}
       </div>
       <ChatInput
-        emojiPickerStyles={EmojiPickerStyle}
         gifPickerStyle={EmojiPickerStyle}
         isCurrentUser={!!directUser}
         isCommunity={!!communityName}

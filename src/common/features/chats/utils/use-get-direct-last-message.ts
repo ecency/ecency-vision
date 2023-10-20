@@ -4,7 +4,7 @@ export const getDirectLastMessage = (pubkey: string, directMessages: directMessa
   const msgsList = fetchDirectMessages(pubkey, directMessages);
   const messages = msgsList.sort((a, b) => a.created - b.created);
   const lastMessage = messages.slice(-1);
-  return lastMessage[0]?.content;
+  return lastMessage[0];
 };
 
 const fetchDirectMessages = (peer: string, directMessages: directMessagesList[]) => {

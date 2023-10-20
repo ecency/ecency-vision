@@ -3,6 +3,7 @@ import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 export type ButtonAppearance =
   | "primary"
   | "secondary"
+  | "gray-link"
   | "link"
   | "danger"
   | "success"

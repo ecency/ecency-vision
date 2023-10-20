@@ -202,6 +202,7 @@ const App = (props: any) => {
       </ChatContextProvider>
       <div id="modal-overlay-container" />
       <div id="modal-dialog-container" />
+      <div id="popper-container" />
     </EntriesCacheManager>
   );
 };

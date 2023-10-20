@@ -312,17 +312,17 @@ export default function ChatsChannelMessages(props: Props) {
                 <PopoverContent>
                   <div className="profile-box" ref={popoverRef as RefObject<HTMLDivElement>}>
                     <div className="profile-box-content">
-                      <div className="profile-box-logo d-flex justify-content-center">
+                      <div className="profile-box-logo flex justify-center">
                         <UserAvatar username={name!} size="large" />
                       </div>
 
-                      <p className="d-flex justify-content-center profile-name">{`@${name!}`}</p>
+                      <p className="flex justify-center profile-name">{`@${name!}`}</p>
                       <div
-                        className={`d-flex mb-3 ${
+                        className={`flex mb-3 ${
                           communityAdmins.includes(activeUser?.username!) &&
                           name !== currentChannel.communityName
-                            ? "justify-content-between"
-                            : "justify-content-center"
+                            ? "justify-between"
+                            : "justify-center"
                         }  profile-box-buttons`}
                       >
                         <FollowControls
@@ -394,7 +394,7 @@ export default function ChatsChannelMessages(props: Props) {
               <React.Fragment key={pMsg.id}>
                 {dayAndMonth && (
                   <div className="custom-divider">
-                    <span className="d-flex justify-content-center align-items-center mt-3 custom-divider-text">
+                    <span className="flex justify-center items-center mt-3 custom-divider-text">
                       {dayAndMonth}
                     </span>
                   </div>
@@ -570,7 +570,7 @@ export default function ChatsChannelMessages(props: Props) {
             );
           })}
         {isActveUserRemoved && (
-          <span className="d-flex justify-content-center align-items-center mt-3">
+          <span className="flex justify-center items-center mt-3">
             You have been blocked from this community
           </span>
         )}

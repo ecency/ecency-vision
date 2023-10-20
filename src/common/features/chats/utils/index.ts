@@ -17,3 +17,4 @@ export * from "./copy-to-clipboard";
 export * from "./use-fetch-direct-messages";
 export * from "./check-contiguous-message";
 export * from "./format-message-date-and-day";
+export * from "./get-relative-date";
