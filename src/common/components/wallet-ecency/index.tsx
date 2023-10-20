@@ -201,9 +201,9 @@ export const WalletEcency = (props: Props) => {
 
     useEffect(() => {
         setIsMounted(true);
-        if (!global.usePrivate) {
-            history.push("/");
-        }
+        // if (!global.usePrivate) {
+        //     history.push("/");  
+        // }
         let user = history.location.pathname.split("/")[1];
             user = user.replace('@','')
         global.isElectron && initiateOnElectron(user);
@@ -276,9 +276,9 @@ export const WalletEcency = (props: Props) => {
         fetchPoints(account.name, filter);
     }
     
-    if (!global.usePrivate) {
-        return null;
-    }
+    // if (!global.usePrivate) {
+    //     return null;
+    // }
 
     const isMyPage = activeUser && activeUser.username === account.name;
 

@@ -22,14 +22,13 @@ export default class WalletMenu extends Component<Props> {
         const logo = global.isElectron ? "./img/logo-small-transparent.png" : require('../../img/logo-small-transparent.png');
 
         return (
+            //REMOVE USE PRIVATE FOR POINTS
             <div className="wallet-menu">
-                {global.usePrivate && (
-                    <Link className={_c(`menu-item ecency ${active === "ecency" ? "active" : ""}`)} to={`/@${username}/points`}>
-                        <span className="title">Ecency</span>
-                        <span className="sub-title">Points</span>
-                        <span className="platform-logo"><img alt="ecency" src={logo}/></span>
-                    </Link>
-                )}
+                <Link className={_c(`menu-item ecency ${active === "ecency" ? "active" : ""}`)} to={`/@${username}/points`}>
+                    <span className="title">Community</span>
+                    <span className="sub-title">Points</span>
+                    <span className="platform-logo"><img alt="ecency" src={logo}/></span>
+                </Link>
                 <Link className={_c(`menu-item hive ${active === "hive" ? "active" : ""}`)} to={`/@${username}/wallet`}>
                     <span className="title">Hive</span>
                     <span className="sub-title">Wallet</span>
