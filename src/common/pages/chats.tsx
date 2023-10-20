@@ -56,11 +56,10 @@ export const Chats = (props: Props) => {
           <div className="col-span-12 sm:col-span-6 lg:col-span-8 xl:col-span-9 h-[calc(100vh-3rem-69px)] overflow-y-auto">
             {isReady ? (
               revealPrivKey ? (
-                <div
-                  className="chats-manage-key"
-                  style={{ position: windowWidth < 768 ? "absolute" : "static" }}
-                >
-                  <ManageChatKey history={history} />
+                <div className="flex h-full items-center justify-center">
+                  <div className="max-w-[400px] bg-gray-100 w-full p-4 rounded-2xl border border-[--border-color]">
+                    <ManageChatKey />
+                  </div>
                 </div>
               ) : (
                 <div className="import-chat">

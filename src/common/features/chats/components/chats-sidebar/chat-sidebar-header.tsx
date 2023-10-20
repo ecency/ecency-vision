@@ -33,16 +33,23 @@ export function ChatSidebarHeader({ history }: Props) {
 
   return (
     <div className="sticky top-0 z-10 bg-white flex items-center justify-between border-b border-[--border-color] p-3 gap-4">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         {windowWidth < 768 && (
           <Button appearance="link" icon={closeSvg} onClick={() => setShowSideBar(false)} />
         )}
         {revealPrivKey && windowWidth > 768 && (
           <Tooltip content={_t("chat.back")}>
-            <Button appearance="link" icon={arrowBackSvg} onClick={() => setRevealPrivKey(false)} />
+            <Button
+              noPadding={true}
+              appearance="gray-link"
+              icon={arrowBackSvg}
+              onClick={() => setRevealPrivKey(false)}
+            />
           </Tooltip>
         )}
-        <div className="font-semibold text-gray-600 text-sm">{_t("chat.title")}</div>
+        <div className="font-semibold text-gray-600 text-sm">
+          {revealPrivKey ? _t("chat.manage-chat-key") : _t("chat.title")}
+        </div>
       </div>
       <div className="flex items-center">
         <Tooltip content={_t("chat.refresh")}>

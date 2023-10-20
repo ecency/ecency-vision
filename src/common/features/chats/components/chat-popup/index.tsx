@@ -443,7 +443,9 @@ export const ChatPopUp = () => {
                 )}
               </>
             ) : revealPrivKey ? (
-              <ManageChatKey history={history!} />
+              <div className="p-4">
+                <ManageChatKey />
+              </div>
             ) : (
               <Button
                 className="join-chat-btn"
