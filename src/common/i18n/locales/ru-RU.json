@@ -75,8 +75,8 @@
     "past-few-days": "последние несколько дней",
     "you": "Вы",
     "copy-clipboard": "Копировать в буфер обмена",
-    "first": "First",
-    "last": "Last"
+    "first": "Первый",
+    "last": "Последний"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -1229,7 +1229,7 @@
     "memo-help": "Это примечание видно всем",
     "memo-error": "Никогда не помещайте приватные ключи в мемо-поле, оно открыто для всех.",
     "memo-required": "Для перевода на биржу заполните мемо.",
-    "invalid-asset": "You can only send HIVE to an exchange account.",
+    "invalid-asset": "Вы можете отправить HIVE только на биржевой аккаунт.",
     "available-hp-hint": "* доступно",
     "override-warning-1": "Новая сумма отменяет предыдущую.",
     "override-warning-2": "Аккаунту ({{account}}) уже было делегировано {{previousAmount}}.",
