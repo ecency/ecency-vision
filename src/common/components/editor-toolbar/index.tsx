@@ -40,6 +40,7 @@ import {
 import { VideoUpload } from "../video-upload-threespeak";
 import VideoGallery from "../video-gallery";
 import { ThreeSpeakVideo } from "../../api/threespeak";
+import { v4 } from "uuid";
 
 interface Props {
   global: Global;
@@ -64,6 +65,7 @@ interface State {
   showVideoUpload: boolean;
   showVideoGallery: boolean;
   isMounted: boolean;
+  toolbarId: string;
 }
 
 export const detectEvent = (eventType: string) => {
@@ -86,7 +88,8 @@ export class EditorToolbar extends Component<Props> {
     shGif: false,
     showVideoUpload: false,
     showVideoGallery: false,
-    isMounted: false
+    isMounted: false,
+    toolbarId: v4()
   };
 
   holder = React.createRef<HTMLDivElement>();
@@ -578,17 +581,27 @@ export class EditorToolbar extends Component<Props> {
               </div>
             </Tooltip>
           )}
-          <Tooltip content={_t("editor-toolbar.emoji")}>
-            <div className="editor-tool" id="editor-tool-emoji-picker" role="none">
-              {emoticonHappyOutlineSvg}
-              {showEmoji && this.state.isMounted && (
-                <EmojiPicker
-                  anchor={document.querySelector("#editor-tool-emoji-picker")!! as HTMLElement}
-                  onSelect={(e) => this.insertText(e, "")}
-                />
-              )}
-            </div>
-          </Tooltip>
+          {this.state.isMounted && (
+            <Tooltip content={_t("editor-toolbar.emoji")}>
+              <div
+                className="editor-tool"
+                id={"editor-tool-emoji-picker-" + this.state.toolbarId}
+                role="none"
+              >
+                {emoticonHappyOutlineSvg}
+                {showEmoji && this.state.isMounted && (
+                  <EmojiPicker
+                    anchor={
+                      document.querySelector(
+                        "#editor-tool-emoji-picker-" + this.state.toolbarId
+                      )!! as HTMLElement
+                    }
+                    onSelect={(e) => this.insertText(e, "")}
+                  />
+                )}
+              </div>
+            </Tooltip>
+          )}
           <Tooltip content={_t("Gif")}>
             <div className="editor-tool" role="none">
               <div className="editor-tool-gif-icon" onClick={this.toggleGif}>
