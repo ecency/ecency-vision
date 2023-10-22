@@ -85,7 +85,7 @@
       }
 
       @include themify(night) {
-        @apply bg-dark-600-010-light;
+        @apply bg-dark-600;
       }
 
       .user-avatar {

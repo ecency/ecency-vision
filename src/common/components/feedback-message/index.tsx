@@ -19,6 +19,7 @@ export interface FeedbackObject {
   type: FeedbackType;
   message: string;
 }
+
 export interface ErrorFeedbackObject extends FeedbackObject {
   errorType: ErrorTypes;
 }
@@ -96,7 +97,7 @@ export default function FeedbackMessage(props: Props) {
                           {closeSvg}
                         </div>
                         <div className="feedback-content">
-                          <div className="feedback-img success-img">{checkSvg}</div>
+                          <div className="feedback-img flex p-1 success-img">{checkSvg}</div>
                           {x.message}
                         </div>
                       </div>
@@ -114,7 +115,7 @@ export default function FeedbackMessage(props: Props) {
                           {closeSvg}
                         </div>
                         <div className="error-content">
-                          <div className="error-img">{alertCircleSvg}</div>
+                          <div className="error-img flex p-1">{alertCircleSvg}</div>
 
                           <div className=" flex flex-col items-start">
                             {x.message}
@@ -168,7 +169,7 @@ export default function FeedbackMessage(props: Props) {
                           {closeSvg}
                         </div>
                         <div className="feedback-content">
-                          <div className="feedback-img">{informationSvg}</div>
+                          <div className="feedback-img flex p-1">{informationSvg}</div>
                           {x.message}
                         </div>
                       </div>

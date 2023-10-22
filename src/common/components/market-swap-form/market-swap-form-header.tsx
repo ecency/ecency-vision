@@ -1,8 +1,9 @@
 import { MarketSwapFormStep } from "./form-step";
 import { _t } from "../../i18n";
 import React, { useEffect, useState } from "react";
-import { arrowLeftSvg, syncSvg } from "../../img/svg";
+import { arrowLeftSvg } from "../../img/svg";
 import { Button } from "@ui/button";
+import { Spinner } from "@ui/spinner";
 
 export interface Props {
   step: MarketSwapFormStep;
@@ -34,7 +35,7 @@ export const MarketSwapFormHeader = ({ step, loading, onBack, className }: Props
         <></>
       )}
       <div className="text-blue-dark-sky font-bold">{title}</div>
-      {loading ? <i className="loading-market-svg ml-2 text-blue-dark-sky">{syncSvg}</i> : <></>}
+      {loading ? <Spinner className="w-4 h-4 ml-3" /> : <></>}
     </div>
   );
 };

@@ -163,7 +163,7 @@ export const MarketSwapForm = ({
   return (
     <div
       className={classNameObject({
-        "market-swap-form": true,
+        "market-swap-form relative": true,
         [padding]: true
       })}
     >
