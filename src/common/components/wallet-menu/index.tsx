@@ -1,26 +1,26 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import {Global} from "../../store/global/types";
+import { Global } from "../../store/global/types";
 
 import _c from "../../util/fix-class-names";
 
-import {hiveSvg} from "../../img/svg";
-import {hiveEngineSvg} from "../../img/svg";
-
+import { hiveSvg } from "../../img/svg";
+import { hiveEngineSvg } from "../../img/svg";
 
 interface Props {
-    global: Global;
-    username: string;
-    active: string;
+  global: Global;
+  username: string;
+  active: string;
 }
 
 export default class WalletMenu extends Component<Props> {
-    render() {
-        const {global, username, active} = this.props;
-        const logo = global.isElectron ? "./img/logo-small-transparent.png" : require('../../img/logo-small-transparent.png');
-
+  render() {
+    const { global, username, active } = this.props;
+    const logo = global.isElectron
+      ? "./img/logo-small-transparent.png"
+      : require("../../img/logo-small-transparent.png");
         return (
             //REMOVE USE PRIVATE FOR POINTS
             <div className="wallet-menu">
