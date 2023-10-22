@@ -20,6 +20,7 @@ import {hotSign} from "../helper/hive-signer";
 
 import {_t} from "../i18n";
 import { TransactionType } from "../components/buy-sell-hive";
+import { KeyTypes } from "../helper/onboard";
 
 export interface MetaData {
     links?: string[];
@@ -1088,4 +1089,71 @@ export const hiveNotifySetLastRead = (username: string): Promise<TransactionConf
     return broadcastPostingOperations(username, opArray);
 }
 
-export const updatePassword = (update: AccountUpdateOperation[1], ownerKey: PrivateKey): Promise<TransactionConfirmation> => hiveClient.broadcast.updateAccount(update, ownerKey)
+export const updatePassword = (
+    update: AccountUpdateOperation[1], 
+    ownerKey: PrivateKey
+    ): Promise<TransactionConfirmation> => 
+hiveClient.broadcast.updateAccount(update, ownerKey);
+
+export const createHiveAccount = async (username: string, newUser: string, keys: KeyTypes) => {
+    return new Promise(async (resolve, reject) => {
+      const op_name = "account_create";
+      const memoKey = keys.memo
+      const activeKey = keys.active
+      const postingKey = keys.posting
+      
+      const owner = {
+        weight_threshold: 1,
+        account_auths: [],
+        key_auths: [[keys.ownerPubkey, 1]]
+      };
+      const active = {
+        weight_threshold: 1,
+        account_auths: [],
+        key_auths: [[keys.activePubkey, 1]]
+      };
+      const posting = {
+        weight_threshold: 1,
+        account_auths: [["ecency.app", 1]],
+        key_auths: [[keys.postingPubkey, 1]]
+      };
+  
+      const ops = [];
+      const params = {
+        creator: username,
+        new_account_name: newUser,
+        owner,
+        active,
+        posting,
+        memo_key: keys.memoPubkey,
+        json_metadata: "",
+        extensions: [],
+        fee: "3.000 HIVE"
+      };
+  
+      const operation = [op_name, params];
+      ops.push(operation);
+  
+      try {
+        const response = await keychain.broadcast(username, [operation], "Active");
+        if (response) {
+          resolve(response);
+        } else {
+          reject("Account creation failed");
+        }
+      } catch (err) {
+        console.log(err);
+        reject(err);
+      }
+  
+      try {
+        await keychain.addAccount(newUser, {
+          active: activeKey, 
+          posting: postingKey,
+          memo: memoKey
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    });
+  };

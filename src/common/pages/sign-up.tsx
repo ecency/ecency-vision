@@ -20,6 +20,10 @@ import { handleInvalid, handleOnInput } from "../util/input-util";
 import { Community } from "../store/communities/types";
 import { windowExists } from "../../server/util";
 import { Global } from "../store/global/types";
+import { createHiveAccount } from "../api/operations";
+import { generatePassword, getPrivateKeys } from "../helper/onboard";
+import { KeyTypes } from "../helper/onboard";
+import { downloadSvg, copyContent } from "../img/svg";
 
 interface Props {
  global: Global
@@ -35,14 +39,35 @@ const SignUpPage = (props: Props | any) => {
   const [lockReferral, setLockReferral] = useState(false)
   const [inProgress, setInProgress] = useState(false)
   const [community, setCommunity] = useState<Community | null>(null);
-  const [newUserData, setNewUserData]: any = useState(null);
-  const [step, setStep] = useState(1)
+  const [newUserKeys, setNewUserKeys]: any = useState(null);
+  const [accountPassword, setAccountPassword] = useState("")
+  const [step, setStep] = useState(1);
+  const [error, setError] = useState("");
 
   useEffect(()=> {
     console.log(props)
     getCurrentCommunity()
   }, [])
 
+  useEffect(()=> {
+    initiateAccount()
+  }, [step])
+
+  const initiateAccount = async () => {
+    if(!username || !email) {
+      return;
+    }
+
+    const password: Promise<string> = generatePassword(32);
+    const keys: KeyTypes = getPrivateKeys(username, password);
+    setNewUserKeys((prev: any) => ({ ...prev, ...keys }));
+    setAccountPassword(await password)
+    console.log(newUserKeys)
+    console.log("keys", keys)
+
+    // setStep(2)
+
+  }
 
   const usernameChanged = (e: { target: { value: any; }; }) => {
     const { value: username } = e.target;
@@ -53,26 +78,8 @@ const SignUpPage = (props: Props | any) => {
     setEmail(email.toLowerCase());
   };
 
-  // const submit = () => {
-  //   const { global } = props;
-  //   setInProgress(true);
-  //   signUp(username, global.baseApiUrl)
-  //     .then(({ data }) => {
-  //       if (!data.success) {
-  //         error(data.message);
-  //         return;
-  //       }
-  //       setInProgress(false);
-  //       setSignUpResponse(data)
-  //     })
-  //     .catch((e) => {
-  //       console.error(e);
-  //       setInProgress(false);
-  //     });
-  // };
-
   const createAccount = async () => {
-    setStep(2)
+    
   };
 
   const getCurrentCommunity = () => {
@@ -113,7 +120,7 @@ const SignUpPage = (props: Props | any) => {
       <div className={containerClasses}>
         {step == 1 && <div className="sign-up">
           <div className="the-form">
-            <div className="form-title">Welcome to {community?.title}</div>
+            <div className="form-title">Create a Hive acoount</div>
             <div className="form-sub-title">{_t("sign-up.description")}</div>
             <div className="form-icons">
               <img
@@ -137,7 +144,7 @@ const SignUpPage = (props: Props | any) => {
                       //   return;
                       // }
 
-                      createAccount();
+                      setStep(2);
                     }}
                   >
                     <Form.Group>
@@ -194,52 +201,51 @@ const SignUpPage = (props: Props | any) => {
                       {_t("sign-up.login-text-2")}
                     </a>
                   </div>
-
-                  {/* <div className="form-bottom-description text-center">
-                    There are <b>{availibleAccounts}</b> free accounts left!
-                  </div> */}
                 </div>
               );
             })()}
           </div>
         </div>}
-        {newUserData && step == 2 && (
+        {newUserKeys && step == 2 && (
           <div className="success-info">
             <h3>
-              <b>Username</b>: {newUserData.result.username}
+              Confirm Account Information
             </h3>
-            <ul>
-              <li>
-                <b>Owner</b>: {newUserData.result.keys.owner}
-              </li>
-              <li>
-                <b>Owner (public)</b>: {newUserData.result.keys.ownerPubkey}
-              </li>
-              <li>
-                <b>Active</b>: {newUserData.result.keys.active}
-              </li>
-              <li>
-                <b>Active (public)</b>: {newUserData.result.keys.activePubkey}
-              </li>
-              <li>
-                <b>Posting</b>: {newUserData.result.keys.posting}
-              </li>
-              <li>
-                <b>Posting (public)</b>: {newUserData.result.keys.postingPubkey}
-              </li>
-              <li>
-                <b>Memo</b>: {newUserData.result.keys.memo}
-              </li>
-              <li>
-                <b>Memo (public)</b>: {newUserData.result.keys.memoPubkey}
-              </li>
-            </ul>
-            <h5>
-              <b>
-                This info is important for setting up your "HIVE Keychain" client,
-                copy this info somewhere safe
-              </b>
-            </h5>
+            <div className="account-details">
+                <span style={{ lineHeight: 2 }}>
+                  Username: <strong>{username}</strong>
+                </span>
+                <span style={{ lineHeight: 2 }}>
+                  Email: <strong>{email}</strong>
+                </span>
+                <span style={{ lineHeight: 2 }}>
+                  Active Public key: <strong>{newUserKeys?.activePubkey}</strong>
+                </span>
+                <span style={{ lineHeight: 2 }}>
+                  Owner Public key: <strong>{newUserKeys?.ownerPubkey}</strong>
+                </span>
+                <span style={{ lineHeight: 2 }}>
+                  Posting Public Key: <strong>{newUserKeys?.postingPubkey}</strong>
+                </span>
+                <span style={{ lineHeight: 2 }}>
+                  Memo Public Key: <strong>{newUserKeys?.memoPubkey}</strong>
+                </span>
+            </div>
+            <div className="account-password">
+              <span>Make sure you copy and save ypur acc password securely</span>
+              <div className="password">
+                <strong>{accountPassword}</strong>
+                <span className="icon">{copyContent}</span>
+              </div>
+            </div>
+            <Button>Download keys {downloadSvg}</Button>
+            <div className="account-link">
+              <h3>Copy Link below and SEND to a friend</h3>
+              <div className="link">
+                <span>https://test.com/create-account</span>
+                <span className="icon">{copyContent}</span>
+              </div>
+            </div>
           </div>
         )}
       </div>
