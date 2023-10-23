@@ -60,7 +60,7 @@ export const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
 
   return axios
     .post(apiBase(engine.API), data, {
-      headers: { "Content-type": "application/json", "User-Agent": "Ecency-apps 1.0" }
+      headers: { "Content-type": "application/json" }
     })
     .then((r) => r.data.result)
     .catch((e) => {
@@ -84,7 +84,7 @@ const getTokens = (tokens: string[]): Promise<Token[]> => {
 
   return axios
     .post(apiBase(engine.API), data, {
-      headers: { "Content-type": "application/json", "User-Agent": "Ecency-apps 1.0" }
+      headers: { "Content-type": "application/json" }
     })
     .then((r) => r.data.result)
     .catch((e) => {
@@ -171,7 +171,7 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
   //     return result;
   return axios
     .post(apiBase(engine.API), data, {
-      headers: { "Content-type": "application/json", "User-Agent": "Ecency-apps 1.0" }
+      headers: { "Content-type": "application/json" }
     })
     .then((r) => r.data.result)
     .catch((e) => {
