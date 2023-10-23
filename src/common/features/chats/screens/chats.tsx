@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { match } from "react-router";
-import NavBar from "../components/navbar";
-import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
-import ChatsSideBar from "../features/chats/components/chats-sidebar";
-import ChatsMessagesBox from "../features/chats/components/chats-messages-box";
-import ManageChatKey from "../features/chats/components/manage-chat-key";
-import Feedback from "../components/feedback";
-import { useMappedStore } from "../store/use-mapped-store";
-import { ChatContext } from "../features/chats/chat-context-provider";
-import ImportChats from "../features/chats/components/import-chats";
+import NavBar from "../../../components/navbar";
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../../../pages/common";
+import ChatsSideBar from "../components/chats-sidebar";
+import ManageChatKey from "../components/manage-chat-key";
+import Feedback from "../../../components/feedback";
+import { useMappedStore } from "../../../store/use-mapped-store";
+import { ChatContext } from "../chat-context-provider";
 import { Spinner } from "@ui/spinner";
+import ImportChats from "../components/import-chats";
+import ChatsMessagesBox from "../components/chats-messages-box";
 
 interface Props extends PageProps {
   match: match<{
@@ -28,7 +28,7 @@ export const Chats = (props: Props) => {
 
   const username = match.params.username;
 
-  const { showSpinner, activeUserKeys, revealPrivKey, chatPrivKey, windowWidth } =
+  const { receiverPubKey, showSpinner, activeUserKeys, revealPrivKey, chatPrivKey } =
     useContext(ChatContext);
 
   const isReady = useMemo(
@@ -54,31 +54,30 @@ export const Chats = (props: Props) => {
             {isReady ? <ChatsSideBar history={history} username={username} /> : <></>}
           </div>
           <div className="col-span-12 sm:col-span-6 lg:col-span-8 xl:col-span-9 h-[calc(100vh-3rem-69px)] overflow-y-auto">
-            {isReady ? (
-              revealPrivKey ? (
-                <div className="flex h-full items-center justify-center">
-                  <div className="max-w-[400px] bg-gray-100 w-full p-4 rounded-2xl border border-[--border-color]">
-                    <ManageChatKey />
-                  </div>
+            {isReady && revealPrivKey && (
+              <div className="flex h-full items-center justify-center">
+                <div className="max-w-[400px] bg-gray-100 w-full p-4 rounded-2xl border border-[--border-color]">
+                  <ManageChatKey />
                 </div>
-              ) : (
-                <div className="import-chat">
-                  <ImportChats />
-                </div>
-              )
-            ) : (
-              <ChatsMessagesBox {...props} />
-            )}
-            {showSpinner ? (
-              <div className="flex justify-center items-center full-page">
-                <Spinner />
-                <p className="mt-3 ml-2" style={{ fontSize: "26px" }}>
-                  Loading...
-                </p>
               </div>
-            ) : (
-              <></>
             )}
+            {showSpinner && (
+              <div className="flex justify-center items-center h-full w-full">
+                <Spinner className="w-6 h-6" />
+              </div>
+            )}
+            {!isReady && !showSpinner && (
+              <div className="h-full w-full flex items-center justify-center">
+                <ImportChats />
+              </div>
+            )}
+            {isReady && !showSpinner && receiverPubKey && (
+              <ChatsMessagesBox match={match} history={history} />
+            )}
+            {/*{isReady ? (*/}
+            {/*  revealPrivKey ? (*/}
+            {/*  <ChatsMessagesBox {...props} />*/}
+            {/*)}*/}
           </div>
           {/*{activeUser ? (): (*/}
           {/*  <>*/}

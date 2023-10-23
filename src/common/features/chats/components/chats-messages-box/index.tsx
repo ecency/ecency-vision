@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { match } from "react-router";
 import { History } from "history";
-import { Account } from "../../../../store/accounts/types";
-import { ToggleType, UI } from "../../../../store/ui/types";
-import { User } from "../../../../store/users/types";
 import ChatsMessagesHeader from "../chats-messages-header";
 import ChatsMessagesView from "../chats-messages-view";
 import { Channel, ChannelUpdate } from "../../../../../managers/message-manager-types";
@@ -13,8 +10,6 @@ import { useMappedStore } from "../../../../store/use-mapped-store";
 import { CHANNEL } from "../chat-popup/chat-constants";
 import { ChatContext } from "../../chat-context-provider";
 import { useMount } from "react-use";
-
-import "./index.scss";
 import { Button } from "@ui/button";
 
 interface MatchParams {
@@ -27,13 +22,7 @@ interface MatchParams {
 
 interface Props {
   match: match<MatchParams>;
-  users: User[];
   history: History;
-  ui: UI;
-  setActiveUser: (username: string | null) => void;
-  updateActiveUser: (data?: Account) => void;
-  deleteUser: (username: string) => void;
-  toggleUIProp: (what: ToggleType) => void;
 }
 
 export default function ChatsMessagesBox(props: Props) {
@@ -143,13 +132,7 @@ export default function ChatsMessagesBox(props: Props) {
   };
 
   return (
-    <div
-      className="chats-messages-box"
-      style={{
-        maxHeight: maxHeight,
-        position: windowWidth < 768 ? "absolute" : "static"
-      }}
-    >
+    <div className="h-full">
       {match.url === "/chats" ? (
         <div className="no-chat-select">
           <div className="start-chat-wrapper text-center ">
@@ -164,7 +147,7 @@ export default function ChatsMessagesBox(props: Props) {
               <ChatsMessagesHeader username={username} history={props.history} />
               {inProgress && <LinearProgress />}
               <ChatsMessagesView
-                {...props}
+                history={props.history}
                 username={username}
                 currentChannel={currentChannel!}
                 inProgress={inProgress}

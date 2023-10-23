@@ -9,47 +9,31 @@ import { fetchCommunityMessages, fetchDirectMessages } from "../../utils";
 import { History } from "history";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import ChatsProfileBox from "../chats-profile-box";
-import "./index.scss";
 import ChatsChannelMessages from "../chats-channel-messages";
 import ChatsDirectMessages from "../chats-direct-messages";
-import { Account } from "../../../../store/accounts/types";
-import { ToggleType, UI } from "../../../../store/ui/types";
-import { User } from "../../../../store/users/types";
 import ChatInput from "../chat-input";
 import ChatsScroller from "../chats-scroller";
 import { CHATPAGE } from "../chat-popup/chat-constants";
-import { EmojiPickerStyleProps } from "../../types";
 import { ChatContext } from "../../chat-context-provider";
 import { classNameObject } from "../../../../helper/class-name-object";
 
-const EmojiPickerStyle: EmojiPickerStyleProps = {
-  width: "56.5%",
-  bottom: "58px",
-  left: "340px",
-  marginLeft: "14px",
-  borderTopLeftRadius: "8px",
-  borderTopRightRadius: "8px",
-  borderBottomLeftRadius: "0px"
-};
-
 interface Props {
   username: string;
-  users: User[];
   history: History;
-  ui: UI;
   currentChannel: Channel;
   inProgress: boolean;
-  setActiveUser: (username: string | null) => void;
-  updateActiveUser: (data?: Account) => void;
-  deleteUser: (username: string) => void;
-  toggleUIProp: (what: ToggleType) => void;
   currentChannelSetter: (channel: Channel) => void;
   setInProgress: (d: boolean) => void;
 }
 
-export default function ChatsMessagesView(props: Props) {
-  const { username, currentChannel, inProgress, currentChannelSetter, setInProgress } = props;
-
+export default function ChatsMessagesView({
+  username,
+  currentChannel,
+  inProgress,
+  currentChannelSetter,
+  setInProgress,
+  history
+}: Props) {
   const { messageServiceInstance } = useContext(ChatContext);
 
   const messagesBoxRef = useRef<HTMLDivElement>(null);
@@ -176,13 +160,14 @@ export default function ChatsMessagesView(props: Props) {
     <>
       <div
         className={classNameObject({
-          "chats-messages-view border-b border-[--border-color]": true,
+          "h-full": true,
           "no-scroll": isTop && hasMore
         })}
         ref={messagesBoxRef}
         onScroll={handleScroll}
       >
         <Link
+          className="after:!hidden"
           to={username.startsWith("@") ? `/${username}` : `/created/${username}`}
           target="_blank"
         >
@@ -191,7 +176,8 @@ export default function ChatsMessagesView(props: Props) {
         {communityName.length !== 0 ? (
           <>
             <ChatsChannelMessages
-              {...props}
+              username={username}
+              history={history}
               publicMessages={publicMessages}
               currentChannel={currentChannel!}
               isScrollToBottom={isScrollToBottom}
@@ -203,7 +189,6 @@ export default function ChatsMessagesView(props: Props) {
           </>
         ) : (
           <ChatsDirectMessages
-            {...props}
             directMessages={directMessages && directMessages}
             currentUser={directUser!}
             isScrolled={isScrolled}
@@ -220,14 +205,25 @@ export default function ChatsMessagesView(props: Props) {
           />
         )}
       </div>
-      <ChatInput
-        gifPickerStyle={EmojiPickerStyle}
-        isCurrentUser={!!directUser}
-        isCommunity={!!communityName}
-        currentUser={directUser}
-        currentChannel={currentChannel!}
-        isCurrentUserJoined={true}
-      />
+
+      <div className="sticky bottom-0 p-2 border-t border-[--border-color] bg-white">
+        <ChatInput
+          gifPickerStyle={{
+            width: "56.5%",
+            bottom: "58px",
+            left: "340px",
+            marginLeft: "14px",
+            borderTopLeftRadius: "8px",
+            borderTopRightRadius: "8px",
+            borderBottomLeftRadius: "0px"
+          }}
+          isCurrentUser={!!directUser}
+          isCommunity={!!communityName}
+          currentUser={directUser}
+          currentChannel={currentChannel!}
+          isCurrentUserJoined={true}
+        />
+      </div>
     </>
   );
 }

@@ -6,14 +6,11 @@ import { getAccountFull } from "../../../../api/hive";
 import { formattedUserName } from "../../utils";
 import { useCommunityCache } from "../../../../core";
 
-import "./index.scss";
-
 export interface profileData {
   joiningData: string;
   about: string | undefined;
   followers: number | undefined;
   name: string;
-  subscribers: string;
   username: string;
 }
 
@@ -25,9 +22,13 @@ interface Props {
   currentUser?: string;
 }
 
-export default function ChatsProfileBox(props: Props) {
-  const { username, isCommunity, isCurrentUser, communityName, currentUser } = props;
-
+export default function ChatsProfileBox({
+  username,
+  isCommunity,
+  isCurrentUser,
+  communityName,
+  currentUser
+}: Props) {
   const [profileData, setProfileData] = useState<profileData>();
 
   const { data: community } = useCommunityCache(username ? username! : communityName!);
@@ -56,7 +57,6 @@ export default function ChatsProfileBox(props: Props) {
           about: response.profile?.about,
           followers: response.follow_stats?.follower_count,
           name: response.name,
-          subscribers: _t("chat.followers"),
           username: response.name
         });
       } else {
@@ -65,7 +65,6 @@ export default function ChatsProfileBox(props: Props) {
           about: community?.about,
           followers: community?.subscribers,
           name: community?.title!,
-          subscribers: _t("chat.subscribers"),
           username: community?.name!
         });
       }
@@ -86,39 +85,34 @@ export default function ChatsProfileBox(props: Props) {
           about: community?.about,
           followers: community?.subscribers,
           name: community?.title!,
-          subscribers: _t("chat.subscribers"),
           username: community?.name!
         });
       }
     }
   };
 
-  return (
-    <div className="chats-profile-box">
-      <div className="user-profile">
-        {profileData?.joiningData && (
-          <div className="user-profile-data">
-            <span className="user-logo">
-              <UserAvatar username={profileData.username} size="large" />
-            </span>
-            <h4 className="user-name user-logo ">{profileData.name}</h4>
-            {profileData.about?.length !== 0 && (
-              <p className="about user-logo ">{profileData.about}</p>
-            )}
+  return profileData?.joiningData ? (
+    <div className="flex items-center justify-center p-4">
+      <div className="flex flex-col items-center p-4 border border-[--border-color] rounded-2xl bg-gray-100 dark:bg-gray-800">
+        <UserAvatar username={profileData.username} size="large" />
+        <div className="text-gray-800 mt-2 font-semibold">{profileData.name}</div>
+        {profileData.about?.length !== 0 && <div>{profileData.about}</div>}
 
-            <div className="created-date user-logo joining-info">
-              <p>
-                {" "}
-                {_t("chat.joined")} {dateToFormatted(profileData!.joiningData, "LL")}
-              </p>
-              <p className="followers">
-                {" "}
-                {formatFollowers(profileData!.followers)} {profileData.subscribers}
-              </p>
+        <div className="grid grid-cols-2 text-center justify-center pt-4 gap-3 text-gray-600">
+          <div className="flex flex-col gap-2">
+            <div className="text-sm">{_t("chat.joined")}</div>
+            <div className="text-blue-dark-sky">
+              {dateToFormatted(profileData!.joiningData, "LL")}
             </div>
           </div>
-        )}
+          <div className="flex flex-col gap-2">
+            <div className="text-sm">{_t("chat.subscribers")}</div>
+            <div className="text-blue-dark-sky">{formatFollowers(profileData!.followers)}</div>
+          </div>
+        </div>
       </div>
     </div>
+  ) : (
+    <></>
   );
 }

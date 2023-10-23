@@ -51,7 +51,7 @@ const AuthPage = (props: any) => <AuthContainer {...props} />;
 const SubmitContainer = loadable(() => import("./pages/submit"));
 const SubmitPage = (props: any) => <SubmitContainer {...props} />;
 
-const ChatsContainer = loadable(() => import("./pages/chats"));
+const ChatsContainer = loadable(() => import("./features/chats/screens/chats"));
 const ChatsPage = (props: any) => <ChatsContainer {...props} />;
 
 const OnboardContainer = loadable(() => import("./pages/onboard"));
