@@ -61,7 +61,7 @@ export const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
 
   return axios
     .post(HIVE_ENGINE_RPC_URL, data, {
-      headers: { "Content-type": "application/json" }
+      headers: { "Content-type": "application/json", "User-Agent": "Ecency-apps 1.0" }
     })
     .then((r) => r.data.result)
     .catch((e) => {
@@ -85,7 +85,7 @@ const getTokens = (tokens: string[]): Promise<Token[]> => {
 
   return axios
     .post(HIVE_ENGINE_RPC_URL, data, {
-      headers: { "Content-type": "application/json" }
+      headers: { "Content-type": "application/json", "User-Agent": "Ecency-apps 1.0" }
     })
     .then((r) => r.data.result)
     .catch((e) => {
@@ -173,7 +173,7 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
   //     return result;
   return axios
     .post(HIVE_ENGINE_RPC_URL, data, {
-      headers: { "Content-type": "application/json" }
+      headers: { "Content-type": "application/json", "User-Agent": "Ecency-apps 1.0" }
     })
     .then((r) => r.data.result)
     .catch((e) => {
