@@ -147,11 +147,11 @@ const FloatingFAQ = () => {
           >
             {display && !isSubmitPage && (
               <Button
-                className="help-btn"
+                noPadding={true}
+                className="fixed bottom-4 right-4 w-[2rem] h-[2rem]"
                 onClick={handleShow}
                 icon={helpIconSvg}
                 iconPlacement="left"
-                size="sm"
               >
                 {innerWidth >= 792 ? _t("floating-faq.help") : ""}
               </Button>
@@ -162,11 +162,9 @@ const FloatingFAQ = () => {
                 <div className="faq-welcome">
                   <h3 className="faq-welcome-message">{_t("floating-faq.welcome")}</h3>
                   <Button
-                    appearance="link"
-                    className="close-btn"
-                    onClick={() => {
-                      setShow(false);
-                    }}
+                    className="absolute top-7 right-4"
+                    appearance="gray-link"
+                    onClick={() => setShow(false)}
                     icon={closeSvg}
                   />
                 </div>

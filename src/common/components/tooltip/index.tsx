@@ -1,7 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
-import useMountedState from "react-use/lib/useMountedState";
 
 interface Props {
   content: string | JSX.Element;
@@ -25,8 +24,6 @@ export function StyledTooltip({ children, content }: StyledProps) {
 
   const popper = usePopper(ref, popperElement);
 
-  const isMounted = useMountedState();
-
   return (
     <div
       ref={setRef}
@@ -37,6 +34,10 @@ export function StyledTooltip({ children, content }: StyledProps) {
       }}
       onMouseLeave={() => {
         setShow(false);
+        popper.update?.();
+      }}
+      onClick={() => {
+        setShow(!show);
         popper.update?.();
       }}
     >
