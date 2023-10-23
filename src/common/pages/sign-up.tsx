@@ -10,20 +10,21 @@ import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
-import Feedback, { error } from "../components/feedback";
+import Feedback, { success, error } from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
 import defaults from "../constants/defaults.json";
-import { getAvailibleAccounts, signUp } from "../api/private-api";
 import { _t } from "../i18n";
 import { hiveSvg } from "../img/svg";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import { Community } from "../store/communities/types";
-import { windowExists } from "../../server/util";
 import { Global } from "../store/global/types";
 import { createHiveAccount } from "../api/operations";
 import { generatePassword, getPrivateKeys } from "../helper/onboard";
 import { KeyTypes } from "../helper/onboard";
 import { downloadSvg, copyContent } from "../img/svg";
+import { b64uEnc } from "../util/b64";
+import { Link } from "react-router-dom";
+import clipboard from "../util/clipboard";
 
 interface Props {
  global: Global
@@ -36,16 +37,17 @@ const SignUpPage = (props: Props | any) => {
 
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
-  const [lockReferral, setLockReferral] = useState(false)
+  const [urlHash, setUrlHash] = useState("")
   const [inProgress, setInProgress] = useState(false)
   const [community, setCommunity] = useState<Community | null>(null);
   const [newUserKeys, setNewUserKeys]: any = useState(null);
   const [accountPassword, setAccountPassword] = useState("")
   const [step, setStep] = useState(1);
   const [error, setError] = useState("");
+  const [isDownloaded, setIsDownloaded] = useState(false)
 
   useEffect(()=> {
-    console.log(props)
+    console.log(props.match)
     getCurrentCommunity()
   }, [])
 
@@ -60,12 +62,24 @@ const SignUpPage = (props: Props | any) => {
 
     const password: Promise<string> = generatePassword(32);
     const keys: KeyTypes = getPrivateKeys(username, password);
+    console.log(keys)
     setNewUserKeys((prev: any) => ({ ...prev, ...keys }));
     setAccountPassword(await password)
-    console.log(newUserKeys)
-    console.log("keys", keys)
+    const dataToEncode = {
+      username,
+      keys: {
+        activePubKey: keys.activePubkey,
+        postingPubKey: keys.postingPubkey,
+        ownerPubKey: keys.ownerPubkey,
+        memoPubKey: keys.memoPubkey
+      }
+    }
 
-    // setStep(2)
+    const stringifiedData = JSON.stringify(dataToEncode);
+    const hash = encodeURIComponent(stringifiedData)
+    setUrlHash(hash)
+    // console.log(JSON.parse(b64uDec(hash)))
+    console.log("stringifiedData", stringifiedData)
 
   }
 
@@ -78,16 +92,61 @@ const SignUpPage = (props: Props | any) => {
     setEmail(email.toLowerCase());
   };
 
-  const createAccount = async () => {
-    
-  };
-
   const getCurrentCommunity = () => {
     const currCommunity = communities.find(
       (community: { name: any; }) => community.name === global.hive_id
     );
     setCommunity(currCommunity)
   }
+
+  const splitUrl = (url: string) => {
+    return url.slice(0, 50);
+  };
+
+  const downloadKeys = async () => {
+    if (newUserKeys) {
+      setIsDownloaded(false);
+      const element = document.createElement("a");
+      const keysToFile = `
+          ${_t("onboard.file-warning")}
+  
+          ${_t("onboard.recommend")}
+          1. ${_t("onboard.recommend-print")}
+          2. ${_t("onboard.recommend-use")}
+          3. ${_t("onboard.recommend-save")}
+          4. ${_t("onboard.recommend-third-party")}
+
+          ${_t("onboard.account-info")}
+
+          Username: ${username}
+
+          Password: ${accountPassword}
+
+          ${_t("onboard.owner-private")} ${newUserKeys.owner}
+  
+          ${_t("onboard.active-private")} ${newUserKeys.active}
+  
+          ${_t("onboard.posting-private")} ${newUserKeys.posting}
+  
+          ${_t("onboard.memo-private")} ${newUserKeys.memo}
+  
+  
+          ${_t("onboard.keys-use")}
+          ${_t("onboard.owner")} ${_t("onboard.owner-use")}   
+          ${_t("onboard.active")} ${_t("onboard.active-use")}  
+          ${_t("onboard.posting")} ${_t("onboard.posting-use")} 
+          ${_t("onboard.memo")} ${_t("onboard.memo-use")}`;
+
+      const file = new Blob([keysToFile.replace(/\n/g, "\r\n")], {
+        type: "text/plain"
+      });
+      element.href = URL.createObjectURL(file);
+      element.download = `${username}_hive_keys.txt`;
+      document.body.appendChild(element);
+      element.click();
+      setIsDownloaded(true);
+    }
+  };
 
   //  Meta config
   const metaProps = {
@@ -238,14 +297,17 @@ const SignUpPage = (props: Props | any) => {
                 <span className="icon">{copyContent}</span>
               </div>
             </div>
-            <Button>Download keys {downloadSvg}</Button>
-            <div className="account-link">
+            <Button onClick={()=> downloadKeys()}>Download keys {downloadSvg}</Button>
+            {isDownloaded && <div className="account-link">
               <h3>Copy Link below and SEND to a friend</h3>
               <div className="link">
-                <span>https://test.com/create-account</span>
-                <span className="icon">{copyContent}</span>
+                <Link to={`${window.origin}/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}</Link>
+                <span className="icon" onClick={() => {
+                  clipboard(`${window.origin}/onboard-friend/${urlHash}`);
+                  success("Account link copied successfully")
+                }}>{copyContent}</span>
               </div>
-            </div>
+            </div>}
           </div>
         )}
       </div>

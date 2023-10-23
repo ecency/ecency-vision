@@ -39,6 +39,7 @@
     "i18next": "^19.4.4",
     "i18next-browser-languagedetector": "^4.2.0",
     "immutability-helper": "^3.0.2",
+    "js-base64": "^3.7.5",
     "js-cookie": "^2.2.1",
     "medium-zoom": "^1.0.6",
     "moment": "^2.26.0",

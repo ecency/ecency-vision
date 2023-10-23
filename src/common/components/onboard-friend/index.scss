@@ -1,0 +1,19 @@
+.onboard{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: max-content;
+      background-color: #161d26;
+      // background-color: $dark-three;
+      padding: 2rem;
+      border-radius: 1rem;
+      color: $steel-grey;
+      word-break: break-all
+    }
+    
+    .friend-details{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
