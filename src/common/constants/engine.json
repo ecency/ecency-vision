@@ -1,5 +1,6 @@
 {
-  "chartApi": "/private-api/engine-chart-api",
-  "engineRpcUrl": "/private-api/engine-api",
-  "engineRewardsUrl": "/private-api/engine-reward-api"
+  "API": "/private-api/engine-api",
+  "chartAPI": "/private-api/engine-chart-api",
+  "rewardAPI": "/private-api/engine-reward-api",
+  "historyAPI": "/private-api/engine-account-history"
 }
