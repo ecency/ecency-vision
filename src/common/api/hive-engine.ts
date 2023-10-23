@@ -3,6 +3,7 @@ import HiveEngineToken from "../helper/hive-engine-wallet";
 import { TransactionConfirmation } from "@hiveio/dhive";
 import { broadcastPostingJSON } from "./operations";
 import engine from "../constants/engine.json";
+import { apiBase } from "./helper";
 
 interface TokenBalance {
   symbol: string;
@@ -58,7 +59,7 @@ export const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
   };
 
   return axios
-    .post(engine.API, data, {
+    .post(apiBase(engine.API), data, {
       headers: { "Content-type": "application/json", "User-Agent": "Ecency-apps 1.0" }
     })
     .then((r) => r.data.result)
@@ -82,7 +83,7 @@ const getTokens = (tokens: string[]): Promise<Token[]> => {
   };
 
   return axios
-    .post(engine.API, data, {
+    .post(apiBase(engine.API), data, {
       headers: { "Content-type": "application/json", "User-Agent": "Ecency-apps 1.0" }
     })
     .then((r) => r.data.result)
@@ -108,7 +109,7 @@ export const getHiveEngineTokenBalances = async (account: string): Promise<HiveE
 export const getUnclaimedRewards = async (account: string): Promise<TokenStatus[]> => {
   return (
     axios
-      .get(`${engine.rewardAPI}/${account}?hive=1`)
+      .get(apiBase(`${engine.rewardAPI}/${account}?hive=1`))
       .then((r) => r.data)
       .then((r) => Object.values(r))
       .then((r) => r.filter((t) => (t as TokenStatus).pending_token > 0)) as any
@@ -169,7 +170,7 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
   //     })
   //     return result;
   return axios
-    .post(engine.API, data, {
+    .post(apiBase(engine.API), data, {
       headers: { "Content-type": "application/json", "User-Agent": "Ecency-apps 1.0" }
     })
     .then((r) => r.data.result)
@@ -179,7 +180,7 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
 };
 
 export const getMarketData = async (symbol: any) => {
-  const { data: history } = await axios.get(`${engine.chartAPI}`, {
+  const { data: history } = await axios.get(apiBase(`${engine.chartAPI}`), {
     params: { symbol, interval: "daily" }
   });
   return history;
