@@ -63,7 +63,7 @@ export function ChatPopupDirectMessages({
                 userClicked(v);
               }}
               key={user.pubkey}
-              lastMessage={getDirectLastMessage(user.pubkey, chat.directMessages)}
+              lastMessage={getDirectLastMessage(user.pubkey, chat.directMessages)?.content}
             />
           ))}
         </>

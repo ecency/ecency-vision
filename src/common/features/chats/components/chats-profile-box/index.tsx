@@ -76,7 +76,6 @@ export default function ChatsProfileBox({
           about: response.profile?.about,
           followers: response.follow_stats?.follower_count,
           name: response.name,
-          subscribers: _t("chat.followers"),
           username: response.name
         });
       } else {

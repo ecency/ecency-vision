@@ -11,6 +11,7 @@ import { ChatContext } from "../chat-context-provider";
 import { Spinner } from "@ui/spinner";
 import ImportChats from "../components/import-chats";
 import ChatsMessagesBox from "../components/chats-messages-box";
+import JoinChat from "../components/join-chat";
 
 interface Props extends PageProps {
   match: match<{
@@ -32,9 +33,11 @@ export const Chats = (props: Props) => {
     useContext(ChatContext);
 
   const isReady = useMemo(
-    () => activeUser && activeUserKeys?.pub && chatPrivKey,
+    () => !!(activeUser && activeUserKeys?.pub && chatPrivKey),
     [activeUserKeys, activeUserKeys, chatPrivKey]
   );
+
+  console.log(isReady);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -71,13 +74,22 @@ export const Chats = (props: Props) => {
                 <ImportChats />
               </div>
             )}
-            {isReady && !showSpinner && receiverPubKey && (
+            {isReady && !showSpinner && receiverPubKey && !revealPrivKey && (
               <ChatsMessagesBox match={match} history={history} />
             )}
-            {/*{isReady ? (*/}
-            {/*  revealPrivKey ? (*/}
-            {/*  <ChatsMessagesBox {...props} />*/}
-            {/*)}*/}
+            {isReady && !receiverPubKey && !revealPrivKey && !showSpinner && (
+              <div className="flex flex-col justify-center items-center w-full h-full">
+                <div className="text-xl text-blue-dark-sky mb-4 font-semibold">
+                  Hello, @{activeUser?.username}
+                </div>
+                <div>Search a person or community and start messaging</div>
+              </div>
+            )}
+            {!isReady && (
+              <div className="flex justify-center items-center full-page">
+                <JoinChat />
+              </div>
+            )}
           </div>
           {/*{activeUser ? (): (*/}
           {/*  <>*/}
