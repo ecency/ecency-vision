@@ -1,21 +1,17 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Channel,
-  DirectMessage,
-  PublicMessage
-} from "../../../../../managers/message-manager-types";
-import { fetchCommunityMessages, fetchDirectMessages } from "../../utils";
+import { Channel, DirectMessage, PublicMessage } from "../../../../managers/message-manager-types";
+import { fetchCommunityMessages, fetchDirectMessages } from "../utils";
 import { History } from "history";
-import { useMappedStore } from "../../../../store/use-mapped-store";
-import ChatsProfileBox from "../chats-profile-box";
-import ChatsChannelMessages from "../chats-channel-messages";
-import ChatsDirectMessages from "../chats-direct-messages";
-import ChatInput from "../chat-input";
-import ChatsScroller from "../chats-scroller";
-import { CHATPAGE } from "../chat-popup/chat-constants";
-import { ChatContext } from "../../chat-context-provider";
-import { classNameObject } from "../../../../helper/class-name-object";
+import { useMappedStore } from "../../../store/use-mapped-store";
+import ChatsProfileBox from "./chat-profile-box";
+import ChatsChannelMessages from "./chats-channel-messages";
+import ChatsDirectMessages from "./chats-direct-messages";
+import ChatInput from "./chat-input";
+import ChatsScroller from "./chats-scroller";
+import { CHATPAGE } from "./chat-popup/chat-constants";
+import { ChatContext } from "../chat-context-provider";
+import { classNameObject } from "../../../helper/class-name-object";
 
 interface Props {
   username: string;

@@ -1,5 +1,5 @@
 import { Button } from "@ui/button";
-import { arrowBackSvg, closeSvg, syncSvg } from "../../../../img/svg";
+import { arrowBackSvg, syncSvg } from "../../../../img/svg";
 import Tooltip from "../../../../components/tooltip";
 import { _t } from "../../../../i18n";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
@@ -21,7 +21,7 @@ export function ChatSidebarHeader({ history }: Props) {
     revealPrivKey,
     chatPrivKey,
     windowWidth,
-    setShowSideBar,
+    setShowMobileMessageBox,
     setRevealPrivKey
   } = useContext(ChatContext);
 
@@ -34,9 +34,6 @@ export function ChatSidebarHeader({ history }: Props) {
   return (
     <div className="sticky top-0 z-10 bg-white flex items-center justify-between border-b border-[--border-color] p-3 gap-4">
       <div className="flex items-center gap-2">
-        {windowWidth < 768 && (
-          <Button appearance="link" icon={closeSvg} onClick={() => setShowSideBar(false)} />
-        )}
         {revealPrivKey && windowWidth > 768 && (
           <Tooltip content={_t("chat.back")}>
             <Button
@@ -61,7 +58,7 @@ export function ChatSidebarHeader({ history }: Props) {
               onManageChatKey={() => {
                 setRevealPrivKey(!revealPrivKey);
                 if (windowWidth < 768) {
-                  setShowSideBar(false);
+                  setShowMobileMessageBox(false);
                 }
               }}
               history={history}

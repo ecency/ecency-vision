@@ -29,9 +29,9 @@ export default function ChatsSideBar(props: Props) {
   const { chat } = useMappedStore();
   const {
     revealPrivKey,
-    showSideBar,
+    showMobileMessageBox,
     windowWidth,
-    setShowSideBar,
+    setShowMobileMessageBox,
     setRevealPrivKey,
     setReceiverPubKey
   } = useContext(ChatContext);
@@ -93,88 +93,82 @@ export default function ChatsSideBar(props: Props) {
   };
 
   const handleSideBar = () => {
-    if (windowWidth < 768 && showSideBar) {
-      setShowSideBar(false);
+    if (windowWidth < 768 && showMobileMessageBox) {
+      setShowMobileMessageBox(false);
     }
   };
 
   return (
-    <>
-      {showSideBar && (
-        <div className="flex flex-col">
-          <ChatSidebarHeader history={props.history} />
-          <ChatSidebarSearch
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            setUserList={setUserList}
-          />
-          {showDivider && <div className="divider" />}
-          <div className="flex flex-col" onScroll={handleScroll} ref={chatsSideBarRef}>
-            {searchQuery ? (
-              userList.map((user) => (
-                <ChatSidebarSearchItem
-                  user={user}
+    <div className="flex flex-col">
+      <ChatSidebarHeader history={props.history} />
+      <ChatSidebarSearch
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        setUserList={setUserList}
+      />
+      {showDivider && <div className="divider" />}
+      <div className="flex flex-col" onScroll={handleScroll} ref={chatsSideBarRef}>
+        {searchQuery ? (
+          userList.map((user) => (
+            <ChatSidebarSearchItem
+              user={user}
+              onClick={() => {
+                setSearchQuery("");
+                setRevealPrivKey(false);
+                getReceiverPubKey(user.account);
+                handleSideBar();
+              }}
+              key={user.account}
+            />
+          ))
+        ) : (
+          <>
+            {communities.length !== 0 && <p className="community-title">Communities</p>}
+            {communities.map((channel) => (
+              <Link to={`/chats/${channel.communityName}`} key={channel.id}>
+                <div
+                  className={`community ${username === channel.communityName ? "selected" : ""}`}
+                  key={channel.id}
                   onClick={() => {
-                    setSearchQuery("");
                     setRevealPrivKey(false);
-                    getReceiverPubKey(user.account);
                     handleSideBar();
                   }}
-                  key={user.account}
-                />
-              ))
-            ) : (
-              <>
-                {communities.length !== 0 && <p className="community-title">Communities</p>}
-                {communities.map((channel) => (
-                  <Link to={`/chats/${channel.communityName}`} key={channel.id}>
-                    <div
-                      className={`community ${
-                        username === channel.communityName ? "selected" : ""
-                      }`}
-                      key={channel.id}
-                      onClick={() => {
-                        setRevealPrivKey(false);
-                        handleSideBar();
-                      }}
-                    >
-                      <UserAvatar username={channel.communityName!} size="medium" />
-                      <div className="community-info">
-                        <p className="community-name">{channel.name}</p>
-                        <p className="community-last-message">
-                          {getCommunityLastMessage(channel.id, chat.publicMessages)}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-                {directContacts.length !== 0 && (
-                  <div className="mt-4 mb-2 text-xs font-semibold text-gray-500 uppercase px-3">
-                    {_t("chat.direct-messages")}
+                >
+                  <UserAvatar username={channel.communityName!} size="medium" />
+                  <div className="community-info">
+                    <p className="community-name">{channel.name}</p>
+                    <p className="community-last-message">
+                      {getCommunityLastMessage(channel.id, chat.publicMessages)}
+                    </p>
                   </div>
-                )}
-                {directContacts.map((contact) => (
-                  <ChatSidebarDirectContact
-                    key={contact.pubkey}
-                    contact={contact}
-                    username={username}
-                    handleRevealPrivKey={handleRevealPrivKey}
-                    handleSideBar={handleSideBar}
-                  />
-                ))}
-              </>
+                </div>
+              </Link>
+            ))}
+            {directContacts.length !== 0 && (
+              <div className="mt-4 mb-2 text-xs font-semibold text-gray-500 uppercase px-3">
+                {_t("chat.direct-messages")}
+              </div>
             )}
-          </div>
-          {isScrollToTop && (
-            <ChatsScroller
-              bodyRef={chatsSideBarRef}
-              isScrollToTop={isScrollToTop}
-              isScrollToBottom={false}
-              marginRight={"5%"}
-            />
-          )}
-        </div>
+            {directContacts.map((contact) => (
+              <ChatSidebarDirectContact
+                key={contact.pubkey}
+                contact={contact}
+                username={username}
+                handleRevealPrivKey={handleRevealPrivKey}
+                handleSideBar={handleSideBar}
+              />
+            ))}
+          </>
+        )}
+      </div>
+      {isScrollToTop && (
+        <ChatsScroller
+          bodyRef={chatsSideBarRef}
+          isScrollToTop={isScrollToTop}
+          isScrollToBottom={false}
+          marginRight={"5%"}
+        />
       )}
-    </>
+    </div>
   );
 }

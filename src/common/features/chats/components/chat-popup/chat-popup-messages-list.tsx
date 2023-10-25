@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ChatsProfileBox from "../chats-profile-box";
+import ChatsProfileBox from "../chat-profile-box";
 import ChatsDirectMessages from "../chats-direct-messages";
 import ChatsChannelMessages from "../chats-channel-messages";
 import { history } from "../../../../store";

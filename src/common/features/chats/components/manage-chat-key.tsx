@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { _t } from "../../../../i18n";
-import { ChatContext } from "../../chat-context-provider";
+import { _t } from "../../../i18n";
+import { ChatContext } from "../chat-context-provider";
 import { InputGroupCopyClipboard } from "@ui/input";
 import qrcode from "qrcode";
-import { classNameObject } from "../../../../helper/class-name-object";
+import { classNameObject } from "../../../helper/class-name-object";
 
 export default function ManageChatKey() {
   const { chatPrivKey } = useContext(ChatContext);

@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { match } from "react-router";
 import { History } from "history";
-import ChatsMessagesHeader from "../chats-messages-header";
-import ChatsMessagesView from "../chats-messages-view";
-import { Channel, ChannelUpdate } from "../../../../../managers/message-manager-types";
-import LinearProgress from "../../../../components/linear-progress";
-import { formattedUserName, getJoinedCommunities, getProfileMetaData } from "../../utils";
-import { useMappedStore } from "../../../../store/use-mapped-store";
-import { CHANNEL } from "../chat-popup/chat-constants";
-import { ChatContext } from "../../chat-context-provider";
+import ChatsMessagesHeader from "./chat-messages-header";
+import ChatsMessagesView from "./chat-messages-view";
+import { Channel, ChannelUpdate } from "../../../../managers/message-manager-types";
+import LinearProgress from "../../../components/linear-progress";
+import { formattedUserName, getJoinedCommunities, getProfileMetaData } from "../utils";
+import { useMappedStore } from "../../../store/use-mapped-store";
+import { CHANNEL } from "./chat-popup/chat-constants";
+import { ChatContext } from "../chat-context-provider";
 import { useMount } from "react-use";
 import { Button } from "@ui/button";
 
@@ -34,7 +34,7 @@ export default function ChatsMessagesBox(props: Props) {
     windowWidth,
     maxHeight,
     setCurrentChannel,
-    setShowSideBar
+    setShowMobileMessageBox
   } = useContext(ChatContext);
 
   const { channels, updatedChannel } = chat;
@@ -137,7 +137,9 @@ export default function ChatsMessagesBox(props: Props) {
         <div className="no-chat-select">
           <div className="start-chat-wrapper text-center ">
             <p className="start-chat ">Select a chat or start a new conversation</p>
-            {windowWidth < 768 && <Button onClick={() => setShowSideBar(true)}>Start Chat</Button>}
+            {windowWidth < 768 && (
+              <Button onClick={() => setShowMobileMessageBox(true)}>Start Chat</Button>
+            )}
           </div>
         </div>
       ) : (

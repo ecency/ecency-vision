@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 import { History } from "history";
-import DropDown, { MenuItem } from "../../../../components/dropdown";
-import { chatKeySvg, kebabMenuSvg } from "../../../../img/svg";
-import { _t } from "../../../../i18n";
+import DropDown, { MenuItem } from "../../../components/dropdown";
+import { chatKeySvg, kebabMenuSvg } from "../../../img/svg";
+import { _t } from "../../../i18n";
 
 interface Props {
   history: History | null;

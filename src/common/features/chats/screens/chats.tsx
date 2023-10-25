@@ -10,8 +10,9 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import { Spinner } from "@ui/spinner";
 import ImportChats from "../components/import-chats";
-import ChatsMessagesBox from "../components/chats-messages-box";
+import ChatsMessagesBox from "../components/chat-message-box";
 import JoinChat from "../components/join-chat";
+import { classNameObject } from "../../../helper/class-name-object";
 
 interface Props extends PageProps {
   match: match<{
@@ -29,15 +30,19 @@ export const Chats = (props: Props) => {
 
   const username = match.params.username;
 
-  const { receiverPubKey, showSpinner, activeUserKeys, revealPrivKey, chatPrivKey } =
-    useContext(ChatContext);
+  const {
+    receiverPubKey,
+    showSpinner,
+    activeUserKeys,
+    revealPrivKey,
+    chatPrivKey,
+    showMobileMessageBox
+  } = useContext(ChatContext);
 
   const isReady = useMemo(
     () => !!(activeUser && activeUserKeys?.pub && chatPrivKey),
     [activeUserKeys, activeUserKeys, chatPrivKey]
   );
-
-  console.log(isReady);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -52,11 +57,18 @@ export const Chats = (props: Props) => {
       <NavBar history={props.history} />
 
       <div className="container mx-auto py-6">
-        <div className="grid grid-cols-12 overflow-hidden rounded-2xl bg-white border border-[--border-color]">
-          <div className="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 border-r border-[--border-color] h-[calc(100vh-3rem-69px)] overflow-y-auto">
+        <div className="grid grid-cols-12 overflow-hidden rounded-2xl bg-white border border-[--border-color] relative">
+          <div className="col-span-12 md:col-span-4 xl:col-span-3 border-r border-[--border-color] h-[calc(100vh-3rem-69px)] overflow-y-auto">
             {isReady ? <ChatsSideBar history={history} username={username} /> : <></>}
           </div>
-          <div className="col-span-12 sm:col-span-6 lg:col-span-8 xl:col-span-9 h-[calc(100vh-3rem-69px)] overflow-y-auto">
+          <div
+            className={classNameObject({
+              "col-span-12 md:col-span-8 xl:col-span-9 h-[calc(100vh-3rem-69px)] overflow-y-auto absolute w-full bg-white z-10 md:static duration-500":
+                true,
+              "left-0": showMobileMessageBox,
+              "left-[100%]": showMobileMessageBox
+            })}
+          >
             {isReady && revealPrivKey && (
               <div className="flex h-full items-center justify-center">
                 <div className="max-w-[400px] bg-gray-100 w-full p-4 rounded-2xl border border-[--border-color]">
@@ -91,28 +103,6 @@ export const Chats = (props: Props) => {
               </div>
             )}
           </div>
-          {/*{activeUser ? (): (*/}
-          {/*  <>*/}
-          {/*    {activeUserKeys?.pub ? (*/}
-          {/*      chatPrivKey ? (*/}
-          {/*        <></>*/}
-          {/*      ) : (*/}
-          {/*        <>*/}
-
-          {/*        </>*/}
-          {/*      )*/}
-          {/*    ) : (*/}
-          {/*      <div className="flex justify-center items-center full-page">*/}
-          {/*        <JoinChat />*/}
-          {/*      </div>*/}
-          {/*    )}*/}
-          {/*  </>*/}
-          {/*  )*/}
-          {/*  ) : (*/}
-          {/*  <h4 className="flex justify-center items-center full-page text-center">*/}
-          {/*  Please login to continue the chat*/}
-          {/*  </h4>*/}
-          {/*  )}*/}
         </div>
       </div>
     </div>

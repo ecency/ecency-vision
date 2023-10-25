@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ChatContext } from "../../chat-context-provider";
+import { ChatContext } from "../chat-context-provider";
 import { Button } from "@ui/button";
 import { Spinner } from "@ui/spinner";
-import { _t } from "../../../../i18n";
+import { _t } from "../../../i18n";
 
 export default function JoinChat() {
   const { messageServiceInstance, joinChat } = useContext(ChatContext);

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { History } from "history";
-import { Community, ROLES } from "../../../../store/communities";
-import { _t } from "../../../../i18n";
-import { useMappedStore } from "../../../../store/use-mapped-store";
-import { Channel, communityModerator } from "../../../../../managers/message-manager-types";
-import { ChatContext } from "../../chat-context-provider";
-import { CHANNEL, NOSTRKEY } from "../chat-popup/chat-constants";
-import { getProfileMetaData, setChannelMetaData } from "../../utils";
+import { Community, ROLES } from "../../../store/communities";
+import { _t } from "../../../i18n";
+import { useMappedStore } from "../../../store/use-mapped-store";
+import { Channel, communityModerator } from "../../../../managers/message-manager-types";
+import { ChatContext } from "../chat-context-provider";
+import { CHANNEL, NOSTRKEY } from "./chat-popup/chat-constants";
+import { getProfileMetaData, setChannelMetaData } from "../utils";
 import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";
 

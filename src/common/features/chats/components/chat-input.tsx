@@ -1,26 +1,25 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-import { Channel } from "../../../../../managers/message-manager-types";
-import { EmojiPickerStyleProps } from "../../types";
-import { EmojiPicker } from "../../../../components/emoji-picker";
-import { error } from "../../../../components/feedback";
-
+import { Channel } from "../../../../managers/message-manager-types";
+import { EmojiPickerStyleProps } from "../types";
+import { EmojiPicker } from "../../../components/emoji-picker";
+import { error } from "../../../components/feedback";
 import {
   attachFileSvg,
   chatBoxImageSvg,
   emoticonHappyOutlineSvg,
   gifIcon,
   messageSendSvg
-} from "../../../../img/svg";
-import { CHAT_FILE_CONTENT_TYPES, GifImagesStyle, UPLOADING } from "../chat-popup/chat-constants";
-import { useMappedStore } from "../../../../store/use-mapped-store";
-import { _t } from "../../../../i18n";
-import { ChatContext } from "../../chat-context-provider";
+} from "../../../img/svg";
+import { CHAT_FILE_CONTENT_TYPES, GifImagesStyle, UPLOADING } from "./chat-popup/chat-constants";
+import { useMappedStore } from "../../../store/use-mapped-store";
+import { _t } from "../../../i18n";
+import { ChatContext } from "../chat-context-provider";
 import { Form } from "@ui/form";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
-import { useChatFileUpload } from "../../mutations";
+import { useChatFileUpload } from "../mutations";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
-import GifPicker from "../../../../components/gif-picker";
+import GifPicker from "../../../components/gif-picker";
 
 interface Props {
   isCurrentUser: boolean;

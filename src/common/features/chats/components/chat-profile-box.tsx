@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import UserAvatar from "../../../../components/user-avatar";
-import { dateToFormatted } from "../../../../helper/parse-date";
-import { _t } from "../../../../i18n";
-import { getAccountFull } from "../../../../api/hive";
-import { formattedUserName } from "../../utils";
-import { useCommunityCache } from "../../../../core";
+import UserAvatar from "../../../components/user-avatar";
+import { dateToFormatted } from "../../../helper/parse-date";
+import { _t } from "../../../i18n";
+import { getAccountFull } from "../../../api/hive";
+import { formattedUserName } from "../utils";
+import { useCommunityCache } from "../../../core";
 
 export interface profileData {
   joiningData: string;

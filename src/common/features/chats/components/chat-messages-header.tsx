@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { History } from "history";
-import { useMappedStore } from "../../../../store/use-mapped-store";
-import ChatsCommunityDropdownMenu from "../chats-community-dropdown-menu";
-import UserAvatar from "../../../../components/user-avatar";
-import { CHATPAGE } from "../chat-popup/chat-constants";
-import { Chat } from "../../../../store/chat/types";
-import { formattedUserName } from "../../utils";
-import Link from "../../../../components/alink";
-import { expandSideBar } from "../../../../img/svg";
-import { ChatContext } from "../../chat-context-provider";
+import { useMappedStore } from "../../../store/use-mapped-store";
+import ChatsCommunityDropdownMenu from "./chats-community-dropdown-menu";
+import UserAvatar from "../../../components/user-avatar";
+import { CHATPAGE } from "./chat-popup/chat-constants";
+import { Chat } from "../../../store/chat/types";
+import { formattedUserName } from "../utils";
+import Link from "../../../components/alink";
+import { expandSideBar } from "../../../img/svg";
+import { ChatContext } from "../chat-context-provider";
 import { Button } from "@ui/button";
 
 interface Props {
@@ -19,7 +19,7 @@ interface Props {
 export default function ChatsMessagesHeader(props: Props) {
   const { username } = props;
   const { chat } = useMappedStore();
-  const { setShowSideBar } = useContext(ChatContext);
+  const { setShowMobileMessageBox } = useContext(ChatContext);
 
   const isChannel = (username: string) => {
     if (username.startsWith("@")) {
@@ -41,7 +41,13 @@ export default function ChatsMessagesHeader(props: Props) {
   return (
     <div className="flex sticky top-0 bg-white justify-between border-b border-[--border-color] px-4 h-[60px]">
       <div className="flex items-center gap-4">
-        <Button className="md:hidden" icon={expandSideBar} onClick={() => setShowSideBar(true)} />
+        <Button
+          appearance="gray-link"
+          className="md:hidden"
+          noPadding={true}
+          icon={expandSideBar}
+          onClick={() => setShowMobileMessageBox(!setShowMobileMessageBox)}
+        />
         <Link
           className="flex items-center gap-3 decoration-0 after:!hidden font-semibold text-gray-800"
           to={username.startsWith("@") ? `/${username}` : `/created/${username}`}
