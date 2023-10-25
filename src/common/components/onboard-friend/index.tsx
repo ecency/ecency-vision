@@ -12,10 +12,13 @@ import { _t } from "../../i18n";
 import { Global } from "../../store/global/types";
 import { Community } from "../../store/communities/types";
 import { createHiveAccount } from "../../api/operations";
-import { KeyTypes } from "../../helper/onboard";
-import { b64uDec, b64uEnc } from "../../util/b64";
+import { hexDec } from "../../util/b64";
+import { ActiveUser } from "../../store/active-user/types";
+import { Link } from "react-router-dom";
+import { createBreakawayUser } from "../../api/breakaway";
 
 interface Props {
+  activeUser: ActiveUser
  global: Global
  communities: Community[]
 }
@@ -23,52 +26,60 @@ interface Props {
 interface AccountInfo {
   username: string;
   keys: {
-    postingpubkey: string;
-    ownerpubkey: string;
-    activepubkey: string;
-    memopubkey: string;
+    postingPubKey: string;
+    ownerPubKey: string;
+    activePubKey: string;
+    memoPubKey: string;
   }
 }
 
 const OnboardFriend = (props: Props | any) => {
   const form = useRef(null);
-  const { global, communities } = props;
+  const { global, communities, activeUser } = props;
 
-  const [username, setUsername] = useState("")
   const [urlInfo, seturlInfo] = useState<AccountInfo | null>(null)
   const [community, setCommunity] = useState<Community | null>(null);
-  const [step, setStep] = useState(1);
-  const [error, setError] = useState("");
+  const [step, setStep] = useState("confirm");
+  const [msg, setMsg] = useState("");
 
   useEffect(() => {
     let decodedObj;
     try {
-      console.log(props.match.params.hash);
       if (props.match.params.hash) {
-        const decodedHash = decodeURIComponent(props.match.params.hash);
+        const decodedHash = hexDec(props.match.params.hash);
         decodedObj = JSON.parse(decodedHash);
       }
     } catch (error) {
       console.log(error);
     }
     seturlInfo(decodedObj);
-    console.log(decodedObj); // Log the decoded object here
   }, []);
-  
 
-  //  Meta config
+  const createAccount = async ()=> {
+    try {
+      const response: any = await createHiveAccount({
+        username: urlInfo?.username,
+        keys: urlInfo?.keys
+      }, 
+      activeUser?.username
+      );
+      if (response.success === true) {
+        setStep("success");
+        await createBreakawayUser(urlInfo!.username, "Rally")
+        setMsg(response.message)
+      } else {
+        setStep("fail")
+        setMsg(response.message)
+      }
+    } catch (error) {
+      console.log(error)
+    };
+  };
+
   const metaProps = {
     title: `Welcome to ${community?.title}`,
   };
 
-  const spinner = (
-    <Spinner
-      animation="grow"
-      variant="light"
-      size="sm"
-      style={{ marginRight: "6px" }}
-    />
-  );
   let containerClasses = global.isElectron
     ? "app-content sign-up-page mb-lg-0 mt-0 pt-6"
     : "app-content sign-up-page mb-lg-0";
@@ -85,24 +96,36 @@ const OnboardFriend = (props: Props | any) => {
           })
         : NavBar({ ...props })}
       <div className={containerClasses}>
+        { !activeUser ? <h3>You must be logged in to create an account</h3> : 
         <div className="onboard">
+          {step=== "confirm" && <>
             <h5>You are creating an account for a friend</h5>
             <div className="friend-details">
             {urlInfo && (
               <div className="friend-details">
                 <span>Username: {urlInfo.username}</span>
-                <span>Public posting: {urlInfo.keys.postingpubkey}</span>
-                <span>Public Owner: {urlInfo.keys.ownerpubkey}</span>
-                <span>Public active: {urlInfo.keys.activepubkey}</span>
-                <span>Memo active: {urlInfo.keys.memopubkey}</span>
+                <span>Public posting: {urlInfo.keys.postingPubKey}</span>
+                <span>Public Owner: {urlInfo.keys.ownerPubKey}</span>
+                <span>Public active: {urlInfo.keys.activePubKey}</span>
+                <span>Memo active: {urlInfo.keys.memoPubKey}</span>
               </div>
             )}
             </div>
             <div className="button">
-                <Button className="w-100">Proceed</Button>   
+                <Button onClick={()=> createAccount()} className="w-100">Proceed</Button>   
             </div>
-        </div>
-      </div>
+          </>} 
+          {step === "success" &&
+          <>
+            <h4 className="text-success">{msg}</h4>
+            <Link to={`/@${urlInfo?.username}`}>Visist @{urlInfo?.username}'s profile</Link>
+          </>} 
+          {step === "fail" && <>
+            <h4 className="text-danger">{msg}</h4>
+            <Button onClick={()=> setStep("confirm")}>Try again</Button>
+          </>}
+        </div>}
+      </div> 
     </>
   );
 }

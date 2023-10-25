@@ -18,25 +18,27 @@ import { hiveSvg } from "../img/svg";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 import { Community } from "../store/communities/types";
 import { Global } from "../store/global/types";
-import { createHiveAccount } from "../api/operations";
 import { generatePassword, getPrivateKeys } from "../helper/onboard";
 import { KeyTypes } from "../helper/onboard";
 import { downloadSvg, copyContent } from "../img/svg";
-import { b64uEnc } from "../util/b64";
+import { hexEnc } from "../util/b64";
 import { Link } from "react-router-dom";
 import clipboard from "../util/clipboard";
+import { ActiveUser } from "../store/active-user/types";
 
 interface Props {
- global: Global
- communities: Community[]
+  activeUser: ActiveUser;
+  global: Global
+  communities: Community[]
 }
 
 const SignUpPage = (props: Props | any) => {
   const form = useRef(null);
-  const { global, communities } = props;
+  const { global, communities, activeUser } = props;
 
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
+  const [referral, setReferral] = useState("")
   const [urlHash, setUrlHash] = useState("")
   const [inProgress, setInProgress] = useState(false)
   const [community, setCommunity] = useState<Community | null>(null);
@@ -47,7 +49,6 @@ const SignUpPage = (props: Props | any) => {
   const [isDownloaded, setIsDownloaded] = useState(false)
 
   useEffect(()=> {
-    console.log(props.match)
     getCurrentCommunity()
   }, [])
 
@@ -60,11 +61,10 @@ const SignUpPage = (props: Props | any) => {
       return;
     }
 
-    const password: Promise<string> = generatePassword(32);
+    const password: string = await generatePassword(32);
     const keys: KeyTypes = getPrivateKeys(username, password);
-    console.log(keys)
     setNewUserKeys((prev: any) => ({ ...prev, ...keys }));
-    setAccountPassword(await password)
+    setAccountPassword(password)
     const dataToEncode = {
       username,
       keys: {
@@ -76,20 +76,23 @@ const SignUpPage = (props: Props | any) => {
     }
 
     const stringifiedData = JSON.stringify(dataToEncode);
-    const hash = encodeURIComponent(stringifiedData)
+    const hash = hexEnc(stringifiedData)
     setUrlHash(hash)
-    // console.log(JSON.parse(b64uDec(hash)))
-    console.log("stringifiedData", stringifiedData)
-
   }
 
   const usernameChanged = (e: { target: { value: any; }; }) => {
     const { value: username } = e.target;
     setUsername(username.toLowerCase());
   };
+
   const emailChanged = (e: { target: { value: any; }; }) => {
     const { value: email } = e.target;
     setEmail(email.toLowerCase());
+  };
+
+  const referralChanged = (e: { target: { value: any; }; }) => {
+    const { value: email } = e.target;
+    setReferral(email.toLowerCase());
   };
 
   const getCurrentCommunity = () => {
@@ -148,7 +151,6 @@ const SignUpPage = (props: Props | any) => {
     }
   };
 
-  //  Meta config
   const metaProps = {
     title: `Welcome to ${community?.title}`,
   };
@@ -198,11 +200,6 @@ const SignUpPage = (props: Props | any) => {
                     onSubmit={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
-
-                      // if (!form.current?.checkValidity()) {
-                      //   return;
-                      // }
-
                       setStep(2);
                     }}
                   >
@@ -222,12 +219,24 @@ const SignUpPage = (props: Props | any) => {
                     </Form.Group>
                     <Form.Group>
                       <Form.Control
-                        type="text"
+                        type="email"
                         placeholder={"Enter your email"}
                         value={email}
                         onChange={emailChanged}
-                        // autoFocus={true}
                         required={true}
+                        onInvalid={(e: any) =>
+                          handleInvalid(e, "sign-up.", "validation-username")
+                        }
+                        onInput={handleOnInput}
+                      />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Control
+                        type="text"
+                        placeholder={"Enter referral (optional)"}
+                        value={referral}
+                        onChange={referralChanged}
+                        // required={true}
                         onInvalid={(e: any) =>
                           handleInvalid(e, "sign-up.", "validation-username")
                         }
@@ -291,22 +300,27 @@ const SignUpPage = (props: Props | any) => {
                 </span>
             </div>
             <div className="account-password">
-              <span>Make sure you copy and save ypur acc password securely</span>
+              <span className="text-danger">Make sure you copy and save your account password securely</span>
               <div className="password">
-                <strong>{accountPassword}</strong>
-                <span className="icon">{copyContent}</span>
+                <strong>{accountPassword}...</strong>
+                <span className="icon" onClick={()=> {
+                  clipboard(accountPassword)
+                  success("Password copied successfully")
+                  }}>{copyContent}</span>
               </div>
             </div>
             <Button onClick={()=> downloadKeys()}>Download keys {downloadSvg}</Button>
             {isDownloaded && <div className="account-link">
-              <h3>Copy Link below and SEND to a friend</h3>
-              <div className="link">
-                <Link to={`${window.origin}/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}</Link>
-                <span className="icon" onClick={() => {
-                  clipboard(`${window.origin}/onboard-friend/${urlHash}`);
-                  success("Account link copied successfully")
-                }}>{copyContent}</span>
-              </div>
+              {!activeUser ? <>
+                <h3>Copy Link below and SEND to a friend</h3>
+                <div className="link">
+                  <Link to={`${window.origin}/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}...</Link>
+                  <span className="icon" onClick={() => {
+                    clipboard(`${window.origin}/onboard-friend/${urlHash}`);
+                    success("Account link copied successfully")
+                  }}>{copyContent}</span>
+                </div>
+              </> : <a href={`${window.origin}/onboard-friend/${urlHash}`}>Click here to continue</a>}
             </div>}
           </div>
         )}

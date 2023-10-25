@@ -1,6 +1,6 @@
 import hs from "hivesigner";
 
-import {PrivateKey, Operation, TransactionConfirmation, AccountUpdateOperation, CustomJsonOperation} from '@hiveio/dhive';
+import {PrivateKey, Operation, OperationName, TransactionConfirmation, AccountUpdateOperation, CustomJsonOperation} from '@hiveio/dhive';
 
 import {Parameters} from 'hive-uri';
 
@@ -1095,65 +1095,59 @@ export const updatePassword = (
     ): Promise<TransactionConfirmation> => 
 hiveClient.broadcast.updateAccount(update, ownerKey);
 
-export const createHiveAccount = async (username: string, newUser: string, keys: KeyTypes) => {
-    return new Promise(async (resolve, reject) => {
-      const op_name = "account_create";
-      const memoKey = keys.memo
-      const activeKey = keys.active
-      const postingKey = keys.posting
-      
-      const owner = {
+export const createHiveAccount = async (data: any, creator_account: string) => {
+        
+    try {
+        const { username, keys } = data;
+    
+        const account = {
+        name: username,
+        ...keys,
+        active: false
+        };
+        console.log(account)
+    
+        const op_name: OperationName = "account_create";
+    
+        const owner = {
         weight_threshold: 1,
         account_auths: [],
-        key_auths: [[keys.ownerPubkey, 1]]
-      };
-      const active = {
+        key_auths: [[account.ownerPubKey, 1]]
+        };
+        const active = {
         weight_threshold: 1,
         account_auths: [],
-        key_auths: [[keys.activePubkey, 1]]
-      };
-      const posting = {
+        key_auths: [[account.activePubKey, 1]]
+        };
+        const posting = {
         weight_threshold: 1,
         account_auths: [["ecency.app", 1]],
-        key_auths: [[keys.postingPubkey, 1]]
-      };
-  
-      const ops = [];
-      const params = {
-        creator: username,
-        new_account_name: newUser,
+        key_auths: [[account.postingPubKey, 1]]
+        };
+        const ops: Array<any> = [];
+        const params: any = {
+        creator: creator_account,
+        new_account_name: account.name,
         owner,
         active,
         posting,
-        memo_key: keys.memoPubkey,
+        memo_key: account.memoPubKey,
         json_metadata: "",
         extensions: [],
         fee: "3.000 HIVE"
-      };
-  
-      const operation = [op_name, params];
-      ops.push(operation);
-  
-      try {
-        const response = await keychain.broadcast(username, [operation], "Active");
-        if (response) {
-          resolve(response);
-        } else {
-          reject("Account creation failed");
-        }
-      } catch (err) {
+        };
+        const operation: Operation = [op_name, params];
+        ops.push(operation);
+        try {
+
+        const response = await keychain.broadcast(creator_account, [operation], "Active");
+        console.log(response)
+            return response;
+            } catch (err: any) {
+            console.log(err);
+            return err;
+            }
+    } catch (err) {
         console.log(err);
-        reject(err);
-      }
-  
-      try {
-        await keychain.addAccount(newUser, {
-          active: activeKey, 
-          posting: postingKey,
-          memo: memoKey
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    });
-  };
+    }
+};

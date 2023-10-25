@@ -13,8 +13,8 @@ type AuthorityTypes = "Posting" | "Active" | "Memo";
 
 type Keys = { active: any, posting: any, memo: any };
 
-export const handshake = (): Promise<TxResponse> =>
-    new Promise<TxResponse>((resolve) => {
+export const handshake = (): Promise<TxResponse | void> =>
+    new Promise<TxResponse| void>((resolve) => {
         window.hive_keychain?.requestHandshake(() => {
             resolve();
         });
@@ -85,7 +85,8 @@ export const broadcast = (account: string, operations: any[], key: AuthorityType
     new Promise<TxResponse>((resolve, reject) => {
         window.hive_keychain?.requestBroadcast(account, operations, key, (resp) => {
             if (!resp.success) {
-                reject({message: "Operation cancelled"});
+                reject(resp);
+                // reject({message: "Operation cancelled"});
             }
 
             resolve(resp);
