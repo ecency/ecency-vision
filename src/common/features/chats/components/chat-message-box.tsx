@@ -28,14 +28,8 @@ interface Props {
 export default function ChatsMessagesBox(props: Props) {
   const { chat } = useMappedStore();
 
-  const {
-    messageServiceInstance,
-    currentChannel,
-    windowWidth,
-    maxHeight,
-    setCurrentChannel,
-    setShowMobileMessageBox
-  } = useContext(ChatContext);
+  const { messageServiceInstance, currentChannel, windowWidth, setCurrentChannel } =
+    useContext(ChatContext);
 
   const { channels, updatedChannel } = chat;
   const { match } = props;
@@ -137,9 +131,6 @@ export default function ChatsMessagesBox(props: Props) {
         <div className="no-chat-select">
           <div className="start-chat-wrapper text-center ">
             <p className="start-chat ">Select a chat or start a new conversation</p>
-            {windowWidth < 768 && (
-              <Button onClick={() => setShowMobileMessageBox(true)}>Start Chat</Button>
-            )}
           </div>
         </div>
       ) : (

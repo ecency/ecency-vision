@@ -23,11 +23,9 @@ interface Context {
   messageServiceInstance: MessageService | null;
   hasUserJoinedChat: boolean;
   currentChannel: Channel | null;
-  showMobileMessageBox: boolean;
   windowWidth: number;
   maxHeight: number;
   isActveUserRemoved: boolean;
-  setShowMobileMessageBox: (d: boolean) => void;
   setCurrentChannel: (channel: Channel) => void;
   setRevealPrivKey: (d: boolean) => void;
   setShowSpinner: (d: boolean) => void;
@@ -52,11 +50,9 @@ export const ChatContext = React.createContext<Context>({
   messageServiceInstance: null,
   hasUserJoinedChat: false,
   currentChannel: null,
-  showMobileMessageBox: true,
   windowWidth: 0,
   maxHeight: 0,
   isActveUserRemoved: false,
-  setShowMobileMessageBox: () => {},
   setCurrentChannel: () => {},
   setRevealPrivKey: () => {},
   setShowSpinner: () => {},
@@ -80,14 +76,12 @@ export const ChatContextProvider = (props: Props) => {
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
   const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
   const [currentChannel, setCurrentChannel] = useState<Channel | null>(null);
-  const [showMobileMessageBox, setShowMobileMessageBox] = useState(true);
   const [windowWidth, setWindowWidth] = useState(0);
   const [maxHeight, setMaxHeight] = useState(0);
   const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
 
   useMount(() => {
     getActiveUserKeys();
-    handleShowSideBar();
     setWindowWidth(window.innerWidth);
     setMaxHeight(window.innerHeight - 66);
   });
@@ -122,13 +116,6 @@ export const ChatContextProvider = (props: Props) => {
   }, [messageServiceInstance, chat.profiles]);
 
   useEffect(() => {
-    window.addEventListener("resize", handleShowSideBar);
-    return () => {
-      window.removeEventListener("resize", handleShowSideBar);
-    };
-  }, []);
-
-  useEffect(() => {
     if (shouldUpdateProfile && messageServiceInstance) {
       messageServiceInstance.updateProfile({
         name: activeUser?.username!,
@@ -139,8 +126,6 @@ export const ChatContextProvider = (props: Props) => {
   }, [shouldUpdateProfile, messageServiceInstance]);
 
   useDebounce(() => setShowSpinner(false), 5000, [showSpinner]);
-
-  const handleShowSideBar = () => setShowMobileMessageBox(window.innerWidth < 768);
 
   const getActiveUserKeys = async () => {
     const pubKey = await getUserChatPublicKey(activeUser?.username!);
@@ -187,11 +172,9 @@ export const ChatContextProvider = (props: Props) => {
         messageServiceInstance,
         hasUserJoinedChat,
         currentChannel,
-        showMobileMessageBox,
         windowWidth,
         maxHeight,
         isActveUserRemoved,
-        setShowMobileMessageBox,
         setCurrentChannel,
         setRevealPrivKey,
         setShowSpinner,

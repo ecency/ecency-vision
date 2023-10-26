@@ -1,4 +1,5 @@
 import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import { LinkProps } from "react-router-dom";
 
 export type ButtonAppearance =
   | "primary"
@@ -38,4 +39,17 @@ interface LinkButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   noPadding?: boolean;
 }
 
-export type ButtonProps = RegularButtonProps | LinkButtonProps;
+interface NavLinkButtonProps extends LinkProps {
+  appearance?: ButtonAppearance;
+  size?: ButtonSize;
+  outline?: boolean;
+  className?: string;
+  disabled?: boolean;
+  full?: boolean;
+  icon?: ReactNode;
+  iconPlacement?: "left" | "right";
+  iconClassName?: string;
+  noPadding?: boolean;
+}
+
+export type ButtonProps = RegularButtonProps | LinkButtonProps | NavLinkButtonProps;

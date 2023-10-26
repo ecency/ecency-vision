@@ -35,13 +35,12 @@ export default function ChatInput({
   isCurrentUser,
   currentChannel,
   currentUser,
-  isCurrentUserJoined,
   gifPickerStyle
 }: Props) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const emojiButtonRef = useRef<HTMLButtonElement | null>(null);
 
-  const { global, activeUser, chat } = useMappedStore();
+  const { chat } = useMappedStore();
   const { messageServiceInstance, isActveUserRemoved, receiverPubKey } = useContext(ChatContext);
 
   const [message, setMessage] = useState("");

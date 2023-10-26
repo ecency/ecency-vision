@@ -3,10 +3,11 @@ import { ButtonProps } from "./props";
 import { classNameObject } from "../../../helper/class-name-object";
 import { BUTTON_OUTLINE_STYLES, BUTTON_SIZES, BUTTON_STYLES } from "./styles";
 import { useFilteredProps } from "../../../util/props-filter";
+import { Link, NavLinkProps } from "react-router-dom";
 
 export * from "./props";
 
-export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement | NavLinkProps, ButtonProps>(
   (props, ref) => {
     const nativeProps = useFilteredProps<typeof props, Required<ButtonProps>>(props, [
       "appearance",
@@ -49,6 +50,11 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
         {children}
         {icon}
       </a>
+    ) : "to" in props ? (
+      <Link to={(props as NavLinkProps).to} {...nativeProps} className={className} ref={ref as any}>
+        {children}
+        {icon}
+      </Link>
     ) : (
       <button
         {...nativeProps}

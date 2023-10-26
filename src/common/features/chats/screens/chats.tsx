@@ -30,19 +30,23 @@ export const Chats = (props: Props) => {
 
   const username = match.params.username;
 
-  const {
-    receiverPubKey,
-    showSpinner,
-    activeUserKeys,
-    revealPrivKey,
-    chatPrivKey,
-    showMobileMessageBox
-  } = useContext(ChatContext);
+  const { receiverPubKey, showSpinner, activeUserKeys, revealPrivKey, chatPrivKey } =
+    useContext(ChatContext);
 
   const isReady = useMemo(
     () => !!(activeUser && activeUserKeys?.pub && chatPrivKey),
     [activeUserKeys, activeUserKeys, chatPrivKey]
   );
+  const isShowManageKey = useMemo(() => isReady && revealPrivKey, [isReady, revealPrivKey]);
+  const isShowChatRoom = useMemo(
+    () => isReady && !showSpinner && !!receiverPubKey && !revealPrivKey,
+    [isReady, showSpinner, receiverPubKey, revealPrivKey]
+  );
+  const isShowDefaultScreen = useMemo(
+    () => isReady && !receiverPubKey && !revealPrivKey && !showSpinner,
+    [isReady, receiverPubKey, revealPrivKey, showSpinner]
+  );
+  const isShowImportChats = useMemo(() => !isReady && !showSpinner, [isReady, showSpinner]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -51,13 +55,14 @@ export const Chats = (props: Props) => {
       document.body.style.overflow = "auto";
     };
   }, []);
+
   return (
-    <div className="bg-blue-duck-egg dark:bg-transparent pt-[4.5rem] min-h-[100vh]">
+    <div className="bg-blue-duck-egg dark:bg-transparent pt-[63px] min-h-[100vh]">
       <Feedback activeUser={activeUser} />
       <NavBar history={props.history} />
 
-      <div className="container mx-auto py-6">
-        <div className="grid grid-cols-12 overflow-hidden rounded-2xl bg-white border border-[--border-color] relative">
+      <div className="container mx-auto md:py-6">
+        <div className="grid grid-cols-12 overflow-hidden md:rounded-2xl bg-white border border-[--border-color] relative h-[100vh] md:h-auto">
           <div className="col-span-12 md:col-span-4 xl:col-span-3 border-r border-[--border-color] h-[calc(100vh-3rem-69px)] overflow-y-auto">
             {isReady ? <ChatsSideBar history={history} username={username} /> : <></>}
           </div>
@@ -65,13 +70,13 @@ export const Chats = (props: Props) => {
             className={classNameObject({
               "col-span-12 md:col-span-8 xl:col-span-9 h-[calc(100vh-3rem-69px)] overflow-y-auto absolute w-full bg-white z-10 md:static duration-500":
                 true,
-              "left-0": showMobileMessageBox,
-              "left-[100%]": showMobileMessageBox
+              "left-0": isShowChatRoom || isShowManageKey,
+              "left-[100%]": !isShowChatRoom && !isShowManageKey
             })}
           >
-            {isReady && revealPrivKey && (
+            {isShowManageKey && (
               <div className="flex h-full items-center justify-center">
-                <div className="max-w-[400px] bg-gray-100 w-full p-4 rounded-2xl border border-[--border-color]">
+                <div className="max-w-[400px] bg-gray-100 w-full p-4 rounded-2xl border border-[--border-color] p-4">
                   <ManageChatKey />
                 </div>
               </div>
@@ -81,15 +86,13 @@ export const Chats = (props: Props) => {
                 <Spinner className="w-6 h-6" />
               </div>
             )}
-            {!isReady && !showSpinner && (
+            {isShowImportChats && (
               <div className="h-full w-full flex items-center justify-center">
                 <ImportChats />
               </div>
             )}
-            {isReady && !showSpinner && receiverPubKey && !revealPrivKey && (
-              <ChatsMessagesBox match={match} history={history} />
-            )}
-            {isReady && !receiverPubKey && !revealPrivKey && !showSpinner && (
+            {isShowChatRoom && <ChatsMessagesBox match={match} history={history} />}
+            {isShowDefaultScreen && (
               <div className="flex flex-col justify-center items-center w-full h-full">
                 <div className="text-xl text-blue-dark-sky mb-4 font-semibold">
                   Hello, @{activeUser?.username}

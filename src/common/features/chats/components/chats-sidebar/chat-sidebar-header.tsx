@@ -21,7 +21,6 @@ export function ChatSidebarHeader({ history }: Props) {
     revealPrivKey,
     chatPrivKey,
     windowWidth,
-    setShowMobileMessageBox,
     setRevealPrivKey
   } = useContext(ChatContext);
 
@@ -32,7 +31,7 @@ export function ChatSidebarHeader({ history }: Props) {
   };
 
   return (
-    <div className="sticky top-0 z-10 bg-white flex items-center justify-between border-b border-[--border-color] p-3 gap-4">
+    <div className="sticky top-0 z-10 bg-white flex items-center justify-between border-b border-[--border-color] pl-4 pr-2 py-3 gap-4">
       <div className="flex items-center gap-2">
         {revealPrivKey && windowWidth > 768 && (
           <Tooltip content={_t("chat.back")}>
@@ -55,12 +54,7 @@ export function ChatSidebarHeader({ history }: Props) {
         {chatPrivKey && (
           <div className="chat-menu">
             <ChatsDropdownMenu
-              onManageChatKey={() => {
-                setRevealPrivKey(!revealPrivKey);
-                if (windowWidth < 768) {
-                  setShowMobileMessageBox(false);
-                }
-              }}
+              onManageChatKey={() => setRevealPrivKey(!revealPrivKey)}
               history={history}
             />
           </div>

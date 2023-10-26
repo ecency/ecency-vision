@@ -8,8 +8,8 @@ import { Chat } from "../../../store/chat/types";
 import { formattedUserName } from "../utils";
 import Link from "../../../components/alink";
 import { expandSideBar } from "../../../img/svg";
-import { ChatContext } from "../chat-context-provider";
 import { Button } from "@ui/button";
+import { ChatContext } from "../chat-context-provider";
 
 interface Props {
   username: string;
@@ -18,15 +18,10 @@ interface Props {
 
 export default function ChatsMessagesHeader(props: Props) {
   const { username } = props;
+  const { setReceiverPubKey } = useContext(ChatContext);
   const { chat } = useMappedStore();
-  const { setShowMobileMessageBox } = useContext(ChatContext);
 
-  const isChannel = (username: string) => {
-    if (username.startsWith("@")) {
-      return false;
-    }
-    return true;
-  };
+  const isChannel = (username: string) => !username.startsWith("@");
 
   const formattedName = (username: string, chat: Chat) => {
     if (username && !username.startsWith("@")) {
@@ -46,7 +41,8 @@ export default function ChatsMessagesHeader(props: Props) {
           className="md:hidden"
           noPadding={true}
           icon={expandSideBar}
-          onClick={() => setShowMobileMessageBox(!setShowMobileMessageBox)}
+          to="/chats"
+          onClick={() => setReceiverPubKey("")}
         />
         <Link
           className="flex items-center gap-3 decoration-0 after:!hidden font-semibold text-gray-800"
