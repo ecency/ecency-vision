@@ -67,6 +67,8 @@ const SignUpPage = (props: Props | any) => {
     setAccountPassword(password)
     const dataToEncode = {
       username,
+      email,
+      referral,
       keys: {
         activePubKey: keys.activePubkey,
         postingPubKey: keys.postingPubkey,
@@ -220,7 +222,7 @@ const SignUpPage = (props: Props | any) => {
                     <Form.Group>
                       <Form.Control
                         type="email"
-                        placeholder={"Enter your email"}
+                        placeholder={_t("sign-up.email")}
                         value={email}
                         onChange={emailChanged}
                         required={true}
@@ -233,7 +235,7 @@ const SignUpPage = (props: Props | any) => {
                     <Form.Group>
                       <Form.Control
                         type="text"
-                        placeholder={"Enter referral (optional)"}
+                        placeholder={_t("sign-up.referral")}
                         value={referral}
                         onChange={referralChanged}
                         // required={true}
@@ -277,50 +279,53 @@ const SignUpPage = (props: Props | any) => {
         {newUserKeys && step == 2 && (
           <div className="success-info">
             <h3>
-              Confirm Account Information
+            {_t("onboard.confirm-details")}
             </h3>
             <div className="account-details">
                 <span style={{ lineHeight: 2 }}>
-                  Username: <strong>{username}</strong>
+                  {_t("onboard.username")} <strong>{username}</strong>
                 </span>
                 <span style={{ lineHeight: 2 }}>
-                  Email: <strong>{email}</strong>
+                  {_t("onboard.email")} <strong>{email}</strong>
                 </span>
                 <span style={{ lineHeight: 2 }}>
-                  Active Public key: <strong>{newUserKeys?.activePubkey}</strong>
+                  {_t("onboard.refferal")} <strong>{referral}</strong>
                 </span>
                 <span style={{ lineHeight: 2 }}>
-                  Owner Public key: <strong>{newUserKeys?.ownerPubkey}</strong>
+                  {_t("onboard.public-active")} <strong>{newUserKeys?.activePubkey}</strong>
                 </span>
                 <span style={{ lineHeight: 2 }}>
-                  Posting Public Key: <strong>{newUserKeys?.postingPubkey}</strong>
+                  {_t("onboard.public-owner")} <strong>{newUserKeys?.ownerPubkey}</strong>
                 </span>
                 <span style={{ lineHeight: 2 }}>
-                  Memo Public Key: <strong>{newUserKeys?.memoPubkey}</strong>
+                  {_t("onboard.public-posting")} <strong>{newUserKeys?.postingPubkey}</strong>
+                </span>
+                <span style={{ lineHeight: 2 }}>
+                  {_t("onboard.public-memo")} <strong>{newUserKeys?.memoPubkey}</strong>
                 </span>
             </div>
             <div className="account-password">
-              <span className="text-danger">Make sure you copy and save your account password securely</span>
+              <span className="text-danger">{_t("onboard.copy-key")}</span>
               <div className="password">
                 <strong>{accountPassword}...</strong>
                 <span className="icon" onClick={()=> {
                   clipboard(accountPassword)
-                  success("Password copied successfully")
+                  success(_t("onboard.key-copied"))
                   }}>{copyContent}</span>
               </div>
             </div>
-            <Button onClick={()=> downloadKeys()}>Download keys {downloadSvg}</Button>
+            <Button onClick={()=> downloadKeys()}>{_t("onboard.download-keys")} {downloadSvg}</Button>
             {isDownloaded && <div className="account-link">
               {!activeUser ? <>
-                <h3>Copy Link below and SEND to a friend</h3>
+                <h3>{_t("onboard.copy-info-message")}</h3>
                 <div className="link">
                   <Link to={`${window.origin}/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}...</Link>
                   <span className="icon" onClick={() => {
                     clipboard(`${window.origin}/onboard-friend/${urlHash}`);
-                    success("Account link copied successfully")
+                    success(_t("onboard.copy-link"))
                   }}>{copyContent}</span>
                 </div>
-              </> : <a href={`${window.origin}/onboard-friend/${urlHash}`}>Click here to continue</a>}
+              </> : <a href={`${window.origin}/onboard-friend/${urlHash}`}>{_t("onboard.click-link")}</a>}
             </div>}
           </div>
         )}

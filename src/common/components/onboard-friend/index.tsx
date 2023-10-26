@@ -16,15 +16,18 @@ import { hexDec } from "../../util/b64";
 import { ActiveUser } from "../../store/active-user/types";
 import { Link } from "react-router-dom";
 import { createBreakawayUser } from "../../api/breakaway";
+import { getAccount } from "../../api/hive";
 
 interface Props {
   activeUser: ActiveUser
- global: Global
- communities: Community[]
+  global: Global
+  communities: Community[]
 }
 
 interface AccountInfo {
   username: string;
+  referral: string;
+  email: string;
   keys: {
     postingPubKey: string;
     ownerPubKey: string;
@@ -34,7 +37,6 @@ interface AccountInfo {
 }
 
 const OnboardFriend = (props: Props | any) => {
-  const form = useRef(null);
   const { global, communities, activeUser } = props;
 
   const [urlInfo, seturlInfo] = useState<AccountInfo | null>(null)
@@ -48,6 +50,7 @@ const OnboardFriend = (props: Props | any) => {
       if (props.match.params.hash) {
         const decodedHash = hexDec(props.match.params.hash);
         decodedObj = JSON.parse(decodedHash);
+        console.log(props)
       }
     } catch (error) {
       console.log(error);
@@ -65,7 +68,7 @@ const OnboardFriend = (props: Props | any) => {
       );
       if (response.success === true) {
         setStep("success");
-        await createBreakawayUser(urlInfo!.username, "Rally")
+        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setMsg(response.message)
       } else {
         setStep("fail")
@@ -96,23 +99,23 @@ const OnboardFriend = (props: Props | any) => {
           })
         : NavBar({ ...props })}
       <div className={containerClasses}>
-        { !activeUser ? <h3>You must be logged in to create an account</h3> : 
+        { !activeUser ? <h3>{_t("onboard.login-warning")}</h3> : 
         <div className="onboard">
           {step=== "confirm" && <>
-            <h5>You are creating an account for a friend</h5>
+            <h5>{_t("onboard.creating-for-a-friend")}</h5>
             <div className="friend-details">
             {urlInfo && (
               <div className="friend-details">
-                <span>Username: {urlInfo.username}</span>
-                <span>Public posting: {urlInfo.keys.postingPubKey}</span>
-                <span>Public Owner: {urlInfo.keys.ownerPubKey}</span>
-                <span>Public active: {urlInfo.keys.activePubKey}</span>
-                <span>Memo active: {urlInfo.keys.memoPubKey}</span>
+                <span>{_t("onboard.username")} {urlInfo.username}</span>
+                <span>{_t("onboard.public-posting")} {urlInfo.keys.postingPubKey}</span>
+                <span>{_t("onboard.public-owner")} {urlInfo.keys.ownerPubKey}</span>
+                <span>{_t("onboard.public-active")} {urlInfo.keys.activePubKey}</span>
+                <span>{_t("onboard.public-memo")} {urlInfo.keys.memoPubKey}</span>
               </div>
             )}
             </div>
             <div className="button">
-                <Button onClick={()=> createAccount()} className="w-100">Proceed</Button>   
+                <Button onClick={()=> createAccount()} className="w-100">{_t("onboard.confirm")}</Button>   
             </div>
           </>} 
           {step === "success" &&
@@ -122,7 +125,7 @@ const OnboardFriend = (props: Props | any) => {
           </>} 
           {step === "fail" && <>
             <h4 className="text-danger">{msg}</h4>
-            <Button onClick={()=> setStep("confirm")}>Try again</Button>
+            <Button onClick={()=> setStep("confirm")}>{_t("onboard.try-again")}</Button>
           </>}
         </div>}
       </div> 
