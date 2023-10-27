@@ -37,6 +37,7 @@ export function EntryListItemThumbnail({ entry, noImage, isCrossPost, entryProp,
         <div>
           {global.listStyle === "grid" ? (
             <img
+              className="w-full sm:w-auto"
               src={imgGrid}
               alt={isGridLoading ? "" : entry.title}
               style={{ width: imgGrid === noImage ? "172px" : "auto" }}
@@ -44,7 +45,11 @@ export function EntryListItemThumbnail({ entry, noImage, isCrossPost, entryProp,
           ) : (
             <picture>
               <source srcSet={imgRow} media="(min-width: 576px)" />
-              <img srcSet={imgRow} alt={isRowLoading ? "" : entry.title} />
+              <img
+                className="w-full sm:w-auto"
+                srcSet={imgRow}
+                alt={isRowLoading ? "" : entry.title}
+              />
             </picture>
           )}
         </div>

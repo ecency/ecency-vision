@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import random from "../../util/rnd";
 import FeedbackMessage from "../feedback-message";
 import { ErrorTypes } from "../../enums";
 import { ActiveUser } from "../../store/active-user/types";
-import { _t } from "../../i18n";
 import "./_index.scss";
 
 export const error = (message: string, errorType = ErrorTypes.COMMON) => {

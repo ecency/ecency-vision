@@ -4,6 +4,7 @@ export type ButtonAppearance =
   | "primary"
   | "secondary"
   | "link"
+  | "gray-link"
   | "danger"
   | "success"
   | "warning"

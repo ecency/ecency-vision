@@ -235,7 +235,7 @@ export function EntryListItem({
         {nsfw && !showNsfw && !global.nsfw ? (
           <>
             <div className="item-image item-image-nsfw">
-              <img src={nsfwImage} alt={entry.title} />
+              <img className="w-full sm:w-auto" src={nsfwImage} alt={entry.title} />
             </div>
             <div className="item-summary">
               <div className="item-nsfw">
@@ -284,7 +284,7 @@ export function EntryListItem({
         {showModMuted && showMuted ? (
           <>
             <div className="item-image item-image-nsfw">
-              <img src={nsfwImage} alt={entry.title} />
+              <img className="w-full sm:w-auto" src={nsfwImage} alt={entry.title} />
             </div>
             <div className="item-summary">
               <div className="item-nsfw">
