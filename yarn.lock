@@ -1332,10 +1332,10 @@
     xmldom "^0.5.0"
     xss "^1.0.8"
 
-"@ecency/render-helper@^2.2.27":
-  version "2.2.27"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.27.tgz#43922b20ed14b4d359ddc23867d94a53cfff9f02"
-  integrity sha512-WOah6ZHdhNa1MZ05tofAYEoifrwLSFUGolYcIPg8kWeutA7Et8uH5WXXCQk/lLYAUQkADdS7jHKXyyG1pygM7Q==
+"@ecency/render-helper@^2.2.28":
+  version "2.2.28"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.28.tgz#87e6a36d9d330c3d0baa93d7850a2f0d69520de5"
+  integrity sha512-v5Vn4bTKBj3enjOv2Cl58bbgkxQn89Vjb1v7AoMO6/8v3YMHJqV5JrVAd6WajXLxRTaJGO+KYvx7oD3WkhIXbA==
   dependencies:
     he "^1.2.0"
     lolight "^1.4.0"
