@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Channel } from "../../../../managers/message-manager-types";
-import { EmojiPickerStyleProps } from "../types";
 import { EmojiPicker } from "../../../components/emoji-picker";
 import { error } from "../../../components/feedback";
 import {
@@ -20,6 +19,7 @@ import { Button } from "@ui/button";
 import { useChatFileUpload } from "../mutations";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import GifPicker from "../../../components/gif-picker";
+import useClickAway from "react-use/lib/useClickAway";
 
 interface Props {
   isCurrentUser: boolean;
@@ -27,18 +27,17 @@ interface Props {
   currentChannel: Channel;
   currentUser: string;
   isCurrentUserJoined: boolean;
-  gifPickerStyle: EmojiPickerStyleProps;
 }
 
 export default function ChatInput({
   isCommunity,
   isCurrentUser,
   currentChannel,
-  currentUser,
-  gifPickerStyle
+  currentUser
 }: Props) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const emojiButtonRef = useRef<HTMLButtonElement | null>(null);
+  const gifPickerRef = useRef<HTMLDivElement | null>(null);
 
   const { chat } = useMappedStore();
   const { messageServiceInstance, isActveUserRemoved, receiverPubKey } = useContext(ChatContext);
@@ -53,6 +52,8 @@ export default function ChatInput({
     () => (isCurrentUser && !receiverPubKey) || isActveUserRemoved,
     [isCurrentUser, receiverPubKey, isActveUserRemoved]
   );
+
+  useClickAway(gifPickerRef, () => setShowGifPicker(false));
 
   useEffect(() => {
     if (!isCurrentUser && !isCommunity) {
@@ -104,7 +105,7 @@ export default function ChatInput({
   };
 
   return (
-    <div>
+    <div className="chat-input">
       {/*{message.length === 0 && (*/}
       {/*  <React.Fragment>*/}
 
@@ -132,13 +133,28 @@ export default function ChatInput({
       {/*  </React.Fragment>*/}
       {/*)}*/}
 
+      {showGifPicker && (
+        <GifPicker
+          rootRef={gifPickerRef}
+          pureStyle={true}
+          gifImagesStyle={GifImagesStyle}
+          shGif={true}
+          changeState={(gifState) => setShowGifPicker(gifState!)}
+          fallback={(e) =>
+            isCurrentUser
+              ? messageServiceInstance?.sendDirectMessage(receiverPubKey!, e)
+              : messageServiceInstance?.sendPublicMessage(currentChannel, e, [], "")
+          }
+        />
+      )}
+
       <Form
         onSubmit={(e: React.FormEvent) => {
           e.preventDefault();
           e.stopPropagation();
           sendMessage();
         }}
-        className="w-full flex items-center gap-2"
+        className="w-full flex items-center gap-2 p-2"
       >
         <Dropdown>
           <DropdownToggle>
@@ -194,20 +210,6 @@ export default function ChatInput({
           />
         </div>
       </Form>
-
-      {showGifPicker && (
-        <GifPicker
-          style={gifPickerStyle}
-          gifImagesStyle={GifImagesStyle}
-          shGif={true}
-          changeState={(gifState) => setShowGifPicker(gifState!)}
-          fallback={(e) =>
-            isCurrentUser
-              ? messageServiceInstance?.sendDirectMessage(receiverPubKey!, e)
-              : messageServiceInstance?.sendPublicMessage(currentChannel, e, [], "")
-          }
-        />
-      )}
     </div>
   );
 }

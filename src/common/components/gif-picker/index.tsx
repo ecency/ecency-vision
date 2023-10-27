@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MutableRefObject } from "react";
 import BaseComponent from "../base";
 import SearchBox from "../search-box";
 import { _t } from "../../i18n";
@@ -6,11 +6,13 @@ import { insertOrReplace } from "../../util/input-util";
 import _ from "lodash";
 import { fetchGif } from "../../api/misc";
 import "./_index.scss";
+import { classNameObject } from "../../helper/class-name-object";
 
 interface Props {
   fallback?: (e: string) => void;
   shGif: boolean;
   changeState: (gifState?: boolean) => void;
+  pureStyle?: boolean;
   style?: {
     width: string;
     bottom: string;
@@ -23,6 +25,7 @@ interface Props {
   gifImagesStyle?: {
     width: string;
   };
+  rootRef?: MutableRefObject<HTMLDivElement | null>;
 }
 
 interface State {
@@ -224,7 +227,15 @@ export default class GifPicker extends BaseComponent<Props> {
     };
 
     return (
-      <div className="emoji-picker gif" style={gifPickerStyle} onScroll={this.handleScroll}>
+      <div
+        ref={this.props.rootRef}
+        className={classNameObject({
+          "gif-picker": true,
+          "emoji-picker gif": !this.props.pureStyle
+        })}
+        style={gifPickerStyle}
+        onScroll={this.handleScroll}
+      >
         <SearchBox
           autoComplete="off"
           autoCorrect="off"

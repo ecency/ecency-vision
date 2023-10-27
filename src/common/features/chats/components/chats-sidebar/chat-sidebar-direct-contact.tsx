@@ -11,15 +11,9 @@ interface Props {
   contact: DirectContact;
   username: string;
   handleRevealPrivKey: () => void;
-  handleSideBar: () => void;
 }
 
-export function ChatSidebarDirectContact({
-  contact,
-  username,
-  handleRevealPrivKey,
-  handleSideBar
-}: Props) {
+export function ChatSidebarDirectContact({ contact, username, handleRevealPrivKey }: Props) {
   const { setReceiverPubKey } = useContext(ChatContext);
   const { chat } = useMappedStore();
 
@@ -39,7 +33,6 @@ export function ChatSidebarDirectContact({
       to={`/chats/@${contact.name}`}
       onClick={() => {
         setReceiverPubKey(contact.pubkey);
-        handleSideBar();
         handleRevealPrivKey();
       }}
     >

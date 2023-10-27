@@ -25,7 +25,7 @@ export function DropdownItemWithIcon(
   props: HTMLProps<HTMLDivElement> & { icon: ReactNode; label: ReactNode }
 ) {
   return (
-    <DropdownItem>
+    <DropdownItem {...props}>
       <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-dark-sky">
         <div>{props.icon}</div>
         <div className="text-sm font-semibold">{props.label}</div>

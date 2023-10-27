@@ -27,14 +27,8 @@ interface Props {
 export default function ChatsSideBar(props: Props) {
   const { username } = props;
   const { chat } = useMappedStore();
-  const {
-    revealPrivKey,
-    showMobileMessageBox,
-    windowWidth,
-    setShowMobileMessageBox,
-    setRevealPrivKey,
-    setReceiverPubKey
-  } = useContext(ChatContext);
+  const { revealPrivKey, windowWidth, setRevealPrivKey, setReceiverPubKey } =
+    useContext(ChatContext);
   const { channels, directContacts, leftChannelsList } = chat;
 
   const chatsSideBarRef = React.createRef<HTMLDivElement>();
@@ -92,12 +86,6 @@ export default function ChatsSideBar(props: Props) {
     }
   };
 
-  const handleSideBar = () => {
-    if (windowWidth < 768 && showMobileMessageBox) {
-      setShowMobileMessageBox(false);
-    }
-  };
-
   return (
     <div className="flex flex-col">
       <ChatSidebarHeader history={props.history} />
@@ -116,7 +104,6 @@ export default function ChatsSideBar(props: Props) {
                 setSearchQuery("");
                 setRevealPrivKey(false);
                 getReceiverPubKey(user.account);
-                handleSideBar();
               }}
               key={user.account}
             />
@@ -129,10 +116,7 @@ export default function ChatsSideBar(props: Props) {
                 <div
                   className={`community ${username === channel.communityName ? "selected" : ""}`}
                   key={channel.id}
-                  onClick={() => {
-                    setRevealPrivKey(false);
-                    handleSideBar();
-                  }}
+                  onClick={() => setRevealPrivKey(false)}
                 >
                   <UserAvatar username={channel.communityName!} size="medium" />
                   <div className="community-info">
@@ -155,7 +139,6 @@ export default function ChatsSideBar(props: Props) {
                 contact={contact}
                 username={username}
                 handleRevealPrivKey={handleRevealPrivKey}
-                handleSideBar={handleSideBar}
               />
             ))}
           </>

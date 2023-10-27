@@ -202,17 +202,8 @@ export default function ChatsMessagesView({
         )}
       </div>
 
-      <div className="sticky bottom-0 p-2 border-t border-[--border-color] bg-white">
+      <div className="sticky bottom-0 border-t border-[--border-color] bg-white">
         <ChatInput
-          gifPickerStyle={{
-            width: "56.5%",
-            bottom: "58px",
-            left: "340px",
-            marginLeft: "14px",
-            borderTopLeftRadius: "8px",
-            borderTopRightRadius: "8px",
-            borderBottomLeftRadius: "0px"
-          }}
           isCurrentUser={!!directUser}
           isCommunity={!!communityName}
           currentUser={directUser}

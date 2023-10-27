@@ -13,7 +13,6 @@ import { setNostrkeys } from "../../../../../managers/message-manager";
 import ManageChatKey from "../manage-chat-key";
 import ChatInput from "../chat-input";
 import { chevronDownSvgForSlider, chevronUpSvg } from "../../../../img/svg";
-import { GifPickerStyle } from "./chat-constants";
 import { _t } from "../../../../i18n";
 import { usePrevious } from "../../../../util/use-previous";
 import { getCommunity } from "../../../../api/bridge";
@@ -482,7 +481,6 @@ export const ChatPopUp = () => {
                 currentUser={currentUser}
                 currentChannel={currentChannel!}
                 isCurrentUserJoined={isCurrentUserJoined}
-                gifPickerStyle={GifPickerStyle}
               />
             )}
           </div>

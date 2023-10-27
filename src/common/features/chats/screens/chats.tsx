@@ -13,6 +13,7 @@ import ImportChats from "../components/import-chats";
 import ChatsMessagesBox from "../components/chat-message-box";
 import JoinChat from "../components/join-chat";
 import { classNameObject } from "../../../helper/class-name-object";
+import "./_chats.scss";
 
 interface Props extends PageProps {
   match: match<{
