@@ -224,9 +224,7 @@ export class Transfer extends BaseComponent<Props, State> {
     const { asset } = this.state;
 
     if (exchangeAccounts.includes(to)) {
-      if (asset !== "HIVE") {
-        this.stateSet({ exchangeWarning: _t("transfer.invalid-asset") });
-      } else if (asset === "HIVE" && !memo) {
+       if ((asset === "HIVE" || asset === "HBD") && !memo) {
         this.stateSet({ exchangeWarning: _t("transfer.memo-required") });
       } else {
         this.stateSet({ exchangeWarning: "" });
