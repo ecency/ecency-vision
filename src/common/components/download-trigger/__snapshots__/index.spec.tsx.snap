@@ -12,19 +12,11 @@ exports[`(1) Mac. 1`] = `
   <div
     className="downloads-text"
   >
-    Enjoy Ecency for iPhone, iPad and Android, as well as Windows, Mac or Linux devices
+    Enjoy Ecency for iPhone, iPad and Android devices
   </div>
   <div
     className="download-buttons"
   >
-    <a
-      className="download-button btn-desktop"
-      href="https://github.com/ecency/ecency-vision/releases/download/3.0.16/Ecency-3.0.16.dmg"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Mac
-    </a>
     <a
       className="download-button btn-android"
       href="https://android.ecency.com"
@@ -57,19 +49,11 @@ exports[`(2) Windows. 1`] = `
   <div
     className="downloads-text"
   >
-    Enjoy Ecency for iPhone, iPad and Android, as well as Windows, Mac or Linux devices
+    Enjoy Ecency for iPhone, iPad and Android devices
   </div>
   <div
     className="download-buttons"
   >
-    <a
-      className="download-button btn-desktop"
-      href="https://github.com/ecency/ecency-vision/releases/download/3.0.16/Ecency-Setup-3.0.16.exe"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Windows
-    </a>
     <a
       className="download-button btn-android"
       href="https://android.ecency.com"
@@ -102,19 +86,11 @@ exports[`(3) Linux. 1`] = `
   <div
     className="downloads-text"
   >
-    Enjoy Ecency for iPhone, iPad and Android, as well as Windows, Mac or Linux devices
+    Enjoy Ecency for iPhone, iPad and Android devices
   </div>
   <div
     className="download-buttons"
   >
-    <a
-      className="download-button btn-desktop"
-      href="https://github.com/ecency/ecency-vision/releases/download/3.0.16/ecency-surfer-3.0.16.tar.gz"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Linux
-    </a>
     <a
       className="download-button btn-android"
       href="https://android.ecency.com"
@@ -147,7 +123,7 @@ exports[`(4) Android. 1`] = `
   <div
     className="downloads-text"
   >
-    Enjoy Ecency for iPhone, iPad and Android, as well as Windows, Mac or Linux devices
+    Enjoy Ecency for iPhone, iPad and Android devices
   </div>
   <div
     className="download-buttons"
@@ -176,7 +152,7 @@ exports[`(5) iOS. 1`] = `
   <div
     className="downloads-text"
   >
-    Enjoy Ecency for iPhone, iPad and Android, as well as Windows, Mac or Linux devices
+    Enjoy Ecency for iPhone, iPad and Android devices
   </div>
   <div
     className="download-buttons"
@@ -205,19 +181,11 @@ exports[`(6) Other. 1`] = `
   <div
     className="downloads-text"
   >
-    Enjoy Ecency for iPhone, iPad and Android, as well as Windows, Mac or Linux devices
+    Enjoy Ecency for iPhone, iPad and Android devices
   </div>
   <div
     className="download-buttons"
   >
-    <a
-      className="download-button btn-desktop"
-      href="https://github.com/ecency/ecency-vision/releases/download/3.0.16/Ecency-Setup-3.0.16.exe"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Windows
-    </a>
     <a
       className="download-button btn-android"
       href="https://android.ecency.com"
