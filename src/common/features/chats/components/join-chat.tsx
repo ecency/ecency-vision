@@ -3,9 +3,11 @@ import { ChatContext } from "../chat-context-provider";
 import { Button } from "@ui/button";
 import { Spinner } from "@ui/spinner";
 import { _t } from "../../../i18n";
+import { useJoinChat } from "../mutations/join-chat";
 
 export default function JoinChat() {
-  const { messageServiceInstance, joinChat } = useContext(ChatContext);
+  const { messageServiceInstance } = useContext(ChatContext);
+  const { mutateAsync: joinChat } = useJoinChat();
 
   const [showSpinner, setShowSpinner] = useState(false);
 
@@ -15,16 +17,14 @@ export default function JoinChat() {
     }
   }, [messageServiceInstance]);
 
-  const handleJoinChat = async () => {
-    setShowSpinner(true);
-    joinChat();
-  };
-
   return (
     <div className="no-chat text-center">
       <p>{_t("chat.you-haven-t-joined")}</p>
       <Button
-        onClick={handleJoinChat}
+        onClick={() => {
+          setShowSpinner(true);
+          joinChat();
+        }}
         icon={showSpinner ? <Spinner /> : <></>}
         iconPlacement="left"
       >

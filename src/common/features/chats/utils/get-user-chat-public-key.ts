@@ -1,6 +1,6 @@
 import { getAccountFull } from "../../../api/hive";
 
-export const getUserChatPublicKey = async (username: string) => {
+export const getUserChatPublicKey = async (username: string): Promise<string | null> => {
   const response = await getAccountFull(username);
   if (response && response.posting_json_metadata) {
     const { posting_json_metadata } = response;

@@ -13,6 +13,7 @@ import { Button } from "@ui/button";
 import { Form } from "@ui/form";
 import { FormControl, InputGroup } from "@ui/input";
 import { setNostrkeys } from "../../managers/message-manager";
+import { useJoinChat } from "../../mutations/join-chat";
 
 export default function ImportChats() {
   const { activeUser } = useMappedStore();
@@ -23,7 +24,8 @@ export default function ImportChats() {
   const [privKey, setPrivKey] = useState("");
   const [step, setStep] = useState(0);
 
-  const { activeUserKeys, hasUserJoinedChat, setChatPrivKey, joinChat } = useContext(ChatContext);
+  const { activeUserKeys, hasUserJoinedChat, setChatPrivKey } = useContext(ChatContext);
+  const { mutateAsync: joinChat } = useJoinChat();
 
   const handleImportChatSubmit = () => {
     try {
@@ -100,9 +102,7 @@ export default function ImportChats() {
           onClose={() => {
             setStep(0);
           }}
-          onConfirm={() => {
-            joinChat();
-          }}
+          onConfirm={() => joinChat()}
         />
       )}
     </>

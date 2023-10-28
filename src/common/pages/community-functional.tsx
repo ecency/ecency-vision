@@ -4,7 +4,7 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import { search as searchApi, SearchResult } from "../api/search-api";
 import { getSubscriptions } from "../api/bridge";
 import { EntryFilter, ListStyle } from "../store/global/types";
-import { Channel } from "../../managers/message-manager-types";
+import { Channel } from "../features/chats/managers/message-manager-types";
 import { usePrevious } from "../util/use-previous";
 
 import { getJoinedCommunities } from "../features/chats/utils";
@@ -44,6 +44,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { ChatContext } from "../features/chats/chat-context-provider";
 import { Button } from "@ui/button";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { useJoinChat } from "../features/chats/mutations/join-chat";
 
 interface MatchParams {
   filter: string;
@@ -82,8 +83,8 @@ export const CommunityPage = (props: Props) => {
   const prevMatch = usePrevious(props.match);
   const prevActiveUser = usePrevious(props.activeUser);
 
-  const chatContext = useContext(ChatContext);
-  const { messageServiceInstance, hasUserJoinedChat, joinChat } = chatContext;
+  const { messageServiceInstance, hasUserJoinedChat } = useContext(ChatContext);
+  const { mutateAsync: joinChat } = useJoinChat();
 
   useEffect(() => {
     const communities = getJoinedCommunities(chat.channels, chat.leftChannelsList);

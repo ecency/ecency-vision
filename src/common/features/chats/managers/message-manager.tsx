@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import { ActiveUser } from "../../../store/active-user/types";
 import { NostrKeysType } from "../types";
 import {
@@ -12,10 +11,8 @@ import {
   Profile,
   PublicMessage
 } from "./message-manager-types";
-
 import MessageService, { MessageEvents } from "../../../helper/message-service";
 import { getPrivateKey, getProfileMetaData } from "../utils";
-
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import { usePrevious } from "../../../util/use-previous";
@@ -113,7 +110,7 @@ const MessageManager = () => {
     const noStrPrivKey = getPrivateKey(activeUser.username);
     const keys = {
       pub: profile?.nsKey,
-      priv: noStrPrivKey
+      priv: noStrPrivKey!!
     };
     setKeys(keys);
   };

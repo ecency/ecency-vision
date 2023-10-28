@@ -4,15 +4,9 @@ import useDebounce from "react-use/lib/useDebounce";
 import MessageService from "../../helper/message-service";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { NostrKeysType } from "./types";
-import {
-  createNoStrAccount,
-  getPrivateKey,
-  getUserChatPublicKey,
-  uploadChatPublicKey
-} from "./utils";
-import * as ls from "../../util/local-storage";
 import { useMount } from "react-use";
-import { setNostrkeys } from "./managers/message-manager";
+import { useKeysQuery } from "./queries/keys-query";
+import { useJoinChat } from "./mutations/join-chat";
 
 interface Context {
   activeUserKeys: NostrKeysType;
@@ -33,7 +27,6 @@ interface Context {
   setReceiverPubKey: (key: string) => void;
   setMessageServiceInstance: (instance: MessageService | null) => void;
   initMessageServiceInstance: (keys: Keys) => MessageService | null;
-  joinChat: () => void;
 }
 
 interface Props {
@@ -58,14 +51,13 @@ export const ChatContext = React.createContext<Context>({
   setActiveUserKeys: () => {},
   setReceiverPubKey: () => {},
   setMessageServiceInstance: () => {},
-  initMessageServiceInstance: () => (({} as MessageService) || null),
-  joinChat: () => {}
+  initMessageServiceInstance: () => (({} as MessageService) || null)
 });
 
 export const ChatContextProvider = (props: Props) => {
   const { activeUser, chat, resetChat } = useMappedStore();
 
-  const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>({ pub: " ", priv: "" });
+  const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>({ pub: "", priv: "" });
   const [showSpinner, setShowSpinner] = useState(true);
   const [chatPrivKey, setChatPrivKey] = useState("");
   const [revealPrivKey, setRevealPrivKey] = useState(false);
@@ -77,10 +69,28 @@ export const ChatContextProvider = (props: Props) => {
   const [windowWidth, setWindowWidth] = useState(0);
   const [isActiveUserRemoved, setIsActiveUserRemoved] = useState(false);
 
+  const { privateKey, publicKey, refetch } = useKeysQuery(activeUserKeys, setActiveUserKeys);
+
+  useJoinChat(() => {
+    setHasUserJoinedChat(true);
+    setShouldUpdateProfile(true);
+  });
+
+  useDebounce(() => setShowSpinner(false), 5000, [showSpinner]);
+
   useMount(() => {
-    getActiveUserKeys();
     setWindowWidth(window.innerWidth);
   });
+
+  useEffect(() => {
+    setHasUserJoinedChat(!!publicKey);
+  }, [publicKey]);
+
+  useEffect(() => {
+    if (privateKey) {
+      setChatPrivKey(privateKey);
+    }
+  }, [privateKey]);
 
   useEffect(() => {
     if (currentChannel && currentChannel.removedUserIds) {
@@ -101,7 +111,7 @@ export const ChatContextProvider = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    getActiveUserKeys();
+    refetch();
     if (
       messageServiceInstance &&
       chat.profiles.some((profile) => profile.name === activeUser?.username)
@@ -120,16 +130,6 @@ export const ChatContextProvider = (props: Props) => {
     }
   }, [shouldUpdateProfile, messageServiceInstance]);
 
-  useDebounce(() => setShowSpinner(false), 5000, [showSpinner]);
-
-  const getActiveUserKeys = async () => {
-    const pubKey = await getUserChatPublicKey(activeUser?.username!);
-    const privKey = getPrivateKey(activeUser?.username!);
-    setHasUserJoinedChat(!!pubKey);
-    setChatPrivKey(privKey);
-    setActiveUserKeys({ pub: pubKey, priv: privKey });
-  };
-
   const initMessageServiceInstance = (keys: Keys) => {
     if (messageServiceInstance) {
       messageServiceInstance.close();
@@ -142,18 +142,6 @@ export const ChatContextProvider = (props: Props) => {
       setMessageServiceInstance(newMessageService);
     }
     return newMessageService;
-  };
-
-  const joinChat = async () => {
-    resetChat();
-    const keys = createNoStrAccount();
-    ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
-    await uploadChatPublicKey(activeUser, keys.pub);
-    setHasUserJoinedChat(true);
-    setNostrkeys(keys);
-    setChatPrivKey(keys.priv);
-    setShouldUpdateProfile(true);
-    setActiveUserKeys(keys);
   };
 
   return (
@@ -176,8 +164,7 @@ export const ChatContextProvider = (props: Props) => {
         setActiveUserKeys,
         setReceiverPubKey,
         setMessageServiceInstance,
-        initMessageServiceInstance,
-        joinChat
+        initMessageServiceInstance
       }}
     >
       {props.children}

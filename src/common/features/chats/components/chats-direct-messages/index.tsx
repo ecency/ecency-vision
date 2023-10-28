@@ -10,24 +10,18 @@ import {
   isMessageGif,
   isMessageImage
 } from "../../utils";
-
 import { Theme } from "../../../../store/global/types";
-import { DirectMessage } from "../../../../../managers/message-manager-types";
-
 import { useMappedStore } from "../../../../store/use-mapped-store";
-
 import UserAvatar from "../../../../components/user-avatar";
 import Tooltip from "../../../../components/tooltip";
 import { ChatContext } from "../../chat-context-provider";
-
 import { failedMessageSvg, resendMessageSvg } from "../../../../img/svg";
-
 import { renderPostBody } from "@ecency/render-helper";
 import { _t } from "../../../../i18n";
-
 import "./index.scss";
 import ChatsConfirmationModal from "../chats-confirmation-modal";
 import { Spinner } from "@ui/spinner";
+import { DirectMessage } from "../../managers/message-manager-types";
 
 interface Props {
   directMessages: DirectMessage[];
@@ -98,99 +92,54 @@ export default function ChatsDirectMessages(props: Props) {
       <div className="direct-messages">
         {receiverPubKey ? (
           <>
-            {directMessages &&
-              directMessages.map((msg, i) => {
-                const dayAndMonth = formatMessageDateAndDay(msg, i, directMessages);
-                let renderedPreview = renderPostBody(msg.content, false, global.canUseWebp);
+            {directMessages?.map((msg, i) => {
+              console.log(activeUserKeys);
+              console.log(`${msg.creator}/${activeUserKeys?.pub}`);
+              const dayAndMonth = formatMessageDateAndDay(msg, i, directMessages);
+              let renderedPreview = renderPostBody(msg.content, false, global.canUseWebp);
 
-                renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
-                renderedPreview = renderedPreview.replace(/<\/p>/g, "");
+              renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
+              renderedPreview = renderedPreview.replace(/<\/p>/g, "");
 
-                const isGif = isMessageGif(msg.content);
+              const isGif = isMessageGif(msg.content);
 
-                const isImage = isMessageImage(msg.content);
+              const isImage = isMessageImage(msg.content);
 
-                const isSameUser = checkContiguousMessage(msg, i, directMessages);
+              const isSameUser = checkContiguousMessage(msg, i, directMessages);
 
-                return (
-                  <React.Fragment key={msg.id}>
-                    {dayAndMonth && (
-                      <div className="custom-divider">
-                        <span className="flex justify-center items-center mt-3 custom-divider-text">
-                          {dayAndMonth}
-                        </span>
-                      </div>
-                    )}
-                    {msg.creator !== activeUserKeys?.pub ? (
-                      <div key={msg.id} className="receiver">
-                        {!isSameUser || (isSameUser && dayAndMonth) ? (
-                          <div className="user-img">
-                            <Link to={`/@${currentUser}`}>
-                              <span>
-                                <UserAvatar username={currentUser} size="medium" />
-                              </span>
-                            </Link>
-                          </div>
-                        ) : (
-                          <></>
-                        )}
-
-                        <div
-                          className={`user-info ${
-                            isSameUser && !dayAndMonth
-                              ? "same-user-msg"
-                              : dayAndMonth
-                              ? "date-changed"
-                              : ""
-                          }`}
-                        >
-                          <div className="receiver-messag">
-                            <Tooltip
-                              content={
-                                formatMessageDate(msg.created).split(",")[1] +
-                                " " +
-                                formatMessageTime(msg.created)
-                              }
-                            >
-                              <div
-                                className={`receiver-message-wrapper  ${isGif ? "gif" : ""} ${
-                                  isImage ? "chat-image" : ""
-                                }`}
-                              >
-                                <div
-                                  className={`receiver-message-content  ${isGif ? "gif" : ""} ${
-                                    isImage ? "chat-image" : ""
-                                  }`}
-                                  dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                                />
-                                <p className="receiver-msg-time">
-                                  {formatMessageTime(msg.created)}
-                                </p>
-                              </div>
-                            </Tooltip>
-                          </div>
+              return (
+                <React.Fragment key={msg.id}>
+                  {dayAndMonth && (
+                    <div className="custom-divider">
+                      <span className="flex justify-center items-center mt-3 custom-divider-text">
+                        {dayAndMonth}
+                      </span>
+                    </div>
+                  )}
+                  {msg.creator !== activeUserKeys?.pub ? (
+                    <div key={msg.id} className="receiver">
+                      {!isSameUser || (isSameUser && dayAndMonth) ? (
+                        <div className="user-img">
+                          <Link to={`/@${currentUser}`}>
+                            <span>
+                              <UserAvatar username={currentUser} size="medium" />
+                            </span>
+                          </Link>
                         </div>
-                      </div>
-                    ) : (
-                      <div key={msg.id} className="sender">
-                        <div
-                          className={`sender-message ${
-                            msg.sent === 2 ? "failed" : msg.sent === 0 ? "sending" : ""
-                          }`}
-                        >
-                          {msg.sent === 2 && (
-                            <Tooltip content={"Resend"}>
-                              <span
-                                className="resend-svg"
-                                onClick={() => {
-                                  setStep(1);
-                                  setResendMessage(msg);
-                                }}
-                              >
-                                {resendMessageSvg}
-                              </span>
-                            </Tooltip>
-                          )}
+                      ) : (
+                        <></>
+                      )}
+
+                      <div
+                        className={`user-info ${
+                          isSameUser && !dayAndMonth
+                            ? "same-user-msg"
+                            : dayAndMonth
+                            ? "date-changed"
+                            : ""
+                        }`}
+                      >
+                        <div className="receiver-messag">
                           <Tooltip
                             content={
                               formatMessageDate(msg.created).split(",")[1] +
@@ -199,35 +148,77 @@ export default function ChatsDirectMessages(props: Props) {
                             }
                           >
                             <div
-                              className={`sender-message-wrapper ${isGif ? "gif" : ""} ${
-                                isImage ? "chat-image" : isSameUser ? "same-user-message" : ""
+                              className={`receiver-message-wrapper  ${isGif ? "gif" : ""} ${
+                                isImage ? "chat-image" : ""
                               }`}
                             >
                               <div
-                                className="sender-message-content"
+                                className={`receiver-message-content  ${isGif ? "gif" : ""} ${
+                                  isImage ? "chat-image" : ""
+                                }`}
                                 dangerouslySetInnerHTML={{ __html: renderedPreview }}
                               />
-                              <p className="sender-message-time">
-                                {formatMessageTime(msg.created)}
-                              </p>
+                              <p className="receiver-msg-time">{formatMessageTime(msg.created)}</p>
                             </div>
                           </Tooltip>
-                          {msg.sent === 0 && (
-                            <span style={{ margin: "10px 0 0 5px" }}>
-                              <Spinner />
-                            </span>
-                          )}
-                          {msg.sent === 2 && (
-                            <Tooltip content={"Failed"}>
-                              <span className="failed-svg">{failedMessageSvg}</span>
-                            </Tooltip>
-                          )}
                         </div>
                       </div>
-                    )}
-                  </React.Fragment>
-                );
-              })}
+                    </div>
+                  ) : (
+                    <div key={msg.id} className="sender">
+                      <div
+                        className={`sender-message ${
+                          msg.sent === 2 ? "failed" : msg.sent === 0 ? "sending" : ""
+                        }`}
+                      >
+                        {msg.sent === 2 && (
+                          <Tooltip content={"Resend"}>
+                            <span
+                              className="resend-svg"
+                              onClick={() => {
+                                setStep(1);
+                                setResendMessage(msg);
+                              }}
+                            >
+                              {resendMessageSvg}
+                            </span>
+                          </Tooltip>
+                        )}
+                        <Tooltip
+                          content={
+                            formatMessageDate(msg.created).split(",")[1] +
+                            " " +
+                            formatMessageTime(msg.created)
+                          }
+                        >
+                          <div
+                            className={`sender-message-wrapper ${isGif ? "gif" : ""} ${
+                              isImage ? "chat-image" : isSameUser ? "same-user-message" : ""
+                            }`}
+                          >
+                            <div
+                              className="sender-message-content"
+                              dangerouslySetInnerHTML={{ __html: renderedPreview }}
+                            />
+                            <p className="sender-message-time">{formatMessageTime(msg.created)}</p>
+                          </div>
+                        </Tooltip>
+                        {msg.sent === 0 && (
+                          <span style={{ margin: "10px 0 0 5px" }}>
+                            <Spinner />
+                          </span>
+                        )}
+                        {msg.sent === 2 && (
+                          <Tooltip content={"Failed"}>
+                            <span className="failed-svg">{failedMessageSvg}</span>
+                          </Tooltip>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </React.Fragment>
+              );
+            })}
           </>
         ) : (
           <p className="not-joined">{_t("chat.not-joined")}</p>

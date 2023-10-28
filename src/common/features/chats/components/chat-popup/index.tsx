@@ -24,6 +24,7 @@ import { ChatPopupMessagesList } from "./chat-popup-messages-list";
 import { ChatPopupSearchUser } from "./chat-popup-search-user";
 import { ChatPopupDirectMessages } from "./chat-popup-direct-messages";
 import { setNostrkeys } from "../../managers/message-manager";
+import { useJoinChat } from "../../mutations/join-chat";
 
 export const ChatPopUp = () => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
@@ -37,9 +38,9 @@ export const ChatPopUp = () => {
     currentChannel,
     setCurrentChannel,
     setRevealPrivKey,
-    setShowSpinner,
-    joinChat
+    setShowSpinner
   } = useContext(ChatContext);
+  const { mutateAsync: joinChat } = useJoinChat();
 
   const routerLocation = useLocation();
   const prevActiveUser = usePrevious(activeUser);
@@ -339,18 +340,13 @@ export const ChatPopUp = () => {
       setShowSpinner(true);
       const keys = {
         pub: activeUserKeys?.pub!,
-        priv: getPrivateKey(activeUser?.username!)
+        priv: getPrivateKey(activeUser?.username!)!!
       };
       setNostrkeys(keys);
       if (isCommunity && communityName) {
         fetchCurrentChannel(communityName);
       }
     }
-  };
-
-  const handleJoinChat = async () => {
-    setIsSpinner(true);
-    joinChat();
   };
 
   const communityClicked = (community: string) => {
@@ -442,7 +438,10 @@ export const ChatPopUp = () => {
             ) : (
               <Button
                 className="join-chat-btn"
-                onClick={() => handleJoinChat()}
+                onClick={() => {
+                  setIsSpinner(true);
+                  joinChat();
+                }}
                 icon={isSpinner ? <Spinner style={{ marginRight: "6px" }} /> : undefined}
                 iconPlacement="left"
               >
