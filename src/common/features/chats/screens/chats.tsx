@@ -77,7 +77,7 @@ export const Chats = (props: Props) => {
           >
             {isShowManageKey && (
               <div className="flex h-full items-center justify-center">
-                <div className="max-w-[400px] bg-gray-100 w-full p-4 rounded-2xl border border-[--border-color] p-4">
+                <div className="max-w-[400px] bg-gray-100 dark:bg-gray-900 w-full p-4 rounded-2xl border border-[--border-color] p-4">
                   <ManageChatKey />
                 </div>
               </div>

@@ -30,7 +30,7 @@ export function ChatSidebarSearch({ setUserList, searchQuery, setSearchQuery }: 
 
   return (
     <>
-      <div className="bg-gray-100 p-3 border-b border-[--border-color]">
+      <div className="bg-gray-100 dark:bg-gray-900 p-3 border-b border-[--border-color]">
         <FormControl
           type="text"
           placeholder={_t("chat.search")}

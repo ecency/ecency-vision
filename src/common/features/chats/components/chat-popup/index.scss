@@ -197,7 +197,7 @@
     }
   }
 
-  &.small-screen {
+  @media screen and (max-width: 768px) {
     right: 0;
     width: 100vw;
     display: grid;

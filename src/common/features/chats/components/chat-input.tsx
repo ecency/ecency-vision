@@ -40,7 +40,7 @@ export default function ChatInput({
   const gifPickerRef = useRef<HTMLDivElement | null>(null);
 
   const { chat } = useMappedStore();
-  const { messageServiceInstance, isActveUserRemoved, receiverPubKey } = useContext(ChatContext);
+  const { messageServiceInstance, isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
 
   const [message, setMessage] = useState("");
   const [showGifPicker, setShowGifPicker] = useState(false);
@@ -49,8 +49,8 @@ export default function ChatInput({
   const { mutateAsync } = useChatFileUpload(setMessage, setIsMessageText);
 
   const isDisabled = useMemo(
-    () => (isCurrentUser && !receiverPubKey) || isActveUserRemoved,
-    [isCurrentUser, receiverPubKey, isActveUserRemoved]
+    () => (isCurrentUser && !receiverPubKey) || isActiveUserRemoved,
+    [isCurrentUser, receiverPubKey, isActiveUserRemoved]
   );
 
   useClickAway(gifPickerRef, () => setShowGifPicker(false));
@@ -64,7 +64,7 @@ export default function ChatInput({
   const sendMessage = () => {
     if (message.length !== 0 && !message.includes(UPLOADING)) {
       if (isCommunity) {
-        if (!isActveUserRemoved) {
+        if (!isActiveUserRemoved) {
           messageServiceInstance?.sendPublicMessage(currentChannel, message, [], "");
         } else {
           error(_t("chat.message-warning"));
@@ -106,33 +106,6 @@ export default function ChatInput({
 
   return (
     <div className="chat-input">
-      {/*{message.length === 0 && (*/}
-      {/*  <React.Fragment>*/}
-
-      {/*    <Tooltip content="Image">*/}
-      {/*      <div*/}
-      {/*        className="chatbox-image"*/}
-      {/*        onClick={(e: React.MouseEvent<HTMLElement>) => {*/}
-      {/*          e.stopPropagation();*/}
-      {/*          const el = fileInputRef.current;*/}
-      {/*          if (el) el.click();*/}
-      {/*        }}*/}
-      {/*      >*/}
-      {/*        <div className="chatbox-image-icon">{chatBoxImageSvg}</div>*/}
-      {/*      </div>*/}
-      {/*    </Tooltip>*/}
-
-      {/*    <input*/}
-      {/*      onChange={fileInputChanged}*/}
-      {/*      className="file-input d-none"*/}
-      {/*      ref={fileInputRef}*/}
-      {/*      type="file"*/}
-      {/*      accept="image/*"*/}
-      {/*      multiple={true}*/}
-      {/*    />*/}
-      {/*  </React.Fragment>*/}
-      {/*)}*/}
-
       {showGifPicker && (
         <GifPicker
           rootRef={gifPickerRef}
@@ -147,6 +120,14 @@ export default function ChatInput({
           }
         />
       )}
+      <input
+        onChange={fileInputChanged}
+        className="hidden"
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        multiple={true}
+      />
 
       <Form
         onSubmit={(e: React.FormEvent) => {
@@ -168,7 +149,7 @@ export default function ChatInput({
             />
             <DropdownItemWithIcon
               icon={chatBoxImageSvg}
-              label="Image"
+              label="Upload image"
               onClick={() => fileInputRef.current?.click()}
             />
           </DropdownMenu>

@@ -27,8 +27,7 @@ interface Props {
 export default function ChatsSideBar(props: Props) {
   const { username } = props;
   const { chat } = useMappedStore();
-  const { revealPrivKey, windowWidth, setRevealPrivKey, setReceiverPubKey } =
-    useContext(ChatContext);
+  const { revealPrivKey, setRevealPrivKey, setReceiverPubKey } = useContext(ChatContext);
   const { channels, directContacts, leftChannelsList } = chat;
 
   const chatsSideBarRef = React.createRef<HTMLDivElement>();

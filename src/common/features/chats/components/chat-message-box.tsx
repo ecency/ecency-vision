@@ -28,8 +28,7 @@ interface Props {
 export default function ChatsMessagesBox(props: Props) {
   const { chat } = useMappedStore();
 
-  const { messageServiceInstance, currentChannel, windowWidth, setCurrentChannel } =
-    useContext(ChatContext);
+  const { messageServiceInstance, currentChannel, setCurrentChannel } = useContext(ChatContext);
 
   const { channels, updatedChannel } = chat;
   const { match } = props;
@@ -126,7 +125,12 @@ export default function ChatsMessagesBox(props: Props) {
   };
 
   return (
-    <div className="h-full">
+    <div
+      className="grid min-h-full"
+      style={{
+        gridTemplateRows: "min-content 1fr min-content"
+      }}
+    >
       {match.url === "/chats" ? (
         <div className="no-chat-select">
           <div className="start-chat-wrapper text-center ">

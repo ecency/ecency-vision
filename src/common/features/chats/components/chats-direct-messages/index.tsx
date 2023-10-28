@@ -163,11 +163,9 @@ export default function ChatsDirectMessages(props: Props) {
                                   }`}
                                   dangerouslySetInnerHTML={{ __html: renderedPreview }}
                                 />
-                                {windowWidth <= 768 && (
-                                  <p className="receiver-msg-time">
-                                    {formatMessageTime(msg.created)}
-                                  </p>
-                                )}
+                                <p className="receiver-msg-time">
+                                  {formatMessageTime(msg.created)}
+                                </p>
                               </div>
                             </Tooltip>
                           </div>
@@ -209,11 +207,9 @@ export default function ChatsDirectMessages(props: Props) {
                                 className="sender-message-content"
                                 dangerouslySetInnerHTML={{ __html: renderedPreview }}
                               />
-                              {windowWidth <= 768 && (
-                                <p className="sender-message-time">
-                                  {formatMessageTime(msg.created)}
-                                </p>
-                              )}
+                              <p className="sender-message-time">
+                                {formatMessageTime(msg.created)}
+                              </p>
                             </div>
                           </Tooltip>
                           {msg.sent === 0 && (

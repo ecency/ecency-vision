@@ -74,7 +74,7 @@ export default function ChatsChannelMessages(props: Props) {
     toggleUIProp
   } = useMappedStore();
 
-  const { messageServiceInstance, activeUserKeys, windowWidth, isActveUserRemoved } =
+  const { messageServiceInstance, activeUserKeys, windowWidth, isActiveUserRemoved } =
     useContext(ChatContext);
 
   let prevGlobal = usePrevious(global);
@@ -463,9 +463,7 @@ export default function ChatsChannelMessages(props: Props) {
                               }`}
                               dangerouslySetInnerHTML={{ __html: renderedPreview }}
                             />
-                            {windowWidth <= 768 && (
-                              <p className="receiver-msg-time">{formatMessageTime(pMsg.created)}</p>
-                            )}
+                            <p className="receiver-msg-time">{formatMessageTime(pMsg.created)}</p>
                           </div>
                         </Tooltip>
                         {hoveredMessageId === pMsg.id &&
@@ -501,7 +499,7 @@ export default function ChatsChannelMessages(props: Props) {
                       }`}
                       onClick={() => handelMessageActions(pMsg.id)}
                     >
-                      {hoveredMessageId === pMsg.id && !isActveUserRemoved && (
+                      {hoveredMessageId === pMsg.id && !isActiveUserRemoved && (
                         <Tooltip content={"Hide Message"}>
                           <div className="hide-msg">
                             <p
@@ -547,9 +545,7 @@ export default function ChatsChannelMessages(props: Props) {
                             className="sender-message-content"
                             dangerouslySetInnerHTML={{ __html: renderedPreview }}
                           />
-                          {windowWidth <= 768 && (
-                            <p className="sender-message-time">{formatMessageTime(pMsg.created)}</p>
-                          )}
+                          <p className="sender-message-time">{formatMessageTime(pMsg.created)}</p>
                         </div>
                       </Tooltip>
 
@@ -569,7 +565,7 @@ export default function ChatsChannelMessages(props: Props) {
               </React.Fragment>
             );
           })}
-        {isActveUserRemoved && (
+        {isActiveUserRemoved && (
           <span className="flex justify-center items-center mt-3">
             You have been blocked from this community
           </span>

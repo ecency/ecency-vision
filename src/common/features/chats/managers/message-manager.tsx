@@ -1,26 +1,25 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { ActiveUser } from "../common/store/active-user/types";
-import { NostrKeysType } from "../common/features/chats/types";
+import { ActiveUser } from "../../../store/active-user/types";
+import { NostrKeysType } from "../types";
 import {
-  DirectMessage,
-  Profile,
-  Keys,
-  DirectContact,
   Channel,
-  PublicMessage,
   ChannelUpdate,
-  MessagesObject
+  DirectContact,
+  DirectMessage,
+  Keys,
+  MessagesObject,
+  Profile,
+  PublicMessage
 } from "./message-manager-types";
 
-import MessageService, { MessageEvents } from "../common/helper/message-service";
-import { getProfileMetaData, getPrivateKey } from "../common/features/chats/utils";
+import MessageService, { MessageEvents } from "../../../helper/message-service";
+import { getPrivateKey, getProfileMetaData } from "../utils";
 
-import { useMappedStore } from "../common/store/use-mapped-store";
-import { ChatContext } from "../common/features/chats/chat-context-provider";
-import { useTimeoutFn } from "react-use";
-import { usePrevious } from "../common/util/use-previous";
-import { useMessageServiceListener } from "../common/features/chats/hooks/use-message-service-listener";
+import { useMappedStore } from "../../../store/use-mapped-store";
+import { ChatContext } from "../chat-context-provider";
+import { usePrevious } from "../../../util/use-previous";
+import { useMessageServiceListener } from "../hooks/use-message-service-listener";
 
 export const setNostrkeys = (keys: NostrKeysType) => {
   const detail: NostrKeysType = {

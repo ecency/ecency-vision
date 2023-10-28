@@ -5,9 +5,9 @@ import { _t } from "../../../../i18n";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
 import React, { useContext } from "react";
 import { ChatContext } from "../../chat-context-provider";
-import { setNostrkeys } from "../../../../../managers/message-manager";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { History } from "history";
+import { setNostrkeys } from "../../managers/message-manager";
 
 interface Props {
   history: History;
@@ -15,14 +15,8 @@ interface Props {
 
 export function ChatSidebarHeader({ history }: Props) {
   const { resetChat } = useMappedStore();
-  const {
-    activeUserKeys,
-    setShowSpinner,
-    revealPrivKey,
-    chatPrivKey,
-    windowWidth,
-    setRevealPrivKey
-  } = useContext(ChatContext);
+  const { activeUserKeys, setShowSpinner, revealPrivKey, chatPrivKey, setRevealPrivKey } =
+    useContext(ChatContext);
 
   const handleRefreshChat = () => {
     resetChat();
@@ -33,9 +27,10 @@ export function ChatSidebarHeader({ history }: Props) {
   return (
     <div className="sticky top-0 z-10 bg-white flex items-center justify-between border-b border-[--border-color] pl-4 pr-2 py-3 gap-4">
       <div className="flex items-center gap-2">
-        {revealPrivKey && windowWidth > 768 && (
+        {revealPrivKey && (
           <Tooltip content={_t("chat.back")}>
             <Button
+              className="hidden md:flex"
               noPadding={true}
               appearance="gray-link"
               icon={arrowBackSvg}

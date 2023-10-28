@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
-import MessageManager from "../managers/message-manager";
+import MessageManager from "./features/chats/managers/message-manager";
 import { EntryScreen } from "./pages/entry";
 import { SearchMorePageContainer, SearchPageContainer } from "./pages/search";
 import { ProposalDetailContainer, ProposalsIndexContainer } from "./pages/proposals";

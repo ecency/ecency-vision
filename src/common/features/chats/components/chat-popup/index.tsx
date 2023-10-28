@@ -2,14 +2,9 @@ import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import { history } from "../../../../store";
 import { Community } from "../../../../store/communities";
-import {
-  ChannelUpdate,
-  DirectMessage,
-  PublicMessage
-} from "../../../../../managers/message-manager-types";
+import { ChannelUpdate, DirectMessage, PublicMessage } from "../../managers/message-manager-types";
 import Tooltip from "../../../../components/tooltip";
 import LinearProgress from "../../../../components/linear-progress";
-import { setNostrkeys } from "../../../../../managers/message-manager";
 import ManageChatKey from "../manage-chat-key";
 import ChatInput from "../chat-input";
 import { chevronDownSvgForSlider, chevronUpSvg } from "../../../../img/svg";
@@ -28,6 +23,7 @@ import { ChatPopupHeader } from "./chat-popup-header";
 import { ChatPopupMessagesList } from "./chat-popup-messages-list";
 import { ChatPopupSearchUser } from "./chat-popup-search-user";
 import { ChatPopupDirectMessages } from "./chat-popup-direct-messages";
+import { setNostrkeys } from "../../managers/message-manager";
 
 export const ChatPopUp = () => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
@@ -39,7 +35,6 @@ export const ChatPopUp = () => {
     showSpinner,
     hasUserJoinedChat,
     currentChannel,
-    windowWidth,
     setCurrentChannel,
     setRevealPrivKey,
     setShowSpinner,
@@ -389,8 +384,7 @@ export const ChatPopUp = () => {
         <div
           className={classNameObject({
             "chatbox-container": true,
-            expanded,
-            smallScreen: windowWidth <= 666
+            expanded
           })}
         >
           <ChatPopupHeader

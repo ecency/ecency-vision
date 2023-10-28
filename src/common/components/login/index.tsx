@@ -28,7 +28,6 @@ import { getPrivateKey, getProfileMetaData } from "../../features/chats/utils";
 
 import ReCAPTCHA from "react-google-recaptcha";
 import { addAccountAuthority, signBuffer } from "../../helper/keychain";
-import { setNostrkeys } from "../../../managers/message-manager";
 import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 import { deleteForeverSvg } from "../../img/svg";
@@ -40,6 +39,7 @@ import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
+import { setNostrkeys } from "../../features/chats/managers/message-manager";
 
 declare var window: AppWindow;
 

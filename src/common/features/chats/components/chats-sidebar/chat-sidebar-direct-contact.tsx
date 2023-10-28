@@ -39,7 +39,7 @@ export function ChatSidebarDirectContact({ contact, username, handleRevealPrivKe
       <UserAvatar username={contact.name} size="medium" />
       <div className="flex flex-col w-[calc(100%-40px-0.75rem)]">
         <div className="flex justify-between w-full items-center">
-          <div className="font-semibold truncate">{contact.name}</div>
+          <div className="font-semibold truncate dark:text-white">{contact.name}</div>
           <div className="text-xs text-gray-500">{lastMessageDate}</div>
         </div>
         <div className="text-sm text-gray-600 truncate">{lastMessage?.content}</div>

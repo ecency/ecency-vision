@@ -184,7 +184,7 @@
       .sender-message-wrapper {
         box-sizing: content-box;
         border-radius: 10px 0px 10px 10px;
-        max-width: 70%;
+        max-width: 300px;
         word-wrap: break-word;
 
         @include themify(day) {

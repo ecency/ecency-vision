@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Channel, Keys } from "../../../managers/message-manager-types";
+import { Channel, Keys } from "./managers/message-manager-types";
 import useDebounce from "react-use/lib/useDebounce";
 import MessageService from "../../helper/message-service";
 import { useMappedStore } from "../../store/use-mapped-store";
@@ -11,8 +11,8 @@ import {
   uploadChatPublicKey
 } from "./utils";
 import * as ls from "../../util/local-storage";
-import { setNostrkeys } from "../../../managers/message-manager";
 import { useMount } from "react-use";
+import { setNostrkeys } from "./managers/message-manager";
 
 interface Context {
   activeUserKeys: NostrKeysType;
@@ -24,8 +24,7 @@ interface Context {
   hasUserJoinedChat: boolean;
   currentChannel: Channel | null;
   windowWidth: number;
-  maxHeight: number;
-  isActveUserRemoved: boolean;
+  isActiveUserRemoved: boolean;
   setCurrentChannel: (channel: Channel) => void;
   setRevealPrivKey: (d: boolean) => void;
   setShowSpinner: (d: boolean) => void;
@@ -51,8 +50,7 @@ export const ChatContext = React.createContext<Context>({
   hasUserJoinedChat: false,
   currentChannel: null,
   windowWidth: 0,
-  maxHeight: 0,
-  isActveUserRemoved: false,
+  isActiveUserRemoved: false,
   setCurrentChannel: () => {},
   setRevealPrivKey: () => {},
   setShowSpinner: () => {},
@@ -77,13 +75,11 @@ export const ChatContextProvider = (props: Props) => {
   const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
   const [currentChannel, setCurrentChannel] = useState<Channel | null>(null);
   const [windowWidth, setWindowWidth] = useState(0);
-  const [maxHeight, setMaxHeight] = useState(0);
-  const [isActveUserRemoved, setIsActiveUserRemoved] = useState(false);
+  const [isActiveUserRemoved, setIsActiveUserRemoved] = useState(false);
 
   useMount(() => {
     getActiveUserKeys();
     setWindowWidth(window.innerWidth);
-    setMaxHeight(window.innerHeight - 66);
   });
 
   useEffect(() => {
@@ -95,7 +91,6 @@ export const ChatContextProvider = (props: Props) => {
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
-      setMaxHeight(window.innerHeight - 66);
     };
 
     window.addEventListener("resize", handleResize);
@@ -173,8 +168,7 @@ export const ChatContextProvider = (props: Props) => {
         hasUserJoinedChat,
         currentChannel,
         windowWidth,
-        maxHeight,
-        isActveUserRemoved,
+        isActiveUserRemoved,
         setCurrentChannel,
         setRevealPrivKey,
         setShowSpinner,

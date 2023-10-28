@@ -6,14 +6,13 @@ import { useMappedStore } from "../../../../store/use-mapped-store";
 import OrDivider from "../../../../components/or-divider";
 import * as ls from "../../../../util/local-storage";
 import { ChatContext } from "../../chat-context-provider";
-import { setNostrkeys } from "../../../../../managers/message-manager";
-
 import "./index.scss";
 import LinearProgress from "../../../../components/linear-progress";
 import ChatsConfirmationModal from "../chats-confirmation-modal";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
 import { FormControl, InputGroup } from "@ui/input";
+import { setNostrkeys } from "../../managers/message-manager";
 
 export default function ImportChats() {
   const { activeUser } = useMappedStore();
