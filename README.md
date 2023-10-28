@@ -1,6 +1,6 @@
 <a href="https://discord.gg/WywwJEu">![Discord](https://img.shields.io/discord/385034494555455488?label=Ecency%20discord&logo=discord)</a> <a href="https://twitter.com/ecency_official">![Twitter Follow](https://img.shields.io/twitter/follow/ecency_official?style=social)</a> <a href="https://github.com/ecency/ecency-vision">![GitHub Repo stars](https://img.shields.io/github/stars/ecency/ecency-vision?style=social)</a>
 
-# [Ecency vision][ecency_vision] – Ecency Web/Desktop client
+# [Ecency vision][ecency_vision] – Ecency Web client
 
 ![ecency](https://ecency.com/assets/github-cover.png)
 
@@ -12,14 +12,6 @@ Fast, simple and clean source code with Reactjs + Typescript.
 
 - [Production version][ecency_vision] - master branch
 - [Alpha version][ecency_alpha] - development branch
-
-## Desktop app
-
-Please check latest version on [Release page][ecency_release] or [Ecency link][ecency_desktop].
-
-- Mac users: `Ecency-3.x.x.dmg`
-- Windows users: `Ecency.Setup.3.x.x.exe`
-- Linux users: `ecency-surfer_3.x.x_amd_64.deb`, `Ecency-3.x.x.AppImage`, `ecency-surfer-3.x.x.x86_64.rpm`, `ecency-surfer-3.x.x.tar.gz`
 
 ## Developers
 
@@ -72,12 +64,6 @@ If you are setting up your own website other than Ecency.com, you can still leav
 ##### Start website in dev
 
 `$ yarn start`
-
-##### Start desktop in dev
-
-`$ cd src/desktop`
-`$ yarn`
-`$ yarn dev`
 
 ##### Pushing new code / Pull requests
 
@@ -133,6 +119,5 @@ We will evaluate the risk and make a patch available before filing the issue.
 
 [//]: # "LINKS"
 [ecency_vision]: https://ecency.com
-[ecency_desktop]: https://desktop.ecency.com
 [ecency_alpha]: https://alpha.ecency.com
 [ecency_release]: https://github.com/ecency/ecency-vision/releases

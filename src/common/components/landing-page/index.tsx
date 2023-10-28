@@ -302,13 +302,6 @@ export default (props: any) => {
               <h2>{_t("landing-page.download-our-application")}</h2>
               <p className="mt-4">{_t("landing-page.download-our-application-desc-1")}</p>
               <p>{_t("landing-page.download-our-application-desc-2")}</p>
-              <Link to={"https://desktop.ecency.com/"} className="windows" target="blank">
-                <img
-                  src={props?.global?.theme === "day" ? DownloadWindows : DownloadWindowsWhite}
-                  alt="Download for Windows"
-                />
-                {_t("landing-page.download-for-windows")}
-              </Link>
               <Link to={"https://ios.ecency.com/"} target="blank">
                 <img
                   src={props?.global?.theme === "day" ? DownloadIPhone : DownloadIPhoneWhite}
