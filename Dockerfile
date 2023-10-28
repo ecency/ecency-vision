@@ -3,10 +3,8 @@ FROM node:16.13.2 as base
 WORKDIR /var/app
 
 COPY package.json yarn.lock ./
-COPY src/desktop/package.json src/desktop/yarn.lock ./src/desktop/
 
 RUN yarn install --non-interactive --frozen-lockfile --ignore-optional
-RUN yarn install --non-interactive --frozen-lockfile --ignore-optional --cwd src/desktop
 
 COPY . .
 

@@ -37,7 +37,6 @@ class NotificationHandler extends Component<Props> {
 
     this.nws
       .withActiveUser(activeUser)
-      .withElectron(global.isElectron)
       .withCallbackOnMessage(() => {
         fetchUnreadNotificationCount();
         fetchNotifications(null);

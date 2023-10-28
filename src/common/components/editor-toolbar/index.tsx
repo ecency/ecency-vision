@@ -342,20 +342,9 @@ export class EditorToolbar extends Component<Props> {
       .filter((i) => this.checkFile(i.name))
       .filter((i) => i);
 
-    const {
-      global: { isElectron }
-    } = this.props;
-
     if (files.length > 0) {
       e.stopPropagation();
       e.preventDefault();
-    }
-
-    if (files.length > 1 && isElectron) {
-      let isWindows = process.platform === "win32";
-      if (isWindows) {
-        files = files.reverse();
-      }
     }
 
     files.forEach((file) => this.upload(file));

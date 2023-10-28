@@ -29,14 +29,9 @@ interface Props {
 export function ScheduledListItem({ post, deleteFn, moveFn }: Props) {
   const { activeUser, global } = useMappedStore();
 
-  const fallbackImage = useMemo(
-    () => (global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png")),
-    [global.isElectron]
-  );
-  const noImage = useMemo(
-    () => (global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg")),
-    [global.isElectron]
-  );
+  const fallbackImage = require("../../img/fallback.png");
+
+  const noImage = require("../../img/noimage.svg");
 
   const account = useMemo(() => activeUser?.data as FullAccount, [activeUser]);
 

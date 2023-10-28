@@ -80,12 +80,8 @@ export class KeyOrHot extends Component<Props, State> {
   render() {
     const { inProgress, global } = this.props;
     const { key } = this.state;
-    const hsLogo = global.isElectron
-      ? "./img/hive-signer.svg"
-      : require("../../img/hive-signer.svg");
-    const keyChainLogo = global.isElectron
-      ? "./img/keychain.png"
-      : require("../../img/keychain.png");
+    const hsLogo = require("../../img/hive-signer.svg");
+    const keyChainLogo = require("../../img/keychain.png");
 
     return (
       <>

@@ -63,7 +63,6 @@ export interface Global {
   searchIndexCount: number;
   canUseWebp: boolean;
   hasKeyChain: boolean;
-  isElectron: boolean;
   newVersion: string | null;
   notifications: boolean;
   nsfw: boolean;

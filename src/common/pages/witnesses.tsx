@@ -7,7 +7,6 @@ import Feedback from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
 import NavBar from "../components/navbar";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
@@ -499,7 +498,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         />
       </div>
     );
-    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
       <>
@@ -507,16 +505,9 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         <ScrollToTop />
         <Theme global={this.props.global} />
         <Feedback activeUser={this.props.activeUser} />
-        {global.isElectron ? (
-          NavBarElectron({
-            ...this.props,
-            reloadFn: this.load,
-            reloading: loading
-          })
-        ) : (
-          <NavBar history={this.props.history} />
-        )}
-        <div className={"app-content witnesses-page" + containerClasses}>
+        <NavBar history={this.props.history} />
+
+        <div className="app-content witnesses-page">
           {(() => {
             if (loading && !originalWitnesses.length) {
               return (

@@ -34,12 +34,8 @@ interface Props {
 export class ProfileCover extends Component<Props> {
   render() {
     const { global, account, activeUser } = this.props;
-    const coverFallbackDay = global.isElectron
-      ? "./img/cover-fallback-day.png"
-      : require("../../img/cover-fallback-day.png");
-    const coverFallbackNight = global.isElectron
-      ? "./img/cover-fallback-night.png"
-      : require("../../img/cover-fallback-night.png");
+    const coverFallbackDay = require("../../img/cover-fallback-day.png");
+    const coverFallbackNight = require("../../img/cover-fallback-night.png");
     let bgImage = "";
 
     if (account?.__loaded) {

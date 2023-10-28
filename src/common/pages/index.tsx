@@ -4,7 +4,6 @@ import Meta from "../components/meta";
 import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import { getMetaProps } from "../util/get-meta-props";
 import NavBar from "../components/navbar";
 import { makeGroupKey } from "../store/entries";
@@ -101,22 +100,12 @@ const Index = (props: PageProps) => {
       <ScrollToTop />
       <Theme global={store.global} />
       <Feedback activeUser={store.activeUser} />
-      {store.global.isElectron ? (
-        NavBarElectron({
-          ...props,
-          reloadFn: reload,
-          reloading: loading,
-          step,
-          setStepTwo: () => setNewStep(2)
-        })
-      ) : (
-        <NavBar
-          history={props.history}
-          step={step}
-          setStepOne={() => setNewStep(1)}
-          setStepTwo={() => setNewStep(2)}
-        />
-      )}
+      <NavBar
+        history={props.history}
+        step={step}
+        setStepOne={() => setNewStep(1)}
+        setStepTwo={() => setNewStep(2)}
+      />
       {showLandingPage && (
         <LandingPage {...props} loading={loading} setLoading={setLoading} setStep={setNewStep} />
       )}

@@ -304,8 +304,7 @@ const EntryAmpComponent = (props: Props) => {
       <StaticNavbar fullVersionUrl={entry?.url || ""} />
       <div
         className={classNameObject({
-          "app-content entry-page": true,
-          "mt-0 pt-6": props.global.isElectron
+          "app-content entry-page": true
         })}
       >
         <div className="the-entry">

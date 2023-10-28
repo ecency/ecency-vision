@@ -33,10 +33,8 @@ class SearchListItem extends Component<Props> {
 
   render() {
     const { global, res } = this.props;
-    const fallbackImage = global.isElectron
-      ? "./img/fallback.png"
-      : require("../../img/fallback.png");
-    const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
+    const fallbackImage = require("../../img/fallback.png");
+    const noImage = require("../../img/noimage.svg");
 
     const entry = {
       category: res.category,

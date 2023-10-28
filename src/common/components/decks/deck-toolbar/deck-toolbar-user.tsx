@@ -51,12 +51,7 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => 
         </Dropdown>
       ) : (
         <Link to="/">
-          <img
-            className="user-avatar medium"
-            src={
-              global.isElectron ? "./img/logo-circle.svg" : require("../../../img/logo-circle.svg")
-            }
-          />
+          <img className="user-avatar medium" src={require("../../../img/logo-circle.svg")} />
         </Link>
       )}
       {isExpanded ? (

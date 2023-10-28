@@ -34,13 +34,6 @@ Object.defineProperty(global.navigator, "appVersion", {
   }
 });
 
-jest.mock("../../api/misc", () => ({
-  geLatestDesktopTag: () =>
-    new Promise((resolve) => {
-      resolve("3.0.16");
-    })
-}));
-
 it("(1) Mac.", async () => {
   MOCK = "MacOS";
   const component = await renderer.create(<DialogContent />);

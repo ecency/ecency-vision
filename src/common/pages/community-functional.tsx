@@ -26,7 +26,6 @@ import { Account } from "../store/accounts/types";
 import { CommunityMenu } from "../components/community-menu";
 import { CommunityCover } from "../components/community-cover";
 import { NotFound } from "../components/404";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import NavBar from "../components/navbar";
 import { CommunityCard } from "../components/community-card";
 import { CommunityRoles } from "../components/community-roles";
@@ -184,26 +183,14 @@ export const CommunityPage = (props: Props) => {
     return { title, description, url, rss, image, canonical };
   };
 
-  const navBar = props.global.isElectron ? (
-    <NavBarElectron {...props} reloading={isLoading} reloadFn={reload} />
-  ) : (
-    <NavBar {...props} />
-  );
-
   return community && account ? (
     <>
       <Meta {...getMetaProps()} />
       <ScrollToTop />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
-      {navBar}
-      <div
-        className={
-          props.global.isElectron
-            ? "app-content community-page mt-0 pt-6"
-            : "app-content community-page"
-        }
-      >
+      <NavBar {...props} />
+      <div className="app-content community-page">
         <div className="profile-side">
           <CommunityCard {...props} account={account} community={community} />
         </div>
@@ -305,7 +292,7 @@ export const CommunityPage = (props: Props) => {
     </>
   ) : isLoading ? (
     <>
-      {navBar}
+      <NavBar {...props} />
       <LinearProgress />
     </>
   ) : (

@@ -1,7 +1,7 @@
 import { History } from "history";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import usePrevious from "react-use/lib/usePrevious";
 import queryString from "query-string";
 import isCommunity from "../../helper/is-community";
@@ -38,10 +38,7 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
 
   const navRef = useRef<any>();
 
-  const logo = useMemo(
-    () => (global.isElectron ? "./img/logo-circle.svg" : require("../../img/logo-circle.svg")),
-    []
-  );
+  const logo = require("../../img/logo-circle.svg");
 
   useMount(() => {
     // referral check / redirect

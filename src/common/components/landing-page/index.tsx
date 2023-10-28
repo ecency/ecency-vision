@@ -9,7 +9,6 @@ import Link from "../alink";
 
 import { apiBase } from "../../api/helper";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
-import isElectron from "../../util/is-electron";
 import "./_index.scss";
 
 export default (props: any) => {
@@ -71,9 +70,7 @@ export default (props: any) => {
   const DevopsImg = apiBase(`/assets/talhasch.${global.canUseWebp ? "webp" : "jpeg"}`);
   const DesignGuru = apiBase(`/assets/dunsky.${global.canUseWebp ? "webp" : "jpeg"}`);
 
-  const LogoCircle = global.isElectron
-    ? "./img/logo-circle.svg"
-    : require("../../img/logo-circle.svg");
+  const LogoCircle = require("../../img/logo-circle.svg");
   const earnMoneyRef = useRef<HTMLDivElement>(null);
 
   const handleSubsccribe = async (e: FormEvent<HTMLDivElement>) => {
@@ -93,10 +90,7 @@ export default (props: any) => {
   };
 
   return (
-    <div
-      className={global.isElectron ? "landing-wrapper pt-5" : "landing-wrapper"}
-      id="landing-wrapper"
-    >
+    <div className="landing-wrapper" id="landing-wrapper">
       <div className="top-bg" />
       <div className="tob-bg-algae" />
       <div className="tob-bg-fishes" />
@@ -170,18 +164,7 @@ export default (props: any) => {
               <h2>{_t("landing-page.decentralization")}</h2>
               <p>
                 <span>
-                  <Link
-                    to={"https://hive.io"}
-                    target="_blank"
-                    onClick={() =>
-                      isElectron() &&
-                      window.open(
-                        "https://hive.io",
-                        "_blank",
-                        "top=500,left=200,frame=false,nodeIntegration=no"
-                      )
-                    }
-                  >
+                  <Link to={"https://hive.io"} target="_blank">
                     {_t("landing-page.hive-blockchain")}
                   </Link>
                 </span>{" "}
@@ -319,55 +302,14 @@ export default (props: any) => {
               <h2>{_t("landing-page.download-our-application")}</h2>
               <p className="mt-4">{_t("landing-page.download-our-application-desc-1")}</p>
               <p>{_t("landing-page.download-our-application-desc-2")}</p>
-              <Link
-                to={"https://desktop.ecency.com/"}
-                className="windows"
-                target="blank"
-                onClick={() =>
-                  isElectron() &&
-                  window.open(
-                    "https://desktop.ecency.com/",
-                    "_blank",
-                    "top=500,left=200,frame=false,nodeIntegration=no"
-                  )
-                }
-              >
-                <img
-                  src={props?.global?.theme === "day" ? DownloadWindows : DownloadWindowsWhite}
-                  alt="Download for Windows"
-                />
-                {_t("landing-page.download-for-windows")}
-              </Link>
-              <Link
-                to={"https://ios.ecency.com/"}
-                target="blank"
-                onClick={() =>
-                  isElectron() &&
-                  window.open(
-                    "https://ios.ecency.com/",
-                    "_blank",
-                    "top=500,left=200,frame=false,nodeIntegration=no"
-                  )
-                }
-              >
+              <Link to={"https://ios.ecency.com/"} target="blank">
                 <img
                   src={props?.global?.theme === "day" ? DownloadIPhone : DownloadIPhoneWhite}
                   alt="Download for IOS"
                 />
                 {_t("landing-page.download-for-ios")}
               </Link>
-              <Link
-                to={"https://android.ecency.com/"}
-                target="blank"
-                onClick={() =>
-                  isElectron() &&
-                  window.open(
-                    "https://android.ecency.com/",
-                    "_blank",
-                    "top=500,left=200,frame=false,nodeIntegration=no"
-                  )
-                }
-              >
+              <Link to={"https://android.ecency.com/"} target="blank">
                 <img
                   src={props?.global?.theme === "day" ? DownloadAndroid : DownloadAndroidWhite}
                   alt="Download for Android"
@@ -492,50 +434,17 @@ export default (props: any) => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to={"https://twitter.com/ecency_official"}
-                        target="_blank"
-                        onClick={() =>
-                          isElectron() &&
-                          window.open(
-                            "https://twitter.com/ecency_official",
-                            "_blank",
-                            "top=500,left=200,frame=false,nodeIntegration=no"
-                          )
-                        }
-                      >
+                      <Link to={"https://twitter.com/ecency_official"} target="_blank">
                         <img src={FooterTwitter} alt="twitter" />
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to={"https://t.me/ecency"}
-                        target="_blank"
-                        onClick={() =>
-                          isElectron() &&
-                          window.open(
-                            "https://t.me/ecency",
-                            "_blank",
-                            "top=500,left=200,frame=false,nodeIntegration=no"
-                          )
-                        }
-                      >
+                      <Link to={"https://t.me/ecency"} target="_blank">
                         <img src={FooterTelegram} alt="telegram" />
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to={"https://discord.me/ecency"}
-                        target="_blank"
-                        onClick={() =>
-                          isElectron() &&
-                          window.open(
-                            "https://discord.me/ecency",
-                            "_blank",
-                            "top=500,left=200,frame=false,nodeIntegration=no"
-                          )
-                        }
-                      >
+                      <Link to={"https://discord.me/ecency"} target="_blank">
                         <img src={FooterDiscord} alt="discord" />
                       </Link>
                     </li>

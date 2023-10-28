@@ -8,10 +8,8 @@ function detachNotificationAudioElement() {
   }
 }
 
-export function playNotificationSound(isElectron: boolean) {
-  const notificationSound = isElectron
-    ? "./img/notification.mp3"
-    : require("../img/notification.mp3");
+export function playNotificationSound() {
+  const notificationSound = require("../img/notification.mp3");
   const element = (
     <audio
       id="notification-audio"
