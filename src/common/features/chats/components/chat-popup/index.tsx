@@ -25,6 +25,7 @@ import { ChatPopupSearchUser } from "./chat-popup-search-user";
 import { ChatPopupDirectMessages } from "./chat-popup-direct-messages";
 import { setNostrkeys } from "../../managers/message-manager";
 import { useJoinChat } from "../../mutations/join-chat";
+import { useDirectContactsQuery } from "../../queries";
 
 export const ChatPopUp = () => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
@@ -41,6 +42,7 @@ export const ChatPopUp = () => {
     setShowSpinner
   } = useContext(ChatContext);
   const { mutateAsync: joinChat } = useJoinChat();
+  const { data: directContacts } = useDirectContactsQuery();
 
   const routerLocation = useLocation();
   const prevActiveUser = usePrevious(activeUser);
@@ -195,9 +197,7 @@ export const ChatPopUp = () => {
 
   useEffect(() => {
     if (currentUser) {
-      const isCurrentUserFound = chat.directContacts.find(
-        (contact) => contact.name === currentUser
-      );
+      const isCurrentUserFound = directContacts?.find((contact) => contact.name === currentUser);
       if (isCurrentUserFound) {
         setReceiverPubKey(isCurrentUserFound.pubkey);
         setIsCurrentUserJoined(true);
@@ -206,7 +206,7 @@ export const ChatPopUp = () => {
         fetchCurrentUserData();
       }
 
-      const peer = chat.directContacts.find((x) => x.name === currentUser)?.pubkey ?? "";
+      const peer = directContacts?.find((x) => x.name === currentUser)?.pubkey ?? "";
       const msgsList = fetchDirectMessages(peer!);
       const messages = msgsList.sort((a, b) => a.created - b.created);
       setDirectMessagesList(messages);

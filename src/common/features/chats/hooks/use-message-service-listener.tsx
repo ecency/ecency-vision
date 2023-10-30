@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { Channel } from "../../../../managers/message-manager-types";
 import MessageService from "../../../helper/message-service";
+import { useMappedStore } from "../../../store/use-mapped-store";
 
 export const useMessageServiceListener = (
   messageServiceReady: boolean,
-  messageService: MessageService | undefined,
-  chatChannels: Channel[]
+  messageService: MessageService | undefined
 ) => {
+  const {
+    chat: { channels }
+  } = useMappedStore();
+
   const [since, setSince] = useState(0);
 
   useEffect(() => {
@@ -15,7 +18,7 @@ export const useMessageServiceListener = (
     const timer = setTimeout(
       () => {
         messageService?.listen(
-          chatChannels.map((x) => x.id),
+          channels.map((x) => x.id),
           Math.floor((since || Date.now()) / 1000)
         );
         setSince(Date.now());
@@ -26,5 +29,5 @@ export const useMessageServiceListener = (
     return () => {
       clearTimeout(timer);
     };
-  }, [since, messageServiceReady, messageService, chatChannels]);
+  }, [since, messageServiceReady, messageService, channels]);
 };

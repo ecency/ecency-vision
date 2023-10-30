@@ -1,33 +1,33 @@
 import {
   Channel,
-  DirectMessage,
-  PublicMessage,
-  Profile,
   ChannelUpdate,
-  MessagesObject
-} from "../../../managers/message-manager-types";
+  DirectMessage,
+  MessagesObject,
+  Profile,
+  PublicMessage
+} from "../../features/chats/managers/message-manager-types";
 import { Dispatch } from "redux";
 
 import {
-  Chat,
   Actions,
   ActionTypes,
+  AddChannelsAction,
+  AddPreviousPublicMessagesAction,
+  Chat,
+  DeleteDirectMessagesAction,
+  DeletePublicMessagesAction,
   DirectContactsAction,
   DirectContactsType,
   DirectMessagesAction,
-  ResetChatAction,
-  AddChannelsAction,
-  PublicMessagesAction,
-  ProfilesAction,
   LeftChannelsAction,
-  UpdateChannelAction,
-  ReplacePublicMessagesAction,
-  VerifyPublicMessageSendingAction,
+  ProfilesAction,
+  PublicMessagesAction,
   ReplaceDirectMessagesAction,
+  ReplacePublicMessagesAction,
+  ResetChatAction,
+  UpdateChannelAction,
   VerifyDirectMessageSendingAction,
-  DeletePublicMessagesAction,
-  DeleteDirectMessagesAction,
-  AddPreviousPublicMessagesAction
+  VerifyPublicMessageSendingAction
 } from "./types";
 
 export const initialState: Chat = {

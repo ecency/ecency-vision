@@ -1,5 +1,5 @@
-import { Channel } from "../../../../managers/message-manager-types";
 import { publicMessagesList } from "../../../store/chat/types";
+import { Channel } from "../managers/message-manager-types";
 
 export const fetchCommunityMessages = (
   publicMessages: publicMessagesList[],

@@ -14,7 +14,6 @@ import {
   UNBLOCKUSER
 } from "../chat-popup/chat-constants";
 import { useMappedStore } from "../../../../store/use-mapped-store";
-import { Channel, communityModerator } from "../../../../../managers/message-manager-types";
 import { error, success } from "../../../../components/feedback";
 import LinearProgress from "../../../../components/linear-progress";
 import { ROLES } from "../../../../store/communities";
@@ -27,6 +26,7 @@ import { getAccountFull } from "../../../../api/hive";
 import { Button } from "@ui/button";
 import { FormControl, InputGroup } from "@ui/input";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { Channel, communityModerator } from "../../managers/message-manager-types";
 
 interface Props {
   history: History;

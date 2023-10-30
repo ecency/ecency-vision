@@ -1,11 +1,11 @@
 import { getDirectLastMessage, getRelativeDate } from "../../utils";
 import { Link } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
-import { DirectContact } from "../../../../../managers/message-manager-types";
 import { ChatContext } from "../../chat-context-provider";
 import UserAvatar from "../../../../components/user-avatar";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { classNameObject } from "../../../../helper/class-name-object";
+import { DirectContact } from "../../managers/message-manager-types";
 
 interface Props {
   contact: DirectContact;
@@ -19,7 +19,7 @@ export function ChatSidebarDirectContact({ contact, username, handleRevealPrivKe
 
   const lastMessage = useMemo(
     () => getDirectLastMessage(contact.pubkey, chat.directMessages),
-    [chat, contact]
+    [chat.directMessages, contact]
   );
   const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
 

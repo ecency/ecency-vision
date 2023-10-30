@@ -93,8 +93,6 @@ export default function ChatsDirectMessages(props: Props) {
         {receiverPubKey ? (
           <>
             {directMessages?.map((msg, i) => {
-              console.log(activeUserKeys);
-              console.log(`${msg.creator}/${activeUserKeys?.pub}`);
               const dayAndMonth = formatMessageDateAndDay(msg, i, directMessages);
               let renderedPreview = renderPostBody(msg.content, false, global.canUseWebp);
 

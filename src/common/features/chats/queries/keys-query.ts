@@ -31,7 +31,6 @@ export function useKeysQuery(
         queryFn: () => getUserChatPublicKey(activeUser?.username!),
         onSuccess: (key: string | null) => {
           if (key) {
-            console.log("key is : ", key);
             setActiveUserKeys({
               ...activeUserKeys,
               pub: key
@@ -44,7 +43,6 @@ export function useKeysQuery(
         queryFn: () => getPrivateKey(activeUser?.username!),
         onSuccess: (key: string | null) => {
           if (key) {
-            console.log("private is ", key);
             setActiveUserKeys({
               ...activeUserKeys,
               priv: key

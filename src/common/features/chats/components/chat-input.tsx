@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-import { Channel } from "../../../../managers/message-manager-types";
 import { EmojiPicker } from "../../../components/emoji-picker";
 import { error } from "../../../components/feedback";
 import {
@@ -10,7 +9,6 @@ import {
   messageSendSvg
 } from "../../../img/svg";
 import { CHAT_FILE_CONTENT_TYPES, GifImagesStyle, UPLOADING } from "./chat-popup/chat-constants";
-import { useMappedStore } from "../../../store/use-mapped-store";
 import { _t } from "../../../i18n";
 import { ChatContext } from "../chat-context-provider";
 import { Form } from "@ui/form";
@@ -20,6 +18,8 @@ import { useChatFileUpload } from "../mutations";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import GifPicker from "../../../components/gif-picker";
 import useClickAway from "react-use/lib/useClickAway";
+import { useDirectContactsQuery } from "../queries";
+import { Channel } from "../managers/message-manager-types";
 
 interface Props {
   isCurrentUser: boolean;
@@ -39,7 +39,7 @@ export default function ChatInput({
   const emojiButtonRef = useRef<HTMLButtonElement | null>(null);
   const gifPickerRef = useRef<HTMLDivElement | null>(null);
 
-  const { chat } = useMappedStore();
+  const { data: directContacts } = useDirectContactsQuery();
   const { messageServiceInstance, isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
 
   const [message, setMessage] = useState("");
@@ -78,7 +78,7 @@ export default function ChatInput({
     }
     if (
       receiverPubKey &&
-      !chat.directContacts.some((contact) => contact.name === currentUser) &&
+      !directContacts?.some((contact) => contact.name === currentUser) &&
       isCurrentUser
     ) {
       messageServiceInstance?.publishContacts(currentUser, receiverPubKey);

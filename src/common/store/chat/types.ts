@@ -5,7 +5,7 @@ import {
   MessagesObject,
   Profile,
   PublicMessage
-} from "../../../managers/message-manager-types";
+} from "../../features/chats/managers/message-manager-types";
 
 export interface DirectContactsType {
   name: string;
@@ -80,6 +80,7 @@ export interface ProfilesAction {
   type: ActionTypes.PROFILES;
   data: Profile[];
 }
+
 export interface LeftChannelsAction {
   type: ActionTypes.LEFTCHANNELLIST;
   data: string[];
@@ -113,6 +114,7 @@ export interface VerifyDirectMessageSendingAction {
   data: DirectMessage;
   peer: string;
 }
+
 export interface DeletePublicMessagesAction {
   type: ActionTypes.DELETEPUBLICMESSAGE;
   msgId: string;

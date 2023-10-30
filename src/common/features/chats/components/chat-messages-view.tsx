@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Channel, DirectMessage, PublicMessage } from "../../../../managers/message-manager-types";
 import { fetchCommunityMessages, fetchDirectMessages } from "../utils";
 import { History } from "history";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -12,6 +11,8 @@ import ChatsScroller from "./chats-scroller";
 import { CHATPAGE } from "./chat-popup/chat-constants";
 import { ChatContext } from "../chat-context-provider";
 import { classNameObject } from "../../../helper/class-name-object";
+import { Channel, DirectMessage, PublicMessage } from "../managers/message-manager-types";
+import { useDirectContactsQuery } from "../queries";
 
 interface Props {
   username: string;
@@ -31,6 +32,7 @@ export default function ChatsMessagesView({
   history
 }: Props) {
   const { messageServiceInstance } = useContext(ChatContext);
+  const { data: directContacts } = useDirectContactsQuery();
 
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 
@@ -123,7 +125,7 @@ export default function ChatsMessagesView({
   };
 
   const getDirectMessages = () => {
-    const user = chat.directContacts.find((item) => item.name === directUser);
+    const user = directContacts?.find((item) => item.name === directUser);
     const messages = user && fetchDirectMessages(user?.pubkey, chat.directMessages);
     const directMessages = messages?.sort((a, b) => a.created - b.created);
     setDirectMessages(directMessages!);
@@ -185,7 +187,7 @@ export default function ChatsMessagesView({
           </>
         ) : (
           <ChatsDirectMessages
-            directMessages={directMessages && directMessages}
+            directMessages={directMessages}
             currentUser={directUser!}
             isScrolled={isScrolled}
             isScrollToBottom={isScrollToBottom}

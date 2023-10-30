@@ -773,7 +773,7 @@ class LoginDialog extends Component<Props> {
       if (profile && profile.nsKey && getPrivateKey(account.name)) {
         const keys = {
           pub: profile.nsKey,
-          priv: getPrivateKey(account.name)
+          priv: getPrivateKey(account.name)!!
         };
         setNostrkeys(keys);
       }

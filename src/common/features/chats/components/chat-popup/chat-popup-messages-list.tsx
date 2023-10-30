@@ -6,7 +6,7 @@ import { history } from "../../../../store";
 import React, { useContext } from "react";
 import { ChatContext } from "../../chat-context-provider";
 import { Community } from "../../../../store/communities";
-import { DirectMessage, PublicMessage } from "../../../../../managers/message-manager-types";
+import { DirectMessage, PublicMessage } from "../../managers/message-manager-types";
 
 interface Props {
   isCurrentUser: boolean;

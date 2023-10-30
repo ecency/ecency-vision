@@ -1,6 +1,6 @@
-import { Channel } from "../../../../managers/message-manager-types";
 import { getAccountFull } from "../../../api/hive";
 import { updateProfile } from "../../../api/operations";
+import { Channel } from "../managers/message-manager-types";
 
 export const setChannelMetaData = async (username: string, channel: Channel) => {
   try {

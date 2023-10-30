@@ -3,7 +3,6 @@ import { match } from "react-router";
 import { History } from "history";
 import ChatsMessagesHeader from "./chat-messages-header";
 import ChatsMessagesView from "./chat-messages-view";
-import { Channel, ChannelUpdate } from "../../../../managers/message-manager-types";
 import LinearProgress from "../../../components/linear-progress";
 import { formattedUserName, getJoinedCommunities, getProfileMetaData } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -11,6 +10,7 @@ import { CHANNEL } from "./chat-popup/chat-constants";
 import { ChatContext } from "../chat-context-provider";
 import { useMount } from "react-use";
 import { Button } from "@ui/button";
+import { Channel, ChannelUpdate } from "../managers/message-manager-types";
 
 interface MatchParams {
   filter: string;

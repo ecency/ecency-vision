@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { History } from "history";
-import { Channel } from "../../../../../managers/message-manager-types";
 import {
   formattedUserName,
   getCommunityLastMessage,
@@ -18,6 +17,8 @@ import { ChatSidebarSearch } from "./chat-sidebar-search";
 import { ChatSidebarSearchItem } from "./chat-sidebar-search-item";
 import { ChatSidebarDirectContact } from "./chat-sidebar-direct-contact";
 import { _t } from "../../../../i18n";
+import { useDirectContactsQuery } from "../../queries";
+import { Channel } from "../../managers/message-manager-types";
 
 interface Props {
   username: string;
@@ -28,7 +29,8 @@ export default function ChatsSideBar(props: Props) {
   const { username } = props;
   const { chat } = useMappedStore();
   const { revealPrivKey, setRevealPrivKey, setReceiverPubKey } = useContext(ChatContext);
-  const { channels, directContacts, leftChannelsList } = chat;
+  const { channels, leftChannelsList } = chat;
+  const { data: directContacts } = useDirectContactsQuery();
 
   const chatsSideBarRef = React.createRef<HTMLDivElement>();
 
@@ -72,15 +74,15 @@ export default function ChatsSideBar(props: Props) {
   };
 
   const getReceiverPubKey = async (username: string) => {
-    const peer = directContacts.find((x) => x.name === username)?.pubkey ?? "";
+    const peer = directContacts?.find((x) => x.name === username)?.pubkey ?? "";
     if (peer) {
       setReceiverPubKey(peer);
     } else {
       const pubkey = await getUserChatPublicKey(username);
-      if (pubkey === undefined) {
-        setReceiverPubKey("");
-      } else {
+      if (pubkey) {
         setReceiverPubKey(pubkey);
+      } else {
+        setReceiverPubKey("");
       }
     }
   };
@@ -127,12 +129,12 @@ export default function ChatsSideBar(props: Props) {
                 </div>
               </Link>
             ))}
-            {directContacts.length !== 0 && (
+            {directContacts?.length !== 0 && (
               <div className="mt-4 mb-2 text-xs font-semibold text-gray-500 uppercase px-3">
                 {_t("chat.direct-messages")}
               </div>
             )}
-            {directContacts.map((contact) => (
+            {directContacts?.map((contact) => (
               <ChatSidebarDirectContact
                 key={contact.pubkey}
                 contact={contact}

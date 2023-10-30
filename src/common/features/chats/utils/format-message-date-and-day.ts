@@ -1,6 +1,5 @@
-import { PublicMessage } from "../../../../managers/message-manager-types";
-import { DirectMessage } from "../../../../managers/message-manager-types";
 import { formatMessageDate } from "./format-message-time";
+import { DirectMessage, PublicMessage } from "../managers/message-manager-types";
 
 export const formatMessageDateAndDay = (
   msg: DirectMessage | PublicMessage,

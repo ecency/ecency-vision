@@ -6,8 +6,9 @@ import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
-import { Channel } from "../../../../../managers/message-manager-types";
 import { ChatDirectMessage } from "./chat-direct-message";
+import { useDirectContactsQuery } from "../../queries";
+import { Channel } from "../../managers/message-manager-types";
 
 interface Props {
   communityClicked: (v: string) => void;
@@ -25,6 +26,8 @@ export function ChatPopupDirectMessages({
   const { chat } = useMappedStore();
   const { activeUserKeys, showSpinner } = useContext(ChatContext);
 
+  const { data: directContacts } = useDirectContactsQuery();
+
   const [communities, setCommunities] = useState<Channel[]>([]);
 
   useEffect(() => {
@@ -34,8 +37,7 @@ export function ChatPopupDirectMessages({
 
   return (
     <>
-      {(chat.directContacts.length !== 0 ||
-        (chat.channels.length !== 0 && communities.length !== 0)) &&
+      {(directContacts?.length !== 0 || (chat.channels.length !== 0 && communities.length !== 0)) &&
       !showSpinner &&
       activeUserKeys?.priv ? (
         <>
@@ -50,12 +52,10 @@ export function ChatPopupDirectMessages({
                   userClicked={() => communityClicked(channel.communityName!)}
                 />
               ))}
-              {chat.directContacts.length !== 0 && (
-                <div className="dm-header">{_t("chat.dms")}</div>
-              )}
+              {directContacts?.length !== 0 && <div className="dm-header">{_t("chat.dms")}</div>}
             </>
           )}
-          {chat.directContacts.map((user) => (
+          {directContacts?.map((user) => (
             <ChatDirectMessage
               username={user.name}
               userClicked={(v) => {

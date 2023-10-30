@@ -4,7 +4,6 @@ import { NostrKeysType } from "../types";
 import {
   Channel,
   ChannelUpdate,
-  DirectContact,
   DirectMessage,
   Keys,
   MessagesObject,
@@ -17,6 +16,7 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import { usePrevious } from "../../../util/use-previous";
 import { useMessageServiceListener } from "../hooks/use-message-service-listener";
+import { useDirectContactsQuery } from "../queries";
 
 export const setNostrkeys = (keys: NostrKeysType) => {
   const detail: NostrKeysType = {
@@ -32,7 +32,6 @@ const MessageManager = () => {
     activeUser,
     chat,
     addDirectMessages,
-    addDirectContacts,
     addPublicMessage,
     addChannels,
     addProfile,
@@ -45,6 +44,7 @@ const MessageManager = () => {
     addPreviousPublicMessages,
     resetChat
   } = useMappedStore();
+  const { data: directContacts } = useDirectContactsQuery();
 
   const prevActiveUser = usePrevious(activeUser);
 
@@ -116,7 +116,7 @@ const MessageManager = () => {
   };
 
   //Listen for events in an interval.
-  useMessageServiceListener(messageServiceReady, messageService, chat.channels);
+  useMessageServiceListener(messageServiceReady, messageService);
 
   // // Ready state handler
   const handleReadyState = () => {
@@ -145,32 +145,7 @@ const MessageManager = () => {
     };
   }, [messageService, chat.profiles]);
 
-  //Direct contact handler
-  const handleDirectContact = (data: DirectContact[]) => {
-    const result = [...chat.directContacts];
-    data.forEach(({ name, pubkey }) => {
-      const isPresent = chat.directContacts.some(
-        (obj) => obj.name === name && obj.pubkey === pubkey
-      );
-      if (!isPresent) {
-        result.push({ name, pubkey });
-      }
-    });
-    if (result.length !== 0) {
-      addDirectContacts(result);
-    }
-  };
-
-  useEffect(() => {
-    messageService?.removeListener(MessageEvents.DirectContact, handleDirectContact);
-    messageService?.addListener(MessageEvents.DirectContact, handleDirectContact);
-    return () => {
-      messageService?.removeListener(MessageEvents.DirectContact, handleDirectContact);
-    };
-  }, [messageService]);
-
   //Direct message ahandle before sent
-
   const handleDirectMessageBeforeSent = (data: DirectMessage[]) => {
     data.map((m) => {
       const { peer, id } = m;
@@ -238,10 +213,10 @@ const MessageManager = () => {
   };
 
   useEffect(() => {
-    if (chat.directContacts.length !== 0) {
+    if (directContacts?.length !== 0) {
       setDirectMessages();
     }
-  }, [chat.directContacts, directMessageBuffer]);
+  }, [directContacts, directMessageBuffer]);
 
   useEffect(() => {
     messageService?.removeListener(
@@ -433,7 +408,6 @@ const MessageManager = () => {
       messageService?.removeListener(MessageEvents.Ready, handleReadyState);
       messageService?.removeListener(MessageEvents.ProfileUpdate, handleProfileUpdate);
       messageService?.removeListener(MessageEvents.ChannelCreation, handleChannelCreation);
-      messageService?.removeListener(MessageEvents.DirectContact, handleDirectContact);
       messageService?.removeListener(MessageEvents.LeftChannelList, handleLeftChannelList);
       messageService?.removeListener(MessageEvents.ChannelUpdate, handleChannelUpdate);
       messageService?.removeListener(

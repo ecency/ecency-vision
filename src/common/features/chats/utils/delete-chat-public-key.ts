@@ -13,7 +13,6 @@ export const deleteChatPublicKey = (activeUser: ActiveUser | null) => {
       ls.remove(`${activeUser?.username}_nsPrivKey`);
       const response = await getAccountFull(activeUser?.username!);
       const updatedProfile = await updateProfile(response, { ...profile });
-      console.log("Updated profile", updatedProfile);
       resolve(updatedProfile);
     } catch (error) {
       reject(error);

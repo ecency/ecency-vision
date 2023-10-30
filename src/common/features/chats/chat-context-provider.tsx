@@ -7,6 +7,7 @@ import { NostrKeysType } from "./types";
 import { useMount } from "react-use";
 import { useKeysQuery } from "./queries/keys-query";
 import { useJoinChat } from "./mutations/join-chat";
+import { MessageListenerQueriesProvider } from "./queries";
 
 interface Context {
   activeUserKeys: NostrKeysType;
@@ -145,29 +146,31 @@ export const ChatContextProvider = (props: Props) => {
   };
 
   return (
-    <ChatContext.Provider
-      value={{
-        activeUserKeys,
-        showSpinner,
-        revealPrivKey,
-        receiverPubKey,
-        chatPrivKey,
-        messageServiceInstance,
-        hasUserJoinedChat,
-        currentChannel,
-        windowWidth,
-        isActiveUserRemoved,
-        setCurrentChannel,
-        setRevealPrivKey,
-        setShowSpinner,
-        setChatPrivKey,
-        setActiveUserKeys,
-        setReceiverPubKey,
-        setMessageServiceInstance,
-        initMessageServiceInstance
-      }}
-    >
-      {props.children}
-    </ChatContext.Provider>
+    <MessageListenerQueriesProvider>
+      <ChatContext.Provider
+        value={{
+          activeUserKeys,
+          showSpinner,
+          revealPrivKey,
+          receiverPubKey,
+          chatPrivKey,
+          messageServiceInstance,
+          hasUserJoinedChat,
+          currentChannel,
+          windowWidth,
+          isActiveUserRemoved,
+          setCurrentChannel,
+          setRevealPrivKey,
+          setShowSpinner,
+          setChatPrivKey,
+          setActiveUserKeys,
+          setReceiverPubKey,
+          setMessageServiceInstance,
+          initMessageServiceInstance
+        }}
+      >
+        {props.children}
+      </ChatContext.Provider>
+    </MessageListenerQueriesProvider>
   );
 };

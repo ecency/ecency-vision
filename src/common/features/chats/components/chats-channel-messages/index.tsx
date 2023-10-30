@@ -6,7 +6,7 @@ import {
   communityModerator,
   Profile,
   PublicMessage
-} from "../../../../../managers/message-manager-types";
+} from "../../managers/message-manager-types";
 import { History } from "history";
 import { renderPostBody } from "@ecency/render-helper";
 import { useMappedStore } from "../../../../store/use-mapped-store";

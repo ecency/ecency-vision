@@ -11,7 +11,7 @@ import {
   Metadata,
   Profile,
   PublicMessage
-} from "../../managers/message-manager-types";
+} from "../features/chats/managers/message-manager-types";
 import { encrypt, decrypt } from "../../lib/nostr-tools/nip04";
 import SimplePool from "../../lib/nostr-tools/pool";
 import { signEvent, getEventHash, Event } from "../../lib/nostr-tools/event";
