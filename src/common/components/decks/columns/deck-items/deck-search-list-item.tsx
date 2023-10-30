@@ -236,7 +236,7 @@ export const SearchListItem = ({
                 }}
               />
             )}
-            <div className="mt-3 hot-item-post-count deck-item-body text-secondary">{body}</div>
+            <div className="mt-3 hot-item-post-count deck-item-body text-gray-600">{body}</div>
           </div>
         </div>
         <div className="item-controls mt-3 flex items-center">
@@ -250,7 +250,7 @@ export const SearchListItem = ({
           />
           <EntryPayout entry={entry} />
           <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
-          <Link to={`${url}#discussion`} className="text-secondary">
+          <Link to={`${url}#discussion`} className="text-gray-600">
             <div className="flex items-center comments">
               <div style={{ paddingRight: 4 }}>{commentSvg}</div>
               <div>{entry.children}</div>

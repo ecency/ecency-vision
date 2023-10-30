@@ -63,7 +63,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
           <div className="header-title flex flex-col items-start">
             {"subtitle" in props ? (
               <div className="username">
-                <small className="text-secondary">{props.subtitle}</small>
+                <small className="text-gray-600">{props.subtitle}</small>
               </div>
             ) : (
               <></>

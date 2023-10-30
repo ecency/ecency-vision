@@ -22,7 +22,7 @@ exports[`SwapAmountControl should be able to render element after balance 1`] = 
         value="0"
       />
       <small
-        className="usd-balance bold text-secondary"
+        className="usd-balance bold text-gray-600"
       >
         $
         0
@@ -45,7 +45,7 @@ exports[`SwapAmountControl should be able to render element after balance 1`] = 
         </option>
       </select>
       <small
-        className="balance block text-secondary whitespace-nowrap"
+        className="balance block text-gray-600 whitespace-nowrap"
       >
         Balance
         :
@@ -86,7 +86,7 @@ exports[`SwapAmountControl should be able to show available assets list 1`] = `
         value="0"
       />
       <small
-        className="usd-balance bold text-secondary"
+        className="usd-balance bold text-gray-600"
       >
         $
         0
@@ -140,7 +140,7 @@ exports[`SwapAmountControl should render balance showing 1`] = `
         value="0"
       />
       <small
-        className="usd-balance bold text-secondary"
+        className="usd-balance bold text-gray-600"
       >
         $
         0
@@ -163,7 +163,7 @@ exports[`SwapAmountControl should render balance showing 1`] = `
         </option>
       </select>
       <small
-        className="balance block text-secondary whitespace-nowrap"
+        className="balance block text-gray-600 whitespace-nowrap"
       >
         Balance
         :
@@ -201,7 +201,7 @@ exports[`SwapAmountControl should render correctly 1`] = `
         value="0"
       />
       <small
-        className="usd-balance bold text-secondary"
+        className="usd-balance bold text-gray-600"
       >
         $
         0
@@ -250,7 +250,7 @@ exports[`SwapAmountControl should render disabled state 1`] = `
         value="0"
       />
       <small
-        className="usd-balance bold text-secondary"
+        className="usd-balance bold text-gray-600"
       >
         $
         0
@@ -299,7 +299,7 @@ exports[`SwapAmountControl should render label 1`] = `
         value="0"
       />
       <small
-        className="usd-balance bold text-secondary"
+        className="usd-balance bold text-gray-600"
       >
         $
         0
@@ -348,7 +348,7 @@ exports[`SwapAmountControl should set className 1`] = `
         value="0"
       />
       <small
-        className="usd-balance bold text-secondary"
+        className="usd-balance bold text-gray-600"
       >
         $
         0

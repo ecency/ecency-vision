@@ -95,7 +95,7 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
                   <Search containerClassName="w-full" history={history} />
                   <div
                     onClick={() => setShowMobileSearch(false)}
-                    className="w-6 h-6 text-secondary ml-2"
+                    className="w-6 h-6 text-gray-600 ml-2"
                   >
                     {closeSvg}
                   </div>
@@ -244,7 +244,8 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
                 <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark">
                   <div className="icon-stroke text-dark">{walletSvg}</div>
                   <div className="ml-3 text-15 flex">
-                    {_t("user-nav.wallet")} <div className="dot align-self-start ml-1" />
+                    {_t("user-nav.wallet")}
+                    <div className="dot align-self-start ml-1" />
                   </div>
                 </div>
               </Link>

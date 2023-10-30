@@ -73,7 +73,7 @@ export const SwapAmountControl = ({
             placeholder="0.000"
             onChange={(e) => setValue(formatValue(e.target.value))}
           />
-          <small className="usd-balance bold text-secondary">
+          <small className="usd-balance bold text-gray-600">
             ${formatValue(+value.replace(/,/gm, "") * usdRate + "")}
           </small>
         </div>
@@ -94,7 +94,7 @@ export const SwapAmountControl = ({
             ))}
           </FormControl>
           {balance && showBalance ? (
-            <small className="balance block text-secondary whitespace-nowrap">
+            <small className="balance block text-gray-600 whitespace-nowrap">
               {_t("market.balance")}:
               <span
                 className="text-blue-dark-sky font-bold cursor-pointer ml-1"

@@ -21,7 +21,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       // Basic
       "cursor-pointer rounded-full duration-300 no-wrap": true,
       // Outline basics
-      "border-[1.5px] border-solid": props.outline ?? false,
+      "border-[1.25px] border-solid": props.outline ?? false,
       // With icon
       "flex items-center justify-center gap-2": !!props.icon,
       "flex-row-reverse": props.iconPlacement === "left",

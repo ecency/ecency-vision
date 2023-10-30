@@ -147,13 +147,13 @@ const FloatingFAQ = () => {
           >
             {display && !isSubmitPage && (
               <Button
-                noPadding={true}
-                className="fixed bottom-4 right-4 w-[2rem] h-[2rem]"
+                noPadding={innerWidth < 768}
+                className="fixed bottom-4 right-4 w-[40px] h-[40px] md:w-auto md:h-[40px]"
                 onClick={handleShow}
                 icon={helpIconSvg}
                 iconPlacement="left"
               >
-                {innerWidth >= 792 ? _t("floating-faq.help") : ""}
+                {innerWidth >= 768 ? _t("floating-faq.help") : ""}
               </Button>
             )}
 
