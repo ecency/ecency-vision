@@ -25,6 +25,7 @@ import { hexEnc } from "../util/b64";
 import { Link } from "react-router-dom";
 import clipboard from "../util/clipboard";
 import { ActiveUser } from "../store/active-user/types";
+import { getAccount } from "../api/hive";
 
 interface Props {
   activeUser: ActiveUser;
@@ -61,30 +62,44 @@ const SignUpPage = (props: Props | any) => {
       return;
     }
 
-    const password: string = await generatePassword(32);
-    const keys: KeyTypes = getPrivateKeys(username, password);
-    setNewUserKeys((prev: any) => ({ ...prev, ...keys }));
-    setAccountPassword(password)
-    const dataToEncode = {
-      username,
-      email,
-      referral,
-      keys: {
-        activePubKey: keys.activePubkey,
-        postingPubKey: keys.postingPubkey,
-        ownerPubKey: keys.ownerPubkey,
-        memoPubKey: keys.memoPubkey
+    try {
+      const password: string = await generatePassword(32);
+      const keys: KeyTypes = getPrivateKeys(username, password);
+      setNewUserKeys((prev: any) => ({ ...prev, ...keys }));
+      setAccountPassword(password)
+      const dataToEncode = {
+        username,
+        email,
+        referral,
+        keys: {
+          activePubKey: keys.activePubkey,
+          postingPubKey: keys.postingPubkey,
+          ownerPubKey: keys.ownerPubkey,
+          memoPubKey: keys.memoPubkey
+        }
       }
+  
+      const stringifiedData = JSON.stringify(dataToEncode);
+      const hash = hexEnc(stringifiedData)
+      setUrlHash(hash)
+    } catch (err) {
+        console.log(err)
     }
-
-    const stringifiedData = JSON.stringify(dataToEncode);
-    const hash = hexEnc(stringifiedData)
-    setUrlHash(hash)
   }
 
-  const usernameChanged = (e: { target: { value: any; }; }) => {
+
+  const usernameChanged = async (e: { target: { value: any; }; }) => {
+    setInProgress(true)
     const { value: username } = e.target;
     setUsername(username.toLowerCase());
+    const existingAccount = await getAccount(username)
+    
+    if (existingAccount){
+      setError("username not available");
+    } else {
+      setError("")
+    }
+    setInProgress(false)
   };
 
   const emailChanged = (e: { target: { value: any; }; }) => {
@@ -202,10 +217,14 @@ const SignUpPage = (props: Props | any) => {
                     onSubmit={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
+                      if(error){
+                        return;
+                      }
                       setStep(2);
                     }}
-                  >
-                    <Form.Group>
+                    >
+                    <Form.Group className="d-flex flex-column">
+                      {error && <span className="text-danger align-self-center mb-3">{error}</span>}
                       <Form.Control
                         type="text"
                         placeholder={_t("sign-up.username")}
@@ -289,7 +308,7 @@ const SignUpPage = (props: Props | any) => {
                   {_t("onboard.email")} <strong>{email}</strong>
                 </span>
                 <span style={{ lineHeight: 2 }}>
-                  {_t("onboard.refferal")} <strong>{referral}</strong>
+                  {_t("onboard.referral")} <strong>{referral}</strong>
                 </span>
                 <span style={{ lineHeight: 2 }}>
                   {_t("onboard.public-active")} <strong>{newUserKeys?.activePubkey}</strong>

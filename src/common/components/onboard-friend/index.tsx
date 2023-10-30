@@ -11,12 +11,12 @@ import ScrollToTop from "../scroll-to-top";
 import { _t } from "../../i18n";
 import { Global } from "../../store/global/types";
 import { Community } from "../../store/communities/types";
-import { createHiveAccount } from "../../api/operations";
+import { createHiveAccount, createAccountWithCredit } from "../../api/operations";
 import { hexDec } from "../../util/b64";
 import { ActiveUser } from "../../store/active-user/types";
 import { Link } from "react-router-dom";
 import { createBreakawayUser } from "../../api/breakaway";
-import { getAccount } from "../../api/hive";
+import { getAccounts } from "../../api/hive";
 
 interface Props {
   activeUser: ActiveUser
@@ -43,6 +43,7 @@ const OnboardFriend = (props: Props | any) => {
   const [community, setCommunity] = useState<Community | null>(null);
   const [step, setStep] = useState("confirm");
   const [msg, setMsg] = useState("");
+  const [token, setToken] = useState(0)
 
   useEffect(() => {
     let decodedObj;
@@ -50,13 +51,39 @@ const OnboardFriend = (props: Props | any) => {
       if (props.match.params.hash) {
         const decodedHash = hexDec(props.match.params.hash);
         decodedObj = JSON.parse(decodedHash);
-        console.log(props)
       }
     } catch (error) {
       console.log(error);
     }
     seturlInfo(decodedObj);
+    getAccountTokens();
   }, []);
+  
+  const getAccountTokens = async ()=>{
+    const acc = await getAccounts([activeUser?.username!]);
+      setToken(acc[0]?.pending_claimed_accounts)
+  }
+
+  const accountWithCredit = async () => {
+    try {
+      const response: any = await createAccountWithCredit({
+        username: urlInfo?.username,
+        keys: urlInfo?.keys
+      }, 
+      activeUser?.username
+      )
+      if (response.success === true) {
+        setStep("success");
+        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
+        setMsg(response.message)
+      } else {
+        setStep("fail")
+        setMsg(response.message)
+      }
+    } catch (error) {
+      
+    }
+  }
 
   const createAccount = async ()=> {
     try {
@@ -114,8 +141,15 @@ const OnboardFriend = (props: Props | any) => {
               </div>
             )}
             </div>
-            <div className="button">
-                <Button onClick={()=> createAccount()} className="w-100">{_t("onboard.confirm")}</Button>   
+            <div className="create-buttons w-100">
+                <Button onClick={()=> createAccount()} className="w-100">Pay with (3Hive)</Button>   
+                <Button  
+                disabled={token <= 0}
+                onClick={()=> accountWithCredit()} 
+                className="w-100"
+                >
+                  Pay with credits
+                </Button>   
             </div>
           </>} 
           {step === "success" &&

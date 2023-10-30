@@ -1151,3 +1151,64 @@ export const createHiveAccount = async (data: any, creator_account: string) => {
         console.log(err);
     }
 };
+
+// Create account with credit
+export const createAccountWithCredit = async (data: any, creator_account: string) => {
+    try {
+      const { username, keys } = data;
+  
+      const account = {
+        name: username,
+        ...keys,
+        active: false
+      };
+  
+      let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+      console.log(tokens)
+      tokens = tokens[0]?.pending_claimed_accounts;
+  
+      let fee = null;
+      let op_name: OperationName = "create_claimed_account";
+  
+      const owner = {
+        weight_threshold: 1,
+        account_auths: [],
+        key_auths: [[account.ownerPubKey, 1]]
+      };
+      const active = {
+        weight_threshold: 1,
+        account_auths: [],
+        key_auths: [[account.activePubKey, 1]]
+      };
+      const posting = {
+        weight_threshold: 1,
+        account_auths: [["ecency.app", 1]],
+        key_auths: [[account.postingPubKey, 1]]
+      };
+      const ops: Array<any> = [];
+      const params: any = {
+        creator: creator_account,
+        new_account_name: account.name,
+        owner,
+        active,
+        posting,
+        memo_key: account.memoPubKey,
+        json_metadata: "",
+        extensions: []
+      };
+  
+      if (fee) params.fee = fee;
+      const operation: Operation = [op_name, params];
+      ops.push(operation);
+      try {
+        const newAccount = await keychain.broadcast(creator_account, [operation], "Active");
+        return newAccount;
+      } catch (err: any) {
+        return err;
+      }
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  };
+  
