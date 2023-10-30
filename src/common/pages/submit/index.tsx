@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Entry } from "../../store/entries/types";
 import { Draft } from "../../api/private-api";
 import { MatchType, PostBase, VideoProps } from "./types";
@@ -69,7 +69,6 @@ export function Submit(props: PageProps & MatchProps) {
   const postBodyRef = useRef<HTMLDivElement | null>(null);
   const threeSpeakManager = useThreeSpeakManager();
   const { body, setBody } = useBodyVersioningManager();
-  const previousBody = usePrevious(body);
 
   const { activeUser } = useMappedStore();
   const previousActiveUser = usePrevious(activeUser);
@@ -98,6 +97,11 @@ export function Submit(props: PageProps & MatchProps) {
   const [editingDraft, setEditingDraft] = useState<Draft | null>(null);
 
   let _updateTimer: any; // todo think about it
+
+  const pageTitle = useMemo(() => {
+    const notifications = props.notifications.unread ? `(${props.notifications.unread}) ` : "";
+    return notifications + _t("submit.page-title");
+  }, [props.notifications.unread]);
 
   const { setLocalDraft } = useLocalDraftManager(
     props.match,
@@ -371,10 +375,7 @@ export function Submit(props: PageProps & MatchProps) {
 
   return (
     <>
-      <Meta
-        title={`(${props.notifications.unread || ""}) ` + _t("submit.page-title")}
-        description={_t("submit.page-description")}
-      />
+      <Meta title={pageTitle} description={_t("submit.page-description")} />
       <FullHeight />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />

@@ -39,6 +39,7 @@
     grid-template-columns: min-content min-content 1fr min-content min-content;
     border-bottom: 1px solid $border-color;
     min-height: 67px;
+    line-height: 1.2;
 
     .deck-index {
       grid-area: drag-icon;
@@ -462,8 +463,9 @@
     }
   }
 
-  .notification-list-item {
+  .virtual-list-item > .notification-list-item {
     border-bottom: 1px solid $border-color;
+    line-height: 1.2;
 
     @include padding-top(1rem);
     @include padding-bottom(1rem);

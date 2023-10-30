@@ -66,7 +66,7 @@ exports[`(1) Default render 1`] = `
     className="hs-sign"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
       onClick={[Function]}
       style={
         Object {

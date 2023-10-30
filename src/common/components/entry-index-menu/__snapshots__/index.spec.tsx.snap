@@ -433,7 +433,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                     className="flex flex-col md:flex-row"
                   >
                     <button
-                      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.5rem] px-4 mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
+                      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.5rem] px-4 mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
                       onClick={[Function]}
                       size="lg"
                       style={
@@ -616,7 +616,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                       className="flex flex-col md:flex-row"
                     >
                       <button
-                        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.5rem] px-4 mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
+                        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.5rem] px-4 mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
                         onClick={[Function]}
                         size="lg"
                         style={

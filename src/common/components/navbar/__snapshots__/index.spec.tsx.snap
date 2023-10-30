@@ -188,7 +188,7 @@ exports[`(1) Default render 1`] = `
           className="switch-language"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -218,7 +218,7 @@ exports[`(1) Default render 1`] = `
             title="Create Post"
           >
             <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
               style={
                 Object {
                   "outline": "none",
@@ -526,7 +526,7 @@ exports[`(2) Night Theme 1`] = `
           </div>
         </div>
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -556,7 +556,7 @@ exports[`(2) Night Theme 1`] = `
             title="Create Post"
           >
             <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
               style={
                 Object {
                   "outline": "none",
@@ -851,7 +851,7 @@ exports[`(3) With active user 1`] = `
           className="switch-language"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -881,7 +881,7 @@ exports[`(3) With active user 1`] = `
             title="Create Post"
           >
             <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
               style={
                 Object {
                   "outline": "none",
@@ -1189,7 +1189,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           </div>
         </div>
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -1219,7 +1219,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             title="Create Post"
           >
             <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
               style={
                 Object {
                   "outline": "none",
