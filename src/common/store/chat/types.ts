@@ -23,7 +23,6 @@ export interface publicMessagesList {
 }
 
 export interface Chat {
-  directContacts: DirectContactsType[];
   directMessages: directMessagesList[];
   channels: Channel[];
   publicMessages: publicMessagesList[];

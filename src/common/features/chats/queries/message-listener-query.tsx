@@ -1,15 +1,10 @@
-import {
-  QueryKey,
-  QueryObserverResult,
-  QueryOptions,
-  useQuery,
-  useQueryClient
-} from "@tanstack/react-query";
+import { QueryKey, QueryObserverResult, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { createContext, PropsWithChildren, useContext, useMemo } from "react";
 import { ChatContext } from "../chat-context-provider";
 import { MessageEvents } from "../../../helper/message-service";
 import useMap from "react-use/lib/useMap";
 import useDebounce from "react-use/lib/useDebounce";
+import { UseQueryOptions } from "@tanstack/react-query/src/types";
 
 export const MessageListenerQueriesContext = createContext<{
   subscribers: Record<string, boolean>;
@@ -37,14 +32,14 @@ export function MessageListenerQueriesProvider({ children }: PropsWithChildren<u
  * @param {TQKey} key - The key that identifies the query.
  * @param {MessageEvents} event - The message event to listen for.
  * @param {(data: TQData, nextData: TQData, resolver: (data: TQData) => void) => void} queryFn - The function that processes the received data and updates the query.
- * @param {QueryOptions<TQData>} [queryOptions] - Additional query options.
+ * @param {UseQueryOptions<TQData>} [queryOptions] - Additional query options.
  * @returns {QueryObserverResult<TQData, unknown>} - The result of the query, including data and query status.
  */
 export function useMessageListenerQuery<TQData, TQKey extends QueryKey>(
   key: TQKey,
   event: MessageEvents,
   queryFn: (data: TQData, nextData: TQData, resolver: (data: TQData) => void) => void,
-  queryOptions?: QueryOptions<TQData>
+  queryOptions?: UseQueryOptions<TQData>
 ): QueryObserverResult<TQData> {
   const { messageServiceInstance } = useContext(ChatContext);
   const { set, get } = useContext(MessageListenerQueriesContext);
@@ -65,8 +60,6 @@ export function useMessageListenerQuery<TQData, TQKey extends QueryKey>(
         if (get(joinedKey)) {
           return;
         }
-
-        console.log("fetching");
 
         messageServiceInstance.addListener(event, listener as any); // todo fix typings
         set(joinedKey, true);

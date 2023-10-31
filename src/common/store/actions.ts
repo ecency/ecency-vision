@@ -38,23 +38,21 @@ import {
   updateNotificationsSettings
 } from "./notifications";
 import { setSigningKey } from "./signing-key";
-import { savePageScroll } from "./persistent-page-scroll";
 import {
-  addDirectContacts,
-  addDirectMessages,
-  resetChat,
   addChannels,
-  addPublicMessage,
-  addProfile,
+  addDirectMessages,
   addleftChannels,
-  UpdateChannels,
-  replacePublicMessage,
-  verifyPublicMessageSending,
-  replaceDirectMessage,
-  verifyDirectMessageSending,
-  deletePublicMessage,
+  addPreviousPublicMessages,
+  addProfile,
+  addPublicMessage,
   deleteDirectMessage,
-  addPreviousPublicMessages
+  deletePublicMessage,
+  replaceDirectMessage,
+  replacePublicMessage,
+  resetChat,
+  UpdateChannels,
+  verifyDirectMessageSending,
+  verifyPublicMessageSending
 } from "./chat";
 
 // @note Do not use it directly
@@ -101,7 +99,6 @@ export const ACTIONS = {
   updateNotificationsSettings,
   fetchNotificationsSettings,
   setNotificationsSettingsItem,
-  addDirectContacts,
   addDirectMessages,
   resetChat,
   addChannels,

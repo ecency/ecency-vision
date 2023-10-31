@@ -6,6 +6,7 @@ import UserAvatar from "../../../../components/user-avatar";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { classNameObject } from "../../../../helper/class-name-object";
 import { DirectContact } from "../../managers/message-manager-types";
+import { useDirectMessagesQuery } from "../../queries";
 
 interface Props {
   contact: DirectContact;
@@ -17,9 +18,11 @@ export function ChatSidebarDirectContact({ contact, username, handleRevealPrivKe
   const { setReceiverPubKey } = useContext(ChatContext);
   const { chat } = useMappedStore();
 
+  const { data: directMessages } = useDirectMessagesQuery(contact.name);
+
   const lastMessage = useMemo(
-    () => getDirectLastMessage(contact.pubkey, chat.directMessages),
-    [chat.directMessages, contact]
+    () => getDirectLastMessage(directMessages),
+    [directMessages, contact]
   );
   const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
 

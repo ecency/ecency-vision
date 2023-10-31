@@ -31,6 +31,7 @@ import { EntriesCacheManager } from "./core";
 import { UserActivityRecorder } from "./components/user-activity-recorder";
 import { ChatContextProvider } from "./features/chats/chat-context-provider";
 import { ChatPopUp } from "./features/chats/components/chat-popup";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -100,7 +101,7 @@ const App = (props: any) => {
   return (
     <EntriesCacheManager>
       {/*Excluded from production*/}
-      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
+      <ReactQueryDevtools initialIsOpen={false} />
       <Tracker />
       <UserActivityRecorder />
       <ChatContextProvider>

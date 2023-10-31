@@ -16,8 +16,6 @@ import {
   Chat,
   DeleteDirectMessagesAction,
   DeletePublicMessagesAction,
-  DirectContactsAction,
-  DirectContactsType,
   DirectMessagesAction,
   LeftChannelsAction,
   ProfilesAction,
@@ -31,7 +29,6 @@ import {
 } from "./types";
 
 export const initialState: Chat = {
-  directContacts: [],
   directMessages: [],
   channels: [],
   publicMessages: [],
@@ -42,23 +39,6 @@ export const initialState: Chat = {
 
 export default (state: Chat = initialState, action: Actions): Chat => {
   switch (action.type) {
-    case ActionTypes.DIRECTCONTACTS: {
-      const { data } = action;
-      const uniqueDirectContacts = data.filter((contact) => {
-        return !state.directContacts.some((existingContact) => {
-          return existingContact.name === contact.name && existingContact.pubkey === contact.pubkey;
-        });
-      });
-
-      return {
-        ...state,
-        directContacts: [...state.directContacts, ...uniqueDirectContacts],
-        directMessages: [
-          ...state.directMessages,
-          ...uniqueDirectContacts.map((contact) => ({ chat: {}, peer: contact.pubkey }))
-        ]
-      };
-    }
     case ActionTypes.DIRECTMESSAGES: {
       const { peer, data } = action;
       return {
@@ -278,10 +258,6 @@ export default (state: Chat = initialState, action: Actions): Chat => {
 };
 
 /* Actions */
-export const addDirectContacts = (data: DirectContactsType[]) => (dispatch: Dispatch) => {
-  dispatch(addDirectContactsAct(data));
-};
-
 export const addDirectMessages = (peer: string, data: DirectMessage) => (dispatch: Dispatch) => {
   dispatch(addDirectMessagesAct(peer, data));
 };
@@ -344,13 +320,6 @@ export const addPreviousPublicMessages =
   };
 
 /* Action Creators */
-
-export const addDirectContactsAct = (data: DirectContactsType[]): DirectContactsAction => {
-  return {
-    type: ActionTypes.DIRECTCONTACTS,
-    data
-  };
-};
 
 export const addDirectMessagesAct = (peer: string, data: DirectMessage): DirectMessagesAction => {
   return {

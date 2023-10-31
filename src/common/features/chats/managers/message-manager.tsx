@@ -145,94 +145,6 @@ const MessageManager = () => {
     };
   }, [messageService, chat.profiles]);
 
-  //Direct message ahandle before sent
-  const handleDirectMessageBeforeSent = (data: DirectMessage[]) => {
-    data.map((m) => {
-      const { peer, id } = m;
-      setReplacedDirectMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
-      addDirectMessages(peer, m);
-      checkDirectMessageSending(peer, m);
-    });
-  };
-
-  useEffect(() => {
-    messageService?.removeListener(
-      MessageEvents.DirectMessageBeforeSent,
-      handleDirectMessageBeforeSent
-    );
-    messageService?.addListener(
-      MessageEvents.DirectMessageBeforeSent,
-      handleDirectMessageBeforeSent
-    );
-
-    return () => {
-      messageService?.removeListener(
-        MessageEvents.DirectMessageBeforeSent,
-        handleDirectMessageBeforeSent
-      );
-    };
-  }, [messageService, chat.directMessages]);
-
-  const checkDirectMessageSending = (peer: string, data: DirectMessage) => {
-    setTimeout(() => {
-      verifyDirectMessageSending(peer, data);
-    }, 20000);
-  };
-
-  // Direct message handler after sent
-  const handleDirectMessageAfterSent = (data: DirectMessage[]) => {
-    if (isDirectChatCreated) {
-      data.forEach((message) => {
-        const { peer, id } = message;
-        if (replacedDirectMessagesBuffer.includes(id)) {
-          setReplacedDirectMessagesBuffer((prevBuffer) =>
-            prevBuffer.filter((messageId) => messageId !== id)
-          );
-          replaceDirectMessage(peer, message);
-        } else {
-          addDirectMessages(peer, message);
-        }
-      });
-    } else {
-      setDirectMessageBuffer((directMessageBuffer) => [...directMessageBuffer!, ...data]);
-    }
-    messageService?.checkProfiles(data.map((x) => x.peer));
-  };
-
-  const setDirectMessages = () => {
-    directMessageBuffer.forEach((obj) => {
-      const { peer } = obj;
-      const matchingStateItem = chat.directMessages.find((stateItem) => stateItem.peer === peer);
-      if (matchingStateItem) {
-        addDirectMessages(peer, obj);
-        setDirectMessageBuffer((prevMessageBuffer) =>
-          prevMessageBuffer.filter((message) => message.id !== obj.id)
-        );
-      }
-    });
-  };
-
-  useEffect(() => {
-    if (directContacts?.length !== 0) {
-      setDirectMessages();
-    }
-  }, [directContacts, directMessageBuffer]);
-
-  useEffect(() => {
-    messageService?.removeListener(
-      MessageEvents.DirectMessageAfterSent,
-      handleDirectMessageAfterSent
-    );
-    messageService?.addListener(MessageEvents.DirectMessageAfterSent, handleDirectMessageAfterSent);
-
-    return () => {
-      messageService?.removeListener(
-        MessageEvents.DirectMessageAfterSent,
-        handleDirectMessageAfterSent
-      );
-    };
-  }, [messageService, chat.directMessages]);
-
   // Channel creation handler
   const handleChannelCreation = (data: Channel[]) => {
     addChannels(data.filter((x) => !chat.channels.find((y) => y.id === x.id)));
@@ -298,6 +210,7 @@ const MessageManager = () => {
 
   //Public Message handler after sent
   const handlePublicMessageAfterSent = (data: PublicMessage[]) => {
+    console.log("data", data);
     if (isCommunityCreated) {
       data.forEach((message) => {
         const { root, id } = message;
@@ -421,14 +334,6 @@ const MessageManager = () => {
       messageService?.removeListener(
         MessageEvents.PublicMessageAfterSent,
         handlePublicMessageAfterSent
-      );
-      messageService?.removeListener(
-        MessageEvents.DirectMessageBeforeSent,
-        handleDirectMessageBeforeSent
-      );
-      messageService?.removeListener(
-        MessageEvents.DirectMessageAfterSent,
-        handleDirectMessageAfterSent
       );
     };
   }, [messageService]);
