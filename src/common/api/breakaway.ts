@@ -18,3 +18,21 @@ export const createBreakawayUser = async (username: string, community: string, r
         return err;
     }
 }
+
+export const createSolanaUser = async (email: string, password: string, solanaWalletAddress: string) => {
+  try {
+    const data = {
+      email,
+      password,
+      solanaWalletAddress,
+    };
+
+    const resp = await axios.post(`${baUrl}/offchain-users/register`, data);
+
+    return resp.data;
+  } catch (err) {
+    console.log(err);
+
+    return { err }
+  }
+};

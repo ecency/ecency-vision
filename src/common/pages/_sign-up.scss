@@ -1,67 +1,76 @@
 .sign-up-page {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: auto;
 
   @media (max-width: $md-break) {
     flex-direction: column;
     align-items: center;
   }
 
-  .success-info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      width: max-content;
-      background-color: #161d26;
-      // background-color: $dark-three;
-      padding: 2rem;
-      border-radius: 1rem;
-      color: $steel-grey;
-      word-break: break-all;
-
-      .account-details{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      .account-password{
+  .success-wrapper{
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    .success-info {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 10px;
-
-        .password{
+        width: max-content;
+        background-color: #161d26;
+        // background-color: $dark-three;
+        padding: 2rem;
+        border-radius: 1rem;
+        color: $steel-grey;
+        word-break: break-all;
+  
+        .account-details{
           display: flex;
+          justify-content: center;
+          flex-direction: column;
+          gap: 5px;
+        }
+  
+        .account-password{
+          display: flex;
+          flex-direction: column;
           align-items: center;
-          gap: 3px;
-
-          .icon{
-            cursor: pointer;
+          gap: 10px;
+  
+          .password{
+            display: flex;
+            align-items: center;
+            gap: 3px;
+  
+            .icon{
+              cursor: pointer;
+            }
           }
         }
-      }
-
-      .account-link{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .link{
+  
+        .account-link{
           display: flex;
+          flex-direction: column;
           align-items: center;
-          gap: 3px;
-
-          .icon{
-            cursor: pointer;
+  
+          .link{
+            display: flex;
+            align-items: center;
+            gap: 3px;
+  
+            .icon{
+              cursor: pointer;
+            }
           }
         }
-      }
-      
-      }
+        
+        }
+  }
 
       @media (max-width: $md-break) {
         margin-bottom: 2rem;
@@ -69,9 +78,8 @@
     }
 
   .sign-up {
-    max-width: 1400px;
     width: 100%;
-    margin: auto;
+    display: flex;
 
     @media (min-width: $xl-break) {
       display: flex;
@@ -96,16 +104,15 @@
     }
 
     .the-form {
-      margin: 0 auto;
-      @media (min-width: $xl-break) {
-        width: 50%;
-      }
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
 
       .form-title {
         font-size: 28px;
         font-weight: 500;
         text-align: center;
-        margin-bottom: 10px;
 
         @media (min-width: $xl-break) {
           font-size: 32px;
@@ -115,27 +122,6 @@
       .form-sub-title {
         opacity: 0.7;
         text-align: center;
-      }
-
-      .form-icons {
-        text-align: center;
-        margin: 22px 0 12px 16px;
-
-        @media (min-width: $xl-break) {
-          margin: 56px 0;
-        }
-
-        img, svg {
-          height: 44px;
-        }
-
-        img {
-          margin-right: 60px;
-        }
-
-        svg {
-          color: #D2323E;
-        }
       }
 
       .form-image {
@@ -182,11 +168,14 @@
       }
 
       .form-content {
-        max-width: 460px;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
         margin: auto;
-
+        
         form {
-          margin-bottom: 26px;
+          gap: 20px;
         }
 
         .form-do-login, .form-bottom-description, .form-faq {
@@ -201,5 +190,49 @@
           line-height: 22px;
         }
       }
+  }
+}
+
+.wrapper{
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  width: 100%;
+  
+  .account-types{
+    flex: 1;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-end;
+  
+      img{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .account-type{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        border: 1px solid rgb(69, 63, 109);
+        width: 400px;
+        padding: 10px;
+        cursor: pointer;
+
+        span{
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
+  }
+
+  .account-sign-up{
+    display: flex;
+    flex: 1;
   }
 }
