@@ -789,7 +789,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   key={item}
                                 />
                                 {selectedItem === item && (
-                                  <div className="text-green check absolute bg-white rounded-circle flex justify-center items-center">
+                                  <div className="text-green check absolute bg-white rounded-full p-1 flex justify-center items-center">
                                     {checkSvg}
                                   </div>
                                 )}
